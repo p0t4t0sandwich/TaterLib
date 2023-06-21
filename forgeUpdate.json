@@ -1,0 +1,10 @@
+{
+    "homepage": "https://github.com/p0t4t0sandwich/Template/releases",
+    "1.20": {
+      "1.0.0": "<changelog for this version>"
+    },
+    "promos": {
+      "1.20-latest": "1.0.0",
+      "1.20-recommended": "1.0.0"
+    }
+}

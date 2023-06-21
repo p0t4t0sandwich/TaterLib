@@ -1,0 +1,22 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+
+        // Fabric
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+    }
+}
+
+rootProject.name = 'TaterAPI'
+
+include(
+        'bukkit',
+        'bungee',
+        'fabric',
+        'forge',
+        'velocity',
+        'common'
+)

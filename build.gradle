@@ -1,0 +1,45 @@
+plugins {
+    id('java')
+}
+
+defaultTasks('build')
+
+subprojects {
+    apply(plugin: 'java')
+
+    group = 'dev.neuralnexus'
+    version = '1.0.0'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenCentral()
+
+        // Common
+        maven {
+            name = "jitpack"
+            url = "https://jitpack.io"
+        }
+
+        // Bukkit/Bungee
+        maven {
+            name = "spigotmc-repo"
+            url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/groups/public/"
+        }
+
+        // Paper
+        maven {
+            name = "papermc-repo"
+            url = "https://repo.papermc.io/repository/maven-public/"
+        }
+    }
+}

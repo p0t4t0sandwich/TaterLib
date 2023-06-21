@@ -1,0 +1,40 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('7.1.2')
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    // BungeeCord
+    compileOnly('net.md-5:bungeecord-api:1.20-R0.1-SNAPSHOT')
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties(props)
+    filteringCharset('UTF-8')
+    filesMatching('bungee.yml') {
+        expand(props)
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDir(file('../target'))
+    archiveName("Template-${version}-bungee.jar")
+    classifier('')
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}

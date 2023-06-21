@@ -1,0 +1,12 @@
+name: Template
+version: '${version}'
+author: p0t4t0sandwich
+description: Template
+main: ca.sperrer.p0t4t0sandwich.template.bukkit.BukkitMain
+depend: []
+folia-supported: true
+commands:
+  template:
+    description: Template
+    usage: /template
+    permission: template

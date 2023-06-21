@@ -1,0 +1,35 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('7.1.2')
+}
+
+repositories {
+    maven { url 'https://repo.papermc.io/repository/maven-public/' }
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    compileOnly('com.velocitypowered:velocity-api:3.1.1')
+    annotationProcessor('com.velocitypowered:velocity-api:3.1.1')
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDir(file('../target'))
+    archiveName("Template-${version}-velocity.jar")
+    classifier('')
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}
