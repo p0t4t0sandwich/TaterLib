@@ -1,12 +1,7 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
-import dev.neuralnexus.taterapi.common.events.api.EventBus;
-import dev.neuralnexus.taterapi.common.events.api.TaterEvent;
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 import dev.neuralnexus.taterapi.common.relay.MessageRelay;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
@@ -20,10 +15,6 @@ public interface PlayerLoginListener {
      */
     default void taterPlayerLogin(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {
-            EventBus.INSTANCE.addListener(PlayerLoginListener.class, () -> {
-                // Do nothing
-            });
-
             try {
                 MessageRelay relay = MessageRelay.getInstance();
 
