@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerDeathEvent;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,7 +21,8 @@ public class FabricPlayerDeathListener {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void onPlayerDeath(DamageSource source, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-        // TODO: Emit event
-//        taterPlayerDeath(new FabricTaterPlayer(player), source.getDeathMessage(player).getString());
+
+        // Fire the death event
+        FabricPlayerDeathEvent.EVENT.invoker().onPlayerDeath(player, source);
     }
 }

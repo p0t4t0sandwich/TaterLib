@@ -15,9 +15,7 @@ public interface ServerStoppedListener {
     default void taterServerStopped() {
         runTaskAsync(() -> {
             try {
-                MessageRelay relay = MessageRelay.getInstance();
-                String server = TaterAPI.getServerName();
-                relay.sendSystemMessage(server, "**Server has stopped**");
+                TaterAPI.stop();
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

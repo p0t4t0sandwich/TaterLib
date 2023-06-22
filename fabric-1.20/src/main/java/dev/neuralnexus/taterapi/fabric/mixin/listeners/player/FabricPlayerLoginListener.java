@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterapi.common.listeners.player.PlayerLoginListener;
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerLoginEvent;
 import dev.neuralnexus.taterapi.fabric.player.FabricTaterPlayer;
 import net.minecraft.server.network.ServerLoginNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -20,9 +21,10 @@ public class FabricPlayerLoginListener implements PlayerLoginListener {
      */
     @Inject(method = "addToServer", at = @At("HEAD"))
     private void onPlayerLogin(ServerPlayerEntity player, CallbackInfo ci) {
-        // Send login message to message relay
+        // Add the player to the player cache
         taterPlayerLogin(new FabricTaterPlayer(player));
 
-        // TODO: Emit event
+        // Fire the login event
+        FabricPlayerLoginEvent.EVENT.invoker().onPlayerLogin(player);
     }
 }

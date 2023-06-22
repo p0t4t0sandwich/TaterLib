@@ -21,7 +21,9 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Fabric API
-    Set<String> apiModules = []
+    Set<String> apiModules = [
+            "fabric-api-base",
+    ]
 
     apiModules.forEach {
         modImplementation(fabricApi.module(it, project.fabric_version))

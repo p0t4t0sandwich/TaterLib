@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerAdvancementEvent;
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerAdvancementFinishedEvent;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementDisplay;
 import net.minecraft.advancement.AdvancementProgress;
@@ -26,9 +28,13 @@ public abstract class FabricPlayerAdvancementListener {
      */
     @Inject(method = "endTrackingCompleted", at = @At("HEAD"))
     public void onPlayerAdvancement(Advancement advancement, CallbackInfo ci) {
+        // Fire the generic advancement event
+        FabricPlayerAdvancementEvent.EVENT.invoker().onPlayerAdvancement(this.owner, advancement);
+
         AdvancementDisplay display = advancement.getDisplay();
         if (display != null && display.shouldAnnounceToChat() && getProgress(advancement).isDone()) {
-            // TODO: Emit event
+            // Fire the advancement finished event
+            FabricPlayerAdvancementFinishedEvent.EVENT.invoker().onPlayerAdvancementFinished(this.owner, advancement);
         }
     }
 }

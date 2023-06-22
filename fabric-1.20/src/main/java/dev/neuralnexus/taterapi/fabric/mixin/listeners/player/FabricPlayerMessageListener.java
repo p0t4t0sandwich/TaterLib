@@ -1,8 +1,7 @@
 package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerMessageListener;
-import dev.neuralnexus.taterapi.fabric.player.FabricTaterPlayer;
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerMessageEvent;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -28,7 +27,8 @@ public abstract class FabricPlayerMessageListener {
     public void onPlayerMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
         if (packet.chatMessage().startsWith("/")) return;
         if (TaterAPI.cancelChat) ci.cancel();
-//        taterPlayerMessage(new FabricTaterPlayer(getPlayer()), packet.chatMessage(), TaterAPI.cancelChat);
-        // TODO: Emit event
+
+        // Fire the message event
+        FabricPlayerMessageEvent.EVENT.invoker().onPlayerMessage(getPlayer(), packet.chatMessage(), TaterAPI.cancelChat);
     }
 }
