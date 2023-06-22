@@ -1,14 +1,15 @@
 package dev.neuralnexus.taterapi.bukkit;
 
-import dev.neuralnexus.taterapi.bukkit.commands.BukkitTemplateCommand;
+import dev.neuralnexus.taterapi.bukkit.commands.BukkitTaterAPICommand;
 import dev.neuralnexus.taterapi.bukkit.listeners.BukkitPlayerLoginListener;
 import dev.neuralnexus.taterapi.common.TaterAPI;
+import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static dev.neuralnexus.taterapi.common.Utils.*;
+import static dev.neuralnexus.taterapi.common.Utils.getBukkitServerType;
 
 public class BukkitMain extends JavaPlugin {
-    public TaterAPI taterApi;
+    public static TaterAPI taterApi;
 
     // Singleton instance
     private static BukkitMain instance;
@@ -16,50 +17,31 @@ public class BukkitMain extends JavaPlugin {
         return instance;
     }
 
-    public String getServerType() {
-        if (isMagma()) {
-            return "Magma";
-        } else if (isMohist()) {
-            return "Mohist";
-        } else if (isArclight()) {
-            return "Arclight";
-        } else if (isFolia()) {
-            return "Folia";
-        } else if (isPaper()) {
-            return "Paper";
-        } else if (isSpigot()) {
-            return "Spigot";
-        } else if (isCraftBukkit()) {
-            return "CraftBukkit";
-        } else {
-            return "Unknown";
-        }
-    }
-
     @Override
     public void onEnable() {
         // Singleton instance
         instance = this;
 
-        getLogger().info("Template is running on " + getServerType() + ".");
+        getLogger().info("TaterAPI is running on " + getBukkitServerType() + ".");
 
-        // Start
+        // Start TaterAPI
         taterApi = new TaterAPI("plugins", getLogger());
-        taterApi.start();
+        TaterAPI.start();
 
         // Register event listener
         getServer().getPluginManager().registerEvents(new BukkitPlayerLoginListener(), this);
 
         // Register commands
-        getCommand("template").setExecutor(new BukkitTemplateCommand());
+        getCommand(TaterAPICommand.commandName).setExecutor(new BukkitTaterAPICommand());
 
         // Plugin enable message
-        getLogger().info("Template has been enabled!");
+        getLogger().info("TaterAPI has been enabled!");
     }
 
     @Override
     public void onDisable() {
         // Plugin disable message
-        getLogger().info("Template has been disabled!");
+        getLogger().info("TaterAPI has been disabled!");
+        TaterAPI.stop();
     }
 }

@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterapi.common;
 
+import dev.neuralnexus.taterapi.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterapi.common.storage.DataSource;
 import dev.neuralnexus.taterapi.common.storage.Database;
 import dev.dejvokep.boostedyaml.YamlDocument;
@@ -7,6 +8,8 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
+
+import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
 public class TaterAPI {
     /**
@@ -17,10 +20,11 @@ public class TaterAPI {
      * STARTED: Whether the PanelServerManager has been started
      */
     private static YamlDocument config;
-    private final Object logger;
+    private static Object logger;
     private static TaterAPI singleton = null;
-    private boolean STARTED = false;
-    public Database database;
+    private static boolean STARTED = false;
+    public static Database database;
+    public static boolean cancelChat = false;
 
     /**
      * Constructor for the TaterAPI class.
@@ -29,11 +33,11 @@ public class TaterAPI {
      */
     public TaterAPI(String configPath, Object logger) {
         singleton = this;
-        this.logger = logger;
+        TaterAPI.logger = logger;
 
         // Config
         try {
-            config = YamlDocument.create(new File("./" + configPath + "/TaterAPI", "config.yml"),
+            config = YamlDocument.create(new File("." + File.separator + configPath + File.separator + "TaterAPI", "config.yml"),
                     Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("config.yml"))
             );
             config.reload();
@@ -55,7 +59,7 @@ public class TaterAPI {
      * Use whatever logger is being used.
      * @param message The message to log
      */
-    public void useLogger(String message) {
+    public static void useLogger(String message) {
         if (logger instanceof java.util.logging.Logger) {
             ((java.util.logging.Logger) logger).info(message);
         } else if (logger instanceof org.slf4j.Logger) {
@@ -68,7 +72,7 @@ public class TaterAPI {
     /**
      * Start TaterAPI
      */
-    public void start() {
+    public static void start() {
         if (STARTED) {
             useLogger("TaterAPI has already started!");
             return;
@@ -79,6 +83,24 @@ public class TaterAPI {
         database = DataSource.getDatabase(type, config);
 
         useLogger("TaterAPI has been started!");
+        TaterAPIProvider.register(singleton);
+    }
+
+    /**
+     * Stop TaterAPI
+     */
+    public static void stop() {
+        if (!STARTED) {
+            useLogger("TaterAPI has already stopped!");
+            return;
+        }
+        STARTED = false;
+
+        // Remove the database object
+        database = null;
+
+        useLogger("TaterAPI has been stopped!");
+        TaterAPIProvider.unregister();
     }
 
     /**
@@ -87,5 +109,9 @@ public class TaterAPI {
      */
     public static String getServerName() {
         return config.getString("server.name");
+    }
+
+    public static String getVersion() {
+        return config.getString("apiversion");
     }
 }

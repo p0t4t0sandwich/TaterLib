@@ -24,7 +24,7 @@ shadowJar {
     }
 
     destinationDir(file('../target'))
-    archiveName("Template-${version}-bungee.jar")
+    archiveName("TaterAPI-${version}-bungee.jar")
     classifier('')
 }
 shadowJar.doLast {

@@ -1,5 +1,9 @@
 ---
+# Config version -- DO NOT EDIT!
 version: 1
+
+# TaterAPI version
+apiversion: '${version}'
 
 # Database configuration
 # Supported storage types: mongodb, mysql

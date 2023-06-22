@@ -1,7 +1,8 @@
 package dev.neuralnexus.taterapi.velocity;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.velocity.commands.VelocityTemplateCommand;
+import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
+import dev.neuralnexus.taterapi.velocity.commands.VelocityTaterAPICommand;
 import dev.neuralnexus.taterapi.velocity.listeners.VelocityPlayerLoginListener;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -11,16 +12,16 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import org.slf4j.Logger;
 
 @Plugin(
-        id = "template",
-        name = "Template",
+        id = "taterapi",
+        name = "TaterAPI",
         version = "1.0.0",
         authors = "p0t4t0sandwich",
-        description = "Template",
-        url = "https://github.com/p0t4t0sandwich/Template",
+        description = "A cross API code library for various generalizations used in the Tater* plugins",
+        url = "https://github.com/p0t4t0sandwich/TaterAPI",
         dependencies = {}
 )
 public class VelocityMain {
-    public TaterAPI taterApi;
+    public static TaterAPI taterApi;
 
     @Inject
     private ProxyServer server;
@@ -28,44 +29,26 @@ public class VelocityMain {
     @Inject
     private Logger logger;
 
-    // Get logger
-    public Logger getLogger() {
-        return this.logger;
-    }
-
     // Get server type
     public String getServerType() {
         return "Velocity";
     }
 
-    // Singleton instance
-    private static VelocityMain instance;
-    public static VelocityMain getInstance() {
-        return instance;
-    }
-
-    public ProxyServer getServer() {
-        return this.server;
-    }
-
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        // Singleton instance
-        instance = this;
+        logger.info("TaterAPI is running on " + getServerType() + ".");
 
-        this.logger.info("Template is running on " + getServerType() + ".");
-
-        // Start LPPronouns
-        taterApi = new TaterAPI("plugins", getLogger());
-        taterApi.start();
+        // Start TaterAPI
+        taterApi = new TaterAPI("plugins", logger);
+        TaterAPI.start();
 
         // Register event listener
         server.getEventManager().register(this, new VelocityPlayerLoginListener());
 
         // Register commands
-        server.getCommandManager().register("template", new VelocityTemplateCommand());
+        server.getCommandManager().register(TaterAPICommand.commandName, new VelocityTaterAPICommand());
 
         // Plugin enable message
-        this.logger.info("Template has been enabled!");
+        logger.info("TaterAPI has been enabled!");
     }
 }

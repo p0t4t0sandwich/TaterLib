@@ -26,7 +26,7 @@ shadowJar {
     }
 
     destinationDir(file('../target'))
-    archiveName("Template-${version}-bukkit.jar")
+    archiveName("TaterAPI-${version}-bukkit.jar")
     classifier('')
 }
 shadowJar.doLast {

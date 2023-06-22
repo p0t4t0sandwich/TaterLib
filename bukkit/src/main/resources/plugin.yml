@@ -1,12 +1,13 @@
-name: Template
+name: TaterAPI
 version: '${version}'
 author: p0t4t0sandwich
-description: Template
+description: A cross API code library for various generalizations used in the Tater* plugins
 main: ca.sperrer.p0t4t0sandwich.template.bukkit.BukkitMain
 depend: []
+softdepend: [LuckPerms]
 folia-supported: true
 commands:
-  template:
-    description: Template
-    usage: /template
-    permission: template
+  taterapi:
+    description: TaterAPI command
+    usage: /taterapi <reload|version>
+    permission: taterapi.command
