@@ -2,7 +2,6 @@ package dev.neuralnexus.taterapi.forge.commands;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
-import dev.neuralnexus.taterapi.forge.ForgeMain;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

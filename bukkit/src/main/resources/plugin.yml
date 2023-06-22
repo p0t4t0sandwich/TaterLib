@@ -2,7 +2,7 @@ name: TaterAPI
 version: '${version}'
 author: p0t4t0sandwich
 description: A cross API code library for various generalizations used in the Tater* plugins
-main: ca.sperrer.p0t4t0sandwich.template.bukkit.BukkitMain
+main: dev.neuralnexus.taterapi.bukkit.BukkitTaterAPIPlugin
 depend: []
 softdepend: [LuckPerms]
 folia-supported: true

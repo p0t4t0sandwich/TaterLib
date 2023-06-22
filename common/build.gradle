@@ -40,11 +40,11 @@ shadowJar {
         include(dependency('org.mongodb:mongodb-driver-core:4.9.1'))
         include(dependency('org.mongodb:bson:4.9.1'))
     }
-    relocate('dev.dejvokep', 'ca.sperrer.p0t4t0sandwich.lppronouns.lib.dejvokep')
-    relocate('com.zaxxer.hikari', 'ca.sperrer.p0t4t0sandwich.lppronouns.lib.hikari')
-    relocate('com.mysql', 'ca.sperrer.p0t4t0sandwich.lppronouns.lib.mysql')
-    relocate('com.mongodb', 'ca.sperrer.p0t4t0sandwich.lppronouns.lib.mongodb')
-    relocate('org.bson', 'ca.sperrer.p0t4t0sandwich.lppronouns.lib.bson')
+    relocate('dev.dejvokep', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.dejvokep')
+    relocate('com.zaxxer.hikari', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.hikari')
+    relocate('com.mysql', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.mysql')
+    relocate('com.mongodb', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.mongodb')
+    relocate('org.bson', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.bson')
 
     destinationDir(file('../target'))
     archiveName("TaterAPI-${version}-common.jar")

@@ -11,7 +11,7 @@ public interface ServerStartingListener {
     /**
      * Called when a server is starting, and sends it to the message relay.
      */
-    default void taterServerStopped(String configPath, Object logger) {
+    default void taterServerStarted(String configPath, Object logger) {
         runTaskAsync(() -> {
             try {
                 new TaterAPI(configPath, logger);

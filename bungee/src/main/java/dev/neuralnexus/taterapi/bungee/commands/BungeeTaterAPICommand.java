@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterapi.bungee.commands;
 
-import dev.neuralnexus.taterapi.bungee.BungeeMain;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.ComponentBuilder;

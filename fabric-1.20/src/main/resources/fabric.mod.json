@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "server": [
-      "dev.neuralnexus.taterapi.fabric.FabricMain"
+      "dev.neuralnexus.taterapi.fabric.FabricTaterAPIPlugin"
     ]
   },
   "mixins": [

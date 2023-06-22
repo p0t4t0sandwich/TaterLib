@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterapi.bukkit.commands;
 
-import dev.neuralnexus.taterapi.bukkit.BukkitMain;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
 import org.bukkit.command.Command;
