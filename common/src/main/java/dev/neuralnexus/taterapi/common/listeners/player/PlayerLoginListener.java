@@ -11,7 +11,7 @@ import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 public interface PlayerLoginListener {
     /**
      * Called when a player logs in, and sends it to the message relay.
-     * @param taterPlayer The player.
+     * @param taterPlayer The TaterPlayer.
      */
     default void taterPlayerLogin(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {

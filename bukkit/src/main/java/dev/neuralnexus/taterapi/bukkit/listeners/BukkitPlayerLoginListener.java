@@ -17,6 +17,6 @@ public class BukkitPlayerLoginListener implements Listener, PlayerLoginListener 
     @EventHandler
     public void onPlayerLogin(PlayerJoinEvent event) {
         // Pass TaterPlayer to helper function
-        taterPlayerLogin(new BukkitTaterPlayer(event.getPlayer()));
+        fireLoginEvent(new Object[] {new BukkitTaterPlayer(event.getPlayer()), event.getJoinMessage()});
     }
 }
