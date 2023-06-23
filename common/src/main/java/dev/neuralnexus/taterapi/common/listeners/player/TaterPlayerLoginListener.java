@@ -16,10 +16,8 @@ public interface TaterPlayerLoginListener {
     default void taterPlayerLogin(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {
             try {
-                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
-
                 // Add the TaterPlayer to the cache
-                playerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                TaterPlayerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
 
                 // TODO: Apply cross-API event system
             } catch (Exception e) {

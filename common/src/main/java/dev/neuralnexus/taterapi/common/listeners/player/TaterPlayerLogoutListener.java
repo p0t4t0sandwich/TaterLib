@@ -16,10 +16,8 @@ public interface TaterPlayerLogoutListener {
     default void taterPlayerLogout(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {
             try {
-                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
-
                 // Remove the TaterPlayer from the cache
-                playerCache.removeTaterPlayerFromCache(taterPlayer.getUUID());
+                TaterPlayerCache.removeTaterPlayerFromCache(taterPlayer.getUUID());
 
                 // TODO: Apply cross-API event system
             } catch (Exception e) {

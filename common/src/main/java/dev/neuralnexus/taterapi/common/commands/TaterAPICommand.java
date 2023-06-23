@@ -14,6 +14,38 @@ public interface TaterAPICommand extends TemplateCommand {
      * @inheritDoc
      */
     @Override
+    default String getCommandName() {
+        return commandName;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    default String getCommandDescription() {
+        return commandDescription;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    default String getCommandUsage() {
+        return commandUsage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    default String getCommandPermission() {
+        return commandPermission;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     default String executeCommand(String[] args) {
         String text;
         if (args.length == 0) {
@@ -25,7 +57,7 @@ public interface TaterAPICommand extends TemplateCommand {
                         // Try to reload the plugin
                         TaterAPI.stop();
                         TaterAPI.start();
-                        text = "&aReloaded the plugin.";
+                        text = "&aReloaded TaterAPI.";
                     } catch (Exception e) {
                         // If an error occurs, print the error and return an error message
                         text = "&cAn error occurred while reloading the plugin.";

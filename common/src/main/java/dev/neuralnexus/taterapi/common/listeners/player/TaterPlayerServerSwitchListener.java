@@ -16,10 +16,8 @@ public interface TaterPlayerServerSwitchListener {
     default void taterServerSwitch(TaterPlayer taterPlayer, String toServer) {
         runTaskAsync(() -> {
             try {
-                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
-
                 // Get TaterPlayer from cache
-                TaterPlayer cachedTaterPlayer = playerCache.getTaterPlayerFromCache(taterPlayer.getUUID());
+                TaterPlayer cachedTaterPlayer = TaterPlayerCache.getTaterPlayerFromCache(taterPlayer.getUUID());
                 if (cachedTaterPlayer == null) {
                     return;
                 }
@@ -29,7 +27,7 @@ public interface TaterPlayerServerSwitchListener {
 
                 // Update the server name and TaterPlayer object
                 taterPlayer.setServerName(toServer);
-                playerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                TaterPlayerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
 
                 // TODO: Apply cross-API event system
                 // Relay the server switch message

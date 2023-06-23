@@ -6,31 +6,15 @@ import java.util.HashMap;
 import java.util.UUID;
 
 public class TaterPlayerCache {
-    private static TaterPlayerCache singleton = null;
-    private final HashMap<UUID, TaterPlayer> taterPlayerCache = new HashMap<>();
-
-    /**
-     * Constructor for the TaterPlayerCache class
-     */
-    public TaterPlayerCache() {
-        singleton = this;
-    }
-
-    /**
-     * Getter for the TaterPlayerCache singleton instance
-     * @return The singleton instance
-     */
-    public static TaterPlayerCache getInstance() {
-        return singleton;
-    }
+    private static final HashMap<UUID, TaterPlayer> taterPlayerCache = new HashMap<>();
 
     /**
      * Getter for the TaterPlayer cache.
      * @param uuid The UUID of the player
      * @return The PronounPlayer cache
      */
-    public TaterPlayer getTaterPlayerFromCache(UUID uuid) {
-        return this.taterPlayerCache.get(uuid);
+    public static TaterPlayer getTaterPlayerFromCache(UUID uuid) {
+        return taterPlayerCache.get(uuid);
     }
 
     /**
@@ -38,15 +22,15 @@ public class TaterPlayerCache {
      * @param uuid The UUID of the player
      * @param taterPlayer The PronounPlayer object
      */
-    public void setTaterPlayerInCache(UUID uuid, TaterPlayer taterPlayer) {
-        this.taterPlayerCache.put(uuid, taterPlayer);
+    public static void setTaterPlayerInCache(UUID uuid, TaterPlayer taterPlayer) {
+        taterPlayerCache.put(uuid, taterPlayer);
     }
 
     /**
      * Removes a TaterPlayer object from the cache.
      * @param uuid The UUID of the player
      */
-    public void removeTaterPlayerFromCache(UUID uuid) {
-        this.taterPlayerCache.remove(uuid);
+    public static void removeTaterPlayerFromCache(UUID uuid) {
+        taterPlayerCache.remove(uuid);
     }
 }

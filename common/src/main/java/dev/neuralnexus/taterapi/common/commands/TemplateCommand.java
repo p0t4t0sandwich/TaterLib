@@ -3,42 +3,29 @@ package dev.neuralnexus.taterapi.common.commands;
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 
 public interface TemplateCommand {
-    String commandName = "template";
-    String commandDescription = "Template command description.";
-    String commandUsage = "Template command usage.";
-    String commandPermission = "taterapi.template";
-
     /**
      * Get the name of the command.
      * @return The name of the command.
      */
-    default String getCommandName() {
-        return commandName;
-    }
+    String getCommandName();
 
     /**
      * Get the description of the command.
      * @return The description of the command.
      */
-    default String getCommandDescription() {
-        return commandDescription;
-    }
+    String getCommandDescription();
 
     /**
      * Get the usage of the command.
      * @return The usage of the command.
      */
-    default String getCommandUsage() {
-        return commandUsage;
-    }
+    String getCommandUsage();
 
     /**
      * Get the permission of the command.
      * @return The permission of the command.
      */
-    default String getCommandPermission() {
-        return commandPermission;
-    }
+    String getCommandPermission();
 
     /**
      * Get the subcommand permission.
@@ -46,7 +33,7 @@ public interface TemplateCommand {
      * @return The permission.
      */
     default String getCommandPermission(String subCommand) {
-        return commandPermission + "." + subCommand;
+        return getCommandPermission() + "." + subCommand;
     }
 
     /**
