@@ -22,7 +22,8 @@ public class BungeeTaterAPICommand extends Command implements TaterAPICommand {
                     ProxiedPlayer player = (ProxiedPlayer) sender;
 
                     // Permission check
-                    if (!player.hasPermission(getCommandPermission())) {
+                    String permission = args.length == 0 ? getCommandPermission() : getCommandPermission(args[0].toLowerCase());
+                    if (!player.hasPermission(permission)) {
                         player.sendMessage(new ComponentBuilder("§cYou do not have permission to use this command.").create());
                         return;
                     }

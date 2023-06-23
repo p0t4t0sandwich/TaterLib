@@ -9,6 +9,10 @@ public interface TaterAPICommand extends TemplateCommand {
     String commandUsage = "&6/taterapi <reload|version>";
     String commandPermission = "taterapi.command";
 
+    /**
+     * @inheritDoc
+     */
+    @Override
     default String executeCommand(String[] args) {
         String text;
         if (args.length == 0) {
@@ -16,10 +20,20 @@ public interface TaterAPICommand extends TemplateCommand {
         } else {
             switch (args[0].toLowerCase()) {
                 case "reload":
-                    text = new ReloadCommand(){}.executeCommand(new String[]{});
+                    try {
+                        // Try to reload the plugin
+                        TaterAPI.stop();
+                        TaterAPI.start();
+                        text = "&aReloaded the plugin.";
+                    } catch (Exception e) {
+                        // If an error occurs, print the error and return an error message
+                        text = "&cAn error occurred while reloading the plugin.";
+                        System.err.println(e);
+                        e.printStackTrace();
+                    }
                     break;
                 case "version":
-                    text = new VersionCommand(){}.executeCommand(new String[]{});
+                    text = "&aTaterAPI v" + TaterAPI.getVersion();
                     break;
                 default:
                     text = getCommandUsage();

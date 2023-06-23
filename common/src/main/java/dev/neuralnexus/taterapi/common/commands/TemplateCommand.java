@@ -39,6 +39,15 @@ public interface TemplateCommand {
     }
 
     /**
+     * Get the subcommand permission.
+     * @param subCommand The subcommand.
+     * @return The permission.
+     */
+    default String getCommandPermission(String subCommand) {
+        return commandPermission + "." + subCommand;
+    }
+
+    /**
      * Execute the command.
      * @param args The arguments of the command.
      * @return The output of the command.

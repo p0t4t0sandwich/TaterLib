@@ -18,7 +18,8 @@ public class VelocityTaterAPICommand implements SimpleCommand, TaterAPICommand {
                     Player player = (Player) invocation.source();
 
                     // Permission check
-                    if (!player.hasPermission(getCommandPermission())) {
+                    String permission = args.length == 0 ? getCommandPermission() : getCommandPermission(args[0].toLowerCase());
+                    if (!player.hasPermission(permission)) {
                         player.sendMessage(Component.text("§cYou do not have permission to use this command."));
                         return;
                     }
