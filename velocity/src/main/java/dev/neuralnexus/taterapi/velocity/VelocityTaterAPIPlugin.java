@@ -33,6 +33,15 @@ public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
     @Inject private ProxyServer server;
     @Inject private Logger logger;
 
+    private static ProxyServer proxyServer;
+    /**
+     * Get the proxy server.
+     * @return The proxy server.
+     */
+    public static ProxyServer getProxyServer() {
+        return proxyServer;
+    }
+
     /**
      * @inheritDoc
      */
@@ -84,6 +93,7 @@ public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
      */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        proxyServer = server;
         pluginStart();
     }
 

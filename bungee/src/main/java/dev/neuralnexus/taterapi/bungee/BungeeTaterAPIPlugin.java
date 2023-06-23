@@ -6,6 +6,7 @@ import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerLogoutListen
 import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerMessageListener;
 import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerServerSwitchListener;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
@@ -13,6 +14,15 @@ import net.md_5.bungee.api.plugin.PluginManager;
  * The TaterAPI BungeeCord plugin.
  */
 public class BungeeTaterAPIPlugin extends Plugin implements TaterAPIPlugin {
+    private static ProxyServer proxyServer;
+    /**
+     * Get the proxy server.
+     * @return The proxy server.
+     */
+    public static ProxyServer getProxyServer() {
+        return proxyServer;
+    }
+
     /**
      * @inheritDoc
      */
@@ -63,6 +73,8 @@ public class BungeeTaterAPIPlugin extends Plugin implements TaterAPIPlugin {
      */
     @Override
     public void onEnable() {
+        proxyServer = getProxy();
+
         pluginStart();
     }
 

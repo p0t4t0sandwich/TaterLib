@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterapi.bungee.player;
 
+import dev.neuralnexus.taterapi.bungee.BungeeTaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
+import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
@@ -24,6 +26,17 @@ public class BungeeTaterPlayer implements TaterPlayer {
         } else {
             this.serverName = null;
         }
+    }
+
+    /**
+     * Connect the player to a server.
+     * @param serverName The name of the server to connect to.
+     */
+    public void connect(String serverName) {
+        if (BungeeTaterAPIPlugin.getProxyServer().getServerInfo(serverName) == null) return;
+
+        ServerInfo server = BungeeTaterAPIPlugin.getProxyServer().getServerInfo(serverName);
+        player.connect(server);
     }
 
     /**

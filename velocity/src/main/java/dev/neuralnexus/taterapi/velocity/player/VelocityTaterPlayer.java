@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterapi.velocity.player;
 
 import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.velocity.VelocityTaterAPIPlugin;
 import net.kyori.adventure.text.Component;
 
 import java.util.UUID;
@@ -25,6 +27,17 @@ public class VelocityTaterPlayer implements TaterPlayer {
         } else {
             this.serverName = null;
         }
+    }
+
+    /**
+     * Connect the player to a server.
+     * @param serverName The name of the server to connect to.
+     */
+    public void connect(String serverName) {
+        if (!VelocityTaterAPIPlugin.getProxyServer().getServer(serverName).isPresent()) return;
+
+        RegisteredServer server = VelocityTaterAPIPlugin.getProxyServer().getServer(serverName).get();
+        player.createConnectionRequest(server).fireAndForget();
     }
 
     /**
