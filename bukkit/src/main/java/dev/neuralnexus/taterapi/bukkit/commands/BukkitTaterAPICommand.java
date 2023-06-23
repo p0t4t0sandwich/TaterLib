@@ -13,6 +13,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static dev.neuralnexus.taterapi.common.Utils.ansiiParser;
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
+/**
+ * The Bukkit implementation of the TaterAPI command.
+ */
 public class BukkitTaterAPICommand implements CommandExecutor, TaterAPICommand {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {

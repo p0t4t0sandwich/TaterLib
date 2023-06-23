@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.relay.MessageRelay;
+import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
 /**
- * Listens for player logouts and sends them to the message relay.
+ * Listens for proxy server switches and updates the TaterPlayer's server name.
  */
-public interface PlayerServerSwitchListener {
+public interface TaterPlayerServerSwitchListener {
     /**
      * Called when a player logs out, and sends it to the message relay.
      * @param taterPlayer The player.
@@ -16,10 +16,10 @@ public interface PlayerServerSwitchListener {
     default void taterServerSwitch(TaterPlayer taterPlayer, String toServer) {
         runTaskAsync(() -> {
             try {
-                MessageRelay relay = MessageRelay.getInstance();
+                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
 
                 // Get TaterPlayer from cache
-                TaterPlayer cachedTaterPlayer = relay.getTaterPlayerFromCache(taterPlayer.getUUID());
+                TaterPlayer cachedTaterPlayer = playerCache.getTaterPlayerFromCache(taterPlayer.getUUID());
                 if (cachedTaterPlayer == null) {
                     return;
                 }
@@ -29,10 +29,11 @@ public interface PlayerServerSwitchListener {
 
                 // Update the server name and TaterPlayer object
                 taterPlayer.setServerName(toServer);
-                relay.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                playerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
 
+                // TODO: Apply cross-API event system
                 // Relay the server switch message
-                relay.sendPlayerServerSwitch(taterPlayer, fromServer, toServer);
+                // relay.sendPlayerServerSwitch(taterPlayer, fromServer, toServer);
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

@@ -74,7 +74,6 @@ public class BungeeTaterAPIPlugin extends Plugin implements TaterAPIPlugin {
     @Override
     public void onEnable() {
         proxyServer = getProxy();
-
         pluginStart();
     }
 

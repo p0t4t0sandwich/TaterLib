@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterapi.bungee.listeners.player;
 
 import dev.neuralnexus.taterapi.bungee.player.BungeeTaterPlayer;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerServerSwitchListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerServerSwitchListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -9,9 +9,9 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 /**
- * Listens for player server switches and sends them to the message relay.
+ * Listens for proxy server switches and updates the TaterPlayer's server name.
  */
-public class BungeePlayerServerSwitchListener implements Listener, PlayerServerSwitchListener {
+public class BungeePlayerServerSwitchListener implements Listener, TaterPlayerServerSwitchListener {
     /**
      * Called when a player switches servers.
      * @param event The event.

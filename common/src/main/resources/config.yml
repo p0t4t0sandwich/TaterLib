@@ -4,14 +4,3 @@ version: 1
 
 # TaterAPI version
 apiversion: '${version}'
-
-# Database configuration
-# Supported storage types: mongodb, mysql
-storage:
-  type: mongodb
-  config:
-    host: localhost
-    port: 27017
-    database: template
-    username: root
-    password: password

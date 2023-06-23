@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterapi.forge.listeners.player;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerMessageListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerMessageListener;
 import dev.neuralnexus.taterapi.forge.player.ForgeTaterPlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -10,7 +10,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 /**
  * Listens for player messages and sends it to the message relay.
  */
-public class ForgePlayerMessageListener implements PlayerMessageListener {
+public class ForgePlayerMessageListener implements TaterPlayerMessageListener {
     /**
      * Called when a player sends a message, and sends it to the message relay.
      * @param event The player message event

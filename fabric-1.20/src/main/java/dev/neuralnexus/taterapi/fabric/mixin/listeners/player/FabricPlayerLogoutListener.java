@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerLogoutListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerLogoutListener;
 import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerLogoutEvent;
 import dev.neuralnexus.taterapi.fabric.player.FabricTaterPlayer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -10,10 +10,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Listens for player logouts and emits an event.
+ * Listens for player logouts and removes the TaterPlayer from the cache.
  */
 @Mixin(ServerPlayerEntity.class)
-public class FabricPlayerLogoutListener implements PlayerLogoutListener {
+public class FabricPlayerLogoutListener implements TaterPlayerLogoutListener {
     /**
      * Called when a player logs out.
      * @param ci The callback info.

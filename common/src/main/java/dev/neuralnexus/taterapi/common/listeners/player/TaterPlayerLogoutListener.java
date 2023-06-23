@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.relay.MessageRelay;
+import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
 /**
- * Listens for player logouts and sends them to the message relay.
+ * Listens for player logouts and removes the TaterPlayer from the cache.
  */
-public interface PlayerLogoutListener {
+public interface TaterPlayerLogoutListener {
     /**
      * Called when a player logs out, and sends it to the message relay.
      * @param taterPlayer The player.
@@ -16,10 +16,12 @@ public interface PlayerLogoutListener {
     default void taterPlayerLogout(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {
             try {
-                MessageRelay relay = MessageRelay.getInstance();
+                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
 
                 // Remove the TaterPlayer from the cache
-                relay.removeTaterPlayerFromCache(taterPlayer.getUUID());
+                playerCache.removeTaterPlayerFromCache(taterPlayer.getUUID());
+
+                // TODO: Apply cross-API event system
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

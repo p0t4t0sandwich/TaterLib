@@ -1,25 +1,27 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.relay.MessageRelay;
+import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
 /**
- * Listens for player logins and sends them to the message relay.
+ * Listens for player logins and adds the TaterPlayer to the cache.
  */
-public interface PlayerLoginListener {
+public interface TaterPlayerLoginListener {
     /**
-     * Called when a player logs in, and sends it to the message relay.
+     * Called when a player logs in.
      * @param taterPlayer The TaterPlayer.
      */
     default void taterPlayerLogin(TaterPlayer taterPlayer) {
         runTaskAsync(() -> {
             try {
-                MessageRelay relay = MessageRelay.getInstance();
+                TaterPlayerCache playerCache = TaterPlayerCache.getInstance();
 
                 // Add the TaterPlayer to the cache
-                relay.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                playerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+
+                // TODO: Apply cross-API event system
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

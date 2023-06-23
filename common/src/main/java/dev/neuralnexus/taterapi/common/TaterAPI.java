@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterapi.common;
 
 import dev.neuralnexus.taterapi.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.common.relay.MessageRelay;
 import dev.neuralnexus.taterapi.common.storage.DataSource;
 import dev.neuralnexus.taterapi.common.storage.Database;
 import dev.dejvokep.boostedyaml.YamlDocument;
@@ -23,8 +24,8 @@ public class TaterAPI {
     private static Object logger;
     private static TaterAPI singleton = null;
     private static boolean STARTED = false;
-    public static Database database;
     public static boolean cancelChat = false;
+    private static MessageRelay messageRelay;
 
     /**
      * Constructor for the TaterAPI class.
@@ -79,9 +80,6 @@ public class TaterAPI {
         }
         STARTED = true;
 
-        String type = config.getString("storage.type");
-        database = DataSource.getDatabase(type, config);
-
         useLogger("TaterAPI has been started!");
         TaterAPIProvider.register(singleton);
     }
@@ -96,9 +94,6 @@ public class TaterAPI {
         }
         STARTED = false;
 
-        // Remove the database object
-        database = null;
-
         useLogger("TaterAPI has been stopped!");
         TaterAPIProvider.unregister();
     }
@@ -111,7 +106,26 @@ public class TaterAPI {
         return config.getString("server.name");
     }
 
+    /**
+     * Get the TaterAPI version from the config
+     * @return The TaterAPI version
+     */
     public static String getVersion() {
         return config.getString("apiversion");
+    }
+
+    /**
+     * Get the MessageRelay instance
+     */
+    public static MessageRelay getMessageRelay() {
+        return messageRelay;
+    }
+
+    /**
+     * Set the MessageRelay instance
+     * @param messageRelay The MessageRelay instance
+     */
+    public static void setMessageRelay(MessageRelay messageRelay) {
+        TaterAPI.messageRelay = messageRelay;
     }
 }

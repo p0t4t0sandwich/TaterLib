@@ -2,7 +2,7 @@ package dev.neuralnexus.taterapi.bungee.listeners.player;
 
 import dev.neuralnexus.taterapi.bungee.player.BungeeTaterPlayer;
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerMessageListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerMessageListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -12,7 +12,7 @@ import net.md_5.bungee.event.EventPriority;
 /**
  * Listens for player messages and sends them to the message relay.
  */
-public class BungeePlayerMessageListener implements Listener, PlayerMessageListener {
+public class BungeePlayerMessageListener implements Listener, TaterPlayerMessageListener {
     /**
      * Called when a player sends a message.
      * @param event The event.

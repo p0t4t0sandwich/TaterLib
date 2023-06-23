@@ -3,13 +3,13 @@ package dev.neuralnexus.taterapi.velocity.listeners.player;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.Player;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerServerSwitchListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerServerSwitchListener;
 import dev.neuralnexus.taterapi.velocity.player.VelocityTaterPlayer;
 
 /**
- * Listens for player server switch and sends it to the message relay.
+ * Listens for proxy server switches and updates the TaterPlayer's server name.
  */
-public class VelocityPlayerServerSwitchListener implements PlayerServerSwitchListener {
+public class VelocityPlayerServerSwitchListener implements TaterPlayerServerSwitchListener {
     /**
      * Called when a player switches servers.
      * @param event The player server switch event

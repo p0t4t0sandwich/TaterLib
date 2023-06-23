@@ -2,13 +2,13 @@ package dev.neuralnexus.taterapi.velocity.listeners.player;
 
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerLogoutListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerLogoutListener;
 import dev.neuralnexus.taterapi.velocity.player.VelocityTaterPlayer;
 
 /**
- * Listens for player logout and sends it to the message relay.
+ * Listens for player logouts and removes the TaterPlayer from the cache.
  */
-public class VelocityPlayerLogoutListener implements PlayerLogoutListener {
+public class VelocityPlayerLogoutListener implements TaterPlayerLogoutListener {
     /**
      * Called when a player logs out.
      * @param event The player logout event

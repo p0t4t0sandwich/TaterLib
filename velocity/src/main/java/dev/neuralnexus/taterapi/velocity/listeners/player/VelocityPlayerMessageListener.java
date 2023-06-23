@@ -5,13 +5,13 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerMessageListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerMessageListener;
 import dev.neuralnexus.taterapi.velocity.player.VelocityTaterPlayer;
 
 /**
  * Listens for player messages and sends it to the message relay.
  */
-public class VelocityPlayerMessageListener implements PlayerMessageListener {
+public class VelocityPlayerMessageListener implements TaterPlayerMessageListener {
     /**
      * Called when a player sends a message, and sends it to the message relay.
      * @param event The player message event

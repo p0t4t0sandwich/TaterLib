@@ -7,15 +7,14 @@ import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 /**
  * Listens for server starts and sends them to the message relay.
  */
-public interface ServerStartingListener {
+public interface TaterServerStartingListener {
     /**
      * Called when a server is starting, and sends it to the message relay.
      */
     default void taterServerStarted(String configPath, Object logger) {
         runTaskAsync(() -> {
             try {
-                new TaterAPI(configPath, logger);
-                TaterAPI.start();
+                // TODO: Apply cross-API event system
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

@@ -50,8 +50,10 @@ public interface TaterPlayer {
      * @return The prefix of the player
      */
     default String getPrefix() {
+        if (!LuckPermsHook.isHooked()) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return (luckPermsHook != null && luckPermsHook.getPrefix(this) != null) ? luckPermsHook.getPrefix(this) : "";
+        String suffix = luckPermsHook.getPrefix(this);
+        return suffix != null ? suffix : "";
     }
 
     /**
@@ -59,8 +61,10 @@ public interface TaterPlayer {
      * @return The suffix of the player
      */
     default String getSuffix() {
+        if (!LuckPermsHook.isHooked()) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return (luckPermsHook != null && luckPermsHook.getSuffix(this) != null) ? luckPermsHook.getSuffix(this) : "";
+        String suffix = luckPermsHook.getSuffix(this);
+        return suffix != null ? suffix : "";
     }
 
     /**
@@ -69,8 +73,9 @@ public interface TaterPlayer {
      * @return Whether the player has the permission
      */
     default boolean hasPermission(String permission) {
+        if (!LuckPermsHook.isHooked()) return false;
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook != null && luckPermsHook.playerHasPermission(this, permission);
+        return luckPermsHook.playerHasPermission(this, permission);
     }
 
     default PlaceholderParser parsePlaceholders(String input) {

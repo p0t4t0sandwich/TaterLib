@@ -3,13 +3,13 @@ package dev.neuralnexus.taterapi.velocity.listeners.player;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.Player;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerLoginListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerLoginListener;
 import dev.neuralnexus.taterapi.velocity.player.VelocityTaterPlayer;
 
 /**
- * Listens for player login and sends it to the message relay.
+ * Listens for player logins and adds the TaterPlayer to the cache.
  */
-public class VelocityPlayerLoginListener implements PlayerLoginListener {
+public class VelocityPlayerLoginListener implements TaterPlayerLoginListener {
     /**
      * Called when a player logs in.
      * @param event The player login event

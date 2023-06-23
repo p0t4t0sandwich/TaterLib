@@ -1,16 +1,16 @@
 package dev.neuralnexus.taterapi.bungee.listeners.player;
 
 import dev.neuralnexus.taterapi.bungee.player.BungeeTaterPlayer;
-import dev.neuralnexus.taterapi.common.listeners.player.PlayerLoginListener;
+import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerLoginListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 
 /**
- * Listens for player logins and sends them to the message relay.
+ * Listens for player logins and adds the TaterPlayer to the cache.
  */
-public class BungeePlayerLoginListener implements Listener, PlayerLoginListener {
+public class BungeePlayerLoginListener implements Listener, TaterPlayerLoginListener {
     /**
      * Called when a player logs in.
      * @param event The event.
