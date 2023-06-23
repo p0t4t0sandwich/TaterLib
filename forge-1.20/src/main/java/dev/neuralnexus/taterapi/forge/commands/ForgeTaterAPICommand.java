@@ -3,9 +3,12 @@ package dev.neuralnexus.taterapi.forge.commands;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterapi.forge.player.ForgeTaterPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -18,22 +21,27 @@ import static net.minecraft.commands.Commands.literal;
 public final class ForgeTaterAPICommand implements TaterAPICommand {
     @SubscribeEvent
     public void registerCommand(RegisterCommandsEvent event) {
+        // Check if LuckPerms is hooked
+        int permissionLevel = LuckPermsHook.isHooked() ? 0 : 4;
+
+        // Register command
         event.getDispatcher().register(literal(getCommandName())
-            .requires(source -> source.hasPermission(0))
+            .requires(source -> source.hasPermission(permissionLevel))
             .then(argument("subcommand", StringArgumentType.greedyString())
                 .executes(context -> {
                     runTaskAsync(() -> {
                         try {
                             String[] args = new String[] {context.getArgument("subcommand", String.class)};
 
-                            // Send message to player or console
+                            // Check if sender is a player
                             Entity entity = context.getSource().getEntity();
-
-                            String text = executeCommand(args);
-                            if (entity instanceof ServerPlayer) {
-                                ((ServerPlayer) entity).displayClientMessage(Component.empty().append(text), false);
+                            if (entity instanceof Player) {
+                                // Execute command as player
+                                ForgeTaterPlayer player = new ForgeTaterPlayer((Player) entity);
+                                player.sendMessage(executeCommand(player, args));
                             } else {
-                                TaterAPI.useLogger(ansiiParser(text));
+                                // Execute command as console
+                                TaterAPI.useLogger(ansiiParser(executeCommand(args)));
                             }
                         } catch (Exception e) {
                             System.err.println(e);

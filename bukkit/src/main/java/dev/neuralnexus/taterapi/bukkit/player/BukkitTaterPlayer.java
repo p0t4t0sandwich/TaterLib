@@ -78,4 +78,12 @@ public class BukkitTaterPlayer implements TaterPlayer {
     public void sendMessage(String message) {
         player.sendMessage(message);
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(String permission) {
+        return player.hasPermission(permission);
+    }
 }

@@ -13,6 +13,7 @@ import net.luckperms.api.model.user.User;
 public class LuckPermsHook {
     private final LuckPerms luckPerms;
     private static LuckPermsHook instance;
+    private static boolean isHooked = false;
 
     /**
      * Create a new LuckPermsHook
@@ -20,6 +21,7 @@ public class LuckPermsHook {
     public LuckPermsHook() {
         instance = this;
         this.luckPerms = LuckPermsProvider.get();
+        this.isHooked = true;
     }
 
     /**
@@ -28,6 +30,14 @@ public class LuckPermsHook {
      */
     public static LuckPermsHook getInstance() {
         return instance;
+    }
+
+    /**
+     * Check if the hook is enabled
+     * @return If the hook is enabled
+     */
+    public static boolean isHooked() {
+        return isHooked;
     }
 
     /**
@@ -59,5 +69,17 @@ public class LuckPermsHook {
     public String getSuffix(TaterPlayer taterPlayer) {
         CachedMetaData metaData = getMetaData(taterPlayer);
         return metaData != null ? metaData.getSuffix() : "";
+    }
+
+    /**
+     * Player has permission
+     * @param taterPlayer The player to check
+     * @param permission The permission to check
+     * @return If the player has the permission
+     */
+    public boolean playerHasPermission(TaterPlayer taterPlayer, String permission) {
+        if (this.luckPerms == null) return false;
+        User user = luckPerms.getUserManager().getUser(taterPlayer.getUUID());
+        return user != null && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
 }

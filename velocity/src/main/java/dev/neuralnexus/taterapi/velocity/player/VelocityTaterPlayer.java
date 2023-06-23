@@ -87,4 +87,12 @@ public class VelocityTaterPlayer implements TaterPlayer {
     public void sendMessage(String message) {
         player.sendMessage(Component.text(message));
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(String permission) {
+        return player.hasPermission(permission);
+    }
 }

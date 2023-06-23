@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterapi.bukkit.commands;
 
+import dev.neuralnexus.taterapi.bukkit.player.BukkitTaterPlayer;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
 import org.bukkit.command.Command;
@@ -20,16 +21,11 @@ public class BukkitTaterAPICommand implements CommandExecutor, TaterAPICommand {
             try {
                 // Check if sender is a player
                 if ((sender instanceof Player)) {
-                    Player player = (Player) sender;
-
-                    // Permission check
-                    String permission = args.length == 0 ? getCommandPermission() : getCommandPermission(args[0].toLowerCase());
-                    if (!player.hasPermission(permission)) {
-                        player.sendMessage("§cYou do not have permission to use this command.");
-                        return;
-                    }
-                    player.sendMessage(executeCommand(args));
+                    // Execute command as player
+                    BukkitTaterPlayer player = new BukkitTaterPlayer((Player) sender);
+                    player.sendMessage(executeCommand(player, args));
                 } else {
+                    // Execute command as console
                     TaterAPI.useLogger(ansiiParser(executeCommand(args)));
                 }
                 success.set(true);

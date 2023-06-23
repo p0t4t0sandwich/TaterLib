@@ -86,4 +86,12 @@ public class BungeeTaterPlayer implements TaterPlayer {
     public void sendMessage(String message) {
         player.sendMessage(new ComponentBuilder(message).create());
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(String permission) {
+        return player.hasPermission(permission);
+    }
 }

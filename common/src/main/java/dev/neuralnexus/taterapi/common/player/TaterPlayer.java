@@ -63,6 +63,16 @@ public interface TaterPlayer {
         return (luckPermsHook != null && luckPermsHook.getSuffix(this) != null) ? luckPermsHook.getSuffix(this) : "";
     }
 
+    /**
+     * Check if the player has a permission
+     * @param permission The permission to check
+     * @return Whether the player has the permission
+     */
+    default boolean hasPermission(String permission) {
+        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
+        return luckPermsHook != null && luckPermsHook.playerHasPermission(this, permission);
+    }
+
     default PlaceholderParser parsePlaceholders(String input) {
         return new PlaceholderParser(input)
                 .parseString("player", this.getName())

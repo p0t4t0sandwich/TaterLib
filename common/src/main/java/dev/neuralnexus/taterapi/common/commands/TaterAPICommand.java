@@ -2,6 +2,7 @@ package dev.neuralnexus.taterapi.common.commands;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.placeholder.PlaceholderParser;
+import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 
 public interface TaterAPICommand extends TemplateCommand {
     String commandName = "taterapi";
@@ -39,6 +40,22 @@ public interface TaterAPICommand extends TemplateCommand {
                     text = getCommandUsage();
                     break;
             }
+        }
+        return PlaceholderParser.substituteSectionSign(text);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    default String executeCommand(TaterPlayer player, String[] args) {
+        String text;
+        if (args.length == 0) {
+            text = getCommandUsage();
+        } else if (player.hasPermission(getCommandPermission(args[0].toLowerCase()))) {
+            text = executeCommand(args);
+        } else {
+            text = "&cYou do not have permission to use this command.";
         }
         return PlaceholderParser.substituteSectionSign(text);
     }
