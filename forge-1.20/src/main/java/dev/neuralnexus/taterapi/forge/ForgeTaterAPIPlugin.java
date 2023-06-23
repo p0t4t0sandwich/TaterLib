@@ -3,7 +3,8 @@ package dev.neuralnexus.taterapi.forge;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.forge.commands.ForgeTaterAPICommand;
 import dev.neuralnexus.taterapi.forge.listeners.ForgePlayerLoginListener;
-import dev.neuralnexus.taterapi.forge.listeners.server.ForgeServerStartingListener;
+import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerLogoutListener;
+import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerMessageListener;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
@@ -46,9 +47,8 @@ public class ForgeTaterAPIPlugin implements TaterAPIPlugin {
     public void registerEventListeners() {
         // Register player event listeners
         MinecraftForge.EVENT_BUS.register(new ForgePlayerLoginListener());
-
-        // Register server event listeners
-        MinecraftForge.EVENT_BUS.register(new ForgeServerStartingListener());
+        MinecraftForge.EVENT_BUS.register(new ForgePlayerLogoutListener());
+        MinecraftForge.EVENT_BUS.register(new ForgePlayerMessageListener());
     }
 
     /**

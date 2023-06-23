@@ -70,7 +70,7 @@ public class MessageRelay {
     public void sendMessage(TaterPlayer player, String message) {
         // Message formatting
         String formattedMessage = player.parsePlaceholders(this.formatting.get("global")).parseString("message", message).getResult();
-//        LPPronouns.useLogger(PlaceholderParser.stripSectionSign(formattedMessage));
+        TaterAPI.useLogger(PlaceholderParser.stripSectionSign(formattedMessage));
 
         // Relay message to each PronounPlayer in the cache
         for (TaterPlayer taterPlayer : this.taterPlayerCache.values()) {
@@ -96,7 +96,6 @@ public class MessageRelay {
                 taterPlayer.sendMessage(formattedMessage);
             }
         }
-
         // TODO: Fire message event
     }
 

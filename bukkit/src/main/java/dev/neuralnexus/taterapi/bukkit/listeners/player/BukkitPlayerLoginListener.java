@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterapi.bukkit.listeners;
+package dev.neuralnexus.taterapi.bukkit.listeners.player;
 
 import dev.neuralnexus.taterapi.bukkit.player.BukkitTaterPlayer;
 import dev.neuralnexus.taterapi.common.listeners.player.PlayerLoginListener;
@@ -17,6 +17,6 @@ public class BukkitPlayerLoginListener implements Listener, PlayerLoginListener 
     @EventHandler
     public void onPlayerLogin(PlayerJoinEvent event) {
         // Pass TaterPlayer to helper function
-        fireLoginEvent(new Object[] {new BukkitTaterPlayer(event.getPlayer()), event.getJoinMessage()});
+        taterPlayerLogin(new BukkitTaterPlayer(event.getPlayer()));
     }
 }

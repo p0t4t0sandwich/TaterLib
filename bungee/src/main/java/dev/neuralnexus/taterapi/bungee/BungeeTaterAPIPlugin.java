@@ -1,7 +1,10 @@
 package dev.neuralnexus.taterapi.bungee;
 
 import dev.neuralnexus.taterapi.bungee.commands.BungeeTaterAPICommand;
-import dev.neuralnexus.taterapi.bungee.listeners.BungeePlayerLoginListener;
+import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerLoginListener;
+import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerLogoutListener;
+import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerMessageListener;
+import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerServerSwitchListener;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -41,6 +44,9 @@ public class BungeeTaterAPIPlugin extends Plugin implements TaterAPIPlugin {
     public void registerEventListeners() {
         PluginManager pluginManager = getProxy().getPluginManager();
         pluginManager.registerListener(this, new BungeePlayerLoginListener());
+        pluginManager.registerListener(this, new BungeePlayerLogoutListener());
+        pluginManager.registerListener(this, new BungeePlayerMessageListener());
+        pluginManager.registerListener(this, new BungeePlayerServerSwitchListener());
     }
 
     /**

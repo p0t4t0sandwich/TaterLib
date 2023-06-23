@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterapi.bukkit.listeners;
+package dev.neuralnexus.taterapi.bukkit.listeners.player;
 
 import dev.neuralnexus.taterapi.bukkit.player.BukkitTaterPlayer;
 import dev.neuralnexus.taterapi.common.listeners.player.PlayerLogoutListener;

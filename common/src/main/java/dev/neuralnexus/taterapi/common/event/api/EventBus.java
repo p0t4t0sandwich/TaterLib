@@ -6,6 +6,10 @@ import java.util.function.Consumer;
 
 /**
  * These are really sketchy at the moment, don't use them.
+ * Ex:
+ * EventBus.INSTANCE.register(new TaterEvent<>(PlayerLoginListener.class, (Consumer<Object[]>) PlayerLoginListener::taterPlayerLogin));
+ * ...
+ * EventBus.INSTANCE.invoke(PlayerLoginListener.class, new Object[]{taterPlayer});
  */
 @Deprecated
 public class EventBus {
