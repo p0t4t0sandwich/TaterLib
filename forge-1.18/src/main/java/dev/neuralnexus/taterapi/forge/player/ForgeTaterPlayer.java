@@ -76,6 +76,6 @@ public class ForgeTaterPlayer implements TaterPlayer {
      */
     @Override
     public void sendMessage(String message) {
-        player.displayClientMessage(new TranslatableComponent(message), false);
+        player.sendMessage(new TranslatableComponent(message), getUUID());
     }
 }

@@ -2,6 +2,7 @@ package dev.neuralnexus.taterapi.forge.player;
 
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.*;
 
 import java.util.UUID;
 
@@ -76,6 +77,6 @@ public class ForgeTaterPlayer implements TaterPlayer {
      */
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(, false);
+        player.sendMessage(new StringTextComponent(message), getUUID());
     }
 }

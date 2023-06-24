@@ -26,7 +26,7 @@ public final class ForgeTaterAPICommand implements TaterAPICommand {
 
         // Register command
         event.getDispatcher().register(literal(getCommandName())
-            .requires(source -> source.hasPermission(permissionLevel))
+            .requires(source -> source.hasPermissionLevel(permissionLevel))
             .then(argument("subcommand", StringArgumentType.greedyString())
                 .executes(context -> {
                     AtomicInteger result = new AtomicInteger(1);

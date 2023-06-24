@@ -1,21 +1,23 @@
 package dev.neuralnexus.taterapi.forge.player;
 
 import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.text.*;
+
+import java.util.UUID;
 
 /**
  * Abstracts a Forge player to a TaterPlayer.
  */
 public class ForgeTaterPlayer implements TaterPlayer {
-    private final Player player;
+    private final PlayerEntity player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Forge player.
      */
-    public ForgeTaterPlayer(Player player) {
+    public ForgeTaterPlayer(PlayerEntity player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -25,7 +27,7 @@ public class ForgeTaterPlayer implements TaterPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public ForgeTaterPlayer(Player player, String serverName) {
+    public ForgeTaterPlayer(PlayerEntity player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -34,8 +36,8 @@ public class ForgeTaterPlayer implements TaterPlayer {
      * @inheritDoc
      */
     @Override
-    public java.util.UUID getUUID() {
-        return player.getUUID();
+    public UUID getUUID() {
+        return player.getUniqueID();
     }
 
     /**
@@ -75,6 +77,6 @@ public class ForgeTaterPlayer implements TaterPlayer {
      */
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(new TranslatableComponent(message), getUUID());
+        player.sendMessage(new StringTextComponent(message));
     }
 }

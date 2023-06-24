@@ -4,6 +4,8 @@ import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 
+import java.util.UUID;
+
 /**
  * Abstracts a Fabric player to a TaterPlayer.
  */
@@ -34,7 +36,7 @@ public class FabricTaterPlayer implements TaterPlayer {
      * @inheritDoc
      */
     @Override
-    public java.util.UUID getUUID() {
+    public UUID getUUID() {
         return player.getUuid();
     }
 

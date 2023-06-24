@@ -1,6 +1,6 @@
 # https://files.minecraftforge.net/net/minecraftforge/forge/
 modLoader = "javafml"
-loaderVersion = "[38,)"
+loaderVersion = "[30,)"
 license = "GPL-3"
 issueTrackerURL="https://github.com/p0t4t0sandwich/TaterAPI/issues"
 
@@ -22,7 +22,7 @@ A cross API code library for various generalizations used in the Tater* plugins
 [[dependencies.taterapi]]
 modId = "forge"
 mandatory = true
-versionRange = "[38,)"
+versionRange = "[30,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -30,7 +30,7 @@ side = "BOTH"
 [[dependencies.taterapi]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.18,1.19)"
+versionRange = "[1.15,1.16)"
 ordering = "NONE"
 side = "BOTH"
 
