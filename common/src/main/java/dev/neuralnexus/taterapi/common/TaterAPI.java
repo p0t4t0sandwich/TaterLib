@@ -9,6 +9,7 @@ import dev.dejvokep.boostedyaml.YamlDocument;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
@@ -23,10 +24,12 @@ public class TaterAPI {
      */
     private static YamlDocument config;
     private static Object logger;
+    private static String configPath;
     private static TaterAPI singleton = null;
     private static boolean STARTED = false;
     public static boolean cancelChat = false;
     private static MessageRelay messageRelay;
+    private static final ArrayList<Object> hooks = new ArrayList<>();
 
     /**
      * Constructor for the TaterAPI class.
@@ -36,6 +39,7 @@ public class TaterAPI {
     public TaterAPI(String configPath, Object logger) {
         singleton = this;
         TaterAPI.logger = logger;
+        TaterAPI.configPath = configPath;
 
         // Config
         try {
@@ -73,8 +77,23 @@ public class TaterAPI {
 
     /**
      * Start TaterAPI
+     * @param configPath The path to the config file
+     * @param logger The logger
      */
-    public static void start() {
+    public static void start(String configPath, Object logger) {
+        TaterAPI.logger = logger;
+
+        // Config
+        try {
+            config = YamlDocument.create(new File("." + File.separator + configPath + File.separator + "TaterAPI", "config.yml"),
+                    Objects.requireNonNull(TaterAPI.class.getClassLoader().getResourceAsStream("config.yml"))
+            );
+            config.reload();
+        } catch (IOException | NullPointerException e) {
+            useLogger("Failed to load config.yml!\n" + e.getMessage());
+            e.printStackTrace();
+        }
+
         if (STARTED) {
             useLogger("TaterAPI has already started!");
             return;
@@ -83,6 +102,13 @@ public class TaterAPI {
 
         useLogger("TaterAPI has been started!");
         TaterAPIProvider.register(singleton);
+    }
+
+    /**
+     * Start TaterAPI
+     */
+    public static void start() {
+        start(configPath, logger);
     }
 
     /**
@@ -129,4 +155,12 @@ public class TaterAPI {
     public static void setMessageRelay(MessageRelay messageRelay) {
         TaterAPI.messageRelay = messageRelay;
     }
+
+    /**
+     * Add a hook to the hooks list
+     * @param hook The hook to add
+     */
+     public static void addHook(Object hook) {
+        hooks.add(hook);
+     }
 }

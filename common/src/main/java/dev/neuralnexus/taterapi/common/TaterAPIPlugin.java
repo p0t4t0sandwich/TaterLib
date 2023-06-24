@@ -41,6 +41,12 @@ public interface TaterAPIPlugin {
     }
 
     /**
+     * Register hooks.
+     */
+    void registerHooks();
+
+
+    /**
      * Registers event listeners.
      */
     void registerEventListeners();
@@ -56,11 +62,13 @@ public interface TaterAPIPlugin {
     default void pluginStart() {
         runTaskAsync(() -> {
             try {
-                useLogger("TaterAPI is running on " + getServerType() + "!");
+                useLogger("[TaterAPI] TaterAPI is running on " + getServerType() + "!");
 
                 // Start the TaterAPI
-                new TaterAPI(pluginConfigPath(), pluginLogger());
-                TaterAPI.start();
+                TaterAPI.start(pluginConfigPath(), pluginLogger());
+
+                // Register hooks
+                registerHooks();
 
                 // Register event listeners
                 registerEventListeners();
@@ -68,7 +76,7 @@ public interface TaterAPIPlugin {
                 // Register commands
                 registerCommands();
 
-                useLogger("TaterAPI has been enabled!");
+                useLogger("[TaterAPI] TaterAPI has been enabled!");
 
             } catch (Exception e) {
                 System.err.println(e);
@@ -84,7 +92,7 @@ public interface TaterAPIPlugin {
         runTaskAsync(() -> {
             try {
                 TaterAPI.stop();
-                useLogger("TaterAPI has been disabled!");
+                useLogger("[TaterAPI] TaterAPI has been disabled!");
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();

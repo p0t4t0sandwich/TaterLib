@@ -5,7 +5,9 @@ import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerLoginListene
 import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerLogoutListener;
 import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerMessageListener;
 import dev.neuralnexus.taterapi.bungee.listeners.player.BungeePlayerServerSwitchListener;
+import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
+import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -45,6 +47,18 @@ public class BungeeTaterAPIPlugin extends Plugin implements TaterAPIPlugin {
     @Override
     public String getServerType() {
         return "BungeeCord";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void registerHooks() {
+        // Register LuckPerms hook
+        if (getProxy().getPluginManager().getPlugin("LuckPerms") != null) {
+            useLogger("LuckPerms detected, enabling LuckPerms hook.");
+            TaterAPI.addHook(new LuckPermsHook());
+        }
     }
 
     /**

@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     // YAML
-    implementation("dev.dejvokep:boosted-yaml:1.3")
+    implementation('dev.dejvokep:boosted-yaml:1.3.1')
 
     // MySQL
     implementation("com.zaxxer:HikariCP:4.0.3")
@@ -22,29 +22,30 @@ dependencies {
     compileOnly('org.slf4j:slf4j-api:2.0.5')
 }
 
-processResources {
-    def props = [version: version]
-    inputs.properties(props)
-    filteringCharset('UTF-8')
-    filesMatching('config.yml') {
-        expand(props)
-    }
-}
-
 shadowJar {
     dependencies {
-        include(dependency("dev.dejvokep:boosted-yaml:1.3"))
+        // YAML
+        include(dependency("dev.dejvokep:boosted-yaml:1.3.1"))
+
+        // MySQL
         include(dependency("com.zaxxer:HikariCP:4.0.3"))
         include(dependency("mysql:mysql-connector-java:8.0.26"))
+
+        // MongoDB
         include(dependency('org.mongodb:mongodb-driver-sync:4.9.1'))
         include(dependency('org.mongodb:mongodb-driver-core:4.9.1'))
         include(dependency('org.mongodb:bson:4.9.1'))
     }
-    relocate('dev.dejvokep', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.dejvokep')
-    relocate('com.zaxxer.hikari', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.hikari')
-    relocate('com.mysql', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.mysql')
-    relocate('com.mongodb', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.mongodb')
-    relocate('org.bson', 'ca.sperrer.p0t4t0sandwich.taterapi.lib.bson')
+    // YAML
+    relocate('dev.dejvokep', 'dev.neuralnexus.taterapi.lib.dejvokep')
+
+    // MySQL
+    relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterapi.lib.hikari')
+    relocate('com.mysql', 'dev.neuralnexus.taterapi.lib.mysql')
+
+    // MongoDB
+    relocate('com.mongodb', 'dev.neuralnexus.taterapi.lib.mongodb')
+    relocate('org.bson', 'dev.neuralnexus.taterapi.lib.bson')
 
     destinationDir(file('../target'))
     archiveName("TaterAPI-${version}-common.jar")

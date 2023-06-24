@@ -21,7 +21,7 @@ public class LuckPermsHook {
     public LuckPermsHook() {
         instance = this;
         this.luckPerms = LuckPermsProvider.get();
-        this.isHooked = true;
+        isHooked = true;
     }
 
     /**

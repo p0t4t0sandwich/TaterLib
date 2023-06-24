@@ -3,8 +3,10 @@ package dev.neuralnexus.taterapi.velocity;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
+import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
+import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterapi.velocity.commands.VelocityTaterAPICommand;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -64,6 +66,18 @@ public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
     @Override
     public String getServerType() {
         return "Velocity";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void registerHooks() {
+        // Register LuckPerms hook
+        if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
+            useLogger("LuckPerms detected, enabling LuckPerms hook.");
+            TaterAPI.addHook(new LuckPermsHook());
+        }
     }
 
     /**

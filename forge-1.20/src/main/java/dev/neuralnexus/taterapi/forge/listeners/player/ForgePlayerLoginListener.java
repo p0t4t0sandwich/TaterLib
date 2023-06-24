@@ -2,7 +2,7 @@ package dev.neuralnexus.taterapi.forge.listeners.player;
 
 import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerLoginListener;
 import dev.neuralnexus.taterapi.forge.player.ForgeTaterPlayer;
-import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /**
@@ -14,7 +14,7 @@ public class ForgePlayerLoginListener implements TaterPlayerLoginListener {
      * @param event The player login event
      */
     @SubscribeEvent
-    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+    public void onPlayerLogin(PlayerLoggedInEvent event) {
         // Pass TaterPlayer to helper function
         taterPlayerLogin(new ForgeTaterPlayer(event.getEntity()));
     }

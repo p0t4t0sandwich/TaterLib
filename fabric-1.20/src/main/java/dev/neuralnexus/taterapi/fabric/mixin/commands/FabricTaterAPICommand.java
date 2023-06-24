@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static dev.neuralnexus.taterapi.common.Utils.ansiiParser;
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 import static net.minecraft.server.command.CommandManager.argument;
@@ -30,7 +32,7 @@ public class FabricTaterAPICommand implements TaterAPICommand {
     @Shadow @Final private CommandDispatcher<ServerCommandSource> dispatcher;
 
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lcom/mojang/brigadier/CommandDispatcher;setConsumer(Lcom/mojang/brigadier/ResultConsumer;)V"))
-    private void registerDiscordCommand(CommandManager.RegistrationEnvironment environment, CommandRegistryAccess commandRegistryAccess, CallbackInfo ci) {
+    private void registerTaterAPICommand(CommandManager.RegistrationEnvironment environment, CommandRegistryAccess commandRegistryAccess, CallbackInfo ci) {
         // Check if LuckPerms is hooked
         int permissionLevel = LuckPermsHook.isHooked() ? 0 : 4;
 
@@ -39,6 +41,7 @@ public class FabricTaterAPICommand implements TaterAPICommand {
                 .requires(source -> source.hasPermissionLevel(permissionLevel))
                 .then(argument("subcommand", StringArgumentType.greedyString())
                         .executes(context -> {
+                            AtomicInteger result = new AtomicInteger(1);
                             runTaskAsync(() -> {
                                 try {
                                     String[] args = new String[] {context.getArgument("subcommand", String.class)};
@@ -54,11 +57,12 @@ public class FabricTaterAPICommand implements TaterAPICommand {
                                         TaterAPI.useLogger(ansiiParser(executeCommand(args)));
                                     }
                                 } catch (Exception e) {
+                                    result.set(0);
                                     System.err.println(e);
                                     e.printStackTrace();
                                 }
                             });
-                            return 1;
+                            return result.get();
                         })
                 ));
     }

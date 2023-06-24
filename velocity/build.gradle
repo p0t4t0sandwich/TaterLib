@@ -19,7 +19,7 @@ shadowJar {
     }
 
     destinationDir(file('../target'))
-    archiveName("Template-${version}-velocity.jar")
+    archiveName("TaterAPI-${version}-velocity.jar")
     classifier('')
 }
 shadowJar.doLast {
