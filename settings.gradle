@@ -20,8 +20,11 @@ include(
         'fabric-1.16',
         'fabric-1.17',
         'fabric-1.20',
-        'forge-1.19',
-        'forge-1.20',
+        'forge-1.16.1',
+//        'forge-1.17.1',
+//        'forge-1.18',
+//        'forge-1.19',
+//        'forge-1.20',
         'velocity',
         'common'
 )

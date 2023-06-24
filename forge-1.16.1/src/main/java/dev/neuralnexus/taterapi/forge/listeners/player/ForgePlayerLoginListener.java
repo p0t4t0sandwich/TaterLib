@@ -16,6 +16,6 @@ public class ForgePlayerLoginListener implements TaterPlayerLoginListener {
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent event) {
         // Pass TaterPlayer to helper function
-        taterPlayerLogin(new ForgeTaterPlayer(event.getEntity()));
+        taterPlayerLogin(new ForgeTaterPlayer(event.getPlayer()));
     }
 }

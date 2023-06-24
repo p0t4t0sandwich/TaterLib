@@ -16,6 +16,6 @@ public class ForgePlayerLogoutListener implements TaterPlayerLogoutListener {
     @SubscribeEvent
     public void onPlayerLogout(PlayerLoggedOutEvent event) {
         // Pass TaterPlayer to helper function
-        taterPlayerLogout(new ForgeTaterPlayer(event.getEntity()));
+        taterPlayerLogout(new ForgeTaterPlayer(event.getPlayer()));
     }
 }
