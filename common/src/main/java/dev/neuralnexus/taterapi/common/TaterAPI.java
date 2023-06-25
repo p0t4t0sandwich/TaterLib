@@ -17,15 +17,18 @@ import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 public class TaterAPI {
     /**
      * Properties of the TaterAPI class.
+     * instance: The singleton instance of the TaterAPI class
      * config: The config file
      * logger: The logger
-     * singleton: The singleton instance of the TaterAPI class
      * STARTED: Whether the PanelServerManager has been started
+     * cancelChat: Whether to cancel chat
+     * messageRelay: The message relay
+     * hooks: The hooks
      */
+    private static final TaterAPI instance = new TaterAPI();
     private static YamlDocument config;
     private static Object logger;
     private static String configPath;
-    private static TaterAPI singleton = null;
     private static boolean STARTED = false;
     public static boolean cancelChat = false;
     private static MessageRelay messageRelay;
@@ -33,32 +36,15 @@ public class TaterAPI {
 
     /**
      * Constructor for the TaterAPI class.
-     * @param configPath The path to the config file
-     * @param logger The logger
      */
-    public TaterAPI(String configPath, Object logger) {
-        singleton = this;
-        TaterAPI.logger = logger;
-        TaterAPI.configPath = configPath;
-
-        // Config
-        try {
-            config = YamlDocument.create(new File("." + File.separator + configPath + File.separator + "TaterAPI", "config.yml"),
-                    Objects.requireNonNull(this.getClass().getClassLoader().getResourceAsStream("config.yml"))
-            );
-            config.reload();
-        } catch (IOException | NullPointerException e) {
-            useLogger("Failed to load config.yml!\n" + e.getMessage());
-            e.printStackTrace();
-        }
-    }
+    public TaterAPI() {}
 
     /**
-     * Getter for the singleton instance of the PanelServerManager class.
+     * Getter for the singleton instance of the TaterAPI class.
      * @return The singleton instance
      */
     public static TaterAPI getInstance() {
-        return singleton;
+        return instance;
     }
 
     /**
@@ -81,6 +67,7 @@ public class TaterAPI {
      * @param logger The logger
      */
     public static void start(String configPath, Object logger) {
+        TaterAPI.configPath = configPath;
         TaterAPI.logger = logger;
 
         // Config
@@ -101,7 +88,7 @@ public class TaterAPI {
         STARTED = true;
 
         useLogger("TaterAPI has been started!");
-        TaterAPIProvider.register(singleton);
+        TaterAPIProvider.register(instance);
     }
 
     /**
@@ -123,14 +110,6 @@ public class TaterAPI {
 
         useLogger("TaterAPI has been stopped!");
         TaterAPIProvider.unregister();
-    }
-
-    /**
-     * Get the server name from the config
-     * @return The server name
-     */
-    public static String getServerName() {
-        return config.getString("server.name");
     }
 
     /**
