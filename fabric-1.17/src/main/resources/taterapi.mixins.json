@@ -5,10 +5,11 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "commands.FabricTaterAPICommand",
-    "listeners.player.FabricPlayerDeathListener",
-    "listeners.player.FabricPlayerAdvancementListener"
+    "listeners.player.FabricPlayerAdvancementListener",
+    "listeners.player.FabricPlayerDeathListener"
   ],
   "server": [
+    "listeners.entity.FabricEntitySpawnListener",
     "listeners.player.FabricPlayerLoginListener",
     "listeners.player.FabricPlayerLogoutListener",
     "listeners.player.FabricPlayerMessageListener",

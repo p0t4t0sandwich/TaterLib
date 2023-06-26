@@ -9,6 +9,7 @@
     "listeners.player.FabricPlayerAdvancementListener"
   ],
   "server": [
+    "listeners.entity.FabricEntitySpawnListener",
     "listeners.player.FabricPlayerLoginListener",
     "listeners.player.FabricPlayerLogoutListener",
     "listeners.player.FabricPlayerMessageListener",
