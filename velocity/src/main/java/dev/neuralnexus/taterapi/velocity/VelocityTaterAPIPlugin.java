@@ -3,6 +3,7 @@ package dev.neuralnexus.taterapi.velocity;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
+import com.velocitypowered.api.plugin.Dependency;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
@@ -29,7 +30,9 @@ import org.slf4j.Logger;
         authors = "p0t4t0sandwich",
         description = "A cross API code library for various generalizations used in the Tater* plugins",
         url = "https://github.com/p0t4t0sandwich/TaterAPI",
-        dependencies = {}
+        dependencies = {
+                @Dependency(id = "luckperms", optional = true)
+        }
 )
 public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
     @Inject private ProxyServer server;
