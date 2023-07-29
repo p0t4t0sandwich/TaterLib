@@ -1,14 +1,13 @@
 package dev.neuralnexus.taterapi.fabric.player;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
 /**
- * Abstracts a Fabric player to a TaterPlayer.
+ * Abstracts a Fabric player to an AbstractPlayer.
  */
-public class FabricTaterPlayer implements TaterPlayer {
+public class FabricPlayer implements AbstractPlayer {
     private final PlayerEntity player;
     private String serverName;
 
@@ -16,7 +15,7 @@ public class FabricTaterPlayer implements TaterPlayer {
      * Constructor.
      * @param player The Fabric player.
      */
-    public FabricTaterPlayer(PlayerEntity player) {
+    public FabricPlayer(PlayerEntity player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -26,7 +25,7 @@ public class FabricTaterPlayer implements TaterPlayer {
      * @param player The Fabric player.
      * @param serverName The server name.
      */
-    public FabricTaterPlayer(PlayerEntity player, String serverName) {
+    public FabricPlayer(PlayerEntity player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }

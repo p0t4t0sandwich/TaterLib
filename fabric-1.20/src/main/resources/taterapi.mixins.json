@@ -4,18 +4,14 @@
   "package": "dev.neuralnexus.taterapi.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "commands.FabricTaterAPICommand",
-    "listeners.player.FabricPlayerDeathListener",
-    "listeners.player.FabricPlayerAdvancementListener"
   ],
   "server": [
-    "listeners.entity.FabricEntitySpawnListener",
-    "listeners.player.FabricPlayerLoginListener",
-    "listeners.player.FabricPlayerLogoutListener",
-    "listeners.player.FabricPlayerMessageListener",
-    "listeners.server.FabricServerStartedListener",
-    "listeners.server.FabricServerStartingListener",
-    "listeners.server.FabricServerStoppedListener"
+    "listeners.entity.FabricEntityDeathMixin",
+    "listeners.entity.FabricEntitySpawnMixin",
+    "listeners.player.FabricPlayerAdvancementMixin",
+    "listeners.player.FabricPlayerDeathMixin",
+    "listeners.player.FabricPlayerMessageMixin",
+    "listeners.player.FabricPlayerRespawnMixin"
   ],
   "injectors": {
     "defaultRequire": 1

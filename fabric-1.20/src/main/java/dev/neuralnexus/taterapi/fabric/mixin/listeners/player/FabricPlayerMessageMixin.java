@@ -2,8 +2,8 @@ package dev.neuralnexus.taterapi.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.listeners.player.TaterPlayerMessageListener;
-import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerMessageEvent;
-import dev.neuralnexus.taterapi.fabric.player.FabricTaterPlayer;
+import dev.neuralnexus.taterapi.fabric.events.player.FabricPlayerEvents;
+import dev.neuralnexus.taterapi.fabric.player.FabricPlayer;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Listens for player messages and emits an event.
  */
 @Mixin(ServerPlayNetworkHandler.class)
-public abstract class FabricPlayerMessageListener implements TaterPlayerMessageListener {
+public abstract class FabricPlayerMessageMixin implements TaterPlayerMessageListener {
     @Shadow public abstract ServerPlayerEntity getPlayer();
 
     /**
@@ -30,9 +30,9 @@ public abstract class FabricPlayerMessageListener implements TaterPlayerMessageL
         if (packet.chatMessage().startsWith("/")) return;
         if (TaterAPI.cancelChat) ci.cancel();
 
-        taterPlayerMessage(new FabricTaterPlayer(getPlayer()), packet.chatMessage(), TaterAPI.cancelChat);
+        taterPlayerMessage(new FabricPlayer(getPlayer()), packet.chatMessage(), TaterAPI.cancelChat);
 
         // Fire the message event
-        FabricPlayerMessageEvent.EVENT.invoker().onPlayerMessage(getPlayer(), packet.chatMessage(), TaterAPI.cancelChat);
+        FabricPlayerEvents.MESSAGE.invoker().onPlayerMessage(getPlayer(), packet.chatMessage(), TaterAPI.cancelChat);
     }
 }

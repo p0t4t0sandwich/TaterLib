@@ -3,9 +3,10 @@ package dev.neuralnexus.taterapi.fabric;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterapi.fabric.events.server.FabricServerStartingEvent;
-import dev.neuralnexus.taterapi.fabric.events.server.FabricServerStoppedEvent;
+import dev.neuralnexus.taterapi.fabric.commands.FabricTaterAPICommand;
 import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,7 @@ public class FabricTaterAPIPlugin implements DedicatedServerModInitializer, Tate
     @Override
     public void registerHooks() {
         // Register LuckPerms hook
-        FabricServerStartingEvent.EVENT.register(server -> {
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             if (FabricLoader.getInstance().isModLoaded("luckperms")) {
                 useLogger("[TaterAPI] LuckPerms detected, enabling LuckPerms hook.");
                 TaterAPI.addHook(new LuckPermsHook());
@@ -61,7 +62,9 @@ public class FabricTaterAPIPlugin implements DedicatedServerModInitializer, Tate
      * @inheritDoc
      */
     @Override
-    public void registerCommands() {}
+    public void registerCommands() {
+        CommandRegistrationCallback.EVENT.register(FabricTaterAPICommand::register);
+    }
 
     /**
      * @inheritDoc
@@ -69,6 +72,6 @@ public class FabricTaterAPIPlugin implements DedicatedServerModInitializer, Tate
     @Override
     public void onInitializeServer() {
         pluginStart();
-        FabricServerStoppedEvent.EVENT.register(server -> pluginStop());
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
     }
 }
