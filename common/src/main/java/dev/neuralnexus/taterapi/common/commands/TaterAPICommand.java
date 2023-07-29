@@ -2,93 +2,67 @@ package dev.neuralnexus.taterapi.common.commands;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.placeholder.PlaceholderParser;
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 
-public interface TaterAPICommand extends TemplateCommand {
-    String commandName = "taterapi";
-    String commandDescription = "TaterAPI command.";
-    String commandUsage = "&6/taterapi <reload|version>";
-    String commandPermission = "taterapi.command";
+import static dev.neuralnexus.taterapi.common.Utils.ansiiParser;
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String getCommandName() {
-        return commandName;
+
+public interface TaterAPICommand {
+    static String getCommandName() {
+        return "tatapi";
     }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String getCommandDescription() {
-        return commandDescription;
+    static String getCommandDescription() {
+        return "TaterAPI command.";
     }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String getCommandUsage() {
-        return commandUsage;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String getCommandPermission() {
-        return commandPermission;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String executeCommand(String[] args) {
-        String text;
+    static String permissionBuilder(String[] args) {
         if (args.length == 0) {
-            text = getCommandUsage();
+            return "tatapi.command";
+        } else if (args.length == 1) {
+            return "tatapi.command." + args[0].toLowerCase();
+        } else if (args.length == 2) {
+            return "tatapi.command." + args[0].toLowerCase() + "." + args[1].toLowerCase();
         } else {
-            switch (args[0].toLowerCase()) {
-                case "reload":
-                    try {
-                        // Try to reload the plugin
-                        TaterAPI.stop();
-                        TaterAPI.start();
-                        text = "&aReloaded TaterAPI.";
-                    } catch (Exception e) {
-                        // If an error occurs, print the error and return an error message
-                        text = "&cAn error occurred while reloading the plugin.";
-                        System.err.println(e);
-                        e.printStackTrace();
-                    }
-                    break;
-                case "version":
-                    text = "&aTaterAPI v" + TaterAPI.getVersion();
-                    break;
-                default:
-                    text = getCommandUsage();
-                    break;
+            return "tatapi.command." + args[0].toLowerCase() + "." + args[1].toLowerCase() + "." + args[2].toLowerCase();
+        }
+    }
+
+    static String executeCommand(String[] args) {
+        String text;
+        switch (args[0].toLowerCase()) {
+            case "reload":
+                try {
+                    // Try to reload the plugin
+                    TaterAPI.stop();
+                    TaterAPI.start();
+                    text = "&aReloaded TaterAPI.";
+                } catch (Exception e) {
+                    // If an error occurs, print the error and return an error message
+                    text = "&cAn error occurred while reloading the plugin.";
+                    System.err.println(e);
+                    e.printStackTrace();
+                }
+                break;
+            case "version":
+                text = "&aTaterAPI v" + TaterAPI.getVersion();
+                break;
+            default:
+                text = "&cUsage: /tatapi <reload|version>";
+                break;
+        }
+        return PlaceholderParser.substituteSectionSign(text);
+    }
+
+    static void executeCommand(AbstractPlayer player, boolean isPlayer, String[] args) {
+        if (isPlayer) {
+            if (!player.hasPermission(permissionBuilder(args))) {
+                player.sendMessage("§cYou do not have permission to use this command.");
+            } else {
+                player.sendMessage(executeCommand(args));
             }
-        }
-        return PlaceholderParser.substituteSectionSign(text);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    default String executeCommand(TaterPlayer player, String[] args) {
-        String text;
-        if (args.length == 0) {
-            text = getCommandUsage();
-        } else if (player.hasPermission(getCommandPermission(args[0].toLowerCase()))) {
-            text = executeCommand(args);
         } else {
-            text = "&cYou do not have permission to use this command.";
+            TaterAPI.useLogger(ansiiParser(executeCommand(args)));
         }
-        return PlaceholderParser.substituteSectionSign(text);
     }
 }

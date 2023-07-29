@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
+import dev.neuralnexus.taterapi.common.player.cache.PlayerCache;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
@@ -11,13 +11,13 @@ import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 public interface TaterPlayerLoginListener {
     /**
      * Called when a player logs in.
-     * @param taterPlayer The TaterPlayer.
+     * @param abstractPlayer The TaterPlayer.
      */
-    default void taterPlayerLogin(TaterPlayer taterPlayer) {
+    default void taterPlayerLogin(AbstractPlayer abstractPlayer) {
         runTaskAsync(() -> {
             try {
                 // Add the TaterPlayer to the cache
-                TaterPlayerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                PlayerCache.setPlayerInCache(abstractPlayer.getUUID(), abstractPlayer);
 
                 // TODO: Apply cross-API event system
             } catch (Exception e) {

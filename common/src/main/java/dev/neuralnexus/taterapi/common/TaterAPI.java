@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterapi.common;
 
 import dev.neuralnexus.taterapi.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
+import dev.neuralnexus.taterapi.common.player.cache.PlayerCache;
 import dev.neuralnexus.taterapi.common.relay.MessageRelay;
 import dev.neuralnexus.taterapi.common.storage.DataSource;
 import dev.neuralnexus.taterapi.common.storage.Database;

@@ -1,8 +1,7 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
 import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 import dev.neuralnexus.taterapi.common.relay.MessageRelay;
 
 import java.util.HashMap;
@@ -40,17 +39,17 @@ public interface TaterPlayerMessageListener {
 
     /**
      * Called when a player sends a message, and sends it to the message relay.
-     * @param taterPlayer The player
+     * @param abstractPlayer The player
      * @param message The message
      * @param isCancelled Whether the message was cancelled
      */
-    default void taterPlayerMessage(TaterPlayer taterPlayer, String message, boolean isCancelled) {
+    default void taterPlayerMessage(AbstractPlayer abstractPlayer, String message, boolean isCancelled) {
         runTaskAsync(() -> {
             try {
                 MessageRelay messageRelay = TaterAPI.getMessageRelay();
                 if (messageRelay == null) return;
 
-                messageRelay.sendPlayerMessage(taterPlayer, taterPlayer.getServerName(), message, isCancelled);
+                messageRelay.sendPlayerMessage(abstractPlayer, abstractPlayer.getServerName(), message, isCancelled);
 
                 // TODO: Apply cross-API event system
             } catch (Exception e) {

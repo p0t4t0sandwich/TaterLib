@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterapi.common.commands;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 
 public interface TemplateCommand {
     /**
@@ -49,5 +49,5 @@ public interface TemplateCommand {
      * @param args The arguments of the command.
      * @return The output of the command.
      */
-    String executeCommand(TaterPlayer player, String[] args);
+    String executeCommand(AbstractPlayer player, String[] args);
 }

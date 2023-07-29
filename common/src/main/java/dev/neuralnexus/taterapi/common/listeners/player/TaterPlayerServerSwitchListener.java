@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterapi.common.listeners.player;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import dev.neuralnexus.taterapi.common.player.cache.TaterPlayerCache;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
+import dev.neuralnexus.taterapi.common.player.cache.PlayerCache;
 
 import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 
@@ -11,23 +11,23 @@ import static dev.neuralnexus.taterapi.common.Utils.runTaskAsync;
 public interface TaterPlayerServerSwitchListener {
     /**
      * Called when a player logs out, and sends it to the message relay.
-     * @param taterPlayer The player.
+     * @param abstractPlayer The player.
      */
-    default void taterServerSwitch(TaterPlayer taterPlayer, String toServer) {
+    default void taterServerSwitch(AbstractPlayer abstractPlayer, String toServer) {
         runTaskAsync(() -> {
             try {
                 // Get TaterPlayer from cache
-                TaterPlayer cachedTaterPlayer = TaterPlayerCache.getTaterPlayerFromCache(taterPlayer.getUUID());
+                AbstractPlayer cachedTaterPlayer = PlayerCache.getPlayerFromCache(abstractPlayer.getUUID());
                 if (cachedTaterPlayer == null) {
                     return;
                 }
 
                 // Get fromServer
-                String fromServer = taterPlayer.getServerName();
+                String fromServer = abstractPlayer.getServerName();
 
                 // Update the server name and TaterPlayer object
-                taterPlayer.setServerName(toServer);
-                TaterPlayerCache.setTaterPlayerInCache(taterPlayer.getUUID(), taterPlayer);
+                abstractPlayer.setServerName(toServer);
+                PlayerCache.setPlayerInCache(abstractPlayer.getUUID(), abstractPlayer);
 
                 // TODO: Apply cross-API event system
                 // Relay the server switch message

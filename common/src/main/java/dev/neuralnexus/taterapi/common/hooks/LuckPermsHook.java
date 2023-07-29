@@ -1,10 +1,11 @@
 package dev.neuralnexus.taterapi.common.hooks;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.model.user.User;
+
+import java.util.UUID;
 
 /**
  * A hook for LuckPerms
@@ -42,44 +43,44 @@ public class LuckPermsHook {
 
     /**
      * Get the CachedMetaData for a player
-     * @param taterPlayer The player to get the CachedMetaData for
+     * @param playerUuid The UUID of the player to get the CachedMetaData for
      * @return The CachedMetaData for the player
      */
-    private CachedMetaData getMetaData(TaterPlayer taterPlayer) {
+    private CachedMetaData getMetaData(UUID playerUuid) {
         if (this.luckPerms == null) return null;
-        User user = luckPerms.getUserManager().getUser(taterPlayer.getUUID());
+        User user = luckPerms.getUserManager().getUser(playerUuid);
         return user != null ? user.getCachedData().getMetaData() : null;
     }
 
     /**
      * Get the prefix for a player
-     * @param taterPlayer The player to get the prefix for
+     * @param playerUuid The UUID of the player to get the prefix for
      * @return The prefix for the player
      */
-    public String getPrefix(TaterPlayer taterPlayer) {
-        CachedMetaData metaData = getMetaData(taterPlayer);
+    public String getPrefix(UUID playerUuid) {
+        CachedMetaData metaData = getMetaData(playerUuid);
         return metaData != null ? metaData.getPrefix() : "";
     }
 
     /**
      * Get the suffix for a player
-     * @param taterPlayer The player to get the suffix for
+     * @param playerUuid The UUID of the player to get the suffix for
      * @return The suffix for the player
      */
-    public String getSuffix(TaterPlayer taterPlayer) {
-        CachedMetaData metaData = getMetaData(taterPlayer);
+    public String getSuffix(UUID playerUuid) {
+        CachedMetaData metaData = getMetaData(playerUuid);
         return metaData != null ? metaData.getSuffix() : "";
     }
 
     /**
      * Player has permission
-     * @param taterPlayer The player to check
+     * @param playerUuid The player to check
      * @param permission The permission to check
      * @return If the player has the permission
      */
-    public boolean playerHasPermission(TaterPlayer taterPlayer, String permission) {
+    public boolean playerHasPermission(UUID playerUuid, String permission) {
         if (this.luckPerms == null) return false;
-        User user = luckPerms.getUserManager().getUser(taterPlayer.getUUID());
+        User user = luckPerms.getUserManager().getUser(playerUuid);
         return user != null && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
 }

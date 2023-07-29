@@ -6,9 +6,9 @@ import dev.neuralnexus.taterapi.common.placeholder.PlaceholderParser;
 import java.util.UUID;
 
 /**
- * The interface for a TaterPlayer
+ * The interface for a AbstractPlayer
  */
-public interface TaterPlayer {
+public interface AbstractPlayer {
     /**
      * Get the UUID of the player
      * @return The UUID of the player
@@ -52,7 +52,7 @@ public interface TaterPlayer {
     default String getPrefix() {
         if (!LuckPermsHook.isHooked()) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String suffix = luckPermsHook.getPrefix(this);
+        String suffix = luckPermsHook.getPrefix(getUUID());
         return suffix != null ? suffix : "";
     }
 
@@ -63,7 +63,7 @@ public interface TaterPlayer {
     default String getSuffix() {
         if (!LuckPermsHook.isHooked()) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String suffix = luckPermsHook.getSuffix(this);
+        String suffix = luckPermsHook.getSuffix(getUUID());
         return suffix != null ? suffix : "";
     }
 
@@ -75,9 +75,14 @@ public interface TaterPlayer {
     default boolean hasPermission(String permission) {
         if (!LuckPermsHook.isHooked()) return false;
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook.playerHasPermission(this, permission);
+        return luckPermsHook.playerHasPermission(getUUID(), permission);
     }
 
+    /**
+     * Parse placeholders in a string
+     * @param input The string to parse
+     * @return The parsed string
+     */
     default PlaceholderParser parsePlaceholders(String input) {
         return new PlaceholderParser(input)
                 .parseString("player", this.getName())
