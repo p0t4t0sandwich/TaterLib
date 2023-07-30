@@ -14,10 +14,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
-import dev.neuralnexus.taterapi.velocity.listeners.player.VelocityPlayerLoginListener;
-import dev.neuralnexus.taterapi.velocity.listeners.player.VelocityPlayerLogoutListener;
-import dev.neuralnexus.taterapi.velocity.listeners.player.VelocityPlayerMessageListener;
-import dev.neuralnexus.taterapi.velocity.listeners.player.VelocityPlayerServerSwitchListener;
+import dev.neuralnexus.taterapi.velocity.listeners.player.VelocityPlayerListener;
 import org.slf4j.Logger;
 
 /**
@@ -89,10 +86,7 @@ public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
     @Override
     public void registerEventListeners() {
         EventManager eventManager = server.getEventManager();
-        eventManager.register(this, new VelocityPlayerLoginListener());
-        eventManager.register(this, new VelocityPlayerLogoutListener());
-        eventManager.register(this, new VelocityPlayerMessageListener());
-        eventManager.register(this, new VelocityPlayerServerSwitchListener());
+        eventManager.register(this, new VelocityPlayerListener());
     }
 
     /**
@@ -101,7 +95,7 @@ public class VelocityTaterAPIPlugin implements TaterAPIPlugin {
     @Override
     public void registerCommands() {
         CommandManager commandManager = server.getCommandManager();
-        commandManager.register(TaterAPICommand.commandName, new VelocityTaterAPICommand());
+        commandManager.register(TaterAPICommand.getCommandName(), new VelocityTaterAPICommand());
     }
 
     /**

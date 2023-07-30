@@ -4,9 +4,7 @@ import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterapi.forge.commands.ForgeTaterAPICommand;
-import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerLoginListener;
-import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerLogoutListener;
-import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerMessageListener;
+import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerListener;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -83,9 +81,7 @@ public class ForgeTaterAPIPlugin implements TaterAPIPlugin {
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register player event listeners
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerLoginListener());
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerLogoutListener());
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerMessageListener());
+        MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
 
         // Register commands
         MinecraftForge.EVENT_BUS.register(ForgeTaterAPICommand.class);

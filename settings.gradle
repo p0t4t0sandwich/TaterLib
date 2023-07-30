@@ -15,17 +15,7 @@ rootProject.name = 'TaterAPI'
 include(
         'bukkit',
         'bungee',
-        'fabric-1.14',
-        'fabric-1.15',
-        'fabric-1.16',
-        'fabric-1.17',
         'fabric-1.20',
-        'forge-1.14.3',
-        'forge-1.15.1',
-        'forge-1.16.3',
-        'forge-1.17.1',
-        'forge-1.18',
-        'forge-1.19',
         'forge-1.20',
         'velocity',
         'common'

@@ -3,10 +3,13 @@ package dev.neuralnexus.taterapi.fabric;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterapi.common.listeners.player.CommonPlayerListener;
 import dev.neuralnexus.taterapi.fabric.commands.FabricTaterAPICommand;
+import dev.neuralnexus.taterapi.fabric.player.FabricPlayer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +59,11 @@ public class FabricTaterAPIPlugin implements DedicatedServerModInitializer, Tate
      * @inheritDoc
      */
     @Override
-    public void registerEventListeners() {}
+    public void registerEventListeners() {
+        // Register Fabric API player events
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> CommonPlayerListener.onPlayerLogin(new FabricPlayer(handler.player)));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> CommonPlayerListener.onPlayerLogout(new FabricPlayer(handler.player)));
+    }
 
     /**
      * @inheritDoc

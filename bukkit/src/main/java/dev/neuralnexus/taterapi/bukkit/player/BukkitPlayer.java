@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterapi.bukkit.player;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit player to a TaterPlayer.
+ * Abstracts a Bukkit player to an AbstractPlayer.
  */
-public class BukkitTaterPlayer implements TaterPlayer {
+public class BukkitPlayer implements AbstractPlayer {
     private final Player player;
     private String serverName;
 
@@ -16,9 +16,9 @@ public class BukkitTaterPlayer implements TaterPlayer {
      * Constructor.
      * @param player The Bukkit player.
      */
-    public BukkitTaterPlayer(Player player) {
+    public BukkitPlayer(Player player) {
         this.player = player;
-        this.serverName = "";
+        this.serverName = "local";
     }
 
     /**
@@ -26,7 +26,7 @@ public class BukkitTaterPlayer implements TaterPlayer {
      * @param player The Bukkit player.
      * @param serverName The name of the server the player is on.
      */
-    public BukkitTaterPlayer(Player player, String serverName) {
+    public BukkitPlayer(Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }

@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterapi.forge.player;
 
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 
 /**
- * Abstracts a Forge player to a TaterPlayer.
+ * Abstracts a Forge player to an AbstractPlayer.
  */
-public class ForgeTaterPlayer implements TaterPlayer {
+public class ForgePlayer implements AbstractPlayer {
     private final Player player;
     private String serverName;
 
@@ -15,7 +15,7 @@ public class ForgeTaterPlayer implements TaterPlayer {
      * Constructor.
      * @param player The Forge player.
      */
-    public ForgeTaterPlayer(Player player) {
+    public ForgePlayer(Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -25,7 +25,7 @@ public class ForgeTaterPlayer implements TaterPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public ForgeTaterPlayer(Player player, String serverName) {
+    public ForgePlayer(Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }

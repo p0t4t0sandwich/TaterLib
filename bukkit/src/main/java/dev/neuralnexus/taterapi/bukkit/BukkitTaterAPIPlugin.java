@@ -1,9 +1,7 @@
 package dev.neuralnexus.taterapi.bukkit;
 
 import dev.neuralnexus.taterapi.bukkit.commands.BukkitTaterAPICommand;
-import dev.neuralnexus.taterapi.bukkit.listeners.player.BukkitPlayerLoginListener;
-import dev.neuralnexus.taterapi.bukkit.listeners.player.BukkitPlayerLogoutListener;
-import dev.neuralnexus.taterapi.bukkit.listeners.player.BukkitPlayerMessageListener;
+import dev.neuralnexus.taterapi.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterapi.common.TaterAPI;
 import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
 import dev.neuralnexus.taterapi.common.commands.TaterAPICommand;
@@ -59,9 +57,7 @@ public class BukkitTaterAPIPlugin extends JavaPlugin implements TaterAPIPlugin {
     @Override
     public void registerEventListeners() {
         PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitPlayerLoginListener(), this);
-        pluginManager.registerEvents(new BukkitPlayerLogoutListener(), this);
-        pluginManager.registerEvents(new BukkitPlayerMessageListener(), this);
+        pluginManager.registerEvents(new BukkitPlayerListener(), this);
     }
 
     /**
@@ -69,7 +65,7 @@ public class BukkitTaterAPIPlugin extends JavaPlugin implements TaterAPIPlugin {
      */
     @Override
     public void registerCommands() {
-        getCommand(TaterAPICommand.commandName).setExecutor(new BukkitTaterAPICommand());
+        getCommand(TaterAPICommand.getCommandName()).setExecutor(new BukkitTaterAPICommand());
     }
 
     /**

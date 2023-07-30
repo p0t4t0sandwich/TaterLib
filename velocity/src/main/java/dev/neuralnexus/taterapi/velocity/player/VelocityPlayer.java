@@ -1,28 +1,29 @@
-package dev.neuralnexus.taterapi.bungee.player;
+package dev.neuralnexus.taterapi.velocity.player;
 
-import dev.neuralnexus.taterapi.bungee.BungeeTaterAPIPlugin;
-import dev.neuralnexus.taterapi.common.player.TaterPlayer;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import net.md_5.bungee.api.config.ServerInfo;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
+import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
+import dev.neuralnexus.taterapi.velocity.VelocityTaterAPIPlugin;
+import net.kyori.adventure.text.Component;
 
 import java.util.UUID;
 
 /**
- * Abstracts a BungeeCord player to a TaterPlayer.
+ * Abstracts a Velocity player to an AbstractPlayer.
  */
-public class BungeeTaterPlayer implements TaterPlayer {
-    private final ProxiedPlayer player;
+public class VelocityPlayer implements AbstractPlayer {
+    private final Player player;
     private String serverName;
 
     /**
      * Constructor.
-     * @param player The BungeeCord player.
+     * @param player The Velocity player.
      */
-    public BungeeTaterPlayer(ProxiedPlayer player) {
+    public VelocityPlayer(Player player) {
         this.player = player;
-        if (player.getServer() != null) {
-            this.serverName = player.getServer().getInfo().getName();
+
+        if (player.getCurrentServer().isPresent()) {
+            this.serverName = player.getCurrentServer().get().getServerInfo().getName();
         } else {
             this.serverName = null;
         }
@@ -33,10 +34,10 @@ public class BungeeTaterPlayer implements TaterPlayer {
      * @param serverName The name of the server to connect to.
      */
     public void connect(String serverName) {
-        if (BungeeTaterAPIPlugin.getProxyServer().getServerInfo(serverName) == null) return;
+        if (!VelocityTaterAPIPlugin.getProxyServer().getServer(serverName).isPresent()) return;
 
-        ServerInfo server = BungeeTaterAPIPlugin.getProxyServer().getServerInfo(serverName);
-        player.connect(server);
+        RegisteredServer server = VelocityTaterAPIPlugin.getProxyServer().getServer(serverName).get();
+        player.createConnectionRequest(server).fireAndForget();
     }
 
     /**
@@ -52,7 +53,7 @@ public class BungeeTaterPlayer implements TaterPlayer {
      */
     @Override
     public String getName() {
-        return player.getName();
+        return player.getUsername();
     }
 
     /**
@@ -60,7 +61,7 @@ public class BungeeTaterPlayer implements TaterPlayer {
      */
     @Override
     public String getDisplayName() {
-        return player.getDisplayName();
+        return player.getUsername();
     }
 
     /**
@@ -84,7 +85,7 @@ public class BungeeTaterPlayer implements TaterPlayer {
      */
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(new ComponentBuilder(message).create());
+        player.sendMessage(Component.text(message));
     }
 
     /**
