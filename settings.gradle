@@ -7,7 +7,35 @@ pluginManagement {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+
+        // Forge
+        maven {
+            name = 'Forge'
+            url = 'https://maven.minecraftforge.net/'
+        }
+
+        // NeoForge
+        maven {
+            name = 'NeoForge'
+            url 'https://maven.neoforged.net/releases'
+        }
+
+        // Parchment Mappings
+        maven {
+            name = 'ParchmentMC'
+            url = 'https://maven.parchmentmc.org'
+        }
+
+        // Sponge
+        maven {
+            name = 'Sponge'
+            url = 'https://repo.spongepowered.org/maven'
+        }
     }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version("0.5.0")
 }
 
 rootProject.name = 'TaterAPI'

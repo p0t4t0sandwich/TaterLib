@@ -1,23 +1,15 @@
-buildscript {
-    repositories {
-        maven { url 'https://plugins.gradle.org/m2' }
-        maven { url 'https://maven.minecraftforge.net/' }
-    }
-
-    dependencies {
-        classpath('gradle.plugin.com.github.johnrengelman:shadow:7.1.2')
-        classpath('net.minecraftforge.gradle:ForgeGradle:5.1.+')
-    }
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('net.minecraftforge.gradle') version('[6.0,6.2)')
+    id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
-
-apply(plugin: 'com.github.johnrengelman.shadow')
-apply(plugin: 'net.minecraftforge.gradle')
 
 sourceCompatibility = 1.8
 targetCompatibility = 17
 
 minecraft {
-    mappings(channel: 'official', version: minecraftVersion)
+    // https://parchmentmc.org/docs/getting-started
+    mappings(channel: 'parchment', version: mappingsVersion)
 }
 
 dependencies {
@@ -33,11 +25,9 @@ shadowJar {
     dependencies {
         include(project(':common'))
     }
-    relocate('com.google.gson', 'dev.neuralnexus.taterapi.lib.gson')
 
-    destinationDir(file('../target'))
-    archiveName("TaterAPI-${version}-forge-${minecraftVersion}.jar")
-    classifier('')
+    destinationDirectory = file('../target')
+    archiveFileName = "TaterAPI-${version}-forge-${minecraftVersion}.jar"
 }
 shadowJar.doLast {
     task ->

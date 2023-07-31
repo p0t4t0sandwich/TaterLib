@@ -1,5 +1,5 @@
 plugins {
-    id('com.github.johnrengelman.shadow') version('7.1.2')
+    id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
 dependencies {
@@ -47,9 +47,8 @@ shadowJar {
     relocate('com.mongodb', 'dev.neuralnexus.taterapi.lib.mongodb')
     relocate('org.bson', 'dev.neuralnexus.taterapi.lib.bson')
 
-    destinationDir(file('../target'))
-    archiveName("TaterAPI-${version}-common.jar")
-    classifier('')
+    destinationDirectory = file('../target')
+    archiveFileName = "TaterAPI-${version}-common.jar"
 }
 shadowJar.doLast {
     task ->

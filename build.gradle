@@ -43,3 +43,7 @@ subprojects {
         }
     }
 }
+
+clean {
+    delete "target"
+}

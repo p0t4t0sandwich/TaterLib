@@ -1,5 +1,5 @@
 plugins {
-    id('com.github.johnrengelman.shadow') version('7.1.2')
+    id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
 dependencies {
@@ -23,9 +23,8 @@ shadowJar {
         include(project(":common"))
     }
 
-    destinationDir(file('../target'))
-    archiveName("TaterAPI-${version}-bungee.jar")
-    classifier('')
+    destinationDirectory = file('../target')
+    archiveFileName = "TaterAPI-${version}-bungee.jar"
 }
 shadowJar.doLast {
     task ->
