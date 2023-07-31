@@ -1,0 +1,43 @@
+# https://files.minecraftforge.net/net/minecraftforge/forge/
+modLoader = "javafml"
+loaderVersion = "[46,)"
+license = "GPL-3"
+issueTrackerURL="https://github.com/p0t4t0sandwich/TaterAPI/issues"
+
+[[mods]]
+modId = "taterapi"
+version = "${file.jarVersion}"
+displayName = "TaterAPI"
+updateJSONURL="https://raw.githubusercontent.com/p0t4t0sandwich/TaterAPI/main/forgeUpdates.json"
+displayURL="https://github.com/p0t4t0sandwich/TaterAPI"
+logoFile="TaterAPI.png"
+credits="p0t4t0sandwich"
+authors="p0t4t0sandwich"
+displayTest="IGNORE_SERVER_VERSION"
+description = '''
+A cross API code library for various generalizations used in the Tater* plugins
+'''
+
+# Forge Dependency
+[[dependencies.taterapi]]
+modId = "forge"
+mandatory = true
+versionRange = "[46,)"
+ordering = "NONE"
+side = "BOTH"
+
+# Minecraft Dependency
+[[dependencies.taterapi]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20,1.21)"
+ordering = "NONE"
+side = "BOTH"
+
+# LuckPerms Dependency
+[[dependencies.taterapi]]
+modId = "luckperms"
+mandatory = false
+versionRange = "[5.3,)"
+ordering = "NONE"
+side = "SERVER"
