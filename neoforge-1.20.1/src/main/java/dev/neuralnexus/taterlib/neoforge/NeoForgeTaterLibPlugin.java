@@ -1,10 +1,10 @@
-package dev.neuralnexus.taterapi.forge;
+package dev.neuralnexus.taterlib.neoforge;
 
-import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.TaterAPIPlugin;
-import dev.neuralnexus.taterapi.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterapi.forge.commands.ForgeTaterAPICommand;
-import dev.neuralnexus.taterapi.forge.listeners.player.ForgePlayerListener;
+import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.neoforge.commands.ForgeTaterAPICommand;
+import dev.neuralnexus.taterlib.neoforge.listeners.player.ForgePlayerListener;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -14,10 +14,10 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
 /**
- * The TaterAPI Forge plugin.
+ * The TaterLib NeoForge plugin.
  */
-@Mod("taterapi")
-public class ForgeTaterAPIPlugin implements TaterAPIPlugin {
+@Mod("taterlib")
+public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * @inheritDoc
      */
@@ -57,7 +57,7 @@ public class ForgeTaterAPIPlugin implements TaterAPIPlugin {
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterAPI.addHook(new LuckPermsHook());
+            TaterLib.addHook(new LuckPermsHook());
         }
     }
 
@@ -76,7 +76,7 @@ public class ForgeTaterAPIPlugin implements TaterAPIPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
-    public ForgeTaterAPIPlugin() {
+    public NeoForgeTaterLibPlugin() {
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
 

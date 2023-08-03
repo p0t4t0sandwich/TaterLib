@@ -1,6 +1,6 @@
-package dev.neuralnexus.taterapi.forge.player;
+package dev.neuralnexus.taterlib.neoforge.player;
 
-import dev.neuralnexus.taterapi.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 

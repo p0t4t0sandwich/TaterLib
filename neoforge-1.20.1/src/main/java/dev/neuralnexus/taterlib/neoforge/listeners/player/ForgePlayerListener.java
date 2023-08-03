@@ -1,8 +1,8 @@
-package dev.neuralnexus.taterapi.forge.listeners.player;
+package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
-import dev.neuralnexus.taterapi.common.TaterAPI;
-import dev.neuralnexus.taterapi.common.listeners.player.CommonPlayerListener;
-import dev.neuralnexus.taterapi.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.neoforge.player.ForgePlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -35,9 +35,9 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        if (TaterAPI.cancelChat) event.setCanceled(true);
+        if (TaterLib.cancelChat) event.setCanceled(true);
 
         // Send message to message relay
-        CommonPlayerListener.onPlayerMessage(new ForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterAPI.cancelChat);
+        CommonPlayerListener.onPlayerMessage(new ForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterLib.cancelChat);
     }
 }
