@@ -1,9 +1,9 @@
 #!/bin/bash
 
-PROJ_ID=taterapi
-PROJ_NAME=TaterAPI
+PROJ_ID=taterlib
+PROJ_NAME=TaterLib
 VERSION=1.0.0
-GROUP_ID=dev/neuralnexus/taterapi # dev.neuralnexus.taterapi
+GROUP_ID=dev/neuralnexus/taterlib # dev.neuralnexus.taterlib
 
 # Make directories
 mkdir -p ./target/temp_build

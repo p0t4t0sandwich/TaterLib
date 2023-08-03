@@ -15,6 +15,9 @@ dependencies {
     implementation('org.mongodb:mongodb-driver-core:4.9.1')
     implementation('org.mongodb:bson:4.9.1')
 
+    // Gson
+    implementation('com.google.code.gson:gson:2.10.1')
+
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
 
@@ -35,20 +38,26 @@ shadowJar {
         include(dependency('org.mongodb:mongodb-driver-sync:4.9.1'))
         include(dependency('org.mongodb:mongodb-driver-core:4.9.1'))
         include(dependency('org.mongodb:bson:4.9.1'))
+
+        // Gson
+        include(dependency('com.google.code.gson:gson:2.10.1'))
     }
     // YAML
-    relocate('dev.dejvokep', 'dev.neuralnexus.taterapi.lib.dejvokep')
+    relocate('dev.dejvokep', 'dev.neuralnexus.taterlib.lib.dejvokep')
 
     // MySQL
-    relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterapi.lib.hikari')
-    relocate('com.mysql', 'dev.neuralnexus.taterapi.lib.mysql')
+    relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterlib.lib.hikari')
+    relocate('com.mysql', 'dev.neuralnexus.taterlib.lib.mysql')
 
     // MongoDB
-    relocate('com.mongodb', 'dev.neuralnexus.taterapi.lib.mongodb')
-    relocate('org.bson', 'dev.neuralnexus.taterapi.lib.bson')
+    relocate('com.mongodb', 'dev.neuralnexus.taterlib.lib.mongodb')
+    relocate('org.bson', 'dev.neuralnexus.taterlib.lib.bson')
+
+    // Gson
+    relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterAPI-${version}-common.jar"
+    archiveFileName = "TaterLib-${version}-common.jar"
 }
 shadowJar.doLast {
     task ->

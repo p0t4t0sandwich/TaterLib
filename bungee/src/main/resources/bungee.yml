@@ -1,12 +1,12 @@
-name: Template
+name: TaterLib
 version: '${version}'
 author: p0t4t0sandwich
 description: A cross API code library for various generalizations used in the Tater* plugins
-main: dev.neuralnexus.taterapi.bukkit.BungeeTaterAPIPlugin
+main: dev.neuralnexus.taterlib.bukkit.BungeeTaterLibPlugin
 depends: []
 softDepends: [LuckPerms]
 commands:
-  taterapi:
-    description: TaterAPI command
-    usage: /taterapi <reload|version>
-    permission: taterapi.command
+  taterlib:
+    description: TaterLib command
+    usage: /taterlib <reload|version>
+    permission: taterlib.command
