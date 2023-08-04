@@ -30,11 +30,17 @@ jobs:
         with:
           path: ./.gradle
           key: ${{ runner.os }}-gradle-file
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build
-        run: |
-          ./gradlew build
+#      - name: Grant execute permission for gradlew and build.sh
+#        run: chmod +x gradlew build.sh
+#      - name: Build
+#        run: |
+#          ./gradlew build
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+      - name: Build with Gradle
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: build
       - name: Sketch Build
         run: |
           ./build.sh
