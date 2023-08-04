@@ -35,6 +35,9 @@ jobs:
       - name: Build
         run: |
           ./gradlew build
+      - name: Sketch Build
+        run: |
+          ./build.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
