@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.common.commands;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 
 import static dev.neuralnexus.taterlib.common.Utils.ansiiParser;
 

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.common.commands;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 
 public interface TemplateCommand {
     /**

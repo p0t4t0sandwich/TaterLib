@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.common.listeners.player;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.player.cache.PlayerCache;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
 

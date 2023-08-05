@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
-import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.bukkit.abstractions.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
 import org.bukkit.event.EventHandler;

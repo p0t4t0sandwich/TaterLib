@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.common.player.cache;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 
 import java.util.HashMap;
 import java.util.UUID;

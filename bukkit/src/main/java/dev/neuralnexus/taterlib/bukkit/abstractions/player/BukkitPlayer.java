@@ -1,6 +1,7 @@
-package dev.neuralnexus.taterlib.bukkit.player;
+package dev.neuralnexus.taterlib.bukkit.abstractions.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -83,7 +84,23 @@ public class BukkitPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public BukkitPlayerInventory getInventory() {
+        return new BukkitPlayerInventory(player.getInventory());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String reason) {
+        player.kickPlayer(reason);
     }
 }
