@@ -1,7 +1,9 @@
-package dev.neuralnexus.taterlib.fabric.player;
+package dev.neuralnexus.taterlib.fabric.abstractions.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 
 /**
@@ -76,5 +78,21 @@ public class FabricPlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Text.of(message), false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractPlayerInventory getInventory() {
+        return new FabricPlayerInventory(player.getInventory());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String message) {
+        ((ServerPlayerEntity) player).networkHandler.disconnect(Text.of(message));
     }
 }

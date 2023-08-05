@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
 import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
-import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;

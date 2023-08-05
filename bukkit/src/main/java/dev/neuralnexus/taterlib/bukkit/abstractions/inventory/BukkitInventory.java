@@ -23,23 +23,23 @@ public class BukkitInventory implements AbstractInventory {
     }
 
     @Override
-    public AbstractItemStack getItem(int i) {
-        return inventory.getItem(i) == null ? null : new BukkitItemStack(inventory.getItem(i));
+    public AbstractItemStack getItem(int slot) {
+        return inventory.getItem(slot) == null ? null : new BukkitItemStack(inventory.getItem(slot));
     }
 
     @Override
-    public void setItem(int i, AbstractItemStack abstractItemStack) {
-        inventory.setItem(i, ((BukkitItemStack) abstractItemStack).getItemStack());
+    public void setItem(int slot, AbstractItemStack item) {
+        inventory.setItem(slot, ((BukkitItemStack) item).getItemStack());
     }
 
     @Override
-    public void addItem(AbstractItemStack abstractItemStack) {
-        inventory.addItem(((BukkitItemStack) abstractItemStack).getItemStack());
+    public void addItem(AbstractItemStack item) {
+        inventory.addItem(((BukkitItemStack) item).getItemStack());
     }
 
     @Override
-    public void removeItem(AbstractItemStack abstractItemStack) {
-        inventory.removeItem(((BukkitItemStack) abstractItemStack).getItemStack());
+    public void removeItem(AbstractItemStack item) {
+        inventory.removeItem(((BukkitItemStack) item).getItemStack());
     }
 
     @Override
@@ -54,10 +54,10 @@ public class BukkitInventory implements AbstractInventory {
     }
 
     @Override
-    public void setContents(AbstractItemStack[] abstractItemStacks) {
-        ItemStack[] contents = new ItemStack[abstractItemStacks.length];
-        for (int i = 0; i < abstractItemStacks.length; i++) {
-            contents[i] = ((BukkitItemStack) abstractItemStacks[i]).getItemStack();
+    public void setContents(AbstractItemStack[] items) {
+        ItemStack[] contents = new ItemStack[items.length];
+        for (int i = 0; i < items.length; i++) {
+            contents[i] = ((BukkitItemStack) items[i]).getItemStack();
         }
 
         inventory.setContents(contents);

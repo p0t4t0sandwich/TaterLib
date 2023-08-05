@@ -84,7 +84,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public BukkitPlayerInventory getInventory() {
+    public AbstractPlayerInventory getInventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 
