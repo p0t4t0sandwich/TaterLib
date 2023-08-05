@@ -3,13 +3,7 @@
 PROJ_ID=taterlib
 PROJ_NAME=TaterLib
 VERSION=1.0.0
-GROUP_ID=dev/neuralnexus/taterlib # dev.neuralnexus.taterlib
-
-# Make directories
-mkdir -p ./target/temp_build
-cd ./target/temp_build
-
-mkdir -p ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
+GROUP_ID=dev/neuralnexus
 
 # --------------------------- Functions --------------------------------
 
@@ -127,7 +121,7 @@ FABRIC_VERSION=1.17
 FORGE_VERSION=1.19
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
 
-build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+#build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.20 --------------------------------
 MC_VERSION=1.20
