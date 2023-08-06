@@ -48,10 +48,9 @@ This plugin has no strict dependencies, but it does have optional dependencies.
 ```
 
 # TODO
+- add support for built-in permission APIs
+  - Fabric
+  - Forge
 
 ## Abstractions
-- more in depth player abstraction
-- more in depth entity abstraction
 - World abstraction
-- Inventory abstraction
-- Item abstraction
