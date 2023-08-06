@@ -47,7 +47,7 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        return itemStack.getType().name();
+        return "minecraft:" + itemStack.getType().name().toLowerCase();
     }
 
     /**
