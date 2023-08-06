@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
-import dev.neuralnexus.taterlib.fabric.commands.FabricTaterAPICommand;
+import dev.neuralnexus.taterlib.fabric.commands.FabricTaterLibCommand;
 import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -84,7 +84,7 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
      */
     @Override
     public void registerCommands() {
-        CommandRegistrationCallback.EVENT.register(FabricTaterAPICommand::register);
+        CommandRegistrationCallback.EVENT.register(FabricTaterLibCommand::register);
     }
 
     /**

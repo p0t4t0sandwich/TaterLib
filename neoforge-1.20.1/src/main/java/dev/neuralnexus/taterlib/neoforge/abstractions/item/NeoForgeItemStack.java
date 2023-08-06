@@ -1,26 +1,26 @@
-package dev.neuralnexus.taterlib.bukkit.abstractions.item;
+package dev.neuralnexus.taterlib.neoforge.abstractions.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
-import org.bukkit.inventory.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 /**
- * Abstracts a Bukkit item stack to an AbstractItemStack.
+ * Abstracts a NeoForge item stack to an AbstractItemStack.
  */
-public class BukkitItemStack implements AbstractItemStack {
+public class NeoForgeItemStack implements AbstractItemStack {
     private final ItemStack itemStack;
 
     /**
      * Constructor.
-     * @param itemStack The Bukkit item stack.
+     * @param itemStack The NeoForge item stack.
      */
-    public BukkitItemStack(ItemStack itemStack) {
+    public NeoForgeItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
     /**
-     * Getter for the Bukkit item stack.
-     * @return The Bukkit item stack.
+     * Getter for the NeoForge item stack.
+     * @return The NeoForge item stack.
      */
     public ItemStack getItemStack() {
         return itemStack;
@@ -31,7 +31,7 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public AbstractItemMeta getMeta() {
-        return new BukkitItemMeta(itemStack.getItemMeta());
+        return new NeoForgeItemMeta(itemStack);
     }
 
     /**
@@ -39,7 +39,7 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public void setMeta(AbstractItemMeta item) {
-        itemStack.setItemMeta(((BukkitItemMeta) item).getItemMeta());
+        // TODO: Implement
     }
 
     /**
@@ -47,7 +47,7 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        return itemStack.getType().name();
+        return itemStack.getItem().toString();
     }
 
     /**
@@ -55,7 +55,7 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public int getCount() {
-        return itemStack.getAmount();
+        return itemStack.getCount();
     }
 
     /**
@@ -63,6 +63,6 @@ public class BukkitItemStack implements AbstractItemStack {
      */
     @Override
     public void setCount(int count) {
-        itemStack.setAmount(count);
+        itemStack.setCount(count);
     }
 }

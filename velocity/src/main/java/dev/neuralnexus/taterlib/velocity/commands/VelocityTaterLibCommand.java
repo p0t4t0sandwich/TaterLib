@@ -3,9 +3,9 @@ package dev.neuralnexus.taterlib.velocity.commands;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
-import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
 
-public class VelocityTaterAPICommand implements SimpleCommand {
+public class VelocityTaterLibCommand implements SimpleCommand {
     @Override
     public void execute(Invocation invocation) {
 //        runTaskAsync(() -> {

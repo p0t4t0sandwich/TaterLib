@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit;
 
-import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterAPICommand;
+import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
@@ -65,7 +65,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
      */
     @Override
     public void registerCommands() {
-        getCommand(TaterLibCommand.getCommandName()).setExecutor(new BukkitTaterAPICommand());
+        getCommand(TaterLibCommand.getCommandName()).setExecutor(new BukkitTaterLibCommand());
     }
 
     /**

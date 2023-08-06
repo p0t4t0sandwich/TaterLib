@@ -10,38 +10,63 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Abstracts a Bukkit inventory to an AbstractInventory.
+ */
 public class BukkitInventory implements AbstractInventory {
     private final Inventory inventory;
 
+    /**
+     * Constructor.
+     * @param inventory The Bukkit inventory.
+     */
     public BukkitInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public int getSize() {
         return inventory.getSize();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public AbstractItemStack getItem(int slot) {
         return inventory.getItem(slot) == null ? null : new BukkitItemStack(inventory.getItem(slot));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void setItem(int slot, AbstractItemStack item) {
         inventory.setItem(slot, ((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void addItem(AbstractItemStack item) {
         inventory.addItem(((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void removeItem(AbstractItemStack item) {
         inventory.removeItem(((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public AbstractItemStack[] getContents() {
         ItemStack[] contents = inventory.getContents();
@@ -53,6 +78,9 @@ public class BukkitInventory implements AbstractInventory {
         return abstractContents;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void setContents(AbstractItemStack[] items) {
         ItemStack[] contents = new ItemStack[items.length];
@@ -63,6 +91,9 @@ public class BukkitInventory implements AbstractInventory {
         inventory.setContents(contents);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public AbstractItemStack[] getStorageContents() {
         ItemStack[] storageContents = inventory.getStorageContents();
@@ -74,45 +105,63 @@ public class BukkitInventory implements AbstractInventory {
         return abstractStorageContents;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void setStorageContents(AbstractItemStack[] abstractItemStacks) {
-        ItemStack[] storageContents = new ItemStack[abstractItemStacks.length];
-        for (int i = 0; i < abstractItemStacks.length; i++) {
-            storageContents[i] = ((BukkitItemStack) abstractItemStacks[i]).getItemStack();
+    public void setStorageContents(AbstractItemStack[] items) {
+        ItemStack[] storageContents = new ItemStack[items.length];
+        for (int i = 0; i < items.length; i++) {
+            storageContents[i] = ((BukkitItemStack) items[i]).getItemStack();
         }
 
         inventory.setStorageContents(storageContents);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public boolean contains(AbstractItemStack abstractItemStack) {
-        return inventory.contains(((BukkitItemStack) abstractItemStack).getItemStack());
+    public boolean contains(AbstractItemStack item) {
+        return inventory.contains(((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public boolean contains(String s) {
-        if (s.contains(":")) {
-            s = s.split(":")[1];
+    public boolean contains(String type) {
+        if (type.contains(":")) {
+            type = type.split(":")[1];
         }
-        return inventory.contains(Material.valueOf(s.toUpperCase()));
+        return inventory.contains(Material.valueOf(type.toUpperCase()));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public boolean containsAtLeast(AbstractItemStack abstractItemStack, int i) {
-        return inventory.containsAtLeast(((BukkitItemStack) abstractItemStack).getItemStack(), i);
+    public boolean containsAtLeast(AbstractItemStack item, int count) {
+        return inventory.containsAtLeast(((BukkitItemStack) item).getItemStack(), count);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public boolean containsAtLeast(String s, int i) {
-        if (s.contains(":")) {
-            s = s.split(":")[1];
+    public boolean containsAtLeast(String type, int count) {
+        if (type.contains(":")) {
+            type = type.split(":")[1];
         }
-        return inventory.containsAtLeast(new ItemStack(Material.valueOf(s.toUpperCase())), i);
+        return inventory.containsAtLeast(new ItemStack(Material.valueOf(type.toUpperCase())), count);
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public Map<Integer, AbstractItemStack> all(AbstractItemStack abstractItemStack) {
-        Map<Integer, ItemStack> all = (Map<Integer, ItemStack>) inventory.all(((BukkitItemStack) abstractItemStack).getItemStack());
+    public Map<Integer, AbstractItemStack> all(AbstractItemStack item) {
+        Map<Integer, ItemStack> all = (Map<Integer, ItemStack>) inventory.all(((BukkitItemStack) item).getItemStack());
         Map<Integer, AbstractItemStack> abstractAll = new HashMap<>();
         for (Map.Entry<Integer, ItemStack> entry : all.entrySet()) {
             abstractAll.put(entry.getKey(), entry.getValue() == null ? null : new BukkitItemStack(entry.getValue()));
@@ -120,44 +169,65 @@ public class BukkitInventory implements AbstractInventory {
         return abstractAll;
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public int first(AbstractItemStack abstractItemStack) {
-        return inventory.first(((BukkitItemStack) abstractItemStack).getItemStack());
+    public int first(AbstractItemStack item) {
+        return inventory.first(((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public int first(String s) {
-        if (s.contains(":")) {
-            s = s.split(":")[1];
+    public int first(String type) {
+        if (type.contains(":")) {
+            type = type.split(":")[1];
         }
-        return inventory.first(Material.valueOf(s.toUpperCase()));
+        return inventory.first(Material.valueOf(type.toUpperCase()));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public int firstEmpty() {
         return inventory.firstEmpty();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void remove(AbstractItemStack abstractItemStack) {
-        inventory.remove(((BukkitItemStack) abstractItemStack).getItemStack());
+    public void remove(AbstractItemStack item) {
+        inventory.remove(((BukkitItemStack) item).getItemStack());
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void remove(String s) {
-        if (s.contains(":")) {
-            s = s.split(":")[1];
+    public void remove(String type) {
+        if (type.contains(":")) {
+            type = type.split(":")[1];
         }
-        inventory.remove(Material.valueOf(s.toUpperCase()));
+        inventory.remove(Material.valueOf(type.toUpperCase()));
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public void clear() {
         inventory.clear();
     }
 
+    /**
+     * @inheritDoc
+     */
     @Override
-    public void clear(int i) {
-        inventory.clear(i);
+    public void clear(int slot) {
+        inventory.clear(slot);
     }
 }

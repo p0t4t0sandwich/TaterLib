@@ -1,7 +1,8 @@
-package dev.neuralnexus.taterlib.bungee.player;
+package dev.neuralnexus.taterlib.bungee.abstractions.player;
 
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -93,5 +94,21 @@ public class BungeePlayer implements AbstractPlayer {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractPlayerInventory getInventory() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String message) {
+        player.disconnect(new ComponentBuilder(message).create());
     }
 }

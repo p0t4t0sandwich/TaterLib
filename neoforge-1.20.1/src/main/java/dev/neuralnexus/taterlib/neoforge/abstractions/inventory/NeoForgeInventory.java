@@ -1,24 +1,24 @@
-package dev.neuralnexus.taterlib.fabric.abstractions.inventory;
+package dev.neuralnexus.taterlib.neoforge.abstractions.inventory;
 
 import dev.neuralnexus.taterlib.common.abstractions.inventory.AbstractInventory;
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
-import dev.neuralnexus.taterlib.fabric.abstractions.item.FabricItemStack;
-import net.minecraft.inventory.Inventory;
+import dev.neuralnexus.taterlib.neoforge.abstractions.item.NeoForgeItemStack;
+import net.minecraft.world.entity.player.Inventory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Abstracts a Fabric inventory to an AbstractInventory.
+ * Abstracts a NeoForge inventory to an AbstractInventory.
  */
-public class FabricInventory implements AbstractInventory {
+public class NeoForgeInventory implements AbstractInventory {
     private final Inventory inventory;
 
     /**
      * Constructor.
-     * @param inventory The Fabric inventory.
+     * @param inventory The NeoForge inventory.
      */
-    public FabricInventory(Inventory inventory) {
+    public NeoForgeInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
@@ -27,7 +27,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public int getSize() {
-        return inventory.size();
+        return inventory.getContainerSize();
     }
 
     /**
@@ -35,7 +35,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack getItem(int slot) {
-        return new FabricItemStack(inventory.getStack(slot));
+        return new NeoForgeItemStack(inventory.getItem(slot));
     }
 
     /**
@@ -43,7 +43,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void setItem(int slot, AbstractItemStack item) {
-        inventory.setStack(slot, ((FabricItemStack) item).getItemStack());
+        inventory.setItem(slot, ((NeoForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -51,12 +51,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void addItem(AbstractItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
-                setItem(i, item);
-                break;
-            }
-        }
+        inventory.add(((NeoForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -64,12 +59,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void removeItem(AbstractItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            String itemName = getItem(i).getType();
-            if (itemName.equals(item.getType())) {
-                inventory.removeStack(i);
-            }
-        }
+        inventory.removeItem(((NeoForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -77,22 +67,20 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack[] getContents() {
-        int size = getSize();
-        AbstractItemStack[] contents = new AbstractItemStack[size];
-        for (int i = 0; i < size; i++) {
-            contents[i] = getItem(i);
+        AbstractItemStack[] abstractContents = new AbstractItemStack[getSize()];
+        for (int i = 0; i < getSize(); i++) {
+            abstractContents[i] = new NeoForgeItemStack(inventory.getItem(i));
         }
-
-        return contents;
+        return abstractContents;
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void setContents(AbstractItemStack[] item) {
+    public void setContents(AbstractItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
-            setItem(i, item[i]);
+            inventory.setItem(i, ((NeoForgeItemStack) items[i]).getItemStack());
         }
     }
 
@@ -101,22 +89,16 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack[] getStorageContents() {
-        AbstractItemStack[] contents = new AbstractItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
-        }
-
-        return contents;
+        // TODO: Implement
+        return new AbstractItemStack[0];
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void setStorageContents(AbstractItemStack[] item) {
-        for (int i = 0; i < getSize(); i++) {
-            setItem(i, item[i]);
-        }
+    public void setStorageContents(AbstractItemStack[] items) {
+        // TODO: Implement
     }
 
     /**
@@ -232,9 +214,7 @@ public class FabricInventory implements AbstractInventory {
     @Override
     public void remove(AbstractItemStack item) {
         for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                inventory.removeStack(i);
-            }
+            inventory.removeItem(((NeoForgeItemStack) item).getItemStack());
         }
     }
 
@@ -245,7 +225,7 @@ public class FabricInventory implements AbstractInventory {
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(type)) {
-                inventory.removeStack(i);
+                inventory.removeItem(((NeoForgeItemStack) getItem(i)).getItemStack());
             }
         }
     }
@@ -256,7 +236,7 @@ public class FabricInventory implements AbstractInventory {
     @Override
     public void clear() {
         for (int i = 0; i < getSize(); i++) {
-            inventory.removeStack(i);
+            inventory.removeItem(((NeoForgeItemStack) getItem(i)).getItemStack());
         }
     }
 
@@ -265,6 +245,6 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void clear(int slot) {
-        inventory.removeStack(slot);
+        inventory.removeItem(((NeoForgeItemStack) getItem(slot)).getItemStack());
     }
 }

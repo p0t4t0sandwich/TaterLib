@@ -1,7 +1,9 @@
-package dev.neuralnexus.taterlib.forge.player;
+package dev.neuralnexus.taterlib.forge.abstrations.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 /**
@@ -76,5 +78,21 @@ public class ForgePlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.displayClientMessage(Component.empty().append(message), false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractPlayerInventory getInventory() {
+        return new ForgePlayerInventory(player.getInventory());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String message) {
+        ((ServerPlayer) player).connection.disconnect(Component.empty().append(message));
     }
 }

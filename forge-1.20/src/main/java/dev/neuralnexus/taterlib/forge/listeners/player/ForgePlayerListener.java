@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.forge.listeners.player;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;

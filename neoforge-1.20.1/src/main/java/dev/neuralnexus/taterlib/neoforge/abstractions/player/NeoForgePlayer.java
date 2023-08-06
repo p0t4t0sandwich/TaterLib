@@ -1,13 +1,15 @@
-package dev.neuralnexus.taterlib.neoforge.player;
+package dev.neuralnexus.taterlib.neoforge.abstractions.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 
 /**
  * Abstracts a Forge player to an AbstractPlayer.
  */
-public class ForgePlayer implements AbstractPlayer {
+public class NeoForgePlayer implements AbstractPlayer {
     private final Player player;
     private String serverName;
 
@@ -15,7 +17,7 @@ public class ForgePlayer implements AbstractPlayer {
      * Constructor.
      * @param player The Forge player.
      */
-    public ForgePlayer(Player player) {
+    public NeoForgePlayer(Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -25,7 +27,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public ForgePlayer(Player player, String serverName) {
+    public NeoForgePlayer(Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -76,5 +78,21 @@ public class ForgePlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.displayClientMessage(Component.empty().append(message), false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractPlayerInventory getInventory() {
+        return new NeoForgePlayerInventory(player.getInventory());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String message) {
+        ((ServerPlayer) player).connection.disconnect(Component.empty().append(message));
     }
 }

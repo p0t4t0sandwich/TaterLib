@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bungee;
 
-import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterAPICommand;
+import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
@@ -73,7 +73,7 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
     @Override
     public void registerCommands() {
         PluginManager pluginManager = getProxy().getPluginManager();
-        pluginManager.registerCommand(this, new BungeeTaterAPICommand());
+        pluginManager.registerCommand(this, new BungeeTaterLibCommand());
     }
 
     /**

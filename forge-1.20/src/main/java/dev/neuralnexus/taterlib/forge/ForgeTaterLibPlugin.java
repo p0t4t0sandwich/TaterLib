@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.forge;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.forge.commands.ForgeTaterAPICommand;
+import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -84,7 +84,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
 
         // Register commands
-        MinecraftForge.EVENT_BUS.register(ForgeTaterAPICommand.class);
+        MinecraftForge.EVENT_BUS.register(ForgeTaterLibCommand.class);
         pluginStart();
     }
 

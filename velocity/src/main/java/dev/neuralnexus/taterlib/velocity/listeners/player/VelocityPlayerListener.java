@@ -8,7 +8,7 @@ import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
-import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
 
 public class VelocityPlayerListener {
     /**

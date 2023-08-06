@@ -1,22 +1,21 @@
-package dev.neuralnexus.taterlib.fabric.abstractions.item;
+package dev.neuralnexus.taterlib.neoforge.abstractions.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Text;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
 /**
- * Abstracts a Fabric item meta to an AbstractItemMeta.
+ * Abstracts a NeoForge item meta to an AbstractItemMeta.
  */
-public class FabricItemMeta implements AbstractItemMeta {
+public class NeoForgeItemMeta implements AbstractItemMeta {
     private final ItemStack itemStack;
 
     /**
      * Constructor.
-     * @param itemStack The Fabric item stack.
+     * @param itemStack The NeoForge item stack.
      */
-    public FabricItemMeta(ItemStack itemStack) {
+    public NeoForgeItemMeta(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
@@ -25,7 +24,7 @@ public class FabricItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomName();
+        return itemStack.getDisplayName() != null;
     }
 
     /**
@@ -33,7 +32,7 @@ public class FabricItemMeta implements AbstractItemMeta {
      */
     @Override
     public String getDisplayName() {
-        return itemStack.getName().getString();
+        return itemStack.getDisplayName().getString();
     }
 
     /**
@@ -41,7 +40,7 @@ public class FabricItemMeta implements AbstractItemMeta {
      */
     @Override
     public void setDisplayName(String name) {
-        itemStack.setCustomName(Text.of(name));
+        // TODO: Implement
     }
 
     /**
@@ -75,7 +74,7 @@ public class FabricItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasEnchants() {
-        return !itemStack.getEnchantments().isEmpty();
+        return itemStack.isEnchanted();
     }
 
     /**
@@ -83,8 +82,7 @@ public class FabricItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean isUnbreakable() {
-        // TODO: Implement
-        return false;
+        return itemStack.isDamageableItem();
     }
 
     /**

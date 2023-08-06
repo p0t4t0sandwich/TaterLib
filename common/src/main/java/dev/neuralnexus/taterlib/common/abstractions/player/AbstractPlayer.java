@@ -7,7 +7,7 @@ import java.net.InetSocketAddress;
 import java.util.UUID;
 
 /**
- * The interface for a AbstractPlayer
+ * The interface for an AbstractPlayer
  */
 public interface AbstractPlayer {
     /**

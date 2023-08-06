@@ -14,7 +14,7 @@ import static dev.neuralnexus.taterlib.common.Utils.runTaskAsync;
 /**
  * The Bukkit implementation of the TaterAPI command.
  */
-public class BukkitTaterAPICommand implements CommandExecutor {
+public class BukkitTaterLibCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         AtomicBoolean success = new AtomicBoolean(true);

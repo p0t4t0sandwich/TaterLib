@@ -16,7 +16,7 @@ import static dev.neuralnexus.taterlib.common.Utils.runTaskAsync;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class FabricTaterAPICommand implements TaterLibCommand {
+public class FabricTaterLibCommand implements TaterLibCommand {
     /**
      * Registers the command.
      * @param dispatcher The command dispatcher.

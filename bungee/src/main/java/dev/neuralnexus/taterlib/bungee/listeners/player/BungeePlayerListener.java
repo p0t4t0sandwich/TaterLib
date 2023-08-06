@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.listeners.player;
 
-import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.bungee.abstractions.player.BungeePlayer;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;

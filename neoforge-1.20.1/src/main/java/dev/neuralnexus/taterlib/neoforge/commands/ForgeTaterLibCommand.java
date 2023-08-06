@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.neoforge.commands;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.neoforge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.neoforge.abstractions.player.NeoForgePlayer;
 import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -16,7 +16,7 @@ import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 
-public final class ForgeTaterAPICommand {
+public final class ForgeTaterLibCommand {
     @SubscribeEvent
     public void registerCommand(RegisterCommandsEvent event) {
         int permissionLevel;
@@ -40,7 +40,7 @@ public final class ForgeTaterAPICommand {
 
                             // Check if sender is a player
                             boolean isPlayer = context.getSource().getEntity() instanceof Player;
-                            ForgePlayer player = isPlayer ? new ForgePlayer((Player) context.getSource().getEntity()) : null;
+                            NeoForgePlayer player = isPlayer ? new NeoForgePlayer((Player) context.getSource().getEntity()) : null;
 
                             // Execute command
                             TaterLibCommand.executeCommand(player, isPlayer, args);

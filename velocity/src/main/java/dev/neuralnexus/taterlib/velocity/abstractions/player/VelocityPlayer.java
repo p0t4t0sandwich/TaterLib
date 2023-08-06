@@ -1,8 +1,9 @@
-package dev.neuralnexus.taterlib.velocity.player;
+package dev.neuralnexus.taterlib.velocity.abstractions.player;
 
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import net.kyori.adventure.text.Component;
 
@@ -94,5 +95,21 @@ public class VelocityPlayer implements AbstractPlayer {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractPlayerInventory getInventory() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void kickPlayer(String message) {
+        player.disconnect(Component.text(message));
     }
 }
