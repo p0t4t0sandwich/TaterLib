@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.abstractions.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class NeoForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.getDisplayName() != null;
+        return itemStack.hasCustomHoverName();
     }
 
     /**
@@ -40,7 +41,7 @@ public class NeoForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public void setDisplayName(String name) {
-        // TODO: Implement
+        itemStack.setHoverName(Component.nullToEmpty(name));
     }
 
     /**

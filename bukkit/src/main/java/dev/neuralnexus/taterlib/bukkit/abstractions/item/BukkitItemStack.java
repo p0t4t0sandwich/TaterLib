@@ -65,4 +65,12 @@ public class BukkitItemStack implements AbstractItemStack {
     public void setCount(int count) {
         itemStack.setAmount(count);
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractItemStack clone() {
+        return new BukkitItemStack(itemStack.clone());
+    }
 }

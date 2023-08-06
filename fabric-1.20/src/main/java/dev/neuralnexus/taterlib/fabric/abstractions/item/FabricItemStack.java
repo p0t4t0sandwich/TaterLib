@@ -47,7 +47,11 @@ public class FabricItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        return itemStack.getItem().toString();
+        String itemName = itemStack.getItem().toString();
+        if (!itemName.contains(":")) {
+            return "minecraft:" + itemName;
+        }
+        return itemName;
     }
 
     /**
@@ -64,5 +68,13 @@ public class FabricItemStack implements AbstractItemStack {
     @Override
     public void setCount(int count) {
         itemStack.setCount(count);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractItemStack clone() {
+        return new FabricItemStack(itemStack.copy());
     }
 }

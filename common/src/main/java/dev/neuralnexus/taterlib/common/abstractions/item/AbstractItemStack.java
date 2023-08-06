@@ -33,4 +33,10 @@ public interface AbstractItemStack {
      * @param count The amount of the item
      */
     void setCount(int count);
+
+    /**
+     * Clone the item
+     * @return The cloned item
+     */
+    AbstractItemStack clone();
 }
