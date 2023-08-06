@@ -26,7 +26,7 @@ function build() {
   cp ./fabric-$1/fabric.mod.json ./$3
   cp ./fabric-$1/$PROJ_ID.mixins.json ./$3
   cp -r ./fabric-$1/assets ./$3
-  cp ./fabric-$1/$PROJ_NAME-refmap.json ./$3
+  cp ./fabric-$1/fabric-$1-refmap.json ./$3
 
   # Copy forge files
   cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$3/$GROUP_ID/$PROJ_ID
