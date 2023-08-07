@@ -34,14 +34,6 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
      * @inheritDoc
      */
     @Override
-    public String getServerType() {
-        return "Fabric";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
     public void registerHooks() {
         // Register LuckPerms hook
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {

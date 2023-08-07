@@ -133,22 +133,15 @@ mv ./common/$GROUP_ID/$PROJ_ID/common ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 mv ./common/$GROUP_ID/$PROJ_ID/lib ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 cp ./common/config.yml ./$PROJ_NAME-all
 cp ./common/LICENSE ./$PROJ_NAME-all
+cp ../../LICENSE-API ./$PROJ_NAME-all
 cp ../../README.md ./$PROJ_NAME-all
 rm -rf ./common
 
 # --------------------------- Prepare Forge and Fabric --------------------------------
 
-# Prepare Fabric 1.17 files
-FABRIC_VERSION=1.17
-prepareFiles fabric-$FABRIC_VERSION
-
 # Prepare Fabric 1.20 files
 FABRIC_VERSION=1.20
 prepareFiles fabric-$FABRIC_VERSION
-
-# Prepare Forge 1.19 files
-FORGE_VERSION=1.19
-prepareFiles forge-$FORGE_VERSION
 
 # Prepare Forge 1.20 files
 FORGE_VERSION=1.20
@@ -157,14 +150,6 @@ prepareFiles forge-$FORGE_VERSION
 # Prepare NeoForge 1.20.1 files
 NEOFORGE_VERSION=1.20.1
 prepareFiles neoforge-$NEOFORGE_VERSION
-
-# --------------------------- Build 1.19 --------------------------------
-MC_VERSION=1.19
-FABRIC_VERSION=1.17
-FORGE_VERSION=1.19
-OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
-
-#build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.20 --------------------------------
 MC_VERSION=1.20

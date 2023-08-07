@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.neoforge;
 
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
-import net.minecraftforge.event.server.ServerStartingEvent;
+import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.VersionInfo;
@@ -52,7 +52,7 @@ public class TemplateNeoForgePlugin implements TemplatePlugin {
      * @param event The event.
      */
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void onServerStarted(ServerStartedEvent event) {
         registerHooks();
     }
 
