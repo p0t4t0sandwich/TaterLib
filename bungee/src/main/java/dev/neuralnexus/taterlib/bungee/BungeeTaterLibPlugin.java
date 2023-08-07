@@ -1,19 +1,21 @@
 package dev.neuralnexus.taterlib.bungee;
 
+import dev.neuralnexus.taterlib.bungee.abstractions.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
 /**
  * The TaterLib BungeeCord plugin.
  */
-public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
+public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterLibPlugin {
     private static ProxyServer proxyServer;
+
     /**
      * Get the proxy server.
      * @return The proxy server.
@@ -26,8 +28,8 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
      * @inheritDoc
      */
     @Override
-    public Object pluginLogger() {
-        return getLogger();
+    public AbstractLogger pluginLogger() {
+        return new BungeeLogger(getLogger());
     }
 
     /**

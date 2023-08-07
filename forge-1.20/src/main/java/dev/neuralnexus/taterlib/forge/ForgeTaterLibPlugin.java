@@ -1,13 +1,14 @@
 package dev.neuralnexus.taterlib.forge;
 
+import com.mojang.logging.LogUtils;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.abstrations.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
-import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -16,44 +17,23 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * The TaterLib Forge plugin.
  */
-@Mod("taterlib")
-public class ForgeTaterLibPlugin implements TaterLibPlugin {
+@Mod(ForgeTaterLibPlugin.MOD_ID)
+public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLibPlugin {
+    public static final String MOD_ID = "taterlib";
+
     /**
      * @inheritDoc
      */
     @Override
-    public Object pluginLogger() {
-        return LogUtils.getLogger();
+    public AbstractLogger pluginLogger() {
+        return new ForgeLogger(LogUtils.getLogger());
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public String pluginConfigPath() {
-        return "config";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String getServerType() {
-        return "Forge";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerHooks() {}
-
-    /**
-     * Called when the server is starting.
-     * @param event The event.
-     */
-    @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void registerHooks() {
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");

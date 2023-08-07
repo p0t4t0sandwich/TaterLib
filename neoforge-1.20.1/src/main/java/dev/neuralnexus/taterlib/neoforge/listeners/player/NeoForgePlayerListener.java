@@ -8,7 +8,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ForgePlayerListener {
+public class NeoForgePlayerListener {
     /**
      * Called when a player logs in.
      * @param event The player login event

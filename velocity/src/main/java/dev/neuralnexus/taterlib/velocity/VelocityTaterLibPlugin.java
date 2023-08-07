@@ -6,8 +6,10 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.velocity.abstractions.logger.VelocityLogger;
 import dev.neuralnexus.taterlib.velocity.commands.VelocityTaterLibCommand;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -31,41 +33,16 @@ import org.slf4j.Logger;
                 @Dependency(id = "luckperms", optional = true)
         }
 )
-public class VelocityTaterLibPlugin implements TaterLibPlugin {
+public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements TaterLibPlugin {
     @Inject private ProxyServer server;
     @Inject private Logger logger;
 
-    private static ProxyServer proxyServer;
-    /**
-     * Get the proxy server.
-     * @return The proxy server.
-     */
-    public static ProxyServer getProxyServer() {
-        return proxyServer;
-    }
-
     /**
      * @inheritDoc
      */
     @Override
-    public Object pluginLogger() {
-        return logger;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String pluginConfigPath() {
-        return "plugins";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String getServerType() {
-        return "Velocity";
+    public AbstractLogger pluginLogger() {
+        return new VelocityLogger(logger);
     }
 
     /**

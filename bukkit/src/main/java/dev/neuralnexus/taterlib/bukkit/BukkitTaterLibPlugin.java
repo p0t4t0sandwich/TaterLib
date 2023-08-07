@@ -7,38 +7,11 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import org.bukkit.plugin.PluginManager;
-import org.bukkit.plugin.java.JavaPlugin;
-
-import static dev.neuralnexus.taterlib.common.Utils.getBukkitServerType;
 
 /**
  * The TaterLib Bukkit plugin.
  */
-public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Object pluginLogger() {
-        return getLogger();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String pluginConfigPath() {
-        return "plugins";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String getServerType() {
-        return getBukkitServerType();
-    }
-
+public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterLibPlugin {
     /**
      * @inheritDoc
      */

@@ -9,5 +9,4 @@ folia-supported: true
 commands:
   taterlib:
     description: TaterLib command
-    usage: /taterlib <reload|version>
     permission: taterlib.command

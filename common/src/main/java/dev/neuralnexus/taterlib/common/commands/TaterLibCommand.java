@@ -62,7 +62,7 @@ public interface TaterLibCommand {
                 player.sendMessage(executeCommand(args));
             }
         } else {
-            TaterLib.useLogger(ansiiParser(executeCommand(args)));
+            TaterLib.logger.info(ansiiParser(executeCommand(args)));
         }
     }
 }

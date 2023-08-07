@@ -2,8 +2,10 @@ package dev.neuralnexus.taterlib.fabric;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.fabric.abstractions.logger.FabricLogger;
 import dev.neuralnexus.taterlib.fabric.commands.FabricTaterLibCommand;
 import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
 import net.fabricmc.api.DedicatedServerModInitializer;
@@ -17,31 +19,15 @@ import org.slf4j.LoggerFactory;
 /**
  * The TaterLib Fabric plugin.
  */
-public class FabricTaterLibPlugin implements DedicatedServerModInitializer, TaterLibPlugin {
-    private static MinecraftServer server;
-
-    /**
-     * Getter for the Minecraft server.
-     * @return The Minecraft server.
-     */
-    public static MinecraftServer getServer() {
-        return server;
-    }
+public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterLibPlugin {
+    private static final String MOD_ID = "taterlib";
 
     /**
      * @inheritDoc
      */
     @Override
-    public Object pluginLogger() {
-        return LoggerFactory.getLogger("taterlib");
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String pluginConfigPath() {
-        return "config";
+    public AbstractLogger pluginLogger() {
+        return new FabricLogger( "[TaterLib] ",LoggerFactory.getLogger(MOD_ID));
     }
 
     /**
