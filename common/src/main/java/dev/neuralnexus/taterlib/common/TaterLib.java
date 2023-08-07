@@ -3,16 +3,11 @@ package dev.neuralnexus.taterlib.common;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
-import dev.dejvokep.boostedyaml.YamlDocument;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
-    private static YamlDocument config;
     public static AbstractLogger logger;
     private static String configPath;
     private static boolean STARTED = false;
@@ -40,17 +35,6 @@ public class TaterLib {
     public static void start(String configPath, AbstractLogger logger) {
         TaterLib.configPath = configPath;
         TaterLib.logger = logger;
-
-        // Config
-        try {
-            config = YamlDocument.create(new File("." + File.separator + configPath + File.separator + "TaterLib", "config.yml"),
-                    Objects.requireNonNull(TaterLib.class.getClassLoader().getResourceAsStream("config.yml"))
-            );
-            config.reload();
-        } catch (IOException | NullPointerException e) {
-            logger.info("Failed to load config.yml!\n" + e.getMessage());
-            e.printStackTrace();
-        }
 
         if (STARTED) {
             logger.info("TaterLib has already started!");
