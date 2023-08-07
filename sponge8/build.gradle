@@ -1,0 +1,63 @@
+import org.spongepowered.gradle.plugin.config.PluginLoaders
+import org.spongepowered.plugin.metadata.model.PluginDependency
+
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('java-library')
+    id("org.spongepowered.gradle.plugin") version('2.1.1')
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+sponge {
+    apiVersion("8.1.0")
+    license("GPL-3.0")
+    loader {
+        name(PluginLoaders.JAVA_PLAIN)
+        version("1.0")
+    }
+    plugin("**plugin Id**") {
+        displayName("**Plugin Name**")
+        entrypoint("**Plugin Entrypoint**")
+        description("**Plugin Description**")
+        links {
+            // homepage("https://spongepowered.org")
+            // source("https://spongepowered.org/source")
+            // issues("https://spongepowered.org/issues")
+        }
+        dependency("spongeapi") {
+            loadOrder(PluginDependency.LoadOrder.AFTER)
+            optional(false)
+        }
+        dependency("luckperms") {
+            loadOrder(PluginDependency.LoadOrder.AFTER)
+            optional(false)
+        }
+    }
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+//    compileOnly('org.spongepowered:spongeapi:8.1.0')
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDirectory = file('../target')
+    archiveFileName = "TaterLib-${version}-velocity.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}

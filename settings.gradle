@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        mavenCentral()
         gradlePluginPortal()
 
         // Fabric
@@ -31,6 +32,11 @@ pluginManagement {
             name = 'Sponge'
             url = 'https://repo.spongepowered.org/maven'
         }
+
+        maven {
+            name = 'sponge-repo'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
     }
 }
 
@@ -47,5 +53,6 @@ include(
         'fabric-1.20',
         'forge-1.20',
         'neoforge-1.20.1',
+        'sponge8',
         'velocity'
 )

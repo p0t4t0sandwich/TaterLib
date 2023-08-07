@@ -14,18 +14,12 @@ public class BukkitTaterLibCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         try {
-            System.out.println("Command executed");
-
             // Check if sender is a player
             boolean isPlayer = sender instanceof Player;
             BukkitPlayer player = isPlayer ? new BukkitPlayer((Player) sender) : null;
 
-            System.out.println("Player: " + player);
-
             // Execute command
             TaterLibCommand.executeCommand(player, isPlayer, args);
-
-            System.out.println("Command executed successfully");
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -1,24 +1,25 @@
-package dev.neuralnexus.taterlib.fabric.abstractions.inventory;
+package dev.neuralnexus.taterlib.sponge.abstractions.inventory;
 
 import dev.neuralnexus.taterlib.common.abstractions.inventory.AbstractInventory;
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
-import dev.neuralnexus.taterlib.fabric.abstractions.item.FabricItemStack;
-import net.minecraft.inventory.Inventory;
+import dev.neuralnexus.taterlib.sponge.abstractions.item.SpongeItemStack;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.inventory.Inventory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Abstracts a Fabric inventory to an AbstractInventory.
+ * Abstracts a Sponge inventory to an AbstractInventory.
  */
-public class FabricInventory implements AbstractInventory {
+public class SpongeInventory implements AbstractInventory {
     private final Inventory inventory;
 
     /**
      * Constructor.
-     * @param inventory The Fabric inventory.
+     * @param inventory The Sponge inventory.
      */
-    public FabricInventory(Inventory inventory) {
+    public SpongeInventory(Inventory inventory) {
         this.inventory = inventory;
     }
 
@@ -27,7 +28,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public int getSize() {
-        return inventory.size();
+        return inventory.capacity();
     }
 
     /**
@@ -35,7 +36,10 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack getItem(int slot) {
-        return new FabricItemStack(inventory.getStack(slot));
+        if (!inventory.slot(slot).isPresent()) {
+            return null;
+        }
+        return new SpongeItemStack(inventory.slot(slot).get().peek());
     }
 
     /**
@@ -43,7 +47,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void setItem(int slot, AbstractItemStack item) {
-        inventory.setStack(slot, ((FabricItemStack) item).getItemStack());
+        inventory.slot(slot).get().set(((SpongeItemStack) item).getItemStack());
     }
 
     /**
@@ -51,12 +55,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void addItem(AbstractItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
-                setItem(i, item);
-                break;
-            }
-        }
+        inventory.offer(((SpongeItemStack) item).getItemStack());
     }
 
     /**
@@ -64,10 +63,12 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void removeItem(AbstractItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            String itemName = getItem(i).getType();
-            if (itemName.equals(item.getType())) {
-                inventory.removeStack(i);
+        if (inventory.contains(((SpongeItemStack) item).getItemStack())) {
+            for (int i = 0; i < getSize(); i++) {
+                if (getItem(i).equals(item)) {
+                    setItem(i, null);
+                    break;
+                }
             }
         }
     }
@@ -77,12 +78,10 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack[] getContents() {
-        int size = getSize();
-        AbstractItemStack[] contents = new AbstractItemStack[size];
-        for (int i = 0; i < size; i++) {
+        AbstractItemStack[] contents = new AbstractItemStack[getSize()];
+        for (int i = 0; i < getSize(); i++) {
             contents[i] = getItem(i);
         }
-
         return contents;
     }
 
@@ -90,9 +89,9 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setContents(AbstractItemStack[] item) {
+    public void setContents(AbstractItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
-            setItem(i, item[i]);
+            setItem(i, items[i]);
         }
     }
 
@@ -113,9 +112,9 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setStorageContents(AbstractItemStack[] item) {
+    public void setStorageContents(AbstractItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
-            setItem(i, item[i]);
+            setItem(i, items[i]);
         }
     }
 
@@ -124,12 +123,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public boolean contains(AbstractItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                return true;
-            }
-        }
-        return false;
+        return inventory.contains(((SpongeItemStack) item).getItemStack());
     }
 
     /**
@@ -137,8 +131,8 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public boolean contains(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (AbstractItemStack item : getContents()) {
+            if (item.getType().equals(type)) {
                 return true;
             }
         }
@@ -163,14 +157,14 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean containsAtLeast(String type, int count) {
+    public boolean containsAtLeast(String type, int amount) {
         int total = 0;
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(type)) {
                 total += getItem(i).getCount();
             }
         }
-        return total >= count;
+        return total >= amount;
     }
 
     /**
@@ -233,7 +227,7 @@ public class FabricInventory implements AbstractInventory {
     public void remove(AbstractItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
-                inventory.removeStack(i);
+                inventory.slot(i).get().clear();
             }
         }
     }
@@ -245,7 +239,7 @@ public class FabricInventory implements AbstractInventory {
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(type)) {
-                inventory.removeStack(i);
+                inventory.slot(i).get().clear();
             }
         }
     }
@@ -255,9 +249,7 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void clear() {
-        for (int i = 0; i < getSize(); i++) {
-            inventory.removeStack(i);
-        }
+        inventory.clear();
     }
 
     /**
@@ -265,6 +257,6 @@ public class FabricInventory implements AbstractInventory {
      */
     @Override
     public void clear(int slot) {
-        inventory.removeStack(slot);
+        inventory.slot(slot).get().clear();
     }
 }

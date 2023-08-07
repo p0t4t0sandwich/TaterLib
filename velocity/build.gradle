@@ -2,10 +2,6 @@ plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
-repositories {
-    maven { url 'https://repo.papermc.io/repository/maven-public/' }
-}
-
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
 
