@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.sponge.commands;
 
-import com.google.inject.Inject;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
 import net.kyori.adventure.text.Component;
@@ -11,23 +10,20 @@ import org.spongepowered.api.command.exception.CommandException;
 import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.plugin.PluginContainer;
 
 public class SpongeTaterLibCommand implements CommandExecutor {
     Parameter.Value<String> commandArgs = Parameter.string().key("command").build();
 
-    @Inject
-    PluginContainer container;
-
     /**
      * Register the command
+     * @param container The plugin container
      * @param event The event
      */
-    @Listener
-    public void onRegisterCommands(final RegisterCommandEvent<Command.Parameterized> event){
-        event.register(this.container, buildCommand(), TaterLibCommand.getCommandName());
+    public void onRegisterCommands(PluginContainer container, final RegisterCommandEvent<Command.Parameterized> event) {
+        // Register commands
+        event.register(container, buildCommand(), TaterLibCommand.getCommandName(), "tl", "tlib");
     }
 
     /**

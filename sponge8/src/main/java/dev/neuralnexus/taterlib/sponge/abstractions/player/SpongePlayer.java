@@ -84,6 +84,14 @@ public class SpongePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public boolean hasPermission(String permission) {
+        return ((ServerPlayer) player).hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public void kickPlayer(String message) {
         ((ServerPlayer) player).kick(Component.text(message));
     }

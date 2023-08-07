@@ -53,4 +53,9 @@ This plugin has no strict dependencies, but it does have optional dependencies.
   - Forge
 
 ## Abstractions
+- Command abstraction
 - World abstraction
+- Server abstraction
+  - `AbstractServer`, `AbstractModdedServer`, `AbstractProxyServer`
+- Improved player abstraction
+  - Split into `AbstractPlayer` and `AbstractServerPlayer`

@@ -10,36 +10,35 @@ plugins {
 compileJava.options.encoding = 'UTF-8'
 
 sponge {
-    apiVersion("8.1.0")
+    apiVersion(spongeapi_version)
     license("GPL-3.0")
     loader {
         name(PluginLoaders.JAVA_PLAIN)
         version("1.0")
     }
-    plugin("**plugin Id**") {
-        displayName("**Plugin Name**")
-        entrypoint("**Plugin Entrypoint**")
-        description("**Plugin Description**")
+    plugin("taterlib") {
+        displayName("TaterLib")
+        entrypoint("dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin")
+        description("A cross API code library for various generalizations used in the Tater* plugins")
         links {
-            // homepage("https://spongepowered.org")
-            // source("https://spongepowered.org/source")
-            // issues("https://spongepowered.org/issues")
+             homepage("https://github.com/p0t4t0sandwich/TaterLib#taterapi")
+             source("https://github.com/p0t4t0sandwich/TaterLib")
+             issues("https://github.com/p0t4t0sandwich/TaterLib/issues")
         }
         dependency("spongeapi") {
             loadOrder(PluginDependency.LoadOrder.AFTER)
             optional(false)
         }
         dependency("luckperms") {
+            version("5.3.0")
             loadOrder(PluginDependency.LoadOrder.AFTER)
-            optional(false)
+            optional(true)
         }
     }
 }
 
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
-
-//    compileOnly('org.spongepowered:spongeapi:8.1.0')
 }
 
 shadowJar {
@@ -48,7 +47,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-velocity.jar"
+    archiveFileName = "TaterLib-${version}-sponge8.jar"
 }
 shadowJar.doLast {
     task ->

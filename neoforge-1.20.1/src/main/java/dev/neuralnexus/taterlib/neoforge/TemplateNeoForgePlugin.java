@@ -29,7 +29,7 @@ public class TemplateNeoForgePlugin implements TemplatePlugin {
      */
     @Override
     public String getServerType() {
-        return "Forge";
+        return "NeoForge";
     }
 
     /**
