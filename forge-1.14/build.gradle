@@ -1,0 +1,42 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('net.minecraftforge.gradle') version('[6.0,6.2)')
+    id('org.parchmentmc.librarian.forgegradle') version('1.+')
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    // https://parchmentmc.org/docs/getting-started
+    mappings(channel: 'parchment', version: mappingsVersion)
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+    minecraft("net.minecraftforge:forge:${minecraftVersion}-${forgeVersion}")
+}
+
+reobf {
+    shadowJar {}
+}
+
+shadowJar {
+    dependencies {
+        include(project(':common'))
+    }
+
+    destinationDirectory = file('../target')
+    archiveFileName = "TaterLib-${version}-forge-${minecraftVersion}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}

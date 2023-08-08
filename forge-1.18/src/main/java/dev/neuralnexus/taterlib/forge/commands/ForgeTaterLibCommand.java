@@ -1,10 +1,10 @@
-package dev.neuralnexus.taterlib.neoforge.commands;
+package dev.neuralnexus.taterlib.forge.commands;
 
-import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.neoforge.NeoForgeTaterLibPlugin;
-import dev.neuralnexus.taterlib.neoforge.abstractions.player.NeoForgePlayer;
+import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
+import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
 import net.minecraft.Util;
 import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;
@@ -18,10 +18,10 @@ import static net.minecraft.commands.Commands.argument;
 import static net.minecraft.commands.Commands.literal;
 
 /**
- * NeoForge implementation of the TaterLib command.
+ * Forge implementation of the TaterLib command.
  */
-@Mod.EventBusSubscriber(modid = NeoForgeTaterLibPlugin.MOD_ID)
-public final class NeoForgeTaterLibCommand {
+@Mod.EventBusSubscriber(modid = ForgeTaterLibPlugin.MOD_ID)
+public final class ForgeTaterLibCommand {
     /**
      * Registers the TaterLib command.
      * @param event The register commands event.
@@ -29,7 +29,7 @@ public final class NeoForgeTaterLibCommand {
     @SubscribeEvent
     public void registerCommand(RegisterCommandsEvent event) {
         int permissionLevel;
-        if (event.getCommandSelection() == Commands.CommandSelection.DEDICATED) {
+        if (event.getEnvironment() == Commands.CommandSelection.DEDICATED) {
             // Check if LuckPerms is hooked
             permissionLevel = LuckPermsHook.isHooked() ? 0 : 4;
         } else {
@@ -46,7 +46,7 @@ public final class NeoForgeTaterLibCommand {
 
                     // Check if sender is a player
                     boolean isPlayer = context.getSource().getEntity() instanceof Player;
-                    NeoForgePlayer player = isPlayer ? new NeoForgePlayer((Player) context.getSource().getEntity()) : null;
+                    ForgePlayer player = isPlayer ? new ForgePlayer((Player) context.getSource().getEntity()) : null;
 
                     AtomicInteger success = new AtomicInteger(1);
                     Util.backgroundExecutor().submit(() -> {
