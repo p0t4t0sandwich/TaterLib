@@ -6,8 +6,6 @@ import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -20,12 +18,11 @@ public class FabricTaterLibCommand implements TaterLibCommand {
     /**
      * Registers the command.
      * @param dispatcher The command dispatcher.
-     * @param registryAccess The command registry access.
-     * @param environment The command registration environment.
+     * @param dedicated Whether the server is dedicated or not.
      */
-    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
+    public static void register(CommandDispatcher<ServerCommandSource> dispatcher, boolean dedicated) {
         int permissionLevel;
-        if (environment.name().equals("DEDICATED")) {
+        if (dedicated) {
             // Check if LuckPerms is hooked
             permissionLevel = LuckPermsHook.isHooked() ? 0 : 4;
         } else {
@@ -57,5 +54,4 @@ public class FabricTaterLibCommand implements TaterLibCommand {
                 })
             ));
     }
-
 }
