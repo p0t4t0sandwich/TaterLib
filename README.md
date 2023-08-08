@@ -10,10 +10,26 @@ Link to our support: [Discord](https://discord.gg/jec2jpdj7A)
 ## Download
 
 - [GitHub](https://github.com/p0t4t0sandwich/TaterLib/releases)
-- [Spigot](https://www.spigotmc.org/resources/taterlib.xxxxxx/)
+- [Maven Repo](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/TaterLib)
+- [Spigot](https://www.spigotmc.org/resources/taterlib.111852/)
 - [Hangar](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
 - [Modrinth](https://modrinth.com/plugin/taterlib)
 - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/taterlib)
+- [Sponge](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
+
+### Adding to your project
+```gradle
+repositories {
+    maven {
+        name = "NeuralNexus"
+        url = "https://maven.neuralnexus.dev/repository/releases/"
+    }
+}
+
+dependencies {
+    implementation "dev.neuralnexus:TaterLib:<version>-<mcversion>"
+}
+```
 
 ### Compatibility Cheatsheet
 
@@ -29,7 +45,7 @@ Link to our support: [Discord](https://discord.gg/jec2jpdj7A)
 
 ## Dependencies
 
-This plugin has no strict dependencies, but it does have optional dependencies.
+- [FabricAPI](https://modrinth.com/mod/fabric-api) - Required on Fabric
 
 ### Optional Dependencies
 
@@ -41,21 +57,19 @@ This plugin has no strict dependencies, but it does have optional dependencies.
 |------------------------------|---------------------|-----------------------|
 | `/taterlib <version/reload>` | `taterlib.command`  | Root TaterLib Command |
 
-## Configuration
-
-```yaml
----
-```
-
-# TODO
+## TODO
 - add support for built-in permission APIs
   - Fabric
   - Forge
 
-## Abstractions
+### Abstractions
 - Command abstraction
 - World abstraction
 - Server abstraction
   - `AbstractServer`, `AbstractModdedServer`, `AbstractProxyServer`
 - Improved player abstraction
   - Split into `AbstractPlayer` and `AbstractServerPlayer`
+
+## Release Notes
+- Initial release
+  - Supports Bukkit, BungeeCord, Velocity, Fabric, Forge, NeoForge, and sorta Sponge
