@@ -1,15 +1,13 @@
 plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
-    id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    // https://parchmentmc.org/docs/getting-started
-    mappings(channel: 'parchment', version: mappingsVersion)
+    mappings(channel: 'snapshot', version: mappingsVersion)
 }
 
 dependencies {

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.abstrations.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomHoverName();
+        return itemStack.hasDisplayName();
     }
 
     /**
@@ -41,7 +41,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public void setDisplayName(String name) {
-        itemStack.setHoverName(Component.nullToEmpty(name));
+        itemStack.setDisplayName(new StringTextComponent(name));
     }
 
     /**
@@ -83,7 +83,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean isUnbreakable() {
-        return itemStack.isDamageableItem();
+        return itemStack.isDamageable();
     }
 
     /**

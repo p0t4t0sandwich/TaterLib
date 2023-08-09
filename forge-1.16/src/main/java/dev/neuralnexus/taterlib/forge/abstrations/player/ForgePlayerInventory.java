@@ -4,19 +4,19 @@ import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import dev.neuralnexus.taterlib.forge.abstrations.inventory.ForgeInventory;
 import dev.neuralnexus.taterlib.forge.abstrations.item.ForgeItemStack;
-import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.entity.player.PlayerInventory;
 
 /**
  * Abstracts a Forge player inventory to an AbstractPlayerInventory.
  */
 public class ForgePlayerInventory extends ForgeInventory implements AbstractPlayerInventory {
-    private final Inventory playerInventory;
+    private final PlayerInventory playerInventory;
 
     /**
      * Constructor.
      * @param playerInventory The Forge player inventory.
      */
-    public ForgePlayerInventory(Inventory playerInventory) {
+    public ForgePlayerInventory(PlayerInventory playerInventory) {
         super(playerInventory);
         this.playerInventory = playerInventory;
     }
@@ -28,7 +28,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
     public AbstractItemStack[] getArmorContents() {
         AbstractItemStack[] armorContents = new AbstractItemStack[4];
         for (int i = 0; i < 4; i++) {
-            armorContents[i] = new ForgeItemStack(playerInventory.armor.get(i));
+            armorContents[i] = new ForgeItemStack(playerInventory.armorInventory.get(i));
         }
         return armorContents;
     }
@@ -40,7 +40,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
     public AbstractItemStack[] getExtraContents() {
         AbstractItemStack[] extraContents = new AbstractItemStack[2];
         for (int i = 0; i < 2; i++) {
-            extraContents[i] = new ForgeItemStack(playerInventory.offhand.get(i));
+            extraContents[i] = new ForgeItemStack(playerInventory.offHandInventory.get(i));
         }
         return extraContents;
     }
@@ -50,7 +50,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public AbstractItemStack getHelmet() {
-        return new ForgeItemStack(playerInventory.armor.get(0));
+        return new ForgeItemStack(playerInventory.armorInventory.get(0));
     }
 
     /**
@@ -58,7 +58,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public AbstractItemStack getChestplate() {
-        return new ForgeItemStack(playerInventory.armor.get(1));
+        return new ForgeItemStack(playerInventory.armorInventory.get(1));
     }
 
     /**
@@ -66,7 +66,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public AbstractItemStack getLeggings() {
-        return new ForgeItemStack(playerInventory.armor.get(2));
+        return new ForgeItemStack(playerInventory.armorInventory.get(2));
     }
 
     /**
@@ -74,7 +74,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public AbstractItemStack getBoots() {
-        return new ForgeItemStack(playerInventory.armor.get(3));
+        return new ForgeItemStack(playerInventory.armorInventory.get(3));
     }
 
     /**
@@ -99,9 +99,9 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public void setArmorContents(AbstractItemStack[] items) {
-        playerInventory.armor.clear();
+        playerInventory.armorInventory.clear();
         for (int i = 0; i < 4; i++) {
-            playerInventory.armor.add(i, ((ForgeItemStack) items[i]).getItemStack());
+            playerInventory.armorInventory.add(i, ((ForgeItemStack) items[i]).getItemStack());
         }
     }
 
@@ -118,7 +118,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public void setHelmet(AbstractItemStack item) {
-        playerInventory.armor.set(0, ((ForgeItemStack) item).getItemStack());
+        playerInventory.armorInventory.set(0, ((ForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -126,7 +126,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public void setChestplate(AbstractItemStack item) {
-        playerInventory.armor.set(1, ((ForgeItemStack) item).getItemStack());
+        playerInventory.armorInventory.set(1, ((ForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -134,7 +134,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public void setLeggings(AbstractItemStack item) {
-        playerInventory.armor.set(2, ((ForgeItemStack) item).getItemStack());
+        playerInventory.armorInventory.set(2, ((ForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -142,7 +142,7 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public void setBoots(AbstractItemStack item) {
-        playerInventory.armor.set(3, ((ForgeItemStack) item).getItemStack());
+        playerInventory.armorInventory.set(3, ((ForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -184,6 +184,6 @@ public class ForgePlayerInventory extends ForgeInventory implements AbstractPlay
      */
     @Override
     public int getHeldItemSlot() {
-        return playerInventory.selected;
+        return playerInventory.currentItem;
     }
 }

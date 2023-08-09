@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.abstrations.entity;
 
 import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.UUID;
 
@@ -25,7 +25,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public UUID getUniqueId() {
-        return entity.getUUID();
+        return entity.getUniqueID();
     }
 
     /**
@@ -33,7 +33,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public int getEntityId() {
-        return entity.getId();
+        return entity.getEntityId();
     }
 
     /**
@@ -41,7 +41,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public void remove() {
-        entity.remove(Entity.RemovalReason.KILLED);
+        entity.remove();
     }
 
     /**
@@ -66,6 +66,6 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public void setCustomName(String name) {
-        entity.setCustomName(Component.nullToEmpty(name));
+        entity.setCustomName(new StringTextComponent(name));
     }
 }

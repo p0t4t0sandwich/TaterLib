@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.forge.abstrations.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.item.ItemStack;
 
 /**
  * Abstracts a Forge item stack to an AbstractItemStack.

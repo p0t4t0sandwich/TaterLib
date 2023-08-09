@@ -2,22 +2,22 @@ package dev.neuralnexus.taterlib.forge.abstrations.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
-import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.text.StringTextComponent;
 
 /**
  * Abstracts a Forge player to an AbstractPlayer.
  */
 public class ForgePlayer implements AbstractPlayer {
-    private final Player player;
+    private final PlayerEntity player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Forge player.
      */
-    public ForgePlayer(Player player) {
+    public ForgePlayer(PlayerEntity player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -27,7 +27,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public ForgePlayer(Player player, String serverName) {
+    public ForgePlayer(PlayerEntity player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -37,7 +37,7 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public java.util.UUID getUUID() {
-        return player.getUUID();
+        return player.getUniqueID();
     }
 
     /**
@@ -77,7 +77,7 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public void sendMessage(String message) {
-        player.displayClientMessage(Component.nullToEmpty(message), false);
+        player.sendMessage(new StringTextComponent(message));
     }
 
     /**
@@ -85,7 +85,7 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public AbstractPlayerInventory getInventory() {
-        return new ForgePlayerInventory(player.getInventory());
+        return new ForgePlayerInventory(player.inventory);
     }
 
     /**
@@ -93,6 +93,6 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public void kickPlayer(String message) {
-        ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
+        ((ServerPlayerEntity) player).connection.disconnect(new StringTextComponent(message));
     }
 }

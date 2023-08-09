@@ -11,7 +11,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
+import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import org.apache.logging.log4j.LogManager;
 
 /**

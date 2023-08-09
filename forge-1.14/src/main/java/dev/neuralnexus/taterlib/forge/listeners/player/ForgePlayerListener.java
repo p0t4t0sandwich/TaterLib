@@ -4,9 +4,9 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
 import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
 import net.minecraftforge.event.ServerChatEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 public class ForgePlayerListener {
     /**
