@@ -131,25 +131,77 @@ prepareFiles common
 # Copy common files
 mv ./common/$GROUP_ID/$PROJ_ID/common ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 mv ./common/$GROUP_ID/$PROJ_ID/lib ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
-cp ./common/config.yml ./$PROJ_NAME-all
+#cp ./common/config.yml ./$PROJ_NAME-all
 cp ./common/LICENSE ./$PROJ_NAME-all
 cp ../../LICENSE-API ./$PROJ_NAME-all
 cp ../../README.md ./$PROJ_NAME-all
 rm -rf ./common
 
-# --------------------------- Prepare Forge and Fabric --------------------------------
+# --------------------------- Prepare Fabric --------------------------------
 
-# Prepare Fabric 1.20 files
-FABRIC_VERSION=1.20
-prepareFiles fabric-$FABRIC_VERSION
+FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20)
+for FABRIC_VERSION in "${FABRIC_VERSIONS[@]}"
+do
+    prepareFiles fabric-$FABRIC_VERSION
+done
 
-# Prepare Forge 1.20 files
-FORGE_VERSION=1.20
-prepareFiles forge-$FORGE_VERSION
+# --------------------------- Prepare Forge --------------------------------
 
-# Prepare NeoForge 1.20.1 files
-NEOFORGE_VERSION=1.20.1
-prepareFiles neoforge-$NEOFORGE_VERSION
+FORGE_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20)
+for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
+do
+    prepareFiles forge-$FORGE_VERSION
+done
+
+# --------------------------- Prepare NeoForge --------------------------------
+
+NEOFORGE_VERSIONS=(1.20.1)
+for NEOFORGE_VERSION in "${NEOFORGE_VERSIONS[@]}"
+do
+    prepareFiles neoforge-$NEOFORGE_VERSION
+done
+
+# --------------------------- Build 1.14 --------------------------------
+MC_VERSION=1.14
+FABRIC_VERSION=1.14
+FORGE_VERSION=1.14
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.15 --------------------------------
+MC_VERSION=1.15
+FABRIC_VERSION=1.15
+FORGE_VERSION=1.15
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.16 --------------------------------
+MC_VERSION=1.16
+FABRIC_VERSION=1.16
+FORGE_VERSION=1.16
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.17 --------------------------------
+MC_VERSION=1.17
+FABRIC_VERSION=1.17
+FORGE_VERSION=1.17
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.18 --------------------------------
+MC_VERSION=1.18
+FABRIC_VERSION=1.17
+FORGE_VERSION=1.18
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.19 --------------------------------
+MC_VERSION=1.19
+FABRIC_VERSION=1.17
+FORGE_VERSION=1.19
+OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.20 --------------------------------
 MC_VERSION=1.20
