@@ -7,12 +7,12 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    mappings(channel: 'snapshot', version: mappingsVersion)
+    mappings(channel: 'snapshot', version: mappings_version)
 }
 
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
-    minecraft("net.minecraftforge:forge:${minecraftVersion}-${forgeVersion}")
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 }
 
 reobf {
@@ -25,7 +25,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-forge-${minecraftVersion}.jar"
+    archiveFileName = "TaterLib-${version}-forge-${minecraft_version}.jar"
 }
 shadowJar.doLast {
     task ->

@@ -7,7 +7,7 @@ issueTrackerURL="https://github.com/p0t4t0sandwich/TaterLib/issues"
 [[mods]]
 modId = "taterlib"
 version = "${file.jarVersion}"
-displayName = "TaterAPI"
+displayName = "TaterLib"
 updateJSONURL="https://raw.githubusercontent.com/p0t4t0sandwich/TaterLib/main/forgeUpdates.json"
 displayURL="https://github.com/p0t4t0sandwich/TaterLib"
 logoFile= "../TaterLib.png"
