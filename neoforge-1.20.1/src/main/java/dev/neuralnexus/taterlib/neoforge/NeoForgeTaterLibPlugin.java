@@ -7,7 +7,9 @@ import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.neoforge.abstractions.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.commands.NeoForgeTaterLibCommand;
+import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
+import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -60,8 +62,14 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
 
+        // Register entity event listeners
+        MinecraftForge.EVENT_BUS.register(new NeoForgeEntityListener());
+
         // Register player event listeners
         MinecraftForge.EVENT_BUS.register(new NeoForgePlayerListener());
+
+        // Register server event listeners
+        MinecraftForge.EVENT_BUS.register(new NeoForgeServerListener());
 
         // Register commands
         MinecraftForge.EVENT_BUS.register(NeoForgeTaterLibCommand.class);

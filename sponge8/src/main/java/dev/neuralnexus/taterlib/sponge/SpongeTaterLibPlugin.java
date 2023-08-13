@@ -6,10 +6,13 @@ import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.sponge.abstractions.logger.SpongeLogger;
 import dev.neuralnexus.taterlib.sponge.commands.SpongeTaterLibCommand;
+import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
+import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
+import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.api.event.lifecycle.StartingEngineEvent;
@@ -52,8 +55,16 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      */
     @Override
     public void registerEventListeners() {
+        EventManager eventManager = Sponge.eventManager();
+
+        // Register entity event listeners
+        eventManager.registerListeners(this.container, new SpongeEntityListener());
+
         // Register player event listeners
-        Sponge.eventManager().registerListeners(this.container, new SpongePlayerListener());
+        eventManager.registerListeners(this.container, new SpongePlayerListener());
+
+        // Register server event listeners
+        eventManager.registerListeners(this.container, new SpongeServerListener());
     }
 
     /**

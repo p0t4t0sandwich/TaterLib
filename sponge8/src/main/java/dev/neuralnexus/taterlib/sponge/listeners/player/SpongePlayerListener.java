@@ -3,21 +3,57 @@ package dev.neuralnexus.taterlib.sponge.listeners.player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
+import org.spongepowered.api.advancement.Advancement;
+import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.advancement.AdvancementEvent;
+import org.spongepowered.api.event.entity.DestructEntityEvent;
+import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
 import org.spongepowered.api.event.filter.cause.All;
-import org.spongepowered.api.event.filter.cause.First;
 import org.spongepowered.api.event.message.PlayerChatEvent;
 import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 
+/**
+ * Listens to player events.
+ */
 public class SpongePlayerListener {
+    /**
+     * Called when a player progresses in an advancement.
+     * @param event The event.
+     */
+    @Listener
+    public void onPlayerAdvancement(AdvancementEvent.Grant event) {
+        SpongePlayer player = new SpongePlayer(event.player());
+        Advancement advancement = event.advancement();
+
+        // Fire the generic advancement event
+        PlayerListener.onPlayerAdvancement(player, advancement.parent().toString());
+
+        // Fire the advancement finished event if the advancement is done
+        DisplayInfo display = advancement.displayInfo().orElse(null);
+        if (display != null && display.doesAnnounceToChat()) {
+            PlayerListener.onPlayerAdvancementFinished(player, display.title().toString());
+        }
+    }
+
+    /**
+     * Called when a player dies.
+     * @param event The event.
+     */
+    @Listener
+    public void onPlayerDeath(DestructEntityEvent.Death event) {
+        if ((event.entity() instanceof Player)) {
+            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.entity()), event.message().toString());
+        }
+    }
+
     /**
      * Called when a player logs in.
      * @param event The event.
      */
     @Listener
     public void onPlayerLogin(ServerSideConnectionEvent.Join event) {
-        // Pass AbstractPlayer to helper function
         PlayerListener.onPlayerLogin(new SpongePlayer(event.player()));
     }
 
@@ -27,7 +63,6 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerLogout(ServerSideConnectionEvent.Disconnect event) {
-        // Pass AbstractPlayer to helper function
         PlayerListener.onPlayerLogout(new SpongePlayer(event.player()));
     }
 
@@ -39,7 +74,16 @@ public class SpongePlayerListener {
     public void onPlayerMessage(PlayerChatEvent event, @All(ignoreEmpty=false) Player[] players) {
         if (players.length != 1) return;
         if (TaterLib.cancelChat) event.setCancelled(true);
-        // Pass AbstractPlayer to helper function
+
         PlayerListener.onPlayerMessage(new SpongePlayer(players[0]), event.message().toString(), TaterLib.cancelChat);
+    }
+
+    /**
+     * Called when a player respawns.
+     * @param event The event.
+     */
+    @Listener
+    public void onPlayerRespawn(RespawnPlayerEvent event) {
+        PlayerListener.onPlayerRespawn(new SpongePlayer(event.entity()));
     }
 }

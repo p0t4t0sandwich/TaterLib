@@ -65,7 +65,7 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
 
         // Register TaterLib Player events
         FabricPlayerEvents.ADVANCEMENT_FINISHED.register((player, advancement) -> PlayerListener.onPlayerAdvancementFinished(new FabricPlayer(player), advancement.getDisplay().getTitle().getString()));
-        FabricPlayerEvents.ADVANCEMENT.register((player, advancement) -> PlayerListener.onPlayerAdvancement(new FabricPlayer(player), advancement.getRoot().getDisplay().getTitle().getString()));
+        FabricPlayerEvents.ADVANCEMENT.register((player, advancement) -> PlayerListener.onPlayerAdvancement(new FabricPlayer(player), advancement.getParent().getDisplay().getTitle().getString()));
         FabricPlayerEvents.DEATH.register((player, source) -> PlayerListener.onPlayerDeath(new FabricPlayer(player), source.getDeathMessage(player).getString()));
         FabricPlayerEvents.MESSAGE.register((player, message, isCanceled) -> PlayerListener.onPlayerMessage(new FabricPlayer(player), message, isCanceled));
         FabricPlayerEvents.RESPAWN.register((player) -> PlayerListener.onPlayerRespawn(new FabricPlayer(player)));
