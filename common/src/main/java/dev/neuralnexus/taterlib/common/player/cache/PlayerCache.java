@@ -2,7 +2,9 @@ package dev.neuralnexus.taterlib.common.player.cache;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class PlayerCache {
@@ -32,5 +34,13 @@ public class PlayerCache {
      */
     public static void removePlayerFromCache(UUID uuid) {
         abstractPlayerCache.remove(uuid);
+    }
+
+    /**
+     * Get a list of all players in the cache.
+     * @return A list of all players in the cache
+     */
+    public static List<AbstractPlayer> getPlayersInCache() {
+        return new ArrayList<>(abstractPlayerCache.values());
     }
 }

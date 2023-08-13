@@ -2,10 +2,12 @@ package dev.neuralnexus.taterlib.bukkit;
 
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
+import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import org.bukkit.plugin.PluginManager;
 
 /**
@@ -30,7 +32,13 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void registerEventListeners() {
         PluginManager pluginManager = getServer().getPluginManager();
+
+        // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
+
+        // Register server listeners
+        ServerListener.onServerStarting();
+        pluginManager.registerEvents(new BukkitServerListener(), this);
     }
 
     /**
@@ -54,6 +62,9 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
      */
     @Override
     public void onDisable() {
+        // Run server stopping events
+        ServerListener.onServerStopping();
+        ServerListener.onServerStopped();
         pluginStop();
     }
 }

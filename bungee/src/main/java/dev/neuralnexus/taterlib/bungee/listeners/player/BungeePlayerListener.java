@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bungee.listeners.player;
 
 import dev.neuralnexus.taterlib.bungee.abstractions.player.BungeePlayer;
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -28,8 +28,8 @@ public class BungeePlayerListener implements Listener {
         BungeePlayer bungeePlayer = new BungeePlayer(player);
         bungeePlayer.setServerName(toServer);
 
-        // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogin(bungeePlayer);
+        // Pass player to helper function
+        PlayerListener.onPlayerLogin(bungeePlayer);
     }
 
     /**
@@ -39,7 +39,7 @@ public class BungeePlayerListener implements Listener {
     @EventHandler
     public void onPlayerLogout(PlayerDisconnectEvent event) {
         // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogout(new BungeePlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogout(new BungeePlayer(event.getPlayer()));
     }
 
     /**
@@ -57,7 +57,7 @@ public class BungeePlayerListener implements Listener {
         String message = event.getMessage();
 
         // Send message to message relay
-        CommonPlayerListener.onPlayerMessage(new BungeePlayer(player), message, TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new BungeePlayer(player), message, TaterLib.cancelChat);
     }
 
     /**
@@ -74,6 +74,6 @@ public class BungeePlayerListener implements Listener {
         String toServer = player.getServer().getInfo().getName();
 
         // Pass Player UUID and current server to helper function
-        CommonPlayerListener.onServerSwitch(new BungeePlayer(player), toServer);
+        PlayerListener.onServerSwitch(new BungeePlayer(player), toServer);
     }
 }

@@ -72,7 +72,7 @@ public class TaterLib {
      * @return The current version of TaterLib
      */
     public static String getVersion() {
-        return "1.0.0";
+        return "1.0.1";
     }
 
     /**

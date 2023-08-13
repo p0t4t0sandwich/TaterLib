@@ -1,15 +1,40 @@
 {
     "homepage": "https://github.com/p0t4t0sandwich/TaterLib/releases",
     "1.20": {
-      "1.0.0": "<changelog for this version>"
+        "1.0.0": "Initial release"
     },
     "1.19": {
-      "1.0.0": "<changelog for this version>"
+        "1.0.0": "Initial release"
+    },
+    "1.18": {
+        "1.0.0": "Initial release"
+    },
+    "1.17": {
+        "1.0.0": "Initial release"
+    },
+    "1.16": {
+        "1.0.0": "Initial release"
+    },
+    "1.15": {
+        "1.0.0": "Initial release"
+    },
+    "1.14": {
+        "1.0.0": "Initial release"
     },
     "promos": {
-      "1.19-latest": "1.0.0",
-      "1.19-recommended": "1.0.0" ,
-      "1.20-latest": "1.0.0",
-      "1.20-recommended": "1.0.0"
+        "1.20-latest": "1.0.0",
+        "1.20-recommended": "1.0.0",
+        "1.19-latest": "1.0.0",
+        "1.19-recommended": "1.0.0",
+        "1.18-latest": "1.0.0",
+        "1.18-recommended": "1.0.0",
+        "1.17-latest": "1.0.0",
+        "1.17-recommended": "1.0.0",
+        "1.16-latest": "1.0.0",
+        "1.16-recommended": "1.0.0",
+        "1.15-latest": "1.0.0",
+        "1.15-recommended": "1.0.0",
+        "1.14-latest": "1.0.0",
+        "1.14-recommended": "1.0.0"
     }
 }

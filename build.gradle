@@ -8,7 +8,7 @@ subprojects {
     apply(plugin: 'java')
 
     group = 'dev.neuralnexus'
-    version = '1.0.0'
+    version = '1.0.1'
     description = 'A cross API code library for various generalizations used in the Tater* plugins.'
 
     sourceCompatibility = 1.8

@@ -38,6 +38,14 @@ public class PlaceholderParser {
      * Parse the section sign.
      * @return The string with the section sign.
      */
+    static String parseSectionSign(String s) {
+        return s.replaceAll("&", "§");
+    }
+
+    /**
+     * Parse the section sign.
+     * @return The string with the section sign.
+     */
     public static String substituteSectionSign(String s) {
         return s.replaceAll("&", "§");
     }

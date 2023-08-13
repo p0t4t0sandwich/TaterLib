@@ -6,29 +6,32 @@ import java.util.function.Consumer;
 /**
  * These are really sketchy at the moment, don't use them.
  */
-@Deprecated
-public class TaterEvent<T> {
+public class Event<T> {
     private final Class<T> eventClass;
-    private final ArrayList<Consumer> listeners = new ArrayList<>();
+    private final ArrayList<Consumer<Object[]>> listeners = new ArrayList<>();
 
-    public TaterEvent(Class<T> eventClass, Consumer<Object[]> listener) {
+    public Event(Class<T> eventClass, Consumer<Object[]> listener) {
         this.eventClass = eventClass;
         this.listeners.add(listener);
+    }
+
+    public Event(Class<T> eventClass) {
+        this.eventClass = eventClass;
     }
 
     public Class<T> getEventClass() {
         return this.eventClass;
     }
 
-    public void addListener(Consumer listener) {
+    public void register(Consumer<Object[]> listener) {
         this.listeners.add(listener);
     }
 
-    public ArrayList<Consumer> getListeners() {
+    public ArrayList<Consumer<Object[]>> getListeners() {
         return this.listeners;
     }
 
-    public void call(T event) {
+    public void invoke(Object[] event) {
         for (Consumer listener : listeners) {
             listener.accept(event);
         }
