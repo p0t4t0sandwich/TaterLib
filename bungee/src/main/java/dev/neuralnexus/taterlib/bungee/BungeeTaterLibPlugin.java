@@ -7,8 +7,11 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.PluginManager;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * The TaterLib BungeeCord plugin.
@@ -66,7 +69,13 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
     @Override
     public void registerEventListeners() {
         PluginManager pluginManager = getProxy().getPluginManager();
+
+        // Register player listeners
         pluginManager.registerListener(this, new BungeePlayerListener());
+
+        // Register server listeners
+        ServerListener.onServerStarting();
+        getProxy().getScheduler().schedule(this, ServerListener::onServerStarted, 5L, TimeUnit.SECONDS);
     }
 
     /**
@@ -92,6 +101,8 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
      */
     @Override
     public void onDisable() {
+        ServerListener.onServerStopping();
+        ServerListener.onServerStopped();
         pluginStop();
     }
 }

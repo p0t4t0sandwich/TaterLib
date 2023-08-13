@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.listeners.player;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -18,7 +18,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerLogin(ServerSideConnectionEvent.Join event) {
         // Pass AbstractPlayer to helper function
-        CommonPlayerListener.onPlayerLogin(new SpongePlayer(event.player()));
+        PlayerListener.onPlayerLogin(new SpongePlayer(event.player()));
     }
 
     /**
@@ -28,7 +28,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerLogout(ServerSideConnectionEvent.Disconnect event) {
         // Pass AbstractPlayer to helper function
-        CommonPlayerListener.onPlayerLogout(new SpongePlayer(event.player()));
+        PlayerListener.onPlayerLogout(new SpongePlayer(event.player()));
     }
 
     /**
@@ -40,6 +40,6 @@ public class SpongePlayerListener {
         if (players.length != 1) return;
         if (TaterLib.cancelChat) event.setCancelled(true);
         // Pass AbstractPlayer to helper function
-        CommonPlayerListener.onPlayerMessage(new SpongePlayer(players[0]), event.message().toString(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new SpongePlayer(players[0]), event.message().toString(), TaterLib.cancelChat);
     }
 }

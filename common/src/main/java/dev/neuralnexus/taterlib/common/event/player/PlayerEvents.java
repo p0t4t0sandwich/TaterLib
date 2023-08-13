@@ -38,6 +38,11 @@ public final class PlayerEvents {
     public static final Event<PlayerMessageEvent> MESSAGE = new Event<>(PlayerMessageEvent.class);
 
     /**
+     * Called when a player respawns.
+     */
+    public static final Event<PlayerRespawnEvent> RESPAWN = new Event<>(PlayerRespawnEvent.class);
+
+    /**
      * Called when a player switches servers.
      */
     public static final Event<PlayerServerSwitchEvent> SERVER_SWITCH = new Event<>(PlayerServerSwitchEvent.class);
@@ -70,6 +75,11 @@ public final class PlayerEvents {
     @FunctionalInterface
     public interface PlayerMessageEvent {
         void onPlayerMessage(AbstractPlayer player, String message, boolean cancelled);
+    }
+
+    @FunctionalInterface
+    public interface PlayerRespawnEvent {
+        void onPlayerRespawn(AbstractPlayer player);
     }
 
     @FunctionalInterface

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
 import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -30,7 +30,7 @@ public abstract class FabricPlayerMessageMixin {
         if (packet.getChatMessage().startsWith("/")) return;
         if (TaterLib.cancelChat) ci.cancel();
 
-        CommonPlayerListener.onPlayerMessage(new FabricPlayer(player), packet.getChatMessage(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new FabricPlayer(player), packet.getChatMessage(), TaterLib.cancelChat);
 
         // Fire the message event
         FabricPlayerEvents.MESSAGE.invoker().onPlayerMessage(player, packet.getChatMessage(), TaterLib.cancelChat);

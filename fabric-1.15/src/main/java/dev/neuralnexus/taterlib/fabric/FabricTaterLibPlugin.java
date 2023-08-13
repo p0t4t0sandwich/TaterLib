@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.fabric.abstractions.logger.FabricLogger;
 import dev.neuralnexus.taterlib.fabric.commands.FabricTaterLibCommand;
 import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
@@ -48,8 +48,8 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
     @Override
     public void registerEventListeners() {
         // Register Fabric API player events
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> CommonPlayerListener.onPlayerLogin(new FabricPlayer(handler.player)));
-        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> CommonPlayerListener.onPlayerLogout(new FabricPlayer(handler.player)));
+        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> PlayerListener.onPlayerLogin(new FabricPlayer(handler.player)));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> PlayerListener.onPlayerLogout(new FabricPlayer(handler.player)));
 
         // Register Fabric API server events
         ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);

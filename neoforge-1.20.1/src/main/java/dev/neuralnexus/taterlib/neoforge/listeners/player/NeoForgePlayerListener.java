@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.neoforge.abstractions.player.NeoForgePlayer;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -16,7 +16,7 @@ public class NeoForgePlayerListener {
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogin(new NeoForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogin(new NeoForgePlayer(event.getEntity()));
     }
 
     /**
@@ -26,7 +26,7 @@ public class NeoForgePlayerListener {
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogout(new NeoForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogout(new NeoForgePlayer(event.getEntity()));
     }
 
     /**
@@ -38,6 +38,6 @@ public class NeoForgePlayerListener {
         if (TaterLib.cancelChat) event.setCanceled(true);
 
         // Send message to message relay
-        CommonPlayerListener.onPlayerMessage(new NeoForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new NeoForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterLib.cancelChat);
     }
 }

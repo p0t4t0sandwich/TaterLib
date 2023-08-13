@@ -74,6 +74,15 @@ public final class PlayerListener {
     }
 
     /**
+     * Called when a player respawns.
+     * @param player The player.
+     */
+    public static void onPlayerRespawn(AbstractPlayer player) {
+        // Fire cross-API event
+        PlayerEvents.RESPAWN.invoke(new Object[]{player});
+    }
+
+    /**
      * Called when a player logs out, and sends it to the message relay.
      * @param abstractPlayer The player.
      */

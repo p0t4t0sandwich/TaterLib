@@ -7,7 +7,7 @@ import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.listeners.player.CommonPlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
 
 public class VelocityPlayerListener {
@@ -28,7 +28,7 @@ public class VelocityPlayerListener {
         taterPlayer.setServerName(toServer);
 
         // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogin(taterPlayer);
+        PlayerListener.onPlayerLogin(taterPlayer);
     }
 
     /**
@@ -38,7 +38,7 @@ public class VelocityPlayerListener {
     @Subscribe
     public void onPlayerLogout(DisconnectEvent event) {
         // Pass TaterPlayer to helper function
-        CommonPlayerListener.onPlayerLogout(new VelocityPlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogout(new VelocityPlayer(event.getPlayer()));
     }
 
     /**
@@ -55,7 +55,7 @@ public class VelocityPlayerListener {
         if (!player.getCurrentServer().isPresent()) return;
 
         // Send message to message relay
-        CommonPlayerListener.onPlayerMessage(new VelocityPlayer(player), message, TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new VelocityPlayer(player), message, TaterLib.cancelChat);
     }
 
     /**
@@ -72,6 +72,6 @@ public class VelocityPlayerListener {
         String toServer = event.getServer().getServerInfo().getName();
 
         // Pass Player and current server to helper function
-        CommonPlayerListener.onServerSwitch(new VelocityPlayer(player), toServer);
+        PlayerListener.onServerSwitch(new VelocityPlayer(player), toServer);
     }
 }
