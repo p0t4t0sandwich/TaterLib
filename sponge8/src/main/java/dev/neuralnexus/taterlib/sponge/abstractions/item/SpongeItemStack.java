@@ -2,7 +2,11 @@ package dev.neuralnexus.taterlib.sponge.abstractions.item;
 
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemMeta;
 import dev.neuralnexus.taterlib.common.abstractions.item.AbstractItemStack;
+import org.spongepowered.api.Platform;
+import org.spongepowered.api.data.Key;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.item.ItemType;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
 
 /**
@@ -48,7 +52,16 @@ public class SpongeItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        return itemStack.get(Keys.DISPLAY_NAME).get().toString();
+        // Turn ItemName into item_name
+        // TODO: Make this less jank
+        String ItemName = itemStack.type().toString().split("Item")[0];
+        for (int i = 0; i < ItemName.length(); i++) {
+            if (Character.isUpperCase(ItemName.charAt(i))) {
+                ItemName = ItemName.substring(0, i) + "_" + ItemName.substring(i);
+                i++;
+            }
+        }
+        return "minecraft:" + ItemName.toLowerCase().substring(1);
     }
 
     /**
