@@ -8,14 +8,17 @@ GROUP_ID=dev/neuralnexus
 # --------------------------- Functions --------------------------------
 
 function prepareFiles() {
-  # Prepare PLATFORM files
+  echo "Preparing files for $1"
+
   cp ../$PROJ_NAME-$VERSION-$1.jar ./
   mv ./$PROJ_NAME-$VERSION-$1.jar ./$PROJ_NAME-$VERSION-$1.zip
-  unzip ./$PROJ_NAME-$VERSION-$1.zip -d ./$1
+  unzip -q ./$PROJ_NAME-$VERSION-$1.zip -d ./$1
   rm -rf ./$PROJ_NAME-$VERSION-$1.zip
 }
 
 function build() {
+  echo "Building using Forge $2 and Fabric $1"
+
   mkdir -p ./$3
 
   # Copy common files
@@ -37,7 +40,7 @@ function build() {
 
   # Zip Jar contents
   cd ./$3
-  zip -r ../$3.zip ./*
+  zip -qr ../$3.zip ./*
   cd ../
 
   # Rename Jar
@@ -52,6 +55,8 @@ function build() {
 }
 
 function neobuild() {
+  echo "Building using Forge $2, Fabric $1 and NeoForge $3"
+
   mkdir -p ./$4
 
   # Copy common files
@@ -76,7 +81,7 @@ function neobuild() {
 
   # Zip Jar contents
   cd ./$4
-  zip -r ../$4.zip ./*
+  zip -qr ../$4.zip ./*
   cd ../
 
   # Rename Jar
@@ -121,7 +126,6 @@ prepareFiles velocity
 
 # Copy velocity files
 mv ./velocity/$GROUP_ID/$PROJ_ID/velocity ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
-cp ./velocity/velocity.yml ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 cp ./velocity/velocity-plugin.json ./$PROJ_NAME-all
 rm -rf ./velocity
 
@@ -139,7 +143,7 @@ rm -rf ./common
 
 # --------------------------- Prepare Fabric --------------------------------
 
-FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20)
+FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.20)
 for FABRIC_VERSION in "${FABRIC_VERSIONS[@]}"
 do
     prepareFiles fabric-$FABRIC_VERSION
@@ -147,7 +151,7 @@ done
 
 # --------------------------- Prepare Forge --------------------------------
 
-FORGE_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20)
+FORGE_VERSIONS=(1.14.3 1.15.1 1.16.1 1.17.1 1.18 1.19 1.20)
 for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
 do
     prepareFiles forge-$FORGE_VERSION
@@ -164,28 +168,28 @@ done
 # --------------------------- Build 1.14 --------------------------------
 MC_VERSION=1.14
 FABRIC_VERSION=1.14
-FORGE_VERSION=1.14
+FORGE_VERSION=1.14.3
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
 build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.15 --------------------------------
 MC_VERSION=1.15
 FABRIC_VERSION=1.15
-FORGE_VERSION=1.15
+FORGE_VERSION=1.15.1
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
 build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.16 --------------------------------
 MC_VERSION=1.16
 FABRIC_VERSION=1.16
-FORGE_VERSION=1.16
+FORGE_VERSION=1.16.1
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
 build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.17 --------------------------------
 MC_VERSION=1.17
 FABRIC_VERSION=1.17
-FORGE_VERSION=1.17
+FORGE_VERSION=1.17.1
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
 build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
@@ -209,7 +213,6 @@ FABRIC_VERSION=1.20
 FORGE_VERSION=1.20
 NEOFORGE_VERSION=1.20.1
 OUT_FILE=$PROJ_NAME-$VERSION-$MC_VERSION
-
 neobuild $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_VERSION $OUT_FILE
 
 # --------------------------- Cleanup --------------------------------
