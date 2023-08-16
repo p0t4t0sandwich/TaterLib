@@ -69,6 +69,6 @@ public class SpongeEntity implements AbstractEntity {
      */
     @Override
     public void setCustomName(String name) {
-        entity.offer(entity.customName().get().set(Component.text(name)));
+        entity.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
 }
