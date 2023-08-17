@@ -27,7 +27,7 @@ public class SpongeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.get(Keys.DISPLAY_NAME).isPresent();
+        return itemStack.get(Keys.CUSTOM_NAME).isPresent();
     }
 
     /**
@@ -35,10 +35,10 @@ public class SpongeItemMeta implements AbstractItemMeta {
      */
     @Override
     public String getDisplayName() {
-        if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
+        if (!itemStack.get(Keys.CUSTOM_NAME).isPresent()) {
             return null;
         }
-        return itemStack.get(Keys.DISPLAY_NAME).get().toString();
+        return itemStack.get(Keys.CUSTOM_NAME).get().toString();
     }
 
     /**
@@ -46,7 +46,7 @@ public class SpongeItemMeta implements AbstractItemMeta {
      */
     @Override
     public void setDisplayName(String name) {
-        itemStack.offer(Keys.DISPLAY_NAME, Component.text(name));
+        itemStack.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
 
     /**

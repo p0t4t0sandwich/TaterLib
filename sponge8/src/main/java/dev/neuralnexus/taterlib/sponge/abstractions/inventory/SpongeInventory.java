@@ -132,9 +132,6 @@ public class SpongeInventory implements AbstractInventory {
     @Override
     public boolean contains(String type) {
         for (AbstractItemStack item : getContents()) {
-            //
-            System.out.println(item.getType());
-            //
             if (item.getType().equals(type)) {
                 return true;
             }
