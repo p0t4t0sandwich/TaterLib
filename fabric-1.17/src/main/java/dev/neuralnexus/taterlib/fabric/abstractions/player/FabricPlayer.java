@@ -104,10 +104,8 @@ public class FabricPlayer implements AbstractPlayer {
      */
     @Override
     public String getPrefix() {
-        if (!LuckPermsHook.isHooked()) return Options.get(player, "prefix", "");
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String prefix = luckPermsHook.getPrefix(getUUID());
-        return prefix != null ? prefix : "";
+        if (!LuckPermsHook.isHooked()) return "";
+        return Options.get(player, "prefix", "");
     }
 
     /**
@@ -115,10 +113,8 @@ public class FabricPlayer implements AbstractPlayer {
      */
     @Override
     public String getSuffix() {
-        if (!LuckPermsHook.isHooked()) return Options.get(player, "suffix", "");
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String suffix = luckPermsHook.getSuffix(getUUID());
-        return suffix != null ? suffix : "";
+        if (!LuckPermsHook.isHooked()) return "";
+        return Options.get(player, "suffix", "");
     }
 
     /**
@@ -126,8 +122,7 @@ public class FabricPlayer implements AbstractPlayer {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!LuckPermsHook.isHooked()) return Permissions.check(player, permission, 4);
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook.playerHasPermission(getUUID(), permission);
+        if (!LuckPermsHook.isHooked()) return player.hasPermissionLevel(4);
+        return Permissions.check(player, permission, 4);
     }
 }

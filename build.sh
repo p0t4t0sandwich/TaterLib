@@ -20,6 +20,7 @@ function build() {
   echo "Building using Forge $2 and Fabric $1"
 
   mkdir -p ./$3
+  mkdir -p ./$3/META-INF
 
   # Copy common files
   cp -r ./$PROJ_NAME-all/* ./$3/
@@ -30,12 +31,12 @@ function build() {
   cp ./fabric-$1/$PROJ_ID.mixins.json ./$3
   cp -r ./fabric-$1/assets ./$3
   cp ./fabric-$1/fabric-$1-refmap.json ./$3
+  cp -r ./fabric-$1/META-INF/jars ./$3/META-INF
 
   # Copy forge files
   cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$3/$GROUP_ID/$PROJ_ID
   cp ./forge-$2/pack.mcmeta ./$3
   cp -r ./forge-$2/$PROJ_NAME.png ./$3
-  mkdir -p ./$3/META-INF
   cp ./forge-$2/META-INF/mods.toml ./$3/META-INF
 
   # Zip Jar contents
@@ -58,6 +59,7 @@ function spongebuild() {
     echo "Building using Forge $2, Fabric $1 and Sponge $3"
 
       mkdir -p ./$4
+      mkdir -p ./$4/META-INF
 
       # Copy common files
       cp -r ./$PROJ_NAME-all/* ./$4/
@@ -68,12 +70,12 @@ function spongebuild() {
       cp ./fabric-$1/$PROJ_ID.mixins.json ./$4
       cp -r ./fabric-$1/assets ./$4
       cp ./fabric-$1/fabric-$1-refmap.json ./$4
+      cp -r ./fabric-$1/META-INF/jars ./$4/META-INF
 
       # Copy forge files
       cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$4/$GROUP_ID/$PROJ_ID
       cp ./forge-$2/pack.mcmeta ./$4
       cp -r ./forge-$2/$PROJ_NAME.png ./$4
-      mkdir -p ./$4/META-INF
       cp ./forge-$2/META-INF/mods.toml ./$4/META-INF
 
       # Copy sponge files
@@ -100,6 +102,7 @@ function neobuild() {
   echo "Building using Forge $2, Fabric $1 and NeoForge $3"
 
   mkdir -p ./$4
+  mkdir -p ./$4/META-INF
 
   # Copy common files
   cp -r ./$PROJ_NAME-all/* ./$4/
@@ -110,12 +113,12 @@ function neobuild() {
   cp ./fabric-$1/$PROJ_ID.mixins.json ./$4
   cp -r ./fabric-$1/assets ./$4
   cp ./fabric-$1/fabric-$1-refmap.json ./$4
+  cp -r ./fabric-$1/META-INF/jars ./$4/META-INF
 
   # Copy forge files
   cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$4/$GROUP_ID/$PROJ_ID
   cp ./forge-$2/pack.mcmeta ./$4
   cp -r ./forge-$2/$PROJ_NAME.png ./$4
-  mkdir -p ./$4/META-INF
   cp ./forge-$2/META-INF/mods.toml ./$4/META-INF
 
   # Copy neoforge files
