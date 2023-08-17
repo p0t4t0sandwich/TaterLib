@@ -61,10 +61,6 @@ dependencies {
 | `/taterlib <version/reload>` | `taterlib.command`  | Root TaterLib Command |
 
 ## TODO
-- add support for built-in permission APIs
-  - Fabric
-  - Forge
-
 ### Abstractions
 - Command abstraction
 - World abstraction
@@ -74,9 +70,14 @@ dependencies {
   - Split into `AbstractOfflinePlayer`, `AbstractPlayer` and `AbstractServerPlayer`
   - Add teleport methods to `AbstractPlayer`
 
+### Maybes
+- Implement modded permission checks that can use numerical values
+- Implement the Forge permissions API
+
 ## Release Notes
 - Added a method to PlayerCache to return a list of all the players in the cache
 - Added a static method parseSectionSign in the PlaceholderParser class
 - Finished v1 of the cross API event bus
 - Updated the MessageRelay
 - Added basic implementations of the Player Advancement and Player Death events (String only)
+- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)

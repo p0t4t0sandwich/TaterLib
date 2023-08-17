@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.forge.abstrations.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -94,5 +95,15 @@ public class ForgePlayer implements AbstractPlayer {
     @Override
     public void kickPlayer(String message) {
         ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(String permission) {
+        if (!LuckPermsHook.isHooked()) return player.hasPermissions(4);
+        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
+        return luckPermsHook.playerHasPermission(getUUID(), permission);
     }
 }
