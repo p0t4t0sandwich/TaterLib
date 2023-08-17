@@ -24,6 +24,9 @@ dependencies {
     apiModules.forEach {
         modImplementation(fabricApi.module(it, project.fabric_version))
     }
+
+    // Lucko's Permissions API
+    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 }
 
 processResources {

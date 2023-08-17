@@ -114,8 +114,8 @@ public interface AbstractPlayer {
     default String getPrefix() {
         if (!LuckPermsHook.isHooked()) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String suffix = luckPermsHook.getPrefix(getUUID());
-        return suffix != null ? suffix : "";
+        String prefix = luckPermsHook.getPrefix(getUUID());
+        return prefix != null ? prefix : "";
     }
 
     /**
