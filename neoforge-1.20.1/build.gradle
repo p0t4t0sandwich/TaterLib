@@ -9,12 +9,12 @@ targetCompatibility = 17
 
 minecraft {
     // https://parchmentmc.org/docs/getting-started
-    mappings(channel: 'parchment', version: mappingsVersion)
+    mappings(channel: 'parchment', version: mappings_version)
 }
 
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
-    minecraft("net.neoforged:forge:${minecraftVersion}-${forgeVersion}")
+    minecraft("net.neoforged:forge:${minecraft_version}-${forge_version}")
 }
 
 reobf {
@@ -27,7 +27,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-neoforge-${minecraftVersion}.jar"
+    archiveFileName = "TaterLib-${version}-neoforge-${minecraft_version}.jar"
 }
 shadowJar.doLast {
     task ->
