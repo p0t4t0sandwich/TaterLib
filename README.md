@@ -77,7 +77,7 @@ dependencies {
 ## Release Notes
 - Added a method to PlayerCache to return a list of all the players in the cache
 - Added a static method parseSectionSign in the PlaceholderParser class
-- Finished v1 of the cross API event bus
+- Finished v1 of the cross API event system
 - Updated the MessageRelay
 - Added basic implementations of the Player Advancement and Player Death events (String only)
 - Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)
