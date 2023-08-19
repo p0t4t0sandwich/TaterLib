@@ -181,7 +181,7 @@ prepareFiles common
 mv ./common/$GROUP_ID/$PROJ_ID/common ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 mv ./common/$GROUP_ID/$PROJ_ID/lib ./$PROJ_NAME-all/$GROUP_ID/$PROJ_ID
 #cp ./common/config.yml ./$PROJ_NAME-all
-cp ./common/LICENSE ./$PROJ_NAME-all
+cp ../../LICENSE ./$PROJ_NAME-all
 cp ../../LICENSE-API ./$PROJ_NAME-all
 cp ../../README.md ./$PROJ_NAME-all
 rm -rf ./common
