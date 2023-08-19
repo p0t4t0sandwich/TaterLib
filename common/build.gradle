@@ -20,6 +20,7 @@ dependencies {
 
     // Logging
     implementation("org.slf4j:slf4j-api:1.7.32")
+    implementation("org.slf4j:slf4j-simple:1.7.32")
 
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
@@ -44,6 +45,7 @@ shadowJar {
 
         // Logging
         include(dependency("org.slf4j:slf4j-api:1.7.32"))
+        include(dependency("org.slf4j:slf4j-simple:1.7.32"))
     }
     // YAML
     relocate('dev.dejvokep', 'dev.neuralnexus.taterlib.lib.dejvokep')
