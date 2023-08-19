@@ -49,7 +49,7 @@ shadowJar {
         exclude('/mappings/*')
     }
 
-    archiveFileName = "TaterLib-fabric-${minecraft_version}-${version}-dev.jar"
+    archiveFileName = "${project_name}-fabric-${minecraft_version}-${version}-dev.jar"
 }
 
 task remappedShadowJar(type: RemapJarTask) {
@@ -58,7 +58,7 @@ task remappedShadowJar(type: RemapJarTask) {
     addNestedDependencies.set(true)
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-fabric-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_name}-fabric-${minecraft_version}-${version}.jar"
 }
 remappedShadowJar.doLast {
     task ->

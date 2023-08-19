@@ -7,8 +7,6 @@ plugins {
     id("org.spongepowered.gradle.plugin") version('2.1.1')
 }
 
-compileJava.options.encoding = 'UTF-8'
-
 sponge {
     apiVersion(spongeapi_version)
     license("GPL-3.0")
@@ -16,8 +14,8 @@ sponge {
         name(PluginLoaders.JAVA_PLAIN)
         version("1.0")
     }
-    plugin("taterlib") {
-        displayName("TaterLib")
+    plugin(project_id) {
+        displayName(project_name)
         entrypoint("dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin")
         description("A cross API code library for various generalizations used in the Tater* plugins")
         links {
@@ -47,7 +45,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-sponge8-${version}.jar"
+    archiveFileName = "${project_name}-sponge8-${version}.jar"
 }
 shadowJar.doLast {
     task ->

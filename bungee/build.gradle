@@ -27,7 +27,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-bungee-${version}.jar"
+    archiveFileName = "${project_name}-bungee-${version}.jar"
 }
 shadowJar.doLast {
     task ->

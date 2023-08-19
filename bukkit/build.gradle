@@ -29,7 +29,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-bukkit-${version}.jar"
+    archiveFileName = "${project_name}-bukkit-${version}.jar"
 }
 shadowJar.doLast {
     task ->

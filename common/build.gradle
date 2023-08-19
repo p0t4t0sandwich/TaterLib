@@ -63,7 +63,7 @@ shadowJar {
     relocate('org.slf4j', 'dev.neuralnexus.taterlib.lib.slf4j')
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-common-${version}.jar"
+    archiveFileName = "${project_name}-common-${version}.jar"
 }
 shadowJar.doLast {
     task ->
