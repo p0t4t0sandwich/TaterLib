@@ -27,7 +27,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-neoforge-${minecraft_version}.jar"
+    archiveFileName = "TaterLib-neoforge-${minecraft_version}-${version}.jar"
 }
 shadowJar.doLast {
     task ->

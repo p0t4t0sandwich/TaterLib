@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    implementation "dev.neuralnexus:TaterLib:<version>-<mcversion>"
+    implementation "dev.neuralnexus:TaterLib:<mcversion>-<version>"
 }
 ```
 

@@ -15,7 +15,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-velocity.jar"
+    archiveFileName = "TaterLib-velocity-${version}.jar"
 }
 shadowJar.doLast {
     task ->

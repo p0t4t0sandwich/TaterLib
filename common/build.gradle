@@ -18,6 +18,9 @@ dependencies {
     // Gson
     implementation('com.google.code.gson:gson:2.10.1')
 
+    // Logging
+    implementation("org.slf4j:slf4j-api:1.7.32")
+
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
 }
@@ -38,6 +41,9 @@ shadowJar {
 
         // Gson
         include(dependency('com.google.code.gson:gson:2.10.1'))
+
+        // Logging
+        include(dependency("org.slf4j:slf4j-api:1.7.32"))
     }
     // YAML
     relocate('dev.dejvokep', 'dev.neuralnexus.taterlib.lib.dejvokep')
@@ -53,8 +59,11 @@ shadowJar {
     // Gson
     relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')
 
+    // Logging
+    relocate('org.slf4j', 'dev.neuralnexus.taterlib.lib.slf4j')
+
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-common.jar"
+    archiveFileName = "TaterLib-common-${version}.jar"
 }
 shadowJar.doLast {
     task ->

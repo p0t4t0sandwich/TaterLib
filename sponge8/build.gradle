@@ -47,7 +47,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "TaterLib-${version}-sponge8.jar"
+    archiveFileName = "TaterLib-sponge8-${version}.jar"
 }
 shadowJar.doLast {
     task ->

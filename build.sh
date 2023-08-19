@@ -10,10 +10,10 @@ GROUP_ID=dev/neuralnexus
 function prepareFiles() {
   echo "Preparing files for $1"
 
-  cp ../$PROJ_NAME-$VERSION-$1.jar ./
-  mv ./$PROJ_NAME-$VERSION-$1.jar ./$PROJ_NAME-$VERSION-$1.zip
-  unzip -q ./$PROJ_NAME-$VERSION-$1.zip -d ./$1
-  rm -rf ./$PROJ_NAME-$VERSION-$1.zip
+  cp ../$PROJ_NAME-$1-$VERSION.jar ./
+  mv ./$PROJ_NAME-$1-$VERSION.jar ./$PROJ_NAME-$1-$VERSION.zip
+  unzip -q ./$PROJ_NAME-$1-$VERSION.zip -d ./$1
+  rm -rf ./$PROJ_NAME-$1-$VERSION.zip
 }
 
 function build() {
