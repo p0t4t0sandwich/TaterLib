@@ -4,6 +4,8 @@ plugins {
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
+targetCompatibility = java_version
+
 minecraft {
     // https://parchmentmc.org/docs/getting-started
     mappings(channel: mappings_channel, version: mappings_version)
@@ -11,7 +13,7 @@ minecraft {
 
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
-    minecraft("net.neoforged:forge:${minecraft_version}-${forge_version}")
+    minecraft("net.neoforged:forge:${minecraft_version}-${neoforge_version}")
 }
 
 reobf {
