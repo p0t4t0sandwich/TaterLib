@@ -4,12 +4,9 @@ plugins {
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 17
-
 minecraft {
     // https://parchmentmc.org/docs/getting-started
-    mappings(channel: 'parchment', version: mappings_version)
+    mappings(channel: mappings_channel, version: mappings_version)
 }
 
 dependencies {

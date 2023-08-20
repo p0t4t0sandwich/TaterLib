@@ -16,6 +16,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
+/**
+ * The Fabric implementation of the TaterLib command.
+ */
 public class FabricTaterLibCommand implements TaterLibCommand {
     /**
      * Registers the command.
@@ -57,5 +60,4 @@ public class FabricTaterLibCommand implements TaterLibCommand {
                 })
             ));
     }
-
 }

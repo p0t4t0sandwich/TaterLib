@@ -66,7 +66,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin/)
 
 ## TODO
-- Shade in `org.slf4j.LoggerFactory` and use that to abstract logging better for Fabric/Forge
 - Generic-ify the Forge abstractions to allow for Type inputs?
   - Or just create a wonky loader
 
@@ -84,3 +83,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Implement the Forge permissions API
 
 ## Release Notes
+- Created a GenericLogger class for better cross compatibility
