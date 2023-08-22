@@ -88,3 +88,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Created a GenericLogger class for better cross compatibility
 - Added methods to AbstractEntity
   - getX/Y/Z, getDimension, getBiome
+- Fixed FabricEntity#getType
+- Added explicit Fabric 1.19 support to avoid some cross-version issues

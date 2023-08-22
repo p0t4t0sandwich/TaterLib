@@ -49,7 +49,8 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getType() {
-        return entity.getType().toString();
+        // Turn entity.modid.mob into modid:mob
+        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /**

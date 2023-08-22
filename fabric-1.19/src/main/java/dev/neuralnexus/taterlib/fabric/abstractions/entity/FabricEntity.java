@@ -2,8 +2,11 @@ package dev.neuralnexus.taterlib.fabric.abstractions.entity;
 
 import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
 import net.minecraft.entity.Entity;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.text.Text;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.biome.Biome;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -33,7 +36,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public int getEntityId() {
-        return entity.getEntityId();
+        return entity.getId();
     }
 
     /**
@@ -41,7 +44,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public void remove() {
-        entity.remove();
+        entity.remove(Entity.RemovalReason.KILLED);
     }
 
     /**
@@ -67,7 +70,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public void setCustomName(String name) {
-        entity.setCustomName(new TranslatableComponent(name));
+        entity.setCustomName(Text.of(name));
     }
 
     /**
@@ -75,7 +78,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public double getX() {
-        return entity.getPos().getX();
+        return entity.getX();
     }
 
     /**
@@ -83,7 +86,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public double getY() {
-        return entity.getPos().getY();
+        return entity.getY();
     }
 
     /**
@@ -91,7 +94,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public double getZ() {
-        return entity.getPos().getZ();
+        return entity.getZ();
     }
 
     /**
@@ -99,7 +102,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getDimension() {
-        return entity.getEntityWorld().getDimension().getType().toString();
+        return entity.getEntityWorld().getRegistryKey().getValue().toString();
     }
 
     /**
@@ -107,6 +110,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getBiome() {
-        return entity.getEntityWorld().getBiome(entity.getBlockPos()).toString();
+        Optional<RegistryKey<Biome>> key = entity.getEntityWorld().getBiome(entity.getBlockPos()).getKey();
+        return key.map(biomeRegistryKey -> biomeRegistryKey.getValue().toString()).orElse(null);
     }
 }

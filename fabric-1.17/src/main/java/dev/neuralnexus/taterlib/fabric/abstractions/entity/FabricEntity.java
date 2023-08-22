@@ -51,7 +51,8 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getType() {
-        return entity.getType().toString();
+        // Turn entity.modid.mob into modid:mob
+        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /**
@@ -100,7 +101,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getDimension() {
-        return entity.getEntityWorld().getRegistryKey().toString();
+        return entity.getEntityWorld().getRegistryKey().getValue().toString();
     }
 
     /**

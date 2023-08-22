@@ -4,7 +4,6 @@ import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
-import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import java.util.Optional;
@@ -53,7 +52,8 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getType() {
-        return entity.getType().toString();
+        // Turn entity.modid.mob into modid:mob
+        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /**
@@ -102,7 +102,7 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getDimension() {
-        return entity.getEntityWorld().getRegistryKey().toString();
+        return entity.getEntityWorld().getRegistryKey().getValue().toString();
     }
 
     /**

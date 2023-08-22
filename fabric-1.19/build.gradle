@@ -1,0 +1,77 @@
+import net.fabricmc.loom.task.RemapJarTask
+
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('fabric-loom') version('1.3-SNAPSHOT')
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    // Minecraft and Fabric mappings
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+    // Fabric API
+    Set<String> apiModules = [
+            'fabric-api-base',
+            'fabric-command-api-v2',
+            'fabric-lifecycle-events-v1',
+            'fabric-networking-api-v1'
+    ]
+
+    apiModules.forEach {
+        modImplementation(fabricApi.module(it, project.fabric_version))
+    }
+
+    // Lucko's Permissions API
+    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+}
+
+processResources {
+    inputs.property("version", project.version)
+    inputs.property("minecraft_version", project.minecraft_version)
+    inputs.property("loader_version", project.loader_version)
+    filteringCharset("UTF-8")
+
+    filesMatching("fabric.mod.json") {
+        expand("version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "loader_version": project.loader_version)
+    }
+}
+
+shadowJar {
+    dependencies {
+        exclude('net.fabricmc:.*')
+        include(project(":common"))
+        exclude('/mappings/*')
+    }
+
+    archiveFileName = "${project_name}-fabric-${minecraft_version}-${version}-dev.jar"
+}
+
+task remappedShadowJar(type: RemapJarTask) {
+    dependsOn(tasks.shadowJar)
+    input.set(tasks.shadowJar.archiveFile)
+    addNestedDependencies.set(true)
+
+    destinationDirectory = file('../target')
+    archiveFileName = "${project_name}-fabric-${minecraft_version}-${version}.jar"
+}
+remappedShadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+tasks.assemble.dependsOn(tasks.remappedShadowJar)
+
+artifacts {
+    archives(remappedShadowJar)
+    archives(shadowJar)
+}
+
