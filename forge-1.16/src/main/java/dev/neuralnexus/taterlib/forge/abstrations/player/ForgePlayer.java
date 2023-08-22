@@ -38,7 +38,7 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public java.util.UUID getUUID() {
-        return player.getUniqueID();
+        return player.getUUID();
     }
 
     /**
@@ -102,7 +102,7 @@ public class ForgePlayer implements AbstractPlayer {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!LuckPermsHook.isHooked()) return player.hasPermissionLevel(4);
+        if (!LuckPermsHook.isHooked()) return player.hasPermissions(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
     }

@@ -27,7 +27,7 @@ public class ForgeInventory implements AbstractInventory {
      */
     @Override
     public int getSize() {
-        return inventory.getSizeInventory();
+        return inventory.getContainerSize();
     }
 
     /**
@@ -35,7 +35,7 @@ public class ForgeInventory implements AbstractInventory {
      */
     @Override
     public AbstractItemStack getItem(int slot) {
-        return new ForgeItemStack(inventory.getStackInSlot(slot));
+        return new ForgeItemStack(inventory.getItem(slot));
     }
 
     /**
@@ -43,7 +43,7 @@ public class ForgeInventory implements AbstractInventory {
      */
     @Override
     public void setItem(int slot, AbstractItemStack item) {
-        inventory.setInventorySlotContents(slot, ((ForgeItemStack) item).getItemStack());
+        inventory.setItem(slot, ((ForgeItemStack) item).getItemStack());
     }
 
     /**
@@ -63,7 +63,7 @@ public class ForgeInventory implements AbstractInventory {
     public void removeItem(AbstractItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
-                inventory.removeStackFromSlot(i);
+                inventory.removeItemNoUpdate(i);
                 return;
             }
         }
@@ -76,7 +76,7 @@ public class ForgeInventory implements AbstractInventory {
     public AbstractItemStack[] getContents() {
         AbstractItemStack[] abstractContents = new AbstractItemStack[getSize()];
         for (int i = 0; i < getSize(); i++) {
-            abstractContents[i] = new ForgeItemStack(inventory.getStackInSlot(i));
+            abstractContents[i] = new ForgeItemStack(inventory.getItem(i));
         }
         return abstractContents;
     }
@@ -87,7 +87,7 @@ public class ForgeInventory implements AbstractInventory {
     @Override
     public void setContents(AbstractItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
-            inventory.setInventorySlotContents(i, ((ForgeItemStack) items[i]).getItemStack());
+            inventory.setItem(i, ((ForgeItemStack) items[i]).getItemStack());
         }
     }
 
@@ -222,7 +222,7 @@ public class ForgeInventory implements AbstractInventory {
     public void remove(AbstractItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
-                inventory.removeStackFromSlot(i);
+                inventory.removeItemNoUpdate(i);
             }
         }
     }
@@ -234,7 +234,7 @@ public class ForgeInventory implements AbstractInventory {
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(type)) {
-                inventory.removeStackFromSlot(i);
+                inventory.removeItemNoUpdate(i);
             }
         }
     }
@@ -244,7 +244,7 @@ public class ForgeInventory implements AbstractInventory {
      */
     @Override
     public void clear() {
-        inventory.clear();
+        inventory.clearContent();
     }
 
     /**
@@ -252,6 +252,6 @@ public class ForgeInventory implements AbstractInventory {
      */
     @Override
     public void clear(int slot) {
-        inventory.removeStackFromSlot(slot);
+        inventory.removeItemNoUpdate(slot);
     }
 }

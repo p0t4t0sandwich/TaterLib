@@ -25,12 +25,8 @@ subprojects {
             name = "spigotmc-repo"
             url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
         }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/groups/public/"
-        }
 
-        // Paper
+        // Paper/Velocity
         maven {
             name = "papermc-repo"
             url = "https://repo.papermc.io/repository/maven-public/"

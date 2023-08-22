@@ -25,7 +25,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasDisplayName();
+        return itemStack.hasCustomHoverName();
     }
 
     /**
@@ -41,7 +41,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public void setDisplayName(String name) {
-        itemStack.setDisplayName(new StringTextComponent(name));
+        itemStack.setHoverName(new StringTextComponent(name));
     }
 
     /**
@@ -83,7 +83,7 @@ public class ForgeItemMeta implements AbstractItemMeta {
      */
     @Override
     public boolean isUnbreakable() {
-        return itemStack.isDamageable();
+        return itemStack.isDamageableItem();
     }
 
     /**

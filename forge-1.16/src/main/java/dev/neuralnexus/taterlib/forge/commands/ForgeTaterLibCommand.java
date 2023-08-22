@@ -38,7 +38,7 @@ public final class ForgeTaterLibCommand {
 
         // Register command
         event.getDispatcher().register(literal(TaterLibCommand.getCommandName())
-            .requires(source -> source.hasPermissionLevel(permissionLevel))
+            .requires(source -> source.hasPermission(permissionLevel))
             .then(argument("command", StringArgumentType.greedyString())
             .executes(context -> {
                 try {
@@ -49,7 +49,7 @@ public final class ForgeTaterLibCommand {
                     ForgePlayer player = isPlayer ? new ForgePlayer((PlayerEntity) context.getSource().getEntity()) : null;
 
                     AtomicInteger success = new AtomicInteger(1);
-                    Util.getServerExecutor().execute(() -> {
+                    Util.backgroundExecutor().execute(() -> {
                         try {
                             // Execute command
                             TaterLibCommand.executeCommand(player, isPlayer, args);

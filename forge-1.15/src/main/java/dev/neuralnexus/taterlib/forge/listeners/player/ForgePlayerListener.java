@@ -38,11 +38,11 @@ public class ForgePlayerListener {
         // Get the player's advancement progress
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         PlayerAdvancements playerAdvancements = server.getPlayerList().getPlayerAdvancements((ServerPlayerEntity) event.getEntity());
-        AdvancementProgress progress = playerAdvancements.getProgress(advancement);
+        AdvancementProgress progress = playerAdvancements.getOrStartProgress(advancement);
 
         // Fire the advancement finished event if the advancement is done
         DisplayInfo display = advancement.getDisplay();
-        if (display != null && display.shouldAnnounceToChat() && progress.isDone()) {
+        if (display != null && display.shouldAnnounceChat() && progress.isDone()) {
             PlayerListener.onPlayerAdvancementFinished(player, advancement.getDisplay().getTitle().getString());
         }
     }
@@ -55,7 +55,7 @@ public class ForgePlayerListener {
     public void onPlayerDeath(LivingDeathEvent event) {
         LivingEntity entity = (LivingEntity) event.getEntity();
         if (entity instanceof PlayerEntity) {
-            PlayerListener.onPlayerDeath(new ForgePlayer((PlayerEntity) entity), event.getSource().getDeathMessage(entity).getString());
+            PlayerListener.onPlayerDeath(new ForgePlayer((PlayerEntity) entity), event.getSource().getLocalizedDeathMessage(entity).getString());
         }
     }
 

@@ -84,3 +84,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 - Created a GenericLogger class for better cross compatibility
+- Added getX/Y/Z methods to AbstractEntity

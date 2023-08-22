@@ -19,7 +19,7 @@ public class ForgeEntityListener {
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
         LivingEntity entity = (LivingEntity) event.getEntity();
-        EntityListener.onEntityDeath(new ForgeEntity(entity), event.getSource().getDeathMessage(entity).getString());
+        EntityListener.onEntityDeath(new ForgeEntity(entity), event.getSource().getLocalizedDeathMessage(entity).getString());
     }
 
     /**
