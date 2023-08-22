@@ -7,7 +7,6 @@ plugins {
 targetCompatibility = java_version
 
 minecraft {
-    // https://parchmentmc.org/docs/getting-started
     mappings(channel: mappings_channel, version: mappings_version)
 }
 
