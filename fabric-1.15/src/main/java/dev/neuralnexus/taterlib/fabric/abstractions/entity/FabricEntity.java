@@ -92,4 +92,20 @@ public class FabricEntity implements AbstractEntity {
     public double getZ() {
         return entity.getZ();
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        return entity.getEntityWorld().getDimension().getType().toString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        return entity.getEntityWorld().getBiome(entity.getBlockPos()).toString();
+    }
 }

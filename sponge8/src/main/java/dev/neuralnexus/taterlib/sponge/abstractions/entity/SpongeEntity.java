@@ -4,6 +4,12 @@ import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.Entity;
+import org.spongepowered.api.registry.Registry;
+import org.spongepowered.api.registry.RegistryType;
+import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.world.biome.Biome;
+import org.spongepowered.api.world.biome.Biomes;
+import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.UUID;
 
@@ -94,5 +100,26 @@ public class SpongeEntity implements AbstractEntity {
     @Override
     public double getZ() {
         return entity.position().z();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        if (!entity.get(Keys.MAP_WORLD).isPresent()) {
+            return null;
+        }
+        return entity.get(Keys.MAP_WORLD).get().asString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        Biome biome = entity.location().world().biome(entity.location().blockPosition());
+        Registry<Biome> registry = entity.location().world().registry(RegistryTypes.BIOME);
+        return registry.findValueKey(biome).get().asString();
     }
 }

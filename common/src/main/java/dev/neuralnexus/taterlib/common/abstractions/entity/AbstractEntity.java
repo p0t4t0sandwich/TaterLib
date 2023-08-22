@@ -58,4 +58,16 @@ public interface AbstractEntity {
      * @return The z position of the entity
      */
     double getZ();
+
+    /**
+     * Get the current dimension of the entity
+     * @return The current dimension of the entity
+     */
+    String getDimension();
+
+    /**
+     * Get the current biome of the entity
+     * @return The current biome of the entity
+     */
+    String getBiome();
 }

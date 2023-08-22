@@ -63,7 +63,9 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge (some versions), an
 
 Feel free to open a PR to add your plugin/mod to this list!
 
-- [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin/)
+- [BadSpawns](https://github.com/p0t4t0sandwich/BadSpawns)
+- [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
+- [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
 ## TODO
 - Generic-ify the Forge abstractions to allow for Type inputs?
@@ -84,4 +86,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 - Created a GenericLogger class for better cross compatibility
-- Added getX/Y/Z methods to AbstractEntity
+- Added methods to AbstractEntity
+  - getX/Y/Z
+  - getDimension
+  - getBiome

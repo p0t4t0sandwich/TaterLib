@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.forge.abstrations.entity;
 
 import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
 
 import java.util.UUID;
@@ -91,5 +92,24 @@ public class ForgeEntity implements AbstractEntity {
     @Override
     public double getZ() {
         return entity.getZ();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        ResourceLocation resourceLocation = entity.level.dimension().getRegistryName();
+        return resourceLocation.getNamespace() + ":" + resourceLocation.getPath();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        ResourceLocation biomeRegistry = entity.level.getBiome(entity.blockPosition()).getRegistryName();
+        if (biomeRegistry == null) return null;
+        return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
     }
 }

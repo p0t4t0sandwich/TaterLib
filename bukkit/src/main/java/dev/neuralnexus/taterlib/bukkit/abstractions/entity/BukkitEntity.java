@@ -90,4 +90,23 @@ public class BukkitEntity implements AbstractEntity {
     public double getZ() {
         return entity.getLocation().getZ();
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        if (entity.getLocation().getWorld() == null) {
+            return null;
+        }
+        return entity.getLocation().getWorld().getName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        return entity.getLocation().getBlock().getBiome().name();
+    }
 }

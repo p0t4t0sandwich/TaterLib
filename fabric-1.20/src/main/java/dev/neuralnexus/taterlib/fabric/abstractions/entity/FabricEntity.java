@@ -2,8 +2,12 @@ package dev.neuralnexus.taterlib.fabric.abstractions.entity;
 
 import dev.neuralnexus.taterlib.common.abstractions.entity.AbstractEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -91,5 +95,22 @@ public class FabricEntity implements AbstractEntity {
     @Override
     public double getZ() {
         return entity.getZ();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        return entity.getEntityWorld().getRegistryKey().toString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        Optional<RegistryKey<Biome>> key = entity.getEntityWorld().getBiome(entity.getBlockPos()).getKey();
+        return key.map(biomeRegistryKey -> biomeRegistryKey.getValue().toString()).orElse(null);
     }
 }

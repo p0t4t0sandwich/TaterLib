@@ -29,7 +29,7 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
      */
     @Override
     public AbstractLogger pluginLogger() {
-        return new FabricLogger( "[TaterLib] ",LoggerFactory.getLogger(MOD_ID));
+        return new FabricLogger( "[TaterLib] ", LoggerFactory.getLogger(MOD_ID));
     }
 
     /**
