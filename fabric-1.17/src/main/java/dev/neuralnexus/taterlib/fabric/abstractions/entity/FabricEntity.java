@@ -68,4 +68,28 @@ public class FabricEntity implements AbstractEntity {
     public void setCustomName(String name) {
         entity.setCustomName(Text.of(name));
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return entity.getX();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return entity.getY();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return entity.getZ();
+    }
 }

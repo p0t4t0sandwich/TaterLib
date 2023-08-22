@@ -71,4 +71,28 @@ public class SpongeEntity implements AbstractEntity {
     public void setCustomName(String name) {
         entity.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return entity.position().x();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return entity.position().y();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return entity.position().z();
+    }
 }

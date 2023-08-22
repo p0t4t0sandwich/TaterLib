@@ -40,4 +40,22 @@ public interface AbstractEntity {
      * @param name The custom name of the entity
      */
     void setCustomName(String name);
+
+    /**
+     * Get the x position of the entity
+     * @return The x position of the entity
+     */
+    double getX();
+
+    /**
+     * Get the y position of the entity
+     * @return The y position of the entity
+     */
+    double getY();
+
+    /**
+     * Get the z position of the entity
+     * @return The z position of the entity
+     */
+    double getZ();
 }

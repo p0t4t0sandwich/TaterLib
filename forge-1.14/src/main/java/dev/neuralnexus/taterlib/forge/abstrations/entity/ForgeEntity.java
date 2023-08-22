@@ -68,4 +68,28 @@ public class ForgeEntity implements AbstractEntity {
     public void setCustomName(String name) {
         entity.setCustomName(new StringTextComponent(name));
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return entity.getPosition().getX();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return entity.getPosition().getY();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return entity.getPosition().getZ();
+    }
 }

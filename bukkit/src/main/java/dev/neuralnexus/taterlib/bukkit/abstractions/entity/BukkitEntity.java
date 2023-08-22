@@ -66,4 +66,28 @@ public class BukkitEntity implements AbstractEntity {
     public void setCustomName(String name) {
         entity.setCustomName(name);
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return entity.getLocation().getX();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return entity.getLocation().getY();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return entity.getLocation().getZ();
+    }
 }

@@ -25,7 +25,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public UUID getUniqueId() {
-        return entity.getUniqueID();
+        return entity.getUUID();
     }
 
     /**
@@ -33,7 +33,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public int getEntityId() {
-        return entity.getEntityId();
+        return entity.getId();
     }
 
     /**
@@ -67,5 +67,29 @@ public class ForgeEntity implements AbstractEntity {
     @Override
     public void setCustomName(String name) {
         entity.setCustomName(new StringTextComponent(name));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return entity.getX();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return entity.getY();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return entity.getZ();
     }
 }
