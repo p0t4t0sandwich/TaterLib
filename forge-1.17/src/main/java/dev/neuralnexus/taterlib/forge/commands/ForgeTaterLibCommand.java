@@ -27,7 +27,7 @@ public final class ForgeTaterLibCommand {
      * @param event The register commands event.
      */
     @SubscribeEvent
-    public void registerCommand(RegisterCommandsEvent event) {
+    public static void registerCommand(RegisterCommandsEvent event) {
         int permissionLevel;
         if (event.getEnvironment() == Commands.CommandSelection.DEDICATED) {
             // Check if LuckPerms is hooked
