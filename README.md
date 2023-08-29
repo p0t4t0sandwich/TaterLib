@@ -35,16 +35,17 @@ dependencies {
 
 TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
-| Server type         | Versions    | Jar Name                         |
-|---------------------|-------------|----------------------------------|
-| All 1.20 (Sponge11) | 1.20-1.20.1 | `TaterLib-1.20-<version>.jar`    |
-| All 1.19 (Sponge10) | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar`    |
-| All 1.18 (Sponge9)  | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar`    |
-| All 1.17 (Sponge9)  | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar`    |
-| All 1.16 (Sponge8)  | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar`    |
-| All 1.15 (Sponge8)  | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar`    |
-| All 1.14            | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar`    |
-| Sponge 7            | 1.12.2      | `TaterLib-sponge7-<version>.jar` |
+| Server type          | Versions    | Jar Name                      |
+|----------------------|-------------|-------------------------------|
+| All 1.20 (Sponge11)  | 1.20-1.20.1 | `TaterLib-1.20-<version>.jar` |
+| All 1.19 (Sponge10)  | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar` |
+| All 1.18 (Sponge9)   | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar` |
+| All 1.17 (Sponge9)   | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar` |
+| All 1.16 (Sponge8)   | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar` |
+| All 1.15 (Sponge8)   | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar` |
+| All 1.14             | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar` |
+| All 1.13 (no Fabric) | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar` |
+| All 1.12 (no Fabric) | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar` |
 
 ## Dependencies
 
@@ -69,8 +70,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
 ## TODO
-- Generic-ify the Forge abstractions to allow for Type inputs?
-  - Or just create a wonky loader
 
 ### Abstractions
 - Command abstraction
@@ -94,3 +93,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Fixed `registerCommand`s that weren't declared static
 - Added proper version getters for `TemplateFabricPlugin`
 - Ported Sponge to 7, 9, 10, and 11
+- Back ported Forge to 1.12.2

@@ -38,6 +38,7 @@ function build() {
   cp ./forge-$2/pack.mcmeta ./$3
   cp -r ./forge-$2/$PROJ_NAME.png ./$3
   cp ./forge-$2/META-INF/mods.toml ./$3/META-INF
+  cp ./forge-$2/mcmod.info ./$3
 
   # Zip Jar contents
   cd ./$3
@@ -77,6 +78,7 @@ function spongebuild() {
       cp ./forge-$2/pack.mcmeta ./$4
       cp -r ./forge-$2/$PROJ_NAME.png ./$4
       cp ./forge-$2/META-INF/mods.toml ./$4/META-INF
+      cp ./forge-$2/mcmod.info ./$4
 
       # Copy sponge files
       cp -r ./sponge$3/$GROUP_ID/$PROJ_ID/sponge ./$4/$GROUP_ID/$PROJ_ID
@@ -192,7 +194,7 @@ rm -rf ./common
 
 # --------------------------- Prepare Sponge --------------------------------
 
-SPONGE_VERSIONS=(8 9 10 11)
+SPONGE_VERSIONS=(7 8 9 10 11)
 for SPONGE_VERSION in "${SPONGE_VERSIONS[@]}"
 do
     prepareFiles sponge$SPONGE_VERSION
@@ -208,7 +210,7 @@ done
 
 # --------------------------- Prepare Forge --------------------------------
 
-FORGE_VERSIONS=(1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
+FORGE_VERSIONS=(1.12.2 1.13.2 1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
 for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
 do
     prepareFiles forge-$FORGE_VERSION
@@ -221,6 +223,21 @@ for NEOFORGE_VERSION in "${NEOFORGE_VERSIONS[@]}"
 do
     prepareFiles neoforge-$NEOFORGE_VERSION
 done
+
+# --------------------------- Build 1.12 --------------------------------
+MC_VERSION=1.12
+FABRIC_VERSION=1.12
+FORGE_VERSION=1.12.2
+SPONGE_VERSION=7
+OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
+
+# --------------------------- Build 1.13 --------------------------------
+MC_VERSION=1.13
+FABRIC_VERSION=1.13
+FORGE_VERSION=1.13.2
+OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
+build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.14 --------------------------------
 MC_VERSION=1.14
