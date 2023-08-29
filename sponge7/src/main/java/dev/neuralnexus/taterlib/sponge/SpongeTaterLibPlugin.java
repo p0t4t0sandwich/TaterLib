@@ -3,26 +3,24 @@ package dev.neuralnexus.taterlib.sponge;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.sponge.abstractions.logger.SpongeLogger;
 import dev.neuralnexus.taterlib.sponge.commands.SpongeTaterLibCommand;
 import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
-import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
-import org.spongepowered.api.event.lifecycle.StartingEngineEvent;
-import org.spongepowered.api.event.lifecycle.StoppingEngineEvent;
-import org.spongepowered.plugin.PluginContainer;
-import org.spongepowered.plugin.builtin.jvm.Plugin;
+import org.spongepowered.api.event.game.state.GameStartedServerEvent;
+import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
+import org.spongepowered.api.plugin.Plugin;
+import org.spongepowered.api.plugin.PluginContainer;
 import com.google.inject.Inject;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
 
-@Plugin("taterlib")
+@Plugin(id = "taterlib", name = "TaterLib", version = "1.0.2-SNAPSHOT", description = "A cross API code library for various generalizations used in the Tater* plugins")
 public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterLibPlugin {
     @Inject
     private Logger logger;
@@ -44,7 +42,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
     @Override
     public void registerHooks() {
         // Register LuckPerms hook
-        if (Sponge.pluginManager().plugin("luckperms").isPresent()) {
+        if (Sponge.getPluginManager().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
             TaterLib.addHook(new LuckPermsHook());
         }
@@ -55,7 +53,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      */
     @Override
     public void registerEventListeners() {
-        EventManager eventManager = Sponge.eventManager();
+        EventManager eventManager = Sponge.getEventManager();
 
         // Register entity event listeners
         eventManager.registerListeners(this.container, new SpongeEntityListener());
@@ -71,15 +69,8 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      * @inheritDoc
      */
     @Override
-    public void registerCommands() {}
-
-    /**
-     * Register commands.
-     * @param event The event
-     */
-    @Listener
-    public void onRegisterCommands(final RegisterCommandEvent<Command.Parameterized> event) {
-        new SpongeTaterLibCommand().onRegisterCommands(container, event);
+    public void registerCommands() {
+        new SpongeTaterLibCommand().onRegisterCommands(container);
     }
 
     /**
@@ -87,7 +78,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      * @param event The event
      */
     @Listener
-    public void onServerStarting(StartingEngineEvent<Server> event) {
+    public void onServerStarting(GameStartedServerEvent event) {
         pluginStart();
     }
 
@@ -96,7 +87,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      * @param event The event
      */
     @Listener
-    public void onServerStopping(StoppingEngineEvent<Server> event) {
+    public void onServerStopped(GameStoppedServerEvent event) {
         pluginStop();
     }
 }

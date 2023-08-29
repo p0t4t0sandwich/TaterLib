@@ -99,45 +99,49 @@ function spongebuild() {
 }
 
 function neobuild() {
-  echo "Building using Forge $2, Fabric $1 and NeoForge $3"
+  echo "Building using Forge $2, Fabric $1, Sponge $3, and NeoForge $4"
 
-  mkdir -p ./$4
-  mkdir -p ./$4/META-INF
+  mkdir -p ./$5
+  mkdir -p ./$5/META-INF
 
   # Copy common files
-  cp -r ./$PROJ_NAME-all/* ./$4/
+  cp -r ./$PROJ_NAME-all/* ./$5/
 
   # Copy fabric files
-  cp -r ./fabric-$1/$GROUP_ID/$PROJ_ID/fabric ./$4/$GROUP_ID/$PROJ_ID
-  cp ./fabric-$1/fabric.mod.json ./$4
-  cp ./fabric-$1/$PROJ_ID.mixins.json ./$4
-  cp -r ./fabric-$1/assets ./$4
-  cp ./fabric-$1/fabric-$1-refmap.json ./$4
-  cp -r ./fabric-$1/META-INF/jars ./$4/META-INF
+  cp -r ./fabric-$1/$GROUP_ID/$PROJ_ID/fabric ./$5/$GROUP_ID/$PROJ_ID
+  cp ./fabric-$1/fabric.mod.json ./$5
+  cp ./fabric-$1/$PROJ_ID.mixins.json ./$5
+  cp -r ./fabric-$1/assets ./$5
+  cp ./fabric-$1/fabric-$1-refmap.json ./$5
+  cp -r ./fabric-$1/META-INF/jars ./$5/META-INF
 
   # Copy forge files
-  cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$4/$GROUP_ID/$PROJ_ID
-  cp ./forge-$2/pack.mcmeta ./$4
-  cp -r ./forge-$2/$PROJ_NAME.png ./$4
-  cp ./forge-$2/META-INF/mods.toml ./$4/META-INF
+  cp -r ./forge-$2/$GROUP_ID/$PROJ_ID/forge ./$5/$GROUP_ID/$PROJ_ID
+  cp ./forge-$2/pack.mcmeta ./$5
+  cp -r ./forge-$2/$PROJ_NAME.png ./$5
+  cp ./forge-$2/META-INF/mods.toml ./$5/META-INF
+
+  # Copy sponge files
+  cp -r ./sponge$3/$GROUP_ID/$PROJ_ID/sponge ./$5/$GROUP_ID/$PROJ_ID
+  cp ./sponge$3/META-INF/sponge_plugins.json ./$5/META-INF
 
   # Copy neoforge files
-  cp -r ./neoforge-$3/$GROUP_ID/$PROJ_ID/neoforge ./$4/$GROUP_ID/$PROJ_ID
+  cp -r ./neoforge-$4/$GROUP_ID/$PROJ_ID/neoforge ./$5/$GROUP_ID/$PROJ_ID
 
   # Zip Jar contents
-  cd ./$4
-  zip -qr ../$4.zip ./*
+  cd ./$5
+  zip -qr ../$5.zip ./*
   cd ../
 
   # Rename Jar
-  mv ./$4.zip ./$4.jar
+  mv ./$5.zip ./$5.jar
 
   # Generate MD5
-  md5sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.MD5
+  md5sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.MD5
 
   # Move Jar
-  mv ./$4.jar ../$4.jar
-  mv ./$4.jar.MD5 ../$4.jar.MD5
+  mv ./$5.jar ../$5.jar
+  mv ./$5.jar.MD5 ../$5.jar.MD5
 }
 
 # --------------------------- Setup --------------------------------
@@ -188,7 +192,7 @@ rm -rf ./common
 
 # --------------------------- Prepare Sponge --------------------------------
 
-SPONGE_VERSIONS=(8)
+SPONGE_VERSIONS=(8 9 10 11)
 for SPONGE_VERSION in "${SPONGE_VERSIONS[@]}"
 do
     prepareFiles sponge$SPONGE_VERSION
@@ -229,8 +233,9 @@ build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 MC_VERSION=1.15
 FABRIC_VERSION=1.15
 FORGE_VERSION=1.15.1
+SPONGE_VERSION=8
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.16 --------------------------------
 MC_VERSION=1.16
@@ -244,30 +249,34 @@ spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 MC_VERSION=1.17
 FABRIC_VERSION=1.17
 FORGE_VERSION=1.17.1
+SPONGE_VERSION=9
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.18 --------------------------------
 MC_VERSION=1.18
 FABRIC_VERSION=1.17
 FORGE_VERSION=1.18
+SPONGE_VERSION=9
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.19 --------------------------------
 MC_VERSION=1.19
 FABRIC_VERSION=1.19
 FORGE_VERSION=1.19
+SPONGE_VERSION=10
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.20 --------------------------------
 MC_VERSION=1.20
 FABRIC_VERSION=1.20
 FORGE_VERSION=1.20
+SPONGE_VERSION=11
 NEOFORGE_VERSION=1.20.1
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-neobuild $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_VERSION $OUT_FILE
+neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
 
 # --------------------------- Cleanup --------------------------------
 cd ../
