@@ -93,4 +93,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added explicit Fabric 1.19 support to avoid some cross-version issues
 - Fixed `registerCommand`s that weren't declared static
 - Added proper version getters for `TemplateFabricPlugin`
-- Ported Sponge to 9, 10, and 11
+- Ported Sponge to 7, 9, 10, and 11

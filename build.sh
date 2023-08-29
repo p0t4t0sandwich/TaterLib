@@ -208,7 +208,7 @@ done
 
 # --------------------------- Prepare Forge --------------------------------
 
-FORGE_VERSIONS=(1.14.3 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
+FORGE_VERSIONS=(1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
 for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
 do
     prepareFiles forge-$FORGE_VERSION
@@ -225,7 +225,7 @@ done
 # --------------------------- Build 1.14 --------------------------------
 MC_VERSION=1.14
 FABRIC_VERSION=1.14
-FORGE_VERSION=1.14.3
+FORGE_VERSION=1.14.4
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
 build $FABRIC_VERSION $FORGE_VERSION $OUT_FILE
 
