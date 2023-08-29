@@ -3,7 +3,11 @@ package dev.neuralnexus.taterlib.fabric;
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.server.MinecraftServer;
+
+import java.util.Optional;
 
 public class TemplateFabricPlugin implements DedicatedServerModInitializer, TemplatePlugin {
     public static MinecraftServer server;
@@ -22,6 +26,27 @@ public class TemplateFabricPlugin implements DedicatedServerModInitializer, Temp
     @Override
     public String pluginConfigPath() {
         return "config";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getServerType() {
+        return "Fabric";
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getServerVersion() {
+        String version = "Unknown";
+        Optional<ModContainer> minecraftModContainer = FabricLoader.getInstance().getModContainer("minecraft");
+        if (minecraftModContainer.isPresent()) {
+            version = minecraftModContainer.get().getMetadata().getVersion().getFriendlyString();
+        }
+        return version;
     }
 
     /**
