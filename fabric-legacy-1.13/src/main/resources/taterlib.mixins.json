@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.neuralnexus.taterlib.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "server": [
+    "listeners.entity.FabricEntityDeathMixin",
+    "listeners.entity.FabricEntitySpawnMixin",
+    "listeners.player.FabricPlayerAdvancementMixin",
+    "listeners.player.FabricPlayerDeathMixin",
+    "listeners.player.FabricPlayerMessageMixin",
+    "listeners.player.FabricPlayerRespawnMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
