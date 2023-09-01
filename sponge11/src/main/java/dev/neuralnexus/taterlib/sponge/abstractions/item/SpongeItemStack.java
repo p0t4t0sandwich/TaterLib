@@ -8,6 +8,7 @@ import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.item.inventory.ItemStack;
+import org.spongepowered.api.registry.Registry;
 
 /**
  * Abstracts a Sponge item stack to an AbstractItemStack.
@@ -52,16 +53,8 @@ public class SpongeItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        // Turn ItemName into item_name
-        // TODO: Make this less jank
-        String ItemName = itemStack.type().toString().split("Item")[0];
-        for (int i = 0; i < ItemName.length(); i++) {
-            if (Character.isUpperCase(ItemName.charAt(i))) {
-                ItemName = ItemName.substring(0, i) + "_" + ItemName.substring(i);
-                i++;
-            }
-        }
-        return "minecraft:" + ItemName.toLowerCase().substring(1);
+        Registry<ItemType> itemTypeRegistry = ItemTypes.registry();
+        return itemTypeRegistry.valueKey(itemStack.type()).asString();
     }
 
     /**

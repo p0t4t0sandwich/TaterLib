@@ -27,7 +27,7 @@ import org.slf4j.Logger;
 @Plugin(
         id = "taterlib",
         name = "TaterLib",
-        version = "1.0.0",
+        version = "1.0.2",
         authors = "p0t4t0sandwich",
         description = "A cross API code library for various generalizations used in the Tater* plugins",
         url = "https://github.com/p0t4t0sandwich/TaterLib",

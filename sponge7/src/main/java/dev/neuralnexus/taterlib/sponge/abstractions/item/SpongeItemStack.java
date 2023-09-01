@@ -47,16 +47,7 @@ public class SpongeItemStack implements AbstractItemStack {
      */
     @Override
     public String getType() {
-        // Turn ItemName into item_name
-        // TODO: Make this less jank
-        String ItemName = itemStack.getType().toString().split("Item")[0];
-        for (int i = 0; i < ItemName.length(); i++) {
-            if (Character.isUpperCase(ItemName.charAt(i))) {
-                ItemName = ItemName.substring(0, i) + "_" + ItemName.substring(i);
-                i++;
-            }
-        }
-        return "minecraft:" + ItemName.toLowerCase().substring(1);
+        return itemStack.getType().getName();
     }
 
     /**

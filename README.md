@@ -94,3 +94,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added proper version getters for `TemplateFabricPlugin`
 - Ported Sponge to 7, 9, 10, and 11
 - Back ported Forge to 1.12.2
+- Fixed `SpongeItemStack#getType` to be unjankified
