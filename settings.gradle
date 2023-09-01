@@ -1,7 +1,8 @@
 pluginManagement {
     repositories {
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
 
         // Fabric
         maven {
@@ -43,10 +44,22 @@ pluginManagement {
             name = 'sponge-repo'
             url = 'https://repo.spongepowered.org/repository/maven-public/'
         }
+
+        // RetroFuturaGradle
+        maven {
+            name = "GTNH Maven"
+            url = uri("http://jenkins.usrv.eu:8081/nexus/content/groups/public/")
+            allowInsecureProtocol = true
+            mavenContent {
+                includeGroup("com.gtnewhorizons")
+                includeGroup("com.gtnewhorizons.retrofuturagradle")
+            }
+        }
     }
 }
 
 plugins {
+    // Automatic toolchain provisioning
     id("org.gradle.toolchains.foojay-resolver-convention") version("0.5.0")
 }
 
@@ -63,6 +76,7 @@ include(
         'fabric-1.17',
         'fabric-1.19',
         'fabric-1.20',
+//        'forge-1.11',
         'forge-1.12',
         'forge-1.13',
         'forge-1.14',

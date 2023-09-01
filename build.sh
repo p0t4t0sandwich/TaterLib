@@ -2,7 +2,7 @@
 
 PROJ_ID=taterlib
 PROJ_NAME=TaterLib
-VERSION=1.0.2-SNAPSHOT
+VERSION=1.0.2-R02-SNAPSHOT
 GROUP_ID=dev/neuralnexus
 
 # --------------------------- Functions --------------------------------
@@ -194,7 +194,7 @@ rm -rf ./common
 
 # --------------------------- Prepare Sponge --------------------------------
 
-SPONGE_VERSIONS=(7 8 9 10 11)
+SPONGE_VERSIONS=(6 7 8 9 10 11)
 for SPONGE_VERSION in "${SPONGE_VERSIONS[@]}"
 do
     prepareFiles sponge$SPONGE_VERSION
@@ -210,7 +210,7 @@ done
 
 # --------------------------- Prepare Forge --------------------------------
 
-FORGE_VERSIONS=(1.12.2 1.13.2 1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
+FORGE_VERSIONS=(1.11.2 1.12.2 1.13.2 1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20)
 for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
 do
     prepareFiles forge-$FORGE_VERSION
@@ -223,6 +223,14 @@ for NEOFORGE_VERSION in "${NEOFORGE_VERSIONS[@]}"
 do
     prepareFiles neoforge-$NEOFORGE_VERSION
 done
+
+# --------------------------- Build 1.11 --------------------------------
+MC_VERSION=1.11
+FABRIC_VERSION=1.11
+FORGE_VERSION=1.11.2
+SPONGE_VERSION=6
+OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
+spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.12 --------------------------------
 MC_VERSION=1.12
