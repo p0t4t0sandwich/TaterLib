@@ -89,7 +89,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added methods to AbstractEntity
   - getX/Y/Z, getDimension, getBiome
 - Fixed FabricEntity#getType
-- Added explicit Fabric 1.19 support to avoid some cross-version issues
+- Added explicit Fabric 1.18 and 1.19 support to avoid some cross-version issues
 - Fixed `registerCommand`s that weren't declared static
 - Added proper version getters for `TemplateFabricPlugin`
 - Ported Sponge to 6, 7, 9, 10, and 11

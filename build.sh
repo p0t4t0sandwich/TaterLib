@@ -202,7 +202,7 @@ done
 
 # --------------------------- Prepare Fabric --------------------------------
 
-FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.19 1.20)
+FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20)
 for FABRIC_VERSION in "${FABRIC_VERSIONS[@]}"
 do
     prepareFiles fabric-$FABRIC_VERSION
@@ -280,7 +280,7 @@ spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 
 # --------------------------- Build 1.18 --------------------------------
 MC_VERSION=1.18
-FABRIC_VERSION=1.17
+FABRIC_VERSION=1.18
 FORGE_VERSION=1.18
 SPONGE_VERSION=9
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION

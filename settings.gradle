@@ -74,6 +74,7 @@ include(
         'fabric-1.15',
         'fabric-1.16',
         'fabric-1.17',
+        'fabric-1.18',
         'fabric-1.19',
         'fabric-1.20',
 //        'forge-1.11',
@@ -88,10 +89,10 @@ include(
         'forge-1.20',
         'neoforge-1.20.1',
         'sponge6',
-//        'sponge7',
-//        'sponge8',
-//        'sponge9',
-//        'sponge10',
-//        'sponge11',
+        'sponge7',
+        'sponge8',
+        'sponge9',
+        'sponge10',
+        'sponge11',
         'velocity'
 )
