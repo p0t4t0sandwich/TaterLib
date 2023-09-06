@@ -1,5 +1,11 @@
 # TaterLib
 
+[![License](https://img.shields.io/github/license/p0t4t0sandwich/TaterLib?color=blue)](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/LICENSE)
+[![Github](https://img.shields.io/github/stars/p0t4t0sandwich/TaterLib)](https://github.com/p0t4t0sandwich/TaterLib)
+[![Github Issues](https://img.shields.io/github/issues/p0t4t0sandwich/TaterLib?label=Issues)](https://github.com/p0t4t0sandwich/TaterLib/issues)
+[![Discord](https://img.shields.io/discord/1067482396246683708?color=7289da&logo=discord&logoColor=white)](https://discord.neuralnexus.dev)
+[![wakatime](https://wakatime.com/badge/user/fc67ce74-ca69-40a4-912f-61b26dbe3068/project/ba087a5d-fd50-4b54-9723-3effbfda7567.svg)](https://wakatime.com/badge/user/fc67ce74-ca69-40a4-912f-61b26dbe3068/project/ba087a5d-fd50-4b54-9723-3effbfda7567)
+
 A cross API code library for various generalizations used in the Tater* plugins
 
 Please note, some abstractions may not be fully implemented yet, and some may be missing.
@@ -9,13 +15,15 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 
 ## Download
 
-- [GitHub](https://github.com/p0t4t0sandwich/TaterLib/releases)
-- [Maven Repo](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/TaterLib)
-- [Spigot](https://www.spigotmc.org/resources/taterlib.111852/)
-- [Hangar](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
-- [Modrinth](https://modrinth.com/plugin/taterlib)
-- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/taterlib)
-- [Sponge](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
+[![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/TaterLib/releases)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/TaterLib)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/TaterLib)
+<br>
+[![Spigot](https://img.shields.io/spiget/downloads/111852?label=Spigot&logo=spigotmc&color=ED8106)](https://www.spigotmc.org/resources/taterlib.111852/)
+[![Hangar](https://img.shields.io/badge/Hangar-download-blue)](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
+[![Modrinth](https://img.shields.io/modrinth/dt/taterlib?label=Modrinth&logo=modrinth&color=00AF5C)](https://modrinth.com/mod/taterlib)
+[![CurseForge](https://img.shields.io/curseforge/dt/900128?label=CurseForge&logo=curseforge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/taterlib)
+[![Sponge](https://img.shields.io/ore/dt/taterlib?label=Sponge&logo=https%3A%2F%2Fspongepowered.org%2Ffavicon.ico&color=F7CF0D)](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
 
 ### Adding to your project
 ```gradle
