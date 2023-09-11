@@ -25,7 +25,7 @@ public abstract class FabricPlayerMessageMixin {
      * @param packet The packet.
      * @param ci The callback info.
      */
-    @Inject(method = "onGameMessage", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "onChatMessage", at = @At("HEAD"), cancellable = true)
     public void onPlayerMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
         if (packet.getChatMessage().startsWith("/")) return;
         if (TaterLib.cancelChat) ci.cancel();
