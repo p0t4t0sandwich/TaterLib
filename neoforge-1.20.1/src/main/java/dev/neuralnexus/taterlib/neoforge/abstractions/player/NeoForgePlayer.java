@@ -2,10 +2,15 @@ package dev.neuralnexus.taterlib.neoforge.abstractions.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.neoforge.abstractions.util.NeoForgeConversions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+
+import java.util.UUID;
 
 /**
  * Abstracts a Forge player to an AbstractPlayer.
@@ -37,7 +42,7 @@ public class NeoForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public java.util.UUID getUUID() {
+    public UUID getUUID() {
         return player.getUUID();
     }
 
@@ -55,6 +60,14 @@ public class NeoForgePlayer implements AbstractPlayer {
     @Override
     public String getDisplayName() {
         return player.getDisplayName().getString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Position getPosition() {
+        return NeoForgeConversions.positionFromVector(player.position());
     }
 
     /**
@@ -95,6 +108,14 @@ public class NeoForgePlayer implements AbstractPlayer {
     @Override
     public void kickPlayer(String message) {
         ((ServerPlayer) player).connection.disconnect(Component.empty().append(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {
+        ((ServerPlayer) player).setRespawnPosition(Level.OVERWORLD, NeoForgeConversions.locationFromPosition(position), 0, true, false);
     }
 
     /**

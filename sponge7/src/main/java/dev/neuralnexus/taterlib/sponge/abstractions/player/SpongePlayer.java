@@ -2,6 +2,8 @@ package dev.neuralnexus.taterlib.sponge.abstractions.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
+import dev.neuralnexus.taterlib.sponge.abstractions.util.SpongeConversions;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
@@ -51,6 +53,14 @@ public class SpongePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public Position getPosition() {
+        return SpongeConversions.positionFromVector(player.getLocation().getPosition());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getServerName() {
         return serverName;
     }
@@ -83,15 +93,21 @@ public class SpongePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public boolean hasPermission(String permission) {
-        return player.hasPermission(permission);
+    public void kickPlayer(String message) {
+        player.kick(Text.of(message));
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void kickPlayer(String message) {
-        player.kick(Text.of(message));
+    public void setSpawn(Position position) {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(String permission) {
+        return player.hasPermission(permission);
     }
 }

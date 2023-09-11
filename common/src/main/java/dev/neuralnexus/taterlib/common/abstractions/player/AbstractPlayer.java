@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.common.abstractions.player;
 
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
 
@@ -27,6 +28,12 @@ public interface AbstractPlayer {
      * @return The display name of the player
      */
     String getDisplayName();
+
+    /**
+     * Get the position of the player
+     * @return The position of the player
+     */
+    Position getPosition();
 
     /**
      * Get the server the player is on
@@ -69,6 +76,12 @@ public interface AbstractPlayer {
      * @param message The reason to kick the player
      */
     void kickPlayer(String message);
+
+    /**
+     * Set the player's spawn point
+     * @param position The position to set the spawn point to
+     */
+    void setSpawn(Position position);
 
     /**
      * Perform a command as the player

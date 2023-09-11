@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.bungee.abstractions.player;
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -68,6 +69,14 @@ public class BungeePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public Position getPosition() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getServerName() {
         return serverName;
     }
@@ -111,4 +120,10 @@ public class BungeePlayer implements AbstractPlayer {
     public void kickPlayer(String message) {
         player.disconnect(new ComponentBuilder(message).create());
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {}
 }

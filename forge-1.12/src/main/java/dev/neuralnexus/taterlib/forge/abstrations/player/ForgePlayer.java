@@ -2,11 +2,15 @@ package dev.neuralnexus.taterlib.forge.abstrations.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.abstrations.util.ForgeConversions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.server.permission.PermissionAPI;
+
+import java.util.UUID;
 
 /**
  * Abstracts a Forge player to an AbstractPlayer.
@@ -38,7 +42,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public java.util.UUID getUUID() {
+    public UUID getUUID() {
         return player.getUniqueID();
     }
 
@@ -56,6 +60,14 @@ public class ForgePlayer implements AbstractPlayer {
     @Override
     public String getDisplayName() {
         return player.getDisplayName().getFormattedText();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Position getPosition() {
+        return ForgeConversions.positionFromVector(player.getPositionVector());
     }
 
     /**
@@ -96,6 +108,14 @@ public class ForgePlayer implements AbstractPlayer {
     @Override
     public void kickPlayer(String message) {
         ((EntityPlayerMP) player).connection.disconnect(new TextComponentString(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {
+        player.setSpawnPoint(ForgeConversions.locationFromPosition(position), true);
     }
 
     /**

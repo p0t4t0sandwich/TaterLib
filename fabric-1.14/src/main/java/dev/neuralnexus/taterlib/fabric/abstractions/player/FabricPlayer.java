@@ -2,12 +2,16 @@ package dev.neuralnexus.taterlib.fabric.abstractions.player;
 
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.fabric.abstractions.util.FabricConversions;
 import me.lucko.fabric.api.permissions.v0.Options;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
+
+import java.util.UUID;
 
 /**
  * Abstracts a Fabric player to an AbstractPlayer.
@@ -39,7 +43,7 @@ public class FabricPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public java.util.UUID getUUID() {
+    public UUID getUUID() {
         return player.getUuid();
     }
 
@@ -57,6 +61,14 @@ public class FabricPlayer implements AbstractPlayer {
     @Override
     public String getDisplayName() {
         return player.getDisplayName().getString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Position getPosition() {
+        return FabricConversions.positionFromVector(player.getPos());
     }
 
     /**
@@ -97,6 +109,14 @@ public class FabricPlayer implements AbstractPlayer {
     @Override
     public void kickPlayer(String message) {
         ((ServerPlayerEntity) player).networkHandler.disconnect(new TranslatableComponent(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {
+        player.setPlayerSpawn(FabricConversions.locationFromPosition(position), true);
     }
 
     /**

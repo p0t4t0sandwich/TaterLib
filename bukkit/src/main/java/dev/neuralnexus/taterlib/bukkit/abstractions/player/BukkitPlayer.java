@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.abstractions.player;
 
+import dev.neuralnexus.taterlib.bukkit.abstractions.util.BukkitConversions;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -60,6 +62,14 @@ public class BukkitPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public Position getPosition() {
+        return BukkitConversions.positionFromLocation(player.getLocation());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getServerName() {
         return serverName;
     }
@@ -102,5 +112,13 @@ public class BukkitPlayer implements AbstractPlayer {
     @Override
     public void kickPlayer(String reason) {
         player.kickPlayer(reason);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {
+        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position));
     }
 }

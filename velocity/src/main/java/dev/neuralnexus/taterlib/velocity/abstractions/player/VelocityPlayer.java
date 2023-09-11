@@ -4,6 +4,7 @@ import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import net.kyori.adventure.text.Component;
 
@@ -69,6 +70,14 @@ public class VelocityPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public Position getPosition() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getServerName() {
         return serverName;
     }
@@ -112,4 +121,10 @@ public class VelocityPlayer implements AbstractPlayer {
     public void kickPlayer(String message) {
         player.disconnect(Component.text(message));
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Position position) {}
 }

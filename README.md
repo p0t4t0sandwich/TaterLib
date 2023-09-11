@@ -18,7 +18,7 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 [![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/TaterLib/releases)
 [![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/TaterLib)
 [![Maven Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/TaterLib)
-<br>
+
 [![Spigot](https://img.shields.io/spiget/downloads/111852?label=Spigot&logo=spigotmc&color=ED8106)](https://www.spigotmc.org/resources/taterlib.111852/)
 [![Hangar](https://img.shields.io/badge/Hangar-download-blue)](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
 [![Modrinth](https://img.shields.io/modrinth/dt/taterlib?label=Modrinth&logo=modrinth&color=00AF5C)](https://modrinth.com/mod/taterlib)
@@ -103,3 +103,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Ported Sponge to 6, 7, 9, 10, and 11
 - Back ported Forge to 1.12.2
 - Fixed `SpongeItemStack#getType` to be unjankified
+- Added `Position` and `*Conversions` utility classes
+- Added `getPosition` and `setSpawn` to `AbstractPlayer` (Sponge still needs `setSpawn` implemented)
