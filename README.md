@@ -77,21 +77,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
-## TODO
-
-### Abstractions
-- Command abstraction
-- World abstraction
-- Server abstraction
-  - `AbstractServer`, `AbstractModdedServer`, `AbstractProxyServer`
-- Improved player abstraction
-  - Split into `AbstractOfflinePlayer`, `AbstractPlayer` and `AbstractServerPlayer`
-  - Add teleport methods to `AbstractPlayer`
-
-### Maybes
-- Implement modded permission checks that can use numerical values
-- Implement the Forge permissions API
-
 ## Release Notes
 - Created a GenericLogger class for better cross compatibility
 - Added methods to AbstractEntity
@@ -105,3 +90,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Fixed `SpongeItemStack#getType` to be unjankified
 - Added `Position` and `*Conversions` utility classes
 - Added `getPosition` and `setSpawn` to `AbstractPlayer` (Sponge still needs `setSpawn` implemented)
+- Updated Forge and Fabric to 1.20.2
+  - Mainly updates to advancement events (yay optionals)

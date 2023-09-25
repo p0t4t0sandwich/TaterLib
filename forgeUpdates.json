@@ -12,26 +12,26 @@
         "1.0.0": "Initial release",
         "1.0.1": "- Added a method to PlayerCache to return a list of all the players in the cache\n- Added a static method parseSectionSign in the PlaceholderParser class\n- Finished v1 of the cross API event system\n- Updated the MessageRelay\n- Added basic implementations of the Player Advancement and Player Death events (String only)\n- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)"
     },
-    "1.17": {
+    "1.17.1": {
         "1.0.0": "Initial release",
         "1.0.1": "- Added a method to PlayerCache to return a list of all the players in the cache\n- Added a static method parseSectionSign in the PlaceholderParser class\n- Finished v1 of the cross API event system\n- Updated the MessageRelay\n- Added basic implementations of the Player Advancement and Player Death events (String only)\n- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)"
     },
-    "1.16": {
+    "1.16.3": {
         "1.0.0": "Initial release",
         "1.0.1": "- Added a method to PlayerCache to return a list of all the players in the cache\n- Added a static method parseSectionSign in the PlaceholderParser class\n- Finished v1 of the cross API event system\n- Updated the MessageRelay\n- Added basic implementations of the Player Advancement and Player Death events (String only)\n- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)"
     },
-    "1.15": {
+    "1.15.1": {
         "1.0.0": "Initial release",
         "1.0.1": "- Added a method to PlayerCache to return a list of all the players in the cache\n- Added a static method parseSectionSign in the PlaceholderParser class\n- Finished v1 of the cross API event system\n- Updated the MessageRelay\n- Added basic implementations of the Player Advancement and Player Death events (String only)\n- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)"
     },
-    "1.14": {
+    "1.14.4": {
         "1.0.0": "Initial release",
         "1.0.1": "- Added a method to PlayerCache to return a list of all the players in the cache\n- Added a static method parseSectionSign in the PlaceholderParser class\n- Finished v1 of the cross API event system\n- Updated the MessageRelay\n- Added basic implementations of the Player Advancement and Player Death events (String only)\n- Implemented modded permission checks (currently defaults to 4 when a permissions manager is not present)"
     },
-    "1.13": {
+    "1.13.2": {
         "1.0.2": ""
     },
-    "1.12": {
+    "1.12.2": {
         "1.0.2": ""
     },
     "promos": {
@@ -41,17 +41,17 @@
         "1.19-recommended": "1.0.1",
         "1.18-latest": "1.0.1",
         "1.18-recommended": "1.0.1",
-        "1.17-latest": "1.0.1",
-        "1.17-recommended": "1.0.1",
-        "1.16-latest": "1.0.1",
-        "1.16-recommended": "1.0.1",
-        "1.15-latest": "1.0.1",
-        "1.15-recommended": "1.0.1",
-        "1.14-latest": "1.0.1",
-        "1.14-recommended": "1.0.1",
-        "1.13-latest": "1.0.2",
-        "1.13-recommended": "1.0.2",
-        "1.12-latest": "1.0.2",
-        "1.12-recommended": "1.0.2"
+        "1.17.1-latest": "1.0.1",
+        "1.17.1-recommended": "1.0.1",
+        "1.16.3-latest": "1.0.1",
+        "1.16.3-recommended": "1.0.1",
+        "1.15.1-latest": "1.0.1",
+        "1.15.1-recommended": "1.0.1",
+        "1.14.4-latest": "1.0.1",
+        "1.14.4-recommended": "1.0.1",
+        "1.13.2-latest": "1.0.2",
+        "1.13.2-recommended": "1.0.2",
+        "1.12.2-latest": "1.0.2",
+        "1.12.2-recommended": "1.0.2"
     }
 }

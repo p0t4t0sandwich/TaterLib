@@ -1,0 +1,40 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('net.minecraftforge.gradle') version('[6.0,6.2)')
+    id('org.parchmentmc.librarian.forgegradle') version('1.+')
+}
+
+targetCompatibility = java_version
+
+minecraft {
+    mappings(channel: mappings_channel, version: mappings_version)
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+}
+
+reobf {
+    shadowJar {}
+}
+
+shadowJar {
+    dependencies {
+        include(project(':common'))
+    }
+
+    destinationDirectory = file('../target')
+    archiveFileName = "${project_name}-forge-${minecraft_version}-${version}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}
