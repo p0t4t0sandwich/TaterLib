@@ -39,6 +39,14 @@ public class NeoForgePlayer implements AbstractPlayer {
     }
 
     /**
+     * Gets the NeoForge player
+     * @return The NeoForge player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

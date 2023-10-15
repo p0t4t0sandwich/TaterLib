@@ -92,3 +92,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `getPosition` and `setSpawn` to `AbstractPlayer` (Sponge still needs `setSpawn` implemented)
 - Updated Forge and Fabric to 1.20.2
   - Mainly updates to advancement events (yay optionals)
+- Added `getPlayer` to every `AbstractPlayer` implementation
+- Added alternate constructor to `AbstractPlayer` implementations that allows the specification of a player's "Server Name" (used for cross server chat)

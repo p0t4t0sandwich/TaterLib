@@ -35,6 +35,14 @@ public class BukkitPlayer implements AbstractPlayer {
     }
 
     /**
+     * Gets the Bukkit player
+     * @return The Bukkit player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

@@ -23,12 +23,29 @@ public class VelocityPlayer implements AbstractPlayer {
      */
     public VelocityPlayer(Player player) {
         this.player = player;
-
         if (player.getCurrentServer().isPresent()) {
             this.serverName = player.getCurrentServer().get().getServerInfo().getName();
         } else {
-            this.serverName = null;
+            this.serverName = "local";
         }
+    }
+
+    /**
+     * Constructor.
+     * @param player The Velocity player.
+     * @param serverName The name of the server the player is on.
+     */
+    public VelocityPlayer(Player player, String serverName) {
+        this.player = player;
+        this.serverName = serverName;
+    }
+
+    /**
+     * Gets the Velocity player
+     * @return The Velocity player
+     */
+    public Player getPlayer() {
+        return player;
     }
 
     /**

@@ -26,8 +26,26 @@ public class BungeePlayer implements AbstractPlayer {
         if (player.getServer() != null) {
             this.serverName = player.getServer().getInfo().getName();
         } else {
-            this.serverName = null;
+            this.serverName = "local";
         }
+    }
+
+    /**
+     * Constructor.
+     * @param player The BungeeCord player.
+     * @param serverName The name of the server the player is on.
+     */
+    public BungeePlayer(ProxiedPlayer player, String serverName) {
+        this.player = player;
+        this.serverName = serverName;
+    }
+
+    /**
+     * Gets the BungeeCord player
+     * @return The BungeeCord player
+     */
+    public ProxiedPlayer getPlayer() {
+        return player;
     }
 
     /**

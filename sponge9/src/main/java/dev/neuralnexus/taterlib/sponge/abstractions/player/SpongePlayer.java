@@ -27,6 +27,24 @@ public class SpongePlayer implements AbstractPlayer {
     }
 
     /**
+     * Constructor.
+     * @param player The Sponge player.
+     * @param serverName The name of the server the player is on.
+     */
+    public SpongePlayer(Player player, String serverName) {
+        this.player = player;
+        this.serverName = serverName;
+    }
+
+    /**
+     * Gets the Sponge player
+     * @return The Sponge player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

@@ -38,6 +38,14 @@ public class ForgePlayer implements AbstractPlayer {
     }
 
     /**
+     * Gets the Forge player
+     * @return The Forge player
+     */
+    public PlayerEntity getPlayer() {
+        return player;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

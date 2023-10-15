@@ -41,6 +41,14 @@ public class FabricPlayer implements AbstractPlayer {
     }
 
     /**
+     * Gets the Fabric player
+     * @return The Fabric player
+     */
+    public PlayerEntity getPlayer() {
+        return player;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override
