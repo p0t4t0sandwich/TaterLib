@@ -14,6 +14,16 @@ import org.bukkit.plugin.PluginManager;
  * The TaterLib Bukkit plugin.
  */
 public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterLibPlugin {
+    private static BukkitTaterLibPlugin instance;
+
+    /**
+     * Gets the instance of the plugin
+     * @return The instance of the plugin
+     */
+    public static BukkitTaterLibPlugin getInstance() {
+        return instance;
+    }
+
     /**
      * @inheritDoc
      */
@@ -54,6 +64,7 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
      */
     @Override
     public void onEnable() {
+        instance = this;
         pluginStart();
     }
 

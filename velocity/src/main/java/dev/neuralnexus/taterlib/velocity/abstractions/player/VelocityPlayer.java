@@ -1,6 +1,8 @@
 package dev.neuralnexus.taterlib.velocity.abstractions.player;
 
 import com.velocitypowered.api.proxy.Player;
+import com.velocitypowered.api.proxy.ServerConnection;
+import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
@@ -8,6 +10,7 @@ import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import net.kyori.adventure.text.Component;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -113,6 +116,14 @@ public class VelocityPlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Component.text(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+//    @Override
+    public void sendPluginMessage(String channel, byte[] data) {
+        player.getCurrentServer().ifPresent(serverConnection -> serverConnection.sendPluginMessage(MinecraftChannelIdentifier.from(channel), data));
     }
 
     /**

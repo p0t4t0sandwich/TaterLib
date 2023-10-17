@@ -118,6 +118,14 @@ public class BungeePlayer implements AbstractPlayer {
     /**
      * @inheritDoc
      */
+//    @Override
+    public void sendPluginMessage(String channel, byte[] data) {
+        player.getServer().getInfo().sendData(channel, data);
+    }
+
+    /**
+     * @inheritDoc
+     */
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
