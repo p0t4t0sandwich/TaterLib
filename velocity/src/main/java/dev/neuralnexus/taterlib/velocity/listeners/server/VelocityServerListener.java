@@ -11,9 +11,9 @@ public class VelocityServerListener {
      * @param event The event.
      */
     @Subscribe
-    public void onServerStart(ProxyInitializeEvent event) {
+    public void onServerStarting(ProxyInitializeEvent event) {
         // Run server started event
-        ServerListener.onServerStarted();
+        ServerListener.onServerStarting();
     }
 
     /**

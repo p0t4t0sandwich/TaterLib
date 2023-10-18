@@ -16,7 +16,7 @@ public class TaterLib {
     public static boolean cancelChat = false;
     private static MessageRelay messageRelay;
     private static final ArrayList<Object> hooks = new ArrayList<>();
-    private static Consumer<Set<String>> registerChannels = (channels) -> {};
+    public static Consumer<Set<String>> registerChannels = (channels) -> {};
 
     /**
      * Constructor for the TaterLib class.

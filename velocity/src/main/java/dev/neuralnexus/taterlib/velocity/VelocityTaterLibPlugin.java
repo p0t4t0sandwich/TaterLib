@@ -24,6 +24,8 @@ import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPlugin
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
 import org.slf4j.Logger;
 
+import java.time.Duration;
+
 /**
  * The TaterLib Velocity plugin.
  */
@@ -73,7 +75,7 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
         eventManager.register(this, new VelocityPlayerListener());
 
         // Register server listeners
-        ServerListener.onServerStarted();
+        server.getScheduler().buildTask(this, ServerListener::onServerStarted).delay(Duration.ofSeconds(5)).schedule();
         eventManager.register(this, new VelocityServerListener());
 
         // Register plugin message listener
