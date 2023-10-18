@@ -43,17 +43,18 @@ dependencies {
 
 TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
-| Server type          | Versions    | Jar Name                      |
-|----------------------|-------------|-------------------------------|
-| All 1.20 (Sponge11)  | 1.20-1.20.1 | `TaterLib-1.20-<version>.jar` |
-| All 1.19 (Sponge10)  | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar` |
-| All 1.18 (Sponge9)   | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar` |
-| All 1.17 (Sponge9)   | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar` |
-| All 1.16 (Sponge8)   | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar` |
-| All 1.15 (Sponge8)   | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar` |
-| All 1.14             | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar` |
-| All 1.13 (no Fabric) | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar` |
-| All 1.12 (no Fabric) | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar` |
+| Server type                   | Versions    | Jar Name                        |
+|-------------------------------|-------------|---------------------------------|
+| 1.20.2 (Sponge11)             | 1.20.2      | `TaterLib-1.20.2-<version>.jar` |
+| 1.20-1.20.1 (Sponge11)        | 1.20-1.20.1 | `TaterLib-1.20-<version>.jar`   |
+| All 1.19 (Sponge10)           | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar`   |
+| All 1.18 (Sponge9)            | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar`   |
+| All 1.17 (Sponge9)            | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar`   |
+| All 1.16 (Sponge8)            | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar`   |
+| All 1.15 (Sponge8)            | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar`   |
+| All 1.14                      | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar`   |
+| All 1.13 (no Fabric)          | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar`   |
+| All 1.12 (Sponge7, no Fabric) | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar`   |
 
 ## Dependencies
 
@@ -94,4 +95,4 @@ Feel free to open a PR to add your plugin/mod to this list!
   - Mainly updates to advancement events (yay optionals)
 - Added `getPlayer` to every `AbstractPlayer` implementation
 - Added alternate constructor to `AbstractPlayer` implementations that allows the specification of a player's "Server Name" (used for cross server chat)
-- Added basic implementation for plugin messaging for `BukkitPlayer`, `BungeePlayer`, and `VelocityPlayer`
+- Implemented plugin messaging for `BukkitPlayer`, `BungeePlayer`, `SpongePlayer`, and `VelocityPlayer`

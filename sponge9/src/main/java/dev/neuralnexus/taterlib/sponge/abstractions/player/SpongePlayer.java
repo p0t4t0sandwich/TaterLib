@@ -5,8 +5,12 @@ import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInvento
 import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.sponge.abstractions.util.SpongeConversions;
 import net.kyori.adventure.text.Component;
+import org.spongepowered.api.ResourceKey;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
+import org.spongepowered.api.network.channel.ChannelManager;
+import org.spongepowered.api.network.channel.raw.RawDataChannel;
 
 import java.util.UUID;
 
@@ -98,6 +102,16 @@ public class SpongePlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Component.text(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void sendPluginMessage(String channel, byte[] data) {
+        ChannelManager channelManager = Sponge.channelManager();
+        String[] channelParts = channel.split(":");
+        channelManager.ofType(ResourceKey.of(channelParts[0], channelParts[1]), RawDataChannel.class).play().sendTo((ServerPlayer) player, (buffer) -> buffer.writeBytes(data));
     }
 
     /**

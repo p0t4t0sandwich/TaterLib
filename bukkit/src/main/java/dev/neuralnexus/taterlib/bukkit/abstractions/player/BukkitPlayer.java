@@ -1,9 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.abstractions.player;
 
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
-import dev.neuralnexus.taterlib.bukkit.TemplateBukkitPlugin;
 import dev.neuralnexus.taterlib.bukkit.abstractions.util.BukkitConversions;
-import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
@@ -129,7 +127,7 @@ public class BukkitPlayer implements AbstractPlayer {
     /**
      * @inheritDoc
      */
-//    @Override
+    @Override
     public void sendPluginMessage(String channel, byte[] data) {
         player.sendPluginMessage(plugin, channel, data);
     }

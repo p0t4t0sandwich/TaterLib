@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.bukkit;
 
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
+import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMessageListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
@@ -9,6 +10,7 @@ import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.messaging.Messenger;
 
 /**
  * The TaterLib Bukkit plugin.
@@ -65,6 +67,14 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void onEnable() {
         instance = this;
+
+        // Register plugin message channels
+        Messenger messenger = getServer().getMessenger();
+        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> {
+            messenger.registerIncomingPluginChannel(this, channel, new BukkitPluginMessageListener());
+            messenger.registerOutgoingPluginChannel(this, channel);
+        }));
+
         pluginStart();
     }
 

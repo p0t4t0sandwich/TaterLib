@@ -19,7 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 /**
  * The TaterLib NeoForge plugin.
  */
-@Mod(NeoForgeTaterLibPlugin.MOD_ID)
 public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements TaterLibPlugin {
     public static final String MOD_ID = "taterlib";
 

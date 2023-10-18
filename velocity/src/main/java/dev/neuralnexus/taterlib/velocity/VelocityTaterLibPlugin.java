@@ -4,6 +4,8 @@ import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
+import com.velocitypowered.api.proxy.messages.ChannelRegistrar;
+import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
@@ -18,6 +20,7 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
+import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
 import org.slf4j.Logger;
 
@@ -72,6 +75,9 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
         // Register server listeners
         ServerListener.onServerStarted();
         eventManager.register(this, new VelocityServerListener());
+
+        // Register plugin message listener
+        eventManager.register(this, new VelocityPluginMessageListener());
     }
 
     /**
@@ -90,6 +96,7 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         proxyServer = server;
+        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
         pluginStart();
     }
 

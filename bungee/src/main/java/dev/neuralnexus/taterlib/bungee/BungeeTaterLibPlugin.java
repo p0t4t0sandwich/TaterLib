@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.bungee;
 import dev.neuralnexus.taterlib.bungee.abstractions.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
+import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
@@ -76,6 +77,9 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
         // Register server listeners
         ServerListener.onServerStarting();
         getProxy().getScheduler().schedule(this, ServerListener::onServerStarted, 5L, TimeUnit.SECONDS);
+
+        // Register plugin message listeners
+        pluginManager.registerListener(this, new BungeePluginMessageListener());
     }
 
     /**

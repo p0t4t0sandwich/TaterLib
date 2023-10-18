@@ -28,7 +28,7 @@ public class TemplateSpongePlugin implements TemplatePlugin {
      */
     @Override
     public String getServerType() {
-        return "SpongeForge";
+        return "Sponge";
     }
 
     /**

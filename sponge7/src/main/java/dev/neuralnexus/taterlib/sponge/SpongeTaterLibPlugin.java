@@ -28,6 +28,16 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
     @Inject
     private PluginContainer container;
 
+    private static SpongeTaterLibPlugin instance;
+
+    /**
+     * Gets the instance of the plugin
+     * @return The instance of the plugin
+     */
+    public static SpongeTaterLibPlugin getInstance() {
+        return instance;
+    }
+
     /**
      * @inheritDoc
      */
@@ -79,6 +89,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
      */
     @Listener
     public void onServerStarting(GameStartedServerEvent event) {
+        instance = this;
         pluginStart();
     }
 

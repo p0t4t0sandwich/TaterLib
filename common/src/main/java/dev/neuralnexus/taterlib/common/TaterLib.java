@@ -5,6 +5,8 @@ import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
 
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.function.Consumer;
 
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
@@ -14,6 +16,7 @@ public class TaterLib {
     public static boolean cancelChat = false;
     private static MessageRelay messageRelay;
     private static final ArrayList<Object> hooks = new ArrayList<>();
+    private static Consumer<Set<String>> registerChannels = (channels) -> {};
 
     /**
      * Constructor for the TaterLib class.
@@ -97,4 +100,12 @@ public class TaterLib {
      public static void addHook(Object hook) {
         hooks.add(hook);
      }
+
+    /**
+     * Set the registerChannels consumer
+     * @param registerChannels The registerChannels consumer
+     */
+    public static void setRegisterChannels(Consumer<Set<String>> registerChannels) {
+        TaterLib.registerChannels = registerChannels;
+    }
 }

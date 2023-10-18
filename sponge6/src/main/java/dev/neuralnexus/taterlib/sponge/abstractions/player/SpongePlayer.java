@@ -3,8 +3,12 @@ package dev.neuralnexus.taterlib.sponge.abstractions.player;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInventory;
 import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
+import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.abstractions.util.SpongeConversions;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.network.ChannelBinding;
+import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
@@ -97,6 +101,16 @@ public class SpongePlayer implements AbstractPlayer {
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Text.of(message));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void sendPluginMessage(String channel, byte[] data) {
+        ChannelRegistrar channelRegistrar = Sponge.getChannelRegistrar();
+        ChannelBinding.RawDataChannel channelBinding = channelRegistrar.getOrCreateRaw(SpongeTaterLibPlugin.getInstance(), channel);
+        channelBinding.sendTo(player, (buffer) -> buffer.writeBytes(data));
     }
 
     /**

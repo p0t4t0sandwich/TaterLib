@@ -121,7 +121,7 @@ public class VelocityPlayer implements AbstractPlayer {
     /**
      * @inheritDoc
      */
-//    @Override
+    @Override
     public void sendPluginMessage(String channel, byte[] data) {
         player.getCurrentServer().ifPresent(serverConnection -> serverConnection.sendPluginMessage(MinecraftChannelIdentifier.from(channel), data));
     }

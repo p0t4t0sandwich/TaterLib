@@ -3,6 +3,8 @@ package dev.neuralnexus.taterlib.sponge.listeners.player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
+import dev.neuralnexus.taterlib.sponge.util.SpongeTranslationUtils;
+import net.kyori.adventure.text.TranslatableComponent;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;
@@ -33,7 +35,7 @@ public class SpongePlayerListener {
         // Fire the advancement finished event if the advancement is done
         DisplayInfo display = advancement.displayInfo().orElse(null);
         if (display != null && display.doesAnnounceToChat()) {
-            PlayerListener.onPlayerAdvancementFinished(player, display.title().toString());
+            PlayerListener.onPlayerAdvancementFinished(player, SpongeTranslationUtils.translate((TranslatableComponent) display.title()));
         }
     }
 
@@ -44,7 +46,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
         if ((event.entity() instanceof Player)) {
-            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.entity()), event.message().toString());
+            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.entity()), ((Player) event.entity()).name() + " " + SpongeTranslationUtils.translate((TranslatableComponent) event.message()));
         }
     }
 

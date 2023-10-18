@@ -105,6 +105,12 @@ public class ForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
+    public void sendPluginMessage(String channel, byte[] data) {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public AbstractPlayerInventory getInventory() {
         return new ForgePlayerInventory(player.inventory);
     }

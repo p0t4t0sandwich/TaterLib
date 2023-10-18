@@ -58,7 +58,7 @@ public interface AbstractPlayer {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-//    void sendPluginMessage(String channel, byte[] data);
+    void sendPluginMessage(String channel, byte[] data);
 
     /**
      * Get player's Inventory
