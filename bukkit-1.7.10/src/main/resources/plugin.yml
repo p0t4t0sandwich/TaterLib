@@ -1,0 +1,12 @@
+name: TaterLib
+version: '${version}'
+author: p0t4t0sandwich
+description: A cross API code library for various generalizations used in the Tater* plugins
+main: dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin
+depend: []
+softdepend: [LuckPerms]
+folia-supported: true
+commands:
+  taterlib:
+    description: TaterLib command
+    permission: taterlib.command

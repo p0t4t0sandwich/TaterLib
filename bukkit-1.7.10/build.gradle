@@ -1,0 +1,53 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+}
+
+repositories {
+    // NeuralNexus Private
+    maven {
+        name = "NeuralNexusPrivate"
+        url = "https://maven.neuralnexus.dev/private"
+        credentials {
+            username "$NeuralNexusPrivateUsername"
+            password "$NeuralNexusPrivatePassword"
+        }
+    }
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    // CraftBukkit
+    compileOnly("org.bukkit:craftbukkit:${minecraft_version}-${craftbukkit_version}")
+}
+
+java.disableAutoTargetJvm()
+
+processResources {
+    def props = [version: version]
+    inputs.properties(props)
+    filteringCharset('UTF-8')
+    filesMatching('plugin.yml') {
+        expand(props)
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDirectory = file('../target')
+    archiveFileName = "${project_name}-bukkit-${version}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}
