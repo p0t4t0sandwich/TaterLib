@@ -9,10 +9,14 @@ import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
+import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 import org.apache.logging.log4j.LogManager;
 
@@ -71,9 +75,24 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         // Register server event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
 
+        // Register plugin channels
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        modEventBus.addListener(this::commonSetup);
+
+        TaterLib.setRegisterChannels(ModMessages::addChannels);
+
         // Register commands
         MinecraftForge.EVENT_BUS.register(ForgeTaterLibCommand.class);
         pluginStart();
+    }
+
+    /**
+     * Called when CommonSetupEvent is fired.
+     * @param event The event.
+     */
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        ModMessages.register();
+        ModMessages.clearQueue();
     }
 
     /**

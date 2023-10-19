@@ -92,6 +92,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
         ModMessages.register();
+        ModMessages.clearQueue();
     }
 
     /**

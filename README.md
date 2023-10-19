@@ -95,4 +95,5 @@ Feel free to open a PR to add your plugin/mod to this list!
   - Mainly updates to advancement events (yay optionals)
 - Added `getPlayer` to every `AbstractPlayer` implementation
 - Added alternate constructor to `AbstractPlayer` implementations that allows the specification of a player's "Server Name" (used for cross server chat)
-- Implemented plugin messaging for Bukkit, Bungee, Sponge, and Velocity
+- Implemented plugin messaging for Bukkit, Bungee, Forge, Sponge, and Velocity
+  - Forge 1.12.2 still needs to be implemented

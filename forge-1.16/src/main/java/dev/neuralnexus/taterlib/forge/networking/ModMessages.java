@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.forge.networking;
 
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -44,7 +44,7 @@ public class ModMessages {
         channelQueue.clear();
     }
 
-    public static <MSG> void sendPluginMessage(MSG message, String channel, ServerPlayer player) {
+    public static <MSG> void sendPluginMessage(MSG message, String channel, ServerPlayerEntity player) {
         channels.get(channel).sendTo(message, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
     }
 }
