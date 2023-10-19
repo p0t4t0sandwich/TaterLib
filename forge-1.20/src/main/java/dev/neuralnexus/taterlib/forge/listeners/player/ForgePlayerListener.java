@@ -3,6 +3,12 @@ package dev.neuralnexus.taterlib.forge.listeners.player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.advancements.DisplayInfo;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.PlayerAdvancements;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
@@ -11,6 +17,7 @@ import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 /**
  * Listens for player events.
@@ -22,7 +29,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancement(AdvancementEvent.AdvancementProgressEvent event) {
-        PlayerListener.onPlayerAdvancement(new ForgePlayer(event.getEntity()), event.getAdvancement().getParent().getChatComponent().getString());
+        PlayerListener.onPlayerAdvancement(new ForgePlayer(event.getEntity()), event.getAdvancement().getChatComponent().getString());
     }
 
     /**
@@ -30,8 +37,12 @@ public class ForgePlayerListener {
      * @param event The advancement event
      */
     @SubscribeEvent
-    public void onPlayerAdvancementFinished(AdvancementEvent event) {
-        PlayerListener.onPlayerAdvancementFinished(new ForgePlayer(event.getEntity()), event.getAdvancement().getDisplay().toString());
+    public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
+        // Fire the advancement finished event if the advancement is done
+        DisplayInfo displayInfo = event.getAdvancement().getDisplay();
+        if (displayInfo != null && displayInfo.shouldAnnounceChat()) {
+            PlayerListener.onPlayerAdvancementFinished(new ForgePlayer(event.getEntity()), displayInfo.getTitle().getString());
+        }
     }
 
     /**

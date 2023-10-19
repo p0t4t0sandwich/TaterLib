@@ -2,7 +2,7 @@
 
 PROJ_ID=taterlib
 PROJ_NAME=TaterLib
-VERSION=1.0.2-R05-SNAPSHOT
+VERSION=1.0.2-R06-SNAPSHOT
 GROUP_ID=dev/neuralnexus
 
 # --------------------------- Functions --------------------------------

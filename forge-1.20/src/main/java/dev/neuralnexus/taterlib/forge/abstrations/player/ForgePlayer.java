@@ -5,11 +5,14 @@ import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInvento
 import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.abstrations.util.ForgeConversions;
+import dev.neuralnexus.taterlib.forge.networking.ModMessages;
+import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -106,7 +109,9 @@ public class ForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {}
+    public void sendPluginMessage(String channel, byte[] data) {
+        ModMessages.sendPluginMessage(new ForgeMessagePacket(new String(data)), channel, (ServerPlayer) player);
+    }
 
     /**
      * @inheritDoc
