@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.SimpleChannel;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,12 +27,12 @@ public class ModMessages {
     public static void register() {
         for (String c : channelQueue) {
             String[] channelParts = c.split(":");
-            channels.put(c, NetworkRegistry.ChannelBuilder.named(
-                            new ResourceLocation(channelParts[0], channelParts[1]))
-                    .networkProtocolVersion(() -> PROTOCOL_VERSION)
-                    .clientAcceptedVersions(s -> true)
-                    .serverAcceptedVersions(s -> true)
-                    .simpleChannel());
+//            channels.put(c, NetworkRegistry.ChannelBuilder.named(
+//                            new ResourceLocation(channelParts[0], channelParts[1]))
+//                    .networkProtocolVersion(() -> PROTOCOL_VERSION)
+//                    .clientAcceptedVersions(s -> true)
+//                    .serverAcceptedVersions(s -> true)
+//                    .simpleChannel());
             channels.get(c).messageBuilder(ForgeMessagePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                     .encoder(ForgeMessagePacket::encode)
                     .decoder(ForgeMessagePacket::decode)
@@ -45,6 +45,6 @@ public class ModMessages {
     }
 
     public static <MSG> void sendPluginMessage(MSG message, String channel, ServerPlayer player) {
-        channels.get(channel).sendTo(message, player.connection.connection, NetworkDirection.PLAY_TO_CLIENT);
+//        channels.get(channel).sendTo(message, player.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
     }
 }

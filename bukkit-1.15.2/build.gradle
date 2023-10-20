@@ -1,0 +1,44 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    // Spigot
+    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
+
+    // Paper
+    compileOnly("com.destroystokyo.paper:paper-api:${minecraft_version}-${bukkit_version}")
+}
+
+java.disableAutoTargetJvm()
+
+processResources {
+    def props = [version: version]
+    inputs.properties(props)
+    filteringCharset('UTF-8')
+    filesMatching('plugin.yml') {
+        expand(props)
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDirectory = file('../target')
+    archiveFileName = "${project_name}-bukkit-${version}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}

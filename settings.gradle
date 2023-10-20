@@ -66,8 +66,9 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
-        'bukkit',
         'bukkit-1.7.10',
+        'bukkit-1.15.2',
+        'bukkit',
         'bungee',
         'common',
 //        'fabric-legacy-1.13',

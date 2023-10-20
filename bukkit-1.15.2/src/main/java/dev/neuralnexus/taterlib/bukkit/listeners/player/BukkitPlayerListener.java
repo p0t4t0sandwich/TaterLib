@@ -26,9 +26,7 @@ public class BukkitPlayerListener implements Listener {
         Advancement advancement = event.getAdvancement();
         // Send advancement to message relay
         PlayerListener.onPlayerAdvancement(new BukkitPlayer(event.getPlayer()), advancement.getKey().getKey());
-        if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
-            PlayerListener.onPlayerAdvancementFinished(new BukkitPlayer(event.getPlayer()), advancement.getDisplay().getTitle());
-        }
+        PlayerListener.onPlayerAdvancementFinished(new BukkitPlayer(event.getPlayer()), advancement.getKey().getKey());
     }
 
     /**
