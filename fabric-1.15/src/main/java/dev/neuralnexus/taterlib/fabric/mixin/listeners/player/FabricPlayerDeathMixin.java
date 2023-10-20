@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -11,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Listens for player deaths and emits an event.
  */
-@Mixin(PlayerEntity.class)
+@Mixin(ServerPlayerEntity.class)
 public class FabricPlayerDeathMixin {
     /**
      * Called when a player dies.
