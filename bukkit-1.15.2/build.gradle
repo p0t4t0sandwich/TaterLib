@@ -29,7 +29,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../target')
-    archiveFileName = "${project_name}-bukkit-${version}.jar"
+    archiveFileName = "${project_name}-bukkit-${minecraft_version}-${version}.jar"
 }
 shadowJar.doLast {
     task ->
