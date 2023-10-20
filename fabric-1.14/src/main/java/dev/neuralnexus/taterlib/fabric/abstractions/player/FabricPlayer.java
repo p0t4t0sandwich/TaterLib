@@ -7,9 +7,12 @@ import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.fabric.abstractions.util.FabricConversions;
 import me.lucko.fabric.api.permissions.v0.Options;
 import me.lucko.fabric.api.permissions.v0.Permissions;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 
 import java.util.UUID;
 
@@ -107,7 +110,10 @@ public class FabricPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {}
+    public void sendPluginMessage(String channel, byte[] data) {
+        String[] channelParts = channel.split(":");
+        ServerPlayNetworking.send((ServerPlayerEntity) player, new Identifier(channelParts[0], channelParts[1]), PacketByteBufs.create().writeByteArray(data));
+    }
 
     /**
      * @inheritDoc
