@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.forge.networking;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.SimpleChannel;
@@ -27,12 +28,12 @@ public class ModMessages {
     public static void register() {
         for (String c : channelQueue) {
             String[] channelParts = c.split(":");
-//            channels.put(c, NetworkRegistry.ChannelBuilder.named(
-//                            new ResourceLocation(channelParts[0], channelParts[1]))
-//                    .networkProtocolVersion(() -> PROTOCOL_VERSION)
-//                    .clientAcceptedVersions(s -> true)
-//                    .serverAcceptedVersions(s -> true)
-//                    .simpleChannel());
+            channels.put(c, ChannelBuilder.named(
+                            new ResourceLocation(channelParts[0], channelParts[1]))
+                    .networkProtocolVersion(Integer.parseInt(PROTOCOL_VERSION))
+                    .clientAcceptedVersions((status, version) -> true)
+                    .serverAcceptedVersions((status, version) -> true)
+                    .simpleChannel());
             channels.get(c).messageBuilder(ForgeMessagePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                     .encoder(ForgeMessagePacket::encode)
                     .decoder(ForgeMessagePacket::decode)
