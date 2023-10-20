@@ -30,6 +30,9 @@ public interface TaterLibCommand {
 
     static String executeCommand(String[] args) {
         String text;
+        if (args.length == 0) {
+            return "&cUsage: /taterlib <reload|version>";
+        }
         switch (args[0].toLowerCase()) {
             case "reload":
                 try {
