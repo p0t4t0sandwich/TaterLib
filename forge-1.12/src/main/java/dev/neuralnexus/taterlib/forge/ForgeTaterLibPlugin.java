@@ -97,8 +97,6 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         // Register server event listeners
 //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
 
-        // Register commands
-//        MinecraftForge.EVENT_BUS.register(new ForgeTaterLibCommand());
         pluginStart();
     }
 
