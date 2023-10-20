@@ -14,8 +14,12 @@ import dev.neuralnexus.taterlib.fabric.events.entity.FabricEntityEvents;
 import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.util.Identifier;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -65,7 +69,7 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
 
         // Register TaterLib Player events
         FabricPlayerEvents.ADVANCEMENT_FINISHED.register((player, advancement) -> PlayerListener.onPlayerAdvancementFinished(new FabricPlayer(player), advancement.getDisplay().getTitle().getString()));
-        FabricPlayerEvents.ADVANCEMENT.register((player, advancement) -> PlayerListener.onPlayerAdvancement(new FabricPlayer(player), advancement.getParent().getDisplay().getTitle().getString()));
+        FabricPlayerEvents.ADVANCEMENT.register((player, advancement) -> PlayerListener.onPlayerAdvancement(new FabricPlayer(player), advancement.getId().getNamespace()));
         FabricPlayerEvents.DEATH.register((player, source) -> PlayerListener.onPlayerDeath(new FabricPlayer(player), source.getDeathMessage(player).getString()));
         FabricPlayerEvents.MESSAGE.register((player, message, isCanceled) -> PlayerListener.onPlayerMessage(new FabricPlayer(player), message, isCanceled));
         FabricPlayerEvents.RESPAWN.register((player) -> PlayerListener.onPlayerRespawn(new FabricPlayer(player)));
@@ -84,6 +88,10 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
      */
     @Override
     public void onInitializeServer() {
+//        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> {
+//            String[] channelParts = channel.split(":");
+//            Identifier identifier = new Identifier(channelParts[0], channelParts[1]);
+//        }));
         pluginStart();
     }
 }
