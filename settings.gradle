@@ -66,6 +66,9 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
+        'bukkit-b1.7.3',
+        'bukkit-1.2.5',
+        'bukkit-1.6.4',
         'bukkit-1.7.10',
         'bukkit-1.15.2',
         'bukkit',
