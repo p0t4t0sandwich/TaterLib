@@ -51,7 +51,7 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
 
         // Register server listeners
         ServerListener.onServerStarting();
-        getServer().getScheduler().scheduleSyncRepeatingTask(this, ServerListener::onServerStarted, 5*20L, 0);
+        getServer().getScheduler().scheduleSyncDelayedTask(this, ServerListener::onServerStarted, 5*20L);
     }
 
     /**
