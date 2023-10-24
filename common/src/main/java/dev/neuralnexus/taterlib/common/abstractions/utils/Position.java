@@ -10,7 +10,6 @@ public class Position {
 
     /**
      * Creates a new position.
-     *
      * @param x The x coordinate.
      * @param y The y coordinate.
      * @param z The z coordinate.
