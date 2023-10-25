@@ -45,7 +45,7 @@ public final class PlayerEvents {
     /**
      * Called when a player switches servers.
      */
-    public static final Event<PlayerServerSwitchEvent> SERVER_SWITCH = new Event<>(PlayerServerSwitchEvent.class);
+    public static final Event<PlayerServerSwitchEvent, AbstractPlayerServerSwitchEvent> SERVER_SWITCH = new Event<>(PlayerServerSwitchEvent.class);
 
     @FunctionalInterface
     public interface PlayerAdvancementProgressEvent {
@@ -84,6 +84,6 @@ public final class PlayerEvents {
 
     @FunctionalInterface
     public interface PlayerServerSwitchEvent {
-        void onPlayerServerSwitch(AbstractPlayer player, String server);
+        void onPlayerServerSwitch(AbstractPlayerServerSwitchEvent event);
     }
 }

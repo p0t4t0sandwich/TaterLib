@@ -73,9 +73,11 @@ public final class PlayerListener {
 
     /**
      * Called when a player logs out, and sends it to the message relay.
-     * @param abstractPlayer The player.
+     * @param event The event.
      */
-    public static void onServerSwitch(AbstractPlayer abstractPlayer, String toServer) {
+    public static void onServerSwitch(AbstractPlayerServerSwitchEvent event) {
+        AbstractPlayer abstractPlayer = event.getPlayer();
+
         // Get AbstractPlayer from cache
         AbstractPlayer cachedAbstractPlayer = PlayerCache.getPlayerFromCache(abstractPlayer.getUUID());
         if (cachedAbstractPlayer == null) {
@@ -86,10 +88,9 @@ public final class PlayerListener {
         String fromServer = abstractPlayer.getServerName();
 
         // Update the server name and TaterPlayer object
-        abstractPlayer.setServerName(toServer);
+        abstractPlayer.setServerName(event.getToServer());
         PlayerCache.setPlayerInCache(abstractPlayer.getUUID(), abstractPlayer);
 
-        // Fire cross-API event
-        PlayerEvents.SERVER_SWITCH.invoke(new Object[]{abstractPlayer, fromServer, toServer});
+        PlayerEvents.SERVER_SWITCH.invoke(event);
     }
 }
