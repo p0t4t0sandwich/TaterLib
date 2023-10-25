@@ -82,7 +82,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
-## Release Notes 1.0.2-R06-SNAPSHOT
+## Release Notes 1.0.3-R0.1-SNAPSHOT
 - Created a GenericLogger class for better cross compatibility
 - Added methods to AbstractEntity
   - getX/Y/Z, getDimension, getBiome

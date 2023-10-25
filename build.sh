@@ -2,7 +2,7 @@
 
 PROJ_ID=taterlib
 PROJ_NAME=TaterLib
-VERSION=1.0.2-R06-SNAPSHOT
+VERSION=1.0.2
 GROUP_ID=dev/neuralnexus
 
 # --------------------------- Functions --------------------------------
@@ -48,12 +48,18 @@ function build() {
   # Rename Jar
   mv ./$3.zip ./$3.jar
 
-  # Generate MD5
-  md5sum ./$3.jar | cut -d ' ' -f 1 > ./$3.jar.MD5
+  # Generate hashes
+  md5sum ./$3.jar | cut -d ' ' -f 1 > ./$3.jar.md5
+  mv ./$3.jar.md5 ../$3.jar.md5
+  sha1sum ./$3.jar | cut -d ' ' -f 1 > ./$3.jar.sha1
+  mv ./$3.jar.sha1 ../$3.jar.sha1
+  sha256sum ./$3.jar | cut -d ' ' -f 1 > ./$3.jar.sha256
+  mv ./$3.jar.sha256 ../$3.jar.sha256
+  sha512sum ./$3.jar | cut -d ' ' -f 1 > ./$3.jar.sha512
+  mv ./$3.jar.sha512 ../$3.jar.sha512
 
   # Move Jar
   mv ./$3.jar ../$3.jar
-  mv ./$3.jar.MD5 ../$3.jar.MD5
 }
 
 function spongebuild() {
@@ -92,12 +98,18 @@ function spongebuild() {
       # Rename Jar
       mv ./$4.zip ./$4.jar
 
-      # Generate MD5
-      md5sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.MD5
+      # Generate hashes
+      md5sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.md5
+      mv ./$4.jar.md5 ../$4.jar.md5
+      sha1sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.sha1
+      mv ./$4.jar.sha1 ../$4.jar.sha1
+      sha256sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.sha256
+      mv ./$4.jar.sha256 ../$4.jar.sha256
+      sha512sum ./$4.jar | cut -d ' ' -f 1 > ./$4.jar.sha512
+      mv ./$4.jar.sha512 ../$4.jar.sha512
 
       # Move Jar
       mv ./$4.jar ../$4.jar
-      mv ./$4.jar.MD5 ../$4.jar.MD5
 }
 
 function neobuild() {
@@ -138,12 +150,18 @@ function neobuild() {
   # Rename Jar
   mv ./$5.zip ./$5.jar
 
-  # Generate MD5
-  md5sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.MD5
+  # Generate hashes
+  md5sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.md5
+  mv ./$5.jar.md5 ../$5.jar.md5
+  sha1sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.sha1
+  mv ./$5.jar.sha1 ../$5.jar.sha1
+  sha256sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.sha256
+  mv ./$5.jar.sha256 ../$5.jar.sha256
+  sha512sum ./$5.jar | cut -d ' ' -f 1 > ./$5.jar.sha512
+  mv ./$5.jar.sha512 ../$5.jar.sha512
 
   # Move Jar
   mv ./$5.jar ../$5.jar
-  mv ./$5.jar.MD5 ../$5.jar.MD5
 }
 
 # --------------------------- Setup --------------------------------
