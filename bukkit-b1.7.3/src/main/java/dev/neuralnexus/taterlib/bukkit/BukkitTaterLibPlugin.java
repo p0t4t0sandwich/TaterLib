@@ -1,6 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit;
 
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartedEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartingEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppedEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
+import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
@@ -48,10 +53,15 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         pluginManager.registerEvent(Event.Type.PLAYER_JOIN, new BukkitPlayerListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.PLAYER_QUIT, new BukkitPlayerListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.PLAYER_CHAT, new BukkitPlayerListener(), Event.Priority.Highest, this);
+        pluginManager.registerEvent(Event.Type.PLAYER_RESPAWN, new BukkitPlayerListener(), Event.Priority.Normal, this);
+
+        // Register entity listeners
+        pluginManager.registerEvent(Event.Type.ENTITY_DAMAGE, new BukkitEntityListener(), Event.Priority.Normal, this);
+        pluginManager.registerEvent(Event.Type.ENTITY_DEATH, new BukkitEntityListener(), Event.Priority.Normal, this);
 
         // Register server listeners
-        ServerListener.onServerStarting();
-        getServer().getScheduler().scheduleSyncDelayedTask(this, ServerListener::onServerStarted, 5*20L);
+        ServerListener.onServerStarting(new BukkitServerStartingEvent());
+        getServer().getScheduler().scheduleSyncDelayedTask(this, () -> ServerListener.onServerStarted(new BukkitServerStartedEvent()), 5*20L);
     }
 
     /**
@@ -68,14 +78,6 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void onEnable() {
         instance = this;
-
-        // Register plugin message channels
-//        Messenger messenger = getServer().getMessenger();
-//        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> {
-//            messenger.registerIncomingPluginChannel(this, channel, new BukkitPluginMessageListener());
-//            messenger.registerOutgoingPluginChannel(this, channel);
-//        }));
-
         pluginStart();
     }
 
@@ -85,8 +87,8 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerListener.onServerStopping();
-        ServerListener.onServerStopped();
+        ServerListener.onServerStopping(new BukkitServerStoppingEvent());
+        ServerListener.onServerStopped(new BukkitServerStoppedEvent());
         pluginStop();
     }
 }
