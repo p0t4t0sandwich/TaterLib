@@ -83,3 +83,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
 ## Release Notes 1.0.3-R0.1-SNAPSHOT
+
+- Fixes to Sponge8-11 component serialization
