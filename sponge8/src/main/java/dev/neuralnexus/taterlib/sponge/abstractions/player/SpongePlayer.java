@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayerInvento
 import dev.neuralnexus.taterlib.common.abstractions.utils.Position;
 import dev.neuralnexus.taterlib.sponge.abstractions.util.SpongeConversions;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.entity.living.player.Player;
@@ -69,7 +70,7 @@ public class SpongePlayer implements AbstractPlayer {
      */
     @Override
     public String getDisplayName() {
-        return player.displayName().get().toString();
+        return PlainTextComponentSerializer.plainText().serialize(player.displayName().get());
     }
 
     /**

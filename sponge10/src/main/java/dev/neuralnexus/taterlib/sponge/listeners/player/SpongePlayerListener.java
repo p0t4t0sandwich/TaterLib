@@ -3,8 +3,7 @@ package dev.neuralnexus.taterlib.sponge.listeners.player;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
-import dev.neuralnexus.taterlib.sponge.util.SpongeTranslationUtils;
-import net.kyori.adventure.text.TranslatableComponent;
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.advancement.Advancement;
 import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;
@@ -30,12 +29,14 @@ public class SpongePlayerListener {
         Advancement advancement = event.advancement();
 
         // Fire the generic advancement event
-        PlayerListener.onPlayerAdvancement(player, advancement.parent().toString());
+        if (advancement.parent().isPresent()) {
+            PlayerListener.onPlayerAdvancement(player, PlainTextComponentSerializer.plainText().serialize(advancement.asComponent()));
+        }
 
         // Fire the advancement finished event if the advancement is done
         DisplayInfo display = advancement.displayInfo().orElse(null);
         if (display != null && display.doesAnnounceToChat()) {
-            PlayerListener.onPlayerAdvancementFinished(player, SpongeTranslationUtils.translate((TranslatableComponent) display.title()));
+            PlayerListener.onPlayerAdvancementFinished(player, PlainTextComponentSerializer.plainText().serialize(display.title()));
         }
     }
 
@@ -46,7 +47,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
         if ((event.entity() instanceof Player)) {
-            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.entity()), ((Player) event.entity()).name() + " " + SpongeTranslationUtils.translate((TranslatableComponent) event.message()));
+            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.entity()), ((Player) event.entity()).name() + " " + PlainTextComponentSerializer.plainText().serialize(event.message()));
         }
     }
 
@@ -77,7 +78,7 @@ public class SpongePlayerListener {
         if (players.length != 1) return;
         if (TaterLib.cancelChat) event.setCancelled(true);
 
-        PlayerListener.onPlayerMessage(new SpongePlayer(players[0]), event.message().toString(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new SpongePlayer(players[0]), PlainTextComponentSerializer.plainText().serialize(event.message()), TaterLib.cancelChat);
     }
 
     /**
