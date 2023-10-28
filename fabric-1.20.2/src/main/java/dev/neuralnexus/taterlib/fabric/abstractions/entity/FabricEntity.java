@@ -24,6 +24,14 @@ public class FabricEntity implements AbstractEntity {
     }
 
     /**
+     * Gets the Fabric entity.
+     * @return The Fabric entity.
+     */
+    public Entity getEntity() {
+        return entity;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

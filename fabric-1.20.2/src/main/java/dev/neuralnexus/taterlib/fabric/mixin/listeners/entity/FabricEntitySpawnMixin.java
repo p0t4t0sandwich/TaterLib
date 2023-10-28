@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Listens for entity spawn and emits an event.
+ * Mixin for the entity spawn listener.
  */
 @Mixin(ServerWorld.class)
 class FabricEntitySpawnMixin {
@@ -20,7 +20,6 @@ class FabricEntitySpawnMixin {
      */
     @Inject(method = "spawnEntity", at = @At("HEAD"))
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
-        if (entity == null) return;
-        FabricEntityEvents.SPAWN.invoker().onEntitySpawn(entity);
+        FabricEntityEvents.SPAWN.invoker().onEntitySpawn(entity, cir);
     }
 }

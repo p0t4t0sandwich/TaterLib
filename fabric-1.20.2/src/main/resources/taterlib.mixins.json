@@ -4,9 +4,10 @@
   "package": "dev.neuralnexus.taterlib.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "listeners.entity.FabricEntityDamageMixin",
+    "listeners.entity.FabricEntityDeathMixin"
   ],
   "server": [
-    "listeners.entity.FabricEntityDeathMixin",
     "listeners.entity.FabricEntitySpawnMixin",
     "listeners.player.FabricPlayerAdvancementMixin",
     "listeners.player.FabricPlayerDeathMixin",
