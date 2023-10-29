@@ -1,9 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.neoforge.abstractions.player.NeoForgePlayer;
-import net.minecraft.world.entity.LivingEntity;
+import dev.neuralnexus.taterlib.neoforge.abstractions.events.player.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -17,21 +15,21 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  */
 public class NeoForgePlayerListener {
     /**
-     * Called when a player progresses in an advancement.
-     * @param event The advancement progress event
-     */
-    @SubscribeEvent
-    public void onPlayerAdvancement(AdvancementEvent.AdvancementProgressEvent event) {
-        PlayerListener.onPlayerAdvancement(new NeoForgePlayer(event.getEntity()), event.getAdvancement().getParent().getChatComponent().getString());
-    }
-
-    /**
      * Called when a player finishes an advancement.
      * @param event The advancement event
      */
     @SubscribeEvent
-    public void onPlayerAdvancementFinished(AdvancementEvent event) {
-        PlayerListener.onPlayerAdvancementFinished(new NeoForgePlayer(event.getEntity()), event.getAdvancement().getDisplay().toString());
+    public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
+        PlayerListener.onPlayerAdvancementFinished(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementFinishedEvent(event));
+    }
+
+    /**
+     * Called when a player progresses in an advancement.
+     * @param event The advancement progress event
+     */
+    @SubscribeEvent
+    public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
+        PlayerListener.onPlayerAdvancementProgress(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementProgressEvent(event));
     }
 
     /**
@@ -40,9 +38,8 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
-        LivingEntity entity = event.getEntity();
-        if (entity instanceof Player) {
-            PlayerListener.onPlayerDeath(new NeoForgePlayer((Player) entity), event.getSource().getLocalizedDeathMessage(entity).getString());
+        if (event.getEntity() instanceof Player) {
+            PlayerListener.onPlayerDeath(new NeoForgePlayerDeathEvent(event));
         }
     }
 
@@ -52,7 +49,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerListener.onPlayerLogin(new NeoForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogin(new NeoForgePlayerLoginEvent(event));
     }
 
     /**
@@ -61,17 +58,16 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        PlayerListener.onPlayerLogout(new NeoForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogout(new NeoForgePlayerLogoutEvent(event));
     }
 
     /**
-     * Called when a player sends a message.
+     * Called when a player sends a message, and sends it to the message relay.
      * @param event The player message event
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        if (TaterLib.cancelChat) event.setCanceled(true);
-        PlayerListener.onPlayerMessage(new NeoForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new NeoForgePlayerMessageEvent(event));
     }
 
     /**
@@ -80,6 +76,6 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerListener.onPlayerRespawn(new NeoForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerRespawn(new NeoForgePlayerRespawnEvent(event));
     }
 }

@@ -1,9 +1,7 @@
 package dev.neuralnexus.taterlib.forge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
-import net.minecraft.world.entity.LivingEntity;
+import dev.neuralnexus.taterlib.forge.abstrations.events.player.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -17,25 +15,21 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  */
 public class ForgePlayerListener {
     /**
-     * Called when a player progresses in an advancement.
-     * @param event The advancement progress event
-     */
-    @SubscribeEvent
-    public void onPlayerAdvancement(AdvancementEvent.AdvancementProgressEvent event) {
-        if (event.getAdvancement().value().parent().isPresent()) {
-            PlayerListener.onPlayerAdvancement(new ForgePlayer(event.getEntity()), event.getAdvancement().value().parent().get().getNamespace());
-        }
-    }
-
-    /**
      * Called when a player finishes an advancement.
      * @param event The advancement event
      */
     @SubscribeEvent
-    public void onPlayerAdvancementFinished(AdvancementEvent event) {
-        if (event.getAdvancement().value().parent().isPresent()) {
-            PlayerListener.onPlayerAdvancementFinished(new ForgePlayer(event.getEntity()), event.getAdvancement().value().parent().get().getNamespace());
-        }
+    public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
+        PlayerListener.onPlayerAdvancementFinished(new ForgePlayerAdvancementEvent.ForgePlayerAdvancementFinishedEvent(event));
+    }
+
+    /**
+     * Called when a player progresses in an advancement.
+     * @param event The advancement progress event
+     */
+    @SubscribeEvent
+    public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
+        PlayerListener.onPlayerAdvancementProgress(new ForgePlayerAdvancementEvent.ForgePlayerAdvancementProgressEvent(event));
     }
 
     /**
@@ -44,9 +38,8 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
-        LivingEntity entity = event.getEntity();
-        if (entity instanceof Player) {
-            PlayerListener.onPlayerDeath(new ForgePlayer((Player) entity), event.getSource().getLocalizedDeathMessage(entity).getString());
+        if (event.getEntity() instanceof Player) {
+            PlayerListener.onPlayerDeath(new ForgePlayerDeathEvent(event));
         }
     }
 
@@ -56,8 +49,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogin(new ForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogin(new ForgePlayerLoginEvent(event));
     }
 
     /**
@@ -66,8 +58,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogout(new ForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerLogout(new ForgePlayerLogoutEvent(event));
     }
 
     /**
@@ -76,10 +67,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        if (TaterLib.cancelChat) event.setCanceled(true);
-
-        // Send message to message relay
-        PlayerListener.onPlayerMessage(new ForgePlayer(event.getPlayer()), event.getMessage().getString(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new ForgePlayerMessageEvent(event));
     }
 
     /**
@@ -88,6 +76,6 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerListener.onPlayerRespawn(new ForgePlayer(event.getEntity()));
+        PlayerListener.onPlayerRespawn(new ForgePlayerRespawnEvent(event));
     }
 }

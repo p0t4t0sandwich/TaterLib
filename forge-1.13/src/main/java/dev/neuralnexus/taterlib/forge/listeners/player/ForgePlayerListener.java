@@ -1,14 +1,11 @@
 package dev.neuralnexus.taterlib.forge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
+import dev.neuralnexus.taterlib.forge.abstrations.events.player.*;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.PlayerAdvancements;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.event.ServerChatEvent;
@@ -24,16 +21,15 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
  */
 public class ForgePlayerListener {
     /**
-     * Called when a player progresses in an advancement.
-     * @param event The advancement progress event
+     * Called when a player finishes/progresses in an advancement.
+     * @param event The advancement event
      */
     @SubscribeEvent
     public void onPlayerAdvancement(AdvancementEvent event) {
-        ForgePlayer player = new ForgePlayer((EntityPlayer) event.getEntity());
         Advancement advancement = event.getAdvancement();
 
         // Fire the generic advancement event
-        PlayerListener.onPlayerAdvancement(player, advancement.getParent().getDisplay().getTitle().getString());
+        PlayerListener.onPlayerAdvancementProgress(new ForgePlayerAdvancementEvent.ForgePlayerAdvancementProgressEvent(event));
 
         // Get the player's advancement progress
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
@@ -41,9 +37,9 @@ public class ForgePlayerListener {
         AdvancementProgress progress = playerAdvancements.getProgress(advancement);
 
         // Fire the advancement finished event if the advancement is done
-        DisplayInfo display = advancement.getDisplay();
-        if (display != null && display.shouldAnnounceToChat() && progress.isDone()) {
-            PlayerListener.onPlayerAdvancementFinished(player, advancement.getDisplay().getTitle().getString());
+        DisplayInfo displayInfo = advancement.getDisplay();
+        if (displayInfo != null && displayInfo.shouldAnnounceToChat() && progress.isDone()) {
+            PlayerListener.onPlayerAdvancementFinished(new ForgePlayerAdvancementEvent.ForgePlayerAdvancementFinishedEvent(event));
         }
     }
 
@@ -53,9 +49,8 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
-        EntityLivingBase entity = (EntityLivingBase) event.getEntity();
-        if (entity instanceof EntityPlayer) {
-            PlayerListener.onPlayerDeath(new ForgePlayer((EntityPlayer) entity), event.getSource().getDeathMessage(entity).getString());
+        if (event.getEntity() instanceof EntityPlayerMP) {
+            PlayerListener.onPlayerDeath(new ForgePlayerDeathEvent(event));
         }
     }
 
@@ -65,8 +60,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogin(new ForgePlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogin(new ForgePlayerLoginEvent(event));
     }
 
     /**
@@ -75,8 +69,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogout(new ForgePlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogout(new ForgePlayerLogoutEvent(event));
     }
 
     /**
@@ -85,10 +78,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        if (TaterLib.cancelChat) event.setCanceled(true);
-
-        // Send message to message relay
-        PlayerListener.onPlayerMessage(new ForgePlayer(event.getPlayer()), event.getMessage(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new ForgePlayerMessageEvent(event));
     }
 
     /**
@@ -97,6 +87,6 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerListener.onPlayerRespawn(new ForgePlayer(event.getPlayer()));
+        PlayerListener.onPlayerRespawn(new ForgePlayerRespawnEvent(event));
     }
 }

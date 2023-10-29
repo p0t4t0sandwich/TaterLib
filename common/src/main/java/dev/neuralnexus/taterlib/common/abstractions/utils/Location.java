@@ -37,6 +37,32 @@ public class Location extends Position {
     }
 
     /**
+     * Creates a new location.
+     * @param position The position.
+     * @param world The world.
+     */
+    public Location(Position position, String world) {
+        super(position.getX(), position.getY(), position.getZ());
+        this.yaw = 0;
+        this.pitch = 0;
+        this.world = world;
+    }
+
+    /**
+     * Creates a new location.
+     * @param x The x coordinate.
+     * @param y The y coordinate.
+     * @param z The z coordinate.
+     * @param world The world.
+     */
+    public Location(double x, double y, double z, String world) {
+        super(x, y, z);
+        this.yaw = 0;
+        this.pitch = 0;
+        this.world = world;
+    }
+
+    /**
      * Getter for the yaw.
      * @return The yaw.
      */

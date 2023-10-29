@@ -1,8 +1,10 @@
 package dev.neuralnexus.taterlib.forge.listeners.entity;
 
 import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
-import dev.neuralnexus.taterlib.forge.abstrations.entity.ForgeEntity;
-import net.minecraft.world.entity.LivingEntity;
+import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntityDamageEvent;
+import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntityDeathEvent;
+import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntitySpawnEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -12,13 +14,21 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
  */
 public class ForgeEntityListener {
     /**
+     * Called when an entity is damaged.
+     * @param event The entity damage event
+     */
+    @SubscribeEvent
+    public void onEntityDamage(LivingDamageEvent event) {
+        EntityListener.onEntityDamage(new ForgeEntityDamageEvent(event));
+    }
+
+    /**
      * Called when an entity dies.
      * @param event The entity death event
      */
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
-        LivingEntity entity = event.getEntity();
-        EntityListener.onEntityDeath(new ForgeEntity(entity), event.getSource().getLocalizedDeathMessage(entity).getString());
+        EntityListener.onEntityDeath(new ForgeEntityDeathEvent(event));
     }
 
     /**
@@ -26,8 +36,7 @@ public class ForgeEntityListener {
      * @param event The entity spawn event
      */
     @SubscribeEvent
-    public void onEntitySpawn(LivingSpawnEvent event) {
-        LivingEntity entity = event.getEntity();
-        EntityListener.onEntitySpawn(new ForgeEntity(entity));
+    public void onEntitySpawn(LivingSpawnEvent.SpecialSpawn event) {
+        EntityListener.onEntitySpawn(new ForgeEntitySpawnEvent(event));
     }
 }

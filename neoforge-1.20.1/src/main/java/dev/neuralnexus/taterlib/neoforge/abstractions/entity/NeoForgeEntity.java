@@ -25,6 +25,14 @@ public class NeoForgeEntity implements AbstractEntity {
     }
 
     /**
+     * Gets the Forge entity.
+     * @return The Forge entity.
+     */
+    public Entity getEntity() {
+        return entity;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

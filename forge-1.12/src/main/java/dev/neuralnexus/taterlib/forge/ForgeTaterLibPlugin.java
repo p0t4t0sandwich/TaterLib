@@ -5,11 +5,14 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartedEvent;
+import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartingEvent;
+import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppedEvent;
+import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppingEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
-import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -118,7 +121,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        ServerListener.onServerStarting();
+        ServerListener.onServerStarting(new ForgeServerStartingEvent(event));
     }
 
     /**
@@ -127,7 +130,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStarted2(FMLServerStartedEvent event) {
-        ServerListener.onServerStopping();
+        ServerListener.onServerStarted(new ForgeServerStartedEvent(event));
     }
 
     /**
@@ -136,7 +139,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStopping(FMLServerStoppingEvent event) {
-        ServerListener.onServerStopping();
+        ServerListener.onServerStopping(new ForgeServerStoppingEvent(event));
     }
 
     /**
@@ -145,6 +148,6 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStopped(FMLServerStoppedEvent event) {
-        ServerListener.onServerStopped();
+        ServerListener.onServerStopped(new ForgeServerStoppedEvent(event));
     }
 }

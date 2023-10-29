@@ -1,6 +1,6 @@
 # DevNotes for wiki
 
-## Additons
+## Additions
 
 - Added `getEntity` to `AbstractEntity` implementations
 
@@ -29,6 +29,7 @@
 ### Fabric 1.20.2
 
 - `EntityDeathEvent` needs `getDrops`, `setDrops`, `clearDrops`, and `setDroppedExp`
+- need `EntityDamageByEntityEvent` and `EntityDamageByBlockEvent`
 - `PlayerDeathEvent` needs `setDeathMessage`, `hasKeepInventory`, and `setKeepInventory`
 - `PlayerMessageEvent` needs `recipients` and `setRecipients`
 - `PlayerRespawnEvent` needs `isBedSpawn` and `isAnchorSpawn`
@@ -36,3 +37,15 @@
 ## Fabric 1.18
 
 - `EntityDeathEvent` needs `getDroppedExp`
+
+## Forge 1.20.2
+
+- need `EntityDamageByEntityEvent` and `EntityDamageByBlockEvent`
+- `PlayerDeathEvent` needs `hasKeepInventory`, and `setKeepInventory`
+- `PlayerMessageEvent` needs `recipients` and `setRecipients`
+- `PlayerRespawnEvent` needs `isBedSpawn` and `isAnchorSpawn`
+
+## Forge 1.18
+
+- `EntityDeathEvent` needs `getDroppedExp`
+- `PlayerDeathEvent` needs `getDroppedExp`
