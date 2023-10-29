@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Listens for player deaths and emits an event.
+ * Mixin for the player death listener.
  */
 @Mixin(ServerPlayerEntity.class)
 public class FabricPlayerDeathMixin {
@@ -22,8 +22,6 @@ public class FabricPlayerDeathMixin {
     @Inject(method = "onDeath", at = @At("HEAD"))
     public void onPlayerDeath(DamageSource source, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-
-        // Fire the death event
         FabricPlayerEvents.DEATH.invoker().onPlayerDeath(player, source);
     }
 }

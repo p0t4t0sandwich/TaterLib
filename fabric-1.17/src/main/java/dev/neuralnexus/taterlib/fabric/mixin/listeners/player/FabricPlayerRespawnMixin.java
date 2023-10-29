@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
- * Listens for player respawns and emits an event.
+ * Mixin for the player respawn listener.
  */
 @Mixin(PlayerManager.class)
 public class FabricPlayerRespawnMixin {
@@ -21,7 +21,6 @@ public class FabricPlayerRespawnMixin {
      */
     @Inject(method = "respawnPlayer", at = @At("HEAD"))
     public void onPlayerRespawn(ServerPlayerEntity player, boolean alive, CallbackInfoReturnable<ServerPlayerEntity> cir) {
-        // Fire the respawn event
-        FabricPlayerEvents.RESPAWN.invoker().onPlayerRespawn(player);
+        FabricPlayerEvents.RESPAWN.invoker().onPlayerRespawn(player, alive);
     }
 }

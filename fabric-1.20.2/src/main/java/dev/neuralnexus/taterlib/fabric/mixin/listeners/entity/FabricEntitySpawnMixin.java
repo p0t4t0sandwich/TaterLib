@@ -18,7 +18,7 @@ class FabricEntitySpawnMixin {
      * @param entity The entity.
      * @param cir The callback info.
      */
-    @Inject(method = "spawnEntity", at = @At("HEAD"))
+    @Inject(method = "spawnEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         FabricEntityEvents.SPAWN.invoker().onEntitySpawn(entity, cir);
     }

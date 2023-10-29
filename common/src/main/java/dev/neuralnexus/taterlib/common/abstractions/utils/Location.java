@@ -23,6 +23,20 @@ public class Location extends Position {
     }
 
     /**
+     * Creates a new location.
+     * @param position The position.
+     * @param yaw The yaw.
+     * @param pitch The pitch.
+     * @param world The world.
+     */
+    public Location(Position position, float yaw, float pitch, String world) {
+        super(position.getX(), position.getY(), position.getZ());
+        this.yaw = yaw;
+        this.pitch = pitch;
+        this.world = world;
+    }
+
+    /**
      * Getter for the yaw.
      * @return The yaw.
      */

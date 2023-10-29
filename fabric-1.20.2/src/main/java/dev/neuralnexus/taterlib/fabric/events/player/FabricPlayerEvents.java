@@ -2,26 +2,27 @@ package dev.neuralnexus.taterlib.fabric.events.player;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.advancement.Advancement;
+import net.minecraft.advancement.AdvancementEntry;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 public final class FabricPlayerEvents {
-    /**
-     * Called when a player advances an advancement.
-     */
-    public static final Event<PlayerAdvancement> ADVANCEMENT = EventFactory.createArrayBacked(PlayerAdvancement.class, (listeners) -> (player, advancement) -> {
-        for (PlayerAdvancement listener : listeners) {
-            listener.onPlayerAdvancement(player, advancement);
-        }
-    });
-
     /**
      * Called when a player finishes an advancement.
      */
     public static final Event<PlayerAdvancementFinished> ADVANCEMENT_FINISHED = EventFactory.createArrayBacked(PlayerAdvancementFinished.class, (listeners) -> (player, advancement) -> {
         for (PlayerAdvancementFinished listener : listeners) {
             listener.onPlayerAdvancementFinished(player, advancement);
+        }
+    });
+
+    /**
+     * Called when a player advances an advancement.
+     */
+    public static final Event<PlayerAdvancementProgress> ADVANCEMENT_PROGRESS = EventFactory.createArrayBacked(PlayerAdvancementProgress.class, (listeners) -> (player, advancement, criterionName) -> {
+        for (PlayerAdvancementProgress listener : listeners) {
+            listener.onPlayerAdvancementProgress(player, advancement, criterionName);
         }
     });
 
@@ -37,29 +38,29 @@ public final class FabricPlayerEvents {
     /**
      * Called when a player sends a message.
      */
-    public static final Event<PlayerMessage> MESSAGE = EventFactory.createArrayBacked(PlayerMessage.class, (listeners) -> (player, message, isCanceled) -> {
+    public static final Event<PlayerMessage> MESSAGE = EventFactory.createArrayBacked(PlayerMessage.class, (listeners) -> (player, message, ci) -> {
         for (PlayerMessage listener : listeners) {
-            listener.onPlayerMessage(player, message, isCanceled);
+            listener.onPlayerMessage(player, message, ci);
         }
     });
 
     /**
      * Called when a player respawns.
      */
-    public static final Event<FabricPlayerRespawnEvent> RESPAWN = EventFactory.createArrayBacked(FabricPlayerRespawnEvent.class, (listeners) -> (player) -> {
-        for (FabricPlayerRespawnEvent listener : listeners) {
-            listener.onPlayerRespawn(player);
+    public static final Event<PlayerRespawn> RESPAWN = EventFactory.createArrayBacked(PlayerRespawn.class, (listeners) -> (player, alive) -> {
+        for (PlayerRespawn listener : listeners) {
+            listener.onPlayerRespawn(player, alive);
         }
     });
 
     @FunctionalInterface
-    public interface PlayerAdvancement {
-        void onPlayerAdvancement(PlayerEntity player, Advancement advancement);
+    public interface PlayerAdvancementFinished {
+        void onPlayerAdvancementFinished(PlayerEntity player, AdvancementEntry advancement);
     }
 
     @FunctionalInterface
-    public interface PlayerAdvancementFinished {
-        void onPlayerAdvancementFinished(PlayerEntity player, Advancement advancement);
+    public interface PlayerAdvancementProgress {
+        void onPlayerAdvancementProgress(PlayerEntity player, AdvancementEntry advancement, String criterionName);
     }
 
     @FunctionalInterface
@@ -69,11 +70,11 @@ public final class FabricPlayerEvents {
 
     @FunctionalInterface
     public interface PlayerMessage {
-        void onPlayerMessage(PlayerEntity player, String message, boolean isCanceled);
+        void onPlayerMessage(PlayerEntity player, String message, CallbackInfo ci);
     }
 
     @FunctionalInterface
-    public interface FabricPlayerRespawnEvent {
-        void onPlayerRespawn(PlayerEntity player);
+    public interface PlayerRespawn {
+        void onPlayerRespawn(PlayerEntity player, boolean alive);
     }
 }

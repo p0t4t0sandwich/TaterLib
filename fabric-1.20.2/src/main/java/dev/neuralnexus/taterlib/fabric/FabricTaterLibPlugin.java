@@ -7,18 +7,15 @@ import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
-import dev.neuralnexus.taterlib.fabric.abstractions.entity.FabricEntity;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.entity.FabricEntitySpawnEvent;
-import dev.neuralnexus.taterlib.fabric.abstractions.events.player.FabricPlayerLoginEvent;
-import dev.neuralnexus.taterlib.fabric.abstractions.events.player.FabricPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.fabric.abstractions.events.player.*;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.server.FabricServerStartedEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.server.FabricServerStartingEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.events.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.abstractions.logger.FabricLogger;
-import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
 import dev.neuralnexus.taterlib.fabric.commands.FabricTaterLibCommand;
 import dev.neuralnexus.taterlib.fabric.events.entity.FabricEntityEvents;
 import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
@@ -77,19 +74,11 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
         FabricEntityEvents.SPAWN.register((entity, cir) -> EntityListener.onEntitySpawn(new FabricEntitySpawnEvent(entity, cir)));
 
         // Register TaterLib Player events
-        FabricPlayerEvents.ADVANCEMENT_FINISHED.register((player, advancement) -> {
-            if (advancement.display().isPresent()) {
-                PlayerListener.onPlayerAdvancementFinished(new FabricPlayer(player), advancement.display().get().getTitle().getString());
-            }
-        });
-        FabricPlayerEvents.ADVANCEMENT.register((player, advancement) -> {
-            if (advancement.name().isPresent()) {
-                PlayerListener.onPlayerAdvancementProgress(new FabricPlayer(player), advancement.name().get().getString());
-            }
-        });
-        FabricPlayerEvents.DEATH.register((player, source) -> PlayerListener.onPlayerDeath(new FabricPlayer(player), source.getDeathMessage(player).getString()));
-        FabricPlayerEvents.MESSAGE.register((player, message, isCanceled) -> PlayerListener.onPlayerMessage(new FabricPlayer(player), message, isCanceled));
-        FabricPlayerEvents.RESPAWN.register((player) -> PlayerListener.onPlayerRespawn(new FabricPlayer(player)));
+        FabricPlayerEvents.ADVANCEMENT_FINISHED.register((player, advancement) -> PlayerListener.onPlayerAdvancementFinished(new FabricPlayerAdvancementEvent.FabricPlayerAdvancementFinishedEvent(player, advancement)));
+        FabricPlayerEvents.ADVANCEMENT_PROGRESS.register((player, advancement, criterionName) -> PlayerListener.onPlayerAdvancementProgress(new FabricPlayerAdvancementEvent.FabricPlayerAdvancementProgressEvent(player, advancement, criterionName)));
+        FabricPlayerEvents.DEATH.register((player, source) -> PlayerListener.onPlayerDeath(new FabricPlayerDeathEvent(player, source)));
+        FabricPlayerEvents.MESSAGE.register((player, message, ci) -> PlayerListener.onPlayerMessage(new FabricPlayerMessageEvent(player, message, ci)));
+        FabricPlayerEvents.RESPAWN.register(((player, alive) -> PlayerListener.onPlayerRespawn(new FabricPlayerRespawnEvent(player, alive))));
     }
 
     /**

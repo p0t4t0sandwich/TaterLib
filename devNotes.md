@@ -1,5 +1,9 @@
 # DevNotes for wiki
 
+## Additons
+
+- Added `getEntity` to `AbstractEntity` implementations
+
 ## Known gaps in implementations
 
 ### Bukkit latest
@@ -25,3 +29,10 @@
 ### Fabric 1.20.2
 
 - `EntityDeathEvent` needs `getDrops`, `setDrops`, `clearDrops`, and `setDroppedExp`
+- `PlayerDeathEvent` needs `setDeathMessage`, `hasKeepInventory`, and `setKeepInventory`
+- `PlayerMessageEvent` needs `recipients` and `setRecipients`
+- `PlayerRespawnEvent` needs `isBedSpawn` and `isAnchorSpawn`
+
+## Fabric 1.18
+
+- `EntityDeathEvent` needs `getDroppedExp`

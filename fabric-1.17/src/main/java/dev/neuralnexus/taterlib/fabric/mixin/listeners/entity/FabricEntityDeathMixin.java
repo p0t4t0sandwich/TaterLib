@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Mixin for the entity spawn listener
+ * Mixin for the entity death listener.
  */
 @Mixin(LivingEntity.class)
 class FabricEntityDeathMixin {
@@ -19,8 +19,7 @@ class FabricEntityDeathMixin {
      * @param ci The callback info.
      */
     @Inject(method = "onDeath", at = @At("HEAD"))
-    private void onEntitySpawn(DamageSource source, CallbackInfo ci) {
-        // Fire the entity death event
+    private void onEntityDeath(DamageSource source, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         FabricEntityEvents.DEATH.invoker().onEntityDeath(entity, source);
     }

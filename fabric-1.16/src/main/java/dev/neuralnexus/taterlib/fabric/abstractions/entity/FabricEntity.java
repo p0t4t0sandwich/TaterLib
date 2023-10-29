@@ -21,6 +21,14 @@ public class FabricEntity implements AbstractEntity {
     }
 
     /**
+     * Gets the Fabric entity.
+     * @return The Fabric entity.
+     */
+    public Entity getEntity() {
+        return entity;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override
@@ -49,7 +57,6 @@ public class FabricEntity implements AbstractEntity {
      */
     @Override
     public String getType() {
-        // Turn entity.modid.mob into modid:mob
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
