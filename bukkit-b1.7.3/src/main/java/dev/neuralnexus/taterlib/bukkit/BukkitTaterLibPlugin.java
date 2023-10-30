@@ -58,6 +58,7 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         // Register entity listeners
         pluginManager.registerEvent(Event.Type.ENTITY_DAMAGE, new BukkitEntityListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.ENTITY_DEATH, new BukkitEntityListener(), Event.Priority.Normal, this);
+        pluginManager.registerEvent(Event.Type.CREATURE_SPAWN, new BukkitEntityListener(), Event.Priority.Normal, this);
 
         // Register server listeners
         ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
