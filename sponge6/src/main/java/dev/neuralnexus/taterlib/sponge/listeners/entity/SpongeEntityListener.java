@@ -1,8 +1,11 @@
 package dev.neuralnexus.taterlib.sponge.listeners.entity;
 
 import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
-import dev.neuralnexus.taterlib.sponge.abstractions.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntityDamageEvent;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntityDeathEvent;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntitySpawnEvent;
 import org.spongepowered.api.event.Listener;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
@@ -11,12 +14,21 @@ import org.spongepowered.api.event.entity.SpawnEntityEvent;
  */
 public class SpongeEntityListener {
     /**
+     * Called when an entity is damaged.
+     * @param event The event.
+     */
+    @Listener
+    public void onEntityDamage(DamageEntityEvent event) {
+        EntityListener.onEntityDamage(new SpongeEntityDamageEvent(event));
+    }
+
+    /**
      * Called when an entity dies.
      * @param event The event.
      */
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
-        EntityListener.onEntityDeath(new SpongeEntity(event.getTargetEntity()), event.getMessage().toPlain());
+        EntityListener.onEntityDeath(new SpongeEntityDeathEvent(event));
     }
 
     /**
@@ -24,7 +36,7 @@ public class SpongeEntityListener {
      * @param event The event.
      */
     @Listener
-    public void onEntitySpawn(SpawnEntityEvent event) {
-        EntityListener.onEntitySpawn(new SpongeEntity(event.getEntities().get(0)));
+    public void onEntitySpawn(SpawnEntityEvent.Custom event) {
+        EntityListener.onEntitySpawn(new SpongeEntitySpawnEvent(event));
     }
 }

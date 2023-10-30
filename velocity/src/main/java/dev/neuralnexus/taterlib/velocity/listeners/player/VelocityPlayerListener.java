@@ -5,10 +5,11 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
-import com.velocitypowered.api.proxy.Player;
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLoginEvent;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerMessageEvent;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerServerSwitchEvent;
 
 public class VelocityPlayerListener {
     /**
@@ -19,16 +20,7 @@ public class VelocityPlayerListener {
     public void onPlayerLogin(ServerConnectedEvent event) {
         // If player is switching servers, don't run this function
         if (event.getPreviousServer().isPresent()) return;
-
-        // Get Player and current server
-        Player player = event.getPlayer();
-        String toServer = event.getServer().getServerInfo().getName();
-
-        VelocityPlayer taterPlayer = new VelocityPlayer(player);
-        taterPlayer.setServerName(toServer);
-
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogin(taterPlayer);
+        PlayerListener.onPlayerLogin(new VelocityPlayerLoginEvent(event));
     }
 
     /**
@@ -37,8 +29,7 @@ public class VelocityPlayerListener {
      */
     @Subscribe
     public void onPlayerLogout(DisconnectEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogout(new VelocityPlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogout(new VelocityPlayerLogoutEvent(event));
     }
 
     /**
@@ -47,15 +38,8 @@ public class VelocityPlayerListener {
      */
     @Subscribe(order = PostOrder.FIRST)
     public void onPlayerMessage(PlayerChatEvent event) {
-        if (TaterLib.cancelChat) event.setResult(PlayerChatEvent.ChatResult.denied());
-
-        // Get player and message
-        Player player = event.getPlayer();
-        String message = event.getMessage();
-        if (!player.getCurrentServer().isPresent()) return;
-
-        // Send message to message relay
-        PlayerListener.onPlayerMessage(new VelocityPlayer(player), message, TaterLib.cancelChat);
+        if (event.getMessage().startsWith("/")) return;
+        PlayerListener.onPlayerMessage(new VelocityPlayerMessageEvent(event));
     }
 
     /**
@@ -66,12 +50,6 @@ public class VelocityPlayerListener {
     public void onServerSwitch(ServerConnectedEvent event) {
         // If player is just joining, don't run this function
         if (!event.getPreviousServer().isPresent()) return;
-
-        // Get Player and current server
-        Player player = event.getPlayer();
-        String toServer = event.getServer().getServerInfo().getName();
-
-        // Pass Player and current server to helper function
-        PlayerListener.onServerSwitch(new VelocityPlayer(player), toServer);
+        PlayerListener.onServerSwitch(new VelocityPlayerServerSwitchEvent(event));
     }
 }

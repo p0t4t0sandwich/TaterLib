@@ -1,9 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
-import org.spongepowered.api.advancement.Advancement;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.player.*;
 import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -24,16 +22,11 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerAdvancement(AdvancementEvent.Grant event) {
-        SpongePlayer player = new SpongePlayer(event.getTargetEntity());
-        Advancement advancement = event.getAdvancement();
-
-        // Fire the generic advancement event
-        PlayerListener.onPlayerAdvancement(player, advancement.getParent().toString());
-
-        // Fire the advancement finished event if the advancement is done
-        DisplayInfo display = advancement.getDisplayInfo().orElse(null);
+        DisplayInfo display = event.getAdvancement().getDisplayInfo().orElse(null);
         if (display != null && display.doesAnnounceToChat()) {
-            PlayerListener.onPlayerAdvancementFinished(player, display.getTitle().toString());
+            PlayerListener.onPlayerAdvancementFinished(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementFinishedEvent(event));
+        } else {
+            PlayerListener.onPlayerAdvancementProgress(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementProgressEvent(event));
         }
     }
 
@@ -44,7 +37,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
         if ((event.getTargetEntity() instanceof Player)) {
-            PlayerListener.onPlayerDeath(new SpongePlayer((Player) event.getTargetEntity()), event.getMessage().toPlain());
+            PlayerListener.onPlayerDeath(new SpongePlayerDeathEvent(event));
         }
     }
 
@@ -54,7 +47,7 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerLogin(ClientConnectionEvent.Join event) {
-        PlayerListener.onPlayerLogin(new SpongePlayer(event.getTargetEntity()));
+        PlayerListener.onPlayerLogin(new SpongePlayerLoginEvent(event));
     }
 
     /**
@@ -63,7 +56,7 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerLogout(ClientConnectionEvent.Disconnect event) {
-        PlayerListener.onPlayerLogout(new SpongePlayer(event.getTargetEntity()));
+        PlayerListener.onPlayerLogout(new SpongePlayerLogoutEvent(event));
     }
 
     /**
@@ -73,9 +66,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerMessage(MessageEvent event, @All(ignoreEmpty=false) Player[] players) {
         if (players.length != 1) return;
-        if (TaterLib.cancelChat) event.setMessageCancelled(true);
-
-        PlayerListener.onPlayerMessage(new SpongePlayer(players[0]), event.getMessage().toPlain(), TaterLib.cancelChat);
+        PlayerListener.onPlayerMessage(new SpongePlayerMessageEvent(event, players));
     }
 
     /**
@@ -84,6 +75,6 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerRespawn(RespawnPlayerEvent event) {
-        PlayerListener.onPlayerRespawn(new SpongePlayer(event.getTargetEntity()));
+        PlayerListener.onPlayerRespawn(new SpongePlayerRespawnEvent(event));
     }
 }

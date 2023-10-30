@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 import dev.neuralnexus.taterlib.common.listeners.pluginmessages.PluginMessageListener;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.pluginmessages.VelocityPluginMessageEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
 
 public class VelocityPluginMessageListener {
@@ -14,11 +15,11 @@ public class VelocityPluginMessageListener {
      */
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        PluginMessageListener.onPluginMessage(event.getIdentifier().getId(), event.getData());
+        PluginMessageListener.onPluginMessage(new VelocityPluginMessageEvent(event));
         if (event.getSource() instanceof ServerConnection) {
-            PluginMessageListener.onServerPluginMessage(event.getIdentifier().getId(), event.getData());
+            PluginMessageListener.onServerPluginMessage(new VelocityPluginMessageEvent.VelocityServerPluginMessageEvent(event));
         } else if (event.getSource() instanceof Player){
-            PluginMessageListener.onPlayerPluginMessage(event.getIdentifier().getId(), new VelocityPlayer((Player) event.getSource()), event.getData());
+            PluginMessageListener.onPlayerPluginMessage(new VelocityPluginMessageEvent.VelocityPlayerPluginMessageEvent(event));
         }
     }
 }

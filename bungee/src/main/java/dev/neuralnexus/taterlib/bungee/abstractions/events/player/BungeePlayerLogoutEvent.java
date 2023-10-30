@@ -10,6 +10,7 @@ import net.md_5.bungee.api.event.PlayerDisconnectEvent;
  */
 public class BungeePlayerLogoutEvent implements AbstractPlayerLogoutEvent {
     private final PlayerDisconnectEvent event;
+    private String logoutMessage = "";
 
     public BungeePlayerLogoutEvent(PlayerDisconnectEvent event) {
         this.event = event;
@@ -28,6 +29,9 @@ public class BungeePlayerLogoutEvent implements AbstractPlayerLogoutEvent {
      */
     @Override
     public String getLogoutMessage() {
+        if (!logoutMessage.isEmpty()) {
+            return logoutMessage;
+        }
         return event.getPlayer() + " left the game";
     }
 
@@ -35,5 +39,7 @@ public class BungeePlayerLogoutEvent implements AbstractPlayerLogoutEvent {
      * @inheritDoc
      */
     @Override
-    public void setLogoutMessage(String message) {}
+    public void setLogoutMessage(String message) {
+        logoutMessage = message;
+    }
 }

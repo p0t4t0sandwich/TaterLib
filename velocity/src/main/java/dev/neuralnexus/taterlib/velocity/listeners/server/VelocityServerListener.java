@@ -4,6 +4,8 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStartingEvent;
+import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStoppingEvent;
 
 public class VelocityServerListener {
     /**
@@ -12,8 +14,7 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStarting(ProxyInitializeEvent event) {
-        // Run server started event
-        ServerListener.onServerStarting();
+        ServerListener.onServerStarting(new VelocityServerStartingEvent(event));
     }
 
     /**
@@ -22,7 +23,6 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStopping(ProxyShutdownEvent event) {
-        // Run server stopped event
-        ServerListener.onServerStopping();
+        ServerListener.onServerStopping(new VelocityServerStoppingEvent(event));
     }
 }

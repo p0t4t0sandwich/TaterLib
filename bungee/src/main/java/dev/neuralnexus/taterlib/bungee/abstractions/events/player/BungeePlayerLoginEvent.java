@@ -10,6 +10,7 @@ import net.md_5.bungee.api.event.ServerSwitchEvent;
  */
 public class BungeePlayerLoginEvent implements AbstractPlayerLoginEvent {
     private final ServerSwitchEvent event;
+    private String loginMessage = "";
 
     public BungeePlayerLoginEvent(ServerSwitchEvent event) {
         this.event = event;
@@ -30,6 +31,9 @@ public class BungeePlayerLoginEvent implements AbstractPlayerLoginEvent {
      */
     @Override
     public String getLoginMessage() {
+        if (!loginMessage.isEmpty()) {
+            return loginMessage;
+        }
         return event.getPlayer() + " joined the game";
     }
 
@@ -37,5 +41,7 @@ public class BungeePlayerLoginEvent implements AbstractPlayerLoginEvent {
      * @inheritDoc
      */
     @Override
-    public void setLoginMessage(String message) {}
+    public void setLoginMessage(String message) {
+        loginMessage = message;
+    }
 }

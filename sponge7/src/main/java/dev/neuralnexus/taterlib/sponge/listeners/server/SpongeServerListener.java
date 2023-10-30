@@ -1,10 +1,15 @@
 package dev.neuralnexus.taterlib.sponge.listeners.server;
 
 import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.server.SpongeServerStartedEvent;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.server.SpongeServerStartingEvent;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.server.SpongeServerStoppedEvent;
+import dev.neuralnexus.taterlib.sponge.abstractions.events.server.SpongeServerStoppingEvent;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
+import org.spongepowered.api.event.game.state.GameStoppingEvent;
 
 /**
  * Listens to server events.
@@ -16,7 +21,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarting(GameStartingServerEvent event) {
-        ServerListener.onServerStarting();
+        ServerListener.onServerStarting(new SpongeServerStartingEvent(event));
     }
 
     /**
@@ -25,7 +30,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarted(GameStartedServerEvent event) {
-        ServerListener.onServerStarted();
+        ServerListener.onServerStarted(new SpongeServerStartedEvent(event));
     }
 
     /**
@@ -33,8 +38,8 @@ public class SpongeServerListener {
      * @param event The event.
      */
     @Listener
-    public void onServerStopping(GameStoppedServerEvent event) {
-        ServerListener.onServerStopping();
+    public void onServerStopping(GameStoppingEvent event) {
+        ServerListener.onServerStopping(new SpongeServerStoppingEvent(event));
     }
 
     /**
@@ -43,6 +48,6 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStopped(GameStoppedServerEvent event) {
-        ServerListener.onServerStopped();
+        ServerListener.onServerStopped(new SpongeServerStoppedEvent(event));
     }
 }

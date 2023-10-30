@@ -78,12 +78,12 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
         // Register player listeners
         pluginManager.registerListener(this, new BungeePlayerListener());
 
+        // Register plugin message listeners
+        pluginManager.registerListener(this, new BungeePluginMessageListener());
+
         // Register server listeners
         ServerListener.onServerStarting(new BungeeServerStartingEvent());
         getProxy().getScheduler().schedule(this, () -> ServerListener.onServerStarted(new BungeeServerStartedEvent()), 5L, TimeUnit.SECONDS);
-
-        // Register plugin message listeners
-        pluginManager.registerListener(this, new BungeePluginMessageListener());
     }
 
     /**
