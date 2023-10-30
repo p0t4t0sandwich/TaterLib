@@ -5,15 +5,12 @@ import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerLo
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerMessageEvent;
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.*;
 
 /**
  * Listens for player events.
  */
-public class BukkitPlayerListener extends org.bukkit.event.player.PlayerListener {
+public class BukkitPlayerListener extends PlayerListener {
     /**
      * Called when a player logs in.
      * @param event The event.

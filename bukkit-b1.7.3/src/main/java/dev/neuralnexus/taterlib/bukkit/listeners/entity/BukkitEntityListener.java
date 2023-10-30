@@ -4,6 +4,8 @@ import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDa
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
+import org.bukkit.entity.Player;
 import org.bukkit.event.entity.*;
 
 /**
@@ -52,6 +54,11 @@ public class BukkitEntityListener extends EntityListener {
     @Override
     public void onEntityDeath(EntityDeathEvent event) {
         EntityEvents.DEATH.invoke(new BukkitEntityDeathEvent(event));
+
+        // Check if the entity is a player
+        if (event.getEntity() instanceof Player) {
+            PlayerEvents.DEATH.invoke(new BukkitEntityDeathEvent.BukkitPlayerDeathEvent(event));
+        }
     }
 
     /**
