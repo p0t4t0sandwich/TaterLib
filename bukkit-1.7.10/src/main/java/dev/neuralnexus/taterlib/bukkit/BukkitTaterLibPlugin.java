@@ -1,6 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit;
 
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartedEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartingEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppedEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
+import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMessageListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
@@ -47,9 +52,12 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
 
+        // Register entity listeners
+        pluginManager.registerEvents(new BukkitEntityListener(), this);
+
         // Register server listeners
-        ServerListener.onServerStarting();
-        getServer().getScheduler().runTaskLater(this, ServerListener::onServerStarted, 5*20L);
+        ServerListener.onServerStarting(new BukkitServerStartingEvent());
+        getServer().getScheduler().runTaskLater(this, () -> ServerListener.onServerStarted(new BukkitServerStartedEvent()), 5*20L);
     }
 
     /**
@@ -83,8 +91,8 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerListener.onServerStopping();
-        ServerListener.onServerStopped();
+        ServerListener.onServerStopping(new BukkitServerStoppingEvent());
+        ServerListener.onServerStopped(new BukkitServerStoppedEvent());
         pluginStop();
     }
 }

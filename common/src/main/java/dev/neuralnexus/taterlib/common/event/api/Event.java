@@ -6,11 +6,11 @@ import java.util.function.Consumer;
 /**
  * These are really sketchy at the moment, don't use them.
  */
-public class Event<T> {
+public class Event<T, R> {
     private final Class<T> eventClass;
-    private final ArrayList<Consumer<Object[]>> listeners = new ArrayList<>();
+    private final ArrayList<Consumer<R>> listeners = new ArrayList<>();
 
-    public Event(Class<T> eventClass, Consumer<Object[]> listener) {
+    public Event(Class<T> eventClass, Consumer<R> listener) {
         this.eventClass = eventClass;
         this.listeners.add(listener);
     }
@@ -23,16 +23,16 @@ public class Event<T> {
         return this.eventClass;
     }
 
-    public void register(Consumer<Object[]> listener) {
+    public void register(Consumer<R> listener) {
         this.listeners.add(listener);
     }
 
-    public ArrayList<Consumer<Object[]>> getListeners() {
+    public ArrayList<Consumer<R>> getListeners() {
         return this.listeners;
     }
 
-    public void invoke(Object[] event) {
-        for (Consumer listener : listeners) {
+    public void invoke(R event) {
+        for (Consumer<R> listener : listeners) {
             listener.accept(event);
         }
     }

@@ -5,11 +5,22 @@ import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /**
  * Contains additional entity events.
  */
 public final class FabricEntityEvents {
+    /**
+     * Called when an entity takes damage.
+     */
+    public static final Event<EntityDamage> DAMAGE = EventFactory.createArrayBacked(EntityDamage.class, (listeners) -> (entity, damageSource, damage, ci) -> {
+        for (EntityDamage listener : listeners) {
+            listener.onEntityDamage(entity, damageSource, damage, ci);
+        }
+    });
+
     /**
      * Called when an entity dies.
      */
@@ -22,11 +33,16 @@ public final class FabricEntityEvents {
     /**
      * Called when an entity spawns.
      */
-    public static final Event<EntitySpawn> SPAWN = EventFactory.createArrayBacked(EntitySpawn.class, (listeners) -> (entity) -> {
+    public static final Event<EntitySpawn> SPAWN = EventFactory.createArrayBacked(EntitySpawn.class, (listeners) -> (entity, cir) -> {
         for (EntitySpawn listener : listeners) {
-            listener.onEntitySpawn(entity);
+            listener.onEntitySpawn(entity, cir);
         }
     });
+
+    @FunctionalInterface
+    public interface EntityDamage {
+        void onEntityDamage(Entity entity, DamageSource damageSource, float damage, CallbackInfo ci);
+    }
 
     @FunctionalInterface
     public interface EntityDeath {
@@ -35,6 +51,6 @@ public final class FabricEntityEvents {
 
     @FunctionalInterface
     public interface EntitySpawn {
-        void onEntitySpawn(Entity entity);
+        void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir);
     }
 }

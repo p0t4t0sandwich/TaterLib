@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.common.abstractions.events.player;
 
+import dev.neuralnexus.taterlib.common.abstractions.events.AbstractCancellableEvent;
 import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
 
 import java.util.Set;
@@ -7,19 +8,7 @@ import java.util.Set;
 /**
  * Abstract class for player message events
  */
-public interface AbstractPlayerMessageEvent extends AbstractPlayerEvent {
-    /**
-     * If the message is cancelled
-     * @return Whether the message is cancelled
-     */
-    boolean isCancelled();
-
-    /**
-     * Set whether the message is cancelled
-     * @param cancelled Whether the message is cancelled
-     */
-    void setCancelled(boolean cancelled);
-
+public interface AbstractPlayerMessageEvent extends AbstractPlayerEvent, AbstractCancellableEvent {
     /**
      * Getter for the message
      * @return The message

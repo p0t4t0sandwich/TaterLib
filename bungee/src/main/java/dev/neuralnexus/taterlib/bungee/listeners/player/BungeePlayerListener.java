@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.bungee.listeners.player;
 
-import dev.neuralnexus.taterlib.bungee.abstractions.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerLoginEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerLogoutEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerMessageEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerServerSwitchEvent;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -11,6 +13,9 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
+/**
+ * Listens for player events.
+ */
 public class BungeePlayerListener implements Listener {
     /**
      * Called when a player logs in.
@@ -20,16 +25,7 @@ public class BungeePlayerListener implements Listener {
     public void onPlayerLogin(ServerSwitchEvent event) {
         // If player is switching servers, don't run this function
         if (event.getFrom() != null) return;
-
-        // Get Player and current server
-        ProxiedPlayer player = event.getPlayer();
-        String toServer = event.getPlayer().getServer().getInfo().getName();
-
-        BungeePlayer bungeePlayer = new BungeePlayer(player);
-        bungeePlayer.setServerName(toServer);
-
-        // Pass player to helper function
-        PlayerListener.onPlayerLogin(bungeePlayer);
+        PlayerListener.onPlayerLogin(new BungeePlayerLoginEvent(event));
     }
 
     /**
@@ -38,8 +34,7 @@ public class BungeePlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerLogout(PlayerDisconnectEvent event) {
-        // Pass TaterPlayer to helper function
-        PlayerListener.onPlayerLogout(new BungeePlayer(event.getPlayer()));
+        PlayerListener.onPlayerLogout(new BungeePlayerLogoutEvent(event));
     }
 
     /**
@@ -48,16 +43,9 @@ public class BungeePlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMessage(ChatEvent event) {
-        // If cancelled, or is a command, ignore
-        if (event.isCancelled() || event.isCommand() || event.isProxyCommand()) return;
-        if (TaterLib.cancelChat) event.setCancelled(true);
-
-        // Get player, message and server
-        ProxiedPlayer player = (ProxiedPlayer) event.getSender();
-        String message = event.getMessage();
-
-        // Send message to message relay
-        PlayerListener.onPlayerMessage(new BungeePlayer(player), message, TaterLib.cancelChat);
+        // If it's a command or not a player, don't run this function
+        if (event.isCommand() || event.isProxyCommand() || !(event.getSender() instanceof ProxiedPlayer)) return;
+        PlayerListener.onPlayerMessage(new BungeePlayerMessageEvent(event));
     }
 
     /**
@@ -68,12 +56,6 @@ public class BungeePlayerListener implements Listener {
     public void onServerSwitch(ServerSwitchEvent event) {
         // If player is just joining, don't run this function
         if (event.getFrom() == null) return;
-
-        // Get Player and current server
-        ProxiedPlayer player = event.getPlayer();
-        String toServer = player.getServer().getInfo().getName();
-
-        // Pass Player UUID and current server to helper function
-        PlayerListener.onServerSwitch(new BungeePlayer(player), toServer);
+        PlayerListener.onServerSwitch(new BungeePlayerServerSwitchEvent(event));
     }
 }

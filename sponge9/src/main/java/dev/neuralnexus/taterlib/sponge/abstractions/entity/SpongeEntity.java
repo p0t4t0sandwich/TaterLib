@@ -28,6 +28,14 @@ public class SpongeEntity implements AbstractEntity {
     }
 
     /**
+     * Gets the Sponge entity.
+     * @return The Sponge entity.
+     */
+    public Entity getEntity() {
+        return entity;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override

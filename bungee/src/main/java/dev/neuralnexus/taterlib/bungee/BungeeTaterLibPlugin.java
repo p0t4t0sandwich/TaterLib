@@ -1,5 +1,9 @@
 package dev.neuralnexus.taterlib.bungee;
 
+import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStartedEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStartingEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStoppedEvent;
+import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStoppingEvent;
 import dev.neuralnexus.taterlib.bungee.abstractions.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
@@ -74,12 +78,12 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
         // Register player listeners
         pluginManager.registerListener(this, new BungeePlayerListener());
 
-        // Register server listeners
-        ServerListener.onServerStarting();
-        getProxy().getScheduler().schedule(this, ServerListener::onServerStarted, 5L, TimeUnit.SECONDS);
-
         // Register plugin message listeners
         pluginManager.registerListener(this, new BungeePluginMessageListener());
+
+        // Register server listeners
+        ServerListener.onServerStarting(new BungeeServerStartingEvent());
+        getProxy().getScheduler().schedule(this, () -> ServerListener.onServerStarted(new BungeeServerStartedEvent()), 5L, TimeUnit.SECONDS);
     }
 
     /**
@@ -105,8 +109,9 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
      */
     @Override
     public void onDisable() {
-        ServerListener.onServerStopping();
-        ServerListener.onServerStopped();
+        // Run server stopping events
+        ServerListener.onServerStopping(new BungeeServerStoppingEvent());
+        ServerListener.onServerStopped(new BungeeServerStoppedEvent());
         pluginStop();
     }
 }

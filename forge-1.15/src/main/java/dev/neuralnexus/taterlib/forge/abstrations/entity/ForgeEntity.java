@@ -22,6 +22,14 @@ public class ForgeEntity implements AbstractEntity {
     }
 
     /**
+     * Gets the Forge entity.
+     * @return The Forge entity.
+     */
+    public Entity getEntity() {
+        return entity;
+    }
+
+    /**
      * @inheritDoc
      */
     @Override
