@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDeathEvent;
+import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -45,5 +46,14 @@ public class BukkitEntityListener implements Listener {
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         EntityEvents.DEATH.invoke(new BukkitEntityDeathEvent(event));
+    }
+
+    /**
+     * Called when an entity spawns.
+     * @param event The event.
+     */
+    @EventHandler
+    public void onEntitySpawn(CreatureSpawnEvent event) {
+        EntityEvents.SPAWN.invoke(new BukkitEntitySpawnEvent(event));
     }
 }
