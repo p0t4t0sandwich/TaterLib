@@ -10,80 +10,40 @@ public final class PlayerEvents {
     /**
      * Called when a player finishes an advancement.
      */
-    public static final Event<PlayerAdvancementFinishedEvent, AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent> ADVANCEMENT_FINISHED = new Event<>(PlayerAdvancementFinishedEvent.class);
+    public static final Event<AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent> ADVANCEMENT_FINISHED = new Event<>(AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent.class);
 
     /**
      * Called when a player progresses an advancement.
      */
-    public static final Event<PlayerAdvancementProgressEvent, AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent> ADVANCEMENT_PROGRESS = new Event<>(PlayerAdvancementProgressEvent.class);
+    public static final Event<AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent> ADVANCEMENT_PROGRESS = new Event<>(AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent.class);
 
     /**
      * Called when a player dies.
      */
-    public static final Event<PlayerDeathEvent, AbstractPlayerDeathEvent> DEATH = new Event<>(PlayerDeathEvent.class);
+    public static final Event<AbstractPlayerDeathEvent> DEATH = new Event<>(AbstractPlayerDeathEvent.class);
 
     /**
      * Called when a player logs in.
      */
-    public static final Event<PlayerLoginEvent, AbstractPlayerLoginEvent> LOGIN = new Event<>(PlayerLoginEvent.class);
+    public static final Event<AbstractPlayerLoginEvent> LOGIN = new Event<>(AbstractPlayerLoginEvent.class);
 
     /**
      * Called when a player logs out.
      */
-    public static final Event<PlayerLogoutEvent, AbstractPlayerLogoutEvent> LOGOUT = new Event<>(PlayerLogoutEvent.class);
+    public static final Event<AbstractPlayerLogoutEvent> LOGOUT = new Event<>(AbstractPlayerLogoutEvent.class);
 
     /**
      * Called when a player sends a message.
      */
-    public static final Event<PlayerMessageEvent, AbstractPlayerMessageEvent> MESSAGE = new Event<>(PlayerMessageEvent.class);
+    public static final Event<AbstractPlayerMessageEvent> MESSAGE = new Event<>(AbstractPlayerMessageEvent.class);
 
     /**
      * Called when a player respawns.
      */
-    public static final Event<PlayerRespawnEvent, AbstractPlayerRespawnEvent> RESPAWN = new Event<>(PlayerRespawnEvent.class);
+    public static final Event<AbstractPlayerRespawnEvent> RESPAWN = new Event<>(AbstractPlayerRespawnEvent.class);
 
     /**
      * Called when a player switches servers.
      */
-    public static final Event<PlayerServerSwitchEvent, AbstractPlayerServerSwitchEvent> SERVER_SWITCH = new Event<>(PlayerServerSwitchEvent.class);
-
-    @FunctionalInterface
-    public interface PlayerAdvancementProgressEvent {
-        void onPlayerAdvancementProgress(AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerAdvancementFinishedEvent {
-        void onPlayerAdvancementFinished(AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerDeathEvent {
-        void onPlayerDeath(AbstractPlayerDeathEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerLoginEvent {
-        void onPlayerLogin(AbstractPlayerLoginEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerLogoutEvent {
-        void onPlayerLogout(AbstractPlayerLogoutEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerMessageEvent {
-        void onPlayerMessage(AbstractPlayerMessageEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerRespawnEvent {
-        void onPlayerRespawn(AbstractPlayerRespawnEvent event);
-    }
-
-    @FunctionalInterface
-    public interface PlayerServerSwitchEvent {
-        void onPlayerServerSwitch(AbstractPlayerServerSwitchEvent event);
-    }
+    public static final Event<AbstractPlayerServerSwitchEvent> SERVER_SWITCH = new Event<>(AbstractPlayerServerSwitchEvent.class);
 }
