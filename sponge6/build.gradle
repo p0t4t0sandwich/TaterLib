@@ -15,6 +15,7 @@ sponge {
         version("1.0")
     }
     plugin(project_id) {
+        version("1.11-${version}")
         displayName(project_name)
         entrypoint("dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin")
         description("A cross API code library for various generalizations used in the Tater* plugins")

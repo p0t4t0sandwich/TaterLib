@@ -82,23 +82,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
-## Release Notes 1.0.2-R06-SNAPSHOT
-- Created a GenericLogger class for better cross compatibility
-- Added methods to AbstractEntity
-  - getX/Y/Z, getDimension, getBiome
-- Fixed FabricEntity#getType
-- Added explicit Fabric 1.18 and 1.19 support to avoid some cross-version issues
-- Fixed `registerCommand`s that weren't declared static
-- Added proper version getters for `TemplateFabricPlugin`
-- Ported Sponge to 6, 7, 9, 10, and 11
-- Back ported Forge to 1.12.2
-- Fixed `SpongeItemStack#getType` to be unjankified
-- Added `Position` and `*Conversions` utility classes
-- Added `getPosition` and `setSpawn` to `AbstractPlayer` (Sponge still needs `setSpawn` implemented)
-- Updated Forge and Fabric to 1.20.2
-  - Mainly updates to advancement events (yay optionals)
-- Added `getPlayer` to every `AbstractPlayer` implementation
-- Added alternate constructor to `AbstractPlayer` implementations that allows the specification of a player's "Server Name" (used for cross server chat)
-- Implemented plugin messaging for Bukkit, Bungee, Fabric, Forge, Sponge, and Velocity
-  - Forge 1.12.2 still needs to be implemented
-- Ported Bukkit to 1.15.2, 1.7.10, 1.6.4, 1.2.5, and b1.7.3
+## Release Notes 1.0.3-R0.1-SNAPSHOT
+
+- Fixes to Sponge8-11 component serialization
+- Fixed `SpongeEntity.getType` returning a properly formatted entity resource

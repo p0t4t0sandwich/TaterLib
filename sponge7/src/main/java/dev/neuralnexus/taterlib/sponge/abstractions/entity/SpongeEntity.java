@@ -60,7 +60,7 @@ public class SpongeEntity implements AbstractEntity {
      */
     @Override
     public String getType() {
-        return entity.getType().toString();
+        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /**
