@@ -90,3 +90,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
 - Reworked the entire event system
 - Added `getEntity` to `AbstractEntity` implementations
+- Removed redundant event abstraction
+- Reworked TaterLib PlayerListener and reload command
+- Implemented `EntitySpawnEvent` for 1.7.10-b1.7.3
+- Implemented rudimentary `PlayerDeathEvent` for b1.7.3
