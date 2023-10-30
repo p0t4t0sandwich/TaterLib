@@ -82,7 +82,11 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 
-## Release Notes 1.0.3-R0.1-SNAPSHOT
+## Release Notes
+
+### 1.1.0-R0.1-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
+- Reworked the entire event system
+- Added `getEntity` to `AbstractEntity` implementations
