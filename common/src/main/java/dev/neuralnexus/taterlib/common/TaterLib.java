@@ -2,6 +2,8 @@ package dev.neuralnexus.taterlib.common;
 
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
+import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
 
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public class TaterLib {
     public static AbstractLogger logger;
     private static String configPath;
     private static boolean STARTED = false;
-    public static boolean cancelChat = false;
+    private static boolean RELOADED = false;
     private static MessageRelay messageRelay;
     private static final ArrayList<Object> hooks = new ArrayList<>();
     public static Consumer<Set<String>> registerChannels = (channels) -> {};
@@ -45,6 +47,13 @@ public class TaterLib {
         }
         STARTED = true;
 
+        if (!RELOADED) {
+            // Register player listeners
+            PlayerEvents.LOGIN.register(PlayerListener::onPlayerLogin);
+            PlayerEvents.LOGOUT.register(PlayerListener::onPlayerLogout);
+            PlayerEvents.SERVER_SWITCH.register(PlayerListener::onServerSwitch);
+        }
+
         logger.info("TaterLib has been started!");
         TaterLibAPIProvider.register(instance);
     }
@@ -71,11 +80,30 @@ public class TaterLib {
     }
 
     /**
+     * Reload
+     */
+    public static void reload() {
+        if (!STARTED) {
+            logger.info("TaterLib has not been started!");
+            return;
+        }
+        RELOADED = true;
+
+        // Stop
+        stop();
+
+        // Start
+        start(configPath, logger);
+
+        logger.info("TaterLib has been reloaded!");
+    }
+
+    /**
      * Get the current version of TaterLib
      * @return The current version of TaterLib
      */
     public static String getVersion() {
-        return "1.0.2-SNAPSHOT";
+        return "1.1.0-R0.1-SNAPSHOT";
     }
 
     /**

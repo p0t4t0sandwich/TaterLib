@@ -37,8 +37,7 @@ public interface TaterLibCommand {
             case "reload":
                 try {
                     // Try to reload the plugin
-                    TaterLib.stop();
-                    TaterLib.start();
+                    TaterLib.reload();
                     text = "&aReloaded TaterLib.";
                 } catch (Exception e) {
                     // If an error occurs, print the error and return an error message
