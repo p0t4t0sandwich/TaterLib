@@ -11,8 +11,8 @@ import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMess
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.messaging.Messenger;
 
@@ -56,8 +56,8 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         pluginManager.registerEvents(new BukkitEntityListener(), this);
 
         // Register server listeners
-        ServerListener.onServerStarting(new BukkitServerStartingEvent());
-        getServer().getScheduler().scheduleSyncDelayedTask(this, () -> ServerListener.onServerStarted(new BukkitServerStartedEvent()), 5*20L);
+        ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+        getServer().getScheduler().scheduleSyncDelayedTask(this, () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()), 5*20L);
     }
 
     /**
@@ -91,8 +91,8 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerListener.onServerStopping(new BukkitServerStoppingEvent());
-        ServerListener.onServerStopped(new BukkitServerStoppedEvent());
+        ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
+        ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());
         pluginStop();
     }
 }

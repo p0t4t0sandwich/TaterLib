@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.server;
 
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStoppedEvent;
@@ -21,7 +21,7 @@ public class NeoForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        ServerListener.onServerStarting(new NeoForgeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new NeoForgeServerStartingEvent(event));
     }
 
     /**
@@ -30,7 +30,7 @@ public class NeoForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarted(ServerStartedEvent event) {
-        ServerListener.onServerStarted(new NeoForgeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new NeoForgeServerStartedEvent(event));
     }
 
     /**
@@ -39,7 +39,7 @@ public class NeoForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
-        ServerListener.onServerStopping(new NeoForgeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new NeoForgeServerStoppingEvent(event));
     }
 
     /**
@@ -48,6 +48,6 @@ public class NeoForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopped(ServerStoppedEvent event) {
-        ServerListener.onServerStopped(new NeoForgeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new NeoForgeServerStoppedEvent(event));
     }
 }

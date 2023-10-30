@@ -4,15 +4,13 @@ import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerSt
 import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStartingEvent;
 import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStoppedEvent;
 import dev.neuralnexus.taterlib.bungee.abstractions.events.server.BungeeServerStoppingEvent;
-import dev.neuralnexus.taterlib.bungee.abstractions.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.PluginManager;
 
@@ -30,30 +28,6 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
      */
     public static ProxyServer getProxyServer() {
         return proxyServer;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new BungeeLogger(getLogger());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String pluginConfigPath() {
-        return "plugins";
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public String getServerType() {
-        return "BungeeCord";
     }
 
     /**
@@ -82,8 +56,8 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
         pluginManager.registerListener(this, new BungeePluginMessageListener());
 
         // Register server listeners
-        ServerListener.onServerStarting(new BungeeServerStartingEvent());
-        getProxy().getScheduler().schedule(this, () -> ServerListener.onServerStarted(new BungeeServerStartedEvent()), 5L, TimeUnit.SECONDS);
+        ServerEvents.STARTING.invoke(new BungeeServerStartingEvent());
+        getProxy().getScheduler().schedule(this, () -> ServerEvents.STARTED.invoke(new BungeeServerStartedEvent()), 5L, TimeUnit.SECONDS);
     }
 
     /**
@@ -110,8 +84,8 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerListener.onServerStopping(new BungeeServerStoppingEvent());
-        ServerListener.onServerStopped(new BungeeServerStoppedEvent());
+        ServerEvents.STOPPING.invoke(new BungeeServerStoppingEvent());
+        ServerEvents.STOPPED.invoke(new BungeeServerStoppedEvent());
         pluginStop();
     }
 }

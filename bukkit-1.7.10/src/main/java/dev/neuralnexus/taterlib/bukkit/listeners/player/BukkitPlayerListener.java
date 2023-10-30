@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.*;
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -18,7 +18,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerAdvancement(PlayerAchievementAwardedEvent event) {
-        PlayerListener.onPlayerAdvancementFinished(new BukkitPlayerAdvancementEvent.BukkitPlayerAdvancementFinishedEvent(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new BukkitPlayerAdvancementEvent.BukkitPlayerAdvancementFinishedEvent(event));
     }
 
     /**
@@ -27,7 +27,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        PlayerListener.onPlayerDeath(new BukkitPlayerDeathEvent(event));
+        PlayerEvents.DEATH.invoke(new BukkitPlayerDeathEvent(event));
     }
 
     /**
@@ -36,7 +36,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerLogin(PlayerJoinEvent event) {
-        PlayerListener.onPlayerLogin(new BukkitPlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new BukkitPlayerLoginEvent(event));
     }
 
     /**
@@ -45,7 +45,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerLogout(PlayerQuitEvent event) {
-        PlayerListener.onPlayerLogout(new BukkitPlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new BukkitPlayerLogoutEvent(event));
     }
 
     /**
@@ -54,7 +54,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMessage(AsyncPlayerChatEvent event) {
-        PlayerListener.onPlayerMessage(new BukkitPlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(new BukkitPlayerMessageEvent(event));
     }
 
     /**
@@ -63,6 +63,6 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        PlayerListener.onPlayerRespawn(new BukkitPlayerRespawnEvent(event));
+        PlayerEvents.RESPAWN.invoke(new BukkitPlayerRespawnEvent(event));
     }
 }

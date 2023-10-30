@@ -3,10 +3,13 @@ package dev.neuralnexus.taterlib.velocity.listeners.server;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStartingEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStoppingEvent;
 
+/**
+ * Listens for server events.
+ */
 public class VelocityServerListener {
     /**
      * Called when the server has started.
@@ -14,7 +17,7 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStarting(ProxyInitializeEvent event) {
-        ServerListener.onServerStarting(new VelocityServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new VelocityServerStartingEvent(event));
     }
 
     /**
@@ -23,6 +26,6 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStopping(ProxyShutdownEvent event) {
-        ServerListener.onServerStopping(new VelocityServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
     }
 }

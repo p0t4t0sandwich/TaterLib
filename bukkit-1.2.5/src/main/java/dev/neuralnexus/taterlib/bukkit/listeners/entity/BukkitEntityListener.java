@@ -2,14 +2,14 @@ package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.*;
 
+/**
+ * Listener for entity events.
+ */
 public class BukkitEntityListener implements Listener {
     /**
      * Called when an entity is damaged.
@@ -17,7 +17,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        EntityListener.onEntityDamage(new BukkitEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
     }
 
     /**
@@ -26,7 +26,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
+        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
     }
 
     /**
@@ -35,7 +35,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
+        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
     }
 
     /**
@@ -44,6 +44,6 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        EntityListener.onEntityDeath(new BukkitEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(new BukkitEntityDeathEvent(event));
     }
 }

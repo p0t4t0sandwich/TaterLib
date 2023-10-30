@@ -4,14 +4,13 @@ import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
-import com.velocitypowered.api.proxy.messages.ChannelRegistrar;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.logger.VelocityLogger;
@@ -80,7 +79,7 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
         eventManager.register(this, new VelocityPluginMessageListener());
 
         // Register server listeners
-        server.getScheduler().buildTask(this, () -> ServerListener.onServerStarted(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
+        server.getScheduler().buildTask(this, () -> ServerEvents.STARTED.invoke(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
         eventManager.register(this, new VelocityServerListener());
     }
 
@@ -110,7 +109,7 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
      */
     @Subscribe
     public void onProxyShutdown(ProxyShutdownEvent event) {
-        ServerListener.onServerStopped(new VelocityServerStoppedEvent());
+        ServerEvents.STOPPED.invoke(new VelocityServerStoppedEvent());
         pluginStop();
     }
 }

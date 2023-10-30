@@ -3,8 +3,8 @@ package dev.neuralnexus.taterlib.forge;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppedEvent;
@@ -121,7 +121,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        ServerListener.onServerStarting(new ForgeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
     }
 
     /**
@@ -130,7 +130,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStarted2(FMLServerStartedEvent event) {
-        ServerListener.onServerStarted(new ForgeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new ForgeServerStartedEvent(event));
     }
 
     /**
@@ -139,7 +139,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStopping(FMLServerStoppingEvent event) {
-        ServerListener.onServerStopping(new ForgeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new ForgeServerStoppingEvent(event));
     }
 
     /**
@@ -148,6 +148,6 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      */
     @Mod.EventHandler
     public void onServerStopped(FMLServerStoppedEvent event) {
-        ServerListener.onServerStopped(new ForgeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new ForgeServerStoppedEvent(event));
     }
 }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
 import dev.neuralnexus.taterlib.neoforge.abstractions.events.player.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
@@ -20,7 +20,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
-        PlayerListener.onPlayerAdvancementFinished(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementFinishedEvent(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementFinishedEvent(event));
     }
 
     /**
@@ -29,7 +29,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
-        PlayerListener.onPlayerAdvancementProgress(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementProgressEvent(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementProgressEvent(event));
     }
 
     /**
@@ -39,7 +39,7 @@ public class NeoForgePlayerListener {
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
         if (event.getEntity() instanceof Player) {
-            PlayerListener.onPlayerDeath(new NeoForgePlayerDeathEvent(event));
+            PlayerEvents.DEATH.invoke(new NeoForgePlayerDeathEvent(event));
         }
     }
 
@@ -49,7 +49,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerListener.onPlayerLogin(new NeoForgePlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new NeoForgePlayerLoginEvent(event));
     }
 
     /**
@@ -58,7 +58,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        PlayerListener.onPlayerLogout(new NeoForgePlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new NeoForgePlayerLogoutEvent(event));
     }
 
     /**
@@ -67,7 +67,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        PlayerListener.onPlayerMessage(new NeoForgePlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(new NeoForgePlayerMessageEvent(event));
     }
 
     /**
@@ -76,6 +76,6 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerListener.onPlayerRespawn(new NeoForgePlayerRespawnEvent(event));
+        PlayerEvents.RESPAWN.invoke(new NeoForgePlayerRespawnEvent(event));
     }
 }

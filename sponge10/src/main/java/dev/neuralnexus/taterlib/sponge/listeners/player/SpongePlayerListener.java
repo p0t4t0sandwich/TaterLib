@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
 import dev.neuralnexus.taterlib.sponge.abstractions.events.player.*;
 import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;
@@ -24,9 +24,9 @@ public class SpongePlayerListener {
     public void onPlayerAdvancement(AdvancementEvent.Grant event) {
         DisplayInfo display = event.advancement().displayInfo().orElse(null);
         if (display != null && display.doesAnnounceToChat()) {
-            PlayerListener.onPlayerAdvancementFinished(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementFinishedEvent(event));
+            PlayerEvents.ADVANCEMENT_FINISHED.invoke(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementFinishedEvent(event));
         } else {
-            PlayerListener.onPlayerAdvancementProgress(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementProgressEvent(event));
+            PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementProgressEvent(event));
         }
     }
 
@@ -37,7 +37,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
         if ((event.entity() instanceof Player)) {
-            PlayerListener.onPlayerDeath(new SpongePlayerDeathEvent(event));
+            PlayerEvents.DEATH.invoke(new SpongePlayerDeathEvent(event));
         }
     }
 
@@ -47,7 +47,7 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerLogin(ServerSideConnectionEvent.Join event) {
-        PlayerListener.onPlayerLogin(new SpongePlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new SpongePlayerLoginEvent(event));
     }
 
     /**
@@ -56,7 +56,7 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerLogout(ServerSideConnectionEvent.Disconnect event) {
-        PlayerListener.onPlayerLogout(new SpongePlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new SpongePlayerLogoutEvent(event));
     }
 
     /**
@@ -66,7 +66,7 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerMessage(PlayerChatEvent.Submit event, @All(ignoreEmpty=false) Player[] players) {
         if (players.length != 1) return;
-        PlayerListener.onPlayerMessage(new SpongePlayerMessageEvent(event, players));
+        PlayerEvents.MESSAGE.invoke(new SpongePlayerMessageEvent(event, players));
     }
 
     /**
@@ -75,6 +75,6 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerRespawn(RespawnPlayerEvent.Recreate event) {
-        PlayerListener.onPlayerRespawn(new SpongePlayerRespawnEvent(event));
+        PlayerEvents.RESPAWN.invoke(new SpongePlayerRespawnEvent(event));
     }
 }

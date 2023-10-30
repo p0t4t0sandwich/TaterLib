@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerLo
 import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerLogoutEvent;
 import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerMessageEvent;
 import dev.neuralnexus.taterlib.bungee.abstractions.events.player.BungeePlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -25,7 +25,7 @@ public class BungeePlayerListener implements Listener {
     public void onPlayerLogin(ServerSwitchEvent event) {
         // If player is switching servers, don't run this function
         if (event.getFrom() != null) return;
-        PlayerListener.onPlayerLogin(new BungeePlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new BungeePlayerLoginEvent(event));
     }
 
     /**
@@ -34,7 +34,7 @@ public class BungeePlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerLogout(PlayerDisconnectEvent event) {
-        PlayerListener.onPlayerLogout(new BungeePlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new BungeePlayerLogoutEvent(event));
     }
 
     /**
@@ -45,7 +45,7 @@ public class BungeePlayerListener implements Listener {
     public void onPlayerMessage(ChatEvent event) {
         // If it's a command or not a player, don't run this function
         if (event.isCommand() || event.isProxyCommand() || !(event.getSender() instanceof ProxiedPlayer)) return;
-        PlayerListener.onPlayerMessage(new BungeePlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(new BungeePlayerMessageEvent(event));
     }
 
     /**
@@ -56,6 +56,6 @@ public class BungeePlayerListener implements Listener {
     public void onServerSwitch(ServerSwitchEvent event) {
         // If player is just joining, don't run this function
         if (event.getFrom() == null) return;
-        PlayerListener.onServerSwitch(new BungeePlayerServerSwitchEvent(event));
+        PlayerEvents.SERVER_SWITCH.invoke(new BungeePlayerServerSwitchEvent(event));
     }
 }

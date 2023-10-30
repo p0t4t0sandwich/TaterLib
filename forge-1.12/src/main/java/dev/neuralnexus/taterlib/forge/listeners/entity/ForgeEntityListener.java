@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.listeners.entity;
 
-import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
 import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntityDamageEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntityDeathEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.entity.ForgeEntitySpawnEvent;
@@ -19,7 +19,7 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntityDamage(LivingDamageEvent event) {
-        EntityListener.onEntityDamage(new ForgeEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(new ForgeEntityDamageEvent(event));
     }
 
     /**
@@ -28,7 +28,7 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
-        EntityListener.onEntityDeath(new ForgeEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(new ForgeEntityDeathEvent(event));
     }
 
     /**
@@ -37,6 +37,6 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntitySpawn(LivingSpawnEvent.SpecialSpawn event) {
-        EntityListener.onEntitySpawn(new ForgeEntitySpawnEvent(event));
+        EntityEvents.SPAWN.invoke(new ForgeEntitySpawnEvent(event));
     }
 }

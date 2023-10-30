@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.listeners.server;
 
-import dev.neuralnexus.taterlib.common.listeners.server.ServerListener;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppedEvent;
@@ -21,7 +21,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        ServerListener.onServerStarting(new ForgeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
     }
 
     /**
@@ -30,7 +30,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarted(FMLServerStartedEvent event) {
-        ServerListener.onServerStarted(new ForgeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new ForgeServerStartedEvent(event));
     }
 
     /**
@@ -39,7 +39,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopping(FMLServerStoppingEvent event) {
-        ServerListener.onServerStopping(new ForgeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new ForgeServerStoppingEvent(event));
     }
 
     /**
@@ -48,6 +48,6 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopped(FMLServerStoppedEvent event) {
-        ServerListener.onServerStopped(new ForgeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new ForgeServerStoppedEvent(event));
     }
 }

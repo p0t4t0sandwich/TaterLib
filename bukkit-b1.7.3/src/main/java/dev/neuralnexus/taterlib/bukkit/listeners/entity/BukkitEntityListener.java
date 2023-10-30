@@ -2,39 +2,47 @@ package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.bukkit.abstractions.events.entity.BukkitEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
-import org.bukkit.event.entity.EntityDamageByBlockEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
+import org.bukkit.event.entity.*;
 
-public class BukkitEntityListener extends org.bukkit.event.entity.EntityListener {
+/**
+ * Listens for entity events.
+ */
+public class BukkitEntityListener extends EntityListener {
     /**
      * Called when an entity is damaged.
      * @param event The event.
      */
     @Override
     public void onEntityDamage(EntityDamageEvent event) {
-        EntityListener.onEntityDamage(new BukkitEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
+        switch (event.getCause()) {
+            case ENTITY_ATTACK:
+                EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent((EntityDamageByEntityEvent) event));
+                break;
+            case SUFFOCATION:
+                EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent((EntityDamageByBlockEvent) event));
+                break;
+        }
     }
 
-    /**
-     * Called when an entity is damaged by an entity.
-     * @param event The event.
-     */
+//    /**
+//     * Called when an entity is damaged by an entity.
+//     * @param event The event.
+//     */
 //    @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
-    }
-
-    /**
-     * Called when an entity is damaged by a block.
-     * @param event The event.
-     */
+//    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+//        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
+//    }
+//
+//    /**
+//     * Called when an entity is damaged by a block.
+//     * @param event The event.
+//     */
 //    @EventHandler
-    public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
-    }
+//    public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
+//        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
+//    }
 
     /**
      * Called when an entity dies.
@@ -42,6 +50,6 @@ public class BukkitEntityListener extends org.bukkit.event.entity.EntityListener
      */
     @Override
     public void onEntityDeath(EntityDeathEvent event) {
-        EntityListener.onEntityDeath(new BukkitEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(new BukkitEntityDeathEvent(event));
     }
 }

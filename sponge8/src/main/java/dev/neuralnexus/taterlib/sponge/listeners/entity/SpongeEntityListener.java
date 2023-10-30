@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.listeners.entity;
 
-import dev.neuralnexus.taterlib.common.listeners.enity.EntityListener;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvents;
 import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntityDamageEvent;
 import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntityDeathEvent;
 import dev.neuralnexus.taterlib.sponge.abstractions.events.entity.SpongeEntitySpawnEvent;
@@ -19,7 +19,7 @@ public class SpongeEntityListener {
      */
     @Listener
     public void onEntityDamage(DamageEntityEvent event) {
-        EntityListener.onEntityDamage(new SpongeEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(new SpongeEntityDamageEvent(event));
     }
 
     /**
@@ -28,7 +28,7 @@ public class SpongeEntityListener {
      */
     @Listener
     public void onPlayerDeath(DestructEntityEvent.Death event) {
-        EntityListener.onEntityDeath(new SpongeEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(new SpongeEntityDeathEvent(event));
     }
 
     /**
@@ -37,6 +37,6 @@ public class SpongeEntityListener {
      */
     @Listener
     public void onEntitySpawn(SpawnEntityEvent.Pre event) {
-        EntityListener.onEntitySpawn(new SpongeEntitySpawnEvent(event));
+        EntityEvents.SPAWN.invoke(new SpongeEntitySpawnEvent(event));
     }
 }

@@ -4,10 +4,12 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
-import dev.neuralnexus.taterlib.common.listeners.pluginmessages.PluginMessageListener;
+import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvents;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.pluginmessages.VelocityPluginMessageEvent;
-import dev.neuralnexus.taterlib.velocity.abstractions.player.VelocityPlayer;
 
+/**
+ * Listens for plugin messages.
+ */
 public class VelocityPluginMessageListener {
     /**
      * Called when a plugin message is received.
@@ -15,11 +17,11 @@ public class VelocityPluginMessageListener {
      */
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        PluginMessageListener.onPluginMessage(new VelocityPluginMessageEvent(event));
-        if (event.getSource() instanceof ServerConnection) {
-            PluginMessageListener.onServerPluginMessage(new VelocityPluginMessageEvent.VelocityServerPluginMessageEvent(event));
-        } else if (event.getSource() instanceof Player){
-            PluginMessageListener.onPlayerPluginMessage(new VelocityPluginMessageEvent.VelocityPlayerPluginMessageEvent(event));
+        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent(event));
+        if (event.getSource() instanceof Player) {
+            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityPlayerPluginMessageEvent(event));
+        } else if (event.getSource() instanceof ServerConnection){
+            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityServerPluginMessageEvent(event));
         }
     }
 }

@@ -5,12 +5,15 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLoginEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerMessageEvent;
 import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerServerSwitchEvent;
 
+/**
+ * Listens for player events.
+ */
 public class VelocityPlayerListener {
     /**
      * Called when a player logs in.
@@ -20,7 +23,7 @@ public class VelocityPlayerListener {
     public void onPlayerLogin(ServerConnectedEvent event) {
         // If player is switching servers, don't run this function
         if (event.getPreviousServer().isPresent()) return;
-        PlayerListener.onPlayerLogin(new VelocityPlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new VelocityPlayerLoginEvent(event));
     }
 
     /**
@@ -29,7 +32,7 @@ public class VelocityPlayerListener {
      */
     @Subscribe
     public void onPlayerLogout(DisconnectEvent event) {
-        PlayerListener.onPlayerLogout(new VelocityPlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new VelocityPlayerLogoutEvent(event));
     }
 
     /**
@@ -39,7 +42,7 @@ public class VelocityPlayerListener {
     @Subscribe(order = PostOrder.FIRST)
     public void onPlayerMessage(PlayerChatEvent event) {
         if (event.getMessage().startsWith("/")) return;
-        PlayerListener.onPlayerMessage(new VelocityPlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(new VelocityPlayerMessageEvent(event));
     }
 
     /**
@@ -50,6 +53,6 @@ public class VelocityPlayerListener {
     public void onServerSwitch(ServerConnectedEvent event) {
         // If player is just joining, don't run this function
         if (!event.getPreviousServer().isPresent()) return;
-        PlayerListener.onServerSwitch(new VelocityPlayerServerSwitchEvent(event));
+        PlayerEvents.SERVER_SWITCH.invoke(new VelocityPlayerServerSwitchEvent(event));
     }
 }
