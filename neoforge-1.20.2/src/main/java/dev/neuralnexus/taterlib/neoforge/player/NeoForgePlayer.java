@@ -1,29 +1,29 @@
 package dev.neuralnexus.taterlib.neoforge.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgePlayerInventory;
 import dev.neuralnexus.taterlib.neoforge.util.NeoForgeConversions;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an AbstractPlayer.
+ * Abstracts a Forge player to an Player.
  */
-public class NeoForgePlayer implements AbstractPlayer {
-    private final Player player;
+public class NeoForgePlayer implements Player {
+    private final net.minecraft.world.entity.player.Player player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Forge player.
      */
-    public NeoForgePlayer(Player player) {
+    public NeoForgePlayer(net.minecraft.world.entity.player.Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -33,7 +33,7 @@ public class NeoForgePlayer implements AbstractPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public NeoForgePlayer(Player player, String serverName) {
+    public NeoForgePlayer(net.minecraft.world.entity.player.Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -42,7 +42,7 @@ public class NeoForgePlayer implements AbstractPlayer {
      * Gets the NeoForge player
      * @return The NeoForge player
      */
-    public Player getPlayer() {
+    public net.minecraft.world.entity.player.Player getPlayer() {
         return player;
     }
 
@@ -112,7 +112,7 @@ public class NeoForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new NeoForgePlayerInventory(player.getInventory());
     }
 

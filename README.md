@@ -95,6 +95,8 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Implemented `EntitySpawnEvent` for 1.7.10-b1.7.3
 - Implemented rudimentary `PlayerDeathEvent` for b1.7.3
 - Added support for NeoForge 1.20.2
-- Removed the `taterlib.{platform}.abstractions` package name
-- Moved `taterlib.{platform}.abstractions.events` to `taterlib.{platform}.event.api`
-- Moved `taterlib.{platform}.abstractions.item` to `taterlib.{platform}.inventory`
+- Removed the `...taterlib.{platform}.abstractions` package name
+- Renamed `...taterlib.{platform}.abstractions.events` to `...taterlib.{platform}.event.api`
+- Moved `...taterlib.{platform}.abstractions.item.*` to `...taterlib.{platform}.inventory`
+- Moved `...taterlib.{platform}.player.PlayerInventory` to `...taterlib.{platform}.inventory.PlayerInventory`
+- Removed the `Abstract` prefix from all common interfaces

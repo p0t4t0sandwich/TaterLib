@@ -1,33 +1,32 @@
 package dev.neuralnexus.taterlib.common.event.api;
 
-import dev.neuralnexus.taterlib.common.event.api.Event;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntitySpawnEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 
 public class EntityEvents {
     /**
      * Called when an entity is damaged.
      */
-    public static final Event<AbstractEntityDamageEvent> DAMAGE = new Event<>(AbstractEntityDamageEvent.class);
+    public static final Event<EntityDamageEvent> DAMAGE = new Event<>(EntityDamageEvent.class);
 
     /**
      * Called when an entity is damaged by an entity.
      */
-    public static final Event<AbstractEntityDamageEvent.AbstractEntityDamageByEntityEvent> DAMAGE_BY_ENTITY = new Event<>(AbstractEntityDamageEvent.AbstractEntityDamageByEntityEvent.class);
+    public static final Event<EntityDamageEvent.DamageByEntity> DAMAGE_BY_ENTITY = new Event<>(EntityDamageEvent.DamageByEntity.class);
 
     /**
      * Called when an entity is damaged by a block.
      */
-    public static final Event<AbstractEntityDamageEvent.AbstractEntityDamageByBlockEvent> DAMAGE_BY_BLOCK = new Event<>(AbstractEntityDamageEvent.AbstractEntityDamageByBlockEvent.class);
+    public static final Event<EntityDamageEvent.DamageByBlock> DAMAGE_BY_BLOCK = new Event<>(EntityDamageEvent.DamageByBlock.class);
 
     /**
      * Called when an entity dies.
      */
-    public static final Event<AbstractEntityDeathEvent> DEATH = new Event<>(AbstractEntityDeathEvent.class);
+    public static final Event<EntityDeathEvent> DEATH = new Event<>(EntityDeathEvent.class);
 
     /**
      * Called when an entity spawns.
      */
-    public static final Event<AbstractEntitySpawnEvent> SPAWN = new Event<>(AbstractEntitySpawnEvent.class);
+    public static final Event<EntitySpawnEvent> SPAWN = new Event<>(EntitySpawnEvent.class);
 }

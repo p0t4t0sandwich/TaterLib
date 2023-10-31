@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.bungee.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
 
 /**
- * Bungee implementation of {@link AbstractServerStartingEvent}.
+ * Bungee implementation of {@link ServerStartingEvent}.
  */
-public class BungeeServerStartingEvent implements AbstractServerStartingEvent {
+public class BungeeServerStartingEvent implements ServerStartingEvent {
 }

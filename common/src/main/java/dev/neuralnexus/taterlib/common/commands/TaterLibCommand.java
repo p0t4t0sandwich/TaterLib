@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.common.commands;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.player.Player;
 
 import static dev.neuralnexus.taterlib.common.Utils.ansiiParser;
 
@@ -56,7 +56,7 @@ public interface TaterLibCommand {
         return PlaceholderParser.substituteSectionSign(text);
     }
 
-    static void executeCommand(AbstractPlayer player, boolean isPlayer, String[] args) {
+    static void executeCommand(Player player, boolean isPlayer, String[] args) {
         if (isPlayer) {
             if (!player.hasPermission(permissionBuilder(args))) {
                 player.sendMessage("§cYou do not have permission to use this command.");

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Abstracts a Forge item meta to an AbstractItemMeta.
  */
-public class ForgeItemMeta implements AbstractItemMeta {
+public class ForgeItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 
     /**

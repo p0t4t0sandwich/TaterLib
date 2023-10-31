@@ -1,20 +1,19 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import net.minecraft.item.ItemStack;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 /**
  * Abstracts a Fabric item stack to an AbstractItemStack.
  */
-public class FabricItemStack implements AbstractItemStack {
-    private final ItemStack itemStack;
+public class FabricItemStack implements ItemStack {
+    private final net.minecraft.item.ItemStack itemStack;
 
     /**
      * Constructor.
      * @param itemStack The Fabric item stack.
      */
-    public FabricItemStack(ItemStack itemStack) {
+    public FabricItemStack(net.minecraft.item.ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
@@ -22,7 +21,7 @@ public class FabricItemStack implements AbstractItemStack {
      * Getter for the Fabric item stack.
      * @return The Fabric item stack.
      */
-    public ItemStack getItemStack() {
+    public net.minecraft.item.ItemStack getItemStack() {
         return itemStack;
     }
 
@@ -30,7 +29,7 @@ public class FabricItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemMeta getMeta() {
+    public ItemMeta getMeta() {
         return new FabricItemMeta(itemStack);
     }
 
@@ -38,7 +37,7 @@ public class FabricItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public void setMeta(AbstractItemMeta itemMeta) {
+    public void setMeta(ItemMeta itemMeta) {
         // TODO: Implement
     }
 
@@ -74,7 +73,7 @@ public class FabricItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack clone() {
+    public ItemStack clone() {
         return new FabricItemStack(itemStack.copy());
     }
 }

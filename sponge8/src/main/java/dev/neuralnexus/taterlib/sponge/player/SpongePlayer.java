@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.sponge.util.SpongeConversions;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.network.channel.raw.RawDataChannel;
@@ -16,17 +16,17 @@ import org.spongepowered.api.network.channel.raw.RawDataChannel;
 import java.util.UUID;
 
 /**
- * Abstracts a Sponge player to an AbstractPlayer.
+ * Abstracts a Sponge player to an Player.
  */
-public class SpongePlayer implements AbstractPlayer {
-    private final Player player;
+public class SpongePlayer implements Player {
+    private final org.spongepowered.api.entity.living.player.Player player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Sponge player.
      */
-    public SpongePlayer(Player player) {
+    public SpongePlayer(org.spongepowered.api.entity.living.player.Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -36,7 +36,7 @@ public class SpongePlayer implements AbstractPlayer {
      * @param player The Sponge player.
      * @param serverName The name of the server the player is on.
      */
-    public SpongePlayer(Player player, String serverName) {
+    public SpongePlayer(org.spongepowered.api.entity.living.player.Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -45,7 +45,7 @@ public class SpongePlayer implements AbstractPlayer {
      * Gets the Sponge player
      * @return The Sponge player
      */
-    public Player getPlayer() {
+    public org.spongepowered.api.entity.living.player.Player getPlayer() {
         return player;
     }
 
@@ -120,7 +120,7 @@ public class SpongePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new SpongePlayerInventory(player.inventory());
     }
 

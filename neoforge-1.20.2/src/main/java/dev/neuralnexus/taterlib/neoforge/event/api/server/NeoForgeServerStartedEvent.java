@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartedEvent;
-import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartedEvent;
 
 /**
- * NeoForge implementation of {@link AbstractServerStartedEvent}.
+ * NeoForge implementation of {@link ServerStartedEvent}.
  */
-public class NeoForgeServerStartedEvent extends NeoForgeServerEvent implements AbstractServerStartedEvent {
-    public NeoForgeServerStartedEvent(ServerStartedEvent event) {
+public class NeoForgeServerStartedEvent extends NeoForgeServerEvent implements ServerStartedEvent {
+    public NeoForgeServerStartedEvent(net.neoforged.neoforge.event.server.ServerStartedEvent event) {
         super(event);
     }
 }

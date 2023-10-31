@@ -1,17 +1,17 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Bukkit implementation of {@link AbstractPlayerMessageEvent}.
+ * Bukkit implementation of {@link PlayerMessageEvent}.
  */
-public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements AbstractPlayerMessageEvent {
+public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements PlayerMessageEvent {
     private final AsyncPlayerChatEvent event;
 
     public BukkitPlayerMessageEvent(AsyncPlayerChatEvent event) {
@@ -47,7 +47,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Abstr
      * @inheritDoc
      */
     @Override
-    public Set<AbstractPlayer> recipients() {
+    public Set<Player> recipients() {
         return event.getRecipients().stream().map(BukkitPlayer::new).collect(Collectors.toSet());
     }
 
@@ -63,7 +63,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Abstr
      * @inheritDoc
      */
     @Override
-    public void setRecipients(Set<AbstractPlayer> recipients) {
+    public void setRecipients(Set<Player> recipients) {
         event.getRecipients().clear();
         event.getRecipients().addAll(recipients.stream().map(player -> ((BukkitPlayer) player).getPlayer()).collect(Collectors.toSet()));
     }

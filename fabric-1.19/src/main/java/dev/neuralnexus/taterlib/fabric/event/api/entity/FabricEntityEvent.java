@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.fabric.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityEvent;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
-import net.minecraft.entity.Entity;
 
 /**
- * The Fabric implementation of {@link AbstractEntityEvent}.
+ * The Fabric implementation of {@link EntityEvent}.
  */
-public class FabricEntityEvent implements AbstractEntityEvent {
-    private final Entity entity;
+public class FabricEntityEvent implements EntityEvent {
+    private final net.minecraft.entity.Entity entity;
 
-    public FabricEntityEvent(Entity entity) {
+    public FabricEntityEvent(net.minecraft.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -19,7 +18,7 @@ public class FabricEntityEvent implements AbstractEntityEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new FabricEntity(this.entity);
     }
 }

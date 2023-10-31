@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerAdvancementEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.event.advancement.AdvancementEvent;
@@ -10,9 +10,9 @@ import java.util.Collection;
 import java.util.HashSet;
 
 /**
- * Sponge implementation of {@link AbstractPlayerAdvancementEvent}.
+ * Sponge implementation of {@link PlayerAdvancementEvent}.
  */
-public class SpongePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent {
+public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
     public SpongePlayerAdvancementEvent(AdvancementEvent event) {
@@ -31,26 +31,26 @@ public class SpongePlayerAdvancementEvent implements AbstractPlayerAdvancementEv
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new SpongePlayer(event.player());
     }
 
     /**
-     * Sponge implementation of {@link AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent}.
+     * Sponge implementation of {@link AdvancementFinished}.
      */
-    public static class SpongePlayerAdvancementFinishedEvent extends SpongePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent {
-        public SpongePlayerAdvancementFinishedEvent(AdvancementEvent.Grant event) {
+    public static class SpongeAdvancementFinished extends SpongePlayerAdvancementEvent implements AdvancementFinished {
+        public SpongeAdvancementFinished(AdvancementEvent.Grant event) {
             super(event);
         }
     }
 
     /**
-     * Sponge implementation of {@link AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent}.
+     * Sponge implementation of {@link AdvancementProgress}.
      */
-    public static class SpongePlayerAdvancementProgressEvent extends SpongePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent {
+    public static class SpongeAdvancementProgress extends SpongePlayerAdvancementEvent implements AdvancementProgress {
         private final AdvancementEvent.Grant event;
 
-        public SpongePlayerAdvancementProgressEvent(AdvancementEvent.Grant event) {
+        public SpongeAdvancementProgress(AdvancementEvent.Grant event) {
             super(event);
             this.event = event;
         }

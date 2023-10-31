@@ -1,21 +1,20 @@
 package dev.neuralnexus.taterlib.sponge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Sponge implementation of {@link AbstractPlayerDeathEvent}.
+ * Sponge implementation of {@link PlayerDeathEvent}.
  */
-public class SpongePlayerDeathEvent implements AbstractPlayerDeathEvent {
+public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     private final DestructEntityEvent.Death event;
     private String deathMessage = "";
 
@@ -27,7 +26,7 @@ public class SpongePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         return new ArrayList<>();
     }
 
@@ -35,7 +34,7 @@ public class SpongePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {}
+    public void setDrops(List<ItemStack> drops) {}
 
     /**
      * @inheritDoc
@@ -61,7 +60,7 @@ public class SpongePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new SpongeEntity(event.getTargetEntity());
     }
 
@@ -69,8 +68,8 @@ public class SpongePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
-        return new SpongePlayer((Player) event.getTargetEntity());
+    public Player getPlayer() {
+        return new SpongePlayer((org.spongepowered.api.entity.living.player.Player) event.getTargetEntity());
     }
 
     /**

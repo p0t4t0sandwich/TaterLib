@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerEvent}.
+ * NeoForge implementation of {@link PlayerEvent}.
  */
-public class NeoForgePlayerEvent implements AbstractPlayerEvent {
-    private final PlayerEvent event;
+public class NeoForgePlayerEvent implements PlayerEvent {
+    private final net.neoforged.neoforge.event.entity.player.PlayerEvent event;
 
-    public NeoForgePlayerEvent(PlayerEvent event) {
+    public NeoForgePlayerEvent(net.neoforged.neoforge.event.entity.player.PlayerEvent event) {
         this.event = event;
     }
 
@@ -19,7 +18,7 @@ public class NeoForgePlayerEvent implements AbstractPlayerEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new NeoForgePlayer(event.getEntity());
     }
 }

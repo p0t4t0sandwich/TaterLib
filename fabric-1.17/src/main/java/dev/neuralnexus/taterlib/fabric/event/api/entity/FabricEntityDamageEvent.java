@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.fabric.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Fabric implementation of {@link AbstractEntityDamageEvent}.
+ * Fabric implementation of {@link EntityDamageEvent}.
  */
-public class FabricEntityDamageEvent extends FabricEntityEvent implements AbstractEntityDamageEvent {
+public class FabricEntityDamageEvent extends FabricEntityEvent implements EntityDamageEvent {
     private final DamageSource damageSource;
     private final float damage;
     private final CallbackInfo ci;

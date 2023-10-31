@@ -20,7 +20,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementFinishedEvent(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new NeoForgePlayerAdvancementEvent.NeoForgeAdvancementFinished(event));
     }
 
     /**
@@ -29,7 +29,7 @@ public class NeoForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new NeoForgePlayerAdvancementEvent.NeoForgePlayerAdvancementProgressEvent(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new NeoForgePlayerAdvancementEvent.NeoForgeAdvancementProgress(event));
     }
 
     /**

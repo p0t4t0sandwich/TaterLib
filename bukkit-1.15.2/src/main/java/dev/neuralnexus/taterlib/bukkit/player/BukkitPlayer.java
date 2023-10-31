@@ -1,20 +1,20 @@
 package dev.neuralnexus.taterlib.bukkit.player;
 
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
+import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.bukkit.util.BukkitConversions;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit player to an AbstractPlayer.
+ * Abstracts a Bukkit player to an Player.
  */
-public class BukkitPlayer implements AbstractPlayer {
-    private final Player player;
+public class BukkitPlayer implements Player {
+    private final org.bukkit.entity.Player player;
     private Plugin plugin = BukkitTaterLibPlugin.getInstance();
     private String serverName;
 
@@ -22,7 +22,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * Constructor.
      * @param player The Bukkit player.
      */
-    public BukkitPlayer(Player player) {
+    public BukkitPlayer(org.bukkit.entity.Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -32,7 +32,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * @param player The Bukkit player.
      * @param serverName The name of the server the player is on.
      */
-    public BukkitPlayer(Player player, String serverName) {
+    public BukkitPlayer(org.bukkit.entity.Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -42,7 +42,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * @param player The Bukkit player.
      * @param plugin The plugin.
      */
-    public BukkitPlayer(Player player, Plugin plugin) {
+    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin) {
         this.player = player;
         this.plugin = plugin;
         this.serverName = "local";
@@ -54,7 +54,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * @param plugin The plugin.
      * @param serverName The name of the server the player is on.
      */
-    public BukkitPlayer(Player player, Plugin plugin, String serverName) {
+    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin, String serverName) {
         this.player = player;
         this.plugin = plugin;
         this.serverName = serverName;
@@ -64,7 +64,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * Gets the Bukkit player
      * @return The Bukkit player
      */
-    public Player getPlayer() {
+    public org.bukkit.entity.Player getPlayer() {
         return player;
     }
 
@@ -140,7 +140,7 @@ public class BukkitPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 

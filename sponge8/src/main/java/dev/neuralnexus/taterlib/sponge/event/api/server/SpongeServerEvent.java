@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.sponge.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
 import org.spongepowered.api.event.lifecycle.EngineLifecycleEvent;
 
 /**
- * Sponge implementation of {@link AbstractServerEvent}.
+ * Sponge implementation of {@link ServerEvent}.
  */
-public class SpongeServerEvent implements AbstractServerEvent {
+public class SpongeServerEvent implements ServerEvent {
     private final EngineLifecycleEvent event;
 
     public SpongeServerEvent(EngineLifecycleEvent event) {

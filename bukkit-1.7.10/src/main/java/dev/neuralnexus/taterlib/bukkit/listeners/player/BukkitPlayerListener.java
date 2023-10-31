@@ -18,7 +18,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerAdvancement(PlayerAchievementAwardedEvent event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new BukkitPlayerAdvancementEvent.BukkitPlayerAdvancementFinishedEvent(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new BukkitPlayerAdvancementEvent.BukkitAdvancementFinished(event));
     }
 
     /**

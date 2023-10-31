@@ -2,17 +2,16 @@ package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import org.bukkit.event.entity.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 
 /**
- * Bukkit implementation of {@link AbstractPlayerDeathEvent}.
+ * Bukkit implementation of {@link PlayerDeathEvent}.
  */
-public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements AbstractPlayerDeathEvent {
-    private final PlayerDeathEvent event;
+public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements PlayerDeathEvent {
+    private final org.bukkit.event.entity.PlayerDeathEvent event;
 
-    public BukkitPlayerDeathEvent(PlayerDeathEvent event) {
+    public BukkitPlayerDeathEvent(org.bukkit.event.entity.PlayerDeathEvent event) {
         super(event);
         this.event = event;
     }
@@ -21,7 +20,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Ab
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new BukkitPlayer(event.getEntity());
     }
 

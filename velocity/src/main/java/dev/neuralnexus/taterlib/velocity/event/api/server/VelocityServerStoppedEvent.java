@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.velocity.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStoppedEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStoppedEvent;
 
 /**
- * Velocity implementation of {@link AbstractServerStoppedEvent}.
+ * Velocity implementation of {@link ServerStoppedEvent}.
  */
-public class VelocityServerStoppedEvent implements AbstractServerStoppedEvent {
+public class VelocityServerStoppedEvent implements ServerStoppedEvent {
 }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.item.inventory.ItemStack;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Abstracts a Sponge item meta to an AbstractItemMeta.
  */
-public class SpongeItemMeta implements AbstractItemMeta {
+public class SpongeItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 
     /**

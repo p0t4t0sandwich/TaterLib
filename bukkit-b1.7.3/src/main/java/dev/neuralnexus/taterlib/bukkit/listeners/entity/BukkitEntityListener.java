@@ -22,10 +22,10 @@ public class BukkitEntityListener extends EntityListener {
         EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
         switch (event.getCause()) {
             case ENTITY_ATTACK:
-                EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent((EntityDamageByEntityEvent) event));
+                EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity((EntityDamageByEntityEvent) event));
                 break;
             case SUFFOCATION:
-                EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent((EntityDamageByBlockEvent) event));
+                EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock((EntityDamageByBlockEvent) event));
                 break;
         }
     }
@@ -36,7 +36,7 @@ public class BukkitEntityListener extends EntityListener {
 //     */
 //    @EventHandler
 //    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-//        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
+//        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity(event));
 //    }
 //
 //    /**
@@ -45,7 +45,7 @@ public class BukkitEntityListener extends EntityListener {
 //     */
 //    @EventHandler
 //    public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-//        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
+//        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock(event));
 //    }
 
     /**

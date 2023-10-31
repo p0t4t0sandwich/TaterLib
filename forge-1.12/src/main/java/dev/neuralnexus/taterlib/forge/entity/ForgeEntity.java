@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import net.minecraft.entity.Entity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 
@@ -10,14 +9,14 @@ import java.util.UUID;
 /**
  * Abstracts a Forge entity to an AbstractEntity.
  */
-public class ForgeEntity implements AbstractEntity {
-    private final Entity entity;
+public class ForgeEntity implements Entity {
+    private final net.minecraft.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The Forge entity.
      */
-    public ForgeEntity(Entity entity) {
+    public ForgeEntity(net.minecraft.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -25,7 +24,7 @@ public class ForgeEntity implements AbstractEntity {
      * Gets the Forge entity.
      * @return The Forge entity.
      */
-    public Entity getEntity() {
+    public net.minecraft.entity.Entity getEntity() {
         return entity;
     }
 

@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgeItemStack;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
-import net.minecraft.world.entity.player.Player;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
@@ -15,11 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerDeathEvent}.
+ * NeoForge implementation of {@link PlayerDeathEvent}.
  */
-public class NeoForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
+public class NeoForgePlayerDeathEvent implements PlayerDeathEvent {
     private final LivingDeathEvent event;
-    private List<AbstractItemStack> drops = new ArrayList<>();
+    private List<ItemStack> drops = new ArrayList<>();
     private int droppedExp = 0;
     private String deathMessage = "";
 
@@ -31,7 +30,7 @@ public class NeoForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -45,7 +44,7 @@ public class NeoForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {
+    public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
@@ -80,7 +79,7 @@ public class NeoForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new NeoForgeEntity(event.getEntity());
     }
 
@@ -88,8 +87,8 @@ public class NeoForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
-        return new NeoForgePlayer((Player) event.getEntity());
+    public Player getPlayer() {
+        return new NeoForgePlayer((net.minecraft.world.entity.player.Player) event.getEntity());
     }
 
     /**

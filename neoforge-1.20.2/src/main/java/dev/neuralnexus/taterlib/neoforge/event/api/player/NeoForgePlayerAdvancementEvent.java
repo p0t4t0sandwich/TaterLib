@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 
 import java.util.Collection;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerAdvancementEvent}.
+ * NeoForge implementation of {@link PlayerAdvancementEvent}.
  */
-public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implements AbstractPlayerAdvancementEvent {
+public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
     public NeoForgePlayerAdvancementEvent(AdvancementEvent event) {
@@ -32,21 +32,21 @@ public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implemen
     }
 
     /**
-     * NeoForge implementation of {@link AbstractPlayerAdvancementFinishedEvent}.
+     * NeoForge implementation of {@link AdvancementFinished}.
      */
-    public static class NeoForgePlayerAdvancementFinishedEvent extends NeoForgePlayerAdvancementEvent implements AbstractPlayerAdvancementFinishedEvent {
-        public NeoForgePlayerAdvancementFinishedEvent(AdvancementEvent.AdvancementEarnEvent event) {
+    public static class NeoForgeAdvancementFinished extends NeoForgePlayerAdvancementEvent implements AdvancementFinished {
+        public NeoForgeAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
         }
     }
 
     /**
-     * NeoForge implementation of {@link AbstractPlayerAdvancementProgressEvent}.
+     * NeoForge implementation of {@link AdvancementProgress}.
      */
-    public static class NeoForgePlayerAdvancementProgressEvent extends NeoForgePlayerAdvancementEvent implements AbstractPlayerAdvancementProgressEvent {
+    public static class NeoForgeAdvancementProgress extends NeoForgePlayerAdvancementEvent implements AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 
-        public NeoForgePlayerAdvancementProgressEvent(AdvancementEvent.AdvancementProgressEvent event) {
+        public NeoForgeAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
             super(event);
             this.event = event;
         }

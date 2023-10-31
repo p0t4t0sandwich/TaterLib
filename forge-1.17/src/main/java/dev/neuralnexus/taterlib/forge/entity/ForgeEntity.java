@@ -1,23 +1,22 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 
 import java.util.UUID;
 
 /**
  * Abstracts a Forge entity to an AbstractEntity.
  */
-public class ForgeEntity implements AbstractEntity {
-    private final Entity entity;
+public class ForgeEntity implements Entity {
+    private final net.minecraft.world.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The Forge entity.
      */
-    public ForgeEntity(Entity entity) {
+    public ForgeEntity(net.minecraft.world.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -25,7 +24,7 @@ public class ForgeEntity implements AbstractEntity {
      * Gets the Forge entity.
      * @return The Forge entity.
      */
-    public Entity getEntity() {
+    public net.minecraft.world.entity.Entity getEntity() {
         return entity;
     }
 
@@ -50,7 +49,7 @@ public class ForgeEntity implements AbstractEntity {
      */
     @Override
     public void remove() {
-        entity.remove(Entity.RemovalReason.KILLED);
+        entity.remove(net.minecraft.world.entity.Entity.RemovalReason.KILLED);
     }
 
     /**

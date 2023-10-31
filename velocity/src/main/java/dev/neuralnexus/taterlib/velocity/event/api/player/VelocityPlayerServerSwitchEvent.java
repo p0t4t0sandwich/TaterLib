@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.velocity.event.api.player;
 
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerServerSwitchEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /**
- * Velocity implementation of {@link AbstractPlayerServerSwitchEvent}.
+ * Velocity implementation of {@link PlayerServerSwitchEvent}.
  */
-public class VelocityPlayerServerSwitchEvent implements AbstractPlayerServerSwitchEvent {
+public class VelocityPlayerServerSwitchEvent implements PlayerServerSwitchEvent {
     private final ServerConnectedEvent event;
 
     public VelocityPlayerServerSwitchEvent(ServerConnectedEvent event) {
@@ -19,7 +19,7 @@ public class VelocityPlayerServerSwitchEvent implements AbstractPlayerServerSwit
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new VelocityPlayer(event.getPlayer());
     }
 

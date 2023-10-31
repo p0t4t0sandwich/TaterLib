@@ -20,9 +20,9 @@ public class BungeePluginMessageListener implements Listener {
     public void onPluginMessage(PluginMessageEvent event) {
         PluginMessageEvents.PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent(event));
         if (event.getReceiver() instanceof ProxiedPlayer) {
-            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.BungeePlayerPluginMessageEvent(event));
+            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.BungeePlayer(event));
         } else if (event.getReceiver() instanceof Server) {
-            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.BungeeServerPluginMessageEvent(event));
+            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.BungeeServer(event));
         }
     }
 }

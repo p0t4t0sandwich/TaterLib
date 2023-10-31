@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import org.bukkit.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 
 /**
- * Bukkit implementation of {@link AbstractPlayerEvent}.
+ * Bukkit implementation of {@link PlayerEvent}.
  */
-public class BukkitPlayerEvent implements AbstractPlayerEvent {
-    private final PlayerEvent event;
+public class BukkitPlayerEvent implements PlayerEvent {
+    private final org.bukkit.event.player.PlayerEvent event;
 
-    BukkitPlayerEvent(PlayerEvent event) {
+    BukkitPlayerEvent(org.bukkit.event.player.PlayerEvent event) {
         this.event = event;
     }
 
@@ -19,7 +18,7 @@ public class BukkitPlayerEvent implements AbstractPlayerEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new BukkitPlayer(event.getPlayer());
     }
 }

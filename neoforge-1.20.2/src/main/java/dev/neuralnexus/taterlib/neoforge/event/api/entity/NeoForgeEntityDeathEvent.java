@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgeItemStack;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * NeoForge implementation of {@link AbstractEntityDeathEvent}.
+ * NeoForge implementation of {@link EntityDeathEvent}.
  */
-public class NeoForgeEntityDeathEvent extends NeoForgeEntityEvent implements AbstractEntityDeathEvent {
+public class NeoForgeEntityDeathEvent extends NeoForgeEntityEvent implements EntityDeathEvent {
     private final LivingDeathEvent event;
-    private List<AbstractItemStack> drops = new ArrayList<>();
+    private List<ItemStack> drops = new ArrayList<>();
     private int droppedExp = 0;
 
     public NeoForgeEntityDeathEvent(LivingDeathEvent event) {
@@ -26,7 +26,7 @@ public class NeoForgeEntityDeathEvent extends NeoForgeEntityEvent implements Abs
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -40,7 +40,7 @@ public class NeoForgeEntityDeathEvent extends NeoForgeEntityEvent implements Abs
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {
+    public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 

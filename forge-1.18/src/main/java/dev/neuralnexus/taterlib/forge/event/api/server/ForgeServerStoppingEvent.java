@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.forge.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStoppingEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStoppingEvent;
 
 /**
- * Forge implementation of {@link AbstractServerStoppingEvent}.
+ * Forge implementation of {@link ServerStoppingEvent}.
  */
-public class ForgeServerStoppingEvent extends ForgeServerEvent implements AbstractServerStoppingEvent {
-    public ForgeServerStoppingEvent(ServerStoppingEvent event) {
+public class ForgeServerStoppingEvent extends ForgeServerEvent implements ServerStoppingEvent {
+    public ForgeServerStoppingEvent(net.minecraftforge.event.server.ServerStoppingEvent event) {
         super(event);
     }
 }

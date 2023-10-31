@@ -27,7 +27,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntityEvent(event));
+        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity(event));
     }
 
     /**
@@ -36,7 +36,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlockEvent(event));
+        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock(event));
     }
 
     /**

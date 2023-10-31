@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.sponge.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;
 
 /**
- * Sponge implementation of {@link AbstractServerStartingEvent}.
+ * Sponge implementation of {@link ServerStartingEvent}.
  */
-public class SpongeServerStartingEvent extends SpongeServerEvent implements AbstractServerStartingEvent {
+public class SpongeServerStartingEvent extends SpongeServerEvent implements ServerStartingEvent {
     public SpongeServerStartingEvent(GameStartingServerEvent event) {
         super(event);
     }

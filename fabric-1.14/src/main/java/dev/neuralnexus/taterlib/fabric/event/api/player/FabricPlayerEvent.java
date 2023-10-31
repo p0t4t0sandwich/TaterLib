@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * Fabric implementation of {@link AbstractPlayerEvent}.
+ * Fabric implementation of {@link PlayerEvent}.
  */
-public class FabricPlayerEvent implements AbstractPlayerEvent {
+public class FabricPlayerEvent implements PlayerEvent {
     private final PlayerEntity player;
 
     public FabricPlayerEvent(PlayerEntity player) {
@@ -19,7 +19,7 @@ public class FabricPlayerEvent implements AbstractPlayerEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new FabricPlayer(this.player);
     }
 }

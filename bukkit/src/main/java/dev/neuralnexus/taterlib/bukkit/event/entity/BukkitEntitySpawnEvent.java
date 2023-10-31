@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
 import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntitySpawnEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
-import org.bukkit.event.entity.EntitySpawnEvent;
 
 /**
- * Bukkit implementation of {@link AbstractEntitySpawnEvent}.
+ * Bukkit implementation of {@link EntitySpawnEvent}.
  */
-public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements AbstractEntitySpawnEvent {
-    private final EntitySpawnEvent event;
+public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntitySpawnEvent {
+    private final org.bukkit.event.entity.EntitySpawnEvent event;
 
-    public BukkitEntitySpawnEvent(EntitySpawnEvent event) {
+    public BukkitEntitySpawnEvent(org.bukkit.event.entity.EntitySpawnEvent event) {
         super(event);
         this.event = event;
     }

@@ -1,10 +1,9 @@
 package dev.neuralnexus.taterlib.neoforge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
@@ -13,14 +12,14 @@ import java.util.UUID;
 /**
  * Abstracts a NeoForge entity to an AbstractEntity.
  */
-public class NeoForgeEntity implements AbstractEntity {
-    private final Entity entity;
+public class NeoForgeEntity implements Entity {
+    private final net.minecraft.world.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The NeoForge entity.
      */
-    public NeoForgeEntity(Entity entity) {
+    public NeoForgeEntity(net.minecraft.world.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -28,7 +27,7 @@ public class NeoForgeEntity implements AbstractEntity {
      * Gets the Forge entity.
      * @return The Forge entity.
      */
-    public Entity getEntity() {
+    public net.minecraft.world.entity.Entity getEntity() {
         return entity;
     }
 
@@ -53,7 +52,7 @@ public class NeoForgeEntity implements AbstractEntity {
      */
     @Override
     public void remove() {
-        entity.remove(Entity.RemovalReason.KILLED);
+        entity.remove(net.minecraft.world.entity.Entity.RemovalReason.KILLED);
     }
 
     /**

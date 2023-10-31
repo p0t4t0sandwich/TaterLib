@@ -1,10 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractInventory;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
+import dev.neuralnexus.taterlib.common.inventory.Inventory;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,14 +10,14 @@ import java.util.Map;
 /**
  * Abstracts a Bukkit inventory to an AbstractInventory.
  */
-public class BukkitInventory implements AbstractInventory {
-    private final Inventory inventory;
+public class BukkitInventory implements Inventory {
+    private final org.bukkit.inventory.Inventory inventory;
 
     /**
      * Constructor.
      * @param inventory The Bukkit inventory.
      */
-    public BukkitInventory(Inventory inventory) {
+    public BukkitInventory(org.bukkit.inventory.Inventory inventory) {
         this.inventory = inventory;
     }
 
@@ -35,7 +33,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack getItem(int slot) {
+    public ItemStack getItem(int slot) {
         return inventory.getItem(slot) == null ? null : new BukkitItemStack(inventory.getItem(slot));
     }
 
@@ -43,7 +41,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setItem(int slot, AbstractItemStack item) {
+    public void setItem(int slot, ItemStack item) {
         inventory.setItem(slot, ((BukkitItemStack) item).getItemStack());
     }
 
@@ -51,7 +49,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void addItem(AbstractItemStack item) {
+    public void addItem(ItemStack item) {
         inventory.addItem(((BukkitItemStack) item).getItemStack());
     }
 
@@ -59,7 +57,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void removeItem(AbstractItemStack item) {
+    public void removeItem(ItemStack item) {
         inventory.removeItem(((BukkitItemStack) item).getItemStack());
     }
 
@@ -67,9 +65,9 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getContents() {
-        ItemStack[] contents = inventory.getContents();
-        AbstractItemStack[] abstractContents = new AbstractItemStack[contents.length];
+    public ItemStack[] getContents() {
+        org.bukkit.inventory.ItemStack[] contents = inventory.getContents();
+        ItemStack[] abstractContents = new ItemStack[contents.length];
         for (int i = 0; i < contents.length; i++) {
             abstractContents[i] = contents[i] == null ? null : new BukkitItemStack(contents[i]);
         }
@@ -81,8 +79,8 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setContents(AbstractItemStack[] items) {
-        ItemStack[] contents = new ItemStack[items.length];
+    public void setContents(ItemStack[] items) {
+        org.bukkit.inventory.ItemStack[] contents = new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
             contents[i] = ((BukkitItemStack) items[i]).getItemStack();
         }
@@ -94,9 +92,9 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getStorageContents() {
-        ItemStack[] storageContents = inventory.getContents();
-        AbstractItemStack[] abstractStorageContents = new AbstractItemStack[storageContents.length];
+    public ItemStack[] getStorageContents() {
+        org.bukkit.inventory.ItemStack[] storageContents = inventory.getContents();
+        ItemStack[] abstractStorageContents = new ItemStack[storageContents.length];
         for (int i = 0; i < storageContents.length; i++) {
             abstractStorageContents[i] = storageContents[i] == null ? null : new BukkitItemStack(storageContents[i]);
         }
@@ -108,8 +106,8 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setStorageContents(AbstractItemStack[] items) {
-        ItemStack[] storageContents = new ItemStack[items.length];
+    public void setStorageContents(ItemStack[] items) {
+        org.bukkit.inventory.ItemStack[] storageContents = new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
             storageContents[i] = ((BukkitItemStack) items[i]).getItemStack();
         }
@@ -121,7 +119,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean contains(AbstractItemStack item) {
+    public boolean contains(ItemStack item) {
         return inventory.contains(((BukkitItemStack) item).getItemStack());
     }
 
@@ -140,7 +138,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean containsAtLeast(AbstractItemStack item, int count) {
+    public boolean containsAtLeast(ItemStack item, int count) {
         return inventory.containsAtLeast(((BukkitItemStack) item).getItemStack(), count);
     }
 
@@ -152,17 +150,17 @@ public class BukkitInventory implements AbstractInventory {
         if (type.contains(":")) {
             type = type.split(":")[1];
         }
-        return inventory.containsAtLeast(new ItemStack(Material.valueOf(type.toUpperCase())), count);
+        return inventory.containsAtLeast(new org.bukkit.inventory.ItemStack(Material.valueOf(type.toUpperCase())), count);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public Map<Integer, AbstractItemStack> all(AbstractItemStack item) {
-        Map<Integer, ItemStack> all = (Map<Integer, ItemStack>) inventory.all(((BukkitItemStack) item).getItemStack());
-        Map<Integer, AbstractItemStack> abstractAll = new HashMap<>();
-        for (Map.Entry<Integer, ItemStack> entry : all.entrySet()) {
+    public Map<Integer, ItemStack> all(ItemStack item) {
+        Map<Integer, org.bukkit.inventory.ItemStack> all = (Map<Integer, org.bukkit.inventory.ItemStack>) inventory.all(((BukkitItemStack) item).getItemStack());
+        Map<Integer, ItemStack> abstractAll = new HashMap<>();
+        for (Map.Entry<Integer, org.bukkit.inventory.ItemStack> entry : all.entrySet()) {
             abstractAll.put(entry.getKey(), entry.getValue() == null ? null : new BukkitItemStack(entry.getValue()));
         }
         return abstractAll;
@@ -172,7 +170,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public int first(AbstractItemStack item) {
+    public int first(ItemStack item) {
         return inventory.first(((BukkitItemStack) item).getItemStack());
     }
 
@@ -199,7 +197,7 @@ public class BukkitInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void remove(AbstractItemStack item) {
+    public void remove(ItemStack item) {
         inventory.remove(((BukkitItemStack) item).getItemStack());
     }
 

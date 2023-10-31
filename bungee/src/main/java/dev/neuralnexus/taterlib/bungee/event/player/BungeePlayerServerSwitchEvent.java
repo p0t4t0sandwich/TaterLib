@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerServerSwitchEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 
 /**
- * Bungee implementation of {@link AbstractPlayerServerSwitchEvent}.
+ * Bungee implementation of {@link PlayerServerSwitchEvent}.
  */
-public class BungeePlayerServerSwitchEvent implements AbstractPlayerServerSwitchEvent {
+public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
     private final ServerSwitchEvent event;
 
     public BungeePlayerServerSwitchEvent(ServerSwitchEvent event) {
@@ -19,7 +19,7 @@ public class BungeePlayerServerSwitchEvent implements AbstractPlayerServerSwitch
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new BungeePlayer(event.getPlayer());
     }
 

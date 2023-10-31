@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.forge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityEvent;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
-import net.minecraftforge.event.entity.EntityEvent;
 
 /**
- * Forge implementation of {@link AbstractEntityEvent}.
+ * Forge implementation of {@link EntityEvent}.
  */
-public class ForgeEntityEvent implements AbstractEntityEvent {
-    private final EntityEvent event;
+public class ForgeEntityEvent implements EntityEvent {
+    private final net.minecraftforge.event.entity.EntityEvent event;
 
-    public ForgeEntityEvent(EntityEvent event) {
+    public ForgeEntityEvent(net.minecraftforge.event.entity.EntityEvent event) {
         this.event = event;
     }
 
@@ -19,7 +18,7 @@ public class ForgeEntityEvent implements AbstractEntityEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new ForgeEntity(event.getEntity());
     }
 }

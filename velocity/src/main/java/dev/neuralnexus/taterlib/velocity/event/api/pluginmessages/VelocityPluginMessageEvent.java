@@ -1,19 +1,15 @@
 package dev.neuralnexus.taterlib.velocity.event.api.pluginmessages;
 
-import com.velocitypowered.api.event.connection.PluginMessageEvent;
-import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
-import dev.neuralnexus.taterlib.common.event.pluginmessages.AbstractPluginMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
 
 /**
- * Velocity implementation of {@link AbstractPluginMessageEvent}.
+ * Velocity implementation of {@link PluginMessageEvent}.
  */
-public class VelocityPluginMessageEvent implements AbstractPluginMessageEvent {
-    private final PluginMessageEvent event;
+public class VelocityPluginMessageEvent implements PluginMessageEvent {
+    private final com.velocitypowered.api.event.connection.PluginMessageEvent event;
 
-    public VelocityPluginMessageEvent(PluginMessageEvent event) {
+    public VelocityPluginMessageEvent(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
         this.event = event;
     }
 
@@ -34,12 +30,12 @@ public class VelocityPluginMessageEvent implements AbstractPluginMessageEvent {
     }
 
     /**
-     * Velocity implementation of {@link AbstractPlayerPluginMessageEvent}.
+     * Velocity implementation of {@link Player}.
      */
-    public static class VelocityPlayerPluginMessageEvent extends VelocityPluginMessageEvent implements AbstractPlayerPluginMessageEvent {
-        private final PluginMessageEvent event;
+    public static class VelocityPlayer extends VelocityPluginMessageEvent implements Player {
+        private final com.velocitypowered.api.event.connection.PluginMessageEvent event;
 
-        public VelocityPlayerPluginMessageEvent(PluginMessageEvent event) {
+        public VelocityPlayer(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }
@@ -48,18 +44,18 @@ public class VelocityPluginMessageEvent implements AbstractPluginMessageEvent {
          * @inheritDoc
          */
         @Override
-        public AbstractPlayer getPlayer() {
-            return new VelocityPlayer((Player) event.getSource());
+        public dev.neuralnexus.taterlib.common.player.Player getPlayer() {
+            return new dev.neuralnexus.taterlib.velocity.player.VelocityPlayer((com.velocitypowered.api.proxy.Player) event.getSource());
         }
     }
 
     /**
-     * Velocity implementation of {@link AbstractServerPluginMessageEvent}.
+     * Velocity implementation of {@link Server}.
      */
-    public static class VelocityServerPluginMessageEvent extends VelocityPluginMessageEvent implements AbstractServerPluginMessageEvent {
-        private final PluginMessageEvent event;
+    public static class VelocityServer extends VelocityPluginMessageEvent implements Server {
+        private final com.velocitypowered.api.event.connection.PluginMessageEvent event;
 
-        public VelocityServerPluginMessageEvent(PluginMessageEvent event) {
+        public VelocityServer(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }

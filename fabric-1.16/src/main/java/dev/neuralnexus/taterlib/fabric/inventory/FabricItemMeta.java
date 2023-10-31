@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Abstracts a Fabric item meta to an AbstractItemMeta.
  */
-public class FabricItemMeta implements AbstractItemMeta {
+public class FabricItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 
     /**

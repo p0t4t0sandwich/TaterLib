@@ -1,17 +1,16 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityEvent;
-import org.bukkit.event.entity.EntityEvent;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.entity.EntityEvent;
 
 /**
- * Bukkit implementation of {@link AbstractEntityEvent}.
+ * Bukkit implementation of {@link EntityEvent}.
  */
-public class BukkitEntityEvent implements AbstractEntityEvent {
-    private final EntityEvent event;
+public class BukkitEntityEvent implements EntityEvent {
+    private final org.bukkit.event.entity.EntityEvent event;
 
-    BukkitEntityEvent(EntityEvent event) {
+    BukkitEntityEvent(org.bukkit.event.entity.EntityEvent event) {
         this.event = event;
     }
 
@@ -19,7 +18,7 @@ public class BukkitEntityEvent implements AbstractEntityEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new BukkitEntity(event.getEntity());
     }
 }

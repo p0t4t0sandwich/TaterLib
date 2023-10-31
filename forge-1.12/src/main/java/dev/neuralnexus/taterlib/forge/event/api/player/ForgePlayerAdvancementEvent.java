@@ -1,16 +1,16 @@
 package dev.neuralnexus.taterlib.forge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerAdvancementEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 
 import java.util.Collection;
 
 /**
- * Forge implementation of {@link AbstractPlayerAdvancementEvent}.
+ * Forge implementation of {@link PlayerAdvancementEvent}.
  */
-public class ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent {
+public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
     public ForgePlayerAdvancementEvent(AdvancementEvent event) {
@@ -36,26 +36,26 @@ public class ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementEve
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new ForgePlayer(event.getEntityPlayer());
     }
 
     /**
-     * Forge implementation of {@link AbstractPlayerAdvancementFinishedEvent}.
+     * Forge implementation of {@link AdvancementFinished}.
      */
-    public static class ForgePlayerAdvancementFinishedEvent extends ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementFinishedEvent {
-        public ForgePlayerAdvancementFinishedEvent(AdvancementEvent event) {
+    public static class ForgeAdvancementFinished extends ForgePlayerAdvancementEvent implements AdvancementFinished {
+        public ForgeAdvancementFinished(AdvancementEvent event) {
             super(event);
         }
     }
 
     /**
-     * Forge implementation of {@link AbstractPlayerAdvancementProgressEvent}.
+     * Forge implementation of {@link AdvancementProgress}.
      */
-    public static class ForgePlayerAdvancementProgressEvent extends ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementProgressEvent {
+    public static class ForgeAdvancementProgress extends ForgePlayerAdvancementEvent implements AdvancementProgress {
         private final AdvancementEvent event;
 
-        public ForgePlayerAdvancementProgressEvent(AdvancementEvent event) {
+        public ForgeAdvancementProgress(AdvancementEvent event) {
             super(event);
             this.event = event;
         }

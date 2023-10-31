@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.common.listeners.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerServerSwitchEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.player.cache.PlayerCache;
 
 /**
@@ -14,7 +14,7 @@ public final class PlayerListener {
      * Called when a player logs in.
      * @param event The event.
      */
-    public static void onPlayerLogin(AbstractPlayerLoginEvent event) {
+    public static void onPlayerLogin(PlayerLoginEvent event) {
         // Add the Player to the cache
         PlayerCache.setPlayerInCache(event.getPlayer().getUUID(), event.getPlayer());
     }
@@ -23,7 +23,7 @@ public final class PlayerListener {
      * Called when a player logs out.
      * @param event The event.
      */
-    public static void onPlayerLogout(AbstractPlayerLogoutEvent event) {
+    public static void onPlayerLogout(PlayerLogoutEvent event) {
         // Remove the Player from the cache
         PlayerCache.removePlayerFromCache(event.getPlayer().getUUID());
     }
@@ -32,17 +32,17 @@ public final class PlayerListener {
      * Called when a player logs out, and sends it to the message relay.
      * @param event The event.
      */
-    public static void onServerSwitch(AbstractPlayerServerSwitchEvent event) {
-        AbstractPlayer abstractPlayer = event.getPlayer();
+    public static void onServerSwitch(PlayerServerSwitchEvent event) {
+        Player player = event.getPlayer();
 
         // Get Player from cache
-        AbstractPlayer cachedAbstractPlayer = PlayerCache.getPlayerFromCache(abstractPlayer.getUUID());
-        if (cachedAbstractPlayer == null) {
+        Player cachedPlayer = PlayerCache.getPlayerFromCache(player.getUUID());
+        if (cachedPlayer == null) {
             return;
         }
 
         // Update the server name and Player object
-        abstractPlayer.setServerName(event.getToServer());
-        PlayerCache.setPlayerInCache(abstractPlayer.getUUID(), abstractPlayer);
+        player.setServerName(event.getToServer());
+        PlayerCache.setPlayerInCache(player.getUUID(), player);
     }
 }

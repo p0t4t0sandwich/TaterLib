@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
 /**
- * NeoForge implementation of {@link AbstractEntityDamageEvent}.
+ * NeoForge implementation of {@link EntityDamageEvent}.
  */
-public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements AbstractEntityDamageEvent {
+public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements EntityDamageEvent {
     private final LivingDamageEvent event;
 
     public NeoForgeEntityDamageEvent(LivingDamageEvent event) {

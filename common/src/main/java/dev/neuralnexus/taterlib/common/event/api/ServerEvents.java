@@ -1,10 +1,9 @@
 package dev.neuralnexus.taterlib.common.event.api;
 
-import dev.neuralnexus.taterlib.common.event.api.Event;
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartedEvent;
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartingEvent;
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStoppedEvent;
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStoppingEvent;
 
 /**
  * Server events.
@@ -13,20 +12,20 @@ public class ServerEvents {
     /**
      * Called when the server is starting.
      */
-    public static final Event<AbstractServerStartingEvent> STARTING = new Event<>(AbstractServerStartingEvent.class);
+    public static final Event<ServerStartingEvent> STARTING = new Event<>(ServerStartingEvent.class);
 
     /**
      * Called when the server has started.
      */
-    public static final Event<AbstractServerStartedEvent> STARTED = new Event<>(AbstractServerStartedEvent.class);
+    public static final Event<ServerStartedEvent> STARTED = new Event<>(ServerStartedEvent.class);
 
     /**
      * Called when the server is stopping.
      */
-    public static final Event<AbstractServerStoppingEvent> STOPPING = new Event<>(AbstractServerStoppingEvent.class);
+    public static final Event<ServerStoppingEvent> STOPPING = new Event<>(ServerStoppingEvent.class);
 
     /**
      * Called when the server has stopped.
      */
-    public static final Event<AbstractServerStoppedEvent> STOPPED = new Event<>(AbstractServerStoppedEvent.class);
+    public static final Event<ServerStoppedEvent> STOPPED = new Event<>(ServerStoppedEvent.class);
 }

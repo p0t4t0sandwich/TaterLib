@@ -19,9 +19,9 @@ public class VelocityPluginMessageListener {
     public void onPluginMessage(PluginMessageEvent event) {
         PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent(event));
         if (event.getSource() instanceof Player) {
-            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityPlayerPluginMessageEvent(event));
+            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityPlayer(event));
         } else if (event.getSource() instanceof ServerConnection){
-            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityServerPluginMessageEvent(event));
+            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent.VelocityServer(event));
         }
     }
 }

@@ -1,23 +1,22 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.ItemTypes;
-import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.registry.Registry;
 
 /**
  * Abstracts a Sponge item stack to an AbstractItemStack.
  */
-public class SpongeItemStack implements AbstractItemStack {
-    private final ItemStack itemStack;
+public class SpongeItemStack implements ItemStack {
+    private final org.spongepowered.api.item.inventory.ItemStack itemStack;
 
     /**
      * Constructor.
      * @param itemStack The Sponge item stack.
      */
-    public SpongeItemStack(ItemStack itemStack) {
+    public SpongeItemStack(org.spongepowered.api.item.inventory.ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
@@ -25,7 +24,7 @@ public class SpongeItemStack implements AbstractItemStack {
      * Getter for the Sponge item stack.
      * @return The Sponge item stack.
      */
-    public ItemStack getItemStack() {
+    public org.spongepowered.api.item.inventory.ItemStack getItemStack() {
         return itemStack;
     }
 
@@ -33,7 +32,7 @@ public class SpongeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemMeta getMeta() {
+    public ItemMeta getMeta() {
         return new SpongeItemMeta(itemStack);
     }
 
@@ -41,7 +40,7 @@ public class SpongeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public void setMeta(AbstractItemMeta itemMeta) {
+    public void setMeta(ItemMeta itemMeta) {
         // TODO: Implement
     }
 
@@ -74,7 +73,7 @@ public class SpongeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack clone() {
+    public ItemStack clone() {
         return new SpongeItemStack(itemStack.copy());
     }
 }

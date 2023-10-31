@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 
 /**
- * Sponge implementation of {@link AbstractPlayerLoginEvent}.
+ * Sponge implementation of {@link PlayerLoginEvent}.
  */
-public class SpongePlayerLoginEvent implements AbstractPlayerLoginEvent {
+public class SpongePlayerLoginEvent implements PlayerLoginEvent {
     private final ClientConnectionEvent.Join event;
     private String loginMessage = "";
 
@@ -20,7 +20,7 @@ public class SpongePlayerLoginEvent implements AbstractPlayerLoginEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new SpongePlayer(event.getTargetEntity());
     }
 

@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.forge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
@@ -15,11 +15,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Forge implementation of {@link AbstractPlayerDeathEvent}.
+ * Forge implementation of {@link PlayerDeathEvent}.
  */
-public class ForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
+public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     private final LivingDeathEvent event;
-    private List<AbstractItemStack> drops = new ArrayList<>();
+    private List<ItemStack> drops = new ArrayList<>();
     private int droppedExp = 0;
     private String deathMessage = "";
 
@@ -31,7 +31,7 @@ public class ForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -45,7 +45,7 @@ public class ForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {
+    public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
@@ -80,7 +80,7 @@ public class ForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new ForgeEntity(event.getEntity());
     }
 
@@ -88,7 +88,7 @@ public class ForgePlayerDeathEvent implements AbstractPlayerDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new ForgePlayer((PlayerEntity) event.getEntity());
     }
 

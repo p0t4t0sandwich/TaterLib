@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerRespawnEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.fabric.util.FabricConversions;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
- * Fabric implementation of {@link AbstractPlayerRespawnEvent}.
+ * Fabric implementation of {@link PlayerRespawnEvent}.
  */
-public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements AbstractPlayerRespawnEvent {
+public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements PlayerRespawnEvent {
     private final boolean alive;
     private final PlayerEntity player;
 

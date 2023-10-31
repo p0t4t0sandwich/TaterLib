@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
- * Bukkit implementation of {@link AbstractPlayerLogoutEvent}.
+ * Bukkit implementation of {@link PlayerLogoutEvent}.
  */
-public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements AbstractPlayerLogoutEvent {
+public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements PlayerLogoutEvent {
     private final PlayerQuitEvent event;
 
     public BukkitPlayerLogoutEvent(PlayerQuitEvent event) {

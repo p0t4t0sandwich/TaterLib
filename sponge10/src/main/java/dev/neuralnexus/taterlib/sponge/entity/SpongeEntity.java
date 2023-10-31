@@ -1,9 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.data.Keys;
-import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.biome.Biome;
@@ -13,14 +12,14 @@ import java.util.UUID;
 /**
  * Abstracts a Sponge entity to an AbstractEntity.
  */
-public class SpongeEntity implements AbstractEntity {
-    private final Entity entity;
+public class SpongeEntity implements Entity {
+    private final org.spongepowered.api.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The Sponge entity.
      */
-    public SpongeEntity(Entity entity) {
+    public SpongeEntity(org.spongepowered.api.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -28,7 +27,7 @@ public class SpongeEntity implements AbstractEntity {
      * Gets the Sponge entity.
      * @return The Sponge entity.
      */
-    public Entity getEntity() {
+    public org.spongepowered.api.entity.Entity getEntity() {
         return entity;
     }
 

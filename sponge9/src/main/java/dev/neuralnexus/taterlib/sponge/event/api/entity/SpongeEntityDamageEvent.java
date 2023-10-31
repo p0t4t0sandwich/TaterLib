@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 
 /**
- * Sponge implementation of {@link AbstractEntityDamageEvent}.
+ * Sponge implementation of {@link EntityDamageEvent}.
  */
-public class SpongeEntityDamageEvent implements AbstractEntityDamageEvent {
+public class SpongeEntityDamageEvent implements EntityDamageEvent {
     private final DamageEntityEvent event;
 
     public SpongeEntityDamageEvent(DamageEntityEvent event) {
@@ -51,7 +51,7 @@ public class SpongeEntityDamageEvent implements AbstractEntityDamageEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new SpongeEntity(event.entity());
     }
 }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 //import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Abstracts a Bukkit item meta to an AbstractItemMeta.
  */
-public class BukkitItemMeta implements AbstractItemMeta {
+public class BukkitItemMeta implements ItemMeta {
     // TODO: Refactor into AbstractItem class
     private final Object itemMeta;
 

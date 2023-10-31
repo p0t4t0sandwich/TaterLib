@@ -1,21 +1,20 @@
 package dev.neuralnexus.taterlib.bukkit.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import org.bukkit.entity.Entity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 
 import java.util.UUID;
 
 /**
  * Abstracts a Bukkit entity to an AbstractEntity.
  */
-public class BukkitEntity implements AbstractEntity {
-    private final Entity entity;
+public class BukkitEntity implements Entity {
+    private final org.bukkit.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The Bukkit entity.
      */
-    public BukkitEntity(Entity entity) {
+    public BukkitEntity(org.bukkit.entity.Entity entity) {
         this.entity = entity;
     }
 

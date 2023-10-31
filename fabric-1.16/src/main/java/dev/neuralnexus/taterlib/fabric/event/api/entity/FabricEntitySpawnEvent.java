@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.fabric.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntitySpawnEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
 import net.minecraft.entity.Entity;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-public class FabricEntitySpawnEvent extends FabricEntityEvent implements AbstractEntitySpawnEvent {
+public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntitySpawnEvent {
     private final CallbackInfoReturnable<Boolean> cir;
 
     public FabricEntitySpawnEvent(Entity entity, CallbackInfoReturnable<Boolean> cir) {

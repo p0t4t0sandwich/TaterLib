@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 
 /**
- * Fabric implementation of {@link AbstractPlayerLoginEvent}.
+ * Fabric implementation of {@link PlayerLoginEvent}.
  */
-public class FabricPlayerLoginEvent extends FabricPlayerEvent implements AbstractPlayerLoginEvent {
+public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerLoginEvent {
     private final ServerPlayNetworkHandler handler;
     private final PacketSender sender;
     private final MinecraftServer server;

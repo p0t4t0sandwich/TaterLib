@@ -1,8 +1,7 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractInventory;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import net.minecraft.world.entity.player.Inventory;
+import dev.neuralnexus.taterlib.common.inventory.Inventory;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +9,14 @@ import java.util.Map;
 /**
  * Abstracts a Forge inventory to an AbstractInventory.
  */
-public class ForgeInventory implements AbstractInventory {
-    private final Inventory inventory;
+public class ForgeInventory implements Inventory {
+    private final net.minecraft.world.entity.player.Inventory inventory;
 
     /**
      * Constructor.
      * @param inventory The Forge inventory.
      */
-    public ForgeInventory(Inventory inventory) {
+    public ForgeInventory(net.minecraft.world.entity.player.Inventory inventory) {
         this.inventory = inventory;
     }
 
@@ -33,7 +32,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack getItem(int slot) {
+    public ItemStack getItem(int slot) {
         return new ForgeItemStack(inventory.getItem(slot));
     }
 
@@ -41,7 +40,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setItem(int slot, AbstractItemStack item) {
+    public void setItem(int slot, ItemStack item) {
         inventory.setItem(slot, ((ForgeItemStack) item).getItemStack());
     }
 
@@ -49,7 +48,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void addItem(AbstractItemStack item) {
+    public void addItem(ItemStack item) {
         inventory.add(((ForgeItemStack) item).getItemStack());
     }
 
@@ -57,7 +56,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void removeItem(AbstractItemStack item) {
+    public void removeItem(ItemStack item) {
         inventory.removeItem(((ForgeItemStack) item).getItemStack());
     }
 
@@ -65,8 +64,8 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getContents() {
-        AbstractItemStack[] abstractContents = new AbstractItemStack[getSize()];
+    public ItemStack[] getContents() {
+        ItemStack[] abstractContents = new ItemStack[getSize()];
         for (int i = 0; i < getSize(); i++) {
             abstractContents[i] = new ForgeItemStack(inventory.getItem(i));
         }
@@ -77,7 +76,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setContents(AbstractItemStack[] items) {
+    public void setContents(ItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
             inventory.setItem(i, ((ForgeItemStack) items[i]).getItemStack());
         }
@@ -87,16 +86,16 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getStorageContents() {
+    public ItemStack[] getStorageContents() {
         // TODO: Implement
-        return new AbstractItemStack[0];
+        return new ItemStack[0];
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void setStorageContents(AbstractItemStack[] items) {
+    public void setStorageContents(ItemStack[] items) {
         // TODO: Implement
     }
 
@@ -104,7 +103,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean contains(AbstractItemStack item) {
+    public boolean contains(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 return true;
@@ -130,7 +129,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean containsAtLeast(AbstractItemStack item, int count) {
+    public boolean containsAtLeast(ItemStack item, int count) {
         int total = 0;
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
@@ -158,8 +157,8 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public Map<Integer, AbstractItemStack> all(AbstractItemStack item) {
-        Map<Integer, AbstractItemStack> map = new HashMap<>();
+    public Map<Integer, ItemStack> all(ItemStack item) {
+        Map<Integer, ItemStack> map = new HashMap<>();
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 map.put(i, getItem(i));
@@ -172,7 +171,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public int first(AbstractItemStack item) {
+    public int first(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 return i;
@@ -211,7 +210,7 @@ public class ForgeInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void remove(AbstractItemStack item) {
+    public void remove(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             inventory.removeItem(((ForgeItemStack) item).getItemStack());
         }

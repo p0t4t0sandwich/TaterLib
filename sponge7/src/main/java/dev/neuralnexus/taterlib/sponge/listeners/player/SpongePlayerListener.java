@@ -24,9 +24,9 @@ public class SpongePlayerListener {
     public void onPlayerAdvancement(AdvancementEvent.Grant event) {
         DisplayInfo display = event.getAdvancement().getDisplayInfo().orElse(null);
         if (display != null && display.doesAnnounceToChat()) {
-            PlayerEvents.ADVANCEMENT_FINISHED.invoke(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementFinishedEvent(event));
+            PlayerEvents.ADVANCEMENT_FINISHED.invoke(new SpongePlayerAdvancementEvent.SpongeAdvancementFinished(event));
         } else {
-            PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new SpongePlayerAdvancementEvent.SpongePlayerAdvancementProgressEvent(event));
+            PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new SpongePlayerAdvancementEvent.SpongeAdvancementProgress(event));
         }
     }
 

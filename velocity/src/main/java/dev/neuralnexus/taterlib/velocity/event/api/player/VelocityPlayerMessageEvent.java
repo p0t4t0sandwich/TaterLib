@@ -1,17 +1,17 @@
 package dev.neuralnexus.taterlib.velocity.event.api.player;
 
 import com.velocitypowered.api.event.player.PlayerChatEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Velocity implementation of {@link AbstractPlayerMessageEvent}.
+ * Velocity implementation of {@link PlayerMessageEvent}.
  */
-public class VelocityPlayerMessageEvent implements AbstractPlayerMessageEvent {
+public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
     private final PlayerChatEvent event;
     private String message = "";
 
@@ -39,7 +39,7 @@ public class VelocityPlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new VelocityPlayer(event.getPlayer());
     }
 
@@ -58,7 +58,7 @@ public class VelocityPlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public Set<AbstractPlayer> recipients() {
+    public Set<Player> recipients() {
         return new HashSet<>();
     }
 
@@ -74,5 +74,5 @@ public class VelocityPlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public void setRecipients(Set<AbstractPlayer> recipients) {}
+    public void setRecipients(Set<Player> recipients) {}
 }

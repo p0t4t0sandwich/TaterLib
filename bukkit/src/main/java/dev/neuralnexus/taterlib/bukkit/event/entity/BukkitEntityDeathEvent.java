@@ -1,27 +1,25 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitItemStack;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.inventory.ItemStack;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Bukkit implementation of {@link AbstractEntityDeathEvent}.
+ * Bukkit implementation of {@link EntityDeathEvent}.
  */
-public class BukkitEntityDeathEvent extends BukkitEntityEvent implements AbstractEntityDeathEvent {
-    private final EntityDeathEvent event;
+public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityDeathEvent {
+    private final org.bukkit.event.entity.EntityDeathEvent event;
 
-    public BukkitEntityDeathEvent(EntityDeathEvent event) {
+    public BukkitEntityDeathEvent(org.bukkit.event.entity.EntityDeathEvent event) {
         super(event);
         this.event = event;
     }
 
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         return event.getDrops().stream().map(BukkitItemStack::new).collect(Collectors.toList());
     }
 
@@ -29,9 +27,9 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements Abstrac
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {
+    public void setDrops(List<ItemStack> drops) {
         event.getDrops().clear();
-        List<ItemStack> eventDrops = event.getDrops();
+        List<org.bukkit.inventory.ItemStack> eventDrops = event.getDrops();
         drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).getItemStack()));
     }
 

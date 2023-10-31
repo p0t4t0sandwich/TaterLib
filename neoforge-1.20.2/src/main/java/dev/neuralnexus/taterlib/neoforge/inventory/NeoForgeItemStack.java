@@ -1,20 +1,19 @@
 package dev.neuralnexus.taterlib.neoforge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import net.minecraft.world.item.ItemStack;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 /**
  * Abstracts a NeoForge item stack to an AbstractItemStack.
  */
-public class NeoForgeItemStack implements AbstractItemStack {
-    private final ItemStack itemStack;
+public class NeoForgeItemStack implements ItemStack {
+    private final net.minecraft.world.item.ItemStack itemStack;
 
     /**
      * Constructor.
      * @param itemStack The NeoForge item stack.
      */
-    public NeoForgeItemStack(ItemStack itemStack) {
+    public NeoForgeItemStack(net.minecraft.world.item.ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
@@ -22,7 +21,7 @@ public class NeoForgeItemStack implements AbstractItemStack {
      * Getter for the NeoForge item stack.
      * @return The NeoForge item stack.
      */
-    public ItemStack getItemStack() {
+    public net.minecraft.world.item.ItemStack getItemStack() {
         return itemStack;
     }
 
@@ -30,7 +29,7 @@ public class NeoForgeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemMeta getMeta() {
+    public ItemMeta getMeta() {
         return new NeoForgeItemMeta(itemStack);
     }
 
@@ -38,7 +37,7 @@ public class NeoForgeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public void setMeta(AbstractItemMeta item) {
+    public void setMeta(ItemMeta item) {
         // TODO: Implement
     }
 
@@ -74,7 +73,7 @@ public class NeoForgeItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack clone() {
+    public ItemStack clone() {
         return new NeoForgeItemStack(itemStack.copy());
     }
 }

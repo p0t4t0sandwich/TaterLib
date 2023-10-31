@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.forge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /**
- * Forge implementation of {@link AbstractPlayerLogoutEvent}.
+ * Forge implementation of {@link PlayerLogoutEvent}.
  */
-public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements AbstractPlayerLogoutEvent {
+public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLogoutEvent {
     private final PlayerEvent.PlayerLoggedOutEvent event;
     private String logoutMessage = "";
 

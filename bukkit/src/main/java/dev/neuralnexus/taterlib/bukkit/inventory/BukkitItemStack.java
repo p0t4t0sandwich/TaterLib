@@ -1,20 +1,19 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import org.bukkit.inventory.ItemStack;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 /**
  * Abstracts a Bukkit item stack to an AbstractItemStack.
  */
-public class BukkitItemStack implements AbstractItemStack {
-    private final ItemStack itemStack;
+public class BukkitItemStack implements ItemStack {
+    private final org.bukkit.inventory.ItemStack itemStack;
 
     /**
      * Constructor.
      * @param itemStack The Bukkit item stack.
      */
-    public BukkitItemStack(ItemStack itemStack) {
+    public BukkitItemStack(org.bukkit.inventory.ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
@@ -22,7 +21,7 @@ public class BukkitItemStack implements AbstractItemStack {
      * Getter for the Bukkit item stack.
      * @return The Bukkit item stack.
      */
-    public ItemStack getItemStack() {
+    public org.bukkit.inventory.ItemStack getItemStack() {
         return itemStack;
     }
 
@@ -30,7 +29,7 @@ public class BukkitItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemMeta getMeta() {
+    public ItemMeta getMeta() {
         return new BukkitItemMeta(itemStack.getItemMeta());
     }
 
@@ -38,7 +37,7 @@ public class BukkitItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public void setMeta(AbstractItemMeta item) {
+    public void setMeta(ItemMeta item) {
         itemStack.setItemMeta(((BukkitItemMeta) item).getItemMeta());
     }
 
@@ -70,7 +69,7 @@ public class BukkitItemStack implements AbstractItemStack {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack clone() {
+    public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }
 }

@@ -1,13 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.event.pluginmessages;
 
-import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.event.pluginmessages.AbstractPluginMessageEvent;
-import org.bukkit.entity.Player;
+import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
 
 /**
- * Bukkit implementation of {@link AbstractPluginMessageEvent}.
+ * Bukkit implementation of {@link PluginMessageEvent}.
  */
-public class BukkitPluginMessageEvent implements AbstractPluginMessageEvent {
+public class BukkitPluginMessageEvent implements PluginMessageEvent {
     private final String channel;
     private final byte[] data;
 
@@ -33,11 +31,11 @@ public class BukkitPluginMessageEvent implements AbstractPluginMessageEvent {
     }
 
     /**
-     * Bukkit implementation of {@link AbstractPlayerPluginMessageEvent}.
+     * Bukkit implementation of {@link Player}.
      */
-    public static class BukkitPlayerPluginMessageEvent extends BukkitPluginMessageEvent implements AbstractPlayerPluginMessageEvent {
-        private final Player player;
-        public BukkitPlayerPluginMessageEvent(String channel, byte[] data, Player player) {
+    public static class BukkitPlayer extends BukkitPluginMessageEvent implements Player {
+        private final org.bukkit.entity.Player player;
+        public BukkitPlayer(String channel, byte[] data, org.bukkit.entity.Player player) {
             super(channel, data);
             this.player = player;
         }
@@ -46,8 +44,8 @@ public class BukkitPluginMessageEvent implements AbstractPluginMessageEvent {
          * @inheritDoc
          */
         @Override
-        public BukkitPlayer getPlayer() {
-            return new BukkitPlayer(this.player);
+        public dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer getPlayer() {
+            return new dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer(this.player);
         }
     }
 }

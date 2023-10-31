@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.forge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 
 import java.util.Collection;
 
 /**
- * Forge implementation of {@link AbstractPlayerAdvancementEvent}.
+ * Forge implementation of {@link PlayerAdvancementEvent}.
  */
-public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements AbstractPlayerAdvancementEvent {
+public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
     public ForgePlayerAdvancementEvent(AdvancementEvent event) {
@@ -32,21 +32,21 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements Abs
     }
 
     /**
-     * Forge implementation of {@link AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent}.
+     * Forge implementation of {@link AdvancementFinished}.
      */
-    public static class ForgePlayerAdvancementFinishedEvent extends ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementFinishedEvent {
-        public ForgePlayerAdvancementFinishedEvent(AdvancementEvent.AdvancementEarnEvent event) {
+    public static class ForgeAdvancementFinished extends ForgePlayerAdvancementEvent implements AdvancementFinished {
+        public ForgeAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
         }
     }
 
     /**
-     * Forge implementation of {@link AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent}.
+     * Forge implementation of {@link AdvancementProgress}.
      */
-    public static class ForgePlayerAdvancementProgressEvent extends ForgePlayerAdvancementEvent implements AbstractPlayerAdvancementEvent.AbstractPlayerAdvancementProgressEvent {
+    public static class ForgeAdvancementProgress extends ForgePlayerAdvancementEvent implements AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 
-        public ForgePlayerAdvancementProgressEvent(AdvancementEvent.AdvancementProgressEvent event) {
+        public ForgeAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
             super(event);
             this.event = event;
         }

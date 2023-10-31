@@ -1,31 +1,31 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.util.ForgeConversions;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an AbstractPlayer.
+ * Abstracts a Forge player to an Player.
  */
-public class ForgePlayer implements AbstractPlayer {
-    private final Player player;
+public class ForgePlayer implements Player {
+    private final net.minecraft.world.entity.player.Player player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Forge player.
      */
-    public ForgePlayer(Player player) {
+    public ForgePlayer(net.minecraft.world.entity.player.Player player) {
         this.player = player;
         this.serverName = "local";
     }
@@ -35,7 +35,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @param player The Forge player.
      * @param serverName The server name.
      */
-    public ForgePlayer(Player player, String serverName) {
+    public ForgePlayer(net.minecraft.world.entity.player.Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -44,7 +44,7 @@ public class ForgePlayer implements AbstractPlayer {
      * Gets the Forge player
      * @return The Forge player
      */
-    public Player getPlayer() {
+    public net.minecraft.world.entity.player.Player getPlayer() {
         return player;
     }
 
@@ -116,7 +116,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new ForgePlayerInventory(player.getInventory());
     }
 

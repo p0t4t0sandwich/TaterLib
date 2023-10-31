@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.util.ForgeConversions;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
@@ -15,9 +16,9 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an AbstractPlayer.
+ * Abstracts a Forge player to an Player.
  */
-public class ForgePlayer implements AbstractPlayer {
+public class ForgePlayer implements Player {
     private final PlayerEntity player;
     private String serverName;
 
@@ -116,7 +117,7 @@ public class ForgePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new ForgePlayerInventory(player.inventory);
     }
 

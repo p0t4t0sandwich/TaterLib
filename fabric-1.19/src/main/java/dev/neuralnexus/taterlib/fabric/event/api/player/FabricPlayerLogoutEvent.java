@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 
 /**
- * Fabric implementation of {@link AbstractPlayerLogoutEvent}.
+ * Fabric implementation of {@link PlayerLogoutEvent}.
  */
-public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements AbstractPlayerLogoutEvent {
+public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements PlayerLogoutEvent {
     private final ServerPlayNetworkHandler handler;
     private final MinecraftServer server;
 

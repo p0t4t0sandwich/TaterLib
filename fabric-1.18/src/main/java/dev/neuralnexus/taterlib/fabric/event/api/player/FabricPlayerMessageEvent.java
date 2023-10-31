@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import net.minecraft.entity.player.PlayerEntity;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -9,9 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Fabric implementation of {@link AbstractPlayerMessageEvent}.
+ * Fabric implementation of {@link PlayerMessageEvent}.
  */
-public class FabricPlayerMessageEvent extends FabricPlayerEvent implements AbstractPlayerMessageEvent {
+public class FabricPlayerMessageEvent extends FabricPlayerEvent implements PlayerMessageEvent {
     private String message;
     private final CallbackInfo ci;
 
@@ -51,7 +51,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Abstr
      * @inheritDoc
      */
     @Override
-    public Set<AbstractPlayer> recipients() {
+    public Set<Player> recipients() {
         return new HashSet<>();
     }
 
@@ -67,5 +67,5 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Abstr
      * @inheritDoc
      */
     @Override
-    public void setRecipients(Set<AbstractPlayer> recipients) {}
+    public void setRecipients(Set<Player> recipients) {}
 }

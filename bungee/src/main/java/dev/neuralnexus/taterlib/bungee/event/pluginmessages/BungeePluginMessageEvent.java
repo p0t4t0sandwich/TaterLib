@@ -1,19 +1,15 @@
 package dev.neuralnexus.taterlib.bungee.event.pluginmessages;
 
-import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.event.pluginmessages.AbstractPluginMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.connection.Server;
-import net.md_5.bungee.api.event.PluginMessageEvent;
 
 /**
- * Bungee implementation of {@link AbstractPluginMessageEvent}.
+ * Bungee implementation of {@link PluginMessageEvent}.
  */
-public class BungeePluginMessageEvent implements AbstractPluginMessageEvent {
-    private final PluginMessageEvent event;
+public class BungeePluginMessageEvent implements PluginMessageEvent {
+    private final net.md_5.bungee.api.event.PluginMessageEvent event;
 
-    public BungeePluginMessageEvent(PluginMessageEvent event) {
+    public BungeePluginMessageEvent(net.md_5.bungee.api.event.PluginMessageEvent event) {
         this.event = event;
     }
 
@@ -34,12 +30,12 @@ public class BungeePluginMessageEvent implements AbstractPluginMessageEvent {
     }
 
     /**
-     * Bungee implementation of {@link AbstractPluginMessageEvent.AbstractPlayerPluginMessageEvent}.
+     * Bungee implementation of {@link Player}.
      */
-    public static class BungeePlayerPluginMessageEvent extends BungeePluginMessageEvent implements AbstractPluginMessageEvent.AbstractPlayerPluginMessageEvent {
-        private final PluginMessageEvent event;
+    public static class BungeePlayer extends BungeePluginMessageEvent implements Player {
+        private final net.md_5.bungee.api.event.PluginMessageEvent event;
 
-        public BungeePlayerPluginMessageEvent(PluginMessageEvent event) {
+        public BungeePlayer(net.md_5.bungee.api.event.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }
@@ -48,18 +44,18 @@ public class BungeePluginMessageEvent implements AbstractPluginMessageEvent {
          * @inheritDoc
          */
         @Override
-        public AbstractPlayer getPlayer() {
-            return new BungeePlayer((ProxiedPlayer) event.getReceiver());
+        public dev.neuralnexus.taterlib.common.player.Player getPlayer() {
+            return new dev.neuralnexus.taterlib.bungee.player.BungeePlayer((ProxiedPlayer) event.getReceiver());
         }
     }
 
     /**
-     * Bungee implementation of {@link AbstractPluginMessageEvent.AbstractServerPluginMessageEvent}.
+     * Bungee implementation of {@link Server}.
      */
-    public static class BungeeServerPluginMessageEvent extends BungeePluginMessageEvent implements AbstractPluginMessageEvent.AbstractServerPluginMessageEvent {
-        private final PluginMessageEvent event;
+    public static class BungeeServer extends BungeePluginMessageEvent implements Server {
+        private final net.md_5.bungee.api.event.PluginMessageEvent event;
 
-        public BungeeServerPluginMessageEvent(PluginMessageEvent event) {
+        public BungeeServer(net.md_5.bungee.api.event.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }
@@ -69,7 +65,7 @@ public class BungeePluginMessageEvent implements AbstractPluginMessageEvent {
          */
         @Override
         public String getServer() {
-            return ((Server) event.getReceiver()).getInfo().getName();
+            return ((net.md_5.bungee.api.connection.Server) event.getReceiver()).getInfo().getName();
         }
     }
 }

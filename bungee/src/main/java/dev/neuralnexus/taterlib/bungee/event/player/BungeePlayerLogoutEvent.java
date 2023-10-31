@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 
 /**
- * Bungee implementation of {@link AbstractPlayerLogoutEvent}.
+ * Bungee implementation of {@link PlayerLogoutEvent}.
  */
-public class BungeePlayerLogoutEvent implements AbstractPlayerLogoutEvent {
+public class BungeePlayerLogoutEvent implements PlayerLogoutEvent {
     private final PlayerDisconnectEvent event;
     private String logoutMessage = "";
 
@@ -20,7 +20,7 @@ public class BungeePlayerLogoutEvent implements AbstractPlayerLogoutEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new BungeePlayer(event.getPlayer());
     }
 

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Forge implementation of {@link AbstractEntityDeathEvent}.
+ * Forge implementation of {@link EntityDeathEvent}.
  */
-public class ForgeEntityDeathEvent extends ForgeEntityEvent implements AbstractEntityDeathEvent {
+public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDeathEvent {
     private final LivingDeathEvent event;
-    private List<AbstractItemStack> drops = new ArrayList<>();
+    private List<ItemStack> drops = new ArrayList<>();
     private int droppedExp = 0;
 
     public ForgeEntityDeathEvent(LivingDeathEvent event) {
@@ -26,7 +26,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements AbstractE
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -40,7 +40,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements AbstractE
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {
+    public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 

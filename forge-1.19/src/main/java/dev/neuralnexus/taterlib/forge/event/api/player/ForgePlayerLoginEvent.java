@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.forge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 /**
- * Forge implementation of {@link AbstractPlayerLoginEvent}.
+ * Forge implementation of {@link PlayerLoginEvent}.
  */
-public class ForgePlayerLoginEvent extends ForgePlayerEvent implements AbstractPlayerLoginEvent {
+public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLoginEvent {
     private final PlayerEvent.PlayerLoggedInEvent event;
     private String loginMessage = "";
 

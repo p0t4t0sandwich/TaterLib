@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
 
 /**
- * Bukkit implementation of {@link AbstractServerStartingEvent}.
+ * Bukkit implementation of {@link ServerStartingEvent}.
  */
-public class BukkitServerStartingEvent extends BukkitServerEvent implements AbstractServerStartingEvent {
+public class BukkitServerStartingEvent extends BukkitServerEvent implements ServerStartingEvent {
 }

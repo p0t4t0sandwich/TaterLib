@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
+import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 
@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Sponge implementation of {@link AbstractEntityDeathEvent}.
+ * Sponge implementation of {@link EntityDeathEvent}.
  */
-public class SpongeEntityDeathEvent implements AbstractEntityDeathEvent {
+public class SpongeEntityDeathEvent implements EntityDeathEvent {
     private final DestructEntityEvent.Death event;
 
     public SpongeEntityDeathEvent(DestructEntityEvent.Death event) {
@@ -23,7 +23,7 @@ public class SpongeEntityDeathEvent implements AbstractEntityDeathEvent {
      * @inheritDoc
      */
     @Override
-    public List<AbstractItemStack> getDrops() {
+    public List<ItemStack> getDrops() {
         return new ArrayList<>();
     }
 
@@ -31,7 +31,7 @@ public class SpongeEntityDeathEvent implements AbstractEntityDeathEvent {
      * @inheritDoc
      */
     @Override
-    public void setDrops(List<AbstractItemStack> drops) {}
+    public void setDrops(List<ItemStack> drops) {}
 
     /**
      * @inheritDoc
@@ -57,7 +57,7 @@ public class SpongeEntityDeathEvent implements AbstractEntityDeathEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractEntity getEntity() {
+    public Entity getEntity() {
         return new SpongeEntity(event.entity());
     }
 }

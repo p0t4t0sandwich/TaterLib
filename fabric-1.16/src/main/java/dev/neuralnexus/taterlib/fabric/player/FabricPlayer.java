@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.fabric.util.FabricConversions;
 import me.lucko.fabric.api.permissions.v0.Options;
 import me.lucko.fabric.api.permissions.v0.Permissions;
@@ -18,9 +19,9 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric player to an AbstractPlayer.
+ * Abstracts a Fabric player to an Player.
  */
-public class FabricPlayer implements AbstractPlayer {
+public class FabricPlayer implements Player {
     private final PlayerEntity player;
     private String serverName;
 
@@ -120,7 +121,7 @@ public class FabricPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return new FabricPlayerInventory(player.inventory);
     }
 

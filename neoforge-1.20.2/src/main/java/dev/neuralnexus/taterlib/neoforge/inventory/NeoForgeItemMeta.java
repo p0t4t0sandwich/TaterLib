@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Abstracts a NeoForge item meta to an AbstractItemMeta.
  */
-public class NeoForgeItemMeta implements AbstractItemMeta {
+public class NeoForgeItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 
     /**

@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.velocity.event.api.player;
 
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /**
- * Velocity implementation of {@link AbstractPlayerLoginEvent}.
+ * Velocity implementation of {@link PlayerLoginEvent}.
  */
-public class VelocityPlayerLoginEvent implements AbstractPlayerLoginEvent {
+public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     private final ServerConnectedEvent event;
     private String loginMessage = "";
 
@@ -20,8 +20,8 @@ public class VelocityPlayerLoginEvent implements AbstractPlayerLoginEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
-        AbstractPlayer player = new VelocityPlayer(event.getPlayer());
+    public Player getPlayer() {
+        Player player = new VelocityPlayer(event.getPlayer());
         if (event.getPlayer().getCurrentServer().isPresent()) {
             player.setServerName(event.getPlayer().getCurrentServer().get().getServerInfo().getName());
         }

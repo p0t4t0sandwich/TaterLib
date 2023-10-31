@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
-import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
-import net.minecraft.entity.Entity;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import net.minecraft.text.LiteralText;
 
 import java.util.UUID;
@@ -9,14 +8,14 @@ import java.util.UUID;
 /**
  * Abstracts a Fabric entity to an AbstractEntity.
  */
-public class FabricEntity implements AbstractEntity {
-    private final Entity entity;
+public class FabricEntity implements Entity {
+    private final net.minecraft.entity.Entity entity;
 
     /**
      * Constructor.
      * @param entity The Fabric entity.
      */
-    public FabricEntity(Entity entity) {
+    public FabricEntity(net.minecraft.entity.Entity entity) {
         this.entity = entity;
     }
 
@@ -24,7 +23,7 @@ public class FabricEntity implements AbstractEntity {
      * Gets the Fabric entity.
      * @return The Fabric entity.
      */
-    public Entity getEntity() {
+    public net.minecraft.entity.Entity getEntity() {
         return entity;
     }
 

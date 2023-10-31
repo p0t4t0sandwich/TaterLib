@@ -1,8 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractInventory;
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemStack;
-import net.minecraft.inventory.Inventory;
+import dev.neuralnexus.taterlib.common.inventory.Inventory;
+import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +9,14 @@ import java.util.Map;
 /**
  * Abstracts a Fabric inventory to an AbstractInventory.
  */
-public class FabricInventory implements AbstractInventory {
-    private final Inventory inventory;
+public class FabricInventory implements Inventory {
+    private final net.minecraft.inventory.Inventory inventory;
 
     /**
      * Constructor.
      * @param inventory The Fabric inventory.
      */
-    public FabricInventory(Inventory inventory) {
+    public FabricInventory(net.minecraft.inventory.Inventory inventory) {
         this.inventory = inventory;
     }
 
@@ -33,7 +32,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack getItem(int slot) {
+    public ItemStack getItem(int slot) {
         return new FabricItemStack(inventory.getInvStack(slot));
     }
 
@@ -41,7 +40,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setItem(int slot, AbstractItemStack item) {
+    public void setItem(int slot, ItemStack item) {
         inventory.setInvStack(slot, ((FabricItemStack) item).getItemStack());
     }
 
@@ -49,7 +48,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void addItem(AbstractItemStack item) {
+    public void addItem(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals("minecraft:air")) {
                 setItem(i, item);
@@ -62,7 +61,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void removeItem(AbstractItemStack item) {
+    public void removeItem(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             String itemName = getItem(i).getType();
             if (itemName.equals(item.getType())) {
@@ -75,9 +74,9 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getContents() {
+    public ItemStack[] getContents() {
         int size = getSize();
-        AbstractItemStack[] contents = new AbstractItemStack[size];
+        ItemStack[] contents = new ItemStack[size];
         for (int i = 0; i < size; i++) {
             contents[i] = getItem(i);
         }
@@ -89,7 +88,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setContents(AbstractItemStack[] item) {
+    public void setContents(ItemStack[] item) {
         for (int i = 0; i < getSize(); i++) {
             setItem(i, item[i]);
         }
@@ -99,8 +98,8 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public AbstractItemStack[] getStorageContents() {
-        AbstractItemStack[] contents = new AbstractItemStack[getSize()];
+    public ItemStack[] getStorageContents() {
+        ItemStack[] contents = new ItemStack[getSize()];
         for (int i = 0; i < getSize(); i++) {
             contents[i] = getItem(i);
         }
@@ -112,7 +111,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void setStorageContents(AbstractItemStack[] item) {
+    public void setStorageContents(ItemStack[] item) {
         for (int i = 0; i < getSize(); i++) {
             setItem(i, item[i]);
         }
@@ -122,7 +121,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean contains(AbstractItemStack item) {
+    public boolean contains(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 return true;
@@ -148,7 +147,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public boolean containsAtLeast(AbstractItemStack item, int amount) {
+    public boolean containsAtLeast(ItemStack item, int amount) {
         int total = 0;
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
@@ -176,8 +175,8 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public Map<Integer, AbstractItemStack> all(AbstractItemStack item) {
-        Map<Integer, AbstractItemStack> map = new HashMap<>();
+    public Map<Integer, ItemStack> all(ItemStack item) {
+        Map<Integer, ItemStack> map = new HashMap<>();
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 map.put(i, getItem(i));
@@ -190,7 +189,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public int first(AbstractItemStack item) {
+    public int first(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 return i;
@@ -229,7 +228,7 @@ public class FabricInventory implements AbstractInventory {
      * @inheritDoc
      */
     @Override
-    public void remove(AbstractItemStack item) {
+    public void remove(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
             if (getItem(i).getType().equals(item.getType())) {
                 inventory.removeInvStack(i);

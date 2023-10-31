@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.velocity.event.api.player;
 
 import com.velocitypowered.api.event.connection.DisconnectEvent;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /**
- * Velocity implementation of {@link AbstractPlayerLogoutEvent}.
+ * Velocity implementation of {@link PlayerLogoutEvent}.
  */
-public class VelocityPlayerLogoutEvent implements AbstractPlayerLogoutEvent {
+public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
     private final DisconnectEvent event;
     private String logoutMessage = "";
 
@@ -20,7 +20,7 @@ public class VelocityPlayerLogoutEvent implements AbstractPlayerLogoutEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new VelocityPlayer(event.getPlayer());
     }
 

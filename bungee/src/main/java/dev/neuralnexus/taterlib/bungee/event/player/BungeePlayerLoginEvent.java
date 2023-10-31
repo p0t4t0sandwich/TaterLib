@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 
 /**
- * Bungee implementation of {@link AbstractPlayerLoginEvent}.
+ * Bungee implementation of {@link PlayerLoginEvent}.
  */
-public class BungeePlayerLoginEvent implements AbstractPlayerLoginEvent {
+public class BungeePlayerLoginEvent implements PlayerLoginEvent {
     private final ServerSwitchEvent event;
     private String loginMessage = "";
 
@@ -20,8 +20,8 @@ public class BungeePlayerLoginEvent implements AbstractPlayerLoginEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
-        AbstractPlayer player = new BungeePlayer(event.getPlayer());
+    public Player getPlayer() {
+        Player player = new BungeePlayer(event.getPlayer());
         player.setServerName(event.getPlayer().getServer().getInfo().getName());
         return player;
     }

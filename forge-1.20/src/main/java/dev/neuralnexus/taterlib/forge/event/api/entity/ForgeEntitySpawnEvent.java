@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.forge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntitySpawnEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 
 /**
- * Forge implementation of {@link AbstractEntitySpawnEvent}.
+ * Forge implementation of {@link EntitySpawnEvent}.
  */
-public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements AbstractEntitySpawnEvent {
+public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpawnEvent {
     private final MobSpawnEvent.FinalizeSpawn event;
 
     public ForgeEntitySpawnEvent(MobSpawnEvent.FinalizeSpawn event) {

@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
-public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements AbstractPlayerDeathEvent {
+public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements PlayerDeathEvent {
     private final PlayerEntity player;
     private final DamageSource source;
 
@@ -21,7 +21,7 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Ab
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new FabricPlayer(player);
     }
 

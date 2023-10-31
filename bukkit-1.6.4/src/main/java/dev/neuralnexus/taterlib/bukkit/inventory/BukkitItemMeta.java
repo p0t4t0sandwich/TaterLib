@@ -1,21 +1,20 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.AbstractItemMeta;
-import org.bukkit.inventory.meta.ItemMeta;
+import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 
 import java.util.List;
 
 /**
  * Abstracts a Bukkit item meta to an AbstractItemMeta.
  */
-public class BukkitItemMeta implements AbstractItemMeta {
-    private final ItemMeta itemMeta;
+public class BukkitItemMeta implements ItemMeta {
+    private final org.bukkit.inventory.meta.ItemMeta itemMeta;
 
     /**
      * Constructor.
      * @param itemMeta The Bukkit item meta.
      */
-    public BukkitItemMeta(ItemMeta itemMeta) {
+    public BukkitItemMeta(org.bukkit.inventory.meta.ItemMeta itemMeta) {
         this.itemMeta = itemMeta;
     }
 
@@ -23,7 +22,7 @@ public class BukkitItemMeta implements AbstractItemMeta {
      * Getter for the Bukkit item meta.
      * @return The Bukkit item meta.
      */
-    public ItemMeta getItemMeta() {
+    public org.bukkit.inventory.meta.ItemMeta getItemMeta() {
         return itemMeta;
     }
 

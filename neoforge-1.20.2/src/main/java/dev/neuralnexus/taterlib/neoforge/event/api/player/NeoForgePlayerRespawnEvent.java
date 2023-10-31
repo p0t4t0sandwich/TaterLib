@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerRespawnEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerRespawnEvent}.
+ * NeoForge implementation of {@link PlayerRespawnEvent}.
  */
-public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements AbstractPlayerRespawnEvent {
+public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements PlayerRespawnEvent {
     private final PlayerEvent.PlayerRespawnEvent event;
 
     public NeoForgePlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {

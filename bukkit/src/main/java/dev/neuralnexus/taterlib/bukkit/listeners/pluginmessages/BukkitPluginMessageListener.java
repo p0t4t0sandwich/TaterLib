@@ -13,6 +13,6 @@ public class BukkitPluginMessageListener implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, byte[] bytes) {
         PluginMessageEvents.PLUGIN_MESSAGE.invoke(new BukkitPluginMessageEvent(channel, bytes));
-        PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BukkitPluginMessageEvent.BukkitPlayerPluginMessageEvent(channel, bytes, player));
+        PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BukkitPluginMessageEvent.BukkitPlayer(channel, bytes, player));
     }
 }

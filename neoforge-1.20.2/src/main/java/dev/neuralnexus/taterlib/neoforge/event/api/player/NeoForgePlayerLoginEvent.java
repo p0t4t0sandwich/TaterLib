@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerLoginEvent}.
+ * NeoForge implementation of {@link PlayerLoginEvent}.
  */
-public class NeoForgePlayerLoginEvent extends NeoForgePlayerEvent implements AbstractPlayerLoginEvent {
+public class NeoForgePlayerLoginEvent extends NeoForgePlayerEvent implements PlayerLoginEvent {
     private final PlayerEvent.PlayerLoggedInEvent event;
     private String loginMessage = "";
 

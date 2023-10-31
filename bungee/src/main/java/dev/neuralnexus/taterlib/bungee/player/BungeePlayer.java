@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -11,9 +11,9 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.UUID;
 
 /**
- * Abstracts a BungeeCord player to an AbstractPlayer.
+ * Abstracts a BungeeCord player to an Player.
  */
-public class BungeePlayer implements AbstractPlayer {
+public class BungeePlayer implements Player {
     private final ProxiedPlayer player;
     private String serverName;
 
@@ -135,7 +135,7 @@ public class BungeePlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return null;
     }
 

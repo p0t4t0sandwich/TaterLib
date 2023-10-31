@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import net.neoforged.neoforge.event.ServerChatEvent;
 
@@ -9,9 +9,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * NeoForge implementation of {@link AbstractPlayerMessageEvent}.
+ * NeoForge implementation of {@link PlayerMessageEvent}.
  */
-public class NeoForgePlayerMessageEvent implements AbstractPlayerMessageEvent {
+public class NeoForgePlayerMessageEvent implements PlayerMessageEvent {
     private final ServerChatEvent event;
     private String message = "";
 
@@ -39,7 +39,7 @@ public class NeoForgePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new NeoForgePlayer(event.getPlayer());
     }
 
@@ -58,7 +58,7 @@ public class NeoForgePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public Set<AbstractPlayer> recipients() {
+    public Set<Player> recipients() {
         return new HashSet<>();
     }
 
@@ -74,5 +74,5 @@ public class NeoForgePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public void setRecipients(Set<AbstractPlayer> recipients) {}
+    public void setRecipients(Set<Player> recipients) {}
 }

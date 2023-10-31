@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.forge.event.api.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
+import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 /**
- * Forge implementation of {@link AbstractEntityDamageEvent}.
+ * Forge implementation of {@link EntityDamageEvent}.
  */
-public class ForgeEntityDamageEvent extends ForgeEntityEvent implements AbstractEntityDamageEvent {
+public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDamageEvent {
     private final LivingDamageEvent event;
 
     public ForgeEntityDamageEvent(LivingDamageEvent event) {

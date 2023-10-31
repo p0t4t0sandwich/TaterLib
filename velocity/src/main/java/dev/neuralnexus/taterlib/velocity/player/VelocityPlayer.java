@@ -1,10 +1,9 @@
 package dev.neuralnexus.taterlib.velocity.player;
 
-import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayerInventory;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import net.kyori.adventure.text.Component;
@@ -12,17 +11,17 @@ import net.kyori.adventure.text.Component;
 import java.util.UUID;
 
 /**
- * Abstracts a Velocity player to an AbstractPlayer.
+ * Abstracts a Velocity player to an Player.
  */
-public class VelocityPlayer implements AbstractPlayer {
-    private final Player player;
+public class VelocityPlayer implements Player {
+    private final com.velocitypowered.api.proxy.Player player;
     private String serverName;
 
     /**
      * Constructor.
      * @param player The Velocity player.
      */
-    public VelocityPlayer(Player player) {
+    public VelocityPlayer(com.velocitypowered.api.proxy.Player player) {
         this.player = player;
         if (player.getCurrentServer().isPresent()) {
             this.serverName = player.getCurrentServer().get().getServerInfo().getName();
@@ -36,7 +35,7 @@ public class VelocityPlayer implements AbstractPlayer {
      * @param player The Velocity player.
      * @param serverName The name of the server the player is on.
      */
-    public VelocityPlayer(Player player, String serverName) {
+    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, String serverName) {
         this.player = player;
         this.serverName = serverName;
     }
@@ -45,7 +44,7 @@ public class VelocityPlayer implements AbstractPlayer {
      * Gets the Velocity player
      * @return The Velocity player
      */
-    public Player getPlayer() {
+    public com.velocitypowered.api.proxy.Player getPlayer() {
         return player;
     }
 
@@ -136,7 +135,7 @@ public class VelocityPlayer implements AbstractPlayer {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayerInventory getInventory() {
+    public PlayerInventory getInventory() {
         return null;
     }
 

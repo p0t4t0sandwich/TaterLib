@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.forge.event.api.server;
 
-import dev.neuralnexus.taterlib.common.event.server.AbstractServerStartingEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
 
 /**
- * Forge implementation of {@link AbstractServerStartingEvent}.
+ * Forge implementation of {@link ServerStartingEvent}.
  */
-public class ForgeServerStartingEvent extends ForgeServerEvent implements AbstractServerStartingEvent {
-    public ForgeServerStartingEvent(ServerStartingEvent event) {
+public class ForgeServerStartingEvent extends ForgeServerEvent implements ServerStartingEvent {
+    public ForgeServerStartingEvent(net.minecraftforge.event.server.ServerStartingEvent event) {
         super(event);
     }
 }

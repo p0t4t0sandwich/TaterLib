@@ -1,24 +1,23 @@
 package dev.neuralnexus.taterlib.sponge.event.api.player;
 
-import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.message.PlayerChatEvent;
 
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Sponge implementation of {@link AbstractPlayerMessageEvent}.
+ * Sponge implementation of {@link PlayerMessageEvent}.
  */
-public class SpongePlayerMessageEvent implements AbstractPlayerMessageEvent {
+public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     private final PlayerChatEvent event;
-    private final Player[] players;
+    private final org.spongepowered.api.entity.living.player.Player[] players;
     private String message = "";
 
-    public SpongePlayerMessageEvent(PlayerChatEvent event, Player[] players) {
+    public SpongePlayerMessageEvent(PlayerChatEvent event, org.spongepowered.api.entity.living.player.Player[] players) {
         this.event = event;
         this.players = players;
     }
@@ -43,7 +42,7 @@ public class SpongePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public AbstractPlayer getPlayer() {
+    public Player getPlayer() {
         return new SpongePlayer(players[0]);
     }
 
@@ -62,7 +61,7 @@ public class SpongePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public Set<AbstractPlayer> recipients() {
+    public Set<Player> recipients() {
         return new HashSet<>();
     }
 
@@ -78,5 +77,5 @@ public class SpongePlayerMessageEvent implements AbstractPlayerMessageEvent {
      * @inheritDoc
      */
     @Override
-    public void setRecipients(Set<AbstractPlayer> recipients) {}
+    public void setRecipients(Set<Player> recipients) {}
 }
