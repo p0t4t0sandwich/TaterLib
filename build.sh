@@ -141,6 +141,9 @@ function neobuild() {
 
   # Copy neoforge files
   cp -r ./neoforge-$4/$GROUP_ID/$PROJ_ID/neoforge ./$5/$GROUP_ID/$PROJ_ID
+  cp ./neoforge-$4/pack.mcmeta ./$5
+  cp -r ./neoforge-$4/$PROJ_NAME.png ./$5
+  cp ./neoforge-$4/META-INF/mods.toml ./$5/META-INF
 
   # Zip Jar contents
   cd ./$5
@@ -236,7 +239,7 @@ done
 
 # --------------------------- Prepare NeoForge --------------------------------
 
-NEOFORGE_VERSIONS=(1.20.1)
+NEOFORGE_VERSIONS=(1.20.2)
 for NEOFORGE_VERSION in "${NEOFORGE_VERSIONS[@]}"
 do
     prepareFiles neoforge-$NEOFORGE_VERSION
@@ -324,9 +327,10 @@ spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
 MC_VERSION=1.20.2
 FABRIC_VERSION=1.20.2
 FORGE_VERSION=1.20.2
+NEOFORGE_VERSION=1.20.2
 SPONGE_VERSION=11
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
-spongebuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $OUT_FILE
+neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
 
 # --------------------------- Cleanup --------------------------------
 cd ../
