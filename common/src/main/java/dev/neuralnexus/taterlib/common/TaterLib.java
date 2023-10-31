@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.common;
 
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
 

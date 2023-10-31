@@ -4,7 +4,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
-import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
+import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;

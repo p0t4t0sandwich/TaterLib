@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.forge.listeners.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
-import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.forge.abstrations.events.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
+import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
+import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
+import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStartedEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;

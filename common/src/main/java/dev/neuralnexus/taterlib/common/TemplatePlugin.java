@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.common;
 
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 
 public interface TemplatePlugin {
     /**

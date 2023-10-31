@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerLoginEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerMessageEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.BukkitPlayerRespawnEvent;
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
+import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerLoginEvent;
+import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerMessageEvent;
+import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerRespawnEvent;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import org.bukkit.event.player.*;
 
 /**

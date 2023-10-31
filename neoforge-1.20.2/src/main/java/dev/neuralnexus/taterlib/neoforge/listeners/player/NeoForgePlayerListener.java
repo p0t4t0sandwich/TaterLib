@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
-import dev.neuralnexus.taterlib.neoforge.abstractions.events.player.*;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.neoforge.event.api.player.*;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;

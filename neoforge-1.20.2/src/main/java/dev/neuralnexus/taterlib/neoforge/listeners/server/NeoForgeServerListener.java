@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
-import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.neoforge.abstractions.events.server.NeoForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.neoforge.event.api.server.NeoForgeServerStartedEvent;
+import dev.neuralnexus.taterlib.neoforge.event.api.server.NeoForgeServerStartingEvent;
+import dev.neuralnexus.taterlib.neoforge.event.api.server.NeoForgeServerStoppedEvent;
+import dev.neuralnexus.taterlib.neoforge.event.api.server.NeoForgeServerStoppingEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;

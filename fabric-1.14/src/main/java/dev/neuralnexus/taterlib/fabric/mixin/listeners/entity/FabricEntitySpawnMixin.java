@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.entity;
 
-import dev.neuralnexus.taterlib.fabric.events.entity.FabricEntityEvents;
+import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.world.ServerWorld;
 import org.spongepowered.asm.mixin.Mixin;

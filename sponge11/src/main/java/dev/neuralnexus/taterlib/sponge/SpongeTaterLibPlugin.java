@@ -2,9 +2,9 @@ package dev.neuralnexus.taterlib.sponge;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.sponge.abstractions.logger.SpongeLogger;
+import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
 import dev.neuralnexus.taterlib.sponge.commands.SpongeTaterLibCommand;
 import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;

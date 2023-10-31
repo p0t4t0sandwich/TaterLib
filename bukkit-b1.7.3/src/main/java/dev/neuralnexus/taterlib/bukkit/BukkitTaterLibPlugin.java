@@ -1,18 +1,17 @@
 package dev.neuralnexus.taterlib.bukkit;
 
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartedEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStartingEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppedEvent;
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.server.BukkitServerStoppingEvent;
+import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartedEvent;
+import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
+import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppedEvent;
+import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
-import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import org.bukkit.Server;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 

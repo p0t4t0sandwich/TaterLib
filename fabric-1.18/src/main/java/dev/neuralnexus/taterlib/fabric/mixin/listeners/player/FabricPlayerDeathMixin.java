@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
-import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
+import dev.neuralnexus.taterlib.fabric.event.api.player.FabricPlayerEvents;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;

@@ -4,7 +4,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.neoforge.abstractions.player.NeoForgePlayer;
+import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import net.minecraft.Util;
 import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;

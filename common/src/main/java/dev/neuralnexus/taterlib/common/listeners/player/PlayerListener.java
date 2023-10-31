@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.common.listeners.player;
 
-import dev.neuralnexus.taterlib.common.abstractions.events.player.AbstractPlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.abstractions.events.player.AbstractPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.common.abstractions.events.player.AbstractPlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.abstractions.player.AbstractPlayer;
+import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLoginEvent;
+import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.common.event.player.AbstractPlayerServerSwitchEvent;
+import dev.neuralnexus.taterlib.common.player.AbstractPlayer;
 import dev.neuralnexus.taterlib.common.player.cache.PlayerCache;
 
 /**

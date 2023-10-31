@@ -1,0 +1,57 @@
+package dev.neuralnexus.taterlib.sponge.event.api.entity;
+
+import dev.neuralnexus.taterlib.common.entity.AbstractEntity;
+import dev.neuralnexus.taterlib.common.event.entity.AbstractEntityDamageEvent;
+import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
+import org.spongepowered.api.event.entity.DamageEntityEvent;
+
+/**
+ * Sponge implementation of {@link AbstractEntityDamageEvent}.
+ */
+public class SpongeEntityDamageEvent implements AbstractEntityDamageEvent {
+    private final DamageEntityEvent event;
+
+    public SpongeEntityDamageEvent(DamageEntityEvent event) {
+        this.event = event;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean isCancelled() {
+        return event.isCancelled();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setCancelled(boolean cancelled) {
+        event.setCancelled(cancelled);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getCause() {
+        return event.cause().toString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getDamage() {
+        return event.finalDamage();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public AbstractEntity getEntity() {
+        return new SpongeEntity(event.entity());
+    }
+}

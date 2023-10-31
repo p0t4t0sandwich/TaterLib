@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
-import dev.neuralnexus.taterlib.fabric.events.player.FabricPlayerEvents;
+import dev.neuralnexus.taterlib.fabric.event.api.player.FabricPlayerEvents;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.network.packet.ChatMessageC2SPacket;

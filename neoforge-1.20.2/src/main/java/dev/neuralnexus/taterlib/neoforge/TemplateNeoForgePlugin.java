@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge;
 
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.VersionInfo;
 

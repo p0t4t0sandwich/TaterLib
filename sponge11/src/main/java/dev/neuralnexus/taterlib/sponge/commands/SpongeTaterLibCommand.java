@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.commands;
 
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
-import dev.neuralnexus.taterlib.sponge.abstractions.player.SpongePlayer;
+import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import net.kyori.adventure.text.Component;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.command.CommandExecutor;

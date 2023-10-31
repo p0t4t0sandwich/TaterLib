@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
-import dev.neuralnexus.taterlib.sponge.abstractions.events.player.*;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.sponge.event.api.player.*;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.achievement.GrantAchievementEvent;

@@ -5,11 +5,11 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLoginEvent;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerMessageEvent;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.player.VelocityPlayerServerSwitchEvent;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.velocity.event.api.player.VelocityPlayerLoginEvent;
+import dev.neuralnexus.taterlib.velocity.event.api.player.VelocityPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.velocity.event.api.player.VelocityPlayerMessageEvent;
+import dev.neuralnexus.taterlib.velocity.event.api.player.VelocityPlayerServerSwitchEvent;
 
 /**
  * Listens for player events.

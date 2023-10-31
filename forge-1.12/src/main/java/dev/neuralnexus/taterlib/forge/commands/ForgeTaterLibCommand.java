@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.commands;
 
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
-import dev.neuralnexus.taterlib.forge.abstrations.player.ForgePlayer;
+import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

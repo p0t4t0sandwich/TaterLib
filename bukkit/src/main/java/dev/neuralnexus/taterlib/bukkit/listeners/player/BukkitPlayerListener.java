@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.player.*;
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvents;
+import dev.neuralnexus.taterlib.bukkit.event.player.*;
+import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

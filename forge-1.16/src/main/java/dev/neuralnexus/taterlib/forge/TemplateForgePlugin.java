@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge;
 
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.loading.FMLLoader;

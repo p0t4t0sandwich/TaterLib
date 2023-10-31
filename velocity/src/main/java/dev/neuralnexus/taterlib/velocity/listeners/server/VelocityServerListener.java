@@ -3,9 +3,9 @@ package dev.neuralnexus.taterlib.velocity.listeners.server;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
-import dev.neuralnexus.taterlib.common.event.server.ServerEvents;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStartingEvent;
-import dev.neuralnexus.taterlib.velocity.abstractions.events.server.VelocityServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStartingEvent;
+import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStoppingEvent;
 
 /**
  * Listens for server events.

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages;
 
-import dev.neuralnexus.taterlib.bukkit.abstractions.events.pluginmessages.BukkitPluginMessageEvent;
-import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvents;
+import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitPluginMessageEvent;
+import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 

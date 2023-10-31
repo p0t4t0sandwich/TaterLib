@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity;
 
 import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 
 public class TemplateVelocityPlugin implements TemplatePlugin {
     public static ProxyServer proxyServer;

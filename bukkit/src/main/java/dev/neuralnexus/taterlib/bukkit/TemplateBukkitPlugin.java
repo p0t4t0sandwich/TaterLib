@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit;
 
-import dev.neuralnexus.taterlib.bukkit.abstractions.logger.BukkitLogger;
+import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import static dev.neuralnexus.taterlib.common.Utils.getBukkitServerType;

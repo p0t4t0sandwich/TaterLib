@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric;
 
 import dev.neuralnexus.taterlib.common.TemplatePlugin;
-import dev.neuralnexus.taterlib.common.abstractions.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;

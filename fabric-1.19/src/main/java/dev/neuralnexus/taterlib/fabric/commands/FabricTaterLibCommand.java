@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.fabric.abstractions.player.FabricPlayer;
+import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
