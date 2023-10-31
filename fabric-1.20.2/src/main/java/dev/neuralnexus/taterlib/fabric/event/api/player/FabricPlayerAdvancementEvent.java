@@ -26,21 +26,21 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent implements P
     }
 
     /**
-     * Fabric implementation of {@link AdvancementFinished}.
+     * Fabric implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
      */
-    public static class FabricAdvancementFinished extends FabricPlayerAdvancementEvent implements AdvancementFinished {
-        public FabricAdvancementFinished(PlayerEntity player, AdvancementEntry advancement) {
+    public static class AdvancementFinished extends FabricPlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+        public AdvancementFinished(PlayerEntity player, AdvancementEntry advancement) {
             super(player, advancement);
         }
     }
 
     /**
-     * Fabric implementation of {@link AdvancementProgress}.
+     * Fabric implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
      */
-    public static class FabricAdvancementProgress extends FabricPlayerAdvancementEvent implements AdvancementProgress {
+    public static class AdvancementProgress extends FabricPlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEntry advancement;
 
-        public FabricAdvancementProgress(PlayerEntity player, AdvancementEntry advancement, String criterionName) {
+        public AdvancementProgress(PlayerEntity player, AdvancementEntry advancement, String criterionName) {
             super(player, advancement);
             this.advancement = advancement;
         }

@@ -20,7 +20,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new ForgePlayerAdvancementEvent.ForgeAdvancementFinished(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new ForgePlayerAdvancementEvent.AdvancementFinished(event));
     }
 
     /**
@@ -29,7 +29,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new ForgePlayerAdvancementEvent.ForgeAdvancementProgress(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new ForgePlayerAdvancementEvent.AdvancementProgress(event));
     }
 
     /**

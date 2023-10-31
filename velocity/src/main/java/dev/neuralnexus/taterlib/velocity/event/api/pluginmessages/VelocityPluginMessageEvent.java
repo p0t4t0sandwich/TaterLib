@@ -30,12 +30,12 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * Velocity implementation of {@link Player}.
+     * Velocity implementation of {@link PluginMessageEvent.Player}.
      */
-    public static class VelocityPlayer extends VelocityPluginMessageEvent implements Player {
+    public static class Player extends VelocityPluginMessageEvent implements PluginMessageEvent.Player {
         private final com.velocitypowered.api.event.connection.PluginMessageEvent event;
 
-        public VelocityPlayer(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
+        public Player(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }
@@ -50,12 +50,12 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * Velocity implementation of {@link Server}.
+     * Velocity implementation of {@link PluginMessageEvent.Server}.
      */
-    public static class VelocityServer extends VelocityPluginMessageEvent implements Server {
+    public static class Server extends VelocityPluginMessageEvent implements PluginMessageEvent.Server {
         private final com.velocitypowered.api.event.connection.PluginMessageEvent event;
 
-        public VelocityServer(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
+        public Server(com.velocitypowered.api.event.connection.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }

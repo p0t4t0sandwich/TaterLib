@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit;
 
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartedEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppedEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppingEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStartedEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStartingEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppedEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;

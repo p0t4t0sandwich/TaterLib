@@ -30,12 +30,12 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * Bungee implementation of {@link Player}.
+     * Bungee implementation of {@link PluginMessageEvent.Player}.
      */
-    public static class BungeePlayer extends BungeePluginMessageEvent implements Player {
+    public static class Player extends BungeePluginMessageEvent implements PluginMessageEvent.Player {
         private final net.md_5.bungee.api.event.PluginMessageEvent event;
 
-        public BungeePlayer(net.md_5.bungee.api.event.PluginMessageEvent event) {
+        public Player(net.md_5.bungee.api.event.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }
@@ -50,12 +50,12 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * Bungee implementation of {@link Server}.
+     * Bungee implementation of {@link PluginMessageEvent.Server}.
      */
-    public static class BungeeServer extends BungeePluginMessageEvent implements Server {
+    public static class Server extends BungeePluginMessageEvent implements PluginMessageEvent.Server {
         private final net.md_5.bungee.api.event.PluginMessageEvent event;
 
-        public BungeeServer(net.md_5.bungee.api.event.PluginMessageEvent event) {
+        public Server(net.md_5.bungee.api.event.PluginMessageEvent event) {
             super(event);
             this.event = event;
         }

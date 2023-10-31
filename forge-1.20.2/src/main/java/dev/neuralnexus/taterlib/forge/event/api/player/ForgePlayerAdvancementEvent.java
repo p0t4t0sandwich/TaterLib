@@ -32,21 +32,21 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements Pla
     }
 
     /**
-     * Forge implementation of {@link AdvancementFinished}.
+     * Forge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
      */
-    public static class ForgeAdvancementFinished extends ForgePlayerAdvancementEvent implements AdvancementFinished {
-        public ForgeAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
+    public static class AdvancementFinished extends ForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+        public AdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
         }
     }
 
     /**
-     * Forge implementation of {@link AdvancementProgress}.
+     * Forge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
      */
-    public static class ForgeAdvancementProgress extends ForgePlayerAdvancementEvent implements AdvancementProgress {
+    public static class AdvancementProgress extends ForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 
-        public ForgeAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
+        public AdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
             super(event);
             this.event = event;
         }

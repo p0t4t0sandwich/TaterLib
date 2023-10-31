@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDamageEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntitySpawnEvent;
-import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerDeathEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntityDamageEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntityDeathEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntitySpawnEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.player.BukkitPlayerDeathEvent;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import org.bukkit.entity.Player;
@@ -22,10 +22,10 @@ public class BukkitEntityListener extends EntityListener {
         EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
         switch (event.getCause()) {
             case ENTITY_ATTACK:
-                EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity((EntityDamageByEntityEvent) event));
+                EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.DamageByEntity((EntityDamageByEntityEvent) event));
                 break;
             case SUFFOCATION:
-                EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock((EntityDamageByBlockEvent) event));
+                EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.DamageByBlock((EntityDamageByBlockEvent) event));
                 break;
         }
     }
@@ -36,7 +36,7 @@ public class BukkitEntityListener extends EntityListener {
 //     */
 //    @EventHandler
 //    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-//        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity(event));
+//        EntityListener.onEntityDamageByEntity(new BukkitEntityDamageEvent.DamageByEntity(event));
 //    }
 //
 //    /**
@@ -45,7 +45,7 @@ public class BukkitEntityListener extends EntityListener {
 //     */
 //    @EventHandler
 //    public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-//        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock(event));
+//        EntityListener.onEntityDamageByBlock(new BukkitEntityDamageEvent.DamageByBlock(event));
 //    }
 
     /**

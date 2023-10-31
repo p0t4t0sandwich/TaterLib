@@ -28,7 +28,7 @@ public class ForgePlayerListener {
         Advancement advancement = event.getAdvancement();
 
         // Fire the generic advancement event
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new ForgePlayerAdvancementEvent.ForgeAdvancementProgress(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new ForgePlayerAdvancementEvent.AdvancementProgress(event));
 
         // Get the player's advancement progress
         MinecraftServer server = (event.getEntity()).getServer();
@@ -41,7 +41,7 @@ public class ForgePlayerListener {
         // Fire the advancement finished event if the advancement is done
         DisplayInfo displayInfo = advancement.getDisplay();
         if (displayInfo != null && displayInfo.shouldAnnounceToChat() && progress.isDone()) {
-            PlayerEvents.ADVANCEMENT_FINISHED.invoke(new ForgePlayerAdvancementEvent.ForgeAdvancementFinished(event));
+            PlayerEvents.ADVANCEMENT_FINISHED.invoke(new ForgePlayerAdvancementEvent.AdvancementFinished(event));
         }
     }
 

@@ -32,21 +32,21 @@ public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implemen
     }
 
     /**
-     * NeoForge implementation of {@link AdvancementFinished}.
+     * NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
      */
-    public static class NeoForgeAdvancementFinished extends NeoForgePlayerAdvancementEvent implements AdvancementFinished {
-        public NeoForgeAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
+    public static class AdvancementFinished extends NeoForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+        public AdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
         }
     }
 
     /**
-     * NeoForge implementation of {@link AdvancementProgress}.
+     * NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
      */
-    public static class NeoForgeAdvancementProgress extends NeoForgePlayerAdvancementEvent implements AdvancementProgress {
+    public static class AdvancementProgress extends NeoForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 
-        public NeoForgeAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
+        public AdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
             super(event);
             this.event = event;
         }

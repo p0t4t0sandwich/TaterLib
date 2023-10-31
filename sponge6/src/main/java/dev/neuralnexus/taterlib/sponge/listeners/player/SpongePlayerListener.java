@@ -21,8 +21,8 @@ public class SpongePlayerListener {
      */
     @Listener
     public void onPlayerAdvancement(GrantAchievementEvent.TargetPlayer event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new SpongePlayerAdvancementEvent.SpongeAdvancementFinished(event));
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new SpongePlayerAdvancementEvent.SpongeAdvancementProgress(event));
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(new SpongePlayerAdvancementEvent.AdvancementFinished(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new SpongePlayerAdvancementEvent.AdvancementProgress(event));
     }
 
     /**

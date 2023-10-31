@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDamageEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntitySpawnEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntityDamageEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntityDeathEvent;
+import dev.neuralnexus.taterlib.bukkit.event.api.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +27,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByEntity(event));
+        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.DamageByEntity(event));
     }
 
     /**
@@ -36,7 +36,7 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.BukkitEntityDamageByBlock(event));
+        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.DamageByBlock(event));
     }
 
     /**

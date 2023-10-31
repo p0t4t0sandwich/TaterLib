@@ -35,21 +35,21 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
     }
 
     /**
-     * Sponge implementation of {@link AdvancementFinished}.
+     * Sponge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
      */
-    public static class SpongeAdvancementFinished extends SpongePlayerAdvancementEvent implements AdvancementFinished {
-        public SpongeAdvancementFinished(GrantAchievementEvent.TargetPlayer event) {
+    public static class AdvancementFinished extends SpongePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+        public AdvancementFinished(GrantAchievementEvent.TargetPlayer event) {
             super(event);
         }
     }
 
     /**
-     * Sponge implementation of {@link AdvancementProgress}.
+     * Sponge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
      */
-    public static class SpongeAdvancementProgress extends SpongePlayerAdvancementEvent implements AdvancementProgress {
+    public static class AdvancementProgress extends SpongePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
         private final GrantAchievementEvent.TargetPlayer event;
 
-        public SpongeAdvancementProgress(GrantAchievementEvent.TargetPlayer event) {
+        public AdvancementProgress(GrantAchievementEvent.TargetPlayer event) {
             super(event);
             this.event = event;
         }
