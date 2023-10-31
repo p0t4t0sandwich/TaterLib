@@ -1,7 +1,6 @@
 plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
     id('net.neoforged.gradle.userdev') version('7.0.5')
-//    id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
 base {
@@ -24,17 +23,22 @@ tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
+            loader_version_range   : loader_version_range,
+            forge_version_range    : forge_version_range,
             neo_version            : neo_version,
             neo_version_range      : neo_version_range,
-            forge_version_range    : forge_version_range,
-            loader_version_range   : loader_version_range,
-            mod_id                 : project_id,
-            mod_name               : project_name,
-            mod_license            : mod_license,
-            mod_version            : version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description,
             pack_format_number     : pack_format_number,
+
+            project_id             : project_id,
+            project_name           : project_name,
+            license                : license,
+            version                : version,
+            authors                : authors,
+            description            : description,
+
+            issue_tracker_url      : issue_tracker_url,
+            update_json_url        : update_json_url,
+            display_url            : display_url,
     ]
     inputs.properties replaceProperties
 
@@ -44,7 +48,7 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
 }
 
 shadowJar {

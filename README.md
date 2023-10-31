@@ -94,3 +94,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Reworked TaterLib PlayerListener and reload command
 - Implemented `EntitySpawnEvent` for 1.7.10-b1.7.3
 - Implemented rudimentary `PlayerDeathEvent` for b1.7.3
+- Added support for NeoForge 1.20.2
