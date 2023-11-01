@@ -14,7 +14,7 @@ logoFile="${project_name}.png"
 credits="${authors}"
 authors="${authors}"
 displayTest="IGNORE_SERVER_VERSION"
-description='''${description}'''
+description='''${project_description}'''
 
 # Forge Dependency
 [[dependencies.${project_id}]]

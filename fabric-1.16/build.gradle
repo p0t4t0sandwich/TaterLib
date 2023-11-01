@@ -29,16 +29,24 @@ dependencies {
     include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 }
 
-processResources {
-    inputs.property("version", project.version)
-    inputs.property("minecraft_version", project.minecraft_version)
-    inputs.property("loader_version", project.loader_version)
-    filteringCharset("UTF-8")
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
 
-    filesMatching("fabric.mod.json") {
-        expand("version": project.version,
-                "minecraft_version": project.minecraft_version,
-                "loader_version": project.loader_version)
+            project_id             : project_id,
+            project_name           : project_name,
+            project_description    : project_description,
+            license                : license,
+            version                : version,
+            group_id               : group_id,
+            authors                : authors,
+
+            display_url            : display_url,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['fabric.mod.json']) {
+        expand replaceProperties + [project: project]
     }
 }
 

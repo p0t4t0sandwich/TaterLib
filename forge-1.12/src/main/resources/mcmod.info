@@ -3,7 +3,7 @@
         "modid": "${project_id}",
         "name": "${project_name}",
         "license": "${license}",
-        "description": "${description}",
+        "description": "${project_description}",
         "version": "${version}",
         "mcversion": "${minecraft_version}",
         "url": "${display_url}",
@@ -13,7 +13,7 @@
         "logoFile": "./${project_name}.png",
         "screenshots": [],
         "useDependencyInformation": true,
-        "dependencies": [],
-        "dependants": ["luckperms"]
+        "dependencies": ["luckperms"],
+        "dependants": []
     }
 ]

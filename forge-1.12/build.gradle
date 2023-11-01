@@ -20,10 +20,10 @@ tasks.withType(ProcessResources).configureEach {
 
             project_id             : project_id,
             project_name           : project_name,
+            project_description    : project_description,
             license                : license,
             version                : version,
             authors                : authors,
-            description            : description,
 
             issue_tracker_url      : issue_tracker_url,
             update_json_url        : update_json_url,

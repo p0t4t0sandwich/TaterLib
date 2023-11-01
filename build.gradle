@@ -6,9 +6,6 @@ defaultTasks('build')
 
 subprojects {
     apply(plugin: 'java')
-
-    group = 'dev.neuralnexus'
-    version = '1.1.0-R0.1-SNAPSHOT'
  
     sourceCompatibility = 1.8
     targetCompatibility = 1.8

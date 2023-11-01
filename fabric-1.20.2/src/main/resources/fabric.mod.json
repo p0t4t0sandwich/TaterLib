@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "taterlib",
+  "id": "${project_id}",
   "version": "${version}",
-  "name": "TaterLib",
-  "description": "A cross API code library for various generalizations used in the Tater* plugins",
+  "name": "${project_name}",
+  "description": "${project_description}",
   "authors": [
     {
       "name": "p0t4t0sandwich",
@@ -14,18 +14,18 @@
     }
   ],
   "contact": {
-    "repo": "https://github.com/p0t4t0sandwich/TaterLib"
+    "repo": "${display_url}"
   },
-  "license": "GPL-3",
-  "icon": "assets/TaterLib/icon.png",
+  "license": "${license}",
+  "icon": "assets/${project_name}/icon.png",
   "environment": "*",
   "entrypoints": {
     "server": [
-      "dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin"
+      "${group_id}.${project_id}.fabric.Fabric${project_name}Plugin"
     ]
   },
   "mixins": [
-    "taterlib.mixins.json"
+    "${project_id}.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",
