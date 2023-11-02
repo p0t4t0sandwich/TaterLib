@@ -100,3 +100,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Moved `...taterlib.{platform}.abstractions.item.*` to `...taterlib.{platform}.inventory`
 - Moved `...taterlib.{platform}.player.PlayerInventory` to `...taterlib.{platform}.inventory.PlayerInventory`
 - Removed the `Abstract` prefix from all common interfaces
+- Added the ability to set a player's prefix/suffix

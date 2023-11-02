@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
 import java.util.UUID;
 
 /**
- * The interface for an Player
+ * The interface for a Player
  */
 public interface Player {
     /**
@@ -139,6 +139,25 @@ public interface Player {
     }
 
     /**
+     * Set the prefix of the player
+     * @param prefix The prefix to set
+     * @param priority The priority of the prefix
+     */
+    default void setPrefix(String prefix, int priority) {
+        if (!LuckPermsHook.isHooked()) return;
+        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
+        luckPermsHook.setPrefix(getUUID(), prefix, priority);
+    }
+
+    /**
+     * Set the prefix of the player
+     * @param prefix The prefix to set
+     */
+    default void setPrefix(String prefix) {
+        setPrefix(prefix, 0);
+    }
+
+    /**
      * Get the suffix of the player
      * @return The suffix of the player
      */
@@ -147,6 +166,25 @@ public interface Player {
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         String suffix = luckPermsHook.getSuffix(getUUID());
         return suffix != null ? suffix : "";
+    }
+
+    /**
+     * Set the suffix of the player
+     * @param suffix The suffix to set
+     * @param priority The priority of the suffix
+     */
+    default void setSuffix(String suffix, int priority) {
+        if (!LuckPermsHook.isHooked()) return;
+        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
+        luckPermsHook.setSuffix(getUUID(), suffix, priority);
+    }
+
+    /**
+     * Set the suffix of the player
+     * @param suffix The suffix to set
+     */
+    default void setSuffix(String suffix) {
+        setSuffix(suffix, 0);
     }
 
     /**

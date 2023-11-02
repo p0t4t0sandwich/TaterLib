@@ -4,6 +4,7 @@ import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.types.SuffixNode;
 
 import java.util.UUID;
 
@@ -63,6 +64,27 @@ public class LuckPermsHook {
     }
 
     /**
+     * Set the prefix for a player
+     * @param playerUuid The UUID of the player to set the prefix for
+     * @param prefix The prefix to set
+     * @param priority The priority of the prefix
+     */
+    public void setPrefix(UUID playerUuid, String prefix, int priority) {
+        if (this.luckPerms == null) return;
+        SuffixNode node = SuffixNode.builder(prefix, priority).build();
+        luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
+    }
+
+    /**
+     * Set the prefix for a player
+     * @param playerUuid The UUID of the player to set the prefix for
+     * @param prefix The prefix to set
+     */
+    public void setPrefix(UUID playerUuid, String prefix) {
+        setPrefix(playerUuid, prefix, 0);
+    }
+
+    /**
      * Get the suffix for a player
      * @param playerUuid The UUID of the player to get the suffix for
      * @return The suffix for the player
@@ -70,6 +92,27 @@ public class LuckPermsHook {
     public String getSuffix(UUID playerUuid) {
         CachedMetaData metaData = getMetaData(playerUuid);
         return metaData != null ? metaData.getSuffix() : "";
+    }
+
+    /**
+     * Set the suffix for a player
+     * @param playerUuid The UUID of the player to set the suffix for
+     * @param suffix The suffix to set
+     * @param priority The priority of the suffix
+     */
+    public void setSuffix(UUID playerUuid, String suffix, int priority) {
+        if (this.luckPerms == null) return;
+        SuffixNode node = SuffixNode.builder(suffix, priority).build();
+        luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
+    }
+
+    /**
+     * Set the suffix for a player
+     * @param playerUuid The UUID of the player to set the suffix for
+     * @param suffix The suffix to set
+     */
+    public void setSuffix(UUID playerUuid, String suffix) {
+        setSuffix(playerUuid, suffix, 0);
     }
 
     /**
