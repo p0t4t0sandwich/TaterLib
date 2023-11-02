@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.forge.commands;
 
 import com.mojang.brigadier.arguments.StringArgumentType;
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,7 +20,7 @@ import static net.minecraft.command.Commands.argument;
 /**
  * Forge implementation of the TaterLib command.
  */
-@Mod.EventBusSubscriber(modid = ForgeTaterLibPlugin.MOD_ID)
+@Mod.EventBusSubscriber(modid = Constants.PROJECT_ID)
 public final class ForgeTaterLibCommand {
     /**
      * Registers the TaterLib command.

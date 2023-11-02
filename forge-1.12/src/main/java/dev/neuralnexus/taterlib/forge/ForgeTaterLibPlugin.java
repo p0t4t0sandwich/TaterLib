@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.forge;
 
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
@@ -26,14 +27,12 @@ import org.apache.logging.log4j.LogManager;
  * The TaterLib Forge plugin.
  */
 @Mod(
-        modid = ForgeTaterLibPlugin.MOD_ID,
+        modid = Constants.PROJECT_ID,
         useMetadata = true,
         serverSideOnly = true,
         acceptableRemoteVersions= "*"
 )
 public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLibPlugin {
-    public static final String MOD_ID = "taterlib";
-
     /**
      * @inheritDoc
      */

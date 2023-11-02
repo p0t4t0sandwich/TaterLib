@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.fabric;
 
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
@@ -24,8 +25,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.LoggerFactory;
 
-import static dev.neuralnexus.taterlib.common.Constants.MOD_ID;
-
 /**
  * The TaterLib Fabric plugin.
  */
@@ -35,7 +34,7 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
      */
     @Override
     public AbstractLogger pluginLogger() {
-        return new FabricLogger("[TaterLib] ", LoggerFactory.getLogger(MOD_ID));
+        return new FabricLogger("[TaterLib] ", LoggerFactory.getLogger(Constants.PROJECT_ID));
     }
 
     /**

@@ -5,6 +5,7 @@ import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
@@ -31,12 +32,12 @@ import java.time.Duration;
  * The TaterLib Velocity plugin.
  */
 @Plugin(
-        id = "taterlib",
-        name = "TaterLib",
-        version = "1.0.2",
-        authors = "p0t4t0sandwich",
-        description = "A cross API code library for various generalizations used in the Tater* plugins",
-        url = "https://github.com/p0t4t0sandwich/TaterLib",
+        id = Constants.PROJECT_ID,
+        name = Constants.PROJECT_NAME,
+        version = Constants.PROJECT_VERSION,
+        authors = Constants.PROJECT_AUTHORS,
+        description = Constants.PROJECT_DESCRIPTION,
+        url = Constants.PROJECT_URL,
         dependencies = {
                 @Dependency(id = "luckperms", optional = true)
         }

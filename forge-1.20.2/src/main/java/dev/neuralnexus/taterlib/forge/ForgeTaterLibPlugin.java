@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.forge;
 
 import com.mojang.logging.LogUtils;
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
@@ -23,10 +24,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 /**
  * The TaterLib Forge plugin.
  */
-@Mod(ForgeTaterLibPlugin.MOD_ID)
+@Mod(Constants.PROJECT_ID)
 public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLibPlugin {
-    public static final String MOD_ID = "taterlib";
-
     /**
      * @inheritDoc
      */

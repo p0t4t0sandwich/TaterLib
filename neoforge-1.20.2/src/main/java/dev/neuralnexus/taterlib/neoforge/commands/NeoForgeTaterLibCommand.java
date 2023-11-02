@@ -20,7 +20,7 @@ import static net.minecraft.commands.Commands.literal;
 /**
  * NeoForge implementation of the TaterLib command.
  */
-@Mod.EventBusSubscriber(modid = Constants.MOD_ID)
+@Mod.EventBusSubscriber(modid = Constants.PROJECT_ID)
 public final class NeoForgeTaterLibCommand {
     /**
      * Registers the TaterLib command.

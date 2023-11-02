@@ -24,7 +24,7 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 /**
  * The TaterLib NeoForge plugin.
  */
-@Mod(Constants.MOD_ID)
+@Mod(Constants.PROJECT_ID)
 public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements TaterLibPlugin {
     /**
      * @inheritDoc

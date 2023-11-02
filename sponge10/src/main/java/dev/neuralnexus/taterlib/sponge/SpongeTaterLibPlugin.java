@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.sponge;
 
+import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
@@ -22,7 +23,7 @@ import org.spongepowered.plugin.builtin.jvm.Plugin;
 import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;
 
-@Plugin("taterlib")
+@Plugin(Constants.PROJECT_ID)
 public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterLibPlugin {
     @Inject
     private Logger logger;
