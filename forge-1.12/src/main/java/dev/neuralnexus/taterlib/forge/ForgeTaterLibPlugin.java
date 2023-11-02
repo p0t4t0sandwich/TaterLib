@@ -11,7 +11,7 @@ import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
-import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
+import dev.neuralnexus.taterlib.forge.command.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import net.minecraftforge.common.MinecraftForge;

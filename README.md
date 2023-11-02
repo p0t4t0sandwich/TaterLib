@@ -101,3 +101,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Moved `...taterlib.{platform}.player.PlayerInventory` to `...taterlib.{platform}.inventory.PlayerInventory`
 - Removed the `Abstract` prefix from all common interfaces
 - Added the ability to set a player's prefix/suffix
+- Added numerical permission checks to `Player` for Forge/Fabric
+- Abstracted string-based Brigadier commands

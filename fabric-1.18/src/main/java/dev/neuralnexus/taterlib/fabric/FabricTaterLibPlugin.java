@@ -1,13 +1,17 @@
 package dev.neuralnexus.taterlib.fabric;
 
+import com.mojang.brigadier.tree.ArgumentCommandNode;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.command.BasicBrigadierCommand;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.fabric.command.FabricCommandUtils;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntitySpawnEvent;
@@ -17,13 +21,17 @@ import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStartingEven
 import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.logger.FabricLogger;
-import dev.neuralnexus.taterlib.fabric.commands.FabricTaterLibCommand;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.command.ServerCommandSource;
 import org.slf4j.LoggerFactory;
+
+import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
+import static net.minecraft.server.command.CommandManager.argument;
+import static net.minecraft.server.command.CommandManager.literal;
 
 /**
  * The TaterLib Fabric plugin.
@@ -45,7 +53,7 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
         // Register LuckPerms hook
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             if (FabricLoader.getInstance().isModLoaded("luckperms")) {
-                useLogger("[TaterAPI] LuckPerms detected, enabling LuckPerms hook.");
+                useLogger("LuckPerms detected, enabling LuckPerms hook.");
                 TaterLib.addHook(new LuckPermsHook());
             }
         });
@@ -84,7 +92,23 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
      */
     @Override
     public void registerCommands() {
-        CommandRegistrationCallback.EVENT.register(FabricTaterLibCommand::register);
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            TaterLib.setBrigadierCommandUtils(new FabricCommandUtils(dedicated));
+            for (String commandName : TaterLib.getBrigadierCommands().keySet()) {
+                BasicBrigadierCommand<ServerCommandSource> command = (BasicBrigadierCommand<ServerCommandSource>) TaterLib.getBrigadierCommand(commandName);
+                LiteralCommandNode<ServerCommandSource> cmd = literal(commandName)
+                        .executes(command)
+                        .build();
+
+                ArgumentCommandNode<ServerCommandSource, String> args = argument("args", greedyString())
+//                        .suggests(command)
+                        .executes(command)
+                        .build();
+
+                cmd.addChild(args);
+                dispatcher.getRoot().addChild(cmd);
+            }
+        });
     }
 
     /**

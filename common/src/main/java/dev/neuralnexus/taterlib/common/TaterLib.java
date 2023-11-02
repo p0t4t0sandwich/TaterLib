@@ -1,13 +1,15 @@
 package dev.neuralnexus.taterlib.common;
 
+import dev.neuralnexus.taterlib.common.command.BasicBrigadierCommand;
+import dev.neuralnexus.taterlib.common.command.CommandUtils;
+import dev.neuralnexus.taterlib.common.command.TaterLibBrigadierCommand;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 import dev.neuralnexus.taterlib.common.relay.MessageRelay;
 
-import java.util.ArrayList;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class TaterLib {
@@ -19,6 +21,8 @@ public class TaterLib {
     private static MessageRelay messageRelay;
     private static final ArrayList<Object> hooks = new ArrayList<>();
     public static Consumer<Set<String>> registerChannels = (channels) -> {};
+    private static final HashMap<String, BasicBrigadierCommand> brigadierCommands = new HashMap<>();
+    private static CommandUtils commandUtils;
 
     /**
      * Constructor for the TaterLib class.
@@ -52,6 +56,9 @@ public class TaterLib {
             PlayerEvents.LOGIN.register(PlayerListener::onPlayerLogin);
             PlayerEvents.LOGOUT.register(PlayerListener::onPlayerLogout);
             PlayerEvents.SERVER_SWITCH.register(PlayerListener::onServerSwitch);
+
+            // Register brigadier commands
+            TaterLib.registerBrigadierCommand("taterlib", new TaterLibBrigadierCommand());
         }
 
         logger.info("TaterLib has been started!");
@@ -135,5 +142,47 @@ public class TaterLib {
      */
     public static void setRegisterChannels(Consumer<Set<String>> registerChannels) {
         TaterLib.registerChannels = registerChannels;
+    }
+
+    /**
+     * Register a BasicBrigadierCommand
+     * @param commandName The name of the command
+     * @param command The BasicBrigadierCommand to register
+     */
+    public static void registerBrigadierCommand(String commandName, BasicBrigadierCommand command) {
+        brigadierCommands.put(commandName, command);
+    }
+
+    /**
+     * Get the BasicBrigadierCommand with the given name
+     * @param commandName The name of the command
+     * @return The BasicBrigadierCommand with the given name
+     */
+    public static BasicBrigadierCommand getBrigadierCommand(String commandName) {
+        return brigadierCommands.get(commandName);
+    }
+
+    /**
+     * Get the brigadier commands
+     * @return The brigadier commands
+     */
+    public static HashMap<String, BasicBrigadierCommand> getBrigadierCommands() {
+        return brigadierCommands;
+    }
+
+    /**
+     * Get the CommandUtils
+     * @return The CommandUtils
+     */
+    public static CommandUtils getBrigadierCommandUtils() {
+        return commandUtils;
+    }
+
+    /**
+     * Set the CommandUtils
+     * @param commandUtils The CommandUtils
+     */
+    public static void setBrigadierCommandUtils(CommandUtils commandUtils) {
+        TaterLib.commandUtils = commandUtils;
     }
 }

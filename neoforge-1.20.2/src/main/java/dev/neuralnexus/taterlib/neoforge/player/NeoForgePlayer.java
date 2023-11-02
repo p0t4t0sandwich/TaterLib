@@ -13,7 +13,7 @@ import net.minecraft.world.level.Level;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an Player.
+ * Abstracts a Forge player to a Player.
  */
 public class NeoForgePlayer implements Player {
     private final net.minecraft.world.entity.player.Player player;
@@ -140,5 +140,13 @@ public class NeoForgePlayer implements Player {
         if (!LuckPermsHook.isHooked()) return player.hasPermissions(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return player.hasPermissions(permissionLevel);
     }
 }

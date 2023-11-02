@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMessageListener;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import org.bukkit.plugin.PluginManager;

@@ -14,7 +14,7 @@ import net.minecraftforge.server.permission.PermissionAPI;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an Player.
+ * Abstracts a Forge player to a Player.
  */
 public class ForgePlayer implements Player {
     private final EntityPlayer player;
@@ -141,5 +141,13 @@ public class ForgePlayer implements Player {
         if (!LuckPermsHook.isHooked()) return PermissionAPI.hasPermission(player, permission);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 }

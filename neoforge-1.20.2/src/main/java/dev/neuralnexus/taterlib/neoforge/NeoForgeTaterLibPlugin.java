@@ -6,8 +6,8 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.neoforge.commands.NeoForgeRegisterCommands;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
-import dev.neuralnexus.taterlib.neoforge.commands.NeoForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
@@ -81,7 +81,7 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
         TaterLib.setRegisterChannels(ModMessages::addChannels);
 
         // Register commands
-        NeoForge.EVENT_BUS.register(NeoForgeTaterLibCommand.class);
+        NeoForge.EVENT_BUS.register(NeoForgeRegisterCommands.class);
         pluginStart();
     }
 

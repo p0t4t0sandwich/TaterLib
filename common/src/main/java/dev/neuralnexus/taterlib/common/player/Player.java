@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.common.player;
 
+import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -10,19 +11,7 @@ import java.util.UUID;
 /**
  * The interface for a Player
  */
-public interface Player {
-    /**
-     * Get the UUID of the player
-     * @return The UUID of the player
-     */
-    UUID getUUID();
-
-    /**
-     * Get the name of the player
-     * @return The name of the player
-     */
-    String getName();
-
+public interface Player extends Sender {
     /**
      * Get the display name of the player
      * @return The display name of the player
@@ -185,17 +174,6 @@ public interface Player {
      */
     default void setSuffix(String suffix) {
         setSuffix(suffix, 0);
-    }
-
-    /**
-     * Check if the player has a permission
-     * @param permission The permission to check
-     * @return Whether the player has the permission
-     */
-    default boolean hasPermission(String permission) {
-        if (!LuckPermsHook.isHooked()) return false;
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook.playerHasPermission(getUUID(), permission);
     }
 
     /**

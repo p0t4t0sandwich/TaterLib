@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.commands;
 
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.proxy.Player;
-import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 public class VelocityTaterLibCommand implements SimpleCommand {

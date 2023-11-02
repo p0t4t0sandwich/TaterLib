@@ -16,7 +16,7 @@ import net.minecraft.world.dimension.DimensionType;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to an Player.
+ * Abstracts a Forge player to a Player.
  */
 public class ForgePlayer implements Player {
     private final EntityPlayer player;
@@ -145,5 +145,13 @@ public class ForgePlayer implements Player {
         if (!LuckPermsHook.isHooked()) return player.hasPermissionLevel(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return player.hasPermissionLevel(permissionLevel);
     }
 }

@@ -14,7 +14,7 @@ import org.spongepowered.api.text.Text;
 import java.util.UUID;
 
 /**
- * Abstracts a Sponge player to an Player.
+ * Abstracts a Sponge player to a Player.
  */
 public class SpongePlayer implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
@@ -141,5 +141,13 @@ public class SpongePlayer implements Player {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 }

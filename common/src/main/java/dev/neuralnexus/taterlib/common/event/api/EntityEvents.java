@@ -4,6 +4,9 @@ import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 
+/**
+ * Entity events.
+ */
 public class EntityEvents {
     /**
      * Called when an entity is damaged.

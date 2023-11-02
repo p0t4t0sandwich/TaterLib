@@ -18,7 +18,7 @@ import net.minecraft.util.Identifier;
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric player to an Player.
+ * Abstracts a Fabric player to a Player.
  */
 public class FabricPlayer implements Player {
     private final PlayerEntity player;
@@ -165,5 +165,13 @@ public class FabricPlayer implements Player {
     public boolean hasPermission(String permission) {
         if (!LuckPermsHook.isHooked()) return player.allowsPermissionLevel(4);
         return Permissions.check(player, permission, 4);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return player.allowsPermissionLevel(permissionLevel);
     }
 }

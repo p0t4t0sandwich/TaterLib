@@ -11,7 +11,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit player to an Player.
+ * Abstracts a Bukkit player to a Player.
  */
 public class BukkitPlayer implements Player {
     private final org.bukkit.entity.Player player;
@@ -150,6 +150,14 @@ public class BukkitPlayer implements Player {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 
     /**

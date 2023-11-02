@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bungee.commands;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.commands.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;

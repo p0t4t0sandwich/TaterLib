@@ -11,7 +11,7 @@ import net.kyori.adventure.text.Component;
 import java.util.UUID;
 
 /**
- * Abstracts a Velocity player to an Player.
+ * Abstracts a Velocity player to a Player.
  */
 public class VelocityPlayer implements Player {
     private final com.velocitypowered.api.proxy.Player player;
@@ -129,6 +129,14 @@ public class VelocityPlayer implements Player {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 
     /**

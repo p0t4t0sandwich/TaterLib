@@ -11,7 +11,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.UUID;
 
 /**
- * Abstracts a BungeeCord player to an Player.
+ * Abstracts a BungeeCord player to a Player.
  */
 public class BungeePlayer implements Player {
     private final ProxiedPlayer player;
@@ -129,6 +129,14 @@ public class BungeePlayer implements Player {
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 
     /**

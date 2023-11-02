@@ -6,8 +6,8 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.command.ForgeRegisterCommands;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
-import dev.neuralnexus.taterlib.forge.commands.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
@@ -81,7 +81,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         TaterLib.setRegisterChannels(ModMessages::addChannels);
 
         // Register commands
-        MinecraftForge.EVENT_BUS.register(ForgeTaterLibCommand.class);
+        MinecraftForge.EVENT_BUS.register(ForgeRegisterCommands.class);
         pluginStart();
     }
 

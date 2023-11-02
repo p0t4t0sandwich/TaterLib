@@ -2,6 +2,9 @@ package dev.neuralnexus.taterlib.common.event.api;
 
 import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
 
+/**
+ * Plugin message events.
+ */
 public class PluginMessageEvents {
     /**
      * Called when a plugin message is received.
