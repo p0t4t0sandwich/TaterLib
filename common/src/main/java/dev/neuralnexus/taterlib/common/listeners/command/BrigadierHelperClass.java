@@ -10,9 +10,12 @@ import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
 import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
 import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
 
+/**
+ * Helper class for brigadier commands (prevents ClassNotFound exceptions).
+ */
 public class BrigadierHelperClass {
     public static void onRegisterBrigadierCommand(BrigadierCommandRegisterEvent event) {
-        event.getDispatcher().register(literal(TaterLibCommand.getCommandName())
+        event.registerCommand(literal(TaterLibCommand.getCommandName())
                 .requires(source -> {
                     Sender sender = event.getSender(source);
                     return sender.hasPermission(event.isDedicated() ? (TaterLib.isHooked("luckperms") ? 0 : 4) : 0);
@@ -35,7 +38,7 @@ public class BrigadierHelperClass {
                                 return 0;
                             }
                         })
-                )
+                ).build()
         );
     }
 }

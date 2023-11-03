@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.common.event.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.player.Player;
 
@@ -19,6 +20,12 @@ public interface BrigadierCommandRegisterEvent<S> {
      * @return The command dispatcher.
      */
     CommandDispatcher<S> getDispatcher();
+
+    /**
+     * Registers a LiteralCommandNode<S>.
+     * @param node The node.
+     */
+    void registerCommand(LiteralCommandNode<S> node);
 
     /**
      * Get the sender.
