@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.sponge;
 
+import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
@@ -69,18 +70,22 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
     }
 
     /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {}
-
-    /**
      * Register commands.
      * @param event The event
      */
     @Listener
     public void onRegisterCommands(final RegisterCommandEvent<Command.Parameterized> event) {
         new SpongeTaterLibCommand().onRegisterCommands(container, event);
+    }
+
+
+    /**
+     * Register brigadier commands.
+     * @param event The event
+     */
+    @Listener
+    public void onRegisterBrigadierCommands(final RegisterCommandEvent<LiteralCommandNode<?>> event) {
+//        event.register()
     }
 
     /**
