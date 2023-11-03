@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /**
- * These are really sketchy at the moment, don't use them.
+ * The event class.
  */
 public class Event<T> {
     private final Class<T> eventClass;

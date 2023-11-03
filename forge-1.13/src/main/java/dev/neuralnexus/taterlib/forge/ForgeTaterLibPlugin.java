@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.forge.command.ForgeRegisterCommands;
+import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
@@ -42,21 +42,9 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {}
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {}
 
     /**
      * Called when the Forge mod is initializing.
@@ -64,6 +52,9 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
     public ForgeTaterLibPlugin() {
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
+
+        // Register command event listeners
+        MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
 
         // Register entity event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
@@ -79,9 +70,6 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         modEventBus.addListener(this::commonSetup);
 
         TaterLib.setRegisterChannels(ModMessages::addChannels);
-
-        // Register commands
-        MinecraftForge.EVENT_BUS.register(ForgeRegisterCommands.class);
         pluginStart();
     }
 

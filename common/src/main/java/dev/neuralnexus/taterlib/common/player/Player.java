@@ -1,12 +1,11 @@
 package dev.neuralnexus.taterlib.common.player;
 
+import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
-
-import java.util.UUID;
 
 /**
  * The interface for a Player
@@ -121,7 +120,7 @@ public interface Player extends Sender {
      * @return The prefix of the player
      */
     default String getPrefix() {
-        if (!LuckPermsHook.isHooked()) return "";
+        if (!TaterLib.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         String prefix = luckPermsHook.getPrefix(getUUID());
         return prefix != null ? prefix : "";
@@ -133,7 +132,7 @@ public interface Player extends Sender {
      * @param priority The priority of the prefix
      */
     default void setPrefix(String prefix, int priority) {
-        if (!LuckPermsHook.isHooked()) return;
+        if (!TaterLib.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         luckPermsHook.setPrefix(getUUID(), prefix, priority);
     }
@@ -151,7 +150,7 @@ public interface Player extends Sender {
      * @return The suffix of the player
      */
     default String getSuffix() {
-        if (!LuckPermsHook.isHooked()) return "";
+        if (!TaterLib.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         String suffix = luckPermsHook.getSuffix(getUUID());
         return suffix != null ? suffix : "";
@@ -163,7 +162,7 @@ public interface Player extends Sender {
      * @param priority The priority of the suffix
      */
     default void setSuffix(String suffix, int priority) {
-        if (!LuckPermsHook.isHooked()) return;
+        if (!TaterLib.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         luckPermsHook.setSuffix(getUUID(), suffix, priority);
     }

@@ -62,7 +62,7 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
         // Register LuckPerms hook
         if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
 

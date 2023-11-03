@@ -59,7 +59,7 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
         // Register LuckPerms hook
         if (Sponge.getPluginManager().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
 

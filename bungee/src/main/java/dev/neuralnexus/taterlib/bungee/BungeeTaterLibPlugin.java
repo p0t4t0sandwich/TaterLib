@@ -38,7 +38,7 @@ public class BungeeTaterLibPlugin extends TemplateBungeePlugin implements TaterL
         // Register LuckPerms hook
         if (getProxy().getPluginManager().getPlugin("LuckPerms") != null) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
 

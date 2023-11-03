@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.forge.player;
 
+import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
@@ -138,7 +139,7 @@ public class ForgePlayer implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!LuckPermsHook.isHooked()) return PermissionAPI.hasPermission(player, permission);
+        if (!TaterLib.isHooked("luckperms")) return PermissionAPI.hasPermission(player, permission);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
     }

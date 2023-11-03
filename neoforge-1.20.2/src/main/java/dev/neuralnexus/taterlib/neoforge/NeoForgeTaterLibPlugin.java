@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.neoforge.commands.NeoForgeRegisterCommands;
+import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
@@ -42,21 +42,9 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {}
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {}
 
     /**
      * Called when the Forge mod is initializing.
@@ -64,6 +52,9 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
     public NeoForgeTaterLibPlugin() {
         // Register server starting/stopping events
         NeoForge.EVENT_BUS.register(this);
+
+        // Register command event listeners
+        NeoForge.EVENT_BUS.register(new NeoForgeCommandsListener());
 
         // Register entity event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeEntityListener());
@@ -79,9 +70,6 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
         modEventBus.addListener(this::commonSetup);
 
         TaterLib.setRegisterChannels(ModMessages::addChannels);
-
-        // Register commands
-        NeoForge.EVENT_BUS.register(NeoForgeRegisterCommands.class);
         pluginStart();
     }
 

@@ -1,0 +1,20 @@
+package dev.neuralnexus.taterlib.forge.listeners.command;
+
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.forge.event.api.command.ForgeBrigadierCommandRegisterEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+/**
+ * Forge register commands.
+ */
+public class ForgeCommandsListener {
+    /**
+     * Registers commands.
+     * @param event The register commands event.
+     */
+    @SubscribeEvent
+    public void onRegisterBrigadierCommand(RegisterCommandsEvent event) {
+        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new ForgeBrigadierCommandRegisterEvent(event));
+    }
+}

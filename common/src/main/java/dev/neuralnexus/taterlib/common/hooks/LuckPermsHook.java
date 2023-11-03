@@ -15,7 +15,6 @@ import java.util.UUID;
 public class LuckPermsHook {
     private final LuckPerms luckPerms;
     private static LuckPermsHook instance;
-    private static boolean isHooked = false;
 
     /**
      * Create a new LuckPermsHook
@@ -23,7 +22,6 @@ public class LuckPermsHook {
     public LuckPermsHook() {
         instance = this;
         this.luckPerms = LuckPermsProvider.get();
-        isHooked = true;
     }
 
     /**
@@ -32,14 +30,6 @@ public class LuckPermsHook {
      */
     public static LuckPermsHook getInstance() {
         return instance;
-    }
-
-    /**
-     * Check if the hook is enabled
-     * @return If the hook is enabled
-     */
-    public static boolean isHooked() {
-        return isHooked;
     }
 
     /**

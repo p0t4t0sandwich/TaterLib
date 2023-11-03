@@ -38,7 +38,7 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         // Register LuckPerms hook
         if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
 

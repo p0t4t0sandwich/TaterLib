@@ -19,9 +19,6 @@ public interface TaterLibPlugin extends TemplatePlugin {
 
             // Register commands
             registerCommands();
-
-            useLogger("TaterLib has been enabled!");
-
         } catch (Exception e) {
             System.err.println(e);
             e.printStackTrace();

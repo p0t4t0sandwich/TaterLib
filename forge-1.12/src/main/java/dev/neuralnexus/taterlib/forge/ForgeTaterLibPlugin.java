@@ -49,7 +49,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         // Register LuckPerms hook
         if (Loader.isModLoaded("luckperms")) {
             useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook(new LuckPermsHook());
+            TaterLib.addHook("luckperms", new LuckPermsHook());
         }
     }
 
