@@ -17,12 +17,12 @@ sponge {
     plugin(project_id) {
         version("1.16-${version}")
         displayName(project_name)
-        entrypoint("dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin")
-        description("A cross API code library for various generalizations used in the Tater* plugins")
+        entrypoint("${group_id}.${project_id}.sponge.Sponge${project_name}Plugin")
+        description(project_description)
         links {
-             homepage("https://github.com/p0t4t0sandwich/TaterLib#taterapi")
-             source("https://github.com/p0t4t0sandwich/TaterLib")
-             issues("https://github.com/p0t4t0sandwich/TaterLib/issues")
+            homepage(homepage_url)
+            source(repo_url)
+            issues(issue_tracker_url)
         }
         dependency("spongeapi") {
             loadOrder(PluginDependency.LoadOrder.AFTER)

@@ -28,9 +28,9 @@ tasks.withType(ProcessResources).configureEach {
             version                : version,
             authors                : authors,
 
+            homepage_url           : homepage_url,
             issue_tracker_url      : issue_tracker_url,
-            update_json_url        : update_json_url,
-            display_url            : display_url,
+            update_json_url        : update_json_url
     ]
     inputs.properties replaceProperties
 

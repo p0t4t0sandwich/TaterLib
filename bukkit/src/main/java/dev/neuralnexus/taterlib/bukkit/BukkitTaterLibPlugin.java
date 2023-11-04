@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.bukkit;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStartingEvent;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppedEvent;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppingEvent;
-import dev.neuralnexus.taterlib.bukkit.commands.BukkitTaterLibCommand;
+import dev.neuralnexus.taterlib.bukkit.command.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
@@ -50,6 +50,13 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
     @Override
     public void registerEventListeners() {
         PluginManager pluginManager = getServer().getPluginManager();
+
+        // Dropped Spigot support 1.19+
+//        if (CommodoreProvider.isSupported()) {
+//            Commodore commodore = CommodoreProvider.getCommodore(this);
+//            LiteralCommandNode<?> command = thing;
+//            commodore.register(getCommand(TaterLibCommand.getCommandName()), command, player -> true);
+//        }
 
         // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);

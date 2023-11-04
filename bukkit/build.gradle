@@ -2,6 +2,11 @@ plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
+repositories {
+    // CommandAPI
+    maven { url = "https://repo.codemc.org/repository/maven-public/" }
+}
+
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
 
@@ -10,23 +15,35 @@ dependencies {
 
     // Paper
     compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
+
+    // CommandAPI
+//    implementation('dev.jorel:commandapi-bukkit-shade:9.1.0')
 }
 
 java.disableAutoTargetJvm()
 
-processResources {
-    def props = [version: version]
-    inputs.properties(props)
-    filteringCharset('UTF-8')
-    filesMatching('plugin.yml') {
-        expand(props)
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            project_id             : project_id,
+            project_name           : project_name,
+            project_description    : project_description,
+            group_id               : group_id,
+            version                : version,
+            authors                : authors,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['plugin.yml']) {
+        expand replaceProperties + [project: project]
     }
 }
 
 shadowJar {
     dependencies {
         include(project(":common"))
+//        include(dependency("dev.jorel:commandapi-bukkit-shade:9.1.0"))
     }
+//    relocate("dev.jorel.commandapi", "${group_id}.${project_id}.commandapi")
 
     destinationDirectory = file('../target')
     archiveFileName = "${project_name}-bukkit-${version}.jar"

@@ -6,7 +6,7 @@
         "description": "${project_description}",
         "version": "${version}",
         "mcversion": "${minecraft_version}",
-        "url": "${display_url}",
+        "url": "${homepage_url}",
         "updateUrl": "${update_json_url}",
         "authorList": ["${authors}"],
         "credits": "${authors}",

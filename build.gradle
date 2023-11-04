@@ -17,6 +17,12 @@ subprojects {
     repositories {
         mavenCentral()
 
+        // Minecraft
+        maven {
+            name = "minecraft-repo"
+            url = "https://libraries.minecraft.net/"
+        }
+
         // Bukkit/Bungee
         maven {
             name = "spigotmc-repo"

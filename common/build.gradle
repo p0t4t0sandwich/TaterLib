@@ -51,21 +51,21 @@ shadowJar {
         include(dependency("org.slf4j:slf4j-simple:1.7.32"))
     }
     // YAML
-    relocate('dev.dejvokep', 'dev.neuralnexus.taterlib.lib.dejvokep')
+    relocate('dev.dejvokep', "${group_id}.${project_id}.lib.dejvokep")
 
     // MySQL
-    relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterlib.lib.hikari')
-    relocate('com.mysql', 'dev.neuralnexus.taterlib.lib.mysql')
+    relocate('com.zaxxer.hikari', "${group_id}.${project_id}.lib.hikari")
+    relocate('com.mysql', "${group_id}.${project_id}.lib.mysql")
 
     // MongoDB
-    relocate('com.mongodb', 'dev.neuralnexus.taterlib.lib.mongodb')
-    relocate('org.bson', 'dev.neuralnexus.taterlib.lib.bson')
+    relocate('com.mongodb', "${group_id}.${project_id}.lib.mongodb")
+    relocate('org.bson', "${group_id}.${project_id}.lib.bson")
 
     // Gson
-    relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')
+    relocate('com.google.gson', "${group_id}.${project_id}.lib.gson")
 
     // Logging
-    relocate('org.slf4j', 'dev.neuralnexus.taterlib.lib.slf4j')
+    relocate('org.slf4j', "${group_id}.${project_id}.lib.slf4j")
 
     destinationDirectory = file('../target')
     archiveFileName = "${project_name}-common-${version}.jar"

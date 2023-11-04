@@ -1,10 +1,10 @@
-name: TaterLib
+name: '${project_name}'
 version: '${version}'
-author: p0t4t0sandwich
-description: A cross API code library for various generalizations used in the Tater* plugins
-main: dev.neuralnexus.taterlib.bukkit.BungeeTaterLibPlugin
+author: '${authors}'
+description: '${project_description}'
+main: '${group_id}.${project_id}.bungee.Bungee${project_name}Plugin'
 depends: []
-softDepends: [LuckPerms]
+softdepends: [LuckPerms]
 commands:
   taterlib:
     description: TaterLib command
