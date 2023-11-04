@@ -20,43 +20,39 @@ import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppedEvent
 import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.logger.FabricLogger;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
+import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.server.MinecraftServer;
 import org.slf4j.LoggerFactory;
 
 /**
  * The TaterLib Fabric plugin.
  */
-public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterLibPlugin {
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new FabricLogger( "[TaterLib] ", LoggerFactory.getLogger(Constants.PROJECT_ID));
-    }
+public class FabricTaterLibPlugin implements DedicatedServerModInitializer, TaterLibPlugin {
+    public static MinecraftServer server;
 
-    /**
-     * @inheritDoc
-     */
     @Override
-    public void registerHooks() {
+    public void onInitializeServer() {
+        // Initialize plugin data
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
+        pluginStart(this, new FabricLogger( "[" + Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(Constants.PROJECT_ID)));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Fabric";
+        FabricLoader.getInstance().getModContainer("minecraft").ifPresent(modContainer ->
+                TaterLib.minecraftVersion = modContainer.getMetadata().getVersion().getFriendlyString());
+
         // Register LuckPerms hook
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             if (FabricLoader.getInstance().isModLoaded("luckperms")) {
-                useLogger("LuckPerms detected, enabling LuckPerms hook.");
+                TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
                 TaterLib.addHook("luckperms", new LuckPermsHook());
             }
         });
-    }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {
         // Register Fabric API command events
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, dedicated)));
 
@@ -81,16 +77,5 @@ public class FabricTaterLibPlugin extends TemplateFabricPlugin implements TaterL
         FabricPlayerEvents.DEATH.register((player, source) -> PlayerEvents.DEATH.invoke(new FabricPlayerDeathEvent(player, source)));
         FabricPlayerEvents.MESSAGE.register((player, message, ci) -> PlayerEvents.MESSAGE.invoke(new FabricPlayerMessageEvent(player, message, ci)));
         FabricPlayerEvents.RESPAWN.register(((player, alive) -> PlayerEvents.RESPAWN.invoke(new FabricPlayerRespawnEvent(player, alive))));
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void onInitializeServer() {
-        // Initialize plugin data
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
-        pluginStart();
     }
 }

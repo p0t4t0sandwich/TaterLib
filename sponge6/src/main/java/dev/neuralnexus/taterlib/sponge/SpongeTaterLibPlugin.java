@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.sponge;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
 import dev.neuralnexus.taterlib.sponge.commands.SpongeTaterLibCommand;
@@ -20,13 +19,16 @@ import org.spongepowered.api.plugin.PluginContainer;
 import com.google.inject.Inject;
 import org.slf4j.Logger;
 
+/**
+ * The TaterLib Sponge plugin.
+ */
 @Plugin(
         id = Constants.PROJECT_ID,
         name = Constants.PROJECT_NAME,
         version = Constants.PROJECT_VERSION,
         description = Constants.PROJECT_DESCRIPTION
 )
-public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterLibPlugin {
+public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Inject
     private Logger logger;
 
@@ -44,58 +46,36 @@ public class SpongeTaterLibPlugin extends TemplateSpongePlugin implements TaterL
     }
 
     /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new SpongeLogger(logger);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerHooks() {
-        // Register LuckPerms hook
-        if (Sponge.getPluginManager().isLoaded("luckperms")) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
-        }
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {
-        EventManager eventManager = Sponge.getEventManager();
-
-        // Register entity event listeners
-        eventManager.registerListeners(this.container, new SpongeEntityListener());
-
-        // Register player event listeners
-        eventManager.registerListeners(this.container, new SpongePlayerListener());
-
-        // Register server event listeners
-        eventManager.registerListeners(this.container, new SpongeServerListener());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {
-        new SpongeTaterLibCommand().onRegisterCommands(container);
-    }
-
-    /**
      * Fired when the server starts.
      * @param event The event
      */
     @Listener
     public void onServerStarting(GameStartedServerEvent event) {
         instance = this;
-        pluginStart();
+        pluginStart(this, new SpongeLogger(logger));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Sponge";
+        TaterLib.minecraftVersion = Sponge.getPlatform().getMinecraftVersion().getName();
+
+        // Register LuckPerms hook
+        if (Sponge.getPluginManager().isLoaded("luckperms")) {
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.addHook("luckperms", new LuckPermsHook());
+
+            // Register commands
+            new SpongeTaterLibCommand().onRegisterCommands(container);
+
+            EventManager eventManager = Sponge.getEventManager();
+
+            // Register entity event listeners
+            eventManager.registerListeners(this.container, new SpongeEntityListener());
+
+            // Register player event listeners
+            eventManager.registerListeners(this.container, new SpongePlayerListener());
+
+            // Register server event listeners
+            eventManager.registerListeners(this.container, new SpongeServerListener());
+        }
     }
 
     /**

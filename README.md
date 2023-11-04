@@ -84,7 +84,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.1-SNAPSHOT
+### 1.1.0-R0.2-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -103,3 +103,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added the ability to set a player's prefix/suffix
 - Added numerical permission checks to `Player` for Forge/Fabric
 - Abstracted Brigadier commands
+- Simplified Plugin abstractions so depending on TaterLib is easier

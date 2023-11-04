@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.forge;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
@@ -17,39 +16,34 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import org.apache.logging.log4j.LogManager;
+
+import java.lang.reflect.Field;
 
 /**
  * The TaterLib Forge plugin.
  */
 @Mod(Constants.PROJECT_ID)
-public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLibPlugin {
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new ForgeLogger(LogManager.getLogger());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerHooks() {
-        // Register LuckPerms hook
-        if (ModList.get().isLoaded("luckperms")) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
-        }
-    }
-
+public class ForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
+        pluginStart(this, new ForgeLogger(LogManager.getLogger()));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Forge";
+        try {
+            Field mcVersionField = FMLLoader.class.getDeclaredField("mcVersion");
+            mcVersionField.setAccessible(true);
+            TaterLib.minecraftVersion = (String) mcVersionField.get(null);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -70,7 +64,6 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
         modEventBus.addListener(this::commonSetup);
 
         TaterLib.setRegisterChannels(ModMessages::addChannels);
-        pluginStart();
     }
 
     /**
@@ -80,6 +73,19 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
     private void commonSetup(final FMLCommonSetupEvent event) {
         ModMessages.register();
         ModMessages.clearQueue();
+    }
+
+    /**
+     * Called when the server is starting.
+     * @param event The event.
+     */
+    @SubscribeEvent
+    public void onServerStarted(FMLServerStartedEvent event) {
+        // Register LuckPerms hook
+        if (ModList.get().isLoaded("luckperms")) {
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.addHook("luckperms", new LuckPermsHook());
+        }
     }
 
     /**

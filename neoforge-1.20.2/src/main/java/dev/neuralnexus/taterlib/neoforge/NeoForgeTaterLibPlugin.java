@@ -4,7 +4,6 @@ import com.mojang.logging.LogUtils;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
@@ -18,38 +17,25 @@ import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /**
  * The TaterLib NeoForge plugin.
  */
 @Mod(Constants.PROJECT_ID)
-public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements TaterLibPlugin {
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new NeoForgeLogger(LogUtils.getLogger());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerHooks() {
-        // Register LuckPerms hook
-        if (ModList.get().isLoaded("luckperms")) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
-        }
-    }
-
+public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
     public NeoForgeTaterLibPlugin() {
+        pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Forge";
+        TaterLib.minecraftVersion = FMLLoader.versionInfo().mcVersion();
+
         // Register server starting/stopping events
         NeoForge.EVENT_BUS.register(this);
 
@@ -70,7 +56,6 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
         modEventBus.addListener(this::commonSetup);
 
         TaterLib.setRegisterChannels(ModMessages::addChannels);
-        pluginStart();
     }
 
     /**
@@ -80,6 +65,19 @@ public class NeoForgeTaterLibPlugin extends TemplateNeoForgePlugin implements Ta
     private void commonSetup(final FMLCommonSetupEvent event) {
         ModMessages.register();
         ModMessages.clearQueue();
+    }
+
+    /**
+     * Called when the server is starting.
+     * @param event The event.
+     */
+    @SubscribeEvent
+    public void onServerStarted(ServerStartedEvent event) {
+        // Register LuckPerms hook
+        if (ModList.get().isLoaded("luckperms")) {
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.addHook("luckperms", new LuckPermsHook());
+        }
     }
 
     /**

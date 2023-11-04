@@ -1,26 +1,16 @@
 package dev.neuralnexus.taterlib.common;
 
-public interface TaterLibPlugin extends TemplatePlugin {
+import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
+
+public interface TaterLibPlugin extends Plugin {
     /**
      * Start the plugin.
      */
-    default void pluginStart() {
+    default void pluginStart(Plugin plugin, AbstractLogger logger) {
         try {
-            useLogger("TaterLib is running on " + getServerType() + " " + getServerVersion() + "!");
-
-            // Start the TaterLib
-            TaterLib.start(pluginConfigPath(), pluginLogger());
-
-            // Register hooks
-            registerHooks();
-
-            // Register event listeners
-            registerEventListeners();
-
-            // Register commands
-            registerCommands();
+            logger.info("TaterLib is running on " + TaterLib.serverType + " " + TaterLib.minecraftVersion + "!");
+            TaterLib.start(plugin, logger);
         } catch (Exception e) {
-            System.err.println(e);
             e.printStackTrace();
         }
     }
@@ -31,7 +21,7 @@ public interface TaterLibPlugin extends TemplatePlugin {
     default void pluginStop() {
         try {
             TaterLib.stop();
-            useLogger("TaterLib has been disabled!");
+            TaterLib.logger.info("TaterLib has been disabled!");
         } catch (Exception e) {
             e.printStackTrace();
         }

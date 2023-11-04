@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.forge;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
@@ -14,6 +13,7 @@ import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.command.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
+import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -32,61 +32,16 @@ import org.apache.logging.log4j.LogManager;
         serverSideOnly = true,
         acceptableRemoteVersions= "*"
 )
-public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLibPlugin {
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new ForgeLogger(LogManager.getLogger());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerHooks() {
-        // Register LuckPerms hook
-        if (Loader.isModLoaded("luckperms")) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
-        }
-    }
-
-    /**
-     * Called when the server is starting.
-     * @param event The event.
-     */
-    @Mod.EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
-        registerHooks();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {}
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {}
-
-    /**
-     * Registers the TaterLib command.
-     * @param event The register commands event.
-     */
-    @Mod.EventHandler
-    public static void registerCommand(FMLServerStartingEvent event) {
-        event.registerServerCommand(new ForgeTaterLibCommand());
-    }
-
+public class ForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
+        pluginStart(this, new ForgeLogger(LogManager.getLogger()));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Forge";
+        TaterLib.minecraftVersion = ForgeVersion.mcVersion;
+
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -98,8 +53,28 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
 
         // Register server event listeners
 //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+    }
 
-        pluginStart();
+    /**
+     * Called when the server is starting.
+     * @param event The event.
+     */
+    @Mod.EventHandler
+    public void onServerStarted(FMLServerStartedEvent event) {
+        // Register LuckPerms hook
+        if (Loader.isModLoaded("luckperms")) {
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.addHook("luckperms", new LuckPermsHook());
+        }
+    }
+
+    /**
+     * Registers the TaterLib command.
+     * @param event The register commands event.
+     */
+    @Mod.EventHandler
+    public static void registerCommand(FMLServerStartingEvent event) {
+        event.registerServerCommand(new ForgeTaterLibCommand());
     }
 
     /**
@@ -107,7 +82,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      * @param event The event.
      */
     @Mod.EventHandler
-    public void onServerStopped2(FMLServerStoppedEvent event) {
+    public void onServerStopped(FMLServerStoppedEvent event) {
         pluginStop();
     }
 
@@ -146,7 +121,7 @@ public class ForgeTaterLibPlugin extends TemplateForgePlugin implements TaterLib
      * @param event The server stopped event
      */
     @Mod.EventHandler
-    public void onServerStopped(FMLServerStoppedEvent event) {
+    public void onServerStopped2(FMLServerStoppedEvent event) {
         ServerEvents.STOPPED.invoke(new ForgeServerStoppedEvent(event));
     }
 }

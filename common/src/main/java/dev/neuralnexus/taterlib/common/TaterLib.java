@@ -13,18 +13,16 @@ import java.util.function.Consumer;
 
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
+    public static Plugin plugin;
     public static AbstractLogger logger;
-    private static String configPath;
+    public static String configFolder;
+    public static String minecraftVersion = "Unknown";
+    public static String serverType = "Unknown";
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
     private static MessageRelay messageRelay;
     private static final HashMap<String, Object> hooks = new HashMap<>();
     public static Consumer<Set<String>> registerChannels = (channels) -> {};
-
-    /**
-     * Constructor for the TaterLib class.
-     */
-    public TaterLib() {}
 
     /**
      * Getter for the singleton instance of the TaterLib class.
@@ -36,10 +34,11 @@ public class TaterLib {
 
     /**
      * Start TaterLib
-     * @param configPath The path to the config file
+     * @param plugin The plugin
+     * @param logger The logger
      */
-    public static void start(String configPath, AbstractLogger logger) {
-        TaterLib.configPath = configPath;
+    public static void start(Plugin plugin, AbstractLogger logger) {
+        TaterLib.plugin = plugin;
         TaterLib.logger = logger;
 
         if (STARTED) {
@@ -66,7 +65,7 @@ public class TaterLib {
      * Start TaterLib
      */
     public static void start() {
-        start(configPath, logger);
+        start(plugin, logger);
     }
 
     /**
@@ -97,7 +96,7 @@ public class TaterLib {
         stop();
 
         // Start
-        start(configPath, logger);
+        start(plugin, logger);
 
         logger.info("TaterLib has been reloaded!");
     }

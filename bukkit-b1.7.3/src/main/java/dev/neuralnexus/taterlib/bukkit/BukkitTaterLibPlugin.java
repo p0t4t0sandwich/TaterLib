@@ -7,18 +7,22 @@ import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppingEven
 import dev.neuralnexus.taterlib.bukkit.command.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
+import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * The TaterLib Bukkit plugin.
  */
-public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterLibPlugin {
+public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     private static BukkitTaterLibPlugin instance;
 
     /**
@@ -29,23 +33,23 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         return instance;
     }
 
-    /**
-     * @inheritDoc
-     */
     @Override
-    public void registerHooks() {
+    public void onEnable() {
+        instance = this;
+        pluginStart(this, new BukkitLogger(Bukkit.getLogger()));
+        TaterLib.configFolder = "plugins";
+        TaterLib.serverType = Utils.getBukkitServerType();
+        TaterLib.minecraftVersion = getServer().getVersion();
+
         // Register LuckPerms hook
         if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
             TaterLib.addHook("luckperms", new LuckPermsHook());
         }
-    }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {
+        // Register commands
+        getCommand(TaterLibCommand.getCommandName()).setExecutor(new BukkitTaterLibCommand());
+
         PluginManager pluginManager = getServer().getPluginManager();
 
         // Register entity listeners
@@ -64,26 +68,6 @@ public class BukkitTaterLibPlugin extends TemplateBukkitPlugin implements TaterL
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()), 5*20L);
     }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {
-        getCommand(TaterLibCommand.getCommandName()).setExecutor(new BukkitTaterLibCommand());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void onEnable() {
-        instance = this;
-        pluginStart();
-    }
-
-    /**
-     * @inheritDoc
-     */
     @Override
     public void onDisable() {
         // Run server stopping events

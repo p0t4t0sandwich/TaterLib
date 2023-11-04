@@ -8,7 +8,6 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -42,35 +41,42 @@ import java.time.Duration;
                 @Dependency(id = "luckperms", optional = true)
         }
 )
-public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements TaterLibPlugin {
+public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Inject private ProxyServer server;
     @Inject private Logger logger;
 
+    private static ProxyServer proxyServer;
+
     /**
-     * @inheritDoc
+     * Gets the proxy server.
+     * @return The proxy server.
      */
-    @Override
-    public AbstractLogger pluginLogger() {
-        return new VelocityLogger(logger);
+    public static ProxyServer getProxyServer() {
+        return proxyServer;
     }
 
     /**
-     * @inheritDoc
+     * Called when the proxy is initialized.
+     * @param event The event.
      */
-    @Override
-    public void registerHooks() {
+    @Subscribe
+    public void onProxyInitialization(ProxyInitializeEvent event) {
+        proxyServer = server;
+        pluginStart(this, new VelocityLogger(logger));
+        TaterLib.configFolder = "config";
+        TaterLib.serverType = "Velocity";
+        TaterLib.minecraftVersion = server.getVersion().getVersion();
+
         // Register LuckPerms hook
         if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
-            useLogger("LuckPerms detected, enabling LuckPerms hook.");
+            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
             TaterLib.addHook("luckperms", new LuckPermsHook());
         }
-    }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerEventListeners() {
+        // Register commands
+        CommandManager commandManager = server.getCommandManager();
+        commandManager.register(TaterLibCommand.getCommandName(), new VelocityTaterLibCommand());
+
         EventManager eventManager = server.getEventManager();
 
         // Register player listeners
@@ -82,26 +88,8 @@ public class VelocityTaterLibPlugin extends TemplateVelocityPlugin implements Ta
         // Register server listeners
         server.getScheduler().buildTask(this, () -> ServerEvents.STARTED.invoke(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
         eventManager.register(this, new VelocityServerListener());
-    }
 
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public void registerCommands() {
-        CommandManager commandManager = server.getCommandManager();
-        commandManager.register(TaterLibCommand.getCommandName(), new VelocityTaterLibCommand());
-    }
-
-    /**
-     * Called when the proxy is initialized.
-     * @param event The event.
-     */
-    @Subscribe
-    public void onProxyInitialization(ProxyInitializeEvent event) {
-        proxyServer = server;
         TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
-        pluginStart();
     }
 
     /**
