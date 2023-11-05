@@ -21,14 +21,19 @@ dependencies {
     compileOnly("org.bukkit:craftbukkit:${minecraft_version}-${craftbukkit_version}")
 }
 
-java.disableAutoTargetJvm()
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            project_id             : project_id,
+            project_name           : project_name,
+            project_description    : project_description,
+            group_id               : group_id,
+            version                : version,
+            authors                : authors,
+    ]
+    inputs.properties replaceProperties
 
-processResources {
-    def props = [version: version]
-    inputs.properties(props)
-    filteringCharset('UTF-8')
-    filesMatching('plugin.yml') {
-        expand(props)
+    filesMatching(['plugin.yml']) {
+        expand replaceProperties + [project: project]
     }
 }
 
