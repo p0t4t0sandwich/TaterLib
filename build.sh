@@ -332,6 +332,15 @@ SPONGE_VERSION=11
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
 neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
 
+# --------------------------- Build Main Artifact --------------------------------
+MC_VERSION=1.20.2
+FABRIC_VERSION=1.20.2
+FORGE_VERSION=1.20.2
+NEOFORGE_VERSION=1.20.2
+SPONGE_VERSION=11
+OUT_FILE=$PROJ_NAME-$VERSION
+neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
+
 # --------------------------- Cleanup --------------------------------
 cd ../
 rm -rf temp_build
