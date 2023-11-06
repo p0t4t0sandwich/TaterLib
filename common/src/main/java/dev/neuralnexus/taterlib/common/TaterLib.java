@@ -77,8 +77,11 @@ public class TaterLib {
             PlayerEvents.SERVER_SWITCH.register(PlayerListener::onServerSwitch);
 
             // Register commands
-            CommandEvents.REGISTER_COMMAND.register(CommandListener::onRegisterCommand);
-            CommandEvents.REGISTER_BRIGADIER_COMMAND.register(CommandListener::onRegisterBrigadierCommand);
+            if (TaterAPIProvider.get().isBrigadierSupported()) {
+                CommandEvents.REGISTER_BRIGADIER_COMMAND.register(CommandListener::onRegisterBrigadierCommand);
+            } else {
+                CommandEvents.REGISTER_COMMAND.register(CommandListener::onRegisterCommand);
+            }
         }
 
         instance.logger.info(Constants.PROJECT_NAME + " has been started!");

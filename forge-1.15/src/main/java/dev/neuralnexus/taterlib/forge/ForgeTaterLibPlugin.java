@@ -44,7 +44,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         }
         TaterAPIProvider.register(new TaterAPI.Data(
                 "config",
-                "Forge",
                 minecraftVersion
         ));
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));

@@ -12,9 +12,9 @@ import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -40,7 +40,6 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     public void onEnable() {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "plugins",
-                Utils.getBukkitServerType(),
                 getServer().getVersion()
         ));
         pluginStart(this, new BukkitLogger(getLogger()));
@@ -71,7 +70,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
         // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
-        if (Utils.isPaper()) {
+        if (api.serverType().equals(ServerType.PAPER)) {
             pluginManager.registerEvents(new PaperPlayerListener(), this);
         }
 

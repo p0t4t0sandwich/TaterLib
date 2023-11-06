@@ -30,7 +30,6 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "config",
-                "Sponge",
                 Sponge.platform().container(Platform.Component.GAME).metadata().version().toString()
         ));
         pluginStart(container, new SpongeLogger(logger));

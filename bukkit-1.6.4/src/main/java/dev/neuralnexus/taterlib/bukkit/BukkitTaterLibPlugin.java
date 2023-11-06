@@ -40,7 +40,6 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         pluginStart(this, new BukkitLogger(getLogger()));
         TaterAPIProvider.register(new TaterAPI.Data(
                 "plugins",
-                Utils.getBukkitServerType(),
                 getServer().getVersion()
         ));
         pluginStart(this, new BukkitLogger(getLogger()));

@@ -40,7 +40,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "config",
-                "Forge",
                 ForgeVersion.mcVersion
         ));
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));

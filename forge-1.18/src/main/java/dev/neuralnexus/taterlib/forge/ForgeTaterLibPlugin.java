@@ -34,7 +34,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "config",
-                "Forge",
                 FMLLoader.versionInfo().mcVersion()
         ));
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));

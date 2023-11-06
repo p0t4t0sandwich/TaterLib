@@ -1,5 +1,8 @@
 package dev.neuralnexus.taterlib.common.api;
 
+import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
@@ -27,7 +30,7 @@ public class TaterAPI {
      * Get Minecraft version
      * @return The Minecraft version
      */
-    public String minecraftVersion() {
+    public MinecraftVersion minecraftVersion() {
         return data.minecraftVersion;
     }
 
@@ -35,7 +38,7 @@ public class TaterAPI {
      * Get server type
      * @return The server type
      */
-    public String serverType() {
+    public ServerType serverType() {
         return data.serverType;
     }
 
@@ -81,19 +84,39 @@ public class TaterAPI {
     }
 
     /**
+     * Weather Brigadier is supported
+     * @return If Brigadier is supported
+     */
+    public boolean isBrigadierSupported() {
+        if (data.minecraftVersion.isAtLeast(MinecraftVersion.V1_13)) {
+            switch (data.serverType) {
+                case FORGE:
+                case NEOFORGE:
+                case GOLDENFORGE:
+                case FABRIC:
+                case QUILT:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Data used throughout the plugin.
      */
     public static class Data {
         public final HashMap<String, Object> hooks = new HashMap<>();
         public Consumer<Set<String>> registerChannels = (channels) -> {};
         public final String configFolder;
-        public final String minecraftVersion;
-        public final String serverType;
+        public final MinecraftVersion minecraftVersion;
+        public final ServerType serverType;
 
-        public Data(String configFolder, String minecraftVersion, String serverType) {
+        public Data(String configFolder, String minecraftVersion) {
             this.configFolder = configFolder;
-            this.minecraftVersion = minecraftVersion;
-            this.serverType = serverType;
+            this.minecraftVersion = MinecraftVersion.valueOf(minecraftVersion);
+            this.serverType = ServerType.getServerType();
         }
     }
 }

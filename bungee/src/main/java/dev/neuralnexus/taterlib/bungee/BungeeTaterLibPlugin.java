@@ -39,7 +39,6 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
     public void onEnable() {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "plugins",
-                "BungeeCord",
                 getProxy().getVersion()
         ));
         pluginStart(this, new BungeeLogger(getLogger()));

@@ -34,7 +34,6 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     public NeoForgeTaterLibPlugin() {
         TaterAPIProvider.register(new TaterAPI.Data(
                 "config",
-                "Forge",
                 FMLLoader.versionInfo().mcVersion()
         ));
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
