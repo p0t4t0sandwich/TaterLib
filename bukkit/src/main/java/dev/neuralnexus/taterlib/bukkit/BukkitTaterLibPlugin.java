@@ -64,7 +64,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
         // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
-        if (api.serverType().equals(ServerType.PAPER)) {
+        if (api.serverType().isPaperBased()) {
             pluginManager.registerEvents(new PaperPlayerListener(), this);
         }
 

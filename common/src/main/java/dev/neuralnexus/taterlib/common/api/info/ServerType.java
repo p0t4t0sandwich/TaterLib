@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.common.api.info;
 
+import java.util.Arrays;
+
 /**
  * Represents the type of server the server is running.
  */
@@ -172,6 +174,97 @@ public enum ServerType {
             return VANILLA;
         }
         return UNKNOWN;
+    }
+
+    /**
+     * Get the server type from a string
+     * @param serverType The server type
+     * @return The server type
+     */
+    public static ServerType from(String serverType) {
+        return Arrays.stream(ServerType.values()).filter(s -> s.toString().equalsIgnoreCase(serverType)).findFirst().orElse(UNKNOWN);
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(String... serverType) {
+        return Arrays.stream(serverType).anyMatch(this.name::equalsIgnoreCase);
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(ServerType... serverType) {
+        return Arrays.asList(serverType).contains(this);
+    }
+
+    /**
+     * Check if the server is running a Bukkit fork.
+     * @return True if the server is running a Bukkit fork, false otherwise.
+     */
+    public boolean isBukkitBased() {
+        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON, SPIGOT, PAPER, FOLIA, PURPUR, PUFFERFISH);
+    }
+
+    /**
+     * Check if the server is running a Spigot fork.
+     * @return True if the server is running a Spigot fork, false otherwise.
+     */
+    public boolean isSpigotBased() {
+        return this.is(SPIGOT, PAPER, FOLIA, PURPUR, PUFFERFISH);
+    }
+
+    /**
+     * Check if the server is running a fork of Paper.
+     * @return True if the server is running a fork of Paper, false otherwise.
+     */
+    public boolean isPaperBased() {
+        return this.is(PAPER, FOLIA, PURPUR, PUFFERFISH);
+    }
+
+    /**
+     * Check if the server is running a fork of BungeeCord.
+     * @return True if the server is running a fork of BungeeCord, false otherwise.
+     */
+    public boolean isBungeeCordBased() {
+        return this.is(BUNGEECORD, WATERFALL, TRAVERTINE, HEXACORD);
+    }
+
+    /**
+     * Check if the server is running a fork of Forge.
+     * @return True if the server is running a fork of Forge, false otherwise.
+     */
+    public boolean isForgeBased() {
+        return this.is(FORGE, NEOFORGE, GOLDENFORGE, CAULDRON, KCUALDRON, THERMOS, CRUCIBLE, MCPC_PLUS_PLUS, MOHIST, MAGMA, ARCLIGHT);
+    }
+
+    /**
+     * Check if the server is running a fork of Fabric.
+     * @return True if the server is running a fork of Fabric, false otherwise.
+     */
+    public boolean isFabricBased() {
+        return this.is(FABRIC, QUILT, CARDBOARD, BANNER);
+    }
+
+    /**
+     * Check if the server is running a fork of Sponge.
+     * @return True if the server is running a fork of Sponge, false otherwise.
+     */
+    public boolean isSpongeBased() {
+        return this.is(SPONGE);
+    }
+
+    /**
+     * Check if the server is running a fork of Velocity.
+     * @return True if the server is running a fork of Velocity, false otherwise.
+     */
+    public boolean isVelocityBased() {
+        return this.is(VELOCITY);
     }
 
     /**
