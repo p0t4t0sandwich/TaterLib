@@ -14,8 +14,8 @@ import java.util.function.Consumer;
 public class TaterAPI {
     private final Data data;
 
-    public TaterAPI(Data data) {
-        this.data = data;
+    public TaterAPI(String configFolder, String minecraftVersion) {
+        this.data = new Data(configFolder, minecraftVersion);
     }
 
     /**
@@ -106,14 +106,14 @@ public class TaterAPI {
     /**
      * Data used throughout the plugin.
      */
-    public static class Data {
-        public final HashMap<String, Object> hooks = new HashMap<>();
-        public Consumer<Set<String>> registerChannels = (channels) -> {};
-        public final String configFolder;
-        public final MinecraftVersion minecraftVersion;
-        public final ServerType serverType;
+    static class Data {
+        final HashMap<String, Object> hooks = new HashMap<>();
+        Consumer<Set<String>> registerChannels = (channels) -> {};
+        final String configFolder;
+        final MinecraftVersion minecraftVersion;
+        final ServerType serverType;
 
-        public Data(String configFolder, String minecraftVersion) {
+        Data(String configFolder, String minecraftVersion) {
             this.configFolder = configFolder;
             this.minecraftVersion = MinecraftVersion.valueOf(minecraftVersion);
             this.serverType = ServerType.getServerType();

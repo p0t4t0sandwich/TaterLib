@@ -28,10 +28,7 @@ import org.spongepowered.plugin.builtin.jvm.Plugin;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Inject
     public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                Sponge.platform().container(Platform.Component.GAME).metadata().version().toString()
-        ));
+        TaterAPIProvider.register("config", Sponge.platform().container(Platform.Component.GAME).metadata().version().toString());
         pluginStart(container, new SpongeLogger(logger));
         TaterAPI api = TaterAPIProvider.get();
 

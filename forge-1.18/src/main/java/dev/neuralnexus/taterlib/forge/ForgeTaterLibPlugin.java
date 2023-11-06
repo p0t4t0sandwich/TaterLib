@@ -32,10 +32,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                FMLLoader.versionInfo().mcVersion()
-        ));
+        TaterAPIProvider.register("config", FMLLoader.versionInfo().mcVersion());
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
 

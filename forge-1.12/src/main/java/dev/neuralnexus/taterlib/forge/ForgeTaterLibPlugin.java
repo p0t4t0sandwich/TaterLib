@@ -38,10 +38,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                ForgeVersion.mcVersion
-        ));
+        TaterAPIProvider.register("config", ForgeVersion.mcVersion);
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
 
         // Register server starting/stopping events

@@ -19,13 +19,14 @@ public class TaterAPIProvider {
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     * @param data: The instance of TaterAPI
+     * @param configFolder The config folder
+     * @param minecraftVersion The Minecraft version
      */
-    public static void register(TaterAPI.Data data) {
+    public static void register(String configFolder, String minecraftVersion) {
         if (TaterAPIProvider.instance != null) {
             throw new IllegalStateException("TaterAPI has already been registered!");
         }
-        TaterAPIProvider.instance = new TaterAPI(data);
+        TaterAPIProvider.instance = new TaterAPI(configFolder, minecraftVersion);
     }
 
     /**

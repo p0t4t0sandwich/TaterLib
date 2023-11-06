@@ -36,10 +36,8 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
 
     @Override
     public void onInitializeServer() {
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString()
-        ));
+        TaterAPIProvider.register("config",
+                FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get();
 

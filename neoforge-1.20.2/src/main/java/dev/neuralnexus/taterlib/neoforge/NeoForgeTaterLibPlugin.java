@@ -32,10 +32,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
      * Called when the Forge mod is initializing.
      */
     public NeoForgeTaterLibPlugin() {
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                FMLLoader.versionInfo().mcVersion()
-        ));
+        TaterAPIProvider.register("config", FMLLoader.versionInfo().mcVersion());
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
 

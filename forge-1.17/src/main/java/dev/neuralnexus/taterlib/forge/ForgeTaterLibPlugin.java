@@ -42,10 +42,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         } catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
-        TaterAPIProvider.register(new TaterAPI.Data(
-                "config",
-                minecraftVersion
-        ));
+        TaterAPIProvider.register("config", minecraftVersion);
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
 

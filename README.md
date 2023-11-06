@@ -104,4 +104,8 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added the ability to set a player's prefix/suffix
 - Added numerical permission checks to `Player` for Forge/Fabric
 - Abstracted Brigadier commands
+- Abstracted simple commands
 - Simplified Plugin abstractions so depending on TaterLib is easier
+- Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
+- Added MinecraftVersion and ServerType enums.
+- Created `TaterAPI.isBrigadierSupported`
