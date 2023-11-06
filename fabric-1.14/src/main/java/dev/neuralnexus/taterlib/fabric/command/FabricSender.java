@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.ServerCommandSource;
 
 import java.util.UUID;
@@ -32,6 +33,14 @@ public class FabricSender implements Sender {
     @Override
     public String getName() {
         return source.getName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void sendMessage(String message) {
+        source.sendFeedback(new TranslatableComponent(message), false);
     }
 
     /**

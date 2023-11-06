@@ -11,7 +11,7 @@ import net.kyori.adventure.text.Component;
 import java.util.UUID;
 
 /**
- * Abstracts a Velocity player to a Player.
+ * Velocity implementation of {@link Player}.
  */
 public class VelocityPlayer implements Player {
     private final com.velocitypowered.api.proxy.Player player;

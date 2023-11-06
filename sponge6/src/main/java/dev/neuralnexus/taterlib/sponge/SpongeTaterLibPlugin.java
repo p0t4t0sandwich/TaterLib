@@ -1,40 +1,36 @@
 package dev.neuralnexus.taterlib.sponge;
 
-import dev.neuralnexus.taterlib.common.Constants;
+import com.google.inject.Inject;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
-import dev.neuralnexus.taterlib.sponge.commands.SpongeTaterLibCommand;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.sponge.event.api.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
+import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
+import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
-import com.google.inject.Inject;
-import org.slf4j.Logger;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * The TaterLib Sponge plugin.
  */
 @Plugin(
-        id = Constants.PROJECT_ID,
-        name = Constants.PROJECT_NAME,
-        version = Constants.PROJECT_VERSION,
-        description = Constants.PROJECT_DESCRIPTION
+        id = TaterLib.Constants.PROJECT_ID,
+        name = TaterLib.Constants.PROJECT_NAME,
+        version = TaterLib.Constants.PROJECT_VERSION,
+        description = TaterLib.Constants.PROJECT_DESCRIPTION
 )
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    @Inject
-    private Logger logger;
-
-    @Inject
-    private PluginContainer container;
-
     private static SpongeTaterLibPlugin instance;
 
     /**
@@ -45,37 +41,28 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         return instance;
     }
 
-    /**
-     * Fired when the server starts.
-     * @param event The event
-     */
-    @Listener
-    public void onServerStarting(GameStartedServerEvent event) {
+    @Inject
+    public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
+        TaterAPIProvider.register("config", Sponge.getPlatform().getMinecraftVersion().getName());
+        pluginStart(container, new SpongeLogger(logger));
+        TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded(Sponge.getPluginManager()::isLoaded);
+
         instance = this;
-        pluginStart(this, new SpongeLogger(logger));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Sponge";
-        TaterLib.minecraftVersion = Sponge.getPlatform().getMinecraftVersion().getName();
 
-        // Register LuckPerms hook
-        if (Sponge.getPluginManager().isLoaded("luckperms")) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+        // Register commands
+        Sponge.getScheduler().createTaskBuilder().delay(10, TimeUnit.SECONDS).execute(() -> CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent())).submit(container);
 
-            // Register commands
-            new SpongeTaterLibCommand().onRegisterCommands(container);
+        EventManager eventManager = Sponge.getEventManager();
 
-            EventManager eventManager = Sponge.getEventManager();
+        // Register entity event listeners
+        eventManager.registerListeners(container, new SpongeEntityListener());
 
-            // Register entity event listeners
-            eventManager.registerListeners(this.container, new SpongeEntityListener());
+        // Register player event listeners
+        eventManager.registerListeners(container, new SpongePlayerListener());
 
-            // Register player event listeners
-            eventManager.registerListeners(this.container, new SpongePlayerListener());
-
-            // Register server event listeners
-            eventManager.registerListeners(this.container, new SpongeServerListener());
-        }
+        // Register server event listeners
+        eventManager.registerListeners(container, new SpongeServerListener());
     }
 
     /**

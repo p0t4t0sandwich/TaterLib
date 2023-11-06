@@ -16,7 +16,7 @@ import org.spongepowered.api.network.channel.raw.RawDataChannel;
 import java.util.UUID;
 
 /**
- * Abstracts a Sponge player to a Player.
+ * Sponge implementation of {@link Player}.
  */
 public class SpongePlayer implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;

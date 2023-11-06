@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
@@ -14,7 +15,7 @@ import net.minecraft.world.level.Level;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to a Player.
+ * NeoForge implementation of {@link Player}.
  */
 public class NeoForgePlayer implements Player {
     private final net.minecraft.world.entity.player.Player player;
@@ -138,7 +139,7 @@ public class NeoForgePlayer implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!TaterLib.isHooked("luckperms")) return player.hasPermissions(4);
+        if (!TaterAPIProvider.get().isHooked("luckperms")) return player.hasPermissions(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
         return luckPermsHook.playerHasPermission(getUUID(), permission);
     }

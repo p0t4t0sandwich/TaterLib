@@ -1,7 +1,8 @@
 package dev.neuralnexus.taterlib.common.listeners.command;
 
-import com.mojang.brigadier.Command;
-import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
@@ -15,10 +16,11 @@ import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
  */
 public class BrigadierHelperClass {
     public static void onRegisterBrigadierCommand(BrigadierCommandRegisterEvent event) {
-        event.registerCommand(literal(TaterLibCommand.getCommandName())
+        Command command = new TaterLibCommand();
+        event.registerCommand(literal(command.getName())
                 .requires(source -> {
                     Sender sender = event.getSender(source);
-                    return sender.hasPermission(event.isDedicated() ? (TaterLib.isHooked("luckperms") ? 0 : 4) : 0);
+                    return sender.hasPermission(event.isDedicated() ? (TaterAPIProvider.get().isHooked("luckperms") ? 0 : 4) : 0);
                 })
                 .then(argument("args", greedyString())
                         .executes(context -> {
@@ -31,8 +33,7 @@ public class BrigadierHelperClass {
                                 if (isPlayer) {
                                     sender = event.getPlayer(source);
                                 }
-                                TaterLibCommand.executeCommand(sender, isPlayer, args);
-                                return Command.SINGLE_SUCCESS;
+                                return command.execute(sender, command.getName(), args) ? 1 : 0;
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 return 0;

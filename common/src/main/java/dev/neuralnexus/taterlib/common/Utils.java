@@ -54,11 +54,11 @@ public class Utils {
     }
 
     /**
-     * A parser to convert Minecraft's color codes to the terminal's ANSII color codes.
+     * A parser to convert Minecraft's color codes to the terminal's ANSI color codes.
      * @param s The string to parse.
      * @return The parsed string.
      */
-    public static String ansiiParser(String s) {
+    public static String ansiParser(String s) {
         // Colors
 
         // Black
@@ -109,119 +109,5 @@ public class Utils {
                 // Reset
                 .replaceAll("§r", "\u001b[0m")
                 + "\u001b[0m";
-    }
-
-    /**
-     * Check if the server is running CraftBukkit.
-     * @return True if the server is running a fork of CraftBukkit, false otherwise.
-     */
-    public static boolean isCraftBukkit() {
-        try {
-            Class.forName("org.bukkit.craftbukkit.Main");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Check if the server is running Spigot.
-     * @return True if the server is running a fork of Spigot, false otherwise.
-     */
-    public static boolean isSpigot() {
-        try {
-            Class.forName("org.spigotmc.CustomTimingsHandler");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Check if the server is running Paper.
-     * @return True if the server is running a fork of Paper, false otherwise.
-     */
-    public static boolean isPaper() {
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-            return true;
-        } catch (ClassNotFoundException ignored) {}
-        try {
-            Class.forName("io.papermc.paperclip.Paperclip");
-            return true;
-        } catch (ClassNotFoundException ignored) {}
-        return false;
-    }
-
-    /**
-     * Check if the server is running Folia.
-     * @return True if the server is running Folia, false otherwise.
-     */
-    public static boolean isFolia() {
-        try {
-            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Check if the server is running Magma.
-     * @return True if the server is running Magma, false otherwise.
-     */
-    public static boolean isMagma() {
-        try {
-            Class.forName("org.magmafoundation.magma.Magma");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Check if the server is running Mohist.
-     * @return True if the server is running Mohist, false otherwise.
-     */
-    public static boolean isMohist() {
-        try {
-            Class.forName("org.mohistmc.MohistMC");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Check if the server is running Arclight.
-     * @return True if the server is running Arclight, false otherwise.
-     */
-    public static boolean isArclight() {
-        try {
-            Class.forName("io.izzel.arclight.common.ArclightVersion");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
-
-    public static String getBukkitServerType() {
-        if (isMagma()) {
-            return "Magma";
-        } else if (isMohist()) {
-            return "Mohist";
-        } else if (isArclight()) {
-            return "Arclight";
-        } else if (isFolia()) {
-            return "Folia";
-        } else if (isPaper()) {
-            return "Paper";
-        } else if (isSpigot()) {
-            return "Spigot";
-        } else if (isCraftBukkit()) {
-            return "CraftBukkit";
-        } else {
-            return "Unknown";
-        }
     }
 }

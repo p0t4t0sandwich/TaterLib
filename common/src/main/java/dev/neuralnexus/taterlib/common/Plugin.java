@@ -9,7 +9,7 @@ public interface Plugin {
     /**
      * Start the plugin.
      */
-    void pluginStart(Plugin plugin, AbstractLogger logger);
+    void pluginStart(Object plugin, AbstractLogger logger);
 
     /**
      * Stop the plugin.

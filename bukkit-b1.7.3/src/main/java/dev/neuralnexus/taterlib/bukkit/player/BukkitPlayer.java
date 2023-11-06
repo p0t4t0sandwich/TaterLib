@@ -11,7 +11,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit player to a Player.
+ * Bukkit implementation of {@link Player}.
  */
 public class BukkitPlayer implements Player {
     private final org.bukkit.entity.Player player;

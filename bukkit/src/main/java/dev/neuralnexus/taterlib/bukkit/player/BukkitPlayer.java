@@ -11,7 +11,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit player to a Player.
+ * Bukkit implementation of {@link Player}.
  */
 public class BukkitPlayer implements Player {
     private final org.bukkit.entity.Player player;
@@ -132,8 +132,8 @@ public class BukkitPlayer implements Player {
         player.sendPluginMessage(plugin, channel, data);
     }
 
-    public void sendPluginMessage(Plugin plugin, String channel, byte[] data) {
-        player.sendPluginMessage(plugin, channel, data);
+    public void sendPluginMessage(Plugin source, String channel, byte[] data) {
+        player.sendPluginMessage(source, channel, data);
     }
 
     /**

@@ -1,70 +1,72 @@
 package dev.neuralnexus.taterlib.common.command;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
 import dev.neuralnexus.taterlib.common.player.Player;
 
-import static dev.neuralnexus.taterlib.common.Utils.ansiiParser;
+public class TaterLibCommand implements Command {
+    private String name = "taterlib";
 
-
-public interface TaterLibCommand {
-    static String getCommandName() {
-        return "taterlib";
+    public void setName(String name) {
+        this.name = name;
     }
 
-    static String getCommandDescription() {
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
         return "TaterLib command.";
     }
 
-    static String permissionBuilder(String[] args) {
-        if (args.length == 0) {
-            return "taterlib.command";
-        } else if (args.length == 1) {
-            return "taterlib.command." + args[0].toLowerCase();
-        } else if (args.length == 2) {
-            return "taterlib.command." + args[0].toLowerCase() + "." + args[1].toLowerCase();
-        } else {
-            return "taterlib.command." + args[0].toLowerCase() + "." + args[1].toLowerCase() + "." + args[2].toLowerCase();
-        }
+    @Override
+    public String getUsage() {
+        return "&cUsage: /taterlib <reload|version>";
     }
 
-    static String executeCommand(String[] args) {
+    @Override
+    public String getPermission() {
+        return "taterlib.command";
+    }
+
+    @Override
+    public String execute(String[] args) {
         String text;
         if (args.length == 0) {
-            return "&cUsage: /taterlib <reload|version>";
+            return getUsage();
         }
         switch (args[0].toLowerCase()) {
             case "reload":
                 try {
-                    // Try to reload the plugin
                     TaterLib.reload();
                     text = "&aReloaded TaterLib.";
                 } catch (Exception e) {
-                    // If an error occurs, print the error and return an error message
                     text = "&cAn error occurred while reloading the plugin.";
-                    System.err.println(e);
                     e.printStackTrace();
                 }
                 break;
             case "version":
-                text = "&aTaterLib v" + TaterLib.getVersion();
+                text = "&aTaterLib v" + TaterLib.Constants.PROJECT_VERSION;
                 break;
             default:
-                text = "&cUsage: /taterlib <reload|version>";
+                text = getUsage();
                 break;
         }
         return PlaceholderParser.substituteSectionSign(text);
     }
 
-    static void executeCommand(Sender sender, boolean isPlayer, String[] args) {
-        if (isPlayer) {
-            if (!sender.hasPermission(permissionBuilder(args))) {
-                ((Player) sender).sendMessage("§cYou do not have permission to use this command.");
+    @Override
+    public boolean execute(Sender sender, String label, String[] args) {
+        if (sender instanceof Player) {
+            if (!sender.hasPermission(getPermission())) {
+                sender.sendMessage("§cYou do not have permission to use this command.");
             } else {
-                ((Player) sender).sendMessage(executeCommand(args));
+                sender.sendMessage(execute(args));
             }
         } else {
-            TaterLib.logger.info(ansiiParser(executeCommand(args)));
+            sender.sendMessage(Utils.ansiParser(execute(args)));
         }
+        return true;
     }
 }

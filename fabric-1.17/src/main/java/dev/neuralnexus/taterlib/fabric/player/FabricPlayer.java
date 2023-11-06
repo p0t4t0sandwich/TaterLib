@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric player to a Player.
+ * Fabric implementation of {@link Player}.
  */
 public class FabricPlayer implements Player {
     private final PlayerEntity player;
@@ -146,7 +147,7 @@ public class FabricPlayer implements Player {
      */
     @Override
     public String getPrefix() {
-        if (!TaterLib.isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
         return Options.get(player, "prefix", "");
     }
 
@@ -155,7 +156,7 @@ public class FabricPlayer implements Player {
      */
     @Override
     public String getSuffix() {
-        if (!TaterLib.isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
         return Options.get(player, "suffix", "");
     }
 
@@ -164,7 +165,7 @@ public class FabricPlayer implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!TaterLib.isHooked("luckperms")) return player.hasPermissionLevel(4);
+        if (!TaterAPIProvider.get().isHooked("luckperms")) return player.hasPermissionLevel(4);
         return Permissions.check(player, permission, 4);
     }
 

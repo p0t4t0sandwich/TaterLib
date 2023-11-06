@@ -1,16 +1,17 @@
 package dev.neuralnexus.taterlib.forge;
 
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
-import dev.neuralnexus.taterlib.forge.command.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import net.minecraftforge.common.ForgeVersion;
@@ -27,7 +28,7 @@ import org.apache.logging.log4j.LogManager;
  * The TaterLib Forge plugin.
  */
 @Mod(
-        modid = Constants.PROJECT_ID,
+        modid = TaterLib.Constants.PROJECT_ID,
         useMetadata = true,
         serverSideOnly = true,
         acceptableRemoteVersions= "*"
@@ -37,10 +38,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
+        TaterAPIProvider.register("config", ForgeVersion.mcVersion);
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Forge";
-        TaterLib.minecraftVersion = ForgeVersion.mcVersion;
+        TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded(Loader::isModLoaded);
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
@@ -56,25 +57,12 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     }
 
     /**
-     * Called when the server is starting.
-     * @param event The event.
-     */
-    @Mod.EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
-        // Register LuckPerms hook
-        if (Loader.isModLoaded("luckperms")) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
-        }
-    }
-
-    /**
      * Registers the TaterLib command.
      * @param event The register commands event.
      */
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {
-        event.registerServerCommand(new ForgeTaterLibCommand());
+        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
     }
 
     /**

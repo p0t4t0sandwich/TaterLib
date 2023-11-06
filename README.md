@@ -81,6 +81,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BadSpawns](https://github.com/p0t4t0sandwich/BadSpawns)
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
+- [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)
 
 ## Release Notes
 
@@ -103,4 +104,9 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added the ability to set a player's prefix/suffix
 - Added numerical permission checks to `Player` for Forge/Fabric
 - Abstracted Brigadier commands
+- Abstracted simple commands
 - Simplified Plugin abstractions so depending on TaterLib is easier
+- Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
+- Added MinecraftVersion and ServerType enums.
+- Created `TaterAPI.isBrigadierSupported`
+- Abstracted plugin/mod isLoaded checks

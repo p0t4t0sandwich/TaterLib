@@ -2,6 +2,8 @@ package dev.neuralnexus.taterlib.forge.event.api.entity;
 
 import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 
 /**
@@ -36,6 +38,6 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
      */
     @Override
     public Location getLocation() {
-        return new Location(event.getX(), event.getY(), event.getZ(), getEntity().getDimension());
+        return new ForgeLocation(((ForgeEntity) getEntity()).getEntity());
     }
 }
