@@ -2,16 +2,16 @@ package dev.neuralnexus.taterlib.forge;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
-import dev.neuralnexus.taterlib.forge.command.ForgeTaterLibCommand;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import net.minecraftforge.common.ForgeVersion;
@@ -73,7 +73,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {
-        event.registerServerCommand(new ForgeTaterLibCommand());
+        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
     }
 
     /**
