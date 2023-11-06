@@ -41,17 +41,24 @@ import java.time.Duration;
         }
 )
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
-    @Inject private ProxyServer server;
-    @Inject private Logger logger;
-
-    private static ProxyServer proxyServer;
+    private static ProxyServer server;
 
     /**
      * Gets the proxy server.
      * @return The proxy server.
      */
     public static ProxyServer getProxyServer() {
-        return proxyServer;
+        return server;
+    }
+
+    @Inject
+    public VelocityTaterLibPlugin(ProxyServer server, Logger logger) {
+        VelocityTaterLibPlugin.server = server;
+        TaterAPIProvider.register("plugins", server.getVersion().getVersion());
+        pluginStart(server, new VelocityLogger(logger));
+        TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
+        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
     }
 
     /**
@@ -60,14 +67,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
      */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        TaterAPIProvider.register("plugins", server.getVersion().getVersion());
-        pluginStart(this, new VelocityLogger(logger));
-        TaterAPI api = TaterAPIProvider.get();
-        api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
-        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
-
-        proxyServer = server;
-
         // Register command events
         server.getScheduler().buildTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent())).delay(Duration.ofSeconds(5)).schedule();
 

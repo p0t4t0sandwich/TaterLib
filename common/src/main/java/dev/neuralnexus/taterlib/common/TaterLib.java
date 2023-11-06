@@ -10,6 +10,9 @@ import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
 
+/**
+ * Main class for the plugin.
+ */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private Object plugin;
@@ -74,6 +77,9 @@ public class TaterLib {
 
         if (!RELOADED) {
             TaterAPI api = TaterAPIProvider.get();
+
+            // Register TaterLib hook
+            api.addHook("taterlib", new Object());
 
             // Register hooks
             ServerEvents.STARTED.register(event -> {

@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
- * TaterLib API wrapper class
+ * API wrapper class
  */
 public class TaterAPI {
     private final Data data;
@@ -49,7 +49,7 @@ public class TaterAPI {
      * @param hook The hook to add
      */
     public void addHook(String hookName, Object hook) {
-        data.hooks.put(hookName, hook);
+        data.hooks.put(hookName.toLowerCase(), hook);
     }
 
     /**
@@ -57,7 +57,7 @@ public class TaterAPI {
      * @param hookName The name of the hook
      */
     public boolean isHooked(String hookName) {
-        return data.hooks.containsKey(hookName);
+        return data.hooks.containsKey(hookName.toLowerCase());
     }
 
     /**
@@ -131,7 +131,7 @@ public class TaterAPI {
     }
 
     /**
-     * Data used throughout the plugin.
+     * Data used throughout the plugin via the API.
      */
     static class Data {
         final HashMap<String, Object> hooks = new HashMap<>();
