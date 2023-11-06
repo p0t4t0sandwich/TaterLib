@@ -15,7 +15,7 @@ import net.minecraftforge.server.permission.PermissionAPI;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to a Player.
+ * Forge implementation of {@link Player}.
  */
 public class ForgePlayer implements Player {
     private final EntityPlayer player;

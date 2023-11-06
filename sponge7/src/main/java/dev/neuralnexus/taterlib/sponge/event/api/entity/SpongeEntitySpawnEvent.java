@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeConversions;
+import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
 /**
@@ -46,6 +46,6 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
      */
     @Override
     public Location getLocation() {
-        return new Location(SpongeConversions.positionFromVector(event.getEntities().get(0).getLocation().getPosition()), getEntity().getDimension());
+        return new SpongeLocation(event.getEntities().get(0).getLocation());
     }
 }

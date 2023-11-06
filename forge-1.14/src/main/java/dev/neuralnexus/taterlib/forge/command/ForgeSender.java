@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.forge.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
 import net.minecraft.command.CommandSource;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.UUID;
 
@@ -32,6 +33,14 @@ public class ForgeSender implements Sender {
     @Override
     public String getName() {
         return source.getName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void sendMessage(String message) {
+        source.sendFeedback(new StringTextComponent(message), false);
     }
 
     /**

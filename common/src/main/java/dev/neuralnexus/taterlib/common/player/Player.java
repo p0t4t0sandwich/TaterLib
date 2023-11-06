@@ -36,12 +36,6 @@ public interface Player extends Sender {
     void setServerName(String serverName);
 
     /**
-     * Send a message to the player
-     * @param message The message to send
-     */
-    void sendMessage(String message);
-
-    /**
      * Sends a plugin message using the specified channel
      * @param channel The channel to send the message on
      * @param data The message to send

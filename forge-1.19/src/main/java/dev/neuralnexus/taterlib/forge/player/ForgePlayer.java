@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge player to a Player.
+ * Forge implementation of {@link Player}.
  */
 public class ForgePlayer implements Player {
     private final net.minecraft.world.entity.player.Player player;

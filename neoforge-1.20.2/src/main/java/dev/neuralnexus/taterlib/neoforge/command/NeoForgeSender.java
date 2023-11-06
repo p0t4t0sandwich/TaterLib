@@ -1,7 +1,8 @@
-package dev.neuralnexus.taterlib.neoforge.commands;
+package dev.neuralnexus.taterlib.neoforge.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.network.chat.Component;
 
 import java.util.UUID;
 
@@ -32,6 +33,14 @@ public class NeoForgeSender implements Sender {
     @Override
     public String getName() {
         return source.getTextName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void sendMessage(String message) {
+        source.sendSystemMessage(Component.nullToEmpty(message));
     }
 
     /**

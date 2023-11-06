@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric player to a Player.
+ * Fabric implementation of {@link Player}.
  */
 public class FabricPlayer implements Player {
     private final PlayerEntity player;

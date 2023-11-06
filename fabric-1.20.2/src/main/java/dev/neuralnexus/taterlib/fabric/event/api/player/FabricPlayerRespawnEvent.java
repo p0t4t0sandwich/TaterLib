@@ -2,7 +2,8 @@ package dev.neuralnexus.taterlib.fabric.event.api.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
-import dev.neuralnexus.taterlib.fabric.util.FabricConversions;
+import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import net.minecraft.entity.player.PlayerEntity;
 
 /**
@@ -23,7 +24,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
      */
     @Override
     public Location getRespawnLocation() {
-        return new Location(FabricConversions.positionFromVector(player.getPos()), player.getYaw(), player.getPitch(), player.getEntityWorld().getRegistryKey().getValue().toString());
+        return new FabricLocation(((FabricPlayer) getPlayer()).getPlayer());
     }
 
     /**

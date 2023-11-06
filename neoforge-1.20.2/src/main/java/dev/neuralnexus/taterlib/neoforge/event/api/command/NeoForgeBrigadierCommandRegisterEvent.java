@@ -5,7 +5,7 @@ import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.neoforge.commands.NeoForgeSender;
+import dev.neuralnexus.taterlib.neoforge.command.NeoForgeSender;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

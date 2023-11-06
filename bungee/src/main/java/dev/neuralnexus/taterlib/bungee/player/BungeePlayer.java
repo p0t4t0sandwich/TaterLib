@@ -11,7 +11,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.UUID;
 
 /**
- * Abstracts a BungeeCord player to a Player.
+ * BungeeCord implementation of {@link Player}.
  */
 public class BungeePlayer implements Player {
     private final ProxiedPlayer player;

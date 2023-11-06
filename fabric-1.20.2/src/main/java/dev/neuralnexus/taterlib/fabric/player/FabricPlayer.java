@@ -4,7 +4,6 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.utils.Position;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.fabric.util.FabricConversions;
 import me.lucko.fabric.api.permissions.v0.Options;
@@ -20,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric player to a Player.
+ * Fabric implementation of {@link Player}.
  */
 public class FabricPlayer implements Player {
     private final PlayerEntity player;

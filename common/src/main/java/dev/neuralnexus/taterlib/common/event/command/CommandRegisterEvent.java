@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.common.event.command;
 
-import dev.neuralnexus.taterlib.common.Plugin;
 import dev.neuralnexus.taterlib.common.command.Command;
 
 /**
