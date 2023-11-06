@@ -109,3 +109,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
 - Added MinecraftVersion and ServerType enums.
 - Created `TaterAPI.isBrigadierSupported`
+- Abstracted plugin/mod isLoaded checks

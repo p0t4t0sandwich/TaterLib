@@ -10,7 +10,6 @@ import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStoppedEvent;
@@ -64,14 +63,10 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.register("plugins", server.getVersion().getVersion());
         pluginStart(this, new VelocityLogger(logger));
         TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
+        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
 
         proxyServer = server;
-
-        // Register LuckPerms hook
-        if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
-            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
-            api.addHook("luckperms", new LuckPermsHook());
-        }
 
         // Register command events
         server.getScheduler().buildTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent())).delay(Duration.ofSeconds(5)).schedule();
@@ -87,8 +82,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         // Register server listeners
         server.getScheduler().buildTask(this, () -> ServerEvents.STARTED.invoke(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
         eventManager.register(this, new VelocityServerListener());
-
-        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
     }
 
     /**

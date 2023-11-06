@@ -8,7 +8,6 @@ import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.fabric.event.api.command.FabricBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
@@ -40,18 +39,11 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
                 FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded((plugin) ->FabricLoader.getInstance().isModLoaded(plugin));
 
         // Initialize plugin data
         ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
-
-        // Register LuckPerms hook
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> {
-            if (FabricLoader.getInstance().isModLoaded("luckperms")) {
-                TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
-                api.addHook("luckperms", new LuckPermsHook());
-            }
-        });
 
         // Register Fabric API command events
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, registryAccess, environment)));

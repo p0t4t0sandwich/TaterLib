@@ -9,14 +9,11 @@ import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMessageListener;
 import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
-import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.Messenger;
@@ -37,17 +34,12 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        TaterAPIProvider.register("plugins", getServer().getVersion());
+        TaterAPIProvider.register("plugins", getServer().getBukkitVersion());
         pluginStart(this, new BukkitLogger(getLogger()));
         TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
 
         instance = this;
-
-        // Register LuckPerms hook
-        if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
-            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
-            api.addHook("luckperms", new LuckPermsHook());
-        }
 
         // Register command listeners
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent()), 200L);

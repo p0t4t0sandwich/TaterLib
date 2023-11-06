@@ -168,11 +168,16 @@ public enum MinecraftVersion {
     private final String version;
 
     MinecraftVersion(String version) {
-        if (version == null || version.isEmpty() || !MinecraftVersion.contains(version)) {
-            this.version = "Unknown";
-        } else {
-            this.version = version;
-        }
+        this.version = version;
+    }
+
+    /**
+     * Create a MinecraftVersion from a string.
+     * @param version The version to create
+     * @return The MinecraftVersion
+     */
+    public static MinecraftVersion from(String version) {
+        return Arrays.stream(MinecraftVersion.values()).sorted((o1, o2) -> o2.ordinal() - o1.ordinal()).filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);
     }
 
     /**
@@ -242,7 +247,7 @@ public enum MinecraftVersion {
      * @return If the Minecraft version is older.
      */
     public boolean isNewerThan(String version) {
-        return this.ordinal() > MinecraftVersion.valueOf(version).ordinal();
+        return this.ordinal() > MinecraftVersion.from(version).ordinal();
     }
 
     /**
@@ -260,7 +265,7 @@ public enum MinecraftVersion {
      * @return If the Minecraft version is equal to or newer.
      */
     public boolean isAtLeast(String version) {
-        return this.ordinal() >= MinecraftVersion.valueOf(version).ordinal();
+        return this.ordinal() >= MinecraftVersion.from(version).ordinal();
     }
 
     /**
@@ -278,7 +283,7 @@ public enum MinecraftVersion {
      * @return If the Minecraft version is newer.
      */
     public boolean isOlderThan(String version) {
-        return this.ordinal() < MinecraftVersion.valueOf(version).ordinal();
+        return this.ordinal() < MinecraftVersion.from(version).ordinal();
     }
 
     /**
@@ -296,6 +301,6 @@ public enum MinecraftVersion {
      * @return If the Minecraft version is equal to or older.
      */
     public boolean isAtMost(String version) {
-        return this.ordinal() <= MinecraftVersion.valueOf(version).ordinal();
+        return this.ordinal() <= MinecraftVersion.from(version).ordinal();
     }
 }

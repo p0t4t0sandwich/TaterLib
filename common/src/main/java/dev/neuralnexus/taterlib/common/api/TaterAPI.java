@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 /**
  * TaterLib API wrapper class
@@ -104,18 +105,45 @@ public class TaterAPI {
     }
 
     /**
+     * Set the isPluginLoaded predicate
+     * @param isPluginLoaded The isPluginLoaded predicate
+     */
+    public void setIsPluginLoaded(Predicate<String> isPluginLoaded) {
+        data.isPluginLoaded = isPluginLoaded;
+    }
+
+    /**
+     * Get if a plugin/mod is loaded
+     * <br>
+     * Note: Unless you need to check at a specific time, it's best to run this check after the server has started {@link dev.neuralnexus.taterlib.common.event.api.ServerEvents#STARTED}
+     * <br>
+     * 2nd Note: When looking for a plugin, the name is case-sensitive.
+     * <br>
+     * For example, "luckperms" will not match "LuckPerms".
+     * <br>
+     * When considering cross-API libraries, it's best to use the capitalized name, as this method runs the check again to check for a modid.
+     * <br>
+     * For example, "LuckPerms" will match "luckperms" and "LuckPerms".
+     * @param pluginName The name of the plugin/mod
+     */
+    public boolean isPluginLoaded(String pluginName) {
+        return data.isPluginLoaded.test(pluginName) || data.isPluginLoaded.test(pluginName.toLowerCase());
+    }
+
+    /**
      * Data used throughout the plugin.
      */
     static class Data {
         final HashMap<String, Object> hooks = new HashMap<>();
         Consumer<Set<String>> registerChannels = (channels) -> {};
+        Predicate<String> isPluginLoaded = (pluginName) -> false;
         final String configFolder;
         final MinecraftVersion minecraftVersion;
         final ServerType serverType;
 
         Data(String configFolder, String minecraftVersion) {
             this.configFolder = configFolder;
-            this.minecraftVersion = MinecraftVersion.valueOf(minecraftVersion);
+            this.minecraftVersion = MinecraftVersion.from(minecraftVersion);
             this.serverType = ServerType.getServerType();
         }
     }

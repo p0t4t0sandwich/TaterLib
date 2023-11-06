@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.forge;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
@@ -40,6 +40,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register("config", ForgeVersion.mcVersion);
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
+        TaterAPI api = TaterAPIProvider.get();
+        api.setIsPluginLoaded(Loader::isModLoaded);
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
@@ -52,19 +54,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
         // Register server event listeners
 //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
-    }
-
-    /**
-     * Called when the server is starting.
-     * @param event The event.
-     */
-    @Mod.EventHandler
-    public void onServerStarted(FMLServerStartedEvent event) {
-        // Register LuckPerms hook
-        if (Loader.isModLoaded("luckperms")) {
-            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterAPIProvider.get().addHook("luckperms", new LuckPermsHook());
-        }
     }
 
     /**

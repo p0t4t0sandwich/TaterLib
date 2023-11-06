@@ -3,6 +3,8 @@ package dev.neuralnexus.taterlib.common;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.listeners.command.CommandListener;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
@@ -71,6 +73,17 @@ public class TaterLib {
         STARTED = true;
 
         if (!RELOADED) {
+            TaterAPI api = TaterAPIProvider.get();
+
+            // Register hooks
+            ServerEvents.STARTED.register(event -> {
+                // Register LuckPerms hook
+                if (api.isPluginLoaded("LuckPerms")) {
+                    instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
+                    api.addHook("luckperms", new LuckPermsHook());
+                }
+            });
+
             // Register player listeners
             PlayerEvents.LOGIN.register(PlayerListener::onPlayerLogin);
             PlayerEvents.LOGOUT.register(PlayerListener::onPlayerLogout);
