@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
-    public static Plugin plugin;
+    public static Object plugin;
     public static AbstractLogger logger;
     public static String configFolder;
     public static String minecraftVersion = "Unknown";
@@ -37,7 +37,7 @@ public class TaterLib {
      * @param plugin The plugin
      * @param logger The logger
      */
-    public static void start(Plugin plugin, AbstractLogger logger) {
+    public static void start(Object plugin, AbstractLogger logger) {
         TaterLib.plugin = plugin;
         TaterLib.logger = logger;
 
@@ -53,7 +53,8 @@ public class TaterLib {
             PlayerEvents.LOGOUT.register(PlayerListener::onPlayerLogout);
             PlayerEvents.SERVER_SWITCH.register(PlayerListener::onServerSwitch);
 
-            // Register brigadier commands
+            // Register commands
+            CommandEvents.REGISTER_COMMAND.register(CommandListener::onRegisterCommand);
             CommandEvents.REGISTER_BRIGADIER_COMMAND.register(CommandListener::onRegisterBrigadierCommand);
         }
 
@@ -99,14 +100,6 @@ public class TaterLib {
         start(plugin, logger);
 
         logger.info("TaterLib has been reloaded!");
-    }
-
-    /**
-     * Get the current version of TaterLib
-     * @return The current version of TaterLib
-     */
-    public static String getVersion() {
-        return "1.1.0-R0.1-SNAPSHOT";
     }
 
     /**

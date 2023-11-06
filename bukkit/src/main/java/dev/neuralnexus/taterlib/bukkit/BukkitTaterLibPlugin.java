@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit;
 
+import dev.neuralnexus.taterlib.bukkit.event.api.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStartingEvent;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppedEvent;
 import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppingEvent;
-import dev.neuralnexus.taterlib.bukkit.command.BukkitTaterLibCommand;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
@@ -13,7 +13,7 @@ import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.Utils;
-import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import org.bukkit.plugin.PluginManager;
@@ -48,10 +48,8 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
             TaterLib.addHook("luckperms", new LuckPermsHook());
         }
 
-        // Register commands
-        getCommand(TaterLibCommand.getCommandName()).setExecutor(new BukkitTaterLibCommand());
-
-        PluginManager pluginManager = getServer().getPluginManager();
+        // Register command listeners
+        getServer().getScheduler().runTaskLater(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent()), 200L);
 
         // Dropped Spigot support 1.19+
 //        if (CommodoreProvider.isSupported()) {
@@ -59,6 +57,8 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 //            LiteralCommandNode<?> command = thing;
 //            commodore.register(getCommand(TaterLibCommand.getCommandName()), command, player -> true);
 //        }
+
+        PluginManager pluginManager = getServer().getPluginManager();
 
         // Register entity listeners
         pluginManager.registerEvents(new BukkitEntityListener(), this);

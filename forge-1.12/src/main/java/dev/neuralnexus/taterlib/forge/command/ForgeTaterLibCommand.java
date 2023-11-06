@@ -14,7 +14,7 @@ import net.minecraft.server.MinecraftServer;
 public class ForgeTaterLibCommand extends CommandBase {
     @Override
     public String getName() {
-        return TaterLibCommand.getCommandName();
+        return new TaterLibCommand().getName();
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ForgeTaterLibCommand extends CommandBase {
 //           Util.getServerExecutor().execute(() -> {
             try {
                 // Execute command
-                TaterLibCommand.executeCommand(player, isPlayer, args);
+                new TaterLibCommand().execute(args);
             } catch (Exception e) {
                 System.out.println(e);
                 e.printStackTrace();

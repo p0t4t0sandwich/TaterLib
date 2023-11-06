@@ -6,7 +6,7 @@ public interface TaterLibPlugin extends Plugin {
     /**
      * Start the plugin.
      */
-    default void pluginStart(Plugin plugin, AbstractLogger logger) {
+    default void pluginStart(Object plugin, AbstractLogger logger) {
         try {
             logger.info("TaterLib is running on " + TaterLib.serverType + " " + TaterLib.minecraftVersion + "!");
             TaterLib.start(plugin, logger);

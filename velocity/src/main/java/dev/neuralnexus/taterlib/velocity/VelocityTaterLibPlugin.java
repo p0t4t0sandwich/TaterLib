@@ -8,13 +8,13 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.logger.VelocityLogger;
-import dev.neuralnexus.taterlib.velocity.commands.VelocityTaterLibCommand;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
@@ -73,9 +73,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
             TaterLib.addHook("luckperms", new LuckPermsHook());
         }
 
-        // Register commands
-        CommandManager commandManager = server.getCommandManager();
-        commandManager.register(TaterLibCommand.getCommandName(), new VelocityTaterLibCommand());
+        // Register command events
+        server.getScheduler().buildTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent())).delay(Duration.ofSeconds(5)).schedule();
 
         EventManager eventManager = server.getEventManager();
 

@@ -19,6 +19,12 @@ public interface Sender {
     String getName();
 
     /**
+     * Send a message to the sender
+     * @param message The message to send
+     */
+    void sendMessage(String message);
+
+    /**
      * Get the permission level of the player
      * @param permissionLevel The permission level of the player
      * @return The permission level of the player

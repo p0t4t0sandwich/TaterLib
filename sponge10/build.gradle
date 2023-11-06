@@ -40,6 +40,9 @@ sponge {
 
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
+
+    // Brigadier
+    compileOnly('com.mojang:brigadier:1.0.18')
 }
 
 shadowJar {

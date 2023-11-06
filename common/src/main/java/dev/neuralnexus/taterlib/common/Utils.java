@@ -58,7 +58,7 @@ public class Utils {
      * @param s The string to parse.
      * @return The parsed string.
      */
-    public static String ansiiParser(String s) {
+    public static String ansiParser(String s) {
         // Colors
 
         // Black

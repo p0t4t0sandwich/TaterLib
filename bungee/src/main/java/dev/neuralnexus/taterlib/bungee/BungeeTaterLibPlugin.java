@@ -1,15 +1,16 @@
 package dev.neuralnexus.taterlib.bungee;
 
+import dev.neuralnexus.taterlib.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStartedEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStartingEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStoppedEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStoppingEvent;
-import dev.neuralnexus.taterlib.bungee.commands.BungeeTaterLibCommand;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.bungee.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import net.md_5.bungee.api.ProxyServer;
@@ -48,8 +49,8 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
 
         PluginManager pluginManager = getProxy().getPluginManager();
 
-        // Register commands
-        pluginManager.registerCommand(this, new BungeeTaterLibCommand());
+        // Register command listeners
+        getProxy().getScheduler().schedule(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BungeeCommandRegisterEvent()), 5L, TimeUnit.SECONDS);
 
         // Register player listeners
         pluginManager.registerListener(this, new BungeePlayerListener());
