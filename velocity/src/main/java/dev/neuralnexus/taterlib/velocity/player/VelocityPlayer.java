@@ -2,9 +2,10 @@ package dev.neuralnexus.taterlib.velocity.player;
 
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import net.kyori.adventure.text.Component;
 
@@ -63,9 +64,121 @@ public class VelocityPlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUniqueId();
     }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public int getEntityId() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void remove() {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getCustomName() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setCustomName(String name) {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Location getLocation() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getX() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getY() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public double getZ() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getYaw() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getPitch() {
+        return 0;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getDimension() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public String getBiome() {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Location location) {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Entity entity) {}
 
     /**
      * @inheritDoc
@@ -81,14 +194,6 @@ public class VelocityPlayer implements Player {
     @Override
     public String getDisplayName() {
         return player.getUsername();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return null;
     }
 
     /**
@@ -159,5 +264,11 @@ public class VelocityPlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public void setSpawn(Position position) {}
+    public void setSpawn(Location location, boolean forced) {}
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Location location) {}
 }

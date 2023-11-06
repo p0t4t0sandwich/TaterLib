@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.sponge.player;
 
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
+import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
-import dev.neuralnexus.taterlib.sponge.util.SpongeConversions;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.network.ChannelBinding;
 import org.spongepowered.api.network.ChannelRegistrar;
@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * Sponge implementation of {@link Player}.
  */
-public class SpongePlayer implements Player {
+public class SpongePlayer extends SpongeEntity implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
     private String serverName;
 
@@ -25,6 +25,7 @@ public class SpongePlayer implements Player {
      * @param player The Sponge player.
      */
     public SpongePlayer(org.spongepowered.api.entity.living.player.Player player) {
+        super(player);
         this.player = player;
         this.serverName = "local";
     }
@@ -35,6 +36,7 @@ public class SpongePlayer implements Player {
      * @param serverName The name of the server the player is on.
      */
     public SpongePlayer(org.spongepowered.api.entity.living.player.Player player, String serverName) {
+        super(player);
         this.player = player;
         this.serverName = serverName;
     }
@@ -51,7 +53,7 @@ public class SpongePlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
@@ -69,14 +71,6 @@ public class SpongePlayer implements Player {
     @Override
     public String getDisplayName() {
         return player.getDisplayNameData().displayName().get().toPlain();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return SpongeConversions.positionFromVector(player.getLocation().getPosition());
     }
 
     /**
@@ -129,11 +123,20 @@ public class SpongePlayer implements Player {
         player.kick(Text.of(message));
     }
 
+    @Override
+    public void setSpawn(Location location, boolean forced) {
+        // TODO: Find method to set spawn
+//        player.get(Keys.RESPAWN_LOCATIONS).get().entrySet().stream().filter(entry -> entry.getKey().getExtent().equals(location.getWorld().toSponge())).forEach(entry -> entry.setValue(location.toSponge()));
+//        player.setBedSpawnLocation(location.toSponge(), forced);
+    }
+
     /**
      * @inheritDoc
      */
     @Override
-    public void setSpawn(Position position) {}
+    public void setSpawn(Location location) {
+        setSpawn(location, false);
+    }
 
     /**
      * @inheritDoc

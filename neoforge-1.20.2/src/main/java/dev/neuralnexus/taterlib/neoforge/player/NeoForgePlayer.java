@@ -1,13 +1,15 @@
 package dev.neuralnexus.taterlib.neoforge.player;
 
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgePlayerInventory;
-import dev.neuralnexus.taterlib.neoforge.util.NeoForgeConversions;
+import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
+import dev.neuralnexus.taterlib.neoforge.networking.packet.NeoForgeMessagePacket;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
@@ -17,7 +19,7 @@ import java.util.UUID;
 /**
  * NeoForge implementation of {@link Player}.
  */
-public class NeoForgePlayer implements Player {
+public class NeoForgePlayer extends NeoForgeEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
     private String serverName;
 
@@ -26,6 +28,7 @@ public class NeoForgePlayer implements Player {
      * @param player The Forge player.
      */
     public NeoForgePlayer(net.minecraft.world.entity.player.Player player) {
+        super(player);
         this.player = player;
         this.serverName = "local";
     }
@@ -36,13 +39,14 @@ public class NeoForgePlayer implements Player {
      * @param serverName The server name.
      */
     public NeoForgePlayer(net.minecraft.world.entity.player.Player player, String serverName) {
+        super(player);
         this.player = player;
         this.serverName = serverName;
     }
 
     /**
-     * Gets the NeoForge player
-     * @return The NeoForge player
+     * Gets the Forge player
+     * @return The Forge player
      */
     public net.minecraft.world.entity.player.Player getPlayer() {
         return player;
@@ -52,7 +56,7 @@ public class NeoForgePlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUUID();
     }
 
@@ -76,14 +80,6 @@ public class NeoForgePlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public Position getPosition() {
-        return NeoForgeConversions.positionFromVector(player.position());
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
     public String getServerName() {
         return serverName;
     }
@@ -101,14 +97,16 @@ public class NeoForgePlayer implements Player {
      */
     @Override
     public void sendMessage(String message) {
-        player.displayClientMessage(Component.empty().append(message), false);
+        player.displayClientMessage(Component.nullToEmpty(message), false);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {}
+    public void sendPluginMessage(String channel, byte[] data) {
+        ModMessages.sendPluginMessage(new NeoForgeMessagePacket(new String(data)), channel, (ServerPlayer) player);
+    }
 
     /**
      * @inheritDoc
@@ -123,15 +121,23 @@ public class NeoForgePlayer implements Player {
      */
     @Override
     public void kickPlayer(String message) {
-        ((ServerPlayer) player).connection.disconnect(Component.empty().append(message));
+        ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public void setSpawn(Position position) {
-        ((ServerPlayer) player).setRespawnPosition(Level.OVERWORLD, NeoForgeConversions.locationFromPosition(position), 0, true, false);
+    public void setSpawn(Location location, boolean forced) {
+        ((ServerPlayer) player).setRespawnPosition(Level.OVERWORLD, new BlockPos((int) location.getX(), (int) location.getY(), (int) location.getZ()), 0.0F, forced, false);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Location location) {
+        setSpawn(location, false);
     }
 
     /**
@@ -141,7 +147,7 @@ public class NeoForgePlayer implements Player {
     public boolean hasPermission(String permission) {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return player.hasPermissions(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook.playerHasPermission(getUUID(), permission);
+        return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }
 
     /**

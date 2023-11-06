@@ -19,7 +19,7 @@ public class BungeeSender implements Sender {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return new UUID(0, 0);
     }
 

@@ -1,15 +1,15 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
-import dev.neuralnexus.taterlib.forge.util.ForgeConversions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.server.permission.PermissionAPI;
 
@@ -18,7 +18,7 @@ import java.util.UUID;
 /**
  * Forge implementation of {@link Player}.
  */
-public class ForgePlayer implements Player {
+public class ForgePlayer extends ForgeEntity implements Player {
     private final EntityPlayer player;
     private String serverName;
 
@@ -27,6 +27,7 @@ public class ForgePlayer implements Player {
      * @param player The Forge player.
      */
     public ForgePlayer(EntityPlayer player) {
+        super(player);
         this.player = player;
         this.serverName = "local";
     }
@@ -37,6 +38,7 @@ public class ForgePlayer implements Player {
      * @param serverName The server name.
      */
     public ForgePlayer(EntityPlayer player, String serverName) {
+        super(player);
         this.player = player;
         this.serverName = serverName;
     }
@@ -53,7 +55,7 @@ public class ForgePlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUniqueID();
     }
 
@@ -71,14 +73,6 @@ public class ForgePlayer implements Player {
     @Override
     public String getDisplayName() {
         return player.getDisplayName().getFormattedText();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return ForgeConversions.positionFromVector(player.getPositionVector());
     }
 
     /**
@@ -131,8 +125,16 @@ public class ForgePlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public void setSpawn(Position position) {
-        player.setSpawnPoint(ForgeConversions.locationFromPosition(position), true);
+    public void setSpawn(Location location, boolean forced) {
+        player.setSpawnPoint(new BlockPos(location.getX(), location.getY(), location.getZ()), forced);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Location location) {
+        setSpawn(location, false);
     }
 
     /**
@@ -142,7 +144,7 @@ public class ForgePlayer implements Player {
     public boolean hasPermission(String permission) {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return PermissionAPI.hasPermission(player, permission);
         LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        return luckPermsHook.playerHasPermission(getUUID(), permission);
+        return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }
 
     /**

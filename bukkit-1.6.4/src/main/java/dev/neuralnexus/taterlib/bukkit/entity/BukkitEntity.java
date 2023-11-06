@@ -1,11 +1,13 @@
 package dev.neuralnexus.taterlib.bukkit.entity;
 
+import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit entity to an AbstractEntity.
+ * Bukkit implementation of {@link Entity}.
  */
 public class BukkitEntity implements Entity {
     private final org.bukkit.entity.Entity entity;
@@ -55,7 +57,7 @@ public class BukkitEntity implements Entity {
      */
     @Override
     public String getCustomName() {
-        return entity.getType().getName();
+        return entity.getType().name();
     }
 
     /**
@@ -64,6 +66,14 @@ public class BukkitEntity implements Entity {
     @Override
     public void setCustomName(String name) {
 //        entity.setCustomName(name);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Location getLocation() {
+        return new BukkitLocation(entity.getLocation());
     }
 
     /**
@@ -94,6 +104,22 @@ public class BukkitEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public float getYaw() {
+        return entity.getLocation().getYaw();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getPitch() {
+        return entity.getLocation().getPitch();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getDimension() {
         if (entity.getLocation().getWorld() == null) {
             return null;
@@ -107,5 +133,21 @@ public class BukkitEntity implements Entity {
     @Override
     public String getBiome() {
         return entity.getLocation().getBlock().getBiome().name();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.teleport(new org.bukkit.Location(org.bukkit.Bukkit.getWorld(location.getWorld()), location.getX(), location.getY(), location.getZ()));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.teleport(new org.bukkit.Location(org.bukkit.Bukkit.getWorld(entity.getDimension()), entity.getX(), entity.getY(), entity.getZ()));
     }
 }

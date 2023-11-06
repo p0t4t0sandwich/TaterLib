@@ -16,7 +16,7 @@ public final class PlayerListener {
      */
     public static void onPlayerLogin(PlayerLoginEvent event) {
         // Add the Player to the cache
-        PlayerCache.setPlayerInCache(event.getPlayer().getUUID(), event.getPlayer());
+        PlayerCache.setPlayerInCache(event.getPlayer().getUniqueId(), event.getPlayer());
     }
 
     /**
@@ -25,7 +25,7 @@ public final class PlayerListener {
      */
     public static void onPlayerLogout(PlayerLogoutEvent event) {
         // Remove the Player from the cache
-        PlayerCache.removePlayerFromCache(event.getPlayer().getUUID());
+        PlayerCache.removePlayerFromCache(event.getPlayer().getUniqueId());
     }
 
     /**
@@ -36,13 +36,13 @@ public final class PlayerListener {
         Player player = event.getPlayer();
 
         // Get Player from cache
-        Player cachedPlayer = PlayerCache.getPlayerFromCache(player.getUUID());
+        Player cachedPlayer = PlayerCache.getPlayerFromCache(player.getUniqueId());
         if (cachedPlayer == null) {
             return;
         }
 
         // Update the server name and Player object
         player.setServerName(event.getToServer());
-        PlayerCache.setPlayerInCache(player.getUUID(), player);
+        PlayerCache.setPlayerInCache(player.getUniqueId(), player);
     }
 }

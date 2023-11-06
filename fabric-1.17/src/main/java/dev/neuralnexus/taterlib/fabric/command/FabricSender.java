@@ -20,7 +20,7 @@ public class FabricSender implements Sender {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         if (source.getEntity() == null) {
             return new UUID(0, 0);
         }

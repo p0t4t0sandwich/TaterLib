@@ -1,12 +1,11 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
-import dev.neuralnexus.taterlib.fabric.util.FabricConversions;
 import me.lucko.fabric.api.permissions.v0.Options;
 import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
@@ -15,13 +14,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
 
 /**
  * Fabric implementation of {@link Player}.
  */
-public class FabricPlayer implements Player {
+public class FabricPlayer extends FabricEntity implements Player {
     private final PlayerEntity player;
     private String serverName;
 
@@ -30,6 +30,7 @@ public class FabricPlayer implements Player {
      * @param player The Fabric player.
      */
     public FabricPlayer(PlayerEntity player) {
+        super(player);
         this.player = player;
         this.serverName = "local";
     }
@@ -40,6 +41,7 @@ public class FabricPlayer implements Player {
      * @param serverName The server name.
      */
     public FabricPlayer(PlayerEntity player, String serverName) {
+        super(player);
         this.player = player;
         this.serverName = serverName;
     }
@@ -56,7 +58,7 @@ public class FabricPlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUuid();
     }
 
@@ -74,14 +76,6 @@ public class FabricPlayer implements Player {
     @Override
     public String getDisplayName() {
         return player.getDisplayName().getString();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return FabricConversions.positionFromVector(player.getPos());
     }
 
     /**
@@ -137,8 +131,16 @@ public class FabricPlayer implements Player {
      * @inheritDoc
      */
     @Override
-    public void setSpawn(Position position) {
-        player.setPlayerSpawn(FabricConversions.locationFromPosition(position), true);
+    public void setSpawn(Location location, boolean forced) {
+        player.setPlayerSpawn(new BlockPos(location.getX(), location.getY(), location.getZ()), forced);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void setSpawn(Location location) {
+        setSpawn(location, false);
     }
 
     /**

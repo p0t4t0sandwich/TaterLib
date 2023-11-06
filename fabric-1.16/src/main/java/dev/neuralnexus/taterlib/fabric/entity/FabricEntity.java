@@ -1,12 +1,14 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import net.minecraft.text.LiteralText;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Fabric entity to an AbstractEntity.
+ * Fabric implementation of {@link Entity}.
  */
 public class FabricEntity implements Entity {
     private final net.minecraft.entity.Entity entity;
@@ -80,6 +82,14 @@ public class FabricEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public Location getLocation() {
+        return new FabricLocation(entity);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public double getX() {
         return entity.getX();
     }
@@ -104,6 +114,22 @@ public class FabricEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public float getYaw() {
+        return entity.getYaw(0F);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getPitch() {
+        return entity.getPitch(0F);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getDimension() {
         return entity.getEntityWorld().getRegistryKey().getValue().toString();
     }
@@ -114,5 +140,21 @@ public class FabricEntity implements Entity {
     @Override
     public String getBiome() {
         return entity.getEntityWorld().getBiome(entity.getBlockPos()).toString();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.requestTeleport(location.getX(), location.getY(), location.getZ());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
     }
 }

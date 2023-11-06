@@ -1,13 +1,15 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Forge entity to an AbstractEntity.
+ * Forge implementation of {@link Entity}.
  */
 public class ForgeEntity implements Entity {
     private final net.minecraft.world.entity.Entity entity;
@@ -77,6 +79,14 @@ public class ForgeEntity implements Entity {
         entity.setCustomName(Component.nullToEmpty(name));
     }
 
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public Location getLocation() {
+        return new ForgeLocation(entity);
+    }
+
 
     /**
      * @inheritDoc
@@ -106,6 +116,22 @@ public class ForgeEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public float getYaw() {
+        return entity.getXRot();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getPitch() {
+        return entity.getYRot();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getDimension() {
         ResourceLocation resourceLocation = entity.level.dimension().getRegistryName();
         return resourceLocation.getNamespace() + ":" + resourceLocation.getPath();
@@ -119,5 +145,21 @@ public class ForgeEntity implements Entity {
         ResourceLocation biomeRegistry = entity.level.getBiome(entity.blockPosition()).getRegistryName();
         if (biomeRegistry == null) return null;
         return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.teleportTo(entity.getX(), entity.getY(), entity.getZ());
     }
 }

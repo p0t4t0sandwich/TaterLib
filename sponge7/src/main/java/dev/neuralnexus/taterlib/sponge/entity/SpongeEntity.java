@@ -1,13 +1,15 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Sponge entity to an AbstractEntity.
+ * Sponge implementation of {@link Entity}.
  */
 public class SpongeEntity implements Entity {
     private final org.spongepowered.api.entity.Entity entity;
@@ -83,6 +85,14 @@ public class SpongeEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public Location getLocation() {
+        return new SpongeLocation(entity.getLocation());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public double getX() {
         return entity.getLocation().getPosition().getX();
     }
@@ -107,6 +117,22 @@ public class SpongeEntity implements Entity {
      * @inheritDoc
      */
     @Override
+    public float getYaw() {
+        return (float) entity.getRotation().getX();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public float getPitch() {
+        return (float) entity.getRotation().getY();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
     public String getDimension() {
         return entity.getWorld().getName();
     }
@@ -117,5 +143,21 @@ public class SpongeEntity implements Entity {
     @Override
     public String getBiome() {
         return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.setLocation(new org.spongepowered.api.world.Location<>(entity.getWorld(), location.getX(), location.getY(), location.getZ()));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.setLocation(new org.spongepowered.api.world.Location<>(((SpongeEntity) entity).getEntity().getWorld(), entity.getX(), entity.getY(), entity.getZ()));
     }
 }
