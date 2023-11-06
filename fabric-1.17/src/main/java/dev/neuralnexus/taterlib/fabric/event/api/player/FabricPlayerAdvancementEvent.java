@@ -18,7 +18,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getAdvancement() {
@@ -46,7 +46,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent implements P
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public Collection<String> getCriterion() {

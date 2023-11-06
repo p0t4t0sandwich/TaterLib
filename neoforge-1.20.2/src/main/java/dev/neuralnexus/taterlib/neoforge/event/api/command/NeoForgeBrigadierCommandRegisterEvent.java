@@ -22,7 +22,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -30,7 +30,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<CommandSourceStack> getDispatcher() {
@@ -38,7 +38,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(LiteralCommandNode<CommandSourceStack> node) {
@@ -46,7 +46,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(CommandSourceStack source) {
@@ -54,7 +54,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(CommandSourceStack source) {
@@ -62,7 +62,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(CommandSourceStack source) {

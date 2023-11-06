@@ -15,7 +15,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getChannel() {
@@ -23,7 +23,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public byte[] getData() {
@@ -41,7 +41,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer getPlayer() {

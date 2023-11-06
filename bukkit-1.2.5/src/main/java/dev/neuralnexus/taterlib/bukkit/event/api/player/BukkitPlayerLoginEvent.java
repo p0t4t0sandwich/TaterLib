@@ -15,7 +15,7 @@ public class BukkitPlayerLoginEvent extends BukkitPlayerEvent implements PlayerL
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -23,7 +23,7 @@ public class BukkitPlayerLoginEvent extends BukkitPlayerEvent implements PlayerL
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

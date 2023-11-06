@@ -16,7 +16,7 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -27,7 +27,7 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

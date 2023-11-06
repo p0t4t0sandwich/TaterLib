@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.velocity.command.VelocityCommandWrapper;
  */
 public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {

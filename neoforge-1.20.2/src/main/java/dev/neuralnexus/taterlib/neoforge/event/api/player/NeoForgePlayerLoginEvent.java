@@ -16,7 +16,7 @@ public class NeoForgePlayerLoginEvent extends NeoForgePlayerEvent implements Pla
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -27,7 +27,7 @@ public class NeoForgePlayerLoginEvent extends NeoForgePlayerEvent implements Pla
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

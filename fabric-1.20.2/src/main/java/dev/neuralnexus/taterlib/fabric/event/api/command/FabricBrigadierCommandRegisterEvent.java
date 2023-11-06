@@ -27,7 +27,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -35,7 +35,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<ServerCommandSource> getDispatcher() {
@@ -43,7 +43,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(LiteralCommandNode<ServerCommandSource> node) {
@@ -51,7 +51,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(ServerCommandSource source) {
@@ -59,7 +59,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(ServerCommandSource source) {
@@ -67,7 +67,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(ServerCommandSource source) {

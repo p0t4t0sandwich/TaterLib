@@ -37,7 +37,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -45,7 +45,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getEntityId() {
@@ -53,7 +53,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove() {
@@ -61,7 +61,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -69,7 +69,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCustomName() {
@@ -80,7 +80,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCustomName(String name) {
@@ -88,7 +88,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getLocation() {
@@ -96,7 +96,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -104,7 +104,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -112,7 +112,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -120,7 +120,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getYaw() {
@@ -129,7 +129,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getPitch() {
@@ -138,7 +138,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDimension() {
@@ -149,7 +149,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getBiome() {
@@ -159,7 +159,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void teleport(Location location) {
@@ -167,7 +167,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void teleport(Entity entity) {

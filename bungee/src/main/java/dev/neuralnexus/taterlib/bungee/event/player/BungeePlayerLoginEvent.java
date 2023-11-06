@@ -17,7 +17,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -27,7 +27,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -38,7 +38,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

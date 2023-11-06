@@ -73,7 +73,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -81,7 +81,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -89,7 +89,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -97,7 +97,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -105,7 +105,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -113,7 +113,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -121,7 +121,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -133,7 +133,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -141,7 +141,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -149,7 +149,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {
@@ -157,7 +157,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String reason) {
@@ -170,7 +170,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location) {

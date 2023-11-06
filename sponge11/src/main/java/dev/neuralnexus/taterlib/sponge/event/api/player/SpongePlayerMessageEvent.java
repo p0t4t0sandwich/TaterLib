@@ -23,7 +23,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -31,7 +31,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -39,7 +39,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -47,7 +47,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getMessage() {
@@ -58,7 +58,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Set<Player> recipients() {
@@ -66,7 +66,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setMessage(String message) {
@@ -74,7 +74,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setRecipients(Set<Player> recipients) {}

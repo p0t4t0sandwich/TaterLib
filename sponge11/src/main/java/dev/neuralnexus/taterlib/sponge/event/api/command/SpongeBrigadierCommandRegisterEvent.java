@@ -18,7 +18,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -26,7 +26,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<Object> getDispatcher() {
@@ -34,7 +34,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(LiteralCommandNode<Object> node) {
@@ -42,7 +42,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(Object source) {
@@ -50,7 +50,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(Object source) {
@@ -58,7 +58,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(Object source) {

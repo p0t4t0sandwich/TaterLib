@@ -17,7 +17,7 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<ItemStack> getDrops() {
@@ -25,19 +25,19 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clearDrops() {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getDroppedExp() {
@@ -45,7 +45,7 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDroppedExp(int exp) {}

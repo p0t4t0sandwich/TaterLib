@@ -21,7 +21,7 @@ public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerL
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -29,7 +29,7 @@ public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerL
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {}

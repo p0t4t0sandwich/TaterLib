@@ -18,7 +18,7 @@ public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements Player
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -26,7 +26,7 @@ public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements Player
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {}

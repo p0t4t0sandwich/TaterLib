@@ -41,7 +41,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setX(double x) {
@@ -49,7 +49,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -57,7 +57,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockX() {
@@ -65,7 +65,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setY(double y) {
@@ -73,7 +73,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -81,7 +81,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockY() {
@@ -89,7 +89,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setZ(double z) {
@@ -97,7 +97,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -105,7 +105,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockZ() {
@@ -113,7 +113,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setYaw(float yaw) {
@@ -121,7 +121,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getYaw() {
@@ -129,7 +129,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setPitch(float pitch) {
@@ -137,7 +137,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getPitch() {
@@ -145,7 +145,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Position getBlockPosition() {
@@ -153,7 +153,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setWorld(String world) {
@@ -161,7 +161,7 @@ public class ForgeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getWorld() {

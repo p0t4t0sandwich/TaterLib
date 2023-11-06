@@ -18,7 +18,7 @@ public class SpongeLogger implements AbstractLogger {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void info(String message) {

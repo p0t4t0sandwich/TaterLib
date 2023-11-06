@@ -23,7 +23,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -31,7 +31,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<CommandSource> getDispatcher() {
@@ -39,7 +39,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(LiteralCommandNode<CommandSource> node) {
@@ -47,7 +47,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(CommandSource source) {
@@ -55,7 +55,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(CommandSource source) {
@@ -63,7 +63,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(CommandSource source) {

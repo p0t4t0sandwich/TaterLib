@@ -16,7 +16,7 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {

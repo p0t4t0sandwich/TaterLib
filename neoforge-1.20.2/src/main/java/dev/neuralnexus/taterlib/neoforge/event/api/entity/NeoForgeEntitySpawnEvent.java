@@ -18,7 +18,7 @@ public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements Ent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -26,7 +26,7 @@ public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements Ent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -34,7 +34,7 @@ public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements Ent
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getLocation() {

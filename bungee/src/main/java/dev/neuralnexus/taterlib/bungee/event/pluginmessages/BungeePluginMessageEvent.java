@@ -14,7 +14,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getChannel() {
@@ -22,7 +22,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public byte[] getData() {
@@ -41,7 +41,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public dev.neuralnexus.taterlib.common.player.Player getPlayer() {
@@ -61,7 +61,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public String getServer() {

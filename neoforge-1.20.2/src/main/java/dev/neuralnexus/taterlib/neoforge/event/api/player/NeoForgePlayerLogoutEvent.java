@@ -16,7 +16,7 @@ public class NeoForgePlayerLogoutEvent extends NeoForgePlayerEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -27,7 +27,7 @@ public class NeoForgePlayerLogoutEvent extends NeoForgePlayerEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {

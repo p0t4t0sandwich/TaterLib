@@ -21,7 +21,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getArmorContents() {
@@ -35,7 +35,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getExtraContents() {
@@ -44,7 +44,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getHelmet() {
@@ -53,7 +53,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getChestplate() {
@@ -62,7 +62,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getLeggings() {
@@ -71,7 +71,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getBoots() {
@@ -80,7 +80,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItem(String equipmentSlot, ItemStack item) {
@@ -88,7 +88,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItem(String equipmentSlot) {
@@ -97,7 +97,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setArmorContents(ItemStack[] items) {
@@ -117,7 +117,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setExtraContents(ItemStack[] items) {
@@ -125,7 +125,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setHelmet(ItemStack item) {
@@ -135,7 +135,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setChestplate(ItemStack item) {
@@ -145,7 +145,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLeggings(ItemStack item) {
@@ -155,7 +155,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setBoots(ItemStack item) {
@@ -165,7 +165,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItemInMainHand() {
@@ -174,7 +174,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItemInMainHand(ItemStack item) {
@@ -182,7 +182,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItemInOffHand() {
@@ -193,7 +193,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItemInOffHand(ItemStack item) {
@@ -204,7 +204,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getHeldItemSlot() {

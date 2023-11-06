@@ -27,7 +27,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<ItemStack> getDrops() {
@@ -41,7 +41,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDrops(List<ItemStack> drops) {
@@ -49,7 +49,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clearDrops() {
@@ -57,7 +57,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getDroppedExp() {
@@ -68,7 +68,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDroppedExp(int exp) {
@@ -76,7 +76,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {
@@ -84,7 +84,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -92,7 +92,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDeathMessage() {
@@ -103,7 +103,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDeathMessage(String deathMessage) {
@@ -111,7 +111,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasKeepInventory() {
@@ -119,7 +119,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setKeepInventory(boolean keepInventory) {}

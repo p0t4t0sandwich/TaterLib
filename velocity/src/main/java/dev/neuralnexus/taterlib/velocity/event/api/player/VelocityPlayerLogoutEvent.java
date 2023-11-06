@@ -17,7 +17,7 @@ public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -25,7 +25,7 @@ public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -36,7 +36,7 @@ public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {

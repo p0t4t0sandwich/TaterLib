@@ -18,7 +18,7 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getRespawnLocation() {
@@ -26,7 +26,7 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isBedSpawn() {
@@ -34,7 +34,7 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isAnchorSpawn() {

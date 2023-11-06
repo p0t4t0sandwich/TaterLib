@@ -26,7 +26,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemMeta getMeta() {
@@ -34,7 +34,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setMeta(ItemMeta item) {
@@ -42,7 +42,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -54,7 +54,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getCount() {
@@ -62,7 +62,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCount(int count) {
@@ -70,7 +70,7 @@ public class NeoForgeItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack clone() {

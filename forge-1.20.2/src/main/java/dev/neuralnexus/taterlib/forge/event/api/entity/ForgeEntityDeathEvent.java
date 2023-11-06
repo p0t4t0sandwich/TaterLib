@@ -23,7 +23,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<ItemStack> getDrops() {
@@ -37,7 +37,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDrops(List<ItemStack> drops) {
@@ -45,7 +45,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clearDrops() {
@@ -53,7 +53,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getDroppedExp() {
@@ -64,7 +64,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDroppedExp(int exp) {

@@ -15,7 +15,7 @@ public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements En
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -23,7 +23,7 @@ public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements En
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -31,7 +31,7 @@ public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements En
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCause() {

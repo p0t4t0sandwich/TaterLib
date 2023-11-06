@@ -19,7 +19,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -27,7 +27,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDeathMessage() {
@@ -38,7 +38,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDeathMessage(String deathMessage) {
@@ -46,7 +46,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasKeepInventory() {
@@ -54,7 +54,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setKeepInventory(boolean keepInventory) {}

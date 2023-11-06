@@ -17,7 +17,7 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -29,7 +29,7 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -40,7 +40,7 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

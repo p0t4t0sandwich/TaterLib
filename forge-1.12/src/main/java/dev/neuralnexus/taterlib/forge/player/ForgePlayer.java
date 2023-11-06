@@ -52,7 +52,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -60,7 +60,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -68,7 +68,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -76,7 +76,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -84,7 +84,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -92,7 +92,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -100,13 +100,13 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -114,7 +114,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String message) {
@@ -122,7 +122,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location, boolean forced) {
@@ -130,7 +130,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location) {
@@ -138,7 +138,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -148,7 +148,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {

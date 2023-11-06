@@ -16,7 +16,7 @@ public class BungeeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -24,7 +24,7 @@ public class BungeeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -32,7 +32,7 @@ public class BungeeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -40,7 +40,7 @@ public class BungeeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {
@@ -48,7 +48,7 @@ public class BungeeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {

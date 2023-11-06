@@ -18,7 +18,7 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -26,7 +26,7 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -37,7 +37,7 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {

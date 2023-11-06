@@ -16,7 +16,7 @@ public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -24,7 +24,7 @@ public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -32,7 +32,7 @@ public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getLocation() {

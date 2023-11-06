@@ -56,7 +56,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -64,7 +64,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -72,7 +72,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -80,7 +80,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -88,7 +88,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -96,7 +96,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -104,7 +104,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -113,7 +113,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -121,7 +121,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String message) {
@@ -129,7 +129,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location, boolean forced) {
@@ -138,7 +138,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location) {
@@ -146,7 +146,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getPrefix() {
@@ -155,7 +155,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getSuffix() {
@@ -164,7 +164,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -173,7 +173,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {

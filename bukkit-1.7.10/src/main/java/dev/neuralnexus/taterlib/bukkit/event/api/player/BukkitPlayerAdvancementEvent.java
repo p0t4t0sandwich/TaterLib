@@ -14,7 +14,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getAdvancement() {
@@ -22,7 +22,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -41,7 +41,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public String getAdvancement() {

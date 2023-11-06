@@ -17,7 +17,7 @@ public class NeoForgeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -28,7 +28,7 @@ public class NeoForgeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -36,7 +36,7 @@ public class NeoForgeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -44,7 +44,7 @@ public class NeoForgeSender implements Sender {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {

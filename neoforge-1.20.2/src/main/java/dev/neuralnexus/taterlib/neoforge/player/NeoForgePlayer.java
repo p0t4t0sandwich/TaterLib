@@ -53,7 +53,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -61,7 +61,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -69,7 +69,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -77,7 +77,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -85,7 +85,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -93,7 +93,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -101,7 +101,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -109,7 +109,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -117,7 +117,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String message) {
@@ -125,7 +125,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location, boolean forced) {
@@ -133,7 +133,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setSpawn(Location location) {
@@ -141,7 +141,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -151,7 +151,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {

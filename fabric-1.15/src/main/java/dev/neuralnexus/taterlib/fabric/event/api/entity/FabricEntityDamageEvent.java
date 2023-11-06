@@ -21,7 +21,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -29,7 +29,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -39,7 +39,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCause() {
@@ -47,7 +47,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getDamage() {
