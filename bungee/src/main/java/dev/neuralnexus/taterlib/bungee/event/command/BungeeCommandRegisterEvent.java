@@ -14,7 +14,7 @@ public class BungeeCommandRegisterEvent implements CommandRegisterEvent {
      * @inheritDoc
      */
     @Override
-    public void registerCommand(Plugin plugin, Command command, String... aliases) {
+    public void registerCommand(Object plugin, Command command, String... aliases) {
         BungeeTaterLibPlugin.getProxyServer().getPluginManager().registerCommand((net.md_5.bungee.api.plugin.Plugin) plugin, new BungeeCommandWrapper(command::execute, command.getName()));
     }
 }

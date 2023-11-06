@@ -15,7 +15,7 @@ public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
      * @inheritDoc
      */
     @Override
-    public void registerCommand(Plugin plugin, Command command, String... aliases) {
+    public void registerCommand(Object plugin, Command command, String... aliases) {
         JavaPlugin bukkitPlugin = (JavaPlugin) plugin;
         PluginCommand bukkitCommand = bukkitPlugin.getCommand(command.getName());
         if (bukkitCommand == null) {
