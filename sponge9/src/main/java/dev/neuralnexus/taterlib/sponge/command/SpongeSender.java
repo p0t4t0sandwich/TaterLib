@@ -40,7 +40,7 @@ public class SpongeSender implements Sender {
     public void sendMessage(String message) {
         // TODO: Figure out how identity works in Sponge
 //        sender.sendMessage(sender, Component.text(message));
-        TaterLib.logger.info(message);
+        TaterLib.getLogger().info(message);
     }
 
     /**

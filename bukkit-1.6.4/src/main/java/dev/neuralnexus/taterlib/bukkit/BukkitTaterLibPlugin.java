@@ -12,6 +12,8 @@ import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.Utils;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -35,16 +37,21 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        instance = this;
         pluginStart(this, new BukkitLogger(getLogger()));
-        TaterLib.configFolder = "plugins";
-        TaterLib.serverType = Utils.getBukkitServerType();
-        TaterLib.minecraftVersion = getServer().getVersion();
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "plugins",
+                Utils.getBukkitServerType(),
+                getServer().getVersion()
+        ));
+        pluginStart(this, new BukkitLogger(getLogger()));
+        TaterAPI api = TaterAPIProvider.get();
+
+        instance = this;
 
         // Register LuckPerms hook
         if (getServer().getPluginManager().getPlugin("LuckPerms") != null) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            api.addHook("luckperms", new LuckPermsHook());
         }
 
         // Register command listeners
@@ -60,7 +67,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
         // Register plugin message channels
         Messenger messenger = getServer().getMessenger();
-        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> {
+        api.setRegisterChannels((channels) -> channels.forEach((channel) -> {
             messenger.registerIncomingPluginChannel(this, channel, new BukkitPluginMessageListener());
             messenger.registerOutgoingPluginChannel(this, channel);
         }));

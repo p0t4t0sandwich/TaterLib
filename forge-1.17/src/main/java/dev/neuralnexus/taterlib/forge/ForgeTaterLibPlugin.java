@@ -1,8 +1,9 @@
 package dev.neuralnexus.taterlib.forge;
 
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
@@ -27,22 +28,27 @@ import java.lang.reflect.Field;
 /**
  * The TaterLib Forge plugin.
  */
-@Mod(Constants.PROJECT_ID)
+@Mod(TaterLib.Constants.PROJECT_ID)
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
     public ForgeTaterLibPlugin() {
-        pluginStart(this, new ForgeLogger(LogManager.getLogger()));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Forge";
+        String minecraftVersion = "";
         try {
             Field mcVersionField = FMLLoader.class.getDeclaredField("mcVersion");
             mcVersionField.setAccessible(true);
-            TaterLib.minecraftVersion = (String) mcVersionField.get(null);
+            minecraftVersion = (String) mcVersionField.get(null);
         } catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "config",
+                "Forge",
+                minecraftVersion
+        ));
+        pluginStart(this, new ForgeLogger(LogManager.getLogger()));
+        TaterAPI api = TaterAPIProvider.get();
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
@@ -63,7 +69,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
 
-        TaterLib.setRegisterChannels(ModMessages::addChannels);
+        api.setRegisterChannels(ModMessages::addChannels);
     }
 
     /**
@@ -83,8 +89,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onServerStarted(FMLServerStartedEvent event) {
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterAPIProvider.get().addHook("luckperms", new LuckPermsHook());
         }
     }
 

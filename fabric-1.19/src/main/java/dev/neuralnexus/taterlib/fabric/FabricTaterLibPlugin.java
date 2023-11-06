@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.fabric;
 
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
@@ -36,20 +36,23 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
 
     @Override
     public void onInitializeServer() {
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "config",
+                "Fabric",
+                FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString()
+        ));
+        pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
+        TaterAPI api = TaterAPIProvider.get();
+
         // Initialize plugin data
         ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
-        pluginStart(this, new FabricLogger( "[" + Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(Constants.PROJECT_ID)));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Fabric";
-        FabricLoader.getInstance().getModContainer("minecraft").ifPresent(modContainer ->
-                TaterLib.minecraftVersion = modContainer.getMetadata().getVersion().getFriendlyString());
 
         // Register LuckPerms hook
         ServerLifecycleEvents.SERVER_STARTING.register(server -> {
             if (FabricLoader.getInstance().isModLoaded("luckperms")) {
-                TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-                TaterLib.addHook("luckperms", new LuckPermsHook());
+                TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+                api.addHook("luckperms", new LuckPermsHook());
             }
         });
 

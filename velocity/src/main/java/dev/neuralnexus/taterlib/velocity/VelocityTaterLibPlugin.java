@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.velocity;
 
-import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -31,12 +31,12 @@ import java.time.Duration;
  * The TaterLib Velocity plugin.
  */
 @Plugin(
-        id = Constants.PROJECT_ID,
-        name = Constants.PROJECT_NAME,
-        version = Constants.PROJECT_VERSION,
-        authors = Constants.PROJECT_AUTHORS,
-        description = Constants.PROJECT_DESCRIPTION,
-        url = Constants.PROJECT_URL,
+        id = TaterLib.Constants.PROJECT_ID,
+        name = TaterLib.Constants.PROJECT_NAME,
+        version = TaterLib.Constants.PROJECT_VERSION,
+        authors = TaterLib.Constants.PROJECT_AUTHORS,
+        description = TaterLib.Constants.PROJECT_DESCRIPTION,
+        url = TaterLib.Constants.PROJECT_URL,
         dependencies = {
                 @Dependency(id = "luckperms", optional = true)
         }
@@ -61,16 +61,20 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
      */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        proxyServer = server;
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "plugins",
+                "Velocity",
+                server.getVersion().getVersion()
+        ));
         pluginStart(this, new VelocityLogger(logger));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Velocity";
-        TaterLib.minecraftVersion = server.getVersion().getVersion();
+        TaterAPI api = TaterAPIProvider.get();
+
+        proxyServer = server;
 
         // Register LuckPerms hook
         if (server.getPluginManager().getPlugin("LuckPerms").isPresent()) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            api.addHook("luckperms", new LuckPermsHook());
         }
 
         // Register command events
@@ -88,7 +92,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         server.getScheduler().buildTask(this, () -> ServerEvents.STARTED.invoke(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
         eventManager.register(this, new VelocityServerListener());
 
-        TaterLib.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
+        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
     }
 
     /**

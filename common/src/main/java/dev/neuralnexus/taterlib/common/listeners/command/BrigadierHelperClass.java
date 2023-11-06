@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.common.listeners.command;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
@@ -19,7 +20,7 @@ public class BrigadierHelperClass {
         event.registerCommand(literal(command.getName())
                 .requires(source -> {
                     Sender sender = event.getSender(source);
-                    return sender.hasPermission(event.isDedicated() ? (TaterLib.isHooked("luckperms") ? 0 : 4) : 0);
+                    return sender.hasPermission(event.isDedicated() ? (TaterAPIProvider.get().isHooked("luckperms") ? 0 : 4) : 0);
                 })
                 .then(argument("args", greedyString())
                         .executes(context -> {

@@ -14,7 +14,7 @@ public class CommandListener {
      * @param event The event.
      */
     public static void onRegisterCommand(CommandRegisterEvent event) {
-        event.registerCommand(TaterLib.plugin, new TaterLibCommand());
+        event.registerCommand(TaterLib.getPlugin(), new TaterLibCommand());
     }
 
     /**

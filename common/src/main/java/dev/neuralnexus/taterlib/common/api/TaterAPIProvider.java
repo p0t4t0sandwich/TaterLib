@@ -1,18 +1,16 @@
 package dev.neuralnexus.taterlib.common.api;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
-
 /**
- * TaterLib API Provider
+ * TaterAPI Provider
  */
-public class TaterLibAPIProvider {
-    private static TaterLib instance = null;
+public class TaterAPIProvider {
+    private static TaterAPI instance = null;
 
     /**
-     * Get the instance of TaterLib
-     * @return The instance of TaterLib
+     * Get the instance of TaterAPI
+     * @return The instance of TaterAPI
      */
-    public static TaterLib get() {
+    public static TaterAPI get() {
         if (instance == null) {
             throw new NotLoadedException();
         }
@@ -21,17 +19,20 @@ public class TaterLibAPIProvider {
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     * @param instance: The instance of TaterLib
+     * @param data: The instance of TaterAPI
      */
-    public static void register(TaterLib instance) {
-        TaterLibAPIProvider.instance = instance;
+    public static void register(TaterAPI.Data data) {
+        if (TaterAPIProvider.instance != null) {
+            throw new IllegalStateException("TaterAPI has already been registered!");
+        }
+        TaterAPIProvider.instance = new TaterAPI(data);
     }
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
      */
     public static void unregister() {
-        TaterLibAPIProvider.instance = null;
+        TaterAPIProvider.instance = null;
     }
 
     /**

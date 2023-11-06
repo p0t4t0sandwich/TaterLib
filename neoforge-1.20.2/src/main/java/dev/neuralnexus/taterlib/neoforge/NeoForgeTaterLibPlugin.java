@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.neoforge;
 
 import com.mojang.logging.LogUtils;
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
@@ -25,16 +26,19 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 /**
  * The TaterLib NeoForge plugin.
  */
-@Mod(Constants.PROJECT_ID)
+@Mod(TaterLib.Constants.PROJECT_ID)
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     /**
      * Called when the Forge mod is initializing.
      */
     public NeoForgeTaterLibPlugin() {
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "config",
+                "Forge",
+                FMLLoader.versionInfo().mcVersion()
+        ));
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Forge";
-        TaterLib.minecraftVersion = FMLLoader.versionInfo().mcVersion();
+        TaterAPI api = TaterAPIProvider.get();
 
         // Register server starting/stopping events
         NeoForge.EVENT_BUS.register(this);
@@ -55,7 +59,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         modEventBus.addListener(this::commonSetup);
 
-        TaterLib.setRegisterChannels(ModMessages::addChannels);
+        api.setRegisterChannels(ModMessages::addChannels);
     }
 
     /**
@@ -75,8 +79,8 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     public void onServerStarted(ServerStartedEvent event) {
         // Register LuckPerms hook
         if (ModList.get().isLoaded("luckperms")) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            TaterAPIProvider.get().addHook("luckperms", new LuckPermsHook());
         }
     }
 

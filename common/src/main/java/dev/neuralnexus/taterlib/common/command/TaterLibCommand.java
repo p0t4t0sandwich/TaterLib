@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.common.command;
 
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.Utils;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
@@ -48,7 +47,7 @@ public class TaterLibCommand implements Command {
                 }
                 break;
             case "version":
-                text = "&aTaterLib v" + Constants.PROJECT_VERSION;
+                text = "&aTaterLib v" + TaterLib.Constants.PROJECT_VERSION;
                 break;
             default:
                 text = getUsage();

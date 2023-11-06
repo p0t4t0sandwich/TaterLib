@@ -10,6 +10,8 @@ import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMess
 import dev.neuralnexus.taterlib.bungee.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
@@ -35,16 +37,20 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        proxyServer = getProxy();
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "plugins",
+                "BungeeCord",
+                getProxy().getVersion()
+        ));
         pluginStart(this, new BungeeLogger(getLogger()));
-        TaterLib.configFolder = "plugins";
-        TaterLib.serverType = "BungeeCord";
-        TaterLib.minecraftVersion = getProxy().getVersion();
+        TaterAPI api = TaterAPIProvider.get();
+
+        proxyServer = getProxy();
 
         // Register LuckPerms hook
         if (getProxy().getPluginManager().getPlugin("LuckPerms") != null) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            api.addHook("luckperms", new LuckPermsHook());
         }
 
         PluginManager pluginManager = getProxy().getPluginManager();

@@ -1,31 +1,22 @@
 package dev.neuralnexus.taterlib.common;
 
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.listeners.command.CommandListener;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
-import dev.neuralnexus.taterlib.common.api.TaterLibAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
-import dev.neuralnexus.taterlib.common.relay.MessageRelay;
-
-import java.util.*;
-import java.util.function.Consumer;
 
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
-    public static Object plugin;
-    public static AbstractLogger logger;
-    public static String configFolder;
-    public static String minecraftVersion = "Unknown";
-    public static String serverType = "Unknown";
+    private Object plugin;
+    private AbstractLogger logger;
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
-    private static MessageRelay messageRelay;
-    private static final HashMap<String, Object> hooks = new HashMap<>();
-    public static Consumer<Set<String>> registerChannels = (channels) -> {};
 
     /**
-     * Getter for the singleton instance of the TaterLib class.
+     * Getter for the singleton instance of the class.
      * @return The singleton instance
      */
     public static TaterLib getInstance() {
@@ -33,16 +24,48 @@ public class TaterLib {
     }
 
     /**
-     * Start TaterLib
+     * Set the plugin
+     * @param plugin The plugin
+     */
+    private static void setPlugin(Object plugin) {
+        instance.plugin = plugin;
+    }
+
+    /**
+     * Get the plugin
+     * @return The plugin
+     */
+    public static Object getPlugin() {
+        return instance.plugin;
+    }
+
+    /**
+     * Set the logger
+     * @param logger The logger
+     */
+    private static void setLogger(AbstractLogger logger) {
+        instance.logger = logger;
+    }
+
+    /**
+     * Get the logger
+     * @return The logger
+     */
+    public static AbstractLogger getLogger() {
+        return instance.logger;
+    }
+
+    /**
+     * Start
      * @param plugin The plugin
      * @param logger The logger
      */
     public static void start(Object plugin, AbstractLogger logger) {
-        TaterLib.plugin = plugin;
-        TaterLib.logger = logger;
+        setPlugin(plugin);
+        setLogger(logger);
 
         if (STARTED) {
-            logger.info("TaterLib has already started!");
+            instance.logger.info(Constants.PROJECT_NAME + " has already started!");
             return;
         }
         STARTED = true;
@@ -58,29 +81,28 @@ public class TaterLib {
             CommandEvents.REGISTER_BRIGADIER_COMMAND.register(CommandListener::onRegisterBrigadierCommand);
         }
 
-        logger.info("TaterLib has been started!");
-        TaterLibAPIProvider.register(instance);
+        instance.logger.info(Constants.PROJECT_NAME + " has been started!");
     }
 
     /**
-     * Start TaterLib
+     * Start
      */
     public static void start() {
-        start(plugin, logger);
+        start(instance.plugin, instance.logger);
     }
 
     /**
-     * Stop TaterLib
+     * Stop
      */
     public static void stop() {
         if (!STARTED) {
-            logger.info("TaterLib has already stopped!");
+            instance.logger.info(Constants.PROJECT_NAME + " has already stopped!");
             return;
         }
         STARTED = false;
 
-        logger.info("TaterLib has been stopped!");
-        TaterLibAPIProvider.unregister();
+        instance.logger.info(Constants.PROJECT_NAME + " has been stopped!");
+        TaterAPIProvider.unregister();
     }
 
     /**
@@ -88,7 +110,7 @@ public class TaterLib {
      */
     public static void reload() {
         if (!STARTED) {
-            logger.info("TaterLib has not been started!");
+            instance.logger.info(Constants.PROJECT_NAME + " has not been started!");
             return;
         }
         RELOADED = true;
@@ -97,48 +119,20 @@ public class TaterLib {
         stop();
 
         // Start
-        start(plugin, logger);
+        start();
 
-        logger.info("TaterLib has been reloaded!");
+        instance.logger.info(Constants.PROJECT_NAME + " has been reloaded!");
     }
 
     /**
-     * Get the MessageRelay instance
+     * Constants used throughout the plugin.
      */
-    public static MessageRelay getMessageRelay() {
-        return messageRelay;
-    }
-
-    /**
-     * Set the MessageRelay instance
-     * @param messageRelay The MessageRelay instance
-     */
-    public static void setMessageRelay(MessageRelay messageRelay) {
-        TaterLib.messageRelay = messageRelay;
-    }
-
-    /**
-     * Add a hook to the hooks map
-     * @param hookName The name of the hook
-     * @param hook The hook to add
-     */
-     public static void addHook(String hookName, Object hook) {
-        hooks.put(hookName, hook);
-     }
-
-    /**
-     * Get if a hook exists
-     * @param hookName The name of the hook
-     */
-    public static boolean isHooked(String hookName) {
-        return hooks.containsKey(hookName);
-    }
-
-    /**
-     * Set the registerChannels consumer
-     * @param registerChannels The registerChannels consumer
-     */
-    public static void setRegisterChannels(Consumer<Set<String>> registerChannels) {
-        TaterLib.registerChannels = registerChannels;
+    public static class Constants {
+        public static final String PROJECT_NAME = "TaterLib";
+        public static final String PROJECT_ID = "taterlib";
+        public static final String PROJECT_VERSION = "1.1.0-R0.3-SNAPSHOT";
+        public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
+        public static final String PROJECT_DESCRIPTION = "A cross API code library for various generalizations used in the Tater* plugins";
+        public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
     }
 }

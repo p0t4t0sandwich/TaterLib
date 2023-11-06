@@ -1,8 +1,9 @@
 package dev.neuralnexus.taterlib.sponge;
 
-import dev.neuralnexus.taterlib.common.Constants;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
+import dev.neuralnexus.taterlib.common.api.TaterAPI;
+import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.sponge.listeners.command.SpongeCommandListener;
 import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
@@ -23,19 +24,22 @@ import org.apache.logging.log4j.Logger;
 /**
  * The TaterLib Sponge plugin.
  */
-@Plugin(Constants.PROJECT_ID)
+@Plugin(TaterLib.Constants.PROJECT_ID)
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Inject
     public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
-        TaterLib.configFolder = "config";
-        TaterLib.serverType = "Sponge";
-        TaterLib.minecraftVersion = Sponge.platform().container(Platform.Component.GAME).metadata().version().toString();
+        TaterAPIProvider.register(new TaterAPI.Data(
+                "config",
+                "Sponge",
+                Sponge.platform().container(Platform.Component.GAME).metadata().version().toString()
+        ));
         pluginStart(container, new SpongeLogger(logger));
+        TaterAPI api = TaterAPIProvider.get();
 
         // Register LuckPerms hook
         if (Sponge.pluginManager().plugin("luckperms").isPresent()) {
-            TaterLib.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-            TaterLib.addHook("luckperms", new LuckPermsHook());
+            TaterLib.getLogger().info("LuckPerms detected, enabling LuckPerms hook.");
+            api.addHook("luckperms", new LuckPermsHook());
         }
 
         EventManager eventManager = Sponge.eventManager();
