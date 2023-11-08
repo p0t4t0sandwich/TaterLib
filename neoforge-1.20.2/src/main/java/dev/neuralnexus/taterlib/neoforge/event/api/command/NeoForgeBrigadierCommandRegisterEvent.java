@@ -11,6 +11,8 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 
+import static net.minecraft.commands.Commands.literal;
+
 /**
  * NeoForge implementation of {@link BrigadierCommandRegisterEvent}.
  */
@@ -41,8 +43,11 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSourceStack> node) {
-        event.getDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node.createBuilder());
+        for (String alias : aliases) {
+            event.getDispatcher().register(literal(alias).redirect(node));
+        }
     }
 
     /**

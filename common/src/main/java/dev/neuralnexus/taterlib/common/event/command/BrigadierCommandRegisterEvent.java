@@ -25,7 +25,7 @@ public interface BrigadierCommandRegisterEvent<S> {
      * Registers a LiteralCommandNode<S>.
      * @param node The node.
      */
-    void registerCommand(LiteralCommandNode<S> node);
+    void registerCommand(LiteralCommandNode<S> node, Object plugin, String commandName, String... aliases);
 
     /**
      * Get the sender.

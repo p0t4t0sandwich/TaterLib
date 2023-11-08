@@ -48,8 +48,11 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node) {
-        event.getDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node.createBuilder());
+        for (String alias : aliases) {
+            event.getDispatcher().register(literal(alias).redirect(node));
+        }
     }
 
     /**

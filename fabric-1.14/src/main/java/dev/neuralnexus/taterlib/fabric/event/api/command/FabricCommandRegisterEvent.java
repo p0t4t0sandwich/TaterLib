@@ -2,7 +2,6 @@ package dev.neuralnexus.taterlib.fabric.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.tree.LiteralCommandNode;
-import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.command.SimpleBrigadierWrapper;
@@ -12,12 +11,9 @@ import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.fabric.command.FabricSender;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
-import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+import static net.minecraft.server.command.CommandManager.literal;
 
 /**
  * Fabric implementation of {@link CommandRegisterEvent}.
@@ -51,8 +47,11 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent, Brigadi
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<ServerCommandSource> node) {
-        dispatcher.getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<ServerCommandSource> node, Object plugin, String commandName, String... aliases) {
+        dispatcher.register(node.createBuilder());
+        for (String alias : aliases) {
+            dispatcher.register(literal(alias).redirect(node));
+        }
     }
 
     /**
@@ -87,7 +86,7 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent, Brigadi
         final LiteralCommandNode<ServerCommandSource> commandNode = SimpleBrigadierWrapper.wrapCommand(this, command);
         dispatcher.register(commandNode.createBuilder());
         for (String alias : aliases) {
-            dispatcher.register(CommandManager.literal(alias).redirect(commandNode));
+            dispatcher.register(literal(alias).redirect(commandNode));
         }
     }
 }

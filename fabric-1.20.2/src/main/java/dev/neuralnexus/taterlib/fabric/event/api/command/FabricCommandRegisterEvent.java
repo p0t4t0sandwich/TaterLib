@@ -51,8 +51,11 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent, Brigadi
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<ServerCommandSource> node) {
-        dispatcher.getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<ServerCommandSource> node, Object plugin, String commandName, String... aliases) {
+        dispatcher.register(node.createBuilder());
+        for (String alias : aliases) {
+            dispatcher.register(literal(alias).redirect(node));
+        }
     }
 
     /**

@@ -12,6 +12,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
+import static net.minecraft.server.command.CommandManager.literal;
+
 /**
  * Fabric implementation of {@link BrigadierCommandRegisterEvent}.
  */
@@ -46,8 +48,11 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<ServerCommandSource> node) {
-        dispatcher.getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<ServerCommandSource> node, Object plugin, String commandName, String... aliases) {
+        dispatcher.register(node.createBuilder());
+        for (String alias : aliases) {
+            dispatcher.register(literal(alias).redirect(node));
+        }
     }
 
     /**

@@ -11,6 +11,8 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
+import static net.minecraft.command.Commands.literal;
+
 /**
  * Forge implementation of {@link BrigadierCommandRegisterEvent}.
  */
@@ -41,8 +43,11 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node) {
-        event.getCommandDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getCommandDispatcher().register(node.createBuilder());
+        for (String alias : aliases) {
+            event.getCommandDispatcher().register(literal(alias).redirect(node));
+        }
     }
 
     /**

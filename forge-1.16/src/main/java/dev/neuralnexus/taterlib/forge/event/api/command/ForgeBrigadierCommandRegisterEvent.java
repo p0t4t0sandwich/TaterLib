@@ -12,6 +12,8 @@ import net.minecraft.command.Commands;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.RegisterCommandsEvent;
 
+import static net.minecraft.command.Commands.literal;
+
 /**
  * Forge implementation of {@link BrigadierCommandRegisterEvent}.
  */
@@ -42,8 +44,11 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node) {
-        event.getDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralCommandNode<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node.createBuilder());
+        for (String alias : aliases) {
+            event.getDispatcher().register(literal(alias).redirect(node));
+        }
     }
 
     /**
