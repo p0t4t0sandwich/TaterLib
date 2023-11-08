@@ -9,6 +9,7 @@ import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.command.FabricBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.fabric.event.api.command.FabricCommandRegisterEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntitySpawnEvent;
@@ -45,7 +46,10 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
 
         // Register Fabric API command events
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, registryAccess, environment)));
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            CommandEvents.REGISTER_COMMAND.invoke(new FabricCommandRegisterEvent(dispatcher, registryAccess, environment));
+            CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, registryAccess, environment));
+        });
 
         // Register Fabric API player events
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> PlayerEvents.LOGIN.invoke(new FabricPlayerLoginEvent(handler, sender, server)));

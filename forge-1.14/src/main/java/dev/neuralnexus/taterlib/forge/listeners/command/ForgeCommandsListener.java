@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.forge.listeners.command;
 
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.forge.event.api.command.ForgeBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 
@@ -15,6 +16,7 @@ public class ForgeCommandsListener {
      */
     @SubscribeEvent
     public void onRegisterBrigadierCommand(FMLServerStartingEvent event) {
+        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new ForgeBrigadierCommandRegisterEvent(event));
     }
 }

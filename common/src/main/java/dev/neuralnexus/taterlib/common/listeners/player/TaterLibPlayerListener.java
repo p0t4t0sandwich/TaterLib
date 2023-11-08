@@ -9,7 +9,7 @@ import dev.neuralnexus.taterlib.common.player.cache.PlayerCache;
 /**
  * Listens for player events.
  */
-public final class PlayerListener {
+public final class TaterLibPlayerListener {
     /**
      * Called when a player logs in.
      * @param event The event.

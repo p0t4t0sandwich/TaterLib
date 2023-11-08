@@ -89,19 +89,8 @@ public class TaterAPI {
      * @return If Brigadier is supported
      */
     public boolean isBrigadierSupported() {
-        if (data.minecraftVersion.isAtLeast(MinecraftVersion.V1_13)) {
-            switch (data.serverType) {
-                case FORGE:
-                case NEOFORGE:
-                case GOLDENFORGE:
-                case FABRIC:
-                case QUILT:
-                    return true;
-                default:
-                    return false;
-            }
-        }
-        return false;
+        return data.minecraftVersion.isAtLeast(MinecraftVersion.V1_13) &&
+            data.serverType.is(ServerType.FORGE, ServerType.NEOFORGE, ServerType.GOLDENFORGE, ServerType.FABRIC, ServerType.QUILT);
     }
 
     /**
