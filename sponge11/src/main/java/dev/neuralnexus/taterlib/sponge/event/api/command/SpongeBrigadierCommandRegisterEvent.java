@@ -37,7 +37,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<Object> node) {
+    public void registerCommand(LiteralCommandNode<Object> node, Object plugin, String commandName, String... aliases) {
 
     }
 

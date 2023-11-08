@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.velocity.event.api.command;
 
+import com.velocitypowered.api.command.CommandManager;
+import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
@@ -14,6 +16,11 @@ public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
-        ((ProxyServer) plugin).getCommandManager().register(command.getName(), new VelocityCommandWrapper(command::execute));
+        CommandManager commandManager = ((ProxyServer) plugin).getCommandManager();
+        CommandMeta commandMeta = commandManager.metaBuilder(command.getName())
+                .aliases(aliases)
+                .plugin(plugin)
+                .build();
+        commandManager.register(commandMeta, new VelocityCommandWrapper(command::execute));
     }
 }

@@ -10,6 +10,7 @@ import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStoppedEvent;
@@ -68,7 +69,10 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         // Register command events
-        server.getScheduler().buildTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent())).delay(Duration.ofSeconds(5)).schedule();
+        server.getScheduler().buildTask(this, () -> {
+            CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent());
+            CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new VelocityBrigadierCommandRegisterEvent());
+        }).delay(Duration.ofSeconds(5)).schedule();
 
         EventManager eventManager = server.getEventManager();
 
