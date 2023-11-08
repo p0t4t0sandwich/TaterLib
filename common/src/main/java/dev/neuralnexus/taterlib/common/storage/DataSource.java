@@ -1,29 +1,29 @@
 package dev.neuralnexus.taterlib.common.storage;
 
-import dev.dejvokep.boostedyaml.YamlDocument;
-
-import java.util.Arrays;
-
-
+/**
+ * Data source class
+ */
 public class DataSource {
     /**
      * Get the database
      * @param type The type of database
-     * @param config The config file
+     * @param config The config data
      * @return The database
      */
-    public static Database getDatabase(String type, YamlDocument config) {
+    public static Database getDatabase(Database.Type type, Database.DatabaseConfig config) {
         try {
             switch (type) {
-                case "mysql":
-                    return new MySQLDatabase(config);
-                case "mongodb":
+                case FILESYSTEM:
+                    return new Filesystem(config);
+                case MONGODB:
                     return new MongoDBDatabase(config);
+                case MYSQL:
+                    return new MySQLDatabase(config);
                 default:
                     return null;
             }
         } catch (Exception e) {
-            System.err.println(Arrays.toString(e.getStackTrace()));
+            e.printStackTrace();
             return null;
         }
     }

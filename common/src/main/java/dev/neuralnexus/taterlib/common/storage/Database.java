@@ -1,33 +1,53 @@
 package dev.neuralnexus.taterlib.common.storage;
 
-public class Database<T> {
-    private final String type;
-    private T connection;
-    private String database;
+/**
+ * Database interface
+ * @param <T> The type of connection
+ */
+public interface Database<T> {
+    /**
+     * Get the type of the database
+     * @return The type of the database
+     */
+    Database.Type getType();
 
-    public Database(String type, T connection, String database) {
-        this.type = type;
-        this.connection = connection;
-        this.database = database;
+    /**
+     * Get the connection
+     * @return The connection
+     */
+    T getConnection();
+
+    /**
+     * Get the database
+     * @return The database
+     */
+    String getDatabase();
+
+    /**
+     * Database config class
+     */
+    class DatabaseConfig {
+        public final String host;
+        public final int port;
+        public final String database;
+        public final String username;
+        public final String password;
+
+        public DatabaseConfig(String host, int port, String database, String username, String password) {
+            this.host = host;
+            this.port = port;
+            this.database = database;
+            this.username = username;
+            this.password = password;
+        }
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public T getConnection() {
-        return connection;
-    }
-
-    public String getDatabase() {
-        return database;
-    }
-
-    public void setConnection(T connection) {
-        this.connection = connection;
-    }
-
-    public void setDatabase(String database) {
-        this.database = database;
+    /**
+     * Database type enum
+     */
+    enum Type {
+        FILESYSTEM,
+        MONGODB,
+        MYSQL
     }
 }

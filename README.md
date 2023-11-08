@@ -114,3 +114,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Entity.teleport`
 - Abstracted brigadier helper into a wrapper class
 - Implemented registering simple commands for Forge/Fabric 1.13+
+- Updated database utils
