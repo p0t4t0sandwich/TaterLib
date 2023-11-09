@@ -268,6 +268,14 @@ public enum ServerType {
     }
 
     /**
+     * Check if the server is running some sort of proxy.
+     * @return True if the server is running some sort of proxy, false otherwise.
+     */
+    public boolean isProxy() {
+        return this.isBungeeCordBased() || this.isVelocityBased();
+    }
+
+    /**
      * Check if the server is running Bukkit.
      */
     public static boolean isBukkit() {

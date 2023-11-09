@@ -85,7 +85,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.3-SNAPSHOT
+### 1.1.0-R0.5-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
