@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.command.SimpleBrigadierWrapper;
@@ -26,7 +26,6 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
         this.event = event;
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -47,10 +46,10 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node, Object plugin, String commandName, String... aliases) {
-        event.getCommandDispatcher().register(node.createBuilder());
+    public void registerCommand(LiteralArgumentBuilder<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getCommandDispatcher().register(node);
         for (String alias : aliases) {
-            event.getCommandDispatcher().register(literal(alias).redirect(node));
+            event.getCommandDispatcher().register(literal(alias).redirect(node.build()));
         }
     }
 
@@ -83,10 +82,10 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
-        final LiteralCommandNode<CommandSource> commandNode = SimpleBrigadierWrapper.wrapCommand(this, command);
-        event.getCommandDispatcher().register(commandNode.createBuilder());
+        final LiteralArgumentBuilder<CommandSource> commandNode = SimpleBrigadierWrapper.wrapCommand(this, command);
+        event.getCommandDispatcher().register(commandNode);
         for (String alias : aliases) {
-            event.getCommandDispatcher().register(literal(alias).redirect(commandNode));
+            event.getCommandDispatcher().register(literal(alias).redirect(commandNode.build()));
         }
     }
 }

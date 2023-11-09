@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.common.command.Sender;
@@ -47,10 +48,10 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
-        event.getDispatcher().register(node.createBuilder());
+    public void registerCommand(LiteralArgumentBuilder<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node);
         for (String alias : aliases) {
-            event.getDispatcher().register(literal(alias).redirect(node));
+            event.getDispatcher().register(literal(alias).redirect(node.build()));
         }
     }
 
@@ -83,10 +84,10 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent, Brigadie
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
-        final LiteralCommandNode<CommandSourceStack> commandNode = SimpleBrigadierWrapper.wrapCommand(this, command);
-        event.getDispatcher().register(commandNode.createBuilder());
+        final LiteralArgumentBuilder<CommandSourceStack> commandNode = SimpleBrigadierWrapper.wrapCommand(this, command);
+        event.getDispatcher().register(commandNode);
         for (String alias : aliases) {
-            event.getDispatcher().register(literal(alias).redirect(commandNode));
+            event.getDispatcher().register(literal(alias).redirect(commandNode.build()));
         }
     }
 }

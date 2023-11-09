@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
@@ -43,10 +43,10 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node, Object plugin, String commandName, String... aliases) {
-        event.getCommandDispatcher().register(node.createBuilder());
+    public void registerCommand(LiteralArgumentBuilder<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getCommandDispatcher().register(node);
         for (String alias : aliases) {
-            event.getCommandDispatcher().register(literal(alias).redirect(node));
+            event.getCommandDispatcher().register(literal(alias).redirect(node.build()));
         }
     }
 

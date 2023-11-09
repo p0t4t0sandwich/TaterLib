@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
@@ -37,7 +38,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<Object> node, Object plugin, String commandName, String... aliases) {
+    public void registerCommand(LiteralArgumentBuilder<Object> node, Object plugin, String commandName, String... aliases) {
 
     }
 

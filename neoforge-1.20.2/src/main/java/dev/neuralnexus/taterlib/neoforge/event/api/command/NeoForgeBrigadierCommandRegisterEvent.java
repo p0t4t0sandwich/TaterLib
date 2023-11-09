@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
@@ -43,10 +43,10 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
      * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
-        event.getDispatcher().register(node.createBuilder());
+    public void registerCommand(LiteralArgumentBuilder<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node);
         for (String alias : aliases) {
-            event.getDispatcher().register(literal(alias).redirect(node));
+            event.getDispatcher().register(literal(alias).redirect(node.build()));
         }
     }
 
