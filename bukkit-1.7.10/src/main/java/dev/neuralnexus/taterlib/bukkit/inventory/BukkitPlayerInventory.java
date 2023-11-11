@@ -19,7 +19,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getArmorContents() {
@@ -33,7 +33,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getExtraContents() {
@@ -48,7 +48,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getHelmet() {
@@ -56,7 +56,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getChestplate() {
@@ -64,7 +64,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getLeggings() {
@@ -72,7 +72,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getBoots() {
@@ -80,7 +80,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItem(String equipmentSlot, ItemStack item) {
@@ -88,7 +88,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItem(String equipmentSlot) {
@@ -97,7 +97,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setArmorContents(ItemStack[] items) {
@@ -110,7 +110,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setExtraContents(ItemStack[] items) {
@@ -123,7 +123,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setHelmet(ItemStack item) {
@@ -131,7 +131,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setChestplate(ItemStack item) {
@@ -139,7 +139,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLeggings(ItemStack item) {
@@ -147,7 +147,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setBoots(ItemStack item) {
@@ -155,7 +155,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItemInMainHand() {
@@ -163,7 +163,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItemInMainHand(ItemStack item) {
@@ -171,7 +171,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItemInOffHand() {
@@ -180,7 +180,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItemInOffHand(ItemStack item) {
@@ -188,7 +188,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getHeldItemSlot() {

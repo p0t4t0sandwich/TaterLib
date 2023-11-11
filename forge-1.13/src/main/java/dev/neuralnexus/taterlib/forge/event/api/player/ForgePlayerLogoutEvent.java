@@ -16,7 +16,7 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -27,7 +27,7 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {

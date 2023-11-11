@@ -18,7 +18,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -26,7 +26,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -34,7 +34,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getLocation() {

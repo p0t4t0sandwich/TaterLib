@@ -17,7 +17,7 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -25,7 +25,7 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLoginMessage() {
@@ -36,7 +36,7 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLoginMessage(String message) {

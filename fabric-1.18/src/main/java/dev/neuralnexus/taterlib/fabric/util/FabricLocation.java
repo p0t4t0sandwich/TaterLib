@@ -42,7 +42,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setX(double x) {
@@ -50,7 +50,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -58,7 +58,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockX() {
@@ -66,7 +66,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setY(double y) {
@@ -74,7 +74,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -82,7 +82,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockY() {
@@ -90,7 +90,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setZ(double z) {
@@ -98,7 +98,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -106,7 +106,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockZ() {
@@ -114,7 +114,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setYaw(float yaw) {
@@ -122,7 +122,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getYaw() {
@@ -130,7 +130,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setPitch(float pitch) {
@@ -138,7 +138,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getPitch() {
@@ -146,7 +146,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Position getBlockPosition() {
@@ -154,7 +154,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setWorld(String world) {
@@ -162,7 +162,7 @@ public class FabricLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getWorld() {

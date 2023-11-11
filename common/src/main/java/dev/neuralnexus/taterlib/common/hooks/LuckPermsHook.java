@@ -28,7 +28,7 @@ public class LuckPermsHook {
      * Get the LuckPermsHook instance
      * @return The LuckPermsHook instance
      */
-    public static LuckPermsHook getInstance() {
+    public static LuckPermsHook get() {
         return instance;
     }
 

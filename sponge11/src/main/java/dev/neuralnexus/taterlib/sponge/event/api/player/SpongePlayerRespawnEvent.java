@@ -19,7 +19,7 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -27,7 +27,7 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getRespawnLocation() {
@@ -35,7 +35,7 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isBedSpawn() {
@@ -43,7 +43,7 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isAnchorSpawn() {

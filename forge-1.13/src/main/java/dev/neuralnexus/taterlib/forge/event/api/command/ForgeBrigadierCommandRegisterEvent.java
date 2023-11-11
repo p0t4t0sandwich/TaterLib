@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
@@ -10,6 +10,8 @@ import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
+
+import static net.minecraft.command.Commands.literal;
 
 /**
  * Forge implementation of {@link BrigadierCommandRegisterEvent}.
@@ -22,7 +24,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -30,7 +32,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<CommandSource> getDispatcher() {
@@ -38,15 +40,18 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSource> node) {
-        event.getCommandDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralArgumentBuilder<CommandSource> node, Object plugin, String commandName, String... aliases) {
+        event.getCommandDispatcher().register(node);
+        for (String alias : aliases) {
+            event.getCommandDispatcher().register(literal(alias).redirect(node.build()));
+        }
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(CommandSource source) {
@@ -54,7 +59,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(CommandSource source) {
@@ -62,7 +67,7 @@ public class ForgeBrigadierCommandRegisterEvent implements BrigadierCommandRegis
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(CommandSource source) {

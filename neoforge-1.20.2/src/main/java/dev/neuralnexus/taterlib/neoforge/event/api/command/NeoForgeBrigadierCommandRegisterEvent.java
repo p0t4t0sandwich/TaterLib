@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
@@ -10,6 +10,8 @@ import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+
+import static net.minecraft.commands.Commands.literal;
 
 /**
  * NeoForge implementation of {@link BrigadierCommandRegisterEvent}.
@@ -22,7 +24,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -30,7 +32,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<CommandSourceStack> getDispatcher() {
@@ -38,15 +40,18 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<CommandSourceStack> node) {
-        event.getDispatcher().getRoot().addChild(node);
+    public void registerCommand(LiteralArgumentBuilder<CommandSourceStack> node, Object plugin, String commandName, String... aliases) {
+        event.getDispatcher().register(node);
+        for (String alias : aliases) {
+            event.getDispatcher().register(literal(alias).redirect(node.build()));
+        }
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(CommandSourceStack source) {
@@ -54,7 +59,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(CommandSourceStack source) {
@@ -62,7 +67,7 @@ public class NeoForgeBrigadierCommandRegisterEvent implements BrigadierCommandRe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(CommandSourceStack source) {

@@ -15,7 +15,7 @@ public class FabricEntityEvent implements EntityEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {

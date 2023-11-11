@@ -20,7 +20,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getRespawnLocation() {
@@ -28,7 +28,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isBedSpawn() {
@@ -36,7 +36,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isAnchorSpawn() {

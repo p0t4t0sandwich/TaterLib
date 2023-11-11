@@ -27,7 +27,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasDisplayName() {
@@ -35,7 +35,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -43,7 +43,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDisplayName(String name) {
@@ -51,7 +51,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasLore() {
@@ -59,7 +59,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<String> getLore() {
@@ -67,7 +67,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLore(List<String> lore) {
@@ -75,7 +75,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasEnchants() {
@@ -83,7 +83,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isUnbreakable() {
@@ -91,7 +91,7 @@ public class BukkitItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setUnbreakable(boolean unbreakable) {

@@ -16,7 +16,7 @@ public class GenericLogger implements AbstractLogger {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void info(String message) {

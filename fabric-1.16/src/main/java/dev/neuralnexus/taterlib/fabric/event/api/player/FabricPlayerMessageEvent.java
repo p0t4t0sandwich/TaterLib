@@ -22,7 +22,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -30,7 +30,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -40,7 +40,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getMessage() {
@@ -48,7 +48,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Set<Player> recipients() {
@@ -56,7 +56,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setMessage(String message) {
@@ -64,7 +64,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setRecipients(Set<Player> recipients) {}

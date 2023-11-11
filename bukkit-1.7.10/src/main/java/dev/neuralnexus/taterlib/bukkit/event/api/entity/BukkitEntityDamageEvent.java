@@ -18,7 +18,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -26,7 +26,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -34,7 +34,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCause() {
@@ -42,7 +42,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getDamage() {
@@ -61,7 +61,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public Entity getDamager() {
@@ -81,7 +81,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public String getDamager() {

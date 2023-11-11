@@ -17,7 +17,7 @@ public class PaperAdvancementProgress extends BukkitPlayerAdvancementEvent imple
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getAdvancement() {
@@ -25,7 +25,7 @@ public class PaperAdvancementProgress extends BukkitPlayerAdvancementEvent imple
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Collection<String> getCriterion() {

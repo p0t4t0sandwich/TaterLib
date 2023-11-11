@@ -1,13 +1,15 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Sponge entity to an AbstractEntity.
+ * Sponge implementation of {@link Entity}.
  */
 public class SpongeEntity implements Entity {
     private final org.spongepowered.api.entity.Entity entity;
@@ -29,7 +31,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -37,7 +39,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getEntityId() {
@@ -45,7 +47,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove() {
@@ -53,7 +55,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -61,7 +63,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCustomName() {
@@ -72,7 +74,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCustomName(String name) {
@@ -80,7 +82,15 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public Location getLocation() {
+        return new SpongeLocation(entity.getLocation());
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -88,7 +98,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -96,7 +106,7 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -104,7 +114,23 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public float getYaw() {
+        return (float) entity.getRotation().getX();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getPitch() {
+        return (float) entity.getRotation().getY();
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getDimension() {
@@ -112,10 +138,26 @@ public class SpongeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getBiome() {
         return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.setLocation(new org.spongepowered.api.world.Location<>(entity.getWorld(), location.getX(), location.getY(), location.getZ()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.setLocation(new org.spongepowered.api.world.Location<>(((SpongeEntity) entity).getEntity().getWorld(), entity.getX(), entity.getY(), entity.getZ()));
     }
 }

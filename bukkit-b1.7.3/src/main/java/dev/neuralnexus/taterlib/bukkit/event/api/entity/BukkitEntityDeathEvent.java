@@ -24,7 +24,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDrops(List<ItemStack> drops) {
@@ -34,7 +34,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clearDrops() {
@@ -42,7 +42,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getDroppedExp() {
@@ -50,7 +50,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDroppedExp(int exp) {}

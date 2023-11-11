@@ -11,7 +11,7 @@ import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
  */
 public class BungeeCommandRegisterEvent implements CommandRegisterEvent {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {

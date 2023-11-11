@@ -15,7 +15,7 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getLogoutMessage() {
@@ -23,7 +23,7 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLogoutMessage(String message) {

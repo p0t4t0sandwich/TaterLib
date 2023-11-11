@@ -26,7 +26,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemMeta getMeta() {
@@ -34,7 +34,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setMeta(ItemMeta item) {
@@ -42,7 +42,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -50,7 +50,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getCount() {
@@ -58,7 +58,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCount(int count) {
@@ -66,7 +66,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack clone() {

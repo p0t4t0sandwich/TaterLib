@@ -20,7 +20,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getAdvancement() {
@@ -28,7 +28,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -56,7 +56,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public Collection<String> getCriterion() {

@@ -32,15 +32,17 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         return instance;
     }
 
-    @Override
-    public void onEnable() {
+    public BukkitTaterLibPlugin() {
+        instance = this;
+
         TaterAPIProvider.register("plugins", getServer().getVersion());
         pluginStart(this, new BukkitLogger(Bukkit.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
+    }
 
-        instance = this;
-
+    @Override
+    public void onEnable() {
         // Register command listeners
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent()), 200L);
 

@@ -23,7 +23,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<ItemStack> getDrops() {
@@ -31,19 +31,19 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clearDrops() {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getDroppedExp() {
@@ -51,13 +51,13 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDroppedExp(int exp) {}
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {
@@ -65,7 +65,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -73,7 +73,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDeathMessage() {
@@ -84,7 +84,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDeathMessage(String deathMessage) {
@@ -92,7 +92,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasKeepInventory() {
@@ -100,7 +100,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setKeepInventory(boolean keepInventory) {}

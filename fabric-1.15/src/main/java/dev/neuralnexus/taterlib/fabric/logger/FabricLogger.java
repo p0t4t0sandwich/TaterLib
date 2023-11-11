@@ -21,7 +21,7 @@ public class FabricLogger implements AbstractLogger {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void info(String message) {

@@ -17,7 +17,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements Pla
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getAdvancement() {
@@ -52,7 +52,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent implements Pla
         }
 
         /**
-         * @inheritDoc
+         * {@inheritDoc}
          */
         @Override
         public Collection<String> getCriterion() {

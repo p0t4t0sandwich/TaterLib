@@ -25,7 +25,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setX(double x) {
@@ -33,7 +33,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -41,7 +41,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockX() {
@@ -49,7 +49,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setY(double y) {
@@ -57,7 +57,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -65,7 +65,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockY() {
@@ -73,7 +73,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setZ(double z) {
@@ -81,7 +81,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -89,7 +89,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockZ() {
@@ -97,7 +97,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setYaw(float yaw) {
@@ -105,7 +105,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getYaw() {
@@ -114,7 +114,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setPitch(float pitch) {
@@ -122,7 +122,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getPitch() {
@@ -131,7 +131,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Position getBlockPosition() {
@@ -139,7 +139,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setWorld(String world) {
@@ -147,7 +147,7 @@ public class SpongeLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getWorld() {

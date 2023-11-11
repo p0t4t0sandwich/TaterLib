@@ -8,8 +8,8 @@ import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.fabric.event.api.command.FabricBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.fabric.event.api.command.FabricCommandRegisterEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntitySpawnEvent;
@@ -20,7 +20,7 @@ import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppedEvent
 import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.logger.FabricLogger;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
-import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -29,13 +29,12 @@ import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 
 /**
- * The TaterLib Fabric plugin.
+ * The Fabric plugin.
  */
-public class FabricTaterLibPlugin implements DedicatedServerModInitializer, TaterLibPlugin {
+public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
     public static MinecraftServer server;
 
-    @Override
-    public void onInitializeServer() {
+    public FabricTaterLibPlugin() {
         TaterAPIProvider.register("config",
                 FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
@@ -47,7 +46,10 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
 
         // Register Fabric API command events
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, dedicated)));
+        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) -> {
+            CommandEvents.REGISTER_COMMAND.invoke(new FabricCommandRegisterEvent(dispatcher, dedicated));
+            CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new FabricBrigadierCommandRegisterEvent(dispatcher, dedicated));
+        });
 
         // Register Fabric API player events
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> PlayerEvents.LOGIN.invoke(new FabricPlayerLoginEvent(handler, sender, server)));
@@ -71,4 +73,7 @@ public class FabricTaterLibPlugin implements DedicatedServerModInitializer, Tate
         FabricPlayerEvents.MESSAGE.register((player, message, ci) -> PlayerEvents.MESSAGE.invoke(new FabricPlayerMessageEvent(player, message, ci)));
         FabricPlayerEvents.RESPAWN.register(((player, alive) -> PlayerEvents.RESPAWN.invoke(new FabricPlayerRespawnEvent(player, alive))));
     }
+
+    @Override
+    public void onInitialize() {}
 }

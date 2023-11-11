@@ -21,7 +21,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasDisplayName() {
@@ -29,7 +29,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -37,7 +37,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDisplayName(String name) {
@@ -45,7 +45,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasLore() {
@@ -54,7 +54,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<String> getLore() {
@@ -63,7 +63,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLore(List<String> lore) {
@@ -71,7 +71,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasEnchants() {
@@ -79,7 +79,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isUnbreakable() {
@@ -87,7 +87,7 @@ public class ForgeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setUnbreakable(boolean unbreakable) {

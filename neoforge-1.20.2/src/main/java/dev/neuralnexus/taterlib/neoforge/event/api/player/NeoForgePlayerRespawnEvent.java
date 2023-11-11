@@ -18,7 +18,7 @@ public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getRespawnLocation() {
@@ -26,7 +26,7 @@ public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isBedSpawn() {
@@ -34,7 +34,7 @@ public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements P
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isAnchorSpawn() {

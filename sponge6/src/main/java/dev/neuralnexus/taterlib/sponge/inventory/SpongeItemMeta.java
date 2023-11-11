@@ -23,7 +23,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasDisplayName() {
@@ -34,7 +34,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -45,7 +45,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setDisplayName(String name) {
@@ -53,7 +53,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasLore() {
@@ -61,7 +61,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public List<String> getLore() {
@@ -77,7 +77,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setLore(List<String> list) {
@@ -89,7 +89,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasEnchants() {
@@ -97,7 +97,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isUnbreakable() {
@@ -105,7 +105,7 @@ public class SpongeItemMeta implements ItemMeta {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setUnbreakable(boolean unbreakable) {

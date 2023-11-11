@@ -1,11 +1,13 @@
 package dev.neuralnexus.taterlib.bukkit.entity;
 
+import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
 
 import java.util.UUID;
 
 /**
- * Abstracts a Bukkit entity to an AbstractEntity.
+ * Bukkit implementation of {@link Entity}.
  */
 public class BukkitEntity implements Entity {
     private final org.bukkit.entity.Entity entity;
@@ -19,7 +21,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -27,7 +29,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getEntityId() {
@@ -35,7 +37,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove() {
@@ -43,7 +45,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -51,15 +53,15 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCustomName() {
-        return entity.getType().getName();
+        return entity.getType().name();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCustomName(String name) {
@@ -67,7 +69,15 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public Location getLocation() {
+        return new BukkitLocation(entity.getLocation());
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -75,7 +85,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -83,7 +93,7 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -91,7 +101,23 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public float getYaw() {
+        return entity.getLocation().getYaw();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getPitch() {
+        return entity.getLocation().getPitch();
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getDimension() {
@@ -102,10 +128,26 @@ public class BukkitEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getBiome() {
         return entity.getLocation().getBlock().getBiome().name();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.teleport(new org.bukkit.Location(org.bukkit.Bukkit.getWorld(location.getWorld()), location.getX(), location.getY(), location.getZ()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.teleport(new org.bukkit.Location(org.bukkit.Bukkit.getWorld(entity.getDimension()), entity.getX(), entity.getY(), entity.getZ()));
     }
 }

@@ -1,12 +1,14 @@
 package dev.neuralnexus.taterlib.common.api.info;
 
+import java.util.Arrays;
+
 /**
  * Represents the type of server the server is running.
  */
 public enum ServerType {
     // Bukkit fork
-    BUKKIT("Bukkit"),
     CRAFTBUKKIT("CraftBukkit"),
+    BUKKIT("Bukkit"),
     POSEIDON("Poseidon"),
     SPIGOT("Spigot"),
     PAPER("Paper"),
@@ -23,6 +25,7 @@ public enum ServerType {
     MOHIST("Mohist"),
     MAGMA("Magma"),
     ARCLIGHT("Arclight"),
+    KETTING("Ketting"),
 
     // Bukkit + Fabric Hybrids
     CARDBOARD("Cardboard"),
@@ -102,6 +105,8 @@ public enum ServerType {
             return MAGMA;
         } else if (isArclight()) {
             return ARCLIGHT;
+        } else if (isKetting()) {
+            return KETTING;
         }
 
         // Bukkit + Fabric Hybrids
@@ -175,6 +180,129 @@ public enum ServerType {
     }
 
     /**
+     * Get the server type from a string
+     * @param serverType The server type
+     * @return The server type
+     */
+    public static ServerType from(String serverType) {
+        return Arrays.stream(ServerType.values()).filter(s -> s.toString().equalsIgnoreCase(serverType)).findFirst().orElse(UNKNOWN);
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(String... serverType) {
+        return Arrays.stream(serverType).anyMatch(this.name::equalsIgnoreCase);
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(ServerType... serverType) {
+        return Arrays.asList(serverType).contains(this);
+    }
+
+    /**
+     * Check if the server is running a Bukkit fork.
+     * @return True if the server is running a Bukkit fork, false otherwise.
+     */
+    public boolean isBukkitBased() {
+        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON) || this.isSpigotBased();
+    }
+
+    /**
+     * Check if the server is running a Spigot fork.
+     * @return True if the server is running a Spigot fork, false otherwise.
+     */
+    public boolean isSpigotBased() {
+        return this.is(SPIGOT) || this.isPaperBased() || this.isHybrid();
+    }
+
+    /**
+     * Check if the server is running a fork of Paper.
+     * @return True if the server is running a fork of Paper, false otherwise.
+     */
+    public boolean isPaperBased() {
+        return this.is(PAPER, FOLIA, PURPUR, PUFFERFISH);
+    }
+
+    /**
+     * Check if the server is running a fork of BungeeCord.
+     * @return True if the server is running a fork of BungeeCord, false otherwise.
+     */
+    public boolean isBungeeCordBased() {
+        return this.is(BUNGEECORD, WATERFALL, TRAVERTINE, HEXACORD);
+    }
+
+    /**
+     * Check if the server is running a Forge hybrid.
+     * @return True if the server is running a Forge hybrid, false otherwise.
+     */
+    public boolean isForgeHybrid() {
+        return this.is(CAULDRON, KCUALDRON, THERMOS, CRUCIBLE, MCPC_PLUS_PLUS, MOHIST, MAGMA, ARCLIGHT, KETTING);
+    }
+
+    /**
+     * Check if the server is running a fork of Forge.
+     * @return True if the server is running a fork of Forge, false otherwise.
+     */
+    public boolean isForgeBased() {
+        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+    }
+
+    /**
+     * Check if the server is running a Fabric hybrid.
+     * @return True if the server is running a Fabric hybrid, false otherwise.
+     */
+    public boolean isFabricHybrid() {
+        return this.is(CARDBOARD, BANNER);
+    }
+
+    /**
+     * Check if the server is running a fork of Fabric.
+     * @return True if the server is running a fork of Fabric, false otherwise.
+     */
+    public boolean isFabricBased() {
+        return this.is(FABRIC, QUILT) || this.isFabricHybrid();
+    }
+
+    /**
+     * Check if the server is running on a hybrid.
+     * @return True if the server is running on a hybrid, false otherwise.
+     */
+    public boolean isHybrid() {
+        return this.isForgeHybrid() || this.isFabricHybrid();
+    }
+
+    /**
+     * Check if the server is running a fork of Sponge.
+     * @return True if the server is running a fork of Sponge, false otherwise.
+     */
+    public boolean isSpongeBased() {
+        return this.is(SPONGE);
+    }
+
+    /**
+     * Check if the server is running a fork of Velocity.
+     * @return True if the server is running a fork of Velocity, false otherwise.
+     */
+    public boolean isVelocityBased() {
+        return this.is(VELOCITY);
+    }
+
+    /**
+     * Check if the server is running some sort of proxy.
+     * @return True if the server is running some sort of proxy, false otherwise.
+     */
+    public boolean isProxy() {
+        return this.isBungeeCordBased() || this.isVelocityBased();
+    }
+
+    /**
      * Check if the server is running Bukkit.
      */
     public static boolean isBukkit() {
@@ -193,9 +321,12 @@ public enum ServerType {
         try {
             Class.forName("org.bukkit.craftbukkit.CraftServer");
             return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        } catch (ClassNotFoundException ignored) {}
+        try {
+            Class.forName("org.bukkit.craftbukkit.Main");
+            return true;
+        } catch (ClassNotFoundException ignored) {}
+        return false;
     }
 
     /**
@@ -373,6 +504,18 @@ public enum ServerType {
     public static boolean isArclight() {
         try {
             Class.forName("io.izzel.arclight.common.ArclightMain");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the server is running Ketting.
+     */
+    public static boolean isKetting() {
+        try {
+            Class.forName("org.kettingpowererd.ketting.KettingLauncher");
             return true;
         } catch (ClassNotFoundException e) {
             return false;

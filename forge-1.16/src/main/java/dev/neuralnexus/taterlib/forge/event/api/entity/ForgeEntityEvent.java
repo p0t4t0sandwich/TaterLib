@@ -15,7 +15,7 @@ public class ForgeEntityEvent implements EntityEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {

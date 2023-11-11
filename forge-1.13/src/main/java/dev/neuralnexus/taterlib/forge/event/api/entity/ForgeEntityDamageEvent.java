@@ -15,7 +15,7 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -23,7 +23,7 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -31,7 +31,7 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCause() {

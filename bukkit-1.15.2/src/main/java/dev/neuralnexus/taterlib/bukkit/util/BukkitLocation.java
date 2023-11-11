@@ -25,7 +25,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setX(double x) {
@@ -33,7 +33,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -41,7 +41,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockX() {
@@ -49,7 +49,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setY(double y) {
@@ -57,7 +57,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -65,7 +65,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockY() {
@@ -73,7 +73,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setZ(double z) {
@@ -81,7 +81,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -89,7 +89,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getBlockZ() {
@@ -97,7 +97,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setYaw(float yaw) {
@@ -105,7 +105,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getYaw() {
@@ -113,7 +113,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setPitch(float pitch) {
@@ -121,7 +121,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public float getPitch() {
@@ -129,7 +129,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Position getBlockPosition() {
@@ -137,7 +137,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setWorld(String world) {
@@ -145,7 +145,7 @@ public class BukkitLocation implements Location {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getWorld() {

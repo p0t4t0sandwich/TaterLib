@@ -16,7 +16,7 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -24,7 +24,7 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -32,7 +32,7 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCause() {
@@ -40,7 +40,7 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getDamage() {
@@ -48,7 +48,7 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {

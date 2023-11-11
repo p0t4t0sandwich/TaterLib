@@ -33,13 +33,15 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
         return proxyServer;
     }
 
-    @Override
-    public void onEnable() {
+    public BungeeTaterLibPlugin() {
         TaterAPIProvider.register("plugins", getProxy().getVersion());
         pluginStart(this, new BungeeLogger(getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> getProxy().getPluginManager().getPlugin(plugin) != null);
+    }
 
+    @Override
+    public void onEnable() {
         proxyServer = getProxy();
 
         PluginManager pluginManager = getProxy().getPluginManager();

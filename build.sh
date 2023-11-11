@@ -2,7 +2,7 @@
 
 PROJ_ID=taterlib
 PROJ_NAME=TaterLib
-VERSION=1.1.0-R0.3-SNAPSHOT
+VERSION=1.1.0-R0.5-SNAPSHOT
 GROUP_ID=dev/neuralnexus
 
 # --------------------------- Functions --------------------------------
@@ -330,6 +330,15 @@ FORGE_VERSION=1.20.2
 NEOFORGE_VERSION=1.20.2
 SPONGE_VERSION=11
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
+neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
+
+# --------------------------- Build Main Artifact --------------------------------
+MC_VERSION=1.20.2
+FABRIC_VERSION=1.20.2
+FORGE_VERSION=1.20.2
+NEOFORGE_VERSION=1.20.2
+SPONGE_VERSION=11
+OUT_FILE=$PROJ_NAME-$VERSION
 neobuild $FABRIC_VERSION $FORGE_VERSION $SPONGE_VERSION $NEOFORGE_VERSION $OUT_FILE
 
 # --------------------------- Cleanup --------------------------------

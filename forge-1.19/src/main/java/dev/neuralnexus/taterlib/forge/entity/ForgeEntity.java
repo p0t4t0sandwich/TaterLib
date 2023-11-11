@@ -1,6 +1,8 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.common.entity.Entity;
+import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * Abstracts a Forge entity to an AbstractEntity.
+ * Forge implementation of {@link Entity}.
  */
 public class ForgeEntity implements Entity {
     private final net.minecraft.world.entity.Entity entity;
@@ -32,7 +34,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public UUID getUniqueId() {
@@ -40,7 +42,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getEntityId() {
@@ -48,7 +50,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove() {
@@ -56,7 +58,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getType() {
@@ -64,7 +66,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getCustomName() {
@@ -73,7 +75,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCustomName(String name) {
@@ -81,7 +83,15 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public Location getLocation() {
+        return new ForgeLocation(entity);
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public double getX() {
@@ -89,7 +99,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getY() {
@@ -97,7 +107,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public double getZ() {
@@ -105,7 +115,23 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
+     */
+    @Override
+    public float getYaw() {
+        return entity.getXRot();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getPitch() {
+        return entity.getYRot();
+    }
+
+    /**
+     * {@inheritDoc}
      */
     @Override
     public String getDimension() {
@@ -114,7 +140,7 @@ public class ForgeEntity implements Entity {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getBiome() {
@@ -122,5 +148,21 @@ public class ForgeEntity implements Entity {
         if (!holder.isPresent()) return null;
         ResourceLocation biomeRegistry = holder.get().registry();
         return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Location location) {
+        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Entity entity) {
+        this.entity.teleportTo(entity.getX(), entity.getY(), entity.getZ());
     }
 }

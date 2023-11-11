@@ -16,7 +16,7 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -24,7 +24,7 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -34,7 +34,7 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Location getLocation() {

@@ -16,7 +16,7 @@ public class FabricPlayerEvent implements PlayerEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {

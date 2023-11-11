@@ -20,7 +20,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isCancelled() {
@@ -28,7 +28,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setCancelled(boolean cancelled) {
@@ -36,7 +36,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getMessage() {
@@ -44,7 +44,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Set<Player> recipients() {
@@ -52,7 +52,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setMessage(String message) {
@@ -60,7 +60,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setRecipients(Set<Player> recipients) {

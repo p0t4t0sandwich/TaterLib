@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.common.entity;
 
+import dev.neuralnexus.taterlib.common.utils.Location;
+
 import java.util.UUID;
 
 /**
@@ -42,6 +44,12 @@ public interface Entity {
     void setCustomName(String name);
 
     /**
+     * Get the location of the entity
+     * @return The position of the entity
+     */
+    Location getLocation();
+
+    /**
      * Get the x position of the entity
      * @return The x position of the entity
      */
@@ -60,6 +68,18 @@ public interface Entity {
     double getZ();
 
     /**
+     * Get the yaw of the entity
+     * @return The yaw of the entity
+     */
+    float getYaw();
+
+    /**
+     * Get the pitch of the entity
+     * @return The pitch of the entity
+     */
+    float getPitch();
+
+    /**
      * Get the current dimension of the entity
      * @return The current dimension of the entity
      */
@@ -70,4 +90,16 @@ public interface Entity {
      * @return The current biome of the entity
      */
     String getBiome();
+
+    /**
+     * Teleport the entity to the given Location
+     * @param location The location to teleport the entity to
+     */
+    void teleport(Location location);
+
+    /**
+     * Teleport the entity to another entity
+     * @param entity The entity to teleport the entity to
+     */
+    void teleport(Entity entity);
 }

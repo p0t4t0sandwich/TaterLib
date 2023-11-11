@@ -16,7 +16,7 @@ public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer() {
@@ -24,7 +24,7 @@ public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getToServer() {
@@ -32,7 +32,7 @@ public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getFromServer() {

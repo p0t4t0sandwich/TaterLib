@@ -13,7 +13,6 @@ import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import org.bukkit.plugin.PluginManager;
@@ -34,14 +33,18 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         return instance;
     }
 
-    @Override
-    public void onEnable() {
+    public BukkitTaterLibPlugin() {
+        instance = this;
+
         TaterAPIProvider.register("plugins", getServer().getBukkitVersion());
         pluginStart(this, new BukkitLogger(getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
+    }
 
-        instance = this;
+    @Override
+    public void onEnable() {
+        TaterAPI api = TaterAPIProvider.get();
 
         // Register command listeners
         getServer().getScheduler().runTaskLater(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent()), 200L);
@@ -53,7 +56,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
         // Register player listeners
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
-        if (api.serverType().equals(ServerType.PAPER)) {
+        if (api.serverType().isPaperBased()) {
             pluginManager.registerEvents(new PaperPlayerListener(), this);
         }
 

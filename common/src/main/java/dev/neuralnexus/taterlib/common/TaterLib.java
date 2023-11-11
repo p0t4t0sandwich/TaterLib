@@ -5,11 +5,14 @@ import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.command.CommandListener;
+import dev.neuralnexus.taterlib.common.listeners.command.TaterLibCommandListener;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.common.listeners.player.PlayerListener;
+import dev.neuralnexus.taterlib.common.listeners.player.TaterLibPlayerListener;
 
+/**
+ * Main class for the plugin.
+ */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private Object plugin;
@@ -75,6 +78,9 @@ public class TaterLib {
         if (!RELOADED) {
             TaterAPI api = TaterAPIProvider.get();
 
+            // Register TaterLib hook
+            api.addHook("taterlib", new Object());
+
             // Register hooks
             ServerEvents.STARTED.register(event -> {
                 // Register LuckPerms hook
@@ -85,16 +91,12 @@ public class TaterLib {
             });
 
             // Register player listeners
-            PlayerEvents.LOGIN.register(PlayerListener::onPlayerLogin);
-            PlayerEvents.LOGOUT.register(PlayerListener::onPlayerLogout);
-            PlayerEvents.SERVER_SWITCH.register(PlayerListener::onServerSwitch);
+            PlayerEvents.LOGIN.register(TaterLibPlayerListener::onPlayerLogin);
+            PlayerEvents.LOGOUT.register(TaterLibPlayerListener::onPlayerLogout);
+            PlayerEvents.SERVER_SWITCH.register(TaterLibPlayerListener::onServerSwitch);
 
             // Register commands
-            if (TaterAPIProvider.get().isBrigadierSupported()) {
-                CommandEvents.REGISTER_BRIGADIER_COMMAND.register(CommandListener::onRegisterBrigadierCommand);
-            } else {
-                CommandEvents.REGISTER_COMMAND.register(CommandListener::onRegisterCommand);
-            }
+            CommandEvents.REGISTER_COMMAND.register(TaterLibCommandListener::onRegisterCommand);
         }
 
         instance.logger.info(Constants.PROJECT_NAME + " has been started!");
@@ -146,7 +148,7 @@ public class TaterLib {
     public static class Constants {
         public static final String PROJECT_NAME = "TaterLib";
         public static final String PROJECT_ID = "taterlib";
-        public static final String PROJECT_VERSION = "1.1.0-R0.3-SNAPSHOT";
+        public static final String PROJECT_VERSION = "1.1.0-R0.4-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION = "A cross API code library for various generalizations used in the Tater* plugins";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";

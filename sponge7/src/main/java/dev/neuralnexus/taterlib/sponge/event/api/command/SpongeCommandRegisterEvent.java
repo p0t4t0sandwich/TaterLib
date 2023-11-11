@@ -13,7 +13,7 @@ import org.spongepowered.api.text.Text;
  */
 public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {

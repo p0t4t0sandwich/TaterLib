@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -60,15 +61,15 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -76,7 +77,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -84,15 +85,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return null;
-    }
-
-    /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -100,7 +93,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -108,7 +101,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -116,7 +109,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -124,7 +117,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -132,7 +125,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {
@@ -140,7 +133,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -148,7 +141,7 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String message) {
@@ -156,8 +149,126 @@ public class BungeePlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void setSpawn(Position position) {}
+    public void setSpawn(Location location, boolean forced) {}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSpawn(Location location) {}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getEntityId() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void remove() {}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getType() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getCustomName() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setCustomName(String name) {}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Location getLocation() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getX() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getY() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getZ() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getYaw() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public float getPitch() {
+        return 0;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDimension() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getBiome() {
+        return null;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Location location) {}
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void teleport(Entity entity) {}
 }

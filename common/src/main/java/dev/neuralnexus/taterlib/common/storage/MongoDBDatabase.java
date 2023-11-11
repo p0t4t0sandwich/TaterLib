@@ -2,28 +2,46 @@ package dev.neuralnexus.taterlib.common.storage;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import dev.dejvokep.boostedyaml.YamlDocument;
 
-public class MongoDBDatabase extends Database<MongoClient> {
+/**
+ * MongoDB database class
+ */
+public class MongoDBDatabase implements Database<MongoClient> {
+    private final Database.Type type = Database.Type.MONGODB;
+    private final MongoClient connection;
+    private final String database;
+
     /**
      * Constructor for the MongoDBDataSource class
-     * @param config The configuration for the MongoDB data source.
+     * @param config The config data
      */
-    public MongoDBDatabase(YamlDocument config) {
-        super("mongodb", null, null);
-        String host = config.getString("storage.config.host");
-        int port = Integer.parseInt(config.getString("storage.config.port"));
-        String database = config.getString("storage.config.database");
-        String username = config.getString("storage.config.username");
-        String password = config.getString("storage.config.password");
+    public MongoDBDatabase(Database.DatabaseConfig config) {
+        this.database = config.database;
+        String URI = "mongodb://" + config.username + ":" + config.password + "@" + config.host + ":" + (config.port == 0 ? 27017 : config.port) + "/" + database + "?authSource=admin";
+        connection = MongoClients.create(URI);
+    }
 
-        if (port == 0) {
-            port = 27017;
-        }
-        String URI = "mongodb://" + username + ":" + password + "@" + host + ":" + port + "/" + database + "?authSource=admin";
-        MongoClient mongoClient = MongoClients.create(URI);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Database.Type getType() {
+        return type;
+    }
 
-        setConnection(mongoClient);
-        setDatabase(database);
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MongoClient getConnection() {
+        return connection;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDatabase() {
+        return database;
     }
 }

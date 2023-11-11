@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.common.api;
 
 /**
- * TaterAPI Provider
+ * API Provider
  */
 public class TaterAPIProvider {
     private static TaterAPI instance = null;
 
     /**
-     * Get the instance of TaterAPI
-     * @return The instance of TaterAPI
+     * Get the instance of the API
+     * @return The instance of the API
      */
     public static TaterAPI get() {
         if (instance == null) {

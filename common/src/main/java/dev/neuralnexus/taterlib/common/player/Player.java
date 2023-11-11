@@ -1,28 +1,22 @@
 package dev.neuralnexus.taterlib.common.player;
 
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
 
 /**
  * The interface for a Player
  */
-public interface Player extends Sender {
+public interface Player extends Sender, Entity {
     /**
      * Get the display name of the player
      * @return The display name of the player
      */
     String getDisplayName();
-
-    /**
-     * Get the position of the player
-     * @return The position of the player
-     */
-    Position getPosition();
 
     /**
      * Get the server the player is on
@@ -69,9 +63,15 @@ public interface Player extends Sender {
 
     /**
      * Set the player's spawn point
-     * @param position The position to set the spawn point to
+     * @param location The location to set the spawn point to
      */
-    void setSpawn(Position position);
+    void setSpawn(Location location, boolean forced);
+
+    /**
+     * Set the player's spawn point
+     * @param location The location to set the spawn point to
+     */
+    void setSpawn(Location location);
 
     /**
      * Perform a command as the player
@@ -116,8 +116,8 @@ public interface Player extends Sender {
      */
     default String getPrefix() {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String prefix = luckPermsHook.getPrefix(getUUID());
+        LuckPermsHook luckPermsHook = LuckPermsHook.get();
+        String prefix = luckPermsHook.getPrefix(getUniqueId());
         return prefix != null ? prefix : "";
     }
 
@@ -128,8 +128,8 @@ public interface Player extends Sender {
      */
     default void setPrefix(String prefix, int priority) {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return;
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        luckPermsHook.setPrefix(getUUID(), prefix, priority);
+        LuckPermsHook luckPermsHook = LuckPermsHook.get();
+        luckPermsHook.setPrefix(getUniqueId(), prefix, priority);
     }
 
     /**
@@ -146,8 +146,8 @@ public interface Player extends Sender {
      */
     default String getSuffix() {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        String suffix = luckPermsHook.getSuffix(getUUID());
+        LuckPermsHook luckPermsHook = LuckPermsHook.get();
+        String suffix = luckPermsHook.getSuffix(getUniqueId());
         return suffix != null ? suffix : "";
     }
 
@@ -158,8 +158,8 @@ public interface Player extends Sender {
      */
     default void setSuffix(String suffix, int priority) {
         if (!TaterAPIProvider.get().isHooked("luckperms")) return;
-        LuckPermsHook luckPermsHook = LuckPermsHook.getInstance();
-        luckPermsHook.setSuffix(getUUID(), suffix, priority);
+        LuckPermsHook luckPermsHook = LuckPermsHook.get();
+        luckPermsHook.setSuffix(getUniqueId(), suffix, priority);
     }
 
     /**

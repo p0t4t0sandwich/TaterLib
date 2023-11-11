@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.player;
 
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
+import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
-import dev.neuralnexus.taterlib.bukkit.util.BukkitConversions;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.common.utils.Location;
 import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * Bukkit implementation of {@link Player}.
  */
-public class BukkitPlayer implements Player {
+public class BukkitPlayer extends BukkitEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = BukkitTaterLibPlugin.getInstance();
     private String serverName;
@@ -23,6 +23,7 @@ public class BukkitPlayer implements Player {
      * @param player The Bukkit player.
      */
     public BukkitPlayer(org.bukkit.entity.Player player) {
+        super(player);
         this.player = player;
         this.serverName = "local";
     }
@@ -33,6 +34,7 @@ public class BukkitPlayer implements Player {
      * @param serverName The name of the server the player is on.
      */
     public BukkitPlayer(org.bukkit.entity.Player player, String serverName) {
+        super(player);
         this.player = player;
         this.serverName = serverName;
     }
@@ -43,6 +45,7 @@ public class BukkitPlayer implements Player {
      * @param plugin The plugin.
      */
     public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin) {
+        super(player);
         this.player = player;
         this.plugin = plugin;
         this.serverName = "local";
@@ -55,6 +58,7 @@ public class BukkitPlayer implements Player {
      * @param serverName The name of the server the player is on.
      */
     public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin, String serverName) {
+        super(player);
         this.player = player;
         this.plugin = plugin;
         this.serverName = serverName;
@@ -69,15 +73,15 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public UUID getUUID() {
+    public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getName() {
@@ -85,7 +89,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getDisplayName() {
@@ -93,15 +97,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
-     */
-    @Override
-    public Position getPosition() {
-        return BukkitConversions.positionFromLocation(player.getLocation());
-    }
-
-    /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public String getServerName() {
@@ -109,7 +105,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setServerName(String server) {
@@ -117,7 +113,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendMessage(String message) {
@@ -125,7 +121,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -137,7 +133,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public PlayerInventory getInventory() {
@@ -145,7 +141,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(String permission) {
@@ -153,7 +149,7 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean hasPermission(int permissionLevel) {
@@ -161,18 +157,23 @@ public class BukkitPlayer implements Player {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void kickPlayer(String reason) {
         player.kickPlayer(reason);
     }
 
+    @Override
+    public void setSpawn(Location location, boolean forced) {
+//        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position), forced);
+    }
+
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void setSpawn(Position position) {
-//        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position));
+    public void setSpawn(Location location) {
+        setSpawn(location, false);
     }
 }

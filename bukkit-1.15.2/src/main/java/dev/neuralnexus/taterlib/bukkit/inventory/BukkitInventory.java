@@ -22,7 +22,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getSize() {
@@ -30,7 +30,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItem(int slot) {
@@ -38,7 +38,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItem(int slot, ItemStack item) {
@@ -46,7 +46,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void addItem(ItemStack item) {
@@ -54,7 +54,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void removeItem(ItemStack item) {
@@ -62,7 +62,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getContents() {
@@ -76,7 +76,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setContents(ItemStack[] items) {
@@ -89,7 +89,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getStorageContents() {
@@ -103,7 +103,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setStorageContents(ItemStack[] items) {
@@ -116,7 +116,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean contains(ItemStack item) {
@@ -124,7 +124,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean contains(String type) {
@@ -135,7 +135,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean containsAtLeast(ItemStack item, int count) {
@@ -143,7 +143,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean containsAtLeast(String type, int count) {
@@ -154,7 +154,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
@@ -167,7 +167,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int first(ItemStack item) {
@@ -175,7 +175,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int first(String type) {
@@ -186,7 +186,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int firstEmpty() {
@@ -194,7 +194,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove(ItemStack item) {
@@ -202,7 +202,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove(String type) {
@@ -213,7 +213,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clear() {
@@ -221,7 +221,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clear(int slot) {

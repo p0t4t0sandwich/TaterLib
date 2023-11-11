@@ -15,7 +15,7 @@ public class BukkitEntityEvent implements EntityEvent {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Entity getEntity() {

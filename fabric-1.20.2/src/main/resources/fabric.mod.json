@@ -20,7 +20,7 @@
   "icon": "assets/${project_name}/icon.png",
   "environment": "*",
   "entrypoints": {
-    "server": [
+    "main": [
       "${group_id}.${project_id}.fabric.Fabric${project_name}Plugin"
     ]
   },

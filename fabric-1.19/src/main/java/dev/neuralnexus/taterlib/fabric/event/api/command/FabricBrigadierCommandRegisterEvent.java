@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.api.command;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.tree.LiteralCommandNode;
+import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
@@ -11,6 +11,8 @@ import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
+
+import static net.minecraft.server.command.CommandManager.literal;
 
 /**
  * Fabric implementation of {@link BrigadierCommandRegisterEvent}.
@@ -27,7 +29,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isDedicated() {
@@ -35,7 +37,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public CommandDispatcher<ServerCommandSource> getDispatcher() {
@@ -43,15 +45,18 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
-    public void registerCommand(LiteralCommandNode<ServerCommandSource> node) {
-        dispatcher.getRoot().addChild(node);
+    public void registerCommand(LiteralArgumentBuilder<ServerCommandSource> node, Object plugin, String commandName, String... aliases) {
+        dispatcher.register(node);
+        for (String alias : aliases) {
+            dispatcher.register(literal(alias).redirect(node.build()));
+        }
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Sender getSender(ServerCommandSource source) {
@@ -59,7 +64,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Player getPlayer(ServerCommandSource source) {
@@ -67,7 +72,7 @@ public class FabricBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean isPlayer(ServerCommandSource source) {

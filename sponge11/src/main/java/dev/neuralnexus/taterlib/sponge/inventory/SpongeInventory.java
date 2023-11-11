@@ -21,7 +21,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int getSize() {
@@ -29,7 +29,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack getItem(int slot) {
@@ -40,7 +40,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setItem(int slot, ItemStack item) {
@@ -48,7 +48,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void addItem(ItemStack item) {
@@ -56,7 +56,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void removeItem(ItemStack item) {
@@ -71,7 +71,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getContents() {
@@ -83,7 +83,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setContents(ItemStack[] items) {
@@ -93,7 +93,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public ItemStack[] getStorageContents() {
@@ -106,7 +106,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void setStorageContents(ItemStack[] items) {
@@ -116,7 +116,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean contains(ItemStack item) {
@@ -124,7 +124,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean contains(String type) {
@@ -137,7 +137,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean containsAtLeast(ItemStack item, int amount) {
@@ -151,7 +151,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public boolean containsAtLeast(String type, int amount) {
@@ -165,7 +165,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
@@ -179,7 +179,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int first(ItemStack item) {
@@ -192,7 +192,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int first(String type) {
@@ -205,7 +205,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public int firstEmpty() {
@@ -218,7 +218,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove(ItemStack item) {
@@ -230,7 +230,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void remove(String type) {
@@ -242,7 +242,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clear() {
@@ -250,7 +250,7 @@ public class SpongeInventory implements Inventory {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void clear(int slot) {

@@ -110,4 +110,12 @@ public class Utils {
                 .replaceAll("§r", "\u001b[0m")
                 + "\u001b[0m";
     }
+
+    /**
+     * Parse the section sign.
+     * @return The string with the section sign.
+     */
+    public static String substituteSectionSign(String s) {
+        return s.replaceAll("&", "§");
+    }
 }

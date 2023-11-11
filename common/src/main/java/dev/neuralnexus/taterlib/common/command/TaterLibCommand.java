@@ -2,7 +2,6 @@ package dev.neuralnexus.taterlib.common.command;
 
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.Utils;
-import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
 import dev.neuralnexus.taterlib.common.player.Player;
 
 public class TaterLibCommand implements Command {
@@ -22,7 +21,7 @@ public class TaterLibCommand implements Command {
 
     @Override
     public String getUsage() {
-        return "&cUsage: /taterlib <reload|version>";
+        return "&cUsage: /taterlib <reload | version>";
     }
 
     @Override
@@ -40,32 +39,32 @@ public class TaterLibCommand implements Command {
             case "reload":
                 try {
                     TaterLib.reload();
-                    text = "&aReloaded TaterLib.";
+                    text = "&aReloaded " + TaterLib.Constants.PROJECT_NAME + "!";
                 } catch (Exception e) {
                     text = "&cAn error occurred while reloading the plugin.";
                     e.printStackTrace();
                 }
                 break;
             case "version":
-                text = "&aTaterLib v" + TaterLib.Constants.PROJECT_VERSION;
+                text = "&a" + TaterLib.Constants.PROJECT_NAME + " v" + TaterLib.Constants.PROJECT_VERSION;
                 break;
             default:
                 text = getUsage();
                 break;
         }
-        return PlaceholderParser.substituteSectionSign(text);
+        return text;
     }
 
     @Override
     public boolean execute(Sender sender, String label, String[] args) {
         if (sender instanceof Player) {
             if (!sender.hasPermission(getPermission())) {
-                sender.sendMessage("§cYou do not have permission to use this command.");
+                sender.sendMessage(Utils.substituteSectionSign("&cYou do not have permission to use this command."));
             } else {
-                sender.sendMessage(execute(args));
+                sender.sendMessage(Utils.substituteSectionSign(execute(args)));
             }
         } else {
-            sender.sendMessage(Utils.ansiParser(execute(args)));
+            sender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
         }
         return true;
     }

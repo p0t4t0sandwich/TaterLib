@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {

@@ -19,7 +19,7 @@ public class BukkitLogger implements AbstractLogger {
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     public void info(String message) {
