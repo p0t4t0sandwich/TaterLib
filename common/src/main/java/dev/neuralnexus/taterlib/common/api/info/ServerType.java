@@ -7,8 +7,8 @@ import java.util.Arrays;
  */
 public enum ServerType {
     // Bukkit fork
-    BUKKIT("Bukkit"),
     CRAFTBUKKIT("CraftBukkit"),
+    BUKKIT("Bukkit"),
     POSEIDON("Poseidon"),
     SPIGOT("Spigot"),
     PAPER("Paper"),
@@ -25,6 +25,7 @@ public enum ServerType {
     MOHIST("Mohist"),
     MAGMA("Magma"),
     ARCLIGHT("Arclight"),
+    KETTING("Ketting"),
 
     // Bukkit + Fabric Hybrids
     CARDBOARD("Cardboard"),
@@ -104,6 +105,8 @@ public enum ServerType {
             return MAGMA;
         } else if (isArclight()) {
             return ARCLIGHT;
+        } else if (isKetting()) {
+            return KETTING;
         }
 
         // Bukkit + Fabric Hybrids
@@ -208,7 +211,7 @@ public enum ServerType {
      * @return True if the server is running a Bukkit fork, false otherwise.
      */
     public boolean isBukkitBased() {
-        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON, SPIGOT, PAPER, FOLIA, PURPUR, PUFFERFISH);
+        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON) || this.isSpigotBased();
     }
 
     /**
@@ -216,7 +219,7 @@ public enum ServerType {
      * @return True if the server is running a Spigot fork, false otherwise.
      */
     public boolean isSpigotBased() {
-        return this.is(SPIGOT, PAPER, FOLIA, PURPUR, PUFFERFISH);
+        return this.is(SPIGOT) || this.isPaperBased() || this.isHybrid();
     }
 
     /**
@@ -236,11 +239,27 @@ public enum ServerType {
     }
 
     /**
+     * Check if the server is running a Forge hybrid.
+     * @return True if the server is running a Forge hybrid, false otherwise.
+     */
+    public boolean isForgeHybrid() {
+        return this.is(CAULDRON, KCUALDRON, THERMOS, CRUCIBLE, MCPC_PLUS_PLUS, MOHIST, MAGMA, ARCLIGHT, KETTING);
+    }
+
+    /**
      * Check if the server is running a fork of Forge.
      * @return True if the server is running a fork of Forge, false otherwise.
      */
     public boolean isForgeBased() {
-        return this.is(FORGE, NEOFORGE, GOLDENFORGE, CAULDRON, KCUALDRON, THERMOS, CRUCIBLE, MCPC_PLUS_PLUS, MOHIST, MAGMA, ARCLIGHT);
+        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+    }
+
+    /**
+     * Check if the server is running a Fabric hybrid.
+     * @return True if the server is running a Fabric hybrid, false otherwise.
+     */
+    public boolean isFabricHybrid() {
+        return this.is(CARDBOARD, BANNER);
     }
 
     /**
@@ -248,7 +267,15 @@ public enum ServerType {
      * @return True if the server is running a fork of Fabric, false otherwise.
      */
     public boolean isFabricBased() {
-        return this.is(FABRIC, QUILT, CARDBOARD, BANNER);
+        return this.is(FABRIC, QUILT) || this.isFabricHybrid();
+    }
+
+    /**
+     * Check if the server is running on a hybrid.
+     * @return True if the server is running on a hybrid, false otherwise.
+     */
+    public boolean isHybrid() {
+        return this.isForgeHybrid() || this.isFabricHybrid();
     }
 
     /**
@@ -294,9 +321,12 @@ public enum ServerType {
         try {
             Class.forName("org.bukkit.craftbukkit.CraftServer");
             return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        } catch (ClassNotFoundException ignored) {}
+        try {
+            Class.forName("org.bukkit.craftbukkit.Main");
+            return true;
+        } catch (ClassNotFoundException ignored) {}
+        return false;
     }
 
     /**
@@ -474,6 +504,18 @@ public enum ServerType {
     public static boolean isArclight() {
         try {
             Class.forName("io.izzel.arclight.common.ArclightMain");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the server is running Ketting.
+     */
+    public static boolean isKetting() {
+        try {
+            Class.forName("org.kettingpowererd.ketting.KettingLauncher");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
