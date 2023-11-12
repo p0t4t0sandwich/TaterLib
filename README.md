@@ -116,3 +116,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Implemented registering simple commands for Forge/Fabric
 - Updated database utils
 - Added `Server` abstraction and `TaterAPI.getServer`
+- Ported to Bukkit 1.13.2 and Sponge 5
