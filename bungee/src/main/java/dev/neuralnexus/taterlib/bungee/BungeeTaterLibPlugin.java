@@ -8,6 +8,7 @@ import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStoppingEvent;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.bungee.logger.BungeeLogger;
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
@@ -38,6 +39,7 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
         pluginStart(this, new BungeeLogger(getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> getProxy().getPluginManager().getPlugin(plugin) != null);
+        api.setServer(() -> new BungeeServer(getProxy()));
     }
 
     @Override

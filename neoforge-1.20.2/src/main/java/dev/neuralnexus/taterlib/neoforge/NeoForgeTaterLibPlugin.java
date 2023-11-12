@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
 import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
+import dev.neuralnexus.taterlib.neoforge.server.NeoForgeServer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -20,6 +21,7 @@ import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /**
  * The TaterLib NeoForge plugin.
@@ -35,6 +37,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded(ModList.get()::isLoaded);
         api.setRegisterChannels(ModMessages::addChannels);
+        api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
         // Register server starting/stopping events
         NeoForge.EVENT_BUS.register(this);

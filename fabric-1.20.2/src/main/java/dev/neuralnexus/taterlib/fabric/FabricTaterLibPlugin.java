@@ -20,6 +20,7 @@ import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppedEvent
 import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.logger.FabricLogger;
 import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -40,6 +41,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) ->FabricLoader.getInstance().isModLoaded(plugin));
+        api.setServer(() -> new FabricServer(server));
 
         // Initialize plugin data
         ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);

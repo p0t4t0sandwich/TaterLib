@@ -85,7 +85,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.5-SNAPSHOT
+### 1.1.0-R0.6-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -113,5 +113,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - `Player` now inherits `Entity`
 - Added `Entity.teleport`
 - Abstracted brigadier helper into a wrapper class
-- Implemented registering simple commands for Forge/Fabric 1.13+
+- Implemented registering simple commands for Forge/Fabric
 - Updated database utils
+- Added `Server` abstraction and `TaterAPI.getServer`

@@ -2,12 +2,16 @@ package dev.neuralnexus.taterlib.common.api;
 
 import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.common.api.info.ServerType;
+import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.common.server.Server;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /**
  * API wrapper class
@@ -121,12 +125,29 @@ public class TaterAPI {
     }
 
     /**
+     * Set the minecraftServer supplier
+     * @param minecraftServer The minecraftServer supplier
+     */
+    public void setServer(Supplier<Server> minecraftServer) {
+        data.minecraftServer = minecraftServer;
+    }
+
+    /**
+     * Get the minecraft server
+     * @return The minecraft server
+     */
+    public Server getServer() {
+        return data.minecraftServer.get();
+    }
+
+    /**
      * Data used throughout the plugin via the API.
      */
     static class Data {
         final HashMap<String, Object> hooks = new HashMap<>();
         Consumer<Set<String>> registerChannels = (channels) -> {};
         Predicate<String> isPluginLoaded = (pluginName) -> false;
+        Supplier<Server> minecraftServer = () -> null;
         final String configFolder;
         final MinecraftVersion minecraftVersion;
         final ServerType serverType;

@@ -10,6 +10,7 @@ import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 import org.apache.logging.log4j.LogManager;
 
@@ -45,6 +47,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded(ModList.get()::isLoaded);
         api.setRegisterChannels(ModMessages::addChannels);
+        api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);

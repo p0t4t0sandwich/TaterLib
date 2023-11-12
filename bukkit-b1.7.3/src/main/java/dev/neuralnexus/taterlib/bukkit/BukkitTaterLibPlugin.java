@@ -8,6 +8,7 @@ import dev.neuralnexus.taterlib.bukkit.event.api.server.BukkitServerStoppingEven
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
+import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
@@ -39,6 +40,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         pluginStart(this, new BukkitLogger(Bukkit.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
+        api.setServer(() -> new BukkitServer(getServer()));
     }
 
     @Override
