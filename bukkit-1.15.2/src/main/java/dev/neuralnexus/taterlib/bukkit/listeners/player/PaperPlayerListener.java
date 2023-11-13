@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
 import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent;
-import dev.neuralnexus.taterlib.bukkit.event.api.player.PaperAdvancementProgress;
+import dev.neuralnexus.taterlib.bukkit.event.player.PaperAdvancementProgress;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

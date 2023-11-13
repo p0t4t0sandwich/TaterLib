@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.entity;
 
-import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
+import dev.neuralnexus.taterlib.fabric.event.api.FabricEntityEvents;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageTracker;
 import org.spongepowered.asm.mixin.Mixin;

@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
@@ -41,6 +42,9 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
 
         // Register server starting/stopping events
         NeoForge.EVENT_BUS.register(this);
+
+        // Register block event listeners
+        NeoForge.EVENT_BUS.register(new NeoForgeBlockListener());
 
         // Register command event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeCommandsListener());

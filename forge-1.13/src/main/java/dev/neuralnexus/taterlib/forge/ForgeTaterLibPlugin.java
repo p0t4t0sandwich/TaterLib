@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
@@ -51,6 +52,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
+
+        // Register block event listeners
+        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
 
         // Register command event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());

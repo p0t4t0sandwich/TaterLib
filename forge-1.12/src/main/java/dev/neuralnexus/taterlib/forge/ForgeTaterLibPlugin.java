@@ -6,11 +6,12 @@ import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartedEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartingEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppedEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
@@ -50,6 +51,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
+
+        // Register block event listeners
+        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
 
         // Register entity event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());

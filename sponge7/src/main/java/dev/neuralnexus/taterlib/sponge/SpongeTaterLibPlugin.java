@@ -5,7 +5,8 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.sponge.event.api.command.SpongeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.sponge.listeners.block.SpongeBlockListener;
 import dev.neuralnexus.taterlib.sponge.logger.SpongeLogger;
 import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
@@ -52,10 +53,13 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
         instance = this;
 
+        EventManager eventManager = Sponge.getEventManager();
+
+        // Register block events
+        eventManager.registerListeners(container, new SpongeBlockListener());
+
         // Register commands
         Sponge.getScheduler().createTaskBuilder().delay(10, TimeUnit.SECONDS).execute(() -> CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent())).submit(container);
-
-        EventManager eventManager = Sponge.getEventManager();
 
         // Register entity event listeners
         eventManager.registerListeners(container, new SpongeEntityListener());

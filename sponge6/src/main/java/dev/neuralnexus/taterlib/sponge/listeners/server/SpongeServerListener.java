@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.sponge.listeners.server;
 
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.sponge.event.api.server.SpongeServerStartedEvent;
-import dev.neuralnexus.taterlib.sponge.event.api.server.SpongeServerStartingEvent;
-import dev.neuralnexus.taterlib.sponge.event.api.server.SpongeServerStoppedEvent;
-import dev.neuralnexus.taterlib.sponge.event.api.server.SpongeServerStoppingEvent;
+import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartedEvent;
+import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartingEvent;
+import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStoppedEvent;
+import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStoppingEvent;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;

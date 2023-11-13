@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.listeners.player;
 
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.forge.event.api.player.*;
+import dev.neuralnexus.taterlib.forge.event.player.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
