@@ -117,3 +117,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Updated database utils
 - Added `Server` abstraction and `TaterAPI.getServer`
 - Ported to Bukkit 1.13.2 and Sponge 5
+- Abstracted `ProxyPlayer`s, specifically adding a `connect` method
