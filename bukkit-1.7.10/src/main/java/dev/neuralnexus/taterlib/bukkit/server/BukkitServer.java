@@ -4,6 +4,10 @@ import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.server.Server;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,6 +26,13 @@ public class BukkitServer implements Server {
      */
     @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getOnlinePlayers().stream().map(BukkitPlayer::new).collect(Collectors.toSet());
+        // Server.getOnlinePlayers is ambiguous, time to reflect
+        try {
+            Method method = server.getClass().getMethod("getOnlinePlayers");
+            Collection<? extends org.bukkit.entity.Player> players = (Collection<? extends org.bukkit.entity.Player>) method.invoke(server);
+            return players.stream().map(BukkitPlayer::new).collect(Collectors.toSet());
+        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+            return new HashSet<>();
+        }
     }
 }
