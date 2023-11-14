@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.block;
 
 import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.common.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.fabric.block.FabricBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Called when a block event occurs.
  */
-public class FabricBlockEvent implements BlockBreakEvent {
+public class FabricBlockEvent implements BlockEvent {
     private final World world;
     private final BlockPos pos;
     private final BlockState state;
