@@ -22,6 +22,14 @@ public class ForgeServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return "local";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayerList().getPlayers().stream().map(ForgePlayer::new).collect(Collectors.toSet());
     }

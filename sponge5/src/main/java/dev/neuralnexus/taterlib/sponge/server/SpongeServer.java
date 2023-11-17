@@ -21,6 +21,14 @@ public class SpongeServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return "local";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getOnlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toSet());
     }

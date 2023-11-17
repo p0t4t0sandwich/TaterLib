@@ -22,6 +22,14 @@ public class BukkitServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return "local";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return Arrays.stream(server.getOnlinePlayers()).map(BukkitPlayer::new).collect(Collectors.toSet());
     }

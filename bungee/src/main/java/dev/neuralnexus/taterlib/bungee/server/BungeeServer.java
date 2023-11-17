@@ -3,18 +3,17 @@ package dev.neuralnexus.taterlib.bungee.server;
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.server.Server;
-import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.config.ServerInfo;
 
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Bungee implementation of {@link Server}.
  */
 public class BungeeServer implements Server {
-    private final ProxyServer server;
+    private final ServerInfo server;
 
-    public BungeeServer(ProxyServer server) {
+    public BungeeServer(ServerInfo server) {
         this.server = server;
     }
 
@@ -22,7 +21,15 @@ public class BungeeServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return server.getName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
+        return server.getPlayers().stream().map(BungeePlayer::new).collect(java.util.stream.Collectors.toSet());
     }
 }

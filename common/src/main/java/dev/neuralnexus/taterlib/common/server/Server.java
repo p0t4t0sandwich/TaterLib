@@ -9,6 +9,12 @@ import java.util.Set;
  */
 public interface Server {
     /**
+     * Get the name of the server.
+     * @return The name of the server.
+     */
+    String getName();
+
+    /**
      * Get the set of online players.
      * @return The set of online players.
      */

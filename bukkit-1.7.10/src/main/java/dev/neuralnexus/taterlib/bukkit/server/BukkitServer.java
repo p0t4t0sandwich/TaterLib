@@ -25,6 +25,14 @@ public class BukkitServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return "local";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {

@@ -22,6 +22,14 @@ public class NeoForgeServer implements Server {
      * {@inheritDoc}
      */
     @Override
+    public String getName() {
+        return "local";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayerList().getPlayers().stream().map(NeoForgePlayer::new).collect(Collectors.toSet());
     }

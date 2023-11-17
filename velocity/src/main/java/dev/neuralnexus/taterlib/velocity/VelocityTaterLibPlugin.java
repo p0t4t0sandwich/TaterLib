@@ -23,7 +23,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
-import dev.neuralnexus.taterlib.velocity.server.VelocityServer;
+import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 import org.slf4j.Logger;
 
 import java.time.Duration;
@@ -61,7 +61,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
         api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
-        api.setServer(() -> new VelocityServer(server));
+        api.setServer(() -> new VelocityProxyServer(server));
     }
 
     /**
