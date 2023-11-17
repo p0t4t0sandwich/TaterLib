@@ -85,7 +85,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.9-SNAPSHOT
+### 1.1.0-R0.10-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -119,3 +119,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Ported to Bukkit 1.13.2 and Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
+- Updated `Server` implementation and added `ProxyServer` for proxies
