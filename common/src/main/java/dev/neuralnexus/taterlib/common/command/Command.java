@@ -63,7 +63,9 @@ public interface Command {
      * @param args The arguments of the command.
      * @return The output of the command.
      */
-    String execute(String[] args);
+    default String execute(String[] args) {
+        return null;
+    }
 
     /**
      * Execute the command.

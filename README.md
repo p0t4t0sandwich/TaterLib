@@ -120,3 +120,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies
+- Added `ServerEvent.getServer`
