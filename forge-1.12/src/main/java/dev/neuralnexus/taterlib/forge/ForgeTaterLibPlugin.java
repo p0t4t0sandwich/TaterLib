@@ -6,14 +6,17 @@ import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.forge.event.api.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartedEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartingEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppedEvent;
+import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -34,6 +37,16 @@ import org.apache.logging.log4j.LogManager;
         acceptableRemoteVersions= "*"
 )
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
+    private static MinecraftServer server;
+
+    /**
+     * Get the Minecraft server.
+     * @return The Minecraft server.
+     */
+    public static MinecraftServer getServer() {
+        return server;
+    }
+
     /**
      * Called when the Forge mod is initializing.
      */
@@ -42,9 +55,13 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded(Loader::isModLoaded);
+        api.setServer(() -> new ForgeServer(server));
 
         // Register server starting/stopping events
         MinecraftForge.EVENT_BUS.register(this);
+
+        // Register block event listeners
+        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
 
         // Register entity event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
@@ -83,6 +100,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
+        server = event.getServer();
         ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
     }
 

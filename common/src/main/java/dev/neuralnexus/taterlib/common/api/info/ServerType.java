@@ -685,7 +685,7 @@ public enum ServerType {
      */
     public static boolean isVanilla() {
         try {
-            Class.forName("net.minecraft.server.MinecraftServer");
+            Class.forName("net.minecraft.server.Server");
             return true;
         } catch (ClassNotFoundException e) {
             return false;

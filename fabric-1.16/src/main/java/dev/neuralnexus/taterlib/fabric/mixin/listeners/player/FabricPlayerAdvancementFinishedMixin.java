@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
-import dev.neuralnexus.taterlib.fabric.event.api.player.FabricPlayerEvents;
+import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 import net.minecraft.advancement.Advancement;
 import net.minecraft.advancement.AdvancementDisplay;
 import net.minecraft.advancement.AdvancementProgress;

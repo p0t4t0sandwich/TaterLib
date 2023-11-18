@@ -5,5 +5,5 @@ import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
 /**
  * Bungee implementation of {@link ServerStartingEvent}.
  */
-public class BungeeServerStartingEvent implements ServerStartingEvent {
+public class BungeeServerStartingEvent extends BungeeServerEvent implements ServerStartingEvent {
 }

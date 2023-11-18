@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.bungee.player;
 
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
 import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.common.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -12,9 +12,9 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.UUID;
 
 /**
- * BungeeCord implementation of {@link Player}.
+ * BungeeCord implementation of {@link ProxyPlayer}.
  */
-public class BungeePlayer implements Player {
+public class BungeePlayer implements ProxyPlayer {
     private final ProxiedPlayer player;
     private String serverName;
 
@@ -53,9 +53,9 @@ public class BungeePlayer implements Player {
      * Connect the player to a server.
      * @param serverName The name of the server to connect to.
      */
+    @Override
     public void connect(String serverName) {
         if (BungeeTaterLibPlugin.getProxyServer().getServerInfo(serverName) == null) return;
-
         ServerInfo server = BungeeTaterLibPlugin.getProxyServer().getServerInfo(serverName);
         player.connect(server);
     }

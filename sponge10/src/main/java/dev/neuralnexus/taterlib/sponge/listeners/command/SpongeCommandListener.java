@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.sponge.listeners.command;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.sponge.event.api.command.SpongeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;

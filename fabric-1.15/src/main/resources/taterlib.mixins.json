@@ -4,6 +4,7 @@
   "package": "dev.neuralnexus.taterlib.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "listeners.block.FabricBlockBreakMixin",
     "listeners.entity.FabricEntityDamageMixin",
     "listeners.entity.FabricEntityDeathMixin"
   ],

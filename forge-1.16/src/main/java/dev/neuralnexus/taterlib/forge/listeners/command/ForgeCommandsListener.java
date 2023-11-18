@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.listeners.command;
 
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.forge.event.api.command.ForgeBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.forge.event.api.command.ForgeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.forge.event.command.ForgeBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 

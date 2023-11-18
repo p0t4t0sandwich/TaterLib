@@ -10,10 +10,10 @@ import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.velocity.event.api.command.VelocityCommandRegisterEvent;
-import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStartedEvent;
-import dev.neuralnexus.taterlib.velocity.event.api.server.VelocityServerStoppedEvent;
+import dev.neuralnexus.taterlib.velocity.event.command.VelocityBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEvent;
+import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartedEvent;
+import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.logger.VelocityLogger;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
@@ -23,6 +23,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
+import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 import org.slf4j.Logger;
 
 import java.time.Duration;
@@ -60,6 +61,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
         api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
+        api.setServer(() -> new VelocityProxyServer(server));
     }
 
     /**

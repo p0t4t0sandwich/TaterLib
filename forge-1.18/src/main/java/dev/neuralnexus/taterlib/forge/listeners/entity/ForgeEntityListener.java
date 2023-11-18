@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.forge.listeners.entity;
 
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.forge.event.api.entity.ForgeEntityDamageEvent;
-import dev.neuralnexus.taterlib.forge.event.api.entity.ForgeEntityDeathEvent;
-import dev.neuralnexus.taterlib.forge.event.api.entity.ForgeEntitySpawnEvent;
+import dev.neuralnexus.taterlib.forge.event.entity.ForgeEntityDamageEvent;
+import dev.neuralnexus.taterlib.forge.event.entity.ForgeEntityDeathEvent;
+import dev.neuralnexus.taterlib.forge.event.entity.ForgeEntitySpawnEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;

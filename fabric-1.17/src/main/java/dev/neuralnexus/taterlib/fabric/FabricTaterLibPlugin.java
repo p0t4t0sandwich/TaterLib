@@ -4,23 +4,23 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.fabric.event.api.command.FabricBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.command.FabricCommandRegisterEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDamageEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityDeathEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntitySpawnEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.player.*;
-import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStartedEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStartingEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppedEvent;
-import dev.neuralnexus.taterlib.fabric.event.api.server.FabricServerStoppingEvent;
+import dev.neuralnexus.taterlib.common.event.api.*;
+import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
+import dev.neuralnexus.taterlib.fabric.event.block.FabricBlockBreakEvent;
+import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
+import dev.neuralnexus.taterlib.fabric.event.command.FabricBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.fabric.event.command.FabricCommandRegisterEvent;
+import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntityDamageEvent;
+import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntityDeathEvent;
+import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntitySpawnEvent;
+import dev.neuralnexus.taterlib.fabric.event.player.*;
+import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartedEvent;
+import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartingEvent;
+import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppedEvent;
+import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.logger.FabricLogger;
-import dev.neuralnexus.taterlib.fabric.event.api.entity.FabricEntityEvents;
-import net.fabricmc.api.DedicatedServerModInitializer;
+import dev.neuralnexus.taterlib.fabric.event.api.FabricEntityEvents;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -41,6 +41,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) ->FabricLoader.getInstance().isModLoaded(plugin));
+        api.setServer(() -> new FabricServer(server));
 
         // Initialize plugin data
         ServerLifecycleEvents.SERVER_STARTING.register(server -> FabricTaterLibPlugin.server = server);
@@ -57,10 +58,13 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> PlayerEvents.LOGOUT.invoke(new FabricPlayerLogoutEvent(handler, server)));
 
         // Register Fabric API server events
-        ServerLifecycleEvents.SERVER_STARTING.register(server -> ServerEvents.STARTING.invoke(new FabricServerStartingEvent()));
-        ServerLifecycleEvents.SERVER_STARTED.register(server -> ServerEvents.STARTED.invoke(new FabricServerStartedEvent()));
-        ServerLifecycleEvents.SERVER_STOPPING.register(server -> ServerEvents.STOPPING.invoke(new FabricServerStoppingEvent()));
-        ServerLifecycleEvents.SERVER_STOPPED.register(server -> ServerEvents.STOPPED.invoke(new FabricServerStoppedEvent()));
+        ServerLifecycleEvents.SERVER_STARTING.register(server -> ServerEvents.STARTING.invoke(new FabricServerStartingEvent(server)));
+        ServerLifecycleEvents.SERVER_STARTED.register(server -> ServerEvents.STARTED.invoke(new FabricServerStartedEvent(server)));
+        ServerLifecycleEvents.SERVER_STOPPING.register(server -> ServerEvents.STOPPING.invoke(new FabricServerStoppingEvent(server)));
+        ServerLifecycleEvents.SERVER_STOPPED.register(server -> ServerEvents.STOPPED.invoke(new FabricServerStoppedEvent(server)));
+
+        // Register TaterLib Block events
+        FabricBlockEvents.BLOCK_BREAK.register((world, pos, state, player, ci) -> BlockEvents.BLOCK_BREAK.invoke(new FabricBlockBreakEvent(world, pos, state, player, ci)));
 
         // Register TaterLib Entity events
         FabricEntityEvents.DAMAGE.register((entity, damageSource, damage, ci)  -> EntityEvents.DAMAGE.invoke(new FabricEntityDamageEvent(entity, damageSource, damage, ci)));

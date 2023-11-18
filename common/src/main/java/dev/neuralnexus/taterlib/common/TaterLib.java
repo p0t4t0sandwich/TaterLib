@@ -2,13 +2,11 @@ package dev.neuralnexus.taterlib.common;
 
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
-import dev.neuralnexus.taterlib.common.listeners.command.TaterLibCommandListener;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.common.listeners.player.TaterLibPlayerListener;
 
 /**
  * Main class for the plugin.
@@ -90,13 +88,8 @@ public class TaterLib {
                 }
             });
 
-            // Register player listeners
-            PlayerEvents.LOGIN.register(TaterLibPlayerListener::onPlayerLogin);
-            PlayerEvents.LOGOUT.register(TaterLibPlayerListener::onPlayerLogout);
-            PlayerEvents.SERVER_SWITCH.register(TaterLibPlayerListener::onServerSwitch);
-
             // Register commands
-            CommandEvents.REGISTER_COMMAND.register(TaterLibCommandListener::onRegisterCommand);
+            CommandEvents.REGISTER_COMMAND.register((event -> event.registerCommand(TaterLib.getPlugin(), new TaterLibCommand())));
         }
 
         instance.logger.info(Constants.PROJECT_NAME + " has been started!");
@@ -148,7 +141,7 @@ public class TaterLib {
     public static class Constants {
         public static final String PROJECT_NAME = "TaterLib";
         public static final String PROJECT_ID = "taterlib";
-        public static final String PROJECT_VERSION = "1.1.0-R0.4-SNAPSHOT";
+        public static final String PROJECT_VERSION = "1.1.0-R0.10-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION = "A cross API code library for various generalizations used in the Tater* plugins";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";

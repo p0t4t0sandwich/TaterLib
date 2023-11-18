@@ -1,0 +1,11 @@
+name: '${project_name}'
+version: '${version}'
+author: '${authors}'
+description: '${project_description}'
+main: '${group_id}.${project_id}.bukkit.Bukkit${project_name}Plugin'
+depends: []
+softdepends: [LuckPerms]
+commands:
+  taterlib:
+    description: TaterLib command
+    permission: taterlib.command
