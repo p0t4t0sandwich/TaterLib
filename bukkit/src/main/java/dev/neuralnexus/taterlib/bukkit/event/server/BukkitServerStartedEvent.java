@@ -7,9 +7,7 @@ import org.bukkit.event.server.ServerLoadEvent;
  * Bukkit implementation of {@link ServerStartedEvent}.
  */
 public class BukkitServerStartedEvent extends BukkitServerEvent implements ServerStartedEvent {
-    public final ServerLoadEvent event;
-
     public BukkitServerStartedEvent(ServerLoadEvent event) {
-        this.event = event;
+        super(event);
     }
 }

@@ -37,7 +37,15 @@ import org.apache.logging.log4j.LogManager;
         acceptableRemoteVersions= "*"
 )
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    private MinecraftServer server;
+    private static MinecraftServer server;
+
+    /**
+     * Get the Minecraft server.
+     * @return The Minecraft server.
+     */
+    public static MinecraftServer getServer() {
+        return server;
+    }
 
     /**
      * Called when the Forge mod is initializing.

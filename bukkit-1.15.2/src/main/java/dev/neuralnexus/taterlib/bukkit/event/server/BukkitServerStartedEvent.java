@@ -10,6 +10,7 @@ public class BukkitServerStartedEvent extends BukkitServerEvent implements Serve
     public final ServerLoadEvent event;
 
     public BukkitServerStartedEvent(ServerLoadEvent event) {
+        super(event);
         this.event = event;
     }
 }

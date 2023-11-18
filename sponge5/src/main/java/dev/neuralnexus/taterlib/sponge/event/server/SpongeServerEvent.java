@@ -1,6 +1,9 @@
 package dev.neuralnexus.taterlib.sponge.event.server;
 
 import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
+import dev.neuralnexus.taterlib.common.server.Server;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.game.state.GameStateEvent;
 
 /**
@@ -11,5 +14,13 @@ public class SpongeServerEvent implements ServerEvent {
 
     public SpongeServerEvent(GameStateEvent event) {
         this.event = event;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Server getServer() {
+        return new SpongeServer(Sponge.getServer());
     }
 }
