@@ -121,4 +121,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies
 - Added `ServerEvent.getServer`
-- Fixed null `Player` in `BukkitPlayerAdvancementEvent`
+- Fixes to `BukkitPlayerAdvancementEvent`
+  - `getPlayer` was returning null
+  - `getAdvancement` was returning the wrong string

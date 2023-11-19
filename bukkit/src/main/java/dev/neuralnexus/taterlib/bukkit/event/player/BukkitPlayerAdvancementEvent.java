@@ -36,7 +36,12 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
          */
         @Override
         public String getAdvancement() {
-            return event.getAdvancement().getKey().getNamespace();
+            if (event.getAdvancement().getDisplay() == null) {
+                String key = event.getAdvancement().getKey().getKey();
+                return key.contains("/") ? key.split("/")[1] : key;
+            } else {
+                return event.getAdvancement().getDisplay().getTitle();
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ public class PaperAdvancementProgress extends BukkitPlayerAdvancementEvent imple
      */
     @Override
     public String getAdvancement() {
-        return event.getAdvancement().getKey().getNamespace();
+        return event.getAdvancement().getKey().getKey();
     }
 
     /**
