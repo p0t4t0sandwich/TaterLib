@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerEvent;
  * Bukkit implementation of {@link PlayerAdvancementEvent}.
  */
 public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements PlayerAdvancementEvent {
-    BukkitPlayerAdvancementEvent(PlayerEvent event) {
+    public BukkitPlayerAdvancementEvent(PlayerEvent event) {
         super(event);
     }
 
@@ -18,14 +18,6 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
      */
     @Override
     public String getAdvancement() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Player getPlayer() {
         return null;
     }
 

@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
 import org.bukkit.event.player.PlayerAchievementAwardedEvent;
 import org.bukkit.event.player.PlayerEvent;
 
@@ -9,7 +8,7 @@ import org.bukkit.event.player.PlayerEvent;
  * Bukkit implementation of {@link PlayerAdvancementEvent}.
  */
 public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements PlayerAdvancementEvent {
-    BukkitPlayerAdvancementEvent(PlayerEvent event) {
+    public BukkitPlayerAdvancementEvent(PlayerEvent event) {
         super(event);
     }
 
@@ -18,14 +17,6 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent implements P
      */
     @Override
     public String getAdvancement() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Player getPlayer() {
         return null;
     }
 
