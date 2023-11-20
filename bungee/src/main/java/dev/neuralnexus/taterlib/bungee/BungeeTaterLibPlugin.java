@@ -13,7 +13,9 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -21,7 +23,7 @@ import net.md_5.bungee.api.plugin.PluginManager;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The TaterLib BungeeCord plugin.
+ * Bungee entry point.
  */
 public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
     private static ProxyServer proxyServer;
@@ -44,20 +46,14 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         proxyServer = getProxy();
 
+        // Register listeners
         PluginManager pluginManager = getProxy().getPluginManager();
-
-        // Register command listeners
         getProxy().getScheduler().schedule(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BungeeCommandRegisterEvent()), 5L, TimeUnit.SECONDS);
-
-        // Register player listeners
         pluginManager.registerListener(this, new BungeePlayerListener());
-
-        // Register plugin message listeners
         pluginManager.registerListener(this, new BungeePluginMessageListener());
-
-        // Register server listeners
         ServerEvents.STARTING.invoke(new BungeeServerStartingEvent());
         getProxy().getScheduler().schedule(this, () -> ServerEvents.STARTED.invoke(new BungeeServerStartedEvent()), 5L, TimeUnit.SECONDS);
     }

@@ -35,21 +35,12 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         api.setIsPluginLoaded((plugin) -> Sponge.pluginManager().plugin(plugin).isPresent());
         api.setServer(() -> new SpongeServer(Sponge.server()));
 
+        // Register listeners
         EventManager eventManager = Sponge.eventManager();
-
-        // Register block events
         eventManager.registerListeners(container, new SpongeBlockListener());
-
-        // Register command events
         eventManager.registerListeners(container, new SpongeCommandListener());
-
-        // Register entity event listeners
         eventManager.registerListeners(container, new SpongeEntityListener());
-
-        // Register player event listeners
         eventManager.registerListeners(container, new SpongePlayerListener());
-
-        // Register server event listeners
         eventManager.registerListeners(container, new SpongeServerListener());
     }
 

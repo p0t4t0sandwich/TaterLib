@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.*;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 import dev.neuralnexus.taterlib.fabric.event.block.FabricBlockBreakEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
@@ -30,7 +31,7 @@ import net.minecraft.server.MinecraftServer;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Fabric plugin.
+ * Fabric entry point.
  */
 public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
     public static MinecraftServer server;
@@ -80,5 +81,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
     }
 
     @Override
-    public void onInitialize() {}
+    public void onInitialize() {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
+    }
 }

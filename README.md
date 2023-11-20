@@ -125,3 +125,4 @@ Feel free to open a PR to add your plugin/mod to this list!
   - `getPlayer` was returning null
   - `getAdvancement` was returning the wrong string
 - Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`
+- Added `PluginEnableEvent` and `PluginDisableEvent`

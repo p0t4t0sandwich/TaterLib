@@ -24,7 +24,7 @@ import org.slf4j.Logger;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The TaterLib Sponge plugin.
+ * Sponge entry point.
  */
 @Plugin(
         id = TaterLib.Constants.PROJECT_ID,
@@ -53,21 +53,12 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
         instance = this;
 
+        // Register listeners
         EventManager eventManager = Sponge.getEventManager();
-
-        // Register block events
         eventManager.registerListeners(container, new SpongeBlockListener());
-
-        // Register commands
         Sponge.getScheduler().createTaskBuilder().delay(10, TimeUnit.SECONDS).execute(() -> CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent())).submit(container);
-
-        // Register entity event listeners
         eventManager.registerListeners(container, new SpongeEntityListener());
-
-        // Register player event listeners
         eventManager.registerListeners(container, new SpongePlayerListener());
-
-        // Register server event listeners
         eventManager.registerListeners(container, new SpongeServerListener());
     }
 

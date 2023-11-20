@@ -8,8 +8,10 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.pluginmessages.VelocityRegisterPluginMessagesEvent;
@@ -71,6 +73,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
      */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
+
         // Register listeners
         EventManager eventManager = server.getEventManager();
         eventManager.register(this, new VelocityPlayerListener());

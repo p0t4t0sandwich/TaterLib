@@ -14,14 +14,16 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * The TaterLib Bukkit plugin.
+ * Bukkit entry point.
  */
 public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     private static BukkitTaterLibPlugin instance;
@@ -46,26 +48,19 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
+
+        // Register listeners
         PluginManager pluginManager = getServer().getPluginManager();
-
-        // Register block listeners
         pluginManager.registerEvent(Event.Type.BLOCK_BREAK, new BukkitBlockListener(), Event.Priority.Normal, this);
-
-        // Register command listeners
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent()), 200L);
-
-        // Register entity listeners
         pluginManager.registerEvent(Event.Type.ENTITY_DAMAGE, new BukkitEntityListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.ENTITY_DEATH, new BukkitEntityListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.CREATURE_SPAWN, new BukkitEntityListener(), Event.Priority.Normal, this);
-
-        // Register player listeners
         pluginManager.registerEvent(Event.Type.PLAYER_JOIN, new BukkitPlayerListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.PLAYER_QUIT, new BukkitPlayerListener(), Event.Priority.Normal, this);
         pluginManager.registerEvent(Event.Type.PLAYER_CHAT, new BukkitPlayerListener(), Event.Priority.Highest, this);
         pluginManager.registerEvent(Event.Type.PLAYER_RESPAWN, new BukkitPlayerListener(), Event.Priority.Normal, this);
-
-        // Register server listeners
         ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
         getServer().getScheduler().scheduleSyncDelayedTask(this, () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()), 5*20L);
     }

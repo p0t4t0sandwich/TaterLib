@@ -16,13 +16,15 @@ import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
- * The TaterLib Bukkit plugin.
+ * Bukkit entry point.
  */
 public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     private static BukkitTaterLibPlugin instance;
@@ -47,6 +49,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         TaterAPI api = TaterAPIProvider.get();
 
         // Register listeners

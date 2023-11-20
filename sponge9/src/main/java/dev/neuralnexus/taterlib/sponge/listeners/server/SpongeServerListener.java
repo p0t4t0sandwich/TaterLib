@@ -1,6 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.listeners.server;
 
+import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartedEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartingEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStoppedEvent;
@@ -22,6 +24,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarting(StartingEngineEvent<Server> event) {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         ServerEvents.STARTING.invoke(new SpongeServerStartingEvent(event));
     }
 
