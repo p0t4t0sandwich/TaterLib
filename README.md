@@ -43,22 +43,22 @@ dependencies {
 
 TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
-| Server type                   | Versions     | Jar Name                               |
-|-------------------------------|--------------|----------------------------------------|
-| 1.20.2 (Sponge11)             | 1.20.2       | `TaterLib-1.20.2-<version>.jar`        |
-| 1.20-1.20.1 (Sponge11)        | 1.20-1.20.1  | `TaterLib-1.20-<version>.jar`          |
-| All 1.19 (Sponge10)           | 1.19-1.19.4  | `TaterLib-1.19-<version>.jar`          |
-| All 1.18 (Sponge9)            | 1.18-1.18.2  | `TaterLib-1.18-<version>.jar`          |
-| All 1.17 (Sponge9)            | 1.17-1.17.1  | `TaterLib-1.17-<version>.jar`          |
-| All 1.16 (Sponge8)            | 1.16-1.16.5  | `TaterLib-1.16-<version>.jar`          |
-| All 1.15 (Sponge8)            | 1.15-1.15.2  | `TaterLib-1.15-<version>.jar`          |
-| All 1.14                      | 1.14-1.14.3  | `TaterLib-1.14-<version>.jar`          |
-| All 1.13 (no Fabric)          | 1.13-1.13.2  | `TaterLib-1.13-<version>.jar`          |
-| All 1.12 (Sponge7, no Fabric) | 1.12-1.12.2  | `TaterLib-1.12-<version>.jar`          |
-| Bukkit 1.7.10                 | 1.7.2-1.7.10 | `TaterLib-bukkit-1.7.10-<version>.jar` |
-| Bukkit 1.6.4                  | 1.6.1-1.6.4  | `TaterLib-bukkit-1.6.4-<version>.jar`  |
-| Bukkit 1.2.5                  | 1.2.5        | `TaterLib-bukkit-1.2.5-<version>.jar`  |
-| Bukkit b1.7.3                 | b1.7.3       | `TaterLib-bukkit-b1.7.3-<version>.jar` |
+| Server type               | Versions     | Jar Name                               |
+|---------------------------|--------------|----------------------------------------|
+| 1.20.2 (Sponge11)         | 1.20.2       | `TaterLib-1.20.2-<version>.jar`        |
+| 1.20-1.20.1 (Sponge11)    | 1.20-1.20.1  | `TaterLib-1.20-<version>.jar`          |
+| 1.19 (Sponge10)           | 1.19-1.19.4  | `TaterLib-1.19-<version>.jar`          |
+| 1.18 (Sponge9)            | 1.18-1.18.2  | `TaterLib-1.18-<version>.jar`          |
+| 1.17 (Sponge9)            | 1.17-1.17.1  | `TaterLib-1.17-<version>.jar`          |
+| 1.16 (Sponge8)            | 1.16-1.16.5  | `TaterLib-1.16-<version>.jar`          |
+| 1.15 (Sponge8)            | 1.15-1.15.2  | `TaterLib-1.15-<version>.jar`          |
+| 1.14                      | 1.14-1.14.3  | `TaterLib-1.14-<version>.jar`          |
+| 1.13 (no Fabric)          | 1.13-1.13.2  | `TaterLib-1.13-<version>.jar`          |
+| 1.12 (Sponge7, no Fabric) | 1.12-1.12.2  | `TaterLib-1.12-<version>.jar`          |
+| Bukkit 1.7.10             | 1.7.2-1.7.10 | `TaterLib-bukkit-1.7.10-<version>.jar` |
+| Bukkit 1.6.4              | 1.6.1-1.6.4  | `TaterLib-bukkit-1.6.4-<version>.jar`  |
+| Bukkit 1.2.5              | 1.2.5        | `TaterLib-bukkit-1.2.5-<version>.jar`  |
+| Bukkit b1.7.3             | b1.7.3       | `TaterLib-bukkit-b1.7.3-<version>.jar` |
 
 ## Dependencies
 
@@ -85,7 +85,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.10-SNAPSHOT
+### 1.1.0-R0.11-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -124,3 +124,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Fixes to `BukkitPlayerAdvancementEvent`
   - `getPlayer` was returning null
   - `getAdvancement` was returning the wrong string
+- Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`

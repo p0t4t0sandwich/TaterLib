@@ -4,6 +4,8 @@ plugins {
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = java_version
 targetCompatibility = java_version
 
 minecraft {

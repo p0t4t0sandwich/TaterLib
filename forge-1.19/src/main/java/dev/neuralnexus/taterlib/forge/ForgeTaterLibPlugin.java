@@ -5,6 +5,8 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
@@ -25,7 +27,7 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 /**
- * The TaterLib Forge plugin.
+ * Forge entry point.
  */
 @Mod(TaterLib.Constants.PROJECT_ID)
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
@@ -37,25 +39,14 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(this, new ForgeLogger(LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded(ModList.get()::isLoaded);
-        api.setRegisterChannels(ModMessages::addChannels);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
-        // Register server starting/stopping events
+        // Register listeners
         MinecraftForge.EVENT_BUS.register(this);
-
-        // Register block event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
-
-        // Register command event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
-
-        // Register entity event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-
-        // Register player event listeners
         MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
-
-        // Register server event listeners
         MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
 
         // Register plugin channels
@@ -68,6 +59,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
+        PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPluginMessagesEvent());
         ModMessages.register();
         ModMessages.clearQueue();
     }

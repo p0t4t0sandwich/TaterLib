@@ -3,15 +3,16 @@ package dev.neuralnexus.taterlib.velocity;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Dependency;
-import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEvent;
+import dev.neuralnexus.taterlib.velocity.event.pluginmessages.VelocityRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.logger.VelocityLogger;
@@ -29,7 +30,7 @@ import org.slf4j.Logger;
 import java.time.Duration;
 
 /**
- * The TaterLib Velocity plugin.
+ * Velocity entry point.
  */
 @Plugin(
         id = TaterLib.Constants.PROJECT_ID,
@@ -56,11 +57,11 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Inject
     public VelocityTaterLibPlugin(ProxyServer server, Logger logger) {
         VelocityTaterLibPlugin.server = server;
+
         TaterAPIProvider.register("plugins", server.getVersion().getVersion());
         pluginStart(server, new VelocityLogger(logger));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
-        api.setRegisterChannels((channels) -> channels.forEach((channel) -> server.getChannelRegistrar().register(MinecraftChannelIdentifier.from(channel))));
         api.setServer(() -> new VelocityProxyServer(server));
     }
 
@@ -70,23 +71,23 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
      */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        // Register command events
+        // Register listeners
+        EventManager eventManager = server.getEventManager();
+        eventManager.register(this, new VelocityPlayerListener());
+        eventManager.register(this, new VelocityPluginMessageListener());
+        eventManager.register(this, new VelocityServerListener());
+
         server.getScheduler().buildTask(this, () -> {
+            // Register commands
             CommandEvents.REGISTER_COMMAND.invoke(new VelocityCommandRegisterEvent());
             CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(new VelocityBrigadierCommandRegisterEvent());
+
+            // Register plugin messages
+            PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(new VelocityRegisterPluginMessagesEvent());
+
+            // Fire server started event
+            ServerEvents.STARTED.invoke(new VelocityServerStartedEvent());
         }).delay(Duration.ofSeconds(5)).schedule();
-
-        EventManager eventManager = server.getEventManager();
-
-        // Register player listeners
-        eventManager.register(this, new VelocityPlayerListener());
-
-        // Register plugin message listener
-        eventManager.register(this, new VelocityPluginMessageListener());
-
-        // Register server listeners
-        server.getScheduler().buildTask(this, () -> ServerEvents.STARTED.invoke(new VelocityServerStartedEvent())).delay(Duration.ofSeconds(5)).schedule();
-        eventManager.register(this, new VelocityServerListener());
     }
 
     /**

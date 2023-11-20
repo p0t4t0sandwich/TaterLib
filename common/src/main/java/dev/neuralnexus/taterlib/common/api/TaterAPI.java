@@ -2,14 +2,9 @@ package dev.neuralnexus.taterlib.common.api;
 
 import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.common.api.info.ServerType;
-import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.server.Server;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -62,30 +57,6 @@ public class TaterAPI {
      */
     public boolean isHooked(String hookName) {
         return data.hooks.containsKey(hookName.toLowerCase());
-    }
-
-    /**
-     * Set the registerChannels consumer
-     * @param registerChannels The registerChannels consumer
-     */
-    public void setRegisterChannels(Consumer<Set<String>> registerChannels) {
-        data.registerChannels = registerChannels;
-    }
-
-    /**
-     * Register a channel
-     * @param channel The channel to register
-     */
-    public void registerChannel(String channel) {
-        data.registerChannels.accept(Collections.singleton(channel));
-    }
-
-    /**
-     * Register channels
-     * @param channels The channels to register
-     */
-    public void registerChannels(Set<String> channels) {
-        data.registerChannels.accept(channels);
     }
 
     /**
@@ -145,7 +116,6 @@ public class TaterAPI {
      */
     static class Data {
         final HashMap<String, Object> hooks = new HashMap<>();
-        Consumer<Set<String>> registerChannels = (channels) -> {};
         Predicate<String> isPluginLoaded = (pluginName) -> false;
         Supplier<Server> minecraftServer = () -> null;
         final String configFolder;

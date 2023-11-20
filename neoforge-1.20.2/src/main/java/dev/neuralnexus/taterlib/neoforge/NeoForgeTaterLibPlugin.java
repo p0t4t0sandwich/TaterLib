@@ -5,6 +5,8 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.neoforge.event.pluginmessage.NeoForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
@@ -25,7 +27,7 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /**
- * The TaterLib NeoForge plugin.
+ * NeoForge entry point.
  */
 @Mod(TaterLib.Constants.PROJECT_ID)
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
@@ -37,25 +39,14 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get();
         api.setIsPluginLoaded(ModList.get()::isLoaded);
-        api.setRegisterChannels(ModMessages::addChannels);
         api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
-        // Register server starting/stopping events
+        // Register listeners
         NeoForge.EVENT_BUS.register(this);
-
-        // Register block event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeBlockListener());
-
-        // Register command event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeCommandsListener());
-
-        // Register entity event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeEntityListener());
-
-        // Register player event listeners
         NeoForge.EVENT_BUS.register(new NeoForgePlayerListener());
-
-        // Register server event listeners
         NeoForge.EVENT_BUS.register(new NeoForgeServerListener());
 
         // Register plugin channels
@@ -68,6 +59,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
+        PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(new NeoForgeRegisterPluginMessagesEvent());
         ModMessages.register();
         ModMessages.clearQueue();
     }
