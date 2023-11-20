@@ -18,8 +18,8 @@ public interface TaterLibPlugin extends Plugin {
      * Stop the plugin.
      */
     default void pluginStop() {
-        PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
         TaterLib.stop();
         TaterLib.getLogger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
+        PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }
