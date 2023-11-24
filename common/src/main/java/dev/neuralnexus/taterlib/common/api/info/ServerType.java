@@ -503,11 +503,14 @@ public enum ServerType {
      */
     public static boolean isArclight() {
         try {
+            Class.forName("io.izzel.arclight.api.Arclight");
+            return true;
+        } catch (ClassNotFoundException ignored) {}
+        try {
             Class.forName("io.izzel.arclight.common.ArclightMain");
             return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        } catch (ClassNotFoundException ignored) {}
+        return false;
     }
 
     /**
