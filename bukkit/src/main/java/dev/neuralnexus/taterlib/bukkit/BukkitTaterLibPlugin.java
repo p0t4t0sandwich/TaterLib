@@ -15,6 +15,8 @@ import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
@@ -40,9 +42,9 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     public BukkitTaterLibPlugin() {
         instance = this;
 
-        TaterAPIProvider.register("plugins", getServer().getBukkitVersion());
+        TaterAPIProvider.register(getServer().getBukkitVersion());
         pluginStart(this, new BukkitLogger(getLogger()));
-        TaterAPI api = TaterAPIProvider.get();
+        TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
         api.setServer(() -> new BukkitServer(getServer()));
     }
@@ -50,7 +52,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        TaterAPI api = TaterAPIProvider.get();
+        TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
 
         // Register listeners
         PluginManager pluginManager = getServer().getPluginManager();

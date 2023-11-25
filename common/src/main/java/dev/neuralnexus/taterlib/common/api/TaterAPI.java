@@ -14,8 +14,8 @@ import java.util.function.Supplier;
 public class TaterAPI {
     private final Data data;
 
-    public TaterAPI(String configFolder, String minecraftVersion) {
-        this.data = new Data(configFolder, minecraftVersion);
+    public TaterAPI(String configFolder, MinecraftVersion minecraftVersion, ServerType serverType) {
+        this.data = new Data(configFolder, minecraftVersion, serverType);
     }
 
     /**
@@ -40,23 +40,6 @@ public class TaterAPI {
      */
     public ServerType serverType() {
         return data.serverType;
-    }
-
-    /**
-     * Add a hook to the hooks map
-     * @param hookName The name of the hook
-     * @param hook The hook to add
-     */
-    public void addHook(String hookName, Object hook) {
-        data.hooks.put(hookName.toLowerCase(), hook);
-    }
-
-    /**
-     * Get if a hook exists
-     * @param hookName The name of the hook
-     */
-    public boolean isHooked(String hookName) {
-        return data.hooks.containsKey(hookName.toLowerCase());
     }
 
     /**
@@ -115,17 +98,16 @@ public class TaterAPI {
      * Data used throughout the plugin via the API.
      */
     static class Data {
-        final HashMap<String, Object> hooks = new HashMap<>();
         Predicate<String> isPluginLoaded = (pluginName) -> false;
         Supplier<Server> minecraftServer = () -> null;
         final String configFolder;
         final MinecraftVersion minecraftVersion;
         final ServerType serverType;
 
-        Data(String configFolder, String minecraftVersion) {
+        Data(String configFolder, MinecraftVersion minecraftVersion, ServerType serverType) {
             this.configFolder = configFolder;
-            this.minecraftVersion = MinecraftVersion.from(minecraftVersion);
-            this.serverType = ServerType.getServerType();
+            this.minecraftVersion = minecraftVersion;
+            this.serverType = serverType;
         }
     }
 }

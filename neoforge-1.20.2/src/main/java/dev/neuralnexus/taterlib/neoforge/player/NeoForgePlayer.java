@@ -145,7 +145,7 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return player.hasPermissions(4);
+        if (!TaterAPIProvider.isHooked("luckperms")) return player.hasPermissions(4);
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }

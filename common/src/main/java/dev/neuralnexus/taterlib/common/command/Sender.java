@@ -37,7 +37,7 @@ public interface Sender {
      * @return Whether the player has the permission
      */
     default boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return false;
+        if (!TaterAPIProvider.isHooked("luckperms")) return false;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }

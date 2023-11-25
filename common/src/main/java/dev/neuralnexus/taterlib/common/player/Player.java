@@ -115,7 +115,7 @@ public interface Player extends Sender, Entity {
      * @return The prefix of the player
      */
     default String getPrefix() {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String prefix = luckPermsHook.getPrefix(getUniqueId());
         return prefix != null ? prefix : "";
@@ -127,7 +127,7 @@ public interface Player extends Sender, Entity {
      * @param priority The priority of the prefix
      */
     default void setPrefix(String prefix, int priority) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return;
+        if (!TaterAPIProvider.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         luckPermsHook.setPrefix(getUniqueId(), prefix, priority);
     }
@@ -145,7 +145,7 @@ public interface Player extends Sender, Entity {
      * @return The suffix of the player
      */
     default String getSuffix() {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String suffix = luckPermsHook.getSuffix(getUniqueId());
         return suffix != null ? suffix : "";
@@ -157,7 +157,7 @@ public interface Player extends Sender, Entity {
      * @param priority The priority of the suffix
      */
     default void setSuffix(String suffix, int priority) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return;
+        if (!TaterAPIProvider.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         luckPermsHook.setSuffix(getUniqueId(), suffix, priority);
     }

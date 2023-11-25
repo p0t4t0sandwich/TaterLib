@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.*;
 import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
@@ -37,10 +38,9 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
     public static MinecraftServer server;
 
     public FabricTaterLibPlugin() {
-        TaterAPIProvider.register("config",
-                FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
+        TaterAPIProvider.register(FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
-        TaterAPI api = TaterAPIProvider.get();
+        TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
         api.setIsPluginLoaded((plugin) ->FabricLoader.getInstance().isModLoaded(plugin));
         api.setServer(() -> new FabricServer(server));
 

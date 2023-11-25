@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
@@ -47,9 +48,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         } catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
-        TaterAPIProvider.register("config", minecraftVersion);
+        TaterAPIProvider.register(minecraftVersion);
         pluginStart(this, new ForgeLogger(LogManager.getLogger()));
-        TaterAPI api = TaterAPIProvider.get();
+        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsPluginLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 

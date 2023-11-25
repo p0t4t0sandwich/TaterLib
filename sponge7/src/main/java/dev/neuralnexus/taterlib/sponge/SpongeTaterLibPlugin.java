@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.sponge.listeners.block.SpongeBlockListener;
@@ -45,9 +46,9 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Inject
     public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
-        TaterAPIProvider.register("config", Sponge.getPlatform().getMinecraftVersion().getName());
+        TaterAPIProvider.register(Sponge.getPlatform().getMinecraftVersion().getName());
         pluginStart(container, new SpongeLogger(logger));
-        TaterAPI api = TaterAPIProvider.get();
+        TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
         api.setIsPluginLoaded(Sponge.getPluginManager()::isLoaded);
         api.setServer(() -> new SpongeServer(Sponge.getServer()));
 

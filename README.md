@@ -126,3 +126,4 @@ Feel free to open a PR to add your plugin/mod to this list!
   - `getAdvancement` was returning the wrong string
 - Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`
 - Added `PluginEnableEvent` and `PluginDisableEvent`
+- Modified TaterAPIProvider to handle multiple API implementations simultaneously

@@ -148,7 +148,7 @@ public class FabricPlayer extends FabricEntity implements Player {
      */
     @Override
     public String getPrefix() {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         return Options.get(player, "prefix", "");
     }
 
@@ -157,7 +157,7 @@ public class FabricPlayer extends FabricEntity implements Player {
      */
     @Override
     public String getSuffix() {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return "";
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         return Options.get(player, "suffix", "");
     }
 
@@ -166,7 +166,7 @@ public class FabricPlayer extends FabricEntity implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return player.allowsPermissionLevel(4);
+        if (!TaterAPIProvider.isHooked("luckperms")) return player.allowsPermissionLevel(4);
         return Permissions.check(player, permission, 4);
     }
 

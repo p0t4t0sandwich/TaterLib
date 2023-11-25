@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.common;
 
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginDisableEvent;
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;

@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.common.storage;
 
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 
 import java.io.File;
 

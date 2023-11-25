@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.common;
 
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.common.event.api.ServerEvents;
@@ -77,14 +78,14 @@ public class TaterLib {
             TaterAPI api = TaterAPIProvider.get();
 
             // Register TaterLib hook
-            api.addHook("taterlib", new Object());
+            TaterAPIProvider.addHook("taterlib", new Object());
 
             // Register hooks
             ServerEvents.STARTED.register(event -> {
                 // Register LuckPerms hook
                 if (api.isPluginLoaded("LuckPerms")) {
                     instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-                    api.addHook("luckperms", new LuckPermsHook());
+                    TaterAPIProvider.addHook("luckperms", new LuckPermsHook());
                 }
             });
 

@@ -142,7 +142,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
      */
     @Override
     public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.get().isHooked("luckperms")) return PermissionAPI.hasPermission(player, permission);
+        if (!TaterAPIProvider.isHooked("luckperms")) return PermissionAPI.hasPermission(player, permission);
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }
