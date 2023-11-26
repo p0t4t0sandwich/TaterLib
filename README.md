@@ -132,3 +132,4 @@ Feel free to open a PR to add your plugin/mod to this list!
   - Ketting
   - Magma
   - Mohist
+- Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while adding helper instantiations from hybrid hooks

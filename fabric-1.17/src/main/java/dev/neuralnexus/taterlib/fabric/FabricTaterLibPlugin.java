@@ -41,7 +41,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         TaterAPIProvider.register(FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString());
         pluginStart(this, new FabricLogger( "[" + TaterLib.Constants.PROJECT_NAME + "] ", LoggerFactory.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setIsPluginLoaded((plugin) ->FabricLoader.getInstance().isModLoaded(plugin));
+        api.setIsModLoaded((modId) ->FabricLoader.getInstance().isModLoaded(modId));
         api.setServer(() -> new FabricServer(server));
 
         // Initialize plugin data

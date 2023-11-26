@@ -63,25 +63,8 @@ public class TaterAPIProvider {
     public static void register(MinecraftVersion minecraftVersion) {
         ServerType serverType = ServerType.getServerType();
 
-        if (serverType.isHybrid()) {
-            switch (serverType) {
-                case MOHIST:
-                    hooks.put("mohist", new MohistHook());
-                    break;
-                case MAGMA:
-                    hooks.put("magma", new MagmaHook());
-                    break;
-                case ARCLIGHT:
-                    hooks.put("arclight", new ArclightHook());
-                    break;
-                case KETTING:
-                    hooks.put("ketting", new KettingHook());
-                    break;
-            }
-        }
-
         if (serverType.isBukkitBased()) {
-            apis.put(ServerType.SPIGOT, new TaterAPI("plugins", minecraftVersion, serverType));
+            apis.put(ServerType.BUKKIT, new TaterAPI("plugins", minecraftVersion, serverType));
         }
 
         if (serverType.isBungeeCordBased()) {
@@ -104,6 +87,37 @@ public class TaterAPIProvider {
 
         if (serverType.isVelocityBased()) {
             apis.put(ServerType.VELOCITY, new TaterAPI("plugins", minecraftVersion, serverType));
+        }
+
+        if (serverType.isHybrid()) {
+            TaterAPI bukkitApi = apis.get(ServerType.BUKKIT);
+            TaterAPI forgeApi = apis.get(ServerType.FORGE);
+
+            switch (serverType) {
+                case MOHIST:
+                    MohistHook mohistHook = new MohistHook();
+                    hooks.put("mohist", mohistHook);
+                    bukkitApi.setIsModLoaded(mohistHook::hasMod);
+                    bukkitApi.setIsPluginLoaded(mohistHook::hasPlugin);
+                    forgeApi.setIsModLoaded(mohistHook::hasMod);
+                    forgeApi.setIsPluginLoaded(mohistHook::hasPlugin);
+                    break;
+                case MAGMA:
+                    MagmaHook magmaHook = new MagmaHook();
+                    hooks.put("magma", magmaHook);
+                    bukkitApi.setIsModLoaded(magmaHook::hasMod);
+                    forgeApi.setIsModLoaded(magmaHook::hasMod);
+                    break;
+                case ARCLIGHT:
+                    hooks.put("arclight", new ArclightHook());
+                    break;
+                case KETTING:
+                    KettingHook kettingHook = new KettingHook();
+                    hooks.put("ketting", kettingHook);
+                    bukkitApi.setIsModLoaded(kettingHook::hasMod);
+                    forgeApi.setIsModLoaded(kettingHook::hasMod);
+                    break;
+            }
         }
     }
 

@@ -83,7 +83,7 @@ public class TaterLib {
             // Register hooks
             ServerEvents.STARTED.register(event -> {
                 // Register LuckPerms hook
-                if (api.isPluginLoaded("LuckPerms")) {
+                if (api.isPluginModLoaded("LuckPerms")) {
                     instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
                     TaterAPIProvider.addHook("luckperms", new LuckPermsHook());
                 }

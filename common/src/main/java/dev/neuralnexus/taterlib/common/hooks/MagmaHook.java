@@ -29,7 +29,7 @@ public class MagmaHook {
     /**
      * Get if a mod is loaded
      * <br>
-     * <b>NOTE: You can just use {@link dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
      * @param modid The modid
      * @return If the mod is loaded
      */

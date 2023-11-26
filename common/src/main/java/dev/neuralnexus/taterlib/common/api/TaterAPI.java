@@ -61,6 +61,32 @@ public class TaterAPI {
     }
 
     /**
+     * Set the isModLoaded predicate
+     * @param isModLoaded The isModLoaded predicate
+     */
+    public void setIsModLoaded(Predicate<String> isModLoaded) {
+        data.isModLoaded = isModLoaded;
+    }
+
+    /**
+     * Get if a plugin is loaded
+     * @param pluginName The name of the plugin
+     * @return If the plugin is loaded
+     */
+    public boolean isPluginLoaded(String pluginName) {
+        return data.isPluginLoaded.test(pluginName);
+    }
+
+    /**
+     * Get if a mod is loaded
+     * @param modid The modid of the mod
+     * @return If the mod is loaded
+     */
+    public boolean isModLoaded(String modid) {
+        return data.isModLoaded.test(modid);
+    }
+
+    /**
      * Get if a plugin/mod is loaded
      * <br>
      * Note: Unless you need to check at a specific time, it's best to run this check after the server has started {@link dev.neuralnexus.taterlib.common.event.api.ServerEvents#STARTED}
@@ -72,10 +98,10 @@ public class TaterAPI {
      * When considering cross-API libraries, it's best to use the capitalized name, as this method runs the check again to check for a modid.
      * <br>
      * For example, "LuckPerms" will match "luckperms" and "LuckPerms".
-     * @param pluginName The name of the plugin/mod
+     * @param pluginNameOrModId The name of the plugin or modid of the mod
      */
-    public boolean isPluginLoaded(String pluginName) {
-        return data.isPluginLoaded.test(pluginName) || data.isPluginLoaded.test(pluginName.toLowerCase());
+    public boolean isPluginModLoaded(String pluginNameOrModId) {
+        return data.isPluginLoaded.test(pluginNameOrModId) || data.isModLoaded.test(pluginNameOrModId.toLowerCase());
     }
 
     /**
@@ -98,6 +124,7 @@ public class TaterAPI {
      * Data used throughout the plugin via the API.
      */
     static class Data {
+        Predicate<String> isModLoaded = (modid) -> false;
         Predicate<String> isPluginLoaded = (pluginName) -> false;
         Supplier<Server> minecraftServer = () -> null;
         final String configFolder;

@@ -41,7 +41,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
-        api.setIsPluginLoaded(ModList.get()::isLoaded);
+        api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
         // Register listeners

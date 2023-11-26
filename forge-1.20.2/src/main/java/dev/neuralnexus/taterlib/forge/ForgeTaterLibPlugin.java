@@ -41,7 +41,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
         pluginStart(this, new ForgeLogger(LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setIsPluginLoaded(ModList.get()::isLoaded);
+        api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
         // Register listeners
