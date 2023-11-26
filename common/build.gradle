@@ -2,6 +2,14 @@ plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
+repositories {
+    // Arclight
+    maven {
+        name = 'Arclight Maven'
+        url = 'https://maven.izzel.io/releases'
+    }
+}
+
 dependencies {
     // YAML
     implementation('dev.dejvokep:boosted-yaml:1.3.1')
@@ -27,6 +35,9 @@ dependencies {
 
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
+
+    // Arclight API
+    compileOnly("io.izzel.arclight:arclight-api:1.5.5")
 }
 
 shadowJar {

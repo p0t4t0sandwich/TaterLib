@@ -17,7 +17,7 @@ public class LuckPermsHook {
     private static LuckPermsHook instance;
 
     /**
-     * Create a new LuckPermsHook
+     * Create a new hook
      */
     public LuckPermsHook() {
         instance = this;
@@ -25,8 +25,8 @@ public class LuckPermsHook {
     }
 
     /**
-     * Get the LuckPermsHook instance
-     * @return The LuckPermsHook instance
+     * Get the instance
+     * @return The instance
      */
     public static LuckPermsHook get() {
         return instance;
