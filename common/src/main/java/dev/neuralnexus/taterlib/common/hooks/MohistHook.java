@@ -26,7 +26,6 @@ public class MohistHook {
         return instance;
     }
 
-
     /**
      * Get if a mod is loaded
      * <br>

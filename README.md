@@ -127,6 +127,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`
 - Added `PluginEnableEvent` and `PluginDisableEvent`
 - Modified TaterAPIProvider to handle multiple API implementations simultaneously
-- Added hybrid API hooks:
+- Added basic hybrid API hooks:
   - Arclight
+  - Magma
   - Mohist

@@ -14,6 +14,12 @@ repositories {
         name = 'Mohist Maven'
         url = 'https://maven.mohistmc.com/'
     }
+
+    // NeuralNexus Private
+    maven {
+        name = "NeuralNexus"
+        url = "https://maven.neuralnexus.dev/releases"
+    }
 }
 
 dependencies {
@@ -45,8 +51,11 @@ dependencies {
     // Arclight API
     compileOnly("io.izzel.arclight:arclight-api:1.5.5")
 
+    // Magma API
+    compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
+
     // Mohist API
-    compileOnly("com.mohistmc:mohistdev:0.1-SNAPSHOT")
+    compileOnly("com.mohistmc:mohistdev:1.16.5")
 }
 
 shadowJar {
