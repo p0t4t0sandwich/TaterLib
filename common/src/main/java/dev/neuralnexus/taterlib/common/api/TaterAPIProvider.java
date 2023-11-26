@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.common.api;
 import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.hooks.ArclightHook;
+import dev.neuralnexus.taterlib.common.hooks.MohistHook;
 
 import java.util.HashMap;
 
@@ -63,7 +64,7 @@ public class TaterAPIProvider {
         if (serverType.isHybrid()) {
             switch (serverType) {
                 case MOHIST:
-                    // Mohist API hook
+                    hooks.put("mohist", new MohistHook());
                     break;
                 case MAGMA:
                     // Magma API hook

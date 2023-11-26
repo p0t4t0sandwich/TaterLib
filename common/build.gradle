@@ -8,6 +8,12 @@ repositories {
         name = 'Arclight Maven'
         url = 'https://maven.izzel.io/releases'
     }
+
+    // Mohist
+    maven {
+        name = 'Mohist Maven'
+        url = 'https://maven.mohistmc.com/'
+    }
 }
 
 dependencies {
@@ -38,6 +44,9 @@ dependencies {
 
     // Arclight API
     compileOnly("io.izzel.arclight:arclight-api:1.5.5")
+
+    // Mohist API
+    compileOnly("com.mohistmc:mohistdev:0.1-SNAPSHOT")
 }
 
 shadowJar {
