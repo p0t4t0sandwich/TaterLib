@@ -48,13 +48,16 @@ dependencies {
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
 
-    // Arclight API
+    // Arclight
     compileOnly("io.izzel.arclight:arclight-api:1.5.5")
 
-    // Magma API
+    // Ketting
+    compileOnly("org.kettingpowered:KettingCore:ec25165")
+
+    // Magma
     compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
 
-    // Mohist API
+    // Mohist
     compileOnly("com.mohistmc:mohistdev:1.16.5")
 }
 

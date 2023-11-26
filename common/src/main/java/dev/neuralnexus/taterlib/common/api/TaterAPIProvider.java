@@ -3,6 +3,8 @@ package dev.neuralnexus.taterlib.common.api;
 import dev.neuralnexus.taterlib.common.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.common.api.info.ServerType;
 import dev.neuralnexus.taterlib.common.hooks.ArclightHook;
+import dev.neuralnexus.taterlib.common.hooks.KettingHook;
+import dev.neuralnexus.taterlib.common.hooks.MagmaHook;
 import dev.neuralnexus.taterlib.common.hooks.MohistHook;
 
 import java.util.HashMap;
@@ -67,16 +69,13 @@ public class TaterAPIProvider {
                     hooks.put("mohist", new MohistHook());
                     break;
                 case MAGMA:
-                    // Magma API hook
+                    hooks.put("magma", new MagmaHook());
                     break;
                 case ARCLIGHT:
                     hooks.put("arclight", new ArclightHook());
                     break;
                 case KETTING:
-                    // Ketting API hook
-                    break;
-                case BANNER:
-                    // Banner API hook
+                    hooks.put("ketting", new KettingHook());
                     break;
             }
         }

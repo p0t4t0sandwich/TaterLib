@@ -129,5 +129,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Modified TaterAPIProvider to handle multiple API implementations simultaneously
 - Added basic hybrid API hooks:
   - Arclight
+  - Ketting
   - Magma
   - Mohist
