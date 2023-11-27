@@ -15,10 +15,16 @@ repositories {
         url = 'https://maven.mohistmc.com/'
     }
 
-    // NeuralNexus Private
+    // NeuralNexus -- For Magma
     maven {
         name = "NeuralNexus"
         url = "https://maven.neuralnexus.dev/releases"
+    }
+
+    // Ketting
+    maven {
+        name = "Ketting"
+        url = "https://nexus.c0d3m4513r.com/repository/Ketting/"
     }
 }
 
@@ -52,7 +58,7 @@ dependencies {
     compileOnly("io.izzel.arclight:arclight-api:1.5.5")
 
     // Ketting
-    compileOnly("org.kettingpowered:KettingCore:ec25165")
+    compileOnly("org.kettingpowered:kettingcore:1.0.1")
 
     // Magma
     compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
@@ -60,6 +66,8 @@ dependencies {
     // Mohist
     compileOnly("com.mohistmc:mohistdev:1.16.5")
 }
+
+java.disableAutoTargetJvm()
 
 shadowJar {
     dependencies {

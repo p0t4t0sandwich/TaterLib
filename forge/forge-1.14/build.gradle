@@ -1,0 +1,68 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('net.minecraftforge.gradle') version('[6.0,6.2)')
+}
+
+minecraft {
+    mappings(channel: mapping_channel, version: mapping_version)
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            loader_version_range   : loader_version_range,
+            forge_version          : forge_version,
+            forge_version_range    : forge_version_range,
+            pack_format_number     : pack_format_number,
+
+            project_id             : project_id,
+            project_name           : project_name,
+            project_description    : project_description,
+            license                : license,
+            version                : version,
+            authors                : authors,
+
+            homepage_url           : homepage_url,
+            issue_tracker_url      : issue_tracker_url,
+            update_json_url        : update_json_url
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+reobf {
+    shadowJar {}
+}
+
+shadowJar {
+    dependencies {
+        include(project(':common'))
+    }
+
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_name}-forge-${minecraft_version}-${version}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}
