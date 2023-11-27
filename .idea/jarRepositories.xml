@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteRepositoriesConfiguration">
+    <remote-repository>
+      <option name="id" value="central" />
+      <option name="name" value="Maven Central repository" />
+      <option name="url" value="https://repo1.maven.org/maven2" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="jboss.community" />
+      <option name="name" value="JBoss Community repository" />
+      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenRepo" />
+      <option name="name" value="MavenRepo" />
+      <option name="url" value="https://repo.maven.apache.org/maven2/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="papermc-repo" />
+      <option name="name" value="papermc-repo" />
+      <option name="url" value="https://repo.papermc.io/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spigotmc-repo" />
+      <option name="name" value="spigotmc-repo" />
+      <option name="url" value="https://hub.spigotmc.org/nexus/content/repositories/snapshots/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spongeAll" />
+      <option name="name" value="spongeAll" />
+      <option name="url" value="https://repo.spongepowered.org/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalRemappedMods" />
+      <option name="name" value="LoomLocalRemappedMods" />
+      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/remapped_mods/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomGlobalMinecraft" />
+      <option name="name" value="LoomGlobalMinecraft" />
+      <option name="url" value="file:$USER_HOME$/.gradle/caches/fabric-loom/minecraftMaven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Fabric" />
+      <option name="name" value="Fabric" />
+      <option name="url" value="https://maven.fabricmc.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Mojang" />
+      <option name="name" value="Mojang" />
+      <option name="url" value="https://libraries.minecraft.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalMinecraft" />
+      <option name="name" value="LoomLocalMinecraft" />
+      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Legacy Fabric" />
+      <option name="name" value="Legacy Fabric" />
+      <option name="url" value="https://maven.legacyfabric.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.minecraftforge.net/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalMinecraft" />
+      <option name="name" value="LoomLocalMinecraft" />
+      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/minecraftMaven/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="ParchmentMC" />
+      <option name="name" value="ParchmentMC" />
+      <option name="url" value="https://maven.parchmentmc.org/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://maven.neoforged.net/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="NeuralNexusPrivate" />
+      <option name="name" value="NeuralNexusPrivate" />
+      <option name="url" value="https://maven.neuralnexus.dev/private" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven2" />
+      <option name="name" value="maven2" />
+      <option name="url" value="https://maven.neoforged.net/releases/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="https://repo.codemc.org/repository/maven-public/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="MavenLocal" />
+      <option name="name" value="MavenLocal" />
+      <option name="url" value="file:$MAVEN_REPOSITORY$/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Arclight Maven" />
+      <option name="name" value="Arclight Maven" />
+      <option name="url" value="https://maven.izzel.io/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Mohist Maven" />
+      <option name="name" value="Mohist Maven" />
+      <option name="url" value="https://maven.mohistmc.com/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="NeuralNexus" />
+      <option name="name" value="NeuralNexus" />
+      <option name="url" value="https://maven.neuralnexus.dev/releases" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Ketting" />
+      <option name="name" value="Ketting" />
+      <option name="url" value="https://maven.pkg.github.com/kettingpowered/KettingCore" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Ketting" />
+      <option name="name" value="Ketting" />
+      <option name="url" value="https://nexus.c0d3m4513r.com/repository/Ketting" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="Ketting" />
+      <option name="name" value="Ketting" />
+      <option name="url" value="https://nexus.c0d3m4513r.com/repository/Ketting/" />
+    </remote-repository>
+  </component>
+</project>
