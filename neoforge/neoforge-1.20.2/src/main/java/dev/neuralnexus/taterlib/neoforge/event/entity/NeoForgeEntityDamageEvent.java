@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.neoforge.event.entity;
 
 import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 
-/**
- * NeoForge implementation of {@link EntityDamageEvent}.
- */
+/** NeoForge implementation of {@link EntityDamageEvent}. */
 public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements EntityDamageEvent {
     private final LivingDamageEvent event;
 
@@ -14,25 +13,19 @@ public class NeoForgeEntityDamageEvent extends NeoForgeEntityEvent implements En
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isCanceled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCause() {
         return event.getSource().toString();

@@ -3,12 +3,11 @@ package dev.neuralnexus.taterlib.forge.event.server;
 import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
 import dev.neuralnexus.taterlib.common.server.Server;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.ServerLifecycleEvent;
 
-/**
- * Forge implementation of {@link ServerEvent}.
- */
+/** Forge implementation of {@link ServerEvent}. */
 public class ForgeServerEvent implements ServerEvent {
     private final ServerLifecycleEvent event;
 
@@ -16,9 +15,7 @@ public class ForgeServerEvent implements ServerEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Server getServer() {
         return new ForgeServer(ServerLifecycleHooks.getCurrentServer());

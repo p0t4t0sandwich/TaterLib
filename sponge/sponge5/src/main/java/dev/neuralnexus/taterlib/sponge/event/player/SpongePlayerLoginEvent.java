@@ -3,11 +3,10 @@ package dev.neuralnexus.taterlib.sponge.event.player;
 import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+
 import org.spongepowered.api.event.network.ClientConnectionEvent;
 
-/**
- * Sponge implementation of {@link PlayerLoginEvent}.
- */
+/** Sponge implementation of {@link PlayerLoginEvent}. */
 public class SpongePlayerLoginEvent implements PlayerLoginEvent {
     private final ClientConnectionEvent.Join event;
     private String loginMessage = "";
@@ -16,17 +15,13 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLoginMessage() {
         if (!this.loginMessage.isEmpty()) {
@@ -35,9 +30,7 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
         return event.getMessage().toPlain();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         this.loginMessage = message;

@@ -3,11 +3,10 @@ package dev.neuralnexus.taterlib.bungee.event.player;
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
+
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 
-/**
- * Bungee implementation of {@link PlayerLoginEvent}.
- */
+/** Bungee implementation of {@link PlayerLoginEvent}. */
 public class BungeePlayerLoginEvent implements PlayerLoginEvent {
     private final ServerSwitchEvent event;
     private String loginMessage = "";
@@ -16,9 +15,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         Player player = new BungeePlayer(event.getPlayer());
@@ -26,9 +23,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
         return player;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLoginMessage() {
         if (!loginMessage.isEmpty()) {
@@ -37,9 +32,7 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
         return event.getPlayer() + " joined the game";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         loginMessage = message;

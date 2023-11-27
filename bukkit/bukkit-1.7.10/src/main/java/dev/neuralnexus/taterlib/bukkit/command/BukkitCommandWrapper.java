@@ -2,13 +2,12 @@ package dev.neuralnexus.taterlib.bukkit.command;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.common.command.Command;
+
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-/**
- * Wraps a command callback into a Bukkit CommandExecutor.
- */
+/** Wraps a command callback into a Bukkit CommandExecutor. */
 public class BukkitCommandWrapper implements CommandExecutor {
     private final Command.Callback callback;
 
@@ -17,7 +16,8 @@ public class BukkitCommandWrapper implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
+    public boolean onCommand(
+            CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         if (sender instanceof Player) {
             return callback.execute(new BukkitPlayer((Player) sender), label, args);
         }

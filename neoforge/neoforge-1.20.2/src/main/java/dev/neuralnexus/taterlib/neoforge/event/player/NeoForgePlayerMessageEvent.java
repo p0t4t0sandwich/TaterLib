@@ -3,14 +3,13 @@ package dev.neuralnexus.taterlib.neoforge.event.player;
 import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
+
 import net.neoforged.neoforge.event.ServerChatEvent;
 
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * NeoForge implementation of {@link PlayerMessageEvent}.
- */
+/** NeoForge implementation of {@link PlayerMessageEvent}. */
 public class NeoForgePlayerMessageEvent implements PlayerMessageEvent {
     private final ServerChatEvent event;
     private String message = "";
@@ -19,33 +18,25 @@ public class NeoForgePlayerMessageEvent implements PlayerMessageEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isCanceled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new NeoForgePlayer(event.getPlayer());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getMessage() {
         if (!this.message.isEmpty()) {
@@ -54,25 +45,19 @@ public class NeoForgePlayerMessageEvent implements PlayerMessageEvent {
         return event.getMessage().getString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Player> recipients() {
-        return new HashSet<>();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public Set<Player> recipients() {
+        return new HashSet<>();
+    }
+
+    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<Player> recipients) {}
 }

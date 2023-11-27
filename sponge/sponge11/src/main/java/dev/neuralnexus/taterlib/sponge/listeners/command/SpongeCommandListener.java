@@ -1,18 +1,19 @@
 package dev.neuralnexus.taterlib.sponge.listeners.command;
 
 import com.mojang.brigadier.tree.LiteralCommandNode;
+
 import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
+
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 
-/**
- * Listens to command events.
- */
+/** Listens to command events. */
 public class SpongeCommandListener {
     /**
      * Register commands.
+     *
      * @param event The event
      */
     @Listener
@@ -22,10 +23,12 @@ public class SpongeCommandListener {
 
     /**
      * Register brigadier commands.
+     *
      * @param event The event
      */
     @Listener
-    public void onRegisterBrigadierCommands(final RegisterCommandEvent<LiteralCommandNode<?>> event) {
-//        event.register()
+    public void onRegisterBrigadierCommands(
+            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
+        //        event.register()
     }
 }

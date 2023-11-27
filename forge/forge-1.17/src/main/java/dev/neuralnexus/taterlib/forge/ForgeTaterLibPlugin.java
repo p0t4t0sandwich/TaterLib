@@ -11,12 +11,13 @@ import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
-import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
+import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,18 +28,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
+
 import org.apache.logging.log4j.LogManager;
 
 import java.lang.reflect.Field;
 
-/**
- * Forge entry point.
- */
+/** Forge entry point. */
 @Mod(TaterLib.Constants.PROJECT_ID)
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    /**
-     * Called when the Forge mod is initializing.
-     */
     public ForgeTaterLibPlugin() {
         String minecraftVersion = "";
         try {
@@ -69,6 +66,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     /**
      * Called when CommonSetupEvent is fired.
+     *
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -80,6 +78,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     /**
      * Called when the server is stopping.
+     *
      * @param event The event.
      */
     @SubscribeEvent

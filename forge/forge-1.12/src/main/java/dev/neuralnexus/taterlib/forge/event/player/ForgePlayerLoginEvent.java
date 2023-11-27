@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-/**
- * Forge implementation of {@link PlayerLoginEvent}.
- */
+/** Forge implementation of {@link PlayerLoginEvent}. */
 public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLoginEvent {
     private final PlayerEvent.PlayerLoggedInEvent event;
     private String loginMessage = "";
@@ -15,9 +14,7 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLoginMessage() {
         if (!this.loginMessage.isEmpty()) {
@@ -26,9 +23,7 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
         return event.player.getName() + " joined the game";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         this.loginMessage = message;

@@ -2,12 +2,11 @@ package dev.neuralnexus.taterlib.bungee.command;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.common.command.Command;
+
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
-/**
- * Wraps a command callback into a Bungee Command.
- */
+/** Wraps a command callback into a Bungee Command. */
 public class BungeeCommandWrapper extends net.md_5.bungee.api.plugin.Command {
     private final Command.Callback callback;
 

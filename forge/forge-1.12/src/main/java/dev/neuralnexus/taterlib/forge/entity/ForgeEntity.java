@@ -3,20 +3,20 @@ package dev.neuralnexus.taterlib.forge.entity;
 import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 
 import java.util.UUID;
 
-/**
- * Forge implementation of {@link Entity}.
- */
+/** Forge implementation of {@link Entity}. */
 public class ForgeEntity implements Entity {
     private final net.minecraft.entity.Entity entity;
 
     /**
      * Constructor.
+     *
      * @param entity The Forge entity.
      */
     public ForgeEntity(net.minecraft.entity.Entity entity) {
@@ -25,140 +25,114 @@ public class ForgeEntity implements Entity {
 
     /**
      * Gets the Forge entity.
+     *
      * @return The Forge entity.
      */
     public net.minecraft.entity.Entity getEntity() {
         return entity;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return entity.getUniqueID();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getEntityId() {
         return entity.getEntityId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.setDead();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return entity.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCustomName() {
         if (!entity.hasCustomName()) return null;
         return entity.getCustomNameTag();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.setCustomNameTag(name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return new ForgeLocation(entity);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return entity.getPosition().getX();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return entity.getPosition().getY();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return entity.getPosition().getZ();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         return entity.getPitchYaw().x;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         return entity.getPitchYaw().y;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDimension() {
         return DimensionType.getById(entity.dimension).getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getBiome() {
-        ResourceLocation biomeRegistry = entity.world.getBiome(
-                entity.world.getChunk(entity.getPosition()).getPos().getBlock((int) getX(), (int) getY(), (int) getZ()
-        )).getRegistryName();
+        ResourceLocation biomeRegistry =
+                entity.world
+                        .getBiome(
+                                entity.world
+                                        .getChunk(entity.getPosition())
+                                        .getPos()
+                                        .getBlock((int) getX(), (int) getY(), (int) getZ()))
+                        .getRegistryName();
         if (biomeRegistry == null) return null;
         return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         ((EntityLiving) entity).attemptTeleport(location.getX(), location.getY(), location.getZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Entity entity) {
         ((EntityLiving) this.entity).attemptTeleport(entity.getX(), entity.getY(), entity.getZ());

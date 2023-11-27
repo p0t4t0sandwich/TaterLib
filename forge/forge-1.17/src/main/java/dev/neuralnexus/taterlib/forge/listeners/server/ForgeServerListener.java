@@ -5,18 +5,18 @@ import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppedEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStoppingEvent;
+
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStartedEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStartingEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 import net.minecraftforge.fmlserverevents.FMLServerStoppingEvent;
 
-/**
- * Listens for server events.
- */
+/** Listens for server events. */
 public class ForgeServerListener {
     /**
      * Called when the server starts.
+     *
      * @param event The server starting event
      */
     @SubscribeEvent
@@ -26,6 +26,7 @@ public class ForgeServerListener {
 
     /**
      * Called when the server starts.
+     *
      * @param event The server started event
      */
     @SubscribeEvent
@@ -35,6 +36,7 @@ public class ForgeServerListener {
 
     /**
      * Called when the server stops.
+     *
      * @param event The server stopping event
      */
     @SubscribeEvent
@@ -44,6 +46,7 @@ public class ForgeServerListener {
 
     /**
      * Called when the server stops.
+     *
      * @param event The server stopped event
      */
     @SubscribeEvent

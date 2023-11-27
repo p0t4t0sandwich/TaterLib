@@ -2,9 +2,7 @@ package dev.neuralnexus.taterlib.common.api.info;
 
 import java.util.Arrays;
 
-/**
- * Represents the type of server the server is running.
- */
+/** Represents the type of server the server is running. */
 public enum ServerType {
     // Bukkit fork
     CRAFTBUKKIT("CraftBukkit"),
@@ -65,28 +63,13 @@ public enum ServerType {
     }
 
     /**
-     * Get the name of the server type
-     * @return The name of the server type
-     */
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * Get the name of the server type
-     * @return The name of the server type
-     */
-    @Override
-    public String toString() {
-        return this.name;
-    }
-
-    /**
      * Get the current server type
+     *
      * @return The current server type
      */
     public static ServerType getServerType() {
-        // Time for some satan spaghetti. Hybrids are checked first, forks in descending order, and then the rest.
+        // Time for some satan spaghetti. Hybrids are checked first, forks in descending order, and
+        // then the rest.
 
         // Bukkit + Forge Hybrids
         if (isCrucible()) {
@@ -181,130 +164,18 @@ public enum ServerType {
 
     /**
      * Get the server type from a string
+     *
      * @param serverType The server type
      * @return The server type
      */
     public static ServerType from(String serverType) {
-        return Arrays.stream(ServerType.values()).filter(s -> s.toString().equalsIgnoreCase(serverType)).findFirst().orElse(UNKNOWN);
+        return Arrays.stream(ServerType.values())
+                .filter(s -> s.toString().equalsIgnoreCase(serverType))
+                .findFirst()
+                .orElse(UNKNOWN);
     }
 
-    /**
-     * Check if the server is running a specific server type.
-     * @param serverType The server type to check for.
-     * @return True if the server is running the specified server type, false otherwise.
-     */
-    public boolean is(String... serverType) {
-        return Arrays.stream(serverType).anyMatch(this.name::equalsIgnoreCase);
-    }
-
-    /**
-     * Check if the server is running a specific server type.
-     * @param serverType The server type to check for.
-     * @return True if the server is running the specified server type, false otherwise.
-     */
-    public boolean is(ServerType... serverType) {
-        return Arrays.asList(serverType).contains(this);
-    }
-
-    /**
-     * Check if the server is running a Bukkit fork.
-     * @return True if the server is running a Bukkit fork, false otherwise.
-     */
-    public boolean isBukkitBased() {
-        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON) || this.isSpigotBased();
-    }
-
-    /**
-     * Check if the server is running a Spigot fork.
-     * @return True if the server is running a Spigot fork, false otherwise.
-     */
-    public boolean isSpigotBased() {
-        return this.is(SPIGOT) || this.isPaperBased() || this.isHybrid();
-    }
-
-    /**
-     * Check if the server is running a fork of Paper.
-     * @return True if the server is running a fork of Paper, false otherwise.
-     */
-    public boolean isPaperBased() {
-        return this.is(PAPER, FOLIA, PURPUR, PUFFERFISH);
-    }
-
-    /**
-     * Check if the server is running a fork of BungeeCord.
-     * @return True if the server is running a fork of BungeeCord, false otherwise.
-     */
-    public boolean isBungeeCordBased() {
-        return this.is(BUNGEECORD, WATERFALL, TRAVERTINE, HEXACORD);
-    }
-
-    /**
-     * Check if the server is running a Forge hybrid.
-     * @return True if the server is running a Forge hybrid, false otherwise.
-     */
-    public boolean isForgeHybrid() {
-        return this.is(CAULDRON, KCUALDRON, THERMOS, CRUCIBLE, MCPC_PLUS_PLUS, MOHIST, MAGMA, ARCLIGHT, KETTING);
-    }
-
-    /**
-     * Check if the server is running a fork of Forge.
-     * @return True if the server is running a fork of Forge, false otherwise.
-     */
-    public boolean isForgeBased() {
-        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
-    }
-
-    /**
-     * Check if the server is running a Fabric hybrid.
-     * @return True if the server is running a Fabric hybrid, false otherwise.
-     */
-    public boolean isFabricHybrid() {
-        return this.is(CARDBOARD, BANNER);
-    }
-
-    /**
-     * Check if the server is running a fork of Fabric.
-     * @return True if the server is running a fork of Fabric, false otherwise.
-     */
-    public boolean isFabricBased() {
-        return this.is(FABRIC, QUILT) || this.isFabricHybrid();
-    }
-
-    /**
-     * Check if the server is running on a hybrid.
-     * @return True if the server is running on a hybrid, false otherwise.
-     */
-    public boolean isHybrid() {
-        return this.isForgeHybrid() || this.isFabricHybrid();
-    }
-
-    /**
-     * Check if the server is running a fork of Sponge.
-     * @return True if the server is running a fork of Sponge, false otherwise.
-     */
-    public boolean isSpongeBased() {
-        return this.is(SPONGE);
-    }
-
-    /**
-     * Check if the server is running a fork of Velocity.
-     * @return True if the server is running a fork of Velocity, false otherwise.
-     */
-    public boolean isVelocityBased() {
-        return this.is(VELOCITY);
-    }
-
-    /**
-     * Check if the server is running some sort of proxy.
-     * @return True if the server is running some sort of proxy, false otherwise.
-     */
-    public boolean isProxy() {
-        return this.isBungeeCordBased() || this.isVelocityBased();
-    }
-
-    /**
-     * Check if the server is running Bukkit.
-     */
+    /** Check if the server is running Bukkit. */
     public static boolean isBukkit() {
         try {
             Class.forName("org.bukkit.Bukkit");
@@ -314,24 +185,22 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running CraftBukkit.
-     */
+    /** Check if the server is running CraftBukkit. */
     public static boolean isCraftBukkit() {
         try {
             Class.forName("org.bukkit.craftbukkit.CraftServer");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         try {
             Class.forName("org.bukkit.craftbukkit.Main");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         return false;
     }
 
-    /**
-     * Check if the server is running Spigot.
-     */
+    /** Check if the server is running Spigot. */
     public static boolean isSpigot() {
         try {
             Class.forName("org.spigotmc.CustomTimingsHandler");
@@ -341,9 +210,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Poseidon.
-     */
+    /** Check if the server is running Poseidon. */
     public static boolean isPoseidon() {
         try {
             Class.forName("com.legacyminecraft.poseidon.PoseidonConfig");
@@ -353,23 +220,24 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Paper.
-     */
+    /** Check if the server is running Paper. */
     public static boolean isPaper() {
         try {
             Class.forName("com.destroystokyo.paper.PaperConfig");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         try {
             Class.forName("io.papermc.paperclip.Paperclip");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         return false;
     }
 
     /**
      * Check if the server is running Folia.
+     *
      * @return True if the server is running Folia, false otherwise.
      */
     public static boolean isFolia() {
@@ -381,9 +249,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Purpur.
-     */
+    /** Check if the server is running Purpur. */
     public static boolean isPurpur() {
         try {
             Class.forName("org.purpurmc.purpur.PurpurWorldConfig");
@@ -393,9 +259,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Pufferfish.
-     */
+    /** Check if the server is running Pufferfish. */
     public static boolean isPufferfish() {
         try {
             // TODO: Find a Pufferfish class
@@ -406,9 +270,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Cauldron.
-     */
+    /** Check if the server is running Cauldron. */
     public static boolean isCauldron() {
         try {
             Class.forName("net.minecraftforge.cauldron.CauldronConfig");
@@ -418,9 +280,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running KCauldron.
-     */
+    /** Check if the server is running KCauldron. */
     public static boolean isKCauldron() {
         try {
             Class.forName("net.minecraftforge.kcauldron.KCauldronConfig");
@@ -430,9 +290,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Thermos.
-     */
+    /** Check if the server is running Thermos. */
     public static boolean isThermos() {
         try {
             // TODO: find a Thermos class
@@ -443,9 +301,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Crucible.
-     */
+    /** Check if the server is running Crucible. */
     public static boolean isCrucible() {
         try {
             Class.forName("io.github.crucible.CrucibleConfig");
@@ -455,9 +311,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running MCPC++.
-     */
+    /** Check if the server is running MCPC++. */
     public static boolean isMCPCPlusPlus() {
         try {
             // TODO: Find a MCPC++ class
@@ -468,54 +322,52 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Mohist.
-     */
+    /** Check if the server is running Mohist. */
     public static boolean isMohist() {
         try {
             Class.forName("com.mohistmc.MohistMCStart");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         try {
             Class.forName("com.mohistmc.MohistMC");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         return false;
     }
 
-    /**
-     * Check if the server is running Magma.
-     */
+    /** Check if the server is running Magma. */
     public static boolean isMagma() {
         try {
             Class.forName("org.magmafoundation.magma.Magma");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         try {
             Class.forName("org.magmafoundation.magma.MagmaStart");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         return false;
     }
 
-    /**
-     * Check if the server is running Arclight.
-     */
+    /** Check if the server is running Arclight. */
     public static boolean isArclight() {
         try {
             Class.forName("io.izzel.arclight.api.Arclight");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         try {
             Class.forName("io.izzel.arclight.common.ArclightMain");
             return true;
-        } catch (ClassNotFoundException ignored) {}
+        } catch (ClassNotFoundException ignored) {
+        }
         return false;
     }
 
-    /**
-     * Check if the server is running Ketting.
-     */
+    /** Check if the server is running Ketting. */
     public static boolean isKetting() {
         try {
             Class.forName("org.kettingpowererd.ketting.KettingLauncher");
@@ -525,9 +377,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Cardboard.
-     */
+    /** Check if the server is running Cardboard. */
     public static boolean isCardboard() {
         try {
             Class.forName("org.cardboardpowered.CardboardConfig");
@@ -537,9 +387,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Banner.
-     */
+    /** Check if the server is running Banner. */
     public static boolean isBanner() {
         try {
             Class.forName("com.mohistmc.banner.BannerMCStart");
@@ -549,9 +397,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running BungeeCord.
-     */
+    /** Check if the server is running BungeeCord. */
     public static boolean isBungeeCord() {
         try {
             Class.forName("net.md_5.bungee.api.ProxyServer");
@@ -561,9 +407,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Waterfall.
-     */
+    /** Check if the server is running Waterfall. */
     public static boolean isWaterfall() {
         try {
             Class.forName("io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
@@ -573,9 +417,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Travertine.
-     */
+    /** Check if the server is running Travertine. */
     public static boolean isTravertine() {
         try {
             Class.forName("io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
@@ -585,9 +427,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Hexacord.
-     */
+    /** Check if the server is running Hexacord. */
     public static boolean isHexacord() {
         try {
             // TODO: Find a Hexacord class
@@ -598,9 +438,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Fabric.
-     */
+    /** Check if the server is running Fabric. */
     public static boolean isFabric() {
         try {
             Class.forName("net.fabricmc.loader.api.FabricLoader");
@@ -610,9 +448,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Quilt.
-     */
+    /** Check if the server is running Quilt. */
     public static boolean isQuilt() {
         try {
             Class.forName("net.quiltservertools.quilt.api.QuiltServer");
@@ -622,9 +458,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Sponge.
-     */
+    /** Check if the server is running Sponge. */
     public static boolean isSponge() {
         try {
             Class.forName("org.spongepowered.api.Sponge");
@@ -634,9 +468,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Forge.
-     */
+    /** Check if the server is running Forge. */
     public static boolean isForge() {
         try {
             Class.forName("net.minecraftforge.common.ForgeVersion");
@@ -646,9 +478,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running GoldenForge.
-     */
+    /** Check if the server is running GoldenForge. */
     public static boolean isGoldenForge() {
         try {
             // TODO: Find a GoldenForge class
@@ -659,9 +489,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running NeoForge.
-     */
+    /** Check if the server is running NeoForge. */
     public static boolean isNeoForge() {
         try {
             Class.forName("net.neoforged.neoforge.common.NeoForge");
@@ -671,9 +499,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Velocity.
-     */
+    /** Check if the server is running Velocity. */
     public static boolean isVelocity() {
         try {
             Class.forName("com.velocitypowered.api.proxy.ProxyServer");
@@ -683,9 +509,7 @@ public enum ServerType {
         }
     }
 
-    /**
-     * Check if the server is running Vanilla.
-     */
+    /** Check if the server is running Vanilla. */
     public static boolean isVanilla() {
         try {
             Class.forName("net.minecraft.server.Server");
@@ -693,5 +517,161 @@ public enum ServerType {
         } catch (ClassNotFoundException e) {
             return false;
         }
+    }
+
+    /**
+     * Get the name of the server type
+     *
+     * @return The name of the server type
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Get the name of the server type
+     *
+     * @return The name of the server type
+     */
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     *
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(String... serverType) {
+        return Arrays.stream(serverType).anyMatch(this.name::equalsIgnoreCase);
+    }
+
+    /**
+     * Check if the server is running a specific server type.
+     *
+     * @param serverType The server type to check for.
+     * @return True if the server is running the specified server type, false otherwise.
+     */
+    public boolean is(ServerType... serverType) {
+        return Arrays.asList(serverType).contains(this);
+    }
+
+    /**
+     * Check if the server is running a Bukkit fork.
+     *
+     * @return True if the server is running a Bukkit fork, false otherwise.
+     */
+    public boolean isBukkitBased() {
+        return this.is(BUKKIT, CRAFTBUKKIT, POSEIDON) || this.isSpigotBased();
+    }
+
+    /**
+     * Check if the server is running a Spigot fork.
+     *
+     * @return True if the server is running a Spigot fork, false otherwise.
+     */
+    public boolean isSpigotBased() {
+        return this.is(SPIGOT) || this.isPaperBased() || this.isHybrid();
+    }
+
+    /**
+     * Check if the server is running a fork of Paper.
+     *
+     * @return True if the server is running a fork of Paper, false otherwise.
+     */
+    public boolean isPaperBased() {
+        return this.is(PAPER, FOLIA, PURPUR, PUFFERFISH);
+    }
+
+    /**
+     * Check if the server is running a fork of BungeeCord.
+     *
+     * @return True if the server is running a fork of BungeeCord, false otherwise.
+     */
+    public boolean isBungeeCordBased() {
+        return this.is(BUNGEECORD, WATERFALL, TRAVERTINE, HEXACORD);
+    }
+
+    /**
+     * Check if the server is running a Forge hybrid.
+     *
+     * @return True if the server is running a Forge hybrid, false otherwise.
+     */
+    public boolean isForgeHybrid() {
+        return this.is(
+                CAULDRON,
+                KCUALDRON,
+                THERMOS,
+                CRUCIBLE,
+                MCPC_PLUS_PLUS,
+                MOHIST,
+                MAGMA,
+                ARCLIGHT,
+                KETTING);
+    }
+
+    /**
+     * Check if the server is running a fork of Forge.
+     *
+     * @return True if the server is running a fork of Forge, false otherwise.
+     */
+    public boolean isForgeBased() {
+        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+    }
+
+    /**
+     * Check if the server is running a Fabric hybrid.
+     *
+     * @return True if the server is running a Fabric hybrid, false otherwise.
+     */
+    public boolean isFabricHybrid() {
+        return this.is(CARDBOARD, BANNER);
+    }
+
+    /**
+     * Check if the server is running a fork of Fabric.
+     *
+     * @return True if the server is running a fork of Fabric, false otherwise.
+     */
+    public boolean isFabricBased() {
+        return this.is(FABRIC, QUILT) || this.isFabricHybrid();
+    }
+
+    /**
+     * Check if the server is running on a hybrid.
+     *
+     * @return True if the server is running on a hybrid, false otherwise.
+     */
+    public boolean isHybrid() {
+        return this.isForgeHybrid() || this.isFabricHybrid();
+    }
+
+    /**
+     * Check if the server is running a fork of Sponge.
+     *
+     * @return True if the server is running a fork of Sponge, false otherwise.
+     */
+    public boolean isSpongeBased() {
+        return this.is(SPONGE);
+    }
+
+    /**
+     * Check if the server is running a fork of Velocity.
+     *
+     * @return True if the server is running a fork of Velocity, false otherwise.
+     */
+    public boolean isVelocityBased() {
+        return this.is(VELOCITY);
+    }
+
+    /**
+     * Check if the server is running some sort of proxy.
+     *
+     * @return True if the server is running some sort of proxy, false otherwise.
+     */
+    public boolean isProxy() {
+        return this.isBungeeCordBased() || this.isVelocityBased();
     }
 }

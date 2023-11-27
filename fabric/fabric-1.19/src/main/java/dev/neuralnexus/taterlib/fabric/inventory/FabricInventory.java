@@ -6,47 +6,38 @@ import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Abstracts a Fabric inventory to an AbstractInventory.
- */
+/** Abstracts a Fabric inventory to an AbstractInventory. */
 public class FabricInventory implements Inventory {
     private final net.minecraft.inventory.Inventory inventory;
 
     /**
      * Constructor.
+     *
      * @param inventory The Fabric inventory.
      */
     public FabricInventory(net.minecraft.inventory.Inventory inventory) {
         this.inventory = inventory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getSize() {
         return inventory.size();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack getItem(int slot) {
         return new FabricItemStack(inventory.getStack(slot));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
         inventory.setStack(slot, ((FabricItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -57,9 +48,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -70,9 +59,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getContents() {
         int size = getSize();
@@ -84,9 +71,7 @@ public class FabricInventory implements Inventory {
         return contents;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] item) {
         for (int i = 0; i < getSize(); i++) {
@@ -94,9 +79,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getStorageContents() {
         ItemStack[] contents = new ItemStack[getSize()];
@@ -107,9 +90,7 @@ public class FabricInventory implements Inventory {
         return contents;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] item) {
         for (int i = 0; i < getSize(); i++) {
@@ -117,9 +98,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -130,9 +109,7 @@ public class FabricInventory implements Inventory {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -143,9 +120,7 @@ public class FabricInventory implements Inventory {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(ItemStack item, int amount) {
         int total = 0;
@@ -157,9 +132,7 @@ public class FabricInventory implements Inventory {
         return total >= amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(String type, int count) {
         int total = 0;
@@ -171,9 +144,7 @@ public class FabricInventory implements Inventory {
         return total >= count;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
@@ -185,9 +156,7 @@ public class FabricInventory implements Inventory {
         return map;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -198,9 +167,7 @@ public class FabricInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -211,9 +178,7 @@ public class FabricInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
         for (int i = 0; i < getSize(); i++) {
@@ -224,9 +189,7 @@ public class FabricInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -236,9 +199,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -248,9 +209,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         for (int i = 0; i < getSize(); i++) {
@@ -258,9 +217,7 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.removeStack(slot);

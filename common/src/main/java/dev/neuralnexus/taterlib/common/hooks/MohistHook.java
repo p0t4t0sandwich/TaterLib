@@ -6,20 +6,20 @@ import java.util.Set;
 
 /**
  * A hook for Mohist
+ *
  * @see <a href="https://github.com/MohistMC/Mohist">Mohist</a>
  */
 public class MohistHook {
     private static MohistHook instance;
 
-    /**
-     * Create a new hook
-     */
+    /** Create a new hook */
     public MohistHook() {
         instance = this;
     }
 
     /**
      * Get the instance
+     *
      * @return The instance
      */
     public static MohistHook get() {
@@ -27,9 +27,10 @@ public class MohistHook {
     }
 
     /**
-     * Get if a mod is loaded
-     * <br>
-     * <b>NOTE: You can just use {@link dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     * Get if a mod is loaded <br>
+     * <b>NOTE: You can just use {@link
+     * dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     *
      * @param modid The modid
      * @return If the mod is loaded
      */
@@ -38,9 +39,10 @@ public class MohistHook {
     }
 
     /**
-     * Get if a plugin is loaded
-     * <br>
-     * <b>NOTE: You can just use {@link dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     * Get if a plugin is loaded <br>
+     * <b>NOTE: You can just use {@link
+     * dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     *
      * @param pluginName The plugin name
      * @return If the plugin is loaded
      */
@@ -50,6 +52,7 @@ public class MohistHook {
 
     /**
      * Get mod list
+     *
      * @return The mod list
      */
     public Set<String> getModList() {

@@ -4,9 +4,7 @@ import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.common.event.block.BlockBreakEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 
-/**
- * Bukkit implementation of {@link BlockBreakEvent}.
- */
+/** Bukkit implementation of {@link BlockBreakEvent}. */
 public class BukkitBlockBreakEvent extends BukkitBlockEvent implements BlockBreakEvent {
     private final org.bukkit.event.block.BlockBreakEvent event;
 
@@ -15,25 +13,19 @@ public class BukkitBlockBreakEvent extends BukkitBlockEvent implements BlockBrea
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isCancelled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new BukkitPlayer(event.getPlayer());

@@ -3,12 +3,11 @@ package dev.neuralnexus.taterlib.bukkit.event.entity;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-/**
- * Bukkit implementation of {@link EntityDamageEvent}.
- */
+/** Bukkit implementation of {@link EntityDamageEvent}. */
 public class BukkitEntityDamageEvent extends BukkitEntityEvent implements EntityDamageEvent {
     private final org.bukkit.event.entity.EntityDamageEvent event;
 
@@ -17,42 +16,33 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isCancelled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCause() {
         return event.getCause().name();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getDamage() {
         return event.getDamage();
     }
 
-    /**
-     * Bukkit implementation of {@link EntityDamageEvent.DamageByBlock}.
-     */
-    public static class DamageByEntity extends BukkitEntityDamageEvent implements EntityDamageEvent.DamageByEntity {
+    /** Bukkit implementation of {@link EntityDamageEvent.DamageByBlock}. */
+    public static class DamageByEntity extends BukkitEntityDamageEvent
+            implements EntityDamageEvent.DamageByEntity {
         private final EntityDamageByEntityEvent event;
 
         public DamageByEntity(EntityDamageByEntityEvent event) {
@@ -60,19 +50,16 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public Entity getDamager() {
             return new BukkitEntity(event.getDamager());
         }
     }
 
-    /**
-     * Bukkit implementation of {@link EntityDamageEvent.DamageByBlock}.
-     */
-    public static class DamageByBlock extends BukkitEntityDamageEvent implements EntityDamageEvent.DamageByBlock {
+    /** Bukkit implementation of {@link EntityDamageEvent.DamageByBlock}. */
+    public static class DamageByBlock extends BukkitEntityDamageEvent
+            implements EntityDamageEvent.DamageByBlock {
         private final EntityDamageByBlockEvent event;
 
         public DamageByBlock(EntityDamageByBlockEvent event) {
@@ -80,9 +67,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public String getDamager() {
             return event.getDamager().getType().name();

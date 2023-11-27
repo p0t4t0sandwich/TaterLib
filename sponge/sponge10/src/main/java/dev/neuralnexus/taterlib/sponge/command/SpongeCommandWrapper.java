@@ -2,7 +2,9 @@ package dev.neuralnexus.taterlib.sponge.command;
 
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+
 import net.kyori.adventure.text.Component;
+
 import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.command.CommandExecutor;
 import org.spongepowered.api.command.CommandResult;
@@ -11,9 +13,7 @@ import org.spongepowered.api.command.parameter.CommandContext;
 import org.spongepowered.api.command.parameter.Parameter;
 import org.spongepowered.api.entity.living.player.Player;
 
-/**
- * Wraps a command callback into a Sponge Command.
- */
+/** Wraps a command callback into a Sponge Command. */
 public class SpongeCommandWrapper implements CommandExecutor {
     private final Command.Callback callback;
     private final String commandName;
@@ -23,9 +23,7 @@ public class SpongeCommandWrapper implements CommandExecutor {
         this.commandName = commandName;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public CommandResult execute(CommandContext context) throws CommandException {
         try {
@@ -37,10 +35,8 @@ public class SpongeCommandWrapper implements CommandExecutor {
             callback.execute(new SpongeSender(sender), commandName, args);
         } catch (Exception e) {
             e.printStackTrace();
-            return CommandResult.builder()
-                    .result(0).error(Component.text(e.getMessage())).build();
+            return CommandResult.builder().result(0).error(Component.text(e.getMessage())).build();
         }
-        return CommandResult.builder()
-                .result(1).build();
+        return CommandResult.builder().result(1).build();
     }
 }

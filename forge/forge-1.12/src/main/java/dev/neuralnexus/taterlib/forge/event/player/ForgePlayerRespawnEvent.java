@@ -4,11 +4,10 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
+
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-/**
- * Forge implementation of {@link PlayerRespawnEvent}.
- */
+/** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {
     private final PlayerEvent.PlayerRespawnEvent event;
 
@@ -17,25 +16,19 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
         return new ForgeLocation(((ForgePlayer) getPlayer()).getPlayer());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

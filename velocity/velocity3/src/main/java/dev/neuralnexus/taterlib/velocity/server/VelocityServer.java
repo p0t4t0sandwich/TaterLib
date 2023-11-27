@@ -6,9 +6,7 @@ import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import java.util.Set;
 
-/**
- * Velocity implementation of {@link Server}.
- */
+/** Velocity implementation of {@link Server}. */
 public class VelocityServer implements Server {
     private final com.velocitypowered.api.proxy.server.RegisteredServer server;
 
@@ -16,19 +14,17 @@ public class VelocityServer implements Server {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return server.getServerInfo().getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getPlayersConnected().stream().map(VelocityPlayer::new).collect(java.util.stream.Collectors.toSet());
+        return server.getPlayersConnected().stream()
+                .map(VelocityPlayer::new)
+                .collect(java.util.stream.Collectors.toSet());
     }
 }

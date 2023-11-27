@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
 import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
@@ -8,23 +9,20 @@ import org.spongepowered.api.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Abstracts a Sponge item meta to an AbstractItemMeta.
- */
+/** Abstracts a Sponge item meta to an AbstractItemMeta. */
 public class SpongeItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 
     /**
      * Constructor.
+     *
      * @param itemStack The Sponge item stack.
      */
     public SpongeItemMeta(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         if (!itemStack.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
@@ -33,9 +31,7 @@ public class SpongeItemMeta implements ItemMeta {
         return itemStack.get(Keys.CUSTOM_NAME_VISIBLE).get();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
         if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
@@ -44,25 +40,19 @@ public class SpongeItemMeta implements ItemMeta {
         return itemStack.get(Keys.DISPLAY_NAME).get().toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.offer(Keys.DISPLAY_NAME, Text.of(name));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         return itemStack.get(Keys.ITEM_LORE).isPresent();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<String> getLore() {
         if (!itemStack.get(Keys.ITEM_LORE).isPresent()) {
@@ -76,9 +66,7 @@ public class SpongeItemMeta implements ItemMeta {
         return lore;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> list) {
         List<Text> lore = new ArrayList<>();
@@ -88,25 +76,19 @@ public class SpongeItemMeta implements ItemMeta {
         itemStack.offer(Keys.ITEM_LORE, lore);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.get(Keys.STORED_ENCHANTMENTS).isPresent();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isUnbreakable() {
         return itemStack.get(Keys.UNBREAKABLE).isPresent();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         itemStack.offer(Keys.UNBREAKABLE, unbreakable);

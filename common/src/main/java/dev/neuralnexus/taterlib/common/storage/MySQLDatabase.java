@@ -7,25 +7,29 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-/**
- * MySQL database class
- */
+/** MySQL database class */
 public class MySQLDatabase implements Database<Connection> {
+    private static final HikariConfig hikariConfig = new HikariConfig();
+    private static HikariDataSource ds;
     private final Database.Type type = Database.Type.MYSQL;
     private final Connection connection = null;
     private final String database;
 
-    private static final HikariConfig hikariConfig = new HikariConfig();
-    private static HikariDataSource ds;
-
     /**
      * Constructor for the MySQLDataSource class
+     *
      * @param config The config data
      */
     public MySQLDatabase(Database.DatabaseConfig config) {
         this.database = config.database;
 
-        String URI = "jdbc:mysql://" + config.host + ":" + (config.port == 0 ? 3306 : config.port) + "/" + config.database;
+        String URI =
+                "jdbc:mysql://"
+                        + config.host
+                        + ":"
+                        + (config.port == 0 ? 3306 : config.port)
+                        + "/"
+                        + config.database;
         hikariConfig.setJdbcUrl(URI);
         hikariConfig.setUsername(config.username);
         hikariConfig.setPassword(config.password);
@@ -36,17 +40,13 @@ public class MySQLDatabase implements Database<Connection> {
         ds = new HikariDataSource(hikariConfig);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Database.Type getType() {
         return type;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Connection getConnection() {
         try {
@@ -57,9 +57,7 @@ public class MySQLDatabase implements Database<Connection> {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDatabase() {
         return database;

@@ -3,35 +3,37 @@ package dev.neuralnexus.taterlib.common.player;
 import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.common.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.placeholder.PlaceholderParser;
+import dev.neuralnexus.taterlib.common.utils.Location;
 
-/**
- * The interface for a Player
- */
+/** The interface for a Player */
 public interface Player extends Sender, Entity {
     /**
      * Get the display name of the player
+     *
      * @return The display name of the player
      */
     String getDisplayName();
 
     /**
      * Get the server the player is on
+     *
      * @return The server the player is on
      */
     String getServerName();
 
     /**
      * Set the server the player is on
+     *
      * @param serverName The server the player is on
      */
     void setServerName(String serverName);
 
     /**
      * Sends a plugin message using the specified channel
+     *
      * @param channel The channel to send the message on
      * @param data The message to send
      */
@@ -39,79 +41,92 @@ public interface Player extends Sender, Entity {
 
     /**
      * Get player's Inventory
+     *
      * @return The player's Inventory
      */
     PlayerInventory getInventory();
 
     /**
      * Get player's ping
+     *
      * @return The player's ping
      */
-//    int getPing();
+    //    int getPing();
 
     /**
      * Get the address of the player
+     *
      * @return The address of the player
      */
-//    InetSocketAddress getAddress();
+    //    InetSocketAddress getAddress();
 
     /**
      * Kick the player
+     *
      * @param message The reason to kick the player
      */
     void kickPlayer(String message);
 
     /**
      * Set the player's spawn point
+     *
      * @param location The location to set the spawn point to
      */
     void setSpawn(Location location, boolean forced);
 
     /**
      * Set the player's spawn point
+     *
      * @param location The location to set the spawn point to
      */
     void setSpawn(Location location);
 
     /**
      * Perform a command as the player
+     *
      * @param command The command to perform
      * @return true if the command was successful, false otherwise
      */
-//    boolean performCommand(String command);
+    //    boolean performCommand(String command);
 
     /**
      * Check if the player is on the ground
+     *
      * @return Whether the player is on the ground
      */
-//    boolean isOnGround();
+    //    boolean isOnGround();
 
     /**
      * Check if the player is sneaking
+     *
      * @return Whether the player is sneaking
      */
-//    boolean isSneaking();
+    //    boolean isSneaking();
 
     /**
      * Set sneaking for the player
+     *
      * @param sneak Whether the player should be sneaking
      */
-//    void setSneaking(boolean sneak);
+    //    void setSneaking(boolean sneak);
 
     /**
      * Check if the player is sprinting
+     *
      * @return Whether the player is sprinting
      */
-//    boolean isSprinting();
+    //    boolean isSprinting();
 
     /**
      * Set sprinting for the player
+     *
      * @param sprint Whether the player should be sprinting
      */
-//    void setSprinting(boolean sprint);
+    //    void setSprinting(boolean sprint);
 
     /**
      * Get the prefix of the player
+     *
      * @return The prefix of the player
      */
     default String getPrefix() {
@@ -123,6 +138,16 @@ public interface Player extends Sender, Entity {
 
     /**
      * Set the prefix of the player
+     *
+     * @param prefix The prefix to set
+     */
+    default void setPrefix(String prefix) {
+        setPrefix(prefix, 0);
+    }
+
+    /**
+     * Set the prefix of the player
+     *
      * @param prefix The prefix to set
      * @param priority The priority of the prefix
      */
@@ -133,15 +158,8 @@ public interface Player extends Sender, Entity {
     }
 
     /**
-     * Set the prefix of the player
-     * @param prefix The prefix to set
-     */
-    default void setPrefix(String prefix) {
-        setPrefix(prefix, 0);
-    }
-
-    /**
      * Get the suffix of the player
+     *
      * @return The suffix of the player
      */
     default String getSuffix() {
@@ -153,6 +171,16 @@ public interface Player extends Sender, Entity {
 
     /**
      * Set the suffix of the player
+     *
+     * @param suffix The suffix to set
+     */
+    default void setSuffix(String suffix) {
+        setSuffix(suffix, 0);
+    }
+
+    /**
+     * Set the suffix of the player
+     *
      * @param suffix The suffix to set
      * @param priority The priority of the suffix
      */
@@ -163,15 +191,8 @@ public interface Player extends Sender, Entity {
     }
 
     /**
-     * Set the suffix of the player
-     * @param suffix The suffix to set
-     */
-    default void setSuffix(String suffix) {
-        setSuffix(suffix, 0);
-    }
-
-    /**
      * Parse placeholders in a string
+     *
      * @param input The string to parse
      * @return The parsed string
      */

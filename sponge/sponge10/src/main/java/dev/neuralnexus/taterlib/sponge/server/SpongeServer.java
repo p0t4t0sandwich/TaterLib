@@ -7,9 +7,7 @@ import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Sponge implementation of {@link Server}.
- */
+/** Sponge implementation of {@link Server}. */
 public class SpongeServer implements Server {
     private final org.spongepowered.api.Server server;
 
@@ -17,17 +15,13 @@ public class SpongeServer implements Server {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return "local";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
         return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toSet());

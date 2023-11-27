@@ -31,17 +31,17 @@ dependencies {
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
+            minecraft_version  : minecraft_version,
 
-            project_id             : project_id,
-            project_name           : project_name,
-            project_description    : project_description,
-            license                : license,
-            version                : version,
-            group_id               : group_id,
-            authors                : authors,
+            project_id         : project_id,
+            project_name       : project_name,
+            project_description: project_description,
+            license            : license,
+            version            : version,
+            group_id           : group_id,
+            authors            : authors,
 
-            repo_url               : repo_url
+            repo_url           : repo_url
     ]
     inputs.properties replaceProperties
 

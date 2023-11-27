@@ -3,15 +3,14 @@ package dev.neuralnexus.taterlib.forge.event.entity;
 import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
+
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Forge implementation of {@link EntityDeathEvent}.
- */
+/** Forge implementation of {@link EntityDeathEvent}. */
 public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDeathEvent {
     private final LivingDeathEvent event;
     private List<ItemStack> drops = new ArrayList<>();
@@ -22,9 +21,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
@@ -33,28 +30,24 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
         if (event.getEntity().captureDrops() == null) {
             return new ArrayList<>();
         }
-        return event.getEntity().captureDrops().stream().map(itemEntity -> new ForgeItemStack(itemEntity.getItem())).collect(Collectors.toList());
+        return event.getEntity().captureDrops().stream()
+                .map(itemEntity -> new ForgeItemStack(itemEntity.getItem()))
+                .collect(Collectors.toList());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         drops.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
         if (droppedExp != 0) {
@@ -63,9 +56,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         droppedExp = exp;

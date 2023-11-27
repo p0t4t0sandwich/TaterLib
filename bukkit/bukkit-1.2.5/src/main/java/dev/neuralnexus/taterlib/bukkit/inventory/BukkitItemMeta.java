@@ -1,19 +1,18 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
 import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
-//import org.bukkit.inventory.meta.ItemMeta;
+// import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-/**
- * Abstracts a Bukkit item meta to an AbstractItemMeta.
- */
+/** Abstracts a Bukkit item meta to an AbstractItemMeta. */
 public class BukkitItemMeta implements ItemMeta {
     // TODO: Refactor into AbstractItem class
     private final Object itemMeta;
 
     /**
      * Constructor.
+     *
      * @param itemMeta The Bukkit item meta.
      */
     public BukkitItemMeta(Object itemMeta) {
@@ -22,86 +21,69 @@ public class BukkitItemMeta implements ItemMeta {
 
     /**
      * Getter for the Bukkit item meta.
+     *
      * @return The Bukkit item meta.
      */
     public Object getItemMeta() {
         return itemMeta;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
-//        return itemMeta.hasDisplayName();
+        //        return itemMeta.hasDisplayName();
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
-//        return itemMeta.getDisplayName();
+        //        return itemMeta.getDisplayName();
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
-//        itemMeta.setDisplayName(name);
+        //        itemMeta.setDisplayName(name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
-//        return itemMeta.hasLore();
+        //        return itemMeta.hasLore();
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<String> getLore() {
-//        return itemMeta.getLore();
+        //        return itemMeta.getLore();
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
-//        itemMeta.setLore(lore);
+        //        itemMeta.setLore(lore);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
-//        return itemMeta.hasEnchants();
+        //        return itemMeta.hasEnchants();
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isUnbreakable() {
         return false; // itemMeta.isUnbreakable();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
-//        itemMeta.setUnbreakable(unbreakable);
+        //        itemMeta.setUnbreakable(unbreakable);
     }
 }

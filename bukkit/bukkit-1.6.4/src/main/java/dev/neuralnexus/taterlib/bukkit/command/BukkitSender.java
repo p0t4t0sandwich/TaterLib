@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.bukkit.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
+
 import org.bukkit.command.CommandSender;
 
 import java.util.UUID;
 
-/**
- * Bukkit implementation of {@link Sender}
- */
+/** Bukkit implementation of {@link Sender} */
 public class BukkitSender implements Sender {
     private final CommandSender sender;
 
@@ -15,41 +14,31 @@ public class BukkitSender implements Sender {
         this.sender = sender;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return new UUID(0, 0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return sender.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         sender.sendMessage(message);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(String permission) {
         return sender.hasPermission(permission);

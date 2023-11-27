@@ -13,11 +13,11 @@ public class ForgeMessagePacket {
         this.message = message;
     }
 
-    public void encode(PacketBuffer buf) {
-        buf.writeByteArray(this.message.getBytes());
-    }
-
     public static ForgeMessagePacket decode(PacketBuffer buf) {
         return new ForgeMessagePacket(buf);
+    }
+
+    public void encode(PacketBuffer buf) {
+        buf.writeByteArray(this.message.getBytes());
     }
 }

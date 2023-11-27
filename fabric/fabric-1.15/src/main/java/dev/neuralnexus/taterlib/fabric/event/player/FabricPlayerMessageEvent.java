@@ -2,18 +2,18 @@ package dev.neuralnexus.taterlib.fabric.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
+
 import net.minecraft.entity.player.PlayerEntity;
+
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Fabric implementation of {@link PlayerMessageEvent}.
- */
+/** Fabric implementation of {@link PlayerMessageEvent}. */
 public class FabricPlayerMessageEvent extends FabricPlayerEvent implements PlayerMessageEvent {
-    private String message;
     private final CallbackInfo ci;
+    private String message;
 
     public FabricPlayerMessageEvent(PlayerEntity player, String message, CallbackInfo ci) {
         super(player);
@@ -21,17 +21,13 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
         this.ci = ci;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return ci.isCancelled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
@@ -39,33 +35,25 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getMessage() {
         return message;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Player> recipients() {
-        return new HashSet<>();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public Set<Player> recipients() {
+        return new HashSet<>();
+    }
+
+    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<Player> recipients) {}
 }

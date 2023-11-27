@@ -4,17 +4,17 @@ import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.neoforge.event.entity.NeoForgeEntityDamageEvent;
 import dev.neuralnexus.taterlib.neoforge.event.entity.NeoForgeEntityDeathEvent;
 import dev.neuralnexus.taterlib.neoforge.event.entity.NeoForgeEntitySpawnEvent;
+
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-/**
- * Listens for entity events.
- */
+/** Listens for entity events. */
 public class NeoForgeEntityListener {
     /**
      * Called when an entity is damaged.
+     *
      * @param event The entity damage event
      */
     @SubscribeEvent
@@ -24,6 +24,7 @@ public class NeoForgeEntityListener {
 
     /**
      * Called when an entity dies.
+     *
      * @param event The entity death event
      */
     @SubscribeEvent
@@ -33,6 +34,7 @@ public class NeoForgeEntityListener {
 
     /**
      * Called when an entity is spawned.
+     *
      * @param event The entity spawn event
      */
     @SubscribeEvent

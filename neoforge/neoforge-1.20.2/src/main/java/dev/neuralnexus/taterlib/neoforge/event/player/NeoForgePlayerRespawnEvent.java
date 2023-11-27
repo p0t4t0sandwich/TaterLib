@@ -4,11 +4,10 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
+
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
-/**
- * NeoForge implementation of {@link PlayerRespawnEvent}.
- */
+/** NeoForge implementation of {@link PlayerRespawnEvent}. */
 public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements PlayerRespawnEvent {
     private final PlayerEvent.PlayerRespawnEvent event;
 
@@ -17,25 +16,19 @@ public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements P
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
         return new NeoForgeLocation(((NeoForgePlayer) getPlayer()).getPlayer());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

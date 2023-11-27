@@ -6,9 +6,7 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.utils.Location;
 
-/**
- * An implementation of {@link PlayerRespawnEvent} for Bukkit.
- */
+/** An implementation of {@link PlayerRespawnEvent} for Bukkit. */
 public class BukkitPlayerRespawnEvent extends BukkitPlayerEvent implements PlayerRespawnEvent {
     private final org.bukkit.event.player.PlayerRespawnEvent event;
 
@@ -17,33 +15,25 @@ public class BukkitPlayerRespawnEvent extends BukkitPlayerEvent implements Playe
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new BukkitPlayer(event.getPlayer());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
         return new BukkitLocation(event.getRespawnLocation());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return event.isBedSpawn();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return event.isAnchorSpawn();

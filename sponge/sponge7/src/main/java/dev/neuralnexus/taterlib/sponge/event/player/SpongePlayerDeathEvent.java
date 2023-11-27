@@ -6,14 +6,13 @@ import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Sponge implementation of {@link PlayerDeathEvent}.
- */
+/** Sponge implementation of {@link PlayerDeathEvent}. */
 public class SpongePlayerDeathEvent implements PlayerDeathEvent {
     private final DestructEntityEvent.Death event;
     private String deathMessage = "";
@@ -22,59 +21,44 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ItemStack> getDrops() {
         return new ArrayList<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
         return new SpongeEntity(event.getTargetEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
-        return new SpongePlayer((org.spongepowered.api.entity.living.player.Player) event.getTargetEntity());
+        return new SpongePlayer(
+                (org.spongepowered.api.entity.living.player.Player) event.getTargetEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
         if (!this.deathMessage.isEmpty()) {
@@ -83,25 +67,19 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
         return event.getMessage().toPlain();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasKeepInventory() {
         return event.getKeepInventory();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {
         event.setKeepInventory(keepInventory);

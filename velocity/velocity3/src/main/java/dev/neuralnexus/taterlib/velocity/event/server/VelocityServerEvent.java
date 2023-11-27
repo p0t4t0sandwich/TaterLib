@@ -5,13 +5,9 @@ import dev.neuralnexus.taterlib.common.server.Server;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 
-/**
- * Velocity implementation of {@link ServerEvent}.
- */
+/** Velocity implementation of {@link ServerEvent}. */
 public class VelocityServerEvent implements ServerEvent {
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Server getServer() {
         return new VelocityProxyServer(VelocityTaterLibPlugin.getProxyServer());

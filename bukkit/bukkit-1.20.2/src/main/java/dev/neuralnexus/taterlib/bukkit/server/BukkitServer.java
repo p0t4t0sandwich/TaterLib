@@ -7,9 +7,7 @@ import dev.neuralnexus.taterlib.common.server.Server;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Bukkit implementation of {@link Server}.
- */
+/** Bukkit implementation of {@link Server}. */
 public class BukkitServer implements Server {
     private final org.bukkit.Server server;
 
@@ -17,19 +15,17 @@ public class BukkitServer implements Server {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return "local";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getOnlinePlayers().stream().map(BukkitPlayer::new).collect(Collectors.toSet());
+        return server.getOnlinePlayers().stream()
+                .map(BukkitPlayer::new)
+                .collect(Collectors.toSet());
     }
 }

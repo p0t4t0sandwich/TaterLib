@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.common.storage;
 
-/**
- * Data source class
- */
+/** Data source class */
 public class DataSource {
     /**
      * Get the database
+     *
      * @param type The type of database
      * @param config The config data
      * @return The database

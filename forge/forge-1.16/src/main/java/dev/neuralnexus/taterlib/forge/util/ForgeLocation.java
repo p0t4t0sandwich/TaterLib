@@ -3,28 +3,23 @@ package dev.neuralnexus.taterlib.forge.util;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.vector.Vector3d;
 
-/**
- * Fabric implementation of {@link Location}.
- */
+/** Fabric implementation of {@link Location}. */
 public class ForgeLocation implements Location {
     private Vector3d position;
     private float yaw;
     private float pitch;
     private String world;
 
-    /**
-     * Creates a new location from an Entity.
-     */
+    /** Creates a new location from an Entity. */
     public ForgeLocation(Entity entity) {
         this(entity.position(), entity.xRot, entity.yRot, new ForgeEntity(entity).getDimension());
     }
 
-    /**
-     * Creates a new location.
-     */
+    /** Creates a new location. */
     public ForgeLocation(Vector3d position, float yaw, float pitch, String world) {
         this.position = position;
         this.yaw = yaw;
@@ -34,137 +29,106 @@ public class ForgeLocation implements Location {
 
     /**
      * Getter for the Fabric location.
+     *
      * @return The Fabric location.
      */
     public Vector3d getLocation() {
         return position;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setX(double x) {
-        position = new Vector3d(x, getY(), getZ());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return position.x;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setX(double x) {
+        position = new Vector3d(x, getY(), getZ());
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockX() {
         return Math.floor(getX());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setY(double y) {
-        position = new Vector3d(getX(), y, getZ());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return position.y;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setY(double y) {
+        position = new Vector3d(getX(), y, getZ());
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockY() {
         return Math.floor(getY());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setZ(double z) {
-        position = new Vector3d(getX(), getY(), z);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return position.z;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setZ(double z) {
+        position = new Vector3d(getX(), getY(), z);
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockZ() {
         return Math.floor(getZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setYaw(float yaw) {
-        this.yaw = yaw;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         return yaw;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
-    public void setPitch(float pitch) {
-        this.pitch = pitch;
+    public void setYaw(float yaw) {
+        this.yaw = yaw;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         return pitch;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setPitch(float pitch) {
+        this.pitch = pitch;
+    }
+
+    /** {@inheritDoc} */
     @Override
     public Position getBlockPosition() {
         return new Position(getBlockX(), getBlockY(), getBlockZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setWorld(String world) {
-        this.world = world;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getWorld() {
         return world;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setWorld(String world) {
+        this.world = world;
     }
 }

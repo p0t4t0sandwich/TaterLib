@@ -1,14 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
+
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 
 import java.util.UUID;
 
-/**
- * The Fabric implementation of {@link Sender}
- */
+/** The Fabric implementation of {@link Sender} */
 public class FabricSender implements Sender {
     private final ServerCommandSource source;
 
@@ -16,9 +15,7 @@ public class FabricSender implements Sender {
         this.source = source;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         if (source.getEntity() == null) {
@@ -27,26 +24,19 @@ public class FabricSender implements Sender {
         return source.getEntity().getUuid();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return source.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         source.sendMessage(Text.of(message));
     }
 
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return source.hasPermissionLevel(permissionLevel);

@@ -8,9 +8,7 @@ import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Velocity implementation of {@link ProxyServer}.
- */
+/** Velocity implementation of {@link ProxyServer}. */
 public class VelocityProxyServer implements ProxyServer {
     private final com.velocitypowered.api.proxy.ProxyServer server;
 
@@ -18,25 +16,19 @@ public class VelocityProxyServer implements ProxyServer {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return "local";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
         return server.getAllPlayers().stream().map(VelocityPlayer::new).collect(Collectors.toSet());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Server> getServers() {
         return server.getAllServers().stream().map(VelocityServer::new).collect(Collectors.toSet());

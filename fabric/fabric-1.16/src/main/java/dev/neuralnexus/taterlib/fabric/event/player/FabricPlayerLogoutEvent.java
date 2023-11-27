@@ -1,12 +1,11 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 
-/**
- * Fabric implementation of {@link PlayerLogoutEvent}.
- */
+/** Fabric implementation of {@link PlayerLogoutEvent}. */
 public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements PlayerLogoutEvent {
     private final ServerPlayNetworkHandler handler;
     private final MinecraftServer server;
@@ -17,17 +16,13 @@ public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements Player
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLogoutMessage() {
         return handler.player.getName().getString() + " left the game";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {}
 }

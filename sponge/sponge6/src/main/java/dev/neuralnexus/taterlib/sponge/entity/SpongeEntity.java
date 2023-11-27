@@ -3,19 +3,19 @@ package dev.neuralnexus.taterlib.sponge.entity;
 import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
+
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
-/**
- * Sponge implementation of {@link Entity}.
- */
+/** Sponge implementation of {@link Entity}. */
 public class SpongeEntity implements Entity {
     private final org.spongepowered.api.entity.Entity entity;
 
     /**
      * Constructor.
+     *
      * @param entity The Sponge entity.
      */
     public SpongeEntity(org.spongepowered.api.entity.Entity entity) {
@@ -24,140 +24,117 @@ public class SpongeEntity implements Entity {
 
     /**
      * Gets the Sponge entity.
+     *
      * @return The Sponge entity.
      */
     public org.spongepowered.api.entity.Entity getEntity() {
         return entity;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return entity.getUniqueId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getEntityId() {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCustomName() {
-        if (!entity.get(Keys.DISPLAY_NAME).isPresent() && entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
+        if (!entity.get(Keys.DISPLAY_NAME).isPresent()
+                && entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
             return null;
         }
         return entity.get(Keys.DISPLAY_NAME).get().toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.offer(Keys.DISPLAY_NAME, Text.of(name));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return new SpongeLocation(entity.getLocation());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return entity.getLocation().getPosition().getX();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return entity.getLocation().getPosition().getY();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return entity.getLocation().getPosition().getZ();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         return (float) entity.getRotation().getX();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         return (float) entity.getRotation().getY();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDimension() {
         return entity.getWorld().getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getBiome() {
         return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        entity.setLocation(new org.spongepowered.api.world.Location<>(entity.getWorld(), location.getX(), location.getY(), location.getZ()));
+        entity.setLocation(
+                new org.spongepowered.api.world.Location<>(
+                        entity.getWorld(), location.getX(), location.getY(), location.getZ()));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Entity entity) {
-        this.entity.setLocation(new org.spongepowered.api.world.Location<>(((SpongeEntity) entity).getEntity().getWorld(), entity.getX(), entity.getY(), entity.getZ()));
+        this.entity.setLocation(
+                new org.spongepowered.api.world.Location<>(
+                        ((SpongeEntity) entity).getEntity().getWorld(),
+                        entity.getX(),
+                        entity.getY(),
+                        entity.getZ()));
     }
 }

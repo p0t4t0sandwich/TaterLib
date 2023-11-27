@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.neoforge.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
+
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 
 import java.util.Collection;
 
-/**
- * NeoForge implementation of {@link PlayerAdvancementEvent}.
- */
-public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implements PlayerAdvancementEvent {
+/** NeoForge implementation of {@link PlayerAdvancementEvent}. */
+public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent
+        implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
     public NeoForgePlayerAdvancementEvent(AdvancementEvent event) {
@@ -16,9 +16,7 @@ public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implemen
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getAdvancement() {
         if (this.event.getAdvancement().value().name().isEmpty()) {
@@ -31,19 +29,17 @@ public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implemen
         return this.event.getAdvancement().value().name().get().getString();
     }
 
-    /**
-     * NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
-     */
-    public static class AdvancementFinished extends NeoForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+    /** NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
+    public static class AdvancementFinished extends NeoForgePlayerAdvancementEvent
+            implements PlayerAdvancementEvent.AdvancementFinished {
         public AdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
         }
     }
 
-    /**
-     * NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
-     */
-    public static class AdvancementProgress extends NeoForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
+    /** NeoForge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
+    public static class AdvancementProgress extends NeoForgePlayerAdvancementEvent
+            implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 
         public AdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
@@ -51,9 +47,7 @@ public class NeoForgePlayerAdvancementEvent extends NeoForgePlayerEvent implemen
             this.event = event;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public Collection<String> getCriterion() {
             Iterable<String> criteria = this.event.getAdvancementProgress().getRemainingCriteria();

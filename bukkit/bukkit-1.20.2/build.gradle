@@ -24,12 +24,12 @@ java.disableAutoTargetJvm()
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            project_id             : project_id,
-            project_name           : project_name,
-            project_description    : project_description,
-            group_id               : group_id,
-            version                : version,
-            authors                : authors,
+            project_id         : project_id,
+            project_name       : project_name,
+            project_description: project_description,
+            group_id           : group_id,
+            version            : version,
+            authors            : authors,
     ]
     inputs.properties replaceProperties
 

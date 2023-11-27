@@ -3,9 +3,7 @@ package dev.neuralnexus.taterlib.common.logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * A generic implementation of the AbstractLogger interface.
- */
+/** A generic implementation of the AbstractLogger interface. */
 public class GenericLogger implements AbstractLogger {
     private final String prefix;
     private final Logger logger;
@@ -15,9 +13,7 @@ public class GenericLogger implements AbstractLogger {
         this.logger = LoggerFactory.getLogger(MOD_ID);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void info(String message) {
         this.logger.info(this.prefix + message);

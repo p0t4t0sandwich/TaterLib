@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.forge.networking;
 
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.SimpleChannel;
 
 import java.util.HashMap;
@@ -14,12 +14,13 @@ import java.util.Set;
 
 public class ModMessages {
     private static final String PROTOCOL_VERSION = "1";
+    private static final Set<String> channelQueue = new HashSet<>();
+    private static final HashMap<String, SimpleChannel> channels = new HashMap<>();
     private static int packetId = 0;
+
     private static int id() {
         return packetId++;
     }
-    private static final Set<String> channelQueue = new HashSet<>();
-    private static final HashMap<String, SimpleChannel> channels = new HashMap<>();
 
     public static void addChannels(Set<String> channel) {
         channelQueue.addAll(channel);
@@ -28,13 +29,15 @@ public class ModMessages {
     public static void register() {
         for (String c : channelQueue) {
             String[] channelParts = c.split(":");
-            channels.put(c, ChannelBuilder.named(
-                            new ResourceLocation(channelParts[0], channelParts[1]))
-                    .networkProtocolVersion(Integer.parseInt(PROTOCOL_VERSION))
-                    .clientAcceptedVersions((status, version) -> true)
-                    .serverAcceptedVersions((status, version) -> true)
-                    .simpleChannel());
-            channels.get(c).messageBuilder(ForgeMessagePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+            channels.put(
+                    c,
+                    ChannelBuilder.named(new ResourceLocation(channelParts[0], channelParts[1]))
+                            .networkProtocolVersion(Integer.parseInt(PROTOCOL_VERSION))
+                            .clientAcceptedVersions((status, version) -> true)
+                            .serverAcceptedVersions((status, version) -> true)
+                            .simpleChannel());
+            channels.get(c)
+                    .messageBuilder(ForgeMessagePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                     .encoder(ForgeMessagePacket::encode)
                     .decoder(ForgeMessagePacket::decode)
                     .add();
@@ -46,6 +49,7 @@ public class ModMessages {
     }
 
     public static <MSG> void sendPluginMessage(MSG message, String channel, ServerPlayer player) {
-//        channels.get(channel).sendTo(message, player.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
+        //        channels.get(channel).sendTo(message, player.connection.getConnection(),
+        // NetworkDirection.PLAY_TO_CLIENT);
     }
 }

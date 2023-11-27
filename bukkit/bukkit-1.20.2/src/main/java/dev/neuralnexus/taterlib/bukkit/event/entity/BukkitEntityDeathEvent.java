@@ -7,9 +7,7 @@ import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Bukkit implementation of {@link EntityDeathEvent}.
- */
+/** Bukkit implementation of {@link EntityDeathEvent}. */
 public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityDeathEvent {
     private final org.bukkit.event.entity.EntityDeathEvent event;
 
@@ -23,9 +21,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
         return event.getDrops().stream().map(BukkitItemStack::new).collect(Collectors.toList());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         event.getDrops().clear();
@@ -33,25 +29,19 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
         drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).getItemStack()));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         event.getDrops().clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
         return event.getDroppedExp();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         event.setDroppedExp(exp);

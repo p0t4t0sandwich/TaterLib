@@ -7,12 +7,12 @@ import dev.neuralnexus.taterlib.common.player.Player;
 public class TaterLibCommand implements Command {
     private String name = "taterlib";
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -46,7 +46,11 @@ public class TaterLibCommand implements Command {
                 }
                 break;
             case "version":
-                text = "&a" + TaterLib.Constants.PROJECT_NAME + " v" + TaterLib.Constants.PROJECT_VERSION;
+                text =
+                        "&a"
+                                + TaterLib.Constants.PROJECT_NAME
+                                + " v"
+                                + TaterLib.Constants.PROJECT_VERSION;
                 break;
             default:
                 text = getUsage();
@@ -59,7 +63,9 @@ public class TaterLibCommand implements Command {
     public boolean execute(Sender sender, String label, String[] args) {
         if (sender instanceof Player) {
             if (!sender.hasPermission(getPermission())) {
-                sender.sendMessage(Utils.substituteSectionSign("&cYou do not have permission to use this command."));
+                sender.sendMessage(
+                        Utils.substituteSectionSign(
+                                "&cYou do not have permission to use this command."));
             } else {
                 sender.sendMessage(Utils.substituteSectionSign(execute(args)));
             }

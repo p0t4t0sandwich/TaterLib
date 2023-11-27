@@ -1,8 +1,6 @@
 package dev.neuralnexus.taterlib.common.utils;
 
-/**
- * Represents a position in the world
- */
+/** Represents a position in the world */
 public class Position {
     private final double x;
     private final double y;
@@ -10,6 +8,7 @@ public class Position {
 
     /**
      * Creates a new position.
+     *
      * @param x The x coordinate.
      * @param y The y coordinate.
      * @param z The z coordinate.
@@ -40,6 +39,7 @@ public class Position {
 
     /**
      * Getter for the z coordinate.
+     *
      * @return The z coordinate.
      */
     public double getZ() {

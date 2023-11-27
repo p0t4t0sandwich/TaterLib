@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.forge.event.entity;
 
 import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
-/**
- * Forge implementation of {@link EntityDamageEvent}.
- */
+/** Forge implementation of {@link EntityDamageEvent}. */
 public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDamageEvent {
     private final LivingDamageEvent event;
 
@@ -14,25 +13,19 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isCanceled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCause() {
         return event.getSource().toString();

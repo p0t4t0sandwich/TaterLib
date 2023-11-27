@@ -3,14 +3,13 @@ package dev.neuralnexus.taterlib.bukkit.inventory;
 import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 
-/**
- * Abstracts a Bukkit item stack to an AbstractItemStack.
- */
+/** Abstracts a Bukkit item stack to an AbstractItemStack. */
 public class BukkitItemStack implements ItemStack {
     private final org.bukkit.inventory.ItemStack itemStack;
 
     /**
      * Constructor.
+     *
      * @param itemStack The Bukkit item stack.
      */
     public BukkitItemStack(org.bukkit.inventory.ItemStack itemStack) {
@@ -19,55 +18,44 @@ public class BukkitItemStack implements ItemStack {
 
     /**
      * Getter for the Bukkit item stack.
+     *
      * @return The Bukkit item stack.
      */
     public org.bukkit.inventory.ItemStack getItemStack() {
         return itemStack;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemMeta getMeta() {
         return new BukkitItemMeta(itemStack.getItemMeta());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setMeta(ItemMeta item) {
         itemStack.setItemMeta(((BukkitItemMeta) item).getItemMeta());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return "minecraft:" + itemStack.getType().name().toLowerCase();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getCount() {
         return itemStack.getAmount();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setAmount(count);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());

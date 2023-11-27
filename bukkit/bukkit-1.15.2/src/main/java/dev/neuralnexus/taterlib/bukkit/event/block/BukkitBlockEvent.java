@@ -4,9 +4,7 @@ import dev.neuralnexus.taterlib.bukkit.block.BukkitBlock;
 import dev.neuralnexus.taterlib.common.block.Block;
 import dev.neuralnexus.taterlib.common.event.block.BlockEvent;
 
-/**
- * Bukkit implementation of {@link BlockEvent}.
- */
+/** Bukkit implementation of {@link BlockEvent}. */
 public class BukkitBlockEvent implements BlockEvent {
     private final org.bukkit.event.block.BlockEvent event;
 
@@ -14,9 +12,7 @@ public class BukkitBlockEvent implements BlockEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Block getBlock() {
         return new BukkitBlock(event.getBlock());

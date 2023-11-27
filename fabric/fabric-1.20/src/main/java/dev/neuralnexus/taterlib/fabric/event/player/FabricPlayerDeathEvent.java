@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
+
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -17,39 +18,29 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
         this.source = source;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new FabricPlayer(player);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
         return source.getDeathMessage(player).getString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasKeepInventory() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

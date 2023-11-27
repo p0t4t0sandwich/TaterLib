@@ -4,9 +4,7 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 
-/**
- * Forge implementation of {@link PlayerEvent}.
- */
+/** Forge implementation of {@link PlayerEvent}. */
 public class ForgePlayerEvent implements PlayerEvent {
     private final net.minecraftforge.fml.common.gameevent.PlayerEvent event;
 
@@ -14,9 +12,7 @@ public class ForgePlayerEvent implements PlayerEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new ForgePlayer(event.player);

@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+
 import org.bukkit.event.player.PlayerQuitEvent;
 
-/**
- * Bukkit implementation of {@link PlayerLogoutEvent}.
- */
+/** Bukkit implementation of {@link PlayerLogoutEvent}. */
 public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements PlayerLogoutEvent {
     private final PlayerQuitEvent event;
 
@@ -14,17 +13,13 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLogoutMessage() {
         return event.getQuitMessage();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         event.setQuitMessage(message);

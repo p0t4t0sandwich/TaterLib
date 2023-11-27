@@ -14,20 +14,20 @@ dependencies {
 
 tasks.withType(ProcessResources).configureEach {
     var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            forge_version          : forge_version,
-            pack_format_number     : pack_format_number,
+            minecraft_version  : minecraft_version,
+            forge_version      : forge_version,
+            pack_format_number : pack_format_number,
 
-            project_id             : project_id,
-            project_name           : project_name,
-            project_description    : project_description,
-            license                : license,
-            version                : version,
-            authors                : authors,
+            project_id         : project_id,
+            project_name       : project_name,
+            project_description: project_description,
+            license            : license,
+            version            : version,
+            authors            : authors,
 
-            homepage_url           : homepage_url,
-            issue_tracker_url      : issue_tracker_url,
-            update_json_url        : update_json_url
+            homepage_url       : homepage_url,
+            issue_tracker_url  : issue_tracker_url,
+            update_json_url    : update_json_url
     ]
     inputs.properties replaceProperties
 

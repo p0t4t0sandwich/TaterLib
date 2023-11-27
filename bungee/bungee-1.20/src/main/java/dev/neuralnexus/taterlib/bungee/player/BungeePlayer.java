@@ -5,21 +5,21 @@ import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.common.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.common.utils.Location;
+
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.UUID;
 
-/**
- * BungeeCord implementation of {@link ProxyPlayer}.
- */
+/** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer {
     private final ProxiedPlayer player;
     private String serverName;
 
     /**
      * Constructor.
+     *
      * @param player The BungeeCord player.
      */
     public BungeePlayer(ProxiedPlayer player) {
@@ -33,6 +33,7 @@ public class BungeePlayer implements ProxyPlayer {
 
     /**
      * Constructor.
+     *
      * @param player The BungeeCord player.
      * @param serverName The name of the server the player is on.
      */
@@ -43,6 +44,7 @@ public class BungeePlayer implements ProxyPlayer {
 
     /**
      * Gets the BungeeCord player
+     *
      * @return The BungeeCord player
      */
     public ProxiedPlayer getPlayer() {
@@ -51,6 +53,7 @@ public class BungeePlayer implements ProxyPlayer {
 
     /**
      * Connect the player to a server.
+     *
      * @param serverName The name of the server to connect to.
      */
     @Override
@@ -60,215 +63,159 @@ public class BungeePlayer implements ProxyPlayer {
         player.connect(server);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return player.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
         return player.getDisplayName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getServerName() {
         return serverName;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setServerName(String server) {
         this.serverName = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(new ComponentBuilder(message).create());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
         player.getServer().getInfo().sendData(channel, data);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(String permission) {
         return player.hasPermission(permission);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public PlayerInventory getInventory() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void kickPlayer(String message) {
         player.disconnect(new ComponentBuilder(message).create());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getEntityId() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove() {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCustomName() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDimension() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getBiome() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void teleport(Entity entity) {}
 }

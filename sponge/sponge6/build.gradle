@@ -20,9 +20,9 @@ sponge {
         entrypoint("${group_id}.${project_id}.sponge.Sponge${project_name}Plugin")
         description(project_description)
         links {
-             homepage(homepage_url)
-             source(repo_url)
-             issues(issue_tracker_url)
+            homepage(homepage_url)
+            source(repo_url)
+            issues(issue_tracker_url)
         }
         dependency("spongeapi") {
             loadOrder(PluginDependency.LoadOrder.AFTER)

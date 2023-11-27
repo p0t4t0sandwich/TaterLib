@@ -4,14 +4,13 @@ import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
 
 import java.util.List;
 
-/**
- * Abstracts a Bukkit item meta to an AbstractItemMeta.
- */
+/** Abstracts a Bukkit item meta to an AbstractItemMeta. */
 public class BukkitItemMeta implements ItemMeta {
     private final org.bukkit.inventory.meta.ItemMeta itemMeta;
 
     /**
      * Constructor.
+     *
      * @param itemMeta The Bukkit item meta.
      */
     public BukkitItemMeta(org.bukkit.inventory.meta.ItemMeta itemMeta) {
@@ -20,79 +19,62 @@ public class BukkitItemMeta implements ItemMeta {
 
     /**
      * Getter for the Bukkit item meta.
+     *
      * @return The Bukkit item meta.
      */
     public org.bukkit.inventory.meta.ItemMeta getItemMeta() {
         return itemMeta;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemMeta.hasDisplayName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
         return itemMeta.getDisplayName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemMeta.setDisplayName(name);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         return itemMeta.hasLore();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<String> getLore() {
         return itemMeta.getLore();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         itemMeta.setLore(lore);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemMeta.hasEnchants();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isUnbreakable() {
         return itemMeta.isUnbreakable();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         itemMeta.setUnbreakable(unbreakable);

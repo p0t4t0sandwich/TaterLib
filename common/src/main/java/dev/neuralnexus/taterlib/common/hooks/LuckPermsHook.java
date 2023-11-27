@@ -10,15 +10,14 @@ import java.util.UUID;
 
 /**
  * A hook for LuckPerms
+ *
  * @see <a href="https://luckperms.net/">LuckPerms</a>
  */
 public class LuckPermsHook {
-    private final LuckPerms luckPerms;
     private static LuckPermsHook instance;
+    private final LuckPerms luckPerms;
 
-    /**
-     * Create a new hook
-     */
+    /** Create a new hook */
     public LuckPermsHook() {
         instance = this;
         this.luckPerms = LuckPermsProvider.get();
@@ -26,6 +25,7 @@ public class LuckPermsHook {
 
     /**
      * Get the instance
+     *
      * @return The instance
      */
     public static LuckPermsHook get() {
@@ -34,6 +34,7 @@ public class LuckPermsHook {
 
     /**
      * Get the CachedMetaData for a player
+     *
      * @param playerUuid The UUID of the player to get the CachedMetaData for
      * @return The CachedMetaData for the player
      */
@@ -45,6 +46,7 @@ public class LuckPermsHook {
 
     /**
      * Get the prefix for a player
+     *
      * @param playerUuid The UUID of the player to get the prefix for
      * @return The prefix for the player
      */
@@ -55,6 +57,7 @@ public class LuckPermsHook {
 
     /**
      * Set the prefix for a player
+     *
      * @param playerUuid The UUID of the player to set the prefix for
      * @param prefix The prefix to set
      * @param priority The priority of the prefix
@@ -67,6 +70,7 @@ public class LuckPermsHook {
 
     /**
      * Set the prefix for a player
+     *
      * @param playerUuid The UUID of the player to set the prefix for
      * @param prefix The prefix to set
      */
@@ -76,6 +80,7 @@ public class LuckPermsHook {
 
     /**
      * Get the suffix for a player
+     *
      * @param playerUuid The UUID of the player to get the suffix for
      * @return The suffix for the player
      */
@@ -86,6 +91,7 @@ public class LuckPermsHook {
 
     /**
      * Set the suffix for a player
+     *
      * @param playerUuid The UUID of the player to set the suffix for
      * @param suffix The suffix to set
      * @param priority The priority of the suffix
@@ -98,6 +104,7 @@ public class LuckPermsHook {
 
     /**
      * Set the suffix for a player
+     *
      * @param playerUuid The UUID of the player to set the suffix for
      * @param suffix The suffix to set
      */
@@ -107,6 +114,7 @@ public class LuckPermsHook {
 
     /**
      * Player has permission
+     *
      * @param playerUuid The player to check
      * @param permission The permission to check
      * @return If the player has the permission
@@ -114,6 +122,7 @@ public class LuckPermsHook {
     public boolean playerHasPermission(UUID playerUuid, String permission) {
         if (this.luckPerms == null) return false;
         User user = luckPerms.getUserManager().getUser(playerUuid);
-        return user != null && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
+        return user != null
+                && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
 }

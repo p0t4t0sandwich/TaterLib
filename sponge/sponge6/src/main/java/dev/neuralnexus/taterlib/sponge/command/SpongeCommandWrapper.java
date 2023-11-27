@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.sponge.command;
 
 import dev.neuralnexus.taterlib.common.command.Command;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
@@ -9,9 +10,7 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 
-/**
- * Wraps a command callback into a Sponge Command.
- */
+/** Wraps a command callback into a Sponge Command. */
 public class SpongeCommandWrapper implements CommandExecutor {
     private final Command.Callback callback;
     private final String commandName;
@@ -22,7 +21,8 @@ public class SpongeCommandWrapper implements CommandExecutor {
     }
 
     @Override
-    public CommandResult execute(CommandSource src, CommandContext commandArgs) throws CommandException {
+    public CommandResult execute(CommandSource src, CommandContext commandArgs)
+            throws CommandException {
         try {
             String[] args = commandArgs.<String>getOne("args").get().split(" ");
             if (src instanceof Player) {
@@ -32,7 +32,6 @@ public class SpongeCommandWrapper implements CommandExecutor {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return CommandResult.builder()
-                .successCount(1).build();
+        return CommandResult.builder().successCount(1).build();
     }
 }

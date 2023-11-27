@@ -6,31 +6,26 @@ import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Abstracts a Sponge inventory to an AbstractInventory.
- */
+/** Abstracts a Sponge inventory to an AbstractInventory. */
 public class SpongeInventory implements Inventory {
     private final org.spongepowered.api.item.inventory.Inventory inventory;
 
     /**
      * Constructor.
+     *
      * @param inventory The Sponge inventory.
      */
     public SpongeInventory(org.spongepowered.api.item.inventory.Inventory inventory) {
         this.inventory = inventory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getSize() {
         return inventory.capacity();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack getItem(int slot) {
         if (!inventory.slot(slot).isPresent()) {
@@ -39,25 +34,19 @@ public class SpongeInventory implements Inventory {
         return new SpongeItemStack(inventory.slot(slot).get().peek());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
         inventory.slot(slot).get().set(((SpongeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
         inventory.offer(((SpongeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
         if (inventory.contains(((SpongeItemStack) item).getItemStack())) {
@@ -70,9 +59,7 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getContents() {
         ItemStack[] contents = new ItemStack[getSize()];
@@ -82,9 +69,7 @@ public class SpongeInventory implements Inventory {
         return contents;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
@@ -92,9 +77,7 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getStorageContents() {
         ItemStack[] contents = new ItemStack[getSize()];
@@ -105,9 +88,7 @@ public class SpongeInventory implements Inventory {
         return contents;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
@@ -115,17 +96,13 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
         return inventory.contains(((SpongeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
         for (ItemStack item : getContents()) {
@@ -136,9 +113,7 @@ public class SpongeInventory implements Inventory {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(ItemStack item, int amount) {
         int total = 0;
@@ -150,9 +125,7 @@ public class SpongeInventory implements Inventory {
         return total >= amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(String type, int amount) {
         int total = 0;
@@ -164,9 +137,7 @@ public class SpongeInventory implements Inventory {
         return total >= amount;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
@@ -178,9 +149,7 @@ public class SpongeInventory implements Inventory {
         return map;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -191,9 +160,7 @@ public class SpongeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -204,9 +171,7 @@ public class SpongeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
         for (int i = 0; i < getSize(); i++) {
@@ -217,9 +182,7 @@ public class SpongeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -229,9 +192,7 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -241,17 +202,13 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         inventory.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.slot(slot).get().clear();

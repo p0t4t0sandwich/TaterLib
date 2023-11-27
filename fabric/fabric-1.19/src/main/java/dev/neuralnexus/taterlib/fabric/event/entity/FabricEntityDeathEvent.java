@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.fabric.event.entity;
 
 import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
@@ -17,37 +18,29 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
         this.source = source;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ItemStack> getDrops() {
         return new ArrayList<>();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
-        return source.getAttacker() instanceof LivingEntity ? ((LivingEntity) source.getAttacker()).getXpToDrop() : 0;
+        return source.getAttacker() instanceof LivingEntity
+                ? ((LivingEntity) source.getAttacker()).getXpToDrop()
+                : 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 }

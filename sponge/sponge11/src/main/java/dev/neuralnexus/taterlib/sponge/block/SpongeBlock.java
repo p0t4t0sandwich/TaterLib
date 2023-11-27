@@ -2,15 +2,14 @@ package dev.neuralnexus.taterlib.sponge.block;
 
 import dev.neuralnexus.taterlib.common.block.Block;
 import dev.neuralnexus.taterlib.common.utils.Position;
+
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 
-/**
- * Sponge implementation of {@link Block}.
- */
+/** Sponge implementation of {@link Block}. */
 public class SpongeBlock implements Block {
     private final ServerLocation pos;
     private final BlockState block;
@@ -20,18 +19,14 @@ public class SpongeBlock implements Block {
         this.block = location.block();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         Registry<BlockType> registry = RegistryTypes.BLOCK_TYPE.get();
         return registry.findValueKey(block.type()).get().asString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Position getBlockPos() {
         return new Position(pos.blockX(), pos.blockY(), pos.blockZ());

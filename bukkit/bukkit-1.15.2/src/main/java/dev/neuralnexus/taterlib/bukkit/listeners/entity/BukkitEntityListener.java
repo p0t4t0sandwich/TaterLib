@@ -4,16 +4,16 @@ import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.*;
 
-/**
- * Listens for entity events.
- */
+/** Listens for entity events. */
 public class BukkitEntityListener implements Listener {
     /**
      * Called when an entity is damaged.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -23,6 +23,7 @@ public class BukkitEntityListener implements Listener {
 
     /**
      * Called when an entity is damaged by an entity.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -32,6 +33,7 @@ public class BukkitEntityListener implements Listener {
 
     /**
      * Called when an entity is damaged by a block.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -41,6 +43,7 @@ public class BukkitEntityListener implements Listener {
 
     /**
      * Called when an entity dies.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -50,6 +53,7 @@ public class BukkitEntityListener implements Listener {
 
     /**
      * Called when an entity spawns.
+     *
      * @param event The event.
      */
     @EventHandler

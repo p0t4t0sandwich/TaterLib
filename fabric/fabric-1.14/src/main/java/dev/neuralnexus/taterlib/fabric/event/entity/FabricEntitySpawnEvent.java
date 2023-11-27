@@ -4,7 +4,9 @@ import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
+
 import net.minecraft.entity.Entity;
+
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntitySpawnEvent {
@@ -15,17 +17,13 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
         this.cir = cir;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return cir.isCancelled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
@@ -33,9 +31,7 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return new FabricLocation(((FabricEntity) getEntity()).getEntity());

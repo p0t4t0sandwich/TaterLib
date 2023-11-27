@@ -9,15 +9,14 @@ import dev.neuralnexus.taterlib.common.hooks.MohistHook;
 
 import java.util.HashMap;
 
-/**
- * API Provider
- */
+/** API Provider */
 public class TaterAPIProvider {
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final HashMap<String, Object> hooks = new HashMap<>();
 
     /**
      * Add a hook to the hooks map
+     *
      * @param hookName The name of the hook
      * @param hook The hook to add
      */
@@ -27,6 +26,7 @@ public class TaterAPIProvider {
 
     /**
      * Get if a hook exists
+     *
      * @param hookName The name of the hook
      */
     public static boolean isHooked(String hookName) {
@@ -35,6 +35,7 @@ public class TaterAPIProvider {
 
     /**
      * Get the instance of the API
+     *
      * @return The instance of the API
      */
     public static TaterAPI get() {
@@ -46,6 +47,7 @@ public class TaterAPIProvider {
 
     /**
      * Get the instance of the API for a specific server type
+     *
      * @param serverType The server type
      * @return The instance of the API
      */
@@ -58,6 +60,7 @@ public class TaterAPIProvider {
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
+     *
      * @param minecraftVersion The Minecraft version
      */
     public static void register(MinecraftVersion minecraftVersion) {
@@ -123,21 +126,21 @@ public class TaterAPIProvider {
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
+     *
      * @param minecraftVersion The Minecraft version
      */
     public static void register(String minecraftVersion) {
         TaterAPIProvider.register(MinecraftVersion.from(minecraftVersion));
     }
 
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     */
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     public static void unregister() {
         TaterAPIProvider.apis.remove(apis.keySet().iterator().next());
     }
 
     /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
+     *
      * @param serverType The server type
      */
     public static void unregister(ServerType serverType) {
@@ -148,7 +151,8 @@ public class TaterAPIProvider {
      * Throw this exception when the API hasn't loaded yet, or you don't have the plugin installed.
      */
     private static final class NotLoadedException extends IllegalStateException {
-        private static final String MESSAGE = "The API for %s hasn't loaded yet, or you don't have the TaterLib plugin installed.";
+        private static final String MESSAGE =
+                "The API for %s hasn't loaded yet, or you don't have the TaterLib plugin installed.";
 
         NotLoadedException(ServerType serverType) {
             super(String.format(MESSAGE, serverType));

@@ -1,25 +1,23 @@
 package dev.neuralnexus.taterlib.neoforge.logger;
 
 import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
+
 import org.slf4j.Logger;
 
-/**
- * The NeoForge logger.
- */
+/** The NeoForge logger. */
 public class NeoForgeLogger implements AbstractLogger {
     private final Logger logger;
 
     /**
      * Constructor for the Forge logger.
+     *
      * @param logger The Forge logger
      */
     public NeoForgeLogger(Logger logger) {
         this.logger = logger;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void info(String message) {
         logger.info(message);

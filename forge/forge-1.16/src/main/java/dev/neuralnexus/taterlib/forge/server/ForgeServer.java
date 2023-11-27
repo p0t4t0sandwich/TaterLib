@@ -3,14 +3,13 @@ package dev.neuralnexus.taterlib.forge.server;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.server.Server;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
+
 import net.minecraft.server.MinecraftServer;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Forge implementation of {@link Server}.
- */
+/** Forge implementation of {@link Server}. */
 public class ForgeServer implements Server {
     private final MinecraftServer server;
 
@@ -18,19 +17,17 @@ public class ForgeServer implements Server {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return "local";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getPlayerList().getPlayers().stream().map(ForgePlayer::new).collect(Collectors.toSet());
+        return server.getPlayerList().getPlayers().stream()
+                .map(ForgePlayer::new)
+                .collect(Collectors.toSet());
     }
 }

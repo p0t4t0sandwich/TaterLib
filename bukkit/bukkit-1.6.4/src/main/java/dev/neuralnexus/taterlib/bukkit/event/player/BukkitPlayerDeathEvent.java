@@ -5,9 +5,7 @@ import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 
-/**
- * Bukkit implementation of {@link PlayerDeathEvent}.
- */
+/** Bukkit implementation of {@link PlayerDeathEvent}. */
 public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements PlayerDeathEvent {
     private final org.bukkit.event.entity.PlayerDeathEvent event;
 
@@ -16,41 +14,31 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new BukkitPlayer(event.getEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
         return event.getDeathMessage();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         event.setDeathMessage(deathMessage);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasKeepInventory() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

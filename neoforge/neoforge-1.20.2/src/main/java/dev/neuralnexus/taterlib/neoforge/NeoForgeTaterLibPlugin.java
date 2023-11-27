@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge;
 
 import com.mojang.logging.LogUtils;
+
 import dev.neuralnexus.taterlib.common.TaterLib;
 import dev.neuralnexus.taterlib.common.TaterLibPlugin;
 import dev.neuralnexus.taterlib.common.api.TaterAPI;
@@ -12,12 +13,13 @@ import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.neoforge.event.pluginmessage.NeoForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
-import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
+import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
 import dev.neuralnexus.taterlib.neoforge.server.NeoForgeServer;
+
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModList;
@@ -29,14 +31,9 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
-/**
- * NeoForge entry point.
- */
+/** NeoForge entry point. */
 @Mod(TaterLib.Constants.PROJECT_ID)
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
-    /**
-     * Called when the Forge mod is initializing.
-     */
     public NeoForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
         pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
@@ -59,17 +56,20 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
 
     /**
      * Called when CommonSetupEvent is fired.
+     *
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(new NeoForgeRegisterPluginMessagesEvent());
+        PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                new NeoForgeRegisterPluginMessagesEvent());
         ModMessages.register();
         ModMessages.clearQueue();
     }
 
     /**
      * Called when the server is stopping.
+     *
      * @param event The event.
      */
     @SubscribeEvent

@@ -5,11 +5,10 @@ import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
+
 import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent;
 
-/**
- * Sponge implementation of {@link PlayerRespawnEvent}.
- */
+/** Sponge implementation of {@link PlayerRespawnEvent}. */
 public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
     private final RespawnPlayerEvent event;
 
@@ -17,33 +16,25 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
         return new SpongeLocation(event.getTargetEntity().getLocation());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return event.isBedSpawn();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

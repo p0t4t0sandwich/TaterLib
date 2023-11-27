@@ -3,7 +3,9 @@ package dev.neuralnexus.taterlib.sponge.entity;
 import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
+
 import net.kyori.adventure.text.Component;
+
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -11,14 +13,13 @@ import org.spongepowered.api.world.biome.Biome;
 
 import java.util.UUID;
 
-/**
- * Sponge implementation of {@link Entity}.
- */
+/** Sponge implementation of {@link Entity}. */
 public class SpongeEntity implements Entity {
     private final org.spongepowered.api.entity.Entity entity;
 
     /**
      * Constructor.
+     *
      * @param entity The Sponge entity.
      */
     public SpongeEntity(org.spongepowered.api.entity.Entity entity) {
@@ -27,47 +28,38 @@ public class SpongeEntity implements Entity {
 
     /**
      * Gets the Sponge entity.
+     *
      * @return The Sponge entity.
      */
     public org.spongepowered.api.entity.Entity getEntity() {
         return entity;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return entity.uniqueId();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getEntityId() {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return entity.type().toString().split("entity\\.")[1].replace(".", ":");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getCustomName() {
         if (!entity.get(Keys.CUSTOM_NAME).isPresent()) {
@@ -76,67 +68,51 @@ public class SpongeEntity implements Entity {
         return entity.get(Keys.CUSTOM_NAME).get().toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return new SpongeLocation(entity.location());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return entity.position().x();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return entity.position().y();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return entity.position().z();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         // TODO: Find a way to get the yaw
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         // TODO: Find a way to get the pitch
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDimension() {
         if (!entity.get(Keys.MAP_WORLD).isPresent()) {
@@ -145,9 +121,7 @@ public class SpongeEntity implements Entity {
         return entity.get(Keys.MAP_WORLD).get().asString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getBiome() {
         Biome biome = entity.location().world().biome(entity.location().blockPosition());
@@ -156,12 +130,8 @@ public class SpongeEntity implements Entity {
     }
 
     @Override
-    public void teleport(Location location) {
-
-    }
+    public void teleport(Location location) {}
 
     @Override
-    public void teleport(Entity entity) {
-
-    }
+    public void teleport(Entity entity) {}
 }

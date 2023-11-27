@@ -5,21 +5,15 @@ import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
 
 import java.util.Set;
 
-/**
- * NeoForge implementation of {@link RegisterPluginMessagesEvent}.
- */
+/** NeoForge implementation of {@link RegisterPluginMessagesEvent}. */
 public class NeoForgeRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
         ModMessages.addChannels(Set.of(channel));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void registerPluginChannels(Set<String> channels) {
         ModMessages.addChannels(channels);

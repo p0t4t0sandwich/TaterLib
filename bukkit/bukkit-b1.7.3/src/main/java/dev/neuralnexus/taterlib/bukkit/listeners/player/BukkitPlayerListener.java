@@ -5,14 +5,14 @@ import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerMessageEvent;
 import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+
 import org.bukkit.event.player.*;
 
-/**
- * Listens for player events.
- */
+/** Listens for player events. */
 public class BukkitPlayerListener extends PlayerListener {
     /**
      * Called when a player logs in.
+     *
      * @param event The event.
      */
     @Override
@@ -22,6 +22,7 @@ public class BukkitPlayerListener extends PlayerListener {
 
     /**
      * Called when a player logs out.
+     *
      * @param event The event.
      */
     @Override
@@ -31,6 +32,7 @@ public class BukkitPlayerListener extends PlayerListener {
 
     /**
      * Called when a player sends a message.
+     *
      * @param event The event.
      */
     @Override
@@ -40,6 +42,7 @@ public class BukkitPlayerListener extends PlayerListener {
 
     /**
      * Called when a player respawns.
+     *
      * @param event The event.
      */
     @Override

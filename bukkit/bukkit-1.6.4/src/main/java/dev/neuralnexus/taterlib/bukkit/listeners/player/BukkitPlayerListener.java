@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
 import dev.neuralnexus.taterlib.bukkit.event.player.*;
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -11,12 +12,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-/**
- * Listens for player events.
- */
+/** Listens for player events. */
 public class BukkitPlayerListener implements Listener {
     /**
      * Called when a player dies.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -26,6 +26,7 @@ public class BukkitPlayerListener implements Listener {
 
     /**
      * Called when a player logs in.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -35,6 +36,7 @@ public class BukkitPlayerListener implements Listener {
 
     /**
      * Called when a player logs out.
+     *
      * @param event The event.
      */
     @EventHandler
@@ -44,6 +46,7 @@ public class BukkitPlayerListener implements Listener {
 
     /**
      * Called when a player sends a message.
+     *
      * @param event The event.
      */
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -53,6 +56,7 @@ public class BukkitPlayerListener implements Listener {
 
     /**
      * Called when a player respawns.
+     *
      * @param event The event.
      */
     @EventHandler

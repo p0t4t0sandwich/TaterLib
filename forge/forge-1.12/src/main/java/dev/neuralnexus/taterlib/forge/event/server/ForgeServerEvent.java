@@ -4,11 +4,10 @@ import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
 import dev.neuralnexus.taterlib.common.server.Server;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+
 import net.minecraftforge.fml.common.event.FMLStateEvent;
 
-/**
- * Forge implementation of {@link ServerEvent}.
- */
+/** Forge implementation of {@link ServerEvent}. */
 public class ForgeServerEvent implements ServerEvent {
     private final FMLStateEvent event;
 
@@ -16,9 +15,7 @@ public class ForgeServerEvent implements ServerEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Server getServer() {
         return new ForgeServer(ForgeTaterLibPlugin.getServer());

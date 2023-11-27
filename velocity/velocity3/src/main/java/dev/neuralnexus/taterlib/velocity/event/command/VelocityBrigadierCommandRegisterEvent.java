@@ -7,65 +7,55 @@ import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
+
 import dev.neuralnexus.taterlib.common.command.Sender;
 import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 
-/**
- * Velocity implementation of {@link CommandRegisterEvent}.
- */
-public class VelocityBrigadierCommandRegisterEvent implements BrigadierCommandRegisterEvent<CommandSource> {
-    /**
-     * {@inheritDoc}
-     */
+/** Velocity implementation of {@link CommandRegisterEvent}. */
+public class VelocityBrigadierCommandRegisterEvent
+        implements BrigadierCommandRegisterEvent<CommandSource> {
+    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<CommandSource> getDispatcher() {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Sender getSender(CommandSource source) {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSource source) {
         return null;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSource source) {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
-    public void registerCommand(LiteralArgumentBuilder<CommandSource> node, Object plugin, String commandName, String... aliases) {
+    public void registerCommand(
+            LiteralArgumentBuilder<CommandSource> node,
+            Object plugin,
+            String commandName,
+            String... aliases) {
         CommandManager commandManager = ((ProxyServer) plugin).getCommandManager();
-        CommandMeta commandMeta = commandManager.metaBuilder(commandName)
-                .aliases(aliases)
-                .plugin(plugin)
-                .build();
+        CommandMeta commandMeta =
+                commandManager.metaBuilder(commandName).aliases(aliases).plugin(plugin).build();
         commandManager.register(commandMeta, new BrigadierCommand(node));
     }
 }

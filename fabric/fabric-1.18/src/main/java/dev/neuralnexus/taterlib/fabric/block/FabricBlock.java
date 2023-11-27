@@ -2,11 +2,10 @@ package dev.neuralnexus.taterlib.fabric.block;
 
 import dev.neuralnexus.taterlib.common.block.Block;
 import dev.neuralnexus.taterlib.common.utils.Position;
+
 import net.minecraft.util.math.BlockPos;
 
-/**
- * Fabric implementation of {@link Block}.
- */
+/** Fabric implementation of {@link Block}. */
 public class FabricBlock implements Block {
     private final BlockPos pos;
     private final net.minecraft.block.Block block;
@@ -16,17 +15,13 @@ public class FabricBlock implements Block {
         this.block = block;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         return block.getTranslationKey().split("block\\.")[1].replace(".", ":");
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Position getBlockPos() {
         return new Position(pos.getX(), pos.getY(), pos.getZ());

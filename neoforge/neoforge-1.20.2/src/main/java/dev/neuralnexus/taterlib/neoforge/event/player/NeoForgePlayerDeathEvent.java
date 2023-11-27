@@ -7,15 +7,14 @@ import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgeItemStack;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
+
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * NeoForge implementation of {@link PlayerDeathEvent}.
- */
+/** NeoForge implementation of {@link PlayerDeathEvent}. */
 public class NeoForgePlayerDeathEvent implements PlayerDeathEvent {
     private final LivingDeathEvent event;
     private List<ItemStack> drops = new ArrayList<>();
@@ -26,9 +25,7 @@ public class NeoForgePlayerDeathEvent implements PlayerDeathEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
@@ -37,63 +34,53 @@ public class NeoForgePlayerDeathEvent implements PlayerDeathEvent {
         if (event.getEntity().captureDrops() == null) {
             return new ArrayList<>();
         }
-        return event.getEntity().captureDrops().stream().map(itemEntity -> new NeoForgeItemStack(itemEntity.getItem())).collect(Collectors.toList());
+        return event.getEntity().captureDrops().stream()
+                .map(itemEntity -> new NeoForgeItemStack(itemEntity.getItem()))
+                .collect(Collectors.toList());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         drops.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
         if (droppedExp != 0) {
             return droppedExp;
         }
-        return event.getEntity().shouldDropExperience() ? event.getEntity().getExperienceReward() : 0;
+        return event.getEntity().shouldDropExperience()
+                ? event.getEntity().getExperienceReward()
+                : 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         this.droppedExp = exp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
         return new NeoForgeEntity(event.getEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new NeoForgePlayer((net.minecraft.world.entity.player.Player) event.getEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
         if (!deathMessage.isEmpty()) {
@@ -102,25 +89,19 @@ public class NeoForgePlayerDeathEvent implements PlayerDeathEvent {
         return event.getSource().getLocalizedDeathMessage(event.getEntity()).getString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasKeepInventory() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

@@ -10,20 +10,20 @@ import java.util.stream.Collectors;
 
 /**
  * A hook for Ketting
+ *
  * @see <a href="https://github.com/kettingpowered/">Ketting</a>
  */
 public class KettingHook {
     private static KettingHook instance;
 
-    /**
-     * Create a new hook
-     */
+    /** Create a new hook */
     public KettingHook() {
         instance = this;
     }
 
     /**
      * Get the instance
+     *
      * @return The instance
      */
     public static KettingHook get() {
@@ -31,9 +31,10 @@ public class KettingHook {
     }
 
     /**
-     * Get if a mod is loaded
-     * <br>
-     * <b>NOTE: You can just use {@link dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     * Get if a mod is loaded <br>
+     * <b>NOTE: You can just use {@link
+     * dev.neuralnexus.taterlib.common.api.TaterAPI#isPluginModLoaded(String)}</b>
+     *
      * @param modid The modid
      * @return If the mod is loaded
      */
@@ -47,6 +48,7 @@ public class KettingHook {
 
     /**
      * Get mod list
+     *
      * @return The mod list
      */
     public Set<String> getModList() {
@@ -59,6 +61,7 @@ public class KettingHook {
 
     /**
      * Get KettingCore version
+     *
      * @return The KettingCore version
      */
     public String getCoreVersion() {
@@ -67,6 +70,7 @@ public class KettingHook {
 
     /**
      * Get MC version
+     *
      * @return The MC version
      */
     public String getMcVersion() {

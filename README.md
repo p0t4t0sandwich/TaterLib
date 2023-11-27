@@ -9,7 +9,8 @@
 A cross API code library for various generalizations used in the Tater* plugins
 
 Please note, some abstractions may not be fully implemented yet, and some may be missing.
-If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible, or feel free to open a PR with an implementation.
+If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible,
+or feel free to open a PR with an implementation.
 
 Link to our support: [Discord](https://discord.neuralnexus.dev)
 
@@ -26,6 +27,7 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 [![Sponge](https://img.shields.io/ore/dt/taterlib?label=Sponge&logo=https%3A%2F%2Fspongepowered.org%2Ffavicon.ico&color=F7CF0D)](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
 
 ### Adding to your project
+
 ```gradle
 repositories {
     maven {
@@ -70,9 +72,9 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
 ## Commands and Permissions
 
-| Command                      | Permission          | Description           |
-|------------------------------|---------------------|-----------------------|
-| `/taterlib <version/reload>` | `taterlib.command`  | Root TaterLib Command |
+| Command                      | Permission         | Description           |
+|------------------------------|--------------------|-----------------------|
+| `/taterlib <version/reload>` | `taterlib.command` | Root TaterLib Command |
 
 ## Projects that use TaterLib
 
@@ -122,14 +124,15 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Updated `Server` implementation and added `ProxyServer` for proxies
 - Added `ServerEvent.getServer`
 - Fixes to `BukkitPlayerAdvancementEvent`
-  - `getPlayer` was returning null
-  - `getAdvancement` was returning the wrong string
+    - `getPlayer` was returning null
+    - `getAdvancement` was returning the wrong string
 - Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`
 - Added `PluginEnableEvent` and `PluginDisableEvent`
 - Modified TaterAPIProvider to handle multiple API implementations simultaneously
 - Added basic hybrid API hooks:
-  - Arclight
-  - Ketting
-  - Magma
-  - Mohist
-- Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while adding helper instantiations from hybrid hooks
+    - Arclight
+    - Ketting
+    - Magma
+    - Mohist
+- Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
+  adding helper instantiations from hybrid hooks

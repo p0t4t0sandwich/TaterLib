@@ -7,15 +7,14 @@ import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
+
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Forge implementation of {@link PlayerDeathEvent}.
- */
+/** Forge implementation of {@link PlayerDeathEvent}. */
 public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     private final LivingDeathEvent event;
     private List<ItemStack> drops = new ArrayList<>();
@@ -26,9 +25,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public List<ItemStack> getDrops() {
         if (!drops.isEmpty()) {
@@ -37,28 +34,24 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         if (event.getEntity().captureDrops() == null) {
             return new ArrayList<>();
         }
-        return event.getEntity().captureDrops().stream().map(itemEntity -> new ForgeItemStack(itemEntity.getItem())).collect(Collectors.toList());
+        return event.getEntity().captureDrops().stream()
+                .map(itemEntity -> new ForgeItemStack(itemEntity.getItem()))
+                .collect(Collectors.toList());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         drops.clear();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
         if (droppedExp != 0) {
@@ -67,33 +60,25 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         return 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         this.droppedExp = exp;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
         return new ForgeEntity(event.getEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new ForgePlayer((net.minecraft.world.entity.player.Player) event.getEntity());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
         if (!deathMessage.isEmpty()) {
@@ -102,25 +87,19 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         return event.getSource().getLocalizedDeathMessage(event.getEntityLiving()).getString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasKeepInventory() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

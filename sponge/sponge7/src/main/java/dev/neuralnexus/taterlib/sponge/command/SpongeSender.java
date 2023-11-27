@@ -1,14 +1,13 @@
 package dev.neuralnexus.taterlib.sponge.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
+
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
-/**
- * Sponge implementation of {@link Sender}
- */
+/** Sponge implementation of {@link Sender} */
 public class SpongeSender implements Sender {
     private final CommandSource sender;
 
@@ -16,41 +15,31 @@ public class SpongeSender implements Sender {
         this.sender = sender;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         return new UUID(0, 0);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return sender.getName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         sender.sendMessage(Text.of(message));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(String permission) {
         return sender.hasPermission(permission);

@@ -3,9 +3,7 @@ package dev.neuralnexus.taterlib.bukkit.block;
 import dev.neuralnexus.taterlib.common.block.Block;
 import dev.neuralnexus.taterlib.common.utils.Position;
 
-/**
- * Bukkit implementation of {@link Block}.
- */
+/** Bukkit implementation of {@link Block}. */
 public class BukkitBlock implements Block {
     private final org.bukkit.block.Block block;
 
@@ -13,18 +11,14 @@ public class BukkitBlock implements Block {
         this.block = block;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getType() {
         String blockType = block.getType().toString();
         return "minecraft:" + blockType.toLowerCase();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Position getBlockPos() {
         return new Position(block.getX(), block.getY(), block.getZ());

@@ -3,29 +3,27 @@ package dev.neuralnexus.taterlib.fabric.util;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.common.utils.Position;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 
-/**
- * Fabric implementation of {@link Location}.
- */
+/** Fabric implementation of {@link Location}. */
 public class FabricLocation implements Location {
     private Vec3d position;
     private float yaw;
     private float pitch;
     private String world;
 
-
-    /**
-     * Creates a new location from an Entity.
-     */
+    /** Creates a new location from an Entity. */
     public FabricLocation(Entity entity) {
-        this(entity.getPos(), entity.getYaw(0.0F), entity.getPitch(0.0F), new FabricEntity(entity).getDimension());
+        this(
+                entity.getPos(),
+                entity.getYaw(0.0F),
+                entity.getPitch(0.0F),
+                new FabricEntity(entity).getDimension());
     }
 
-    /**
-     * Creates a new location.
-     */
+    /** Creates a new location. */
     public FabricLocation(Vec3d position, float yaw, float pitch, String world) {
         this.position = position;
         this.yaw = yaw;
@@ -35,137 +33,106 @@ public class FabricLocation implements Location {
 
     /**
      * Getter for the Fabric location.
+     *
      * @return The Fabric location.
      */
     public Vec3d getLocation() {
         return position;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setX(double x) {
-        position = new Vec3d(x, getY(), getZ());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getX() {
         return position.getX();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setX(double x) {
+        position = new Vec3d(x, getY(), getZ());
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockX() {
         return Math.floor(getX());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setY(double y) {
-        position = new Vec3d(getX(), y, getZ());
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getY() {
         return position.getY();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setY(double y) {
+        position = new Vec3d(getX(), y, getZ());
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockY() {
         return Math.floor(getY());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setZ(double z) {
-        position = new Vec3d(getX(), getY(), z);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public double getZ() {
         return position.getZ();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setZ(double z) {
+        position = new Vec3d(getX(), getY(), z);
+    }
+
+    /** {@inheritDoc} */
     @Override
     public double getBlockZ() {
         return Math.floor(getZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setYaw(float yaw) {
-        this.yaw = yaw;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getYaw() {
         return yaw;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
-    public void setPitch(float pitch) {
-        this.pitch = pitch;
+    public void setYaw(float yaw) {
+        this.yaw = yaw;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public float getPitch() {
         return pitch;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
+    @Override
+    public void setPitch(float pitch) {
+        this.pitch = pitch;
+    }
+
+    /** {@inheritDoc} */
     @Override
     public Position getBlockPosition() {
         return new Position(getBlockX(), getBlockY(), getBlockZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setWorld(String world) {
-        this.world = world;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getWorld() {
         return world;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setWorld(String world) {
+        this.world = world;
     }
 }

@@ -4,9 +4,7 @@ import dev.neuralnexus.taterlib.common.entity.Entity;
 import dev.neuralnexus.taterlib.common.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 
-/**
- * Forge implementation of {@link EntityEvent}.
- */
+/** Forge implementation of {@link EntityEvent}. */
 public class ForgeEntityEvent implements EntityEvent {
     private final net.minecraftforge.event.entity.EntityEvent event;
 
@@ -14,9 +12,7 @@ public class ForgeEntityEvent implements EntityEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
         return new ForgeEntity(event.getEntity());

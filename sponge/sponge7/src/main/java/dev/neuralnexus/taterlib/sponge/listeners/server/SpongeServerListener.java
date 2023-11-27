@@ -7,18 +7,18 @@ import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartedEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStartingEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStoppedEvent;
 import dev.neuralnexus.taterlib.sponge.event.server.SpongeServerStoppingEvent;
+
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStartingServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppingEvent;
 
-/**
- * Listens to server events.
- */
+/** Listens to server events. */
 public class SpongeServerListener {
     /**
      * Called when the server is starting.
+     *
      * @param event The event.
      */
     @Listener
@@ -29,6 +29,7 @@ public class SpongeServerListener {
 
     /**
      * Called when the server has started.
+     *
      * @param event The event.
      */
     @Listener
@@ -38,6 +39,7 @@ public class SpongeServerListener {
 
     /**
      * Called when the server is stopping.
+     *
      * @param event The event.
      */
     @Listener
@@ -47,6 +49,7 @@ public class SpongeServerListener {
 
     /**
      * Called when the server has stopped.
+     *
      * @param event The event.
      */
     @Listener

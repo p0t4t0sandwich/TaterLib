@@ -3,8 +3,8 @@ version: '${version}'
 author: '${authors}'
 description: '${project_description}'
 main: '${group_id}.${project_id}.bukkit.Bukkit${project_name}Plugin'
-depends: []
-softdepends: [LuckPerms]
+depends: [ ]
+softdepends: [ LuckPerms ]
 commands:
   taterlib:
     description: TaterLib command

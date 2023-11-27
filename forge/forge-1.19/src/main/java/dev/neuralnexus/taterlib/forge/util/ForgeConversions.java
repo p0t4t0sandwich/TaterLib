@@ -1,15 +1,15 @@
 package dev.neuralnexus.taterlib.forge.util;
 
 import dev.neuralnexus.taterlib.common.utils.Position;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 
-/**
- * Conversion utilities for Forge
- */
+/** Conversion utilities for Forge */
 public final class ForgeConversions {
     /**
      * Converts a Vector to a Position
+     *
      * @param location The Location
      * @return The Position
      */
@@ -19,6 +19,7 @@ public final class ForgeConversions {
 
     /**
      * Converts a Position to a Block Location
+     *
      * @param position The Position
      * @return The Fabric Location
      */

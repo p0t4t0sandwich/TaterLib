@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Represents the version of Minecraft the server is running.
- */
+/** Represents the version of Minecraft the server is running. */
 public enum MinecraftVersion {
     // Pre-Classic
     RD_132211("rd-132211"),
@@ -173,23 +171,32 @@ public enum MinecraftVersion {
 
     /**
      * Create a MinecraftVersion from a string.
+     *
      * @param version The version to create
      * @return The MinecraftVersion
      */
     public static MinecraftVersion from(String version) {
-        return Arrays.stream(MinecraftVersion.values()).sorted((o1, o2) -> o2.ordinal() - o1.ordinal()).filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);
+        return Arrays.stream(MinecraftVersion.values())
+                .sorted((o1, o2) -> o2.ordinal() - o1.ordinal())
+                .filter(v -> version.contains(v.toString()))
+                .findFirst()
+                .orElse(UNKNOWN);
     }
 
     /**
      * Get a set of all the enums.
+     *
      * @return A set of all the enums
      */
     public static Set<String> getValues() {
-        return Arrays.stream(MinecraftVersion.values()).map(Enum::toString).collect(Collectors.toSet());
+        return Arrays.stream(MinecraftVersion.values())
+                .map(Enum::toString)
+                .collect(Collectors.toSet());
     }
 
     /**
      * Check if the specified version is a valid Minecraft version.
+     *
      * @param version The version to check
      * @return If the specified version is a valid Minecraft version
      */
@@ -199,6 +206,7 @@ public enum MinecraftVersion {
 
     /**
      * Get the version of Minecraft the server is running.
+     *
      * @return The version of Minecraft the server is running
      */
     public String getVersion() {
@@ -207,6 +215,7 @@ public enum MinecraftVersion {
 
     /**
      * Get the version of Minecraft the server is running.
+     *
      * @return The version of Minecraft the server is running
      */
     @Override
@@ -216,6 +225,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is equal to the specified version.
+     *
      * @param version The version to check
      * @return If the version of Minecraft the server is running is equal to the specified version
      */
@@ -225,6 +235,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is equal to the specified version.
+     *
      * @param version The version to check
      * @return If the version of Minecraft the server is running is equal to the specified version
      */
@@ -234,6 +245,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is older than the specified version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is older.
      */
@@ -243,6 +255,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is older than the specified version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is older.
      */
@@ -251,7 +264,9 @@ public enum MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or newer than the specified version.
+     * Get if the version of Minecraft the server is running is equal to or newer than the specified
+     * version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is equal to or newer.
      */
@@ -260,7 +275,9 @@ public enum MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or newer than the specified version.
+     * Get if the version of Minecraft the server is running is equal to or newer than the specified
+     * version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is equal to or newer.
      */
@@ -270,6 +287,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is newer than the specified version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is newer.
      */
@@ -279,6 +297,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is newer than the specified version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is newer.
      */
@@ -287,7 +306,9 @@ public enum MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or older than the specified version.
+     * Get if the version of Minecraft the server is running is equal to or older than the specified
+     * version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is equal to or older.
      */
@@ -296,7 +317,9 @@ public enum MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or older than the specified version.
+     * Get if the version of Minecraft the server is running is equal to or older than the specified
+     * version.
+     *
      * @param version The version to check.
      * @return If the Minecraft version is equal to or older.
      */

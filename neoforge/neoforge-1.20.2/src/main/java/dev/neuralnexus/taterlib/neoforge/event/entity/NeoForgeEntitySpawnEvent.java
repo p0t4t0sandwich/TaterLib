@@ -4,11 +4,10 @@ import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
+
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-/**
- * NeoForge implementation of {@link EntitySpawnEvent}.
- */
+/** NeoForge implementation of {@link EntitySpawnEvent}. */
 public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements EntitySpawnEvent {
     private final MobSpawnEvent.FinalizeSpawn event;
 
@@ -17,25 +16,19 @@ public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements Ent
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {
         return event.isSpawnCancelled();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setSpawnCancelled(cancelled);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getLocation() {
         return new NeoForgeLocation(((NeoForgeEntity) getEntity()).getEntity());

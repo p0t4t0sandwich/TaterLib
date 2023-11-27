@@ -3,13 +3,12 @@ package dev.neuralnexus.taterlib.forge.event.player;
 import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
+
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 
 import java.util.Collection;
 
-/**
- * Forge implementation of {@link PlayerAdvancementEvent}.
- */
+/** Forge implementation of {@link PlayerAdvancementEvent}. */
 public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
@@ -17,42 +16,37 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getAdvancement() {
         if (event.getAdvancement().getDisplay() != null) {
             return event.getAdvancement().getDisplay().getTitle().getString();
         }
-        if (event.getAdvancement().getParent() != null && event.getAdvancement().getParent().getDisplay() != null) {
+        if (event.getAdvancement().getParent() != null
+                && event.getAdvancement().getParent().getDisplay() != null) {
             return this.event.getAdvancement().getParent().getDisplay().getTitle().getString();
         } else {
             return "";
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         return new ForgePlayer(event.getEntityPlayer());
     }
 
-    /**
-     * Forge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}.
-     */
-    public static class AdvancementFinished extends ForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementFinished {
+    /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
+    public static class AdvancementFinished extends ForgePlayerAdvancementEvent
+            implements PlayerAdvancementEvent.AdvancementFinished {
         public AdvancementFinished(AdvancementEvent event) {
             super(event);
         }
     }
 
-    /**
-     * Forge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}.
-     */
-    public static class AdvancementProgress extends ForgePlayerAdvancementEvent implements PlayerAdvancementEvent.AdvancementProgress {
+    /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
+    public static class AdvancementProgress extends ForgePlayerAdvancementEvent
+            implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent event;
 
         public AdvancementProgress(AdvancementEvent event) {
@@ -60,9 +54,7 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
             this.event = event;
         }
 
-        /**
-         * {@inheritDoc}
-         */
+        /** {@inheritDoc} */
         @Override
         public Collection<String> getCriterion() {
             return this.event.getAdvancement().getCriteria().keySet();

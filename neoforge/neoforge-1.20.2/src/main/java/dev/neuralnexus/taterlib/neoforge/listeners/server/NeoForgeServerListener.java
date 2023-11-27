@@ -5,18 +5,18 @@ import dev.neuralnexus.taterlib.neoforge.event.server.NeoForgeServerStartedEvent
 import dev.neuralnexus.taterlib.neoforge.event.server.NeoForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.neoforge.event.server.NeoForgeServerStoppedEvent;
 import dev.neuralnexus.taterlib.neoforge.event.server.NeoForgeServerStoppingEvent;
+
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
-/**
- * Listens for server events.
- */
+/** Listens for server events. */
 public class NeoForgeServerListener {
     /**
      * Called when the server starts.
+     *
      * @param event The server starting event
      */
     @SubscribeEvent
@@ -26,6 +26,7 @@ public class NeoForgeServerListener {
 
     /**
      * Called when the server starts.
+     *
      * @param event The server started event
      */
     @SubscribeEvent
@@ -35,6 +36,7 @@ public class NeoForgeServerListener {
 
     /**
      * Called when the server stops.
+     *
      * @param event The server stopping event
      */
     @SubscribeEvent
@@ -44,6 +46,7 @@ public class NeoForgeServerListener {
 
     /**
      * Called when the server stops.
+     *
      * @param event The server stopped event
      */
     @SubscribeEvent

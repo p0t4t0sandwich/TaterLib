@@ -4,11 +4,10 @@ import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.common.utils.Location;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
+
 import net.minecraft.entity.player.PlayerEntity;
 
-/**
- * Fabric implementation of {@link PlayerRespawnEvent}.
- */
+/** Fabric implementation of {@link PlayerRespawnEvent}. */
 public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements PlayerRespawnEvent {
     private final boolean alive;
     private final PlayerEntity player;
@@ -19,25 +18,19 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
         this.alive = alive;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
         return new FabricLocation(((FabricPlayer) getPlayer()).getPlayer());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

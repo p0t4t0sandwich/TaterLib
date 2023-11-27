@@ -3,14 +3,13 @@ package dev.neuralnexus.taterlib.sponge.event.block;
 import dev.neuralnexus.taterlib.common.block.Block;
 import dev.neuralnexus.taterlib.common.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.sponge.block.SpongeBlock;
+
 import org.spongepowered.api.event.Cause;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.world.LocatableBlock;
 import org.spongepowered.api.world.server.ServerLocation;
 
-/**
- * Sponge implementation of {@link BlockEvent}.
- */
+/** Sponge implementation of {@link BlockEvent}. */
 public class SpongeBlockEvent implements BlockEvent {
     private final ChangeBlockEvent.Pre event;
 
@@ -18,9 +17,7 @@ public class SpongeBlockEvent implements BlockEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Block getBlock() {
         Cause cause = event.cause();

@@ -18,6 +18,7 @@ public class APIHandler {
 
     /**
      * Creates a new BNGAPIHandler instance.
+     *
      * @param baseURI The base URI of the API.
      */
     public APIHandler(String baseURI) {
@@ -33,6 +34,7 @@ public class APIHandler {
 
     /**
      * Creates a new BNGAPIHandler instance.
+     *
      * @param baseURI The base URI of the API.
      * @param authToken The auth token to use.
      */
@@ -49,6 +51,7 @@ public class APIHandler {
 
     /**
      * General API call method.
+     *
      * @param endpoint The endpoint to call.
      * @param requestMethod The request method to use.
      * @param returnClass The class to use when serializing the response.
@@ -83,11 +86,13 @@ public class APIHandler {
 
     /**
      * General API call method.
+     *
      * @param endpoint The endpoint to call.
      * @param requestMethod The request method to use.
      * @param data The data to send.
      */
-    public Object APICall(String endpoint, String requestMethod, Class<?> returnClass, Map<?,?> data) {
+    public Object APICall(
+            String endpoint, String requestMethod, Class<?> returnClass, Map<?, ?> data) {
         try {
             URL url = new URL(this.dataSource + endpoint);
 
@@ -124,20 +129,22 @@ public class APIHandler {
 
     /**
      * General API call method.
+     *
      * @param endpoint The endpoint to call.
      * @param requestMethod The request method to use.
      */
-    public Map<?,?> APICall(String endpoint, String requestMethod) {
+    public Map<?, ?> APICall(String endpoint, String requestMethod) {
         return (Map<?, ?>) this.APICall(endpoint, requestMethod, Map.class);
     }
 
     /**
      * General API call method.
+     *
      * @param endpoint The endpoint to call.
      * @param requestMethod The request method to use.
      * @param data The data to send.
      */
-    public Map<?,?> APICall(String endpoint, String requestMethod, Map<?,?> data) {
+    public Map<?, ?> APICall(String endpoint, String requestMethod, Map<?, ?> data) {
         return (Map<?, ?>) this.APICall(endpoint, requestMethod, Map.class, data);
     }
 }

@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.velocity.event.player;
 
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
+
 import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
 import dev.neuralnexus.taterlib.common.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
-/**
- * Velocity implementation of {@link PlayerLoginEvent}.
- */
+/** Velocity implementation of {@link PlayerLoginEvent}. */
 public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     private final ServerConnectedEvent event;
     private String loginMessage = "";
@@ -16,21 +15,18 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
         Player player = new VelocityPlayer(event.getPlayer());
         if (event.getPlayer().getCurrentServer().isPresent()) {
-            player.setServerName(event.getPlayer().getCurrentServer().get().getServerInfo().getName());
+            player.setServerName(
+                    event.getPlayer().getCurrentServer().get().getServerInfo().getName());
         }
         return player;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLoginMessage() {
         if (!loginMessage.isEmpty()) {
@@ -39,9 +35,7 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
         return event.getPlayer() + " joined the game";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         loginMessage = message;

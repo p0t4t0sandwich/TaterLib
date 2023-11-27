@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.fabric.event.server;
 import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
 import dev.neuralnexus.taterlib.common.server.Server;
 import dev.neuralnexus.taterlib.fabric.server.FabricServer;
+
 import net.minecraft.server.MinecraftServer;
 
 public class FabricServerEvent implements ServerEvent {
@@ -12,9 +13,7 @@ public class FabricServerEvent implements ServerEvent {
         this.server = server;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Server getServer() {
         return new FabricServer(server);

@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
-/**
- * Forge implementation of {@link PlayerLogoutEvent}.
- */
+/** Forge implementation of {@link PlayerLogoutEvent}. */
 public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLogoutEvent {
     private final PlayerEvent.PlayerLoggedOutEvent event;
     private String logoutMessage = "";
@@ -15,9 +14,7 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
         this.event = event;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getLogoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
@@ -26,9 +23,7 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
         return event.player.getName() + " left the game";
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         this.logoutMessage = message;

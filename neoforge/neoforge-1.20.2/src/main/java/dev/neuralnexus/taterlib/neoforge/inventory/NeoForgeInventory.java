@@ -6,63 +6,50 @@ import dev.neuralnexus.taterlib.common.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Abstracts a NeoForge inventory to an AbstractInventory.
- */
+/** Abstracts a NeoForge inventory to an AbstractInventory. */
 public class NeoForgeInventory implements Inventory {
     private final net.minecraft.world.entity.player.Inventory inventory;
 
     /**
      * Constructor.
+     *
      * @param inventory The NeoForge inventory.
      */
     public NeoForgeInventory(net.minecraft.world.entity.player.Inventory inventory) {
         this.inventory = inventory;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int getSize() {
         return inventory.getContainerSize();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack getItem(int slot) {
         return new NeoForgeItemStack(inventory.getItem(slot));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
         inventory.setItem(slot, ((NeoForgeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
         inventory.add(((NeoForgeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
         inventory.removeItem(((NeoForgeItemStack) item).getItemStack());
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getContents() {
         ItemStack[] abstractContents = new ItemStack[getSize()];
@@ -72,9 +59,7 @@ public class NeoForgeInventory implements Inventory {
         return abstractContents;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] items) {
         for (int i = 0; i < getSize(); i++) {
@@ -82,26 +67,20 @@ public class NeoForgeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public ItemStack[] getStorageContents() {
         // TODO: Implement
         return new ItemStack[0];
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
         // TODO: Implement
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -112,9 +91,7 @@ public class NeoForgeInventory implements Inventory {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -125,9 +102,7 @@ public class NeoForgeInventory implements Inventory {
         return false;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(ItemStack item, int count) {
         int total = 0;
@@ -139,9 +114,7 @@ public class NeoForgeInventory implements Inventory {
         return total >= count;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(String type, int count) {
         int total = 0;
@@ -153,9 +126,7 @@ public class NeoForgeInventory implements Inventory {
         return total >= count;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
@@ -167,9 +138,7 @@ public class NeoForgeInventory implements Inventory {
         return map;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -180,9 +149,7 @@ public class NeoForgeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int first(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -193,9 +160,7 @@ public class NeoForgeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
         for (int i = 0; i < getSize(); i++) {
@@ -206,9 +171,7 @@ public class NeoForgeInventory implements Inventory {
         return -1;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
         for (int i = 0; i < getSize(); i++) {
@@ -216,9 +179,7 @@ public class NeoForgeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void remove(String type) {
         for (int i = 0; i < getSize(); i++) {
@@ -228,9 +189,7 @@ public class NeoForgeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear() {
         for (int i = 0; i < getSize(); i++) {
@@ -238,9 +197,7 @@ public class NeoForgeInventory implements Inventory {
         }
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.removeItem(((NeoForgeItemStack) getItem(slot)).getItemStack());

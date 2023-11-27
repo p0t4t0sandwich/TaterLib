@@ -1,14 +1,13 @@
 package dev.neuralnexus.taterlib.forge.command;
 
 import dev.neuralnexus.taterlib.common.command.Sender;
+
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
 
 import java.util.UUID;
 
-/**
- * The Forge implementation of {@link Sender}
- */
+/** The Forge implementation of {@link Sender} */
 public class ForgeSender implements Sender {
     private final CommandSourceStack source;
 
@@ -16,9 +15,7 @@ public class ForgeSender implements Sender {
         this.source = source;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
         if (source.getEntity() == null) {
@@ -27,25 +24,19 @@ public class ForgeSender implements Sender {
         return source.getEntity().getUUID();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String getName() {
         return source.getTextName();
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         source.sendSuccess(Component.nullToEmpty(message), false);
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return source.hasPermission(permissionLevel);

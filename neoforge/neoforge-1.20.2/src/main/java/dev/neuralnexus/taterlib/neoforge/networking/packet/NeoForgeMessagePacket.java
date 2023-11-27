@@ -13,11 +13,11 @@ public class NeoForgeMessagePacket {
         this.message = message;
     }
 
-    public void encode(FriendlyByteBuf buf) {
-        buf.writeByteArray(this.message.getBytes());
-    }
-
     public static NeoForgeMessagePacket decode(FriendlyByteBuf buf) {
         return new NeoForgeMessagePacket(buf);
+    }
+
+    public void encode(FriendlyByteBuf buf) {
+        buf.writeByteArray(this.message.getBytes());
     }
 }

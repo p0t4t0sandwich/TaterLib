@@ -5,18 +5,18 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
+
 import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.velocity.event.player.VelocityPlayerLoginEvent;
 import dev.neuralnexus.taterlib.velocity.event.player.VelocityPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.velocity.event.player.VelocityPlayerMessageEvent;
 import dev.neuralnexus.taterlib.velocity.event.player.VelocityPlayerServerSwitchEvent;
 
-/**
- * Listens for player events.
- */
+/** Listens for player events. */
 public class VelocityPlayerListener {
     /**
      * Called when a player logs in.
+     *
      * @param event The player login event
      */
     @Subscribe
@@ -28,6 +28,7 @@ public class VelocityPlayerListener {
 
     /**
      * Called when a player logs out.
+     *
      * @param event The player logout event
      */
     @Subscribe
@@ -37,6 +38,7 @@ public class VelocityPlayerListener {
 
     /**
      * Called when a player sends a message, and sends it to the message relay.
+     *
      * @param event The player message event
      */
     @Subscribe(order = PostOrder.FIRST)
@@ -47,6 +49,7 @@ public class VelocityPlayerListener {
 
     /**
      * Called when a player switches servers.
+     *
      * @param event The player server switch event
      */
     @Subscribe
