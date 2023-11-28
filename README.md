@@ -48,6 +48,7 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 General notes:
 
 - Sponge is not available on pre 1.8 or on 1.14
+- 1.11 and 1.10 only have Sponge support
 - No Fabric on 1.13 or below (yet)
 - Bukkit is the only supported platform below 1.12 at this time
 
@@ -63,6 +64,8 @@ General notes:
 | 1.14            | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar`   |
 | 1.13            | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar`   |
 | 1.12            | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar`   |
+| 1.11            | 1.11        | `TaterLib-1.11-<version>.jar`   |
+| 1.10            | 1.10        | `TaterLib-1.10-<version>.jar`   |
 | 1.7.10 (Bukkit) | 1.7.10      | `TaterLib-1.7.10-<version>.jar` |
 | 1.6.4 (Bukkit)  | 1.6.4       | `TaterLib-1.6.4-<version>.jar`  |
 | 1.2.5 (Bukkit)  | 1.2.5       | `TaterLib-1.2.5-<version>.jar`  |
