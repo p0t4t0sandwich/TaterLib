@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 

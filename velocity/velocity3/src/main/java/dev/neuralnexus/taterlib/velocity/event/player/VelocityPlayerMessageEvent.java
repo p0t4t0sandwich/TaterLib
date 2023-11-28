@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.velocity.event.player;
 
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import java.util.HashSet;

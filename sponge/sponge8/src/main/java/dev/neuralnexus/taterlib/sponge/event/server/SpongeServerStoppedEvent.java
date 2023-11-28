@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStoppedEvent;
 
 import org.spongepowered.api.event.lifecycle.StoppedGameEvent;
 

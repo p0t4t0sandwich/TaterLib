@@ -4,8 +4,8 @@ import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterlib.common.command.Command;
-import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.command.VelocityCommandWrapper;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */

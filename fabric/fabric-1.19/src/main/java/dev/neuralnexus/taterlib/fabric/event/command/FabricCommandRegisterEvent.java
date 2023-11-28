@@ -5,12 +5,12 @@ import static net.minecraft.server.command.CommandManager.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterlib.common.command.Command;
-import dev.neuralnexus.taterlib.common.command.Sender;
-import dev.neuralnexus.taterlib.common.command.SimpleBrigadierWrapper;
-import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
+import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.fabric.command.FabricSender;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 

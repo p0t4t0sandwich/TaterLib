@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.player.Player;
 
 /** Bukkit implementation of {@link PlayerEvent}. */
 public class BukkitPlayerEvent implements PlayerEvent {

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
 
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerEvent;

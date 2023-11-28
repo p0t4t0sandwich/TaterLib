@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.command;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.command.ServerCommandSource;

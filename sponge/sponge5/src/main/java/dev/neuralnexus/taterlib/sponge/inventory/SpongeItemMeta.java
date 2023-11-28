@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.item.inventory.ItemStack;

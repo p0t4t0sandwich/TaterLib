@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.common.server.Server;
+import dev.neuralnexus.taterlib.event.server.ServerEvent;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
 
 import org.spongepowered.api.Sponge;

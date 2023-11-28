@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.command;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import net.md_5.bungee.api.CommandSender;
 

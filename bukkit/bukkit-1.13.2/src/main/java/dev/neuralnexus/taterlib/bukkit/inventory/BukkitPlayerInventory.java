@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
 import org.bukkit.inventory.EquipmentSlot;
 

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.neoforge.event.player.*;
 
 import net.minecraft.world.entity.player.Player;

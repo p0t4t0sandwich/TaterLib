@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.util;
 
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.utils.Position;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;

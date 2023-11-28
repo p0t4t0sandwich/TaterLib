@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 /** Abstracts a Sponge item stack to an AbstractItemStack. */
 public class SpongeItemStack implements ItemStack {

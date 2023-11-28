@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.block;
 
-import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.block.Block;
+import dev.neuralnexus.taterlib.utils.Position;
 
 import net.minecraft.util.math.BlockPos;
 

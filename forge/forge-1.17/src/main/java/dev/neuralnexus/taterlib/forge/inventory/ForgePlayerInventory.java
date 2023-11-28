@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
 import net.minecraft.world.entity.player.Inventory;
 

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
 
 import net.kyori.adventure.text.Component;

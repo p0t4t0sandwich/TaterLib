@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bungee.listeners.pluginmessages;
 
 import dev.neuralnexus.taterlib.bungee.event.pluginmessages.BungeePluginMessageEvent;
-import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;

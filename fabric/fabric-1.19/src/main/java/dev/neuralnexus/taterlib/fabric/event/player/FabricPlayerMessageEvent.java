@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.entity.player.PlayerEntity;
 

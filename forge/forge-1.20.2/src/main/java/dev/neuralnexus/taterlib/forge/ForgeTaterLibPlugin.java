@@ -2,14 +2,14 @@ package dev.neuralnexus.taterlib.forge;
 
 import com.mojang.logging.LogUtils;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
-import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.api.info.ServerType;
-import dev.neuralnexus.taterlib.common.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.common.event.api.PluginMessageEvents;
-import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.event.api.PluginEvents;
+import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;

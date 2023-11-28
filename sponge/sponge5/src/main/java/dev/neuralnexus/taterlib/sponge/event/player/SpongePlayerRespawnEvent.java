@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
 

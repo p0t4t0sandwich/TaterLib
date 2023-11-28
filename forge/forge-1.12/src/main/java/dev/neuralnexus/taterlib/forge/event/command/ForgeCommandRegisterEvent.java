@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.command;
 
-import dev.neuralnexus.taterlib.common.command.Command;
-import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.command.ForgeCommandWrapper;
 
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;

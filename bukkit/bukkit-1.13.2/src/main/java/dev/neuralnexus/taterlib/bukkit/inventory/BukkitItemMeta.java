@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
 
 import java.util.List;
 

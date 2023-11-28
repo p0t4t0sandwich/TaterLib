@@ -3,10 +3,10 @@ package dev.neuralnexus.taterlib.velocity.player;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.player.ProxyPlayer;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 
 import net.kyori.adventure.text.Component;

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.Inventory;
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.Inventory;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;

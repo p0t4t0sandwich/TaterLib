@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
 import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
-import dev.neuralnexus.taterlib.common.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterlib.utils.Location;
 
 /** Bukkit implementation of {@link EntitySpawnEvent}. */
 public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntitySpawnEvent {

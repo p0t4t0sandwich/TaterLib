@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
 
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.minecraft.server.MinecraftServer;

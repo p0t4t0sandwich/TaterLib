@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
 
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;

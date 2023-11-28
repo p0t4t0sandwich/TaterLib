@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;

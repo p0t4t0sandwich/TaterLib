@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.util;
 
-import dev.neuralnexus.taterlib.common.utils.Location;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.utils.Position;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;

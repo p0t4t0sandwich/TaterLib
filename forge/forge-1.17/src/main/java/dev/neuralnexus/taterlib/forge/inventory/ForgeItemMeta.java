@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;

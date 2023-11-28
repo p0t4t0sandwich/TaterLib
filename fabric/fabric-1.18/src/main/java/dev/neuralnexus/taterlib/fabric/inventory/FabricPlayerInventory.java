@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
 /** Abstracts a Fabric player inventory to an AbstractPlayerInventory. */
 public class FabricPlayerInventory extends FabricInventory implements PlayerInventory {

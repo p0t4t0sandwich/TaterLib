@@ -4,8 +4,8 @@ import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.bukkit.event.player.BukkitPlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.*;

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 
 /** Forge implementation of {@link PlayerEvent}. */

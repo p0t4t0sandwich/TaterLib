@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.server.Server;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

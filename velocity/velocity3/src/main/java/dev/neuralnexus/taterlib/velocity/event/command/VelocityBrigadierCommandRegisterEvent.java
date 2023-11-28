@@ -8,10 +8,10 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
-import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.common.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.player.Player;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent

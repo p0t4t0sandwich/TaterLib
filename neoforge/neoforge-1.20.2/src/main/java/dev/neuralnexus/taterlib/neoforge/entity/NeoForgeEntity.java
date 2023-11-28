@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.entity;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
 
 import net.minecraft.network.chat.Component;

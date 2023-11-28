@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bungee.server;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.server.Server;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 
 import net.md_5.bungee.api.config.ServerInfo;
 

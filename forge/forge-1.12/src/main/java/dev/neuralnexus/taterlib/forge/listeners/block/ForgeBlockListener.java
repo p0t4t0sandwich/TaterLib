@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.listeners.block;
 
-import dev.neuralnexus.taterlib.common.event.api.BlockEvents;
+import dev.neuralnexus.taterlib.event.api.BlockEvents;
 import dev.neuralnexus.taterlib.forge.event.block.ForgeBlockBreakEvent;
 
 import net.minecraftforge.event.world.BlockEvent;

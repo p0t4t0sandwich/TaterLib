@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.common.inventory.ItemMeta;
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 /** Abstracts a Fabric item stack to an AbstractItemStack. */
 public class FabricItemStack implements ItemStack {

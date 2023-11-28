@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.listeners.command;
 
-import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.neoforge.event.command.NeoForgeBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.neoforge.event.command.NeoForgeCommandRegisterEvent;
 

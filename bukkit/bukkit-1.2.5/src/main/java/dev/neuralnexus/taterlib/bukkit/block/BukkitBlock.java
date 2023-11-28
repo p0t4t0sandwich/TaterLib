@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.block;
 
-import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.block.Block;
+import dev.neuralnexus.taterlib.utils.Position;
 
 /** Bukkit implementation of {@link Block}. */
 public class BukkitBlock implements Block {

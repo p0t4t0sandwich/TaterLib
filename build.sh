@@ -32,8 +32,7 @@ function build {
   mkdir -p ./$OUT_FILE/META-INF
 
   # Copy common files
-  cp -r ./common/$GROUP_ID/$PROJ_ID/common ./$OUT_FILE/$GROUP_ID/$PROJ_ID
-  cp -r ./common/$GROUP_ID/$PROJ_ID/lib ./$OUT_FILE/$GROUP_ID/$PROJ_ID
+  cp -r ./common/$GROUP_ID/$PROJ_ID/* ./$OUT_FILE/$GROUP_ID/$PROJ_ID
   cp ../../LICENSE ./$OUT_FILE
   cp ../../LICENSE-API ./$OUT_FILE
   cp ../../README.md ./$OUT_FILE

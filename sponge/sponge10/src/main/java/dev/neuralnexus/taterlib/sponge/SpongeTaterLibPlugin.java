@@ -2,11 +2,11 @@ package dev.neuralnexus.taterlib.sponge;
 
 import com.google.inject.Inject;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
-import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.api.info.ServerType;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.sponge.listeners.block.SpongeBlockListener;
 import dev.neuralnexus.taterlib.sponge.listeners.command.SpongeCommandListener;
 import dev.neuralnexus.taterlib.sponge.listeners.entity.SpongeEntityListener;

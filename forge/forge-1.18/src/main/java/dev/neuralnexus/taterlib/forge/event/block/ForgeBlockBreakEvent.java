@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.block;
 
-import dev.neuralnexus.taterlib.common.event.block.BlockBreakEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 
 /** Forge implementation of {@link BlockBreakEvent}. */

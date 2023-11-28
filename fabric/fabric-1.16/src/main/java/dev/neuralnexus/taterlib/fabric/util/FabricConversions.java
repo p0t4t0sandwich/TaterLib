@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.util;
 
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.utils.Position;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.entity;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 
 import org.spongepowered.api.event.entity.DamageEntityEvent;

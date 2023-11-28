@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.logger;
 
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.AbstractLogger;
 
 import java.util.logging.Logger;
 

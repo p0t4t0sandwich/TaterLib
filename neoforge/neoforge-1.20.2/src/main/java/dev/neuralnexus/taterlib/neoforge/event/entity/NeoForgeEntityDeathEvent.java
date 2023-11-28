@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
+import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgeItemStack;
 
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;

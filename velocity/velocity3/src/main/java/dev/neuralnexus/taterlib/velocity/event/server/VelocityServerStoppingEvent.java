@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.event.server;
 
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
 
 /** Velocity implementation of {@link ServerStoppingEvent}. */
 public class VelocityServerStoppingEvent extends VelocityServerEvent

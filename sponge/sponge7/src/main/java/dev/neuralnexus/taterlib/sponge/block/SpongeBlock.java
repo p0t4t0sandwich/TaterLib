@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.block;
 
-import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.block.Block;
+import dev.neuralnexus.taterlib.utils.Position;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.world.Location;

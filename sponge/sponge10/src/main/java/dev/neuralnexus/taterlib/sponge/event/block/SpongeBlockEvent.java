@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.block;
 
-import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.event.block.BlockEvent;
+import dev.neuralnexus.taterlib.block.Block;
+import dev.neuralnexus.taterlib.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.sponge.block.SpongeBlock;
 
 import org.spongepowered.api.event.Cause;

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.command;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import org.spongepowered.api.command.CommandCause;
 

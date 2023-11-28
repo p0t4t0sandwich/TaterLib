@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLoginEvent;
 import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLogoutEvent;
 import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerMessageEvent;
 import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerServerSwitchEvent;
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;

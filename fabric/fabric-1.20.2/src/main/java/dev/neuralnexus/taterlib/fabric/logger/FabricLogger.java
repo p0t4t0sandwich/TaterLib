@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.logger;
 
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.AbstractLogger;
 
 import org.slf4j.Logger;
 

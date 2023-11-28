@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.neoforge.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStoppedEvent;
 
 /** NeoForge implementation of {@link ServerStoppedEvent}. */
 public class NeoForgeServerStoppedEvent extends NeoForgeServerEvent implements ServerStoppedEvent {

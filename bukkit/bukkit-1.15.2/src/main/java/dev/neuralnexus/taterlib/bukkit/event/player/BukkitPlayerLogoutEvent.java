@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
 
 import org.bukkit.event.player.PlayerQuitEvent;
 

@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.fabric;
 
-import dev.neuralnexus.taterlib.common.TaterLib;
-import dev.neuralnexus.taterlib.common.TaterLibPlugin;
-import dev.neuralnexus.taterlib.common.api.TaterAPI;
-import dev.neuralnexus.taterlib.common.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.common.api.info.ServerType;
-import dev.neuralnexus.taterlib.common.event.api.*;
-import dev.neuralnexus.taterlib.common.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.event.api.*;
+import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;

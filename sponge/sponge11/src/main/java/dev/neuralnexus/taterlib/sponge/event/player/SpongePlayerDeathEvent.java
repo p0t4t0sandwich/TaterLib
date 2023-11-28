@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.sponge.event.player;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterlib.common.inventory.ItemStack;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 

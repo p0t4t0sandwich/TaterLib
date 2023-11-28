@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.listeners.player;
 
-import dev.neuralnexus.taterlib.common.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.sponge.event.player.*;
 
 import org.spongepowered.api.advancement.DisplayInfo;

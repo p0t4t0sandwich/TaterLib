@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.command;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;

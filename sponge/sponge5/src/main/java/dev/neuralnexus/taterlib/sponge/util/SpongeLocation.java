@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.util;
 
-import dev.neuralnexus.taterlib.common.utils.Location;
-import dev.neuralnexus.taterlib.common.utils.Position;
+import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.utils.Position;
 
 /** Sponge implementation of {@link Location}. */
 public class SpongeLocation implements Location {

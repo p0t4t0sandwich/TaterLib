@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.command;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;

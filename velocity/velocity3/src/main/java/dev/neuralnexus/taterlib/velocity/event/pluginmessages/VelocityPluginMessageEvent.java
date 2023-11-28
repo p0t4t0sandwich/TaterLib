@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.event.pluginmessages;
 
 import com.velocitypowered.api.proxy.ServerConnection;
 
-import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
+import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
 
 /** Velocity implementation of {@link PluginMessageEvent}. */
 public class VelocityPluginMessageEvent implements PluginMessageEvent {
@@ -37,7 +37,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.common.player.Player getPlayer() {
+        public dev.neuralnexus.taterlib.player.Player getPlayer() {
             return new dev.neuralnexus.taterlib.velocity.player.VelocityPlayer(
                     (com.velocitypowered.api.proxy.Player) event.getSource());
         }

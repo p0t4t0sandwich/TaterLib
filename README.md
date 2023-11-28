@@ -143,3 +143,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
   adding helper instantiations from hybrid hooks
 - Added `Server#broadcastMessage(String)`
+- Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports

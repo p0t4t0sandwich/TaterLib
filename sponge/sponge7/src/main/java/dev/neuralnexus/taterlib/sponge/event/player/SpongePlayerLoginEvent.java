@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
 import org.spongepowered.api.event.network.ClientConnectionEvent;

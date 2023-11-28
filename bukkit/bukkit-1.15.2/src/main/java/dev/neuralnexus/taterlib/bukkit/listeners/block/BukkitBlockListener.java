@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.block;
 
 import dev.neuralnexus.taterlib.bukkit.event.block.BukkitBlockBreakEvent;
-import dev.neuralnexus.taterlib.common.event.api.BlockEvents;
+import dev.neuralnexus.taterlib.event.api.BlockEvents;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

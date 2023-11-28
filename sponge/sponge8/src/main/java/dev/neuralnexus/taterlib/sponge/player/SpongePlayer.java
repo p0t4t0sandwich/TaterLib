@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.player;
 
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 

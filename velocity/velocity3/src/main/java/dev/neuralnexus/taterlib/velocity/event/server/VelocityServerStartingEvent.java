@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.event.server;
 
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStartingEvent;
 
 /** Velocity implementation of {@link ServerStartingEvent}. */
 public class VelocityServerStartingEvent extends VelocityServerEvent

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStartingEvent;
 
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 

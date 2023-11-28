@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.block;
 
-import dev.neuralnexus.taterlib.common.event.block.BlockBreakEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 
 /** NeoForge implementation of {@link BlockBreakEvent}. */

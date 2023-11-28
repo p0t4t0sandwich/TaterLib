@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.logger;
 
-import dev.neuralnexus.taterlib.common.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.AbstractLogger;
 
 import org.apache.logging.log4j.Logger;
 

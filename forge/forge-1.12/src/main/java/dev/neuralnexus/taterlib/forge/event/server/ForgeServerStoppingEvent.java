@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
 
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.listeners.command;
 
-import dev.neuralnexus.taterlib.common.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.forge.event.command.ForgeBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
 

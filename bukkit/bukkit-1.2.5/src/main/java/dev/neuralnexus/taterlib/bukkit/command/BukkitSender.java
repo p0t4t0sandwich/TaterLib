@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.command;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
+import dev.neuralnexus.taterlib.command.Sender;
 
 import org.bukkit.command.CommandSender;
 

@@ -5,9 +5,9 @@ import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterlib.common.command.Sender;
-import dev.neuralnexus.taterlib.common.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.neoforge.command.NeoForgeSender;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 

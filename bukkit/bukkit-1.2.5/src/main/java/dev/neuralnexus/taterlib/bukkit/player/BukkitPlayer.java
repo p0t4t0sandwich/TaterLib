@@ -3,9 +3,9 @@ package dev.neuralnexus.taterlib.bukkit.player;
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
-import dev.neuralnexus.taterlib.common.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.common.player.Player;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import org.bukkit.plugin.Plugin;
 

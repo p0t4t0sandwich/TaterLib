@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.event.pluginmessages;
 
-import dev.neuralnexus.taterlib.common.event.pluginmessages.PluginMessageEvent;
+import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -36,7 +36,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.common.player.Player getPlayer() {
+        public dev.neuralnexus.taterlib.player.Player getPlayer() {
             return new dev.neuralnexus.taterlib.bungee.player.BungeePlayer(
                     (ProxiedPlayer) event.getReceiver());
         }

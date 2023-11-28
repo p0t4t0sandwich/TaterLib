@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.velocity.event.player;
 
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerLoginEvent;
-import dev.neuralnexus.taterlib.common.player.Player;
+import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /** Velocity implementation of {@link PlayerLoginEvent}. */

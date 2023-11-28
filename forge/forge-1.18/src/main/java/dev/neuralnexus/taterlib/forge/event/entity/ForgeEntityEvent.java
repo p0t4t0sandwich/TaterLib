@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.event.entity;
 
-import dev.neuralnexus.taterlib.common.entity.Entity;
-import dev.neuralnexus.taterlib.common.event.entity.EntityEvent;
+import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 
 /** Forge implementation of {@link EntityEvent}. */

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.block;
 
-import dev.neuralnexus.taterlib.common.block.Block;
-import dev.neuralnexus.taterlib.common.event.block.BlockEvent;
+import dev.neuralnexus.taterlib.block.Block;
+import dev.neuralnexus.taterlib.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.fabric.block.FabricBlock;
 
 import net.minecraft.block.BlockState;

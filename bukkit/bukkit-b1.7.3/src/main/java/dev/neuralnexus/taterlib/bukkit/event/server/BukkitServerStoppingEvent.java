@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.bukkit.event.server;
 
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.common.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterlib.common.server.Server;
+import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterlib.server.Server;
 
 /** Bukkit implementation of {@link ServerStoppingEvent}. */
 public class BukkitServerStoppingEvent implements ServerStoppingEvent {

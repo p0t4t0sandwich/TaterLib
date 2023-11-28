@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.event.server;
 
-import dev.neuralnexus.taterlib.common.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterlib.event.server.ServerStartedEvent;
 
 import org.bukkit.event.server.ServerLoadEvent;
 

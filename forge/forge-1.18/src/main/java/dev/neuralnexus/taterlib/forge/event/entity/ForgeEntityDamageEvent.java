@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.event.entity;
 
-import dev.neuralnexus.taterlib.common.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
 
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 

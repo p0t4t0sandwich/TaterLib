@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
-import dev.neuralnexus.taterlib.common.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.common.utils.Location;
+import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 
