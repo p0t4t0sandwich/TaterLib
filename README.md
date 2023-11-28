@@ -116,23 +116,23 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Simplified Plugin abstractions so depending on TaterLib is easier
 - Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
 - Added MinecraftVersion and ServerType enums.
-- Created `TaterAPI.isBrigadierSupported`
+- Created `TaterAPI#isBrigadierSupported()`
 - Abstracted plugin/mod isLoaded checks
 - `Player` now inherits `Entity`
-- Added `Entity.teleport`
+- Added `Entity#teleport(Location)` and `Entity#teleport(Entity)`
 - Abstracted brigadier helper into a wrapper class
 - Implemented registering simple commands for Forge/Fabric
 - Updated database utils
-- Added `Server` abstraction and `TaterAPI.getServer`
+- Added `Server` abstraction and `TaterAPI#getServer()`
 - Ported to Bukkit 1.13.2 and Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies
-- Added `ServerEvent.getServer`
+- Added `ServerEvent#getServer()`
 - Fixes to `BukkitPlayerAdvancementEvent`
     - `getPlayer` was returning null
     - `getAdvancement` was returning the wrong string
-- Abstracted `TaterAPI.registerChannels` into `RegisterPluginMessagesEvent`
+- Abstracted `TaterAPI#registerChannels(Set<String>)` into `RegisterPluginMessagesEvent`
 - Added `PluginEnableEvent` and `PluginDisableEvent`
 - Modified TaterAPIProvider to handle multiple API implementations simultaneously
 - Added basic hybrid API hooks:
@@ -142,3 +142,4 @@ Feel free to open a PR to add your plugin/mod to this list!
     - Mohist
 - Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
   adding helper instantiations from hybrid hooks
+- Added `Server#broadcastMessage(String)`

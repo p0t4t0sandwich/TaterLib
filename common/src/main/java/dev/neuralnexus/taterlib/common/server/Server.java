@@ -19,4 +19,13 @@ public interface Server {
      * @return The set of online players.
      */
     Set<Player> getOnlinePlayers();
+
+    /**
+     * Broadcast a message to the server.
+     *
+     * @param message The message to broadcast.
+     */
+    default void broadcastMessage(String message) {
+        getOnlinePlayers().forEach(player -> player.sendMessage(message));
+    }
 }
