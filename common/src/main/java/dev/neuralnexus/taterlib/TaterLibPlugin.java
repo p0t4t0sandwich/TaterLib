@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.plugin.Plugin;
 
 public interface TaterLibPlugin extends Plugin {
     /** Start the plugin. */

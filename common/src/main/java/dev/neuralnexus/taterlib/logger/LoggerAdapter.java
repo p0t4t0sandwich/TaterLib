@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.logger;
 
+import dev.neuralnexus.taterlib.Utils;
+
 /** A generic implementation of the AbstractLogger interface. */
 public class LoggerAdapter implements AbstractLogger {
     private final String prefix;
@@ -51,37 +53,37 @@ public class LoggerAdapter implements AbstractLogger {
     /** {@inheritDoc} */
     @Override
     public void info(String message) {
-        this.logger.info(this.prefix + message);
+        this.logger.info(Utils.ansiParser(this.prefix + message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void warn(String message) {
-        this.logger.warn(this.prefix + message);
+        this.logger.warn(Utils.ansiParser(this.prefix + message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void error(String message) {
-        this.logger.error(this.prefix + message);
+        this.logger.error(Utils.ansiParser(this.prefix + message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void debug(String message) {
-        this.logger.debug(this.prefix + message);
+        this.logger.debug(Utils.ansiParser(this.prefix + message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void trace(String message) {
-        this.logger.trace(this.prefix + message);
+        this.logger.trace(Utils.ansiParser(this.prefix + message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void fatal(String message) {
-        this.logger.fatal(this.prefix + message);
+        this.logger.fatal(Utils.ansiParser(this.prefix + message));
     }
 
     enum LoggerType {
