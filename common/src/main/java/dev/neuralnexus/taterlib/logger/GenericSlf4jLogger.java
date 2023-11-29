@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.logger;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
-/** A generic implementation of the AbstractLogger interface. */
-public class GenericLogger implements AbstractLogger {
+/** A generic SLF4J implementation of the AbstractLogger interface. */
+public class GenericSlf4jLogger implements AbstractLogger {
     private final Logger logger;
 
-    public GenericLogger(String PROJECT_ID) {
-        this.logger = Logger.getLogger(PROJECT_ID);
+    public GenericSlf4jLogger(Object logger) {
+        this.logger = (Logger) logger;
     }
 
     /** {@inheritDoc} */
@@ -19,30 +19,30 @@ public class GenericLogger implements AbstractLogger {
     /** {@inheritDoc} */
     @Override
     public void warn(String message) {
-        this.logger.warning(message);
+        this.logger.warn(message);
     }
 
     /** {@inheritDoc} */
     @Override
     public void error(String message) {
-        this.logger.severe(message);
+        this.logger.error(message);
     }
 
     /** {@inheritDoc} */
     @Override
     public void debug(String message) {
-        this.logger.fine(message);
+        this.logger.debug(message);
     }
 
     /** {@inheritDoc} */
     @Override
     public void trace(String message) {
-        this.logger.finest(message);
+        this.logger.trace(message);
     }
 
     /** {@inheritDoc} */
     @Override
     public void fatal(String message) {
-        this.logger.severe(message);
+        this.logger.error(message);
     }
 }

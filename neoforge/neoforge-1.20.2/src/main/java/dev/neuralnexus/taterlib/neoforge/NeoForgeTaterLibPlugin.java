@@ -10,13 +10,13 @@ import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.neoforge.event.pluginmessage.NeoForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
-import dev.neuralnexus.taterlib.neoforge.logger.NeoForgeLogger;
 import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
 import dev.neuralnexus.taterlib.neoforge.server.NeoForgeServer;
 
@@ -36,7 +36,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     public NeoForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
-        pluginStart(this, new NeoForgeLogger(LogUtils.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));

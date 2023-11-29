@@ -1,5 +1,10 @@
 package dev.neuralnexus.taterlib.bukkit;
 
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
@@ -10,17 +15,13 @@ import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
-import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.TaterAPI;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +34,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         instance = this;
 
         TaterAPIProvider.register(getServer().getBukkitVersion());
-        pluginStart(this, new BukkitLogger(getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
         api.setServer(() -> new BukkitServer(getServer()));

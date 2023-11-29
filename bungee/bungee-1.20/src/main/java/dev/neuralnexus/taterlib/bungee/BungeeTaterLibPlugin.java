@@ -1,5 +1,10 @@
 package dev.neuralnexus.taterlib.bungee;
 
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStartedEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStartingEvent;
@@ -7,16 +12,12 @@ import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStoppedEvent;
 import dev.neuralnexus.taterlib.bungee.event.server.BungeeServerStoppingEvent;
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.bungee.listeners.pluginmessages.BungeePluginMessageListener;
-import dev.neuralnexus.taterlib.bungee.logger.BungeeLogger;
 import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
-import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.TaterAPI;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -30,7 +31,7 @@ public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
 
     public BungeeTaterLibPlugin() {
         TaterAPIProvider.register(getProxy().getVersion());
-        pluginStart(this, new BungeeLogger(getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUNGEECORD);
         api.setIsPluginLoaded((plugin) -> getProxy().getPluginManager().getPlugin(plugin) != null);
         api.setServer(() -> new BungeeProxyServer(getProxy()));

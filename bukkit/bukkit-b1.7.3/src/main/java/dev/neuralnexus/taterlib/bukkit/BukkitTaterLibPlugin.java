@@ -1,5 +1,10 @@
 package dev.neuralnexus.taterlib.bukkit;
 
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartedEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
@@ -8,16 +13,12 @@ import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
-import dev.neuralnexus.taterlib.bukkit.logger.BukkitLogger;
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.TaterAPI;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -32,7 +33,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
         instance = this;
 
         TaterAPIProvider.register(getServer().getVersion());
-        pluginStart(this, new BukkitLogger(Bukkit.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, Bukkit.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
         api.setServer(() -> new BukkitServer(getServer()));

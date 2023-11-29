@@ -2,12 +2,11 @@ package dev.neuralnexus.taterlib.logger;
 
 import java.util.logging.Logger;
 
-/** A generic implementation of the AbstractLogger interface. */
-public class GenericLogger implements AbstractLogger {
+public class GenericJavaLogger implements AbstractLogger {
     private final Logger logger;
 
-    public GenericLogger(String PROJECT_ID) {
-        this.logger = Logger.getLogger(PROJECT_ID);
+    public GenericJavaLogger(Object logger) {
+        this.logger = (Logger) logger;
     }
 
     /** {@inheritDoc} */

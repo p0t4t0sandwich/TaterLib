@@ -14,9 +14,9 @@ import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
-import dev.neuralnexus.taterlib.forge.logger.ForgeLogger;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
@@ -36,7 +36,8 @@ import org.apache.logging.log4j.LogManager;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
-        pluginStart(this, new ForgeLogger(LogManager.getLogger()));
+        pluginStart(
+                this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
