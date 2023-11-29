@@ -58,7 +58,7 @@ dependencies {
     compileOnly("io.izzel.arclight:arclight-api:1.5.5")
 
     // Ketting
-    compileOnly("org.kettingpowered:kettingcore:1.0.1")
+    compileOnly("org.kettingpowered:kettingcore:1.1.2")
 
     // Magma
     compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")

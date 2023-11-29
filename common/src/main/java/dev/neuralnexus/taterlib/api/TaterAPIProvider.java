@@ -118,7 +118,9 @@ public class TaterAPIProvider {
                     KettingHook kettingHook = new KettingHook();
                     hooks.put("ketting", kettingHook);
                     bukkitApi.setIsModLoaded(kettingHook::hasMod);
+                    bukkitApi.setIsPluginLoaded(kettingHook::hasPlugin);
                     forgeApi.setIsModLoaded(kettingHook::hasMod);
+                    forgeApi.setIsPluginLoaded(kettingHook::hasPlugin);
                     break;
             }
         }
