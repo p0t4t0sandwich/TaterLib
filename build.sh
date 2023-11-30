@@ -53,10 +53,10 @@ function build {
   if [ "$FABRIC" != "N/A" ]; then
     cp -r ./fabric-$FABRIC/$GROUP_ID/$PROJ_ID/fabric ./$OUT_FILE/$GROUP_ID/$PROJ_ID
     cp ./fabric-$FABRIC/fabric.mod.json ./$OUT_FILE
-    cp ./fabric-$FABRIC/$PROJ_ID.mixins.json ./$OUT_FILE
+    cp ./fabric-$FABRIC/$PROJ_ID.mixins.json ./$OUT_FILE 2>/dev/null || :
     cp -r ./fabric-$FABRIC/assets ./$OUT_FILE
-    cp ./fabric-$FABRIC/fabric-$FABRIC-refmap.json ./$OUT_FILE
-    cp -r ./fabric-$FABRIC/META-INF/jars ./$OUT_FILE/META-INF
+    cp ./fabric-$FABRIC/fabric-$FABRIC-refmap.json ./$OUT_FILE 2>/dev/null || :
+    cp -r ./fabric-$FABRIC/META-INF/jars ./$OUT_FILE/META-INF 2>/dev/null || :
   fi
 
   # Copy sponge files -- Note: Sponge before Forge due to legacy mcmod.info

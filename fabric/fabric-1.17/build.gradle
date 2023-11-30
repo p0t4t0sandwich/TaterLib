@@ -68,13 +68,6 @@ task remappedShadowJar(type: RemapJarTask) {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_name}-fabric-${minecraft_version}-${version}.jar"
 }
-remappedShadowJar.doLast {
-    task ->
-        ant.checksum(file: task.archivePath) {
-            hashAlgorithm = 'md5'
-            property = 'md5sum'
-        }
-}
 
 tasks.assemble.dependsOn(tasks.remappedShadowJar)
 
