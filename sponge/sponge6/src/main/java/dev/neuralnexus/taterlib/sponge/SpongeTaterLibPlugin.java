@@ -38,7 +38,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Inject
     public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
         TaterAPIProvider.register(Sponge.getPlatform().getMinecraftVersion().getName());
-        pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, logger));
+        pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
         api.setIsPluginLoaded(Sponge.getPluginManager()::isLoaded);
         api.setServer(() -> new SpongeServer(Sponge.getServer()));

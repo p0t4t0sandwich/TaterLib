@@ -36,7 +36,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogUtils.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));

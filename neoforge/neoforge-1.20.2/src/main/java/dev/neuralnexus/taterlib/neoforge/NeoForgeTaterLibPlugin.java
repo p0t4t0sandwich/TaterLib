@@ -36,7 +36,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     public NeoForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogUtils.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));

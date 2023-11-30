@@ -43,7 +43,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(ForgeVersion.mcVersion);
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogManager.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(Loader::isModLoaded);
         api.setServer(() -> new ForgeServer(server));

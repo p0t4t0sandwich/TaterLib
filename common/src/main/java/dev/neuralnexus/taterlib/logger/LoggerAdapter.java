@@ -7,6 +7,10 @@ public class LoggerAdapter implements AbstractLogger {
     private final String prefix;
     private final AbstractLogger logger;
 
+    public LoggerAdapter(String PROJECT_ID) {
+        this(PROJECT_ID, new Object());
+    }
+
     public LoggerAdapter(String PROJECT_ID, Object logger) {
         this("", PROJECT_ID, logger);
     }

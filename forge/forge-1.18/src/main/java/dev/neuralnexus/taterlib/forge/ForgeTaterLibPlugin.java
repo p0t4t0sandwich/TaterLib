@@ -36,8 +36,7 @@ import org.apache.logging.log4j.LogManager;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public ForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
-        pluginStart(
-                this, new LoggerAdapter(TaterLib.Constants.PROJECT_NAME, LogManager.getLogger()));
+        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
