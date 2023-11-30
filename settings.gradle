@@ -70,6 +70,7 @@ include(
         'bukkit:bukkit-1.2.5',
         'bukkit:bukkit-1.6.4',
         'bukkit:bukkit-1.7.10',
+        'bukkit:bukkit-1.8.8',
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',

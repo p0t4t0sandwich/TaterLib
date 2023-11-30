@@ -2,26 +2,14 @@ plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
 }
 
-repositories {
-    // NeuralNexus Private
-    maven {
-        name = "NeuralNexusPrivate"
-        url = "https://maven.neuralnexus.dev/private"
-        credentials {
-            username "$NeuralNexusPrivateUsername"
-            password "$NeuralNexusPrivatePassword"
-        }
-    }
-}
-
 dependencies {
     implementation(project(path: ':common', configuration: 'shadow'))
 
-    // CraftBukkit
-    compileOnly("org.bukkit:craftbukkit:${minecraft_version}-${craftbukkit_version}")
+    // Spigot
+    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
 
     // Paper
-    compileOnly("org.github.paperspigot:paperspigot-api:${minecraft_version}-${paperspigot_version}")
+    compileOnly("org.github.paperspigot:paperspigot-api:${minecraft_version}-${bukkit_version}")
 }
 
 tasks.withType(ProcessResources).configureEach {

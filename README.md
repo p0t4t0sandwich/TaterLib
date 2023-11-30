@@ -127,7 +127,10 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Implemented registering simple commands for Forge/Fabric
 - Updated database utils
 - Added `Server` abstraction and `TaterAPI#getServer()`
-- Ported to Bukkit 1.13.2 and Sponge 5
+- Ported to:
+    - Bukkit 1.8.8, 1.13.2
+    - BungeeCord 1.4.7, 1.8, 1.12
+    - Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies
