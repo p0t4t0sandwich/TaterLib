@@ -73,6 +73,8 @@ include(
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
+        'bungee:bungee-1.4.7',
+        'bungee:bungee-1.8',
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'common',

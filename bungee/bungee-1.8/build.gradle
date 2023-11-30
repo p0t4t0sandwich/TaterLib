@@ -1,0 +1,46 @@
+plugins {
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+}
+
+dependencies {
+    implementation(project(path: ':common', configuration: 'shadow'))
+
+    // BungeeCord
+    compileOnly("net.md-5:bungeecord-api:${minecraft_version}-${bungeecord_version}")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            project_id         : project_id,
+            project_name       : project_name,
+            project_description: project_description,
+            group_id           : group_id,
+            version            : version,
+            authors            : authors,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['bungee.yml']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(":common"))
+    }
+
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_name}-bungee-${minecraft_version}-${version}.jar"
+}
+shadowJar.doLast {
+    task ->
+        ant.checksum(file: task.archivePath) {
+            hashAlgorithm = 'md5'
+            property = 'md5sum'
+        }
+}
+
+artifacts {
+    archives(shadowJar)
+}
