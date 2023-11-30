@@ -95,6 +95,7 @@ include(
         'forge:forge-1.20',
         'forge:forge-1.20.2',
         'neoforge:neoforge-1.20.2',
+//        'sponge:sponge4',
         'sponge:sponge5',
         'sponge:sponge6',
         'sponge:sponge7',

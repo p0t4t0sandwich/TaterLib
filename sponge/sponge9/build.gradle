@@ -17,7 +17,7 @@ sponge {
         version("1.0")
     }
     plugin(project_id) {
-        version("1.18-${version}")
+        version("${minecraft_version}-${project.version}")
         displayName(project_name)
         entrypoint("${group_id}.${project_id}.sponge.Sponge${project_name}Plugin")
         description(project_description)

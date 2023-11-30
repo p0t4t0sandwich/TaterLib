@@ -46,7 +46,7 @@ shadowJar {
     }
 
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-sponge7-${version}.jar"
+    archiveFileName = "${project_name}-sponge4-${version}.jar"
 }
 shadowJar.doLast {
     task ->
