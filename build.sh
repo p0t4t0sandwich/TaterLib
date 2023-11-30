@@ -59,6 +59,13 @@ function build {
     cp -r ./fabric-$FABRIC/META-INF/jars ./$OUT_FILE/META-INF
   fi
 
+  # Copy sponge files -- Note: Sponge before Forge due to legacy mcmod.info
+  if [ "$SPONGE" != "N/A" ]; then
+      cp -r ./sponge$SPONGE/$GROUP_ID/$PROJ_ID/sponge ./$OUT_FILE/$GROUP_ID/$PROJ_ID
+      cp ./sponge$SPONGE/META-INF/sponge_plugins.json ./$OUT_FILE/META-INF 2>/dev/null || :
+      cp ./sponge$SPONGE/mcmod.info ./$OUT_FILE 2>/dev/null || :
+  fi
+
   # Copy forge files
   if [ "$FORGE" != "N/A" ]; then
     cp -r ./forge-$FORGE/$GROUP_ID/$PROJ_ID/forge ./$OUT_FILE/$GROUP_ID/$PROJ_ID
@@ -69,17 +76,11 @@ function build {
   fi
 
   # Copy neoforge files
-    if [ "$NEOFORGE" != "N/A" ]; then
-      cp -r ./neoforge-$NEOFORGE/$GROUP_ID/$PROJ_ID/neoforge ./$OUT_FILE/$GROUP_ID/$PROJ_ID
-      cp ./neoforge-$NEOFORGE/pack.mcmeta ./$OUT_FILE
-      cp -r ./neoforge-$NEOFORGE/$PROJ_NAME.png ./$OUT_FILE
-      cp ./neoforge-$NEOFORGE/META-INF/mods.toml ./$OUT_FILE/META-INF
-    fi
-
-  # Copy sponge files
-  if [ "$SPONGE" != "N/A" ]; then
-    cp -r ./sponge$SPONGE/$GROUP_ID/$PROJ_ID/sponge ./$OUT_FILE/$GROUP_ID/$PROJ_ID
-    cp ./sponge$SPONGE/META-INF/sponge_plugins.json ./$OUT_FILE/META-INF
+  if [ "$NEOFORGE" != "N/A" ]; then
+    cp -r ./neoforge-$NEOFORGE/$GROUP_ID/$PROJ_ID/neoforge ./$OUT_FILE/$GROUP_ID/$PROJ_ID
+    cp ./neoforge-$NEOFORGE/pack.mcmeta ./$OUT_FILE
+    cp -r ./neoforge-$NEOFORGE/$PROJ_NAME.png ./$OUT_FILE
+    cp ./neoforge-$NEOFORGE/META-INF/mods.toml ./$OUT_FILE/META-INF
   fi
 
   # Copy velocity files
@@ -224,10 +225,22 @@ VELOCITY_VERSION=3
 OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
 build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_VERSION $SPONGE_VERSION $VELOCITY_VERSION $OUT_FILE
 
+# --------------------------- Build 1.9 --------------------------------
+MC_VERSION=1.9
+BUKKIT_VERSION=N/A
+BUNGEE_VERSION=1.12
+FABRIC_VERSION=N/A
+FORGE_VERSION=N/A
+NEOFORGE_VERSION=N/A
+SPONGE_VERSION=5
+VELOCITY_VERSION=3
+OUT_FILE=$PROJ_NAME-$MC_VERSION-$VERSION
+build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_VERSION $SPONGE_VERSION $VELOCITY_VERSION $OUT_FILE
+
 # --------------------------- Build 1.10 --------------------------------
 MC_VERSION=1.10
 BUKKIT_VERSION=N/A
-BUNGEE_VERSION=1.20
+BUNGEE_VERSION=1.12
 FABRIC_VERSION=N/A
 FORGE_VERSION=N/A
 NEOFORGE_VERSION=N/A
@@ -239,7 +252,7 @@ build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_V
 # --------------------------- Build 1.11 --------------------------------
 MC_VERSION=1.11
 BUKKIT_VERSION=N/A
-BUNGEE_VERSION=1.20
+BUNGEE_VERSION=1.12
 FABRIC_VERSION=N/A
 FORGE_VERSION=N/A
 NEOFORGE_VERSION=N/A
@@ -251,7 +264,7 @@ build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_V
 # --------------------------- Build 1.12 --------------------------------
 MC_VERSION=1.12
 BUKKIT_VERSION=1.7.10
-BUNGEE_VERSION=1.20
+BUNGEE_VERSION=1.12
 FABRIC_VERSION=N/A
 FORGE_VERSION=1.12.2
 NEOFORGE_VERSION=N/A
@@ -263,7 +276,7 @@ build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_V
 # --------------------------- Build 1.13 --------------------------------
 MC_VERSION=1.13
 BUKKIT_VERSION=1.13.2
-BUNGEE_VERSION=1.20
+BUNGEE_VERSION=1.12
 FABRIC_VERSION=N/A
 FORGE_VERSION=1.13.2
 NEOFORGE_VERSION=N/A
@@ -275,7 +288,7 @@ build $BUKKIT_VERSION $BUNGEE_VERSION $FABRIC_VERSION $FORGE_VERSION $NEOFORGE_V
 # --------------------------- Build 1.14 --------------------------------
 MC_VERSION=1.14
 BUKKIT_VERSION=1.13.2
-BUNGEE_VERSION=1.20
+BUNGEE_VERSION=1.12
 FABRIC_VERSION=1.14
 FORGE_VERSION=1.14.4
 NEOFORGE_VERSION=N/A
