@@ -79,6 +79,7 @@ include(
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'common',
+//        'fabric:fabric-1.12',
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
