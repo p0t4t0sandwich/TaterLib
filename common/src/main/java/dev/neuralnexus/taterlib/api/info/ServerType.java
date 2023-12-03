@@ -370,7 +370,7 @@ public enum ServerType {
     /** Check if the server is running Ketting. */
     public static boolean isKetting() {
         try {
-            Class.forName("org.kettingpowererd.ketting.KettingLauncher");
+            Class.forName("org.kettingpowered.ketting.core.Ketting");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
