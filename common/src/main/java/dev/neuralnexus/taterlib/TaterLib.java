@@ -80,7 +80,7 @@ public class TaterLib {
         if (!RELOADED) {
             TaterAPI api = TaterAPIProvider.get();
 
-            // Register TaterLib hook
+            // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)
             TaterAPIProvider.addHook("taterlib", new Object());
 
             // Register hooks
@@ -139,7 +139,7 @@ public class TaterLib {
     public static class Constants {
         public static final String PROJECT_NAME = "TaterLib";
         public static final String PROJECT_ID = "taterlib";
-        public static final String PROJECT_VERSION = "1.1.0-R0.14-SNAPSHOT";
+        public static final String PROJECT_VERSION = "1.1.0-R0.15-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION =
                 "A cross API code library for various generalizations used in the Tater* plugins";

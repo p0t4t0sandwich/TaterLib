@@ -52,14 +52,13 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
 
         // Register listeners
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new BukkitBlockListener(), this);
         pluginManager.registerEvents(new BukkitEntityListener(), this);
         pluginManager.registerEvents(new BukkitPlayerListener(), this);
-        if (api.serverType().isPaperBased()) {
+        if (TaterAPIProvider.serverType().isPaperBased()) {
             pluginManager.registerEvents(new PaperPlayerListener(), this);
         }
         ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());

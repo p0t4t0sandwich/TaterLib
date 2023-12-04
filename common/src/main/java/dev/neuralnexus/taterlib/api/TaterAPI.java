@@ -1,19 +1,20 @@
 package dev.neuralnexus.taterlib.api;
 
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.server.Server;
 
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
-    private final Data data;
+    private final String configFolder;
+    private Predicate<String> isModLoaded = (modid) -> false;
+    private Predicate<String> isPluginLoaded = (pluginName) -> false;
+    private Supplier<Server> minecraftServer = () -> null;
 
-    public TaterAPI(String configFolder, MinecraftVersion minecraftVersion, ServerType serverType) {
-        this.data = new Data(configFolder, minecraftVersion, serverType);
+    public TaterAPI(String configFolder) {
+        this.configFolder = configFolder;
     }
 
     /**
@@ -22,41 +23,7 @@ public class TaterAPI {
      * @return The config folder
      */
     public String configFolder() {
-        return data.configFolder;
-    }
-
-    /**
-     * Get Minecraft version
-     *
-     * @return The Minecraft version
-     */
-    public MinecraftVersion minecraftVersion() {
-        return data.minecraftVersion;
-    }
-
-    /**
-     * Get server type
-     *
-     * @return The server type
-     */
-    public ServerType serverType() {
-        return data.serverType;
-    }
-
-    /**
-     * Weather Brigadier is supported
-     *
-     * @return If Brigadier is supported
-     */
-    public boolean isBrigadierSupported() {
-        return (data.minecraftVersion.isAtLeast(MinecraftVersion.V1_13)
-                        && data.serverType.is(
-                                ServerType.FORGE,
-                                ServerType.NEOFORGE,
-                                ServerType.GOLDENFORGE,
-                                ServerType.FABRIC,
-                                ServerType.QUILT))
-                || data.serverType.isVelocityBased();
+        return configFolder;
     }
 
     /**
@@ -65,7 +32,7 @@ public class TaterAPI {
      * @param isPluginLoaded The isPluginLoaded predicate
      */
     public void setIsPluginLoaded(Predicate<String> isPluginLoaded) {
-        data.isPluginLoaded = isPluginLoaded;
+        this.isPluginLoaded = isPluginLoaded;
     }
 
     /**
@@ -74,7 +41,7 @@ public class TaterAPI {
      * @param isModLoaded The isModLoaded predicate
      */
     public void setIsModLoaded(Predicate<String> isModLoaded) {
-        data.isModLoaded = isModLoaded;
+        this.isModLoaded = isModLoaded;
     }
 
     /**
@@ -84,7 +51,7 @@ public class TaterAPI {
      * @return If the plugin is loaded
      */
     public boolean isPluginLoaded(String pluginName) {
-        return data.isPluginLoaded.test(pluginName);
+        return isPluginLoaded.test(pluginName);
     }
 
     /**
@@ -94,25 +61,24 @@ public class TaterAPI {
      * @return If the mod is loaded
      */
     public boolean isModLoaded(String modid) {
-        return data.isModLoaded.test(modid);
+        return isModLoaded.test(modid);
     }
 
     /**
      * Get if a plugin/mod is loaded <br>
      * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started {@link ServerEvents#STARTED}
-     * <br>
+     * server has started {@link ServerEvents#STARTED} <br>
      * 2nd Note: When looking for a plugin, the name is case-sensitive. <br>
      * For example, "luckperms" will not match "LuckPerms". <br>
      * When considering cross-API libraries, it's best to use the capitalized name, as this method
-     * runs the check again to check for a modid. <br>
-     * For example, "LuckPerms" will match "luckperms" and "LuckPerms".
+     * runs the check again to check for a lowercase modid. <br>
+     * For example, "LuckPerms" will match "LuckPerms" and "luckperms".
      *
      * @param pluginNameOrModId The name of the plugin or modid of the mod
      */
     public boolean isPluginModLoaded(String pluginNameOrModId) {
-        return data.isPluginLoaded.test(pluginNameOrModId)
-                || data.isModLoaded.test(pluginNameOrModId.toLowerCase());
+        return isPluginLoaded.test(pluginNameOrModId)
+                || isModLoaded.test(pluginNameOrModId.toLowerCase());
     }
 
     /**
@@ -121,7 +87,7 @@ public class TaterAPI {
      * @return The minecraft server
      */
     public Server getServer() {
-        return data.minecraftServer.get();
+        return minecraftServer.get();
     }
 
     /**
@@ -130,22 +96,6 @@ public class TaterAPI {
      * @param minecraftServer The minecraftServer supplier
      */
     public void setServer(Supplier<Server> minecraftServer) {
-        data.minecraftServer = minecraftServer;
-    }
-
-    /** Data used throughout the plugin via the API. */
-    static class Data {
-        final String configFolder;
-        final MinecraftVersion minecraftVersion;
-        final ServerType serverType;
-        Predicate<String> isModLoaded = (modid) -> false;
-        Predicate<String> isPluginLoaded = (pluginName) -> false;
-        Supplier<Server> minecraftServer = () -> null;
-
-        Data(String configFolder, MinecraftVersion minecraftVersion, ServerType serverType) {
-            this.configFolder = configFolder;
-            this.minecraftVersion = minecraftVersion;
-            this.serverType = serverType;
-        }
+        this.minecraftServer = minecraftServer;
     }
 }

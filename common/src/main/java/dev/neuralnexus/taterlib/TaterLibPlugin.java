@@ -12,9 +12,9 @@ public interface TaterLibPlugin extends Plugin {
         logger.info(
                 TaterLib.Constants.PROJECT_NAME
                         + " is running on "
-                        + TaterAPIProvider.get().serverType()
+                        + TaterAPIProvider.serverType()
                         + " "
-                        + TaterAPIProvider.get().minecraftVersion()
+                        + TaterAPIProvider.minecraftVersion()
                         + "!");
         TaterLib.start(plugin, logger);
     }
