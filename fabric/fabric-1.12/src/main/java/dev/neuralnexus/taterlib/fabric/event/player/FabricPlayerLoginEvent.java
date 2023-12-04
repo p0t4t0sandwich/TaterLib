@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.fabric.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
 
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.legacyfabric.fabric.api.networking.v1.PacketSender;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
 
@@ -23,7 +23,7 @@ public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerL
     /** {@inheritDoc} */
     @Override
     public String getLoginMessage() {
-        return handler.player.getName().getString() + " joined the game";
+        return handler.player.getName().asFormattedString() + " joined the game";
     }
 
     /** {@inheritDoc} */

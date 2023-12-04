@@ -1,9 +1,11 @@
 package dev.neuralnexus.taterlib.fabric.event.api;
 
-import net.fabricmc.fabric.api.event.Event;
-import net.fabricmc.fabric.api.event.EventFactory;
+import net.legacyfabric.fabric.api.event.Event;
+import net.legacyfabric.fabric.api.event.EventFactory;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -16,15 +18,22 @@ public class FabricBlockEvents {
             EventFactory.createArrayBacked(
                     BlockBreak.class,
                     (listeners) ->
-                            (world, pos, state, player, ci) -> {
+                            (world, player, pos, state, blockEntity, stack, ci) -> {
                                 for (BlockBreak listener : listeners) {
-                                    listener.onBlockBreak(world, pos, state, player, ci);
+                                    listener.onBlockBreak(
+                                            world, player, pos, state, blockEntity, stack, ci);
                                 }
                             });
 
     @FunctionalInterface
     public interface BlockBreak {
         void onBlockBreak(
-                World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci);
+                World world,
+                PlayerEntity player,
+                BlockPos pos,
+                BlockState state,
+                BlockEntity blockEntity,
+                ItemStack stack,
+                CallbackInfo ci);
     }
 }

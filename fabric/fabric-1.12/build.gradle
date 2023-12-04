@@ -11,21 +11,19 @@ dependencies {
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings(legacy.yarn(project.minecraft_version, project.yarn_build))
+    mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
-    // Fabric API
+    // Legacy Fabric API
     Set<String> apiModules = [
-//            'fabric-api-base',
-//            'fabric-command-api-v1',
-//            'fabric-lifecycle-events-v1',
-//            'fabric-networking-api-v1'
+            'legacy-fabric-api-base',
+            'legacy-fabric-command-api-v2',
+            'legacy-fabric-lifecycle-events-v1',
+            'legacy-fabric-networking-api-v1'
     ]
 
-//    modImplementation "net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}"
-
     apiModules.forEach {
-        modImplementation(fabricApi.module(it, project.fabric_version))
+        modImplementation(legacy.apiModule(it, project.fabric_version))
     }
 
     // Lucko's Permissions API
@@ -78,4 +76,3 @@ artifacts {
     archives(remappedShadowJar)
     archives(shadowJar)
 }
-

@@ -4,7 +4,9 @@ import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -21,13 +23,19 @@ public class FabricBlockBreakMixin {
      *
      * @param world The world.
      * @param pos The position of the block.
-     * @param state The state of the block.
-     * @param player The player that broke the block.
      * @param ci The callback info.
      */
-    @Inject(method = "onBreak", at = @At("HEAD"), cancellable = true)
-    private void onBreak(
-            World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
-        FabricBlockEvents.BLOCK_BREAK.invoker().onBlockBreak(world, pos, state, player, ci);
+    @Inject(method = "method_8651", at = @At("HEAD"), cancellable = true)
+    private static void onBlockBreak(
+            World world,
+            PlayerEntity player,
+            BlockPos pos,
+            BlockState state,
+            BlockEntity blockEntity,
+            ItemStack stack,
+            CallbackInfo ci) {
+        FabricBlockEvents.BLOCK_BREAK
+                .invoker()
+                .onBlockBreak(world, player, pos, state, blockEntity, stack, ci);
     }
 }

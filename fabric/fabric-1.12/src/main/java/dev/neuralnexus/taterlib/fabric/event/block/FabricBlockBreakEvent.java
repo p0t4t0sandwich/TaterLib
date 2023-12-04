@@ -5,7 +5,9 @@ import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -17,8 +19,14 @@ public class FabricBlockBreakEvent extends FabricBlockEvent implements BlockBrea
     private final PlayerEntity player;
 
     public FabricBlockBreakEvent(
-            World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
-        super(world, pos, state, player, ci);
+            World world,
+            PlayerEntity player,
+            BlockPos pos,
+            BlockState state,
+            BlockEntity blockEntity,
+            ItemStack stack,
+            CallbackInfo ci) {
+        super(world, player, pos, state, blockEntity, stack, ci);
         this.player = player;
         this.ci = ci;
     }

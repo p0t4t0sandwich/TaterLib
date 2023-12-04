@@ -11,7 +11,6 @@ import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 import dev.neuralnexus.taterlib.fabric.event.block.FabricBlockBreakEvent;
-import dev.neuralnexus.taterlib.fabric.event.command.FabricBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.fabric.event.command.FabricCommandRegisterEvent;
 import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntityDamageEvent;
 import dev.neuralnexus.taterlib.fabric.event.entity.FabricEntityDeathEvent;
@@ -21,14 +20,15 @@ import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartedEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartingEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppingEvent;
+import dev.neuralnexus.taterlib.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
+import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,13 +62,10 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
         ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
 
         // Register Fabric API command events
-        CommandRegistrationCallback.EVENT.register(
-                (dispatcher, dedicated) -> {
-                    CommandEvents.REGISTER_COMMAND.invoke(
-                            new FabricCommandRegisterEvent(dispatcher, dedicated));
-                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                            new FabricBrigadierCommandRegisterEvent(dispatcher, dedicated));
-                });
+        CommandRegistrar.EVENT.register(
+                (manager, dedicated) ->
+                        CommandEvents.REGISTER_COMMAND.invoke(
+                                new FabricCommandRegisterEvent(manager, dedicated)));
 
         // Register Fabric API player events
         ServerPlayConnectionEvents.JOIN.register(
@@ -91,9 +88,10 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
 
         // Register TaterLib Block events
         FabricBlockEvents.BLOCK_BREAK.register(
-                (world, pos, state, player, ci) ->
+                (world, player, pos, state, blockEntity, stack, ci) ->
                         BlockEvents.BLOCK_BREAK.invoke(
-                                new FabricBlockBreakEvent(world, pos, state, player, ci)));
+                                new FabricBlockBreakEvent(
+                                        world, player, pos, state, blockEntity, stack, ci)));
 
         // Register TaterLib Entity events
         FabricEntityEvents.DAMAGE.register(
