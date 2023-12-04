@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.player;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.placeholder.PlaceholderParser;
 import dev.neuralnexus.taterlib.utils.Location;
@@ -130,7 +130,6 @@ public interface Player extends Sender, Entity {
      * @return The prefix of the player
      */
     default String getPrefix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String prefix = luckPermsHook.getPrefix(getUniqueId());
         return prefix != null ? prefix : "";
@@ -163,7 +162,6 @@ public interface Player extends Sender, Entity {
      * @return The suffix of the player
      */
     default String getSuffix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String suffix = luckPermsHook.getSuffix(getUniqueId());
         return suffix != null ? suffix : "";

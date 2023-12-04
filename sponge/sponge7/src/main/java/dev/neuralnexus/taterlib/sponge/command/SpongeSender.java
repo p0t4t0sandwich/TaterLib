@@ -15,6 +15,15 @@ public class SpongeSender implements Sender {
         this.sender = sender;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public CommandSource getSender() {
+        return sender;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

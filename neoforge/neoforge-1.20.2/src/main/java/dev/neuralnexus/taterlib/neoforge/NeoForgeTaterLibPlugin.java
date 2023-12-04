@@ -12,6 +12,7 @@ import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.neoforge.event.pluginmessage.NeoForgeRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.neoforge.hooks.permissions.NeoForgePermissionsHook;
 import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
@@ -36,6 +37,7 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     public NeoForgeTaterLibPlugin() {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
+        TaterAPIProvider.addHook(new NeoForgePermissionsHook());
         pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);

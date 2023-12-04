@@ -1,7 +1,9 @@
-package dev.neuralnexus.taterlib.hooks;
+package dev.neuralnexus.taterlib.hooks.hybrids;
 
 import com.mohistmc.api.ServerAPI;
+
 import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.hooks.Hook;
 
 import java.util.Set;
 
@@ -10,7 +12,7 @@ import java.util.Set;
  *
  * @see <a href="https://github.com/MohistMC/Mohist">Mohist</a>
  */
-public class MohistHook {
+public class MohistHook implements Hook {
     private static MohistHook instance;
 
     /** Create a new hook */
@@ -27,10 +29,15 @@ public class MohistHook {
         return instance;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "mohist";
+    }
+
     /**
      * Get if a mod is loaded <br>
-     * <b>NOTE: You can just use {@link
-     * TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
      *
      * @param modid The modid
      * @return If the mod is loaded
@@ -41,8 +48,7 @@ public class MohistHook {
 
     /**
      * Get if a plugin is loaded <br>
-     * <b>NOTE: You can just use {@link
-     * TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
      *
      * @param pluginName The plugin name
      * @return If the plugin is loaded

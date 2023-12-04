@@ -25,6 +25,7 @@ import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEv
 import dev.neuralnexus.taterlib.velocity.event.pluginmessages.VelocityRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppedEvent;
+import dev.neuralnexus.taterlib.velocity.hooks.permissions.VelocityPermissionsHook;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
@@ -51,6 +52,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         VelocityTaterLibPlugin.server = server;
 
         TaterAPIProvider.register(server.getVersion().getVersion());
+        TaterAPIProvider.addHook(new VelocityPermissionsHook());
         pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
         api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());

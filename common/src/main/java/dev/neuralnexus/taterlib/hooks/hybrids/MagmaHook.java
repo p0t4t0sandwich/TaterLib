@@ -1,6 +1,8 @@
-package dev.neuralnexus.taterlib.hooks;
+package dev.neuralnexus.taterlib.hooks.hybrids;
 
 import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.hooks.Hook;
+
 import org.magmafoundation.magma.api.ServerAPI;
 
 import java.util.Set;
@@ -10,7 +12,7 @@ import java.util.Set;
  *
  * @see <a href="https://github.com/magmamaintained">Magma</a>
  */
-public class MagmaHook {
+public class MagmaHook implements Hook {
     private static MagmaHook instance;
 
     /** Create a new hook */
@@ -27,10 +29,15 @@ public class MagmaHook {
         return instance;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "magma";
+    }
+
     /**
      * Get if a mod is loaded <br>
-     * <b>NOTE: You can just use {@link
-     * TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
      *
      * @param modid The modid
      * @return If the mod is loaded

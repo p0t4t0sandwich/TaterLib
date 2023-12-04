@@ -14,6 +14,15 @@ public class BukkitSender implements Sender {
         this.sender = sender;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public CommandSender getSender() {
+        return sender;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

@@ -21,6 +21,7 @@ import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartedEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartingEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppingEvent;
+import dev.neuralnexus.taterlib.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
@@ -45,6 +46,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
                         .getMetadata()
                         .getVersion()
                         .getFriendlyString());
+        TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
                 this,
                 new LoggerAdapter(

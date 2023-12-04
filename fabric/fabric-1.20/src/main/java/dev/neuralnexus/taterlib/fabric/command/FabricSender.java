@@ -15,6 +15,15 @@ public class FabricSender implements Sender {
         this.source = source;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public ServerCommandSource getSender() {
+        return source;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

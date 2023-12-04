@@ -1,4 +1,6 @@
-package dev.neuralnexus.taterlib.hooks;
+package dev.neuralnexus.taterlib.hooks.permissions;
+
+import dev.neuralnexus.taterlib.command.Sender;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -13,7 +15,7 @@ import java.util.UUID;
  *
  * @see <a href="https://luckperms.net/">LuckPerms</a>
  */
-public class LuckPermsHook {
+public class LuckPermsHook implements PermissionsHook {
     private static LuckPermsHook instance;
     private final LuckPerms luckPerms;
 
@@ -30,6 +32,12 @@ public class LuckPermsHook {
      */
     public static LuckPermsHook get() {
         return instance;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "luckperms";
     }
 
     /**
@@ -112,16 +120,11 @@ public class LuckPermsHook {
         setSuffix(playerUuid, suffix, 0);
     }
 
-    /**
-     * Player has permission
-     *
-     * @param playerUuid The player to check
-     * @param permission The permission to check
-     * @return If the player has the permission
-     */
-    public boolean playerHasPermission(UUID playerUuid, String permission) {
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasPermission(Sender sender, String permission) {
         if (this.luckPerms == null) return false;
-        User user = luckPerms.getUserManager().getUser(playerUuid);
+        User user = luckPerms.getUserManager().getUser(sender.getUniqueId());
         return user != null
                 && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }

@@ -15,6 +15,15 @@ public class NeoForgeSender implements Sender {
         this.source = source;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public CommandSourceStack getSender() {
+        return source;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.command;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.hooks.LuckPermsHook;
 
 import java.util.UUID;
 
@@ -36,14 +35,12 @@ public interface Sender {
     boolean hasPermission(int permissionLevel);
 
     /**
-     * Check if the player has a permission
+     * Check if the sender has a permission
      *
      * @param permission The permission to check
      * @return Whether the player has the permission
      */
     default boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.isHooked("luckperms")) return false;
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        return luckPermsHook.playerHasPermission(getUniqueId(), permission);
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

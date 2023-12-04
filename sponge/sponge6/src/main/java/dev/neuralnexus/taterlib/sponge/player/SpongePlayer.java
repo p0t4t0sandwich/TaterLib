@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.sponge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.network.ChannelBinding;
@@ -122,12 +122,6 @@ public class SpongePlayer extends SpongeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean hasPermission(String permission) {
-        return player.hasPermission(permission);
     }
 
     /** {@inheritDoc} */

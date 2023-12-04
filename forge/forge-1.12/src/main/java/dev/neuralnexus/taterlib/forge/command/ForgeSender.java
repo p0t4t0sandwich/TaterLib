@@ -18,6 +18,15 @@ public class ForgeSender implements Sender {
         this.command = command;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public ICommandSender getSender() {
+        return sender;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

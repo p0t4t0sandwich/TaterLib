@@ -2,18 +2,27 @@ package dev.neuralnexus.taterlib.api;
 
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.hooks.ArclightHook;
-import dev.neuralnexus.taterlib.hooks.KettingHook;
-import dev.neuralnexus.taterlib.hooks.MagmaHook;
-import dev.neuralnexus.taterlib.hooks.MohistHook;
+import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.hooks.Hook;
+import dev.neuralnexus.taterlib.hooks.hybrids.ArclightHook;
+import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
+import dev.neuralnexus.taterlib.hooks.hybrids.MagmaHook;
+import dev.neuralnexus.taterlib.hooks.hybrids.MohistHook;
+import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
+
+import org.jetbrains.annotations.ApiStatus;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
 /** API Provider */
 public class TaterAPIProvider {
     private static final ServerType serverType = ServerType.getServerType();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
-    private static final HashMap<String, Object> hooks = new HashMap<>();
+    private static final Set<Hook> hooks = new HashSet<>();
+
     private static MinecraftVersion minecraftVersion = MinecraftVersion.UNKNOWN;
 
     /**
@@ -21,6 +30,7 @@ public class TaterAPIProvider {
      *
      * @param minecraftVersion The Minecraft version
      */
+    @ApiStatus.Internal
     private static void setMinecraftVersion(MinecraftVersion minecraftVersion) {
         TaterAPIProvider.minecraftVersion = minecraftVersion;
     }
@@ -57,11 +67,10 @@ public class TaterAPIProvider {
     /**
      * Add a hook
      *
-     * @param hookName The name of the hook
      * @param hook The hook to add
      */
-    public static void addHook(String hookName, Object hook) {
-        hooks.put(hookName.toLowerCase(), hook);
+    public static void addHook(Hook hook) {
+        hooks.add(hook);
     }
 
     /**
@@ -70,7 +79,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static boolean isHooked(String hookName) {
-        return hooks.containsKey(hookName.toLowerCase());
+        return hooks.stream().anyMatch(hook -> hook.getName().equalsIgnoreCase(hookName));
     }
 
     /**
@@ -78,8 +87,8 @@ public class TaterAPIProvider {
      *
      * @param hookName The name of the hook
      */
-    public static Object getHook(String hookName) {
-        return hooks.get(hookName.toLowerCase());
+    public static Optional<Hook> getHook(String hookName) {
+        return hooks.stream().filter(hook -> hook.getName().equalsIgnoreCase(hookName)).findFirst();
     }
 
     /**
@@ -88,7 +97,19 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static void removeHook(String hookName) {
-        hooks.remove(hookName.toLowerCase());
+        hooks.removeIf(hook -> hook.getName().equalsIgnoreCase(hookName));
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param sender The sender
+     * @param permission The permission
+     */
+    public static boolean hasPermission(Sender sender, String permission) {
+        return hooks.stream()
+                .filter(hook -> hook instanceof PermissionsHook)
+                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(sender, permission));
     }
 
     /**
@@ -117,6 +138,7 @@ public class TaterAPIProvider {
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
     public static void register() {
         ServerType serverType = ServerType.getServerType();
 
@@ -159,7 +181,7 @@ public class TaterAPIProvider {
             switch (serverType) {
                 case MOHIST:
                     MohistHook mohistHook = new MohistHook();
-                    addHook("mohist", mohistHook);
+                    addHook(mohistHook);
                     bukkitApi.setIsModLoaded(mohistHook::hasMod);
                     bukkitApi.setIsPluginLoaded(mohistHook::hasPlugin);
                     forgeApi.setIsModLoaded(mohistHook::hasMod);
@@ -170,19 +192,19 @@ public class TaterAPIProvider {
                     break;
                 case MAGMA:
                     MagmaHook magmaHook = new MagmaHook();
-                    addHook("magma", magmaHook);
+                    addHook(magmaHook);
                     bukkitApi.setIsModLoaded(magmaHook::hasMod);
                     forgeApi.setIsModLoaded(magmaHook::hasMod);
                     hybridApi.setIsModLoaded(magmaHook::hasMod);
                     apis.put(ServerType.MAGMA, hybridApi);
                     break;
                 case ARCLIGHT:
-                    addHook("arclight", new ArclightHook());
+                    addHook(new ArclightHook());
                     apis.put(ServerType.ARCLIGHT, hybridApi);
                     break;
                 case KETTING:
                     KettingHook kettingHook = new KettingHook();
-                    addHook("ketting", kettingHook);
+                    addHook(kettingHook);
                     bukkitApi.setIsModLoaded(kettingHook::hasMod);
                     bukkitApi.setIsPluginLoaded(kettingHook::hasPlugin);
                     forgeApi.setIsModLoaded(kettingHook::hasMod);
@@ -200,12 +222,14 @@ public class TaterAPIProvider {
      *
      * @param minecraftVersion The Minecraft version
      */
+    @ApiStatus.Internal
     public static void register(String minecraftVersion) {
         setMinecraftVersion(MinecraftVersion.from(minecraftVersion));
         register();
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
     public static void unregister() {
         apis.remove(serverType);
     }
@@ -215,6 +239,7 @@ public class TaterAPIProvider {
      *
      * @param serverType The server type
      */
+    @ApiStatus.Internal
     public static void unregister(ServerType serverType) {
         apis.remove(serverType);
     }

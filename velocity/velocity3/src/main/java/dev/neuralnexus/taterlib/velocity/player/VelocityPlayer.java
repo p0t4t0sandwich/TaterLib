@@ -195,12 +195,6 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(String permission) {
-        return player.hasPermission(permission);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }

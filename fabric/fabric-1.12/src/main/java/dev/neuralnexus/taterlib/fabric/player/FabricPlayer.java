@@ -1,14 +1,12 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
+import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 
 import me.lucko.fabric.api.permissions.v0.Options;
-import me.lucko.fabric.api.permissions.v0.Permissions;
 
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -131,22 +129,13 @@ public class FabricPlayer extends FabricEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public String getPrefix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         return Options.get(player, "prefix", "");
     }
 
     /** {@inheritDoc} */
     @Override
     public String getSuffix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         return Options.get(player, "suffix", "");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.isHooked("luckperms")) return player.allowsPermissionLevel(4);
-        return Permissions.check(player, permission, 4);
     }
 
     /** {@inheritDoc} */

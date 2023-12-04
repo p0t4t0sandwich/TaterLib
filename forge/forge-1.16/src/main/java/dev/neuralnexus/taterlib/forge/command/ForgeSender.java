@@ -15,6 +15,15 @@ public class ForgeSender implements Sender {
         this.source = source;
     }
 
+    /**
+     * Get the sender
+     *
+     * @return The sender
+     */
+    public CommandSource getSender() {
+        return source;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {

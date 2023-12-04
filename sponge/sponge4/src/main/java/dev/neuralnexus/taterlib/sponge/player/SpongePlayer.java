@@ -126,12 +126,6 @@ public class SpongePlayer extends SpongeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(String permission) {
-        return player.hasPermission(permission);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }

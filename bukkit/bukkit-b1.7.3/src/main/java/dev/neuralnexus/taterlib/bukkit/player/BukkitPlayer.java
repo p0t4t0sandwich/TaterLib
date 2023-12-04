@@ -130,12 +130,6 @@ public class BukkitPlayer extends BukkitEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(String permission) {
-        return player.hasPermission(permission);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }

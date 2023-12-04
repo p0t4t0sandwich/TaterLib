@@ -5,7 +5,8 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.hooks.TaterLibHook;
+import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
 
 /** Main class for the plugin. */
@@ -81,7 +82,7 @@ public class TaterLib {
             TaterAPI api = TaterAPIProvider.get();
 
             // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)
-            TaterAPIProvider.addHook("taterlib", new Object());
+            TaterAPIProvider.addHook(new TaterLibHook());
 
             // Register hooks
             ServerEvents.STARTED.register(
@@ -89,7 +90,7 @@ public class TaterLib {
                         // Register LuckPerms hook
                         if (api.isPluginModLoaded("LuckPerms")) {
                             instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-                            TaterAPIProvider.addHook("luckperms", new LuckPermsHook());
+                            TaterAPIProvider.addHook(new LuckPermsHook());
                         }
                     });
 

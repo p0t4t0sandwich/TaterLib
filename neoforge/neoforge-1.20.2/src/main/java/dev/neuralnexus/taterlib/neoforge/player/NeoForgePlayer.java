@@ -1,14 +1,12 @@
 package dev.neuralnexus.taterlib.neoforge.player;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.hooks.LuckPermsHook;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgePlayerInventory;
 import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
 import dev.neuralnexus.taterlib.neoforge.networking.packet.NeoForgeMessagePacket;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -128,14 +126,6 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.isHooked("luckperms")) return player.hasPermissions(4);
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }
 
     /** {@inheritDoc} */

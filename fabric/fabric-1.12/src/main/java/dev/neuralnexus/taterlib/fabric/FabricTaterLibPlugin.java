@@ -45,6 +45,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
                         .getMetadata()
                         .getVersion()
                         .getFriendlyString());
+        TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
                 this,
                 new LoggerAdapter(

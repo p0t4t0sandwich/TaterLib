@@ -1,4 +1,6 @@
-package dev.neuralnexus.taterlib.hooks;
+package dev.neuralnexus.taterlib.hooks.hybrids;
+
+import dev.neuralnexus.taterlib.hooks.Hook;
 
 import io.izzel.arclight.api.Arclight;
 import io.izzel.arclight.api.ArclightVersion;
@@ -9,7 +11,7 @@ import io.izzel.arclight.api.TickingTracker;
  *
  * @see <a href="https://github.com/IzzelAliz/Arclight">Arclight</a>
  */
-public class ArclightHook {
+public class ArclightHook implements Hook {
     private static ArclightHook instance;
 
     /** Create a new hook */
@@ -29,6 +31,12 @@ public class ArclightHook {
     /** Get the {@link TickingTracker} return The {@link TickingTracker} */
     public static TickingTracker getTickingTracker() {
         return Arclight.getTickingTracker();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "arclight";
     }
 
     /**

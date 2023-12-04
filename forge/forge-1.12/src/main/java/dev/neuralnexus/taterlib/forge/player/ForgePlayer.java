@@ -1,18 +1,15 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.hooks.LuckPermsHook;
+import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.server.permission.PermissionAPI;
 
 import java.util.UUID;
 
@@ -116,15 +113,6 @@ public class ForgePlayer extends ForgeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean hasPermission(String permission) {
-        if (!TaterAPIProvider.isHooked("luckperms"))
-            return PermissionAPI.hasPermission(player, permission);
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        return luckPermsHook.playerHasPermission(getUniqueId(), permission);
     }
 
     /** {@inheritDoc} */

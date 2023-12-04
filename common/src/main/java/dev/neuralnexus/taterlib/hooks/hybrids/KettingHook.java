@@ -1,6 +1,7 @@
-package dev.neuralnexus.taterlib.hooks;
+package dev.neuralnexus.taterlib.hooks.hybrids;
 
 import dev.neuralnexus.taterlib.api.TaterAPI;
+import dev.neuralnexus.taterlib.hooks.Hook;
 
 import org.kettingpowered.ketting.adapter.BukkitAdapter;
 import org.kettingpowered.ketting.adapter.ForgeAdapter;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
  *
  * @see <a href="https://github.com/kettingpowered/">Ketting</a>
  */
-public class KettingHook {
+public class KettingHook implements Hook {
     private static KettingHook instance;
 
     /** Create a new hook */
@@ -34,6 +35,12 @@ public class KettingHook {
      */
     public static KettingHook get() {
         return instance;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getName() {
+        return "ketting";
     }
 
     /**
