@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,7 +20,7 @@ public class FabricPlayerDeathMixin {
      * @param source The source of the damage.
      * @param ci The callback info.
      */
-    @Inject(method = "onDeath", at = @At("HEAD"))
+    @Inject(method = "onKilled", at = @At("HEAD"))
     public void onPlayerDeath(DamageSource source, CallbackInfo ci) {
         PlayerEntity player = (PlayerEntity) (Object) this;
         FabricPlayerEvents.DEATH.invoker().onPlayerDeath(player, source);

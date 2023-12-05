@@ -27,7 +27,7 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
     /** {@inheritDoc} */
     @Override
     public String getDeathMessage() {
-        return source.getDeathMessage(player).getString();
+        return source.getDeathMessage(player).asFormattedString();
     }
 
     /** {@inheritDoc} */

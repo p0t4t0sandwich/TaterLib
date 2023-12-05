@@ -2,9 +2,9 @@ package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.network.packet.ChatMessageC2SPacket;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

@@ -124,8 +124,9 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
                         PlayerEvents.MESSAGE.invoke(
                                 new FabricPlayerMessageEvent(player, message, ci)));
         FabricPlayerEvents.RESPAWN.register(
-                ((player, alive) ->
-                        PlayerEvents.RESPAWN.invoke(new FabricPlayerRespawnEvent(player, alive))));
+                ((player, dimension, alive) ->
+                        PlayerEvents.RESPAWN.invoke(
+                                new FabricPlayerRespawnEvent(player, dimension, alive))));
     }
 
     @Override

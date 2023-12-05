@@ -17,9 +17,9 @@ public class FabricLocation implements Location {
     public FabricLocation(Entity entity) {
         this(
                 entity.getPos(),
-                entity.getYaw(0.0F),
-                entity.getPitch(0.0F),
-                entity.getEntityWorld().getDimension().getType().toString());
+                (float) entity.getRotation().x,
+                (float) entity.getRotation().y,
+                entity.world.dimension.getDimensionType().toString());
     }
 
     /** Creates a new location. */
@@ -42,7 +42,7 @@ public class FabricLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public double getX() {
-        return position.getX();
+        return position.x;
     }
 
     /** {@inheritDoc} */
@@ -60,7 +60,7 @@ public class FabricLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public double getY() {
-        return position.getY();
+        return position.y;
     }
 
     /** {@inheritDoc} */
@@ -78,7 +78,7 @@ public class FabricLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public double getZ() {
-        return position.getZ();
+        return position.z;
     }
 
     /** {@inheritDoc} */

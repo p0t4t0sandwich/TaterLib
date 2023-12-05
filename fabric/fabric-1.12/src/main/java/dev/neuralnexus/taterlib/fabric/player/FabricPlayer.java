@@ -6,14 +6,11 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
-import me.lucko.fabric.api.permissions.v0.Options;
-
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.legacyfabric.fabric.api.networking.v1.PacketByteBufs;
+import net.legacyfabric.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -64,13 +61,13 @@ public class FabricPlayer extends FabricEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return player.getName().getString();
+        return player.getName().asFormattedString();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
-        return player.getDisplayName().getString();
+        return player.getCustomName();
     }
 
     /** {@inheritDoc} */
@@ -88,17 +85,14 @@ public class FabricPlayer extends FabricEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(new TranslatableComponent(message));
+        player.sendMessage(new TranslatableText(message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
-        String[] channelParts = channel.split(":");
         ServerPlayNetworking.send(
-                (ServerPlayerEntity) player,
-                new Identifier(channelParts[0], channelParts[1]),
-                PacketByteBufs.create().writeByteArray(data));
+                (ServerPlayerEntity) player, channel, PacketByteBufs.create().writeByteArray(data));
     }
 
     /** {@inheritDoc} */
@@ -110,7 +104,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void kickPlayer(String message) {
-        ((ServerPlayerEntity) player).networkHandler.disconnect(new TranslatableComponent(message));
+        ((ServerPlayerEntity) player).networkHandler.onDisconnected(new TranslatableText(message));
     }
 
     /** {@inheritDoc} */
@@ -129,18 +123,22 @@ public class FabricPlayer extends FabricEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public String getPrefix() {
-        return Options.get(player, "prefix", "");
+        // TODO: Find a way to get LP prefixes/suffixes
+//        return Options.get(player, "prefix", "");
+        return "";
     }
 
     /** {@inheritDoc} */
     @Override
     public String getSuffix() {
-        return Options.get(player, "suffix", "");
+        // TODO: Find a way to get LP prefixes/suffixes
+//        return Options.get(player, "suffix", "");
+        return "";
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return player.allowsPermissionLevel(permissionLevel);
+        return false;
     }
 }

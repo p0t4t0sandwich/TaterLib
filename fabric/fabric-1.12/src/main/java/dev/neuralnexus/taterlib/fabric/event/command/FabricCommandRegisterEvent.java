@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.fabric.event.command;
 
 import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.fabric.command.FabricCommandWrapper;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandManager;
 
@@ -19,11 +19,6 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent {
     /** {@inheritDoc} */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
-        final LiteralArgumentBuilder<ServerCommandSource> literalArgumentBuilder =
-                SimpleBrigadierWrapper.wrapCommand(this, command);
-        dispatcher.register(literalArgumentBuilder);
-        for (String alias : aliases) {
-            dispatcher.register(literal(alias).redirect(literalArgumentBuilder.build()));
-        }
+        manager.register(new FabricCommandWrapper(command), aliases);
     }
 }

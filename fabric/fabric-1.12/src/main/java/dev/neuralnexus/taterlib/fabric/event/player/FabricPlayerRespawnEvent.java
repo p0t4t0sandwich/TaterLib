@@ -12,7 +12,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
     private final boolean alive;
     private final PlayerEntity player;
 
-    public FabricPlayerRespawnEvent(PlayerEntity player, boolean alive) {
+    public FabricPlayerRespawnEvent(PlayerEntity player, int dimension, boolean alive) {
         super(player);
         this.player = player;
         this.alive = alive;

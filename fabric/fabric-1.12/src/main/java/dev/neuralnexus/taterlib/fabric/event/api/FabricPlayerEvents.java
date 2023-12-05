@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.fabric.event.api;
 
-import net.legacyfabric.advancement.Advancement;
 import net.legacyfabric.fabric.api.event.Event;
 import net.legacyfabric.fabric.api.event.EventFactory;
 import net.minecraft.entity.damage.DamageSource;
@@ -59,21 +58,21 @@ public final class FabricPlayerEvents {
             EventFactory.createArrayBacked(
                     PlayerRespawn.class,
                     (listeners) ->
-                            (player, alive) -> {
+                            (player, dimension, alive) -> {
                                 for (PlayerRespawn listener : listeners) {
-                                    listener.onPlayerRespawn(player, alive);
+                                    listener.onPlayerRespawn(player, dimension, alive);
                                 }
                             });
 
     @FunctionalInterface
     public interface PlayerAdvancementFinished {
-        void onPlayerAdvancementFinished(PlayerEntity player, Advancement advancement);
+        void onPlayerAdvancementFinished(PlayerEntity player, Object advancement);
     }
 
     @FunctionalInterface
     public interface PlayerAdvancementProgress {
         void onPlayerAdvancementProgress(
-                PlayerEntity player, Advancement advancement, String criterionName);
+                PlayerEntity player, Object advancement, String criterionName);
     }
 
     @FunctionalInterface
@@ -88,6 +87,6 @@ public final class FabricPlayerEvents {
 
     @FunctionalInterface
     public interface PlayerRespawn {
-        void onPlayerRespawn(PlayerEntity player, boolean alive);
+        void onPlayerRespawn(PlayerEntity player, int dimension, boolean alive);
     }
 }

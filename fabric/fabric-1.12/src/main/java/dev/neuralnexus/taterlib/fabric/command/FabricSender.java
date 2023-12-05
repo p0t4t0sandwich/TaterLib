@@ -2,16 +2,16 @@ package dev.neuralnexus.taterlib.fabric.command;
 
 import dev.neuralnexus.taterlib.command.Sender;
 
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.command.ServerCommandSource;
+import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
+import net.minecraft.text.TranslatableText;
 
 import java.util.UUID;
 
 /** The Fabric implementation of {@link Sender} */
 public class FabricSender implements Sender {
-    private final ServerCommandSource source;
+    private final PermissibleCommandSource source;
 
-    public FabricSender(ServerCommandSource source) {
+    public FabricSender(PermissibleCommandSource source) {
         this.source = source;
     }
 
@@ -20,7 +20,7 @@ public class FabricSender implements Sender {
      *
      * @return The sender
      */
-    public ServerCommandSource getSender() {
+    public PermissibleCommandSource getSender() {
         return source;
     }
 
@@ -36,18 +36,18 @@ public class FabricSender implements Sender {
     /** {@inheritDoc} */
     @Override
     public String getName() {
-        return source.getName();
+        return source.getName().asFormattedString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
-        source.sendFeedback(new TranslatableComponent(message), false);
+        source.sendMessage(new TranslatableText(message));
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return source.hasPermissionLevel(permissionLevel);
+        return false;
     }
 }

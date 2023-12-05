@@ -4,8 +4,6 @@ import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
-import net.minecraft.network.chat.TranslatableComponent;
-
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
@@ -51,20 +49,20 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getType() {
-        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
+        return entity.getEntityName().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
     public String getCustomName() {
         if (entity.getCustomName() == null) return null;
-        return entity.getCustomName().toString();
+        return entity.getCustomName();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
-        entity.setCustomName(new TranslatableComponent(name));
+        entity.setCustomName(name);
     }
 
     /** {@inheritDoc} */
@@ -76,54 +74,54 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public double getX() {
-        return entity.getPos().getX();
+        return entity.getPos().x;
     }
 
     /** {@inheritDoc} */
     @Override
     public double getY() {
-        return entity.getPos().getY();
+        return entity.getPos().y;
     }
 
     /** {@inheritDoc} */
     @Override
     public double getZ() {
-        return entity.getPos().getZ();
+        return entity.getPos().z;
     }
 
     /** {@inheritDoc} */
     @Override
     public float getYaw() {
-        return entity.getYaw(0F);
+        return (float) entity.getRotation().x;
     }
 
     /** {@inheritDoc} */
     @Override
     public float getPitch() {
-        return entity.getPitch(0F);
+        return (float) entity.getRotation().y;
     }
 
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        return entity.getEntityWorld().getDimension().getType().toString();
+        return entity.world.dimension.getDimensionType().toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
-        return entity.getEntityWorld().getBiome(entity.getBlockPos()).toString();
+        return entity.world.getBiome(entity.getBlockPos()).toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        entity.requestTeleport(location.getX(), location.getY(), location.getZ());
+        entity.refreshPositionAfterTeleport(location.getX(), location.getY(), location.getZ());
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Entity entity) {
-        this.entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
+        this.entity.refreshPositionAfterTeleport(entity.getX(), entity.getY(), entity.getZ());
     }
 }

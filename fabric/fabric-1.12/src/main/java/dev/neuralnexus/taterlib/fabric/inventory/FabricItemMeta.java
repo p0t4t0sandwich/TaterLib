@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.fabric.inventory;
 import dev.neuralnexus.taterlib.inventory.ItemMeta;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.List;
 
@@ -23,19 +22,19 @@ public class FabricItemMeta implements ItemMeta {
     /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasDisplayName();
+        return itemStack.hasCustomName();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getDisplayName() {
-        return itemStack.getDisplayName().getString();
+        return itemStack.getCustomName();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
-        itemStack.setDisplayName(new TranslatableComponent(name));
+        itemStack.setCustomName(name);
     }
 
     /** {@inheritDoc} */
@@ -61,7 +60,7 @@ public class FabricItemMeta implements ItemMeta {
     /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
-        return !itemStack.getEnchantmentList().isEmpty();
+        return !itemStack.getEnchantments().isEmpty();
     }
 
     /** {@inheritDoc} */

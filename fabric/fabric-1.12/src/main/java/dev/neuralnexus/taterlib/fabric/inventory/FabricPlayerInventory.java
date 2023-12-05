@@ -22,7 +22,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     public ItemStack[] getArmorContents() {
         ItemStack[] armorContents = new ItemStack[4];
         for (int i = 0; i < 4; i++) {
-            armorContents[i] = new FabricItemStack(playerInventory.armor.get(i));
+            armorContents[i] = new FabricItemStack(playerInventory.getArmor(i));
         }
         return armorContents;
     }
@@ -30,9 +30,8 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setArmorContents(ItemStack[] items) {
-        playerInventory.armor.clear();
         for (int i = 0; i < 4; i++) {
-            playerInventory.armor.add(i, ((FabricItemStack) items[i]).getItemStack());
+            playerInventory.setInvStack(5 + i, ((FabricItemStack) items[i]).getItemStack());
         }
     }
 
@@ -40,8 +39,11 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     @Override
     public ItemStack[] getExtraContents() {
         ItemStack[] extraContents = new ItemStack[2];
-        for (int i = 0; i < 2; i++) {
-            extraContents[i] = new FabricItemStack(playerInventory.offHand.get(i));
+        extraContents[0] = new FabricItemStack(playerInventory.getMainHandStack());
+        try {
+            extraContents[1] = new FabricItemStack(playerInventory.getInvStack(45));
+        } catch (IndexOutOfBoundsException e) {
+            extraContents[1] = null;
         }
         return extraContents;
     }
@@ -55,49 +57,49 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public ItemStack getHelmet() {
-        return new FabricItemStack(playerInventory.armor.get(0));
+        return new FabricItemStack(playerInventory.getArmor(0));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setHelmet(ItemStack item) {
-        playerInventory.armor.set(0, ((FabricItemStack) item).getItemStack());
+        playerInventory.setInvStack(5, ((FabricItemStack) item).getItemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack getChestplate() {
-        return new FabricItemStack(playerInventory.armor.get(1));
+        return new FabricItemStack(playerInventory.getArmor(1));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setChestplate(ItemStack item) {
-        playerInventory.armor.set(1, ((FabricItemStack) item).getItemStack());
+        playerInventory.setInvStack(6, ((FabricItemStack) item).getItemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack getLeggings() {
-        return new FabricItemStack(playerInventory.armor.get(2));
+        return new FabricItemStack(playerInventory.getArmor(2));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setLeggings(ItemStack item) {
-        playerInventory.armor.set(2, ((FabricItemStack) item).getItemStack());
+        playerInventory.setInvStack(7, ((FabricItemStack) item).getItemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack getBoots() {
-        return new FabricItemStack(playerInventory.armor.get(3));
+        return new FabricItemStack(playerInventory.getArmor(3));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setBoots(ItemStack item) {
-        playerInventory.armor.set(3, ((FabricItemStack) item).getItemStack());
+        playerInventory.setInvStack(8, ((FabricItemStack) item).getItemStack());
     }
 
     /** {@inheritDoc} */

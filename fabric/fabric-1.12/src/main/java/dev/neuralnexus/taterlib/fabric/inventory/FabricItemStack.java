@@ -50,13 +50,13 @@ public class FabricItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public int getCount() {
-        return itemStack.getAmount();
+        return itemStack.getCount();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
-        itemStack.setAmount(count);
+        itemStack.setCount(count);
     }
 
     /** {@inheritDoc} */

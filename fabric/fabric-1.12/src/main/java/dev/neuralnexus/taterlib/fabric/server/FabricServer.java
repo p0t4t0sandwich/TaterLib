@@ -26,7 +26,7 @@ public class FabricServer implements Server {
     /** {@inheritDoc} */
     @Override
     public Set<Player> getOnlinePlayers() {
-        return server.getPlayerManager().getPlayerList().stream()
+        return server.getPlayerManager().getPlayers().stream()
                 .map(FabricPlayer::new)
                 .collect(Collectors.toSet());
     }

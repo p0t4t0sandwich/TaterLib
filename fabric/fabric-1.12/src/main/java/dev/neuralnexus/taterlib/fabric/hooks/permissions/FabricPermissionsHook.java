@@ -6,7 +6,8 @@ import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
 
-import me.lucko.fabric.api.permissions.v0.Permissions;
+import net.legacyfabric.fabric.api.permission.v1.PermissionsApiHolder;
+import net.minecraft.entity.player.ServerPlayerEntity;
 
 /** A hook for Fabric permissions */
 public class FabricPermissionsHook implements PermissionsHook {
@@ -26,9 +27,9 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Sender sender, String permission) {
         if (sender instanceof Player) {
-            return Permissions.check(((FabricPlayer) sender).getPlayer(), permission, 4);
+            return PermissionsApiHolder.getPlayerPermissionsApi().hasPermission((ServerPlayerEntity) ((FabricPlayer) sender).getPlayer(), permission);
         } else {
-            return Permissions.check(((FabricSender) sender).getSender(), permission, 4);
+            return ((FabricSender) sender).getSender().hasPermission(permission);
         }
     }
 }

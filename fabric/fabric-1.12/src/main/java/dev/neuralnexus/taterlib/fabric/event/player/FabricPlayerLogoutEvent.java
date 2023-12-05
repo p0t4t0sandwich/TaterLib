@@ -19,7 +19,7 @@ public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements Player
     /** {@inheritDoc} */
     @Override
     public String getLogoutMessage() {
-        return handler.player.getName().getString() + " left the game";
+        return handler.player.getName().asFormattedString() + " left the game";
     }
 
     /** {@inheritDoc} */

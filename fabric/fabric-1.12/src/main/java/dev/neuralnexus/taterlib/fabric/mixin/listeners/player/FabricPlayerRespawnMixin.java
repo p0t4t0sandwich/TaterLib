@@ -2,9 +2,8 @@ package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.dimension.DimensionType;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,9 +23,9 @@ public class FabricPlayerRespawnMixin {
     @Inject(method = "respawnPlayer", at = @At("HEAD"))
     public void onPlayerRespawn(
             ServerPlayerEntity player,
-            DimensionType dimension,
+            int dimension,
             boolean alive,
             CallbackInfoReturnable<ServerPlayerEntity> cir) {
-        FabricPlayerEvents.RESPAWN.invoker().onPlayerRespawn(player, alive);
+        FabricPlayerEvents.RESPAWN.invoker().onPlayerRespawn(player, dimension, alive);
     }
 }

@@ -130,6 +130,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Ported to:
     - Bukkit 1.8.8, 1.13.2
     - BungeeCord 1.4.7, 1.8, 1.12
+    - Fabric 1.12.2
     - Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`

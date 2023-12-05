@@ -19,7 +19,7 @@ class FabricEntityDeathMixin {
      * @param source The source of the damage.
      * @param ci The callback info.
      */
-    @Inject(method = "onDeath", at = @At("HEAD"))
+    @Inject(method = "onKilled", at = @At("HEAD"))
     private void onEntityDeath(DamageSource source, CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         FabricEntityEvents.DEATH.invoker().onEntityDeath(entity, source);
