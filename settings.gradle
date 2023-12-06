@@ -66,10 +66,10 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
-        'bukkit:bukkit-b1.7.3',
-        'bukkit:bukkit-1.2.5',
-        'bukkit:bukkit-1.6.4',
-        'bukkit:bukkit-1.7.10',
+//        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+//        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+//        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+//        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.8.8',
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
@@ -80,7 +80,7 @@ include(
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'common',
-//        'fabric:fabric-1.12',
+//        'fabric:fabric-1.12', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
@@ -102,7 +102,7 @@ include(
         'forge:forge-1.20.2',
         'neoforge:neoforge-1.20.2',
         'neoforge:neoforge-1.20.3', // No changes so far
-//        'sponge:sponge4',
+//        'sponge:sponge4', // Needs some work done to SpongePlayerInventory and it should be good to go
         'sponge:sponge5',
         'sponge:sponge6',
         'sponge:sponge7',

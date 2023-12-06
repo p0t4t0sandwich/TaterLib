@@ -32,6 +32,8 @@ tasks.withType(ProcessResources).configureEach {
             group_id           : group_id,
             version            : version,
             authors            : authors,
+
+            homepage_url       : homepage_url
     ]
     inputs.properties replaceProperties
 
