@@ -74,6 +74,7 @@ include(
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
+        'bukkit:bukkit-1.20.3', // Waiting on Paper to compare changes, none so far
         'bungee:bungee-1.4.7',
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
@@ -88,6 +89,7 @@ include(
         'fabric:fabric-1.19',
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
+        'fabric:fabric-1.20.3', // No changes so far
         'forge:forge-1.12',
         'forge:forge-1.13',
         'forge:forge-1.14',
@@ -99,6 +101,7 @@ include(
         'forge:forge-1.20',
         'forge:forge-1.20.2',
         'neoforge:neoforge-1.20.2',
+        'neoforge:neoforge-1.20.3', // No changes so far
 //        'sponge:sponge4',
         'sponge:sponge5',
         'sponge:sponge6',
