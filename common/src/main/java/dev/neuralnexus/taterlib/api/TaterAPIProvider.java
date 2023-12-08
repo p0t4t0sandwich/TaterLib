@@ -150,7 +150,9 @@ public class TaterAPIProvider {
             apis.put(ServerType.BUNGEECORD, new TaterAPI("plugins"));
         }
 
-        if (serverType.isFabricBased()) {
+        // Secondary logical check is for Sinytra Connector
+        // TODO: Find some way to init the Fabric side, since SC doesn't load duplicate modIds
+        if (serverType.isFabricBased() || (serverType.isForgeBased() && ServerType.isFabric())) {
             apis.put(ServerType.FABRIC, new TaterAPI("config"));
         }
 

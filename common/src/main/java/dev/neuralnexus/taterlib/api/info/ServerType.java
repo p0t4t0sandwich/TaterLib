@@ -129,6 +129,16 @@ public enum ServerType {
             return BUNGEECORD;
         }
 
+        // Forge
+        // Before Fabric because of Sinytra Connector
+        else if (isNeoForge()) {
+            return NEOFORGE;
+        } else if (isGoldenForge()) {
+            return GOLDENFORGE;
+        } else if (isForge()) {
+            return FORGE;
+        }
+
         // Fabric
         else if (isQuilt()) {
             return QUILT;
@@ -139,15 +149,6 @@ public enum ServerType {
         // Sponge
         else if (isSponge()) {
             return SPONGE;
-        }
-
-        // Forge
-        else if (isNeoForge()) {
-            return NEOFORGE;
-        } else if (isGoldenForge()) {
-            return GOLDENFORGE;
-        } else if (isForge()) {
-            return FORGE;
         }
 
         // Velocity
@@ -473,9 +474,14 @@ public enum ServerType {
         try {
             Class.forName("net.minecraftforge.common.ForgeVersion");
             return true;
-        } catch (ClassNotFoundException e) {
-            return false;
+        } catch (ClassNotFoundException ignored) {
         }
+        try {
+            Class.forName("net.minecraftforge.fml.loading.FMLLoader");
+            return true;
+        } catch (ClassNotFoundException ignored) {
+        }
+        return false;
     }
 
     /** Check if the server is running GoldenForge. */
