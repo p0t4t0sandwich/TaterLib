@@ -49,27 +49,28 @@ General notes:
 
 - Sponge is not available on pre 1.8 or on 1.14
 - 1.11 and 1.10 only have Sponge support
-- No Fabric on 1.13 or below (yet)
+- No Fabric on 1.13 or 1.11 and below (yet)
 - Bukkit is the only supported platform below 1.12 at this time
 
-| Server type     | Versions    | Jar Name                        |
-|-----------------|-------------|---------------------------------|
-| 1.20.2          | 1.20.2      | `TaterLib-1.20.2-<version>.jar` |
-| 1.20            | 1.20-1.20.1 | `TaterLib-1.20-<version>.jar`   |
-| 1.19            | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar`   |
-| 1.18            | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar`   |
-| 1.17            | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar`   |
-| 1.16            | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar`   |
-| 1.15            | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar`   |
-| 1.14            | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar`   |
-| 1.13            | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar`   |
-| 1.12            | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar`   |
-| 1.11            | 1.11        | `TaterLib-1.11-<version>.jar`   |
-| 1.10            | 1.10        | `TaterLib-1.10-<version>.jar`   |
-| 1.7.10 (Bukkit) | 1.7.10      | `TaterLib-1.7.10-<version>.jar` |
-| 1.6.4 (Bukkit)  | 1.6.4       | `TaterLib-1.6.4-<version>.jar`  |
-| 1.2.5 (Bukkit)  | 1.2.5       | `TaterLib-1.2.5-<version>.jar`  |
-| b1.7.3 (Bukkit) | b1.7.3      | `TaterLib-b1.7.3-<version>.jar` |
+| Server type     | Versions      | Jar Name                        |
+|-----------------|---------------|---------------------------------|
+| 1.20.4          | 1.20.3-1.20.4 | `TaterLib-1.20.4-<version>.jar` |
+| 1.20.2          | 1.20.2        | `TaterLib-1.20.2-<version>.jar` |
+| 1.20            | 1.20-1.20.1   | `TaterLib-1.20-<version>.jar`   |
+| 1.19            | 1.19-1.19.4   | `TaterLib-1.19-<version>.jar`   |
+| 1.18            | 1.18-1.18.2   | `TaterLib-1.18-<version>.jar`   |
+| 1.17            | 1.17-1.17.1   | `TaterLib-1.17-<version>.jar`   |
+| 1.16            | 1.16-1.16.5   | `TaterLib-1.16-<version>.jar`   |
+| 1.15            | 1.15-1.15.2   | `TaterLib-1.15-<version>.jar`   |
+| 1.14            | 1.14-1.14.3   | `TaterLib-1.14-<version>.jar`   |
+| 1.13            | 1.13-1.13.2   | `TaterLib-1.13-<version>.jar`   |
+| 1.12            | 1.12-1.12.2   | `TaterLib-1.12-<version>.jar`   |
+| 1.11            | 1.11          | `TaterLib-1.11-<version>.jar`   |
+| 1.10            | 1.10          | `TaterLib-1.10-<version>.jar`   |
+| 1.7.10 (Bukkit) | 1.7.10        | `TaterLib-1.7.10-<version>.jar` |
+| 1.6.4 (Bukkit)  | 1.6.4         | `TaterLib-1.6.4-<version>.jar`  |
+| 1.2.5 (Bukkit)  | 1.2.5         | `TaterLib-1.2.5-<version>.jar`  |
+| b1.7.3 (Bukkit) | b1.7.3        | `TaterLib-b1.7.3-<version>.jar` |
 
 ## Dependencies
 
@@ -128,6 +129,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Updated database utils
 - Added `Server` abstraction and `TaterAPI#getServer()`
 - Ported to:
+    - 1.20.4
     - Bukkit 1.8.8, 1.13.2
     - BungeeCord 1.4.7, 1.8, 1.12
     - Fabric 1.12.2
