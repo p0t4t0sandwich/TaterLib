@@ -59,7 +59,6 @@ pluginManagement {
 }
 
 plugins {
-    // Automatic toolchain provisioning
     id("org.gradle.toolchains.foojay-resolver-convention") version("0.5.0")
 }
 
@@ -74,7 +73,7 @@ include(
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
-        'bukkit:bukkit-1.20.3', // Waiting on Paper to compare changes, none so far
+        'bukkit:bukkit-1.20.4', // Waiting on Paper to compare changes, none so far
         'bungee:bungee-1.4.7',
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
@@ -89,7 +88,7 @@ include(
         'fabric:fabric-1.19',
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
-        'fabric:fabric-1.20.3', // No changes so far
+        'fabric:fabric-1.20.4', // No changes so far
         'forge:forge-1.12',
         'forge:forge-1.13',
         'forge:forge-1.14',
@@ -100,8 +99,9 @@ include(
         'forge:forge-1.19',
         'forge:forge-1.20',
         'forge:forge-1.20.2',
+        'forge:forge-1.20.4', // No changes so far
         'neoforge:neoforge-1.20.2',
-        'neoforge:neoforge-1.20.3', // No changes so far
+        'neoforge:neoforge-1.20.4', // No changes so far
 //        'sponge:sponge4', // Needs some work done to SpongePlayerInventory and it should be good to go
         'sponge:sponge5',
         'sponge:sponge6',

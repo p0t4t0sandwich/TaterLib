@@ -1,10 +1,8 @@
 {
   "pack": {
     "description": "${project_id} resources",
-    "pack_format": ${
-  pack_format_number
-},
-"forge:resource_pack_format": 9,
-"forge:data_pack_format": 10
-}
+    "pack_format": ${pack_format_number},
+    "forge:resource_pack_format": 9,
+    "forge:data_pack_format": 10
+  }
 }
