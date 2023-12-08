@@ -123,7 +123,7 @@ prepareFiles common
 
 # --------------------------- Prepare Bukkit --------------------------------
 
-BUKKIT_VERSIONS=(b1.7.3 1.2.5 1.6.4 1.7.10 1.8.8 1.13.2 1.15.2 1.20.2)
+BUKKIT_VERSIONS=(b1.7.3 1.2.5 1.6.4 1.7.10 1.8.8 1.13.2 1.15.2 1.20.2 1.20.4)
 for BUKKIT_VERSION in "${BUKKIT_VERSIONS[@]}"
 do
     prepareFiles bukkit-$BUKKIT_VERSION
@@ -139,7 +139,7 @@ done
 
 # --------------------------- Prepare Fabric --------------------------------
 
-FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20 1.20.2)
+FABRIC_VERSIONS=(1.14 1.15 1.16 1.17 1.18 1.19 1.20 1.20.2 1.20.4)
 for FABRIC_VERSION in "${FABRIC_VERSIONS[@]}"
 do
     prepareFiles fabric-$FABRIC_VERSION
@@ -147,7 +147,7 @@ done
 
 # --------------------------- Prepare Forge --------------------------------
 
-FORGE_VERSIONS=(1.12.2 1.13.2 1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20 1.20.2)
+FORGE_VERSIONS=(1.12.2 1.13.2 1.14.4 1.15.1 1.16.3 1.17.1 1.18 1.19 1.20 1.20.2 1.20.4)
 for FORGE_VERSION in "${FORGE_VERSIONS[@]}"
 do
     prepareFiles forge-$FORGE_VERSION
@@ -155,7 +155,7 @@ done
 
 # --------------------------- Prepare NeoForge --------------------------------
 
-NEOFORGE_VERSIONS=(1.20.2)
+NEOFORGE_VERSIONS=(1.20.2 1.20.4)
 for NEOFORGE_VERSION in "${NEOFORGE_VERSIONS[@]}"
 do
     prepareFiles neoforge-$NEOFORGE_VERSION
