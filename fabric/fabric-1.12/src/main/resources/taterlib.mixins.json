@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.neuralnexus.taterlib.fabric.mixin",
+  "package": "${group_id}.${project_id}.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "listeners.block.FabricBlockBreakMixin",
