@@ -38,6 +38,14 @@ subprojects {
     }
 }
 
+apply(plugin: 'java')
+evaluationDependsOnChildren()
+task taterBuild(type: Exec) {
+    dependsOn(subprojects*.build)
+    executable('bash')
+    args('-c', './build.sh')
+}
+
 clean {
     delete('target')
 }
