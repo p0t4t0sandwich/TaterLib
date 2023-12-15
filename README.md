@@ -65,8 +65,8 @@ General notes:
 | 1.14            | 1.14-1.14.3   | `TaterLib-1.14-<version>.jar`   |
 | 1.13            | 1.13-1.13.2   | `TaterLib-1.13-<version>.jar`   |
 | 1.12            | 1.12-1.12.2   | `TaterLib-1.12-<version>.jar`   |
-| 1.11            | 1.11          | `TaterLib-1.11-<version>.jar`   |
-| 1.10            | 1.10          | `TaterLib-1.10-<version>.jar`   |
+| 1.11            | 1.11-1.11.2   | `TaterLib-1.11-<version>.jar`   |
+| 1.10            | 1.10-1.10.2   | `TaterLib-1.10-<version>.jar`   |
 | 1.7.10 (Bukkit) | 1.7.10        | `TaterLib-1.7.10-<version>.jar` |
 | 1.6.4 (Bukkit)  | 1.6.4         | `TaterLib-1.6.4-<version>.jar`  |
 | 1.2.5 (Bukkit)  | 1.2.5         | `TaterLib-1.2.5-<version>.jar`  |
@@ -74,7 +74,9 @@ General notes:
 
 ## Dependencies
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api) - Required on Fabric
+- [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
+- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and
+  below
 
 ### Optional Dependencies
 
@@ -97,7 +99,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.11-SNAPSHOT
+### 1.1.0-R0.15-SNAPSHOT
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -154,3 +156,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Server#broadcastMessage(String)`
 - Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports
 - Improved the hook system to allow for multiple permission managers to be used simultaneously
+- Build system overhaul, no sketchy `build.sh` anymore

@@ -1,41 +1,15 @@
-plugins {
-    id('com.github.johnrengelman.shadow') version('8.1.1')
-}
-
 dependencies {
-    implementation(project(path: ':common', configuration: 'shadow'))
-
-    // BungeeCord
     compileOnly("net.md-5:bungeecord-api:${minecraft_version}-${bungeecord_version}")
+    compileOnly(project(':common'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    var replaceProperties = [
-            project_id         : project_id,
-            project_name       : project_name,
-            project_description: project_description,
-            group_id           : group_id,
-            version            : version,
-            authors            : authors,
-
-            homepage_url       : homepage_url
-    ]
-    inputs.properties replaceProperties
-
     filesMatching(['bungee.yml']) {
-        expand replaceProperties + [project: project]
+        expand project.properties
     }
 }
 
-shadowJar {
-    dependencies {
-        include(project(":common"))
-    }
-
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-bungee-${minecraft_version}-${version}.jar"
-}
-
-artifacts {
-    archives(shadowJar)
+    archiveFileName = "${project_id}-bungee-${minecraft_version}-${version}.jar"
 }

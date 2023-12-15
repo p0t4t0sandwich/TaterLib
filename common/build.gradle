@@ -72,13 +72,15 @@ java.disableAutoTargetJvm()
 shadowJar {
     dependencies {
         include(dependency("${group_id}:${project_id}:${version}"))
+        exclude('META-INF', 'META-INF/**')
+        exclude('LICENSE')
 
         // YAML
-        include(dependency("dev.dejvokep:boosted-yaml:1.3.1"))
+        include(dependency('dev.dejvokep:boosted-yaml:1.3.1'))
 
         // MySQL
-        include(dependency("com.zaxxer:HikariCP:4.0.3"))
-        include(dependency("mysql:mysql-connector-java:8.0.26"))
+        include(dependency('com.zaxxer:HikariCP:4.0.3'))
+        include(dependency('mysql:mysql-connector-java:8.0.26'))
 
         // MongoDB
         include(dependency('org.mongodb:mongodb-driver-sync:4.9.1'))
@@ -107,7 +109,7 @@ shadowJar {
     relocate('org.jetbrains', "${group_id}.${project_id}.lib.jetbrains")
 
     destinationDirectory = file('../target')
-    archiveFileName = "${project_name}-common-${version}.jar"
+    archiveFileName = "${project_id}-common-${version}.jar"
 }
 
 artifacts {

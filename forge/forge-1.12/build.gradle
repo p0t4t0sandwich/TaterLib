@@ -1,5 +1,4 @@
 plugins {
-    id('com.github.johnrengelman.shadow') version('8.1.1')
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
 }
 
@@ -8,58 +7,17 @@ minecraft {
 }
 
 dependencies {
-    implementation(project(path: ':common', configuration: 'shadow'))
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    compileOnly(project(':common'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    var replaceProperties = [
-            minecraft_version  : minecraft_version,
-            forge_version      : forge_version,
-            pack_format_number : pack_format_number,
-
-            project_id         : project_id,
-            project_name       : project_name,
-            project_description: project_description,
-            license            : license,
-            version            : version,
-            authors            : authors,
-
-            homepage_url       : homepage_url,
-            issue_tracker_url  : issue_tracker_url,
-            update_json_url    : update_json_url
-    ]
-    inputs.properties replaceProperties
-
     filesMatching(['mcmod.info', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
+        expand project.properties
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-}
-
-reobf {
-    shadowJar {}
-}
-
-shadowJar {
-    dependencies {
-        include(project(':common'))
-    }
-
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-forge-${minecraft_version}-${version}.jar"
-}
-
-processResources {
-    inputs.property("version", project.version)
-    filesMatching("mcmod.info") {
-        expand("version": project.version)
-    }
-}
-
-artifacts {
-    archives(shadowJar)
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

@@ -1,25 +1,12 @@
-plugins {
-    id('com.github.johnrengelman.shadow') version('8.1.1')
+dependencies {
+    compileOnly("com.velocitypowered:velocity-api:${velocityapi_version}")
+    annotationProcessor("com.velocitypowered:velocity-api:${velocityapi_version}")
+    compileOnly(project(':common'))
 }
 
 java.disableAutoTargetJvm()
 
-dependencies {
-    implementation(project(path: ':common', configuration: 'shadow'))
-
-    compileOnly("com.velocitypowered:velocity-api:${velocityapi_version}")
-    annotationProcessor("com.velocitypowered:velocity-api:${velocityapi_version}")
-}
-
-shadowJar {
-    dependencies {
-        include(project(":common"))
-    }
-
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-velocity3-${version}.jar"
-}
-
-artifacts {
-    archives(shadowJar)
+    archiveFileName = "${project_id}-velocity3-${version}.jar"
 }

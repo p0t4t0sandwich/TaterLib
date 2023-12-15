@@ -1,44 +1,16 @@
-plugins {
-    id('com.github.johnrengelman.shadow') version('8.1.1')
-}
-
 dependencies {
-    implementation(project(path: ':common', configuration: 'shadow'))
-
-    // Spigot
     compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
-
-    // Paper
     compileOnly("com.destroystokyo.paper:paper-api:${minecraft_version}-${bukkit_version}")
+    compileOnly(project(':common'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    var replaceProperties = [
-            project_id         : project_id,
-            project_name       : project_name,
-            project_description: project_description,
-            group_id           : group_id,
-            version            : version,
-            authors            : authors,
-
-            homepage_url       : homepage_url
-    ]
-    inputs.properties replaceProperties
-
     filesMatching(['plugin.yml']) {
-        expand replaceProperties + [project: project]
+        expand project.properties
     }
 }
 
-shadowJar {
-    dependencies {
-        include(project(":common"))
-    }
-
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-bukkit-${minecraft_version}-${version}.jar"
-}
-
-artifacts {
-    archives(shadowJar)
+    archiveFileName = "${project_id}-bukkit-${minecraft_version}-${version}.jar"
 }

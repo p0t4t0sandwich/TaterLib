@@ -10,7 +10,7 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
     }
 
@@ -38,12 +38,497 @@ subprojects {
     }
 }
 
-apply(plugin: 'java')
-evaluationDependsOnChildren()
-task taterBuild(type: Exec) {
-    dependsOn(subprojects*.build)
-    executable('bash')
-    args('-c', './build.sh')
+// --------------------------- Build all --------------------------------
+tasks.register('build_all') {
+    dependsOn('build_api')
+//    dependsOn('build_b1_7_3')
+//    dependsOn('build_1_2_5')
+//    dependsOn('build_1_6_4')
+//    dependsOn('build_1_7_10')
+    dependsOn('build_1_8')
+    dependsOn('build_1_9')
+    dependsOn('build_1_10')
+    dependsOn('build_1_11')
+    dependsOn('build_1_12')
+    dependsOn('build_1_13')
+    dependsOn('build_1_14')
+    dependsOn('build_1_15')
+    dependsOn('build_1_16')
+    dependsOn('build_1_17')
+    dependsOn('build_1_18')
+    dependsOn('build_1_19')
+    dependsOn('build_1_20')
+    dependsOn('build_1_20_2')
+    dependsOn('build_1_20_4')
+}
+
+// --------------------------- Jar file helper method --------------------------------
+ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version, outputFile ->
+    println("Building using Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
+
+    String dir = "./target"
+    ArrayList<File> jarFiles = [file("${dir}/${project_id}-common-${version}.jar")]
+    if (bukkit_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
+    }
+    if (bungee_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bungee-${bungee_version}-${version}.jar"))
+    }
+    if (fabric_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-fabric-${fabric_version}-${version}.jar"))
+    }
+    if (forge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-forge-${forge_version}-${version}.jar"))
+    }
+    if (neoforge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-neoforge-${neoforge_version}-${version}.jar"))
+    }
+    if (sponge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-sponge${sponge_version}-${version}.jar"))
+    }
+    if (velocity_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-velocity${velocity_version}-${version}.jar"))
+    }
+
+    return jarFiles.collect {
+        if (it.name.contains('-forge') && neoforge_version != null) {
+            zipTree(it).matching {
+                exclude('META-INF/mods.toml')
+            }
+        } else if ((it.name.contains('sponge4') || it.name.contains('sponge5')
+                || it.name.contains('sponge6') || it.name.contains('sponge7')) && forge_version != null) {
+            zipTree(it).matching {
+                exclude('mcmod.info')
+            }
+        } else {
+            zipTree(it)
+        }
+    }
+}
+
+// --------------------------- Build api --------------------------------
+tasks.register('build_api', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.20.4:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.4:build')
+    dependsOn(':forge:forge-1.20.4:build')
+    dependsOn(':neoforge:neoforge-1.20.4:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_id}-api-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_id}-api-${version}.jar")
+    }
+}
+
+// --------------------------- Build b1.7.3 --------------------------------
+tasks.register('build_b1_7_3', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-b1.7.3:build')
+
+    archiveFileName = "${project_name}-b1.7.3-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('b1.7.3', null, null, null, null, null, null, "${project_name}-b1.7.3-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.2.5 --------------------------------
+tasks.register('build_1_2_5', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.2.5:build')
+    dependsOn(':bungee:bungee-1.4.7:build')
+
+    archiveFileName = "${project_name}-1.2.5-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.2.5', '1.4.7', null, null, null, null, null, "${project_name}-1.2.5-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.6.4 --------------------------------
+tasks.register('build_1_6_4', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.6.4:build')
+    dependsOn(':bungee:bungee-1.4.7:build')
+
+    archiveFileName = "${project_name}-1.6.4-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.6.4', '1.4.7', null, null, null, null, null, "${project_name}-1.6.4-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.7.10 --------------------------------
+tasks.register('build_1_7_10', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.7.10:build')
+    dependsOn(':bungee:bungee-1.4.7:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.7.10-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.7.10', '1.4.7', null, null, null, null, '3', "${project_name}-1.7.10-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.8 --------------------------------
+tasks.register('build_1_8', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+//    dependsOn(':sponge:sponge4:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.8-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.8.8', '1.8', null, null, null, null, '3', "${project_name}-1.8-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.9 --------------------------------
+tasks.register('build_1_9', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':sponge:sponge5:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.9-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.8.8', '1.8', null, null, null, '5', '3', "${project_name}-1.9-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.10 --------------------------------
+tasks.register('build_1_10', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':sponge:sponge5:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.10-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.8.8', '1.8', null, null, null, '5', '3', "${project_name}-1.10-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.11 --------------------------------
+tasks.register('build_1_11', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':sponge:sponge6:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.11-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.8.8', '1.8', null, null, null, '6', '3', "${project_name}-1.11-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.12 --------------------------------
+tasks.register('build_1_12', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.12:build')
+//    dependsOn(':fabric:fabric-1.12.2:build')
+    dependsOn(':forge:forge-1.12:build')
+    dependsOn(':sponge:sponge7:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.12-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        // mergeJars('1.8.8', '1.12', 1.12.2, '1.12.2', null, '7', '3', "${project_id}-1.12-${version}.jar")
+        mergeJars('1.8.8', '1.12', null, '1.12.2', null, '7', '3', "${project_name}-1.12-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.13 --------------------------------
+tasks.register('build_1_13', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.13.2:build')
+    dependsOn(':bungee:bungee-1.12:build')
+    dependsOn(':forge:forge-1.13:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.13-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.13.2', '1.12', null, '1.13.2', null, null, '3', "${project_name}-1.13-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.14 --------------------------------
+tasks.register('build_1_14', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.13.2:build')
+    dependsOn(':bungee:bungee-1.12:build')
+    dependsOn(':fabric:fabric-1.14:build')
+    dependsOn(':forge:forge-1.14:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.14-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.13.2', '1.12', '1.14', '1.14.4', null, null, '3', "${project_name}-1.14-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.15 --------------------------------
+tasks.register('build_1_15', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.15:build')
+    dependsOn(':forge:forge-1.15:build')
+    dependsOn(':sponge:sponge8:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.15-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3', "${project_name}-1.15-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.16 --------------------------------
+tasks.register('build_1_16', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.16:build')
+    dependsOn(':forge:forge-1.16:build')
+    dependsOn(':sponge:sponge8:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.16-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3', "${project_name}-1.16-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.17 --------------------------------
+tasks.register('build_1_17', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.17:build')
+    dependsOn(':forge:forge-1.17:build')
+    dependsOn(':sponge:sponge9:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.17-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3', "${project_name}-1.17-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.18 --------------------------------
+tasks.register('build_1_18', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.18:build')
+    dependsOn(':forge:forge-1.18:build')
+    dependsOn(':sponge:sponge9:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.18-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars('1.15.2', '1.20', '1.18', '1.18', null, '9', '3', "${project_name}-1.18-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.19 --------------------------------
+tasks.register('build_1_19', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.19:build')
+    dependsOn(':forge:forge-1.19:build')
+    dependsOn(':sponge:sponge10:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.19-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.15.2', '1.20', '1.19', '1.19', null, '10', '3', "${project_name}-1.19-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.20 --------------------------------
+tasks.register('build_1_20', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20:build')
+    dependsOn(':forge:forge-1.20:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.20-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20.2', '1.20', '1.20', '1.20', null, '11', '3', "${project_name}-1.20-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.20.2 --------------------------------
+tasks.register('build_1_20_2', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.2:build')
+    dependsOn(':forge:forge-1.20.2:build')
+    dependsOn(':neoforge:neoforge-1.20.2:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.20.2-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3', "${project_name}-1.20.2-${version}.jar")
+    }
+}
+
+// --------------------------- Build 1.20.3/4 --------------------------------
+tasks.register('build_1_20_4', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.20.4:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.4:build')
+    dependsOn(':forge:forge-1.20.4:build')
+    dependsOn(':neoforge:neoforge-1.20.4:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_name}-1.20.4-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_name}-1.20.4-${version}.jar")
+    }
 }
 
 clean {

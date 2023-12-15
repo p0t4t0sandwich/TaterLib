@@ -2,8 +2,6 @@ import org.spongepowered.gradle.plugin.config.PluginLoaders
 import org.spongepowered.plugin.metadata.model.PluginDependency
 
 plugins {
-    id('com.github.johnrengelman.shadow') version('8.1.1')
-    id('java-library')
     id("org.spongepowered.gradle.plugin") version('2.1.1')
 }
 
@@ -37,21 +35,11 @@ sponge {
 }
 
 dependencies {
-    implementation(project(path: ':common', configuration: 'shadow'))
-
-    // Brigadier
     compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly(project(':common'))
 }
 
-shadowJar {
-    dependencies {
-        include(project(":common"))
-    }
-
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_name}-sponge8-${version}.jar"
-}
-
-artifacts {
-    archives(shadowJar)
+    archiveFileName = "${project_id}-sponge8-${version}.jar"
 }
