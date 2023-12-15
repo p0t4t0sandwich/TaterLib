@@ -41,6 +41,7 @@ subprojects {
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
     dependsOn('build_api')
+    dependsOn('build_api_platforms')
 //    dependsOn('build_b1_7_3')
 //    dependsOn('build_1_2_5')
 //    dependsOn('build_1_6_4')
@@ -109,13 +110,6 @@ ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version,
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn(':bukkit:bukkit-1.20.4:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.20.4:build')
-    dependsOn(':forge:forge-1.20.4:build')
-    dependsOn(':neoforge:neoforge-1.20.4:build')
-    dependsOn(':sponge:sponge11:build')
-    dependsOn(':velocity:velocity3:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
     destinationDirectory = file("./build/libs")
@@ -125,7 +119,32 @@ tasks.register('build_api', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_id}-api-${version}.jar")
+        zipTree(file("./target/${project_id}-common-${version}.jar")).matching {
+            exclude('dev/neuralnexus/taterlib/lib/**')
+        }
+    }
+}
+
+// --------------------------- Build api-platforms --------------------------------
+tasks.register('build_api_platforms', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn(':bukkit:bukkit-1.20.4:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.4:build')
+    dependsOn(':forge:forge-1.20.4:build')
+    dependsOn(':neoforge:neoforge-1.20.4:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_id}-api-platforms-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_id}-api-platforms-${version}.jar")
     }
 }
 
