@@ -1,5 +1,6 @@
 plugins {
     id('java')
+    id('maven-publish')
 }
 
 defaultTasks('build')
@@ -64,7 +65,7 @@ tasks.register('build_all') {
 }
 
 // --------------------------- Jar file helper method --------------------------------
-ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version, outputFile ->
+ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
     println("Building using Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
 
     String dir = "./target"
@@ -115,6 +116,14 @@ tasks.register('build_api', Jar) {
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    manifest {
+        attributes 'Specification-Title': "${project_name} API",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
@@ -140,11 +149,19 @@ tasks.register('build_api_platforms', Jar) {
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
+    manifest {
+        attributes 'Specification-Title': "${project_name} API Platforms",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_id}-api-platforms-${version}.jar")
+        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
     }
 }
 
@@ -153,15 +170,24 @@ tasks.register('build_b1_7_3', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-b1.7.3:build')
 
-    archiveFileName = "${project_name}-b1.7.3-${version}.jar"
+    String mc_version = 'b1.7.3'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('b1.7.3', null, null, null, null, null, null, "${project_name}-b1.7.3-${version}.jar")
+        mergeJars('b1.7.3', null, null, null, null, null, null)
     }
 }
 
@@ -171,15 +197,24 @@ tasks.register('build_1_2_5', Jar) {
     dependsOn(':bukkit:bukkit-1.2.5:build')
     dependsOn(':bungee:bungee-1.4.7:build')
 
-    archiveFileName = "${project_name}-1.2.5-${version}.jar"
+    String mc_version = '1.2.5'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.2.5', '1.4.7', null, null, null, null, null, "${project_name}-1.2.5-${version}.jar")
+        mergeJars('1.2.5', '1.4.7', null, null, null, null, null)
     }
 }
 
@@ -189,15 +224,24 @@ tasks.register('build_1_6_4', Jar) {
     dependsOn(':bukkit:bukkit-1.6.4:build')
     dependsOn(':bungee:bungee-1.4.7:build')
 
-    archiveFileName = "${project_name}-1.6.4-${version}.jar"
+    String mc_version = '1.6.4'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.6.4', '1.4.7', null, null, null, null, null, "${project_name}-1.6.4-${version}.jar")
+        mergeJars('1.6.4', '1.4.7', null, null, null, null, null)
     }
 }
 
@@ -208,15 +252,24 @@ tasks.register('build_1_7_10', Jar) {
     dependsOn(':bungee:bungee-1.4.7:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.7.10-${version}.jar"
+    String mc_version = '1.7.10'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.7.10', '1.4.7', null, null, null, null, '3', "${project_name}-1.7.10-${version}.jar")
+        mergeJars('1.7.10', '1.4.7', null, null, null, null, '3')
     }
 }
 
@@ -228,15 +281,24 @@ tasks.register('build_1_8', Jar) {
 //    dependsOn(':sponge:sponge4:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.8-${version}.jar"
+    String mc_version = '1.8'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, null, '3', "${project_name}-1.8-${version}.jar")
+        mergeJars('1.8.8', '1.8', null, null, null, null, '3')
     }
 }
 
@@ -248,15 +310,24 @@ tasks.register('build_1_9', Jar) {
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.9-${version}.jar"
+    String mc_version = '1.9'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, '5', '3', "${project_name}-1.9-${version}.jar")
+        mergeJars('1.8.8', '1.8', null, null, null, '5', '3')
     }
 }
 
@@ -268,15 +339,24 @@ tasks.register('build_1_10', Jar) {
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.10-${version}.jar"
+    String mc_version = '1.10'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, '5', '3', "${project_name}-1.10-${version}.jar")
+        mergeJars('1.8.8', '1.8', null, null, null, '5', '3')
     }
 }
 
@@ -288,16 +368,25 @@ tasks.register('build_1_11', Jar) {
     dependsOn(':sponge:sponge6:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.11-${version}.jar"
+    String mc_version = '1.11'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, '6', '3', "${project_name}-1.11-${version}.jar")
+        mergeJars('1.8.8', '1.8', null, null, null, '6', '3')
     }
 }
 
@@ -311,17 +400,26 @@ tasks.register('build_1_12', Jar) {
     dependsOn(':sponge:sponge7:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.12-${version}.jar"
+    String mc_version = '1.12'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        // mergeJars('1.8.8', '1.12', 1.12.2, '1.12.2', null, '7', '3', "${project_id}-1.12-${version}.jar")
-        mergeJars('1.8.8', '1.12', null, '1.12.2', null, '7', '3', "${project_name}-1.12-${version}.jar")
+        // mergeJars('1.8.8', '1.12', 1.12.2, '1.12.2', null, '7', '3', "${project_id}-${mc_version}-${version}.jar")
+        mergeJars('1.8.8', '1.12', null, '1.12.2', null, '7', '3')
     }
 }
 
@@ -333,16 +431,25 @@ tasks.register('build_1_13', Jar) {
     dependsOn(':forge:forge-1.13:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.13-${version}.jar"
+    String mc_version = '1.13'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.13.2', '1.12', null, '1.13.2', null, null, '3', "${project_name}-1.13-${version}.jar")
+        mergeJars('1.13.2', '1.12', null, '1.13.2', null, null, '3')
     }
 }
 
@@ -355,16 +462,25 @@ tasks.register('build_1_14', Jar) {
     dependsOn(':forge:forge-1.14:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.14-${version}.jar"
+    String mc_version = '1.14'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.13.2', '1.12', '1.14', '1.14.4', null, null, '3', "${project_name}-1.14-${version}.jar")
+        mergeJars('1.13.2', '1.12', '1.14', '1.14.4', null, null, '3')
     }
 }
 
@@ -378,16 +494,25 @@ tasks.register('build_1_15', Jar) {
     dependsOn(':sponge:sponge8:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.15-${version}.jar"
+    String mc_version = '1.15'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3', "${project_name}-1.15-${version}.jar")
+        mergeJars('1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3')
     }
 }
 
@@ -401,16 +526,25 @@ tasks.register('build_1_16', Jar) {
     dependsOn(':sponge:sponge8:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.16-${version}.jar"
+    String mc_version = '1.16'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3', "${project_name}-1.16-${version}.jar")
+        mergeJars('1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3')
     }
 }
 
@@ -424,16 +558,25 @@ tasks.register('build_1_17', Jar) {
     dependsOn(':sponge:sponge9:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.17-${version}.jar"
+    String mc_version = '1.17'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3', "${project_name}-1.17-${version}.jar")
+        mergeJars('1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3')
     }
 }
 
@@ -447,16 +590,25 @@ tasks.register('build_1_18', Jar) {
     dependsOn(':sponge:sponge9:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.18-${version}.jar"
+    String mc_version = '1.18'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.18', '1.18', null, '9', '3', "${project_name}-1.18-${version}.jar")
+        mergeJars('1.15.2', '1.20', '1.18', '1.18', null, '9', '3')
     }
 }
 
@@ -470,15 +622,24 @@ tasks.register('build_1_19', Jar) {
     dependsOn(':sponge:sponge10:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.19-${version}.jar"
+    String mc_version = '1.19'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.15.2', '1.20', '1.19', '1.19', null, '10', '3', "${project_name}-1.19-${version}.jar")
+        mergeJars('1.15.2', '1.20', '1.19', '1.19', null, '10', '3')
     }
 }
 
@@ -492,15 +653,24 @@ tasks.register('build_1_20', Jar) {
     dependsOn(':sponge:sponge11:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.20-${version}.jar"
+    String mc_version = '1.20'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.2', '1.20', '1.20', '1.20', null, '11', '3', "${project_name}-1.20-${version}.jar")
+        mergeJars('1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
     }
 }
 
@@ -515,15 +685,24 @@ tasks.register('build_1_20_2', Jar) {
     dependsOn(':sponge:sponge11:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.20.2-${version}.jar"
+    String mc_version = '1.20.2'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3', "${project_name}-1.20.2-${version}.jar")
+        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
     }
 }
 
@@ -538,18 +717,120 @@ tasks.register('build_1_20_4', Jar) {
     dependsOn(':sponge:sponge11:build')
     dependsOn(':velocity:velocity3:build')
 
-    archiveFileName = "${project_name}-1.20.4-${version}.jar"
+    String mc_version = '1.20.4'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3', "${project_name}-1.20.4-${version}.jar")
+        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
     }
 }
 
 clean {
     delete('target')
+}
+
+publishing {
+    publications {
+        uploadAPI(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api) {
+                artifactId = "${project_id}-api"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+        uploadAPIPlatforms(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api_platforms) {
+                artifactId = "${project_id}-api-platforms"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "NeuralNexusReleases"
+            url = "https://maven.neuralnexus.dev/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+        maven {
+            name = "NeuralNexusSnapshots"
+            url = "https://maven.neuralnexus.dev/snapshots"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
 }

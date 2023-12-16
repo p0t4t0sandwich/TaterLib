@@ -50,7 +50,7 @@ General notes:
 - Sponge is not available on pre 1.8 or on 1.14
 - 1.11 and 1.10 only have Sponge support
 - No Fabric on 1.13 or 1.11 and below (yet)
-- Bukkit is the only supported platform below 1.12 at this time
+- Bukkit/Bungee/Velocity are the only supported platforms below 1.10 at this time
 
 | Server type     | Versions      | Jar Name                        |
 |-----------------|---------------|---------------------------------|
@@ -99,7 +99,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.15-SNAPSHOT
+### 1.1.0-R0.15
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -151,7 +151,7 @@ Feel free to open a PR to add your plugin/mod to this list!
     - Ketting
     - Magma
     - Mohist
-- Split renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
+- Renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
   adding helper instantiations from hybrid hooks
 - Added `Server#broadcastMessage(String)`
 - Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports
