@@ -119,6 +119,12 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return player.getPing();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         player.disconnect(message);
     }

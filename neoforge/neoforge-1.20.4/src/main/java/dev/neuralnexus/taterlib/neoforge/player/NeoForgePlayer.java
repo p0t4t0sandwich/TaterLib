@@ -103,6 +103,12 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return ((ServerPlayer) player).connection.latency();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
     }

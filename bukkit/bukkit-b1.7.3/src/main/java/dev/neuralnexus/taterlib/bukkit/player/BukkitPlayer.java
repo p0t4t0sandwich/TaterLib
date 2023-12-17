@@ -130,6 +130,13 @@ public class BukkitPlayer extends BukkitEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+//        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
+        return -1;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }

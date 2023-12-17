@@ -103,6 +103,12 @@ public class FabricPlayer extends FabricEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return ((ServerPlayerEntity) player).ping;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         ((ServerPlayerEntity) player).networkHandler.onDisconnected(new TranslatableText(message));
     }
@@ -124,7 +130,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     @Override
     public String getPrefix() {
         // TODO: Find a way to get LP prefixes/suffixes
-//        return Options.get(player, "prefix", "");
+        //        return Options.get(player, "prefix", "");
         return "";
     }
 
@@ -132,7 +138,7 @@ public class FabricPlayer extends FabricEntity implements Player {
     @Override
     public String getSuffix() {
         // TODO: Find a way to get LP prefixes/suffixes
-//        return Options.get(player, "suffix", "");
+        //        return Options.get(player, "suffix", "");
         return "";
     }
 

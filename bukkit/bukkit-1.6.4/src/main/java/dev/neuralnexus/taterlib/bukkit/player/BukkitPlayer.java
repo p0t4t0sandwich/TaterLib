@@ -7,6 +7,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
+import org.bukkit.craftbukkit.v1_6_R3.entity.CraftPlayer;
 import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
@@ -126,6 +127,12 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     @Override
     public PlayerInventory getInventory() {
         return new BukkitPlayerInventory(player.getInventory());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPing() {
+        return ((CraftPlayer) player).getHandle().ping;
     }
 
     /** {@inheritDoc} */

@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.sponge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.network.ChannelBinding;
@@ -101,6 +101,12 @@ public class SpongePlayer extends SpongeEntity implements Player {
     @Override
     public PlayerInventory getInventory() {
         return new SpongePlayerInventory(player.getInventory().first());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPing() {
+        return player.getConnection().getLatency();
     }
 
     /** {@inheritDoc} */

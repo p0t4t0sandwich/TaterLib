@@ -51,7 +51,7 @@ public interface Player extends Sender, Entity {
      *
      * @return The player's ping
      */
-    //    int getPing();
+    int getPing();
 
     /**
      * Get the address of the player

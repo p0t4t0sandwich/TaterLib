@@ -207,6 +207,12 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return (int) player.getPing();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         player.disconnect(Component.text(message));
     }

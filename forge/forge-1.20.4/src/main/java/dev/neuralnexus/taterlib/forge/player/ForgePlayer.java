@@ -10,13 +10,8 @@ import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.server.permission.PermissionAPI;
-import net.minecraftforge.server.permission.exceptions.UnregisteredPermissionException;
-import net.minecraftforge.server.permission.nodes.PermissionNode;
-import net.minecraftforge.server.permission.nodes.PermissionTypes;
 
 import java.util.UUID;
 
@@ -104,6 +99,12 @@ public class ForgePlayer extends ForgeEntity implements Player {
     @Override
     public PlayerInventory getInventory() {
         return new ForgePlayerInventory(player.getInventory());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPing() {
+        return ((ServerPlayer) player).connection.latency();
     }
 
     /** {@inheritDoc} */

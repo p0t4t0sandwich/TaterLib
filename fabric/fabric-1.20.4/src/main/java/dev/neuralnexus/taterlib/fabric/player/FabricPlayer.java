@@ -110,6 +110,12 @@ public class FabricPlayer extends FabricEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return ((ServerPlayerEntity) player).networkHandler.getLatency();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         ((ServerPlayerEntity) player).networkHandler.disconnect(Text.of(message));
     }

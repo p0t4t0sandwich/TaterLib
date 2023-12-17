@@ -1,11 +1,9 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
-import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
@@ -101,6 +99,12 @@ public class ForgePlayer extends ForgeEntity implements Player {
     @Override
     public PlayerInventory getInventory() {
         return new ForgePlayerInventory(player.getInventory());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPing() {
+        return ((ServerPlayer) player).latency;
     }
 
     /** {@inheritDoc} */

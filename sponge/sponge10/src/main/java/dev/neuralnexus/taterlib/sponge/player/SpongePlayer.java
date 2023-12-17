@@ -110,6 +110,12 @@ public class SpongePlayer extends SpongeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return ((ServerPlayer) player).connection().latency();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         ((ServerPlayer) player).kick(Component.text(message));
     }

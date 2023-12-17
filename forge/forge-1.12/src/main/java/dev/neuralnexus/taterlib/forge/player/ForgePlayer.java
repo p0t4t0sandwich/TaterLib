@@ -98,6 +98,12 @@ public class ForgePlayer extends ForgeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public int getPing() {
+        return ((EntityPlayerMP) player).ping;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void kickPlayer(String message) {
         ((EntityPlayerMP) player).connection.disconnect(new TextComponentString(message));
     }

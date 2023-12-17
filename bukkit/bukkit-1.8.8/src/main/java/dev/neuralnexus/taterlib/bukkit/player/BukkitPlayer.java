@@ -9,6 +9,7 @@ import dev.neuralnexus.taterlib.utils.Location;
 
 import org.bukkit.plugin.Plugin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
@@ -126,6 +127,23 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     @Override
     public PlayerInventory getInventory() {
         return new BukkitPlayerInventory(player.getInventory());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPing() {
+        try {
+            Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
+            return (int) entityPlayer.getClass().getField("ping").get(entityPlayer);
+        } catch (IllegalAccessException
+                | IllegalArgumentException
+                | InvocationTargetException
+                | NoSuchMethodException
+                | SecurityException
+                | NoSuchFieldException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     /** {@inheritDoc} */
