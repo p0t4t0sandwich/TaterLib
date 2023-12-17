@@ -1,6 +1,9 @@
 package dev.neuralnexus.taterlib.command;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.player.Player;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -42,5 +45,28 @@ public interface Sender {
      */
     default boolean hasPermission(String permission) {
         return TaterAPIProvider.hasPermission(this, permission);
+    }
+
+    /**
+     * Check if the sender is a player
+     *
+     * @return Whether the sender is a player
+     */
+    default boolean isPlayer() {
+        return this instanceof Player;
+    }
+
+    /**
+     * Get the player object of the sender
+     *
+     * @return The player object of the sender
+     */
+    @Nullable
+    default Player getPlayer() {
+        if (isPlayer()) {
+            return (Player) this;
+        } else {
+            return null;
+        }
     }
 }
