@@ -129,12 +129,6 @@ public class SpongePlayer extends SpongeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void setSpawn(Location location) {
-        setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public GameMode getGameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }

@@ -157,5 +157,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports
 - Improved the hook system to allow for multiple permission managers to be used simultaneously
 - Build system overhaul, no sketchy `build.sh` anymore
-- Added `Player#getPing()`
+- Added `Player#getPing()`, `Player#getGameMode()` and `Player#setGameMode()`
 - Added `Sender#isPlayer()` and `Sender#getPlayer()`

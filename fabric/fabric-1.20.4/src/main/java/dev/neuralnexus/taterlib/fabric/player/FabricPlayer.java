@@ -139,20 +139,17 @@ public class FabricPlayer extends FabricEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void setSpawn(Location location) {
-        setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public GameMode getGameMode() {
-        return GameMode.fromName(((ServerPlayerEntity) player).interactionManager.getGameMode().name());
+        return GameMode.fromName(
+                ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
     }
 
     /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
-        ((ServerPlayerEntity) player).interactionManager.changeGameMode(net.minecraft.world.GameMode.byId(gameMode.getId()));
+        ((ServerPlayerEntity) player)
+                .interactionManager.changeGameMode(
+                        net.minecraft.world.GameMode.byId(gameMode.getId()));
     }
 
     /** {@inheritDoc} */

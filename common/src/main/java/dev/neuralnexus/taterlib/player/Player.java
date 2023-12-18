@@ -79,7 +79,9 @@ public interface Player extends Sender, Entity {
      *
      * @param location The location to set the spawn point to
      */
-    void setSpawn(Location location);
+    default void setSpawn(Location location) {
+        setSpawn(location, false);
+    }
 
     /**
      * Get the player's current gamemode

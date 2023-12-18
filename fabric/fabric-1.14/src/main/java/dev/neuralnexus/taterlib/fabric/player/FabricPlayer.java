@@ -129,12 +129,6 @@ public class FabricPlayer extends FabricEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void setSpawn(Location location) {
-        setSpawn(location, false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public GameMode getGameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameMode().name());

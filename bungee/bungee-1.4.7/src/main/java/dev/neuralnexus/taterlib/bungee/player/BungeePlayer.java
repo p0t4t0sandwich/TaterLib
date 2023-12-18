@@ -136,10 +136,6 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void setSpawn(Location location) {}
-
-    /** {@inheritDoc} */
-    @Override
     public GameMode getGameMode() {
         return GameMode.fromId(0);
     }
