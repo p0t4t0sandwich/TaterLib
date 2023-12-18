@@ -6,6 +6,8 @@ import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
 import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.types.MetaNode;
+import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.node.types.SuffixNode;
 
 import java.util.UUID;
@@ -72,7 +74,7 @@ public class LuckPermsHook implements PermissionsHook {
      */
     public void setPrefix(UUID playerUuid, String prefix, int priority) {
         if (this.luckPerms == null) return;
-        SuffixNode node = SuffixNode.builder(prefix, priority).build();
+        PrefixNode node = PrefixNode.builder(prefix, priority).build();
         luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
     }
 
@@ -127,5 +129,32 @@ public class LuckPermsHook implements PermissionsHook {
         User user = luckPerms.getUserManager().getUser(sender.getUniqueId());
         return user != null
                 && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
+    }
+
+    /**
+     * Get a specific meta value for a player
+     *
+     * @param playerUuid The UUID of the player to get the meta value for
+     * @param key The key of the meta value to get
+     * @return The meta value for the player
+     */
+    public String getMeta(UUID playerUuid, String key) {
+        CachedMetaData metaData = getMetaData(playerUuid);
+        return metaData != null ? metaData.getMetaValue(key) : null;
+    }
+
+    /**
+     * Set a specific meta value for a player
+     *
+     * @param playerUuid The UUID of the player to set the meta value for
+     * @param key The key of the meta value to set
+     * @param value The value to set the meta value to
+     */
+    public void setMeta(UUID playerUuid, String key, String value) {
+        if (this.luckPerms == null) return;
+        User user = luckPerms.getUserManager().getUser(playerUuid);
+        if (user == null) return;
+        user.data().add(MetaNode.builder(key, value).build());
+        luckPerms.getUserManager().saveUser(user);
     }
 }
