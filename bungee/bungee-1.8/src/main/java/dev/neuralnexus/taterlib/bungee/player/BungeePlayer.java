@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.bungee.player;
 import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -136,6 +137,16 @@ public class BungeePlayer implements ProxyPlayer {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location) {}
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromId(0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {}
 
     /** {@inheritDoc} */
     @Override

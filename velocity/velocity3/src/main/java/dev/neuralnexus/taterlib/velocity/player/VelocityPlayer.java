@@ -5,6 +5,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
@@ -224,4 +225,14 @@ public class VelocityPlayer implements ProxyPlayer {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location) {}
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromId(0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {}
 }

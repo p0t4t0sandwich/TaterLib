@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
@@ -8,6 +9,8 @@ import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.network.ChannelBinding;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
@@ -128,6 +131,31 @@ public class SpongePlayer extends SpongeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        switch (gameMode) {
+            case CREATIVE:
+                player.offer(Keys.GAME_MODE, GameModes.CREATIVE);
+                break;
+            case SURVIVAL:
+                player.offer(Keys.GAME_MODE, GameModes.SURVIVAL);
+                break;
+            case ADVENTURE:
+                player.offer(Keys.GAME_MODE, GameModes.ADVENTURE);
+                break;
+            case SPECTATOR:
+                player.offer(Keys.GAME_MODE, GameModes.SPECTATOR);
+                break;
+        }
     }
 
     /** {@inheritDoc} */

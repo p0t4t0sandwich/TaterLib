@@ -132,6 +132,31 @@ public class SpongePlayer extends SpongeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        switch (gameMode) {
+            case CREATIVE:
+                player.offer(Keys.GAME_MODE, GameModes.CREATIVE);
+                break;
+            case SURVIVAL:
+                player.offer(Keys.GAME_MODE, GameModes.SURVIVAL);
+                break;
+            case ADVENTURE:
+                player.offer(Keys.GAME_MODE, GameModes.ADVENTURE);
+                break;
+            case SPECTATOR:
+                player.offer(Keys.GAME_MODE, GameModes.SPECTATOR);
+                break;
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }

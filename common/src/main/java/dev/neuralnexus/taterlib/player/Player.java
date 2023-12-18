@@ -82,6 +82,38 @@ public interface Player extends Sender, Entity {
     void setSpawn(Location location);
 
     /**
+     * Get the player's current gamemode
+     *
+     * @return The player's current gamemode
+     */
+    GameMode getGameMode();
+
+    /**
+     * Set the player's game mode
+     *
+     * @param gameMode The game mode to set
+     */
+    void setGameMode(GameMode gameMode);
+
+    /**
+     * Set the player's game mode
+     *
+     * @param id The id of the game mode to set
+     */
+    default void setGameMode(int id) {
+        setGameMode(GameMode.fromId(id));
+    }
+
+    /**
+     * Set the player's game mode
+     *
+     * @param name The name of the game mode to set
+     */
+    default void setGameMode(String name) {
+        setGameMode(GameMode.fromName(name));
+    }
+
+    /**
      * Perform a command as the player
      *
      * @param command The command to perform

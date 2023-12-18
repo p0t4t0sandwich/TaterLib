@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -131,7 +132,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public int getPing() {
-//        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
+        //        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
         return -1;
     }
 
@@ -157,5 +158,17 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(player.getGameMode().name());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));
     }
 }

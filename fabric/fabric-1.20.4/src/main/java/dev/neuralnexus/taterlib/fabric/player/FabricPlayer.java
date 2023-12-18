@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.fabric.player;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -140,6 +141,18 @@ public class FabricPlayer extends FabricEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(((ServerPlayerEntity) player).interactionManager.getGameMode().name());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        ((ServerPlayerEntity) player).interactionManager.changeGameMode(net.minecraft.world.GameMode.byId(gameMode.getId()));
     }
 
     /** {@inheritDoc} */

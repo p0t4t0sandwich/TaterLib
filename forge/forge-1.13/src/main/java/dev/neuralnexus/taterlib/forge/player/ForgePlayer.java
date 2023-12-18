@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -127,6 +128,19 @@ public class ForgePlayer extends ForgeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(
+                ((EntityPlayerMP) player).interactionManager.getGameType().getName());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.getId()));
     }
 
     /** {@inheritDoc} */

@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgePlayerInventory;
 import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
 import dev.neuralnexus.taterlib.neoforge.networking.packet.NeoForgeMessagePacket;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -132,6 +133,19 @@ public class NeoForgePlayer extends NeoForgeEntity implements Player {
     @Override
     public void setSpawn(Location location) {
         setSpawn(location, false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode getGameMode() {
+        return GameMode.fromName(((ServerPlayer) player).gameMode.getGameModeForPlayer().getName());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setGameMode(GameMode gameMode) {
+        ((ServerPlayer) player)
+                .setGameMode(net.minecraft.world.level.GameType.byId(gameMode.getId()));
     }
 
     /** {@inheritDoc} */
