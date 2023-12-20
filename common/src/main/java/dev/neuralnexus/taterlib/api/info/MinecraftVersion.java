@@ -161,6 +161,7 @@ public enum MinecraftVersion {
     V1_20_1("1.20.1"),
     V1_20_2("1.20.2"),
     V1_20_3("1.20.3"),
+    V1_20_4("1.20.4"),
     UNKNOWN("Unknown");
 
     private final String version;
