@@ -26,13 +26,9 @@ public class SpongePermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Sender sender, String permission) {
         if (sender instanceof Player) {
-            if (sender instanceof ServerPlayer) {
-                return ((ServerPlayer) ((SpongePlayer) sender).getPlayer())
-                        .hasPermission(permission);
-            }
+            return ((ServerPlayer) ((SpongePlayer) sender).getPlayer()).hasPermission(permission);
         } else {
             return (((SpongeSender) sender).getSender().hasPermission(permission));
         }
-        return false;
     }
 }

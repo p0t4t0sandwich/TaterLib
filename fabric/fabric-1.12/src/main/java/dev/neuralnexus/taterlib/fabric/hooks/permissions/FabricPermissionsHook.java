@@ -27,7 +27,9 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Sender sender, String permission) {
         if (sender instanceof Player) {
-            return PermissionsApiHolder.getPlayerPermissionsApi().hasPermission((ServerPlayerEntity) ((FabricPlayer) sender).getPlayer(), permission);
+            return PermissionsApiHolder.getPlayerPermissionsApi()
+                    .hasPermission(
+                            (ServerPlayerEntity) ((FabricPlayer) sender).getPlayer(), permission);
         } else {
             return ((FabricSender) sender).getSender().hasPermission(permission);
         }

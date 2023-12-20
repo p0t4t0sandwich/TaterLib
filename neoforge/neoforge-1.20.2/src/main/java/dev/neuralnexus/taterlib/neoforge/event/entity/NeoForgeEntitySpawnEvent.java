@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.neoforge.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
 import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 

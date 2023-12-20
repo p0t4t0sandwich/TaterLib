@@ -2,9 +2,9 @@ package dev.neuralnexus.taterlib.sponge.event.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 

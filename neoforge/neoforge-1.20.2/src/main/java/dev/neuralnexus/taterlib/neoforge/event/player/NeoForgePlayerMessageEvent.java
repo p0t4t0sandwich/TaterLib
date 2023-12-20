@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.neoforge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
+import dev.neuralnexus.taterlib.player.Player;
 
 import net.neoforged.neoforge.event.ServerChatEvent;
 

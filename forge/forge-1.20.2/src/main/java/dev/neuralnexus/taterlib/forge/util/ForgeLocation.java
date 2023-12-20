@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.util;
 
+import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.utils.Position;
-import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.phys.Vec3;

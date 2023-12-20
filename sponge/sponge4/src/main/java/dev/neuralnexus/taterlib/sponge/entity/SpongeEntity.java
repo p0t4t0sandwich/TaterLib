@@ -116,7 +116,9 @@ public class SpongeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
-        return entity.getWorld().getBiome(entity.getLocation().getBlockPosition().toVector2()).getId();
+        return entity.getWorld()
+                .getBiome(entity.getLocation().getBlockPosition().toVector2())
+                .getId();
     }
 
     /** {@inheritDoc} */

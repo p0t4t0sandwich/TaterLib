@@ -20,7 +20,7 @@ description = '''${project_description}'''
 [[dependencies.${ project_id }]]
 modId = "forge"
 mandatory = false
-type="optional"
+type = "optional"
 versionRange = "${forge_version_range}"
 ordering = "NONE"
 side = "BOTH"
@@ -29,7 +29,7 @@ side = "BOTH"
 [[dependencies.${ project_id }]]
 modId = "neoforge"
 mandatory = false
-type="optional"
+type = "optional"
 versionRange = "${neo_version_range}"
 ordering = "NONE"
 side = "BOTH"
@@ -38,7 +38,7 @@ side = "BOTH"
 [[dependencies.${ project_id }]]
 modId = "minecraft"
 mandatory = true
-type="required"
+type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
@@ -47,7 +47,7 @@ side = "BOTH"
 [[dependencies.${ project_id }]]
 modId = "luckperms"
 mandatory = false
-type="optional"
+type = "optional"
 versionRange = "[5.3,)"
 ordering = "NONE"
 side = "SERVER"

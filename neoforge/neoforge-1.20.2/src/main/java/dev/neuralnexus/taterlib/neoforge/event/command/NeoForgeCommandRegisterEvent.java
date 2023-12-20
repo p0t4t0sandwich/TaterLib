@@ -10,9 +10,9 @@ import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.neoforge.command.NeoForgeSender;
 import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
+import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

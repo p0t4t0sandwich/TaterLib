@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
+import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;

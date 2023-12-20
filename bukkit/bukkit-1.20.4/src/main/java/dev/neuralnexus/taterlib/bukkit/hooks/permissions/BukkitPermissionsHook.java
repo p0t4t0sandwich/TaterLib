@@ -27,10 +27,10 @@ public class BukkitPermissionsHook implements PermissionsHook {
             return ((BukkitPlayer) sender).getPlayer().hasPermission(permission);
         } else {
             if (sender instanceof Player) {
-            return ((BukkitPlayer) sender).getPlayer().hasPermission(permission);
-        } else {
-            return ((BukkitSender) sender).getSender().hasPermission(permission);
-        }
+                return ((BukkitPlayer) sender).getPlayer().hasPermission(permission);
+            } else {
+                return ((BukkitSender) sender).getSender().hasPermission(permission);
+            }
         }
     }
 }

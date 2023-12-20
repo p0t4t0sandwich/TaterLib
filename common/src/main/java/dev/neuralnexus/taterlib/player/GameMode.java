@@ -19,33 +19,6 @@ public enum GameMode {
     }
 
     /**
-     * Gets the ID of the game mode.
-     *
-     * @return The ID of the game mode.
-     */
-    public int getId() {
-        return this.id;
-    }
-
-    /**
-     * Gets the name of the game mode.
-     *
-     * @return The name of the game mode.
-     */
-    public String getName() {
-        return this.name;
-    }
-
-    /**
-     * Gets the alias of the game mode.
-     *
-     * @return The alias of the game mode.
-     */
-    public String getAlias() {
-        return this.alias;
-    }
-
-    /**
      * Gets the game mode from its ID.
      *
      * @param id The ID of the game mode.
@@ -113,6 +86,33 @@ public enum GameMode {
             }
         }
         return gameMode;
+    }
+
+    /**
+     * Gets the ID of the game mode.
+     *
+     * @return The ID of the game mode.
+     */
+    public int getId() {
+        return this.id;
+    }
+
+    /**
+     * Gets the name of the game mode.
+     *
+     * @return The name of the game mode.
+     */
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Gets the alias of the game mode.
+     *
+     * @return The alias of the game mode.
+     */
+    public String getAlias() {
+        return this.alias;
     }
 
     /** {@inheritDoc} */

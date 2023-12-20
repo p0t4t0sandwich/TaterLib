@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.ServerLifecycleEvent;

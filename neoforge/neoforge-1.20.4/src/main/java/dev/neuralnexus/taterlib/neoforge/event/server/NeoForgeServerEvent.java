@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.neoforge.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.neoforge.server.NeoForgeServer;
+import dev.neuralnexus.taterlib.server.Server;
 
 import net.neoforged.neoforge.event.server.ServerLifecycleEvent;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;

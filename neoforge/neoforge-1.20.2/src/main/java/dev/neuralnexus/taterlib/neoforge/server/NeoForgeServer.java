@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.neoforge.server;
 
+import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 
 import net.minecraft.server.MinecraftServer;
 
