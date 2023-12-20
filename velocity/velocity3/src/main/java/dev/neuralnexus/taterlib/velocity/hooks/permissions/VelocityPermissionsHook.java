@@ -24,12 +24,9 @@ public class VelocityPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Sender sender, String permission) {
         if (sender instanceof Player) {
-            if (sender instanceof com.velocitypowered.api.proxy.Player) {
-                return ((VelocityPlayer) sender).getPlayer().hasPermission(permission);
-            }
+            return ((VelocityPlayer) sender).getPlayer().hasPermission(permission);
         } else {
-            return (((VelocitySender) sender).getSender().hasPermission(permission));
+            return ((VelocitySender) sender).getSender().hasPermission(permission);
         }
-        return false;
     }
 }
