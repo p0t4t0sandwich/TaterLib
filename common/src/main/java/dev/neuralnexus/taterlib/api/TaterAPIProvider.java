@@ -121,7 +121,7 @@ public class TaterAPIProvider {
         if (apis.isEmpty()) {
             register();
         }
-        return apis.get(serverType);
+        return get(serverType);
     }
 
     /**
@@ -142,24 +142,33 @@ public class TaterAPIProvider {
     public static void register() {
         ServerType serverType = ServerType.getServerType();
 
+        TaterAPI bukkitApi = new TaterAPI("plugins");
+        TaterAPI bungeeApi = new TaterAPI("plugins");
+        TaterAPI forgeApi = new TaterAPI("config");
+        TaterAPI fabricApi = new TaterAPI("config");
+
         if (serverType.isBukkitBased()) {
-            apis.put(ServerType.BUKKIT, new TaterAPI("plugins"));
+            apis.put(serverType, bukkitApi);
+            apis.put(ServerType.BUKKIT, bukkitApi);
         }
 
         if (serverType.isBungeeCordBased()) {
-            apis.put(ServerType.BUNGEECORD, new TaterAPI("plugins"));
+            apis.put(serverType, bungeeApi);
+            apis.put(ServerType.BUNGEECORD, bungeeApi);
         }
 
         // Secondary logical check is for Sinytra Connector
         // TODO: Find some way to init the Fabric side, since SC doesn't load duplicate modIds
         if (serverType.isFabricBased() || (serverType.isForgeBased() && ServerType.isFabric())) {
-            apis.put(ServerType.FABRIC, new TaterAPI("config"));
+            apis.put(serverType, fabricApi);
+            apis.put(ServerType.FABRIC, fabricApi);
         }
 
         if (serverType.is(ServerType.NEOFORGE)) {
-            apis.put(ServerType.NEOFORGE, new TaterAPI("config"));
+            apis.put(ServerType.NEOFORGE, forgeApi);
         } else if (serverType.isForgeBased()) {
-            apis.put(ServerType.FORGE, new TaterAPI("config"));
+            apis.put(serverType, forgeApi);
+            apis.put(ServerType.FORGE, forgeApi);
         }
 
         if (serverType.isSpongeBased()) {
@@ -171,9 +180,6 @@ public class TaterAPIProvider {
         }
 
         if (serverType.isHybrid()) {
-            TaterAPI bukkitApi = apis.get(ServerType.BUKKIT);
-            TaterAPI forgeApi = apis.get(ServerType.FORGE);
-
             // Sets defaults, so it might give a proper result for hybrids that don't have hooks
             TaterAPI hybridApi = new TaterAPI("config");
             hybridApi.setIsModLoaded((modid) -> apis.get(ServerType.FORGE).isModLoaded(modid));
