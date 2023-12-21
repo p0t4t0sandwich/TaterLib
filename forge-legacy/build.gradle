@@ -1,0 +1,33 @@
+plugins {
+    id('java')
+}
+
+defaultTasks('build')
+
+subprojects {
+    apply(plugin: 'java')
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = 'UTF-8'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+        // NeuralNexus
+        maven {
+            name = "NeuralNexus"
+            url = "https://maven.neuralnexus.dev/releases"
+        }
+
+        // NeuralNexus Snapshots
+        maven {
+            name = "NeuralNexus Snapshots"
+            url = "https://maven.neuralnexus.dev/snapshots"
+        }
+    }
+}
