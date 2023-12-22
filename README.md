@@ -49,9 +49,8 @@ General notes:
 
 - Sponge is not available on pre 1.8 or on 1.14
 - 1.11 and 1.10 only have Sponge support
-- No Fabric on 1.13 or below 1.7.10
-- No Forge 1.9 or below (yet)
-- Bukkit/Bungee/Velocity are the only supported platforms below 1.10 at this time
+- No Fabric on 1.13
+- No Fabric/Forge below 1.7.10
 
 | Server type     | Versions      | Jar Name                        |
 |-----------------|---------------|---------------------------------|
@@ -70,7 +69,7 @@ General notes:
 | 1.10            | 1.10-1.10.2   | `TaterLib-1.10-<version>.jar`   |
 | 1.9             | 1.9-1.9.4     | `TaterLib-1.9-<version>.jar`    |
 | 1.8             | 1.8-1.8.8     | `TaterLib-1.8-<version>.jar`    |
-| 1.7.10          | 1.7-1.7.10    | `TaterLib-1.7.10-<version>.jar` |
+| 1.7             | 1.7-1.7.10    | `TaterLib-1.7.10-<version>.jar` |
 | 1.6.4 (Bukkit)  | 1.6.4         | `TaterLib-1.6.4-<version>.jar`  |
 | 1.2.5 (Bukkit)  | 1.2.5         | `TaterLib-1.2.5-<version>.jar`  |
 | b1.7.3 (Bukkit) | b1.7.3        | `TaterLib-b1.7.3-<version>.jar` |
@@ -138,7 +137,7 @@ Feel free to open a PR to add your plugin/mod to this list!
     - Bukkit 1.8.8, 1.13.2
     - BungeeCord 1.4.7, 1.8, 1.12
     - Fabric 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2
-    - Forge 1.10.2, 1.11.2
+    - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2
     - Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`

@@ -270,7 +270,7 @@ tasks.register('build_1_7_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.7.10', '1.4.7', '1.7.10', null, null, null, '3')
+        mergeJars('1.7.10', '1.4.7', '1.7.10', '1.7.10', null, null, '3')
     }
 }
 
@@ -300,8 +300,8 @@ tasks.register('build_1_8', Jar) {
         into("META-INF")
     }
     from {
-        // mergeJars('1.8.8', '1.8', null, null, null, '4', '3')
-        mergeJars('1.8.8', '1.8', '1.8.9', null, null, null, '3')
+        // mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
+        mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, null, '3')
     }
 }
 
@@ -331,7 +331,7 @@ tasks.register('build_1_9', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', '1.9.4', null, null, '5', '3')
+        mergeJars('1.8.8', '1.8', '1.9.4', '1.9.4', null, '5', '3')
     }
 }
 
