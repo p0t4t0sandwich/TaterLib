@@ -168,7 +168,7 @@ tasks.register('build_api_platforms', Jar) {
 // --------------------------- Build b1.7.3 --------------------------------
 tasks.register('build_b1_7_3', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn(':bukkit:bukkit-b1.7.3:build')
+//    dependsOn(':bukkit:bukkit-b1.7.3:build')
 
     String mc_version = 'b1.7.3'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -194,7 +194,7 @@ tasks.register('build_b1_7_3', Jar) {
 // --------------------------- Build 1.2.5 --------------------------------
 tasks.register('build_1_2_5', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn(':bukkit:bukkit-1.2.5:build')
+//    dependsOn(':bukkit:bukkit-1.2.5:build')
     dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.2.5'
@@ -221,7 +221,7 @@ tasks.register('build_1_2_5', Jar) {
 // --------------------------- Build 1.6.4 --------------------------------
 tasks.register('build_1_6_4', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn(':bukkit:bukkit-1.6.4:build')
+//    dependsOn(':bukkit:bukkit-1.6.4:build')
     dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.6.4'
@@ -248,8 +248,9 @@ tasks.register('build_1_6_4', Jar) {
 // --------------------------- Build 1.7.10 --------------------------------
 tasks.register('build_1_7_10', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn(':bukkit:bukkit-1.7.10:build')
+//    dependsOn(':bukkit:bukkit-1.7.10:build')
     dependsOn(':bungee:bungee-1.4.7:build')
+//    dependsOn(':fabric:fabric-1.7.10:build')
     dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.7.10'
@@ -269,7 +270,7 @@ tasks.register('build_1_7_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.7.10', '1.4.7', null, null, null, null, '3')
+        mergeJars('1.7.10', '1.4.7', '1.7.10', null, null, null, '3')
     }
 }
 
@@ -278,6 +279,7 @@ tasks.register('build_1_8', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
+//    dependsOn(':fabric:fabric-1.8.9:build')
 //    dependsOn(':sponge:sponge4:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -298,7 +300,8 @@ tasks.register('build_1_8', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, null, '3')
+        // mergeJars('1.8.8', '1.8', null, null, null, '4', '3')
+        mergeJars('1.8.8', '1.8', '1.8.9', null, null, null, '3')
     }
 }
 
@@ -307,6 +310,7 @@ tasks.register('build_1_9', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
+//    dependsOn(':fabric:fabric-1.9.4:build')
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -327,7 +331,7 @@ tasks.register('build_1_9', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, '5', '3')
+        mergeJars('1.8.8', '1.8', '1.9.4', null, null, '5', '3')
     }
 }
 
@@ -336,6 +340,7 @@ tasks.register('build_1_10', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
+//    dependsOn(':fabric:fabric-1.10.2:build')
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -356,7 +361,7 @@ tasks.register('build_1_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', null, null, null, '5', '3')
+        mergeJars('1.8.8', '1.8', '1.10.2', '1.10.2', null, '5', '3')
     }
 }
 
@@ -365,6 +370,7 @@ tasks.register('build_1_11', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
+//    dependsOn(':fabric:fabric-1.11.2:build')
     dependsOn(':sponge:sponge6:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -386,7 +392,7 @@ tasks.register('build_1_11', Jar) {
     }
 
     from {
-        mergeJars('1.8.8', '1.8', null, '1.11.2', null, '6', '3')
+        mergeJars('1.8.8', '1.8', '1.11.2', '1.11.2', null, '6', '3')
     }
 }
 
@@ -419,7 +425,7 @@ tasks.register('build_1_12', Jar) {
 
     from {
         // mergeJars('1.8.8', '1.12', 1.12.2, '1.12.2', null, '7', '3', "${project_id}-${mc_version}-${version}.jar")
-        mergeJars('1.8.8', '1.12', null, '1.12.2', null, '7', '3')
+        mergeJars('1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
     }
 }
 

@@ -79,7 +79,12 @@ include(
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'common',
-//        'fabric:fabric-1.12', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.7.10', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.8.9', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.9.4', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.10.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.11.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+//        'fabric:fabric-1.12.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
