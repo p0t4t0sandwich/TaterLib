@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+    }
+}
+apply(plugin: 'net.minecraftforge.gradle.forge')
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "run"
+    mappings = "${mapping_channel}_${mapping_version}"
+    makeObfSourceJar = false
+}
+
+dependencies {
+    compile("dev.neuralnexus:taterlib-api:${version}")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['mcmod.info', 'pack.mcmeta']) {
+        expand project.properties
+    }
+}
+
+jar {
+    destinationDir = file('../../target')
+    archiveName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}

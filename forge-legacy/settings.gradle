@@ -15,5 +15,6 @@
 rootProject.name = 'TaterLib-Legacy'
 
 include(
-        'forge-1.11'
+        'forge-1.10.2',
+        'forge-1.11.2'
 )

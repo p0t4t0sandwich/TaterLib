@@ -50,6 +50,7 @@ General notes:
 - Sponge is not available on pre 1.8 or on 1.14
 - 1.11 and 1.10 only have Sponge support
 - No Fabric on 1.13 or 1.11 and below (yet)
+- No Forge 1.10 or below (yet)
 - Bukkit/Bungee/Velocity are the only supported platforms below 1.10 at this time
 
 | Server type     | Versions      | Jar Name                        |
@@ -135,6 +136,7 @@ Feel free to open a PR to add your plugin/mod to this list!
     - Bukkit 1.8.8, 1.13.2
     - BungeeCord 1.4.7, 1.8, 1.12
     - Fabric 1.12.2
+    - Forge 1.10.2, 1.11.2
     - Sponge 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`

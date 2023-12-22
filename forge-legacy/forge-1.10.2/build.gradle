@@ -1,16 +1,12 @@
 buildscript {
     repositories {
-        // Forge
-        maven {
-            name = 'Forge'
-            url = 'https://maven.minecraftforge.net/'
-        }
+        maven { url = 'https://maven.minecraftforge.net/' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply(plugin: 'net.minecraftforge.gradle.forge')
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
