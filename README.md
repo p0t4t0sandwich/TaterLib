@@ -48,7 +48,6 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 General notes:
 
 - Sponge is not available on pre 1.8 or on 1.14
-- 1.11 and 1.10 only have Sponge support
 - No Fabric on 1.13
 - No Fabric/Forge below 1.7.10
 
@@ -137,7 +136,7 @@ Feel free to open a PR to add your plugin/mod to this list!
     - BungeeCord 1.4.7, 1.8, 1.12
     - Fabric 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2
     - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2
-    - Sponge 5
+    - Sponge 4, 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies

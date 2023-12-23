@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
@@ -8,6 +9,9 @@ import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.item.inventory.type.CarriedInventory;
 import org.spongepowered.api.network.ChannelBinding;
 import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
@@ -100,7 +104,9 @@ public class SpongePlayer extends SpongeEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public PlayerInventory getInventory() {
-        return new SpongePlayerInventory(player.getInventory().first());
+        return new SpongePlayerInventory(
+                (CarriedInventory<org.spongepowered.api.entity.living.player.Player>)
+                        player.getInventory());
     }
 
     /** {@inheritDoc} */

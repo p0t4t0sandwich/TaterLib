@@ -317,7 +317,7 @@ tasks.register('build_1_8', Jar) {
     dependsOn(':bungee:bungee-1.8:build')
     dependsOn(':fabric:fabric-1.8.9:build')
     dependsOn('build_legacy_forge')
-//    dependsOn(':sponge:sponge4:build')
+    dependsOn(':sponge:sponge4:build')
     dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.8'
@@ -337,8 +337,7 @@ tasks.register('build_1_8', Jar) {
         into("META-INF")
     }
     from {
-        // mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
-        mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, null, '3')
+        mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
     }
 }
 

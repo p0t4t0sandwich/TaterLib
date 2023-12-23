@@ -54,6 +54,12 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
+        // Bleeding
+        'bukkit:bukkit-1.20.4', // No changes so far
+        'fabric:fabric-1.20.4', // No changes so far
+        'forge:forge-1.20.4', // No changes so far
+        'neoforge:neoforge-1.20.4', // No changes so far
+
         'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
@@ -62,7 +68,6 @@ include(
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
-        'bukkit:bukkit-1.20.4', // No changes so far
         'bungee:bungee-1.4.7',
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
@@ -82,7 +87,6 @@ include(
         'fabric:fabric-1.19',
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
-        'fabric:fabric-1.20.4', // No changes so far
         'forge:forge-1.12',
         'forge:forge-1.13',
         'forge:forge-1.14',
@@ -93,10 +97,8 @@ include(
         'forge:forge-1.19',
         'forge:forge-1.20',
         'forge:forge-1.20.2',
-        'forge:forge-1.20.4', // No changes so far
         'neoforge:neoforge-1.20.2',
-        'neoforge:neoforge-1.20.4', // No changes so far
-//        'sponge:sponge4', // Needs some work done to SpongePlayerInventory and it should be good to go
+        'sponge:sponge4', // Needs some work done to SpongePlayerInventory and it should be good to go
         'sponge:sponge5',
         'sponge:sponge6',
         'sponge:sponge7',
