@@ -12,9 +12,13 @@
             <option value="$PROJECT_DIR$/bukkit" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.13.2" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.15.2" />
+            <option value="$PROJECT_DIR$/bukkit/bukkit-1.2.5" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.2" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.4" />
+            <option value="$PROJECT_DIR$/bukkit/bukkit-1.6.4" />
+            <option value="$PROJECT_DIR$/bukkit/bukkit-1.7.10" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.8.8" />
+            <option value="$PROJECT_DIR$/bukkit/bukkit-b1.7.3" />
             <option value="$PROJECT_DIR$/bungee" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.12" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.20" />
@@ -22,6 +26,9 @@
             <option value="$PROJECT_DIR$/bungee/bungee-1.8" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/fabric" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.10.2" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.11.2" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.12.2" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.14" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.15" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.16" />
@@ -31,6 +38,9 @@
             <option value="$PROJECT_DIR$/fabric/fabric-1.20" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20.2" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20.4" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.7.10" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.8.9" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.9.4" />
             <option value="$PROJECT_DIR$/forge" />
             <option value="$PROJECT_DIR$/forge/forge-1.12" />
             <option value="$PROJECT_DIR$/forge/forge-1.13" />

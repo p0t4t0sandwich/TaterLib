@@ -1,6 +1,7 @@
 plugins {
     id('java')
     id('maven-publish')
+    id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
 }
 
 defaultTasks('build')
@@ -43,10 +44,10 @@ subprojects {
 tasks.register('build_all') {
     dependsOn('build_api')
     dependsOn('build_api_platforms')
-//    dependsOn('build_b1_7_3')
-//    dependsOn('build_1_2_5')
-//    dependsOn('build_1_6_4')
-//    dependsOn('build_1_7_10')
+    dependsOn('build_b1_7_3')
+    dependsOn('build_1_2_5')
+    dependsOn('build_1_6_4')
+    dependsOn('build_1_7_10')
     dependsOn('build_1_8')
     dependsOn('build_1_9')
     dependsOn('build_1_10')
@@ -165,10 +166,26 @@ tasks.register('build_api_platforms', Jar) {
     }
 }
 
+// --------------------------- Build Legacy Forge --------------------------------
+tasks.register('build_legacy_forge', Exec) {
+    try {
+        executable 'bash'
+        args '-c', "export JAVA_HOME=${java_8_home} && cd forge-legacy && ./gradlew forge-1.7.10:setupDecompWorkspace && ./gradlew build"
+    } catch (Exception e) {
+        println(e)
+    }
+}
+
 // --------------------------- Build b1.7.3 --------------------------------
 tasks.register('build_b1_7_3', Jar) {
     dependsOn(':common:shadowJar')
-//    dependsOn(':bukkit:bukkit-b1.7.3:build')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-b1.7.3:build')
+        bukkit = 'b1.7.3'
+    } catch (Exception e) {
+        println(e)
+    }
 
     String mc_version = 'b1.7.3'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -187,14 +204,20 @@ tasks.register('build_b1_7_3', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('b1.7.3', null, null, null, null, null, null)
+        mergeJars(bukkit, null, null, null, null, null, null)
     }
 }
 
 // --------------------------- Build 1.2.5 --------------------------------
 tasks.register('build_1_2_5', Jar) {
     dependsOn(':common:shadowJar')
-//    dependsOn(':bukkit:bukkit-1.2.5:build')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.2.5:build')
+        bukkit = '1.2.5'
+    } catch (Exception e) {
+        println(e)
+    }
     dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.2.5'
@@ -214,14 +237,20 @@ tasks.register('build_1_2_5', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.2.5', '1.4.7', null, null, null, null, null)
+        mergeJars(bukkit, '1.4.7', null, null, null, null, null)
     }
 }
 
 // --------------------------- Build 1.6.4 --------------------------------
 tasks.register('build_1_6_4', Jar) {
     dependsOn(':common:shadowJar')
-//    dependsOn(':bukkit:bukkit-1.6.4:build')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.6.4:build')
+        bukkit = '1.6.4'
+    } catch (Exception e) {
+        println(e)
+    }
     dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.6.4'
@@ -241,16 +270,23 @@ tasks.register('build_1_6_4', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.6.4', '1.4.7', null, null, null, null, null)
+        mergeJars(bukkit, '1.4.7', null, null, null, null, null)
     }
 }
 
 // --------------------------- Build 1.7.10 --------------------------------
 tasks.register('build_1_7_10', Jar) {
     dependsOn(':common:shadowJar')
-//    dependsOn(':bukkit:bukkit-1.7.10:build')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.7.10:build')
+        bukkit = '1.7.10'
+    } catch (Exception e) {
+        println(e)
+    }
     dependsOn(':bungee:bungee-1.4.7:build')
-//    dependsOn(':fabric:fabric-1.7.10:build')
+    dependsOn(':fabric:fabric-1.7.10:build')
+    dependsOn('build_legacy_forge')
     dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.7.10'
@@ -270,7 +306,7 @@ tasks.register('build_1_7_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.7.10', '1.4.7', '1.7.10', '1.7.10', null, null, '3')
+        mergeJars(bukkit, '1.4.7', '1.7.10', '1.7.10', null, null, '3')
     }
 }
 
@@ -279,7 +315,8 @@ tasks.register('build_1_8', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
-//    dependsOn(':fabric:fabric-1.8.9:build')
+    dependsOn(':fabric:fabric-1.8.9:build')
+    dependsOn('build_legacy_forge')
 //    dependsOn(':sponge:sponge4:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -310,7 +347,8 @@ tasks.register('build_1_9', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
-//    dependsOn(':fabric:fabric-1.9.4:build')
+    dependsOn(':fabric:fabric-1.9.4:build')
+    dependsOn('build_legacy_forge')
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -340,7 +378,8 @@ tasks.register('build_1_10', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
-//    dependsOn(':fabric:fabric-1.10.2:build')
+    dependsOn(':fabric:fabric-1.10.2:build')
+    dependsOn('build_legacy_forge')
     dependsOn(':sponge:sponge5:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -370,7 +409,8 @@ tasks.register('build_1_11', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
-//    dependsOn(':fabric:fabric-1.11.2:build')
+    dependsOn(':fabric:fabric-1.11.2:build')
+    dependsOn('build_legacy_forge')
     dependsOn(':sponge:sponge6:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -401,7 +441,7 @@ tasks.register('build_1_12', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.12:build')
-//    dependsOn(':fabric:fabric-1.12.2:build')
+    dependsOn(':fabric:fabric-1.12.2:build')
     dependsOn(':forge:forge-1.12:build')
     dependsOn(':sponge:sponge7:build')
     dependsOn(':velocity:velocity3:build')

@@ -52,27 +52,26 @@ General notes:
 - No Fabric on 1.13
 - No Fabric/Forge below 1.7.10
 
-| Server type     | Versions      | Jar Name                        |
-|-----------------|---------------|---------------------------------|
-| 1.20.4          | 1.20.3-1.20.4 | `TaterLib-1.20.4-<version>.jar` |
-| 1.20.2          | 1.20.2        | `TaterLib-1.20.2-<version>.jar` |
-| 1.20            | 1.20-1.20.1   | `TaterLib-1.20-<version>.jar`   |
-| 1.19            | 1.19-1.19.4   | `TaterLib-1.19-<version>.jar`   |
-| 1.18            | 1.18-1.18.2   | `TaterLib-1.18-<version>.jar`   |
-| 1.17            | 1.17-1.17.1   | `TaterLib-1.17-<version>.jar`   |
-| 1.16            | 1.16-1.16.5   | `TaterLib-1.16-<version>.jar`   |
-| 1.15            | 1.15-1.15.2   | `TaterLib-1.15-<version>.jar`   |
-| 1.14            | 1.14-1.14.3   | `TaterLib-1.14-<version>.jar`   |
-| 1.13            | 1.13-1.13.2   | `TaterLib-1.13-<version>.jar`   |
-| 1.12            | 1.12-1.12.2   | `TaterLib-1.12-<version>.jar`   |
-| 1.11            | 1.11-1.11.2   | `TaterLib-1.11-<version>.jar`   |
-| 1.10            | 1.10-1.10.2   | `TaterLib-1.10-<version>.jar`   |
-| 1.9             | 1.9-1.9.4     | `TaterLib-1.9-<version>.jar`    |
-| 1.8             | 1.8-1.8.8     | `TaterLib-1.8-<version>.jar`    |
-| 1.7             | 1.7-1.7.10    | `TaterLib-1.7.10-<version>.jar` |
-| 1.6.4 (Bukkit)  | 1.6.4         | `TaterLib-1.6.4-<version>.jar`  |
-| 1.2.5 (Bukkit)  | 1.2.5         | `TaterLib-1.2.5-<version>.jar`  |
-| b1.7.3 (Bukkit) | b1.7.3        | `TaterLib-b1.7.3-<version>.jar` |
+| Server type     | Versions      | Jar Name                               |
+|-----------------|---------------|----------------------------------------|
+| 1.20.2-1.20.4   | 1.20.2-1.20.4 | `TaterLib-1.20.2-1.20.4-<version>.jar` |
+| 1.20            | 1.20-1.20.1   | `TaterLib-1.20-<version>.jar`          |
+| 1.19            | 1.19-1.19.4   | `TaterLib-1.19-<version>.jar`          |
+| 1.18            | 1.18-1.18.2   | `TaterLib-1.18-<version>.jar`          |
+| 1.17            | 1.17-1.17.1   | `TaterLib-1.17-<version>.jar`          |
+| 1.16            | 1.16-1.16.5   | `TaterLib-1.16-<version>.jar`          |
+| 1.15            | 1.15-1.15.2   | `TaterLib-1.15-<version>.jar`          |
+| 1.14            | 1.14-1.14.3   | `TaterLib-1.14-<version>.jar`          |
+| 1.13            | 1.13-1.13.2   | `TaterLib-1.13-<version>.jar`          |
+| 1.12            | 1.12-1.12.2   | `TaterLib-1.12-<version>.jar`          |
+| 1.11            | 1.11-1.11.2   | `TaterLib-1.11-<version>.jar`          |
+| 1.10            | 1.10-1.10.2   | `TaterLib-1.10-<version>.jar`          |
+| 1.9             | 1.9-1.9.4     | `TaterLib-1.9-<version>.jar`           |
+| 1.8             | 1.8-1.8.8     | `TaterLib-1.8-<version>.jar`           |
+| 1.7             | 1.7-1.7.10    | `TaterLib-1.7.10-<version>.jar`        |
+| 1.6.4           | 1.6.4         | `TaterLib-1.6.4-<version>.jar`         |
+| 1.2.5           | 1.2.5         | `TaterLib-1.2.5-<version>.jar`         |
+| b1.7.3 (Bukkit) | b1.7.3        | `TaterLib-b1.7.3-<version>.jar`        |
 
 ## Dependencies
 

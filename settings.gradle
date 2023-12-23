@@ -54,26 +54,26 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
-//        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.8.8',
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
-        'bukkit:bukkit-1.20.4', // Waiting on Paper to compare changes, none so far
+        'bukkit:bukkit-1.20.4', // No changes so far
         'bungee:bungee-1.4.7',
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'common',
-//        'fabric:fabric-1.7.10', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
-//        'fabric:fabric-1.8.9', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
-//        'fabric:fabric-1.9.4', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
-//        'fabric:fabric-1.10.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
-//        'fabric:fabric-1.11.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
-//        'fabric:fabric-1.12.2', // legacy-looming and loom are incompatible, so you need to disable one while working on the other
+        'fabric:fabric-1.7.10',
+        'fabric:fabric-1.8.9',
+        'fabric:fabric-1.9.4',
+        'fabric:fabric-1.10.2',
+        'fabric:fabric-1.11.2',
+        'fabric:fabric-1.12.2',
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
