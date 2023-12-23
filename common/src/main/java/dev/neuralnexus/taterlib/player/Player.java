@@ -164,6 +164,7 @@ public interface Player extends Sender, Entity {
      * @return The prefix of the player
      */
     default String getPrefix() {
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String prefix = luckPermsHook.getPrefix(getUniqueId());
         return prefix != null ? prefix : "";
@@ -196,6 +197,7 @@ public interface Player extends Sender, Entity {
      * @return The suffix of the player
      */
     default String getSuffix() {
+        if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         String suffix = luckPermsHook.getSuffix(getUniqueId());
         return suffix != null ? suffix : "";
