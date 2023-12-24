@@ -116,15 +116,4 @@ public class BukkitEntity implements Entity {
                         location.getY(),
                         location.getZ()));
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.teleport(
-                new org.bukkit.Location(
-                        org.bukkit.Bukkit.getWorld(entity.getDimension()),
-                        entity.getX(),
-                        entity.getY(),
-                        entity.getZ()));
-    }
 }

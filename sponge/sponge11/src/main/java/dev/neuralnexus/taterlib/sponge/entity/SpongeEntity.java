@@ -140,13 +140,4 @@ public class SpongeEntity implements Entity {
                         (ServerWorld) entity.location().world(),
                         new Vector3d(location.getX(), location.getY(), location.getZ())));
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.setLocation(
-                ServerLocation.of(
-                        (ServerWorld) this.entity.location().world(),
-                        new Vector3d(entity.getX(), entity.getY(), entity.getZ())));
-    }
 }

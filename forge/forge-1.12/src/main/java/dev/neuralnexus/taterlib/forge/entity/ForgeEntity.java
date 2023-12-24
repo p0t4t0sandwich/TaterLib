@@ -1,12 +1,16 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
 
 import java.util.UUID;
 
@@ -115,26 +119,22 @@ public class ForgeEntity implements Entity {
     @Override
     public String getBiome() {
         ResourceLocation biomeRegistry =
-                entity.world
-                        .getBiome(
-                                entity.world
-                                        .getChunk(entity.getPosition())
-                                        .getPos()
-                                        .getBlock((int) getX(), (int) getY(), (int) getZ()))
-                        .getRegistryName();
+                entity.world.getBiome(entity.getPosition()).getRegistryName();
         if (biomeRegistry == null) return null;
-        return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
+        return biomeRegistry.toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = ForgeTaterLibPlugin.getServer();
+            if (server == null) return;
+            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
+            DimensionType dimension = DimensionType.byName(location.getWorld());
+            WorldServer serverLevel = server.getWorld(dimension.getId());
+            entity.changeDimension(dimension.getId(), new Teleporter(serverLevel));
+        }
         ((EntityLiving) entity).attemptTeleport(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        ((EntityLiving) this.entity).attemptTeleport(entity.getX(), entity.getY(), entity.getZ());
     }
 }

@@ -1,8 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
+
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.UUID;
 
@@ -104,24 +109,24 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        return entity.world.dimension.getDimensionType().toString();
+        return entity.world.dimension.getDimensionType().getName();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
-        return entity.world.getBiome(entity.getBlockPos()).toString();
+        return entity.world.getBiome(entity.getBlockPos()).getName();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        entity.refreshPositionAfterTeleport(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.refreshPositionAfterTeleport(entity.getX(), entity.getY(), entity.getZ());
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = FabricTaterLibPlugin.server;
+            if (server == null) return;
+            DimensionType dimension = DimensionType.fromName(location.getWorld());
+            entity.changeDimension(dimension.getId());
+        }
+        ((LivingEntity) entity).method_13071(location.getX(), location.getY(), location.getZ());
     }
 }

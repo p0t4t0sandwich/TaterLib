@@ -4,8 +4,15 @@ import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.UUID;
 
@@ -107,8 +114,7 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        ResourceLocation resourceLocation = entity.level.dimension().getRegistryName();
-        return resourceLocation.getNamespace() + ":" + resourceLocation.getPath();
+        return entity.level.dimension().location().toString();
     }
 
     /** {@inheritDoc} */
@@ -117,18 +123,34 @@ public class ForgeEntity implements Entity {
         ResourceLocation biomeRegistry =
                 entity.level.getBiome(entity.blockPosition()).value().getRegistryName();
         if (biomeRegistry == null) return null;
-        return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
+        return biomeRegistry.toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server == null) return;
+            ResourceKey<Level> dimension =
+                    ResourceKey.create(
+                            Registry.DIMENSION_REGISTRY,
+                            new ResourceLocation(location.getWorld().split(":")[1]));
+            ServerLevel serverLevel = server.getLevel(dimension);
+            if (serverLevel == null) return;
+            if (entity instanceof ServerPlayer player) {
+                player.teleportTo(
+                        serverLevel,
+                        location.getX(),
+                        location.getY(),
+                        location.getZ(),
+                        player.getYRot(),
+                        player.getXRot());
+                return;
+            } else {
+                entity.changeDimension(serverLevel);
+            }
+        }
         entity.teleportTo(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.teleportTo(entity.getX(), entity.getY(), entity.getZ());
     }
 }

@@ -126,15 +126,4 @@ public class SpongeEntity implements Entity {
                 new org.spongepowered.api.world.Location<>(
                         entity.getWorld(), location.getX(), location.getY(), location.getZ()));
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.setLocation(
-                new org.spongepowered.api.world.Location<>(
-                        ((SpongeEntity) entity).getEntity().getWorld(),
-                        entity.getX(),
-                        entity.getY(),
-                        entity.getZ()));
-    }
 }

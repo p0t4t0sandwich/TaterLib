@@ -2,6 +2,10 @@ plugins {
     id('fabric-loom') version('1.4-SNAPSHOT')
 }
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = java_version
+targetCompatibility = java_version
+
 dependencies {
     compileOnly(project(':common'))
 

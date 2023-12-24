@@ -1,11 +1,18 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import java.util.Optional;
@@ -109,7 +116,7 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        return entity.getEntityWorld().getRegistryKey().getValue().toString();
+        return entity.getEntityWorld().getDimensionKey().getRegistry().toString();
     }
 
     /** {@inheritDoc} */
@@ -123,12 +130,27 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        entity.requestTeleport(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = FabricTaterLibPlugin.server;
+            if (server == null) return;
+            RegistryKey<World> dimension =
+                    RegistryKey.of(
+                            RegistryKeys.WORLD, new Identifier(location.getWorld().split(":")[1]));
+            ServerWorld serverLevel = server.getWorld(dimension);
+            if (serverLevel == null) return;
+            if (entity instanceof ServerPlayerEntity player) {
+                player.teleport(
+                        serverLevel,
+                        location.getX(),
+                        location.getY(),
+                        location.getZ(),
+                        player.getYaw(),
+                        player.getPitch());
+                return;
+            } else {
+                entity.moveToWorld(serverLevel);
+            }
+        }
+        entity.teleport(location.getX(), location.getY(), location.getZ());
     }
 }
