@@ -164,14 +164,18 @@ public class TaterAPIProvider {
             apis.put(ServerType.FABRIC, fabricApi);
         }
 
-        if (serverType.is(ServerType.NEOFORGE)) {
-            apis.put(ServerType.NEOFORGE, forgeApi);
-        } else if (serverType.isForgeBased()) {
-            apis.put(serverType, forgeApi);
-            apis.put(ServerType.FORGE, forgeApi);
+        if (serverType.isForgeBased()) {
+            if (serverType.is(ServerType.NEOFORGE)) {
+                apis.put(ServerType.NEOFORGE, forgeApi);
+            } else {
+                apis.put(serverType, forgeApi);
+                apis.put(ServerType.FORGE, forgeApi);
+            }
         }
 
-        if (serverType.isSpongeBased()) {
+        // Secondary logical check is for SpongeForge
+        // TODO: Find some way to init the Sponge side, since SF doesn't load duplicate modIds
+        if (serverType.isSpongeBased() || (serverType.isForgeBased() && ServerType.isSponge())) {
             apis.put(ServerType.SPONGE, new TaterAPI("config"));
         }
 
