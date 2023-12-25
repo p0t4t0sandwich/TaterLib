@@ -5,8 +5,13 @@ import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.UUID;
 
@@ -108,34 +113,43 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        ResourceLocation resourceLocation = entity.world.dimension.getType().getRegistryName();
-        if (resourceLocation == null) return null;
-        return resourceLocation.getNamespace() + ":" + resourceLocation.getPath();
+        return entity.world.dimension.getType().getRegistryName().toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
         ResourceLocation biomeRegistry =
-                entity.world
-                        .getBiome(
-                                entity.world.getChunkAt(entity.getPosition()).getPos().asBlockPos())
-                        .getRegistryName();
+                entity.world.getBiome(entity.getPosition()).getRegistryName();
         if (biomeRegistry == null) return null;
-        return biomeRegistry.getNamespace() + ":" + biomeRegistry.getPath();
+        return biomeRegistry.toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server == null) return;
+            DimensionType dimension =
+                    DimensionType.byName(new ResourceLocation(location.getWorld().split(":")[1]));
+            if (dimension == null) return;
+            ServerWorld serverLevel = server.getWorld(dimension);
+            if (entity instanceof ServerPlayerEntity) {
+                ((ServerPlayerEntity) entity)
+                        .teleport(
+                                serverLevel,
+                                location.getX(),
+                                location.getY(),
+                                location.getZ(),
+                                entity.rotationYaw,
+                                entity.rotationPitch);
+                return;
+            } else {
+                entity.changeDimension(dimension);
+            }
+        }
         ((LivingEntity) entity)
                 .attemptTeleport(location.getX(), location.getY(), location.getZ(), false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        ((LivingEntity) this.entity)
-                .attemptTeleport(entity.getX(), entity.getY(), entity.getZ(), false);
     }
 }

@@ -1,9 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
+import net.minecraft.server.MinecraftServer;
+
+import java.util.Arrays;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
@@ -105,24 +109,37 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        return entity.world.dimension.getName();
+        return entity.world.dimension.getName().replace(" ", "_").toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
-        return entity.world.getBiome((int) entity.x, (int) entity.z).toString();
+        return entity.world.getBiome((int) entity.x, (int) entity.z).name;
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = FabricTaterLibPlugin.server;
+            if (server == null) return;
+            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
+            Arrays.stream(server.worlds)
+                    .filter(
+                            worldServer ->
+                                    worldServer
+                                            .dimension
+                                            .getName()
+                                            .replace(" ", "_")
+                                            .toLowerCase()
+                                            .equals(location.getWorld()))
+                    .findFirst()
+                    .ifPresent(
+                            worldServer ->
+                                    entity.teleportToDimension(
+                                            worldServer.dimension.dimensionType));
+        }
         entity.updatePosition(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.updatePosition(entity.getX(), entity.getY(), entity.getZ());
     }
 }

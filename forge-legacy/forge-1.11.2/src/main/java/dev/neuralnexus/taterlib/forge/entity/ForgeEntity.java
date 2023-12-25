@@ -1,13 +1,16 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 
+import java.util.Arrays;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
@@ -108,33 +111,41 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String getDimension() {
-        return DimensionType.getById(entity.dimension).getName();
+        return DimensionType.getById(entity.dimension).getName().replace(" ", "_").toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
     public String getBiome() {
         ResourceLocation biomeRegistry =
-                entity.world
-                        .getBiome(
-                                entity.world
-                                        .getChunkFromBlockCoords(entity.getPosition())
-                                        .getPos()
-                                        .getBlock((int) getX(), (int) getY(), (int) getZ()))
-                        .getRegistryName();
+                entity.world.getBiome(entity.getPosition()).getRegistryName();
         if (biomeRegistry == null) return null;
-        return biomeRegistry.getResourceDomain() + ":" + biomeRegistry.getResourcePath();
+        return biomeRegistry.toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = ForgeTaterLibPlugin.getServer();
+            if (server == null) return;
+            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
+            Arrays.stream(server.worlds)
+                    .filter(
+                            worldServer ->
+                                    worldServer
+                                            .provider
+                                            .getDimensionType()
+                                            .getName()
+                                            .replace(" ", "_")
+                                            .toLowerCase()
+                                            .equals(location.getWorld()))
+                    .findFirst()
+                    .ifPresent(
+                            worldServer ->
+                                    entity.changeDimension(
+                                            worldServer.provider.getDimensionType().getId()));
+        }
         ((EntityLiving) entity).attemptTeleport(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        ((EntityLiving) this.entity).attemptTeleport(entity.getX(), entity.getY(), entity.getZ());
     }
 }

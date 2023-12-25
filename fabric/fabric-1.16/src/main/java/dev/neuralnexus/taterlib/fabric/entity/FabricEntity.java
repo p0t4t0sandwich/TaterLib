@@ -1,10 +1,18 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -118,12 +126,28 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        entity.requestTeleport(location.getX(), location.getY(), location.getZ());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {
-        this.entity.requestTeleport(entity.getX(), entity.getY(), entity.getZ());
+        if (!location.getWorld().equals(getDimension())) {
+            MinecraftServer server = FabricTaterLibPlugin.server;
+            if (server == null) return;
+            RegistryKey<World> dimension =
+                    RegistryKey.of(
+                            Registry.DIMENSION, new Identifier(location.getWorld().split(":")[1]));
+            ServerWorld serverLevel = server.getWorld(dimension);
+            if (serverLevel == null) return;
+            if (entity instanceof ServerPlayerEntity) {
+                ServerPlayerEntity player = (ServerPlayerEntity) entity;
+                player.teleport(
+                        serverLevel,
+                        location.getX(),
+                        location.getY(),
+                        location.getZ(),
+                        player.yaw,
+                        player.pitch);
+                return;
+            } else {
+                entity.changeDimension(serverLevel);
+            }
+        }
+        entity.teleport(location.getX(), location.getY(), location.getZ());
     }
 }

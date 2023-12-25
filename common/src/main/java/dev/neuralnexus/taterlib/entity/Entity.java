@@ -112,5 +112,7 @@ public interface Entity {
      *
      * @param entity The entity to teleport the entity to
      */
-    void teleport(Entity entity);
+    default void teleport(Entity entity) {
+        teleport(entity.getLocation());
+    }
 }

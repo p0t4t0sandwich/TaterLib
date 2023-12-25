@@ -156,3 +156,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Build system overhaul, no sketchy `build.sh` anymore
 - Added `GameMode` enum, `Player#getPing()`, `Player#getGameMode()` and `Player#setGameMode()`
 - Added `Sender#isPlayer()` and `Sender#getPlayer()`
+- Fixed `Entity#teleport(Location)` and `Entity#teleport(Entity)` in cross-dimensional cases
