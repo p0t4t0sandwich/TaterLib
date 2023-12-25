@@ -53,9 +53,11 @@ public class ForgePlayer extends ForgeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
-        return player.getUniqueID();
-    }
+    public UUID getUniqueId() {return player.getUniqueID();}
+
+    /** {@inheritDoc} */
+    @Override
+    public String getIPAddress(){return ((EntityPlayerMP) player).getPlayerIP();}
 
     /** {@inheritDoc} */
     @Override

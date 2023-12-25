@@ -56,7 +56,9 @@ public class ForgePlayer extends ForgeEntity implements Player {
     public UUID getUniqueId() {
         return player.getUniqueID();
     }
-
+    /** {@inheritDoc} */
+    @Override
+    public String getIPAddress(){return ((EntityPlayerMP) player).getPlayerIP();}
     /** {@inheritDoc} */
     @Override
     public String getName() {
@@ -136,4 +138,6 @@ public class ForgePlayer extends ForgeEntity implements Player {
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
+
+
 }
