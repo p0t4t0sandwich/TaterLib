@@ -59,10 +59,9 @@ public class ForgePlayer extends ForgeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress(){
+    public String getIPAddress() {
         return ((EntityPlayerMP) player).getPlayerIP();
     }
-
 
     /** {@inheritDoc} */
     @Override

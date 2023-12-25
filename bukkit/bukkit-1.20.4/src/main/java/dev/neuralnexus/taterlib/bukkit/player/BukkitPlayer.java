@@ -85,7 +85,7 @@ public class BukkitPlayer extends BukkitEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress(){
+    public String getIPAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 

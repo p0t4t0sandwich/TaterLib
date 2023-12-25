@@ -61,7 +61,7 @@ public class FabricPlayer extends FabricEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress(){
+    public String getIPAddress() {
         return ((ServerPlayerEntity) player).getIp();
     }
 

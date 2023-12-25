@@ -32,8 +32,6 @@ public class FabricBlockBreakMixin {
             BlockState state,
             BlockEntity be,
             CallbackInfo ci) {
-        FabricBlockEvents.BLOCK_BREAK
-                .invoker()
-                .onBlockBreak(world, player, pos, state, be, ci);
+        FabricBlockEvents.BLOCK_BREAK.invoker().onBlockBreak(world, player, pos, state, be, ci);
     }
 }

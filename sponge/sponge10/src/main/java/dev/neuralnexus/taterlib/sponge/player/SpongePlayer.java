@@ -66,6 +66,12 @@ public class SpongePlayer extends SpongeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public String getIPAddress() {
+        return ((ServerPlayer) player).connection().address().getAddress().getHostAddress();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public String getName() {
         return player.name();
     }

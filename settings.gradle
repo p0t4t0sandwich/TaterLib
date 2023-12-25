@@ -99,7 +99,7 @@ include(
         'forge:forge-1.20',
         'forge:forge-1.20.2',
         'neoforge:neoforge-1.20.2',
-        'sponge:sponge4', // Needs some work done to SpongePlayerInventory and it should be good to go
+        'sponge:sponge4',
         'sponge:sponge5',
         'sponge:sponge6',
         'sponge:sponge7',

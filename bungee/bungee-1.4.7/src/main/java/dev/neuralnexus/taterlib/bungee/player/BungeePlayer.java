@@ -72,6 +72,12 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
+    public String getIPAddress() {
+        return player.getAddress().getAddress().getHostAddress();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public String getName() {
         return player.getName();
     }
