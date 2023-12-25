@@ -18,6 +18,13 @@ public interface Player extends Sender, Entity {
     String getDisplayName();
 
     /**
+     * Get the IP address of the player
+     *
+     * @return The IP address of the player
+     */
+    String getIPAddress();
+
+    /**
      * Get the server the player is on
      *
      * @return The server the player is on

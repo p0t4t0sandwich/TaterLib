@@ -37,7 +37,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge8.TaterLib.sponge.sponge8.main" />
+        <module name="TaterLib.sponge.sponge8.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -77,7 +77,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge9.TaterLib.sponge.sponge9.main" />
+        <module name="TaterLib.sponge.sponge9.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -110,7 +110,7 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar" />
         </processorPath>
-        <module name="sponge7.TaterLib.sponge.sponge7.main" />
+        <module name="TaterLib.sponge.sponge7.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -137,7 +137,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
         </processorPath>
-        <module name="sponge5.TaterLib.sponge.sponge5.main" />
+        <module name="TaterLib.sponge.sponge5.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -164,7 +164,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
         </processorPath>
-        <module name="sponge6.TaterLib.sponge.sponge6.main" />
+        <module name="TaterLib.sponge.sponge6.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -198,7 +198,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge11.TaterLib.sponge.sponge11.main" />
+        <module name="TaterLib.sponge.sponge11.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -239,7 +239,7 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
-        <module name="velocity3.TaterLib.velocity.velocity3.main" />
+        <module name="TaterLib.velocity.velocity3.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -279,7 +279,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge10.TaterLib.sponge.sponge10.main" />
+        <module name="TaterLib.sponge.sponge10.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />

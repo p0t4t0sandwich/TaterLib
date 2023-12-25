@@ -899,6 +899,7 @@ publishing {
         }
     }
     repositories {
+        mavenLocal()
         maven {
             name = "NeuralNexusReleases"
             url = "https://maven.neuralnexus.dev/releases"
