@@ -59,6 +59,12 @@ public class ForgePlayer extends ForgeEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public String getIPAddress() {
+        return ((EntityPlayerMP) player).getPlayerIP();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public String getName() {
         return player.getCommandSenderName();
     }
@@ -113,9 +119,10 @@ public class ForgePlayer extends ForgeEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
-    player
-        .setSpawnChunk(
-            new ChunkCoordinates((int) location.getX(), (int) location.getY(), (int) location.getZ()), forced);
+        player.setSpawnChunk(
+                new ChunkCoordinates(
+                        (int) location.getX(), (int) location.getY(), (int) location.getZ()),
+                forced);
     }
 
     /** {@inheritDoc} */

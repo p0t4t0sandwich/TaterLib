@@ -74,6 +74,12 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
+    public String getIPAddress() {
+        return player.getRemoteAddress().getAddress().getHostAddress();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public int getEntityId() {
         return 0;
     }

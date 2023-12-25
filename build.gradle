@@ -463,7 +463,6 @@ tasks.register('build_1_12', Jar) {
     }
 
     from {
-        // mergeJars('1.8.8', '1.12', 1.12.2, '1.12.2', null, '7', '3', "${project_id}-${mc_version}-${version}.jar")
         mergeJars('1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
     }
 }
@@ -691,7 +690,7 @@ tasks.register('build_1_18_2', Jar) {
     // entity.level.getBiome(entity.blockPosition()).getRegistryName();
     // Changed to
     // entity.level.getBiome(entity.blockPosition()).value().getRegistryName();
-    
+
     // Uses 1.19 permission schema
 }
 
@@ -899,6 +898,7 @@ publishing {
         }
     }
     repositories {
+        mavenLocal()
         maven {
             name = "NeuralNexusReleases"
             url = "https://maven.neuralnexus.dev/releases"
