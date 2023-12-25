@@ -54,6 +54,9 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
+        // Tooling
+        'tooling:entrypoint-spoof',
+
         // Bleeding
         'bukkit:bukkit-1.20.4', // No changes so far
         'fabric:fabric-1.20.4', // No changes so far

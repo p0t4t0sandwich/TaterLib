@@ -31,13 +31,13 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 ```gradle
 repositories {
     maven {
-        name = "NeuralNexus"
-        url = "https://maven.neuralnexus.dev/repository/releases/"
+        name = 'NeuralNexus'
+        url = 'https://maven.neuralnexus.dev/repository/releases/'
     }
 }
 
 dependencies {
-    implementation "dev.neuralnexus:taterlib-api:<version>"
+    compileOnly('dev.neuralnexus:taterlib-api:<version>')
 }
 ```
 

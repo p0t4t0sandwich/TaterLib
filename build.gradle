@@ -112,6 +112,7 @@ ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version,
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
+    dependsOn('tooling:entrypoint-spoof:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
     destinationDirectory = file("./build/libs")
@@ -128,9 +129,19 @@ tasks.register('build_api', Jar) {
     from(["README.md", "LICENSE", "LICENSE-API"]) {
         into("META-INF")
     }
+    ArrayList<File> jarFiles = [
+            file("./target/${project_id}-common-${version}.jar"),
+            file("./target/entrypoint-spoof-0.1.0.jar")
+    ]
     from {
-        zipTree(file("./target/${project_id}-common-${version}.jar")).matching {
-            exclude('dev/neuralnexus/taterlib/lib/**')
+        jarFiles.collect {
+            if (it.name.contains('common')) {
+                zipTree(it).matching {
+                    exclude('dev/neuralnexus/taterlib/lib/**')
+                }
+            } else {
+                zipTree(it)
+            }
         }
     }
 }
@@ -163,6 +174,22 @@ tasks.register('build_api_platforms', Jar) {
     }
     from {
         mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
+    }
+}
+
+// --------------------------- Build Entry Point Spoof --------------------------------
+tasks.register('build_entrypoint_spoof', Jar) {
+    dependsOn('tooling:entrypoint-spoof:build')
+
+    archiveFileName = "entrypoint-spoof-${version}.jar"
+    destinationDirectory = file("./build/libs")
+
+    from(["README.md", "LICENSE"]) {
+        into("META-INF")
+    }
+
+    from {
+        zipTree(file("./target/entrypoint-spoof-0.1.0.jar"))
     }
 }
 
@@ -881,6 +908,38 @@ publishing {
                     license {
                         name = 'MIT License'
                         url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+        uploadEntryPointSpoof(MavenPublication) {
+            groupId = group_id
+            version = "0.1.0"
+
+            artifact(build_entrypoint_spoof) {
+                artifactId = "entrypoint-spoof"
+            }
+
+            pom {
+                name = 'entrypoint-spoof'
+                description = 'A simple dependency that will allow you to target multiple Minecraft mod/plugin loaders with a single jar, without the\n' +
+                        'hassle of using each and every build system.'
+                url = 'https://github.com/p0t4t0sandwich/TaterLib/tree/main/tooling/entrypoint-spoof/README.md'
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
                     }
                 }
                 developers {
