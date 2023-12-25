@@ -27,6 +27,8 @@ dependencies {
 }
 ```
 
+Example usage: https://github.com/p0t4t0sandwich/ExampleTaterLibPlugin/tree/simple
+
 ## Background
 
 There's a rats nest of annotations, classes, and interfaces to make this all work smoothly, so here's a rundown on each
