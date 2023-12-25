@@ -26,9 +26,9 @@ public class SpongeCommandListener {
      *
      * @param event The event
      */
-    @Listener
-    public void onRegisterBrigadierCommands(
-            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
-        //        event.register()
-    }
+    //    @Listener
+    //    public void onRegisterBrigadierCommands(
+    //            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
+    //        event.register()
+    //    }
 }
