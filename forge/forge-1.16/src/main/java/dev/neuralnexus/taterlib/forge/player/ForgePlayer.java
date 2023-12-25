@@ -63,7 +63,7 @@ public class ForgePlayer extends ForgeEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public String getIPAddress(){
-        return ((ServerPlayerEntity) player).getPlayerIP();
+        return ((ServerPlayerEntity) player).getIpAddress();
     }
 
     /** {@inheritDoc} */
