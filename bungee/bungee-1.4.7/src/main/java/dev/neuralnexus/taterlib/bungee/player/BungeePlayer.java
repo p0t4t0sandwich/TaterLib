@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
-import dev.neuralnexus.taterlib.bungee.BungeeTaterLibPlugin;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.utils.Location;
 
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -58,8 +58,8 @@ public class BungeePlayer implements ProxyPlayer {
      */
     @Override
     public void connect(String serverName) {
-        if (BungeeTaterLibPlugin.getProxyServer().getServerInfo(serverName) == null) return;
-        ServerInfo server = BungeeTaterLibPlugin.getProxyServer().getServerInfo(serverName);
+        if (ProxyServer.getInstance().getServerInfo(serverName) == null) return;
+        ServerInfo server = ProxyServer.getInstance().getServerInfo(serverName);
         player.connect(server);
     }
 

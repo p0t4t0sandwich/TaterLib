@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.bukkit.player;
 
-import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
@@ -15,7 +14,7 @@ import java.util.UUID;
 /** Bukkit implementation of {@link Player}. */
 public class BukkitPlayer extends BukkitEntity implements Player {
     private final org.bukkit.entity.Player player;
-    private Plugin plugin = BukkitTaterLibPlugin.getInstance();
+    private Plugin plugin = null;
     private String serverName;
 
     /**

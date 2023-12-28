@@ -158,3 +158,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Sender#isPlayer()` and `Sender#getPlayer()`
 - Fixed `Entity#teleport(Location)` and `Entity#teleport(Entity)` in cross-dimensional cases
 - Added `Player#getIPAddress()`
+- Created a custom loader implementation, to allow for better compatibility with hybrids, Sinytra Connector, and
+  SpongeForge

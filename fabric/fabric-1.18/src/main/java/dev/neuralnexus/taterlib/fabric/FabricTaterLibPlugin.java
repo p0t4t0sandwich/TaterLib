@@ -25,7 +25,6 @@ import dev.neuralnexus.taterlib.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
-import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -34,11 +33,11 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 
-/** Fabric entry point. */
-public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
+public class FabricTaterLibPlugin implements TaterLibPlugin {
     public static MinecraftServer server;
 
-    public FabricTaterLibPlugin() {
+    @Override
+    public void platformInit(Object plugin, Object logger) {
         TaterAPIProvider.register(
                 FabricLoader.getInstance()
                         .getModContainer("minecraft")
@@ -132,7 +131,7 @@ public class FabricTaterLibPlugin implements ModInitializer, TaterLibPlugin {
     }
 
     @Override
-    public void onInitialize() {
+    public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
     }
 }

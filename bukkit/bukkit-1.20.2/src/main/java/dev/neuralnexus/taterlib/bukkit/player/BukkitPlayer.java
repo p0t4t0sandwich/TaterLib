@@ -15,7 +15,7 @@ import java.util.UUID;
 /** Bukkit implementation of {@link Player}. */
 public class BukkitPlayer extends BukkitEntity implements Player {
     private final org.bukkit.entity.Player player;
-    private Plugin plugin = BukkitTaterLibPlugin.getInstance();
+    private Plugin plugin = BukkitTaterLibPlugin.plugin;
     private String serverName;
 
     /**

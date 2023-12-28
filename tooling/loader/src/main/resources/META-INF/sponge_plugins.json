@@ -1,0 +1,30 @@
+{
+  "loader": {
+    "name": "java_plain",
+    "version": "1.0"
+  },
+  "license": "${license}",
+  "plugins": [
+    {
+      "id": "${project_id}",
+      "entrypoint": "${group_id}.${project_id}.loader.platforms.Sponge8LoaderPlugin",
+      "name": "${project_name}",
+      "description": "${project_description}",
+      "version": "${version}",
+      "branding": {},
+      "links": {
+        "homepage": "${homepage_url}",
+        "source": "${repo_url}",
+        "issues": "${issue_tracker_url}"
+      },
+      "dependencies": [
+        {
+          "id": "spongeapi",
+          "version": "${spongeapi_version}",
+          "load-order": "after",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}

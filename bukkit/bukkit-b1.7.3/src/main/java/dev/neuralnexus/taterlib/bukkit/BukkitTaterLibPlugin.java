@@ -26,71 +26,83 @@ import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Bukkit entry point. */
-public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
-    private static BukkitTaterLibPlugin instance;
-
-    public BukkitTaterLibPlugin() {
-        instance = this;
-
-        TaterAPIProvider.register(getServer().getVersion());
-        TaterAPIProvider.addHook(new BukkitPermissionsHook());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, Bukkit.getLogger()));
-        TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
-        api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
-        api.setServer(() -> new BukkitServer(getServer()));
-    }
+public class BukkitTaterLibPlugin implements TaterLibPlugin {
+    public static JavaPlugin plugin;
 
     /**
      * Gets the instance of the plugin
      *
      * @return The instance of the plugin
      */
-    public static BukkitTaterLibPlugin getInstance() {
-        return instance;
+    public static JavaPlugin getInstance() {
+        return plugin;
     }
 
     @Override
-    public void onEnable() {
+    public void platformInit(Object plugin, Object logger) {
+        BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
+
+        TaterAPIProvider.register(Bukkit.getServer().getVersion());
+        TaterAPIProvider.addHook(new BukkitPermissionsHook());
+        pluginStart(
+                BukkitTaterLibPlugin.plugin,
+                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
+        api.setIsPluginLoaded(
+                (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
+        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
+    }
+
+    @Override
+    public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
         // Register listeners
-        PluginManager pluginManager = getServer().getPluginManager();
+        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         pluginManager.registerEvent(
-                Event.Type.BLOCK_BREAK, new BukkitBlockListener(), Event.Priority.Normal, this);
-        getServer()
+                Event.Type.BLOCK_BREAK, new BukkitBlockListener(), Event.Priority.Normal, plugin);
+        Bukkit.getServer()
                 .getScheduler()
                 .scheduleSyncDelayedTask(
-                        this,
+                        plugin,
                         () ->
                                 CommandEvents.REGISTER_COMMAND.invoke(
                                         new BukkitCommandRegisterEvent()),
                         200L);
         pluginManager.registerEvent(
-                Event.Type.ENTITY_DAMAGE, new BukkitEntityListener(), Event.Priority.Normal, this);
+                Event.Type.ENTITY_DAMAGE,
+                new BukkitEntityListener(),
+                Event.Priority.Normal,
+                plugin);
         pluginManager.registerEvent(
-                Event.Type.ENTITY_DEATH, new BukkitEntityListener(), Event.Priority.Normal, this);
+                Event.Type.ENTITY_DEATH, new BukkitEntityListener(), Event.Priority.Normal, plugin);
         pluginManager.registerEvent(
-                Event.Type.CREATURE_SPAWN, new BukkitEntityListener(), Event.Priority.Normal, this);
+                Event.Type.CREATURE_SPAWN,
+                new BukkitEntityListener(),
+                Event.Priority.Normal,
+                plugin);
         pluginManager.registerEvent(
-                Event.Type.PLAYER_JOIN, new BukkitPlayerListener(), Event.Priority.Normal, this);
+                Event.Type.PLAYER_JOIN, new BukkitPlayerListener(), Event.Priority.Normal, plugin);
         pluginManager.registerEvent(
-                Event.Type.PLAYER_QUIT, new BukkitPlayerListener(), Event.Priority.Normal, this);
+                Event.Type.PLAYER_QUIT, new BukkitPlayerListener(), Event.Priority.Normal, plugin);
         pluginManager.registerEvent(
-                Event.Type.PLAYER_CHAT, new BukkitPlayerListener(), Event.Priority.Highest, this);
+                Event.Type.PLAYER_CHAT, new BukkitPlayerListener(), Event.Priority.Highest, plugin);
         pluginManager.registerEvent(
-                Event.Type.PLAYER_RESPAWN, new BukkitPlayerListener(), Event.Priority.Normal, this);
+                Event.Type.PLAYER_RESPAWN,
+                new BukkitPlayerListener(),
+                Event.Priority.Normal,
+                plugin);
         ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
-        getServer()
+        Bukkit.getServer()
                 .getScheduler()
                 .scheduleSyncDelayedTask(
-                        this,
+                        plugin,
                         () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()),
                         5 * 20L);
     }
 
     @Override
-    public void onDisable() {
+    public void platformDisable() {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
         ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());

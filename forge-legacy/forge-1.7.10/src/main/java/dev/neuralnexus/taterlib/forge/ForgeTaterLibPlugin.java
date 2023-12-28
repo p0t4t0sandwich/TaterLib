@@ -34,15 +34,26 @@ import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 
 /** Forge entry point. */
-@Mod(
-        modid = TaterLib.Constants.PROJECT_ID,
-        useMetadata = true,
-        //        serverSideOnly = true,
-        acceptableRemoteVersions = "*")
+// @Mod(
+//        modid = TaterLib.Constants.PROJECT_ID,
+//        useMetadata = true,
+//        serverSideOnly = true,
+//        acceptableRemoteVersions = "*")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    private static MinecraftServer server;
+    public static MinecraftServer server;
 
-    public ForgeTaterLibPlugin() {
+    /**
+     * Registers the TaterLib command.
+     *
+     * @param event The register commands event.
+     */
+    @Mod.EventHandler
+    public static void registerCommand(FMLServerStartingEvent event) {
+        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
+    }
+
+    @Override
+    public void platformInit(Object plugin, Object logger) {
         TaterAPIProvider.register(Loader.MC_VERSION);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
@@ -58,25 +69,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
         MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
         //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
-    }
-
-    /**
-     * Get the Minecraft server.
-     *
-     * @return The Minecraft server.
-     */
-    public static MinecraftServer getServer() {
-        return server;
-    }
-
-    /**
-     * Registers the TaterLib command.
-     *
-     * @param event The register commands event.
-     */
-    @Mod.EventHandler
-    public static void registerCommand(FMLServerStartingEvent event) {
-        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
     }
 
     /**

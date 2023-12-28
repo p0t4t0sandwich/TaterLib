@@ -23,7 +23,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -34,10 +33,9 @@ import org.apache.logging.log4j.LogManager;
 
 import java.lang.reflect.Field;
 
-/** Forge entry point. */
-@Mod(TaterLib.Constants.PROJECT_ID)
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    public ForgeTaterLibPlugin() {
+    @Override
+    public void platformInit(Object plugin, Object logger) {
         String minecraftVersion = "";
         try {
             Field mcVersionField = FMLLoader.class.getDeclaredField("mcVersion");

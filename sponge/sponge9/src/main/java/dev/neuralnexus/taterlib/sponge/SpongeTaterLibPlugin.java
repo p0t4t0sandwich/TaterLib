@@ -1,7 +1,5 @@
 package dev.neuralnexus.taterlib.sponge;
 
-import com.google.inject.Inject;
-
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
@@ -16,21 +14,18 @@ import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
 
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Platform;
-import org.spongepowered.api.Server;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.lifecycle.StoppingEngineEvent;
 import org.spongepowered.plugin.PluginContainer;
-import org.spongepowered.plugin.builtin.jvm.Plugin;
 
-/** The TaterLib Sponge plugin. */
-@Plugin(TaterLib.Constants.PROJECT_ID)
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    @Inject
-    public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
+    private PluginContainer container;
+
+    @Override
+    public void platformInit(Object plugin, Object logger) {
+        container = (PluginContainer) plugin;
+
         TaterAPIProvider.register(
                 Sponge.platform()
                         .container(Platform.Component.GAME)
@@ -40,9 +35,12 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
-        api.setIsPluginLoaded((plugin) -> Sponge.pluginManager().plugin(plugin).isPresent());
+        api.setIsPluginLoaded((pluginId) -> Sponge.pluginManager().plugin(pluginId).isPresent());
         api.setServer(() -> new SpongeServer(Sponge.server()));
+    }
 
+    @Override
+    public void platformEnable() {
         // Register listeners
         EventManager eventManager = Sponge.eventManager();
         eventManager.registerListeners(container, new SpongeBlockListener());
@@ -52,13 +50,8 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         eventManager.registerListeners(container, new SpongeServerListener());
     }
 
-    /**
-     * Fired when the server stops.
-     *
-     * @param event The event
-     */
-    @Listener
-    public void onServerStopping(StoppingEngineEvent<Server> event) {
+    @Override
+    public void platformDisable() {
         pluginStop();
     }
 }

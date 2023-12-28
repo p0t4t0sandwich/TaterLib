@@ -5,7 +5,6 @@ import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
-import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.proxy.ProxyServer;
 
@@ -35,28 +34,20 @@ import org.slf4j.Logger;
 
 import java.time.Duration;
 
-/** Velocity entry point. */
 @Plugin(
         id = TaterLib.Constants.PROJECT_ID,
         name = TaterLib.Constants.PROJECT_NAME,
         version = TaterLib.Constants.PROJECT_VERSION,
         authors = TaterLib.Constants.PROJECT_AUTHORS,
         description = TaterLib.Constants.PROJECT_DESCRIPTION,
-        url = TaterLib.Constants.PROJECT_URL,
-        dependencies = {@Dependency(id = "luckperms", optional = true)})
+        url = TaterLib.Constants.PROJECT_URL)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     private static ProxyServer server;
+    private static Object plugin;
 
     @Inject
     public VelocityTaterLibPlugin(ProxyServer server, Logger logger) {
-        VelocityTaterLibPlugin.server = server;
-
-        TaterAPIProvider.register(server.getVersion().getVersion());
-        TaterAPIProvider.addHook(new VelocityPermissionsHook());
-        pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
-        api.setIsPluginLoaded((plugin) -> server.getPluginManager().getPlugin(plugin).isPresent());
-        api.setServer(() -> new VelocityProxyServer(server));
+        platformInit(new Object[] {server, this}, logger);
     }
 
     /**
@@ -68,24 +59,43 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         return server;
     }
 
-    /**
-     * Called when the proxy is initialized.
-     *
-     * @param event The event.
-     */
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        platformEnable();
+    }
+
+    @Subscribe
+    public void onProxyShutdown(ProxyShutdownEvent event) {
+        platformDisable();
+    }
+
+    @Override
+    public void platformInit(Object plugin, Object logger) {
+        VelocityTaterLibPlugin.server = (ProxyServer) ((Object[]) plugin)[0];
+        VelocityTaterLibPlugin.plugin = ((Object[]) plugin)[1];
+
+        TaterAPIProvider.register(server.getVersion().getVersion());
+        TaterAPIProvider.addHook(new VelocityPermissionsHook());
+        pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
+        api.setIsPluginLoaded(
+                (pluginId) -> server.getPluginManager().getPlugin(pluginId).isPresent());
+        api.setServer(() -> new VelocityProxyServer(server));
+    }
+
+    @Override
+    public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
         // Register listeners
         EventManager eventManager = server.getEventManager();
-        eventManager.register(this, new VelocityPlayerListener());
-        eventManager.register(this, new VelocityPluginMessageListener());
-        eventManager.register(this, new VelocityServerListener());
+        eventManager.register(plugin, new VelocityPlayerListener());
+        eventManager.register(plugin, new VelocityPluginMessageListener());
+        eventManager.register(plugin, new VelocityServerListener());
 
         server.getScheduler()
                 .buildTask(
-                        this,
+                        plugin,
                         () -> {
                             // Register commands
                             CommandEvents.REGISTER_COMMAND.invoke(
@@ -104,13 +114,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                 .schedule();
     }
 
-    /**
-     * Called when the proxy is shutting down.
-     *
-     * @param event The event.
-     */
-    @Subscribe
-    public void onProxyShutdown(ProxyShutdownEvent event) {
+    @Override
+    public void platformDisable() {
         ServerEvents.STOPPED.invoke(new VelocityServerStoppedEvent());
         pluginStop();
     }

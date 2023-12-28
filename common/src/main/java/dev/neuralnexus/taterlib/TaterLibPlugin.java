@@ -6,8 +6,19 @@ import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
+/** General TaterLib plugin interface. */
 public interface TaterLibPlugin extends Plugin {
-    /** Start the plugin. */
+    @Override
+    default String getName() {
+        return TaterLib.Constants.PROJECT_NAME;
+    }
+
+    @Override
+    default String getId() {
+        return TaterLib.Constants.PROJECT_ID;
+    }
+
+    @Override
     default void pluginStart(Object plugin, AbstractLogger logger) {
         logger.info(
                 TaterLib.Constants.PROJECT_NAME
@@ -19,7 +30,7 @@ public interface TaterLibPlugin extends Plugin {
         TaterLib.start(plugin, logger);
     }
 
-    /** Stop the plugin. */
+    @Override
     default void pluginStop() {
         TaterLib.stop();
         TaterLib.getLogger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");

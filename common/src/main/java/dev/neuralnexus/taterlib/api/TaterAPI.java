@@ -3,6 +3,8 @@ package dev.neuralnexus.taterlib.api;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.server.Server;
 
+import org.jetbrains.annotations.ApiStatus;
+
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -31,6 +33,7 @@ public class TaterAPI {
      *
      * @param isPluginLoaded The isPluginLoaded predicate
      */
+    @ApiStatus.Internal
     public void setIsPluginLoaded(Predicate<String> isPluginLoaded) {
         this.isPluginLoaded = isPluginLoaded;
     }
@@ -40,6 +43,7 @@ public class TaterAPI {
      *
      * @param isModLoaded The isModLoaded predicate
      */
+    @ApiStatus.Internal
     public void setIsModLoaded(Predicate<String> isModLoaded) {
         this.isModLoaded = isModLoaded;
     }
@@ -95,6 +99,7 @@ public class TaterAPI {
      *
      * @param minecraftServer The minecraftServer supplier
      */
+    @ApiStatus.Internal
     public void setServer(Supplier<Server> minecraftServer) {
         this.minecraftServer = minecraftServer;
     }

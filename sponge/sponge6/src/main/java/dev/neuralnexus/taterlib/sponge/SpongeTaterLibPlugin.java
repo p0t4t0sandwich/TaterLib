@@ -1,7 +1,5 @@
 package dev.neuralnexus.taterlib.sponge;
 
-import com.google.inject.Inject;
-
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
@@ -17,36 +15,38 @@ import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
 
-import org.slf4j.Logger;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
-import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
-import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.concurrent.TimeUnit;
 
-/** Sponge entry point. */
-@Plugin(
-        id = TaterLib.Constants.PROJECT_ID,
-        name = TaterLib.Constants.PROJECT_NAME,
-        version = TaterLib.Constants.PROJECT_VERSION,
-        description = TaterLib.Constants.PROJECT_DESCRIPTION)
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    private static SpongeTaterLibPlugin instance;
+    private static PluginContainer container;
 
-    @Inject
-    public SpongeTaterLibPlugin(Logger logger, PluginContainer container) {
+    /**
+     * Gets the instance of the plugin
+     *
+     * @return The instance of the plugin
+     */
+    public static PluginContainer getInstance() {
+        return container;
+    }
+
+    @Override
+    public void platformInit(Object plugin, Object logger) {
+        container = (PluginContainer) plugin;
+
         TaterAPIProvider.register(Sponge.getPlatform().getMinecraftVersion().getName());
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
         api.setIsPluginLoaded(Sponge.getPluginManager()::isLoaded);
         api.setServer(() -> new SpongeServer(Sponge.getServer()));
+    }
 
-        instance = this;
-
+    @Override
+    public void platformEnable() {
         // Register listeners
         EventManager eventManager = Sponge.getEventManager();
         eventManager.registerListeners(container, new SpongeBlockListener());
@@ -63,22 +63,8 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         eventManager.registerListeners(container, new SpongeServerListener());
     }
 
-    /**
-     * Gets the instance of the plugin
-     *
-     * @return The instance of the plugin
-     */
-    public static SpongeTaterLibPlugin getInstance() {
-        return instance;
-    }
-
-    /**
-     * Fired when the server stops.
-     *
-     * @param event The event
-     */
-    @Listener
-    public void onServerStopped(GameStoppedServerEvent event) {
+    @Override
+    public void platformDisable() {
         pluginStop();
     }
 }

@@ -1,0 +1,21 @@
+[
+  {
+    "modid": "${project_id}",
+    "name": "${project_name}",
+    "license": "${license}",
+    "description": "${project_description}",
+    "version": "${version}",
+    "mcversion": "${minecraft_version}",
+    "url": "${homepage_url}",
+    "updateUrl": "${update_json_url}",
+    "authorList": [
+      "${authors}"
+    ],
+    "credits": "${authors}",
+    "logoFile": "./${project_name}.png",
+    "screenshots": [],
+    "useDependencyInformation": true,
+    "dependencies": [],
+    "dependants": []
+  }
+]

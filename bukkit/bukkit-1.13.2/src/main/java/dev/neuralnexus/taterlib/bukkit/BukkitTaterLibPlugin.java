@@ -24,52 +24,47 @@ import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-/** Bukkit entry point. */
-public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
-    private static BukkitTaterLibPlugin instance;
+public class BukkitTaterLibPlugin implements TaterLibPlugin {
+    public static JavaPlugin plugin;
 
-    public BukkitTaterLibPlugin() {
-        instance = this;
+    @Override
+    public void platformInit(Object plugin, Object logger) {
+        BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
 
-        TaterAPIProvider.register(getServer().getBukkitVersion());
+        TaterAPIProvider.register(Bukkit.getServer().getBukkitVersion());
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, getLogger()));
+        pluginStart(
+                BukkitTaterLibPlugin.plugin,
+                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
-        api.setIsPluginLoaded((plugin) -> getServer().getPluginManager().isPluginEnabled(plugin));
-        api.setServer(() -> new BukkitServer(getServer()));
-    }
-
-    /**
-     * Gets the instance of the plugin.
-     *
-     * @return The instance of the plugin.
-     */
-    public static BukkitTaterLibPlugin getInstance() {
-        return instance;
+        api.setIsPluginLoaded(
+                (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
+        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
     }
 
     @Override
-    public void onEnable() {
+    public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
         // Register listeners
-        PluginManager pluginManager = getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitBlockListener(), this);
-        pluginManager.registerEvents(new BukkitEntityListener(), this);
-        pluginManager.registerEvents(new BukkitPlayerListener(), this);
+        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
+        pluginManager.registerEvents(new BukkitBlockListener(), plugin);
+        pluginManager.registerEvents(new BukkitEntityListener(), plugin);
+        pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
         if (TaterAPIProvider.serverType().isPaperBased()) {
-            pluginManager.registerEvents(new PaperPlayerListener(), this);
+            pluginManager.registerEvents(new PaperPlayerListener(), plugin);
         }
         ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
-        pluginManager.registerEvents(new BukkitServerListener(), this);
+        pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
-        getServer()
+        Bukkit.getServer()
                 .getScheduler()
                 .runTaskLater(
-                        this,
+                        plugin,
                         () -> {
                             // Register commands
                             CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
@@ -82,7 +77,7 @@ public class BukkitTaterLibPlugin extends JavaPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void onDisable() {
+    public void platformDisable() {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
         ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());

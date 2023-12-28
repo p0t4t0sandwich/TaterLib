@@ -26,58 +26,51 @@ import net.md_5.bungee.api.plugin.PluginManager;
 
 import java.util.concurrent.TimeUnit;
 
-/** Bungee entry point. */
-public class BungeeTaterLibPlugin extends Plugin implements TaterLibPlugin {
-    private static ProxyServer proxyServer;
+public class BungeeTaterLibPlugin implements TaterLibPlugin {
+    private Plugin plugin;
 
-    public BungeeTaterLibPlugin() {
-        TaterAPIProvider.register(getProxy().getVersion());
+    @Override
+    public void platformInit(Object plugin, Object logger) {
+        this.plugin = (Plugin) plugin;
+        TaterAPIProvider.register(ProxyServer.getInstance().getVersion());
         TaterAPIProvider.addHook(new BungeePermissionsHook());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, getLogger()));
+        pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUNGEECORD);
-        api.setIsPluginLoaded((plugin) -> getProxy().getPluginManager().getPlugin(plugin) != null);
-        api.setServer(() -> new BungeeProxyServer(getProxy()));
-    }
-
-    /**
-     * Get the proxy server.
-     *
-     * @return The proxy server.
-     */
-    public static ProxyServer getProxyServer() {
-        return proxyServer;
+        api.setIsPluginLoaded(
+                (pluginId) ->
+                        ProxyServer.getInstance().getPluginManager().getPlugin(pluginId) != null);
+        api.setServer(() -> new BungeeProxyServer(ProxyServer.getInstance()));
     }
 
     @Override
-    public void onEnable() {
+    public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        proxyServer = getProxy();
 
         // Register listeners
-        PluginManager pluginManager = getProxy().getPluginManager();
-        getProxy()
+        PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
+        ProxyServer.getInstance()
                 .getScheduler()
                 .schedule(
-                        this,
+                        plugin,
                         () ->
                                 CommandEvents.REGISTER_COMMAND.invoke(
                                         new BungeeCommandRegisterEvent()),
                         5L,
                         TimeUnit.SECONDS);
-        pluginManager.registerListener(this, new BungeePlayerListener());
-        pluginManager.registerListener(this, new BungeePluginMessageListener());
+        pluginManager.registerListener(plugin, new BungeePlayerListener());
+        pluginManager.registerListener(plugin, new BungeePluginMessageListener());
         ServerEvents.STARTING.invoke(new BungeeServerStartingEvent());
-        getProxy()
+        ProxyServer.getInstance()
                 .getScheduler()
                 .schedule(
-                        this,
+                        plugin,
                         () -> ServerEvents.STARTED.invoke(new BungeeServerStartedEvent()),
                         5L,
                         TimeUnit.SECONDS);
     }
 
     @Override
-    public void onDisable() {
+    public void platformDisable() {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new BungeeServerStoppingEvent());
         ServerEvents.STOPPED.invoke(new BungeeServerStoppedEvent());

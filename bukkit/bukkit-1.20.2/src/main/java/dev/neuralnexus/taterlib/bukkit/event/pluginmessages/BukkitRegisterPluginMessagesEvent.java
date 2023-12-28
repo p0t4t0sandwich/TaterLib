@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages.BukkitPluginMessageListener;
 import dev.neuralnexus.taterlib.event.pluginmessages.RegisterPluginMessagesEvent;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.Messenger;
 
@@ -14,10 +15,10 @@ public class BukkitRegisterPluginMessagesEvent implements RegisterPluginMessages
     /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
-        Plugin plugin = BukkitTaterLibPlugin.getInstance();
-        Messenger messenger = plugin.getServer().getMessenger();
-        messenger.registerIncomingPluginChannel(plugin, channel, new BukkitPluginMessageListener());
-        messenger.registerOutgoingPluginChannel(plugin, channel);
+        Messenger messenger = Bukkit.getServer().getMessenger();
+        messenger.registerIncomingPluginChannel(
+                BukkitTaterLibPlugin.plugin, channel, new BukkitPluginMessageListener());
+        messenger.registerOutgoingPluginChannel(BukkitTaterLibPlugin.plugin, channel);
     }
 
     /** {@inheritDoc} */

@@ -70,7 +70,10 @@ ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version,
     println("Building using Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
 
     String dir = "./target"
-    ArrayList<File> jarFiles = [file("${dir}/${project_id}-common-${version}.jar")]
+    ArrayList<File> jarFiles = [
+            file("${dir}/${project_id}-common-${version}.jar"),
+            file("${dir}/${project_id}-loader-0.1.0.jar")
+    ]
     if (bukkit_version != null) {
         jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
     }
@@ -113,6 +116,7 @@ ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version,
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn('tooling:entrypoint-spoof:build')
+    dependsOn('tooling:loader:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
     destinationDirectory = file("./build/libs")
@@ -131,7 +135,7 @@ tasks.register('build_api', Jar) {
     }
     ArrayList<File> jarFiles = [
             file("./target/${project_id}-common-${version}.jar"),
-            file("./target/entrypoint-spoof-0.1.0.jar")
+//            file("./target/entrypoint-spoof-0.1.1.jar")
     ]
     from {
         jarFiles.collect {
@@ -149,6 +153,7 @@ tasks.register('build_api', Jar) {
 // --------------------------- Build api-platforms --------------------------------
 tasks.register('build_api_platforms', Jar) {
     dependsOn(':common:shadowJar')
+    dependsOn('tooling:loader:build')
     dependsOn(':bukkit:bukkit-1.20.4:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.20.4:build')
@@ -205,7 +210,7 @@ tasks.register('build_legacy_forge', Exec) {
 
 // --------------------------- Build b1.7.3 --------------------------------
 tasks.register('build_b1_7_3', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     String bukkit = null
     try {
         dependsOn(':bukkit:bukkit-b1.7.3:build')
@@ -237,7 +242,7 @@ tasks.register('build_b1_7_3', Jar) {
 
 // --------------------------- Build 1.2.5 --------------------------------
 tasks.register('build_1_2_5', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     String bukkit = null
     try {
         dependsOn(':bukkit:bukkit-1.2.5:build')
@@ -270,7 +275,7 @@ tasks.register('build_1_2_5', Jar) {
 
 // --------------------------- Build 1.6.4 --------------------------------
 tasks.register('build_1_6_4', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     String bukkit = null
     try {
         dependsOn(':bukkit:bukkit-1.6.4:build')
@@ -303,7 +308,7 @@ tasks.register('build_1_6_4', Jar) {
 
 // --------------------------- Build 1.7.10 --------------------------------
 tasks.register('build_1_7_10', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     String bukkit = null
     try {
         dependsOn(':bukkit:bukkit-1.7.10:build')
@@ -339,7 +344,7 @@ tasks.register('build_1_7_10', Jar) {
 
 // --------------------------- Build 1.8 --------------------------------
 tasks.register('build_1_8', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
     dependsOn(':fabric:fabric-1.8.9:build')
@@ -370,7 +375,7 @@ tasks.register('build_1_8', Jar) {
 
 // --------------------------- Build 1.9 --------------------------------
 tasks.register('build_1_9', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
     dependsOn(':fabric:fabric-1.9.4:build')
@@ -401,7 +406,7 @@ tasks.register('build_1_9', Jar) {
 
 // --------------------------- Build 1.10 --------------------------------
 tasks.register('build_1_10', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
     dependsOn(':fabric:fabric-1.10.2:build')
@@ -432,7 +437,7 @@ tasks.register('build_1_10', Jar) {
 
 // --------------------------- Build 1.11 --------------------------------
 tasks.register('build_1_11', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.8:build')
     dependsOn(':fabric:fabric-1.11.2:build')
@@ -464,7 +469,7 @@ tasks.register('build_1_11', Jar) {
 
 // --------------------------- Build 1.12 --------------------------------
 tasks.register('build_1_12', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.8.8:build')
     dependsOn(':bungee:bungee-1.12:build')
     dependsOn(':fabric:fabric-1.12.2:build')
@@ -496,7 +501,7 @@ tasks.register('build_1_12', Jar) {
 
 // --------------------------- Build 1.13 --------------------------------
 tasks.register('build_1_13', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.13.2:build')
     dependsOn(':bungee:bungee-1.12:build')
     dependsOn(':forge:forge-1.13:build')
@@ -526,7 +531,7 @@ tasks.register('build_1_13', Jar) {
 
 // --------------------------- Build 1.14 --------------------------------
 tasks.register('build_1_14', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.13.2:build')
     dependsOn(':bungee:bungee-1.12:build')
     dependsOn(':fabric:fabric-1.14:build')
@@ -557,7 +562,7 @@ tasks.register('build_1_14', Jar) {
 
 // --------------------------- Build 1.15 --------------------------------
 tasks.register('build_1_15', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.15:build')
@@ -589,7 +594,7 @@ tasks.register('build_1_15', Jar) {
 
 // --------------------------- Build 1.16 --------------------------------
 tasks.register('build_1_16', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.16:build')
@@ -621,7 +626,7 @@ tasks.register('build_1_16', Jar) {
 
 // --------------------------- Build 1.17 --------------------------------
 tasks.register('build_1_17', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.17:build')
@@ -653,7 +658,7 @@ tasks.register('build_1_17', Jar) {
 
 // --------------------------- Build 1.18 --------------------------------
 tasks.register('build_1_18', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.18:build')
@@ -685,7 +690,7 @@ tasks.register('build_1_18', Jar) {
 
 // --------------------------- Build 1.18.2 --------------------------------
 tasks.register('build_1_18_2', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.18:build')
@@ -723,7 +728,7 @@ tasks.register('build_1_18_2', Jar) {
 
 // --------------------------- Build 1.19 --------------------------------
 tasks.register('build_1_19', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.15.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.19:build')
@@ -754,7 +759,7 @@ tasks.register('build_1_19', Jar) {
 
 // --------------------------- Build 1.20 --------------------------------
 tasks.register('build_1_20', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.20.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.20:build')
@@ -785,7 +790,7 @@ tasks.register('build_1_20', Jar) {
 
 // --------------------------- Build 1.20.2 --------------------------------
 tasks.register('build_1_20_2', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.20.2:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.20.2:build')
@@ -817,7 +822,7 @@ tasks.register('build_1_20_2', Jar) {
 
 // --------------------------- Build 1.20.3/4 --------------------------------
 tasks.register('build_1_20_4', Jar) {
-    dependsOn(':common:shadowJar')
+    dependsOn('build_api')
     dependsOn(':bukkit:bukkit-1.20.4:build')
     dependsOn(':bungee:bungee-1.20:build')
     dependsOn(':fabric:fabric-1.20.4:build')

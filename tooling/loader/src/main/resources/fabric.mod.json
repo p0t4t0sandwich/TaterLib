@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "${project_id}",
+  "version": "${version}",
+  "name": "${project_name}",
+  "description": "${project_description}",
+  "authors": [
+    {
+      "name": "${authors}"
+    }
+  ],
+  "contact": {
+    "repo": "${repo_url}"
+  },
+  "license": "${license}",
+  "icon": "./${project_name}.png",
+  "environment": "*",
+  "entrypoints": {
+    "server": [
+      "${group_id}.${project_id}.loader.platforms.FabricLoaderPlugin"
+    ]
+  },
+  "mixins": [
+    "${project_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.0",
+    "minecraft": ">=1.14"
+  }
+}

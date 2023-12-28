@@ -1,0 +1,12 @@
+{
+  "id": "${project_id}",
+  "name": "${project_name}",
+  "version": "${version}",
+  "description": "${project_description}",
+  "url": "${homepage_url}",
+  "authors": [
+    "${authors}"
+  ],
+  "dependencies": [],
+  "main": "${group_id}.${project_id}.velocity.VelocityTaterLibPlugin"
+}
