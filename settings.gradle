@@ -54,6 +54,9 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
+        // Testing
+        'vanilla:vanilla-1.20.4',
+
         // Tooling
         'tooling:entrypoint-spoof',
         'tooling:loader',

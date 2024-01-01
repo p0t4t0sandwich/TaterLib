@@ -2,11 +2,11 @@ package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.vanilla.inventory.VanillaItemStack;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -35,7 +35,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
             return new ArrayList<>();
         }
         return event.getEntity().captureDrops().stream()
-                .map(itemEntity -> new ForgeItemStack(itemEntity.getItem()))
+                .map(itemEntity -> new VanillaItemStack(itemEntity.getItem()))
                 .collect(Collectors.toList());
     }
 
@@ -71,13 +71,13 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
     /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
-        return new ForgeEntity(event.getEntity());
+        return new VanillaEntity(event.getEntity());
     }
 
     /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
-        return new ForgePlayer((net.minecraft.world.entity.player.Player) event.getEntity());
+        return new VanillaPlayer((net.minecraft.world.entity.player.Player) event.getEntity());
     }
 
     /** {@inheritDoc} */

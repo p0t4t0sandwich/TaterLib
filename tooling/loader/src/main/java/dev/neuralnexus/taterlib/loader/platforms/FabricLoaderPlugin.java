@@ -4,10 +4,10 @@ import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
 
-import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.api.ModInitializer;
 
 /** Fabric entry point. */
-public class FabricLoaderPlugin implements DedicatedServerModInitializer {
+public class FabricLoaderPlugin implements ModInitializer {
     private final Loader loader;
 
     public FabricLoaderPlugin() {
@@ -17,7 +17,7 @@ public class FabricLoaderPlugin implements DedicatedServerModInitializer {
     }
 
     @Override
-    public void onInitializeServer() {
+    public void onInitialize() {
         loader.onEnable();
     }
 }

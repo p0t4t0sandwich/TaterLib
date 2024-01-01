@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.neoforge.event.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.entity.EntityEvent;
-import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
-import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
+import dev.neuralnexus.taterlib.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.world.entity.player.Player;
 
@@ -19,9 +19,9 @@ public class NeoForgeEntityEvent implements EntityEvent {
     @Override
     public Entity getEntity() {
         if (event.getEntity() instanceof Player) {
-            return new NeoForgePlayer((Player) event.getEntity());
+            return new VanillaPlayer((Player) event.getEntity());
         } else {
-            return new NeoForgeEntity(event.getEntity());
+            return new VanillaEntity(event.getEntity());
         }
     }
 }

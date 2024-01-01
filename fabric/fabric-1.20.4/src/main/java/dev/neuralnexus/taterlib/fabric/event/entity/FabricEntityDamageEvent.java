@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.fabric.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -38,7 +38,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
     /** {@inheritDoc} */
     @Override
     public String getCause() {
-        return damageSource.getName();
+        return damageSource.type().msgId();
     }
 
     /** {@inheritDoc} */

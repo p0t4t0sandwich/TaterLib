@@ -131,5 +131,10 @@
       <option name="name" value="Ketting" />
       <option name="url" value="https://nexus.c0d3m4513r.com/repository/Ketting/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="ParchmentMC" />
+      <option name="name" value="ParchmentMC" />
+      <option name="url" value="https://maven.parchmentmc.org" />
+    </remote-repository>
   </component>
 </project>

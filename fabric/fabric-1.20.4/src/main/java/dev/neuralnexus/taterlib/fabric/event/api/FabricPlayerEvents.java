@@ -2,9 +2,9 @@ package dev.neuralnexus.taterlib.fabric.event.api;
 
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.player.Player;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -67,27 +67,27 @@ public final class FabricPlayerEvents {
 
     @FunctionalInterface
     public interface PlayerAdvancementFinished {
-        void onPlayerAdvancementFinished(PlayerEntity player, AdvancementEntry advancement);
+        void onPlayerAdvancementFinished(Player player, AdvancementHolder advancement);
     }
 
     @FunctionalInterface
     public interface PlayerAdvancementProgress {
         void onPlayerAdvancementProgress(
-                PlayerEntity player, AdvancementEntry advancement, String criterionName);
+                Player player, AdvancementHolder advancement, String criterionName);
     }
 
     @FunctionalInterface
     public interface PlayerDeath {
-        void onPlayerDeath(PlayerEntity player, DamageSource source);
+        void onPlayerDeath(Player player, DamageSource source);
     }
 
     @FunctionalInterface
     public interface PlayerMessage {
-        void onPlayerMessage(PlayerEntity player, String message, CallbackInfo ci);
+        void onPlayerMessage(Player player, String message, CallbackInfo ci);
     }
 
     @FunctionalInterface
     public interface PlayerRespawn {
-        void onPlayerRespawn(PlayerEntity player, boolean alive);
+        void onPlayerRespawn(Player player, boolean alive);
     }
 }

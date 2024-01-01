@@ -21,7 +21,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "${group_id}.${project_id}.fabric.Fabric${project_name}Plugin"
+      "${group_id}.${project_id}.loader.platforms.FabricLoaderPlugin"
     ]
   },
   "mixins": [

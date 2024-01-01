@@ -1,13 +1,16 @@
 plugins {
     id('java')
     id('maven-publish')
+    id('com.github.johnrengelman.shadow') version('8.1.1')
     id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
+    id('net.neoforged.gradle.userdev') version('7.0.74') apply(false)
 }
 
 defaultTasks('build')
 
 subprojects {
     apply(plugin: 'java')
+    apply(plugin: 'com.github.johnrengelman.shadow')
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8

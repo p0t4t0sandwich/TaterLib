@@ -1,5 +1,5 @@
 plugins {
-    id('net.neoforged.gradle.userdev') version('7.0.5')
+    id('net.neoforged.gradle.userdev') version('7.0.74')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)

@@ -1,14 +1,22 @@
 plugins {
-    id('net.neoforged.gradle.userdev') version('7.0.5')
+    id('net.neoforged.gradle.userdev') version('7.0.74')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = java_version
 targetCompatibility = java_version
 
+subsystems {
+    parchment {
+        minecraftVersion = '1.20.3'// TODO: Temporary until there's some way around this
+        mappingsVersion = mapping_version
+    }
+}
+
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -17,7 +25,12 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-jar {
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${minecraft_version}"))
+    }
+    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.neoforge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-neoforge-${minecraft_version}-${version}.jar"
 }
+tasks.build.dependsOn(tasks.shadowJar)

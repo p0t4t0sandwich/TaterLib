@@ -1,9 +1,8 @@
 package dev.neuralnexus.taterlib.neoforge.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.neoforge.entity.NeoForgeEntity;
-import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.vanilla.util.VanillaLocation;
 
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
@@ -31,6 +30,6 @@ public class NeoForgeEntitySpawnEvent extends NeoForgeEntityEvent implements Ent
     /** {@inheritDoc} */
     @Override
     public Location getLocation() {
-        return new NeoForgeLocation(((NeoForgeEntity) getEntity()).getEntity());
+        return new VanillaLocation(event.getEntity());
     }
 }

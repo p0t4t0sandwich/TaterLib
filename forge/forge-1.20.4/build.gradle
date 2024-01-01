@@ -14,6 +14,7 @@ minecraft {
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -22,7 +23,15 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-jar {
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${minecraft_version}"))
+    }
+    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}
+
+reobf {
+    shadowJar {}
 }

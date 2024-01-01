@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.neoforge.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.neoforge.inventory.NeoForgeItemStack;
+import dev.neuralnexus.taterlib.vanilla.inventory.VanillaItemStack;
 
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 
@@ -31,7 +31,7 @@ public class NeoForgeEntityDeathEvent extends NeoForgeEntityEvent implements Ent
             return new ArrayList<>();
         }
         return event.getEntity().captureDrops().stream()
-                .map(itemEntity -> new NeoForgeItemStack(itemEntity.getItem()))
+                .map(itemEntity -> new VanillaItemStack(itemEntity.getItem()))
                 .collect(Collectors.toList());
     }
 

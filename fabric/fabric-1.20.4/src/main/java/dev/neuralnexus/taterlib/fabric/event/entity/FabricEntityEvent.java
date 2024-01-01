@@ -2,26 +2,26 @@ package dev.neuralnexus.taterlib.fabric.event.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.entity.EntityEvent;
-import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 /** The Fabric implementation of {@link EntityEvent}. */
 public class FabricEntityEvent implements EntityEvent {
-    private final net.minecraft.entity.Entity entity;
+    private final net.minecraft.world.entity.Entity entity;
 
-    public FabricEntityEvent(net.minecraft.entity.Entity entity) {
+    public FabricEntityEvent(net.minecraft.world.entity.Entity entity) {
         this.entity = entity;
     }
 
     /** {@inheritDoc} */
     @Override
     public Entity getEntity() {
-        if (this.entity instanceof PlayerEntity) {
-            return new FabricPlayer((PlayerEntity) this.entity);
+        if (this.entity instanceof Player) {
+            return new VanillaPlayer((Player) this.entity);
         } else {
-            return new FabricEntity(this.entity);
+            return new VanillaEntity(this.entity);
         }
     }
 }

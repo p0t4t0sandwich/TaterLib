@@ -5,43 +5,22 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.neoforge.event.pluginmessage.NeoForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.neoforge.hooks.permissions.NeoForgePermissionsHook;
 import dev.neuralnexus.taterlib.neoforge.listeners.block.NeoForgeBlockListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.command.NeoForgeCommandsListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.entity.NeoForgeEntityListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.player.NeoForgePlayerListener;
 import dev.neuralnexus.taterlib.neoforge.listeners.server.NeoForgeServerListener;
-import dev.neuralnexus.taterlib.neoforge.networking.ModMessages;
-import dev.neuralnexus.taterlib.neoforge.server.NeoForgeServer;
+import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModList;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 /** NeoForge entry point. */
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
-    /**
-     * Called when CommonSetupEvent is fired.
-     *
-     * @param event The event.
-     */
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                new NeoForgeRegisterPluginMessagesEvent());
-        ModMessages.register();
-        ModMessages.clearQueue();
-    }
-
     @Override
     public void platformInit(Object plugin, Object logger) {
         TaterAPIProvider.register(FMLLoader.versionInfo().mcVersion());
@@ -49,19 +28,14 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
-        api.setServer(() -> new NeoForgeServer(ServerLifecycleHooks.getCurrentServer()));
+        api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
 
         // Register listeners
-        NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new NeoForgeBlockListener());
         NeoForge.EVENT_BUS.register(new NeoForgeCommandsListener());
         NeoForge.EVENT_BUS.register(new NeoForgeEntityListener());
         NeoForge.EVENT_BUS.register(new NeoForgePlayerListener());
         NeoForge.EVENT_BUS.register(new NeoForgeServerListener());
-
-        // Register plugin channels
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::commonSetup);
     }
 
     @Override

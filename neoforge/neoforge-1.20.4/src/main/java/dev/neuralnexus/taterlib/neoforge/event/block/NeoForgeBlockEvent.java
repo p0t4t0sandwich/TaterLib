@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.neoforge.event.block;
 
 import dev.neuralnexus.taterlib.block.Block;
 import dev.neuralnexus.taterlib.event.block.BlockEvent;
-import dev.neuralnexus.taterlib.neoforge.block.NeoForgeBlock;
+import dev.neuralnexus.taterlib.vanilla.block.VanillaBlock;
 
 /** NeoForge implementation of {@link BlockEvent}. */
 public class NeoForgeBlockEvent implements BlockEvent {
@@ -15,6 +15,6 @@ public class NeoForgeBlockEvent implements BlockEvent {
     /** {@inheritDoc} */
     @Override
     public Block getBlock() {
-        return new NeoForgeBlock(this.event.getPos(), this.event.getState().getBlock());
+        return new VanillaBlock(this.event.getPos(), this.event.getState().getBlock());
     }
 }
