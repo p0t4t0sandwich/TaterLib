@@ -3,9 +3,9 @@ package dev.neuralnexus.taterlib.fabric.event.entity;
 import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +35,8 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
     /** {@inheritDoc} */
     @Override
     public int getDroppedExp() {
-        return source.getAttacker() instanceof LivingEntity
-                ? ((LivingEntity) source.getAttacker()).getXpToDrop()
+        return source.getEntity() instanceof LivingEntity
+                ? ((LivingEntity) source.getEntity()).getExperienceReward()
                 : 0;
     }
 

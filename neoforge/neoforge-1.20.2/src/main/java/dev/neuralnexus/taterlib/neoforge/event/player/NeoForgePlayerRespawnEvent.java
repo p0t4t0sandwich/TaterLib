@@ -1,9 +1,8 @@
 package dev.neuralnexus.taterlib.neoforge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
-import dev.neuralnexus.taterlib.neoforge.util.NeoForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.vanilla.util.VanillaLocation;
 
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 
@@ -19,7 +18,7 @@ public class NeoForgePlayerRespawnEvent extends NeoForgePlayerEvent implements P
     /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
-        return new NeoForgeLocation(((NeoForgePlayer) getPlayer()).getPlayer());
+        return new VanillaLocation(event.getEntity());
     }
 
     /** {@inheritDoc} */

@@ -1,24 +1,31 @@
 package dev.neuralnexus.taterlib.fabric.event.block;
 
 import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
-import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Called when a block is broken. */
 public class FabricBlockBreakEvent extends FabricBlockEvent implements BlockBreakEvent {
     private final CallbackInfo ci;
-    private final PlayerEntity player;
+    private final net.minecraft.world.entity.player.Player player;
 
     public FabricBlockBreakEvent(
-            World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
-        super(world, pos, state, player, ci);
+            Level level,
+            net.minecraft.world.entity.player.Player player,
+            BlockPos blockPos,
+            BlockState blockState,
+            BlockEntity blockEntity,
+            ItemStack itemStack,
+            CallbackInfo ci) {
+        super(level, player, blockPos, blockState, ci);
         this.player = player;
         this.ci = ci;
     }
@@ -38,6 +45,6 @@ public class FabricBlockBreakEvent extends FabricBlockEvent implements BlockBrea
     /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
-        return new FabricPlayer(player);
+        return new VanillaPlayer(player);
     }
 }

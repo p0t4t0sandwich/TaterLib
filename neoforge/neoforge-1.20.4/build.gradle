@@ -15,19 +15,21 @@ subsystems {
 
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
+    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    implementation(project(":vanilla:vanilla-${minecraft_version}"))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.vanilla.neoforge.json".toString()]) {
         expand project.properties
     }
 }
 
 shadowJar {
     dependencies {
-        include(project(":vanilla:vanilla-${minecraft_version}"))
+        include(project(":vanilla:vanilla-${vanilla_version}"))
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.neoforge")
     destinationDirectory = file('../../target')

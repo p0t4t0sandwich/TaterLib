@@ -54,38 +54,51 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
-        // Testing
-        'vanilla:vanilla-1.20.4',
-
-        // Tooling
-        'tooling:entrypoint-spoof',
-        'tooling:loader',
-
         // Bleeding
         'bukkit:bukkit-1.20.4', // No changes so far
         'fabric:fabric-1.20.4', // No changes so far
         'forge:forge-1.20.4', // No changes so far
         'neoforge:neoforge-1.20.4', // No changes so far
+        'vanilla:vanilla-1.20.4', // No changes so far
 
+        // Vanilla
+        'vanilla:vanilla-1.20',
+        'vanilla:vanilla-1.20.2',
+
+        // Tooling
+        'tooling:entrypoint-spoof',
+        'tooling:loader',
+
+        // Common
+        'common',
+
+        // Legacy Bukkit
         'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
         'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+
+        // Bukkit
         'bukkit:bukkit-1.8.8',
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20.2',
+
+        // Bungee
         'bungee:bungee-1.4.7',
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
-        'common',
+
+        // Legacy Fabric
         'fabric:fabric-1.7.10',
         'fabric:fabric-1.8.9',
         'fabric:fabric-1.9.4',
         'fabric:fabric-1.10.2',
         'fabric:fabric-1.11.2',
         'fabric:fabric-1.12.2',
+
+        // Fabric
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
@@ -94,6 +107,8 @@ include(
         'fabric:fabric-1.19',
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
+
+        // Forge
         'forge:forge-1.12',
         'forge:forge-1.13',
         'forge:forge-1.14',
@@ -105,7 +120,11 @@ include(
         'forge:forge-1.19',
         'forge:forge-1.20',
         'forge:forge-1.20.2',
+
+        // NeoForge
         'neoforge:neoforge-1.20.2',
+
+        // Sponge
         'sponge:sponge4',
         'sponge:sponge5',
         'sponge:sponge6',
@@ -114,5 +133,7 @@ include(
         'sponge:sponge9',
         'sponge:sponge10',
         'sponge:sponge11',
+
+        // Velocity
         'velocity:velocity3'
 )

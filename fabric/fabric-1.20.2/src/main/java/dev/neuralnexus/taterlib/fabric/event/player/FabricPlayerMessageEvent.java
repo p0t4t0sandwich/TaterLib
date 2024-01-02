@@ -3,8 +3,6 @@ package dev.neuralnexus.taterlib.fabric.event.player;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.player.Player;
 
-import net.minecraft.entity.player.PlayerEntity;
-
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.HashSet;
@@ -15,7 +13,8 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     private final CallbackInfo ci;
     private String message;
 
-    public FabricPlayerMessageEvent(PlayerEntity player, String message, CallbackInfo ci) {
+    public FabricPlayerMessageEvent(
+            net.minecraft.world.entity.player.Player player, String message, CallbackInfo ci) {
         super(player);
         this.message = message;
         this.ci = ci;

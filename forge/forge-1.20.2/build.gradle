@@ -1,5 +1,6 @@
 plugins {
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
+    id('org.spongepowered.mixin') version('0.7.+')
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
@@ -13,16 +14,32 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.vanilla.forge.json".toString()]) {
         expand project.properties
     }
 }
 
-jar {
+mixin {
+    add sourceSets.main, "mixins.${project_id}.forge.refmap.json"
+    config "mixins.${project_id}.forge.json"
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${vanilla_version}"))
+    }
+    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}
+
+reobf {
+    shadowJar {}
 }

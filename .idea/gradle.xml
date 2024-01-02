@@ -70,6 +70,8 @@
             <option value="$PROJECT_DIR$/tooling/entrypoint-spoof" />
             <option value="$PROJECT_DIR$/tooling/loader" />
             <option value="$PROJECT_DIR$/vanilla" />
+            <option value="$PROJECT_DIR$/vanilla/vanilla-1.20" />
+            <option value="$PROJECT_DIR$/vanilla/vanilla-1.20.2" />
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.20.4" />
             <option value="$PROJECT_DIR$/velocity" />
             <option value="$PROJECT_DIR$/velocity/velocity3" />

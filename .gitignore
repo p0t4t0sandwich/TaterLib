@@ -27,6 +27,7 @@ replay_pid*
 build
 bin
 target
+run
 
 # Gradle
 .gradle

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.forge.inventory.ForgeItemStack;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.vanilla.inventory.VanillaItemStack;
 
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
@@ -31,7 +31,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
             return new ArrayList<>();
         }
         return event.getEntity().captureDrops().stream()
-                .map(itemEntity -> new ForgeItemStack(itemEntity.getItem()))
+                .map(itemEntity -> new VanillaItemStack(itemEntity.getItem()))
                 .collect(Collectors.toList());
     }
 

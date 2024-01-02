@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.forge.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.Sender;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.server.permission.PermissionAPI;
@@ -40,7 +40,7 @@ public class ForgePermissionsHook implements PermissionsHook {
                                             node.getDefaultResolver()
                                                     .resolve(
                                                             (ServerPlayer)
-                                                                    ((ForgePlayer) sender)
+                                                                    ((VanillaPlayer) sender)
                                                                             .getPlayer(),
                                                             sender.getUniqueId()));
         }

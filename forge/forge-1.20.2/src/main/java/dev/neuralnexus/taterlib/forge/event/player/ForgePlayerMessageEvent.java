@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraftforge.event.ServerChatEvent;
 
@@ -33,7 +33,7 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
     /** {@inheritDoc} */
     @Override
     public Player getPlayer() {
-        return new ForgePlayer(event.getPlayer());
+        return new VanillaPlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */

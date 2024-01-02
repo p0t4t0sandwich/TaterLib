@@ -22,8 +22,8 @@ import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStartingEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.fabric.event.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.fabric.hooks.permissions.FabricPermissionsHook;
-import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -54,7 +54,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
         api.setIsModLoaded((modId) -> FabricLoader.getInstance().isModLoaded(modId));
-        api.setServer(() -> new FabricServer(server));
+        api.setServer(() -> new VanillaServer(server));
 
         // Initialize plugin data
         ServerLifecycleEvents.SERVER_STARTING.register(
@@ -93,9 +93,16 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
         // Register TaterLib Block events
         FabricBlockEvents.BLOCK_BREAK.register(
-                (world, pos, state, player, ci) ->
+                (level, player, blockPos, blockState, blockEntity, itemStack, ci) ->
                         BlockEvents.BLOCK_BREAK.invoke(
-                                new FabricBlockBreakEvent(world, pos, state, player, ci)));
+                                new FabricBlockBreakEvent(
+                                        level,
+                                        player,
+                                        blockPos,
+                                        blockState,
+                                        blockEntity,
+                                        itemStack,
+                                        ci)));
 
         // Register TaterLib Entity events
         FabricEntityEvents.DAMAGE.register(

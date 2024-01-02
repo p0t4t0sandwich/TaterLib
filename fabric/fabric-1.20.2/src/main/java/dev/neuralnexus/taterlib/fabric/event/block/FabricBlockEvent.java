@@ -2,35 +2,35 @@ package dev.neuralnexus.taterlib.fabric.event.block;
 
 import dev.neuralnexus.taterlib.block.Block;
 import dev.neuralnexus.taterlib.event.block.BlockEvent;
-import dev.neuralnexus.taterlib.fabric.block.FabricBlock;
+import dev.neuralnexus.taterlib.vanilla.block.VanillaBlock;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Called when a block event occurs. */
 public class FabricBlockEvent implements BlockEvent {
-    private final World world;
-    private final BlockPos pos;
-    private final BlockState state;
-    private final PlayerEntity player;
+    private final Level level;
+    private final Player player;
+    private final BlockPos blockPos;
+    private final BlockState blockState;
     private final CallbackInfo ci;
 
     public FabricBlockEvent(
-            World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
-        this.world = world;
-        this.pos = pos;
-        this.state = state;
+            Level level, Player player, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
+        this.level = level;
         this.player = player;
+        this.blockPos = blockPos;
+        this.blockState = blockState;
         this.ci = ci;
     }
 
     /** {@inheritDoc} */
     @Override
     public Block getBlock() {
-        return new FabricBlock(this.pos, this.state.getBlock());
+        return new VanillaBlock(this.blockPos, this.blockState.getBlock());
     }
 }

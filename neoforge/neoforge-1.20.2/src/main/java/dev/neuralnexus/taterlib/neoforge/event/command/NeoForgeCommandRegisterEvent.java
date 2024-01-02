@@ -10,9 +10,9 @@ import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.neoforge.command.NeoForgeSender;
-import dev.neuralnexus.taterlib.neoforge.player.NeoForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.command.VanillaSender;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -55,13 +55,13 @@ public class NeoForgeCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public Sender getSender(CommandSourceStack source) {
-        return new NeoForgeSender(source);
+        return new VanillaSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
-        return new NeoForgePlayer((net.minecraft.world.entity.player.Player) source.getEntity());
+        return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 
     /** {@inheritDoc} */

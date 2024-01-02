@@ -10,7 +10,8 @@ targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    implementation(project(":vanilla:vanilla-${minecraft_version}"))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -37,14 +38,14 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.json".toString(), "${project_id}.mixins.vanilla.fabric.json".toString()]) {
         expand project.properties
     }
 }
 
 shadowJar {
     dependencies {
-        include(project(":vanilla:vanilla-${minecraft_version}"))
+        include(project(":vanilla:vanilla-${vanilla_version}"))
         exclude('/mappings/*')
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
