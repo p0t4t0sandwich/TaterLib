@@ -2,9 +2,9 @@ package dev.neuralnexus.taterlib.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
 
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.player.Player;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player death listener. */
-@Mixin(ServerPlayerEntity.class)
+@Mixin(ServerPlayer.class)
 public class FabricPlayerDeathMixin {
     /**
      * Called when a player dies.
@@ -20,9 +20,9 @@ public class FabricPlayerDeathMixin {
      * @param source The source of the damage.
      * @param ci The callback info.
      */
-    @Inject(method = "onDeath", at = @At("HEAD"))
+    @Inject(method = "die", at = @At("HEAD"))
     public void onPlayerDeath(DamageSource source, CallbackInfo ci) {
-        PlayerEntity player = (PlayerEntity) (Object) this;
+        Player player = (Player) (Object) this;
         FabricPlayerEvents.DEATH.invoker().onPlayerDeath(player, source);
     }
 }

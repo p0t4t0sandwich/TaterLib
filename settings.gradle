@@ -55,11 +55,11 @@ rootProject.name = 'TaterLib'
 
 include(
         // Bleeding
-        'bukkit:bukkit-1.20.4', // No changes so far
-        'fabric:fabric-1.20.4', // No changes so far
-        'forge:forge-1.20.4', // No changes so far
-        'neoforge:neoforge-1.20.4', // No changes so far
-        'vanilla:vanilla-1.20.4', // No changes so far
+        'bleeding:bukkit-bleeding', // 1.20.4 No changes so far
+        'bleeding:fabric-bleeding', // 1.20.4 No changes so far
+        'bleeding:forge-bleeding', // 1.20.4 No changes so far
+        'bleeding:neoforge-bleeding', // 1.20.4 No changes so far
+        'bleeding:vanilla-bleeding', // 1.20.4 No changes so far
 
         // Vanilla
         'vanilla:vanilla-1.20',

@@ -1,32 +1,31 @@
 package dev.neuralnexus.taterlib.fabric.event.command;
 
-import static net.minecraft.server.command.CommandManager.literal;
+import static net.minecraft.commands.Commands.literal;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.fabric.command.FabricSender;
-import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.command.VanillaSender;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-import net.minecraft.command.CommandRegistryAccess;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.commands.CommandBuildContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 
 /** Fabric implementation of {@link BrigadierCommandRegisterEvent}. */
 public class FabricBrigadierCommandRegisterEvent
-        implements BrigadierCommandRegisterEvent<ServerCommandSource> {
-    private final CommandDispatcher<ServerCommandSource> dispatcher;
-    private final CommandRegistryAccess registryAccess;
-    private final CommandManager.RegistrationEnvironment environment;
+        implements BrigadierCommandRegisterEvent<CommandSourceStack> {
+    private final CommandDispatcher<CommandSourceStack> dispatcher;
+    private final CommandBuildContext registryAccess;
+    private final Commands.CommandSelection environment;
 
     public FabricBrigadierCommandRegisterEvent(
-            CommandDispatcher<ServerCommandSource> dispatcher,
-            CommandRegistryAccess registryAccess,
-            CommandManager.RegistrationEnvironment environment) {
+            CommandDispatcher<CommandSourceStack> dispatcher,
+            CommandBuildContext registryAccess,
+            Commands.CommandSelection environment) {
         this.dispatcher = dispatcher;
         this.registryAccess = registryAccess;
         this.environment = environment;
@@ -35,19 +34,19 @@ public class FabricBrigadierCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
-        return environment.name().equals("DEDICATED");
+        return environment == Commands.CommandSelection.DEDICATED;
     }
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<ServerCommandSource> getDispatcher() {
+    public CommandDispatcher<CommandSourceStack> getDispatcher() {
         return dispatcher;
     }
 
     /** {@inheritDoc} */
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<ServerCommandSource> node,
+            LiteralArgumentBuilder<CommandSourceStack> node,
             Object plugin,
             String commandName,
             String... aliases) {
@@ -59,19 +58,19 @@ public class FabricBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public Sender getSender(ServerCommandSource source) {
-        return new FabricSender(source);
+    public Sender getSender(CommandSourceStack source) {
+        return new VanillaSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer(ServerCommandSource source) {
-        return new FabricPlayer(source.getPlayer());
+    public Player getPlayer(CommandSourceStack source) {
+        return new VanillaPlayer(source.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean isPlayer(ServerCommandSource source) {
-        return source.getEntity() instanceof PlayerEntity;
+    public boolean isPlayer(CommandSourceStack source) {
+        return source.getEntity() instanceof net.minecraft.world.entity.player.Player;
     }
 }

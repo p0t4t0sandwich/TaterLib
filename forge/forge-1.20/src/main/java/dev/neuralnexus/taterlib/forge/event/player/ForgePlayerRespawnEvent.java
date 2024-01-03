@@ -1,9 +1,8 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.vanilla.util.VanillaLocation;
 
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
@@ -19,7 +18,7 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
     /** {@inheritDoc} */
     @Override
     public Location getRespawnLocation() {
-        return new ForgeLocation(((ForgePlayer) getPlayer()).getPlayer());
+        return new VanillaLocation(event.getEntity());
     }
 
     /** {@inheritDoc} */

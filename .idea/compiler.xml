@@ -312,12 +312,19 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/6d1c8bf4c28e697f472a83bd6add76ec4951734/mixin-0.8.5-processor.jar" />
         </processorPath>
+        <module name="forge-1.20.TaterLib.forge.forge-1.20.main" />
+        <module name="neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" />
         <module name="forge-1.20.2.TaterLib.forge.forge-1.20.2.main" />
-        <module name="neoforge-1.20.4.TaterLib.neoforge.neoforge-1.20.4.main" />
-        <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" />
+        <module name="TaterLib.bleeding.forge-bleeding.main" />
+        <module name="TaterLib.bleeding.neoforge-bleeding.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
+      <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.main" target="17" />
+      <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.test" target="17" />
+      <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" target="17" />
+      <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.test" target="17" />
+      <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />
       <module name="TaterLib.forge-1.17.test" target="16" />
@@ -333,11 +340,13 @@
       <module name="TaterLib.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge-1.20.main" target="17" />
       <module name="TaterLib.forge-1.20.test" target="17" />
+      <module name="TaterLib.forge.forge-1.20.4" target="17" />
       <module name="TaterLib.neoforge-1.20.1.main" target="17" />
       <module name="TaterLib.neoforge-1.20.1.test" target="17" />
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
+      <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
       <module name="TaterLib.sponge10.test" target="17" />

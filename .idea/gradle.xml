@@ -9,12 +9,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/bleeding" />
+            <option value="$PROJECT_DIR$/bleeding/bukkit-bleeding" />
+            <option value="$PROJECT_DIR$/bleeding/fabric-bleeding" />
+            <option value="$PROJECT_DIR$/bleeding/forge-bleeding" />
+            <option value="$PROJECT_DIR$/bleeding/neoforge-bleeding" />
+            <option value="$PROJECT_DIR$/bleeding/vanilla-bleeding" />
             <option value="$PROJECT_DIR$/bukkit" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.13.2" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.15.2" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.2.5" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.2" />
-            <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.4" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.6.4" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.7.10" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.8.8" />
@@ -37,7 +42,6 @@
             <option value="$PROJECT_DIR$/fabric/fabric-1.19" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20.2" />
-            <option value="$PROJECT_DIR$/fabric/fabric-1.20.4" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.7.10" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.8.9" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.9.4" />
@@ -53,10 +57,8 @@
             <option value="$PROJECT_DIR$/forge/forge-1.19" />
             <option value="$PROJECT_DIR$/forge/forge-1.20" />
             <option value="$PROJECT_DIR$/forge/forge-1.20.2" />
-            <option value="$PROJECT_DIR$/forge/forge-1.20.4" />
             <option value="$PROJECT_DIR$/neoforge" />
             <option value="$PROJECT_DIR$/neoforge/neoforge-1.20.2" />
-            <option value="$PROJECT_DIR$/neoforge/neoforge-1.20.4" />
             <option value="$PROJECT_DIR$/sponge" />
             <option value="$PROJECT_DIR$/sponge/sponge10" />
             <option value="$PROJECT_DIR$/sponge/sponge11" />
@@ -72,7 +74,6 @@
             <option value="$PROJECT_DIR$/vanilla" />
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.20" />
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.20.2" />
-            <option value="$PROJECT_DIR$/vanilla/vanilla-1.20.4" />
             <option value="$PROJECT_DIR$/velocity" />
             <option value="$PROJECT_DIR$/velocity/velocity3" />
           </set>

@@ -1,19 +1,20 @@
 package dev.neuralnexus.taterlib.fabric.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.vanilla.util.VanillaLocation;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.world.entity.Entity;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntitySpawnEvent {
+    private final Entity entity;
     private final CallbackInfoReturnable<Boolean> cir;
 
     public FabricEntitySpawnEvent(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         super(entity);
+        this.entity = entity;
         this.cir = cir;
     }
 
@@ -34,6 +35,6 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
     /** {@inheritDoc} */
     @Override
     public Location getLocation() {
-        return new FabricLocation(((FabricEntity) getEntity()).getEntity());
+        return new VanillaLocation(entity);
     }
 }

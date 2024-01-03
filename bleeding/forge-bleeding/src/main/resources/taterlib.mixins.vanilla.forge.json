@@ -1,7 +1,7 @@
 {
   "required": false,
   "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.vanilla.fabric.mixin",
+  "package": "${group_id}.${project_id}.vanilla.forge.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "player.VanillaPlayerMixin_1_20_2"

@@ -40,6 +40,12 @@ subprojects {
             name = "papermc-repo"
             url = "https://repo.papermc.io/repository/maven-public/"
         }
+
+        // Parchment Mappings
+        maven {
+            name = 'ParchmentMC'
+            url = 'https://maven.parchmentmc.org'
+        }
     }
 }
 
@@ -157,11 +163,11 @@ tasks.register('build_api', Jar) {
 tasks.register('build_api_platforms', Jar) {
     dependsOn(':common:shadowJar')
     dependsOn('tooling:loader:build')
-    dependsOn(':bukkit:bukkit-1.20.4:build')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
     dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.20.4:build')
-    dependsOn(':forge:forge-1.20.4:build')
-    dependsOn(':neoforge:neoforge-1.20.4:build')
+    dependsOn(':fabric:fabric-1.20.2:build')
+    dependsOn(':forge:forge-1.20.2:build')
+    dependsOn(':neoforge:neoforge-1.20.2:build')
     dependsOn(':sponge:sponge11:build')
     dependsOn(':velocity:velocity3:build')
 
@@ -181,7 +187,7 @@ tasks.register('build_api_platforms', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
+        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
     }
 }
 
@@ -803,7 +809,7 @@ tasks.register('build_1_20_2', Jar) {
     dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.20.2'
-    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    archiveFileName = "${project_name}-${mc_version}-1.20.4-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
@@ -824,14 +830,14 @@ tasks.register('build_1_20_2', Jar) {
     }
 }
 
-// --------------------------- Build 1.20.3/4 --------------------------------
+// --------------------------- Build Bleeding --------------------------------
 tasks.register('build_1_20_4', Jar) {
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.20.4:build')
+    dependsOn(':bleeding:bukkit-bleeding:build')
     dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.20.4:build')
-    dependsOn(':forge:forge-1.20.4:build')
-    dependsOn(':neoforge:neoforge-1.20.4:build')
+    dependsOn(':bleeding:fabric-bleeding:build')
+    dependsOn(':bleeding:forge-bleeding:build')
+    dependsOn(':bleeding:neoforge-bleeding:build')
     dependsOn(':sponge:sponge11:build')
     dependsOn(':velocity:velocity3:build')
 

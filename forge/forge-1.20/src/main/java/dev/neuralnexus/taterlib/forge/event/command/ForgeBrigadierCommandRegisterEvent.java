@@ -7,9 +7,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.forge.command.ForgeSender;
-import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.vanilla.command.VanillaSender;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -52,13 +52,13 @@ public class ForgeBrigadierCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public Sender getSender(CommandSourceStack source) {
-        return new ForgeSender(source);
+        return new VanillaSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
-        return new ForgePlayer(source.getPlayer());
+        return new VanillaPlayer(source.getPlayer());
     }
 
     /** {@inheritDoc} */

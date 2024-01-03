@@ -19,7 +19,6 @@ import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
-/** NeoForge entry point. */
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
