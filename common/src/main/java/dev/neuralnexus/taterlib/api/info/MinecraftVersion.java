@@ -245,6 +245,27 @@ public enum MinecraftVersion {
     }
 
     /**
+     * Get if the version of Minecraft the server is running is within the defined range.
+     *
+     * @param startInclusive The start of the range
+     * @param start The start of the range
+     * @param endInclusive The end of the range
+     * @param end The end of the range
+     */
+    public boolean isInRange(
+            boolean startInclusive,
+            MinecraftVersion start,
+            boolean endInclusive,
+            MinecraftVersion end) {
+        return (startInclusive
+                        ? this.ordinal() >= start.ordinal()
+                        : this.ordinal() > start.ordinal())
+                && (endInclusive
+                        ? this.ordinal() <= end.ordinal()
+                        : this.ordinal() < end.ordinal());
+    }
+
+    /**
      * Get if the version of Minecraft the server is running is older than the specified version.
      *
      * @param version The version to check.

@@ -22,7 +22,7 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.vanilla.neoforge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.neoforge.json".toString()]) {
         expand project.properties
     }
 }

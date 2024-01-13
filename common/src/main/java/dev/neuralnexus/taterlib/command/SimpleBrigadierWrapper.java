@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 
 /** Simple wrapper for brigadier commands */
 public class SimpleBrigadierWrapper {
+    @SuppressWarnings({"rawtypes", "unchecked"})
     private static int contextWrapper(
             BrigadierCommandRegisterEvent event, CommandContext context, Command command) {
         Object source = context.getSource();
@@ -33,6 +34,7 @@ public class SimpleBrigadierWrapper {
      * @param event The event
      * @param command The command
      */
+    @SuppressWarnings("rawtypes")
     public static LiteralArgumentBuilder wrapCommand(
             BrigadierCommandRegisterEvent event, Command command) {
         return literal(command.getName())

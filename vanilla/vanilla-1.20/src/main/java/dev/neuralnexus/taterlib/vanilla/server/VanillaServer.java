@@ -14,9 +14,20 @@ import java.util.stream.Collectors;
 /** Vanilla implementation of {@link Server}. */
 public class VanillaServer implements Server {
     private static MinecraftServer server;
+    private static VanillaServer instance;
 
     public VanillaServer(MinecraftServer server) {
         VanillaServer.server = server;
+        VanillaServer.instance = this;
+    }
+
+    /**
+     * Gets the instance.
+     *
+     * @return The instance.
+     */
+    public static VanillaServer getInstance() {
+        return instance;
     }
 
     /**

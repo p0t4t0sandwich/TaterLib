@@ -51,6 +51,9 @@ dependencies {
     // Brigadier
     compileOnly('com.mojang:brigadier:1.0.18')
 
+    // Mixin
+    compileOnly("org.spongepowered:mixin:0.8.5")
+
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
 

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.vanilla.mixin.listeners.server;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-
 import dev.neuralnexus.taterlib.vanilla.event.server.VanillaServerStoppingEvent;
+
 import net.minecraft.server.MinecraftServer;
 
 import org.spongepowered.asm.mixin.Mixin;
