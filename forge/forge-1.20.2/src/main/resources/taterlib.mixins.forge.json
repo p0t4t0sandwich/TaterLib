@@ -19,5 +19,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "${project_id}.forge.refmap.json"
 }

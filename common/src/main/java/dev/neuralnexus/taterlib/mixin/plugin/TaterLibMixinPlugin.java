@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.mixin.plugin;
 
 import com.google.common.collect.ImmutableMap;
 
+import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
@@ -26,9 +27,9 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
             () -> TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2);
     private static final Supplier<Boolean> TRUE = () -> true;
     private static final String mixinPath =
-            "dev.neuralnexus.taterlib."
+            "dev.neuralnexus.taterlib.vanilla."
                     + TaterAPIProvider.serverType().name().toLowerCase()
-                    + ".mixin";
+                    + ".mixin.";
     private static final Map<String, Supplier<Boolean>> CONDITIONS =
             ImmutableMap.<String, Supplier<Boolean>>builder()
                     // 1.20 Listener Mixins
@@ -153,7 +154,21 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return CONDITIONS.getOrDefault(mixinClassName, TRUE).get();
+        // NeoForge is picking up on Forge mixins, so we need to skip them
+        if (TaterAPIProvider.serverType().is(ServerType.NEOFORGE)
+                && mixinClassName.contains(".forge")) {
+            return false;
+        }
+
+        // Check if the mixin should be applied
+        boolean result = CONDITIONS.getOrDefault(mixinClassName, TRUE).get();
+        System.out.println(
+                Utils.ansiParser(
+                        "§6[TaterLib]: "
+                                + (result ? "§2Applying" : "§4Skipping")
+                                + " mixin §9"
+                                + mixinClassName));
+        return result;
     }
 
     @Override

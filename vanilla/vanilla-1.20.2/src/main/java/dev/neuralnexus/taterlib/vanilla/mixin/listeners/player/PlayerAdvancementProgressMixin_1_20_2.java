@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.vanilla.mixin.listener.player;
+package dev.neuralnexus.taterlib.vanilla.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20;

@@ -15,7 +15,6 @@ subsystems {
 
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
     implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))

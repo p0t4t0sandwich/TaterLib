@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.vanilla.mixin.listener.pluginmessages;
+package dev.neuralnexus.taterlib.vanilla.mixin.listeners.pluginmessages;
 
 import com.mojang.authlib.GameProfile;
 

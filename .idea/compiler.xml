@@ -316,7 +316,6 @@
         <module name="neoforge-bleeding.TaterLib.bleeding.neoforge-bleeding.main" />
         <module name="forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" />
         <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.main" />
-        <module name="neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">

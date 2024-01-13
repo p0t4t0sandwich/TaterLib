@@ -3,10 +3,12 @@ plugins {
     id('org.spongepowered.mixin') version('0.7.+')
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
+apply {
+    plugin('org.spongepowered.mixin')
+}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
@@ -27,8 +29,8 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 mixin {
-    add sourceSets.main, "mixins.${project_id}.forge.refmap.json"
-    config "mixins.${project_id}.forge.json"
+    add(sourceSets.main, "${project_id}.forge.refmap.json")
+    config("${project_id}.mixins.forge.json")
 }
 
 shadowJar {
