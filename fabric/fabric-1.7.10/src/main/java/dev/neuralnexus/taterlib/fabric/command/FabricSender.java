@@ -28,6 +28,7 @@ public class FabricSender implements Sender {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public UUID getUniqueId() {
         PlayerEntity player =

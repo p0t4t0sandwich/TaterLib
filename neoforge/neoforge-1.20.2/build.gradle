@@ -3,8 +3,7 @@ plugins {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 subsystems {
     parchment {
@@ -16,8 +15,8 @@ subsystems {
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
+    implementation(project(':vanilla:vanilla-1.20'))
+    implementation(project(":vanilla:vanilla-${vanilla_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -28,6 +27,7 @@ tasks.withType(ProcessResources).configureEach {
 
 shadowJar {
     dependencies {
+        include(project(':vanilla:vanilla-1.20'))
         include(project(":vanilla:vanilla-${vanilla_version}"))
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.neoforge")

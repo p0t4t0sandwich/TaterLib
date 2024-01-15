@@ -34,7 +34,7 @@ dependencies {
 
     // MySQL
     implementation("com.zaxxer:HikariCP:4.0.3")
-    implementation("mysql:mysql-connector-java:8.0.26")
+    implementation('mysql:mysql-connector-java:8.0.28')
 
     // MongoDB
     implementation('org.mongodb:mongodb-driver-sync:4.9.1')

@@ -5,20 +5,9 @@
   "required": false,
   "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
   "mixins": [
-    "listeners.player.PlayerAdvancementFinishedMixin_1_20",
-    "listeners.player.PlayerAdvancementFinishedMixin_1_20_2",
-    "listeners.player.PlayerAdvancementProgressMixin_1_20",
-    "listeners.player.PlayerAdvancementProgressMixin_1_20_2",
-    "listeners.player.PlayerLoginMixin_1_20",
-    "listeners.player.PlayerLoginMixin_1_20_2",
-    "listeners.player.PlayerLogoutMixin_1_20",
-    "listeners.player.PlayerLogoutMixin_1_20_2",
-    "listeners.pluginmessages.PluginMessagesMixin_1_20",
-    "listeners.pluginmessages.PluginMessagesMixin_1_20_2",
     "patch.player.VanillaPlayerMixin_1_20_2"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "${project_id}.forge.refmap.json"
+  }
 }

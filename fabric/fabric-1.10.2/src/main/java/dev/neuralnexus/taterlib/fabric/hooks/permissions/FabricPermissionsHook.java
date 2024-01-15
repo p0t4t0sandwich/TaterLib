@@ -24,6 +24,7 @@ public class FabricPermissionsHook implements PermissionsHook {
      * @param permission The permission to check
      * @return If the sender has the permission
      */
+    @SuppressWarnings({"deprecation", "UnstableApiUsage"})
     @Override
     public boolean hasPermission(Sender sender, String permission) {
         if (sender instanceof Player) {

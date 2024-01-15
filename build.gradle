@@ -819,7 +819,7 @@ tasks.register('build_1_20_x', Jar) {
                 'Specification-Vendor': 'NeuralNexus',
                 'Implementation-Version': version,
                 'Implementation-Vendor': 'NeuralNexus',
-                'MixinConfigs': "${project_id}.mixins.forge.json"
+                'MixinConfigs': "${project_id}.mixins.forge.json, ${project_id}.mixins.forge_1_20.json, ${project_id}.mixins.forge_1_20_2.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
@@ -852,7 +852,7 @@ tasks.register('build_1_20_4', Jar) {
                 'Specification-Vendor': 'NeuralNexus',
                 'Implementation-Version': version,
                 'Implementation-Vendor': 'NeuralNexus',
-                'MixinConfigs': "${project_id}.mixins.forge.json"
+                'MixinConfigs': "${project_id}.mixins.forge.json, ${project_id}.mixins.forge_1_20.json, ${project_id}.mixins.forge_1_20_2.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {

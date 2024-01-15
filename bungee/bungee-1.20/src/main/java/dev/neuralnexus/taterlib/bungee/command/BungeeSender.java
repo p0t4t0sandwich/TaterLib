@@ -36,6 +36,7 @@ public class BungeeSender implements Sender {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("deprecation")
     @Override
     public void sendMessage(String message) {
         sender.sendMessage(message);

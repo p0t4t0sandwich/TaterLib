@@ -1,12 +1,9 @@
-import net.fabricmc.loom.task.RemapJarTask
-
 plugins {
     id('fabric-loom') version('1.4-SNAPSHOT')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
@@ -21,13 +18,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Fabric API
-    Set<String> apiModules = [
-//            'fabric-api-base',
-'fabric-command-api-v2',
-//            'fabric-lifecycle-events-v1',
-//            'fabric-networking-api-v1'
-    ]
-
+    Set<String> apiModules = ['fabric-command-api-v2']
     apiModules.forEach {
         modImplementation(fabricApi.module(it, project.fabric_version))
     }
@@ -37,23 +28,18 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric_1_20.json".toString()]) {
         expand project.properties
     }
 }
 
-shadowJar {
-    dependencies {
-        include(project(":vanilla:vanilla-${vanilla_version}"))
-        exclude('/mappings/*')
+loom {
+    mixin {
+        defaultRefmapName.set("${project_id}.fabric.refmap.refmap_1_20.json")
     }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
 }
 
-task remappedShadowJar(type: RemapJarTask) {
-    dependsOn(tasks.shadowJar)
-    input = tasks.shadowJar.archiveFile
+jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
-tasks.build.dependsOn(tasks.remappedShadowJar)

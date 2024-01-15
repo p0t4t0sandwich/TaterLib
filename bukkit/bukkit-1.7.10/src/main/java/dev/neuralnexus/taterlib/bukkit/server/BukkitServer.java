@@ -26,6 +26,7 @@ public class BukkitServer implements Server {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public Set<Player> getOnlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect

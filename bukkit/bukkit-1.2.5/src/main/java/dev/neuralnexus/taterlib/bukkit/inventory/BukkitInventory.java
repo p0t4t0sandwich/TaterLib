@@ -134,6 +134,7 @@ public class BukkitInventory implements Inventory {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, org.bukkit.inventory.ItemStack> all =

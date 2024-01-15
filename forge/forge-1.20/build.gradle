@@ -5,8 +5,7 @@ plugins {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
@@ -16,29 +15,21 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    implementation(project(":vanilla:vanilla-${vanilla_version}"))
+    compileOnly(project(":vanilla:vanilla-${vanilla_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge_1_20.json".toString()]) {
         expand project.properties
     }
 }
 
 mixin {
-    add sourceSets.main, "mixins.${project_id}.forge.refmap.json"
-    config "mixins.${project_id}.forge.json"
+    add(sourceSets.main, "${project_id}.forge.refmap_1_20.json")
+    config("${project_id}.mixins.forge_1_20.json")
 }
 
-shadowJar {
-    dependencies {
-        include(project(":vanilla:vanilla-${vanilla_version}"))
-    }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
+jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
-}
-
-reobf {
-    shadowJar {}
 }

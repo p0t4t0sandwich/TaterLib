@@ -25,41 +25,35 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
                                     true, MinecraftVersion.V1_20, false, MinecraftVersion.V1_20_2);
     private static final Supplier<Boolean> IS_20_2 =
             () -> TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2);
-    private static final Supplier<Boolean> TRUE = () -> true;
-    private static final String mixinPath =
-            "dev.neuralnexus.taterlib.vanilla."
-                    + TaterAPIProvider.serverType().name().toLowerCase()
-                    + ".mixin.";
     private static final Map<String, Supplier<Boolean>> CONDITIONS =
             ImmutableMap.<String, Supplier<Boolean>>builder()
                     // 1.20 Listener Mixins
-                    .put(
-                            mixinPath + "listeners.player.PlayerAdvancementFinishedMixin_1_20",
-                            IS_20_TO_20_2)
-                    .put(
-                            mixinPath + "listeners.player.PlayerAdvancementProgressMixin_1_20",
-                            IS_20_TO_20_2)
-                    .put(mixinPath + "listeners.player.PlayerLoginMixin_1_20", IS_20_TO_20_2)
-                    .put(mixinPath + "listeners.player.PlayerLogoutMixin_1_20", IS_20_TO_20_2)
-                    .put(
-                            mixinPath + "listeners.pluginmessages.PluginMessagesMixin_1_20",
-                            IS_20_TO_20_2)
+                    .put("PlayerAdvancementFinishedMixin_1_20", IS_20_TO_20_2)
+                    .put("PlayerAdvancementProgressMixin_1_20", IS_20_TO_20_2)
+                    .put("PlayerLoginMixin_1_20", IS_20_TO_20_2)
+                    .put("PlayerLogoutMixin_1_20", IS_20_TO_20_2)
+                    .put("PluginMessagesMixin_1_20", IS_20_TO_20_2)
                     // 1.20.2 Listener Mixins
-                    .put(
-                            mixinPath + "listeners.player.PlayerAdvancementFinishedMixin_1_20_2",
-                            IS_20_2)
-                    .put(
-                            mixinPath + "listeners.player.PlayerAdvancementProgressMixin_1_20_2",
-                            IS_20_2)
-                    .put(mixinPath + "listeners.player.PlayerLoginMixin_1_20_2", IS_20_2)
-                    .put(mixinPath + "listeners.player.PlayerLogoutMixin_1_20_2", IS_20_2)
-                    .put(mixinPath + "listeners.pluginmessages.PluginMessagesMixin_1_20_2", IS_20_2)
+                    .put("PlayerAdvancementFinishedMixin_1_20_2", IS_20_2)
+                    .put("PlayerAdvancementProgressMixin_1_20_2", IS_20_2)
+                    .put("PlayerLoginMixin_1_20_2", IS_20_2)
+                    .put("PlayerLogoutMixin_1_20_2", IS_20_2)
+                    .put("PluginMessagesMixin_1_20_2", IS_20_2)
                     // 1.20.2 Patch Mixins
-                    .put(mixinPath + "patch.player.VanillaPlayerMixin_1_20_2", IS_20_2)
+                    .put("VanillaPlayerMixin_1_20_2", IS_20_2)
                     .build();
 
     static {
         TaterAPIProvider.register(getMCVersion());
+    }
+
+    private static boolean checkMixin(String mixinClassName) {
+        for (Map.Entry<String, Supplier<Boolean>> entry : CONDITIONS.entrySet()) {
+            if (mixinClassName.endsWith(entry.getKey())) {
+                return entry.getValue().get();
+            }
+        }
+        return true;
     }
 
     static String getMCVersion() {
@@ -161,7 +155,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
         }
 
         // Check if the mixin should be applied
-        boolean result = CONDITIONS.getOrDefault(mixinClassName, TRUE).get();
+        boolean result = checkMixin(mixinClassName);
         System.out.println(
                 Utils.ansiParser(
                         "§6[TaterLib]: "

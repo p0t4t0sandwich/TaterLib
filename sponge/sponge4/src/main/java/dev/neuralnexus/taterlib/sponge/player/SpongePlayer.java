@@ -108,6 +108,7 @@ public class SpongePlayer extends SpongeEntity implements Player {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public PlayerInventory getInventory() {
         return new SpongePlayerInventory(

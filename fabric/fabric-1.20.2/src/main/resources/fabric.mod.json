@@ -25,12 +25,14 @@
     ]
   },
   "mixins": [
-    "${project_id}.mixins.fabric.json"
+    "${project_id}.mixins.fabric.json",
+    "${project_id}.mixins.fabric_1_20.json",
+    "${project_id}.mixins.fabric_1_20_2.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",
     "fabric-command-api-v2": "*",
-    "minecraft": ">=${minecraft_version}"
+    "minecraft": ">=${min_minecraft_version}"
   },
   "suggests": {
     "luckperms": "*"

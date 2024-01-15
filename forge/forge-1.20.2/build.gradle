@@ -18,24 +18,27 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
+    implementation(project(':vanilla:vanilla-1.20'))
+    implementation(project(":vanilla:vanilla-${vanilla_version}"))
+    implementation(project(':forge:forge-1.20'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge_1_20_2.json".toString(), "${project_id}.mixins.forge.json".toString()]) {
         expand project.properties
     }
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.forge.refmap.json")
-    config("${project_id}.mixins.forge.json")
+    add(sourceSets.main, "${project_id}.forge.refmap_1_20_2.json")
+    config("${project_id}.mixins.forge_1_20_2.json")
 }
 
 shadowJar {
     dependencies {
+        include(project(':vanilla:vanilla-1.20'))
         include(project(":vanilla:vanilla-${vanilla_version}"))
+        include(project(':forge:forge-1.20'))
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')

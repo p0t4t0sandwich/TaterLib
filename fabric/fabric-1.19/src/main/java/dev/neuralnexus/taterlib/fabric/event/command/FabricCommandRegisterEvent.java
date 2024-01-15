@@ -79,6 +79,7 @@ public class FabricCommandRegisterEvent
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
         final LiteralArgumentBuilder<ServerCommandSource> literalArgumentBuilder =

@@ -1,0 +1,18 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "${group_id}.${project_id}.forge.mixin.listeners",
+  "required": false,
+  "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
+  "mixins": [
+    "player.PlayerAdvancementFinishedMixin_1_20_2",
+    "player.PlayerAdvancementProgressMixin_1_20_2",
+    "player.PlayerLoginMixin_1_20_2",
+    "player.PlayerLogoutMixin_1_20_2",
+    "pluginmessages.PluginMessagesMixin_1_20_2"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "${project_id}.forge.refmap_1_20_2.json"
+}

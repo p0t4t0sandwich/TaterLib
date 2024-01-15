@@ -3,8 +3,7 @@ plugins {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)

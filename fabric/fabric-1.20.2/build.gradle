@@ -5,13 +5,13 @@ plugins {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
+    implementation(project(':vanilla:vanilla-1.20'))
+    implementation(project(":vanilla:vanilla-${vanilla_version}"))
+    implementation(project(':fabric:fabric-1.20'))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -32,20 +32,22 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric_1_20_2.json".toString(), "${project_id}.mixins.fabric.json".toString()]) {
         expand project.properties
     }
 }
 
 loom {
     mixin {
-        defaultRefmapName.set("${project_id}.fabric.refmap.json")
+        defaultRefmapName.set("${project_id}.fabric.refmap.refmap_1_20_2.json")
     }
 }
 
 shadowJar {
     dependencies {
+        include(project(':vanilla:vanilla-1.20'))
         include(project(":vanilla:vanilla-${vanilla_version}"))
+        include(project(':fabric:fabric-1.20'))
         exclude('/mappings/*')
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")

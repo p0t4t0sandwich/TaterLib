@@ -24,7 +24,7 @@ public abstract class VanillaPlayerMixin_1_20_2 {
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
-                                new VanillaCustomPacketPayload(channel, data)));
+                                new VanillaCustomPacketPayload_1_20_2(channel, data)));
     }
 
     /**

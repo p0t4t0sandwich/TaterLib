@@ -26,6 +26,7 @@ public class FabricServer implements Server {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public Set<Player> getOnlinePlayers() {
         return ((List<PlayerEntity>) server.getPlayerManager().players)

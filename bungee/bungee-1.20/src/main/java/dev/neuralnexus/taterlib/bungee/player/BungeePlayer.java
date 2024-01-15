@@ -71,6 +71,7 @@ public class BungeePlayer implements ProxyPlayer {
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("deprecation")
     @Override
     public String getIPAddress() {
         return player.getAddress().getAddress().getHostAddress();

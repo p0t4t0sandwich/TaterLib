@@ -3,8 +3,7 @@ plugins {
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = java_version
-targetCompatibility = java_version
+sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
@@ -14,13 +13,10 @@ dependencies {
     compileOnly('com.mojang:brigadier:1.0.18')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
 }
 
-shadowJar {
-    dependencies {
-        include(project(":vanilla:vanilla-1.20"))
-    }
+jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
 }
