@@ -25,7 +25,7 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.forge.refmap_1_20.json")
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap_1_20.json")
     config("${project_id}.mixins.forge_1_20.json")
 }
 

@@ -24,5 +24,5 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "${project_id}.forge.refmap_1_20.json"
+  "refmap": "${project_id}.mixins.forge.refmap_1_20.json"
 }

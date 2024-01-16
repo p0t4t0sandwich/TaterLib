@@ -39,7 +39,7 @@ tasks.withType(ProcessResources).configureEach {
 
 loom {
     mixin {
-        defaultRefmapName.set("${project_id}.fabric.refmap.refmap_1_20_2.json")
+        defaultRefmapName.set("${project_id}.mixins.fabric.refmap_1_20_2.json")
     }
 }
 
