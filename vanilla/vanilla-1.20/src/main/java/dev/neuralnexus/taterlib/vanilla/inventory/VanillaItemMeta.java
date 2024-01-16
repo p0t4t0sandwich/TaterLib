@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
-/** The Vanilla implementation of {@link ItemMeta} */
+/** Vanilla implementation of {@link ItemMeta} */
 public class VanillaItemMeta implements ItemMeta {
     private final ItemStack itemStack;
 

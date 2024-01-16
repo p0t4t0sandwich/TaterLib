@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
 
 import net.minecraft.server.level.ServerPlayer;
 
-/** Fabric implementation of {@link PlayerLogoutEvent}. */
+/** Vanilla implementation of {@link PlayerLogoutEvent}. */
 public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements PlayerLogoutEvent {
     private final ServerPlayer player;
 

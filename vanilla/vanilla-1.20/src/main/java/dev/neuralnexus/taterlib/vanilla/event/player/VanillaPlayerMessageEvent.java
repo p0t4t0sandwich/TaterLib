@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.HashSet;
 import java.util.Set;
 
-/** Fabric implementation of {@link PlayerMessageEvent}. */
+/** Vanilla implementation of {@link PlayerMessageEvent}. */
 public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements PlayerMessageEvent {
     private final CallbackInfo ci;
     private String message;

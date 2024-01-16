@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.event.player.PlayerEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-/** Fabric implementation of {@link PlayerEvent}. */
+/** Vanilla implementation of {@link PlayerEvent}. */
 public class VanillaPlayerEvent implements PlayerEvent {
     private final net.minecraft.world.entity.player.Player player;
 

@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.vanilla.util.VanillaLocation;
 
 import net.minecraft.world.entity.player.Player;
 
-/** Fabric implementation of {@link PlayerRespawnEvent}. */
+/** Vanilla implementation of {@link PlayerRespawnEvent}. */
 public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements PlayerRespawnEvent {
     private final boolean alive;
     private final Player player;

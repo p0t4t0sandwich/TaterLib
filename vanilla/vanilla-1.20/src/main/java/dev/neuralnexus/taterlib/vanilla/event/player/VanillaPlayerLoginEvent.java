@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
 import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerPlayer;
 
-/** Fabric implementation of {@link PlayerLoginEvent}. */
+/** Vanilla implementation of {@link PlayerLoginEvent}. */
 public class VanillaPlayerLoginEvent extends VanillaPlayerEvent implements PlayerLoginEvent {
     private final Connection connection;
     private final ServerPlayer player;

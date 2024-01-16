@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Called when a block is broken. */
+/** Vanilla implementation of {@link BlockBreakEvent}. */
 public class VanillaBlockBreakEvent extends VanillaBlockEvent implements BlockBreakEvent {
     private final CallbackInfo ci;
     private final net.minecraft.world.entity.player.Player player;

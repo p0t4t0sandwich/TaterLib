@@ -7,7 +7,7 @@ import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.world.entity.player.Player;
 
-/** The Fabric implementation of {@link EntityEvent}. */
+/** Vanilla implementation of {@link EntityEvent}. */
 public class VanillaEntityEvent implements EntityEvent {
     private final net.minecraft.world.entity.Entity entity;
 

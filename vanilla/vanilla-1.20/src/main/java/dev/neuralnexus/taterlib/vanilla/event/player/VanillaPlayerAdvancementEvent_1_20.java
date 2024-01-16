@@ -7,7 +7,7 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.Collection;
 
-/** Fabric implementation of {@link PlayerAdvancementEvent}. */
+/** Vanilla implementation of {@link PlayerAdvancementEvent}. */
 public class VanillaPlayerAdvancementEvent_1_20 extends VanillaPlayerEvent
         implements PlayerAdvancementEvent {
     private final Advancement advancement;

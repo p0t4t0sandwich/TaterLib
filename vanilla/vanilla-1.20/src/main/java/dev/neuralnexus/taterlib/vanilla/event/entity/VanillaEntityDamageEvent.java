@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Fabric implementation of {@link EntityDamageEvent}. */
+/** Vanilla implementation of {@link EntityDamageEvent}. */
 public class VanillaEntityDamageEvent extends VanillaEntityEvent implements EntityDamageEvent {
     private final DamageSource damageSource;
     private final float damage;

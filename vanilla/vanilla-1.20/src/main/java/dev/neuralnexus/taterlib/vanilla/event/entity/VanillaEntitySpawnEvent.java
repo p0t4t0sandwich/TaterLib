@@ -8,6 +8,7 @@ import net.minecraft.world.entity.Entity;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/** Vanilla implementation of {@link EntitySpawnEvent}. */
 public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements EntitySpawnEvent {
     private final Entity entity;
     private final CallbackInfoReturnable<Boolean> cir;

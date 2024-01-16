@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Called when a block event occurs. */
+/** Vanilla implementation of {@link BlockEvent}. */
 public class VanillaBlockEvent implements BlockEvent {
     private final Level level;
     private final Player player;

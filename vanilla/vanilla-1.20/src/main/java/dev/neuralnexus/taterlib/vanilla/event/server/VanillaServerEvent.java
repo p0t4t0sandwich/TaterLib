@@ -7,10 +7,7 @@ import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 import net.minecraft.server.MinecraftServer;
 
 public class VanillaServerEvent implements ServerEvent {
-    private final MinecraftServer server;
-
     public VanillaServerEvent(MinecraftServer server) {
-        this.server = server;
         new VanillaServer(server);
     }
 

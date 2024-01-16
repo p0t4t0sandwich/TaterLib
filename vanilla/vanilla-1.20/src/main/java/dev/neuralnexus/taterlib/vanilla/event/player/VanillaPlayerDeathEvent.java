@@ -7,6 +7,7 @@ import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.world.damagesource.DamageSource;
 
+/** Vanilla implementation of {@link PlayerDeathEvent}. */
 public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements PlayerDeathEvent {
     private final net.minecraft.world.entity.player.Player player;
     private final DamageSource source;

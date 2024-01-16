@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Vanilla implementation of {@link EntityDeathEvent}. */
 public class VanillaEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent {
     private final DamageSource source;
 

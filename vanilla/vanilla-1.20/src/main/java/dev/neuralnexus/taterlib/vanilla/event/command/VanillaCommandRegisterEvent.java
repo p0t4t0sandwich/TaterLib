@@ -18,7 +18,7 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
-/** Fabric implementation of {@link CommandRegisterEvent}. */
+/** Vanilla implementation of {@link CommandRegisterEvent}. */
 public class VanillaCommandRegisterEvent
         implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSourceStack> {
     private final CommandDispatcher<CommandSourceStack> dispatcher;
