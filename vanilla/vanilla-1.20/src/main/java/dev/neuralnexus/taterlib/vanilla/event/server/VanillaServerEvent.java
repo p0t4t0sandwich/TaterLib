@@ -11,7 +11,7 @@ public class VanillaServerEvent implements ServerEvent {
 
     public VanillaServerEvent(MinecraftServer server) {
         this.server = server;
-        VanillaServer.setServer(server);
+        new VanillaServer(server);
     }
 
     /** {@inheritDoc} */

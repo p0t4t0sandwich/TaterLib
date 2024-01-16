@@ -25,7 +25,7 @@ public interface Plugin {
     void pluginStop();
 
     /** Initialize platform-specific implementations. */
-    void platformInit(Object plugin, Object logger);
+    default void platformInit(Object plugin, Object logger) {}
 
     /** Enable platform-specific implementations. */
     default void platformEnable() {}
