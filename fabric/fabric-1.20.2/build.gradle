@@ -7,9 +7,14 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
+base {
+    libsDirectory = file('../../target')
+    archivesName = "${project_id}-fabric-${minecraft_version}"
+}
+
 dependencies {
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
     implementation(project(":vanilla:vanilla-${vanilla_version}"))
     implementation(project(':fabric:fabric-1.20'))
 

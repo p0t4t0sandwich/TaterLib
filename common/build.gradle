@@ -95,6 +95,8 @@ shadowJar {
     }
     // YAML
     relocate('dev.dejvokep', "${group_id}.${project_id}.lib.dejvokep")
+    relocate('org.intellij', "${group_id}.${project_id}.lib.intellij")
+    relocate('org.jetbrains', "${group_id}.${project_id}.lib.jetbrains")
 
     // MySQL
     relocate('com.zaxxer.hikari', "${group_id}.${project_id}.lib.hikari")
@@ -106,10 +108,6 @@ shadowJar {
 
     // Gson
     relocate('com.google.gson', "${group_id}.${project_id}.lib.gson")
-
-    // Annotations
-    relocate('org.intellij', "${group_id}.${project_id}.lib.intellij")
-    relocate('org.jetbrains', "${group_id}.${project_id}.lib.jetbrains")
 
     destinationDirectory = file('../target')
     archiveFileName = "${project_id}-common-${version}.jar"
