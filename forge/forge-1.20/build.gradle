@@ -7,19 +7,19 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-base {
-    libsDirectory = file('../../target')
-    archivesName = "${project_id}-forge-${minecraft_version}"
-}
-
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
 }
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+//    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
+}
+
+mixin {
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap_1_20.json")
+    config("${project_id}.mixins.forge_1_20.json")
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -28,7 +28,7 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-mixin {
-    add(sourceSets.main, "${project_id}.mixins.forge.refmap_1_20.json")
-    config("${project_id}.mixins.forge_1_20.json")
+jar {
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
