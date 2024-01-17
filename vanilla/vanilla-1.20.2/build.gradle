@@ -13,10 +13,11 @@ dependencies {
     compileOnly('com.mojang:brigadier:1.0.18')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(':vanilla:vanilla-1.20'))
 }
 
-jar {
+shadowJar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
 }
+tasks.build.dependsOn(shadowJar)

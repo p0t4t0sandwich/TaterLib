@@ -121,6 +121,55 @@ ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version,
     }
 }
 
+ext.mergeJars2 = { vanilla_version, bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
+    println("Building using Vanilla ${vanilla_version}, Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
+
+    String dir = "./target"
+    ArrayList<File> jarFiles = [
+            file("${dir}/${project_id}-common-${version}.jar"),
+            file("${dir}/${project_id}-loader-0.1.0.jar")
+    ]
+    if (vanilla_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-vanilla-${vanilla_version}-${version}.jar"))
+    }
+    if (bukkit_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
+    }
+    if (bungee_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bungee-${bungee_version}-${version}.jar"))
+    }
+    if (fabric_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-fabric-${fabric_version}-${version}.jar"))
+    }
+    if (forge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-forge-${forge_version}-${version}.jar"))
+    }
+    if (neoforge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-neoforge-${neoforge_version}-${version}.jar"))
+    }
+    if (sponge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-sponge${sponge_version}-${version}.jar"))
+    }
+    if (velocity_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-velocity${velocity_version}-${version}.jar"))
+    }
+
+    return jarFiles.collect {
+        if (it.name.contains('-forge') && neoforge_version != null) {
+            zipTree(it).matching {
+                exclude('META-INF/mods.toml')
+            }
+        } else if ((it.name.contains('sponge4') || it.name.contains('sponge5')
+                || it.name.contains('sponge6') || it.name.contains('sponge7')) && forge_version != null) {
+            zipTree(it).matching {
+                exclude('mcmod.info')
+            }
+        } else {
+            zipTree(it)
+        }
+    }
+}
+
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
@@ -806,6 +855,7 @@ tasks.register('build_1_20_x', Jar) {
     dependsOn(':forge:forge-1.20.2:build')
     dependsOn(':neoforge:neoforge-1.20.2:build')
     dependsOn(':sponge:sponge11:build')
+    dependsOn(':vanilla:vanilla-1.20.2:build')
     dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.20.x'
@@ -826,12 +876,12 @@ tasks.register('build_1_20_x', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+        mergeJars2('1.20.2', '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
     }
 }
 
 // --------------------------- Build Bleeding --------------------------------
-tasks.register('build_1_20_4', Jar) {
+tasks.register('build_bleeding', Jar) {
     dependsOn('build_api')
     dependsOn(':bleeding:bukkit-bleeding:build')
     dependsOn(':bungee:bungee-1.20:build')

@@ -136,5 +136,10 @@
       <option name="name" value="ParchmentMC" />
       <option name="url" value="https://maven.parchmentmc.org" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="LoomLocalRemappedMods" />
+      <option name="name" value="LoomLocalRemappedMods" />
+      <option name="url" value="file:$PROJECT_DIR$/.gradle/loom-cache/remapped_mods" />
+    </remote-repository>
   </component>
 </project>

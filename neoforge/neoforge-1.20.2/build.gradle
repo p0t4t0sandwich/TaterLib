@@ -15,8 +15,8 @@ subsystems {
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-${vanilla_version}"))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    compileOnly(project(":vanilla:vanilla-${vanilla_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -25,13 +25,7 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-shadowJar {
-    dependencies {
-        include(project(':vanilla:vanilla-1.20'))
-        include(project(":vanilla:vanilla-${vanilla_version}"))
-    }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.neoforge")
+jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-neoforge-${minecraft_version}-${version}.jar"
 }
-tasks.build.dependsOn(tasks.shadowJar)
