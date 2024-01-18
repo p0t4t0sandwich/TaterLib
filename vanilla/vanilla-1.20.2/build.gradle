@@ -20,4 +20,4 @@ shadowJar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
 }
-tasks.build.dependsOn(shadowJar)
+tasks.assemble.dependsOn(shadowJar)

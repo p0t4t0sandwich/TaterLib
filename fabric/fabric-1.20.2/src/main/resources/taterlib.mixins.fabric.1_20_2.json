@@ -10,16 +10,22 @@
     "listeners.entity.EntityDeathMixin_1_20",
     "listeners.entity.EntitySpawnMixin_1_20",
     "listeners.player.PlayerAdvancementFinishedMixin_1_20",
+    "listeners.player.PlayerAdvancementFinishedMixin_1_20_2",
     "listeners.player.PlayerAdvancementProgressMixin_1_20",
+    "listeners.player.PlayerAdvancementProgressMixin_1_20_2",
     "listeners.player.PlayerDeathMixin_1_20",
     "listeners.player.PlayerLoginMixin_1_20",
+    "listeners.player.PlayerLoginMixin_1_20_2",
     "listeners.player.PlayerLogoutMixin_1_20",
+    "listeners.player.PlayerLogoutMixin_1_20_2",
     "listeners.player.PlayerRespawnMixin_1_20",
     "listeners.pluginmessages.PluginMessagesMixin_1_20",
+    "listeners.pluginmessages.PluginMessagesMixin_1_20_2",
     "listeners.server.ServerStartedMixin_1_20",
     "listeners.server.ServerStartingMixin_1_20",
     "listeners.server.ServerStoppedMixin_1_20",
-    "listeners.server.ServerStoppingMixin_1_20"
+    "listeners.server.ServerStoppingMixin_1_20",
+    "patch.player.VanillaPlayerMixin_1_20_2"
   ],
   "injectors": {
     "defaultRequire": 1

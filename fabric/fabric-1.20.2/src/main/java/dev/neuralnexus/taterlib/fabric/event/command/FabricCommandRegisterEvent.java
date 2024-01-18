@@ -1,12 +1,15 @@
-package dev.neuralnexus.taterlib.vanilla.event.command;
+package dev.neuralnexus.taterlib.fabric.event.command;
 
 import static net.minecraft.commands.Commands.literal;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
+import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.vanilla.command.VanillaSender;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
@@ -15,14 +18,14 @@ import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
-/** Vanilla implementation of {@link BrigadierCommandRegisterEvent}. */
-public class VanillaBrigadierCommandRegisterEvent
-        implements BrigadierCommandRegisterEvent<CommandSourceStack> {
+/** Fabric implementation of {@link CommandRegisterEvent}. */
+public class FabricCommandRegisterEvent
+        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSourceStack> {
     private final CommandDispatcher<CommandSourceStack> dispatcher;
     private final CommandBuildContext registryAccess;
     private final Commands.CommandSelection environment;
 
-    public VanillaBrigadierCommandRegisterEvent(
+    public FabricCommandRegisterEvent(
             CommandDispatcher<CommandSourceStack> dispatcher,
             CommandBuildContext registryAccess,
             Commands.CommandSelection environment) {
@@ -65,12 +68,24 @@ public class VanillaBrigadierCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
-        return new VanillaPlayer(source.getPlayer());
+        return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSourceStack source) {
         return source.getEntity() instanceof net.minecraft.world.entity.player.Player;
+    }
+
+    /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void registerCommand(Object plugin, Command command, String... aliases) {
+        final LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder =
+                SimpleBrigadierWrapper.wrapCommand(this, command);
+        dispatcher.register(literalArgumentBuilder);
+        for (String alias : aliases) {
+            dispatcher.register(literal(alias).redirect(literalArgumentBuilder.build()));
+        }
     }
 }

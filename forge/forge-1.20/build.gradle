@@ -35,11 +35,11 @@ shadowJar {
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}-shadow.jar"
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
+
+tasks.assemble.dependsOn('shadowJar')
 
 reobf {
     shadowJar {}
 }
-tasks.build.dependsOn('reobfShadowJar')
-tasks.jar.finalizedBy('reobfShadowJar')

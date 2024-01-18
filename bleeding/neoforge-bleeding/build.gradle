@@ -7,7 +7,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 subsystems {
     parchment {
-        minecraftVersion = minecraft_version
+        minecraftVersion = "1.20.3" // TODO: Update this
         mappingsVersion = mapping_version
     }
 }

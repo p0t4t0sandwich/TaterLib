@@ -9,7 +9,8 @@ sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    implementation(project(':fabric:fabric-1.20'))
+    implementation(project(':vanilla:vanilla-1.20'))
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -30,20 +31,21 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric_1_20_2.json".toString(), "${project_id}.mixins.fabric.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.1_20_2.json".toString()]) {
         expand project.properties
     }
 }
 
 loom {
     mixin {
-        defaultRefmapName.set("${project_id}.mixins.fabric.refmap_1_20_2.json")
+        defaultRefmapName.set("${project_id}.mixins.fabric.1_20_2.refmap.json")
     }
 }
 
 shadowJar {
     dependencies {
-        include(project(':fabric:fabric-1.20'))
+        include(project(":vanilla:vanilla-1.20"))
+        include(project(":vanilla:vanilla-${minecraft_version}"))
         exclude('/mappings/*')
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
@@ -55,4 +57,4 @@ task remappedShadowJar(type: RemapJarTask) {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
-tasks.build.dependsOn(tasks.remappedShadowJar)
+tasks.assemble.dependsOn('remappedShadowJar')

@@ -71,57 +71,11 @@ tasks.register('build_all') {
     dependsOn('build_1_19')
     dependsOn('build_1_20')
     dependsOn('build_1_20_2')
-    dependsOn('build_1_20_4')
+    dependsOn('build_bleeding')
 }
 
 // --------------------------- Jar file helper method --------------------------------
-ext.mergeJars = { bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
-    println("Building using Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
-
-    String dir = "./target"
-    ArrayList<File> jarFiles = [
-            file("${dir}/${project_id}-common-${version}.jar"),
-            file("${dir}/${project_id}-loader-0.1.0.jar")
-    ]
-    if (bukkit_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
-    }
-    if (bungee_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-bungee-${bungee_version}-${version}.jar"))
-    }
-    if (fabric_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-fabric-${fabric_version}-${version}.jar"))
-    }
-    if (forge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-forge-${forge_version}-${version}.jar"))
-    }
-    if (neoforge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-neoforge-${neoforge_version}-${version}.jar"))
-    }
-    if (sponge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-sponge${sponge_version}-${version}.jar"))
-    }
-    if (velocity_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-velocity${velocity_version}-${version}.jar"))
-    }
-
-    return jarFiles.collect {
-        if (it.name.contains('-forge') && neoforge_version != null) {
-            zipTree(it).matching {
-                exclude('META-INF/mods.toml')
-            }
-        } else if ((it.name.contains('sponge4') || it.name.contains('sponge5')
-                || it.name.contains('sponge6') || it.name.contains('sponge7')) && forge_version != null) {
-            zipTree(it).matching {
-                exclude('mcmod.info')
-            }
-        } else {
-            zipTree(it)
-        }
-    }
-}
-
-ext.mergeJars2 = { vanilla_version, bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
+ext.mergeJars = { vanilla_version, bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
     println("Building using Vanilla ${vanilla_version}, Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
 
     String dir = "./target"
@@ -236,7 +190,7 @@ tasks.register('build_api_platforms', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+        mergeJars(null, '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
     }
 }
 
@@ -294,7 +248,7 @@ tasks.register('build_b1_7_3', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(bukkit, null, null, null, null, null, null)
+        mergeJars(null, bukkit, null, null, null, null, null, null)
     }
 }
 
@@ -327,7 +281,7 @@ tasks.register('build_1_2_5', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(bukkit, '1.4.7', null, null, null, null, null)
+        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
     }
 }
 
@@ -360,7 +314,7 @@ tasks.register('build_1_6_4', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(bukkit, '1.4.7', null, null, null, null, null)
+        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
     }
 }
 
@@ -396,7 +350,7 @@ tasks.register('build_1_7_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(bukkit, '1.4.7', '1.7.10', '1.7.10', null, null, '3')
+        mergeJars(null, bukkit, '1.4.7', '1.7.10', '1.7.10', null, null, '3')
     }
 }
 
@@ -427,7 +381,7 @@ tasks.register('build_1_8', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
+        mergeJars(null, '1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
     }
 }
 
@@ -458,7 +412,7 @@ tasks.register('build_1_9', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', '1.9.4', '1.9.4', null, '5', '3')
+        mergeJars(null, '1.8.8', '1.8', '1.9.4', '1.9.4', null, '5', '3')
     }
 }
 
@@ -489,7 +443,7 @@ tasks.register('build_1_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.8.8', '1.8', '1.10.2', '1.10.2', null, '5', '3')
+        mergeJars(null, '1.8.8', '1.8', '1.10.2', '1.10.2', null, '5', '3')
     }
 }
 
@@ -521,7 +475,7 @@ tasks.register('build_1_11', Jar) {
     }
 
     from {
-        mergeJars('1.8.8', '1.8', '1.11.2', '1.11.2', null, '6', '3')
+        mergeJars(null, '1.8.8', '1.8', '1.11.2', '1.11.2', null, '6', '3')
     }
 }
 
@@ -553,7 +507,7 @@ tasks.register('build_1_12', Jar) {
     }
 
     from {
-        mergeJars('1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
+        mergeJars(null, '1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
     }
 }
 
@@ -583,7 +537,7 @@ tasks.register('build_1_13', Jar) {
     }
 
     from {
-        mergeJars('1.13.2', '1.12', null, '1.13.2', null, null, '3')
+        mergeJars(null, '1.13.2', '1.12', null, '1.13.2', null, null, '3')
     }
 }
 
@@ -614,7 +568,7 @@ tasks.register('build_1_14', Jar) {
     }
 
     from {
-        mergeJars('1.13.2', '1.12', '1.14', '1.14.4', null, null, '3')
+        mergeJars(null, '1.13.2', '1.12', '1.14', '1.14.4', null, null, '3')
     }
 }
 
@@ -646,7 +600,7 @@ tasks.register('build_1_15', Jar) {
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3')
     }
 }
 
@@ -678,7 +632,7 @@ tasks.register('build_1_16', Jar) {
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3')
     }
 }
 
@@ -710,7 +664,7 @@ tasks.register('build_1_17', Jar) {
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3')
     }
 }
 
@@ -742,7 +696,7 @@ tasks.register('build_1_18', Jar) {
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.18', '1.18', null, '9', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18', null, '9', '3')
     }
 }
 
@@ -774,7 +728,7 @@ tasks.register('build_1_18_2', Jar) {
     }
 
     from {
-        mergeJars('1.15.2', '1.20', '1.18', '1.18.2', null, '9', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18.2', null, '9', '3')
     }
 
     // entity.level.getBiome(entity.blockPosition()).getRegistryName();
@@ -811,7 +765,7 @@ tasks.register('build_1_19', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.15.2', '1.20', '1.19', '1.19', null, '10', '3')
+        mergeJars(null, '1.15.2', '1.20', '1.19', '1.19', null, '10', '3')
     }
 }
 
@@ -842,7 +796,7 @@ tasks.register('build_1_20', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
+        mergeJars(null, '1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
     }
 }
 
@@ -877,8 +831,7 @@ tasks.register('build_1_20_2', Jar) {
         into("META-INF")
     }
     from {
-//        mergeJars2('1.20.2', '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
-        mergeJars('1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+        mergeJars(null, '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
     }
 }
 
@@ -911,7 +864,7 @@ tasks.register('build_bleeding', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars('1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
+        mergeJars(null, '1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
     }
 }
 
