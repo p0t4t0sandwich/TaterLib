@@ -352,6 +352,9 @@
       <module name="TaterLib.sponge9" target="17" />
       <module name="TaterLib.sponge9.main" target="17" />
       <module name="TaterLib.sponge9.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.4" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.4.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.4.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

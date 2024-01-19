@@ -14,23 +14,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Vanilla implementation of {@link BlockEvent}. */
 public class VanillaBlockEvent implements BlockEvent {
     private final Level level;
-    private final Player player;
     private final BlockPos blockPos;
     private final BlockState blockState;
-    private final CallbackInfo ci;
 
-    public VanillaBlockEvent(
-            Level level, Player player, BlockPos blockPos, BlockState blockState, CallbackInfo ci) {
+    public VanillaBlockEvent(Level level, BlockPos blockPos, BlockState blockState) {
         this.level = level;
-        this.player = player;
         this.blockPos = blockPos;
         this.blockState = blockState;
-        this.ci = ci;
     }
 
     /** {@inheritDoc} */
     @Override
     public Block getBlock() {
-        return new VanillaBlock(this.blockPos, this.blockState.getBlock());
+        return new VanillaBlock(blockPos, blockState.getBlock());
     }
 }

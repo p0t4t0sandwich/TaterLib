@@ -5,9 +5,7 @@ import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -22,10 +20,8 @@ public class VanillaBlockBreakEvent extends VanillaBlockEvent implements BlockBr
             net.minecraft.world.entity.player.Player player,
             BlockPos blockPos,
             BlockState blockState,
-            BlockEntity blockEntity,
-            ItemStack itemStack,
             CallbackInfo ci) {
-        super(level, player, blockPos, blockState, ci);
+        super(level, blockPos, blockState);
         this.player = player;
         this.ci = ci;
     }
