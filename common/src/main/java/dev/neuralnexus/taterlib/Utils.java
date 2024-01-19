@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib;
 
+import java.util.Arrays;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
@@ -126,5 +127,24 @@ public class Utils {
      */
     public static String substituteSectionSign(String s) {
         return s.replaceAll("&", "§");
+    }
+
+    /**
+     * Check if a class exists.
+     *
+     * @param className The class(es) to check.
+     * @return Whether the class exists.
+     */
+    public static boolean reflectCheck(String... className) {
+        return Arrays.stream(className)
+                .anyMatch(
+                        s -> {
+                            try {
+                                Class.forName(s);
+                                return true;
+                            } catch (ClassNotFoundException e) {
+                                return false;
+                            }
+                        });
     }
 }

@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.api.info;
 
+import static dev.neuralnexus.taterlib.Utils.reflectCheck;
+
 import java.util.Arrays;
 
 /** Represents the type of server the server is running. */
@@ -178,62 +180,28 @@ public enum ServerType {
 
     /** Check if the server is running Bukkit. */
     public static boolean isBukkit() {
-        try {
-            Class.forName("org.bukkit.Bukkit");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.bukkit.Bukkit");
     }
 
     /** Check if the server is running CraftBukkit. */
     public static boolean isCraftBukkit() {
-        try {
-            Class.forName("org.bukkit.craftbukkit.CraftServer");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("org.bukkit.craftbukkit.Main");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck("org.bukkit.craftbukkit.CraftServer", "org.bukkit.craftbukkit.Main");
     }
 
     /** Check if the server is running Spigot. */
     public static boolean isSpigot() {
-        try {
-            Class.forName("org.spigotmc.CustomTimingsHandler");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.spigotmc.CustomTimingsHandler");
     }
 
     /** Check if the server is running Poseidon. */
     public static boolean isPoseidon() {
-        try {
-            Class.forName("com.legacyminecraft.poseidon.PoseidonConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("com.legacyminecraft.poseidon.PoseidonConfig");
     }
 
     /** Check if the server is running Paper. */
     public static boolean isPaper() {
-        try {
-            Class.forName("com.destroystokyo.paper.PaperConfig");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("io.papermc.paperclip.Paperclip");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck(
+                "com.destroystokyo.paper.PaperConfig", "io.papermc.paperclip.Paperclip");
     }
 
     /**
@@ -242,287 +210,141 @@ public enum ServerType {
      * @return True if the server is running Folia, false otherwise.
      */
     public static boolean isFolia() {
-        try {
-            Class.forName("io.papermc.paper.threadedregions.RegionizedServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("io.papermc.paper.threadedregions.RegionizedServer");
     }
 
     /** Check if the server is running Purpur. */
     public static boolean isPurpur() {
-        try {
-            Class.forName("org.purpurmc.purpur.PurpurWorldConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.purpurmc.purpur.PurpurWorldConfig");
     }
 
     /** Check if the server is running Pufferfish. */
     public static boolean isPufferfish() {
-        try {
-            // TODO: Find a Pufferfish class
-            Class.forName("not.defined");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        // TODO: Find a Pufferfish class
+        return reflectCheck("not.defined");
     }
 
     /** Check if the server is running Cauldron. */
     public static boolean isCauldron() {
-        try {
-            Class.forName("net.minecraftforge.cauldron.CauldronConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.minecraftforge.cauldron.CauldronConfig");
     }
 
     /** Check if the server is running KCauldron. */
     public static boolean isKCauldron() {
-        try {
-            Class.forName("net.minecraftforge.kcauldron.KCauldronConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.minecraftforge.kcauldron.KCauldronConfig");
     }
 
     /** Check if the server is running Thermos. */
     public static boolean isThermos() {
-        try {
-            // TODO: find a Thermos class
-            Class.forName("not.defined");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        // TODO: find a Thermos class
+        return reflectCheck("not.defined");
     }
 
     /** Check if the server is running Crucible. */
     public static boolean isCrucible() {
-        try {
-            Class.forName("io.github.crucible.CrucibleConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("io.github.crucible.CrucibleConfig");
     }
 
     /** Check if the server is running MCPC++. */
     public static boolean isMCPCPlusPlus() {
-        try {
-            // TODO: Find a MCPC++ class
-            Class.forName("not.defined");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        // TODO: Find a MCPC++ class
+        return reflectCheck("not.defined");
     }
 
     /** Check if the server is running Mohist. */
     public static boolean isMohist() {
-        try {
-            Class.forName("com.mohistmc.MohistMCStart");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("com.mohistmc.MohistMC");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck("com.mohistmc.MohistMC", "com.mohistmc.MohistMCStart");
     }
 
     /** Check if the server is running Magma. */
     public static boolean isMagma() {
-        try {
-            Class.forName("org.magmafoundation.magma.Magma");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("org.magmafoundation.magma.MagmaStart");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck(
+                "org.magmafoundation.magma.Magma", "org.magmafoundation.magma.MagmaStart");
     }
 
     /** Check if the server is running Arclight. */
     public static boolean isArclight() {
-        try {
-            Class.forName("io.izzel.arclight.api.Arclight");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("io.izzel.arclight.common.ArclightMain");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck(
+                "io.izzel.arclight.api.Arclight", "io.izzel.arclight.common.ArclightMain");
     }
 
     /** Check if the server is running Ketting. */
     public static boolean isKetting() {
-        try {
-            Class.forName("org.kettingpowered.ketting.core.Ketting");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.kettingpowered.ketting.core.Ketting");
     }
 
     /** Check if the server is running Cardboard. */
     public static boolean isCardboard() {
-        try {
-            Class.forName("org.cardboardpowered.CardboardConfig");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.cardboardpowered.CardboardConfig");
     }
 
     /** Check if the server is running Banner. */
     public static boolean isBanner() {
-        try {
-            Class.forName("com.mohistmc.banner.BannerMCStart");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("com.mohistmc.banner.BannerMCStart");
     }
 
     /** Check if the server is running BungeeCord. */
     public static boolean isBungeeCord() {
-        try {
-            Class.forName("net.md_5.bungee.api.ProxyServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.md_5.bungee.api.ProxyServer");
     }
 
     /** Check if the server is running Waterfall. */
     public static boolean isWaterfall() {
-        try {
-            Class.forName("io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
     }
 
     /** Check if the server is running Travertine. */
     public static boolean isTravertine() {
-        try {
-            Class.forName("io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
     }
 
     /** Check if the server is running Hexacord. */
     public static boolean isHexacord() {
-        try {
-            // TODO: Find a Hexacord class
-            Class.forName("not.defined");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        // TODO: Find a Hexacord class
+        return reflectCheck("not.defined");
     }
 
     /** Check if the server is running Fabric. */
     public static boolean isFabric() {
-        try {
-            Class.forName("net.fabricmc.loader.api.FabricLoader");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.fabricmc.loader.api.FabricLoader");
     }
 
     /** Check if the server is running Quilt. */
     public static boolean isQuilt() {
-        try {
-            Class.forName("net.quiltservertools.quilt.api.QuiltServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.quiltservertools.quilt.api.QuiltServer");
     }
 
     /** Check if the server is running Sponge. */
     public static boolean isSponge() {
-        try {
-            Class.forName("org.spongepowered.api.Sponge");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("org.spongepowered.api.Sponge");
     }
 
     /** Check if the server is running Forge. */
     public static boolean isForge() {
-        try {
-            Class.forName("net.minecraftforge.common.ForgeVersion");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        try {
-            Class.forName("net.minecraftforge.fml.loading.FMLLoader");
-            return true;
-        } catch (ClassNotFoundException ignored) {
-        }
-        return false;
+        return reflectCheck(
+                "net.minecraftforge.fml.loading.FMLLoader",
+                "net.minecraftforge.common.ForgeVersion");
     }
 
     /** Check if the server is running GoldenForge. */
     public static boolean isGoldenForge() {
-        try {
-            // TODO: Find a GoldenForge class
-            Class.forName("not.defined");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        // TODO: Find a GoldenForge class
+        return reflectCheck("not.defined");
     }
 
     /** Check if the server is running NeoForge. */
     public static boolean isNeoForge() {
-        try {
-            Class.forName("net.neoforged.neoforge.common.NeoForge");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.neoforged.neoforge.common.NeoForge");
     }
 
     /** Check if the server is running Velocity. */
     public static boolean isVelocity() {
-        try {
-            Class.forName("com.velocitypowered.api.proxy.ProxyServer");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("com.velocitypowered.api.proxy.ProxyServer");
     }
 
     /** Check if the server is running Vanilla. */
     public static boolean isVanilla() {
-        try {
-            Class.forName("net.minecraft.server.Server");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
+        return reflectCheck("net.minecraft.server.MinecraftServer");
     }
 
     /**
