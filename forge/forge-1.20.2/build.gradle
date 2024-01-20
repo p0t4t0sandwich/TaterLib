@@ -16,7 +16,7 @@ dependencies {
 //    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
     implementation(project(":vanilla:vanilla-1.20")) {
-        exclude(group: 'dev.neuralnexus.taterlib.vanilla', module: 'player')
+        exclude(group: "${group_id}.${project_id}.vanilla", module: 'player')
     }
     implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }

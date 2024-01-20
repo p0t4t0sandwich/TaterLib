@@ -796,7 +796,7 @@ tasks.register('build_1_20', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
+        mergeJars('1.20', '1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
     }
 }
 

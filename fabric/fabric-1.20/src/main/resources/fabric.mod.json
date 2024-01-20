@@ -25,7 +25,7 @@
     ]
   },
   "mixins": [
-    "${project_id}.mixins.fabric_1_20.json"
+    "${project_id}.mixins.fabric.1_20.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",

@@ -1,24 +1,19 @@
-package dev.neuralnexus.taterlib.vanilla.mixin.listeners.player;
+package dev.neuralnexus.taterlib.vanilla.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerMessageEvent;
 
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player message listener. */
 @Mixin(ServerGamePacketListenerImpl.class)
-public abstract class PlayerMessageMixin_1_20 {
-    @Shadow
-    public abstract ServerPlayer getPlayer();
-
+public class PlayerMessageMixin_1_20 {
     /**
      * Called when a player sends a message.
      *
@@ -30,6 +25,8 @@ public abstract class PlayerMessageMixin_1_20 {
         if (serverboundChatPacket.message().startsWith("/")) return;
         PlayerEvents.MESSAGE.invoke(
                 new VanillaPlayerMessageEvent(
-                        this.getPlayer(), serverboundChatPacket.message(), ci));
+                        ((ServerGamePacketListenerImpl) (Object) this).getPlayer(),
+                        serverboundChatPacket.message(),
+                        ci));
     }
 }

@@ -3,6 +3,9 @@ package dev.neuralnexus.taterlib.vanilla.event.pluginmessages;
 import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
+import io.netty.buffer.Unpooled;
+
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
 
@@ -13,7 +16,9 @@ public class VanillaPluginMessageEvent_1_20 implements PluginMessageEvent {
 
     public VanillaPluginMessageEvent_1_20(ServerboundCustomPayloadPacket packet) {
         this.channel = packet.getIdentifier().toString();
-        this.data = packet.getData().readByteArray();
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+        packet.write(buf);
+        this.data = buf.array();
     }
 
     /** {@inheritDoc} */
@@ -40,7 +45,7 @@ public class VanillaPluginMessageEvent_1_20 implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer getPlayer() {
+        public VanillaPlayer getPlayer() {
             return new VanillaPlayer(this.player);
         }
     }
