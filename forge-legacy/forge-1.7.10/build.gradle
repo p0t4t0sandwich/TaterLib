@@ -1,0 +1,46 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        // https://github.com/anatawa12/ForgeGradle-1.2
+        // https://github.com/anatawa12/ForgeGradle-example#how-to-replace-forgegradle-12-with-anatawa12s-fork
+        // If it errors, run `./gradlew forge-1.7.10:setupDecompWorkspace`
+        classpath('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
+            changing = true
+        }
+    }
+}
+apply(plugin: 'forge')
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+minecraft {
+    version = "${minecraft_version}-${forge_version}"
+    runDir = "run"
+    mappings = "${mapping_channel}_${mapping_version}"
+}
+
+dependencies {
+    compile("dev.neuralnexus:taterlib-api:${version}")
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['mcmod.info', 'pack.mcmeta']) {
+        expand project.properties
+    }
+}
+
+jar {
+    destinationDir = file('../../target')
+    archiveName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}

@@ -1,0 +1,28 @@
+repositories {
+    // NeuralNexus Private
+    maven {
+        name = "NeuralNexusPrivate"
+        url = "https://maven.neuralnexus.dev/private"
+        credentials {
+            username "$NeuralNexusPrivateUsername"
+            password "$NeuralNexusPrivatePassword"
+        }
+    }
+}
+
+dependencies {
+    compileOnly("org.bukkit:craftbukkit:${minecraft_version}-${craftbukkit_version}")
+    compileOnly("org.github.paperspigot:paperspigot-api:${minecraft_version}-${paperspigot_version}")
+    compileOnly(project(':common'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['plugin.yml']) {
+        expand project.properties
+    }
+}
+
+jar {
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_id}-bukkit-${minecraft_version}-${version}.jar"
+}

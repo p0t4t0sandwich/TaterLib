@@ -1,0 +1,4 @@
+jar {
+    destinationDirectory = file('../../target')
+    archiveFileName = "entrypoint-spoof-${entrypoint_spoof_version}.jar"
+}

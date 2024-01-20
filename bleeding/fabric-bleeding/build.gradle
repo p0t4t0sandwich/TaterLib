@@ -1,0 +1,59 @@
+import net.fabricmc.loom.task.RemapJarTask
+
+plugins {
+    id('fabric-loom') version('1.4-SNAPSHOT')
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = targetCompatibility = java_version
+
+dependencies {
+    compileOnly(project(':common'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
+
+    // Minecraft and Fabric mappings
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-1.20.3:${mapping_version}@zip")
+    }
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+    // Fabric API
+    Set<String> apiModules = [
+            'fabric-api-base',
+            'fabric-command-api-v2',
+            'fabric-lifecycle-events-v1',
+            'fabric-networking-api-v1'
+    ]
+
+    apiModules.forEach {
+        modImplementation(fabricApi.module(it, project.fabric_version))
+    }
+
+    // Lucko's Permissions API
+    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.json".toString(), "${project_id}.mixins.vanilla.fabric.json".toString()]) {
+        expand project.properties
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${vanilla_version}"))
+        exclude('/mappings/*')
+    }
+    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
+}
+
+task remappedShadowJar(type: RemapJarTask) {
+    dependsOn(tasks.shadowJar)
+    input = tasks.shadowJar.archiveFile
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
+}
+tasks.build.dependsOn(tasks.remappedShadowJar)

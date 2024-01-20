@@ -9,15 +9,16 @@
 A cross API code library for various generalizations used in the Tater* plugins
 
 Please note, some abstractions may not be fully implemented yet, and some may be missing.
-If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible, or feel free to open a PR with an implementation.
+If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible,
+or feel free to open a PR with an implementation.
 
 Link to our support: [Discord](https://discord.neuralnexus.dev)
 
 ## Download
 
 [![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/TaterLib/releases)
-[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/TaterLib)
-[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2FTaterLib%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/TaterLib)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)
 
 [![Spigot](https://img.shields.io/spiget/downloads/111852?label=Spigot&logo=spigotmc&color=ED8106)](https://www.spigotmc.org/resources/taterlib.111852/)
 [![Hangar](https://img.shields.io/badge/Hangar-download-blue)](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
@@ -26,16 +27,17 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 [![Sponge](https://img.shields.io/ore/dt/taterlib?label=Sponge&logo=https%3A%2F%2Fspongepowered.org%2Ffavicon.ico&color=F7CF0D)](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
 
 ### Adding to your project
+
 ```gradle
 repositories {
     maven {
-        name = "NeuralNexus"
-        url = "https://maven.neuralnexus.dev/repository/releases/"
+        name = 'NeuralNexus'
+        url = 'https://maven.neuralnexus.dev/repository/releases/'
     }
 }
 
 dependencies {
-    implementation "dev.neuralnexus:TaterLib:<mcversion>-<version>"
+    compileOnly('dev.neuralnexus:taterlib-api:<version>')
 }
 ```
 
@@ -43,26 +45,38 @@ dependencies {
 
 TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
-| Server type                   | Versions     | Jar Name                               |
-|-------------------------------|--------------|----------------------------------------|
-| 1.20.2 (Sponge11)             | 1.20.2       | `TaterLib-1.20.2-<version>.jar`        |
-| 1.20-1.20.1 (Sponge11)        | 1.20-1.20.1  | `TaterLib-1.20-<version>.jar`          |
-| All 1.19 (Sponge10)           | 1.19-1.19.4  | `TaterLib-1.19-<version>.jar`          |
-| All 1.18 (Sponge9)            | 1.18-1.18.2  | `TaterLib-1.18-<version>.jar`          |
-| All 1.17 (Sponge9)            | 1.17-1.17.1  | `TaterLib-1.17-<version>.jar`          |
-| All 1.16 (Sponge8)            | 1.16-1.16.5  | `TaterLib-1.16-<version>.jar`          |
-| All 1.15 (Sponge8)            | 1.15-1.15.2  | `TaterLib-1.15-<version>.jar`          |
-| All 1.14                      | 1.14-1.14.3  | `TaterLib-1.14-<version>.jar`          |
-| All 1.13 (no Fabric)          | 1.13-1.13.2  | `TaterLib-1.13-<version>.jar`          |
-| All 1.12 (Sponge7, no Fabric) | 1.12-1.12.2  | `TaterLib-1.12-<version>.jar`          |
-| Bukkit 1.7.10                 | 1.7.2-1.7.10 | `TaterLib-bukkit-1.7.10-<version>.jar` |
-| Bukkit 1.6.4                  | 1.6.1-1.6.4  | `TaterLib-bukkit-1.6.4-<version>.jar`  |
-| Bukkit 1.2.5                  | 1.2.5        | `TaterLib-bukkit-1.2.5-<version>.jar`  |
-| Bukkit b1.7.3                 | b1.7.3       | `TaterLib-bukkit-b1.7.3-<version>.jar` |
+General notes:
+
+- Sponge is not available on pre 1.8 or on 1.14
+- No Fabric on 1.13
+- No Fabric/Forge below 1.7.10
+
+| Server type     | Versions      | Jar Name                               |
+|-----------------|---------------|----------------------------------------|
+| 1.20.2-1.20.4   | 1.20.2-1.20.4 | `TaterLib-1.20.2-1.20.4-<version>.jar` |
+| 1.20            | 1.20-1.20.1   | `TaterLib-1.20-<version>.jar`          |
+| 1.19            | 1.19-1.19.4   | `TaterLib-1.19-<version>.jar`          |
+| 1.18            | 1.18-1.18.2   | `TaterLib-1.18-<version>.jar`          |
+| 1.17            | 1.17-1.17.1   | `TaterLib-1.17-<version>.jar`          |
+| 1.16            | 1.16-1.16.5   | `TaterLib-1.16-<version>.jar`          |
+| 1.15            | 1.15-1.15.2   | `TaterLib-1.15-<version>.jar`          |
+| 1.14            | 1.14-1.14.3   | `TaterLib-1.14-<version>.jar`          |
+| 1.13            | 1.13-1.13.2   | `TaterLib-1.13-<version>.jar`          |
+| 1.12            | 1.12-1.12.2   | `TaterLib-1.12-<version>.jar`          |
+| 1.11            | 1.11-1.11.2   | `TaterLib-1.11-<version>.jar`          |
+| 1.10            | 1.10-1.10.2   | `TaterLib-1.10-<version>.jar`          |
+| 1.9             | 1.9-1.9.4     | `TaterLib-1.9-<version>.jar`           |
+| 1.8             | 1.8-1.8.8     | `TaterLib-1.8-<version>.jar`           |
+| 1.7             | 1.7-1.7.10    | `TaterLib-1.7.10-<version>.jar`        |
+| 1.6.4           | 1.6.4         | `TaterLib-1.6.4-<version>.jar`         |
+| 1.2.5           | 1.2.5         | `TaterLib-1.2.5-<version>.jar`         |
+| b1.7.3 (Bukkit) | b1.7.3        | `TaterLib-b1.7.3-<version>.jar`        |
 
 ## Dependencies
 
-- [FabricAPI](https://modrinth.com/mod/fabric-api) - Required on Fabric
+- [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
+- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and
+  below
 
 ### Optional Dependencies
 
@@ -70,9 +84,9 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
 ## Commands and Permissions
 
-| Command                      | Permission          | Description           |
-|------------------------------|---------------------|-----------------------|
-| `/taterlib <version/reload>` | `taterlib.command`  | Root TaterLib Command |
+| Command                      | Permission         | Description           |
+|------------------------------|--------------------|-----------------------|
+| `/taterlib <version/reload>` | `taterlib.command` | Root TaterLib Command |
 
 ## Projects that use TaterLib
 
@@ -85,7 +99,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.10-SNAPSHOT
+### 1.1.0-R0.15
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -108,16 +122,41 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Simplified Plugin abstractions so depending on TaterLib is easier
 - Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
 - Added MinecraftVersion and ServerType enums.
-- Created `TaterAPI.isBrigadierSupported`
+- Created `TaterAPI#isBrigadierSupported()`
 - Abstracted plugin/mod isLoaded checks
 - `Player` now inherits `Entity`
-- Added `Entity.teleport`
+- Added `Entity#teleport(Location)` and `Entity#teleport(Entity)`
 - Abstracted brigadier helper into a wrapper class
 - Implemented registering simple commands for Forge/Fabric
 - Updated database utils
-- Added `Server` abstraction and `TaterAPI.getServer`
-- Ported to Bukkit 1.13.2 and Sponge 5
+- Added `Server` abstraction and `TaterAPI#getServer()`
+- Ported to:
+    - 1.20.4
+    - Bukkit 1.8.8, 1.13.2
+    - BungeeCord 1.4.7, 1.8, 1.12
+    - Fabric 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2
+    - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2
+    - Sponge 4, 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
 - Updated `Server` implementation and added `ProxyServer` for proxies
-- Added `ServerEvent.getServer`
+- Added `ServerEvent#getServer()`
+- Fixes to `BukkitPlayerAdvancementEvent`
+    - `getPlayer` was returning null
+    - `getAdvancement` was returning the wrong string
+- Abstracted `TaterAPI#registerChannels(Set<String>)` into `RegisterPluginMessagesEvent`
+- Added `PluginEnableEvent` and `PluginDisableEvent`
+- Modified TaterAPIProvider to handle multiple API implementations simultaneously
+- Added basic hybrid API hooks: Arclight, Ketting, Magma, Mohist
+- Renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
+  adding helper instantiations from hybrid hooks
+- Added `Server#broadcastMessage(String)`
+- Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports
+- Improved the hook system to allow for multiple permission managers to be used simultaneously
+- Build system overhaul, no sketchy `build.sh` anymore
+- Added `GameMode` enum, `Player#getPing()`, `Player#getGameMode()` and `Player#setGameMode()`
+- Added `Sender#isPlayer()`
+- Fixed `Entity#teleport(Location)` and `Entity#teleport(Entity)` in cross-dimensional cases
+- Added `Player#getIPAddress()`
+- Created a custom loader implementation, to allow for better compatibility with hybrids, Sinytra Connector, and
+  SpongeForge

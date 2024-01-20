@@ -1,16 +1,21 @@
 plugins {
     id('java')
+    id('maven-publish')
+    id('com.github.johnrengelman.shadow') version('8.1.1')
+    id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
+    id('net.neoforged.gradle.userdev') version('7.0.74') apply(false)
 }
 
 defaultTasks('build')
 
 subprojects {
     apply(plugin: 'java')
- 
+    apply(plugin: 'com.github.johnrengelman.shadow')
+
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    tasks.withType(JavaCompile) {
+    tasks.withType(JavaCompile).configureEach {
         options.encoding = 'UTF-8'
     }
 
@@ -35,9 +40,960 @@ subprojects {
             name = "papermc-repo"
             url = "https://repo.papermc.io/repository/maven-public/"
         }
+
+        // Parchment Mappings
+        maven {
+            name = 'ParchmentMC'
+            url = 'https://maven.parchmentmc.org'
+        }
+    }
+}
+
+// --------------------------- Build all --------------------------------
+tasks.register('build_all') {
+    dependsOn('build_api')
+    dependsOn('build_api_platforms')
+    dependsOn('build_b1_7_3')
+    dependsOn('build_1_2_5')
+    dependsOn('build_1_6_4')
+    dependsOn('build_1_7_10')
+    dependsOn('build_1_8')
+    dependsOn('build_1_9')
+    dependsOn('build_1_10')
+    dependsOn('build_1_11')
+    dependsOn('build_1_12')
+    dependsOn('build_1_13')
+    dependsOn('build_1_14')
+    dependsOn('build_1_15')
+    dependsOn('build_1_16')
+    dependsOn('build_1_17')
+    dependsOn('build_1_18')
+    dependsOn('build_1_19')
+    dependsOn('build_1_20')
+    dependsOn('build_1_20_2')
+    dependsOn('build_bleeding')
+}
+
+// --------------------------- Jar file helper method --------------------------------
+ext.mergeJars = { vanilla_version, bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
+    println("Building using Vanilla ${vanilla_version}, Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
+
+    String dir = "./target"
+    ArrayList<File> jarFiles = [
+            file("${dir}/${project_id}-common-${version}.jar"),
+            file("${dir}/${project_id}-loader-0.1.0.jar")
+    ]
+    if (vanilla_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-vanilla-${vanilla_version}-${version}.jar"))
+    }
+    if (bukkit_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
+    }
+    if (bungee_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-bungee-${bungee_version}-${version}.jar"))
+    }
+    if (fabric_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-fabric-${fabric_version}-${version}.jar"))
+    }
+    if (forge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-forge-${forge_version}-${version}.jar"))
+    }
+    if (neoforge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-neoforge-${neoforge_version}-${version}.jar"))
+    }
+    if (sponge_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-sponge${sponge_version}-${version}.jar"))
+    }
+    if (velocity_version != null) {
+        jarFiles.add(file("${dir}/${project_id}-velocity${velocity_version}-${version}.jar"))
+    }
+
+    return jarFiles.collect {
+        if (it.name.contains('-forge') && neoforge_version != null) {
+            zipTree(it).matching {
+                exclude('META-INF/mods.toml')
+            }
+        } else if ((it.name.contains('sponge4') || it.name.contains('sponge5')
+                || it.name.contains('sponge6') || it.name.contains('sponge7')) && forge_version != null) {
+            zipTree(it).matching {
+                exclude('mcmod.info')
+            }
+        } else {
+            zipTree(it)
+        }
+    }
+}
+
+// --------------------------- Build api --------------------------------
+tasks.register('build_api', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn('tooling:entrypoint-spoof:build')
+    dependsOn('tooling:loader:build')
+
+    archiveFileName = "${project_id}-api-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} API",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    ArrayList<File> jarFiles = [
+            file("./target/${project_id}-common-${version}.jar"),
+//            file("./target/entrypoint-spoof-0.1.1.jar")
+    ]
+    from {
+        jarFiles.collect {
+            if (it.name.contains('common')) {
+                zipTree(it).matching {
+                    exclude('dev/neuralnexus/taterlib/lib/**')
+                }
+            } else {
+                zipTree(it)
+            }
+        }
+    }
+}
+
+// --------------------------- Build api-platforms --------------------------------
+tasks.register('build_api_platforms', Jar) {
+    dependsOn(':common:shadowJar')
+    dependsOn('tooling:loader:build')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.2:build')
+    dependsOn(':forge:forge-1.20.2:build')
+    dependsOn(':neoforge:neoforge-1.20.2:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    archiveFileName = "${project_id}-api-platforms-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} API Platforms",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+    }
+}
+
+// --------------------------- Build Entry Point Spoof --------------------------------
+tasks.register('build_entrypoint_spoof', Jar) {
+    dependsOn('tooling:entrypoint-spoof:build')
+
+    archiveFileName = "entrypoint-spoof-${version}.jar"
+    destinationDirectory = file("./build/libs")
+
+    from(["README.md", "LICENSE"]) {
+        into("META-INF")
+    }
+
+    from {
+        zipTree(file("./target/entrypoint-spoof-0.1.0.jar"))
+    }
+}
+
+// --------------------------- Build Legacy Forge --------------------------------
+tasks.register('build_legacy_forge', Exec) {
+    try {
+        executable 'bash'
+        args '-c', "export JAVA_HOME=${java_8_home} && cd forge-legacy && ./gradlew forge-1.7.10:setupDecompWorkspace && ./gradlew build"
+    } catch (Exception e) {
+        println(e)
+    }
+}
+
+// --------------------------- Build b1.7.3 --------------------------------
+tasks.register('build_b1_7_3', Jar) {
+    dependsOn('build_api')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-b1.7.3:build')
+        bukkit = 'b1.7.3'
+    } catch (Exception e) {
+        println(e)
+    }
+
+    String mc_version = 'b1.7.3'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, bukkit, null, null, null, null, null, null)
+    }
+}
+
+// --------------------------- Build 1.2.5 --------------------------------
+tasks.register('build_1_2_5', Jar) {
+    dependsOn('build_api')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.2.5:build')
+        bukkit = '1.2.5'
+    } catch (Exception e) {
+        println(e)
+    }
+    dependsOn(':bungee:bungee-1.4.7:build')
+
+    String mc_version = '1.2.5'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
+    }
+}
+
+// --------------------------- Build 1.6.4 --------------------------------
+tasks.register('build_1_6_4', Jar) {
+    dependsOn('build_api')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.6.4:build')
+        bukkit = '1.6.4'
+    } catch (Exception e) {
+        println(e)
+    }
+    dependsOn(':bungee:bungee-1.4.7:build')
+
+    String mc_version = '1.6.4'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
+    }
+}
+
+// --------------------------- Build 1.7.10 --------------------------------
+tasks.register('build_1_7_10', Jar) {
+    dependsOn('build_api')
+    String bukkit = null
+    try {
+        dependsOn(':bukkit:bukkit-1.7.10:build')
+        bukkit = '1.7.10'
+    } catch (Exception e) {
+        println(e)
+    }
+    dependsOn(':bungee:bungee-1.4.7:build')
+    dependsOn(':fabric:fabric-1.7.10:build')
+    dependsOn('build_legacy_forge')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.7.10'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, bukkit, '1.4.7', '1.7.10', '1.7.10', null, null, '3')
+    }
+}
+
+// --------------------------- Build 1.8 --------------------------------
+tasks.register('build_1_8', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':fabric:fabric-1.8.9:build')
+    dependsOn('build_legacy_forge')
+    dependsOn(':sponge:sponge4:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.8'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
+    }
+}
+
+// --------------------------- Build 1.9 --------------------------------
+tasks.register('build_1_9', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':fabric:fabric-1.9.4:build')
+    dependsOn('build_legacy_forge')
+    dependsOn(':sponge:sponge5:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.9'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.8.8', '1.8', '1.9.4', '1.9.4', null, '5', '3')
+    }
+}
+
+// --------------------------- Build 1.10 --------------------------------
+tasks.register('build_1_10', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':fabric:fabric-1.10.2:build')
+    dependsOn('build_legacy_forge')
+    dependsOn(':sponge:sponge5:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.10'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.8.8', '1.8', '1.10.2', '1.10.2', null, '5', '3')
+    }
+}
+
+// --------------------------- Build 1.11 --------------------------------
+tasks.register('build_1_11', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.8:build')
+    dependsOn(':fabric:fabric-1.11.2:build')
+    dependsOn('build_legacy_forge')
+    dependsOn(':sponge:sponge6:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.11'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.8.8', '1.8', '1.11.2', '1.11.2', null, '6', '3')
+    }
+}
+
+// --------------------------- Build 1.12 --------------------------------
+tasks.register('build_1_12', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.8.8:build')
+    dependsOn(':bungee:bungee-1.12:build')
+    dependsOn(':fabric:fabric-1.12.2:build')
+    dependsOn(':forge:forge-1.12:build')
+    dependsOn(':sponge:sponge7:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.12'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
+    }
+}
+
+// --------------------------- Build 1.13 --------------------------------
+tasks.register('build_1_13', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.13.2:build')
+    dependsOn(':bungee:bungee-1.12:build')
+    dependsOn(':forge:forge-1.13:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.13'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.13.2', '1.12', null, '1.13.2', null, null, '3')
+    }
+}
+
+// --------------------------- Build 1.14 --------------------------------
+tasks.register('build_1_14', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.13.2:build')
+    dependsOn(':bungee:bungee-1.12:build')
+    dependsOn(':fabric:fabric-1.14:build')
+    dependsOn(':forge:forge-1.14:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.14'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.13.2', '1.12', '1.14', '1.14.4', null, null, '3')
+    }
+}
+
+// --------------------------- Build 1.15 --------------------------------
+tasks.register('build_1_15', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.15:build')
+    dependsOn(':forge:forge-1.15:build')
+    dependsOn(':sponge:sponge8:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.15'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3')
+    }
+}
+
+// --------------------------- Build 1.16 --------------------------------
+tasks.register('build_1_16', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.16:build')
+    dependsOn(':forge:forge-1.16:build')
+    dependsOn(':sponge:sponge8:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.16'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3')
+    }
+}
+
+// --------------------------- Build 1.17 --------------------------------
+tasks.register('build_1_17', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.17:build')
+    dependsOn(':forge:forge-1.17:build')
+    dependsOn(':sponge:sponge9:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.17'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3')
+    }
+}
+
+// --------------------------- Build 1.18 --------------------------------
+tasks.register('build_1_18', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.18:build')
+    dependsOn(':forge:forge-1.18:build')
+    dependsOn(':sponge:sponge9:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.18'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18', null, '9', '3')
+    }
+}
+
+// --------------------------- Build 1.18.2 --------------------------------
+tasks.register('build_1_18_2', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.18:build')
+    dependsOn(':forge:forge-1.18.2:build')
+    dependsOn(':sponge:sponge9:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.18.2'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18.2', null, '9', '3')
+    }
+
+    // entity.level.getBiome(entity.blockPosition()).getRegistryName();
+    // Changed to
+    // entity.level.getBiome(entity.blockPosition()).value().getRegistryName();
+
+    // Uses 1.19 permission schema
+}
+
+// --------------------------- Build 1.19 --------------------------------
+tasks.register('build_1_19', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.15.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.19:build')
+    dependsOn(':forge:forge-1.19:build')
+    dependsOn(':sponge:sponge10:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.19'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.15.2', '1.20', '1.19', '1.19', null, '10', '3')
+    }
+}
+
+// --------------------------- Build 1.20 --------------------------------
+tasks.register('build_1_20', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20:build')
+    dependsOn(':forge:forge-1.20:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.20'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars('1.20', '1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
+    }
+}
+
+// --------------------------- Build 1.20.2-4 --------------------------------
+tasks.register('build_1_20_2', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bukkit:bukkit-1.20.2:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':fabric:fabric-1.20.2:build')
+    dependsOn(':forge:forge-1.20.2:build')
+    dependsOn(':neoforge:neoforge-1.20.2:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':vanilla:vanilla-1.20.2:build')
+    dependsOn(':velocity:velocity3:build')
+
+//    String mc_version = '1.20.x'
+    String mc_version = '1.20.2'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus'
+//                'MixinConfigs': "${project_id}.mixins.forge_1_20.json, ${project_id}.mixins.forge_1_20_2.json"
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+    }
+}
+
+// --------------------------- Build Bleeding --------------------------------
+tasks.register('build_bleeding', Jar) {
+    dependsOn('build_api')
+    dependsOn(':bleeding:bukkit-bleeding:build')
+    dependsOn(':bungee:bungee-1.20:build')
+    dependsOn(':bleeding:fabric-bleeding:build')
+    dependsOn(':bleeding:forge-bleeding:build')
+    dependsOn(':bleeding:neoforge-bleeding:build')
+    dependsOn(':sponge:sponge11:build')
+    dependsOn(':velocity:velocity3:build')
+
+    String mc_version = '1.20.4'
+    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'MixinConfigs': "${project_id}.mixins.forge.json, ${project_id}.mixins.forge_1_20.json, ${project_id}.mixins.forge_1_20_2.json"
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        mergeJars(null, '1.20.4', '1.20', '1.20.4', '1.20.4', '1.20.4', '11', '3')
     }
 }
 
 clean {
     delete('target')
+}
+
+publishing {
+    publications {
+        uploadAPI(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api) {
+                artifactId = "${project_id}-api"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+        uploadAPIPlatforms(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api_platforms) {
+                artifactId = "${project_id}-api-platforms"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+        uploadEntryPointSpoof(MavenPublication) {
+            groupId = group_id
+            version = "0.1.0"
+
+            artifact(build_entrypoint_spoof) {
+                artifactId = "entrypoint-spoof"
+            }
+
+            pom {
+                name = 'entrypoint-spoof'
+                description = 'A simple dependency that will allow you to target multiple Minecraft mod/plugin loaders with a single jar, without the\n' +
+                        'hassle of using each and every build system.'
+                url = 'https://github.com/p0t4t0sandwich/TaterLib/tree/main/tooling/entrypoint-spoof/README.md'
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+    }
+    repositories {
+        mavenLocal()
+        maven {
+            name = "NeuralNexusReleases"
+            url = "https://maven.neuralnexus.dev/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+        maven {
+            name = "NeuralNexusSnapshots"
+            url = "https://maven.neuralnexus.dev/snapshots"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
 }
