@@ -132,8 +132,8 @@ include(
         'sponge:sponge8',
         'sponge:sponge9',
         'sponge:sponge10',
-        'sponge:sponge11',
+        'sponge:sponge-11',
 
         // Velocity
-        'velocity:velocity3'
+        'velocity:velocity-3'
 )

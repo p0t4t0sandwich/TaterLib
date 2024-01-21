@@ -8,5 +8,5 @@ java.disableAutoTargetJvm()
 
 jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-velocity3-${version}.jar"
+    archiveFileName = "${project_id}-velocity-3-${version}.jar"
 }
