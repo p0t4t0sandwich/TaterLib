@@ -17,6 +17,7 @@ public enum ServerType {
     PUFFERFISH("Pufferfish"),
 
     // Bukkit + Forge Hybrids
+    FORGE_HYBRID("Forge Hybrid"),
     CAULDRON("Cauldron"),
     KCUALDRON("KCauldron"),
     THERMOS("Thermos"),
@@ -28,6 +29,7 @@ public enum ServerType {
     KETTING("Ketting"),
 
     // Bukkit + Fabric Hybrids
+    FABRIC_HYBRID("Fabric Hybrid"),
     CARDBOARD("Cardboard"),
     BANNER("Banner"),
 
