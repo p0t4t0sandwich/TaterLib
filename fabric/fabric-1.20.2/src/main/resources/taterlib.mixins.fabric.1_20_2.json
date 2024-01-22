@@ -24,8 +24,7 @@
     "listeners.server.ServerStartedMixin_1_20",
     "listeners.server.ServerStartingMixin_1_20",
     "listeners.server.ServerStoppedMixin_1_20",
-    "listeners.server.ServerStoppingMixin_1_20",
-    "patch.player.VanillaPlayerMixin_1_20_2"
+    "listeners.server.ServerStoppingMixin_1_20"
   ],
   "injectors": {
     "defaultRequire": 1

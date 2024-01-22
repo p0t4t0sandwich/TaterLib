@@ -198,7 +198,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge11.TaterLib.sponge.sponge11.main" />
+        <module name="TaterLib.sponge.sponge-11.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -239,7 +239,7 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
-        <module name="velocity.velocity3.TaterLib.velocity.velocity3.main" />
+        <module name="TaterLib.velocity.velocity-3.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -617,8 +617,7 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/6d1c8bf4c28e697f472a83bd6add76ec4951734/mixin-0.8.5-processor.jar" />
         </processorPath>
-        <module name="TaterLib.forge.forge-1.20.TaterLib.forge.forge-1.20.main" />
-        <module name="bleeding.forge-bleeding.TaterLib.bleeding.forge-bleeding.main" />
+        <module name="forge-bleeding.TaterLib.bleeding.forge-bleeding.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -644,17 +643,12 @@
       <module name="TaterLib.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge-1.20.main" target="17" />
       <module name="TaterLib.forge-1.20.test" target="17" />
-      <module name="TaterLib.forge.forge-1.17" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
-      <module name="TaterLib.forge.forge-1.18" target="17" />
-      <module name="TaterLib.forge.forge-1.18.2" target="17" />
       <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
       <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
-      <module name="TaterLib.forge.forge-1.19" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
-      <module name="TaterLib.forge.forge-1.20.2" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
@@ -663,9 +657,7 @@
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
-      <module name="TaterLib.neoforge.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
-      <module name="TaterLib.neoforge.neoforge-1.20.2.test" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
