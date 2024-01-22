@@ -1,7 +1,7 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.vanilla.neoforge.mixin",
+  "package": "${group_id}.${project_id}.vanilla.mixin",
   "required": false,
   "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
   "mixins": [
@@ -14,6 +14,5 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "refmap": "${project_id}.mixins.vanilla.1_20_2.refmap.json"
+  }
 }

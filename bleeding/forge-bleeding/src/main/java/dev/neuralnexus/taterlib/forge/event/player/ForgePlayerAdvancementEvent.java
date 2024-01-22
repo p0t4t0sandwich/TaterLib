@@ -30,7 +30,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
     }
 
     /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
-    public static class AdvancementFinished extends ForgePlayerAdvancementEvent
+    public static class AdvancementFinished extends ForgePlayerAdvancementEvent_1_20
             implements PlayerAdvancementEvent.AdvancementFinished {
         public AdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
             super(event);
@@ -38,7 +38,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
     }
 
     /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
-    public static class AdvancementProgress extends ForgePlayerAdvancementEvent
+    public static class AdvancementProgress extends ForgePlayerAdvancementEvent_1_20
             implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent.AdvancementProgressEvent event;
 

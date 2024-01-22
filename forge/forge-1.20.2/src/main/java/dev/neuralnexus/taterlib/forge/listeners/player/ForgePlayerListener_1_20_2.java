@@ -12,7 +12,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /** Listens for player events. */
-public class ForgePlayerListener {
+public class ForgePlayerListener_1_20_2 {
     /**
      * Called when a player finishes an advancement.
      *

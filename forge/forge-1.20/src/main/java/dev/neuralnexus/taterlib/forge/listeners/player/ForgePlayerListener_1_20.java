@@ -12,7 +12,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /** Listens for player events. */
-public class ForgePlayerListener {
+public class ForgePlayerListener_1_20 {
     /**
      * Called when a player finishes an advancement.
      *
@@ -21,7 +21,7 @@ public class ForgePlayerListener {
     @SubscribeEvent
     public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
         PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                new ForgePlayerAdvancementEvent.AdvancementFinished(event));
+                new ForgePlayerAdvancementEvent_1_20.AdvancementFinished(event));
     }
 
     /**
@@ -32,7 +32,7 @@ public class ForgePlayerListener {
     @SubscribeEvent
     public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new ForgePlayerAdvancementEvent.AdvancementProgress(event));
+                new ForgePlayerAdvancementEvent_1_20.AdvancementProgress(event));
     }
 
     /**

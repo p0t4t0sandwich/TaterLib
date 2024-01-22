@@ -7,11 +7,11 @@ import net.minecraftforge.event.entity.player.AdvancementEvent;
 import java.util.Collection;
 
 /** Forge implementation of {@link PlayerAdvancementEvent}. */
-public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
+public class ForgePlayerAdvancementEvent_1_20 extends ForgePlayerEvent
         implements PlayerAdvancementEvent {
     private final AdvancementEvent event;
 
-    public ForgePlayerAdvancementEvent(AdvancementEvent event) {
+    public ForgePlayerAdvancementEvent_1_20(AdvancementEvent event) {
         super(event);
         this.event = event;
     }
@@ -31,7 +31,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
     }
 
     /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
-    public static class AdvancementFinished extends ForgePlayerAdvancementEvent
+    public static class AdvancementFinished extends ForgePlayerAdvancementEvent_1_20
             implements PlayerAdvancementEvent.AdvancementFinished {
         public AdvancementFinished(AdvancementEvent event) {
             super(event);
@@ -39,7 +39,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
     }
 
     /** Forge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
-    public static class AdvancementProgress extends ForgePlayerAdvancementEvent
+    public static class AdvancementProgress extends ForgePlayerAdvancementEvent_1_20
             implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementEvent event;
 

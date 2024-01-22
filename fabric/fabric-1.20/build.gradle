@@ -9,9 +9,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    implementation(project(":vanilla:vanilla-${minecraft_version}")) {
-        exclude(group: "${group_id}.${project_id}.vanilla", module: 'mixin')
-    }
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -46,10 +44,12 @@ loom {
 shadowJar {
     dependencies {
         include(project(":vanilla:vanilla-${minecraft_version}"))
-        exclude("${group_id}.${project_id}.vanilla.mixin")
+//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
-    relocate("${group_id}.${project_id}.vanilla.fabric", "${group_id}.${project_id}.vanilla")
+    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
+    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.fabric.mixin.fake")
+    relocate("${group_id}.${project_id}.vanilla.fabric", "${group_id}.${project_id}.vanilla.fabric")
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
 }
 

@@ -10,9 +10,7 @@ sourceCompatibility = targetCompatibility = java_version
 dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-${minecraft_version}")) {
-        exclude(group: "${group_id}.${project_id}.vanilla", module: 'mixin')
-    }
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -21,20 +19,10 @@ dependencies {
         parchment("org.parchmentmc.data:parchment-${minecraft_version}:${mapping_version}@zip")
     }
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-
-    // Fabric API
-    Set<String> apiModules = ['fabric-command-api-v2']
-    apiModules.forEach {
-        modImplementation(fabricApi.module(it, project.fabric_version))
-    }
-
-    // Lucko's Permissions API
-    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 }
 
 tasks.withType(ProcessResources).configureEach {
     filesMatching([
-            'fabric.mod.json',
             "${project_id}.mixins.fabric.1_20_2.json".toString(),
             "${project_id}.mixins.fabric.patch.1_20_2.json".toString()
     ]) {
@@ -51,10 +39,12 @@ loom {
 shadowJar {
     dependencies {
         include(project(":vanilla:vanilla-${minecraft_version}"))
-        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
+//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
-    relocate("${group_id}.${project_id}.vanilla.fabric", "${group_id}.${project_id}.vanilla")
+    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
+    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.fabric.mixin.fake")
+    relocate("${group_id}.${project_id}.vanilla.fabric", "${group_id}.${project_id}.vanilla.fabric")
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
 }
 

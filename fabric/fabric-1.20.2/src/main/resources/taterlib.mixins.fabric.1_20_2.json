@@ -28,5 +28,6 @@
   ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "refmap": "${project_id}.mixins.fabric.1_20_2.refmap.json"
 }
