@@ -50,6 +50,7 @@ public enum ServerType {
 
     // Sponge
     SPONGE("Sponge"),
+    SPONGE_FORGE("SpongeForge"),
 
     // Velocity
     VELOCITY("Velocity"),
@@ -139,6 +140,8 @@ public enum ServerType {
             return NEOFORGE;
         } else if (isGoldenForge()) {
             return GOLDENFORGE;
+        } else if (isSponge() && isForge()) {
+            return SPONGE_FORGE;
         } else if (isForge()) {
             return FORGE;
         }
@@ -448,7 +451,7 @@ public enum ServerType {
      * @return True if the server is running a fork of Forge, false otherwise.
      */
     public boolean isForgeBased() {
-        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+        return this.is(FORGE, SPONGE_FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
     }
 
     /**
@@ -484,7 +487,7 @@ public enum ServerType {
      * @return True if the server is running a fork of Sponge, false otherwise.
      */
     public boolean isSpongeBased() {
-        return this.is(SPONGE);
+        return this.is(SPONGE, SPONGE_FORGE);
     }
 
     /**
