@@ -3,11 +3,14 @@ package dev.neuralnexus.taterlib.sponge.listeners.command;
 import com.mojang.brigadier.tree.LiteralCommandNode;
 
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.sponge.event.command.SpongeBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.common.command.manager.SpongeCommandManager;
 
 /** Listens to command events. */
 public class SpongeCommandListener {
@@ -26,9 +29,11 @@ public class SpongeCommandListener {
      *
      * @param event The event
      */
-    //    @Listener
-    //    public void onRegisterBrigadierCommands(
-    //            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
-    //        event.register()
-    //    }
+    @Listener
+    public void onRegisterBrigadierCommands(
+            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
+        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                new SpongeBrigadierCommandRegisterEvent(
+                        (SpongeCommandManager) Sponge.server().commandManager()));
+    }
 }

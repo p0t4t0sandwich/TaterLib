@@ -2,20 +2,22 @@ package dev.neuralnexus.taterlib.sponge.event.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import com.mojang.brigadier.tree.LiteralCommandNode;
 
 import dev.neuralnexus.taterlib.command.Sender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
 
-import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
+import org.spongepowered.common.command.manager.SpongeCommandManager;
 
 /** Sponge implementation of {@link BrigadierCommandRegisterEvent}. */
 public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegisterEvent<Object> {
-    private final RegisterCommandEvent<LiteralCommandNode<?>> event;
+    // TODO: Abstract with VanillaGradle so CommandDispatcher<CommandSourceStack> can be used
+    // TODO: During refactor, abstract the whole class to VanillaGradle
+    // (should be able to handle the dedicated check and getSender/getPlayer)
+    private final SpongeCommandManager commandManager;
 
-    public SpongeBrigadierCommandRegisterEvent(RegisterCommandEvent<LiteralCommandNode<?>> event) {
-        this.event = event;
+    public SpongeBrigadierCommandRegisterEvent(SpongeCommandManager commandManager) {
+        this.commandManager = commandManager;
     }
 
     /** {@inheritDoc} */
@@ -25,9 +27,10 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     }
 
     /** {@inheritDoc} */
+    @SuppressWarnings("unchecked")
     @Override
     public CommandDispatcher<Object> getDispatcher() {
-        return null;
+        return (CommandDispatcher<Object>) (Object) commandManager.getDispatcher();
     }
 
     /** {@inheritDoc} */

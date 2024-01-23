@@ -38,6 +38,7 @@ sponge {
 
 dependencies {
     compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly('org.spongepowered:sponge:1.20.2-11.0.0-SNAPSHOT')
     compileOnly(project(':common'))
 }
 
