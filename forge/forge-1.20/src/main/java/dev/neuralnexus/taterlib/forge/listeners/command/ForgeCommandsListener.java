@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.forge.listeners.command;
 
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.forge.event.command.ForgeBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.vanilla.event.command.VanillaCommandRegisterEvent;
 
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,8 +16,11 @@ public class ForgeCommandsListener {
      */
     @SubscribeEvent
     public void onRegisterBrigadierCommand(RegisterCommandsEvent event) {
-        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
+        CommandEvents.REGISTER_COMMAND.invoke(
+                new VanillaCommandRegisterEvent(
+                        event.getDispatcher(), event.getCommandSelection()));
         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                new ForgeBrigadierCommandRegisterEvent(event));
+                new VanillaBrigadierCommandRegisterEvent(
+                        event.getDispatcher(), event.getCommandSelection()));
     }
 }

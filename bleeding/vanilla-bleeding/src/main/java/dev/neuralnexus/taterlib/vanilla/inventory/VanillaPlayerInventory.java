@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
 import net.minecraft.world.entity.player.Inventory;
 
-/** The Vanilla implementation of {@link PlayerInventory} */
+/** Vanilla implementation of {@link PlayerInventory} */
 public class VanillaPlayerInventory extends VanillaInventory implements PlayerInventory {
     private final Inventory playerInventory;
 

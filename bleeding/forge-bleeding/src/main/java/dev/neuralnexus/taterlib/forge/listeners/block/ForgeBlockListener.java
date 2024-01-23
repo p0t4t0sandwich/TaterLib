@@ -1,7 +1,8 @@
 package dev.neuralnexus.taterlib.forge.listeners.block;
 
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
-import dev.neuralnexus.taterlib.forge.event.block.ForgeBlockBreakEvent;
+import dev.neuralnexus.taterlib.forge.event.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.vanilla.event.block.VanillaBlockBreakEvent;
 
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,6 +16,13 @@ public class ForgeBlockListener {
      */
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        BlockEvents.BLOCK_BREAK.invoke(new ForgeBlockBreakEvent(event));
+        // Assumes player is in the same world as the block, will be more accurate with mixins
+        BlockEvents.BLOCK_BREAK.invoke(
+                new VanillaBlockBreakEvent(
+                        event.getPlayer().getCommandSenderWorld(),
+                        event.getPlayer(),
+                        event.getPos(),
+                        event.getState(),
+                        new ForgeCancellableEventWrapper(event)));
     }
 }

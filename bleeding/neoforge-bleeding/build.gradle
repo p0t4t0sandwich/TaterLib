@@ -15,8 +15,7 @@ subsystems {
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
-    compileOnly(project(":vanilla:vanilla-1.20.2"))
+    compileOnly(project(':bleeding:vanilla-bleeding'))
 }
 
 tasks.withType(ProcessResources).configureEach {

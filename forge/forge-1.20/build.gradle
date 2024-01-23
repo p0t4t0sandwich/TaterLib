@@ -13,7 +13,7 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+//    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
     implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }
@@ -24,7 +24,7 @@ mixin {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.1_20.json".toString()]) {
         expand project.properties
     }
 }
@@ -46,4 +46,5 @@ reobf {
     shadowJar {}
 }
 
+tasks.reobfShadowJar.dependsOn('shadowJar')
 tasks.assemble.dependsOn('reobfShadowJar')

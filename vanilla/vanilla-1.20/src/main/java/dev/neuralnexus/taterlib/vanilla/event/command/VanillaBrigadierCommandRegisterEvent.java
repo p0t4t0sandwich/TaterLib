@@ -11,7 +11,6 @@ import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.vanilla.command.VanillaCommandSender;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 
@@ -19,15 +18,12 @@ import net.minecraft.commands.Commands;
 public class VanillaBrigadierCommandRegisterEvent
         implements BrigadierCommandRegisterEvent<CommandSourceStack> {
     private final CommandDispatcher<CommandSourceStack> dispatcher;
-    private final CommandBuildContext registryAccess;
     private final Commands.CommandSelection environment;
 
     public VanillaBrigadierCommandRegisterEvent(
             CommandDispatcher<CommandSourceStack> dispatcher,
-            CommandBuildContext registryAccess,
             Commands.CommandSelection environment) {
         this.dispatcher = dispatcher;
-        this.registryAccess = registryAccess;
         this.environment = environment;
     }
 

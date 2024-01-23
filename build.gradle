@@ -71,8 +71,7 @@ tasks.register('build_all') {
     dependsOn('build_1_17')
     dependsOn('build_1_18')
     dependsOn('build_1_19')
-    dependsOn('build_1_20')
-    dependsOn('build_1_20_2')
+    dependsOn('build_1_20_x')
     dependsOn('build_bleeding')
 }
 
@@ -799,37 +798,6 @@ tasks.register('build_1_19', Jar) {
     }
 }
 
-// --------------------------- Build 1.20 --------------------------------
-tasks.register('build_1_20', Jar) {
-    dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.20.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.20:build')
-    dependsOn(':forge:forge-1.20:build')
-    dependsOn(':sponge:sponge11:build')
-    dependsOn(':velocity:velocity3:build')
-
-    String mc_version = '1.20'
-    archiveFileName = "${project_name}-${mc_version}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus'
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        mergeJars('1.20', '1.20.2', '1.20', '1.20', '1.20', null, '11', '3')
-    }
-}
-
 // --------------------------- Build 1.20.x --------------------------------
 tasks.register('build_1_20_x', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
@@ -861,6 +829,8 @@ tasks.register('build_1_20_x', Jar) {
                 'Specification-Vendor': 'NeuralNexus',
                 'Implementation-Version': version,
                 'Implementation-Vendor': 'NeuralNexus',
+                'FMLCorePluginContainsFMLMod': 'true',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "${project_id}.mixins.forge.patch.1_20_2.json".toString()
     }
 
