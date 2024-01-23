@@ -16,7 +16,7 @@ dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
-    compileOnly(project(":vanilla:vanilla-${vanilla_version}"))
+    compileOnly(project(":vanilla:vanilla-${minecraft_version}"))
 }
 
 tasks.withType(ProcessResources).configureEach {

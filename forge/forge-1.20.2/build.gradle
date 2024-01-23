@@ -44,8 +44,8 @@ shadowJar {
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
 
-tasks.assemble.dependsOn('shadowJar')
-
 reobf {
     shadowJar {}
 }
+
+tasks.assemble.dependsOn('reobfShadowJar')
