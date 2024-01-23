@@ -6,12 +6,12 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.vanilla.command.VanillaSender;
+import dev.neuralnexus.taterlib.vanilla.command.VanillaCommandSender;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
@@ -54,8 +54,8 @@ public class NeoForgeCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public Sender getSender(CommandSourceStack source) {
-        return new VanillaSender(source);
+    public CommandSender getSender(CommandSourceStack source) {
+        return new VanillaCommandSender(source);
     }
 
     /** {@inheritDoc} */

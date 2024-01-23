@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.api;
 
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.hooks.Hook;
 import dev.neuralnexus.taterlib.hooks.hybrids.ArclightHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
@@ -103,13 +103,13 @@ public class TaterAPIProvider {
     /**
      * Check Sender permissions
      *
-     * @param sender The sender
+     * @param commandSender The sender
      * @param permission The permission
      */
-    public static boolean hasPermission(Sender sender, String permission) {
+    public static boolean hasPermission(CommandSender commandSender, String permission) {
         return hooks.stream()
                 .filter(hook -> hook instanceof PermissionsHook)
-                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(sender, permission));
+                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(commandSender, permission));
     }
 
     /**

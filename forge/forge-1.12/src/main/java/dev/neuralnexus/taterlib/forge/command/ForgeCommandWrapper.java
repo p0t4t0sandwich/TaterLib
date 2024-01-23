@@ -44,7 +44,7 @@ public class ForgeCommandWrapper extends CommandBase {
         if (sender instanceof EntityPlayer) {
             command.execute(new ForgePlayer((EntityPlayer) sender), command.getName(), args);
         } else {
-            command.execute(new ForgeSender(sender, command), command.getName(), args);
+            command.execute(new ForgeCommandSender(sender, command), command.getName(), args);
         }
     }
 }

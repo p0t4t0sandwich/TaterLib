@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.hooks.permissions;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
@@ -20,17 +20,17 @@ public class ForgePermissionsHook implements PermissionsHook {
     /**
      * Get if a sender has a permission
      *
-     * @param sender The sender to check
+     * @param commandSender The sender to check
      * @param permission The permission to check
      * @return If the sender has the permission
      */
     @Override
-    public boolean hasPermission(Sender sender, String permission) {
-        if (sender.hasPermission(4)) {
+    public boolean hasPermission(CommandSender commandSender, String permission) {
+        if (commandSender.hasPermission(4)) {
             return true;
         }
 
-        if (sender instanceof Player) {
+        if (commandSender instanceof Player) {
             return PermissionAPI.getRegisteredNodes().stream()
                     .filter(node -> node.getType() == PermissionTypes.BOOLEAN)
                     .filter(node -> node.getNodeName().equals(permission))
@@ -40,9 +40,9 @@ public class ForgePermissionsHook implements PermissionsHook {
                                             node.getDefaultResolver()
                                                     .resolve(
                                                             (ServerPlayer)
-                                                                    ((ForgePlayer) sender)
+                                                                    ((ForgePlayer) commandSender)
                                                                             .getPlayer(),
-                                                            sender.getUniqueId()));
+                                                            commandSender.getUniqueId()));
         }
         return false;
     }

@@ -25,7 +25,7 @@ public class VelocityCommandWrapper implements RawCommand {
                     invocation.arguments().split(" "));
         } else {
             callback.execute(
-                    new VelocitySender(sender),
+                    new VelocityCommandSender(sender),
                     invocation.alias(),
                     invocation.arguments().split(" "));
         }

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bungee.hooks.permissions;
 
-import dev.neuralnexus.taterlib.bungee.command.BungeeSender;
+import dev.neuralnexus.taterlib.bungee.command.BungeeCommandSender;
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
 
@@ -17,16 +17,16 @@ public class BungeePermissionsHook implements PermissionsHook {
     /**
      * Get if a sender has a permission
      *
-     * @param sender The sender to check
+     * @param commandSender The sender to check
      * @param permission The permission to check
      * @return If the sender has the permission
      */
     @Override
-    public boolean hasPermission(Sender sender, String permission) {
-        if (sender instanceof Player) {
-            return ((BungeePlayer) sender).getPlayer().hasPermission(permission);
+    public boolean hasPermission(CommandSender commandSender, String permission) {
+        if (commandSender instanceof Player) {
+            return ((BungeePlayer) commandSender).getPlayer().hasPermission(permission);
         } else {
-            return ((BungeeSender) sender).getSender().hasPermission(permission);
+            return ((BungeeCommandSender) commandSender).getSender().hasPermission(permission);
         }
     }
 }

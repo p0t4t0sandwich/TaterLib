@@ -28,7 +28,7 @@ public class SpongeCommandWrapper implements CommandExecutor {
             if (src instanceof Player) {
                 callback.execute(new SpongePlayer((Player) src), commandName, args);
             }
-            callback.execute(new SpongeSender(src), commandName, args);
+            callback.execute(new SpongeCommandSender(src), commandName, args);
         } catch (Exception e) {
             e.printStackTrace();
         }

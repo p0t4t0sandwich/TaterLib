@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.player;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
@@ -9,7 +9,7 @@ import dev.neuralnexus.taterlib.placeholder.PlaceholderParser;
 import dev.neuralnexus.taterlib.utils.Location;
 
 /** The interface for a Player */
-public interface Player extends Sender, Entity {
+public interface Player extends CommandSender, Entity {
     /**
      * Get the display name of the player
      *

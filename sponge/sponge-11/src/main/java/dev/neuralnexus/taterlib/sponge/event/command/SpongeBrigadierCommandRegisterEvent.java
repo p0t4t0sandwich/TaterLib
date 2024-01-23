@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.sponge.event.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
 
@@ -43,7 +43,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
 
     /** {@inheritDoc} */
     @Override
-    public Sender getSender(Object source) {
+    public CommandSender getSender(Object source) {
         return null;
     }
 

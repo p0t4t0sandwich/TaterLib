@@ -8,7 +8,7 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
@@ -30,7 +30,7 @@ public class VelocityBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public Sender getSender(CommandSource source) {
+    public CommandSender getSender(CommandSource source) {
         return null;
     }
 

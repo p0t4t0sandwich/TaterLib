@@ -5,9 +5,9 @@ import static net.minecraft.server.command.CommandManager.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.fabric.command.FabricSender;
+import dev.neuralnexus.taterlib.fabric.command.FabricCommandSender;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.player.Player;
 
@@ -53,8 +53,8 @@ public class FabricBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public Sender getSender(ServerCommandSource source) {
-        return new FabricSender(source);
+    public CommandSender getSender(ServerCommandSource source) {
+        return new FabricCommandSender(source);
     }
 
     /** {@inheritDoc} */

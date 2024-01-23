@@ -160,3 +160,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Player#getIPAddress()`
 - Created a custom loader implementation, to allow for better compatibility with hybrids, Sinytra Connector, and
   SpongeForge
+- Added `SpongeForge` server type
+- Added Brigadier support for Sponge
+- Renamed `Sender` to `CommandSender`
