@@ -10,7 +10,6 @@ sourceCompatibility = targetCompatibility = java_version
 dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':bleeding:vanilla-bleeding'))
-    implementation(project(path: ":vanilla:vanilla-${vanilla_version}", configuration: 'shadow'))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")

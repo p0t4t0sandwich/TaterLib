@@ -3,9 +3,6 @@ plugins {
     id('org.spongepowered.mixin') version('0.7.+')
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
-apply {
-    plugin('org.spongepowered.mixin')
-}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
@@ -16,25 +13,25 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+//    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
     implementation(project(':bleeding:vanilla-bleeding'))
 }
 
+mixin {
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap.bleeding.json")
+    config("${project_id}.mixins.forge.bleeding.json")
+}
+
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.bleeding.json".toString(), "${project_id}.mixins.forge.patch.bleeding.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.patch.bleeding.json".toString()]) {
         expand project.properties
     }
 }
 
-mixin {
-    add(sourceSets.main, "${project_id}.forge.bleeding.refmap.json")
-    config("${project_id}.mixins.forge.bleeding.json")
-}
-
 shadowJar {
     dependencies {
-        include(project(':bleeding:vanilla-bleeding'))
+        include(project(":bleeding:vanilla-bleeding"))
 //        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
     // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
@@ -48,3 +45,6 @@ shadowJar {
 reobf {
     shadowJar {}
 }
+
+tasks.reobfShadowJar.dependsOn('shadowJar')
+tasks.assemble.dependsOn('reobfShadowJar')

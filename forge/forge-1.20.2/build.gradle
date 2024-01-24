@@ -15,14 +15,14 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 //    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    compileOnly(project(":forge:forge-1.20"))
-    compileOnly(project(":vanilla:vanilla-1.20"))
+    compileOnly(project(':forge:forge-1.20'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
     implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.mixins.forge.refmap_1_20_2.json")
-    config("${project_id}.mixins.forge_1_20_2.json")
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap.1_20_2.json")
+    config("${project_id}.mixins.forge.1_20_2.json")
 }
 
 tasks.withType(ProcessResources).configureEach {
