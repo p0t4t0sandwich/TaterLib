@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.event.server;
 
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.bukkit.Bukkit;
 
@@ -16,7 +16,7 @@ public class BukkitServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Server getServer() {
+    public SimpleServer getServer() {
         return new BukkitServer(Bukkit.getServer());
     }
 }

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.velocity.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 
@@ -9,7 +9,7 @@ import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 public class VelocityServerEvent implements ServerEvent {
     /** {@inheritDoc} */
     @Override
-    public Server getServer() {
+    public SimpleServer getServer() {
         return new VelocityProxyServer(VelocityTaterLibPlugin.getProxyServer());
     }
 }

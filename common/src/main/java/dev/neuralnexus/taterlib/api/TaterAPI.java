@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.api;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
 
@@ -13,7 +13,7 @@ public class TaterAPI {
     private final String configFolder;
     private Predicate<String> isModLoaded = (modid) -> false;
     private Predicate<String> isPluginLoaded = (pluginName) -> false;
-    private Supplier<Server> minecraftServer = () -> null;
+    private Supplier<SimpleServer> minecraftServer = () -> null;
 
     public TaterAPI(String configFolder) {
         this.configFolder = configFolder;
@@ -90,7 +90,7 @@ public class TaterAPI {
      *
      * @return The minecraft server
      */
-    public Server getServer() {
+    public SimpleServer getServer() {
         return minecraftServer.get();
     }
 
@@ -100,7 +100,7 @@ public class TaterAPI {
      * @param minecraftServer The minecraftServer supplier
      */
     @ApiStatus.Internal
-    public void setServer(Supplier<Server> minecraftServer) {
+    public void setServer(Supplier<SimpleServer> minecraftServer) {
         this.minecraftServer = minecraftServer;
     }
 }

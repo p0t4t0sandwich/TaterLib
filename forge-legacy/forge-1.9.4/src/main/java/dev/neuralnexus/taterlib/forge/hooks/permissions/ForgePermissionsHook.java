@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.hooks.permissions;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.forge.command.ForgeSender;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
@@ -25,7 +25,7 @@ public class ForgePermissionsHook implements PermissionsHook {
      * @return If the sender has the permission
      */
     @Override
-    public boolean hasPermission(Sender sender, String permission) {
+    public boolean hasPermission(CommandSender sender, String permission) {
         if (sender.hasPermission(4)) {
             return true;
         }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.event.server;
 
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 /** Abstract class for server events. */
 public interface ServerEvent {
@@ -9,5 +9,5 @@ public interface ServerEvent {
      *
      * @return The server.
      */
-    Server getServer();
+    SimpleServer getServer();
 }

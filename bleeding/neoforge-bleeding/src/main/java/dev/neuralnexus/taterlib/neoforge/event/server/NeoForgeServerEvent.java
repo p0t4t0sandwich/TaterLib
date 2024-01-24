@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.neoforge.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import net.neoforged.neoforge.event.server.ServerLifecycleEvent;
@@ -17,7 +17,7 @@ public class NeoForgeServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Server getServer() {
+    public SimpleServer getServer() {
         return new VanillaServer(ServerLifecycleHooks.getCurrentServer());
     }
 }

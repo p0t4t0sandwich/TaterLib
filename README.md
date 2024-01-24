@@ -163,3 +163,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `SpongeForge` server type
 - Added Brigadier support for Sponge
 - Renamed `Sender` to `CommandSender`
+- Split `Server` into `SimpleServer` and `ProxyServer`
