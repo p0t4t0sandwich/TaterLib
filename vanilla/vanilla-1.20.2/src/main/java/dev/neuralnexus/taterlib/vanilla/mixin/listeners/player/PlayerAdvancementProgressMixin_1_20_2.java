@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.vanilla.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20;
+import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
 
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.server.PlayerAdvancements;
@@ -31,7 +31,7 @@ public abstract class PlayerAdvancementProgressMixin_1_20_2 {
             String criterionName,
             CallbackInfoReturnable<Boolean> cir) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new VanillaPlayerAdvancementEvent_1_20.AdvancementProgress(
-                        this.player, advancementHolder.value(), criterionName));
+                new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
+                        this.player, advancementHolder, criterionName));
     }
 }

@@ -1,0 +1,42 @@
+package dev.neuralnexus.taterlib.sponge.command;
+
+import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+
+import net.kyori.adventure.text.Component;
+
+import org.spongepowered.api.command.CommandCause;
+import org.spongepowered.api.command.CommandExecutor;
+import org.spongepowered.api.command.CommandResult;
+import org.spongepowered.api.command.exception.CommandException;
+import org.spongepowered.api.command.parameter.CommandContext;
+import org.spongepowered.api.command.parameter.Parameter;
+import org.spongepowered.api.entity.living.player.Player;
+
+/** Wraps a command callback into a Sponge Command. */
+public class SpongeCommandWrapper implements CommandExecutor {
+    private final Command.Callback callback;
+    private final String commandName;
+
+    public SpongeCommandWrapper(Command.Callback callback, String commandName) {
+        this.callback = callback;
+        this.commandName = commandName;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CommandResult execute(CommandContext context) throws CommandException {
+        try {
+            String[] args = context.requireOne(Parameter.string().key("args").build()).split(" ");
+            CommandCause sender = context.cause();
+            if (sender instanceof Player) {
+                callback.execute(new SpongePlayer((Player) sender), commandName, args);
+            }
+            callback.execute(new SpongeCommandSender(sender), commandName, args);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return CommandResult.builder().result(0).error(Component.text(e.getMessage())).build();
+        }
+        return CommandResult.builder().result(1).build();
+    }
+}

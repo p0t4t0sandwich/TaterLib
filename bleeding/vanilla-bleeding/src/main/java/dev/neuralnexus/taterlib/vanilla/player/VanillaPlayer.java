@@ -7,13 +7,10 @@ import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.vanilla.inventory.VanillaPlayerInventory;
 
-import io.netty.buffer.Unpooled;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -104,16 +101,10 @@ public class VanillaPlayer extends VanillaEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
-        String[] channelParts = channel.split(":");
-        if (channelParts.length == 1) {
-            channelParts = new String[] {"tl-user-forgot", channelParts[0]};
-        }
-        ResourceLocation resourceLocation = new ResourceLocation(channelParts[0], channelParts[1]);
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
-                                resourceLocation,
-                                new FriendlyByteBuf(Unpooled.wrappedBuffer(data))));
+                                new VanillaCustomPacketPayload_1_20_2(channel, data)));
     }
 
     /** {@inheritDoc} */
@@ -125,7 +116,7 @@ public class VanillaPlayer extends VanillaEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public int getPing() {
-        return ((ServerPlayer) player).latency;
+        return ((ServerPlayer) player).connection.latency();
     }
 
     /** {@inheritDoc} */

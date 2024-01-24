@@ -18,28 +18,31 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-1.20.2"))
+    implementation(project(':bleeding:vanilla-bleeding'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge_1_20_2.json".toString(), "${project_id}.mixins.forge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.bleeding.json".toString(), "${project_id}.mixins.forge.patch.bleeding.json".toString()]) {
         expand project.properties
     }
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.forge.refmap_1_20_2.json")
-    config("${project_id}.mixins.forge_1_20_2.json")
+    add(sourceSets.main, "${project_id}.forge.bleeding.refmap.json")
+    config("${project_id}.mixins.forge.bleeding.json")
 }
 
 shadowJar {
     dependencies {
-        include(project(':vanilla:vanilla-1.20.2'))
+        include(project(':bleeding:vanilla-bleeding'))
+//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
+    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
+    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.forge.mixin.fake")
+    relocate("${group_id}.${project_id}.vanilla.forge", "${group_id}.${project_id}.vanilla.forge")
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-forge-bleeding-${version}.jar"
 }
 
 reobf {

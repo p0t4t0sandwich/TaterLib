@@ -104,55 +104,6 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     }
 }
 
-ext.mergeJars = { vanilla_version, bukkit_version, bungee_version, fabric_version, forge_version, neoforge_version, sponge_version, velocity_version ->
-    println("Building using Vanilla ${vanilla_version}, Bukkit ${bukkit_version}, Bungee ${bungee_version}, Fabric ${fabric_version}, Forge ${forge_version}, NeoForge ${neoforge_version}, Sponge ${sponge_version}, Velocity ${velocity_version}")
-
-    String dir = "./target"
-    ArrayList<File> jarFiles = [
-            file("${dir}/${project_id}-common-${version}.jar"),
-            file("${dir}/${project_id}-loader-0.1.0.jar")
-    ]
-    if (vanilla_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-vanilla-${vanilla_version}-${version}.jar"))
-    }
-    if (bukkit_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-bukkit-${bukkit_version}-${version}.jar"))
-    }
-    if (bungee_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-bungee-${bungee_version}-${version}.jar"))
-    }
-    if (fabric_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-fabric-${fabric_version}-${version}.jar"))
-    }
-    if (forge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-forge-${forge_version}-${version}.jar"))
-    }
-    if (neoforge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-neoforge-${neoforge_version}-${version}.jar"))
-    }
-    if (sponge_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-sponge${sponge_version}-${version}.jar"))
-    }
-    if (velocity_version != null) {
-        jarFiles.add(file("${dir}/${project_id}-velocity${velocity_version}-${version}.jar"))
-    }
-
-    return jarFiles.collect {
-        if (it.name.contains('-forge') && neoforge_version != null) {
-            zipTree(it).matching {
-                exclude('META-INF/mods.toml')
-            }
-        } else if ((it.name.contains('sponge4') || it.name.contains('sponge5')
-                || it.name.contains('sponge6') || it.name.contains('sponge7')) && forge_version != null) {
-            zipTree(it).matching {
-                exclude('mcmod.info')
-            }
-        } else {
-            zipTree(it)
-        }
-    }
-}
-
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
@@ -219,12 +170,13 @@ tasks.register('build_api_platforms', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.20.2', '1.20', '1.20.2', '1.20.2', '1.20.2', '11', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build Entry Point Spoof --------------------------------
 tasks.register('build_entrypoint_spoof', Jar) {
+    // TODO: remove this redundant garbage
     dependsOn('tooling:entrypoint-spoof:build')
 
     archiveFileName = "entrypoint-spoof-${version}.jar"
@@ -251,13 +203,15 @@ tasks.register('build_legacy_forge', Exec) {
 
 // --------------------------- Build b1.7.3 --------------------------------
 tasks.register('build_b1_7_3', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("b1.7.3"))
+            .build()
+
     dependsOn('build_api')
-    String bukkit = null
-    try {
-        dependsOn(':bukkit:bukkit-b1.7.3:build')
-        bukkit = 'b1.7.3'
-    } catch (Exception e) {
-        println(e)
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
     }
 
     String mc_version = 'b1.7.3'
@@ -277,21 +231,23 @@ tasks.register('build_b1_7_3', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, bukkit, null, null, null, null, null, null)
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.2.5 --------------------------------
 tasks.register('build_1_2_5', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.2.5"))
+            .put("bungee", Arrays.asList("1.4.7"))
+            .build()
+
     dependsOn('build_api')
-    String bukkit = null
-    try {
-        dependsOn(':bukkit:bukkit-1.2.5:build')
-        bukkit = '1.2.5'
-    } catch (Exception e) {
-        println(e)
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
     }
-    dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.2.5'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -310,21 +266,23 @@ tasks.register('build_1_2_5', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.6.4 --------------------------------
 tasks.register('build_1_6_4', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.6.4"))
+            .put("bungee", Arrays.asList("1.4.7"))
+            .build()
+
     dependsOn('build_api')
-    String bukkit = null
-    try {
-        dependsOn(':bukkit:bukkit-1.6.4:build')
-        bukkit = '1.6.4'
-    } catch (Exception e) {
-        println(e)
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
     }
-    dependsOn(':bungee:bungee-1.4.7:build')
 
     String mc_version = '1.6.4'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -343,24 +301,30 @@ tasks.register('build_1_6_4', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, bukkit, '1.4.7', null, null, null, null, null)
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.7.10 --------------------------------
 tasks.register('build_1_7_10', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.7.10"))
+            .put("bungee", Arrays.asList("1.4.7"))
+            .put("fabric", Arrays.asList("1.7.10"))
+            .put("forge", Arrays.asList("1.7.10"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    String bukkit = null
-    try {
-        dependsOn(':bukkit:bukkit-1.7.10:build')
-        bukkit = '1.7.10'
-    } catch (Exception e) {
-        println(e)
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            if (platform == 'forge') {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
+        }
     }
-    dependsOn(':bungee:bungee-1.4.7:build')
-    dependsOn(':fabric:fabric-1.7.10:build')
-    dependsOn('build_legacy_forge')
-    dependsOn(':velocity:velocity3:build')
 
     String mc_version = '1.7.10'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -379,19 +343,31 @@ tasks.register('build_1_7_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, bukkit, '1.4.7', '1.7.10', '1.7.10', null, null, '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.8 --------------------------------
 tasks.register('build_1_8', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.8.8"))
+            .put("bungee", Arrays.asList("1.8"))
+            .put("fabric", Arrays.asList("1.8.9"))
+            .put("forge", Arrays.asList("1.8.9"))
+            .put("sponge", Arrays.asList("4"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.8.8:build')
-    dependsOn(':bungee:bungee-1.8:build')
-    dependsOn(':fabric:fabric-1.8.9:build')
-    dependsOn('build_legacy_forge')
-    dependsOn(':sponge:sponge4:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            if (platform == 'forge') {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
+        }
+    }
 
     String mc_version = '1.8'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -410,21 +386,33 @@ tasks.register('build_1_8', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.8.8', '1.8', '1.8.9', '1.8.9', null, '4', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.9 --------------------------------
 tasks.register('build_1_9', Jar) {
-    dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.8.8:build')
-    dependsOn(':bungee:bungee-1.8:build')
-    dependsOn(':fabric:fabric-1.9.4:build')
-    dependsOn('build_legacy_forge')
-    dependsOn(':sponge:sponge5:build')
-    dependsOn(':velocity:velocity3:build')
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.8.8"))
+            .put("bungee", Arrays.asList("1.8"))
+            .put("fabric", Arrays.asList("1.9.4"))
+            .put("forge", Arrays.asList("1.9.4"))
+            .put("sponge", Arrays.asList("5"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
 
-    String mc_version = '1.9'
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            if (platform == 'forge') {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
+        }
+    }
+
+    String mc_version = '1.9.4'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -441,19 +429,31 @@ tasks.register('build_1_9', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.8.8', '1.8', '1.9.4', '1.9.4', null, '5', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.10 --------------------------------
 tasks.register('build_1_10', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.8.8"))
+            .put("bungee", Arrays.asList("1.8"))
+            .put("fabric", Arrays.asList("1.10.2"))
+            .put("forge", Arrays.asList("1.10.2"))
+            .put("sponge", Arrays.asList("5"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.8.8:build')
-    dependsOn(':bungee:bungee-1.8:build')
-    dependsOn(':fabric:fabric-1.10.2:build')
-    dependsOn('build_legacy_forge')
-    dependsOn(':sponge:sponge5:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            if (platform == 'forge') {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
+        }
+    }
 
     String mc_version = '1.10'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -472,21 +472,33 @@ tasks.register('build_1_10', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.8.8', '1.8', '1.10.2', '1.10.2', null, '5', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.11 --------------------------------
 tasks.register('build_1_11', Jar) {
-    dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.8.8:build')
-    dependsOn(':bungee:bungee-1.8:build')
-    dependsOn(':fabric:fabric-1.11.2:build')
-    dependsOn('build_legacy_forge')
-    dependsOn(':sponge:sponge6:build')
-    dependsOn(':velocity:velocity3:build')
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.8.8"))
+            .put("bungee", Arrays.asList("1.8"))
+            .put("fabric", Arrays.asList("1.11.2"))
+            .put("forge", Arrays.asList("1.11.2"))
+            .put("sponge", Arrays.asList("6"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
 
-    String mc_version = '1.11'
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            if (platform == 'forge') {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
+        }
+    }
+
+    String mc_version = '1.11.2'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -504,21 +516,29 @@ tasks.register('build_1_11', Jar) {
     }
 
     from {
-        mergeJars(null, '1.8.8', '1.8', '1.11.2', '1.11.2', null, '6', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.12 --------------------------------
 tasks.register('build_1_12', Jar) {
-    dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.8.8:build')
-    dependsOn(':bungee:bungee-1.12:build')
-    dependsOn(':fabric:fabric-1.12.2:build')
-    dependsOn(':forge:forge-1.12:build')
-    dependsOn(':sponge:sponge7:build')
-    dependsOn(':velocity:velocity3:build')
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.8.8"))
+            .put("bungee", Arrays.asList("1.12"))
+            .put("fabric", Arrays.asList("1.12.2"))
+            .put("forge", Arrays.asList("1.12.2"))
+            .put("sponge", Arrays.asList("7"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
 
-    String mc_version = '1.12'
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    String mc_version = '1.12.2'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -536,17 +556,26 @@ tasks.register('build_1_12', Jar) {
     }
 
     from {
-        mergeJars(null, '1.8.8', '1.12', '1.12.2', '1.12.2', null, '7', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.13 --------------------------------
 tasks.register('build_1_13', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.13.2"))
+            .put("bungee", Arrays.asList("1.12"))
+            .put("forge", Arrays.asList("1.13.2"))
+            .put("sponge", Arrays.asList("8"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.13.2:build')
-    dependsOn(':bungee:bungee-1.12:build')
-    dependsOn(':forge:forge-1.13:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.13'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -566,18 +595,27 @@ tasks.register('build_1_13', Jar) {
     }
 
     from {
-        mergeJars(null, '1.13.2', '1.12', null, '1.13.2', null, null, '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.14 --------------------------------
 tasks.register('build_1_14', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.13.2"))
+            .put("bungee", Arrays.asList("1.12"))
+            .put("fabric", Arrays.asList("1.14"))
+            .put("forge", Arrays.asList("1.14.4"))
+            .put("sponge", Arrays.asList("8"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.13.2:build')
-    dependsOn(':bungee:bungee-1.12:build')
-    dependsOn(':fabric:fabric-1.14:build')
-    dependsOn(':forge:forge-1.14:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.14'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -597,19 +635,27 @@ tasks.register('build_1_14', Jar) {
     }
 
     from {
-        mergeJars(null, '1.13.2', '1.12', '1.14', '1.14.4', null, null, '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.15 --------------------------------
 tasks.register('build_1_15', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.15"))
+            .put("forge", Arrays.asList("1.15.1"))
+            .put("sponge", Arrays.asList("8"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.15:build')
-    dependsOn(':forge:forge-1.15:build')
-    dependsOn(':sponge:sponge8:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.15'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -629,19 +675,27 @@ tasks.register('build_1_15', Jar) {
     }
 
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.15', '1.15.1', null, '8', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.16 --------------------------------
 tasks.register('build_1_16', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.16"))
+            .put("forge", Arrays.asList("1.16.3"))
+            .put("sponge", Arrays.asList("8"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.16:build')
-    dependsOn(':forge:forge-1.16:build')
-    dependsOn(':sponge:sponge8:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.16'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -661,19 +715,27 @@ tasks.register('build_1_16', Jar) {
     }
 
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.16', '1.16.3', null, '8', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.17 --------------------------------
 tasks.register('build_1_17', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.17"))
+            .put("forge", Arrays.asList("1.17"))
+            .put("sponge", Arrays.asList("9"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.17:build')
-    dependsOn(':forge:forge-1.17:build')
-    dependsOn(':sponge:sponge9:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.17'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -693,19 +755,27 @@ tasks.register('build_1_17', Jar) {
     }
 
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.17', '1.17.1', null, '9', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.18 --------------------------------
 tasks.register('build_1_18', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.18"))
+            .put("forge", Arrays.asList("1.18"))
+            .put("sponge", Arrays.asList("9"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.18:build')
-    dependsOn(':forge:forge-1.18:build')
-    dependsOn(':sponge:sponge9:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.18'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -725,19 +795,27 @@ tasks.register('build_1_18', Jar) {
     }
 
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18', null, '9', '3')
+        bundleJars(platformVersions)
     }
 }
 
 // --------------------------- Build 1.18.2 --------------------------------
 tasks.register('build_1_18_2', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.18"))
+            .put("forge", Arrays.asList("1.18.2"))
+            .put("sponge", Arrays.asList("9"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.18:build')
-    dependsOn(':forge:forge-1.18.2:build')
-    dependsOn(':sponge:sponge9:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.18.2'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -757,7 +835,7 @@ tasks.register('build_1_18_2', Jar) {
     }
 
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.18', '1.18.2', null, '9', '3')
+        bundleJars(platformVersions)
     }
 
     // entity.level.getBiome(entity.blockPosition()).getRegistryName();
@@ -769,13 +847,21 @@ tasks.register('build_1_18_2', Jar) {
 
 // --------------------------- Build 1.19 --------------------------------
 tasks.register('build_1_19', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19"))
+            .put("forge", Arrays.asList("1.19"))
+            .put("sponge", Arrays.asList("10"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
     dependsOn('build_api')
-    dependsOn(':bukkit:bukkit-1.15.2:build')
-    dependsOn(':bungee:bungee-1.20:build')
-    dependsOn(':fabric:fabric-1.19:build')
-    dependsOn(':forge:forge-1.19:build')
-    dependsOn(':sponge:sponge10:build')
-    dependsOn(':velocity:velocity3:build')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
 
     String mc_version = '1.19'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
@@ -794,7 +880,7 @@ tasks.register('build_1_19', Jar) {
         into("META-INF")
     }
     from {
-        mergeJars(null, '1.15.2', '1.20', '1.19', '1.19', null, '10', '3')
+        bundleJars(platformVersions)
     }
 }
 
@@ -846,13 +932,13 @@ tasks.register('build_1_20_x', Jar) {
 tasks.register('build_bleeding', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
             .put("bukkit", Arrays.asList("bleeding"))
-            .put("bungee", Arrays.asList("1.20"))
+            .put("bungee", Arrays.asList("bleeding"))
             .put("fabric", Arrays.asList("bleeding"))
             .put("forge", Arrays.asList("bleeding"))
             .put("neoforge", Arrays.asList("bleeding"))
-            .put("sponge", Arrays.asList("11"))
+            .put("sponge", Arrays.asList("bleeding"))
             .put("vanilla", Arrays.asList("bleeding"))
-            .put("velocity", Arrays.asList("3"))
+            .put("velocity", Arrays.asList("bleeding"))
             .build()
 
     dependsOn('build_api')
@@ -872,8 +958,10 @@ tasks.register('build_bleeding', Jar) {
                 'Specification-Version': version,
                 'Specification-Vendor': 'NeuralNexus',
                 'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus'
-//                'MixinConfigs': "${project_id}.mixins.forge.json, ${project_id}.mixins.forge_1_20.json, ${project_id}.mixins.forge_1_20_2.json"
+                'Implementation-Vendor': 'NeuralNexus',
+                'FMLCorePluginContainsFMLMod': 'true',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': "${project_id}.mixins.forge.patch.1_20_2.json".toString()
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {

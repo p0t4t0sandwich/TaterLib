@@ -6,14 +6,12 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.forge.listeners.entity.ForgeEntityListener;
-import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener_1_20;
-import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener_1_20_2;
+import dev.neuralnexus.taterlib.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
@@ -39,12 +37,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
         MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
         MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-        if (TaterAPIProvider.minecraftVersion()
-                .isInRange(true, MinecraftVersion.V1_20, false, MinecraftVersion.V1_20_2)) {
-            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
-        } else if (TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2)) {
-            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());
-        }
+        MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
         MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
     }
 

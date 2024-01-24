@@ -56,10 +56,13 @@ rootProject.name = 'TaterLib'
 include(
         // Bleeding
         'bleeding:bukkit-bleeding', // 1.20.4 No changes so far
+        'bleeding:bungee-bleeding', // 1.20.4 No changes so far
         'bleeding:fabric-bleeding', // 1.20.4 No changes so far
         'bleeding:forge-bleeding', // 1.20.4 No changes so far
         'bleeding:neoforge-bleeding', // 1.20.4 No changes so far
+        'bleeding:sponge-bleeding', // 1.20.4 No changes so far
         'bleeding:vanilla-bleeding', // 1.20.4 No changes so far
+        'bleeding:velocity-bleeding', // 1.20.4 No changes so far
 
         // Vanilla
         'vanilla:vanilla-1.20',
@@ -109,11 +112,11 @@ include(
         'fabric:fabric-1.20.2',
 
         // Forge
-        'forge:forge-1.12',
-        'forge:forge-1.13',
-        'forge:forge-1.14',
-        'forge:forge-1.15',
-        'forge:forge-1.16',
+        'forge:forge-1.12.2',
+        'forge:forge-1.13.2',
+        'forge:forge-1.14.4',
+        'forge:forge-1.15.1',
+        'forge:forge-1.16.3',
         'forge:forge-1.17',
         'forge:forge-1.18',
         'forge:forge-1.18.2',
@@ -125,13 +128,13 @@ include(
         'neoforge:neoforge-1.20.2',
 
         // Sponge
-        'sponge:sponge4',
-        'sponge:sponge5',
-        'sponge:sponge6',
-        'sponge:sponge7',
-        'sponge:sponge8',
-        'sponge:sponge9',
-        'sponge:sponge10',
+        'sponge:sponge-4',
+        'sponge:sponge-5',
+        'sponge:sponge-6',
+        'sponge:sponge-7',
+        'sponge:sponge-8',
+        'sponge:sponge-9',
+        'sponge:sponge-10',
         'sponge:sponge-11',
 
         // Velocity

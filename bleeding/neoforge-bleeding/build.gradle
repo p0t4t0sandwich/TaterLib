@@ -26,5 +26,5 @@ tasks.withType(ProcessResources).configureEach {
 
 jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-neoforge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-neoforge-bleeding-${version}.jar"
 }

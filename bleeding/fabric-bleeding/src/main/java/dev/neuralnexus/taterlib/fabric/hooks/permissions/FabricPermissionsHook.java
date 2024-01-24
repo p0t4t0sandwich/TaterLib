@@ -28,7 +28,8 @@ public class FabricPermissionsHook implements PermissionsHook {
         if (commandSender instanceof Player) {
             return Permissions.check(((VanillaPlayer) commandSender).getPlayer(), permission, 4);
         } else {
-            return Permissions.check(((VanillaCommandSender) commandSender).getSender(), permission, 4);
+            return Permissions.check(
+                    ((VanillaCommandSender) commandSender).getSender(), permission, 4);
         }
     }
 }

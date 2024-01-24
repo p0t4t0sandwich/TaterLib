@@ -37,7 +37,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge8.TaterLib.sponge.sponge8.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -77,7 +76,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge9.TaterLib.sponge.sponge9.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -110,7 +108,6 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar" />
         </processorPath>
-        <module name="sponge.sponge7.TaterLib.sponge.sponge7.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -137,7 +134,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
         </processorPath>
-        <module name="sponge.sponge5.TaterLib.sponge.sponge5.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -164,7 +160,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
         </processorPath>
-        <module name="sponge.sponge6.TaterLib.sponge.sponge6.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -198,7 +193,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="TaterLib.sponge.sponge-11.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -239,7 +233,6 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
-        <module name="TaterLib.velocity.velocity-3.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -279,7 +272,6 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge10.TaterLib.sponge.sponge10.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -305,7 +297,6 @@
           <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
           <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
         </processorPath>
-        <module name="sponge4.TaterLib.sponge.sponge4.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -623,10 +614,44 @@
     <bytecodeTargetLevel target="1.8">
       <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.main" target="17" />
       <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.test" target="17" />
+      <module name="fabric-bleeding.TaterLib.bleeding.fabric-bleeding.main" target="17" />
+      <module name="fabric-bleeding.TaterLib.bleeding.fabric-bleeding.test" target="17" />
+      <module name="fabric.fabric-1.17.TaterLib.fabric.fabric-1.17.main" target="16" />
+      <module name="fabric.fabric-1.17.TaterLib.fabric.fabric-1.17.test" target="16" />
+      <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.main" target="17" />
+      <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.test" target="17" />
+      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.main" target="17" />
+      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.test" target="17" />
+      <module name="fabric.fabric-1.20.2.TaterLib.fabric.fabric-1.20.2.main" target="17" />
+      <module name="fabric.fabric-1.20.2.TaterLib.fabric.fabric-1.20.2.test" target="17" />
+      <module name="fabric.fabric-1.20.TaterLib.fabric.fabric-1.20.main" target="17" />
+      <module name="fabric.fabric-1.20.TaterLib.fabric.fabric-1.20.test" target="17" />
+      <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
+      <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.test" target="17" />
+      <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
+      <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
       <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
       <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
+      <module name="forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
+      <module name="forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
+      <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
+      <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
+      <module name="forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
+      <module name="forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
+      <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.main" target="17" />
+      <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.test" target="17" />
+      <module name="neoforge-bleeding.TaterLib.bleeding.neoforge-bleeding.main" target="17" />
+      <module name="neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
+      <module name="TaterLib.bleeding.fabric-bleeding" target="17" />
+      <module name="TaterLib.bleeding.neoforge-bleeding" target="17" />
+      <module name="TaterLib.bleeding.neoforge-bleeding.test" target="17" />
+      <module name="TaterLib.fabric.fabric-1.17" target="16" />
+      <module name="TaterLib.fabric.fabric-1.18" target="17" />
+      <module name="TaterLib.fabric.fabric-1.19" target="17" />
+      <module name="TaterLib.fabric.fabric-1.20" target="17" />
+      <module name="TaterLib.fabric.fabric-1.20.2" target="17" />
       <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />
@@ -643,12 +668,18 @@
       <module name="TaterLib.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge-1.20.main" target="17" />
       <module name="TaterLib.forge-1.20.test" target="17" />
+      <module name="TaterLib.forge.forge-1.17" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
+      <module name="TaterLib.forge.forge-1.18" target="17" />
+      <module name="TaterLib.forge.forge-1.18.2" target="17" />
       <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
       <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
+      <module name="TaterLib.forge.forge-1.19" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
+      <module name="TaterLib.forge.forge-1.20" target="17" />
+      <module name="TaterLib.forge.forge-1.20.2" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
@@ -657,7 +688,9 @@
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
+      <module name="TaterLib.neoforge.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
+      <module name="TaterLib.neoforge.neoforge-1.20.2.test" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
@@ -671,6 +704,12 @@
       <module name="TaterLib.vanilla.vanilla-1.19.4" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.main" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.20" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.20.2" target="17" />
+      <module name="vanilla-1.20.2.TaterLib.vanilla.vanilla-1.20.2.main" target="17" />
+      <module name="vanilla-1.20.2.TaterLib.vanilla.vanilla-1.20.2.test" target="17" />
+      <module name="vanilla-1.20.TaterLib.vanilla.vanilla-1.20.main" target="17" />
+      <module name="vanilla-1.20.TaterLib.vanilla.vanilla-1.20.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
