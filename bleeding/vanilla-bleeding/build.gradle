@@ -17,5 +17,5 @@ dependencies {
 
 jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-vanilla-bleeding-${version}.jar"
 }
