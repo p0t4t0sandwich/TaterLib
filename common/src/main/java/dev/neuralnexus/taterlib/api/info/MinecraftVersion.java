@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.api.info;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -164,6 +166,7 @@ public enum MinecraftVersion {
     V1_20_4("1.20.4"),
     UNKNOWN("Unknown");
 
+    private static final MinecraftVersion minecraftVersion = UNKNOWN;
     private final String version;
 
     MinecraftVersion(String version) {
@@ -203,6 +206,190 @@ public enum MinecraftVersion {
      */
     public static boolean contains(String version) {
         return getValues().contains(version);
+    }
+
+    /**
+     * Get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    public static MinecraftVersion getMinecraftVersion() {
+        if (minecraftVersion != UNKNOWN) {
+            return minecraftVersion;
+        }
+        ServerType serverType = ServerType.getServerType();
+        String version = "";
+        if (serverType.isBukkitBased()) {
+            version = getBukkitMCVersion();
+        } else if (serverType.isBungeeCordBased()) {
+            version = getBungeeCordMCVersion();
+        } else if (serverType.isFabricBased()) {
+            version = getFabricMCVersion();
+        } else if (serverType.is(ServerType.NEOFORGE)) {
+            version = getNeoForgeMCVersion();
+        } else if (serverType.isForgeBased()) {
+            version = getForgeMCVersion();
+        } else if (serverType.isSpongeBased()) {
+            version = getSpongeMCVersion();
+        }
+        // TODO: Add Velocity support, though they don't present a parsable version
+        return MinecraftVersion.from(version);
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getBukkitMCVersion() {
+        try {
+            // Reflect to get Bukkit.getServer().getVersion()
+            Class<?> bukkitClass = Class.forName("org.bukkit.Bukkit");
+            Object bukkitInstance = bukkitClass.getMethod("getServer").invoke(null);
+            Object bukkitVersion = bukkitInstance.getClass().getMethod("getVersion").invoke(null);
+            return (String) bukkitVersion;
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getBungeeCordMCVersion() {
+        try {
+            // Reflect to get ProxyServer.getInstance().getVersion()
+            Class<?> proxyServerClass = Class.forName("net.md_5.bungee.api.ProxyServer");
+            Object proxyServer = proxyServerClass.getMethod("getInstance").invoke(null);
+            Object proxyServerVersion =
+                    proxyServer.getClass().getMethod("getVersion").invoke(proxyServer);
+            return (String) proxyServerVersion;
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getFabricMCVersion() {
+        try {
+            // Reflect to get
+            // FabricLoader.getInstance().getModContainer("minecraft").get().getMetadata().getVersion().getFriendlyString()
+            Class<?> fabricLoaderClass = Class.forName("net.fabricmc.loader.api.FabricLoader");
+            Object fabricLoaderInstance = fabricLoaderClass.getMethod("getInstance").invoke(null);
+            Object minecraftModContainer =
+                    fabricLoaderClass
+                            .getMethod("getModContainer", String.class)
+                            .invoke(fabricLoaderInstance, "minecraft");
+            Object minecraftModContainerInstance =
+                    minecraftModContainer.getClass().getMethod("get").invoke(minecraftModContainer);
+            Object minecraftModContainerMetadata =
+                    minecraftModContainerInstance
+                            .getClass()
+                            .getMethod("getMetadata")
+                            .invoke(minecraftModContainerInstance);
+            Method minecraftModContainerVersionMethod =
+                    minecraftModContainerMetadata.getClass().getMethod("getVersion");
+            minecraftModContainerVersionMethod.setAccessible(true);
+            Object minecraftModContainerVersion =
+                    minecraftModContainerVersionMethod.invoke(minecraftModContainerMetadata);
+            Object minecraftModContainerVersionFriendlyString =
+                    minecraftModContainerVersion
+                            .getClass()
+                            .getMethod("getFriendlyString")
+                            .invoke(minecraftModContainerVersion);
+            return (String) minecraftModContainerVersionFriendlyString;
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getForgeMCVersion() {
+        try {
+            Class<?> fmlLoaderClass = Class.forName("net.minecraftforge.fml.loading.FMLLoader");
+            try {
+                // Reflect to get FMLLoader.versionInfo().mcVersion()
+                Object versionInfoObject = fmlLoaderClass.getMethod("versionInfo").invoke(null);
+                Object mcVersionObject =
+                        versionInfoObject
+                                .getClass()
+                                .getMethod("mcVersion")
+                                .invoke(versionInfoObject);
+                return (String) mcVersionObject;
+            } catch (ReflectiveOperationException e) {
+                // Reflect to get private FMLLoader.mcVersion
+                Field mcVersionField = fmlLoaderClass.getDeclaredField("mcVersion");
+                mcVersionField.setAccessible(true);
+                return (String) mcVersionField.get(null);
+            }
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getNeoForgeMCVersion() {
+        // Reflect to get FMLLoader.versionInfo().mcVersion()
+        try {
+            Class<?> fmlLoaderClass = Class.forName("net.neoforged.fml.loading.FMLLoader");
+            Object versionInfoObject = fmlLoaderClass.getMethod("versionInfo").invoke(null);
+            Object mcVersionObject =
+                    versionInfoObject.getClass().getMethod("mcVersion").invoke(versionInfoObject);
+            return (String) mcVersionObject;
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace();
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    private static String getSpongeMCVersion() {
+        try {
+            // Reflect to get Sponge.platform().minecraftVersion().name()
+            Class<?> spongeClass = Class.forName("org.spongepowered.api.Sponge");
+            Object spongeInstance = spongeClass.getMethod("platform").invoke(null);
+            Object minecraftVersion =
+                    spongeInstance.getClass().getMethod("minecraftVersion").invoke(spongeInstance);
+            Object minecraftVersionName =
+                    minecraftVersion.getClass().getMethod("name").invoke(minecraftVersion);
+            return (String) minecraftVersionName;
+        } catch (ReflectiveOperationException e) {
+            try {
+                // Fall back to Sponge.getPlatform().getMinecraftVersion().getName()
+                Class<?> spongeClass = Class.forName("org.spongepowered.api.Sponge");
+                Object spongeInstance = spongeClass.getMethod("getPlatform").invoke(null);
+                Object minecraftVersion =
+                        spongeInstance.getClass().getMethod("getMinecraftVersion").invoke(null);
+                Object minecraftVersionName =
+                        minecraftVersion.getClass().getMethod("getName").invoke(minecraftVersion);
+                return (String) minecraftVersionName;
+            } catch (ReflectiveOperationException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return "Unknown";
     }
 
     /**

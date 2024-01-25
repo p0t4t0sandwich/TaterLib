@@ -21,16 +21,10 @@ import org.apache.logging.log4j.LogManager;
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register(
-                FabricLoader.getInstance()
-                        .getModContainer("minecraft")
-                        .get()
-                        .getMetadata()
-                        .getVersion()
-                        .getFriendlyString());
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
-                this,
+                plugin,
                 new LoggerAdapter(
                         "[" + TaterLib.Constants.PROJECT_NAME + "] ",
                         TaterLib.Constants.PROJECT_ID,

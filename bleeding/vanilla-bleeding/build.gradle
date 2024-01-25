@@ -15,6 +15,12 @@ dependencies {
     compileOnly(project(':common'))
 }
 
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(["${project_id}.mixins.vanilla.bleeding.json".toString()]) {
+        expand project.properties
+    }
+}
+
 jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-vanilla-bleeding-${version}.jar"

@@ -14,7 +14,6 @@ import dev.neuralnexus.taterlib.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.sponge.listeners.server.SpongeServerListener;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
 
-import org.spongepowered.api.Platform;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
@@ -26,12 +25,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     public void platformInit(Object plugin, Object logger) {
         container = (PluginContainer) plugin;
 
-        TaterAPIProvider.register(
-                Sponge.platform()
-                        .container(Platform.Component.GAME)
-                        .metadata()
-                        .version()
-                        .toString());
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);

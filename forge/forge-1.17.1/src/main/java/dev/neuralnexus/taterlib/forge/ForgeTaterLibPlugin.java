@@ -25,28 +25,18 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 
 import org.apache.logging.log4j.LogManager;
 
-import java.lang.reflect.Field;
-
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
-        String minecraftVersion = "";
-        try {
-            Field mcVersionField = FMLLoader.class.getDeclaredField("mcVersion");
-            mcVersionField.setAccessible(true);
-            minecraftVersion = (String) mcVersionField.get(null);
-        } catch (IllegalAccessException | NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        TaterAPIProvider.register(minecraftVersion);
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        pluginStart(this, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
+        pluginStart(
+                plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));

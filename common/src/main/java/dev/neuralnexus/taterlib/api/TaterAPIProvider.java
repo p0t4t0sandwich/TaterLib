@@ -20,20 +20,9 @@ import java.util.Set;
 /** API Provider */
 public class TaterAPIProvider {
     private static final ServerType serverType = ServerType.getServerType();
+    private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
-
-    private static MinecraftVersion minecraftVersion = MinecraftVersion.UNKNOWN;
-
-    /**
-     * Set the Minecraft version DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     *
-     * @param minecraftVersion The Minecraft version
-     */
-    @ApiStatus.Internal
-    private static void setMinecraftVersion(MinecraftVersion minecraftVersion) {
-        TaterAPIProvider.minecraftVersion = minecraftVersion;
-    }
 
     /**
      * Get Minecraft version
@@ -109,7 +98,8 @@ public class TaterAPIProvider {
     public static boolean hasPermission(CommandSender commandSender, String permission) {
         return hooks.stream()
                 .filter(hook -> hook instanceof PermissionsHook)
-                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(commandSender, permission));
+                .anyMatch(
+                        hook -> ((PermissionsHook) hook).hasPermission(commandSender, permission));
     }
 
     /**
@@ -140,8 +130,6 @@ public class TaterAPIProvider {
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void register() {
-        ServerType serverType = ServerType.getServerType();
-
         TaterAPI bukkitApi = new TaterAPI("plugins");
         TaterAPI bungeeApi = new TaterAPI("plugins");
         TaterAPI forgeApi = new TaterAPI("config");
@@ -173,9 +161,14 @@ public class TaterAPIProvider {
             }
         }
 
-        // Secondary logical check is for SpongeForge
+        // Check for SpongeForge, then Sponge
         // TODO: Find some way to init the Sponge side, since SF doesn't load duplicate modIds
-        if (serverType.isSpongeBased() || (serverType.isForgeBased() && ServerType.isSponge())) {
+        if (serverType.isSpongeBased() && serverType.isForgeBased()) {
+            apis.put(serverType, new TaterAPI("config"));
+            apis.put(ServerType.SPONGE_FORGE, new TaterAPI("config"));
+            apis.put(ServerType.SPONGE, new TaterAPI("config"));
+        } else if (serverType.isSpongeBased()) {
+            apis.put(serverType, new TaterAPI("config"));
             apis.put(ServerType.SPONGE, new TaterAPI("config"));
         }
 
@@ -227,17 +220,6 @@ public class TaterAPIProvider {
                     break;
             }
         }
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     *
-     * @param minecraftVersion The Minecraft version
-     */
-    @ApiStatus.Internal
-    public static void register(String minecraftVersion) {
-        setMinecraftVersion(MinecraftVersion.from(minecraftVersion));
-        register();
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */

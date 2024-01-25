@@ -9,7 +9,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    compileOnly(project(':bleeding:vanilla-bleeding'))
+    implementation(project(':bleeding:vanilla-bleeding'))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -30,7 +30,7 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.bleeding.json".toString(), "${project_id}.mixins.fabric.patch.bleeding.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.bleeding.json".toString()]) {
         expand project.properties
     }
 }
@@ -45,6 +45,7 @@ shadowJar {
     dependencies {
         include(project(':bleeding:vanilla-bleeding'))
 //        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
+        exclude('/mappings/*')
     }
     // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
     relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.fabric.mixin.fake")

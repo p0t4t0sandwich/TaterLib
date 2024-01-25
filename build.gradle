@@ -976,7 +976,7 @@ tasks.register('build_bleeding', Jar) {
         }
     }
 
-    String mc_version = '1.20.4'
+    String mc_version = 'bleeding'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -989,8 +989,8 @@ tasks.register('build_bleeding', Jar) {
                 'Implementation-Vendor': 'NeuralNexus',
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'FMLCorePluginContainsFMLMod': 'true',
-                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "${project_id}.mixins.forge.patch.1_20_2.json".toString()
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker'
+//                'MixinConfigs': "${project_id}.mixins.forge.bleeding.json".toString()
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
