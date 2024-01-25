@@ -16,15 +16,16 @@ import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
-import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,7 +44,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded(
                 (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
-        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
+        //        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
+        api.setServer(() -> new VanillaServer(((CraftServer) Bukkit.getServer()).getServer()));
     }
 
     @Override

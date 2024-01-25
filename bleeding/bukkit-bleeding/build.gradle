@@ -1,11 +1,16 @@
-dependencies {
-    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
-    compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
-    implementation(project(':common'))
-    implementation(project(':tooling:loader'))
+plugins {
+    id('io.papermc.paperweight.userdev') version('1.5.11')
 }
 
 java.disableAutoTargetJvm()
+
+dependencies {
+//    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
+//    compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
+    paperweight.paperDevBundle("${minecraft_version}-${bukkit_version}")
+    compileOnly(project(':common'))
+    implementation(project(':bleeding:vanilla-bleeding'))
+}
 
 tasks.withType(ProcessResources).configureEach {
     filesMatching(['plugin.yml']) {
@@ -13,7 +18,18 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-bukkit-bleeding-${version}.jar"
+shadowJar {
+    dependencies {
+        include(project(':bleeding:vanilla-bleeding'))
+    }
+    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.bukkit")
 }
+
+//tasks.register('moveJarToTarget', Copy) {
+//    dependsOn(reobfJar)
+//    from(reobfJar.outputJar)
+//    into('../../target')
+//}
+
+tasks.assemble.dependsOn('reobfJar')
+//tasks.assemble.finalizedBy('moveJarToTarget')

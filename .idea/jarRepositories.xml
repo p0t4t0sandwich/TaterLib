@@ -171,5 +171,10 @@
       <option name="name" value="maven" />
       <option name="url" value="https://maven.architectury.dev/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="https://s01.oss.sonatype.org/content/repositories/snapshots/" />
+    </remote-repository>
   </component>
 </project>

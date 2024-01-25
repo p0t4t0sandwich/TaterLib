@@ -6,6 +6,7 @@ plugins {
     id('com.github.johnrengelman.shadow') version('8.1.1')
     id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
     id('net.neoforged.gradle.userdev') version('7.0.74') apply(false)
+    id('io.papermc.paperweight.userdev') version('1.5.11') apply(false)
 }
 
 defaultTasks('build')

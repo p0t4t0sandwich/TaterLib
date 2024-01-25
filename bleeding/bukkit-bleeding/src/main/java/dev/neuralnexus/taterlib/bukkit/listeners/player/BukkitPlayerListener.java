@@ -20,7 +20,10 @@ public class BukkitPlayerListener implements Listener {
     @EventHandler
     public void onPlayerAdvancement(PlayerAdvancementDoneEvent event) {
         Advancement advancement = event.getAdvancement();
-        if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
+        // TODO: Resolve this
+        if (advancement.getDisplay() != null && advancement.getDisplay().doesAnnounceToChat()) {
+            //        if (advancement.getDisplay() != null &&
+            // advancement.getDisplay().shouldAnnounceChat()) {
             PlayerEvents.ADVANCEMENT_FINISHED.invoke(
                     new BukkitPlayerAdvancementEvent.AdvancementFinished(event));
         }

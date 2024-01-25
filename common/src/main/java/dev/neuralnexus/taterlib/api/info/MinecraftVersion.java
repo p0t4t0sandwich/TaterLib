@@ -246,7 +246,8 @@ public enum MinecraftVersion {
             // Reflect to get Bukkit.getServer().getVersion()
             Class<?> bukkitClass = Class.forName("org.bukkit.Bukkit");
             Object bukkitInstance = bukkitClass.getMethod("getServer").invoke(null);
-            Object bukkitVersion = bukkitInstance.getClass().getMethod("getVersion").invoke(null);
+            Object bukkitVersion =
+                    bukkitInstance.getClass().getMethod("getVersion").invoke(bukkitInstance);
             return (String) bukkitVersion;
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
