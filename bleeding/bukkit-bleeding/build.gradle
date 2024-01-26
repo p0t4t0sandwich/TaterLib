@@ -5,8 +5,7 @@ plugins {
 java.disableAutoTargetJvm()
 
 dependencies {
-//    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
-//    compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
+    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
     paperweight.paperDevBundle("${minecraft_version}-${bukkit_version}")
     compileOnly(project(':common'))
     implementation(project(':bleeding:vanilla-bleeding'))

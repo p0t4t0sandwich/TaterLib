@@ -35,9 +35,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
                 String key = event.getAdvancement().getKey().getKey();
                 return key.contains("/") ? key.split("/")[1] : key;
             } else {
-                // TODO: Resolve this
-                //                return event.getAdvancement().getDisplay().getTitle();
-                return event.getAdvancement().getDisplay().title().toString();
+                return event.getAdvancement().getDisplay().getTitle();
             }
         }
     }
