@@ -27,14 +27,10 @@ public abstract class PluginMessagesMixin_1_20_2 {
 
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        // TODO: Abstract packet into common
         CustomPayloadPacketWrapper_1_20_2 wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
-        PluginMessageEvents.PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent(wrapper.getChannel(), wrapper.getData()));
+        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
         PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(
-                        wrapper.getChannel(),
-                        wrapper.getData(),
-                        this.server.getPlayerList().getPlayer(this.playerProfile().getId())));
+                        wrapper, server.getPlayerList().getPlayer(this.playerProfile().getId())));
     }
 }

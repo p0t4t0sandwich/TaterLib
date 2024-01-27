@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.vanilla.event.pluginmessages;
 
+import dev.neuralnexus.taterlib.event.pluginmessages.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
@@ -13,6 +14,11 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
     public VanillaPluginMessageEvent(String channel, byte[] data) {
         this.channel = channel;
         this.data = data;
+    }
+
+    public VanillaPluginMessageEvent(CustomPayloadWrapper packet) {
+        this.channel = packet.getChannel();
+        this.data = packet.getData();
     }
 
     /** {@inheritDoc} */
@@ -34,6 +40,11 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
 
         public Player(String channel, byte[] data, ServerPlayer player) {
             super(channel, data);
+            this.player = player;
+        }
+
+        public Player(CustomPayloadWrapper packet, ServerPlayer player) {
+            super(packet);
             this.player = player;
         }
 

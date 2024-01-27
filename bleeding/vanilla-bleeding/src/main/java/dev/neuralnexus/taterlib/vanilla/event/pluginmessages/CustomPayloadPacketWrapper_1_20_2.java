@@ -1,22 +1,20 @@
 package dev.neuralnexus.taterlib.vanilla.event.pluginmessages;
 
+import dev.neuralnexus.taterlib.event.pluginmessages.CustomPayloadWrapper;
+
 import io.netty.buffer.Unpooled;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 
 /**
- * A custom wrapper for {@link net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket}
- * to allow for custom packets
+ * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
+ * CustomPayloadWrapper}.
  */
-public class CustomPayloadPacketWrapper_1_20_2 {
+public class CustomPayloadPacketWrapper_1_20_2 implements CustomPayloadWrapper {
     private final String channel;
     private final byte[] data;
 
-    /**
-     * Constructor.
-     *
-     * @param packet The packet.
-     */
     public CustomPayloadPacketWrapper_1_20_2(ServerboundCustomPayloadPacket packet) {
         this.channel = packet.payload().id().toString();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
@@ -24,20 +22,14 @@ public class CustomPayloadPacketWrapper_1_20_2 {
         this.data = buf.array();
     }
 
-    /**
-     * Gets the channel.
-     *
-     * @return The channel.
-     */
+    /** {@inheritDoc} */
+    @Override
     public String getChannel() {
         return channel;
     }
 
-    /**
-     * Gets the data.
-     *
-     * @return The data.
-     */
+    /** {@inheritDoc} */
+    @Override
     public byte[] getData() {
         return data;
     }
