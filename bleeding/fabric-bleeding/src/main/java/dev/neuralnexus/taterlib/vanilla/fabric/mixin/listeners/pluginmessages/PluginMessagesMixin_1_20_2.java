@@ -3,7 +3,8 @@ package dev.neuralnexus.taterlib.vanilla.fabric.mixin.listeners.pluginmessages;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
-import dev.neuralnexus.taterlib.vanilla.event.pluginmessages.VanillaPluginMessageEvent_1_20_2;
+import dev.neuralnexus.taterlib.vanilla.event.pluginmessages.CustomPayloadPacketWrapper_1_20_2;
+import dev.neuralnexus.taterlib.vanilla.event.pluginmessages.VanillaPluginMessageEvent;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.MinecraftServer;
@@ -26,9 +27,14 @@ public abstract class PluginMessagesMixin_1_20_2 {
 
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent_1_20_2(packet));
+        // TODO: Abstract packet into common
+        CustomPayloadPacketWrapper_1_20_2 wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
+        PluginMessageEvents.PLUGIN_MESSAGE.invoke(
+                new VanillaPluginMessageEvent(wrapper.getChannel(), wrapper.getData()));
         PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent_1_20_2.Player(
-                        packet, server.getPlayerList().getPlayer(playerProfile().getId())));
+                new VanillaPluginMessageEvent.Player(
+                        wrapper.getChannel(),
+                        wrapper.getData(),
+                        this.server.getPlayerList().getPlayer(this.playerProfile().getId())));
     }
 }

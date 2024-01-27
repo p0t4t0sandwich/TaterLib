@@ -5,11 +5,9 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppedEvent;
-import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;
@@ -22,15 +20,18 @@ import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.vanilla.event.server.VanillaServerStartingEvent;
+import dev.neuralnexus.taterlib.vanilla.event.server.VanillaServerStoppedEvent;
+import dev.neuralnexus.taterlib.vanilla.event.server.VanillaServerStoppingEvent;
 import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
+    private static boolean hasStarted = false;
 
     @Override
     public void platformInit(Object plugin, Object logger) {
@@ -44,8 +45,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded(
                 (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
-        //        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
-        api.setServer(() -> new VanillaServer(((CraftServer) Bukkit.getServer()).getServer()));
+        api.setServer(() -> new VanillaServer(BukkitAdapters.getServer()));
     }
 
     @Override
@@ -60,7 +60,11 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         if (TaterAPIProvider.serverType().isPaperBased()) {
             pluginManager.registerEvents(new PaperPlayerListener(), plugin);
         }
-        ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+        if (!hasStarted) {
+            hasStarted = true;
+            ServerEvents.STARTING.invoke(
+                    new VanillaServerStartingEvent(BukkitAdapters.getServer()));
+        }
         pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
         Bukkit.getServer()
@@ -81,8 +85,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
-        ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());
+        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(BukkitAdapters.getServer()));
+        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(BukkitAdapters.getServer()));
         pluginStop();
     }
 }

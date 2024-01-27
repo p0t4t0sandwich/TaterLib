@@ -1,9 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.entity;
 
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDamageEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntityDeathEvent;
-import dev.neuralnexus.taterlib.bukkit.event.entity.BukkitEntitySpawnEvent;
+import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
+import dev.neuralnexus.taterlib.bukkit.event.BukkitCancellableEventWrapper;
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntityDamageEvent;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntityDeathEvent;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntitySpawnEvent;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,7 +20,12 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
-        EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        BukkitAdapters.getEntity(event.getEntity()),
+                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        (float) event.getDamage(),
+                        new BukkitCancellableEventWrapper<>(event)));
     }
 
     /**
@@ -28,7 +35,13 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        EntityEvents.DAMAGE_BY_ENTITY.invoke(new BukkitEntityDamageEvent.DamageByEntity(event));
+        // TODO: Branch into own event EntityEvents.DAMAGE_BY_ENTITY
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        BukkitAdapters.getEntity(event.getEntity()),
+                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        (float) event.getDamage(),
+                        new BukkitCancellableEventWrapper<>(event)));
     }
 
     /**
@@ -38,7 +51,13 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
-        EntityEvents.DAMAGE_BY_BLOCK.invoke(new BukkitEntityDamageEvent.DamageByBlock(event));
+        // TODO: Branch into own event EntityEvents.DAMAGE_BY_BLOCK
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        BukkitAdapters.getEntity(event.getEntity()),
+                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        (float) event.getDamage(),
+                        new BukkitCancellableEventWrapper<>(event)));
     }
 
     /**
@@ -48,7 +67,10 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
-        EntityEvents.DEATH.invoke(new BukkitEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(
+                new VanillaEntityDeathEvent(
+                        BukkitAdapters.getEntity(event.getEntity()),
+                        BukkitAdapters.getLastDamageSource(event.getEntity())));
     }
 
     /**
@@ -58,6 +80,9 @@ public class BukkitEntityListener implements Listener {
      */
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent event) {
-        EntityEvents.SPAWN.invoke(new BukkitEntitySpawnEvent(event));
+        EntityEvents.SPAWN.invoke(
+                new VanillaEntitySpawnEvent(
+                        BukkitAdapters.getEntity(event.getEntity()),
+                        new BukkitCancellableEventWrapper<>(event)));
     }
 }

@@ -2,6 +2,10 @@ plugins {
     id('io.papermc.paperweight.userdev') version('1.5.11')
 }
 
+base {
+    archivesName = "${project_id}-bukkit-bleeding"
+}
+
 java.disableAutoTargetJvm()
 
 dependencies {

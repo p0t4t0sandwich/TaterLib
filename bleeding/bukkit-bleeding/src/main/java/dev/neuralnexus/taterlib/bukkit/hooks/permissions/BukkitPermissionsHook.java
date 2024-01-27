@@ -1,10 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.hooks.permissions;
 
 import dev.neuralnexus.taterlib.bukkit.command.BukkitCommandSender;
-import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
+
+import org.bukkit.Bukkit;
 
 /** A hook for Bukkit permissions */
 public class BukkitPermissionsHook implements PermissionsHook {
@@ -24,13 +25,12 @@ public class BukkitPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return ((BukkitPlayer) commandSender).getPlayer().hasPermission(permission);
-        } else {
-            if (commandSender instanceof Player) {
-                return ((BukkitPlayer) commandSender).getPlayer().hasPermission(permission);
-            } else {
-                return ((BukkitCommandSender) commandSender).getSender().hasPermission(permission);
+            org.bukkit.entity.Player player = Bukkit.getPlayer(commandSender.getUniqueId());
+            if (player != null) {
+                return player.hasPermission(permission);
             }
+            return false;
         }
+        return ((BukkitCommandSender) commandSender).getSender().hasPermission(permission);
     }
 }

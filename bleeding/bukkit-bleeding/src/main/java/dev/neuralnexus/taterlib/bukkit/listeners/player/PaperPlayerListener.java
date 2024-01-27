@@ -2,8 +2,9 @@ package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
 import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent;
 
-import dev.neuralnexus.taterlib.bukkit.event.player.PaperAdvancementProgress;
+import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,6 +18,10 @@ public class PaperPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerAdvancementProgress(PlayerAdvancementCriterionGrantEvent event) {
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(new PaperAdvancementProgress(event));
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
+                new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
+                        BukkitAdapters.getPlayer(event.getPlayer()),
+                        BukkitAdapters.getAdvancement(event.getAdvancement()),
+                        event.getEventName()));
     }
 }

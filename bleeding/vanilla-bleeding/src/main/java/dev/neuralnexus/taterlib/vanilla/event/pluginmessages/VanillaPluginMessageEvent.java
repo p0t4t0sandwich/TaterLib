@@ -3,22 +3,16 @@ package dev.neuralnexus.taterlib.vanilla.event.pluginmessages;
 import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
 import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
-import io.netty.buffer.Unpooled;
-
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
 
 /** Vanilla implementation of {@link PluginMessageEvent}. */
-public class VanillaPluginMessageEvent_1_20_2 implements PluginMessageEvent {
+public class VanillaPluginMessageEvent implements PluginMessageEvent {
     private final String channel;
     private final byte[] data;
 
-    public VanillaPluginMessageEvent_1_20_2(ServerboundCustomPayloadPacket packet) {
-        this.channel = packet.payload().id().toString();
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        packet.payload().write(buf);
-        this.data = buf.array();
+    public VanillaPluginMessageEvent(String channel, byte[] data) {
+        this.channel = channel;
+        this.data = data;
     }
 
     /** {@inheritDoc} */
@@ -34,18 +28,18 @@ public class VanillaPluginMessageEvent_1_20_2 implements PluginMessageEvent {
     }
 
     /** Vanilla implementation of {@link PluginMessageEvent.Player}. */
-    public static class Player extends VanillaPluginMessageEvent_1_20_2
+    public static class Player extends VanillaPluginMessageEvent
             implements PluginMessageEvent.Player {
         private final ServerPlayer player;
 
-        public Player(ServerboundCustomPayloadPacket packet, ServerPlayer player) {
-            super(packet);
+        public Player(String channel, byte[] data, ServerPlayer player) {
+            super(channel, data);
             this.player = player;
         }
 
         /** {@inheritDoc} */
         @Override
-        public VanillaPlayer getPlayer() {
+        public dev.neuralnexus.taterlib.player.Player getPlayer() {
             return new VanillaPlayer(this.player);
         }
     }
