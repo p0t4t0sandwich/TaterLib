@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
+import dev.neuralnexus.taterlib.bukkit.adapters.BukkitBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.bukkit.hooks.permissions.BukkitPermissionsHook;
@@ -66,6 +67,18 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                     new VanillaServerStartingEvent(BukkitAdapters.getServer()));
         }
         pluginManager.registerEvents(new BukkitServerListener(), plugin);
+
+        if (TaterAPIProvider.isBrigadierSupported()) {
+            Bukkit.getScheduler()
+                    .runTaskLater(
+                            plugin,
+                            () ->
+                                    // Register brigadier commands
+                                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                                            new BukkitBrigadierCommandRegisterEvent(
+                                                    BukkitAdapters.getCommandDispatcher())),
+                            1);
+        }
 
         Bukkit.getServer()
                 .getScheduler()

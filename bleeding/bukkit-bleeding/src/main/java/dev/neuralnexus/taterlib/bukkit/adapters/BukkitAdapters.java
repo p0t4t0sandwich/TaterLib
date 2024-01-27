@@ -1,6 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.adapters;
 
+import com.mojang.brigadier.CommandDispatcher;
+
 import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,9 +14,11 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.block.Block;
+import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_20_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_20_R3.advancement.CraftAdvancement;
 import org.bukkit.craftbukkit.v1_20_R3.block.CraftBlock;
@@ -30,6 +35,19 @@ public class BukkitAdapters {
      */
     public static MinecraftServer getServer() {
         return ReflectionAdapters.getServer();
+    }
+
+    /**
+     * Returns a CommandDispatcher.
+     *
+     * @return The CommandDispatcher.
+     */
+    public static CommandDispatcher<CommandSourceStack> getCommandDispatcher() {
+        return (((CraftServer) Bukkit.getServer()).getServer())
+                .resources
+                .managers()
+                .commands
+                .getDispatcher();
     }
 
     /**
