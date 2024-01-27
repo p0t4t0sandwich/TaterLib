@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 
 import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -48,6 +49,15 @@ public class BukkitAdapters {
                 .managers()
                 .commands
                 .getDispatcher();
+    }
+
+    /**
+     * Returns Commands.CommandSelection
+     *
+     * @return The Commands.CommandSelection
+     */
+    public static Commands.CommandSelection getCommandSelection() {
+        return Commands.CommandSelection.DEDICATED;
     }
 
     /**

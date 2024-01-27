@@ -23,7 +23,7 @@ public class SpongeBrigadierCommandRegisterEvent implements BrigadierCommandRegi
     /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
-        return false;
+        return true;
     }
 
     /** {@inheritDoc} */
