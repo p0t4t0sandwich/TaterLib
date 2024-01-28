@@ -82,14 +82,19 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
             file("${dir}/${project_id}-common-${version}.jar"),
             file("${dir}/${project_id}-loader-0.1.0.jar")
     ]
+
+    var boolean isNeoForge = false
     platformVersions.each { platform, versions ->
+        if (platform == 'neoforge') {
+            isNeoForge = true
+        }
         versions.each { mcVersion ->
             jarFiles.add(file("${dir}/${project_id}-${platform}-${mcVersion}-${version}.jar"))
         }
     }
 
     return jarFiles.collect {
-        if (it.name.contains('-forge')) {
+        if (it.name.contains('-forge') && isNeoForge) {
             zipTree(it).matching {
                 exclude('META-INF/mods.toml')
             }
