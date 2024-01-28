@@ -51,6 +51,7 @@ public enum ServerType {
     // Sponge
     SPONGE("Sponge"),
     SPONGE_FORGE("SpongeForge"),
+    SPONGE_VANILLA("SpongeVanilla"),
 
     // Velocity
     VELOCITY("Velocity"),
@@ -159,8 +160,8 @@ public enum ServerType {
         }
 
         // Sponge
-        else if (isSponge()) {
-            serverType = SPONGE;
+        else if (isSponge() && !isForge()) {
+            serverType = SPONGE_VANILLA;
         }
 
         // Velocity
@@ -493,7 +494,7 @@ public enum ServerType {
      * @return True if the server is running a fork of Sponge, false otherwise.
      */
     public boolean isSpongeBased() {
-        return this.is(SPONGE, SPONGE_FORGE);
+        return this.is(SPONGE, SPONGE_FORGE, SPONGE_VANILLA);
     }
 
     /**

@@ -167,6 +167,7 @@ public class TaterAPIProvider {
             apis.put(ServerType.SPONGE, new TaterAPI("config"));
         } else if (serverType.isSpongeBased()) {
             apis.put(serverType, new TaterAPI("config"));
+            apis.put(ServerType.SPONGE_VANILLA, new TaterAPI("config"));
             apis.put(ServerType.SPONGE, new TaterAPI("config"));
         }
 
