@@ -994,8 +994,9 @@ tasks.register('build_bleeding', Jar) {
                 'Implementation-Vendor': 'NeuralNexus',
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'FMLCorePluginContainsFMLMod': 'true',
-                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker'
-//                'MixinConfigs': "${project_id}.mixins.forge.bleeding.json".toString()
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json"
+// , ${project_id}.mixins.forge.bleeding.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {

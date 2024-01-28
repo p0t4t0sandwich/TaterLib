@@ -46,7 +46,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded(
                 (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
-        api.setServer(() -> new VanillaServer(BukkitAdapters.getServer()));
+        api.setServer(VanillaServer::getInstance);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(BukkitAdapters.getServer()));
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(BukkitAdapters.getServer()));
+        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.getServer()));
+        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.getServer()));
         pluginStop();
     }
 }

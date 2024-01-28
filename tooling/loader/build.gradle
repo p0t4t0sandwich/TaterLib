@@ -26,11 +26,10 @@ jar {
     exclude('dev/neuralnexus/taterlib/velocity')
 
     exclude('fabric.mod.json')
-    exclude("${project_id}.mixins.json".toString())
     exclude('META-INF/mods.toml')
     exclude('mcmod.info')
     exclude('pack.mcmeta')
-    exclude('META-INF/sponge_plugins.json')
+//    exclude('META-INF/sponge_plugins.json')
     exclude('velocity-plugin.json')
 
     destinationDirectory = file('../../target')

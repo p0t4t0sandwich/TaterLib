@@ -1,7 +1,8 @@
 package dev.neuralnexus.taterlib.sponge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterlib.sponge.adapters.SpongeAdapters;
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
 import net.kyori.adventure.text.Component;
 
@@ -29,8 +30,9 @@ public class SpongeCommandWrapper implements CommandExecutor {
         try {
             String[] args = context.requireOne(Parameter.string().key("args").build()).split(" ");
             CommandCause sender = context.cause();
-            if (sender instanceof Player) {
-                callback.execute(new SpongePlayer((Player) sender), commandName, args);
+            if (sender instanceof Player player) {
+                callback.execute(
+                        new VanillaPlayer(SpongeAdapters.getPlayer(player)), commandName, args);
             }
             callback.execute(new SpongeCommandSender(sender), commandName, args);
         } catch (Exception e) {

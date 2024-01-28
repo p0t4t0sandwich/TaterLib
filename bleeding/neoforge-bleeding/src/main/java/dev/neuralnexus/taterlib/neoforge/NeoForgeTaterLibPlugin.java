@@ -16,7 +16,6 @@ import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
@@ -26,7 +25,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
-        api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
+        api.setServer(VanillaServer::getInstance);
 
         // Register listeners
         NeoForge.EVENT_BUS.register(new NeoForgeBlockListener());

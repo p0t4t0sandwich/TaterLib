@@ -21,6 +21,10 @@ public class VanillaServer implements Server {
         VanillaServer.instance = this;
     }
 
+    public VanillaServer(Object server) {
+        this((MinecraftServer) server);
+    }
+
     /**
      * Gets the instance.
      *
