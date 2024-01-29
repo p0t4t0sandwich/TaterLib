@@ -17,6 +17,10 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
     public SpongeCommandRegisterEvent(
             RegisterCommandEvent<org.spongepowered.api.command.Command.Parameterized> event) {
         this.event = event;
+
+        //
+        System.out.println("----------------------SpongeCommandRegisterEvent");
+        //
     }
 
     /** {@inheritDoc} */

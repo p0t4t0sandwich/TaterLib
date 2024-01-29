@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.lifecycle.StartingEngineEvent;
+import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
 import org.spongepowered.api.event.lifecycle.StoppingEngineEvent;
 import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.builtin.jvm.Plugin;
@@ -28,7 +28,7 @@ public class Sponge8LoaderPlugin {
     }
 
     @Listener
-    public void onServerStarting(StartingEngineEvent<Server> event) {
+    public void onServerStarting(ConstructPluginEvent event) {
         loader.onEnable();
     }
 

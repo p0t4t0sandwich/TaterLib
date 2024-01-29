@@ -27,10 +27,22 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
         api.setIsPluginLoaded((pluginId) -> Sponge.pluginManager().plugin(pluginId).isPresent());
         api.setServer(VanillaServer::getInstance);
+
+        // TODO: Find a nicer way to do this, or create more init stages
+        //        Utils.runTaskLaterAsync(
+        //                () ->
+        //                        Sponge.eventManager()
+        //                                .registerListeners(container, new
+        // SpongeCommandListener()),
+        //                20L);
     }
 
     @Override
     public void platformEnable() {
+        //
+        System.out.println("----------------------SpongeTaterLibPlugin");
+        //
+
         // Register listeners
         EventManager eventManager = Sponge.eventManager();
         eventManager.registerListeners(container, new SpongeCommandListener());

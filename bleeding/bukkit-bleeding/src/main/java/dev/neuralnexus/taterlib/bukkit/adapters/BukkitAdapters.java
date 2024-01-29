@@ -81,10 +81,12 @@ public class BukkitAdapters {
      * @return The CommandDispatcher.
      */
     public static CommandDispatcher<CommandSourceStack> getCommandDispatcher() {
+        // ((CraftServer)
+        // Bukkit.getServer()).getServer().resources.managers().getCommands().getDispatcher();
         return (((CraftServer) Bukkit.getServer()).getServer())
                 .resources
                 .managers()
-                .commands
+                .getCommands()
                 .getDispatcher();
     }
 

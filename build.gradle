@@ -993,6 +993,7 @@ tasks.register('build_bleeding', Jar) {
                 'Implementation-Version': version,
                 'Implementation-Vendor': 'NeuralNexus',
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'Access-Widener': "${project_id}.sponge.accesswidener",
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json"

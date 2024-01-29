@@ -1,16 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.listeners.command;
 
-import com.mojang.brigadier.tree.LiteralCommandNode;
-
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.sponge.event.command.SpongeBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.sponge.adapters.SpongeAdapters;
 import dev.neuralnexus.taterlib.sponge.event.command.SpongeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.Command;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
-import org.spongepowered.common.command.manager.SpongeCommandManager;
 
 /** Listens to command events. */
 public class SpongeCommandListener {
@@ -21,19 +19,15 @@ public class SpongeCommandListener {
      */
     @Listener
     public void onRegisterCommands(final RegisterCommandEvent<Command.Parameterized> event) {
-        CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent(event));
-    }
+        // Needs to wait for the server to enter the starting state
+        ServerEvents.STARTING.register(
+                (startingEvent) ->
+                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                                new VanillaBrigadierCommandRegisterEvent(
+                                        SpongeAdapters.getCommandDispatcher(),
+                                        SpongeAdapters.getCommandSelection())));
 
-    /**
-     * Register brigadier commands.
-     *
-     * @param event The event
-     */
-    @Listener
-    public void onRegisterBrigadierCommands(
-            final RegisterCommandEvent<LiteralCommandNode<?>> event) {
-        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                new SpongeBrigadierCommandRegisterEvent(
-                        (SpongeCommandManager) Sponge.server().commandManager()));
+        // Sponge command registration
+        CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent(event));
     }
 }
