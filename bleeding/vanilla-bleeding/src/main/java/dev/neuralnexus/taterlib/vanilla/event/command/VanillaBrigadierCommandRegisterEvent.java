@@ -23,11 +23,6 @@ public class VanillaBrigadierCommandRegisterEvent
     public VanillaBrigadierCommandRegisterEvent(
             CommandDispatcher<CommandSourceStack> dispatcher,
             Commands.CommandSelection environment) {
-
-        //
-        System.out.println("----------------------VanillaBrigadierCommandRegisterEvent");
-        //
-
         this.dispatcher = dispatcher;
         this.environment = environment;
     }
