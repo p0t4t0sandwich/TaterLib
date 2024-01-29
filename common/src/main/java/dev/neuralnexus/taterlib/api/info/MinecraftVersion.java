@@ -236,7 +236,7 @@ public enum MinecraftVersion {
         } else if (serverType.isSpongeBased()) {
             version = getSpongeMCVersion();
         }
-        // TODO: Add Velocity support, though they don't present a parsable version
+        // TODO: Add Velocity support
         return MinecraftVersion.from(version);
     }
 
@@ -253,8 +253,7 @@ public enum MinecraftVersion {
             Object bukkitVersion =
                     bukkitInstance.getClass().getMethod("getVersion").invoke(bukkitInstance);
             return (String) bukkitVersion;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
@@ -272,8 +271,7 @@ public enum MinecraftVersion {
             Object proxyServerVersion =
                     proxyServer.getClass().getMethod("getVersion").invoke(proxyServer);
             return (String) proxyServerVersion;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
@@ -311,8 +309,7 @@ public enum MinecraftVersion {
                             .getMethod("getFriendlyString")
                             .invoke(minecraftModContainerVersion);
             return (String) minecraftModContainerVersionFriendlyString;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
@@ -340,8 +337,7 @@ public enum MinecraftVersion {
                 mcVersionField.setAccessible(true);
                 return (String) mcVersionField.get(null);
             }
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
@@ -359,8 +355,7 @@ public enum MinecraftVersion {
             Object mcVersionObject =
                     versionInfoObject.getClass().getMethod("mcVersion").invoke(versionInfoObject);
             return (String) mcVersionObject;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
