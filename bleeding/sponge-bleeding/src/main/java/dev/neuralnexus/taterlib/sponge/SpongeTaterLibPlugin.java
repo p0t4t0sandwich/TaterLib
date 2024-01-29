@@ -8,10 +8,9 @@ import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.sponge.listeners.command.SpongeCommandListener;
-import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.utils.VanillaServerReflect;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
 
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
@@ -25,14 +24,12 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
         api.setIsPluginLoaded((pluginId) -> Sponge.pluginManager().plugin(pluginId).isPresent());
-        api.setServer(VanillaServer::getInstance);
+        api.setServer(VanillaServerReflect::getInstance);
     }
 
     @Override
     public void platformEnable() {
-        // Register listeners
-        EventManager eventManager = Sponge.eventManager();
-        eventManager.registerListeners(container, new SpongeCommandListener());
+        Sponge.eventManager().registerListeners(container, new SpongeCommandListener());
     }
 
     @Override
