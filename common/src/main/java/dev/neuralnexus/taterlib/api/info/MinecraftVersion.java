@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.api.info;
 
-import org.spongepowered.asm.service.MixinService;
+import dev.neuralnexus.taterlib.mixin.TaterMixinServiceUtils;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -372,21 +372,30 @@ public enum MinecraftVersion {
      */
     private static String getSpongeMCVersion() {
         try {
-            // TODO: Check if this works for all 1.8-present
-            // Fine to do since obfuscated situations are covered by Forge
-            // Reflect to get SharedConstants.VERSION_STRING
-            return (String)
-                    MixinService.getService()
-                            .getBytecodeProvider()
-                            .getClassNode("net.minecraft.SharedConstants")
-                            .fields
-                            .stream()
-                            .filter(field -> field.name.equals("VERSION_STRING"))
-                            .findFirst()
-                            .get()
-                            .value;
-        } catch (ClassNotFoundException | IOException | NoSuchElementException e) {
-            e.printStackTrace();
+            // Reflect to get Sponge.platform().minecraftVersion().name()
+            Class<?> spongeClass = Class.forName("org.spongepowered.api.Sponge");
+            Object spongeInstance = spongeClass.getMethod("platform").invoke(null);
+            Object minecraftVersion =
+                    spongeInstance.getClass().getMethod("minecraftVersion").invoke(spongeInstance);
+            Object minecraftVersionName =
+                    minecraftVersion.getClass().getMethod("name").invoke(minecraftVersion);
+            return (String) minecraftVersionName;
+        } catch (ReflectiveOperationException ignored) {
+        }
+        try {
+            // Fall back to Sponge.getPlatform().getMinecraftVersion().getName()
+            Class<?> spongeClass = Class.forName("org.spongepowered.api.Sponge");
+            Object spongeInstance = spongeClass.getMethod("getPlatform").invoke(null);
+            Object minecraftVersion =
+                    spongeInstance.getClass().getMethod("getMinecraftVersion").invoke(null);
+            Object minecraftVersionName =
+                    minecraftVersion.getClass().getMethod("getName").invoke(minecraftVersion);
+            return (String) minecraftVersionName;
+        } catch (ReflectiveOperationException ignored) {
+        }
+        try {
+            return TaterMixinServiceUtils.getMCVersion();
+        } catch (ClassNotFoundException | IOException | NoSuchElementException ignored) {
         }
         return "Unknown";
     }
