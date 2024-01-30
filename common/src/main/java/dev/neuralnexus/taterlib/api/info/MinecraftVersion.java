@@ -235,8 +235,9 @@ public enum MinecraftVersion {
             version = getForgeMCVersion();
         } else if (serverType.isSpongeBased()) {
             version = getSpongeMCVersion();
+        } else if (serverType.isVelocityBased()) {
+            version = getVelocityMCVersion();
         }
-        // TODO: Add Velocity support
         return MinecraftVersion.from(version);
     }
 
@@ -391,6 +392,26 @@ public enum MinecraftVersion {
         try {
             return TaterMixinServiceUtils.getMCVersion();
         } catch (ClassNotFoundException | IOException | NoSuchElementException ignored) {
+        }
+        return "Unknown";
+    }
+
+    /**
+     * Reflect to get the version of Minecraft the server is running.
+     *
+     * @return The version of Minecraft the server is running
+     */
+    public static String getVelocityMCVersion() {
+        // Reflect to get ProtocolVersion.MAXIMUM_VERSION.toString()
+        try {
+            Class<?> protocolVersionClass =
+                    Class.forName("com.velocitypowered.api.network.ProtocolVersion");
+            Object maximumVersion =
+                    protocolVersionClass.getField("MAXIMUM_VERSION").get(protocolVersionClass);
+            Object maximumVersionString =
+                    maximumVersion.getClass().getMethod("toString").invoke(maximumVersion);
+            return (String) maximumVersionString;
+        } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
     }
