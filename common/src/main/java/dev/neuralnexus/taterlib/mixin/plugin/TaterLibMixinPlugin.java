@@ -66,12 +66,12 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         // NeoForge is picking up on Forge mixins
         if (TaterAPIProvider.serverType().is(ServerType.NEOFORGE)
-                && mixinClassName.contains(".forge")) {
+                && mixinClassName.contains(".forge.mixin")) {
             return false;
         }
         // Forge is picking up on Vanilla mixins
-        if (TaterAPIProvider.serverType().is(ServerType.FORGE) // , ServerType.SPONGE_FORGE)
-                && mixinClassName.contains(".vanilla")) {
+        if (TaterAPIProvider.serverType().is(ServerType.FORGE, ServerType.SPONGE_FORGE)
+                && mixinClassName.contains(".vanilla.mixin")) {
             return false;
         }
 

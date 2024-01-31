@@ -5,7 +5,7 @@ plugins {
     id('maven-publish')
     id('com.github.johnrengelman.shadow') version('8.1.1')
     id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
-    id('net.neoforged.gradle.userdev') version('7.0.74') apply(false)
+    id('net.neoforged.gradle.userdev') version('7.0.80') apply(false)
 }
 
 defaultTasks('build')
@@ -996,8 +996,7 @@ tasks.register('build_bleeding', Jar) {
                 'Access-Widener': "${project_id}.sponge.accesswidener",
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json"
-// , ${project_id}.mixins.forge.bleeding.json"
+                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json, ${project_id}.mixins.forge.bleeding.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {

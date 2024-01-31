@@ -17,7 +17,7 @@
     "repo": "${repo_url}"
   },
   "license": "${license}",
-  "icon": "./${project_name}.png",
+  "icon": "${project_name}.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -29,7 +29,6 @@
   ],
   "depends": {
     "fabricloader": ">=0.9.0",
-    "fabric-command-api-v2": "*",
     "minecraft": ">=${minecraft_version}"
   },
   "suggests": {

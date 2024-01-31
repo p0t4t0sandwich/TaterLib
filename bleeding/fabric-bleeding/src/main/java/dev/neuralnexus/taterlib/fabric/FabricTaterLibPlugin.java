@@ -9,11 +9,8 @@ import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.loader.api.FabricLoader;
 
 import org.apache.logging.log4j.LogManager;
@@ -32,15 +29,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
         api.setIsModLoaded((modId) -> FabricLoader.getInstance().isModLoaded(modId));
         api.setServer(VanillaServer::getInstance);
-
-        // Register Fabric API command events
-        CommandRegistrationCallback.EVENT.register(
-                (dispatcher, registryAccess, environment) -> {
-                    CommandEvents.REGISTER_COMMAND.invoke(
-                            new VanillaCommandRegisterEvent(dispatcher, environment));
-                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                            new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
-                });
     }
 
     @Override

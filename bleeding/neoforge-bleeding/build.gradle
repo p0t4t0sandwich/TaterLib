@@ -1,5 +1,5 @@
 plugins {
-    id('net.neoforged.gradle.userdev') version('7.0.74')
+    id('net.neoforged.gradle.userdev') version('7.0.80')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
@@ -11,6 +11,18 @@ subsystems {
         mappingsVersion = mapping_version
     }
 }
+
+minecraft.accessTransformers.file file('src/main/resources/META-INF/neoforge.accesstransformer.cfg')
+
+// MinecraftServerMixin_1_20
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer resources # resources'
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer$ReloadableResources managers()net.minecraft.server.ReloadableServerResources # managers'
+
+// PlayerAdvancementsMixin_1_20_2
+minecraft.accessTransformers.entry 'public net.minecraft.server.PlayerAdvancements player # player'
+
+// ServerCommonPacketListenerImplMixin_1_20_2
+minecraft.accessTransformers.entry 'public net.minecraft.server.network.ServerCommonPacketListenerImpl server # server'
 
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")

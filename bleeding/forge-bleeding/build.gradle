@@ -24,7 +24,7 @@ mixin {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.patch.bleeding.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.bleeding.json".toString()]) {
         expand project.properties
     }
 }
@@ -32,11 +32,7 @@ tasks.withType(ProcessResources).configureEach {
 shadowJar {
     dependencies {
         include(project(":bleeding:vanilla-bleeding"))
-//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.forge.mixin.fake")
-    relocate("${group_id}.${project_id}.vanilla.forge", "${group_id}.${project_id}.vanilla.forge")
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-bleeding-${version}.jar"
