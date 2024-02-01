@@ -8,11 +8,11 @@ import net.minecraft.world.entity.player.Player;
 import java.util.Collection;
 
 /** Fabric implementation of {@link PlayerAdvancementEvent}. */
-public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
+public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
         implements PlayerAdvancementEvent {
     private final AdvancementHolder advancement;
 
-    public VanillaPlayerAdvancementEvent_1_20_2(Player player, AdvancementHolder advancement) {
+    public VanillaPlayerAdvancementEvent(Player player, AdvancementHolder advancement) {
         super(player);
         this.advancement = advancement;
     }
@@ -24,7 +24,7 @@ public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
     }
 
     /** Fabric implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
-    public static class AdvancementFinished extends VanillaPlayerAdvancementEvent_1_20_2
+    public static class AdvancementFinished extends VanillaPlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementFinished {
         public AdvancementFinished(Player player, AdvancementHolder advancement) {
             super(player, advancement);
@@ -32,7 +32,7 @@ public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
     }
 
     /** Fabric implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
-    public static class AdvancementProgress extends VanillaPlayerAdvancementEvent_1_20_2
+    public static class AdvancementProgress extends VanillaPlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementProgress {
         private final AdvancementHolder advancement;
 

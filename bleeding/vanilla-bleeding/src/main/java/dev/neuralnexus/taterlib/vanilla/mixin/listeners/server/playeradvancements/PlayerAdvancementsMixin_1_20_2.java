@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.vanilla.mixin.listeners.server.playeradvancements;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
+import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -24,9 +24,11 @@ public abstract class PlayerAdvancementsMixin_1_20_2 {
         if (advancement.display().isPresent()) {
             DisplayInfo display = advancement.display().get();
             if (display.shouldAnnounceChat()
-                    && ((PlayerAdvancements) (Object) this).getOrStartProgress(advancementHolder).isDone()) {
+                    && ((PlayerAdvancements) (Object) this)
+                            .getOrStartProgress(advancementHolder)
+                            .isDone()) {
                 PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                        new VanillaPlayerAdvancementEvent_1_20_2.AdvancementFinished(
+                        new VanillaPlayerAdvancementEvent.AdvancementFinished(
                                 ((PlayerAdvancements) (Object) this).player, advancementHolder));
             }
         }
@@ -39,7 +41,9 @@ public abstract class PlayerAdvancementsMixin_1_20_2 {
             String criterionName,
             CallbackInfoReturnable<Boolean> cir) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
-                        ((PlayerAdvancements) (Object) this).player, advancementHolder, criterionName));
+                new VanillaPlayerAdvancementEvent.AdvancementProgress(
+                        ((PlayerAdvancements) (Object) this).player,
+                        advancementHolder,
+                        criterionName));
     }
 }

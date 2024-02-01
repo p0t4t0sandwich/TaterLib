@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.BukkitCancellableEventWrapper;
 import dev.neuralnexus.taterlib.bukkit.event.player.*;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
+import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerDeathEvent;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerMessageEvent;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerRespawnEvent;
@@ -28,7 +28,7 @@ public class BukkitPlayerListener implements Listener {
         Advancement advancement = event.getAdvancement();
         if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
             PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                    new VanillaPlayerAdvancementEvent_1_20_2.AdvancementFinished(
+                    new VanillaPlayerAdvancementEvent.AdvancementFinished(
                             BukkitAdapters.getPlayer(event.getPlayer()),
                             BukkitAdapters.getAdvancement(event.getAdvancement())));
         }

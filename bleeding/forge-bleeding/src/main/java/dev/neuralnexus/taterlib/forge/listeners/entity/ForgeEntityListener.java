@@ -1,0 +1,53 @@
+package dev.neuralnexus.taterlib.forge.listeners.entity;
+
+import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterlib.forge.event.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntityDamageEvent;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntityDeathEvent;
+import dev.neuralnexus.taterlib.vanilla.event.entity.VanillaEntitySpawnEvent;
+
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+
+/** Listens for entity events. */
+public class ForgeEntityListener {
+    /**
+     * Called when an entity is damaged.
+     *
+     * @param event The entity damage event
+     */
+    @SubscribeEvent
+    public void onEntityDamage(LivingDamageEvent event) {
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        event.getEntity(),
+                        event.getSource(),
+                        event.getAmount(),
+                        new ForgeCancellableEventWrapper(event)));
+    }
+
+    /**
+     * Called when an entity dies.
+     *
+     * @param event The entity death event
+     */
+    @SubscribeEvent
+    public void onEntityDeath(LivingDeathEvent event) {
+        EntityEvents.DEATH.invoke(
+                new VanillaEntityDeathEvent(event.getEntity(), event.getSource()));
+    }
+
+    /**
+     * Called when an entity is spawned.
+     *
+     * @param event The entity spawn event
+     */
+    @SubscribeEvent
+    public void onEntitySpawn(MobSpawnEvent.FinalizeSpawn event) {
+        EntityEvents.SPAWN.invoke(
+                new VanillaEntitySpawnEvent(
+                        event.getEntity(), new ForgeCancellableEventWrapper(event)));
+    }
+}

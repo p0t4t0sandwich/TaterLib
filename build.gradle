@@ -996,7 +996,8 @@ tasks.register('build_bleeding', Jar) {
                 'Access-Widener': "${project_id}.sponge.accesswidener",
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json, ${project_id}.mixins.forge.bleeding.json"
+                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json"
+//, ${project_id}.mixins.forge.bleeding.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
