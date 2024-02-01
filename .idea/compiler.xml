@@ -347,6 +347,7 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
         <module name="TaterLib.bleeding.velocity-bleeding.main" />
+        <module name="TaterLib.velocity.velocity-3.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
@@ -358,10 +359,6 @@
       <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.test" target="17" />
       <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.main" target="17" />
       <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.test" target="17" />
-      <module name="fabric.fabric-1.20.2.TaterLib.fabric.fabric-1.20.2.main" target="17" />
-      <module name="fabric.fabric-1.20.2.TaterLib.fabric.fabric-1.20.2.test" target="17" />
-      <module name="fabric.fabric-1.20.TaterLib.fabric.fabric-1.20.main" target="17" />
-      <module name="fabric.fabric-1.20.TaterLib.fabric.fabric-1.20.test" target="17" />
       <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
       <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" target="17" />
@@ -374,16 +371,9 @@
       <module name="forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
       <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
       <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
-      <module name="forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
-      <module name="forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
-      <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.main" target="17" />
-      <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.test" target="17" />
-      <module name="neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.fabric.fabric-1.17" target="16" />
       <module name="TaterLib.fabric.fabric-1.18" target="17" />
       <module name="TaterLib.fabric.fabric-1.19" target="17" />
-      <module name="TaterLib.fabric.fabric-1.20" target="17" />
-      <module name="TaterLib.fabric.fabric-1.20.2" target="17" />
       <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />
@@ -413,8 +403,6 @@
       <module name="TaterLib.forge.forge-1.19" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
       <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
-      <module name="TaterLib.forge.forge-1.20" target="17" />
-      <module name="TaterLib.forge.forge-1.20.2" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
@@ -423,9 +411,7 @@
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
-      <module name="TaterLib.neoforge.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
-      <module name="TaterLib.neoforge.neoforge-1.20.2.test" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
@@ -439,12 +425,6 @@
       <module name="TaterLib.vanilla.vanilla-1.19.4" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.main" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.test" target="17" />
-      <module name="TaterLib.vanilla.vanilla-1.20" target="17" />
-      <module name="TaterLib.vanilla.vanilla-1.20.2" target="17" />
-      <module name="vanilla-1.20.2.TaterLib.vanilla.vanilla-1.20.2.main" target="17" />
-      <module name="vanilla-1.20.2.TaterLib.vanilla.vanilla-1.20.2.test" target="17" />
-      <module name="vanilla-1.20.TaterLib.vanilla.vanilla-1.20.main" target="17" />
-      <module name="vanilla-1.20.TaterLib.vanilla.vanilla-1.20.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

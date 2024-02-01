@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.block;
 
-import dev.neuralnexus.taterlib.bukkit.event.block.BukkitBlockBreakEvent;
+import dev.neuralnexus.taterlib.bukkit.event.block.BukkitPlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
 
 import org.bukkit.event.EventHandler;
@@ -15,6 +15,6 @@ public class BukkitBlockListener implements Listener {
      */
     @EventHandler
     public void onBlockBreak(org.bukkit.event.block.BlockBreakEvent event) {
-        BlockEvents.BLOCK_BREAK.invoke(new BukkitBlockBreakEvent(event));
+        BlockEvents.BLOCK_BREAK.invoke(new BukkitPlayerBlockBreakEvent(event));
     }
 }

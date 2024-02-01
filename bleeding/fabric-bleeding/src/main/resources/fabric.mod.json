@@ -27,6 +27,7 @@
   "mixins": [
     "${project_id}.mixins.fabric.bleeding.json"
   ],
+  "accessWidener": "${project_id}.fabric.accesswidener",
   "depends": {
     "fabricloader": ">=0.9.0",
     "minecraft": ">=${minecraft_version}"

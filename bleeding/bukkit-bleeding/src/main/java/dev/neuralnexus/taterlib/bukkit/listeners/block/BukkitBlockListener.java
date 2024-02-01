@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.bukkit.listeners.block;
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.BukkitCancellableEventWrapper;
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
-import dev.neuralnexus.taterlib.vanilla.event.block.VanillaBlockBreakEvent;
+import dev.neuralnexus.taterlib.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +19,7 @@ public class BukkitBlockListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         BlockEvents.BLOCK_BREAK.invoke(
-                new VanillaBlockBreakEvent(
+                new VanillaPlayerBlockBreakEvent(
                         BukkitAdapters.getLevel(event.getBlock().getWorld()),
                         BukkitAdapters.getPlayer(event.getPlayer()),
                         BukkitAdapters.getBlockPos(event.getBlock()),

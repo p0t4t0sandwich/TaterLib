@@ -4,8 +4,8 @@ import com.mojang.logging.LogUtils;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.neoforge.NeoForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.v1_20_2.neoforge.NeoForgeTaterLibPlugin;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;

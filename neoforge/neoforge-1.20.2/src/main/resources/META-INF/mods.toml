@@ -17,9 +17,9 @@ displayTest = "IGNORE_SERVER_VERSION"
 description = '''${project_description}'''
 
 [[mixins]]
-config="${project_id}.mixins.vanilla.1_20.json"
+config="${project_id}.mixins.vanilla.v1_20.json"
 [[mixins]]
-config="${project_id}.mixins.vanilla.1_20_2.json"
+config="${project_id}.mixins.vanilla.v1_20_2.json"
 
 # Forge Dependency
 [[dependencies.${ project_id }]]

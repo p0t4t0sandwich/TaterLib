@@ -10,7 +10,7 @@ sourceCompatibility = targetCompatibility = java_version
 dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-${minecraft_version}"))
+    implementation(project(':vanilla:vanilla-1.20.2'))
 
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -23,29 +23,31 @@ dependencies {
 
 tasks.withType(ProcessResources).configureEach {
     filesMatching([
-            "${project_id}.mixins.fabric.1_20_2.json".toString(),
-            "${project_id}.mixins.fabric.patch.1_20_2.json".toString()
+            "${project_id}.mixins.fabric.v1_20_2.json".toString(),
+            "${project_id}.mixins.fabric.patch.v1_20_2.json".toString()
     ]) {
         expand project.properties
     }
 }
 
 loom {
+    accessWidenerPath = file("src/main/resources/${project_id}.fabric.accesswidener")
     mixin {
-        defaultRefmapName.set("${project_id}.mixins.fabric.1_20_2.refmap.json")
+        defaultRefmapName.set("${project_id}.mixins.fabric.v1_20_2.refmap.json")
     }
 }
 
 shadowJar {
     dependencies {
-        include(project(":vanilla:vanilla-${minecraft_version}"))
+        include(project(':vanilla:vanilla-1.20.2'))
 //        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
     // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.fabric.mixin.fake")
-    relocate("${group_id}.${project_id}.vanilla.fabric", "${group_id}.${project_id}.vanilla.fabric")
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20_2.vanilla.fabric.mixin.fake")
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla.fabric", "${group_id}.${project_id}.v1_20_2.vanilla.fabric")
+    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.fabric")
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla", "${group_id}.${project_id}.v1_20_2.vanilla.fabric")
 }
 
 task remappedShadowJar(type: RemapJarTask) {

@@ -17,6 +17,9 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
+    exclude('dev/neuralnexus/taterlib/v1_20')
+    exclude('dev/neuralnexus/taterlib/v1_20_2')
+    
     exclude('dev/neuralnexus/taterlib/bukkit')
     exclude('dev/neuralnexus/taterlib/bungee')
     exclude('dev/neuralnexus/taterlib/fabric')

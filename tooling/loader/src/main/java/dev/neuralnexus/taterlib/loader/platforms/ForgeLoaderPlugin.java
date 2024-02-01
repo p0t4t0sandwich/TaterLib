@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.v1_20_2.forge.ForgeTaterLibPlugin;
 
 import net.minecraftforge.fml.common.Mod;
 

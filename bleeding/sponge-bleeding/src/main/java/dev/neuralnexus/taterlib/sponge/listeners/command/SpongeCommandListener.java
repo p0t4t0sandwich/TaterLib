@@ -16,15 +16,6 @@ public class SpongeCommandListener {
      */
     @Listener
     public void onRegisterCommands(final RegisterCommandEvent<Command.Parameterized> event) {
-        // Needs to wait for the server to enter the starting state
-        //        ServerEvents.STARTING.register(
-        //                (startingEvent) ->
-        //                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-        //                                new VanillaBrigadierCommandRegisterEvent(
-        //                                        SpongeAdapters.getCommandDispatcher(),
-        //                                        SpongeAdapters.getCommandSelection())));
-
-        // Sponge command registration
         CommandEvents.REGISTER_COMMAND.invoke(new SpongeCommandRegisterEvent(event));
     }
 }

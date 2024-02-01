@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.v1_20.bukkit.BukkitTaterLibPlugin;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

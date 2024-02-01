@@ -12,11 +12,23 @@ subsystems {
     }
 }
 
+minecraft.accessTransformers.file file('src/main/resources/META-INF/neoforge.accesstransformer.cfg')
+
+// MinecraftServerMixin_1_20
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer resources # resources'
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer$ReloadableResources managers()net.minecraft.server.ReloadableServerResources # managers'
+
+// PlayerAdvancementsMixin_1_20_2
+minecraft.accessTransformers.entry 'public net.minecraft.server.PlayerAdvancements player # player'
+
+// ServerCommonPacketListenerImplMixin_1_20_2
+minecraft.accessTransformers.entry 'public net.minecraft.server.network.ServerCommonPacketListenerImpl server # server'
+
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
-    compileOnly(project(":vanilla:vanilla-${minecraft_version}"))
+    compileOnly(project(':vanilla:vanilla-1.20.2'))
 }
 
 tasks.withType(ProcessResources).configureEach {

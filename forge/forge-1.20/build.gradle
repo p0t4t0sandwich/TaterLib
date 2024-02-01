@@ -19,12 +19,12 @@ dependencies {
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.mixins.forge.1_20.refmap.json")
+    add(sourceSets.main, "${project_id}.mixins.forge.v1_20.refmap.json")
     config("${project_id}.mixins.forge.1_20.json")
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.1_20.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.v1_20.json".toString()]) {
         expand project.properties
     }
 }
@@ -35,9 +35,9 @@ shadowJar {
 //        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
     // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.vanilla.mixin.listeners", "${group_id}.${project_id}.vanilla.forge.mixin.fake")
-    relocate("${group_id}.${project_id}.vanilla.forge", "${group_id}.${project_id}.vanilla.forge")
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
+    relocate("${group_id}.${project_id}.v1_20.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20.vanilla.forge.mixin.fake")
+    relocate("${group_id}.${project_id}.v1_20.vanilla.forge", "${group_id}.${project_id}.v1_20.vanilla.forge")
+    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.forge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

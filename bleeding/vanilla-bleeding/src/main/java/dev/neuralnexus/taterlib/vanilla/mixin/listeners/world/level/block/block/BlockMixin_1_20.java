@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.vanilla.mixin.listeners.world.level.block.block
 
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
 import dev.neuralnexus.taterlib.vanilla.event.VanillaCancellableCallbackWrapper;
-import dev.neuralnexus.taterlib.vanilla.event.block.VanillaBlockBreakEvent;
+import dev.neuralnexus.taterlib.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -31,7 +31,7 @@ public class BlockMixin_1_20 {
             ItemStack itemStack,
             CallbackInfo ci) {
         BlockEvents.BLOCK_BREAK.invoke(
-                new VanillaBlockBreakEvent(
+                new VanillaPlayerBlockBreakEvent(
                         level,
                         player,
                         blockPos,

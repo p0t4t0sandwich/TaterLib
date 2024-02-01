@@ -87,14 +87,15 @@ include(
 //        'bukkit:bukkit-1.8.8',
 //        'bukkit:bukkit-1.13.2',
 //        'bukkit:bukkit-1.15.2',
-//        'bukkit:bukkit-1.20.2',
-//
+        'bukkit:bukkit-1.20',
+        'bukkit:bukkit-1.20.2',
+
 //        // Bungee
 //        'bungee:bungee-1.4.7',
 //        'bungee:bungee-1.8',
 //        'bungee:bungee-1.12',
-//        'bungee:bungee-1.20',
-//
+        'bungee:bungee-1.20',
+
 //        // Legacy Fabric
 //        'fabric:fabric-1.7.10',
 //        'fabric:fabric-1.8.9',
@@ -110,9 +111,9 @@ include(
 //        'fabric:fabric-1.17',
 //        'fabric:fabric-1.18',
 //        'fabric:fabric-1.19',
-//        'fabric:fabric-1.20',
-//        'fabric:fabric-1.20.2',
-//
+        'fabric:fabric-1.20',
+        'fabric:fabric-1.20.2',
+
 //        // Forge
 //        'forge:forge-1.12.2',
 //        'forge:forge-1.13.2',
@@ -123,12 +124,12 @@ include(
 //        'forge:forge-1.18',
 //        'forge:forge-1.18.2',
 //        'forge:forge-1.19',
-//        'forge:forge-1.20',
-//        'forge:forge-1.20.2',
-//
-//        // NeoForge
-//        'neoforge:neoforge-1.20.2',
-//
+        'forge:forge-1.20',
+        'forge:forge-1.20.2',
+
+        // NeoForge
+        'neoforge:neoforge-1.20.2',
+
 //        // Sponge
 //        'sponge:sponge-4',
 //        'sponge:sponge-5',
@@ -137,12 +138,12 @@ include(
 //        'sponge:sponge-8',
 //        'sponge:sponge-9',
 //        'sponge:sponge-10',
-//        'sponge:sponge-11',
-//
-//        // Vanilla
-//        'vanilla:vanilla-1.20',
-//        'vanilla:vanilla-1.20.2',
-//
-//        // Velocity
-//        'velocity:velocity-3'
+        'sponge:sponge-11',
+
+        // Vanilla
+        'vanilla:vanilla-1.20',
+        'vanilla:vanilla-1.20.2',
+
+        // Velocity
+        'velocity:velocity-3'
 )

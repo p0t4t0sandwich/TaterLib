@@ -7,6 +7,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
+    accessWideners(file("src/main/resources/${project_id}.vanilla.v1_20_2.accesswidener"))
 }
 
 dependencies {
@@ -17,7 +18,7 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(["${project_id}.mixins.vanilla.1_20_2.json".toString()]) {
+    filesMatching(["${project_id}.mixins.vanilla.v1_20_2.json".toString()]) {
         expand project.properties
     }
 }

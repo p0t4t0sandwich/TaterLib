@@ -26,17 +26,15 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     private static final Map<String, Supplier<Boolean>> CONDITIONS =
             ImmutableMap.<String, Supplier<Boolean>>builder()
                     // 1.20 Listener Mixins
+                    .put("CustomPayloadMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerAdvancementFinishedMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerAdvancementProgressMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerLoginMixin_1_20", IS_20_TO_20_2)
-                    .put("PlayerLogoutMixin_1_20", IS_20_TO_20_2)
-                    .put("PluginMessagesMixin_1_20", IS_20_TO_20_2)
                     // 1.20.2 Listener Mixins
+                    .put("CustomPayloadMixin_1_20_2", IS_20_2)
                     .put("PlayerAdvancementFinishedMixin_1_20_2", IS_20_2)
                     .put("PlayerAdvancementProgressMixin_1_20_2", IS_20_2)
                     .put("PlayerLoginMixin_1_20_2", IS_20_2)
-                    .put("PlayerLogoutMixin_1_20_2", IS_20_2)
-                    .put("PluginMessagesMixin_1_20_2", IS_20_2)
                     // 1.20.2 Patch Mixins
                     .put("VanillaPlayerMixin_1_20_2", IS_20_2)
                     .build();
