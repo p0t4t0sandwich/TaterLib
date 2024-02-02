@@ -168,6 +168,7 @@ public enum MinecraftVersion {
     V1_20_2("1.20.2"),
     V1_20_3("1.20.3"),
     V1_20_4("1.20.4"),
+    V1_20_5("1.20.5"),
     UNKNOWN("Unknown");
 
     private static final MinecraftVersion minecraftVersion = UNKNOWN;
@@ -423,6 +424,16 @@ public enum MinecraftVersion {
      */
     public String getVersion() {
         return this.version;
+    }
+
+    /**
+     * Utility to get the version delimiter for working with TaterLib's NMS. <br>
+     * Eg. <b>1.17.1</b> into <b>v1_17_1</b>
+     *
+     * @return The version of Minecraft the server is running
+     */
+    public String getDelimiterString() {
+        return this.name().toLowerCase().replace("_", ".");
     }
 
     /**

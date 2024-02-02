@@ -11,14 +11,14 @@ import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapters;
+import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapter;
 import dev.neuralnexus.taterlib.v1_20.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.networking.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_20.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.BukkitPlayerListener;
-import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.PaperPlayerListener;
+import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.PaperPlayerAdvancementListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
@@ -52,34 +52,21 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
+        PluginManager pluginManager = plugin.getServer().getPluginManager();
 
         // Register listeners
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
         pluginManager.registerEvents(new BukkitBlockListener(), plugin);
         pluginManager.registerEvents(new BukkitEntityListener(), plugin);
         pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
         if (TaterAPIProvider.serverType().isPaperBased()) {
-            pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+            pluginManager.registerEvents(new PaperPlayerAdvancementListener(), plugin);
         }
         if (!hasStarted) {
             hasStarted = true;
             ServerEvents.STARTING.invoke(
-                    new VanillaServerStartingEvent(BukkitAdapters.getServer()));
+                    new VanillaServerStartingEvent(BukkitAdapter.get().getServer()));
         }
         pluginManager.registerEvents(new BukkitServerListener(), plugin);
-
-        if (TaterAPIProvider.isBrigadierSupported()) {
-            Bukkit.getScheduler()
-                    .runTaskLater(
-                            plugin,
-                            () ->
-                                    // Register brigadier commands
-                                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                            new VanillaBrigadierCommandRegisterEvent(
-                                                    BukkitAdapters.getCommandDispatcher(),
-                                                    BukkitAdapters.getCommandSelection())),
-                            1);
-        }
 
         Bukkit.getServer()
                 .getScheduler()
@@ -88,6 +75,14 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                         () -> {
                             // Register commands
                             CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
+
+                            if (TaterAPIProvider.isBrigadierSupported()) {
+                                // Register Brigadier commands
+                                CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                                        new VanillaBrigadierCommandRegisterEvent(
+                                                BukkitAdapter.get().getCommandDispatcher(),
+                                                BukkitAdapter.get().getCommandSelection()));
+                            }
 
                             // Register plugin messages
                             PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(

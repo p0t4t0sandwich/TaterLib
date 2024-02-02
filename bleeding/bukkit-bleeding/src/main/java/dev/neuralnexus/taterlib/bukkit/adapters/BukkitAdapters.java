@@ -16,14 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.advancement.Advancement;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_20_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_20_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R3.advancement.CraftAdvancement;
-import org.bukkit.craftbukkit.v1_20_R3.block.CraftBlock;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_20_R3.entity.CraftPlayer;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -43,16 +36,34 @@ public class BukkitAdapters {
     }
 
     /**
-     * Returns the CraftBukkit class name for the given class.
+     * Reflects and casts an object.
      *
-     * @param className The class name.
+     * @param clazz The CraftBukkit class name.
      * @param object The object to cast.
      * @return The cast object.
      */
-    public static Object reflectAndCast(String className, Object object) {
+    public static Object reflectAndCast(String clazz, Object object) {
         try {
-            return Class.forName(className).cast(object);
+            return Class.forName(cbClass(clazz)).cast(object);
         } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Reflect and get the handle of an object.
+     *
+     * @param clazz The CraftBukkit class name.
+     * @param object The object to cast.
+     * @return The handle of the object.
+     */
+    public static Object reflectAndGetHandle(String clazz, Object object) {
+        try {
+            return Class.forName(cbClass(clazz)).getDeclaredMethod("getHandle").invoke(object);
+        } catch (ClassNotFoundException
+                | NoSuchMethodException
+                | IllegalAccessException
+                | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
@@ -64,7 +75,7 @@ public class BukkitAdapters {
      */
     public static MinecraftServer getServer() {
         // ((CraftServer) Bukkit.getServer()).getServer();
-        Object craftServer = reflectAndCast(cbClass("CraftServer"), Bukkit.getServer());
+        Object craftServer = reflectAndCast("CraftServer", Bukkit.getServer());
         try {
             return (MinecraftServer)
                     craftServer.getClass().getDeclaredMethod("getServer").invoke(craftServer);
@@ -81,11 +92,7 @@ public class BukkitAdapters {
     public static CommandDispatcher<CommandSourceStack> getCommandDispatcher() {
         // ((CraftServer)
         // Bukkit.getServer()).getServer().resources.managers().getCommands().getDispatcher();
-        return (((CraftServer) Bukkit.getServer()).getServer())
-                .resources
-                .managers()
-                .getCommands()
-                .getDispatcher();
+        return getServer().resources.managers().getCommands().getDispatcher();
     }
 
     /**
@@ -104,7 +111,14 @@ public class BukkitAdapters {
      * @return The Vanilla block.
      */
     public static BlockPos getBlockPos(Block block) {
-        return ((CraftBlock) block).getPosition();
+        // ((CraftBlock) block).getPosition();
+        Object craftBlock = reflectAndCast("block.CraftBlock", block);
+        try {
+            return (BlockPos)
+                    craftBlock.getClass().getDeclaredMethod("getPosition").invoke(craftBlock);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -114,7 +128,14 @@ public class BukkitAdapters {
      * @return The Vanilla block state.
      */
     public static BlockState getBlockState(Block block) {
-        return ((CraftBlock) block).getNMS();
+        // ((CraftBlock) block).getNMS();
+        Object craftBlock = reflectAndCast("block.CraftBlock", block);
+        try {
+            return (BlockState)
+                    craftBlock.getClass().getDeclaredMethod("getNMS").invoke(craftBlock);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -124,7 +145,8 @@ public class BukkitAdapters {
      * @return The Vanilla player.
      */
     public static ServerPlayer getPlayer(org.bukkit.entity.Player player) {
-        return ((CraftPlayer) player).getHandle();
+        // ((CraftPlayer) player).getHandle();
+        return (ServerPlayer) reflectAndGetHandle("entity.CraftPlayer", player);
     }
 
     /**
@@ -134,7 +156,8 @@ public class BukkitAdapters {
      * @return The Vanilla level.
      */
     public static Level getLevel(World world) {
-        return ((CraftWorld) world).getHandle();
+        // ((CraftWorld) world).getHandle();
+        return (Level) reflectAndGetHandle("CraftWorld", world);
     }
 
     /**
@@ -144,7 +167,8 @@ public class BukkitAdapters {
      * @return The Vanilla entity.
      */
     public static Entity getEntity(org.bukkit.entity.Entity entity) {
-        return ((CraftEntity) entity).getHandle();
+        // ((CraftEntity) entity).getHandle();
+        return (Entity) reflectAndGetHandle("entity.CraftEntity", entity);
     }
 
     /**
@@ -154,16 +178,18 @@ public class BukkitAdapters {
      * @return The Vanilla damage source.
      */
     public static DamageSource getLastDamageSource(org.bukkit.entity.Entity entity) {
-        return ((LivingEntity) ((CraftEntity) entity).getHandle()).getLastDamageSource();
+        // ((LivingEntity) ((CraftEntity) entity).getHandle()).getLastDamageSource();
+        return ((LivingEntity) getEntity(entity)).getLastDamageSource();
     }
 
     /**
-     * Returns a Vanilla advancement holder from a Bukkit advancement.
+     * Returns a Vanilla advancement from a Bukkit advancement.
      *
      * @param advancement The Bukkit advancement.
-     * @return The Vanilla advancement holder.
+     * @return The Vanilla advancement.
      */
-    public static AdvancementHolder getAdvancement(Advancement advancement) {
-        return ((CraftAdvancement) advancement).getHandle();
+    public static AdvancementHolder getAdvancement(org.bukkit.advancement.Advancement advancement) {
+        // ((CraftAdvancement) advancement).getHandle();
+        return (AdvancementHolder) reflectAndGetHandle("advancement.CraftAdvancement", advancement);
     }
 }

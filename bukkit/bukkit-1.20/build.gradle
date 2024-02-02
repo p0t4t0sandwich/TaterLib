@@ -25,7 +25,7 @@ shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.20'))
     }
-    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.bukkit")
+    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.bukkit.v1_20")
 }
 
 //tasks.register('moveJarToTarget', Copy) {

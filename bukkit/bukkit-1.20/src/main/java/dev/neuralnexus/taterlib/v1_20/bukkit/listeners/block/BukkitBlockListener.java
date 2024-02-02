@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.listeners.block;
 
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
-import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapters;
+import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapter;
 import dev.neuralnexus.taterlib.v1_20.bukkit.event.BukkitCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
@@ -20,10 +20,10 @@ public class BukkitBlockListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         BlockEvents.BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
-                        BukkitAdapters.getLevel(event.getBlock().getWorld()),
-                        BukkitAdapters.getPlayer(event.getPlayer()),
-                        BukkitAdapters.getBlockPos(event.getBlock()),
-                        BukkitAdapters.getBlockState(event.getBlock()),
+                        BukkitAdapter.get().getLevel(event.getBlock().getWorld()),
+                        BukkitAdapter.get().getPlayer(event.getPlayer()),
+                        BukkitAdapter.get().getBlockPos(event.getBlock()),
+                        BukkitAdapter.get().getBlockState(event.getBlock()),
                         new BukkitCancellableEventWrapper<>(event)));
     }
 }
