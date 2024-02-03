@@ -4,8 +4,8 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.v1_19.vanilla.inventory.VanillaPlayerInventory;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.v1_19.vanilla.inventory.VanillaPlayerInventory;
 
 import io.netty.buffer.Unpooled;
 
@@ -108,12 +108,10 @@ public class VanillaPlayer extends VanillaEntity implements Player {
         if (channelParts.length == 1) {
             channelParts = new String[] {"tl-user-forgot", channelParts[0]};
         }
-        ResourceLocation resourceLocation = new ResourceLocation(channelParts[0], channelParts[1]);
-        ((ServerPlayer) player)
-                .connection.send(
-                        new ClientboundCustomPayloadPacket(
-                                resourceLocation,
-                                new FriendlyByteBuf(Unpooled.wrappedBuffer(data))));
+        ResourceLocation id = new ResourceLocation(channelParts[0], channelParts[1]);
+        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((ServerPlayer) player).connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
     /** {@inheritDoc} */
