@@ -9,6 +9,7 @@ import net.minecraft.server.level.ServerPlayer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
+/** Patch mixin for VanillaPlayer 1.20.2. */
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerMixin_1_20_2 {
     /**

@@ -99,7 +99,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 ## Release Notes
 
-### 1.1.0-R0.15
+### 1.1.0-R0.16
 
 - Fixes to Sponge8-11 component serialization
 - Fixed `SpongeEntity.getType` returning a properly formatted entity resource
@@ -161,6 +161,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Created a custom loader implementation, to allow for better compatibility with hybrids, Sinytra Connector, and
   SpongeForge
 - Added `SpongeForge` server type
-- Added Brigadier support for Sponge
+- Added Brigadier support for Sponge and Bukkit
 - Renamed `Sender` to `CommandSender`
 - Split `Server` into `SimpleServer` and `ProxyServer`

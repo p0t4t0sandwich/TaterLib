@@ -422,9 +422,21 @@
       <module name="TaterLib.sponge9" target="17" />
       <module name="TaterLib.sponge9.main" target="17" />
       <module name="TaterLib.sponge9.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.1" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.1.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.1.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.3" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.3.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.3.test" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.main" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.4.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
