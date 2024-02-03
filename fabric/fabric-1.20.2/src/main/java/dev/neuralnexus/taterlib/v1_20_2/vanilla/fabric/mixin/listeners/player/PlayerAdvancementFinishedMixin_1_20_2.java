@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementHolder;
@@ -27,7 +27,7 @@ public abstract class PlayerAdvancementFinishedMixin_1_20_2 {
                             .getOrStartProgress(advancementHolder)
                             .isDone()) {
                 PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                        new VanillaPlayerAdvancementEvent.AdvancementFinished(
+                        new VanillaPlayerAdvancementEvent_1_20_2.AdvancementFinished(
                                 ((PlayerAdvancements) (Object) this).player, advancementHolder));
             }
         }

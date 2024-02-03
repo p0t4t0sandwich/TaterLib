@@ -142,10 +142,10 @@ include(
         'sponge:sponge-11',
 
         // Vanilla
-//        'vanilla:vanilla-1.19',
-//        'vanilla:vanilla-1.19.1',
-//        'vanilla:vanilla-1.19.3',
-//        'vanilla:vanilla-1.19.4',
+        'vanilla:vanilla-1.19',
+        'vanilla:vanilla-1.19.1',
+        'vanilla:vanilla-1.19.3',
+        'vanilla:vanilla-1.19.4',
         'vanilla:vanilla-1.20',
         'vanilla:vanilla-1.20.2',
 

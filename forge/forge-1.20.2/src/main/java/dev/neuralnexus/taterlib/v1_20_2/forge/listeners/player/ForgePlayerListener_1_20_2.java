@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.v1_20_2.forge.listeners.player;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_20.forge.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.*;
-import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -24,7 +24,7 @@ public class ForgePlayerListener_1_20_2 {
     @SubscribeEvent
     public void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
         PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                new VanillaPlayerAdvancementEvent.AdvancementFinished(
+                new VanillaPlayerAdvancementEvent_1_20_2.AdvancementFinished(
                         event.getEntity(), event.getAdvancement()));
     }
 
@@ -36,7 +36,7 @@ public class ForgePlayerListener_1_20_2 {
     @SubscribeEvent
     public void onPlayerAdvancementProgress(AdvancementEvent.AdvancementProgressEvent event) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new VanillaPlayerAdvancementEvent.AdvancementProgress(
+                new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
                         event.getEntity(), event.getAdvancement(), event.getCriterionName()));
     }
 

@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.v1_20_2.vanilla.fabric.mixin.listeners.network;
 
 import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
-import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.network.CustomPayloadPacketWrapper;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.network.CustomPayloadPacketWrapper_1_20_2;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
@@ -23,7 +23,7 @@ public class CustomPayloadMixin_1_20_2 {
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacketWrapper wrapper = new CustomPayloadPacketWrapper(packet);
+        CustomPayloadPacketWrapper_1_20_2 wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
         PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
 
         ServerCommonPacketListenerImpl self = (ServerCommonPacketListenerImpl) (Object) this;
