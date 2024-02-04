@@ -11,7 +11,7 @@ A cross API code library for various generalizations used in the Tater* plugins
 Please note, some abstractions may not be fully implemented yet, and some may be missing.
 If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible,
 or feel free to open a PR with an implementation.
-[Contributions are always welcome!](https://github.com/p0t4t0sandwich/TaterLib/blob/main/CONTRIBUTING.md)
+[Contributions are always welcome!](https://github.com/p0t4t0sandwich/TaterLib/blob/main/.github/CONTRIBUTING.md)
 
 Link to our support: [Discord](https://discord.neuralnexus.dev)
 

@@ -13,9 +13,7 @@ Not sure where to start? Here are a few ways you can help out:
 * Reporting bugs
 * Suggesting new features
 * Writing or editing documentation (including typos)
-* Fixing typos
 * Refactoring code
-* Closing issues
 * Reviewing pull requests
 * Answering questions on issues
 * Helping others in the community
@@ -105,7 +103,7 @@ PRs are not considered finished until every platform/version has the feature imp
 For methods that aren't supported by and older version, please add the `{toBeNamed}RuntimeException`.
 
 Please remember: You are not expected to know everything about every modding platform. If you're not sure about
-something, feel free to ask. Or if you're feeling a bit overwhelmed, feel free to ask for help, you aren't alone while
+something, feel free to ask. Or if you're feeling a bit overwhelmed, ask for help, you aren't alone while
 working on PRs.
 
 It sounds like a lot, but most of the code is repetitive, and you'll get the hang of it after a bit. Even if you just
