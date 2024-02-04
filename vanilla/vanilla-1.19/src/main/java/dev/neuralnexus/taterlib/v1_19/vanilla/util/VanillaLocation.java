@@ -4,9 +4,7 @@ import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.utils.Position;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 /** Vanilla implementation of {@link Location}. */
@@ -31,11 +29,6 @@ public class VanillaLocation implements Location {
         this.yaw = yaw;
         this.pitch = pitch;
         this.world = world;
-    }
-
-    /** Creates a new location. */
-    public VanillaLocation(BlockPos blockPos, Level level) {
-        this(Vec3.atCenterOf(blockPos), 0, 0, level.dimension().toString());
     }
 
     /**

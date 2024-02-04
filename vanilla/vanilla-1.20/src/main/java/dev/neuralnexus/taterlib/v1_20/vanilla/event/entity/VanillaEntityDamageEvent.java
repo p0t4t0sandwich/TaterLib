@@ -20,6 +20,15 @@ public class VanillaEntityDamageEvent extends VanillaEntityEvent implements Enti
         this.cancel = cancel;
     }
 
+    /**
+     * Get the source of the damage
+     *
+     * @return The source of the damage
+     */
+    public DamageSource getSource() {
+        return damageSource;
+    }
+
     /** {@inheritDoc} */
     @Override
     public boolean isCancelled() {

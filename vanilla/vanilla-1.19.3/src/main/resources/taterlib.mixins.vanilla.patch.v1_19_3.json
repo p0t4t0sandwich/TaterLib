@@ -1,0 +1,13 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "dev.neuralnexus.taterlib.v1_19_3.vanilla.mixin.patch",
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "mixins": [
+    "player.VanillaPlayerMixin_1_19_3"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

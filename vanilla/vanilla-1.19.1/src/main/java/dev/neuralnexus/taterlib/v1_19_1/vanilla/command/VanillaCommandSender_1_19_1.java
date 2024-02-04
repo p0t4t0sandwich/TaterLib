@@ -8,10 +8,10 @@ import net.minecraft.network.chat.Component;
 import java.util.UUID;
 
 /** The Vanilla implementation of {@link CommandSender} */
-public class VanillaCommandSender implements CommandSender {
+public class VanillaCommandSender_1_19_1 implements CommandSender {
     private final CommandSourceStack source;
 
-    public VanillaCommandSender(CommandSourceStack source) {
+    public VanillaCommandSender_1_19_1(CommandSourceStack source) {
         this.source = source;
     }
 

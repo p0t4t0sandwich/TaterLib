@@ -10,7 +10,6 @@ import net.minecraft.server.level.ServerPlayer;
 /** Vanilla implementation of {@link Player}. */
 public class VanillaPlayer_1_20_2 extends VanillaPlayer {
     private final net.minecraft.world.entity.player.Player player;
-    private final String serverName;
 
     /**
      * Constructor.
@@ -20,7 +19,6 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
     public VanillaPlayer_1_20_2(net.minecraft.world.entity.player.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
     }
 
     /**
@@ -31,9 +29,8 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
      */
     public VanillaPlayer_1_20_2(
             net.minecraft.world.entity.player.Player player, String serverName) {
-        super(player);
+        super(player, serverName);
         this.player = player;
-        this.serverName = serverName;
     }
 
     /**
