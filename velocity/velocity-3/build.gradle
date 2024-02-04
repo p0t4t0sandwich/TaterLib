@@ -1,0 +1,12 @@
+dependencies {
+    compileOnly("com.velocitypowered:velocity-api:${velocityapi_version}")
+    annotationProcessor("com.velocitypowered:velocity-api:${velocityapi_version}")
+    compileOnly(project(':common'))
+}
+
+java.disableAutoTargetJvm()
+
+jar {
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_id}-velocity-3-${version}.jar"
+}

@@ -21,6 +21,6 @@ public class BukkitCommandWrapper implements CommandExecutor {
         if (sender instanceof Player) {
             return callback.execute(new BukkitPlayer((Player) sender), label, args);
         }
-        return callback.execute(new BukkitSender(sender), label, args);
+        return callback.execute(new BukkitCommandSender(sender), label, args);
     }
 }

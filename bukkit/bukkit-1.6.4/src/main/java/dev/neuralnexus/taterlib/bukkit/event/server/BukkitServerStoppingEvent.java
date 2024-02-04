@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.event.server;
 
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.bukkit.Bukkit;
 
@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 public class BukkitServerStoppingEvent implements ServerStoppingEvent {
     /** {@inheritDoc} */
     @Override
-    public Server getServer() {
+    public SimpleServer getServer() {
         return new BukkitServer(Bukkit.getServer());
     }
 }

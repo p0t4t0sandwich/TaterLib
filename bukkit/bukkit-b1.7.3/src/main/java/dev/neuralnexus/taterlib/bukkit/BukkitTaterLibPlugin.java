@@ -29,20 +29,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
 
-    /**
-     * Gets the instance of the plugin
-     *
-     * @return The instance of the plugin
-     */
-    public static JavaPlugin getInstance() {
-        return plugin;
-    }
-
     @Override
     public void platformInit(Object plugin, Object logger) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
 
-        TaterAPIProvider.register(Bukkit.getServer().getVersion());
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         pluginStart(
                 BukkitTaterLibPlugin.plugin,

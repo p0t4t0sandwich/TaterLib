@@ -20,7 +20,7 @@ public class BungeeCommandWrapper extends net.md_5.bungee.api.plugin.Command {
         if (sender instanceof ProxiedPlayer) {
             callback.execute(new BungeePlayer((ProxiedPlayer) sender), this.getName(), args);
         } else {
-            callback.execute(new BungeeSender(sender), this.getName(), args);
+            callback.execute(new BungeeCommandSender(sender), this.getName(), args);
         }
     }
 }

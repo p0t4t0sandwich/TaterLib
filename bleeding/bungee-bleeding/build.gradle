@@ -1,0 +1,16 @@
+dependencies {
+    compileOnly("net.md-5:bungeecord-api:${minecraft_version}-${bungeecord_version}")
+    compileOnly("io.github.waterfallmc:waterfall-api:${minecraft_version}-${bungeecord_version}")
+    compileOnly(project(':common'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['bungee.yml']) {
+        expand project.properties
+    }
+}
+
+jar {
+    destinationDirectory = file('../../target')
+    archiveFileName = "${project_id}-bungee-bleeding-${version}.jar"
+}

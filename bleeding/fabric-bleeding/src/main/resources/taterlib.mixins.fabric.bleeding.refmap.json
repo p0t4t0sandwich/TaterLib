@@ -1,0 +1,82 @@
+{
+  "mappings": {
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/level/serverlevel/ServerLevelMixin_1_20": {
+      "addFreshEntity": "Lnet/minecraft/class_3218;method_8649(Lnet/minecraft/class_1297;)Z"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/level/serverplayer/ServerPlayerMixin_1_20": {
+      "die": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/minecraftserver/MinecraftServerMixin_1_20": {
+      "Lnet/minecraft/server/MinecraftServer;buildServerStatus()Lnet/minecraft/network/protocol/status/ServerStatus;": "Lnet/minecraft/server/MinecraftServer;method_49385()Lnet/minecraft/class_2926;",
+      "Lnet/minecraft/server/MinecraftServer;initServer()Z": "Lnet/minecraft/server/MinecraftServer;method_3823()Z",
+      "runServer": "Lnet/minecraft/server/MinecraftServer;method_29741()V",
+      "stopServer": "Lnet/minecraft/server/MinecraftServer;method_3782()V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/network/servercommonpacketListenerImpl/ServerCommonPacketListenerImplMixin_1_20_2": {
+      "handleCustomPayload": "Lnet/minecraft/class_8609;method_52392(Lnet/minecraft/class_2817;)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/network/servergamepacketlistenerImpl/ServerGamePacketListenerImplMixin_1_20_2": {
+      "handleChat": "Lnet/minecraft/class_3244;method_12048(Lnet/minecraft/class_2797;)V",
+      "onDisconnect": "Lnet/minecraft/class_3244;method_10839(Lnet/minecraft/class_2561;)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/playeradvancements/PlayerAdvancementsMixin_1_20_2": {
+      "award": "Lnet/minecraft/class_2985;method_12878(Lnet/minecraft/class_8779;Ljava/lang/String;)Z",
+      "unregisterListeners": "Lnet/minecraft/class_2985;method_12880(Lnet/minecraft/class_8779;)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/players/playerlist/PlayerListMixin_1_20_2": {
+      "Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;<init>(Lnet/minecraft/world/entity/player/Abilities;)V": "Lnet/minecraft/class_2696;<init>(Lnet/minecraft/class_1656;)V",
+      "placeNewPlayer": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;Lnet/minecraft/class_8792;)V",
+      "respawn": "Lnet/minecraft/class_3324;method_14556(Lnet/minecraft/class_3222;Z)Lnet/minecraft/class_3222;"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/damagesource/combattracker/CombatTrackerMixin_1_20": {
+      "recordDamage": "Lnet/minecraft/class_1283;method_5547(Lnet/minecraft/class_1282;F)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/entity/livingentity/LivingEntityMixin_1_20": {
+      "die": "Lnet/minecraft/class_1309;method_6078(Lnet/minecraft/class_1282;)V"
+    },
+    "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/level/block/block/BlockMixin_1_20": {
+      "playerDestroy": "Lnet/minecraft/class_2248;method_9556(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2586;Lnet/minecraft/class_1799;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/level/serverlevel/ServerLevelMixin_1_20": {
+        "addFreshEntity": "Lnet/minecraft/class_3218;method_8649(Lnet/minecraft/class_1297;)Z"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/level/serverplayer/ServerPlayerMixin_1_20": {
+        "die": "Lnet/minecraft/class_3222;method_6078(Lnet/minecraft/class_1282;)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/minecraftserver/MinecraftServerMixin_1_20": {
+        "Lnet/minecraft/server/MinecraftServer;buildServerStatus()Lnet/minecraft/network/protocol/status/ServerStatus;": "Lnet/minecraft/server/MinecraftServer;method_49385()Lnet/minecraft/class_2926;",
+        "Lnet/minecraft/server/MinecraftServer;initServer()Z": "Lnet/minecraft/server/MinecraftServer;method_3823()Z",
+        "runServer": "Lnet/minecraft/server/MinecraftServer;method_29741()V",
+        "stopServer": "Lnet/minecraft/server/MinecraftServer;method_3782()V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/network/servercommonpacketListenerImpl/ServerCommonPacketListenerImplMixin_1_20_2": {
+        "handleCustomPayload": "Lnet/minecraft/class_8609;method_52392(Lnet/minecraft/class_2817;)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/network/servergamepacketlistenerImpl/ServerGamePacketListenerImplMixin_1_20_2": {
+        "handleChat": "Lnet/minecraft/class_3244;method_12048(Lnet/minecraft/class_2797;)V",
+        "onDisconnect": "Lnet/minecraft/class_3244;method_10839(Lnet/minecraft/class_2561;)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/playeradvancements/PlayerAdvancementsMixin_1_20_2": {
+        "award": "Lnet/minecraft/class_2985;method_12878(Lnet/minecraft/class_8779;Ljava/lang/String;)Z",
+        "unregisterListeners": "Lnet/minecraft/class_2985;method_12880(Lnet/minecraft/class_8779;)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/server/players/playerlist/PlayerListMixin_1_20_2": {
+        "Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;<init>(Lnet/minecraft/world/entity/player/Abilities;)V": "Lnet/minecraft/class_2696;<init>(Lnet/minecraft/class_1656;)V",
+        "placeNewPlayer": "Lnet/minecraft/class_3324;method_14570(Lnet/minecraft/class_2535;Lnet/minecraft/class_3222;Lnet/minecraft/class_8792;)V",
+        "respawn": "Lnet/minecraft/class_3324;method_14556(Lnet/minecraft/class_3222;Z)Lnet/minecraft/class_3222;"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/damagesource/combattracker/CombatTrackerMixin_1_20": {
+        "recordDamage": "Lnet/minecraft/class_1283;method_5547(Lnet/minecraft/class_1282;F)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/entity/livingentity/LivingEntityMixin_1_20": {
+        "die": "Lnet/minecraft/class_1309;method_6078(Lnet/minecraft/class_1282;)V"
+      },
+      "dev/neuralnexus/taterlib/vanilla/fabric/mixin/listeners/world/level/block/block/BlockMixin_1_20": {
+        "playerDestroy": "Lnet/minecraft/class_2248;method_9556(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_2338;Lnet/minecraft/class_2680;Lnet/minecraft/class_2586;Lnet/minecraft/class_1799;)V"
+      }
+    }
+  }
+}

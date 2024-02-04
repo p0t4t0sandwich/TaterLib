@@ -3,9 +3,6 @@ plugins {
     id('org.spongepowered.mixin') version('0.7.+')
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
-apply {
-    plugin('org.spongepowered.mixin')
-}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
@@ -16,35 +13,34 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+//    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-${vanilla_version}"))
-    implementation(project(':forge:forge-1.20'))
+    implementation(project(':bleeding:vanilla-bleeding'))
+}
+
+mixin {
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap.bleeding.json")
+    config("${project_id}.mixins.forge.bleeding.json")
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge_1_20_2.json".toString(), "${project_id}.mixins.forge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.bleeding.json".toString()]) {
         expand project.properties
     }
 }
 
-mixin {
-    add(sourceSets.main, "${project_id}.forge.refmap_1_20_2.json")
-    config("${project_id}.mixins.forge_1_20_2.json")
-}
-
 shadowJar {
     dependencies {
-        include(project(':vanilla:vanilla-1.20'))
-        include(project(":vanilla:vanilla-${vanilla_version}"))
-        include(project(':forge:forge-1.20'))
+        include(project(":bleeding:vanilla-bleeding"))
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-forge-bleeding-${version}.jar"
 }
 
 reobf {
     shadowJar {}
 }
+
+tasks.reobfShadowJar.dependsOn('shadowJar')
+tasks.assemble.dependsOn('reobfShadowJar')

@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.vanilla.inventory;
 import dev.neuralnexus.taterlib.inventory.ItemMeta;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
-/** The Vanilla implementation of {@link ItemStack} */
+/** Vanilla implementation of {@link ItemStack} */
 public class VanillaItemStack implements ItemStack {
     private final net.minecraft.world.item.ItemStack itemStack;
 

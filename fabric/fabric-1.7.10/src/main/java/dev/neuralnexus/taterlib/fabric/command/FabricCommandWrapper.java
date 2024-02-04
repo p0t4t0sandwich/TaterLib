@@ -34,7 +34,7 @@ public class FabricCommandWrapper implements CommandCallable {
             if (source instanceof PlayerEntity) {
                 command.execute(new FabricPlayer((PlayerEntity) source), command.getName(), args);
             }
-            command.execute(new FabricSender(source), command.getName(), args);
+            command.execute(new FabricCommandSender(source), command.getName(), args);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -9,17 +9,13 @@ import dev.neuralnexus.taterlib.vanilla.inventory.VanillaPlayerInventory;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
@@ -108,23 +104,7 @@ public class VanillaPlayer extends VanillaEntity implements Player {
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
-                                new CustomPacketPayload() {
-                                    @Override
-                                    public void write(@NotNull FriendlyByteBuf byteBuf) {
-                                        byteBuf.writeBytes(data);
-                                    }
-
-                                    @Override
-                                    public @NotNull ResourceLocation id() {
-                                        String[] channelParts = channel.split(":");
-                                        if (channelParts.length == 1) {
-                                            return new ResourceLocation(
-                                                    "tl-user-forgot", channelParts[0]);
-                                        }
-                                        return new ResourceLocation(
-                                                channelParts[0], channelParts[1]);
-                                    }
-                                }));
+                                new VanillaCustomPacketPayload_1_20_2(channel, data)));
     }
 
     /** {@inheritDoc} */

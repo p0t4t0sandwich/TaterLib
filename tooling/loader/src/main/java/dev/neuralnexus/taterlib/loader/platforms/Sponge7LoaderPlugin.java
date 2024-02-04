@@ -5,7 +5,7 @@ import com.google.inject.Inject;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
-import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
+import dev.neuralnexus.taterlib.v1_20.sponge.SpongeTaterLibPlugin;
 
 import org.slf4j.Logger;
 import org.spongepowered.api.event.Listener;

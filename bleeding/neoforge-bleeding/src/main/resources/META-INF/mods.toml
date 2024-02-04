@@ -17,7 +17,7 @@ displayTest = "IGNORE_SERVER_VERSION"
 description = '''${project_description}'''
 
 [[mixins]]
-config="${project_id}.mixins.vanilla.neoforge.json"
+config="${project_id}.mixins.vanilla.bleeding.json"
 
 # Forge Dependency
 [[dependencies.${ project_id }]]

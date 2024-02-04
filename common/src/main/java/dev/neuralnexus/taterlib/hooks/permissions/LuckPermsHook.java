@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.hooks.permissions;
 
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -124,9 +124,9 @@ public class LuckPermsHook implements PermissionsHook {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(Sender sender, String permission) {
+    public boolean hasPermission(CommandSender commandSender, String permission) {
         if (this.luckPerms == null) return false;
-        User user = luckPerms.getUserManager().getUser(sender.getUniqueId());
+        User user = luckPerms.getUserManager().getUser(commandSender.getUniqueId());
         return user != null
                 && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }

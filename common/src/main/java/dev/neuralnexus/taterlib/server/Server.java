@@ -1,31 +1,20 @@
 package dev.neuralnexus.taterlib.server;
 
-import dev.neuralnexus.taterlib.player.Player;
-
-import java.util.Set;
-
 /** Abstracts a Minecraft server. */
-public interface Server {
+public interface Server extends SimpleServer {
     /**
-     * Get the name of the server.
+     * Get the server's TPS.
      *
-     * @return The name of the server.
+     * @return The server's TPS.
      */
-    String getName();
+    //    double[] getTPS();
 
     /**
-     * Get the set of online players.
+     * Get the server's Current TPS.
      *
-     * @return The set of online players.
+     * @return The server's Current TPS.
      */
-    Set<Player> getOnlinePlayers();
-
-    /**
-     * Broadcast a message to the server.
-     *
-     * @param message The message to broadcast.
-     */
-    default void broadcastMessage(String message) {
-        getOnlinePlayers().forEach(player -> player.sendMessage(message));
-    }
+    //    default double getCurrentTPS() {
+    //        return getTPS()[0];
+    //    }
 }

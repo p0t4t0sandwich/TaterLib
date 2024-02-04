@@ -1,0 +1,23 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "${group_id}.${project_id}.vanilla.fabric.mixin",
+  "required": false,
+  "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
+  "mixins": [
+    "listeners.server.level.serverlevel.ServerLevelMixin_1_20",
+    "listeners.server.level.serverplayer.ServerPlayerMixin_1_20",
+    "listeners.server.minecraftserver.MinecraftServerMixin_1_20",
+    "listeners.server.network.servercommonpacketListenerImpl.ServerCommonPacketListenerImplMixin_1_20_2",
+    "listeners.server.network.servergamepacketlistenerImpl.ServerGamePacketListenerImplMixin_1_20_2",
+    "listeners.server.playeradvancements.PlayerAdvancementsMixin_1_20_2",
+    "listeners.server.players.playerlist.PlayerListMixin_1_20_2",
+    "listeners.world.damagesource.combattracker.CombatTrackerMixin_1_20",
+    "listeners.world.entity.livingentity.LivingEntityMixin_1_20",
+    "listeners.world.level.block.block.BlockMixin_1_20"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "${project_id}.mixins.fabric.bleeding.refmap.json"
+}

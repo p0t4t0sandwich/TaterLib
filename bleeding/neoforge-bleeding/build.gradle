@@ -1,5 +1,5 @@
 plugins {
-    id('net.neoforged.gradle.userdev') version('7.0.74')
+    id('net.neoforged.gradle.userdev') version('7.0.80')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
@@ -12,26 +12,31 @@ subsystems {
     }
 }
 
+minecraft.accessTransformers.file file('src/main/resources/META-INF/neoforge.accesstransformer.cfg')
+
+// Server Starting, command registration
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer resources # resources'
+minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer$ReloadableResources managers()net.minecraft.server.ReloadableServerResources # managers'
+
+// Advancements
+minecraft.accessTransformers.entry 'public net.minecraft.server.PlayerAdvancements player # player'
+
+// Custom Payloads (1.20.2)
+minecraft.accessTransformers.entry 'public net.minecraft.server.network.ServerCommonPacketListenerImpl server # server'
+
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
-    implementation(project(":vanilla:vanilla-${vanilla_version}"))
+    compileOnly(project(':bleeding:vanilla-bleeding'))
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.neoforge.json".toString()]) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand project.properties
     }
 }
 
-shadowJar {
-    dependencies {
-        include(project(':vanilla:vanilla-1.20'))
-        include(project(":vanilla:vanilla-${vanilla_version}"))
-    }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.neoforge")
+jar {
     destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-neoforge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-neoforge-bleeding-${version}.jar"
 }
-tasks.build.dependsOn(tasks.shadowJar)

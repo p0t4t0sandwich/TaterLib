@@ -11,8 +11,6 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.*;
 import java.util.function.Supplier;
 
@@ -28,23 +26,21 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     private static final Map<String, Supplier<Boolean>> CONDITIONS =
             ImmutableMap.<String, Supplier<Boolean>>builder()
                     // 1.20 Listener Mixins
+                    .put("CustomPayloadMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerAdvancementFinishedMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerAdvancementProgressMixin_1_20", IS_20_TO_20_2)
                     .put("PlayerLoginMixin_1_20", IS_20_TO_20_2)
-                    .put("PlayerLogoutMixin_1_20", IS_20_TO_20_2)
-                    .put("PluginMessagesMixin_1_20", IS_20_TO_20_2)
                     // 1.20.2 Listener Mixins
+                    .put("CustomPayloadMixin_1_20_2", IS_20_2)
                     .put("PlayerAdvancementFinishedMixin_1_20_2", IS_20_2)
                     .put("PlayerAdvancementProgressMixin_1_20_2", IS_20_2)
                     .put("PlayerLoginMixin_1_20_2", IS_20_2)
-                    .put("PlayerLogoutMixin_1_20_2", IS_20_2)
-                    .put("PluginMessagesMixin_1_20_2", IS_20_2)
                     // 1.20.2 Patch Mixins
                     .put("VanillaPlayerMixin_1_20_2", IS_20_2)
                     .build();
 
     static {
-        TaterAPIProvider.register(getMCVersion());
+        TaterAPIProvider.register();
     }
 
     private static boolean checkMixin(String mixinClassName) {
@@ -54,88 +50,6 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
             }
         }
         return true;
-    }
-
-    static String getMCVersion() {
-        ServerType serverType = TaterAPIProvider.serverType();
-        if (serverType.isFabricBased()) {
-            return getFabricMCVersion();
-        } else if (serverType.is(ServerType.NEOFORGE)) {
-            return getNeoForgeMCVersion();
-        } else if (serverType.isForgeBased()) {
-            return getForgeMCVersion();
-        }
-        return "Unknown";
-    }
-
-    static String getFabricMCVersion() {
-        try {
-            Class<?> fabricLoaderClass = Class.forName("net.fabricmc.loader.api.FabricLoader");
-            Object fabricLoaderInstance = fabricLoaderClass.getMethod("getInstance").invoke(null);
-            Object minecraftModContainer =
-                    fabricLoaderClass
-                            .getMethod("getModContainer", String.class)
-                            .invoke(fabricLoaderInstance, "minecraft");
-            Object minecraftModContainerInstance =
-                    minecraftModContainer.getClass().getMethod("get").invoke(minecraftModContainer);
-            Object minecraftModContainerMetadata =
-                    minecraftModContainerInstance
-                            .getClass()
-                            .getMethod("getMetadata")
-                            .invoke(minecraftModContainerInstance);
-            Method minecraftModContainerVersionMethod =
-                    minecraftModContainerMetadata.getClass().getMethod("getVersion");
-            minecraftModContainerVersionMethod.setAccessible(true);
-            Object minecraftModContainerVersion =
-                    minecraftModContainerVersionMethod.invoke(minecraftModContainerMetadata);
-            Object minecraftModContainerVersionFriendlyString =
-                    minecraftModContainerVersion
-                            .getClass()
-                            .getMethod("getFriendlyString")
-                            .invoke(minecraftModContainerVersion);
-            return (String) minecraftModContainerVersionFriendlyString;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
-        }
-        return "Unknown";
-    }
-
-    static String getForgeMCVersion() {
-        try {
-            Class<?> fmlLoaderClass = Class.forName("net.minecraftforge.fml.loading.FMLLoader");
-            try {
-                // Reflect to get FMLLoader.versionInfo().mcVersion()
-                Object versionInfoObject = fmlLoaderClass.getMethod("versionInfo").invoke(null);
-                Object mcVersionObject =
-                        versionInfoObject
-                                .getClass()
-                                .getMethod("mcVersion")
-                                .invoke(versionInfoObject);
-                return (String) mcVersionObject;
-            } catch (ReflectiveOperationException e) {
-                // Reflect to get private FMLLoader.mcVersion
-                Field mcVersionField = fmlLoaderClass.getDeclaredField("mcVersion");
-                mcVersionField.setAccessible(true);
-                return (String) mcVersionField.get(null);
-            }
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
-        }
-        return "Unknown";
-    }
-
-    static String getNeoForgeMCVersion() {
-        // Reflect to get FMLLoader.versionInfo().mcVersion()
-        try {
-            Class<?> fmlLoaderClass = Class.forName("net.neoforged.fml.loading.FMLLoader");
-            Object versionInfoObject = fmlLoaderClass.getMethod("versionInfo").invoke(null);
-            Object mcVersionObject =
-                    versionInfoObject.getClass().getMethod("mcVersion").invoke(versionInfoObject);
-            return (String) mcVersionObject;
-        } catch (ReflectiveOperationException e) {
-            e.printStackTrace();
-        }
-        return "Unknown";
     }
 
     @Override
@@ -148,9 +62,14 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        // NeoForge is picking up on Forge mixins, so we need to skip them
+        // NeoForge is picking up on Forge mixins
         if (TaterAPIProvider.serverType().is(ServerType.NEOFORGE)
-                && mixinClassName.contains(".forge")) {
+                && mixinClassName.contains(".forge.mixin")) {
+            return false;
+        }
+        // Forge is picking up on Vanilla mixins
+        if (TaterAPIProvider.serverType().is(ServerType.FORGE, ServerType.SPONGE_FORGE)
+                && mixinClassName.contains(".vanilla.mixin")) {
             return false;
         }
 

@@ -1,0 +1,38 @@
+plugins {
+    id('io.papermc.paperweight.userdev') version('1.5.11')
+}
+
+base {
+    archivesName = "${project_id}-bukkit-${minecraft_version}"
+}
+
+java.disableAutoTargetJvm()
+
+dependencies {
+    compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
+    paperweight.paperDevBundle("${minecraft_version}-${bukkit_version}")
+    compileOnly(project(':common'))
+    implementation(project(':vanilla:vanilla-1.20'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['plugin.yml']) {
+        expand project.properties
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(':vanilla:vanilla-1.20'))
+    }
+    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.bukkit.v1_20")
+}
+
+//tasks.register('moveJarToTarget', Copy) {
+//    dependsOn(reobfJar)
+//    from(reobfJar.outputJar)
+//    into('../../target')
+//}
+
+tasks.assemble.dependsOn('reobfJar')
+//tasks.assemble.finalizedBy('moveJarToTarget')

@@ -1,6 +1,6 @@
 plugins {
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
-//    id('org.spongepowered.mixin') version('0.7.+')
+    id('org.spongepowered.mixin') version('0.7.+')
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
@@ -15,35 +15,39 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
 //    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
-    implementation(project(":vanilla:vanilla-1.20")) {
-        exclude(group: "${group_id}.${project_id}.vanilla", module: 'player')
-    }
-    implementation(project(":vanilla:vanilla-${minecraft_version}"))
+    compileOnly(project(':forge:forge-1.20'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+    implementation(project(':vanilla:vanilla-1.20.2'))
 }
 
-//mixin {
-//    add(sourceSets.main, "${project_id}.mixins.forge.refmap_1_20_2.json")
-//    config("${project_id}.mixins.forge_1_20_2.json")
-//}
+mixin {
+    add(sourceSets.main, "${project_id}.mixins.forge.refmap.v1_20_2.json")
+    config("${project_id}.mixins.forge.v1_20_2.json")
+}
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.patch.v1_20_2.json".toString()]) {
         expand project.properties
     }
 }
 
 shadowJar {
     dependencies {
-        include(project(":vanilla:vanilla-1.20"))
-        include(project(":vanilla:vanilla-${minecraft_version}"))
+        include(project(':vanilla:vanilla-1.20.2'))
+//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.forge")
+    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20_2.vanilla.forge.mixin.fake")
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla.forge", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
+    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.forge")
+    relocate("${group_id}.${project_id}.v1_20_2.vanilla", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
 
-tasks.assemble.dependsOn('shadowJar')
-
 reobf {
     shadowJar {}
 }
+
+tasks.reobfShadowJar.dependsOn('shadowJar')
+tasks.assemble.dependsOn('reobfShadowJar')

@@ -7,17 +7,23 @@ sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
+    accessWideners(file("src/main/resources/${project_id}.vanilla.v1_20_2.accesswidener"))
 }
 
 dependencies {
     compileOnly('com.mojang:brigadier:1.0.18')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':common'))
-    implementation(project(':vanilla:vanilla-1.20'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
 }
 
-shadowJar {
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(["${project_id}.mixins.vanilla.v1_20_2.json".toString()]) {
+        expand project.properties
+    }
+}
+
+jar {
     destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
 }
-tasks.assemble.dependsOn(shadowJar)

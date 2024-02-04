@@ -5,13 +5,200 @@
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/10.0.0/4b7e6c4dafd6efc2ab4a8b28e7d2c2b873c53a1d/spongeapi-10.0.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/3.1.2/34e1e31ff8c8b9523a92a18e923fdbbd138e11d/guava-3.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-spi/0.3.0/dc317fc6623d8d9a57a6823a5547b86a2b8cb125/plugin-spi-0.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.19.0/ea1b37f38c327596b216542bc636cfdc0b8036fa/log4j-api-2.19.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/31.1-jre/60458f877d055d0c9114d9e1a2efb737b4bc282c/guava-31.1-jre.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.8.0/3bfc09a7ca3f96d6f71144f09160e5f7886d13a/plugin-meta-0.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10/dd9b193aef96e973d5a11ab13cd17430c2e4306b/gson-2.10.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.12.0/f2351c9766a9c68e9535fa5157699f44ef53d8be/adventure-api-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.12.0/c587ced911b95ee3d1ee1c6738ea643f858c826b/adventure-text-minimessage-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.12.0/74405a444d9a7f23f2a20811562d0a6cc6251966/adventure-text-serializer-gson-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.12.0/e27192a793d85b40ef0cf885d45e766c611f91bd/adventure-text-serializer-legacy-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.12.0/e0711d65c29676908cda8bee2bd1d12f02b16e46/adventure-text-serializer-plain-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.12.0/c5c1e8a4f0664b91e3116e5ecdd8d271362d4ae9/adventure-key-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/5.0.1/dae7556b441cada2b4f0a2314eb68e1ff423429/guice-5.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.2/c79828183e8bfa014cf3287b1aa5200cba18091b/caffeine-3.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-extra-guice/4.1.2/a3fc5e7199f2d483bd5e72bb88e4ae7e6fac3cc7/configurate-extra-guice-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/4.1.2/d6728b04738e73847f6a26349cf4368362feab97/configurate-core-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/4.1.2/3953a4aef8ff62c72d34e405d6df333f3876592a/configurate-hocon-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.33/2cd0a87ff7df953f810c344bdf2fe3340b954c69/snakeyaml-1.33.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.11.0/c5a0ace696d3f8b1c1d8cc036d8c03cc0cbe6b69/error_prone_annotations-2.11.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.17.0/3efe4cc4f79242c786327eea89505f40d3bc9a25/checker-qual-3.17.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.11/bc9c03b53917314d21fe6276aceb08aa84bf80dd/geantyref-1.3.11.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.8.1/6505a72a097d9270f7a9e7bf42c4238283247755/commons-lang3-3.8.1.jar" />
+        </processorPath>
+        <module name="TaterLib.sponge.sponge10.TaterLib.sponge.sponge10.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/11.0.0-SNAPSHOT/b572a3e681bf0ab60cfae14c9119ba909ee1f683/spongeapi-11.0.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.19.0/ea1b37f38c327596b216542bc636cfdc0b8036fa/log4j-api-2.19.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.12.0/f2351c9766a9c68e9535fa5157699f44ef53d8be/adventure-api-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.12.0/c587ced911b95ee3d1ee1c6738ea643f858c826b/adventure-text-minimessage-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.12.0/74405a444d9a7f23f2a20811562d0a6cc6251966/adventure-text-serializer-gson-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.12.0/e27192a793d85b40ef0cf885d45e766c611f91bd/adventure-text-serializer-legacy-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.12.0/e0711d65c29676908cda8bee2bd1d12f02b16e46/adventure-text-serializer-plain-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.12.0/c5c1e8a4f0664b91e3116e5ecdd8d271362d4ae9/adventure-key-4.12.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/5.0.1/dae7556b441cada2b4f0a2314eb68e1ff423429/guice-5.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.8/24795585df8afaf70a2cd534786904ea5889c047/caffeine-3.1.8.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-spi/0.3.0/dc317fc6623d8d9a57a6823a5547b86a2b8cb125/plugin-spi-0.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-extra-guice/4.1.2/a3fc5e7199f2d483bd5e72bb88e4ae7e6fac3cc7/configurate-extra-guice-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/4.1.2/d6728b04738e73847f6a26349cf4368362feab97/configurate-core-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/4.1.2/3953a4aef8ff62c72d34e405d6df333f3876592a/configurate-hocon-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.8.0/3bfc09a7ca3f96d6f71144f09160e5f7886d13a/plugin-meta-0.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.11/bc9c03b53917314d21fe6276aceb08aa84bf80dd/geantyref-1.3.11.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.28/7cae037c3014350c923776548e71c9feb7a69259/snakeyaml-1.28.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.8.1/6505a72a097d9270f7a9e7bf42c4238283247755/commons-lang3-3.8.1.jar" />
+        </processorPath>
+        <module name="TaterLib.sponge.sponge11.TaterLib.sponge.sponge11.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/4.2.0-SNAPSHOT/b812ea2d590007dc397d4f6e67c41d17531735b9/spongeapi-4.2.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.1.1/ff1de2625a3053cd9766b8cabf78b0f8c10eea00/configurate-hocon-3.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.2/69dfebcdbbdcbcecd3eb890d4c23777e60c78838/flow-math-1.0.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.1.1/f9c63606c976d598610c93e43adb18fadda027f8/plugin-meta-0.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.1.1/2e9760338a1011198d5cb89294b83e86c9418510/configurate-yaml-3.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.1.1/565c157f78461307f857a94832ccf91d97cea817/configurate-gson-3.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/event-gen-core/1.1.0/665b0873708f2c33d59626087e9768d499a271f0/event-gen-core-1.1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.1.1/4a40e177579139a138b439f2e34e8009966cf103/configurate-core-3.1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+        </processorPath>
+        <module name="sponge.sponge4.TaterLib.sponge.sponge4.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/5.2.0-SNAPSHOT/fb96a3f102c3ea9f578e6f3b34a6cbeca1026cca/spongeapi-5.2.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.2.1-SNAPSHOT/b8c22d921c089156256818b4a6471a2846ba5bca/plugin-meta-0.2.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.2/9dd0eabf3b1f24a439f28ceba53cb75ab2ac17c5/configurate-hocon-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.2/ace93d4dff2cab93aad3d0544bd08055b3be376e/configurate-gson-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.2/66baeded1dc8e86847dd876c7c7292b96b91ec26/configurate-yaml-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.2/166fb82311704208782b4e1faf99dbeac9c84d00/configurate-core-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.3.2/f6419041c6d5e7a422bffd0ea57670eb4290fd8f/guava-2.3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.3.2/6f9664767932063367a611dcfc239c4efdba9b05/caffeine-2.3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
+        </processorPath>
+        <module name="TaterLib.sponge.sponge5.TaterLib.sponge.sponge5.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/6.1.0-SNAPSHOT/6635f50ece481290359c0d801cf6631f515f980d/spongeapi-6.1.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.22/a1c83373863cec7ae8d89dc1c5722d8cb6ec0309/slf4j-api-1.7.22.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/41378ca359e2b4ad935294d1ca3e533e7cdf8f64/plugin-meta-0.4.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.2/9dd0eabf3b1f24a439f28ceba53cb75ab2ac17c5/configurate-hocon-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.2/ace93d4dff2cab93aad3d0544bd08055b3be376e/configurate-gson-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.2/66baeded1dc8e86847dd876c7c7292b96b91ec26/configurate-yaml-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.2/166fb82311704208782b4e1faf99dbeac9c84d00/configurate-core-3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/1.3.9/40719ea6961c0cb6afaeb6a921eaa1f6afd4cfdf/jsr305-1.3.9.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.3.5/5f8433eb312b4eb0d92b65f4c11a11da95ed55fb/guava-2.3.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.3.5/672d74bd3fb0611f671ea4bf65e278c8a5d4af3c/caffeine-2.3.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
+        </processorPath>
+        <module name="TaterLib.sponge.sponge6.TaterLib.sponge.sponge6.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/7.4.0/c5e52d0490b8a925b8057d70cd8e1aac0f5afff2/spongeapi-7.4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/41378ca359e2b4ad935294d1ca3e533e7cdf8f64/plugin-meta-0.4.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/3.7.2/a5e49f57ae8f5e61dbae48a158a28343e7d6f707/configurate-hocon-3.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/3.7.2/431733e80d7dfc62b37962c2723bba5c996548f/configurate-gson-3.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/3.7.2/a0c3eec370aa9bdec3f450f842edcb03f6d42be2/configurate-yaml-3.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/3.7.2/985223b13c7da64116a7e20203b2904023eeb1db/configurate-core-3.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.2.3/2ea992d6d7bdcac7a43111a95d182a4c42eb5ff7/guice-4.2.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/27.1-jre/e47b59c893079b87743cdcfb6f17ca95c08c592c/guava-27.1-jre.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.2.0/88e3c593e9b3586e1c6177f89267da6fc6986f0c/error_prone_annotations-2.2.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/6c6c702c89bfff3cd9e80b04d668c5e190d588c6/commons-lang3-3.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.5.4/973a21f7148066558ba5eebe9ce244d05e8b54c2/guava-2.5.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.5.4/a162a31c2973550a8cd37cb9773a814ae3394fbb/caffeine-2.5.4.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.2/4ce3ecdc7115bcbf9d4ff4e6ec638e60760819df/asm-5.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.0/a8b341fe81552834edc231193afd6f56a96f0eff/config-1.4.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/2.5.2/cea74543d5904a30861a61b4643a5f2bb372efc4/checker-qual-2.5.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.1/ed28ded51a8b1c6b112568def5f4b455e6809019/j2objc-annotations-1.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.mojo/animal-sniffer-annotations/1.17/f97ce6decaea32b36101e37979f8b647f00681fb/animal-sniffer-annotations-1.17.jar" />
+        </processorPath>
+        <module name="TaterLib.sponge.sponge7.TaterLib.sponge.sponge7.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/8.1.0/56a4cdee1eb062ebea480af651d2847370ece4ac/spongeapi-8.1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.9.2/7a39f82b479f4dc076427fe295c553fcdfa69719/guava-2.9.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-spi/0.3.0/dc317fc6623d8d9a57a6823a5547b86a2b8cb125/plugin-spi-0.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.logging.log4j/log4j-api/2.8.1/e801d13612e22cad62a3f4f3fe7fdbe6334a8e72/log4j-api-2.8.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/21.0/3a3d111be1be1b745edfa7d91678a12d7ed38709/guava-21.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.8.0/3bfc09a7ca3f96d6f71144f09160e5f7886d13a/plugin-meta-0.8.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.0/gson-2.8.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.10.0/ba78c72475982e1f56458c33fc9d8df0e71e9577/adventure-api-4.10.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.10.0/dc75c4fdca5d793b32ca674fa9cc9611b7316236/adventure-text-minimessage-4.10.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.10.0/7abd4e4f2c356377c3c48f822fbd36fdebd83b7/adventure-text-serializer-gson-4.10.0.jar" />
@@ -26,7 +213,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.17.0/3efe4cc4f79242c786327eea89505f40d3bc9a25/checker-qual-3.17.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
@@ -35,9 +222,9 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.28/7cae037c3014350c923776548e71c9feb7a69259/snakeyaml-1.28.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.8.1/6505a72a097d9270f7a9e7bf42c4238283247755/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge8.TaterLib.sponge.sponge8.main" />
+        <module name="TaterLib.sponge.sponge8.TaterLib.sponge.sponge8.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -63,10 +250,10 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.7.1/458d9042f7aa6fa9a634df902b37f544e15aacac/error_prone_annotations-2.7.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.17.0/3efe4cc4f79242c786327eea89505f40d3bc9a25/checker-qual-3.17.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
@@ -75,130 +262,50 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.28/7cae037c3014350c923776548e71c9feb7a69259/snakeyaml-1.28.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.8.1/6505a72a097d9270f7a9e7bf42c4238283247755/commons-lang3-3.8.1.jar" />
         </processorPath>
-        <module name="sponge.sponge9.TaterLib.sponge.sponge9.main" />
+        <module name="TaterLib.sponge.sponge9.TaterLib.sponge.sponge9.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/7.4.0/c5e52d0490b8a925b8057d70cd8e1aac0f5afff2/spongeapi-7.4.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.25/da76ca59f6a57ee3102f8f9bd9cee742973efa8a/slf4j-api-1.7.25.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/41378ca359e2b4ad935294d1ca3e533e7cdf8f64/plugin-meta-0.4.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/3.7.2/a5e49f57ae8f5e61dbae48a158a28343e7d6f707/configurate-hocon-3.7.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/3.7.2/431733e80d7dfc62b37962c2723bba5c996548f/configurate-gson-3.7.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/3.7.2/a0c3eec370aa9bdec3f450f842edcb03f6d42be2/configurate-yaml-3.7.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/3.7.2/985223b13c7da64116a7e20203b2904023eeb1db/configurate-core-3.7.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.2.3/2ea992d6d7bdcac7a43111a95d182a4c42eb5ff7/guice-4.2.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/27.1-jre/guava-27.1-jre.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.0/gson-2.8.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.5/6c6c702c89bfff3cd9e80b04d668c5e190d588c6/commons-lang3-3.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.5.4/973a21f7148066558ba5eebe9ce244d05e8b54c2/guava-2.5.4.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.5.4/a162a31c2973550a8cd37cb9773a814ae3394fbb/caffeine-2.5.4.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.2/4ce3ecdc7115bcbf9d4ff4e6ec638e60760819df/asm-5.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-api/3.2.0-SNAPSHOT/374d8a5fb6938ea243345ef87abeda38ea4b6f95/velocity-api-3.2.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.moandjiezana.toml/toml4j/0.7.2/a03337911d0bd2c40932aca3946edb30d0e7d0c/toml4j-0.7.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/3.7.3/4facb1a9abd996fa3cce45dd128997765f50f75b/configurate-gson-3.7.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-logger-slf4j/4.14.0/dbaf0c74d4a968b010eb9accfc9829c5eeacb8fe/adventure-text-logger-slf4j-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.14.0/323fdce4c3123c1e5fd31cb4d9c54cd08df6e93e/adventure-text-minimessage-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-ansi/4.14.0/e48c3a2753805ffb4454bfabcecd8ece09adb71b/adventure-text-serializer-ansi-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.14.0/d35758e445d7f42b60d1f4cb023e1395a9093dc5/adventure-text-serializer-legacy-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.14.0/40ef21a25514b5c98b25e6feb353f51a17dddae2/adventure-text-serializer-plain-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-json/4.14.0/5b4913594c499d4dbf8aed17bca6d65fbca39e41/adventure-text-serializer-json-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.14.0/e8f089092c77caaa0b0fce9ee7c309200437f9e1/adventure-api-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.14.0/ad2efeebd026dabceec32e31573c62e0188d7aeb/adventure-key-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.14.0/8fa5e6b7caadae923b0cd0a9c78d5128a4bff1e0/adventure-text-serializer-gson-4.14.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/3.7.3/630e0562bd9b809428b55742aabe382f0347211f/configurate-hocon-3.7.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/3.7.3/5329d80a00c1e053ceaeb94d8325cb7de349409c/configurate-yaml-3.7.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/3.7.3/f852a1d0e336eb07c1f45ed1dc275b7d6a6d676a/configurate-core-3.7.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/6.0.0/9b422c69c4fa1ea95b2615444a94fede9b02fc40/guice-6.0.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/31.0.1-jre/119ea2b2bc205b138974d351777b20f02b92704b/guava-31.0.1-jre.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.33/2cd0a87ff7df953f810c344bdf2fe3340b954c69/snakeyaml-1.33.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/2.0.7/41eb7184ea9d556f23e18b5cb99cad1f8581fc00/slf4j-api-2.0.7.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.5/566c9b18953d9c7e916ab6823bf404899dccfefd/caffeine-3.1.5.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.32.0/54ebd61f46b58b862c779e034073a93489ab3faf/checker-qual-3.32.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.velocitypowered/velocity-brigadier/1.0.0-SNAPSHOT/719dd1bda540a9be7f70f23c68fbe1a0e2fc69ca/velocity-brigadier-1.0.0-SNAPSHOT.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.18.0/89b684257096f548fa39a7df9fdaa409d4d4df91/error_prone_annotations-2.18.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/ba035118bc8bac37d7eff77700720999acd9986d/j2objc-annotations-1.3.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/jakarta.inject/jakarta.inject-api/2.0.1/4c28afe1991a941d7702fe1362c365f0a8641d1e/jakarta.inject-api-2.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.0/a8b341fe81552834edc231193afd6f56a96f0eff/config-1.4.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.26/a78a8747147d2c5807683e76ec2b633e95c14fe9/snakeyaml-1.26.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar" />
-        </processorPath>
-        <module name="sponge.sponge7.TaterLib.sponge.sponge7.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/5.2.0-SNAPSHOT/fb96a3f102c3ea9f578e6f3b34a6cbeca1026cca/spongeapi-5.2.0-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.2.1-SNAPSHOT/b8c22d921c089156256818b4a6471a2846ba5bca/plugin-meta-0.2.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.2/9dd0eabf3b1f24a439f28ceba53cb75ab2ac17c5/configurate-hocon-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.2/ace93d4dff2cab93aad3d0544bd08055b3be376e/configurate-gson-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.2/66baeded1dc8e86847dd876c7c7292b96b91ec26/configurate-yaml-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.2/166fb82311704208782b4e1faf99dbeac9c84d00/configurate-core-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.3.2/f6419041c6d5e7a422bffd0ea57670eb4290fd8f/guava-2.3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.3.2/6f9664767932063367a611dcfc239c4efdba9b05/caffeine-2.3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
-        </processorPath>
-        <module name="sponge.sponge5.TaterLib.sponge.sponge5.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/6.1.0-SNAPSHOT/6635f50ece481290359c0d801cf6631f515f980d/spongeapi-6.1.0-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.22/a1c83373863cec7ae8d89dc1c5722d8cb6ec0309/slf4j-api-1.7.22.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.4.1/41378ca359e2b4ad935294d1ca3e533e7cdf8f64/plugin-meta-0.4.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.2/9dd0eabf3b1f24a439f28ceba53cb75ab2ac17c5/configurate-hocon-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.2/ace93d4dff2cab93aad3d0544bd08055b3be376e/configurate-gson-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.2/66baeded1dc8e86847dd876c7c7292b96b91ec26/configurate-yaml-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.2/166fb82311704208782b4e1faf99dbeac9c84d00/configurate-core-3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/2.3.5/5f8433eb312b4eb0d92b65f4c11a11da95ed55fb/guava-2.3.5.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/2.3.5/672d74bd3fb0611f671ea4bf65e278c8a5d4af3c/caffeine-2.3.5.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.3/d98020239e5015091ad3be927cef9dea0d61a234/flow-math-1.0.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
-          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
-        </processorPath>
-        <module name="sponge.sponge6.TaterLib.sponge.sponge6.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/11.0.0-SNAPSHOT/b572a3e681bf0ab60cfae14c9119ba909ee1f683/spongeapi-11.0.0-SNAPSHOT.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.19.0/log4j-api-2.19.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.12.0/f2351c9766a9c68e9535fa5157699f44ef53d8be/adventure-api-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.12.0/c587ced911b95ee3d1ee1c6738ea643f858c826b/adventure-text-minimessage-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.12.0/74405a444d9a7f23f2a20811562d0a6cc6251966/adventure-text-serializer-gson-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.12.0/e27192a793d85b40ef0cf885d45e766c611f91bd/adventure-text-serializer-legacy-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.12.0/e0711d65c29676908cda8bee2bd1d12f02b16e46/adventure-text-serializer-plain-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.12.0/c5c1e8a4f0664b91e3116e5ecdd8d271362d4ae9/adventure-key-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/5.0.1/dae7556b441cada2b4f0a2314eb68e1ff423429/guice-5.0.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.8/24795585df8afaf70a2cd534786904ea5889c047/caffeine-3.1.8.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-spi/0.3.0/dc317fc6623d8d9a57a6823a5547b86a2b8cb125/plugin-spi-0.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-extra-guice/4.1.2/a3fc5e7199f2d483bd5e72bb88e4ae7e6fac3cc7/configurate-extra-guice-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/4.1.2/d6728b04738e73847f6a26349cf4368362feab97/configurate-core-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/4.1.2/3953a4aef8ff62c72d34e405d6df333f3876592a/configurate-hocon-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.8.0/3bfc09a7ca3f96d6f71144f09160e5f7886d13a/plugin-meta-0.8.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.11/bc9c03b53917314d21fe6276aceb08aa84bf80dd/geantyref-1.3.11.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.28/7cae037c3014350c923776548e71c9feb7a69259/snakeyaml-1.28.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/ansi/1.0.0/a53ccc80746f585419692d09662155ab72dbba57/ansi-1.0.0.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar" />
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
-        <module name="sponge.sponge11.TaterLib.sponge.sponge11.main" />
+        <module name="TaterLib.velocity.velocity3.TaterLib.velocity.velocity3.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -239,88 +346,34 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
-        <module name="velocity.velocity3.TaterLib.velocity.velocity3.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/10.0.0/4b7e6c4dafd6efc2ab4a8b28e7d2c2b873c53a1d/spongeapi-10.0.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/guava/3.1.2/34e1e31ff8c8b9523a92a18e923fdbbd138e11d/guava-3.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-spi/0.3.0/dc317fc6623d8d9a57a6823a5547b86a2b8cb125/plugin-spi-0.3.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/logging/log4j/log4j-api/2.19.0/log4j-api-2.19.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/guava/31.1-jre/guava-31.1-jre.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.8.0/3bfc09a7ca3f96d6f71144f09160e5f7886d13a/plugin-meta-0.8.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.10/gson-2.10.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-api/4.12.0/f2351c9766a9c68e9535fa5157699f44ef53d8be/adventure-api-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-minimessage/4.12.0/c587ced911b95ee3d1ee1c6738ea643f858c826b/adventure-text-minimessage-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-gson/4.12.0/74405a444d9a7f23f2a20811562d0a6cc6251966/adventure-text-serializer-gson-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-legacy/4.12.0/e27192a793d85b40ef0cf885d45e766c611f91bd/adventure-text-serializer-legacy-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-text-serializer-plain/4.12.0/e0711d65c29676908cda8bee2bd1d12f02b16e46/adventure-text-serializer-plain-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/adventure-key/4.12.0/c5c1e8a4f0664b91e3116e5ecdd8d271362d4ae9/adventure-key-4.12.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/5.0.1/dae7556b441cada2b4f0a2314eb68e1ff423429/guice-5.0.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ben-manes.caffeine/caffeine/3.1.2/c79828183e8bfa014cf3287b1aa5200cba18091b/caffeine-3.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-extra-guice/4.1.2/a3fc5e7199f2d483bd5e72bb88e4ae7e6fac3cc7/configurate-extra-guice-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-core/4.1.2/d6728b04738e73847f6a26349cf4368362feab97/configurate-core-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-hocon/4.1.2/3953a4aef8ff62c72d34e405d6df333f3876592a/configurate-hocon-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-gson/4.1.2/3e5c7a0ea73e95ce6139fa72f1b6d36eb531ab81/configurate-gson-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/configurate-yaml/4.1.2/f726180c21ec387be5b8a2e04d916443c4046207/configurate-yaml-4.1.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/math/2.0.1/3b1cd0941e265c0bed12cfccd4bdee0115b072fc/math-2.0.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.33/2cd0a87ff7df953f810c344bdf2fe3340b954c69/snakeyaml-1.33.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.11.0/c5a0ace696d3f8b1c1d8cc036d8c03cc0cbe6b69/error_prone_annotations-2.11.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.17.0/3efe4cc4f79242c786327eea89505f40d3bc9a25/checker-qual-3.17.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.maven/maven-artifact/3.8.1/114a2dd16c4c568bf0ca57719b83f2685dcc5734/maven-artifact-3.8.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-string/1.3.0/6f34afef5c54ccce4996bc321abf77518b55b4bd/examination-string-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/examination-api/1.3.0/8a2d185275307f1e2ef2adf7152b9a0d1d44c30b/examination-api-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.11/bc9c03b53917314d21fe6276aceb08aa84bf80dd/geantyref-1.3.11.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.4.1/19058a07624a87f90d129af7cd9c68bee94535a9/config-1.4.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.codehaus.plexus/plexus-utils/3.2.1/13b015768e0d04849d2794e4c47eb02d01a0de32/plexus-utils-3.2.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar" />
-        </processorPath>
-        <module name="sponge.sponge10.TaterLib.sponge.sponge10.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/spongeapi/4.2.0-SNAPSHOT/b812ea2d590007dc397d4f6e67c41d17531735b9/spongeapi-4.2.0-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-hocon/3.1.1/ff1de2625a3053cd9766b8cabf78b0f8c10eea00/configurate-hocon-3.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-math/1.0.2/69dfebcdbbdcbcecd3eb890d4c23777e60c78838/flow-math-1.0.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/plugin-meta/0.1.1/f9c63606c976d598610c93e43adb18fadda027f8/plugin-meta-0.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.ow2.asm/asm/5.0.3/dcc2193db20e19e1feca8b1240dbbc4e190824fa/asm-5.0.3.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-yaml/3.1.1/2e9760338a1011198d5cb89294b83e86c9418510/configurate-yaml-3.1.1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-gson/3.1.1/565c157f78461307f857a94832ccf91d97cea817/configurate-gson-3.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.inject/guice/4.0/f990a43d3725781b6db7cd0acf0a8b62dfd1649/guice-4.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/event-gen-core/1.1.0/665b0873708f2c33d59626087e9768d499a271f0/event-gen-core-1.1.0.jar" />
-          <entry name="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.slf4j/slf4j-api/1.7.21/139535a69a4239db087de9bab0bee568bf8e0b70/slf4j-api-1.7.21.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/ninja.leaping.configurate/configurate-core/3.1.1/4a40e177579139a138b439f2e34e8009966cf103/configurate-core-3.1.1.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/17.0/9c6ef172e8de35fd8d4d8783e4821e57cdef7445/guava-17.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.flowpowered/flow-noise/1.0.1-SNAPSHOT/e837af613d75e382041cedc083047bc7c5c6034c/flow-noise-1.0.1-SNAPSHOT.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-lang3/3.3.2/90a3822c38ec8c996e84c16a3477ef632cbc87a3/commons-lang3-3.3.2.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.typesafe/config/1.3.0/f533aa6ea13e443b50e639d070986c42d03efc35/config-1.3.0.jar" />
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.yaml/snakeyaml/1.16/d64fb662c9e42789149f5078a62a22edda786c6a/snakeyaml-1.16.jar" />
-          <entry name="$MAVEN_REPOSITORY$/javax/inject/javax.inject/1/javax.inject-1.jar" />
-          <entry name="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" />
-        </processorPath>
-        <module name="sponge4.TaterLib.sponge.sponge4.main" />
-      </profile>
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/6d1c8bf4c28e697f472a83bd6add76ec4951734/mixin-0.8.5-processor.jar" />
-        </processorPath>
-        <module name="forge-bleeding.TaterLib.bleeding.forge-bleeding.main" />
-        <module name="forge.forge-1.20.TaterLib.forge.forge-1.20.main" />
+        <module name="TaterLib.bleeding.velocity-bleeding.main" />
+        <module name="TaterLib.velocity.velocity-3.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.main" target="17" />
       <module name="fabric-1.20.4.TaterLib.fabric.fabric-1.20.4.test" target="17" />
+      <module name="fabric.fabric-1.17.TaterLib.fabric.fabric-1.17.main" target="16" />
+      <module name="fabric.fabric-1.17.TaterLib.fabric.fabric-1.17.test" target="16" />
+      <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.main" target="17" />
+      <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.test" target="17" />
+      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.main" target="17" />
+      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.test" target="17" />
+      <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
+      <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.test" target="17" />
+      <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
+      <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
+      <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
+      <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
+      <module name="forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
+      <module name="forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
+      <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
+      <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
+      <module name="TaterLib.fabric.fabric-1.17" target="16" />
+      <module name="TaterLib.fabric.fabric-1.18" target="17" />
+      <module name="TaterLib.fabric.fabric-1.19" target="17" />
       <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />
@@ -337,12 +390,28 @@
       <module name="TaterLib.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge-1.20.main" target="17" />
       <module name="TaterLib.forge-1.20.test" target="17" />
+      <module name="TaterLib.forge.forge-1.17" target="16" />
+      <module name="TaterLib.forge.forge-1.17.1" target="16" />
+      <module name="TaterLib.forge.forge-1.17.1.main" target="16" />
+      <module name="TaterLib.forge.forge-1.17.1.test" target="16" />
+      <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
+      <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
+      <module name="TaterLib.forge.forge-1.18" target="17" />
+      <module name="TaterLib.forge.forge-1.18.2" target="17" />
+      <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
+      <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
+      <module name="TaterLib.forge.forge-1.19" target="17" />
+      <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
+      <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
+      <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
+      <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
       <module name="TaterLib.neoforge-1.20.1.main" target="17" />
       <module name="TaterLib.neoforge-1.20.1.test" target="17" />
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
+      <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
@@ -353,9 +422,9 @@
       <module name="TaterLib.sponge9" target="17" />
       <module name="TaterLib.sponge9.main" target="17" />
       <module name="TaterLib.sponge9.test" target="17" />
-      <module name="TaterLib.vanilla.vanilla-1.19.4" target="17" />
-      <module name="TaterLib.vanilla.vanilla-1.19.4.main" target="17" />
-      <module name="TaterLib.vanilla.vanilla-1.19.4.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-1.19.2.test" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

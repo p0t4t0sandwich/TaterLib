@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.forge.event.server;
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import net.minecraftforge.fml.common.event.FMLStateEvent;
 
@@ -17,7 +17,7 @@ public class ForgeServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Server getServer() {
+    public SimpleServer getServer() {
         return new ForgeServer(ForgeTaterLibPlugin.server);
     }
 }

@@ -1,0 +1,25 @@
+package dev.neuralnexus.taterlib.v1_19_4.vanilla.event.entity;
+
+import dev.neuralnexus.taterlib.event.Cancellable;
+import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;
+
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+
+/** Vanilla implementation of {@link EntityDamageEvent}. */
+public class VanillaEntityDamageEvent_1_19_4 extends VanillaEntityDamageEvent {
+    private final DamageSource damageSource;
+
+    public VanillaEntityDamageEvent_1_19_4(
+            Entity entity, DamageSource damageSource, float damage, Cancellable cancel) {
+        super(entity, damageSource, damage, cancel);
+        this.damageSource = damageSource;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getCause() {
+        return damageSource.type().msgId();
+    }
+}

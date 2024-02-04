@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.command.Sender;
+import dev.neuralnexus.taterlib.command.CommandSender;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
@@ -9,7 +9,7 @@ import net.minecraft.util.ChatComponentText;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Sender} */
-public class ForgeSender implements Sender {
+public class ForgeSender implements CommandSender {
     private final ICommandSender sender;
     private final Command command;
 

@@ -60,17 +60,17 @@ public class TaterLibCommand implements Command {
     }
 
     @Override
-    public boolean execute(Sender sender, String label, String[] args) {
-        if (sender instanceof Player) {
-            if (!sender.hasPermission(getPermission())) {
-                sender.sendMessage(
+    public boolean execute(CommandSender commandSender, String label, String[] args) {
+        if (commandSender instanceof Player) {
+            if (!commandSender.hasPermission(getPermission())) {
+                commandSender.sendMessage(
                         Utils.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));
             } else {
-                sender.sendMessage(Utils.substituteSectionSign(execute(args)));
+                commandSender.sendMessage(Utils.substituteSectionSign(execute(args)));
             }
         } else {
-            sender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
+            commandSender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
         }
         return true;
     }

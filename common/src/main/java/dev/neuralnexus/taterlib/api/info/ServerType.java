@@ -17,6 +17,7 @@ public enum ServerType {
     PUFFERFISH("Pufferfish"),
 
     // Bukkit + Forge Hybrids
+    FORGE_HYBRID("Forge Hybrid"),
     CAULDRON("Cauldron"),
     KCUALDRON("KCauldron"),
     THERMOS("Thermos"),
@@ -28,6 +29,7 @@ public enum ServerType {
     KETTING("Ketting"),
 
     // Bukkit + Fabric Hybrids
+    FABRIC_HYBRID("Fabric Hybrid"),
     CARDBOARD("Cardboard"),
     BANNER("Banner"),
 
@@ -48,6 +50,8 @@ public enum ServerType {
 
     // Sponge
     SPONGE("Sponge"),
+    SPONGE_FORGE("SpongeForge"),
+    SPONGE_VANILLA("SpongeVanilla"),
 
     // Velocity
     VELOCITY("Velocity"),
@@ -58,6 +62,7 @@ public enum ServerType {
     // Unknown
     UNKNOWN("Unknown");
 
+    private static ServerType serverType = UNKNOWN;
     private final String name;
 
     ServerType(String name) {
@@ -70,99 +75,106 @@ public enum ServerType {
      * @return The current server type
      */
     public static ServerType getServerType() {
+        if (serverType != UNKNOWN) {
+            return serverType;
+        }
+
         // Time for some satan spaghetti. Hybrids are checked first, forks in descending order, and
         // then the rest.
 
         // Bukkit + Forge Hybrids
         if (isCrucible()) {
-            return CRUCIBLE;
+            serverType = CRUCIBLE;
         } else if (isThermos()) {
-            return THERMOS;
+            serverType = THERMOS;
         } else if ((isKCauldron())) {
-            return KCUALDRON;
+            serverType = KCUALDRON;
         } else if (isCauldron()) {
-            return CAULDRON;
+            serverType = CAULDRON;
         } else if (isMCPCPlusPlus()) {
-            return MCPC_PLUS_PLUS;
+            serverType = MCPC_PLUS_PLUS;
         } else if (isMohist()) {
-            return MOHIST;
+            serverType = MOHIST;
         } else if (isMagma()) {
-            return MAGMA;
+            serverType = MAGMA;
         } else if (isArclight()) {
-            return ARCLIGHT;
+            serverType = ARCLIGHT;
         } else if (isKetting()) {
-            return KETTING;
+            serverType = KETTING;
         }
 
         // Bukkit + Fabric Hybrids
         else if (isCardboard()) {
-            return CARDBOARD;
+            serverType = CARDBOARD;
         } else if (isBanner()) {
-            return BANNER;
+            serverType = BANNER;
         }
 
         // Bukkit
         else if (isPufferfish()) {
-            return PUFFERFISH;
+            serverType = PUFFERFISH;
         } else if (isPurpur()) {
-            return PURPUR;
+            serverType = PURPUR;
         } else if (isFolia()) {
-            return FOLIA;
+            serverType = FOLIA;
         } else if (isPaper()) {
-            return PAPER;
+            serverType = PAPER;
         } else if (isSpigot()) {
-            return SPIGOT;
+            serverType = SPIGOT;
         } else if (isPoseidon()) {
-            return POSEIDON;
+            serverType = POSEIDON;
         } else if (isCraftBukkit()) {
-            return CRAFTBUKKIT;
+            serverType = CRAFTBUKKIT;
         } else if (isBukkit()) {
-            return BUKKIT;
+            serverType = BUKKIT;
         }
 
         // BungeeCord
         else if (isHexacord()) {
-            return HEXACORD;
+            serverType = HEXACORD;
         } else if (isTravertine()) {
-            return TRAVERTINE;
+            serverType = TRAVERTINE;
         } else if (isWaterfall()) {
-            return WATERFALL;
+            serverType = WATERFALL;
         } else if (isBungeeCord()) {
-            return BUNGEECORD;
+            serverType = BUNGEECORD;
         }
 
         // Forge
         // Before Fabric because of Sinytra Connector
         else if (isNeoForge()) {
-            return NEOFORGE;
+            serverType = NEOFORGE;
         } else if (isGoldenForge()) {
-            return GOLDENFORGE;
+            serverType = GOLDENFORGE;
+        } else if (isSponge() && isForge()) {
+            serverType = SPONGE_FORGE;
         } else if (isForge()) {
-            return FORGE;
+            serverType = FORGE;
         }
 
         // Fabric
         else if (isQuilt()) {
-            return QUILT;
+            serverType = QUILT;
         } else if (isFabric()) {
-            return FABRIC;
+            serverType = FABRIC;
         }
 
         // Sponge
-        else if (isSponge()) {
-            return SPONGE;
+        else if (isSponge() && !isForge()) {
+            serverType = SPONGE_VANILLA;
         }
 
         // Velocity
         else if (isVelocity()) {
-            return VELOCITY;
+            serverType = VELOCITY;
         }
 
         // Vanilla
         else if (isVanilla()) {
-            return VANILLA;
+            serverType = VANILLA;
         }
-        return UNKNOWN;
+
+        return serverType;
     }
 
     /**
@@ -446,7 +458,7 @@ public enum ServerType {
      * @return True if the server is running a fork of Forge, false otherwise.
      */
     public boolean isForgeBased() {
-        return this.is(FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+        return this.is(FORGE, SPONGE_FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
     }
 
     /**
@@ -482,7 +494,7 @@ public enum ServerType {
      * @return True if the server is running a fork of Sponge, false otherwise.
      */
     public boolean isSpongeBased() {
-        return this.is(SPONGE);
+        return this.is(SPONGE, SPONGE_FORGE, SPONGE_VANILLA);
     }
 
     /**

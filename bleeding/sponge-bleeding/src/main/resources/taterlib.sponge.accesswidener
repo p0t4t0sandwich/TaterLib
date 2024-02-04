@@ -1,0 +1,11 @@
+accessWidener    v1    named
+
+# Server Starting, command registration
+accessible field net/minecraft/server/MinecraftServer resources Lnet/minecraft/server/MinecraftServer$ReloadableResources;
+accessible method net/minecraft/server/MinecraftServer$ReloadableResources managers ()Lnet/minecraft/server/ReloadableServerResources;
+
+# Advancements
+accessible field net/minecraft/server/PlayerAdvancements player Lnet/minecraft/server/level/ServerPlayer;
+
+# Custom Payloads (1.20.2)
+accessible field net/minecraft/server/network/ServerCommonPacketListenerImpl server Lnet/minecraft/server/MinecraftServer;
