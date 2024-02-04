@@ -136,15 +136,9 @@ public class VanillaPlayer extends VanillaEntity implements Player {
     @Override
     public void setSpawn(Location location, boolean forced) {
         // TODO: Abstract world information
-        ResourceLocation resourceLocation;
-        String[] resourceString = location.getWorld().split(":");
-        if (resourceString.length != 1) {
-            resourceLocation = new ResourceLocation(resourceString[0], resourceString[1]);
-        } else {
-            resourceLocation = new ResourceLocation(resourceString[0]);
-        }
         ResourceKey<Level> dimension =
-                ResourceKey.create(Registry.DIMENSION_REGISTRY, resourceLocation);
+                ResourceKey.create(
+                        Registry.DIMENSION_REGISTRY, new ResourceLocation(location.getWorld()));
         ((ServerPlayer) player)
                 .setRespawnPosition(
                         dimension,

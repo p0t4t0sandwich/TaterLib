@@ -33,15 +33,9 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
         if (!location.getWorld().equals(getDimension())) {
             MinecraftServer server = VanillaServer.getServer();
             if (server == null) return;
-            ResourceLocation resourceLocation;
-            String[] resourceString = location.getWorld().split(":");
-            if (resourceString.length != 1) {
-                resourceLocation = new ResourceLocation(resourceString[0], resourceString[1]);
-            } else {
-                resourceLocation = new ResourceLocation(resourceString[0]);
-            }
             ResourceKey<Level> dimension =
-                    ResourceKey.create(Registries.DIMENSION, resourceLocation);
+                    ResourceKey.create(
+                            Registries.DIMENSION, new ResourceLocation(location.getWorld()));
             ServerLevel serverLevel = server.getLevel(dimension);
             if (serverLevel == null) return;
             if (entity instanceof ServerPlayer player) {
