@@ -54,7 +54,6 @@ subprojects {
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
     dependsOn('build_api')
-    dependsOn('build_api_platforms')
     dependsOn('build_b1_7_3')
     dependsOn('build_1_2_5')
     dependsOn('build_1_6_4')
@@ -112,8 +111,6 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
-    dependsOn('tooling:entrypoint-spoof:build')
-    dependsOn('tooling:loader:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
     destinationDirectory = file("./build/libs")
@@ -133,7 +130,6 @@ tasks.register('build_api', Jar) {
     }
     ArrayList<File> jarFiles = [
             file("./target/${project_id}-common-${version}.jar"),
-//            file("./target/entrypoint-spoof-0.1.1.jar")
     ]
     from {
         jarFiles.collect {
@@ -145,47 +141,6 @@ tasks.register('build_api', Jar) {
                 zipTree(it)
             }
         }
-    }
-}
-
-// --------------------------- Build api-platforms --------------------------------
-tasks.register('build_api_platforms', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.20.2"))
-            .put("bungee", Arrays.asList("1.20"))
-            .put("fabric", Arrays.asList("1.20", "1.20.2"))
-            .put("forge", Arrays.asList("1.20", "1.20.2"))
-            .put("neoforge", Arrays.asList("1.20.2"))
-            .put("sponge", Arrays.asList("11"))
-            .put("vanilla", Arrays.asList("1.20", "1.20.2"))
-            .put("velocity", Arrays.asList("3"))
-            .build()
-
-    dependsOn('build_api')
-    platformVersions.each { platform, versions ->
-        versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
-        }
-    }
-
-    archiveFileName = "${project_id}-api-platforms-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} API Platforms",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
     }
 }
 
@@ -921,16 +876,16 @@ tasks.register('build_1_18_2', Jar) {
     // Uses 1.19 permission schema
 }
 
-// --------------------------- Build 1.19 --------------------------------
-tasks.register('build_1_19', Jar) {
+// --------------------------- Build 1.19.x --------------------------------
+tasks.register('build_1_19_x', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
-            .put("fabric", Arrays.asList("1.19"))
-            .put("forge", Arrays.asList("1.19"))
-            .put("sponge", Arrays.asList("10"))
+//            .put("bukkit", Arrays.asList("1.15.2"))
+//            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+//            .put("forge", Arrays.asList("1.19"))
+//            .put("sponge", Arrays.asList("10"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-            .put("velocity", Arrays.asList("3"))
+//            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -940,7 +895,7 @@ tasks.register('build_1_19', Jar) {
         }
     }
 
-    String mc_version = '1.19'
+    String mc_version = '1.19.x'
     archiveFileName = "${project_name}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -1096,41 +1051,6 @@ publishing {
                 }
             }
         }
-        uploadAPIPlatforms(MavenPublication) {
-            groupId = group_id
-            version = version
-
-            artifact(build_api_platforms) {
-                artifactId = "${project_id}-api-platforms"
-            }
-
-            pom {
-                name = project_name
-                description = project_description
-                url = homepage_url
-                licenses {
-                    license {
-                        name = 'GPL-3'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
-                    }
-                    license {
-                        name = 'MIT License'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'p0t4t0sandwich'
-                        name = 'Dylan Sperrer'
-                        email = 'dylan@neuralnexus.dev'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
-                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
-                }
-            }
-        }
         uploadEntryPointSpoof(MavenPublication) {
             groupId = group_id
             version = "0.1.0"
@@ -1169,17 +1089,17 @@ publishing {
         maven {
             name = "NeuralNexusReleases"
             url = "https://maven.neuralnexus.dev/releases"
-            credentials(PasswordCredentials)
-            authentication {
-                basic(BasicAuthentication)
+            credentials {
+                username = project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")
+                password = project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")
             }
         }
         maven {
             name = "NeuralNexusSnapshots"
             url = "https://maven.neuralnexus.dev/snapshots"
-            credentials(PasswordCredentials)
-            authentication {
-                basic(BasicAuthentication)
+            credentials {
+                username = project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")
+                password = project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")
             }
         }
     }
