@@ -2,6 +2,10 @@ plugins {
     id("org.spongepowered.gradle.vanilla") version("0.2.1-SNAPSHOT")
 }
 
+base {
+    archivesName = "${project_id}-vanilla-${minecraft_version}"
+}
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
@@ -22,7 +26,3 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-vanilla-${minecraft_version}-${version}.jar"
-}

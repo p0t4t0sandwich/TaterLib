@@ -41,7 +41,6 @@ shadowJar {
     relocate("${group_id}.${project_id}.v1_20_2.vanilla.forge", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
     relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.forge")
     relocate("${group_id}.${project_id}.v1_20_2.vanilla", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
 

@@ -88,7 +88,7 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
             isNeoForge = true
         }
         versions.each { mcVersion ->
-            jarFiles.add(file("${dir}/${project_id}-${platform}-${mcVersion}-${version}.jar"))
+            jarFiles.add(file("${platform}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar"))
         }
     }
 
@@ -111,6 +111,7 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn(':common:shadowJar')
+    dependsOn(':tooling:loader:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
     destinationDirectory = file("./build/libs")

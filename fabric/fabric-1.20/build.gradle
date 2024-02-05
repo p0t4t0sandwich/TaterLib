@@ -50,7 +50,6 @@ shadowJar {
 task remappedShadowJar(type: RemapJarTask) {
     dependsOn(tasks.shadowJar)
     input = tasks.shadowJar.archiveFile
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
 
