@@ -3,9 +3,9 @@ package dev.neuralnexus.taterlib.loader.platforms;
 import com.google.inject.Inject;
 
 import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
-import dev.neuralnexus.taterlib.v1_20.sponge.SpongeTaterLibPlugin;
 
 import org.slf4j.Logger;
 import org.spongepowered.api.event.Listener;
@@ -26,7 +26,30 @@ public class Sponge7LoaderPlugin {
     @Inject
     public Sponge7LoaderPlugin(PluginContainer container, Logger logger) {
         loader = new TaterLibLoader(container, logger);
-        loader.registerPlugin(new SpongeTaterLibPlugin());
+
+        String version = "Unsupported";
+        switch (MinecraftVersion.getMinecraftVersion()) {
+            case V1_12:
+            case V1_12_1:
+            case V1_12_2:
+                version = MinecraftVersion.V1_12_2.getDelimiterString();
+                break;
+            default:
+                System.err.println(
+                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+        }
+        String pluginClassName =
+                "dev.neuralnexus.taterlib." + version + ".sponge.SpongeTaterLibPlugin";
+        try {
+            Class<?> pluginClass = Class.forName(pluginClassName);
+            loader.registerPlugin(
+                    (dev.neuralnexus.taterlib.plugin.Plugin)
+                            pluginClass.getConstructor().newInstance());
+        } catch (Exception e) {
+            System.err.println("Failed to load plugin class: " + pluginClassName);
+            e.printStackTrace();
+        }
+
         loader.onInit();
     }
 
