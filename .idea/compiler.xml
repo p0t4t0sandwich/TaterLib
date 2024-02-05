@@ -357,8 +357,6 @@
       <module name="fabric.fabric-1.17.TaterLib.fabric.fabric-1.17.test" target="16" />
       <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.main" target="17" />
       <module name="fabric.fabric-1.18.TaterLib.fabric.fabric-1.18.test" target="17" />
-      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.main" target="17" />
-      <module name="fabric.fabric-1.19.TaterLib.fabric.fabric-1.19.test" target="17" />
       <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
       <module name="forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
       <module name="forge-1.20.4.TaterLib.forge.forge-1.20.4.main" target="17" />
@@ -373,7 +371,6 @@
       <module name="forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
       <module name="TaterLib.fabric.fabric-1.17" target="16" />
       <module name="TaterLib.fabric.fabric-1.18" target="17" />
-      <module name="TaterLib.fabric.fabric-1.19" target="17" />
       <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />

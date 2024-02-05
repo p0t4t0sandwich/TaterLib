@@ -8,17 +8,12 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings loom.officialMojangMappings()
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
     implementation(project(':vanilla:vanilla-1.20.2'))
-
-    // Minecraft and Fabric mappings
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings loom.layered() {
-        officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-${minecraft_version}:${mapping_version}@zip")
-    }
-    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 }
 
 tasks.withType(ProcessResources).configureEach {

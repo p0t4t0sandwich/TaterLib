@@ -1,0 +1,13 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "${group_id}.${project_id}.v1_19_4.vanilla.fabric.mixin.patch",
+  "required": false,
+  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "mixins": [
+    "event.entity.VanillaEntityDamageEventMixin_1_19_4"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

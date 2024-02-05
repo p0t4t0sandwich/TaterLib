@@ -26,6 +26,10 @@
             <option value="$PROJECT_DIR$/bungee/bungee-1.20" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/fabric" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.19" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.19.1" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.19.3" />
+            <option value="$PROJECT_DIR$/fabric/fabric-1.19.4" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.20.2" />
             <option value="$PROJECT_DIR$/forge" />

@@ -216,6 +216,51 @@ tasks.register('build_legacy_forge', Exec) {
     }
 }
 
+// --------------------------- Build MonoJar --------------------------------
+tasks.register('build_monojar', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.20", "1.20.2", "1.20.4"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.20", "1.20.2"))
+            .put("forge", Arrays.asList("1.20", "1.20.2"))
+            .put("neoforge", Arrays.asList("1.20.2"))
+            .put("sponge", Arrays.asList("11"))
+            .put("vanilla", Arrays.asList("1.20", "1.20.2"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    archiveFileName = "${project_name}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'FMLCorePluginContainsFMLMod': 'true',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': "${project_id}.mixins.vanilla.v1_20.json, ${project_id}.mixins.vanilla.v1_20_2.json, ${project_id}.mixins.forge.patch.v1_20_2.json"
+//, ${project_id}.mixins.forge.v1_20_2.json"
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
 // --------------------------- Build b1.7.3 --------------------------------
 tasks.register('build_b1_7_3', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
@@ -884,6 +929,7 @@ tasks.register('build_1_19', Jar) {
             .put("fabric", Arrays.asList("1.19"))
             .put("forge", Arrays.asList("1.19"))
             .put("sponge", Arrays.asList("10"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
             .put("velocity", Arrays.asList("3"))
             .build()
 
