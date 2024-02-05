@@ -25,4 +25,3 @@ tasks.withType(ProcessResources).configureEach {
         expand project.properties
     }
 }
-

@@ -108,8 +108,14 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     }
 }
 
+// --------------------------- Clear build/libs --------------------------------
+tasks.register('clear_build') {
+    delete fileTree('build/libs')
+}
+
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
+    dependsOn('clear_build')
     dependsOn(':common:shadowJar')
     dependsOn(':tooling:loader:build')
 
