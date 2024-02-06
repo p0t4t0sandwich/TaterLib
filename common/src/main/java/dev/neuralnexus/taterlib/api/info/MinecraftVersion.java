@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /** Represents the version of Minecraft the server is running. */
 public enum MinecraftVersion {
@@ -185,11 +186,11 @@ public enum MinecraftVersion {
      * @return The MinecraftVersion
      */
     public static MinecraftVersion from(String version) {
-        return Arrays.stream(MinecraftVersion.values())
-                .sorted((o1, o2) -> o2.ordinal() - o1.ordinal())
-                .filter(v -> version.contains(v.toString()))
-                .findFirst()
-                .orElse(UNKNOWN);
+        Stream<MinecraftVersion> values = Arrays.stream(MinecraftVersion.values());
+        if (!version.contains("a1") && !version.contains("b1")) {
+            values = values.sorted((o1, o2) -> o2.ordinal() - o1.ordinal());
+        }
+        return values.filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);
     }
 
     /**
