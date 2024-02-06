@@ -15,6 +15,13 @@ public class FabricLoaderPlugin implements ModInitializer {
 
         String version = "Unsupported";
         switch (MinecraftVersion.getMinecraftVersion()) {
+            case V1_19:
+            case V1_19_1:
+            case V1_19_2:
+            case V1_19_3:
+            case V1_19_4:
+                version = MinecraftVersion.V1_19.getDelimiterString();
+                break;
             case V1_20:
             case V1_20_1:
             case V1_20_2:

@@ -183,11 +183,11 @@ tasks.register('build_monojar', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
             .put("bukkit", Arrays.asList("1.20", "1.20.2", "1.20.4"))
             .put("bungee", Arrays.asList("1.20"))
-            .put("fabric", Arrays.asList("1.20", "1.20.2"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2"))
             .put("forge", Arrays.asList("1.20", "1.20.2"))
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("11"))
-            .put("vanilla", Arrays.asList("1.20", "1.20.2"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2"))
             .put("velocity", Arrays.asList("3"))
             .build()
 
@@ -198,7 +198,7 @@ tasks.register('build_monojar', Jar) {
         }
     }
 
-    archiveFileName = "${project_name}-${version}.jar"
+    archiveFileName = "${project_id}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 

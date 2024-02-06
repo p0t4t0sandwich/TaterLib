@@ -124,7 +124,8 @@ commit messages.
 
 ### Testing
 
-If your feature adds to or modifies features in TaterLib's API, please create a corresponding JUnit test if possible.
+If your feature adds to or modifies features in TaterLib's API, please create a corresponding JUnit test if possible. At
+the same time though, don't go overboard with the unit tests, use your best judgement.
 
 As mentioned above, please test your changes on each major version that applies to your changes, and on two mod loaders
 that apply to your changes. If you're interfacing with a specific mod or modloader API, test on the latest version of

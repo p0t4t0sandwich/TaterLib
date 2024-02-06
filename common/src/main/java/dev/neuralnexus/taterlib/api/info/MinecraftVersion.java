@@ -434,7 +434,7 @@ public enum MinecraftVersion {
      * @return The version of Minecraft the server is running
      */
     public String getDelimiterString() {
-        return this.name().toLowerCase().replace("_", ".");
+        return this.name().toLowerCase().replace(".", "_");
     }
 
     /**
@@ -486,6 +486,28 @@ public enum MinecraftVersion {
                 && (endInclusive
                         ? this.ordinal() <= end.ordinal()
                         : this.ordinal() < end.ordinal());
+    }
+
+    /**
+     * Get if the version of Minecraft the server is running is within the defined range. This
+     * method assumes inclusivity on both ends.
+     *
+     * @param start The start of the range
+     * @param end The end of the range
+     */
+    public boolean isInRangeInc(MinecraftVersion start, MinecraftVersion end) {
+        return this.isInRange(true, start, true, end);
+    }
+
+    /**
+     * Get if the version of Minecraft the server is running is within the defined range. This
+     * method assumes exclusivity on both ends.
+     *
+     * @param start The start of the range
+     * @param end The end of the range
+     */
+    public boolean isInRangeExc(MinecraftVersion start, MinecraftVersion end) {
+        return this.isInRange(false, start, false, end);
     }
 
     /**

@@ -14,7 +14,8 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Lucko's Permissions API
-    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+//    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+    modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
 
     compileOnly(project(':common'))
     implementation(project(':vanilla:vanilla-1.19'))
@@ -27,7 +28,7 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project_id}.fabric.accesswidener")
+    accessWidenerPath = file("src/main/resources/not.${project_id}.fabric.accesswidener")
     mixin {
         defaultRefmapName.set("${project_id}.mixins.fabric.v1_19.refmap.json")
     }
@@ -48,7 +49,6 @@ shadowJar {
 task remappedShadowJar(type: RemapJarTask) {
     dependsOn(tasks.shadowJar)
     input = tasks.shadowJar.archiveFile
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
 
