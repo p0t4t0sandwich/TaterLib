@@ -71,9 +71,12 @@ new issue to discuss the changes you’d like to make.
 2. Create your own fork of the code
 3. Do the changes in your fork
 4. Testing your changes
-    * Pick two mod loaders that apply (e.g. don't test on Bukkit-based software if your addition is client-side)
-    * Test your changes on each Major minecraft version that apply to your changes (e.g. don't test below 1.15 if your
-      code only interacts with bees)
+    1. If your feature adds to or modifies features in TaterLib's API, please create a corresponding JUnit test if
+       possible (some things can only be tested in a game environment)
+    2. If your feature adds an event/platform-reliant feature, or mod interaction:
+        * Pick two mod loaders that apply (e.g. don't test on Bukkit-based software if your addition is client-side)
+        * Test your changes on each Major minecraft version that apply to your changes (e.g. don't test below 1.15 if
+          your code only interacts with bees)
 5. If you're satisfied with your changes, submit a pull request
     * Be sure you have followed the code style for the project
 
@@ -116,9 +119,11 @@ commit messages.
 
 ### Testing
 
+If your feature adds to or modifies features in TaterLib's API, please create a corresponding JUnit test if possible.
+
 As mentioned above, please test your changes on each major version that applies to your changes, and on two mod loaders
 that apply to your changes. If you're interfacing with a specific mod or modloader API, test on the latest version of
-that mod or modloader.
+that mod/modloader.
 
 Someday I hope to set up a CI system with a custom mod that depends on TaterLib that we could use for makeshift unit
 tests, but for now, we'll have to rely on the tried and true method of manual testing. I guess that's the downside of
