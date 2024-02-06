@@ -112,6 +112,11 @@ working on PRs.
 It sounds like a lot, but most of the code is repetitive, and you'll get the hang of it after a bit. Even if you just
 start a PR, someone else can pick it up and help finish it.
 
+#### Access Transformers/Wideners
+
+They're great, but they're not always the best solution. Limit their usage when possible, mainly because it'll force a
+re-decompile/resync with some build tools.
+
 ### Commit messages
 
 Please follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification when writing your
@@ -128,3 +133,26 @@ that mod/modloader.
 Someday I hope to set up a CI system with a custom mod that depends on TaterLib that we could use for makeshift unit
 tests, but for now, we'll have to rely on the tried and true method of manual testing. I guess that's the downside of
 supporting all modding platforms.
+
+# Ramblings
+
+### GameTest Framework
+
+I know the testing framework is available for 1.17+, but there's no good way to implement cross-platform tests (at least
+that I can see at this time, might see if I can add something to the vanilla projects). Though we'll still need
+something for older versions.
+
+### Other Potential Modding Platforms
+
+If you're feeling really ambitious, you could try to add support for other modding platforms, I've been considering the
+following:
+
+* [Nukkit](https://github.com/CloudburstMC/Nukkit)
+* RiftMC
+* LiteLoader
+* Meddle
+* Risugami
+* LitLaunch
+* RealML
+* [Minestorm](https://github.com/Minestom/Minestom)
+* [Cursed Fabric](https://minecraft-cursed-legacy.github.io/)
