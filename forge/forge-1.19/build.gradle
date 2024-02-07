@@ -3,6 +3,10 @@ plugins {
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
