@@ -39,6 +39,5 @@ dependencies {
 }
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-sponge-7-${version}.jar"
 }

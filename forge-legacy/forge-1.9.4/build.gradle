@@ -8,8 +8,7 @@ buildscript {
 }
 apply(plugin: 'net.minecraftforge.gradle.forge')
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = 1.8
 
 minecraft {
     version = "${minecraft_version}-${forge_version}"
@@ -29,6 +28,5 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-    destinationDir = file('../../target')
     archiveName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

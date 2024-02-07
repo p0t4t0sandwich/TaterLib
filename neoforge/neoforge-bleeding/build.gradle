@@ -27,7 +27,7 @@ minecraft.accessTransformers.entry 'public net.minecraft.server.network.ServerCo
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
-    compileOnly(project(':bleeding:vanilla-bleeding'))
+    compileOnly(project(':vanilla:vanilla-bleeding'))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -37,6 +37,5 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-neoforge-bleeding-${version}.jar"
 }

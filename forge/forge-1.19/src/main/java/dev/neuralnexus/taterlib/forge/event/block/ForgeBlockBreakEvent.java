@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.forge.event.block;
 
-import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
 
 /** Forge implementation of {@link BlockBreakEvent}. */
-public class ForgeBlockBreakEvent extends ForgeBlockEvent implements BlockBreakEvent {
+public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlockBreakEvent {
     private final net.minecraftforge.event.level.BlockEvent.BreakEvent event;
 
     public ForgeBlockBreakEvent(net.minecraftforge.event.level.BlockEvent.BreakEvent event) {

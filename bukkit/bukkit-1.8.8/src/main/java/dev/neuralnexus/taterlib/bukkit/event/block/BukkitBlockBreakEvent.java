@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.event.block;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.player.Player;
 
 /** Bukkit implementation of {@link BlockBreakEvent}. */
-public class BukkitBlockBreakEvent extends BukkitBlockEvent implements BlockBreakEvent {
+public class BukkitBlockBreakEvent extends BukkitBlockEvent implements PlayerBlockBreakEvent {
     private final org.bukkit.event.block.BlockBreakEvent event;
 
     public BukkitBlockBreakEvent(org.bukkit.event.block.BlockBreakEvent event) {

@@ -15,10 +15,9 @@ dependencies {
     compileOnly("org.spongepowered:spongeapi:${spongeapi_version}")
     compileOnly("org.spongepowered:sponge:${minecraft_version}-${spongeapi_version}")
     compileOnly(project(':common'))
-    compileOnly(project(':bleeding:vanilla-bleeding'))
+    compileOnly(project(':vanilla:vanilla-bleeding'))
 }
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-sponge-bleeding-${version}.jar"
 }

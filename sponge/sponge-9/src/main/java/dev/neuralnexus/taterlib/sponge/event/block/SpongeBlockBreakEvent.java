@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.sponge.event.block;
 
-import dev.neuralnexus.taterlib.event.block.BlockBreakEvent;
+import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 
 /** Sponge implementation of {@link BlockBreakEvent}. */
-public class SpongeBlockBreakEvent extends SpongeBlockEvent implements BlockBreakEvent {
+public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlockBreakEvent {
     private final ChangeBlockEvent.Pre event;
 
     public SpongeBlockBreakEvent(ChangeBlockEvent.Pre event) {

@@ -12,7 +12,7 @@ dependencies {
     compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
     paperweight.paperDevBundle("${minecraft_version}-${bukkit_version}")
     compileOnly(project(':common'))
-    implementation(project(':bleeding:vanilla-bleeding'))
+    implementation(project(':vanilla:vanilla-bleeding'))
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -23,7 +23,7 @@ tasks.withType(ProcessResources).configureEach {
 
 shadowJar {
     dependencies {
-        include(project(':bleeding:vanilla-bleeding'))
+        include(project(':vanilla:vanilla-bleeding'))
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.bukkit")
 }

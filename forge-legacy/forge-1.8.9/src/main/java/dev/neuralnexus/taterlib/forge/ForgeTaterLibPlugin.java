@@ -22,7 +22,6 @@ import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20_2.forge.player.ForgePlayerListener;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -54,7 +53,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register(ForgeVersion.mcVersion);
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
                 plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));

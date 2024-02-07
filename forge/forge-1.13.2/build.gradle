@@ -2,6 +2,10 @@ plugins {
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
 }
 
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
 }
@@ -15,9 +19,4 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand project.properties
     }
-}
-
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

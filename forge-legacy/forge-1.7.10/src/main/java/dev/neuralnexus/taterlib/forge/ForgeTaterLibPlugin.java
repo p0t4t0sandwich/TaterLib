@@ -54,7 +54,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register(Loader.MC_VERSION);
+        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
                 plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));

@@ -14,18 +14,18 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     public BukkitLoaderPlugin() {
         loader = new TaterLibLoader(this, getLogger());
 
-        String version = "Unsupported";
+        String version = "";
         switch (MinecraftVersion.getMinecraftVersion()) {
             case V1_20:
             case V1_20_1:
-                version = MinecraftVersion.V1_20.getDelimiterString();
+                version = "." + MinecraftVersion.V1_20.getDelimiterString();
                 break;
             case V1_20_2:
-                version = MinecraftVersion.V1_20_2.getDelimiterString();
+                version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
                 break;
             case V1_20_3:
             case V1_20_4:
-                version = MinecraftVersion.V1_20_4.getDelimiterString();
+                version = "." + MinecraftVersion.V1_20_4.getDelimiterString();
                 break;
             default:
                 getLogger()
@@ -34,7 +34,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
                                         + MinecraftVersion.getMinecraftVersion());
         }
         String pluginClassName =
-                "dev.neuralnexus.taterlib." + version + ".bukkit.BukkitTaterLibPlugin";
+                "dev.neuralnexus.taterlib" + version + ".bukkit.BukkitTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
             loader.registerPlugin((Plugin) pluginClass.getConstructor().newInstance());

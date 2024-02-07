@@ -11,6 +11,5 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-bungee-bleeding-${version}.jar"
 }

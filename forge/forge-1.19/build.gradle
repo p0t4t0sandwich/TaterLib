@@ -20,8 +20,3 @@ tasks.withType(ProcessResources).configureEach {
         expand project.properties
     }
 }
-
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
-}

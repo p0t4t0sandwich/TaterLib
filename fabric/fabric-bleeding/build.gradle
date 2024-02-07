@@ -9,7 +9,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 dependencies {
     compileOnly(project(':common'))
-    implementation(project(':bleeding:vanilla-bleeding'))
+    implementation(project(':vanilla:vanilla-bleeding'))
 
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings loom.layered() {
@@ -37,7 +37,7 @@ loom {
 
 shadowJar {
     dependencies {
-        include(project(':bleeding:vanilla-bleeding'))
+        include(project(':vanilla:vanilla-bleeding'))
         exclude('/mappings/*')
     }
     relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.fabric")
@@ -46,7 +46,6 @@ shadowJar {
 task remappedShadowJar(type: RemapJarTask) {
     dependsOn(tasks.shadowJar)
     input = tasks.shadowJar.archiveFile
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-fabric-bleeding-${version}.jar"
 }
 

@@ -4,8 +4,8 @@ repositories {
         name = "NeuralNexusPrivate"
         url = "https://maven.neuralnexus.dev/private"
         credentials {
-            username "$NeuralNexusPrivateUsername"
-            password "$NeuralNexusPrivatePassword"
+            username = project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")
+            password = project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")
         }
     }
 }
@@ -22,6 +22,5 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-bukkit-${minecraft_version}-${version}.jar"
 }

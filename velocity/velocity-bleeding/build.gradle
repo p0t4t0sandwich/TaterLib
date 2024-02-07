@@ -7,6 +7,5 @@ dependencies {
 java.disableAutoTargetJvm()
 
 jar {
-    destinationDirectory = file('../../target')
     archiveFileName = "${project_id}-velocity-bleeding-${version}.jar"
 }

@@ -61,14 +61,14 @@ rootProject.name = 'TaterLib'
 
 include(
         // Bleeding
-        'bleeding:bukkit-bleeding',
-        'bleeding:bungee-bleeding',
-        'bleeding:fabric-bleeding',
-        'bleeding:forge-bleeding',
-        'bleeding:neoforge-bleeding',
-        'bleeding:sponge-bleeding',
-        'bleeding:vanilla-bleeding',
-        'bleeding:velocity-bleeding',
+        'bukkit:bukkit-bleeding',
+        'bungee:bungee-bleeding',
+        'fabric:fabric-bleeding',
+        'forge:forge-bleeding',
+        'neoforge:neoforge-bleeding',
+        'sponge:sponge-bleeding',
+        'vanilla:vanilla-bleeding',
+        'velocity:velocity-bleeding',
 
         // Tooling
         'tooling:entrypoint-spoof',
@@ -77,40 +77,40 @@ include(
         // Common
         'common',
 
-//        // Legacy Bukkit
-//        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//
-//        // Bukkit
-//        'bukkit:bukkit-1.8.8',
-//        'bukkit:bukkit-1.13.2',
-//        'bukkit:bukkit-1.15.2',
+        // Legacy Bukkit
+        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+
+        // Bukkit
+        'bukkit:bukkit-1.8.8',
+        'bukkit:bukkit-1.13.2',
+        'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20',
         'bukkit:bukkit-1.20.2',
         'bukkit:bukkit-1.20.4',
 
-//        // Bungee
-//        'bungee:bungee-1.4.7',
-//        'bungee:bungee-1.8',
-//        'bungee:bungee-1.12',
+        // Bungee
+        'bungee:bungee-1.4.7',
+        'bungee:bungee-1.8',
+        'bungee:bungee-1.12',
         'bungee:bungee-1.20',
 
-//        // Legacy Fabric
-//        'fabric:fabric-1.7.10',
-//        'fabric:fabric-1.8.9',
-//        'fabric:fabric-1.9.4',
-//        'fabric:fabric-1.10.2',
-//        'fabric:fabric-1.11.2',
-//        'fabric:fabric-1.12.2',
-//
-//        // Fabric
-//        'fabric:fabric-1.14',
-//        'fabric:fabric-1.15',
-//        'fabric:fabric-1.16',
-//        'fabric:fabric-1.17',
-//        'fabric:fabric-1.18',
+        // Legacy Fabric
+        'fabric:fabric-1.7.10',
+        'fabric:fabric-1.8.9',
+        'fabric:fabric-1.9.4',
+        'fabric:fabric-1.10.2',
+        'fabric:fabric-1.11.2',
+        'fabric:fabric-1.12.2',
+
+        // Fabric
+        'fabric:fabric-1.14',
+        'fabric:fabric-1.15',
+        'fabric:fabric-1.16',
+        'fabric:fabric-1.17',
+        'fabric:fabric-1.18',
         'fabric:fabric-1.19',
         'fabric:fabric-1.19.1',
         'fabric:fabric-1.19.3',
@@ -118,30 +118,30 @@ include(
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
 
-//        // Forge
-//        'forge:forge-1.12.2',
-//        'forge:forge-1.13.2',
-//        'forge:forge-1.14.4',
-//        'forge:forge-1.15.1',
-//        'forge:forge-1.16.3',
-//        'forge:forge-1.17.1',
-//        'forge:forge-1.18',
-//        'forge:forge-1.18.2',
-//        'forge:forge-1.19',
+        // Forge
+        'forge:forge-1.12.2',
+        'forge:forge-1.13.2',
+        'forge:forge-1.14.4',
+        'forge:forge-1.15.1',
+        'forge:forge-1.16.3',
+        'forge:forge-1.17.1',
+        'forge:forge-1.18',
+        'forge:forge-1.18.2',
+        'forge:forge-1.19',
         'forge:forge-1.20',
         'forge:forge-1.20.2',
 
         // NeoForge
         'neoforge:neoforge-1.20.2',
 
-//        // Sponge
-//        'sponge:sponge-4',
-//        'sponge:sponge-5',
-//        'sponge:sponge-6',
-//        'sponge:sponge-7',
-//        'sponge:sponge-8',
-//        'sponge:sponge-9',
-//        'sponge:sponge-10',
+        // Sponge
+        'sponge:sponge-4',
+        'sponge:sponge-5',
+        'sponge:sponge-6',
+        'sponge:sponge-7',
+        'sponge:sponge-8',
+        'sponge:sponge-9',
+        'sponge:sponge-10',
         'sponge:sponge-11',
 
         // Vanilla
