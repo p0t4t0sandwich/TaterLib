@@ -342,6 +342,13 @@ public enum MinecraftVersion {
             }
         } catch (ReflectiveOperationException ignored) {
         }
+        try {
+            // Reflect to get cpw.mods.fml.common.Loader.MC_VERSION
+            Class<?> loaderClass = Class.forName("cpw.mods.fml.common.Loader");
+            Field mcVersionField = loaderClass.getField("MC_VERSION");
+            return (String) mcVersionField.get(null);
+        } catch (ReflectiveOperationException ignored) {
+        }
         return "Unknown";
     }
 
