@@ -72,7 +72,7 @@ tasks.register('build_all') {
 //    dependsOn('build_1_18_2')
     dependsOn('build_1_19_x')
     dependsOn('build_1_20_x')
-    dependsOn('build_bleeding')
+//    dependsOn('build_bleeding')
 }
 
 var List<String> legacyForgeVersions = [
@@ -857,13 +857,13 @@ tasks.register('build_1_18_2', Jar) {
 // --------------------------- Build 1.19.x --------------------------------
 tasks.register('build_1_19_x', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-//            .put("bukkit", Arrays.asList("1.15.2"))
-//            .put("bungee", Arrays.asList("1.20"))
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-//            .put("forge", Arrays.asList("1.19"))
-//            .put("sponge", Arrays.asList("10"))
+            .put("forge", Arrays.asList("1.19"))
+            .put("sponge", Arrays.asList("10"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-//            .put("velocity", Arrays.asList("3"))
+            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
