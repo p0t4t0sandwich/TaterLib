@@ -58,6 +58,12 @@ public class VanillaServer implements Server {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(VanillaPlayer::new)

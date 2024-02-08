@@ -24,6 +24,12 @@ public class BungeeProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        return server.getName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
     }

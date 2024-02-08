@@ -23,6 +23,21 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        // Cast this.server to MinecraftServer, then
+        // Reflect to get ((MinecraftServer) server).getServerModName()
+        try {
+            return (String)
+                    Class.forName("net.minecraft.server.MinecraftServer")
+                            .getMethod("getServerModName")
+                            .invoke(server);
+        } catch (Exception e) {
+            return "Sponge";
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toSet());
     }

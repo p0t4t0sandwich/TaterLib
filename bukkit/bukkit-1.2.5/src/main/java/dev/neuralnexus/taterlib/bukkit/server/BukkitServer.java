@@ -4,6 +4,8 @@ import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
 
+import org.bukkit.craftbukkit.CraftServer;
+
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,6 +22,12 @@ public class BukkitServer implements Server {
     @Override
     public String getName() {
         return "local";
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String getBrand() {
+        return  ((CraftServer) server).getServer().getServerModName();
     }
 
     /** {@inheritDoc} */

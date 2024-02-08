@@ -22,6 +22,13 @@ public class VelocityServer implements Server {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        // TODO: Pass this information up through plugin messages as a way to sync the server brand
+        return "Unknown";
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayersConnected().stream()
                 .map(VelocityPlayer::new)

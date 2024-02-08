@@ -26,6 +26,12 @@ public class FabricServer implements Server {
     }
 
     /** {@inheritDoc} */
+    @Override
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public Set<Player> getOnlinePlayers() {

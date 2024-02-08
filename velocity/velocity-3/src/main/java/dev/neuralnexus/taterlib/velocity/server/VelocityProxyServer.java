@@ -24,6 +24,13 @@ public class VelocityProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        // TODO: See if there's a better way to get the server brand
+        return "Velocity";
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getAllPlayers().stream().map(VelocityPlayer::new).collect(Collectors.toSet());
     }

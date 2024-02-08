@@ -23,6 +23,26 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        // Reflect to get ((CraftServer) server).getServer().getServerModName
+        try {
+            return (String)
+                    Class.forName(
+                                    "org.bukkit.craftbukkit."
+                                            + server.getClass().getPackage().getName()
+                                            + ".CraftServer")
+                            .getMethod("getServer")
+                            .invoke(server)
+                            .getClass()
+                            .getMethod("getServerModName")
+                            .invoke(null);
+        } catch (Exception e) {
+            return "Bukkit";
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getOnlinePlayers().stream()
                 .map(BukkitPlayer::new)

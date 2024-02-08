@@ -103,7 +103,7 @@ remap, and validate the vanilla source. Please note: exclude the `settings.gradl
 least, un-comment the other entries once you're finished.
 
 PRs are not considered finished until every platform/version has the feature implemented (excluding unsupported events).
-For methods that aren't supported by and older version, please add the `{toBeNamed}RuntimeException`.
+For methods that aren't supported by and older version, please add the `VersionFeatureNotSuportedException`.
 
 Please remember: You are not expected to know everything about every modding platform. If you're not sure about
 something, feel free to ask. Or if you're feeling a bit overwhelmed, ask for help, you aren't alone while

@@ -25,6 +25,12 @@ public class ForgeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public Set<Player> getOnlinePlayers() {
         return server.getPlayerList().getPlayerList().stream()
                 .map(ForgePlayer::new)

@@ -16,6 +16,9 @@ public interface SimpleServer {
      */
     String getName();
 
+    /** Get the server's brand. */
+    String getBrand();
+
     /**
      * Get the set of online players.
      *
