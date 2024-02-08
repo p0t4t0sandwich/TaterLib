@@ -19,33 +19,21 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     private static final Supplier<Boolean> IS_19 =
             () -> TaterAPIProvider.minecraftVersion().is(MinecraftVersion.V1_19);
     private static final Supplier<Boolean> IS_19_1 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_19_1, MinecraftVersion.V1_19_4);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.19.1, 1.19.4]");
     private static final Supplier<Boolean> IS_19_3 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_19_3, MinecraftVersion.V1_19_4);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.19.3, 1.19.4]");
     private static final Supplier<Boolean> IS_19_TO_19_3 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_19, MinecraftVersion.V1_19_3);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.19, 1.19.3]");
     private static final Supplier<Boolean> IS_19_4 =
             () -> TaterAPIProvider.minecraftVersion().is(MinecraftVersion.V1_19_4);
     private static final Supplier<Boolean> IS_19_TO_19_4 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.19, 1.19.4]");
     private static final Supplier<Boolean> IS_20_2 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_20_2, MinecraftVersion.V1_20_4);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.20.2, 1.20.4]");
     private static final Supplier<Boolean> IS_20_TO_20_1 =
             () -> TaterAPIProvider.minecraftVersion().is(MinecraftVersion.V1_20);
     private static final Supplier<Boolean> IS_20_TO_20_4 =
-            () ->
-                    TaterAPIProvider.minecraftVersion()
-                            .isInRangeInc(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4);
+            () -> TaterAPIProvider.minecraftVersion().parseRange("[1.20, 1.20.4]");
     private static final Map<String, Supplier<Boolean>> CONDITIONS =
             ImmutableMap.<String, Supplier<Boolean>>builder()
                     // 1.19-1.19.4 Listener Mixins

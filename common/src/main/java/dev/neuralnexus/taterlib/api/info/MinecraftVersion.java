@@ -496,25 +496,21 @@ public enum MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is within the defined range. This
-     * method assumes inclusivity on both ends.
+     * Get if the version of Minecraft the server is running is within the defined range. <br>
+     * Strings are read in the format of: <b>(1.17,1.20]</b>
      *
-     * @param start The start of the range
-     * @param end The end of the range
+     * @param rangeString The range to check
+     * @return If the version of Minecraft the server is running is within the defined range
      */
-    public boolean isInRangeInc(MinecraftVersion start, MinecraftVersion end) {
-        return this.isInRange(true, start, true, end);
-    }
-
-    /**
-     * Get if the version of Minecraft the server is running is within the defined range. This
-     * method assumes exclusivity on both ends.
-     *
-     * @param start The start of the range
-     * @param end The end of the range
-     */
-    public boolean isInRangeExc(MinecraftVersion start, MinecraftVersion end) {
-        return this.isInRange(false, start, false, end);
+    public boolean parseRange(String rangeString) {
+        rangeString = rangeString.trim();
+        boolean startInclusive = rangeString.charAt(0) == '[';
+        boolean endInclusive = rangeString.charAt(rangeString.length() - 1) == ']';
+        rangeString = rangeString.substring(1, rangeString.length() - 1);
+        String[] range = rangeString.split(",");
+        MinecraftVersion start = MinecraftVersion.from(range[0]);
+        MinecraftVersion end = MinecraftVersion.from(range[1]);
+        return this.isInRange(startInclusive, start, endInclusive, end);
     }
 
     /**
