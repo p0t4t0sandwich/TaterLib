@@ -2,6 +2,8 @@ package dev.neuralnexus.taterlib.api.info;
 
 import dev.neuralnexus.taterlib.mixin.TaterMixinServiceUtils;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -484,9 +486,15 @@ public enum MinecraftVersion {
      */
     public boolean isInRange(
             boolean startInclusive,
-            MinecraftVersion start,
+            @Nullable MinecraftVersion start,
             boolean endInclusive,
-            MinecraftVersion end) {
+            @Nullable MinecraftVersion end) {
+        if (start == null) {
+            start = MinecraftVersion.values()[0];
+        }
+        if (end == null) {
+            end = MinecraftVersion.values()[MinecraftVersion.values().length - 1];
+        }
         return (startInclusive
                         ? this.ordinal() >= start.ordinal()
                         : this.ordinal() > start.ordinal())
@@ -497,7 +505,7 @@ public enum MinecraftVersion {
 
     /**
      * Get if the version of Minecraft the server is running is within the defined range. <br>
-     * Strings are read in the format of: <b>(1.17,1.20]</b>
+     * Strings are read in the format of: <b>(1.17,1.20]</b> or <b>[1.17,)</b> or <b>(,1.20]</b>
      *
      * @param rangeString The range to check
      * @return If the version of Minecraft the server is running is within the defined range
@@ -507,9 +515,19 @@ public enum MinecraftVersion {
         boolean startInclusive = rangeString.charAt(0) == '[';
         boolean endInclusive = rangeString.charAt(rangeString.length() - 1) == ']';
         rangeString = rangeString.substring(1, rangeString.length() - 1);
-        String[] range = rangeString.split(",");
-        MinecraftVersion start = MinecraftVersion.from(range[0]);
-        MinecraftVersion end = MinecraftVersion.from(range[1]);
+        MinecraftVersion start;
+        MinecraftVersion end;
+        if (rangeString.charAt(0) == ',') {
+            start = null;
+            end = MinecraftVersion.from(rangeString.substring(1));
+        } else if (rangeString.charAt(rangeString.length() - 1) == ',') {
+            start = MinecraftVersion.from(rangeString.substring(0, rangeString.length() - 1));
+            end = null;
+        } else {
+            String[] range = rangeString.split(",");
+            start = MinecraftVersion.from(range[0]);
+            end = MinecraftVersion.from(range[1]);
+        }
         return this.isInRange(startInclusive, start, endInclusive, end);
     }
 
