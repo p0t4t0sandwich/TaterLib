@@ -324,6 +324,7 @@ public enum MinecraftVersion {
      *
      * @return The version of Minecraft the server is running
      */
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private static String getForgeMCVersion() {
         try {
             Class<?> fmlLoaderClass = Class.forName("net.minecraftforge.fml.loading.FMLLoader");
@@ -377,6 +378,7 @@ public enum MinecraftVersion {
      *
      * @return The version of Minecraft the server is running
      */
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private static String getSpongeMCVersion() {
         try {
             // Reflect to get Sponge.platform().minecraftVersion().name()
