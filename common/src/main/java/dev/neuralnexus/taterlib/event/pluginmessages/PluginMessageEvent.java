@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.event.pluginmessages;
 
+import dev.neuralnexus.taterlib.event.Event;
+
 /** Abstract class for plugin message events. */
-public interface PluginMessageEvent {
+public interface PluginMessageEvent extends Event {
     /**
      * Gets the channel of the plugin message.
      *

@@ -1,9 +1,11 @@
 package dev.neuralnexus.taterlib.event.pluginmessages;
 
+import dev.neuralnexus.taterlib.event.Event;
+
 import java.util.Set;
 
 /** Event for registering plugin messages */
-public interface RegisterPluginMessagesEvent {
+public interface RegisterPluginMessagesEvent extends Event {
     /**
      * Register a plugin message
      *

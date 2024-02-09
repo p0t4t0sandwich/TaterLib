@@ -4,10 +4,11 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.event.Event;
 import dev.neuralnexus.taterlib.player.Player;
 
 /** Abstract class for a brigadier command register event. */
-public interface BrigadierCommandRegisterEvent<S> {
+public interface BrigadierCommandRegisterEvent<S> extends Event {
     /**
      * Gets if the server is dedicated.
      *

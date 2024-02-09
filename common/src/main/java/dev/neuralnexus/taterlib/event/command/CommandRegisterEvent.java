@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.event.command;
 
 import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.event.Event;
 
 /** Abstract class for a command register event. */
-public interface CommandRegisterEvent {
+public interface CommandRegisterEvent extends Event {
     /**
      * Registers a command.
      *

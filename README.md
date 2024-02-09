@@ -176,3 +176,6 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added Brigadier support for Sponge and Bukkit
 - Renamed `Sender` to `CommandSender`
 - Split `Server` into `SimpleServer` and `ProxyServer`
+- Added some tests and more `MinecraftVersion` utilities
+- Renamed `Event` to `EventHolder` and created a base `Event` interface
+- Added `Event#getName()`

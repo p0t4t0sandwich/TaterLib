@@ -3,17 +3,17 @@ package dev.neuralnexus.taterlib.event.api;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
-/** The event class. */
-public class Event<T> {
+/** The EventHolder class. */
+public class EventHolder<T> {
     private final Class<T> eventClass;
     private final ArrayList<Consumer<T>> listeners = new ArrayList<>();
 
-    public Event(Class<T> eventClass, Consumer<T> listener) {
+    public EventHolder(Class<T> eventClass, Consumer<T> listener) {
         this.eventClass = eventClass;
         this.listeners.add(listener);
     }
 
-    public Event(Class<T> eventClass) {
+    public EventHolder(Class<T> eventClass) {
         this.eventClass = eventClass;
     }
 

@@ -5,29 +5,36 @@ import dev.neuralnexus.taterlib.event.player.*;
 /** Player events. */
 public final class PlayerEvents {
     /** Called when a player finishes an advancement. */
-    public static final Event<PlayerAdvancementEvent.AdvancementFinished> ADVANCEMENT_FINISHED =
-            new Event<>(PlayerAdvancementEvent.AdvancementFinished.class);
+    public static final EventHolder<PlayerAdvancementEvent.AdvancementFinished>
+            ADVANCEMENT_FINISHED =
+                    new EventHolder<>(PlayerAdvancementEvent.AdvancementFinished.class);
 
     /** Called when a player progresses an advancement. */
-    public static final Event<PlayerAdvancementEvent.AdvancementProgress> ADVANCEMENT_PROGRESS =
-            new Event<>(PlayerAdvancementEvent.AdvancementProgress.class);
+    public static final EventHolder<PlayerAdvancementEvent.AdvancementProgress>
+            ADVANCEMENT_PROGRESS =
+                    new EventHolder<>(PlayerAdvancementEvent.AdvancementProgress.class);
 
     /** Called when a player dies. */
-    public static final Event<PlayerDeathEvent> DEATH = new Event<>(PlayerDeathEvent.class);
+    public static final EventHolder<PlayerDeathEvent> DEATH =
+            new EventHolder<>(PlayerDeathEvent.class);
 
     /** Called when a player logs in. */
-    public static final Event<PlayerLoginEvent> LOGIN = new Event<>(PlayerLoginEvent.class);
+    public static final EventHolder<PlayerLoginEvent> LOGIN =
+            new EventHolder<>(PlayerLoginEvent.class);
 
     /** Called when a player logs out. */
-    public static final Event<PlayerLogoutEvent> LOGOUT = new Event<>(PlayerLogoutEvent.class);
+    public static final EventHolder<PlayerLogoutEvent> LOGOUT =
+            new EventHolder<>(PlayerLogoutEvent.class);
 
     /** Called when a player sends a message. */
-    public static final Event<PlayerMessageEvent> MESSAGE = new Event<>(PlayerMessageEvent.class);
+    public static final EventHolder<PlayerMessageEvent> MESSAGE =
+            new EventHolder<>(PlayerMessageEvent.class);
 
     /** Called when a player respawns. */
-    public static final Event<PlayerRespawnEvent> RESPAWN = new Event<>(PlayerRespawnEvent.class);
+    public static final EventHolder<PlayerRespawnEvent> RESPAWN =
+            new EventHolder<>(PlayerRespawnEvent.class);
 
     /** Called when a player switches servers. */
-    public static final Event<PlayerServerSwitchEvent> SERVER_SWITCH =
-            new Event<>(PlayerServerSwitchEvent.class);
+    public static final EventHolder<PlayerServerSwitchEvent> SERVER_SWITCH =
+            new EventHolder<>(PlayerServerSwitchEvent.class);
 }

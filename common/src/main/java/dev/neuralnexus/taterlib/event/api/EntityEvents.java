@@ -7,19 +7,22 @@ import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
 /** Entity events. */
 public class EntityEvents {
     /** Called when an entity is damaged. */
-    public static final Event<EntityDamageEvent> DAMAGE = new Event<>(EntityDamageEvent.class);
+    public static final EventHolder<EntityDamageEvent> DAMAGE =
+            new EventHolder<>(EntityDamageEvent.class);
 
     /** Called when an entity is damaged by an entity. */
-    public static final Event<EntityDamageEvent.DamageByEntity> DAMAGE_BY_ENTITY =
-            new Event<>(EntityDamageEvent.DamageByEntity.class);
+    public static final EventHolder<EntityDamageEvent.DamageByEntity> DAMAGE_BY_ENTITY =
+            new EventHolder<>(EntityDamageEvent.DamageByEntity.class);
 
     /** Called when an entity is damaged by a block. */
-    public static final Event<EntityDamageEvent.DamageByBlock> DAMAGE_BY_BLOCK =
-            new Event<>(EntityDamageEvent.DamageByBlock.class);
+    public static final EventHolder<EntityDamageEvent.DamageByBlock> DAMAGE_BY_BLOCK =
+            new EventHolder<>(EntityDamageEvent.DamageByBlock.class);
 
     /** Called when an entity dies. */
-    public static final Event<EntityDeathEvent> DEATH = new Event<>(EntityDeathEvent.class);
+    public static final EventHolder<EntityDeathEvent> DEATH =
+            new EventHolder<>(EntityDeathEvent.class);
 
     /** Called when an entity spawns. */
-    public static final Event<EntitySpawnEvent> SPAWN = new Event<>(EntitySpawnEvent.class);
+    public static final EventHolder<EntitySpawnEvent> SPAWN =
+            new EventHolder<>(EntitySpawnEvent.class);
 }

@@ -8,16 +8,18 @@ import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
 /** Server events. */
 public class ServerEvents {
     /** Called when the server is starting. */
-    public static final Event<ServerStartingEvent> STARTING =
-            new Event<>(ServerStartingEvent.class);
+    public static final EventHolder<ServerStartingEvent> STARTING =
+            new EventHolder<>(ServerStartingEvent.class);
 
     /** Called when the server has started. */
-    public static final Event<ServerStartedEvent> STARTED = new Event<>(ServerStartedEvent.class);
+    public static final EventHolder<ServerStartedEvent> STARTED =
+            new EventHolder<>(ServerStartedEvent.class);
 
     /** Called when the server is stopping. */
-    public static final Event<ServerStoppingEvent> STOPPING =
-            new Event<>(ServerStoppingEvent.class);
+    public static final EventHolder<ServerStoppingEvent> STOPPING =
+            new EventHolder<>(ServerStoppingEvent.class);
 
     /** Called when the server has stopped. */
-    public static final Event<ServerStoppedEvent> STOPPED = new Event<>(ServerStoppedEvent.class);
+    public static final EventHolder<ServerStoppedEvent> STOPPED =
+            new EventHolder<>(ServerStoppedEvent.class);
 }
