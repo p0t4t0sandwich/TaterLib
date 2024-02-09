@@ -7,7 +7,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.entity.BukkitEntityListener;

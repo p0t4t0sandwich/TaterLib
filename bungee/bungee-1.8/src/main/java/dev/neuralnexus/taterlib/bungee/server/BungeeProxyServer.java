@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bungee.server;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.ProxyServer;
 import dev.neuralnexus.taterlib.server.Server;
 
@@ -30,7 +30,7 @@ public class BungeeProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
     }
 

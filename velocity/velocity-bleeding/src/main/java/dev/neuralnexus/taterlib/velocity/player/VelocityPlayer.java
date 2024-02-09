@@ -3,11 +3,7 @@ package dev.neuralnexus.taterlib.velocity.player;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 
 import net.kyori.adventure.text.Component;
@@ -80,88 +76,6 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void remove() {}
-
-    /** {@inheritDoc} */
-    @Override
-    public String getType() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getCustomName() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setCustomName(String name) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public Location getLocation() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getX() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getBiome() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Location location) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {}
-
-    /** {@inheritDoc} */
-    @Override
     public String getName() {
         return player.getUsername();
     }
@@ -208,12 +122,6 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public int getPing() {
         return (int) player.getPing();
     }
@@ -223,18 +131,4 @@ public class VelocityPlayer implements ProxyPlayer {
     public void kickPlayer(String message) {
         player.disconnect(Component.text(message));
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setSpawn(Location location, boolean forced) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public GameMode getGameMode() {
-        return GameMode.fromId(0);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setGameMode(GameMode gameMode) {}
 }

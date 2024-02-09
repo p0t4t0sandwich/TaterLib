@@ -21,12 +21,12 @@ import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEvent;
-import dev.neuralnexus.taterlib.velocity.event.pluginmessages.VelocityRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.velocity.event.network.VelocityRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.hooks.permissions.VelocityPermissionsHook;
+import dev.neuralnexus.taterlib.velocity.listeners.network.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
-import dev.neuralnexus.taterlib.velocity.listeners.pluginmessages.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.server.VelocityServerListener;
 import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 

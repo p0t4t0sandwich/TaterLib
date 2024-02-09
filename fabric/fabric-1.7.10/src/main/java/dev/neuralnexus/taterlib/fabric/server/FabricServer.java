@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.server;
 
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +34,7 @@ public class FabricServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public Set<SimplePlayer> getOnlinePlayers() {
         return ((List<PlayerEntity>) server.getPlayerManager().players)
                 .stream().map(FabricPlayer::new).collect(Collectors.toSet());
     }

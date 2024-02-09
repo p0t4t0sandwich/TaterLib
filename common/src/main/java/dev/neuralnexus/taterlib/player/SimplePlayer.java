@@ -9,20 +9,13 @@ import dev.neuralnexus.taterlib.placeholder.PlaceholderParser;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface SimplePlayer extends CommandSender {
+public interface SimplePlayer extends CommandSender, Connection {
     /**
      * Get the display name of the player
      *
      * @return The display name of the player
      */
     String getDisplayName();
-
-    /**
-     * Get the IP address of the player
-     *
-     * @return The IP address of the player
-     */
-    String getIPAddress();
 
     /**
      * Get the server the player is on
@@ -37,28 +30,6 @@ public interface SimplePlayer extends CommandSender {
      * @param serverName The server the player is on
      */
     void setServerName(String serverName);
-
-    /**
-     * Sends a plugin message using the specified channel
-     *
-     * @param channel The channel to send the message on
-     * @param data The message to send
-     */
-    void sendPluginMessage(String channel, byte[] data);
-
-    /**
-     * Get player's ping
-     *
-     * @return The player's ping
-     */
-    int getPing();
-
-    /**
-     * Kick the player
-     *
-     * @param message The reason to kick the player
-     */
-    void kickPlayer(String message);
 
     /**
      * Get the prefix of the player

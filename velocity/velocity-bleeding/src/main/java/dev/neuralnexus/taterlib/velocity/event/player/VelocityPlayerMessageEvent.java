@@ -3,7 +3,8 @@ package dev.neuralnexus.taterlib.velocity.event.player;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import java.util.HashSet;
@@ -32,7 +33,7 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public ProxyPlayer getPlayer() {
         return new VelocityPlayer(event.getPlayer());
     }
 
@@ -53,11 +54,11 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> recipients() {
+    public Set<SimplePlayer> recipients() {
         return new HashSet<>();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<Player> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {}
 }

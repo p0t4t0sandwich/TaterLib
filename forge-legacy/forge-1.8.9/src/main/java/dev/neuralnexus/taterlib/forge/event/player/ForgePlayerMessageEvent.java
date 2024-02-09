@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.forge.event.player;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.minecraftforge.event.ServerChatEvent;
 
@@ -53,11 +54,11 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> recipients() {
+    public Set<SimplePlayer> recipients() {
         return new HashSet<>();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<Player> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {}
 }

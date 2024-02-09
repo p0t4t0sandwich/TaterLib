@@ -181,3 +181,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Event#getName()`
 - Created generic event handler
 - Renamed `PluginMessageEvents` to `NetworkEvents`
+- Split out `SimplePlayer` and `ProxyPlayer`
+- Created `Connection` interface for kick/disconnect/ping/pluginMessage

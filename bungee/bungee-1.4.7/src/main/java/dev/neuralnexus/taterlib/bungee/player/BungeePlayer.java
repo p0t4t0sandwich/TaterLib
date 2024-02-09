@@ -1,10 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
-import dev.neuralnexus.taterlib.utils.Location;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;
@@ -120,12 +116,6 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public int getPing() {
         return player.getPing();
     }
@@ -135,100 +125,4 @@ public class BungeePlayer implements ProxyPlayer {
     public void kickPlayer(String message) {
         player.disconnect(message);
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setSpawn(Location location, boolean forced) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public GameMode getGameMode() {
-        return GameMode.fromId(0);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setGameMode(GameMode gameMode) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public int getEntityId() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void remove() {}
-
-    /** {@inheritDoc} */
-    @Override
-    public String getType() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getCustomName() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setCustomName(String name) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public Location getLocation() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getX() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getBiome() {
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Location location) {}
-
-    /** {@inheritDoc} */
-    @Override
-    public void teleport(Entity entity) {}
 }

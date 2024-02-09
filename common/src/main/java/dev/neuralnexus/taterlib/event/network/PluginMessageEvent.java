@@ -25,7 +25,7 @@ public interface PluginMessageEvent extends Event {
          *
          * @return The player of the plugin message.
          */
-        dev.neuralnexus.taterlib.player.Player getPlayer();
+        dev.neuralnexus.taterlib.player.SimplePlayer getPlayer();
     }
 
     /** Abstract class for server plugin message events. */

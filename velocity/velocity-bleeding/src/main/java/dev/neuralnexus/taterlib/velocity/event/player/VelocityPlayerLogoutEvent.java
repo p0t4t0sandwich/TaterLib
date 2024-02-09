@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.velocity.event.player;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 
 import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /** Velocity implementation of {@link PlayerLogoutEvent}. */
@@ -17,7 +17,7 @@ public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public ProxyPlayer getPlayer() {
         return new VelocityPlayer(event.getPlayer());
     }
 

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.event.player;
 
 import dev.neuralnexus.taterlib.event.Event;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 /** Abstract class for player events */
 public interface PlayerEvent extends Event {
@@ -10,5 +10,5 @@ public interface PlayerEvent extends Event {
      *
      * @return The player
      */
-    Player getPlayer();
+    SimplePlayer getPlayer();
 }

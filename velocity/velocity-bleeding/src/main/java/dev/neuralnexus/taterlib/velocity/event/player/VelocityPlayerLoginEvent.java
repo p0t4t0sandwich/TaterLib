@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.velocity.event.player;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
 import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 /** Velocity implementation of {@link PlayerLoginEvent}. */
@@ -17,8 +17,8 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
-        Player player = new VelocityPlayer(event.getPlayer());
+    public ProxyPlayer getPlayer() {
+        ProxyPlayer player = new VelocityPlayer(event.getPlayer());
         if (event.getPlayer().getCurrentServer().isPresent()) {
             player.setServerName(
                     event.getPlayer().getCurrentServer().get().getServerInfo().getName());

@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -45,11 +45,11 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> recipients() {
+    public Set<SimplePlayer> recipients() {
         return new HashSet<>();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<Player> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {}
 }

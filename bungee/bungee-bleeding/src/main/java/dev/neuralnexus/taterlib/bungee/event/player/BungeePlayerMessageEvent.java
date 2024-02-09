@@ -2,7 +2,8 @@ package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -32,7 +33,7 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public ProxyPlayer getPlayer() {
         return new BungeePlayer((ProxiedPlayer) event.getSender());
     }
 
@@ -50,11 +51,11 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> recipients() {
+    public Set<SimplePlayer> recipients() {
         return new HashSet<>();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<Player> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {}
 }

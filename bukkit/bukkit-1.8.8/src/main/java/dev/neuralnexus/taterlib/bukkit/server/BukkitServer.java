@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import java.lang.reflect.InvocationTargetException;
@@ -48,7 +48,7 @@ public class BukkitServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public Set<SimplePlayer> getOnlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method method = server.getClass().getMethod("getOnlinePlayers");

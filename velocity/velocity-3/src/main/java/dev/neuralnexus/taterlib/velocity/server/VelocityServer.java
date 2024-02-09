@@ -1,10 +1,11 @@
 package dev.neuralnexus.taterlib.velocity.server;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link Server}. */
 public class VelocityServer implements Server {
@@ -29,9 +30,9 @@ public class VelocityServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.getPlayersConnected().stream()
                 .map(VelocityPlayer::new)
-                .collect(java.util.stream.Collectors.toSet());
+                .collect(Collectors.toSet());
     }
 }

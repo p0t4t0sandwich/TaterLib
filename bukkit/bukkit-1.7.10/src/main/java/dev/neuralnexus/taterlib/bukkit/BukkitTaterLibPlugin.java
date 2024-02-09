@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartedEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppedEvent;

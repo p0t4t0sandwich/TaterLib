@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
 
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 
@@ -17,8 +17,8 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
-        Player player = new BungeePlayer(event.getPlayer());
+    public ProxyPlayer getPlayer() {
+        ProxyPlayer player = new BungeePlayer(event.getPlayer());
         player.setServerName(event.getPlayer().getServer().getInfo().getName());
         return player;
     }
