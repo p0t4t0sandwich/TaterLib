@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -16,12 +17,16 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 /** NeoForge entry point. */
 @Mod(TaterLib.Constants.PROJECT_ID)
 public class NeoForgeLoaderPlugin {
-    private final Loader loader;
+    private static Loader loader;
 
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
         loader = new TaterLibLoader(this, LogUtils.getLogger());
+        loader.registerPlugin(getPlugin());
+        loader.onInit();
+    }
 
+    public static Plugin getPlugin() {
         String version = "";
         switch (MinecraftVersion.getMinecraftVersion()) {
             case V1_20:
@@ -39,15 +44,13 @@ public class NeoForgeLoaderPlugin {
                 "dev.neuralnexus.taterlib" + version + ".neoforge.NeoForgeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            loader.registerPlugin(
-                    (dev.neuralnexus.taterlib.plugin.Plugin)
-                            pluginClass.getConstructor().newInstance());
+            return (dev.neuralnexus.taterlib.plugin.Plugin)
+                    pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
         }
-
-        loader.onInit();
+        return null;
     }
 
     @SubscribeEvent

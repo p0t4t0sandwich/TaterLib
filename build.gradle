@@ -88,7 +88,7 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     String dir = "./target"
     ArrayList<File> jarFiles = [
             file("${dir}/${project_id}-common-${version}.jar"),
-            file("./tooling/loader/build/libs/${project_id}-loader-0.1.1.jar")
+            file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
     ]
 
     var boolean isNeoForge = false

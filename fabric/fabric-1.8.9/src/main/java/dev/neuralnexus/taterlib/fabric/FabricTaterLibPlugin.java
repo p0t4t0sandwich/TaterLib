@@ -37,7 +37,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
                 plugin,

@@ -1,9 +1,12 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.minecraftforge.fml.common.Mod;
 
@@ -15,11 +18,23 @@ import net.minecraftforge.fml.common.Mod;
         serverSideOnly = true,
         acceptableRemoteVersions = "*")
 public class ForgeLoaderPlugin {
-    private final Loader loader;
+    private static Loader loader;
 
     public ForgeLoaderPlugin() {
         loader = new TaterLibLoader(this, null);
+        loader.registerPlugin(getPlugin());
+        if (TaterAPIProvider.serverType().isForgeHybrid()) {
+            loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
+        }
+        // Sinytra Connector support
+        if (ServerType.isFabric()) {
+            loader.registerPlugin(FabricLoaderPlugin.getPlugin());
+        }
+        loader.onInit();
+        loader.onEnable();
+    }
 
+    public static Plugin getPlugin() {
         String version = "Unsupported";
         switch (MinecraftVersion.getMinecraftVersion()) {
             case V1_19:
@@ -44,15 +59,11 @@ public class ForgeLoaderPlugin {
                 "dev.neuralnexus.taterlib." + version + ".forge.ForgeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            loader.registerPlugin(
-                    (dev.neuralnexus.taterlib.plugin.Plugin)
-                            pluginClass.getConstructor().newInstance());
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
         }
-
-        loader.onInit();
-        loader.onEnable();
+        return null;
     }
 }

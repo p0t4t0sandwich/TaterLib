@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.loader;
 
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.plugin.Loader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
@@ -15,6 +16,7 @@ public class TaterLibLoader implements Loader {
     public TaterLibLoader(Object plugin, Object logger) {
         this.plugin = plugin;
         this.logger = logger;
+        TaterAPIProvider.register();
     }
 
     @Override
@@ -29,6 +31,10 @@ public class TaterLibLoader implements Loader {
 
     @Override
     public void registerPlugin(Plugin plugin) {
+        // TODO: Handle this a tad better
+        if (plugin == null) {
+            return;
+        }
         //        if (plugins.stream().anyMatch(p -> p.getId().equals(plugin.getId()))) {
         //            throw new IllegalArgumentException(
         //                    String.format("Plugin with id %s already registered",

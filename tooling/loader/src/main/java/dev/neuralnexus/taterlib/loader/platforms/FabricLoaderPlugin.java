@@ -1,18 +1,27 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.fabricmc.api.ModInitializer;
 
 /** Fabric entry point. */
 public class FabricLoaderPlugin implements ModInitializer {
-    private final Loader loader;
+    private static Loader loader;
 
     public FabricLoaderPlugin() {
         loader = new TaterLibLoader(this, null);
+        loader.registerPlugin(getPlugin());
+        if (TaterAPIProvider.serverType().isFabricHybrid()) {
+            loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
+        }
+        loader.onInit();
+    }
 
+    public static Plugin getPlugin() {
         String version = "";
         switch (MinecraftVersion.getMinecraftVersion()) {
             case V1_19:
@@ -37,14 +46,12 @@ public class FabricLoaderPlugin implements ModInitializer {
                 "dev.neuralnexus.taterlib" + version + ".fabric.FabricTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            loader.registerPlugin(
-                    (dev.neuralnexus.taterlib.plugin.Plugin)
-                            pluginClass.getConstructor().newInstance());
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
         }
-        loader.onInit();
+        return null;
     }
 
     @Override

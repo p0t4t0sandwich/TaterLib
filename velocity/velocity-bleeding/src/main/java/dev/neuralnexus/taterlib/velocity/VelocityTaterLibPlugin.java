@@ -74,7 +74,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         VelocityTaterLibPlugin.server = (ProxyServer) ((Object[]) plugin)[0];
         VelocityTaterLibPlugin.plugin = ((Object[]) plugin)[1];
 
-        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
         pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);

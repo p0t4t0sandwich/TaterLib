@@ -8,6 +8,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import org.slf4j.Logger;
 
@@ -20,12 +21,16 @@ import org.slf4j.Logger;
 //        description = TaterLib.Constants.PROJECT_DESCRIPTION,
 //        url = TaterLib.Constants.PROJECT_URL)
 public class VelocityLoaderPlugin {
-    private final Loader loader;
+    private static Loader loader;
 
     @Inject
     public VelocityLoaderPlugin(ProxyServer server, Logger logger) {
         loader = new TaterLibLoader(new Object[] {server, this}, logger);
+        loader.registerPlugin(getPlugin());
+        loader.onInit();
+    }
 
+    public static Plugin getPlugin() {
         //        String version = "Unsupported";
         //        switch (MinecraftVersion.getMinecraftVersion()) {
         //            case V1_20:
@@ -43,15 +48,13 @@ public class VelocityLoaderPlugin {
         String pluginClassName = "dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            loader.registerPlugin(
-                    (dev.neuralnexus.taterlib.plugin.Plugin)
-                            pluginClass.getConstructor().newInstance());
+            return (dev.neuralnexus.taterlib.plugin.Plugin)
+                    pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
         }
-
-        loader.onInit();
+        return null;
     }
 
     @Subscribe

@@ -32,7 +32,6 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
         this.plugin = (Plugin) plugin;
-        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new BungeePermissionsHook());
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUNGEECORD);

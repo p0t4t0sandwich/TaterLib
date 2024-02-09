@@ -183,3 +183,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Renamed `PluginMessageEvents` to `NetworkEvents`
 - Split out `SimplePlayer` and `ProxyPlayer`
 - Created `Connection` interface for kick/disconnect/ping/pluginMessage
+- Loader can now detect and register more plugin instances in multi-API environments
