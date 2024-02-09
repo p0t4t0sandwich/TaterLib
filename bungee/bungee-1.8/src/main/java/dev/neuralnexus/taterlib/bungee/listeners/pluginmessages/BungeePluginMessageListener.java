@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bungee.listeners.pluginmessages;
 
 import dev.neuralnexus.taterlib.bungee.event.pluginmessages.BungeePluginMessageEvent;
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
@@ -18,13 +18,11 @@ public class BungeePluginMessageListener implements Listener {
      */
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
-        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent(event));
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent(event));
         if (event.getReceiver() instanceof ProxiedPlayer) {
-            PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                    new BungeePluginMessageEvent.Player(event));
+            NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.Player(event));
         } else if (event.getReceiver() instanceof Server) {
-            PluginMessageEvents.SERVER_PLUGIN_MESSAGE.invoke(
-                    new BungeePluginMessageEvent.Server(event));
+            NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.Server(event));
         }
     }
 }

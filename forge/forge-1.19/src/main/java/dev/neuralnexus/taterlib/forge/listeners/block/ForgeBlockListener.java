@@ -15,6 +15,6 @@ public class ForgeBlockListener {
      */
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        BlockEvents.BLOCK_BREAK.invoke(new ForgeBlockBreakEvent(event));
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(new ForgeBlockBreakEvent(event));
     }
 }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.bukkit.event.pluginmessages;
 
-import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
+import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
 
 /** Bukkit implementation of {@link PluginMessageEvent}. */
 public class BukkitPluginMessageEvent implements PluginMessageEvent {

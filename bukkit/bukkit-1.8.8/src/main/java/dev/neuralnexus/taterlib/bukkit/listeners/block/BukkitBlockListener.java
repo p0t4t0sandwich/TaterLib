@@ -15,6 +15,6 @@ public class BukkitBlockListener implements Listener {
      */
     @EventHandler
     public void onBlockBreak(org.bukkit.event.block.BlockBreakEvent event) {
-        BlockEvents.BLOCK_BREAK.invoke(new BukkitBlockBreakEvent(event));
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(new BukkitBlockBreakEvent(event));
     }
 }

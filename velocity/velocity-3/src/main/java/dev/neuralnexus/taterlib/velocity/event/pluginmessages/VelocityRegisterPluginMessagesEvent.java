@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.event.pluginmessages;
 
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
-import dev.neuralnexus.taterlib.event.pluginmessages.RegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 
 import java.util.Set;

@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.velocity.event.pluginmessages;
 
 import com.velocitypowered.api.proxy.ServerConnection;
 
-import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
+import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
 
 /** Velocity implementation of {@link PluginMessageEvent}. */
 public class VelocityPluginMessageEvent implements PluginMessageEvent {

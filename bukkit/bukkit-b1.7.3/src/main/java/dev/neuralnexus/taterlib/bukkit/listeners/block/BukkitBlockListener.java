@@ -13,6 +13,6 @@ public class BukkitBlockListener extends BlockListener {
      * @param event The event.
      */
     public void onBlockBreak(org.bukkit.event.block.BlockBreakEvent event) {
-        BlockEvents.BLOCK_BREAK.invoke(new BukkitBlockBreakEvent(event));
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(new BukkitBlockBreakEvent(event));
     }
 }

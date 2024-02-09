@@ -15,8 +15,8 @@ import dev.neuralnexus.taterlib.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
@@ -90,7 +90,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                             CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
 
                             // Register plugin messages
-                            PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                            NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
                                     new BukkitRegisterPluginMessagesEvent());
                         },
                         200L);

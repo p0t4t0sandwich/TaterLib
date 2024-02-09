@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.event.pluginmessages;
+package dev.neuralnexus.taterlib.event.network;
 
 /** Wrapper for custom payload packets (plugin messages) */
 public interface CustomPayloadWrapper {

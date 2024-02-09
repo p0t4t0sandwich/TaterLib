@@ -30,7 +30,7 @@ public class BlockMixin_1_20 {
             BlockEntity blockEntity,
             ItemStack itemStack,
             CallbackInfo ci) {
-        BlockEvents.BLOCK_BREAK.invoke(
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
                         level,
                         player,

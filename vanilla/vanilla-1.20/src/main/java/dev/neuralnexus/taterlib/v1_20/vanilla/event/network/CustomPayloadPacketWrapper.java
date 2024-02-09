@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.event.network;
 
-import dev.neuralnexus.taterlib.event.pluginmessages.CustomPayloadWrapper;
+import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
 
 import io.netty.buffer.Unpooled;
 

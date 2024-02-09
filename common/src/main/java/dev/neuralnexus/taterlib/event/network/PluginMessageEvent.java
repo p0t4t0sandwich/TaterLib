@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.event.pluginmessages;
+package dev.neuralnexus.taterlib.event.network;
 
 import dev.neuralnexus.taterlib.event.Event;
 
@@ -31,10 +31,10 @@ public interface PluginMessageEvent extends Event {
     /** Abstract class for server plugin message events. */
     interface Server extends PluginMessageEvent {
         /**
-         * Gets the server of the plugin message. TODO: AbstractServer
+         * Gets the server of the plugin message.
          *
          * @return The server of the plugin message.
          */
-        Object getServer();
+        dev.neuralnexus.taterlib.server.Server getServer();
     }
 }

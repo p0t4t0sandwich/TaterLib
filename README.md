@@ -177,5 +177,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Renamed `Sender` to `CommandSender`
 - Split `Server` into `SimpleServer` and `ProxyServer`
 - Added some tests and more `MinecraftVersion` utilities
-- Renamed `Event` to `EventHolder` and created a base `Event` interface
+- Renamed `Event` to `EventManager` and created a base `Event` interface
 - Added `Event#getName()`
+- Created generic event handler
+- Renamed `PluginMessageEvents` to `NetworkEvents`

@@ -1,40 +1,63 @@
 package dev.neuralnexus.taterlib.event.api;
 
+import dev.neuralnexus.taterlib.event.Event;
 import dev.neuralnexus.taterlib.event.player.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /** Player events. */
 public final class PlayerEvents {
     /** Called when a player finishes an advancement. */
-    public static final EventHolder<PlayerAdvancementEvent.AdvancementFinished>
+    public static final EventManager<PlayerAdvancementEvent.AdvancementFinished>
             ADVANCEMENT_FINISHED =
-                    new EventHolder<>(PlayerAdvancementEvent.AdvancementFinished.class);
+                    new EventManager<>(PlayerAdvancementEvent.AdvancementFinished.class);
 
     /** Called when a player progresses an advancement. */
-    public static final EventHolder<PlayerAdvancementEvent.AdvancementProgress>
+    public static final EventManager<PlayerAdvancementEvent.AdvancementProgress>
             ADVANCEMENT_PROGRESS =
-                    new EventHolder<>(PlayerAdvancementEvent.AdvancementProgress.class);
+                    new EventManager<>(PlayerAdvancementEvent.AdvancementProgress.class);
 
     /** Called when a player dies. */
-    public static final EventHolder<PlayerDeathEvent> DEATH =
-            new EventHolder<>(PlayerDeathEvent.class);
+    public static final EventManager<PlayerDeathEvent> DEATH =
+            new EventManager<>(PlayerDeathEvent.class);
 
     /** Called when a player logs in. */
-    public static final EventHolder<PlayerLoginEvent> LOGIN =
-            new EventHolder<>(PlayerLoginEvent.class);
+    public static final EventManager<PlayerLoginEvent> LOGIN =
+            new EventManager<>(PlayerLoginEvent.class);
 
     /** Called when a player logs out. */
-    public static final EventHolder<PlayerLogoutEvent> LOGOUT =
-            new EventHolder<>(PlayerLogoutEvent.class);
+    public static final EventManager<PlayerLogoutEvent> LOGOUT =
+            new EventManager<>(PlayerLogoutEvent.class);
 
     /** Called when a player sends a message. */
-    public static final EventHolder<PlayerMessageEvent> MESSAGE =
-            new EventHolder<>(PlayerMessageEvent.class);
+    public static final EventManager<PlayerMessageEvent> MESSAGE =
+            new EventManager<>(PlayerMessageEvent.class);
 
     /** Called when a player respawns. */
-    public static final EventHolder<PlayerRespawnEvent> RESPAWN =
-            new EventHolder<>(PlayerRespawnEvent.class);
+    public static final EventManager<PlayerRespawnEvent> RESPAWN =
+            new EventManager<>(PlayerRespawnEvent.class);
 
     /** Called when a player switches servers. */
-    public static final EventHolder<PlayerServerSwitchEvent> SERVER_SWITCH =
-            new EventHolder<>(PlayerServerSwitchEvent.class);
+    public static final EventManager<PlayerServerSwitchEvent> SERVER_SWITCH =
+            new EventManager<>(PlayerServerSwitchEvent.class);
+
+    /**
+     * Gets the events.
+     *
+     * @return The events.
+     */
+    public static Set<EventManager<? extends Event>> getEvents() {
+        return new HashSet<>(
+                Arrays.asList(
+                        ADVANCEMENT_FINISHED,
+                        ADVANCEMENT_PROGRESS,
+                        DEATH,
+                        LOGIN,
+                        LOGOUT,
+                        MESSAGE,
+                        RESPAWN,
+                        SERVER_SWITCH));
+    }
 }

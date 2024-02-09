@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.event.pluginmessages;
+package dev.neuralnexus.taterlib.event.network;
 
 import dev.neuralnexus.taterlib.event.Event;
 

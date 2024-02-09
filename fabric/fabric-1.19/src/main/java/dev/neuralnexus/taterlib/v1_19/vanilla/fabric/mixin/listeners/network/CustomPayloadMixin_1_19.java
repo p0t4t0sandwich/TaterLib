@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.fabric.mixin.listeners.network;
 
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.network.CustomPayloadPacketWrapper;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.network.VanillaPluginMessageEvent;
 
@@ -24,8 +24,8 @@ public abstract class CustomPayloadMixin_1_19 {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacketWrapper wrapper = new CustomPayloadPacketWrapper(packet);
-        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
-        PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
+        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(
                         wrapper, ((ServerGamePacketListenerImpl) (Object) this).getPlayer()));
     }

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.listeners.pluginmessages;
 
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.vanilla.event.pluginmessages.VanillaPluginMessageEvent;
 
 import org.bukkit.entity.Player;
@@ -13,8 +13,8 @@ public class BukkitPluginMessageListener implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(
             @NotNull String channel, @NotNull Player player, byte[] bytes) {
-        PluginMessageEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(channel, bytes));
-        PluginMessageEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(channel, bytes));
+        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(
                         channel, bytes, BukkitAdapters.getPlayer(player)));
     }

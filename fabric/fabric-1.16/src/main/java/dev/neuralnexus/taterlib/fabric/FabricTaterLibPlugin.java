@@ -86,7 +86,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         // Register TaterLib Block events
         FabricBlockEvents.BLOCK_BREAK.register(
                 (world, pos, state, player, ci) ->
-                        BlockEvents.BLOCK_BREAK.invoke(
+                        BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                                 new FabricBlockBreakEvent(world, pos, state, player, ci)));
 
         // Register TaterLib Entity events
