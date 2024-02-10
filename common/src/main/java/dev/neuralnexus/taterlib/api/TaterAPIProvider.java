@@ -23,6 +23,7 @@ public class TaterAPIProvider {
     private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
+    private static boolean eventListenersRegistered = false;
 
     /**
      * Get Minecraft version
@@ -123,6 +124,18 @@ public class TaterAPIProvider {
             return apis.get(serverType);
         }
         throw new NotLoadedException(serverType);
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static boolean areEventListenersRegistered() {
+        return eventListenersRegistered;
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static void setEventListenersRegistered(boolean registered) {
+        eventListenersRegistered = registered;
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */

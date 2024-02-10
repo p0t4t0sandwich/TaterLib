@@ -47,32 +47,36 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
-        // Register listeners
-        PluginManager pluginManager = Bukkit.getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitBlockListener(), plugin);
-        pluginManager.registerEvents(new BukkitEntityListener(), plugin);
-        pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
-        ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
-        Bukkit.getServer()
-                .getScheduler()
-                .scheduleSyncDelayedTask(
-                        plugin,
-                        () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()),
-                        5 * 20L);
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            PluginManager pluginManager = Bukkit.getServer().getPluginManager();
+            pluginManager.registerEvents(new BukkitBlockListener(), plugin);
+            pluginManager.registerEvents(new BukkitEntityListener(), plugin);
+            pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
+            ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+            Bukkit.getServer()
+                    .getScheduler()
+                    .scheduleSyncDelayedTask(
+                            plugin,
+                            () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()),
+                            5 * 20L);
 
-        Bukkit.getServer()
-                .getScheduler()
-                .scheduleSyncDelayedTask(
-                        plugin,
-                        () -> {
-                            // Register commands
-                            CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
+            Bukkit.getServer()
+                    .getScheduler()
+                    .scheduleSyncDelayedTask(
+                            plugin,
+                            () -> {
+                                // Register commands
+                                CommandEvents.REGISTER_COMMAND.invoke(
+                                        new BukkitCommandRegisterEvent());
 
-                            // Register plugin messages
-                            NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                    new BukkitRegisterPluginMessagesEvent());
-                        },
-                        200L);
+                                // Register plugin messages
+                                NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                                        new BukkitRegisterPluginMessagesEvent());
+                            },
+                            200L);
+        }
     }
 
     @Override

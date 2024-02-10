@@ -184,3 +184,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Split out `SimplePlayer` and `ProxyPlayer`
 - Created `Connection` interface for kick/disconnect/ping/pluginMessage
 - Loader can now detect and register more plugin instances in multi-API environments
+- Added `ServerType.NEOFORGE_HYBRID`
+- Events should no longer register twice in multi-API environments

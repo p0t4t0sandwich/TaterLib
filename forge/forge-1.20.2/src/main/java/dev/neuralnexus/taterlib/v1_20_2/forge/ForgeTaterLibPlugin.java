@@ -32,18 +32,21 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(VanillaServer::getInstance);
 
-        // Register listeners
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-        if (TaterAPIProvider.minecraftVersion()
-                .isInRange(true, MinecraftVersion.V1_20, false, MinecraftVersion.V1_20_2)) {
-            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
-        } else if (TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2)) {
-            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            MinecraftForge.EVENT_BUS.register(this);
+            MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
+            if (TaterAPIProvider.minecraftVersion()
+                    .isInRange(true, MinecraftVersion.V1_20, false, MinecraftVersion.V1_20_2)) {
+                MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
+            } else if (TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2)) {
+                MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());
+            }
+            MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
         }
-        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
     }
 
     /**

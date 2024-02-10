@@ -63,12 +63,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
-        // Register listeners
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
-        //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            MinecraftForge.EVENT_BUS.register(this);
+            MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
+            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
+            //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        }
     }
 
     /**

@@ -39,17 +39,20 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         api.setIsModLoaded(ModList.get()::isLoaded);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
-        // Register listeners
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            MinecraftForge.EVENT_BUS.register(this);
+            MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
+            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
 
-        // Register plugin channels
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        modEventBus.addListener(this::commonSetup);
+            // Register plugin channels
+            IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+            modEventBus.addListener(this::commonSetup);
+        }
     }
 
     /**

@@ -48,30 +48,34 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
-        // Register listeners
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitBlockListener(), plugin);
-        pluginManager.registerEvents(new BukkitEntityListener(), plugin);
-        pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
-        if (TaterAPIProvider.serverType().isPaperBased()) {
-            pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            PluginManager pluginManager = plugin.getServer().getPluginManager();
+            pluginManager.registerEvents(new BukkitBlockListener(), plugin);
+            pluginManager.registerEvents(new BukkitEntityListener(), plugin);
+            pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
+            if (TaterAPIProvider.serverType().isPaperBased()) {
+                pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+            }
+            ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+            pluginManager.registerEvents(new BukkitServerListener(), plugin);
+
+            Bukkit.getServer()
+                    .getScheduler()
+                    .runTaskLater(
+                            plugin,
+                            () -> {
+                                // Register commands
+                                CommandEvents.REGISTER_COMMAND.invoke(
+                                        new BukkitCommandRegisterEvent());
+
+                                // Register plugin messages
+                                NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                                        new BukkitRegisterPluginMessagesEvent());
+                            },
+                            200L);
         }
-        ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
-        pluginManager.registerEvents(new BukkitServerListener(), plugin);
-
-        Bukkit.getServer()
-                .getScheduler()
-                .runTaskLater(
-                        plugin,
-                        () -> {
-                            // Register commands
-                            CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
-
-                            // Register plugin messages
-                            NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                    new BukkitRegisterPluginMessagesEvent());
-                        },
-                        200L);
     }
 
     @Override

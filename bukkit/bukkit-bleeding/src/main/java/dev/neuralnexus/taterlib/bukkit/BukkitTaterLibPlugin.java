@@ -51,47 +51,51 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public void platformEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
-        // Register listeners
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitBlockListener(), plugin);
-        pluginManager.registerEvents(new BukkitEntityListener(), plugin);
-        pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
-        if (TaterAPIProvider.serverType().isPaperBased()) {
-            pluginManager.registerEvents(new PaperPlayerListener(), plugin);
-        }
-        if (!hasStarted) {
-            hasStarted = true;
-            ServerEvents.STARTING.invoke(
-                    new VanillaServerStartingEvent(BukkitAdapters.getServer()));
-        }
-        pluginManager.registerEvents(new BukkitServerListener(), plugin);
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            PluginManager pluginManager = plugin.getServer().getPluginManager();
+            pluginManager.registerEvents(new BukkitBlockListener(), plugin);
+            pluginManager.registerEvents(new BukkitEntityListener(), plugin);
+            pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
+            if (TaterAPIProvider.serverType().isPaperBased()) {
+                pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+            }
+            if (!hasStarted) {
+                hasStarted = true;
+                ServerEvents.STARTING.invoke(
+                        new VanillaServerStartingEvent(BukkitAdapters.getServer()));
+            }
+            pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
-        if (TaterAPIProvider.isBrigadierSupported()) {
-            Bukkit.getScheduler()
+            if (TaterAPIProvider.isBrigadierSupported()) {
+                Bukkit.getScheduler()
+                        .runTaskLater(
+                                plugin,
+                                () ->
+                                        // Register brigadier commands
+                                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                                                new VanillaBrigadierCommandRegisterEvent(
+                                                        BukkitAdapters.getCommandDispatcher(),
+                                                        BukkitAdapters.getCommandSelection())),
+                                1);
+            }
+
+            Bukkit.getServer()
+                    .getScheduler()
                     .runTaskLater(
                             plugin,
-                            () ->
-                                    // Register brigadier commands
-                                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                            new VanillaBrigadierCommandRegisterEvent(
-                                                    BukkitAdapters.getCommandDispatcher(),
-                                                    BukkitAdapters.getCommandSelection())),
-                            1);
+                            () -> {
+                                // Register commands
+                                CommandEvents.REGISTER_COMMAND.invoke(
+                                        new BukkitCommandRegisterEvent());
+
+                                // Register plugin messages
+                                NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                                        new BukkitRegisterPluginMessagesEvent());
+                            },
+                            200L);
         }
-
-        Bukkit.getServer()
-                .getScheduler()
-                .runTaskLater(
-                        plugin,
-                        () -> {
-                            // Register commands
-                            CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
-
-                            // Register plugin messages
-                            NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                    new BukkitRegisterPluginMessagesEvent());
-                        },
-                        200L);
     }
 
     @Override
