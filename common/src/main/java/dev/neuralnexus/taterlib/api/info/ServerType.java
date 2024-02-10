@@ -16,6 +16,11 @@ public enum ServerType {
     PURPUR("Purpur"),
     PUFFERFISH("Pufferfish"),
 
+    // Bukkit + NeoForge Hybrids
+    NEOFORGE_HYBRID("NeoForge Hybrid"),
+    MOHIST_NEO("Mohist Neo"),
+    ARCLIGHT_NEO("Arclight Neo"),
+
     // Bukkit + Forge Hybrids
     FORGE_HYBRID("Forge Hybrid"),
     CAULDRON("Cauldron"),
@@ -94,11 +99,21 @@ public enum ServerType {
         } else if (isMCPCPlusPlus()) {
             serverType = MCPC_PLUS_PLUS;
         } else if (isMohist()) {
-            serverType = MOHIST;
+            // Add NeoForge Hybrid check
+            if (isNeoForge()) {
+                serverType = MOHIST_NEO;
+            } else {
+                serverType = MOHIST;
+            }
         } else if (isMagma()) {
             serverType = MAGMA;
         } else if (isArclight()) {
-            serverType = ARCLIGHT;
+            // Add NeoForge Hybrid check
+            if (isNeoForge()) {
+                serverType = ARCLIGHT_NEO;
+            } else {
+                serverType = ARCLIGHT;
+            }
         } else if (isKetting()) {
             serverType = KETTING;
         }

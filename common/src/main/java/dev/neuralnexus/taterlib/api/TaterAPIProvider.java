@@ -184,6 +184,7 @@ public class TaterAPIProvider {
 
             switch (serverType) {
                 case MOHIST:
+                case MOHIST_NEO:
                     MohistHook mohistHook = new MohistHook();
                     addHook(mohistHook);
                     bukkitApi.setIsModLoaded(mohistHook::hasMod);
@@ -203,6 +204,7 @@ public class TaterAPIProvider {
                     apis.put(ServerType.MAGMA, hybridApi);
                     break;
                 case ARCLIGHT:
+                case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
                     apis.put(ServerType.ARCLIGHT, hybridApi);
                     break;
