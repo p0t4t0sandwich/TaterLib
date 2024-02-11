@@ -189,3 +189,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Pulled `CommonPluginEnableEvent` into the loader
 - Added `Damageable` and `LivingEntity` interfaces
 - Added dummy entity interfaces all set up for adding new Entity interfaces
+- Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`
