@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
-import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -18,7 +18,7 @@ import org.spongepowered.api.text.Text;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Player}. */
-public class SpongePlayer extends SpongeEntity implements Player {
+public class SpongePlayer extends SpongeLivingEntity implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
     private String serverName;
 

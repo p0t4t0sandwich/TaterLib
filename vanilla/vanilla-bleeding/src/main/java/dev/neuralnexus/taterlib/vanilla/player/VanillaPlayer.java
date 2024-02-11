@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.vanilla.inventory.VanillaPlayerInventory;
 
 import net.minecraft.core.BlockPos;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import java.util.UUID;
 
 /** Vanilla implementation of {@link Player}. */
-public class VanillaPlayer extends VanillaEntity implements Player {
+public class VanillaPlayer extends VanillaLivingEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
     private String serverName;
 

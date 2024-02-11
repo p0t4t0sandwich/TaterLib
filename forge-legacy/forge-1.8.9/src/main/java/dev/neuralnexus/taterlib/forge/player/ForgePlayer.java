@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
@@ -15,7 +15,7 @@ import net.minecraft.util.ChatComponentText;
 import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
-public class ForgePlayer extends ForgeEntity implements Player {
+public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final EntityPlayer player;
     private String serverName;
 

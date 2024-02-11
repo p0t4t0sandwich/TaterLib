@@ -187,3 +187,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `ServerType.NEOFORGE_HYBRID`
 - Events should no longer register twice in multi-API environments
 - Pulled `CommonPluginEnableEvent` into the loader
+- Added `Damageable` and `LivingEntity` interfaces

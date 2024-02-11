@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.player;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.entity.LivingEntity;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.utils.Location;
 
 /** The interface for a Player */
-public interface Player extends SimplePlayer, Entity {
+public interface Player extends SimplePlayer, LivingEntity {
     /**
      * Get player's Inventory
      *

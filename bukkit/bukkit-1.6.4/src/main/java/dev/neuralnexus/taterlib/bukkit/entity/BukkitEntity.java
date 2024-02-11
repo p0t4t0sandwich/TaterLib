@@ -19,6 +19,15 @@ public class BukkitEntity implements Entity {
         this.entity = entity;
     }
 
+    /**
+     * Gets the Bukkit entity.
+     *
+     * @return The Bukkit entity.
+     */
+    public org.bukkit.entity.Entity getEntity() {
+        return entity;
+    }
+
     /** {@inheritDoc} */
     @Override
     public UUID getUniqueId() {
