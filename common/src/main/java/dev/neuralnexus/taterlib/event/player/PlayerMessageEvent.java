@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.event.player;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import java.util.Set;
 
@@ -26,12 +26,12 @@ public interface PlayerMessageEvent extends PlayerEvent, Cancellable {
      *
      * @return The recipients
      */
-    Set<Player> recipients();
+    Set<SimplePlayer> recipients();
 
     /**
      * Setter for the recipients
      *
      * @param recipients The recipients
      */
-    void setRecipients(Set<Player> recipients);
+    void setRecipients(Set<SimplePlayer> recipients);
 }

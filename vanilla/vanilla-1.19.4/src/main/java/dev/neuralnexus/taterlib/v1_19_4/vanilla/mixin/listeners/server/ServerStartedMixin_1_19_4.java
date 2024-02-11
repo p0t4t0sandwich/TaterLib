@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19_4.vanilla.mixin.listeners.server;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_19_4.vanilla.event.server.VanillaServerStartedEvent;
+import dev.neuralnexus.taterlib.v1_19.vanilla.event.server.VanillaServerStartedEvent;
 
 import net.minecraft.server.MinecraftServer;
 

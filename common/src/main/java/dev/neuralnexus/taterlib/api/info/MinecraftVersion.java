@@ -2,6 +2,8 @@ package dev.neuralnexus.taterlib.api.info;
 
 import dev.neuralnexus.taterlib.mixin.TaterMixinServiceUtils;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -9,6 +11,7 @@ import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /** Represents the version of Minecraft the server is running. */
 public enum MinecraftVersion {
@@ -185,11 +188,11 @@ public enum MinecraftVersion {
      * @return The MinecraftVersion
      */
     public static MinecraftVersion from(String version) {
-        return Arrays.stream(MinecraftVersion.values())
-                .sorted((o1, o2) -> o2.ordinal() - o1.ordinal())
-                .filter(v -> version.contains(v.toString()))
-                .findFirst()
-                .orElse(UNKNOWN);
+        Stream<MinecraftVersion> values = Arrays.stream(MinecraftVersion.values());
+        if (!version.contains("a1") && !version.contains("b1")) {
+            values = values.sorted((o1, o2) -> o2.ordinal() - o1.ordinal());
+        }
+        return values.filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);
     }
 
     /**
@@ -321,6 +324,7 @@ public enum MinecraftVersion {
      *
      * @return The version of Minecraft the server is running
      */
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private static String getForgeMCVersion() {
         try {
             Class<?> fmlLoaderClass = Class.forName("net.minecraftforge.fml.loading.FMLLoader");
@@ -339,6 +343,13 @@ public enum MinecraftVersion {
                 mcVersionField.setAccessible(true);
                 return (String) mcVersionField.get(null);
             }
+        } catch (ReflectiveOperationException ignored) {
+        }
+        try {
+            // Reflect to get cpw.mods.fml.common.Loader.MC_VERSION
+            Class<?> loaderClass = Class.forName("cpw.mods.fml.common.Loader");
+            Field mcVersionField = loaderClass.getField("MC_VERSION");
+            return (String) mcVersionField.get(null);
         } catch (ReflectiveOperationException ignored) {
         }
         return "Unknown";
@@ -367,6 +378,7 @@ public enum MinecraftVersion {
      *
      * @return The version of Minecraft the server is running
      */
+    @SuppressWarnings("JavaReflectionMemberAccess")
     private static String getSpongeMCVersion() {
         try {
             // Reflect to get Sponge.platform().minecraftVersion().name()
@@ -433,7 +445,7 @@ public enum MinecraftVersion {
      * @return The version of Minecraft the server is running
      */
     public String getDelimiterString() {
-        return this.name().toLowerCase().replace("_", ".");
+        return this.name().toLowerCase().replace(".", "_");
     }
 
     /**
@@ -476,15 +488,49 @@ public enum MinecraftVersion {
      */
     public boolean isInRange(
             boolean startInclusive,
-            MinecraftVersion start,
+            @Nullable MinecraftVersion start,
             boolean endInclusive,
-            MinecraftVersion end) {
+            @Nullable MinecraftVersion end) {
+        if (start == null) {
+            start = MinecraftVersion.values()[0];
+        }
+        if (end == null) {
+            end = MinecraftVersion.values()[MinecraftVersion.values().length - 1];
+        }
         return (startInclusive
                         ? this.ordinal() >= start.ordinal()
                         : this.ordinal() > start.ordinal())
                 && (endInclusive
                         ? this.ordinal() <= end.ordinal()
                         : this.ordinal() < end.ordinal());
+    }
+
+    /**
+     * Get if the version of Minecraft the server is running is within the defined range. <br>
+     * Strings are read in the format of: <b>(1.17,1.20]</b> or <b>[1.17,)</b> or <b>(,1.20]</b>
+     *
+     * @param rangeString The range to check
+     * @return If the version of Minecraft the server is running is within the defined range
+     */
+    public boolean parseRange(String rangeString) {
+        rangeString = rangeString.trim();
+        boolean startInclusive = rangeString.charAt(0) == '[';
+        boolean endInclusive = rangeString.charAt(rangeString.length() - 1) == ']';
+        rangeString = rangeString.substring(1, rangeString.length() - 1);
+        MinecraftVersion start;
+        MinecraftVersion end;
+        if (rangeString.charAt(0) == ',') {
+            start = null;
+            end = MinecraftVersion.from(rangeString.substring(1));
+        } else if (rangeString.charAt(rangeString.length() - 1) == ',') {
+            start = MinecraftVersion.from(rangeString.substring(0, rangeString.length() - 1));
+            end = null;
+        } else {
+            String[] range = rangeString.split(",");
+            start = MinecraftVersion.from(range[0]);
+            end = MinecraftVersion.from(range[1]);
+        }
+        return this.isInRange(startInclusive, start, endInclusive, end);
     }
 
     /**

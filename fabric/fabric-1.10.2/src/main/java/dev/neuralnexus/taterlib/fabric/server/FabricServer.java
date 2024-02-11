@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.server;
 
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraft.server.MinecraftServer;
@@ -25,7 +25,13 @@ public class FabricServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.getPlayerManager().getPlayers().stream()
                 .map(FabricPlayer::new)
                 .collect(Collectors.toSet());

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.server;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 
@@ -58,7 +58,13 @@ public class VanillaServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(VanillaPlayer::new)
                 .collect(Collectors.toSet());

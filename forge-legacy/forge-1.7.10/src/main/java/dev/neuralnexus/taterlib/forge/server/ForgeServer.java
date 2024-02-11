@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.forge.server;
 
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,7 +27,14 @@ public class ForgeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public String getBrand() {
+        return server.getServerModName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Set<SimplePlayer> getOnlinePlayers() {
         return ((List<EntityPlayer>) server.getConfigurationManager().playerEntityList)
                 .stream().map(ForgePlayer::new).collect(Collectors.toSet());
     }

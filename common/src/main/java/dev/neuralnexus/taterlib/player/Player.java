@@ -1,18 +1,10 @@
 package dev.neuralnexus.taterlib.player;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.entity.HumanEntity;
 import dev.neuralnexus.taterlib.utils.Location;
 
 /** The interface for a Player */
-public interface Player extends SimplePlayer, Entity {
-    /**
-     * Get player's Inventory
-     *
-     * @return The player's Inventory
-     */
-    PlayerInventory getInventory();
-
+public interface Player extends SimplePlayer, HumanEntity {
     /**
      * Set the player's spawn point
      *
@@ -30,36 +22,32 @@ public interface Player extends SimplePlayer, Entity {
     }
 
     /**
-     * Get the player's current gamemode
+     * Allow the player to fly
      *
-     * @return The player's current gamemode
+     * @param allow Whether the player should be allowed to fly
      */
-    GameMode getGameMode();
+    void allowFlight(boolean allow);
 
     /**
-     * Set the player's game mode
+     * Check if the player is allowed to fly
      *
-     * @param gameMode The game mode to set
+     * @return Whether the player is allowed to fly
      */
-    void setGameMode(GameMode gameMode);
+    boolean canFly();
 
     /**
-     * Set the player's game mode
+     * Get whether the player is flying
      *
-     * @param id The id of the game mode to set
+     * @return Whether the player is flying
      */
-    default void setGameMode(int id) {
-        setGameMode(GameMode.fromId(id));
-    }
+    boolean isFlying();
 
     /**
-     * Set the player's game mode
+     * Set the player's flying status
      *
-     * @param name The name of the game mode to set
+     * @param flying Whether the player should be flying
      */
-    default void setGameMode(String name) {
-        setGameMode(GameMode.fromName(name));
-    }
+    void setFlying(boolean flying);
 
     /**
      * Perform a command as the player

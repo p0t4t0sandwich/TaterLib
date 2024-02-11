@@ -15,6 +15,6 @@ public class SpongeBlockListener {
      */
     @Listener
     public void onBlockBreak(ChangeBlockEvent.Pre event) {
-        BlockEvents.BLOCK_BREAK.invoke(new SpongeBlockBreakEvent(event));
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(new SpongeBlockBreakEvent(event));
     }
 }

@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
+import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.inventory.VanillaPlayerInventory;
 
 import io.netty.buffer.Unpooled;
@@ -23,7 +23,7 @@ import net.minecraft.world.level.Level;
 import java.util.UUID;
 
 /** Vanilla implementation of {@link Player}. */
-public class VanillaPlayer extends VanillaEntity implements Player {
+public class VanillaPlayer extends VanillaLivingEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
     private String serverName;
 
@@ -146,6 +146,30 @@ public class VanillaPlayer extends VanillaEntity implements Player {
                         0.0F,
                         forced,
                         false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        player.getAbilities().mayfly = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.getAbilities().mayfly;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.getAbilities().flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.getAbilities().flying = flying;
     }
 
     /** {@inheritDoc} */

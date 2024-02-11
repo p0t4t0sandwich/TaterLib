@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.player;
 
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
-import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
+import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
@@ -14,7 +14,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
-public class BukkitPlayer extends BukkitEntity implements Player {
+public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = BukkitTaterLibPlugin.plugin;
     private String serverName;
@@ -175,6 +175,30 @@ public class BukkitPlayer extends BukkitEntity implements Player {
                         location.getY(),
                         location.getZ()),
                 forced);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        player.setAllowFlight(allow);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.getAllowFlight();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.isFlying();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.setFlying(flying);
     }
 
     /** {@inheritDoc} */

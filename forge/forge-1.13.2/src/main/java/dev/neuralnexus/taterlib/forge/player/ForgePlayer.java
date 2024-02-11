@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.forge.player;
 
-import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
@@ -18,7 +18,7 @@ import net.minecraft.world.dimension.DimensionType;
 import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
-public class ForgePlayer extends ForgeEntity implements Player {
+public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final EntityPlayer player;
     private String serverName;
 
@@ -128,6 +128,30 @@ public class ForgePlayer extends ForgeEntity implements Player {
                 new BlockPos(location.getX(), location.getY(), location.getZ()),
                 forced,
                 DimensionType.OVERWORLD);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        player.abilities.allowFlying = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.abilities.allowFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.abilities.isFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.abilities.isFlying = flying;
     }
 
     /** {@inheritDoc} */

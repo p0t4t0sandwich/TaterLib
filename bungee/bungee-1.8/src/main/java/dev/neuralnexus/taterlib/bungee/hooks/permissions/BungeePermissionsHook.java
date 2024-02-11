@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.bungee.command.BungeeCommandSender;
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.ProxyPlayer;
 
 /** A hook for Bungee permissions */
 public class BungeePermissionsHook implements PermissionsHook {
@@ -23,7 +23,7 @@ public class BungeePermissionsHook implements PermissionsHook {
      */
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
-        if (commandSender instanceof Player) {
+        if (commandSender instanceof ProxyPlayer) {
             return ((BungeePlayer) commandSender).getPlayer().hasPermission(permission);
         } else {
             return ((BungeeCommandSender) commandSender).getSender().hasPermission(permission);

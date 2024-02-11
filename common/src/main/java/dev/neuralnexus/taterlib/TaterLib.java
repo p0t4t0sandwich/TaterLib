@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.GenericEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.hooks.TaterLibHook;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
@@ -79,6 +80,9 @@ public class TaterLib {
         STARTED = true;
 
         if (!RELOADED) {
+            // Setup Generic Events
+            GenericEvents.setup();
+
             TaterAPI api = TaterAPIProvider.get();
 
             // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)

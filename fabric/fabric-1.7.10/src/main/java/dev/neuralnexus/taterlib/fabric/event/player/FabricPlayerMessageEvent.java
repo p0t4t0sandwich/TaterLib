@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 
@@ -49,11 +49,11 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> recipients() {
+    public Set<SimplePlayer> recipients() {
         return new HashSet<>();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<Player> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {}
 }

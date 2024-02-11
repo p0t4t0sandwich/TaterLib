@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.fabric.player;
 
-import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
+import dev.neuralnexus.taterlib.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Player}. */
-public class FabricPlayer extends FabricEntity implements Player {
+public class FabricPlayer extends FabricLivingEntity implements Player {
     private final PlayerEntity player;
     private String serverName;
 
@@ -138,6 +138,30 @@ public class FabricPlayer extends FabricEntity implements Player {
                         0,
                         forced,
                         false);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        player.getAbilities().allowFlying = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.getAbilities().allowFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.getAbilities().flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.getAbilities().flying = flying;
     }
 
     /** {@inheritDoc} */

@@ -1,0 +1,52 @@
+import net.fabricmc.loom.task.RemapJarTask
+
+plugins {
+    id('fabric-loom') version('1.4-SNAPSHOT')
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = targetCompatibility = java_version
+
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings loom.officialMojangMappings()
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+    compileOnly(project(':common'))
+    compileOnly(project(':vanilla:vanilla-1.19'))
+    implementation(project(':vanilla:vanilla-1.19.1'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching([
+            "${project_id}.mixins.fabric.v1_19_1.json".toString(),
+            "${project_id}.mixins.fabric.patch.v1_19_1.json".toString()
+    ]) {
+        expand project.properties
+    }
+}
+
+loom {
+    mixin {
+        defaultRefmapName.set("${project_id}.mixins.fabric.v1_19_1.refmap.json")
+    }
+}
+
+shadowJar {
+    dependencies {
+        include(project(':vanilla:vanilla-1.19.1'))
+//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
+        exclude('/mappings/*')
+    }
+    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
+    relocate("${group_id}.${project_id}.v1_19_1.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_19_1.vanilla.fabric.mixin.fake")
+    relocate("${group_id}.${project_id}.v1_19_1.vanilla.fabric", "${group_id}.${project_id}.v1_19_1.vanilla.fabric")
+    relocate("${group_id}.${project_id}.v1_19_1.vanilla", "${group_id}.${project_id}.v1_19_1.vanilla.fabric")
+}
+
+task remappedShadowJar(type: RemapJarTask) {
+    dependsOn(tasks.shadowJar)
+    input = tasks.shadowJar.archiveFile
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
+}
+
+tasks.assemble.dependsOn('remappedShadowJar')

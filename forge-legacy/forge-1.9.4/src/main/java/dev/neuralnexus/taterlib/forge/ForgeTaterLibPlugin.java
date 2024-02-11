@@ -6,9 +6,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartingEvent;
@@ -22,7 +20,6 @@ import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20_2.forge.player.ForgePlayerListener;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -54,7 +51,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register(ForgeVersion.mcVersion);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
                 plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
@@ -62,14 +58,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         api.setIsModLoaded(Loader::isModLoaded);
         api.setServer(() -> new ForgeServer(server));
 
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-
-        // Register listeners
-        MinecraftForge.EVENT_BUS.register(this);
-        MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
-        MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-        MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
-        //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            MinecraftForge.EVENT_BUS.register(this);
+            MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
+            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
+            //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        }
     }
 
     /**

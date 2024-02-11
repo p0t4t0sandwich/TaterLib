@@ -14,7 +14,6 @@ import net.neoforged.fml.ModList;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
-        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);

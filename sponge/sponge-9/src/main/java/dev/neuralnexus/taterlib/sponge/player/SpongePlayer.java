@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.sponge.player;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.utils.Location;
 
@@ -21,7 +21,7 @@ import org.spongepowered.api.network.channel.raw.RawDataChannel;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Player}. */
-public class SpongePlayer extends SpongeEntity implements Player {
+public class SpongePlayer extends SpongeLivingEntity implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
     private String serverName;
 
@@ -136,6 +136,30 @@ public class SpongePlayer extends SpongeEntity implements Player {
         // entry.getKey().getExtent().equals(location.getWorld().toSponge())).forEach(entry ->
         // entry.setValue(location.toSponge()));
         //        player.setBedSpawnLocation(location.toSponge(), forced);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        player.canFly().set(allow);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.canFly().get();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.flying().get();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.flying().set(flying);
     }
 
     /** {@inheritDoc} */

@@ -23,6 +23,7 @@ public class TaterAPIProvider {
     private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
+    private static boolean eventListenersRegistered = false;
 
     /**
      * Get Minecraft version
@@ -127,6 +128,18 @@ public class TaterAPIProvider {
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
+    public static boolean areEventListenersRegistered() {
+        return eventListenersRegistered;
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static void setEventListenersRegistered(boolean registered) {
+        eventListenersRegistered = registered;
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
     public static void register() {
         TaterAPI bukkitApi = new TaterAPI("plugins");
         TaterAPI bungeeApi = new TaterAPI("plugins");
@@ -184,6 +197,7 @@ public class TaterAPIProvider {
 
             switch (serverType) {
                 case MOHIST:
+                case MOHIST_NEO:
                     MohistHook mohistHook = new MohistHook();
                     addHook(mohistHook);
                     bukkitApi.setIsModLoaded(mohistHook::hasMod);
@@ -203,6 +217,7 @@ public class TaterAPIProvider {
                     apis.put(ServerType.MAGMA, hybridApi);
                     break;
                 case ARCLIGHT:
+                case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
                     apis.put(ServerType.ARCLIGHT, hybridApi);
                     break;

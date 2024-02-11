@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.bukkit.event.pluginmessages.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStartingEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppedEvent;
 import dev.neuralnexus.taterlib.bukkit.event.server.BukkitServerStoppingEvent;
@@ -18,10 +18,8 @@ import dev.neuralnexus.taterlib.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.api.PluginMessageEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import org.bukkit.Bukkit;
@@ -34,8 +32,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object logger) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
-
-        TaterAPIProvider.register();
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         pluginStart(
                 BukkitTaterLibPlugin.plugin,
@@ -48,32 +44,34 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformEnable() {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
+        if (!TaterAPIProvider.areEventListenersRegistered()) {
+            TaterAPIProvider.setEventListenersRegistered(true);
+            // Register listeners
+            PluginManager pluginManager = plugin.getServer().getPluginManager();
+            pluginManager.registerEvents(new BukkitBlockListener(), plugin);
+            pluginManager.registerEvents(new BukkitEntityListener(), plugin);
+            pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
+            if (TaterAPIProvider.serverType().isPaperBased()) {
+                pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+            }
+            ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+            pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
-        // Register listeners
-        PluginManager pluginManager = plugin.getServer().getPluginManager();
-        pluginManager.registerEvents(new BukkitBlockListener(), plugin);
-        pluginManager.registerEvents(new BukkitEntityListener(), plugin);
-        pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
-        if (TaterAPIProvider.serverType().isPaperBased()) {
-            pluginManager.registerEvents(new PaperPlayerListener(), plugin);
+            Bukkit.getServer()
+                    .getScheduler()
+                    .runTaskLater(
+                            plugin,
+                            () -> {
+                                // Register commands
+                                CommandEvents.REGISTER_COMMAND.invoke(
+                                        new BukkitCommandRegisterEvent());
+
+                                // Register plugin messages
+                                NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                                        new BukkitRegisterPluginMessagesEvent());
+                            },
+                            200L);
         }
-        ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
-        pluginManager.registerEvents(new BukkitServerListener(), plugin);
-
-        Bukkit.getServer()
-                .getScheduler()
-                .runTaskLater(
-                        plugin,
-                        () -> {
-                            // Register commands
-                            CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
-
-                            // Register plugin messages
-                            PluginMessageEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                    new BukkitRegisterPluginMessagesEvent());
-                        },
-                        200L);
     }
 
     @Override

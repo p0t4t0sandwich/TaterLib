@@ -6,12 +6,22 @@
 [![Discord](https://img.shields.io/discord/1067482396246683708?color=7289da&logo=discord&logoColor=white)](https://discord.neuralnexus.dev)
 [![wakatime](https://wakatime.com/badge/user/fc67ce74-ca69-40a4-912f-61b26dbe3068/project/ba087a5d-fd50-4b54-9723-3effbfda7567.svg)](https://wakatime.com/badge/user/fc67ce74-ca69-40a4-912f-61b26dbe3068/project/ba087a5d-fd50-4b54-9723-3effbfda7567)
 
-A cross API code library for various generalizations used in the Tater* plugins
+A cross API code library that allows developers to write code that works across multiple modding platforms, and across a
+wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.
 
 Please note, some abstractions may not be fully implemented yet, and some may be missing.
 If you're looking for a specific abstraction/game event, please open an issue, and we'll get to it as soon as possible,
 or feel free to open a PR with an implementation.
-[Contributions are always welcome!](https://github.com/p0t4t0sandwich/TaterLib/blob/main/CONTRIBUTING.md)
+[Contributions are always welcome!](https://github.com/p0t4t0sandwich/TaterLib/blob/main/.github/CONTRIBUTING.md)
+
+Let's cut to the chase, why should you use and/or contribute to TaterLib? Well, let's say you have a mod/plugin that you
+want to port to a different modding API. You could go through the laborious task of implementing all the events,
+commands, etc. on each platform and create all your own cool fancy abstractions for each game object, or you could use
+TaterLib and save yourself a lot of time. (which is why I started this project in the first place)
+
+There's two ways to use TaterLib, you can depend on the general API, then implement any missing features yourself on
+each platform, or if something's missing, you can start a PR with either a basic or full implementation, and we can
+improve TaterLib and save you a lot of time in the future. (a bit of a win-win)
 
 Link to our support: [Discord](https://discord.neuralnexus.dev)
 
@@ -33,7 +43,7 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 repositories {
     maven {
         name = 'NeuralNexus'
-        url = 'https://maven.neuralnexus.dev/repository/releases/'
+        url = 'https://maven.neuralnexus.dev/repository/releases'
     }
 }
 
@@ -41,6 +51,8 @@ dependencies {
     compileOnly('dev.neuralnexus:taterlib-api:<version>')
 }
 ```
+
+There's also a snapshot repository available at `https://maven.neuralnexus.dev/repository/snapshots`
 
 ### Compatibility Cheatsheet
 
@@ -164,3 +176,17 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added Brigadier support for Sponge and Bukkit
 - Renamed `Sender` to `CommandSender`
 - Split `Server` into `SimpleServer` and `ProxyServer`
+- Added some tests and more `MinecraftVersion` utilities
+- Renamed `Event` to `EventManager` and created a base `Event` interface
+- Added `Event#getName()`
+- Created generic event handler
+- Renamed `PluginMessageEvents` to `NetworkEvents`
+- Split out `SimplePlayer` and `ProxyPlayer`
+- Created `Connection` interface for kick/disconnect/ping/pluginMessage
+- Loader can now detect and register more plugin instances in multi-API environments
+- Added `ServerType.NEOFORGE_HYBRID`
+- Events should no longer register twice in multi-API environments
+- Pulled `CommonPluginEnableEvent` into the loader
+- Added `Damageable` and `LivingEntity` interfaces
+- Added dummy entity interfaces all set up for adding new Entity interfaces
+- Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`

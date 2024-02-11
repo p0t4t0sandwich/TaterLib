@@ -1,7 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.player;
 
-import dev.neuralnexus.taterlib.bukkit.entity.BukkitEntity;
+import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
@@ -12,7 +13,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
-public class BukkitPlayer extends BukkitEntity implements Player {
+public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = null;
     private String serverName;
@@ -157,6 +158,31 @@ public class BukkitPlayer extends BukkitEntity implements Player {
     public void setSpawn(Location location, boolean forced) {
         //        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position),
         // forced);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void allowFlight(boolean allow) {
+        // TODO: Write a module to allow flight
+        throw new VersionFeatureNotSuportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        throw new VersionFeatureNotSuportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        throw new VersionFeatureNotSuportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        throw new VersionFeatureNotSuportedException();
     }
 
     /** {@inheritDoc} */

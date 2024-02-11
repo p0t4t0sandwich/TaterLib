@@ -17,7 +17,7 @@ public class ForgeBlockListener {
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
         // Assumes player is in the same world as the block, will be more accurate with mixins
-        BlockEvents.BLOCK_BREAK.invoke(
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
                         event.getPlayer().getCommandSenderWorld(),
                         event.getPlayer(),

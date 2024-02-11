@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import java.util.Set;
@@ -23,7 +23,27 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public String getBrand() {
+        // Reflect to get ((CraftServer) server).getServer().getServerModName
+        try {
+            return (String)
+                    Class.forName(
+                                    "org.bukkit.craftbukkit."
+                                            + server.getClass().getPackage().getName()
+                                            + ".CraftServer")
+                            .getMethod("getServer")
+                            .invoke(server)
+                            .getClass()
+                            .getMethod("getServerModName")
+                            .invoke(null);
+        } catch (Exception e) {
+            return "Bukkit";
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.getOnlinePlayers().stream()
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toSet());

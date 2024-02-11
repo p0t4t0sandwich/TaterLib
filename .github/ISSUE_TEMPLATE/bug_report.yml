@@ -1,0 +1,103 @@
+name: Bug report
+description: Create a report to help TaterLib improve
+labels: 'bug'
+body:
+  - type: dropdown
+    attributes:
+      label: What Minecraft Version is your Server on?
+      multiple: false
+      options:
+        - "b1.7.3"
+        - "1.7.10"
+        - "1.8.8"
+        - "1.8.9"
+        - "1.9.4"
+        - "1.10.2"
+        - "1.11.2"
+        - "1.12.2"
+        - "1.13.2"
+        - "1.14.4"
+        - "1.15.2"
+        - "1.16.5"
+        - "1.17.1"
+        - "1.18.2"
+        - "1.19"
+        - "1.19.1"
+        - "1.19.2-1.19.3"
+        - "1.19.4"
+        - "1.20-1.20.1"
+        - "1.20.2"
+        - "1.20.3-1.20.4"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: What Mod loader/server software are you using?
+      multiple: false
+      options:
+        - "Bukkit/Spigot/Paper"
+        - "BungeeCord/Waterfall"
+        - "Fabric"
+        - "Fabric Hybrid"
+        - "Forge"
+        - "Forge Hybrid"
+        - "NeoForge"
+        - "Quilt"
+        - "SpongeForge"
+        - "SpongeVanilla"
+        - "Velocity"
+        - "Other"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: If you selected "Other" or one of the "Hybrid" options above, please specify what mod loader/server software you are using.
+      description: The mod loader/server software you are using.
+      placeholder: e.g. Magma/Mohist/Ketting/Crucible
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: TaterLib Version
+      description: The version of TaterLib you are using.
+      placeholder: e.g. 1.1.3
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Description of behavior
+      description: A clear and concise description of what the bug is, including what you expected to happen and what actually happened.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      value: |
+        Steps to reproduce the behavior:
+        1. Use above version of TaterLib and server software with mod "someMod"
+        2. Run the server/start a world
+        3. Something happens, error occurs, etc.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        Include the full client/server/proxy logs e.g. `logs/latest.log`, `logs/debug.log`, and `crash-reports/*.txt` (upload
+        them all if applicable). Use a paste site like https://mclo.gs (use (GitHub Gists)[https://gist.github.com] if the
+        logs are too long). Do not paste them directly into the issue. If you trim the logs, you will not receive support.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: TaterLib Configuration
+      description: Include your `taterlib.toml` file (omit sensitive information)
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem here (e.g. screenshots, clips, etc.)
+    validations:
+      required: false

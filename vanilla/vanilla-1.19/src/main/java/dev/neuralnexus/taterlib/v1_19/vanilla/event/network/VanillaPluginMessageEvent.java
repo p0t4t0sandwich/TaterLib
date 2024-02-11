@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.network;
 
-import dev.neuralnexus.taterlib.event.pluginmessages.CustomPayloadWrapper;
-import dev.neuralnexus.taterlib.event.pluginmessages.PluginMessageEvent;
+import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;

@@ -1,3 +1,7 @@
+base {
+    archivesName = "${project_id}-bungee-${minecraft_version}"
+}
+
 dependencies {
     compileOnly("net.md-5:bungeecord-api:${minecraft_version}-${bungeecord_version}")
     compileOnly("io.github.waterfallmc:waterfall-api:${minecraft_version}-${bungeecord_version}")
@@ -8,9 +12,4 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['bungee.yml']) {
         expand project.properties
     }
-}
-
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-bungee-${minecraft_version}-${version}.jar"
 }

@@ -2,6 +2,10 @@ plugins {
     id('fabric-loom') version('1.4-SNAPSHOT')
 }
 
+base {
+    archivesName = "${project_id}-fabric-${minecraft_version}"
+}
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
@@ -33,9 +37,4 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['fabric.mod.json', "${project_id}.mixins.json".toString()]) {
         expand project.properties
     }
-}
-
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }

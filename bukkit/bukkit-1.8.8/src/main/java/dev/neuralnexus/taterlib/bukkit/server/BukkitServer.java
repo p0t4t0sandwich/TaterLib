@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,9 +26,29 @@ public class BukkitServer implements Server {
     }
 
     /** {@inheritDoc} */
+    @Override
+    public String getBrand() {
+        // Reflect to get ((CraftServer) server).getServer().getServerModName
+        try {
+            return (String)
+                    Class.forName(
+                                    "org.bukkit.craftbukkit."
+                                            + server.getClass().getPackage().getName()
+                                            + ".CraftServer")
+                            .getMethod("getServer")
+                            .invoke(server)
+                            .getClass()
+                            .getMethod("getServerModName")
+                            .invoke(null);
+        } catch (Exception e) {
+            return "Bukkit";
+        }
+    }
+
+    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public Set<SimplePlayer> getOnlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method method = server.getClass().getMethod("getOnlinePlayers");

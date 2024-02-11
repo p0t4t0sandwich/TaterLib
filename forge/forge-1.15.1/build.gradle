@@ -3,6 +3,10 @@ plugins {
     id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
 }
@@ -16,9 +20,4 @@ tasks.withType(ProcessResources).configureEach {
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
         expand project.properties
     }
-}
-
-jar {
-    destinationDirectory = file('../../target')
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

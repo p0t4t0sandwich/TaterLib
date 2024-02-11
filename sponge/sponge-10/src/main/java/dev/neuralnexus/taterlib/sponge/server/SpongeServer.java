@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.server;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
@@ -23,7 +23,22 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<Player> getOnlinePlayers() {
+    public String getBrand() {
+        // Cast this.server to MinecraftServer, then
+        // Reflect to get ((MinecraftServer) server).getServerModName()
+        try {
+            return (String)
+                    Class.forName("net.minecraft.server.MinecraftServer")
+                            .getMethod("getServerModName")
+                            .invoke(server);
+        } catch (Exception e) {
+            return "Sponge";
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Set<SimplePlayer> getOnlinePlayers() {
         return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toSet());
     }
 }

@@ -1,33 +1,63 @@
 package dev.neuralnexus.taterlib.event.api;
 
+import dev.neuralnexus.taterlib.event.Event;
 import dev.neuralnexus.taterlib.event.player.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /** Player events. */
 public final class PlayerEvents {
     /** Called when a player finishes an advancement. */
-    public static final Event<PlayerAdvancementEvent.AdvancementFinished> ADVANCEMENT_FINISHED =
-            new Event<>(PlayerAdvancementEvent.AdvancementFinished.class);
+    public static final EventManager<PlayerAdvancementEvent.AdvancementFinished>
+            ADVANCEMENT_FINISHED =
+                    new EventManager<>(PlayerAdvancementEvent.AdvancementFinished.class);
 
     /** Called when a player progresses an advancement. */
-    public static final Event<PlayerAdvancementEvent.AdvancementProgress> ADVANCEMENT_PROGRESS =
-            new Event<>(PlayerAdvancementEvent.AdvancementProgress.class);
+    public static final EventManager<PlayerAdvancementEvent.AdvancementProgress>
+            ADVANCEMENT_PROGRESS =
+                    new EventManager<>(PlayerAdvancementEvent.AdvancementProgress.class);
 
     /** Called when a player dies. */
-    public static final Event<PlayerDeathEvent> DEATH = new Event<>(PlayerDeathEvent.class);
+    public static final EventManager<PlayerDeathEvent> DEATH =
+            new EventManager<>(PlayerDeathEvent.class);
 
     /** Called when a player logs in. */
-    public static final Event<PlayerLoginEvent> LOGIN = new Event<>(PlayerLoginEvent.class);
+    public static final EventManager<PlayerLoginEvent> LOGIN =
+            new EventManager<>(PlayerLoginEvent.class);
 
     /** Called when a player logs out. */
-    public static final Event<PlayerLogoutEvent> LOGOUT = new Event<>(PlayerLogoutEvent.class);
+    public static final EventManager<PlayerLogoutEvent> LOGOUT =
+            new EventManager<>(PlayerLogoutEvent.class);
 
     /** Called when a player sends a message. */
-    public static final Event<PlayerMessageEvent> MESSAGE = new Event<>(PlayerMessageEvent.class);
+    public static final EventManager<PlayerMessageEvent> MESSAGE =
+            new EventManager<>(PlayerMessageEvent.class);
 
     /** Called when a player respawns. */
-    public static final Event<PlayerRespawnEvent> RESPAWN = new Event<>(PlayerRespawnEvent.class);
+    public static final EventManager<PlayerRespawnEvent> RESPAWN =
+            new EventManager<>(PlayerRespawnEvent.class);
 
     /** Called when a player switches servers. */
-    public static final Event<PlayerServerSwitchEvent> SERVER_SWITCH =
-            new Event<>(PlayerServerSwitchEvent.class);
+    public static final EventManager<PlayerServerSwitchEvent> SERVER_SWITCH =
+            new EventManager<>(PlayerServerSwitchEvent.class);
+
+    /**
+     * Gets the events.
+     *
+     * @return The events.
+     */
+    public static Set<EventManager<? extends Event>> getEvents() {
+        return new HashSet<>(
+                Arrays.asList(
+                        ADVANCEMENT_FINISHED,
+                        ADVANCEMENT_PROGRESS,
+                        DEATH,
+                        LOGIN,
+                        LOGOUT,
+                        MESSAGE,
+                        RESPAWN,
+                        SERVER_SWITCH));
+    }
 }

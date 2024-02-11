@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.player;
 
 /** Abstracts a proxy player. */
-public interface ProxyPlayer extends Player {
+public interface ProxyPlayer extends SimplePlayer {
     /**
      * Connect the player to a server.
      *

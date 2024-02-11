@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.server;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import java.util.Set;
 
@@ -16,12 +16,15 @@ public interface SimpleServer {
      */
     String getName();
 
+    /** Get the server's brand. */
+    String getBrand();
+
     /**
      * Get the set of online players.
      *
      * @return The set of online players.
      */
-    Set<Player> getOnlinePlayers();
+    Set<SimplePlayer> getOnlinePlayers();
 
     /**
      * Broadcast a message to the server.
