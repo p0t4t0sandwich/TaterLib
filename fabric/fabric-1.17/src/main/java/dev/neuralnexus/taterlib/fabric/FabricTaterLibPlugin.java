@@ -6,7 +6,6 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricPlayerEvents;
@@ -126,10 +125,5 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                             PlayerEvents.RESPAWN.invoke(
                                     new FabricPlayerRespawnEvent(player, alive))));
         }
-    }
-
-    @Override
-    public void platformEnable() {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
     }
 }

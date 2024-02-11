@@ -1,6 +1,8 @@
 package dev.neuralnexus.taterlib.loader;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.event.api.PluginEvents;
+import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.plugin.Loader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
@@ -59,6 +61,7 @@ public class TaterLibLoader implements Loader {
 
     @Override
     public void onEnable() {
+        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         plugins.forEach(Plugin::platformEnable);
     }
 

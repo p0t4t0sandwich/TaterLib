@@ -6,8 +6,6 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.forge.listeners.block.ForgeBlockListener;
@@ -62,7 +60,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPluginMessagesEvent());
         ModMessages.register();
         ModMessages.clearQueue();

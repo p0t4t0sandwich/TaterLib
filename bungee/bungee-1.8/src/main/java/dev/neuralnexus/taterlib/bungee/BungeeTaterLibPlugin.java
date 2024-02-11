@@ -15,9 +15,7 @@ import dev.neuralnexus.taterlib.bungee.listeners.network.BungeePluginMessageList
 import dev.neuralnexus.taterlib.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.md_5.bungee.api.ProxyServer;
@@ -43,8 +41,6 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformEnable() {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-
         // Register listeners
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
         ProxyServer.getInstance()

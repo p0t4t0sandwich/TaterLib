@@ -7,9 +7,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
@@ -49,8 +47,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformEnable() {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-
         if (!TaterAPIProvider.areEventListenersRegistered()) {
             TaterAPIProvider.setEventListenersRegistered(true);
             // Register listeners

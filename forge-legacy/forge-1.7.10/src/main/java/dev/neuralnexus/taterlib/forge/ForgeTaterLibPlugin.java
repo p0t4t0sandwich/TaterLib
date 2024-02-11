@@ -13,9 +13,7 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.forge.event.server.ForgeServerStartingEvent;
@@ -60,8 +58,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(Loader::isModLoaded);
         api.setServer(() -> new ForgeServer(server));
-
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
 
         if (!TaterAPIProvider.areEventListenersRegistered()) {
             TaterAPIProvider.setEventListenersRegistered(true);
