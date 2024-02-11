@@ -135,6 +135,30 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public void allowFlight(boolean allow) {
+        player.offer(Keys.CAN_FLY, allow);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.get(Keys.CAN_FLY).get();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.get(Keys.IS_FLYING).get();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.offer(Keys.IS_FLYING, flying);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public GameMode getGameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }

@@ -179,6 +179,30 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public void allowFlight(boolean allow) {
+        player.setAllowFlight(allow);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.getAllowFlight();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.isFlying();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.setFlying(flying);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public GameMode getGameMode() {
         return GameMode.fromName(player.getGameMode().name());
     }

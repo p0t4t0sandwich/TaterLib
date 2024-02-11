@@ -124,6 +124,30 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public void allowFlight(boolean allow) {
+        player.capabilities.allowFlying = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.capabilities.allowFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.capabilities.isFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.capabilities.isFlying = flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public GameMode getGameMode() {
         return GameMode.fromName(
                 ((EntityPlayerMP) player).interactionManager.getGameType().getName());

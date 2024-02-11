@@ -164,6 +164,30 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public void allowFlight(boolean allow) {
+        player.getAbilities().mayfly = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.getAbilities().mayfly;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.getAbilities().flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.getAbilities().flying = flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean hasPermission(int permissionLevel) {
         return player.hasPermissions(permissionLevel);
     }

@@ -22,6 +22,34 @@ public interface Player extends SimplePlayer, HumanEntity {
     }
 
     /**
+     * Allow the player to fly
+     *
+     * @param allow Whether the player should be allowed to fly
+     */
+    void allowFlight(boolean allow);
+
+    /**
+     * Check if the player is allowed to fly
+     *
+     * @return Whether the player is allowed to fly
+     */
+    boolean canFly();
+
+    /**
+     * Get whether the player is flying
+     *
+     * @return Whether the player is flying
+     */
+    boolean isFlying();
+
+    /**
+     * Set the player's flying status
+     *
+     * @param flying Whether the player should be flying
+     */
+    void setFlying(boolean flying);
+
+    /**
      * Perform a command as the player
      *
      * @param command The command to perform
