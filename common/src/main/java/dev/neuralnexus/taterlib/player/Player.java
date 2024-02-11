@@ -1,18 +1,10 @@
 package dev.neuralnexus.taterlib.player;
 
-import dev.neuralnexus.taterlib.entity.LivingEntity;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.entity.HumanEntity;
 import dev.neuralnexus.taterlib.utils.Location;
 
 /** The interface for a Player */
-public interface Player extends SimplePlayer, LivingEntity {
-    /**
-     * Get player's Inventory
-     *
-     * @return The player's Inventory
-     */
-    PlayerInventory getInventory();
-
+public interface Player extends SimplePlayer, HumanEntity {
     /**
      * Set the player's spawn point
      *
@@ -27,38 +19,6 @@ public interface Player extends SimplePlayer, LivingEntity {
      */
     default void setSpawn(Location location) {
         setSpawn(location, false);
-    }
-
-    /**
-     * Get the player's current gamemode
-     *
-     * @return The player's current gamemode
-     */
-    GameMode getGameMode();
-
-    /**
-     * Set the player's game mode
-     *
-     * @param gameMode The game mode to set
-     */
-    void setGameMode(GameMode gameMode);
-
-    /**
-     * Set the player's game mode
-     *
-     * @param id The id of the game mode to set
-     */
-    default void setGameMode(int id) {
-        setGameMode(GameMode.fromId(id));
-    }
-
-    /**
-     * Set the player's game mode
-     *
-     * @param name The name of the game mode to set
-     */
-    default void setGameMode(String name) {
-        setGameMode(GameMode.fromName(name));
     }
 
     /**
