@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.TaterLibCommand;
+import dev.neuralnexus.taterlib.config.ConfigLoader;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.GenericEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
@@ -73,6 +74,8 @@ public class TaterLib {
         setPlugin(plugin);
         setLogger(logger);
 
+        ConfigLoader.load();
+
         if (STARTED) {
             instance.logger.info(Constants.PROJECT_NAME + " has already started!");
             return;
@@ -92,7 +95,8 @@ public class TaterLib {
             ServerEvents.STARTED.register(
                     event -> {
                         // Register LuckPerms hook
-                        if (api.isPluginModLoaded("LuckPerms")) {
+                        if (api.isPluginModLoaded("LuckPerms")
+                                && ConfigLoader.config().checkHook("LuckPermsHook")) {
                             instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPIProvider.addHook(new LuckPermsHook());
                         }

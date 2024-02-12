@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.config.ConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -96,15 +97,6 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
         TaterAPIProvider.register();
     }
 
-    private static boolean checkMixin(String mixinClassName) {
-        for (Map.Entry<String, Supplier<Boolean>> entry : CONDITIONS.entrySet()) {
-            if (mixinClassName.endsWith(entry.getKey())) {
-                return entry.getValue().get();
-            }
-        }
-        return true;
-    }
-
     @Override
     public void onLoad(String mixinPackage) {}
 
@@ -127,7 +119,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
         }
 
         // Check if the mixin should be applied
-        boolean result = checkMixin(mixinClassName);
+        boolean result = ConfigLoader.config().checkMixin(mixinClassName);
         System.out.println(
                 Utils.ansiParser(
                         "§6[TaterLib]: "
