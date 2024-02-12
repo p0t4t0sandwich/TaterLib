@@ -514,8 +514,22 @@ public enum MinecraftVersion {
      */
     public boolean parseRange(String rangeString) {
         rangeString = rangeString.trim();
-        boolean startInclusive = rangeString.charAt(0) == '[';
-        boolean endInclusive = rangeString.charAt(rangeString.length() - 1) == ']';
+        boolean startInclusive;
+        boolean endInclusive;
+        if (rangeString.charAt(0) == '(') {
+            startInclusive = false;
+        } else if (rangeString.charAt(0) == '[') {
+            startInclusive = true;
+        } else {
+            return this.is(rangeString);
+        }
+        if (rangeString.charAt(rangeString.length() - 1) == ')') {
+            endInclusive = false;
+        } else if (rangeString.charAt(rangeString.length() - 1) == ']') {
+            endInclusive = true;
+        } else {
+            return this.is(rangeString);
+        }
         rangeString = rangeString.substring(1, rangeString.length() - 1);
         MinecraftVersion start;
         MinecraftVersion end;

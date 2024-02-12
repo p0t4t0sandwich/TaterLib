@@ -190,3 +190,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Damageable` and `LivingEntity` interfaces
 - Added dummy entity interfaces all set up for adding new Entity interfaces
 - Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`
+- Added single-version support for `MinecraftVersion.parseRange`

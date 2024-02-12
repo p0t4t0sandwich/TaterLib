@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.test.api.info;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 
@@ -34,5 +35,6 @@ public class MinecraftVersionTest {
         assertEquals(
                 MinecraftVersion.V1_18.isInRange(true, MinecraftVersion.V1_17, false, null),
                 MinecraftVersion.V1_18.parseRange(OPEN_END_RANGE_STRING));
+        assertTrue(MinecraftVersion.V1_16_5.parseRange(REGULAR_VERSION_STRING));
     }
 }
