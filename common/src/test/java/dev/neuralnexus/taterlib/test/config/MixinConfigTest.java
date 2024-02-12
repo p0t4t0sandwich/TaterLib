@@ -10,13 +10,14 @@ import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Set;
 
 /** Tests for the MixinConfig class. */
 public class MixinConfigTest {
-    private static final MixinConfig simpleMixinConfig = new MixinConfig("test", true);
-    private static final MixinConfig otherSimpleMixinConfig = new MixinConfig("test", false);
+    private static final MixinConfig simpleMixinConfig = new MixinConfigAdapter("test", true);
+    private static final MixinConfig otherSimpleMixinConfig = new MixinConfigAdapter("test", false);
     private static final MixinConfig complexMixinConfig =
-            new MixinConfig(
+            new MixinConfigAdapter(
                     "test",
                     true,
                     new HashSet<>(Arrays.asList("1.16.5", "!1.17")),
@@ -45,5 +46,31 @@ public class MixinConfigTest {
         assertTrue(simpleMixinConfig.checkDepends(Collections.emptySet()));
         assertTrue(complexMixinConfig.checkDepends(Collections.singleton("test2")));
         assertFalse(complexMixinConfig.checkDepends(Collections.singleton("test3")));
+    }
+
+    static class MixinConfigAdapter extends MixinConfig {
+        private final Set<String> versions = new HashSet<>();
+        private final Set<String> serverTypes = new HashSet<>();
+        private final Set<String> depends = new HashSet<>();
+        private final String name;
+        private final boolean enabled;
+
+        public MixinConfigAdapter(String name, boolean enabled) {
+            this.name = name;
+            this.enabled = enabled;
+        }
+
+        public MixinConfigAdapter(
+                String name,
+                boolean enabled,
+                Set<String> versions,
+                Set<String> serverTypes,
+                Set<String> depends) {
+            this.name = name;
+            this.enabled = enabled;
+            this.versions.addAll(versions);
+            this.serverTypes.addAll(serverTypes);
+            this.depends.addAll(depends);
+        }
     }
 }
