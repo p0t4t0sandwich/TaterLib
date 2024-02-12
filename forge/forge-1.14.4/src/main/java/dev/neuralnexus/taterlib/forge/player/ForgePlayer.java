@@ -50,37 +50,37 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
      *
      * @return The Forge player
      */
-    public PlayerEntity getPlayer() {
+    public PlayerEntity player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayerEntity) player).getPlayerIP();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -105,19 +105,19 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new ForgePlayerInventory(player.inventory);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayerEntity) player).ping;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayerEntity) player).connection.disconnect(new StringTextComponent(message));
     }
 
@@ -125,7 +125,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     @Override
     public void setSpawn(Location location, boolean forced) {
         player.setSpawnPoint(
-                new BlockPos(location.getX(), location.getY(), location.getZ()),
+                new BlockPos(location.x(), location.y(), location.z()),
                 forced,
                 DimensionType.OVERWORLD);
     }
@@ -156,7 +156,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameType().getName());
     }
@@ -164,7 +164,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.getId()));
+        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
     }
 
     /** {@inheritDoc} */

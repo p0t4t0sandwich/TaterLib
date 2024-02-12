@@ -34,7 +34,7 @@ public class BukkitItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return itemMeta.getDisplayName();
     }
 
@@ -52,7 +52,7 @@ public class BukkitItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public List<String> getLore() {
+    public List<String> lore() {
         return itemMeta.getLore();
     }
 
@@ -70,7 +70,7 @@ public class BukkitItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isUnbreakable() {
+    public boolean unbreakable() {
         return itemMeta.isUnbreakable();
     }
 

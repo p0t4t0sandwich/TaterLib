@@ -11,7 +11,7 @@ public interface EntityDeathEvent extends EntityEvent {
      *
      * @return The drops.
      */
-    List<ItemStack> getDrops();
+    List<ItemStack> drops();
 
     /**
      * Sets the drops for this entity.
@@ -28,7 +28,7 @@ public interface EntityDeathEvent extends EntityEvent {
      *
      * @return The amount of experience.
      */
-    int getDroppedExp();
+    int droppedExp();
 
     /**
      * Sets the amount of experience dropped by this entity.

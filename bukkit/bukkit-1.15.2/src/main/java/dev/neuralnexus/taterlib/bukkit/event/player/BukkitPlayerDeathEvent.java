@@ -16,13 +16,13 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new BukkitPlayer(event.getEntity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDeathMessage() {
+    public String deathMessage() {
         return event.getDeathMessage();
     }
 
@@ -34,7 +34,7 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKeepInventory() {
+    public boolean keepInventory() {
         return event.getKeepInventory();
     }
 

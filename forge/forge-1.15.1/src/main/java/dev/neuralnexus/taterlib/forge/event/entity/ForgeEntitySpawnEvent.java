@@ -18,7 +18,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -30,7 +30,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
-        return new ForgeLocation(((ForgeEntity) getEntity()).getEntity());
+    public Location location() {
+        return new ForgeLocation(((ForgeEntity) entity()).entity());
     }
 }

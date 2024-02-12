@@ -12,7 +12,7 @@ import me.lucko.fabric.api.permissions.v0.Permissions;
 public class FabricPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "fabricpermissions";
     }
 
@@ -26,10 +26,10 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return Permissions.check(((VanillaPlayer) commandSender).getPlayer(), permission, 4);
+            return Permissions.check(((VanillaPlayer) commandSender).player(), permission, 4);
         } else {
             return Permissions.check(
-                    ((VanillaCommandSender) commandSender).getSender(), permission, 4);
+                    ((VanillaCommandSender) commandSender).sender(), permission, 4);
         }
     }
 }

@@ -32,7 +32,7 @@ public class ForgeBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<CommandSource> getDispatcher() {
+    public CommandDispatcher<CommandSource> dispatcher() {
         return event.getCommandDispatcher();
     }
 
@@ -51,13 +51,13 @@ public class ForgeBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender getSender(CommandSource source) {
+    public CommandSender sender(CommandSource source) {
         return new ForgeCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer(CommandSource source) {
+    public Player player(CommandSource source) {
         return new ForgePlayer((EntityPlayer) source.getEntity());
     }
 

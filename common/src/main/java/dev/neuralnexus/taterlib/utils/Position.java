@@ -24,7 +24,7 @@ public class Position {
      *
      * @return The x coordinate.
      */
-    public double getX() {
+    public double x() {
         return x;
     }
 
@@ -33,7 +33,7 @@ public class Position {
      *
      * @return The y coordinate.
      */
-    public double getY() {
+    public double y() {
         return y;
     }
 
@@ -42,7 +42,7 @@ public class Position {
      *
      * @return The z coordinate.
      */
-    public double getZ() {
+    public double z() {
         return z;
     }
 }

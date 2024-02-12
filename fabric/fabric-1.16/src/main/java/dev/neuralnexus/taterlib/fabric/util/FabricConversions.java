@@ -24,6 +24,6 @@ public final class FabricConversions {
      * @return The Fabric Location
      */
     public static BlockPos locationFromPosition(Position position) {
-        return new BlockPos((int) position.getX(), (int) position.getY(), (int) position.getZ());
+        return new BlockPos((int) position.x(), (int) position.y(), (int) position.z());
     }
 }

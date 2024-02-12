@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class ForgePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "forgepermissions";
     }
 
@@ -34,7 +34,8 @@ public class ForgePermissionsHook implements PermissionsHook {
         if (sender instanceof Player) {
             player = ((ForgePlayer) sender).getPlayer();
         } else {
-            ICommandSender source = ((ForgeSender) sender).getSender();
+            ICommandSender source = ((ForgeSender) sender).sender();
+            // TODO: Fix this
             //            if (source.getCommandSenderEntity() == null) {
             //                return false;
             //            }

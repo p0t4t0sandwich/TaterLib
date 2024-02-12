@@ -21,7 +21,7 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -33,13 +33,13 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.player);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         if (!this.message.isEmpty()) {
             return this.message;
         }

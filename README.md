@@ -192,3 +192,5 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`
 - Added single-version support for `MinecraftVersion.parseRange`
 - Used configurate to create config system
+- Refactored TaterLib common logic into CommonModule, added TaterModuleLoader, and overall improved module support
+- Reformatted getters to be more idiomatic (e.g. `getInventory` -> `inventory`)

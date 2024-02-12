@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 public class BukkitServerStartingEvent implements ServerStartingEvent {
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new BukkitServer(Bukkit.getServer());
     }
 }

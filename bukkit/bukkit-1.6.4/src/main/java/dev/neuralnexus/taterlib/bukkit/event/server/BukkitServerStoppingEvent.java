@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 public class BukkitServerStoppingEvent implements ServerStoppingEvent {
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new BukkitServer(Bukkit.getServer());
     }
 }

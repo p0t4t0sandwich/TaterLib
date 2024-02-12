@@ -36,19 +36,19 @@ public class VanillaEntity implements Entity {
      *
      * @return The entity.
      */
-    public net.minecraft.world.entity.Entity getEntity() {
+    public net.minecraft.world.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUUID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getId();
     }
 
@@ -60,13 +60,13 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName().toString();
     }
@@ -79,49 +79,49 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new VanillaLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return entity.getX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return entity.getY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return entity.getZ();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return entity.getYRot();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return entity.getXRot();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.level().dimension().location().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         Optional<ResourceKey<Biome>> holder =
                 entity.level().getBiome(entity.blockPosition()).unwrap().left();
         return holder.map(biomeResourceKey -> biomeResourceKey.registry().toString()).orElse(null);
@@ -130,20 +130,20 @@ public class VanillaEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = VanillaServer.getServer();
+        if (!location.world().equals(dimension())) {
+            MinecraftServer server = VanillaServer.server();
             if (server == null) return;
             ResourceKey<Level> dimension =
                     ResourceKey.create(
-                            Registries.DIMENSION, new ResourceLocation(location.getWorld()));
+                            Registries.DIMENSION, new ResourceLocation(location.world()));
             ServerLevel serverLevel = server.getLevel(dimension);
             if (serverLevel == null) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
                         serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
@@ -151,6 +151,6 @@ public class VanillaEntity implements Entity {
                 entity.changeDimension(serverLevel);
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

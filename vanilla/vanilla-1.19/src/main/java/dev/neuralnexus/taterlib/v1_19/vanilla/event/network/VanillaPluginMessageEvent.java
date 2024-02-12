@@ -17,19 +17,19 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
     }
 
     public VanillaPluginMessageEvent(CustomPayloadWrapper packet) {
-        this.channel = packet.getChannel();
-        this.data = packet.getData();
+        this.channel = packet.channel();
+        this.data = packet.data();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return this.channel;
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return this.data;
     }
 
@@ -50,7 +50,7 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.player.Player getPlayer() {
+        public dev.neuralnexus.taterlib.player.Player player() {
             return new VanillaPlayer(this.player);
         }
     }

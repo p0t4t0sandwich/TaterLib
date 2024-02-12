@@ -18,7 +18,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -30,13 +30,13 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
     /** {@inheritDoc} */
     @Override
-    public String getCause() {
+    public String cause() {
         return event.getCause().name();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getDamage() {
+    public double damage() {
         return event.getDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier.BASE);
     }
 
@@ -52,7 +52,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
         /** {@inheritDoc} */
         @Override
-        public Entity getDamager() {
+        public Entity damager() {
             return new BukkitEntity(event.getDamager());
         }
     }
@@ -69,7 +69,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
         /** {@inheritDoc} */
         @Override
-        public String getDamager() {
+        public String damager() {
             return event.getDamager().getType().name();
         }
     }

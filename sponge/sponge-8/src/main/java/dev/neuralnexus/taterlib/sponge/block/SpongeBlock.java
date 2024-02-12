@@ -21,14 +21,14 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         Registry<BlockType> registry = RegistryTypes.BLOCK_TYPE.get();
         return registry.findValueKey(block.type()).get().asString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
+    public Position blockPos() {
         return new Position(pos.blockX(), pos.blockY(), pos.blockZ());
     }
 }

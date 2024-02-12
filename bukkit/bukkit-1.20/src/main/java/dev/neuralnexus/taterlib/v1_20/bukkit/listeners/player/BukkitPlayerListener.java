@@ -29,8 +29,8 @@ public class BukkitPlayerListener implements Listener {
         if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
             PlayerEvents.ADVANCEMENT_FINISHED.invoke(
                     new VanillaPlayerAdvancementEvent.AdvancementFinished(
-                            BukkitAdapter.get().getPlayer(event.getPlayer()),
-                            BukkitAdapter.get().getAdvancement(event.getAdvancement())));
+                            BukkitAdapter.get().player(event.getPlayer()),
+                            BukkitAdapter.get().advancement(event.getAdvancement())));
         }
     }
 
@@ -43,8 +43,8 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         PlayerEvents.DEATH.invoke(
                 new VanillaPlayerDeathEvent(
-                        BukkitAdapter.get().getPlayer(event.getEntity()),
-                        BukkitAdapter.get().getLastDamageSource(event.getEntity())));
+                        BukkitAdapter.get().player(event.getEntity()),
+                        BukkitAdapter.get().lastDamageSource(event.getEntity())));
     }
 
     /**
@@ -76,7 +76,7 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerMessage(AsyncPlayerChatEvent event) {
         PlayerEvents.MESSAGE.invoke(
                 new VanillaPlayerMessageEvent(
-                        BukkitAdapter.get().getPlayer(event.getPlayer()),
+                        BukkitAdapter.get().player(event.getPlayer()),
                         event.getMessage(),
                         new BukkitCancellableEventWrapper<>(event)));
     }
@@ -90,7 +90,7 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         PlayerEvents.RESPAWN.invoke(
                 new VanillaPlayerRespawnEvent(
-                        BukkitAdapter.get().getPlayer(event.getPlayer()),
+                        BukkitAdapter.get().player(event.getPlayer()),
                         event.getPlayer().getHealth() > 0.0F));
     }
 }

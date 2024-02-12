@@ -17,13 +17,13 @@ public class BukkitPlayerRespawnEvent extends BukkitPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new BukkitPlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
+    public Location respawnLocation() {
         return new BukkitLocation(event.getRespawnLocation());
     }
 

@@ -52,37 +52,37 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
      *
      * @return The Fabric player
      */
-    public PlayerEntity getPlayer() {
+    public PlayerEntity player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUuid();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayerEntity) player).getServerBrand();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -110,19 +110,19 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new FabricPlayerInventory(player.inventory);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayerEntity) player).pingMilliseconds;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayerEntity) player).networkHandler.disconnect(new LiteralText(message));
     }
 
@@ -130,7 +130,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     @Override
     public void setSpawn(Location location, boolean forced) {
         player.setPlayerSpawn(
-                new BlockPos(location.getX(), location.getY(), location.getZ()), forced, false);
+                new BlockPos(location.x(), location.y(), location.z()), forced, false);
     }
 
     /** {@inheritDoc} */
@@ -159,7 +159,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
     }
@@ -168,19 +168,18 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     @Override
     public void setGameMode(GameMode gameMode) {
         ((ServerPlayerEntity) player)
-                .interactionManager.setGameMode(
-                        net.minecraft.world.GameMode.byId(gameMode.getId()));
+                .interactionManager.setGameMode(net.minecraft.world.GameMode.byId(gameMode.id()));
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getPrefix() {
+    public String prefix() {
         return Options.get(player, "prefix", "");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getSuffix() {
+    public String suffix() {
         return Options.get(player, "suffix", "");
     }
 

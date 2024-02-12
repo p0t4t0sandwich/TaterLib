@@ -13,14 +13,14 @@ public class BukkitBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         String blockType = block.getType().toString();
         return "minecraft:" + blockType.toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
+    public Position blockPos() {
         return new Position(block.getX(), block.getY(), block.getZ());
     }
 }

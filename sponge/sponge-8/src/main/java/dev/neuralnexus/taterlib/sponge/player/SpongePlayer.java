@@ -54,37 +54,37 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
      *
      * @return The Sponge player
      */
-    public org.spongepowered.api.entity.living.player.Player getPlayer() {
+    public org.spongepowered.api.entity.living.player.Player player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.uniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayer) player).connection().address().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.name();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return PlainTextComponentSerializer.plainText().serialize(player.displayName().get());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -113,19 +113,19 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new SpongePlayerInventory(player.inventory());
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayer) player).connection().latency();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayer) player).kick(Component.text(message));
     }
 
@@ -164,7 +164,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }
 

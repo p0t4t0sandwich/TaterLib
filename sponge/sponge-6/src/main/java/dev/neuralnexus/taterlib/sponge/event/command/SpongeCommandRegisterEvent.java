@@ -15,17 +15,16 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
         String[] nameAndAliases = new String[aliases.length + 1];
-        nameAndAliases[0] = command.getName();
+        nameAndAliases[0] = command.name();
         System.arraycopy(aliases, 0, nameAndAliases, 1, aliases.length);
         Sponge.getCommandManager()
                 .register(
                         plugin,
                         CommandSpec.builder()
                                 .executor(
-                                        new SpongeCommandWrapper(
-                                                command::execute, command.getName()))
-                                .permission(command.getPermission())
-                                .description(Text.of(command.getDescription()))
+                                        new SpongeCommandWrapper(command::execute, command.name()))
+                                .permission(command.permission())
+                                .description(Text.of(command.description()))
                                 .arguments(GenericArguments.remainingJoinedStrings(Text.of("args")))
                                 .build(),
                         nameAndAliases);

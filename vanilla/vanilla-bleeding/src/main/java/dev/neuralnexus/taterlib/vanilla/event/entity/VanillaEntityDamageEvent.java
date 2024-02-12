@@ -22,8 +22,8 @@ public class VanillaEntityDamageEvent extends VanillaEntityEvent implements Enti
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -34,13 +34,13 @@ public class VanillaEntityDamageEvent extends VanillaEntityEvent implements Enti
 
     /** {@inheritDoc} */
     @Override
-    public String getCause() {
+    public String cause() {
         return damageSource.type().msgId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getDamage() {
+    public double damage() {
         return damage;
     }
 }

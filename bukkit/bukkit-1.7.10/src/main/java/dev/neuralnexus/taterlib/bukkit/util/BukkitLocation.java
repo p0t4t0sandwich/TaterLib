@@ -12,18 +12,9 @@ public class BukkitLocation implements Location {
         this.location = location;
     }
 
-    /**
-     * Getter for the bukkit location.
-     *
-     * @return The bukkit location.
-     */
-    public org.bukkit.Location getLocation() {
-        return location;
-    }
-
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return location.getX();
     }
 
@@ -35,13 +26,13 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockX() {
+    public double blockX() {
         return location.getBlockX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return location.getY();
     }
 
@@ -53,13 +44,13 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockY() {
+    public double blockY() {
         return location.getBlockY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return location.getZ();
     }
 
@@ -71,13 +62,13 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockZ() {
+    public double blockZ() {
         return location.getBlockZ();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return location.getYaw();
     }
 
@@ -89,7 +80,7 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return location.getPitch();
     }
 
@@ -101,13 +92,13 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPosition() {
+    public Position blockPosition() {
         return new Position(location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getWorld() {
+    public String world() {
         if (location.getWorld() == null) {
             return "";
         }

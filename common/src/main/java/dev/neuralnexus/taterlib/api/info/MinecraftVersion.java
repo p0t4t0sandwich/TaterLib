@@ -403,7 +403,7 @@ public enum MinecraftVersion {
         } catch (ReflectiveOperationException ignored) {
         }
         try {
-            return TaterMixinServiceUtils.getMCVersion();
+            return TaterMixinServiceUtils.mcVersion();
         } catch (ClassNotFoundException | IOException | NoSuchElementException ignored) {
         }
         return "Unknown";

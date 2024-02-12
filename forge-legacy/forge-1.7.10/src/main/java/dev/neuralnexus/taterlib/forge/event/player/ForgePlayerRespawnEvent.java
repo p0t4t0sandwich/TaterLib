@@ -18,8 +18,8 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
-        return new ForgeLocation(((ForgePlayer) getPlayer()).getPlayer());
+    public Location respawnLocation() {
+        return new ForgeLocation(((ForgePlayer) player()).getPlayer());
     }
 
     /** {@inheritDoc} */

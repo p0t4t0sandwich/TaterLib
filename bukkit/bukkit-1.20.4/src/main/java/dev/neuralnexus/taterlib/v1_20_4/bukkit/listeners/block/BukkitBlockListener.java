@@ -20,10 +20,10 @@ public class BukkitBlockListener implements Listener {
     public void onBlockBreak(BlockBreakEvent event) {
         BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
-                        BukkitAdapter.get().getLevel(event.getBlock().getWorld()),
-                        BukkitAdapter.get().getPlayer(event.getPlayer()),
-                        BukkitAdapter.get().getBlockPos(event.getBlock()),
-                        BukkitAdapter.get().getBlockState(event.getBlock()),
+                        BukkitAdapter.get().level(event.getBlock().getWorld()),
+                        BukkitAdapter.get().player(event.getPlayer()),
+                        BukkitAdapter.get().blockPos(event.getBlock()),
+                        BukkitAdapter.get().blockState(event.getBlock()),
                         new BukkitCancellableEventWrapper<>(event)));
     }
 }

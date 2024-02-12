@@ -17,19 +17,19 @@ public class BukkitCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public org.bukkit.command.CommandSender getSender() {
+    public org.bukkit.command.CommandSender sender() {
         return commandSender;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return commandSender.getName();
     }
 

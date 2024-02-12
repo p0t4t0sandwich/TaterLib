@@ -13,7 +13,7 @@ public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
         JavaPlugin bukkitPlugin = (JavaPlugin) plugin;
-        PluginCommand bukkitCommand = bukkitPlugin.getCommand(command.getName());
+        PluginCommand bukkitCommand = bukkitPlugin.getCommand(command.name());
         if (bukkitCommand == null) {
             throw new IllegalArgumentException("Command not found.");
         }

@@ -30,7 +30,7 @@ public class VanillaServer implements Server {
      *
      * @return The instance.
      */
-    public static VanillaServer getInstance() {
+    public static VanillaServer instance() {
         return instance;
     }
 
@@ -40,7 +40,7 @@ public class VanillaServer implements Server {
      * @return The server.
      */
     @ApiStatus.Internal
-    public static MinecraftServer getServer() {
+    public static MinecraftServer server() {
         return server;
     }
 
@@ -56,19 +56,19 @@ public class VanillaServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         return server.getServerModName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(VanillaPlayer::new)
                 .collect(Collectors.toSet());

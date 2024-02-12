@@ -10,14 +10,14 @@ public interface PlayerDeathEvent extends EntityDeathEvent {
      *
      * @return The player.
      */
-    Player getPlayer();
+    Player player();
 
     /**
      * Gets the death message.
      *
      * @return The death message.
      */
-    String getDeathMessage();
+    String deathMessage();
 
     /**
      * Sets the death message.
@@ -31,7 +31,7 @@ public interface PlayerDeathEvent extends EntityDeathEvent {
      *
      * @return Whether the player has KeepInventory enabled.
      */
-    boolean hasKeepInventory();
+    boolean keepInventory();
 
     /**
      * Sets whether the player has KeepInventory enabled.

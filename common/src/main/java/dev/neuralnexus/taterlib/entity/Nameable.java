@@ -7,7 +7,7 @@ public interface Nameable {
      *
      * @return The custom name of the entity
      */
-    String getCustomName();
+    String customName();
 
     /**
      * Set the custom name of the entity

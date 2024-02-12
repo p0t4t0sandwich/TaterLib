@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.plugin;
 
 public interface Loader {
     /** Get the platform's logger. */
-    Object getLogger();
+    Object logger();
 
     /** Get the platform's server/plugin/container. */
-    Object getPlugin();
+    Object plugin();
 
     /** Register a plugin. */
     void registerPlugin(Plugin plugin);
@@ -15,7 +15,7 @@ public interface Loader {
 
     /** Unregister a plugin. */
     default void unregisterPlugin(Plugin plugin) {
-        unregisterPlugin(plugin.getId());
+        unregisterPlugin(plugin.id());
     }
 
     /** Run Init on all plugins. */

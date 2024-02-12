@@ -20,7 +20,7 @@ public class ForgeLocation implements Location {
                 entity.position(),
                 entity.getXRot(),
                 entity.getYRot(),
-                new ForgeEntity(entity).getDimension());
+                new ForgeEntity(entity).dimension());
     }
 
     /** Creates a new location. */
@@ -31,72 +31,63 @@ public class ForgeLocation implements Location {
         this.world = world;
     }
 
-    /**
-     * Getter for the Fabric location.
-     *
-     * @return The Fabric location.
-     */
-    public Vec3 getLocation() {
-        return position;
-    }
-
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return position.x;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setX(double x) {
-        position = new Vec3(x, getY(), getZ());
+        position = new Vec3(x, y(), z());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockX() {
-        return Math.floor(getX());
+    public double blockX() {
+        return Math.floor(x());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return position.y;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setY(double y) {
-        position = new Vec3(getX(), y, getZ());
+        position = new Vec3(x(), y, z());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockY() {
-        return Math.floor(getY());
+    public double blockY() {
+        return Math.floor(y());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return position.z;
     }
 
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
-        position = new Vec3(getX(), getY(), z);
+        position = new Vec3(x(), y(), z);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockZ() {
-        return Math.floor(getZ());
+    public double blockZ() {
+        return Math.floor(z());
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return yaw;
     }
 
@@ -108,7 +99,7 @@ public class ForgeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return pitch;
     }
 
@@ -120,13 +111,13 @@ public class ForgeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPosition() {
-        return new Position(getBlockX(), getBlockY(), getBlockZ());
+    public Position blockPosition() {
+        return new Position(blockX(), blockY(), blockZ());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getWorld() {
+    public String world() {
         return world;
     }
 

@@ -18,13 +18,13 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // Reflect to get ((CraftServer) server).getServer().getServerModName
         try {
             return (String)
@@ -44,7 +44,7 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return Arrays.stream(server.getOnlinePlayers())
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toSet());

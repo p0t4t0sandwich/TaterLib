@@ -1,21 +1,17 @@
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.config.ConfigLoader;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.GenericEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.hooks.TaterLibHook;
-import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.modules.core.CoreModule;
+import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
+    private static ModuleLoader moduleLoader;
     private Object plugin;
     private AbstractLogger logger;
 
@@ -24,7 +20,7 @@ public class TaterLib {
      *
      * @return The singleton instance
      */
-    public static TaterLib getInstance() {
+    public static TaterLib instance() {
         return instance;
     }
 
@@ -33,7 +29,7 @@ public class TaterLib {
      *
      * @return The plugin
      */
-    public static Object getPlugin() {
+    public static Object plugin() {
         return instance.plugin;
     }
 
@@ -51,7 +47,7 @@ public class TaterLib {
      *
      * @return The logger
      */
-    public static AbstractLogger getLogger() {
+    public static AbstractLogger logger() {
         return instance.logger;
     }
 
@@ -74,6 +70,7 @@ public class TaterLib {
         setPlugin(plugin);
         setLogger(logger);
 
+        // Config
         ConfigLoader.load();
 
         if (STARTED) {
@@ -83,29 +80,13 @@ public class TaterLib {
         STARTED = true;
 
         if (!RELOADED) {
-            // Setup Generic Events
-            GenericEvents.setup();
-
-            TaterAPI api = TaterAPIProvider.get();
-
-            // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)
-            TaterAPIProvider.addHook(new TaterLibHook());
-
-            // Register hooks
-            ServerEvents.STARTED.register(
-                    event -> {
-                        // Register LuckPerms hook
-                        if (api.isPluginModLoaded("LuckPerms")
-                                && ConfigLoader.config().checkHook("LuckPermsHook")) {
-                            instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-                            TaterAPIProvider.addHook(new LuckPermsHook());
-                        }
-                    });
-
-            // Register commands
-            CommandEvents.REGISTER_COMMAND.register(
-                    (event -> event.registerCommand(TaterLib.getPlugin(), new TaterLibCommand())));
+            // Register modules
+            moduleLoader = new TaterLibModuleLoader();
+            moduleLoader.registerModule(new CoreModule());
         }
+
+        // Start modules
+        moduleLoader.startModules();
 
         instance.logger.info(Constants.PROJECT_NAME + " has been started!");
     }
@@ -122,6 +103,11 @@ public class TaterLib {
             return;
         }
         STARTED = false;
+
+        // Stop modules
+        moduleLoader.stopModules();
+
+        // Remove references to objects
 
         instance.logger.info(Constants.PROJECT_NAME + " has been stopped!");
         TaterAPIProvider.unregister();

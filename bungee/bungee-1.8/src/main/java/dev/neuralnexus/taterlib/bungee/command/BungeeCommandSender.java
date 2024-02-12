@@ -17,19 +17,19 @@ public class BungeeCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public net.md_5.bungee.api.CommandSender getSender() {
+    public net.md_5.bungee.api.CommandSender sender() {
         return commandSender;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return commandSender.getName();
     }
 

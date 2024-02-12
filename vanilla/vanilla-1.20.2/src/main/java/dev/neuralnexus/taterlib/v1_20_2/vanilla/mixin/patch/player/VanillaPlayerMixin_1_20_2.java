@@ -18,7 +18,7 @@ public class VanillaPlayerMixin_1_20_2 {
      */
     @Overwrite
     public void sendPluginMessage(String channel, byte[] data) {
-        ((ServerPlayer) ((VanillaPlayer) (Object) this).getPlayer())
+        ((ServerPlayer) ((VanillaPlayer) (Object) this).player())
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
                                 new VanillaCustomPacketPayload(channel, data)));
@@ -30,6 +30,6 @@ public class VanillaPlayerMixin_1_20_2 {
      */
     @Overwrite
     public int getPing() {
-        return ((ServerPlayer) ((VanillaPlayer) (Object) this).getPlayer()).connection.latency();
+        return ((ServerPlayer) ((VanillaPlayer) (Object) this).player()).connection.latency();
     }
 }

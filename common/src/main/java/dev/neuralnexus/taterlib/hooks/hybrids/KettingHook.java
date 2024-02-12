@@ -39,7 +39,7 @@ public class KettingHook implements Hook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "ketting";
     }
 
@@ -48,7 +48,7 @@ public class KettingHook implements Hook {
      *
      * @return The mod list
      */
-    public Set<String> getModList() {
+    public Set<String> modList() {
         Optional<ForgeAdapter> adapter = Ketting.getInstance().getForgeAdapter();
         if (!adapter.isPresent()) {
             return new HashSet<>();
@@ -65,7 +65,7 @@ public class KettingHook implements Hook {
      *
      * @return The plugin list
      */
-    public Set<String> getPluginList() {
+    public Set<String> pluginList() {
         Optional<BukkitAdapter> adapter = Ketting.getInstance().getBukkitAdapter();
         if (!adapter.isPresent()) {
             return new HashSet<>();
@@ -110,7 +110,7 @@ public class KettingHook implements Hook {
      *
      * @return The KettingCore version
      */
-    public String getCoreVersion() {
+    public String coreVersion() {
         return Ketting.getCoreVersion();
     }
 
@@ -119,7 +119,7 @@ public class KettingHook implements Hook {
      *
      * @return The MC version
      */
-    public String getMcVersion() {
+    public String mcVersion() {
         return Ketting.getMcVersion();
     }
 

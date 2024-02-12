@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.server.ProxyServer;
 public class BungeeServerEvent implements ServerEvent {
     /** {@inheritDoc} */
     @Override
-    public ProxyServer getServer() {
+    public ProxyServer server() {
         return new BungeeProxyServer(net.md_5.bungee.api.ProxyServer.getInstance());
     }
 }

@@ -18,25 +18,25 @@ public class BungeeProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         return server.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Server> getServers() {
+    public Set<Server> servers() {
         return server.getServers().values().stream()
                 .map(BungeeServer::new)
                 .collect(Collectors.toSet());

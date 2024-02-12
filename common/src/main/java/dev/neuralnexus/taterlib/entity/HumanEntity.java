@@ -10,14 +10,14 @@ public interface HumanEntity extends LivingEntity, InventoryHolder {
      *
      * @return The player's Inventory
      */
-    PlayerInventory getInventory();
+    PlayerInventory inventory();
 
     /**
      * Get the player's current gamemode
      *
      * @return The player's current gamemode
      */
-    GameMode getGameMode();
+    GameMode gameMode();
 
     /**
      * Set the player's game mode

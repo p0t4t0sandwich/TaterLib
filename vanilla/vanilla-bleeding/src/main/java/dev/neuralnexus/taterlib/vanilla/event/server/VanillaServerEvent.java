@@ -13,7 +13,7 @@ public class VanillaServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
-        return VanillaServer.getInstance();
+    public SimpleServer server() {
+        return VanillaServer.instance();
     }
 }

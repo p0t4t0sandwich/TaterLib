@@ -43,14 +43,14 @@ public class SpongeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         Registry<ItemType> itemTypeRegistry = ItemTypes.registry();
         return itemTypeRegistry.valueKey(itemStack.type()).asString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.quantity();
     }
 

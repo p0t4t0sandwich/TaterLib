@@ -21,20 +21,20 @@ public class FabricServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         return server.getServerModName();
     }
 
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return ((List<PlayerEntity>) server.getPlayerManager().players)
                 .stream().map(FabricPlayer::new).collect(Collectors.toSet());
     }

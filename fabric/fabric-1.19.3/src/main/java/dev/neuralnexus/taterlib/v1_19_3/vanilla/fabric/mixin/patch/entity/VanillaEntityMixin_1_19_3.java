@@ -26,12 +26,12 @@ public class VanillaEntityMixin_1_19_3 {
     @Overwrite
     public void teleport(Location location) {
         VanillaEntity self = (VanillaEntity) (Object) this;
-        Entity entity = self.getEntity();
-        if (!location.getWorld().equals(self.getDimension())) {
-            MinecraftServer server = VanillaServer.getServer();
+        Entity entity = self.entity();
+        if (!location.world().equals(self.dimension())) {
+            MinecraftServer server = VanillaServer.server();
             if (server == null) return;
             ResourceLocation resourceLocation;
-            String[] resourceString = location.getWorld().split(":");
+            String[] resourceString = location.world().split(":");
             if (resourceString.length != 1) {
                 resourceLocation = new ResourceLocation(resourceString[0], resourceString[1]);
             } else {
@@ -44,9 +44,9 @@ public class VanillaEntityMixin_1_19_3 {
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
                         serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
@@ -54,6 +54,6 @@ public class VanillaEntityMixin_1_19_3 {
                 entity.changeDimension(serverLevel);
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

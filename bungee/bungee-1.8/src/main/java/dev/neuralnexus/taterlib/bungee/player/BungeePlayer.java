@@ -44,7 +44,7 @@ public class BungeePlayer implements ProxyPlayer {
      *
      * @return The BungeeCord player
      */
-    public ProxiedPlayer getPlayer() {
+    public ProxiedPlayer player() {
         return player;
     }
 
@@ -62,31 +62,31 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -116,13 +116,13 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return player.getPing();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         player.disconnect(new ComponentBuilder(message).create());
     }
 }

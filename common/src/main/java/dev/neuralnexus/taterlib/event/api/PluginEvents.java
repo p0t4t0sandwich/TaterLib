@@ -23,7 +23,7 @@ public class PluginEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(Arrays.asList(ENABLED, DISABLED));
     }
 }

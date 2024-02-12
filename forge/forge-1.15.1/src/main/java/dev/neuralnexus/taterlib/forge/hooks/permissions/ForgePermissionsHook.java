@@ -14,7 +14,7 @@ import net.minecraftforge.server.permission.PermissionAPI;
 public class ForgePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "forgepermissions";
     }
 
@@ -33,9 +33,9 @@ public class ForgePermissionsHook implements PermissionsHook {
 
         PlayerEntity player;
         if (commandSender instanceof Player) {
-            player = ((ForgePlayer) commandSender).getPlayer();
+            player = ((ForgePlayer) commandSender).player();
         } else {
-            CommandSource source = ((ForgeCommandSender) commandSender).getSender();
+            CommandSource source = ((ForgeCommandSender) commandSender).sender();
             if (source.getEntity() == null) {
                 return false;
             }

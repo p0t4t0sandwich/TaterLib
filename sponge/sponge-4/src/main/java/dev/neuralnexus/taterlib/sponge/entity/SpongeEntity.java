@@ -27,19 +27,19 @@ public class SpongeEntity implements Entity {
      *
      * @return The Sponge entity.
      */
-    public org.spongepowered.api.entity.Entity getEntity() {
+    public org.spongepowered.api.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return -1;
     }
 
@@ -51,13 +51,13 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (!entity.get(Keys.DISPLAY_NAME).isPresent()
                 && entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
             return null;
@@ -73,49 +73,49 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new SpongeLocation(entity.getLocation());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return entity.getLocation().getPosition().getX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return entity.getLocation().getPosition().getY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return entity.getLocation().getPosition().getZ();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return (float) entity.getRotation().getX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return (float) entity.getRotation().getY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.getWorld().getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.getWorld()
                 .getBiome(entity.getLocation().getBlockPosition().toVector2())
                 .getId();
@@ -126,6 +126,6 @@ public class SpongeEntity implements Entity {
     public void teleport(Location location) {
         entity.setLocation(
                 new org.spongepowered.api.world.Location<>(
-                        entity.getWorld(), location.getX(), location.getY(), location.getZ()));
+                        entity.getWorld(), location.x(), location.y(), location.z()));
     }
 }

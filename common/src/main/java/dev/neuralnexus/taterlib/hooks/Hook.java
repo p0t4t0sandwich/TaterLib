@@ -7,5 +7,5 @@ public interface Hook {
      *
      * @return The name of the hook
      */
-    String getName();
+    String name();
 }

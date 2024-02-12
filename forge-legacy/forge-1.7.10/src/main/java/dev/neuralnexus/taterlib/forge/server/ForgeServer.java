@@ -21,20 +21,20 @@ public class ForgeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         return server.getServerModName();
     }
 
     /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return ((List<EntityPlayer>) server.getConfigurationManager().playerEntityList)
                 .stream().map(ForgePlayer::new).collect(Collectors.toSet());
     }

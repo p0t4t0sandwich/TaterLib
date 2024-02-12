@@ -42,7 +42,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setIsPluginLoaded(
                 (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
-        api.setServer(VanillaServer::getInstance);
+        api.setServer(VanillaServer::instance);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
             if (!hasStarted) {
                 hasStarted = true;
                 ServerEvents.STARTING.invoke(
-                        new VanillaServerStartingEvent(BukkitAdapter.get().getServer()));
+                        new VanillaServerStartingEvent(BukkitAdapter.get().server()));
             }
             pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
@@ -77,8 +77,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                     // Register Brigadier commands
                                     CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
                                             new VanillaBrigadierCommandRegisterEvent(
-                                                    BukkitAdapter.get().getCommandDispatcher(),
-                                                    BukkitAdapter.get().getCommandSelection()));
+                                                    BukkitAdapter.get().commandDispatcher(),
+                                                    BukkitAdapter.get().commandSelection()));
                                 }
 
                                 // Register plugin messages
@@ -92,8 +92,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.getServer()));
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.getServer()));
+        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.server()));
+        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.server()));
         pluginStop();
     }
 }

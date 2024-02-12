@@ -19,7 +19,7 @@ public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
+    public Location respawnLocation() {
         return new VanillaLocation(player);
     }
 

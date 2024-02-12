@@ -15,7 +15,7 @@ public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements Play
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         return player.getName().getString() + " left the game";
     }
 

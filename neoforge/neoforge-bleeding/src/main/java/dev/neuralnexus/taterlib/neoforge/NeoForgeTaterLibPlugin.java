@@ -18,7 +18,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
-        api.setServer(VanillaServer::getInstance);
+        api.setServer(VanillaServer::instance);
     }
 
     @Override

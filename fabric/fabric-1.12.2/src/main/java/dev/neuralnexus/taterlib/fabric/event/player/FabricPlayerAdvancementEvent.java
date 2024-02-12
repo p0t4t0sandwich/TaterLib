@@ -19,7 +19,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return advancement.toString(); // .getDisplay().getTitle().getString();
     }
 
@@ -43,7 +43,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
 
         /** {@inheritDoc} */
         @Override
-        public Collection<String> getCriterion() {
+        public Collection<String> criterion() {
             return new HashSet<>(); // advancement.getCriteria().keySet();
         }
     }

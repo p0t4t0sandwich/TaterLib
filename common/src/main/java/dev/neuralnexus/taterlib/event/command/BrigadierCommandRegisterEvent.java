@@ -5,7 +5,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.Event;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 /** Abstract class for a brigadier command register event. */
 public interface BrigadierCommandRegisterEvent<S> extends Event {
@@ -21,7 +21,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      *
      * @return The command dispatcher.
      */
-    CommandDispatcher<S> getDispatcher();
+    CommandDispatcher<S> dispatcher();
 
     /**
      * Registers a LiteralCommandNode<S>.
@@ -37,7 +37,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The sender.
      */
-    CommandSender getSender(S source);
+    CommandSender sender(S source);
 
     /**
      * Get the player.
@@ -45,7 +45,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The player.
      */
-    Player getPlayer(S source);
+    SimplePlayer player(S source);
 
     /**
      * Check if the source is a player.

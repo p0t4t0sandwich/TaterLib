@@ -18,13 +18,13 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(event.entity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
+    public Location respawnLocation() {
         return new SpongeLocation(event.entity().location());
     }
 

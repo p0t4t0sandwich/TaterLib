@@ -6,7 +6,7 @@ public interface Command {
      *
      * @return The name of the command.
      */
-    String getName();
+    String name();
 
     /**
      * Set the name of the command.
@@ -20,21 +20,21 @@ public interface Command {
      *
      * @return The description of the command.
      */
-    String getDescription();
+    String description();
 
     /**
      * Get the usage of the command.
      *
      * @return The usage of the command.
      */
-    String getUsage();
+    String usage();
 
     /**
      * Get the permission of the command.
      *
      * @return The permission of the command.
      */
-    String getPermission();
+    String permission();
 
     /**
      * Get the subcommand permission.
@@ -42,8 +42,8 @@ public interface Command {
      * @param subCommand The subcommand.
      * @return The permission.
      */
-    default String getPermission(String subCommand) {
-        return getPermission() + "." + subCommand;
+    default String permission(String subCommand) {
+        return permission() + "." + subCommand;
     }
 
     /**
@@ -52,8 +52,8 @@ public interface Command {
      * @param subCommands The subcommands.
      * @return The permission.
      */
-    default String getPermission(String[] subCommands) {
-        StringBuilder permission = new StringBuilder(getPermission());
+    default String permission(String[] subCommands) {
+        StringBuilder permission = new StringBuilder(permission());
         for (String subCommand : subCommands) {
             permission.append(".").append(subCommand);
         }

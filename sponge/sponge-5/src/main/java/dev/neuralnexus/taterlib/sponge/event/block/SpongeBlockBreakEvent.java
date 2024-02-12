@@ -17,7 +17,7 @@ public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -29,7 +29,7 @@ public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(
                 (org.spongepowered.api.entity.living.player.Player) event.getCause().root());
     }

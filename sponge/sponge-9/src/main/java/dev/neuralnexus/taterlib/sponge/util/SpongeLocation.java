@@ -12,18 +12,9 @@ public class SpongeLocation implements Location {
         this.location = location;
     }
 
-    /**
-     * Getter for the Sponge location.
-     *
-     * @return The Sponge location.
-     */
-    public org.spongepowered.api.world.Location getLocation() {
-        return location;
-    }
-
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return location.x();
     }
 
@@ -35,13 +26,13 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockX() {
+    public double blockX() {
         return location.blockX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return location.y();
     }
 
@@ -53,13 +44,13 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockY() {
+    public double blockY() {
         return location.blockY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return location.z();
     }
 
@@ -71,13 +62,13 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double getBlockZ() {
+    public double blockZ() {
         return location.blockZ();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         // TODO: Find a way to get the yaw
         return 0;
     }
@@ -90,7 +81,7 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         // TODO: Find a way to get the pitch
         return 0;
     }
@@ -103,13 +94,13 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPosition() {
+    public Position blockPosition() {
         return new Position(location.blockX(), location.blockY(), location.blockZ());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getWorld() {
+    public String world() {
         // TODO: Find a way to get the world
         return null;
     }

@@ -37,28 +37,16 @@ public class VanillaPlayer_1_19_3 extends VanillaPlayer {
         this.player = player;
     }
 
-    /**
-     * Gets the player
-     *
-     * @return The player
-     */
-    public net.minecraft.world.entity.player.Player getPlayer() {
-        return player;
-    }
-
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         // TODO: Abstract world information
         ResourceKey<Level> dimension =
-                ResourceKey.create(Registries.DIMENSION, new ResourceLocation(location.getWorld()));
+                ResourceKey.create(Registries.DIMENSION, new ResourceLocation(location.world()));
         ((ServerPlayer) player)
                 .setRespawnPosition(
                         dimension,
-                        new BlockPos(
-                                (int) location.getX(),
-                                (int) location.getY(),
-                                (int) location.getZ()),
+                        new BlockPos((int) location.x(), (int) location.y(), (int) location.z()),
                         0,
                         forced,
                         false);

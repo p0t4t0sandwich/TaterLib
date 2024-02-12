@@ -7,12 +7,12 @@ public interface PlayerServerSwitchEvent extends ProxyPlayerEvent {
      *
      * @return The server the player is switching to.
      */
-    String getToServer();
+    String toServer();
 
     /**
      * Gets the server the player is switching from.
      *
      * @return The server the player is switching from.
      */
-    String getFromServer();
+    String fromServer();
 }

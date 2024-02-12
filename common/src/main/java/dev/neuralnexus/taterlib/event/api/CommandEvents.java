@@ -23,7 +23,7 @@ public class CommandEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(Arrays.asList(REGISTER_COMMAND, REGISTER_BRIGADIER_COMMAND));
     }
 }

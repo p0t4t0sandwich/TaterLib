@@ -34,19 +34,19 @@ public class ForgeEntity implements Entity {
      *
      * @return The Forge entity.
      */
-    public net.minecraft.entity.Entity getEntity() {
+    public net.minecraft.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUUID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getId();
     }
 
@@ -58,13 +58,13 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName().getString();
     }
@@ -77,71 +77,71 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new ForgeLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return entity.getX();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return entity.getY();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return entity.getZ();
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return entity.xRot;
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return entity.yRot;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.level.dimension().location().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.level.getBiome(entity.blockPosition()).toString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
+        if (!location.world().equals(dimension())) {
             MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
             if (server == null) return;
             RegistryKey<World> dimension =
                     RegistryKey.create(
                             Registry.DIMENSION_REGISTRY,
-                            new ResourceLocation(location.getWorld().split(":")[1]));
+                            new ResourceLocation(location.world().split(":")[1]));
             ServerWorld serverLevel = server.getLevel(dimension);
             if (serverLevel == null) return;
             if (entity instanceof ServerPlayerEntity) {
                 ((ServerPlayerEntity) entity)
                         .teleportTo(
                                 serverLevel,
-                                location.getX(),
-                                location.getY(),
-                                location.getZ(),
+                                location.x(),
+                                location.y(),
+                                location.z(),
                                 entity.getRotationVector().y,
                                 entity.getRotationVector().x);
                 return;
@@ -149,6 +149,6 @@ public class ForgeEntity implements Entity {
                 entity.changeDimension(serverLevel);
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

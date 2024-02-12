@@ -27,7 +27,7 @@ public class ForgeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return itemStack.getDisplayName();
     }
 
@@ -46,7 +46,7 @@ public class ForgeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public List<String> getLore() {
+    public List<String> lore() {
         // TODO: Implement
         return null;
     }
@@ -65,7 +65,7 @@ public class ForgeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isUnbreakable() {
+    public boolean unbreakable() {
         return itemStack.isItemStackDamageable();
     }
 

@@ -13,7 +13,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 public class FabricPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "fabricpermissions";
     }
 
@@ -30,9 +30,10 @@ public class FabricPermissionsHook implements PermissionsHook {
         if (commandSender instanceof Player) {
             return PermissionsApiHolder.getPlayerPermissionsApi()
                     .hasPermission(
-                            (ServerPlayerEntity) ((FabricPlayer) commandSender).getPlayer(), permission);
+                            (ServerPlayerEntity) ((FabricPlayer) commandSender).player(),
+                            permission);
         } else {
-            return ((FabricCommandSender) commandSender).getSender().hasPermission(permission);
+            return ((FabricCommandSender) commandSender).sender().hasPermission(permission);
         }
     }
 }

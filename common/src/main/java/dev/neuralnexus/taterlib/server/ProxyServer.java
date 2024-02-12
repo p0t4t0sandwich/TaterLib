@@ -8,5 +8,5 @@ public interface ProxyServer extends SimpleServer {
      *
      * @return The servers that are connected to this proxy.
      */
-    Set<Server> getServers();
+    Set<Server> servers();
 }

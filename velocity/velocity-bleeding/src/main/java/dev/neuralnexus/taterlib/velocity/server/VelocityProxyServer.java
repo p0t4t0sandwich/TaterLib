@@ -18,26 +18,26 @@ public class VelocityProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // TODO: See if there's a better way to get the server brand
         return "Velocity";
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return server.getAllPlayers().stream().map(VelocityPlayer::new).collect(Collectors.toSet());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Server> getServers() {
+    public Set<Server> servers() {
         return server.getAllServers().stream().map(VelocityServer::new).collect(Collectors.toSet());
     }
 }

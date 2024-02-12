@@ -10,14 +10,14 @@ public interface EntityDamageEvent extends EntityEvent, Cancellable {
      *
      * @return The damage cause.
      */
-    String getCause();
+    String cause();
 
     /**
      * Gets the damage.
      *
      * @return The damage.
      */
-    double getDamage();
+    double damage();
 
     /** Abstract class for an entity damage by entity event. */
     interface DamageByEntity extends EntityDamageEvent {
@@ -26,7 +26,7 @@ public interface EntityDamageEvent extends EntityEvent, Cancellable {
          *
          * @return The damager.
          */
-        Entity getDamager();
+        Entity damager();
     }
 
     /** Abstract class for an entity damage by block event. */
@@ -36,6 +36,6 @@ public interface EntityDamageEvent extends EntityEvent, Cancellable {
          *
          * @return The block damager.
          */
-        String getDamager();
+        String damager();
     }
 }

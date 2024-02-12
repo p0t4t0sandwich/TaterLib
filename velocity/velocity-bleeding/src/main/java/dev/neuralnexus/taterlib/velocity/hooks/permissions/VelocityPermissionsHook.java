@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 public class VelocityPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "spongepermissions";
     }
 
@@ -24,9 +24,9 @@ public class VelocityPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return ((VelocityPlayer) commandSender).getPlayer().hasPermission(permission);
+            return ((VelocityPlayer) commandSender).player().hasPermission(permission);
         } else {
-            return ((VelocityCommandSender) commandSender).getSender().hasPermission(permission);
+            return ((VelocityCommandSender) commandSender).sender().hasPermission(permission);
         }
     }
 }

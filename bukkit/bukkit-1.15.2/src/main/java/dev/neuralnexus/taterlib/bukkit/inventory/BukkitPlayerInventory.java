@@ -21,7 +21,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
+    public ItemStack[] armorContents() {
         org.bukkit.inventory.ItemStack[] armorContents = playerInventory.getArmorContents();
         ItemStack[] abstractArmorContents = new ItemStack[armorContents.length];
         for (int i = 0; i < armorContents.length; i++) {
@@ -46,7 +46,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
+    public ItemStack[] extraContents() {
         org.bukkit.inventory.ItemStack[] extraContents = playerInventory.getExtraContents();
         ItemStack[] abstractExtraContents = new ItemStack[extraContents.length];
         for (int i = 0; i < extraContents.length; i++) {
@@ -71,7 +71,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
+    public ItemStack helmet() {
         return new BukkitItemStack(playerInventory.getHelmet());
     }
 
@@ -83,7 +83,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getChestplate() {
+    public ItemStack chestplate() {
         return new BukkitItemStack(playerInventory.getChestplate());
     }
 
@@ -95,7 +95,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getLeggings() {
+    public ItemStack leggings() {
         return new BukkitItemStack(playerInventory.getLeggings());
     }
 
@@ -107,7 +107,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getBoots() {
+    public ItemStack boots() {
         return new BukkitItemStack(playerInventory.getBoots());
     }
 
@@ -127,14 +127,14 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(String equipmentSlot) {
+    public ItemStack item(String equipmentSlot) {
         return new BukkitItemStack(
                 playerInventory.getItem(EquipmentSlot.valueOf(equipmentSlot.toUpperCase())));
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInMainHand() {
+    public ItemStack itemInMainHand() {
         return new BukkitItemStack(playerInventory.getItemInMainHand());
     }
 
@@ -146,7 +146,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInOffHand() {
+    public ItemStack itemInOffHand() {
         return new BukkitItemStack(playerInventory.getItemInOffHand());
     }
 
@@ -158,7 +158,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public int getHeldItemSlot() {
+    public int heldItemSlot() {
         return playerInventory.getHeldItemSlot();
     }
 }

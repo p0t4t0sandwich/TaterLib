@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.player;
 
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
@@ -73,37 +73,37 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
      *
      * @return The Bukkit player
      */
-    public org.bukkit.entity.Player getPlayer() {
+    public org.bukkit.entity.Player player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -131,13 +131,13 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         //        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
         return -1;
     }
@@ -150,7 +150,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String reason) {
+    public void kick(String reason) {
         player.kickPlayer(reason);
     }
 
@@ -164,30 +164,30 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     @Override
     public void allowFlight(boolean allow) {
         // TODO: Write a module to allow flight
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean canFly() {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(player.getGameMode().name());
     }
 

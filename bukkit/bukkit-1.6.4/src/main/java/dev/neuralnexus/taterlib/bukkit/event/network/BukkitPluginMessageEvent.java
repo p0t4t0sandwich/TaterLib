@@ -15,13 +15,13 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return this.channel;
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return this.data;
     }
 
@@ -37,7 +37,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public BukkitPlayer getPlayer() {
+        public BukkitPlayer player() {
             return new BukkitPlayer(this.player);
         }
     }

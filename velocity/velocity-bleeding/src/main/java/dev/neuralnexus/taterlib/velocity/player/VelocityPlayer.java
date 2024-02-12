@@ -45,7 +45,7 @@ public class VelocityPlayer implements ProxyPlayer {
      *
      * @return The Velocity player
      */
-    public com.velocitypowered.api.proxy.Player getPlayer() {
+    public com.velocitypowered.api.proxy.Player player() {
         return player;
     }
 
@@ -64,31 +64,31 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return player.getRemoteAddress().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getUsername();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getUsername();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -122,13 +122,13 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return (int) player.getPing();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         player.disconnect(Component.text(message));
     }
 }

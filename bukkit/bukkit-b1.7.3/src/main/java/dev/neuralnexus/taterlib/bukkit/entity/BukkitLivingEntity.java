@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bukkit.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.entity.LivingEntity;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
@@ -27,12 +27,12 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage((int) amount, ((BukkitEntity) source).getEntity());
+        entity.damage((int) amount, ((BukkitEntity) source).entity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.getHealth();
     }
 
@@ -44,27 +44,27 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
-        throw new VersionFeatureNotSuportedException();
+    public double absorptionAmount() {
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         // TODO: Check if there's a workaround for b1.7.3
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         // TODO: Check if there's a workaround for b1.7.3
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 }

@@ -20,7 +20,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -32,7 +32,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return event.getMessage();
     }
 
@@ -55,7 +55,7 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
         event.getRecipients()
                 .addAll(
                         recipients.stream()
-                                .map(player -> ((BukkitPlayer) player).getPlayer())
+                                .map(player -> ((BukkitPlayer) player).player())
                                 .collect(Collectors.toSet()));
     }
 }

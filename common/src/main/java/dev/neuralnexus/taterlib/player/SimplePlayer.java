@@ -15,14 +15,14 @@ public interface SimplePlayer extends CommandSender, Connection {
      *
      * @return The display name of the player
      */
-    String getDisplayName();
+    String displayName();
 
     /**
      * Get the server the player is on
      *
      * @return The server the player is on
      */
-    String getServerName();
+    String serverName();
 
     /**
      * Set the server the player is on
@@ -36,10 +36,10 @@ public interface SimplePlayer extends CommandSender, Connection {
      *
      * @return The prefix of the player
      */
-    default String getPrefix() {
+    default String prefix() {
         if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        String prefix = luckPermsHook.getPrefix(getUniqueId());
+        String prefix = luckPermsHook.prefix(uuid());
         return prefix != null ? prefix : "";
     }
 
@@ -61,7 +61,7 @@ public interface SimplePlayer extends CommandSender, Connection {
     default void setPrefix(String prefix, int priority) {
         if (!TaterAPIProvider.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        luckPermsHook.setPrefix(getUniqueId(), prefix, priority);
+        luckPermsHook.setPrefix(uuid(), prefix, priority);
     }
 
     /**
@@ -69,10 +69,10 @@ public interface SimplePlayer extends CommandSender, Connection {
      *
      * @return The suffix of the player
      */
-    default String getSuffix() {
+    default String suffix() {
         if (!TaterAPIProvider.isHooked("luckperms")) return "";
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        String suffix = luckPermsHook.getSuffix(getUniqueId());
+        String suffix = luckPermsHook.suffix(uuid());
         return suffix != null ? suffix : "";
     }
 
@@ -94,7 +94,7 @@ public interface SimplePlayer extends CommandSender, Connection {
     default void setSuffix(String suffix, int priority) {
         if (!TaterAPIProvider.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        luckPermsHook.setSuffix(getUniqueId(), suffix, priority);
+        luckPermsHook.setSuffix(uuid(), suffix, priority);
     }
 
     /**
@@ -105,11 +105,11 @@ public interface SimplePlayer extends CommandSender, Connection {
      */
     default PlaceholderParser parsePlaceholders(String input) {
         return new PlaceholderParser(input)
-                .parseString("player", this.getName())
-                .parseString("displayname", this.getDisplayName())
-                .parseString("prefix", this.getPrefix())
-                .parseString("suffix", this.getSuffix())
-                .parseString("server", this.getServerName())
+                .parseString("player", this.name())
+                .parseString("displayname", this.displayName())
+                .parseString("prefix", this.prefix())
+                .parseString("suffix", this.suffix())
+                .parseString("server", this.serverName())
                 .parseSectionSign();
     }
 }

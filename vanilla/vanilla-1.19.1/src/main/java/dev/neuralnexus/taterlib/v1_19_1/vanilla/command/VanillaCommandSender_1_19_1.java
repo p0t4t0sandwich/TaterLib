@@ -20,13 +20,13 @@ public class VanillaCommandSender_1_19_1 implements CommandSender {
      *
      * @return The sender
      */
-    public CommandSourceStack getSender() {
+    public CommandSourceStack sender() {
         return source;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         if (source.getEntity() == null) {
             return new UUID(0, 0);
         }
@@ -35,7 +35,7 @@ public class VanillaCommandSender_1_19_1 implements CommandSender {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return source.getTextName();
     }
 

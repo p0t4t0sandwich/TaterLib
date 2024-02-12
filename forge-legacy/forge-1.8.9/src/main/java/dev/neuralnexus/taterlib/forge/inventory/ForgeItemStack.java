@@ -39,7 +39,7 @@ public class ForgeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         String itemName = itemStack.getItem().toString();
         if (!itemName.contains(":")) {
             return "minecraft:" + itemName;
@@ -49,7 +49,7 @@ public class ForgeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.stackSize;
     }
 

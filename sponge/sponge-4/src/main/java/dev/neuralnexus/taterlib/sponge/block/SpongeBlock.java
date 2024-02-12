@@ -19,13 +19,13 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return block.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
+    public Position blockPos() {
         return new Position(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());
     }
 }

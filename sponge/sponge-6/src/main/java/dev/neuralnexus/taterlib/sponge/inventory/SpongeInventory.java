@@ -21,13 +21,13 @@ public class SpongeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public int getSize() {
+    public int size() {
         return inventory.capacity();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(int slot) {
+    public ItemStack item(int slot) {
         if (!inventory.peek(slot).isPresent()) {
             return null;
         }
@@ -57,8 +57,8 @@ public class SpongeInventory implements Inventory {
     @Override
     public void removeItem(ItemStack item) {
         if (inventory.contains(((SpongeItemStack) item).getItemStack())) {
-            for (int i = 0; i < getSize(); i++) {
-                if (getItem(i).equals(item)) {
+            for (int i = 0; i < size(); i++) {
+                if (item(i).equals(item)) {
                     setItem(i, null);
                     break;
                 }
@@ -68,10 +68,10 @@ public class SpongeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getContents() {
-        ItemStack[] contents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
+    public ItemStack[] contents() {
+        ItemStack[] contents = new ItemStack[size()];
+        for (int i = 0; i < size(); i++) {
+            contents[i] = item(i);
         }
         return contents;
     }
@@ -79,17 +79,17 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] items) {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             setItem(i, items[i]);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getStorageContents() {
-        ItemStack[] contents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
+    public ItemStack[] storageContents() {
+        ItemStack[] contents = new ItemStack[size()];
+        for (int i = 0; i < size(); i++) {
+            contents[i] = item(i);
         }
 
         return contents;
@@ -98,7 +98,7 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             setItem(i, items[i]);
         }
     }
@@ -112,8 +112,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
-        for (ItemStack item : getContents()) {
-            if (item.getType().equals(type)) {
+        for (ItemStack item : contents()) {
+            if (item.type().equals(type)) {
                 return true;
             }
         }
@@ -124,9 +124,9 @@ public class SpongeInventory implements Inventory {
     @Override
     public boolean containsAtLeast(ItemStack item, int amount) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                total += item(i).count();
             }
         }
         return total >= amount;
@@ -136,9 +136,9 @@ public class SpongeInventory implements Inventory {
     @Override
     public boolean containsAtLeast(String type, int amount) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
+                total += item(i).count();
             }
         }
         return total >= amount;
@@ -148,9 +148,9 @@ public class SpongeInventory implements Inventory {
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                map.put(i, getItem(i));
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                map.put(i, item(i));
             }
         }
         return map;
@@ -159,8 +159,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 return i;
             }
         }
@@ -170,8 +170,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 return i;
             }
         }
@@ -181,8 +181,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals("minecraft:air")) {
                 return i;
             }
         }
@@ -192,8 +192,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 if (inventory.peek(i).isPresent()) {
                     inventory.peek(i).get().setQuantity(0);
                 }
@@ -204,8 +204,8 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 if (inventory.peek(i).isPresent()) {
                     inventory.peek(i).get().setQuantity(0);
                 }

@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 public class BukkitPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "bukkitpermissions";
     }
 
@@ -25,12 +25,12 @@ public class BukkitPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            org.bukkit.entity.Player player = Bukkit.getPlayer(commandSender.getUniqueId());
+            org.bukkit.entity.Player player = Bukkit.getPlayer(commandSender.uuid());
             if (player != null) {
                 return player.hasPermission(permission);
             }
             return false;
         }
-        return ((BukkitCommandSender) commandSender).getSender().hasPermission(permission);
+        return ((BukkitCommandSender) commandSender).sender().hasPermission(permission);
     }
 }

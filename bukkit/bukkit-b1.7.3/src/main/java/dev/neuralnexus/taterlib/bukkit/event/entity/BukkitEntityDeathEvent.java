@@ -17,7 +17,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         return event.getDrops().stream().map(BukkitItemStack::new).collect(Collectors.toList());
     }
 
@@ -37,7 +37,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         return 0;
     }
 

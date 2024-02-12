@@ -38,7 +38,7 @@ public class LuckPermsHook implements PermissionsHook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "luckperms";
     }
 
@@ -48,7 +48,7 @@ public class LuckPermsHook implements PermissionsHook {
      * @param playerUuid The UUID of the player to get the CachedMetaData for
      * @return The CachedMetaData for the player
      */
-    private CachedMetaData getMetaData(UUID playerUuid) {
+    private CachedMetaData metaData(UUID playerUuid) {
         if (this.luckPerms == null) return null;
         User user = luckPerms.getUserManager().getUser(playerUuid);
         return user != null ? user.getCachedData().getMetaData() : null;
@@ -60,8 +60,8 @@ public class LuckPermsHook implements PermissionsHook {
      * @param playerUuid The UUID of the player to get the prefix for
      * @return The prefix for the player
      */
-    public String getPrefix(UUID playerUuid) {
-        CachedMetaData metaData = getMetaData(playerUuid);
+    public String prefix(UUID playerUuid) {
+        CachedMetaData metaData = metaData(playerUuid);
         return metaData != null ? metaData.getPrefix() : "";
     }
 
@@ -94,8 +94,8 @@ public class LuckPermsHook implements PermissionsHook {
      * @param playerUuid The UUID of the player to get the suffix for
      * @return The suffix for the player
      */
-    public String getSuffix(UUID playerUuid) {
-        CachedMetaData metaData = getMetaData(playerUuid);
+    public String suffix(UUID playerUuid) {
+        CachedMetaData metaData = metaData(playerUuid);
         return metaData != null ? metaData.getSuffix() : "";
     }
 
@@ -126,7 +126,7 @@ public class LuckPermsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (this.luckPerms == null) return false;
-        User user = luckPerms.getUserManager().getUser(commandSender.getUniqueId());
+        User user = luckPerms.getUserManager().getUser(commandSender.uuid());
         return user != null
                 && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
@@ -138,8 +138,8 @@ public class LuckPermsHook implements PermissionsHook {
      * @param key The key of the meta value to get
      * @return The meta value for the player
      */
-    public String getMeta(UUID playerUuid, String key) {
-        CachedMetaData metaData = getMetaData(playerUuid);
+    public String meta(UUID playerUuid, String key) {
+        CachedMetaData metaData = metaData(playerUuid);
         return metaData != null ? metaData.getMetaValue(key) : null;
     }
 

@@ -47,37 +47,37 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
      *
      * @return The Forge player
      */
-    public EntityPlayer getPlayer() {
+    public EntityPlayer player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((EntityPlayerMP) player).getPlayerIP();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName().getFormattedText();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -99,27 +99,26 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new ForgePlayerInventory(player.inventory);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((EntityPlayerMP) player).ping;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((EntityPlayerMP) player).connection.disconnect(new TextComponentString(message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
-        player.setSpawnPoint(
-                new BlockPos(location.getX(), location.getY(), location.getZ()), forced);
+        player.setSpawnPoint(new BlockPos(location.x(), location.y(), location.z()), forced);
     }
 
     /** {@inheritDoc} */
@@ -148,7 +147,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(
                 ((EntityPlayerMP) player).interactionManager.getGameType().getName());
     }
@@ -156,7 +155,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.getId()));
+        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
     }
 
     /** {@inheritDoc} */

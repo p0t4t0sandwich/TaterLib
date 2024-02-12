@@ -34,13 +34,13 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUuid();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getEntityId();
     }
 
@@ -52,13 +52,13 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getTranslationKey().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName();
     }
@@ -71,56 +71,56 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new FabricLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return entity.getPos().x;
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return entity.getPos().y;
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return entity.getPos().z;
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return (float) entity.getRotation().x;
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return (float) entity.getRotation().y;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.world.dimension.getName().replace(" ", "_").toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.world.getBiome(entity.getBlockPos()).name;
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
+        if (!location.world().equals(dimension())) {
             MinecraftServer server = FabricTaterLibPlugin.server;
             if (server == null) return;
             // TODO: Cross version this and add: location.getWorld().split(":")[1]);
@@ -132,12 +132,12 @@ public class FabricEntity implements Entity {
                                             .getName()
                                             .replace(" ", "_")
                                             .toLowerCase()
-                                            .equals(location.getWorld()))
+                                            .equals(location.world()))
                     .findFirst()
                     .ifPresent(
                             worldServer ->
                                     entity.teleportToDimension(worldServer.dimension.getType()));
         }
-        entity.updatePosition(location.getX(), location.getY(), location.getZ());
+        entity.updatePosition(location.x(), location.y(), location.z());
     }
 }

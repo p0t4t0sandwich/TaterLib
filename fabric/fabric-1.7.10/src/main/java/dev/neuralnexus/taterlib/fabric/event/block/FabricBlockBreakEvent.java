@@ -30,7 +30,7 @@ public class FabricBlockBreakEvent extends FabricBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return ci.isCancelled();
     }
 
@@ -42,7 +42,7 @@ public class FabricBlockBreakEvent extends FabricBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new FabricPlayer(player);
     }
 }

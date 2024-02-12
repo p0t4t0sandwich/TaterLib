@@ -21,14 +21,14 @@ public interface ItemStack {
      *
      * @return The type of the item
      */
-    String getType();
+    String type();
 
     /**
      * Get the amount of the item
      *
      * @return The amount of the item
      */
-    int getCount();
+    int count();
 
     /**
      * Set the amount of the item

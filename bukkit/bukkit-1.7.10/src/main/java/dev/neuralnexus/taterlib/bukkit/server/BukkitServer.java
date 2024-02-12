@@ -21,13 +21,13 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // Reflect to get ((CraftServer) server).getServer().getServerModName
         try {
             return (String)
@@ -48,7 +48,7 @@ public class BukkitServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method method = server.getClass().getMethod("getOnlinePlayers");

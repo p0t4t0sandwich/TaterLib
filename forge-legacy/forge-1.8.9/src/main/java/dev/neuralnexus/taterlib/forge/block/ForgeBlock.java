@@ -17,13 +17,13 @@ public class ForgeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return block.getLocalizedName().split("block\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
+    public Position blockPos() {
         return new Position(pos.getX(), pos.getY(), pos.getZ());
     }
 }

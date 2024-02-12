@@ -28,7 +28,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogUtils.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setIsModLoaded(ModList.get()::isLoaded);
-        api.setServer(VanillaServer::getInstance);
+        api.setServer(VanillaServer::instance);
 
         // Register listeners
         MinecraftForge.EVENT_BUS.register(this);

@@ -7,12 +7,12 @@ public interface CustomPayloadWrapper {
      *
      * @return The channel.
      */
-    String getChannel();
+    String channel();
 
     /**
      * Gets the data.
      *
      * @return The data.
      */
-    byte[] getData();
+    byte[] data();
 }

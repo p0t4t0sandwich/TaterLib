@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.util.UUID;
 
-/** Bukkit implementation of {@link Sender} */
+/** Bukkit implementation of {@link CommandSender} */
 public class ForgeSender implements CommandSender {
     private final ICommandSender sender;
     private final Command command;
@@ -23,19 +23,19 @@ public class ForgeSender implements CommandSender {
      *
      * @return The sender
      */
-    public ICommandSender getSender() {
+    public ICommandSender sender() {
         return sender;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return sender.getName();
     }
 
@@ -48,6 +48,6 @@ public class ForgeSender implements CommandSender {
     /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return sender.canCommandSenderUseCommand(permissionLevel, command.getName());
+        return sender.canCommandSenderUseCommand(permissionLevel, command.name());
     }
 }

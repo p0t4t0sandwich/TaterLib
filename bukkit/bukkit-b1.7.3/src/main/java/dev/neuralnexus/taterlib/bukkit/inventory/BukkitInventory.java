@@ -23,13 +23,13 @@ public class BukkitInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public int getSize() {
+    public int size() {
         return inventory.getSize();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(int slot) {
+    public ItemStack item(int slot) {
         return inventory.getItem(slot) == null
                 ? null
                 : new BukkitItemStack(inventory.getItem(slot));
@@ -55,7 +55,7 @@ public class BukkitInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getContents() {
+    public ItemStack[] contents() {
         org.bukkit.inventory.ItemStack[] contents = inventory.getContents();
         ItemStack[] abstractContents = new ItemStack[contents.length];
         for (int i = 0; i < contents.length; i++) {
@@ -79,7 +79,7 @@ public class BukkitInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getStorageContents() {
+    public ItemStack[] storageContents() {
         org.bukkit.inventory.ItemStack[] storageContents = inventory.getContents();
         ItemStack[] abstractStorageContents = new ItemStack[storageContents.length];
         for (int i = 0; i < storageContents.length; i++) {

@@ -28,19 +28,19 @@ public class ForgeEntity implements Entity {
      *
      * @return The Forge entity.
      */
-    public net.minecraft.entity.Entity getEntity() {
+    public net.minecraft.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUniqueID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getEntityId();
     }
 
@@ -52,13 +52,13 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getCommandSenderName().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getFormattedCommandSenderName() == null) return null;
         return entity.getFormattedCommandSenderName().getFormattedText();
     }
@@ -72,49 +72,49 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new ForgeLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
+    public double x() {
         return entity.posX;
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getY() {
+    public double y() {
         return entity.posY;
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getZ() {
+    public double z() {
         return entity.posZ;
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getYaw() {
+    public float yaw() {
         return entity.rotationPitch;
     }
 
     /** {@inheritDoc} */
     @Override
-    public float getPitch() {
+    public float pitch() {
         return entity.rotationYaw;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.worldObj.provider.getDimensionName().replace(" ", "_").toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.worldObj.provider.getBiomeGenForCoords((int) entity.posX, (int) entity.posZ)
                 .biomeName;
     }
@@ -122,7 +122,7 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
+        if (!location.world().equals(dimension())) {
             MinecraftServer server = ForgeTaterLibPlugin.server;
             if (server == null) return;
             // TODO: Cross version this and add: location.getWorld().split(":")[1]);
@@ -134,12 +134,12 @@ public class ForgeEntity implements Entity {
                                             .getDimensionName()
                                             .replace(" ", "_")
                                             .toLowerCase()
-                                            .equals(location.getWorld()))
+                                            .equals(location.world()))
                     .findFirst()
                     .ifPresent(
                             worldServer ->
                                     entity.travelToDimension(worldServer.provider.dimensionId));
         }
-        entity.setPosition(location.getX(), location.getY(), location.getZ());
+        entity.setPosition(location.x(), location.y(), location.z());
     }
 }

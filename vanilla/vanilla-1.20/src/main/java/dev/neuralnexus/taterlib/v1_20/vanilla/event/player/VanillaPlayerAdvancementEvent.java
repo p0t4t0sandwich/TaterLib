@@ -19,7 +19,7 @@ public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return advancement.getDisplay().getTitle().getString();
     }
 
@@ -43,7 +43,7 @@ public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
 
         /** {@inheritDoc} */
         @Override
-        public Collection<String> getCriterion() {
+        public Collection<String> criterion() {
             return advancement.getCriteria().keySet();
         }
     }

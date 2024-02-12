@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.plugin;
 
 /** Module interface. */
-public interface Module {
+public interface PluginModule {
     /**
      * Get the name of the module.
      *
      * @return The name of the module
      */
-    String getName();
+    String name();
 
     /** Start the module. */
     void start();

@@ -16,7 +16,7 @@ public interface ItemMeta {
      *
      * @return The display name of the item
      */
-    String getDisplayName();
+    String displayName();
 
     /**
      * Set the display name of the item
@@ -37,7 +37,7 @@ public interface ItemMeta {
      *
      * @return The lore of the item
      */
-    List<String> getLore();
+    List<String> lore();
 
     /**
      * Set the lore of the item
@@ -64,7 +64,7 @@ public interface ItemMeta {
      *
      * @return If the item is unbreakable
      */
-    boolean isUnbreakable();
+    boolean unbreakable();
 
     /**
      * Set if the item is unbreakable

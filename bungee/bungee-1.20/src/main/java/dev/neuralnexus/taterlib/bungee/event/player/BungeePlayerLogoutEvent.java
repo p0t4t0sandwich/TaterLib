@@ -17,13 +17,13 @@ public class BungeePlayerLogoutEvent implements PlayerLogoutEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
+    public ProxyPlayer player() {
         return new BungeePlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         if (!logoutMessage.isEmpty()) {
             return logoutMessage;
         }

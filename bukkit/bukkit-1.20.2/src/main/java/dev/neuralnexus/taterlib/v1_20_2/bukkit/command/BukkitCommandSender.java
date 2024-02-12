@@ -23,13 +23,13 @@ public class BukkitCommandSender implements CommandSender {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return commandSender.getName();
     }
 

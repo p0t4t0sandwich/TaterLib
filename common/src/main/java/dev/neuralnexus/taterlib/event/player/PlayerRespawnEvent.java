@@ -9,7 +9,7 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      *
      * @return The location.
      */
-    Location getRespawnLocation();
+    Location respawnLocation();
 
     /**
      * Weather the respawn location is the player's bed.

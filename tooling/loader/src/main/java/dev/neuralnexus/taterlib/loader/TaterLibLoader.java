@@ -22,12 +22,12 @@ public class TaterLibLoader implements Loader {
     }
 
     @Override
-    public Object getLogger() {
+    public Object logger() {
         return logger;
     }
 
     @Override
-    public Object getPlugin() {
+    public Object plugin() {
         return plugin;
     }
 
@@ -47,11 +47,11 @@ public class TaterLibLoader implements Loader {
 
     @Override
     public void unregisterPlugin(String pluginId) {
-        if (plugins.stream().noneMatch(p -> p.getId().equals(pluginId))) {
+        if (plugins.stream().noneMatch(p -> p.id().equals(pluginId))) {
             throw new IllegalArgumentException(
                     String.format("Plugin with id %s not registered", pluginId));
         }
-        plugins.removeIf(p -> p.getId().equals(pluginId));
+        plugins.removeIf(p -> p.id().equals(pluginId));
     }
 
     @Override

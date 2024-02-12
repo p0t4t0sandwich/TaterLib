@@ -8,7 +8,7 @@ public interface Inventory {
      *
      * @return The size of the inventory
      */
-    int getSize();
+    int size();
 
     /**
      * Get an item at a specific slot from the inventory
@@ -16,7 +16,7 @@ public interface Inventory {
      * @param slot The slot to get the item from
      * @return The item at the slot
      */
-    ItemStack getItem(int slot);
+    ItemStack item(int slot);
 
     /**
      * Set an item at a specific slot in the inventory
@@ -45,7 +45,7 @@ public interface Inventory {
      *
      * @return The name of the inventory
      */
-    ItemStack[] getContents();
+    ItemStack[] contents();
 
     /**
      * Set the name of the inventory
@@ -59,7 +59,7 @@ public interface Inventory {
      *
      * @return The name of the inventory
      */
-    ItemStack[] getStorageContents();
+    ItemStack[] storageContents();
 
     /**
      * Set the name of the inventory

@@ -26,7 +26,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
      *
      * @return The entity.
      */
-    public EntityLivingBase getEntity() {
+    public EntityLivingBase entity() {
         return entity;
     }
 
@@ -40,13 +40,12 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
     @Override
     public void damage(double amount, Entity source) {
         entity.attackEntityFrom(
-                DamageSource.causeMobDamage(((ForgeLivingEntity) source).getEntity()),
-                (float) amount);
+                DamageSource.causeMobDamage(((ForgeLivingEntity) source).entity()), (float) amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.getHealth();
     }
 
@@ -58,7 +57,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
@@ -70,7 +69,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.getMaxHealth();
     }
 

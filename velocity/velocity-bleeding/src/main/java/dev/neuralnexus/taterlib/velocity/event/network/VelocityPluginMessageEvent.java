@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.velocity.event.network;
 
-
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
@@ -19,13 +18,13 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return event.getIdentifier().getId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return event.getData();
     }
 
@@ -41,7 +40,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public ProxyPlayer getPlayer() {
+        public ProxyPlayer player() {
             return new VelocityPlayer((com.velocitypowered.api.proxy.Player) event.getSource());
         }
     }
@@ -58,7 +57,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.server.Server getServer() {
+        public dev.neuralnexus.taterlib.server.Server server() {
             return new VelocityServer((RegisteredServer) event.getSource());
         }
     }

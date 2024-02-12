@@ -19,7 +19,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
+    public ItemStack[] armorContents() {
         ItemStack[] armorContents = new ItemStack[4];
         for (int i = 0; i < 4; i++) {
             armorContents[i] = new FabricItemStack(playerInventory.getArmor(i));
@@ -37,7 +37,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
+    public ItemStack[] extraContents() {
         ItemStack[] extraContents = new ItemStack[2];
         extraContents[0] = new FabricItemStack(playerInventory.getMainHandStack());
         try {
@@ -56,7 +56,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
+    public ItemStack helmet() {
         return new FabricItemStack(playerInventory.getArmor(0));
     }
 
@@ -68,7 +68,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getChestplate() {
+    public ItemStack chestplate() {
         return new FabricItemStack(playerInventory.getArmor(1));
     }
 
@@ -80,7 +80,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getLeggings() {
+    public ItemStack leggings() {
         return new FabricItemStack(playerInventory.getArmor(2));
     }
 
@@ -92,7 +92,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getBoots() {
+    public ItemStack boots() {
         return new FabricItemStack(playerInventory.getArmor(3));
     }
 
@@ -110,14 +110,14 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(String equipmentSlot) {
+    public ItemStack item(String equipmentSlot) {
         // TODO: Implement
         return null;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInMainHand() {
+    public ItemStack itemInMainHand() {
         // TODO: Implement
         return null;
     }
@@ -130,7 +130,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInOffHand() {
+    public ItemStack itemInOffHand() {
         // TODO: Implement
         return null;
     }
@@ -143,7 +143,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public int getHeldItemSlot() {
+    public int heldItemSlot() {
         return playerInventory.selectedSlot;
     }
 }

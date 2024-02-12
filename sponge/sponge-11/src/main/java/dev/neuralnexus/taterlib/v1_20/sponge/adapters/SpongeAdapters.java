@@ -10,7 +10,7 @@ public class SpongeAdapters {
      * @param player The Sponge player.
      * @return The Vanilla player.
      */
-    public static Player getPlayer(org.spongepowered.api.entity.living.player.Player player) {
+    public static Player player(org.spongepowered.api.entity.living.player.Player player) {
         return (Player) player;
     }
 }

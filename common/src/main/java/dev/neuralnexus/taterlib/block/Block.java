@@ -9,12 +9,12 @@ public interface Block {
      *
      * @return The type of the block.
      */
-    String getType();
+    String type();
 
     /**
      * Get the block location.
      *
      * @return The block location.
      */
-    Position getBlockPos();
+    Position blockPos();
 }

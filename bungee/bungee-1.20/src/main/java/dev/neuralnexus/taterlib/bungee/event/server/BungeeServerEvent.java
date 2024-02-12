@@ -10,7 +10,7 @@ import net.md_5.bungee.api.ProxyServer;
 public class BungeeServerEvent implements ServerEvent {
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new BungeeProxyServer(ProxyServer.getInstance());
     }
 }

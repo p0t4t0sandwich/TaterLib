@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.bungee.server;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
-import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
@@ -20,20 +19,20 @@ public class BungeeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return server.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // TODO: Pass this information up through plugin messages as a way to sync the server brand
         return "Unknown";
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
     }
 }

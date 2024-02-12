@@ -17,13 +17,13 @@ public class FabricBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return block.getTranslationKey().split("block\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
+    public Position blockPos() {
         return new Position(pos.x, pos.y, pos.z);
     }
 }

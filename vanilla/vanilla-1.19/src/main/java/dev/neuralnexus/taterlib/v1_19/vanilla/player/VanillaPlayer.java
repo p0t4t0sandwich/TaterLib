@@ -55,37 +55,37 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
      *
      * @return The player
      */
-    public net.minecraft.world.entity.player.Player getPlayer() {
+    public net.minecraft.world.entity.player.Player player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUUID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayer) player).getIpAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
+    public String serverName() {
         return serverName;
     }
 
@@ -116,19 +116,19 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new VanillaPlayerInventory(player.getInventory());
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayer) player).latency;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
     }
 
@@ -138,11 +138,11 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         // TODO: Abstract world information
         ResourceKey<Level> dimension =
                 ResourceKey.create(
-                        Registry.DIMENSION_REGISTRY, new ResourceLocation(location.getWorld()));
+                        Registry.DIMENSION_REGISTRY, new ResourceLocation(location.world()));
         ((ServerPlayer) player)
                 .setRespawnPosition(
                         dimension,
-                        new BlockPos(location.getX(), location.getY(), location.getZ()),
+                        new BlockPos(location.x(), location.y(), location.z()),
                         0.0F,
                         forced,
                         false);
@@ -174,14 +174,14 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(((ServerPlayer) player).gameMode.getGameModeForPlayer().getName());
     }
 
     /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
-        ((ServerPlayer) player).setGameMode(GameType.byId(gameMode.getId()));
+        ((ServerPlayer) player).setGameMode(GameType.byId(gameMode.id()));
     }
 
     /** {@inheritDoc} */

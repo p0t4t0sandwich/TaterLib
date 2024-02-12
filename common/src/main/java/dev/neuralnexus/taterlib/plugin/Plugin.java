@@ -9,14 +9,14 @@ public interface Plugin {
      *
      * @return The name of the plugin.
      */
-    String getName();
+    String name();
 
     /**
      * Get the plugin's id.
      *
      * @return The plugin's id.
      */
-    String getId();
+    String id();
 
     /** Start the plugin. */
     void pluginStart(Object plugin, AbstractLogger logger);

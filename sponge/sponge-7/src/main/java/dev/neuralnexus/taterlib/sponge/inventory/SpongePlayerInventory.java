@@ -23,7 +23,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
+    public ItemStack[] armorContents() {
         EquipmentInventory armor = playerInventory.getEquipment();
         ItemStack[] armorContents = new ItemStack[4];
         armor.peek(EquipmentTypes.HEADWEAR)
@@ -57,7 +57,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
+    public ItemStack[] extraContents() {
         // TODO: Implement
         return new ItemStack[0];
     }
@@ -70,7 +70,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
+    public ItemStack helmet() {
         org.spongepowered.api.item.inventory.ItemStack helmet =
                 playerInventory.getEquipment().peek(EquipmentTypes.HEADWEAR).orElse(null);
         return helmet == null ? null : new SpongeItemStack(helmet);
@@ -88,7 +88,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getChestplate() {
+    public ItemStack chestplate() {
         org.spongepowered.api.item.inventory.ItemStack chestplate =
                 playerInventory.getEquipment().peek(EquipmentTypes.CHESTPLATE).orElse(null);
         return chestplate == null ? null : new SpongeItemStack(chestplate);
@@ -106,7 +106,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getLeggings() {
+    public ItemStack leggings() {
         org.spongepowered.api.item.inventory.ItemStack leggings =
                 playerInventory.getEquipment().peek(EquipmentTypes.LEGGINGS).orElse(null);
         return leggings == null ? null : new SpongeItemStack(leggings);
@@ -124,7 +124,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getBoots() {
+    public ItemStack boots() {
         org.spongepowered.api.item.inventory.ItemStack boots =
                 playerInventory.getEquipment().peek(EquipmentTypes.BOOTS).orElse(null);
         return boots == null ? null : new SpongeItemStack(boots);
@@ -148,14 +148,14 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(String equipmentSlot) {
+    public ItemStack item(String equipmentSlot) {
         // TODO: Implement
         return null;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInMainHand() {
+    public ItemStack itemInMainHand() {
         // TODO: Implement
         return null;
     }
@@ -168,7 +168,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInOffHand() {
+    public ItemStack itemInOffHand() {
         org.spongepowered.api.item.inventory.ItemStack offHand =
                 playerInventory.getEquipment().peek(EquipmentTypes.OFF_HAND).orElse(null);
         return offHand == null ? null : new SpongeItemStack(offHand);
@@ -186,7 +186,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public int getHeldItemSlot() {
+    public int heldItemSlot() {
         // TODO: Implement
         return 0;
     }

@@ -38,7 +38,7 @@ public class BukkitAdapter {
      *
      * @return The Minecraft server.
      */
-    public MinecraftServer getServer() {
+    public MinecraftServer server() {
         return ((CraftServer) Bukkit.getServer()).getServer();
     }
 
@@ -47,11 +47,11 @@ public class BukkitAdapter {
      *
      * @return The CommandDispatcher.
      */
-    public CommandDispatcher<CommandSourceStack> getCommandDispatcher() {
+    public CommandDispatcher<CommandSourceStack> commandDispatcher() {
         // TODO: Abstract to common
         // ((CraftServer)
         // Bukkit.getServer()).getServer().resources.managers().getCommands().getDispatcher();
-        return getServer().resources.managers().getCommands().getDispatcher();
+        return server().resources.managers().getCommands().getDispatcher();
     }
 
     /**
@@ -59,7 +59,7 @@ public class BukkitAdapter {
      *
      * @return The Commands.CommandSelection
      */
-    public Commands.CommandSelection getCommandSelection() {
+    public Commands.CommandSelection commandSelection() {
         // TODO: Abstract to common
         return Commands.CommandSelection.DEDICATED;
     }
@@ -70,7 +70,7 @@ public class BukkitAdapter {
      * @param block The Bukkit block.
      * @return The Vanilla block.
      */
-    public BlockPos getBlockPos(Block block) {
+    public BlockPos blockPos(Block block) {
         return ((CraftBlock) block).getPosition();
     }
 
@@ -80,7 +80,7 @@ public class BukkitAdapter {
      * @param block The Bukkit block.
      * @return The Vanilla block state.
      */
-    public BlockState getBlockState(Block block) {
+    public BlockState blockState(Block block) {
         return ((CraftBlock) block).getNMS();
     }
 
@@ -90,7 +90,7 @@ public class BukkitAdapter {
      * @param player The Bukkit player.
      * @return The Vanilla player.
      */
-    public ServerPlayer getPlayer(Player player) {
+    public ServerPlayer player(Player player) {
         return ((CraftPlayer) player).getHandle();
     }
 
@@ -100,7 +100,7 @@ public class BukkitAdapter {
      * @param world The Bukkit world.
      * @return The Vanilla level.
      */
-    public Level getLevel(World world) {
+    public Level level(World world) {
         return ((CraftWorld) world).getHandle();
     }
 
@@ -110,7 +110,7 @@ public class BukkitAdapter {
      * @param entity The Bukkit entity.
      * @return The Vanilla entity.
      */
-    public Entity getEntity(org.bukkit.entity.Entity entity) {
+    public Entity entity(org.bukkit.entity.Entity entity) {
         return ((CraftEntity) entity).getHandle();
     }
 
@@ -120,7 +120,7 @@ public class BukkitAdapter {
      * @param entity The Bukkit entity.
      * @return The Vanilla damage source.
      */
-    public DamageSource getLastDamageSource(org.bukkit.entity.Entity entity) {
+    public DamageSource lastDamageSource(org.bukkit.entity.Entity entity) {
         Entity nmsEntity = ((CraftEntity) entity).getHandle();
         if (nmsEntity instanceof LivingEntity) {
             return ((LivingEntity) nmsEntity).getLastDamageSource();
@@ -134,7 +134,7 @@ public class BukkitAdapter {
      * @param advancement The Bukkit advancement.
      * @return The Vanilla advancement object.
      */
-    public AdvancementHolder getAdvancement(org.bukkit.advancement.Advancement advancement) {
+    public AdvancementHolder advancement(org.bukkit.advancement.Advancement advancement) {
         return ((CraftAdvancement) advancement).getHandle();
     }
 }

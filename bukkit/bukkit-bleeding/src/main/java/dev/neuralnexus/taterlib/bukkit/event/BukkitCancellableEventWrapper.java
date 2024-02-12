@@ -13,7 +13,7 @@ public class BukkitCancellableEventWrapper<T extends org.bukkit.event.Cancellabl
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return this.event.isCancelled();
     }
 

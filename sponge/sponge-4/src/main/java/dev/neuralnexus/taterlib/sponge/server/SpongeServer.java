@@ -17,13 +17,13 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // Cast this.server to MinecraftServer, then
         // Reflect to get ((MinecraftServer) server).getServerModName()
         try {
@@ -38,7 +38,7 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return server.getOnlinePlayers().stream()
                 .map(SpongePlayer::new)
                 .collect(Collectors.toSet());

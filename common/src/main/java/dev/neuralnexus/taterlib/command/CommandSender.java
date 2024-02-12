@@ -11,14 +11,14 @@ public interface CommandSender {
      *
      * @return The UUID of the player
      */
-    UUID getUniqueId();
+    UUID uuid();
 
     /**
      * Get the name of the player
      *
      * @return The name of the player
      */
-    String getName();
+    String name();
 
     /**
      * Send a message to the sender

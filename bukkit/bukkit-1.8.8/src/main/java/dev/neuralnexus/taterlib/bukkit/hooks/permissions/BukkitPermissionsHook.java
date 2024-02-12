@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.player.Player;
 public class BukkitPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "bukkitpermissions";
     }
 
@@ -24,9 +24,9 @@ public class BukkitPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return ((BukkitPlayer) commandSender).getPlayer().hasPermission(permission);
+            return ((BukkitPlayer) commandSender).player().hasPermission(permission);
         } else {
-            return ((BukkitCommandSender) commandSender).getSender().hasPermission(permission);
+            return ((BukkitCommandSender) commandSender).sender().hasPermission(permission);
         }
     }
 }

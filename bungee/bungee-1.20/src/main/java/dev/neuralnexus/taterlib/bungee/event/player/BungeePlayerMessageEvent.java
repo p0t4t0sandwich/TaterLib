@@ -21,7 +21,7 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -33,13 +33,13 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
+    public ProxyPlayer player() {
         return new BungeePlayer((ProxiedPlayer) event.getSender());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return event.getMessage();
     }
 

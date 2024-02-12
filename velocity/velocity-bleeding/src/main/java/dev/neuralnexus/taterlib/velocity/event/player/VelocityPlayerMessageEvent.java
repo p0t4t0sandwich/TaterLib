@@ -21,7 +21,7 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.getResult().isAllowed();
     }
 
@@ -33,13 +33,13 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
+    public ProxyPlayer player() {
         return new VelocityPlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         if (!message.isEmpty()) {
             return message;
         }

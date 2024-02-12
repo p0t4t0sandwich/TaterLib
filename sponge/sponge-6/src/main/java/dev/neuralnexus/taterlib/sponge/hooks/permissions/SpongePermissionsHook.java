@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 public class SpongePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "spongepermissions";
     }
 
@@ -24,9 +24,9 @@ public class SpongePermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return ((SpongePlayer) commandSender).getPlayer().hasPermission(permission);
+            return ((SpongePlayer) commandSender).player().hasPermission(permission);
         } else {
-            return (((SpongeCommandSender) commandSender).getSender().hasPermission(permission));
+            return (((SpongeCommandSender) commandSender).sender().hasPermission(permission));
         }
     }
 }

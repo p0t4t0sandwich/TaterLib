@@ -39,13 +39,13 @@ public class BukkitItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return "minecraft:" + itemStack.getType().name().toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.getAmount();
     }
 

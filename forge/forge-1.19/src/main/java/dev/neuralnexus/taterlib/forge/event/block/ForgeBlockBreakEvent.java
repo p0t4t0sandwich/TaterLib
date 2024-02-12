@@ -15,7 +15,7 @@ public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlock
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -27,7 +27,7 @@ public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlock
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.getPlayer());
     }
 }

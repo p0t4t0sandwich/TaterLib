@@ -30,20 +30,20 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = VanillaServer.getServer();
+        if (!location.world().equals(dimension())) {
+            MinecraftServer server = VanillaServer.server();
             if (server == null) return;
             ResourceKey<Level> dimension =
                     ResourceKey.create(
-                            Registries.DIMENSION, new ResourceLocation(location.getWorld()));
+                            Registries.DIMENSION, new ResourceLocation(location.world()));
             ServerLevel serverLevel = server.getLevel(dimension);
             if (serverLevel == null) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
                         serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
@@ -51,6 +51,6 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
                 entity.changeDimension(serverLevel);
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

@@ -17,7 +17,7 @@ public class VanillaCommandSenderMixin_1_19_1 {
     @Overwrite
     public void sendMessage(String message) {
         ((VanillaCommandSender) (Object) this)
-                .getSender()
+                .sender()
                 .sendSystemMessage(Component.nullToEmpty(message));
     }
 }

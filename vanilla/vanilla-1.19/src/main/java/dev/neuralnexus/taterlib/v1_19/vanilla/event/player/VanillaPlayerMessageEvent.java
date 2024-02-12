@@ -21,8 +21,8 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -33,7 +33,7 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return message;
     }
 

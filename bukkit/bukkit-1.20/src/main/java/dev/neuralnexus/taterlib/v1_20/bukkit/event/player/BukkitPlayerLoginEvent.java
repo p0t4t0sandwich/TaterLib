@@ -15,7 +15,7 @@ public class BukkitPlayerLoginEvent extends BukkitPlayerEvent implements PlayerL
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         return event.getJoinMessage();
     }
 

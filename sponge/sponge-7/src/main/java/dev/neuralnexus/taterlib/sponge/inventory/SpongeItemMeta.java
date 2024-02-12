@@ -33,7 +33,7 @@ public class SpongeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
             return null;
         }
@@ -54,7 +54,7 @@ public class SpongeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public List<String> getLore() {
+    public List<String> lore() {
         if (!itemStack.get(Keys.ITEM_LORE).isPresent()) {
             return null;
         }
@@ -84,7 +84,7 @@ public class SpongeItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isUnbreakable() {
+    public boolean unbreakable() {
         return itemStack.get(Keys.UNBREAKABLE).isPresent();
     }
 

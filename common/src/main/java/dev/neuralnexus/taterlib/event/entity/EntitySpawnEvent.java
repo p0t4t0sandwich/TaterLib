@@ -10,5 +10,5 @@ public interface EntitySpawnEvent extends EntityEvent, Cancellable {
      *
      * @return The location of the entity.
      */
-    Location getLocation();
+    Location location();
 }

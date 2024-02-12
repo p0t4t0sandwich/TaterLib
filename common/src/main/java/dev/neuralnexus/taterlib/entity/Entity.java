@@ -11,14 +11,14 @@ public interface Entity extends Nameable {
      *
      * @return The UUID of the entity
      */
-    UUID getUniqueId();
+    UUID uuid();
 
     /**
      * Get the id of the entity
      *
      * @return The id of the entity
      */
-    int getEntityId();
+    int entityId();
 
     /** Remove the entity */
     void remove();
@@ -28,63 +28,63 @@ public interface Entity extends Nameable {
      *
      * @return The type of the entity
      */
-    String getType();
+    String type();
 
     /**
      * Get the location of the entity
      *
      * @return The position of the entity
      */
-    Location getLocation();
+    Location location();
 
     /**
      * Get the x position of the entity
      *
      * @return The x position of the entity
      */
-    double getX();
+    double x();
 
     /**
      * Get the y position of the entity
      *
      * @return The y position of the entity
      */
-    double getY();
+    double y();
 
     /**
      * Get the z position of the entity
      *
      * @return The z position of the entity
      */
-    double getZ();
+    double z();
 
     /**
      * Get the yaw of the entity
      *
      * @return The yaw of the entity
      */
-    float getYaw();
+    float yaw();
 
     /**
      * Get the pitch of the entity
      *
      * @return The pitch of the entity
      */
-    float getPitch();
+    float pitch();
 
     /**
      * Get the current dimension of the entity
      *
      * @return The current dimension of the entity
      */
-    String getDimension();
+    String dimension();
 
     /**
      * Get the current biome of the entity
      *
      * @return The current biome of the entity
      */
-    String getBiome();
+    String biome();
 
     /**
      * Teleport the entity to the given Location
@@ -99,6 +99,6 @@ public interface Entity extends Nameable {
      * @param entity The entity to teleport the entity to
      */
     default void teleport(Entity entity) {
-        teleport(entity.getLocation());
+        teleport(entity.location());
     }
 }

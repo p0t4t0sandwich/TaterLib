@@ -38,7 +38,7 @@ public class VanillaCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<CommandSourceStack> getDispatcher() {
+    public CommandDispatcher<CommandSourceStack> dispatcher() {
         return dispatcher;
     }
 
@@ -57,13 +57,13 @@ public class VanillaCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender getSender(CommandSourceStack source) {
+    public CommandSender sender(CommandSourceStack source) {
         return new VanillaCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer(CommandSourceStack source) {
+    public Player player(CommandSourceStack source) {
         return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 

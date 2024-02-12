@@ -15,6 +15,6 @@ public class BungeeCommandRegisterEvent implements CommandRegisterEvent {
                 .getPluginManager()
                 .registerCommand(
                         (net.md_5.bungee.api.plugin.Plugin) plugin,
-                        new BungeeCommandWrapper(command::execute, command.getName()));
+                        new BungeeCommandWrapper(command::execute, command.name()));
     }
 }

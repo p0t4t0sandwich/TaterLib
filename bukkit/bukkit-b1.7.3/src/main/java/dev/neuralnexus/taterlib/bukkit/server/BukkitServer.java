@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
@@ -19,19 +19,19 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "local";
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
-        throw new VersionFeatureNotSuportedException();
+    public String brand() {
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public Set<SimplePlayer> onlinePlayers() {
         return Arrays.stream(server.getOnlinePlayers())
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toSet());

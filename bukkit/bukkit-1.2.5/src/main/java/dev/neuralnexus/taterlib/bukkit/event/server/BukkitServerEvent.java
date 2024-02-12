@@ -16,7 +16,7 @@ public class BukkitServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new BukkitServer(Bukkit.getServer());
     }
 }

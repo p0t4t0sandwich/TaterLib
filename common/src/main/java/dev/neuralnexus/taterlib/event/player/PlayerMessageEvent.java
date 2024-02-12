@@ -12,7 +12,7 @@ public interface PlayerMessageEvent extends PlayerEvent, Cancellable {
      *
      * @return The message
      */
-    String getMessage();
+    String message();
 
     /**
      * Setter for the message

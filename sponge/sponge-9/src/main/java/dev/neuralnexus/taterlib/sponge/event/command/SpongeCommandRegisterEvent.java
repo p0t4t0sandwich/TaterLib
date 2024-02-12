@@ -25,12 +25,12 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
         event.register(
                 (PluginContainer) plugin,
                 org.spongepowered.api.command.Command.builder()
-                        .executor(new SpongeCommandWrapper(command::execute, command.getName()))
-                        .permission(command.getPermission())
-                        .shortDescription(Component.text(command.getDescription()))
+                        .executor(new SpongeCommandWrapper(command::execute, command.name()))
+                        .permission(command.permission())
+                        .shortDescription(Component.text(command.description()))
                         .addParameter(Parameter.string().key("args").build())
                         .build(),
-                command.getName(),
+                command.name(),
                 aliases);
     }
 }

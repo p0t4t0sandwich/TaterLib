@@ -15,7 +15,7 @@ public class FabricServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new FabricServer(server);
     }
 }

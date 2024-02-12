@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.entity.LivingEntity;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
@@ -28,7 +28,7 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
      *
      * @return The Sponge entity.
      */
-    public Living getEntity() {
+    public Living entity() {
         return entity;
     }
 
@@ -45,13 +45,13 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
                 amount,
                 EntityDamageSource.builder()
                         .type(DamageTypes.ATTACK)
-                        .entity(((SpongeLivingEntity) source).getEntity())
+                        .entity(((SpongeLivingEntity) source).entity())
                         .build());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.health().get();
     }
 
@@ -63,21 +63,21 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         // TODO: Find absorption for Sponge 4
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         // TODO: Find absorption for Sponge 4
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.maxHealth().get();
     }
 

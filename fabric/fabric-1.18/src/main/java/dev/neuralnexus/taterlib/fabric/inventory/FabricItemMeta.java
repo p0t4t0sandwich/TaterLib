@@ -28,7 +28,7 @@ public class FabricItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return itemStack.getName().getString();
     }
 
@@ -47,7 +47,7 @@ public class FabricItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public List<String> getLore() {
+    public List<String> lore() {
         // TODO: Implement
         return null;
     }
@@ -66,7 +66,7 @@ public class FabricItemMeta implements ItemMeta {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isUnbreakable() {
+    public boolean unbreakable() {
         // TODO: Implement
         return false;
     }

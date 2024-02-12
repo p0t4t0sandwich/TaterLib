@@ -28,8 +28,8 @@ public class VanillaPlayerBlockBreakEvent extends VanillaBlockEvent
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -40,7 +40,7 @@ public class VanillaPlayerBlockBreakEvent extends VanillaBlockEvent
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new VanillaPlayer(player);
     }
 }

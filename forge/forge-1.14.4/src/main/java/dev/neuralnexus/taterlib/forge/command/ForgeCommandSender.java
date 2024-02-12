@@ -20,13 +20,13 @@ public class ForgeCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public CommandSource getSender() {
+    public CommandSource sender() {
         return source;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         if (source.getEntity() == null) {
             return new UUID(0, 0);
         }
@@ -35,7 +35,7 @@ public class ForgeCommandSender implements CommandSender {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return source.getName();
     }
 

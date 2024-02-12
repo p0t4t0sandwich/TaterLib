@@ -15,7 +15,7 @@ public class SimpleBrigadierWrapper {
     private static int contextWrapper(
             BrigadierCommandRegisterEvent event, CommandContext context, Command command) {
         Object source = context.getSource();
-        CommandSender commandSender = event.getSender(source);
+        CommandSender commandSender = event.sender(source);
         String[] args = new String[] {};
         try {
             args = ((String) context.getArgument("args", String.class)).split(" ");
@@ -23,9 +23,9 @@ public class SimpleBrigadierWrapper {
         }
         boolean isPlayer = event.isPlayer(source);
         if (isPlayer) {
-            commandSender = event.getPlayer(source);
+            commandSender = event.player(source);
         }
-        return command.execute(commandSender, command.getName(), args) ? 1 : 0;
+        return command.execute(commandSender, command.name(), args) ? 1 : 0;
     }
 
     /**
@@ -37,7 +37,7 @@ public class SimpleBrigadierWrapper {
     @SuppressWarnings("rawtypes")
     public static LiteralArgumentBuilder wrapCommand(
             BrigadierCommandRegisterEvent event, Command command) {
-        return literal(command.getName())
+        return literal(command.name())
                 .then(
                         argument("args", greedyString())
                                 .executes(context -> contextWrapper(event, context, command)))

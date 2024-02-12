@@ -15,7 +15,7 @@ public class BukkitBlockBreakEvent extends BukkitBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -27,7 +27,7 @@ public class BukkitBlockBreakEvent extends BukkitBlockEvent implements PlayerBlo
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new BukkitPlayer(event.getPlayer());
     }
 }

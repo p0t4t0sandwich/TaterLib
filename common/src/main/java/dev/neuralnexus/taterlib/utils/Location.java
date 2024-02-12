@@ -9,7 +9,7 @@ public interface Location {
      *
      * @return The x position.
      */
-    double getX();
+    double x();
 
     /**
      * Setter for the x position.
@@ -23,14 +23,14 @@ public interface Location {
      *
      * @return The block x position.
      */
-    double getBlockX();
+    double blockX();
 
     /**
      * Getter for the y position.
      *
      * @return The y position.
      */
-    double getY();
+    double y();
 
     /**
      * Setter for the y position.
@@ -44,14 +44,14 @@ public interface Location {
      *
      * @return The block y position.
      */
-    double getBlockY();
+    double blockY();
 
     /**
      * Getter for the z position.
      *
      * @return The z position.
      */
-    double getZ();
+    double z();
 
     /**
      * Setter for the z position.
@@ -65,14 +65,14 @@ public interface Location {
      *
      * @return The block z position.
      */
-    double getBlockZ();
+    double blockZ();
 
     /**
      * Getter for the yaw.
      *
      * @return The yaw.
      */
-    float getYaw();
+    float yaw();
 
     /**
      * Setter for the yaw.
@@ -86,7 +86,7 @@ public interface Location {
      *
      * @return The pitch.
      */
-    float getPitch();
+    float pitch();
 
     /**
      * Setter for the pitch.
@@ -100,14 +100,14 @@ public interface Location {
      *
      * @return The block position.
      */
-    Position getBlockPosition();
+    Position blockPosition();
 
     /**
      * Getter for the world.
      *
      * @return The world.
      */
-    String getWorld();
+    String world();
 
     /**
      * Setter for the world.

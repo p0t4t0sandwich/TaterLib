@@ -15,11 +15,7 @@ public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
     public void registerCommand(Object plugin, Command command, String... aliases) {
         CommandManager commandManager = ((ProxyServer) plugin).getCommandManager();
         CommandMeta commandMeta =
-                commandManager
-                        .metaBuilder(command.getName())
-                        .aliases(aliases)
-                        .plugin(plugin)
-                        .build();
+                commandManager.metaBuilder(command.name()).aliases(aliases).plugin(plugin).build();
         commandManager.register(commandMeta, new VelocityCommandWrapper(command::execute));
     }
 }

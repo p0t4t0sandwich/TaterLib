@@ -39,13 +39,13 @@ public class SpongeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return itemStack.getItem().getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.getQuantity();
     }
 

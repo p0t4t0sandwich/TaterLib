@@ -20,8 +20,8 @@ public class PaperPlayerAdvancementListener implements Listener {
     public void onPlayerAdvancementProgress(PlayerAdvancementCriterionGrantEvent event) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
                 new VanillaPlayerAdvancementEvent.AdvancementProgress(
-                        BukkitAdapter.get().getPlayer(event.getPlayer()),
-                        BukkitAdapter.get().getAdvancement(event.getAdvancement()),
+                        BukkitAdapter.get().player(event.getPlayer()),
+                        BukkitAdapter.get().advancement(event.getAdvancement()),
                         event.getEventName()));
     }
 }

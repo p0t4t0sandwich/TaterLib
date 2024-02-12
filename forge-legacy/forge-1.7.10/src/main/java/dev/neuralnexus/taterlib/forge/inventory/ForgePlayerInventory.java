@@ -21,7 +21,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
+    public ItemStack[] armorContents() {
         ItemStack[] armorContents = new ItemStack[4];
         for (int i = 0; i < 4; i++) {
             armorContents[i] = new ForgeItemStack(playerInventory.armorInventory[i]);
@@ -40,7 +40,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
+    public ItemStack[] extraContents() {
         // 1.8.9 doesn't have offhand
         return new ItemStack[2];
     }
@@ -53,7 +53,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
+    public ItemStack helmet() {
         return new ForgeItemStack(playerInventory.armorInventory[0]);
     }
 
@@ -65,7 +65,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getChestplate() {
+    public ItemStack chestplate() {
         return new ForgeItemStack(playerInventory.armorInventory[1]);
     }
 
@@ -77,7 +77,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getLeggings() {
+    public ItemStack leggings() {
         return new ForgeItemStack(playerInventory.armorInventory[2]);
     }
 
@@ -89,7 +89,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getBoots() {
+    public ItemStack boots() {
         return new ForgeItemStack(playerInventory.armorInventory[3]);
     }
 
@@ -107,14 +107,14 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(String type) {
+    public ItemStack item(String type) {
         // TODO: Implement
         return null;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInMainHand() {
+    public ItemStack itemInMainHand() {
         // TODO: Implement
         return null;
     }
@@ -127,7 +127,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInOffHand() {
+    public ItemStack itemInOffHand() {
         // TODO: Implement
         return null;
     }
@@ -140,7 +140,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public int getHeldItemSlot() {
+    public int heldItemSlot() {
         return playerInventory.currentItem;
     }
 }

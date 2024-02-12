@@ -33,7 +33,7 @@ public class VanillaServerReflect {
      *
      * @return The instance
      */
-    public static SimpleServer getInstance() {
+    public static SimpleServer instance() {
         try {
             return (SimpleServer)
                     Class.forName(

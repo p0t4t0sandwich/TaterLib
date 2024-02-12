@@ -13,7 +13,7 @@ import net.minecraftforge.server.permission.nodes.PermissionTypes;
 public class ForgePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "forgepermissions";
     }
 
@@ -41,8 +41,8 @@ public class ForgePermissionsHook implements PermissionsHook {
                                                     .resolve(
                                                             (ServerPlayer)
                                                                     ((ForgePlayer) commandSender)
-                                                                            .getPlayer(),
-                                                            commandSender.getUniqueId()));
+                                                                            .player(),
+                                                            commandSender.uuid()));
         }
         return false;
     }

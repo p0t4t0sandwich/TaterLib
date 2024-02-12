@@ -12,7 +12,7 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 public class SpongePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "spongepermissions";
     }
 
@@ -26,9 +26,10 @@ public class SpongePermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof Player) {
-            return ((ServerPlayer) ((SpongePlayer) commandSender).getPlayer()).hasPermission(permission);
+            return ((ServerPlayer) ((SpongePlayer) commandSender).player())
+                    .hasPermission(permission);
         } else {
-            return (((SpongeCommandSender) commandSender).getSender().hasPermission(permission));
+            return (((SpongeCommandSender) commandSender).sender().hasPermission(permission));
         }
     }
 }

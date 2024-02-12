@@ -18,7 +18,7 @@ public class VanillaPlayerLoginEvent extends VanillaPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         return player.getName().getString() + " joined the game";
     }
 

@@ -14,17 +14,17 @@ public interface SimpleServer {
      *
      * @return The name of the server.
      */
-    String getName();
+    String name();
 
     /** Get the server's brand. */
-    String getBrand();
+    String brand();
 
     /**
      * Get the set of online players.
      *
      * @return The set of online players.
      */
-    Set<SimplePlayer> getOnlinePlayers();
+    Set<SimplePlayer> onlinePlayers();
 
     /**
      * Broadcast a message to the server.
@@ -32,6 +32,6 @@ public interface SimpleServer {
      * @param message The message to broadcast.
      */
     default void broadcastMessage(String message) {
-        getOnlinePlayers().forEach(player -> player.sendMessage(message));
+        onlinePlayers().forEach(player -> player.sendMessage(message));
     }
 }

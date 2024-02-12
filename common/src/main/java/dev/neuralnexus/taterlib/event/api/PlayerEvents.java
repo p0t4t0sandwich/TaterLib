@@ -48,7 +48,7 @@ public final class PlayerEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(
                 Arrays.asList(
                         ADVANCEMENT_FINISHED,

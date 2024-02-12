@@ -27,7 +27,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -39,13 +39,13 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(players[0]);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         if (!this.message.isEmpty()) {
             return this.message;
         }

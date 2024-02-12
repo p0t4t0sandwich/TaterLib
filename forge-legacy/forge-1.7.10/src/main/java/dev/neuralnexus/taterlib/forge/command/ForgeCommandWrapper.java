@@ -24,7 +24,7 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public String getCommandName() {
-        return command.getName();
+        return command.name();
     }
 
     @Override
@@ -34,15 +34,15 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public String getCommandUsage(ICommandSender iCommandSender) {
-        return command.getUsage();
+        return command.usage();
     }
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
         if (sender instanceof EntityPlayer) {
-            command.execute(new ForgePlayer((EntityPlayer) sender), command.getName(), args);
+            command.execute(new ForgePlayer((EntityPlayer) sender), command.name(), args);
         } else {
-            command.execute(new ForgeSender(sender, command), command.getName(), args);
+            command.execute(new ForgeSender(sender, command), command.name(), args);
         }
     }
 }

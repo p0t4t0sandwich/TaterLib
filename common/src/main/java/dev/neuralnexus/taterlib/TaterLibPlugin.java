@@ -9,12 +9,12 @@ import dev.neuralnexus.taterlib.plugin.Plugin;
 /** General TaterLib plugin interface. */
 public interface TaterLibPlugin extends Plugin {
     @Override
-    default String getName() {
+    default String name() {
         return TaterLib.Constants.PROJECT_NAME;
     }
 
     @Override
-    default String getId() {
+    default String id() {
         return TaterLib.Constants.PROJECT_ID;
     }
 
@@ -33,7 +33,7 @@ public interface TaterLibPlugin extends Plugin {
     @Override
     default void pluginStop() {
         TaterLib.stop();
-        TaterLib.getLogger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
+        TaterLib.logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
         PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }

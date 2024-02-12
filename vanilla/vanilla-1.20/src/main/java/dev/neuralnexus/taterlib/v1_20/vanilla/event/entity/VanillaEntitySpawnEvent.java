@@ -20,8 +20,8 @@ public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -32,7 +32,7 @@ public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new VanillaLocation(entity);
     }
 }

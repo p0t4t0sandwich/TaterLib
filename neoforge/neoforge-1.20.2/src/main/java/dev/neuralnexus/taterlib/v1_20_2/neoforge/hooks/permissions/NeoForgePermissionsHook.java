@@ -13,7 +13,7 @@ import net.neoforged.neoforge.server.permission.nodes.PermissionTypes;
 public class NeoForgePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "neoforgepermissions";
     }
 
@@ -41,8 +41,8 @@ public class NeoForgePermissionsHook implements PermissionsHook {
                                                     .resolve(
                                                             (ServerPlayer)
                                                                     ((VanillaPlayer) commandSender)
-                                                                            .getPlayer(),
-                                                            commandSender.getUniqueId()));
+                                                                            .player(),
+                                                            commandSender.uuid()));
         }
         return false;
     }

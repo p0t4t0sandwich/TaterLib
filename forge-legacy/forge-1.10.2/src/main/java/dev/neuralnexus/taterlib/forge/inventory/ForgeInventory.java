@@ -23,13 +23,13 @@ public class ForgeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public int getSize() {
+    public int size() {
         return inventory.getSizeInventory();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(int slot) {
+    public ItemStack item(int slot) {
         return new ForgeItemStack(inventory.getStackInSlot(slot));
     }
 
@@ -50,8 +50,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 inventory.removeStackFromSlot(i);
                 return;
             }
@@ -60,9 +60,9 @@ public class ForgeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getContents() {
-        ItemStack[] abstractContents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
+    public ItemStack[] contents() {
+        ItemStack[] abstractContents = new ItemStack[size()];
+        for (int i = 0; i < size(); i++) {
             abstractContents[i] = new ForgeItemStack(inventory.getStackInSlot(i));
         }
         return abstractContents;
@@ -71,14 +71,14 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] items) {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             inventory.setInventorySlotContents(i, ((ForgeItemStack) items[i]).getItemStack());
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getStorageContents() {
+    public ItemStack[] storageContents() {
         // TODO: Implement
         return new ItemStack[0];
     }
@@ -92,8 +92,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 return true;
             }
         }
@@ -103,8 +103,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 return true;
             }
         }
@@ -115,9 +115,9 @@ public class ForgeInventory implements Inventory {
     @Override
     public boolean containsAtLeast(ItemStack item, int count) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                total += item(i).count();
             }
         }
         return total >= count;
@@ -127,9 +127,9 @@ public class ForgeInventory implements Inventory {
     @Override
     public boolean containsAtLeast(String type, int count) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
+                total += item(i).count();
             }
         }
         return total >= count;
@@ -139,9 +139,9 @@ public class ForgeInventory implements Inventory {
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                map.put(i, getItem(i));
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                map.put(i, item(i));
             }
         }
         return map;
@@ -150,8 +150,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 return i;
             }
         }
@@ -161,8 +161,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 return i;
             }
         }
@@ -172,8 +172,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals("minecraft:air")) {
                 return i;
             }
         }
@@ -183,8 +183,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 inventory.removeStackFromSlot(i);
             }
         }
@@ -193,8 +193,8 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 inventory.removeStackFromSlot(i);
             }
         }

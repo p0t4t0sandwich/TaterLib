@@ -15,7 +15,7 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         return event.getQuitMessage();
     }
 

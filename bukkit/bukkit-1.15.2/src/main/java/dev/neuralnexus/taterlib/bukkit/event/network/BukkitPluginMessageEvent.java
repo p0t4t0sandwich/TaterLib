@@ -14,13 +14,13 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return this.channel;
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return this.data;
     }
 
@@ -36,7 +36,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer getPlayer() {
+        public dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer player() {
             return new dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer(this.player);
         }
     }

@@ -1,31 +1,36 @@
-package dev.neuralnexus.taterlib.command;
+package dev.neuralnexus.taterlib.modules.core.command;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.Utils;
+import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.player.Player;
 
 public class TaterLibCommand implements Command {
     private String name = "taterlib";
 
-    public String getName() {
+    @Override
+    public String name() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
+    @Override
+    public String description() {
         return "TaterLib command.";
     }
 
     @Override
-    public String getUsage() {
+    public String usage() {
         return "&cUsage: /taterlib <reload | version>";
     }
 
     @Override
-    public String getPermission() {
+    public String permission() {
         return "taterlib.command";
     }
 
@@ -33,7 +38,7 @@ public class TaterLibCommand implements Command {
     public String execute(String[] args) {
         String text;
         if (args.length == 0) {
-            return getUsage();
+            return usage();
         }
         switch (args[0].toLowerCase()) {
             case "reload":
@@ -53,7 +58,7 @@ public class TaterLibCommand implements Command {
                                 + TaterLib.Constants.PROJECT_VERSION;
                 break;
             default:
-                text = getUsage();
+                text = usage();
                 break;
         }
         return text;
@@ -62,7 +67,7 @@ public class TaterLibCommand implements Command {
     @Override
     public boolean execute(CommandSender commandSender, String label, String[] args) {
         if (commandSender instanceof Player) {
-            if (!commandSender.hasPermission(getPermission())) {
+            if (!commandSender.hasPermission(permission())) {
                 commandSender.sendMessage(
                         Utils.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));

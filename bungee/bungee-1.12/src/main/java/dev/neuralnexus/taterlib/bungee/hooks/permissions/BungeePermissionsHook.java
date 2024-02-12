@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.player.ProxyPlayer;
 public class BungeePermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "bungeepermissions";
     }
 
@@ -24,9 +24,9 @@ public class BungeePermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(CommandSender commandSender, String permission) {
         if (commandSender instanceof ProxyPlayer) {
-            return ((BungeePlayer) commandSender).getPlayer().hasPermission(permission);
+            return ((BungeePlayer) commandSender).player().hasPermission(permission);
         } else {
-            return ((BungeeCommandSender) commandSender).getSender().hasPermission(permission);
+            return ((BungeeCommandSender) commandSender).sender().hasPermission(permission);
         }
     }
 }

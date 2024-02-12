@@ -7,7 +7,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The armor contents of the inventory
      */
-    ItemStack[] getArmorContents();
+    ItemStack[] armorContents();
 
     /** Set the armor contents of the inventory */
     void setArmorContents(ItemStack[] items);
@@ -17,7 +17,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The extra contents of the inventory
      */
-    ItemStack[] getExtraContents();
+    ItemStack[] extraContents();
 
     /** Set the extra contents of the inventory */
     void setExtraContents(ItemStack[] items);
@@ -27,7 +27,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The helmet of the inventory
      */
-    ItemStack getHelmet();
+    ItemStack helmet();
 
     /**
      * Set the helmet of the inventory
@@ -41,7 +41,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The chestplate of the inventory
      */
-    ItemStack getChestplate();
+    ItemStack chestplate();
 
     /**
      * Set the chestplate of the inventory
@@ -55,7 +55,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The leggings of the inventory
      */
-    ItemStack getLeggings();
+    ItemStack leggings();
 
     /**
      * Set the leggings of the inventory
@@ -69,7 +69,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The boots of the inventory
      */
-    ItemStack getBoots();
+    ItemStack boots();
 
     /**
      * Set the boots of the inventory
@@ -92,14 +92,14 @@ public interface PlayerInventory extends Inventory {
      * @param equipmentSlot The equipment slot to get the item from
      * @return The item in the equipment slot
      */
-    ItemStack getItem(String equipmentSlot);
+    ItemStack item(String equipmentSlot);
 
     /**
      * Get the held item of the inventory
      *
      * @return The held item of the inventory
      */
-    ItemStack getItemInMainHand();
+    ItemStack itemInMainHand();
 
     /**
      * Set the held item of the inventory
@@ -113,7 +113,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The offhand item of the inventory
      */
-    ItemStack getItemInOffHand();
+    ItemStack itemInOffHand();
 
     /**
      * Set the offhand item of the inventory
@@ -127,5 +127,5 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The held item slot of the inventory
      */
-    int getHeldItemSlot();
+    int heldItemSlot();
 }

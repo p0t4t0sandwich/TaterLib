@@ -21,14 +21,14 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return PlainTextComponentSerializer.plainText()
                 .serialize(event.advancement().asComponent());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(event.player());
     }
 
@@ -52,7 +52,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
 
         /** {@inheritDoc} */
         @Override
-        public Collection<String> getCriterion() {
+        public Collection<String> criterion() {
             return new HashSet<>();
         }
     }

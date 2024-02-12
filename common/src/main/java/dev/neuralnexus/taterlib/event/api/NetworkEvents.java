@@ -31,7 +31,7 @@ public class NetworkEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(
                 Arrays.asList(
                         PLUGIN_MESSAGE,

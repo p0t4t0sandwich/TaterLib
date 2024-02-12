@@ -24,7 +24,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
+    public ItemStack[] armorContents() {
         ItemStack[] armorContents = new ItemStack[4];
         playerInventory.forEach(
                 inventory -> {
@@ -75,7 +75,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
+    public ItemStack[] extraContents() {
         // TODO: Implement
         return new ItemStack[0];
     }
@@ -88,7 +88,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
+    public ItemStack helmet() {
         org.spongepowered.api.item.inventory.ItemStack[] helmet =
                 new org.spongepowered.api.item.inventory.ItemStack[1];
         playerInventory.forEach(
@@ -120,7 +120,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getChestplate() {
+    public ItemStack chestplate() {
         org.spongepowered.api.item.inventory.ItemStack[] chestplate =
                 new org.spongepowered.api.item.inventory.ItemStack[1];
         playerInventory.forEach(
@@ -152,7 +152,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getLeggings() {
+    public ItemStack leggings() {
         org.spongepowered.api.item.inventory.ItemStack[] leggings =
                 new org.spongepowered.api.item.inventory.ItemStack[1];
         playerInventory.forEach(
@@ -184,7 +184,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getBoots() {
+    public ItemStack boots() {
         org.spongepowered.api.item.inventory.ItemStack[] boots =
                 new org.spongepowered.api.item.inventory.ItemStack[1];
         playerInventory.forEach(
@@ -221,14 +221,14 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(String equipmentSlot) {
+    public ItemStack item(String equipmentSlot) {
         // TODO: Implement
         return null;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInMainHand() {
+    public ItemStack itemInMainHand() {
         // TODO: Implement
         return null;
     }
@@ -241,7 +241,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItemInOffHand() {
+    public ItemStack itemInOffHand() {
         // TODO: Implement
         return null;
         //        ItemStack offHand =
@@ -261,7 +261,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     /** {@inheritDoc} */
     @Override
-    public int getHeldItemSlot() {
+    public int heldItemSlot() {
         // TODO: Implement
         return 0;
     }

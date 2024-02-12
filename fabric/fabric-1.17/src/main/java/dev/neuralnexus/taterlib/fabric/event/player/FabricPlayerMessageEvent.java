@@ -23,7 +23,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return ci.isCancelled();
     }
 
@@ -37,7 +37,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return message;
     }
 

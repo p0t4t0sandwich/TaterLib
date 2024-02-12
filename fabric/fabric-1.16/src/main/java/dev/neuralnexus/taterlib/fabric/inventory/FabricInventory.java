@@ -21,13 +21,13 @@ public class FabricInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public int getSize() {
+    public int size() {
         return inventory.size();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(int slot) {
+    public ItemStack item(int slot) {
         return new FabricItemStack(inventory.getStack(slot));
     }
 
@@ -40,8 +40,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals("minecraft:air")) {
                 setItem(i, item);
                 break;
             }
@@ -51,9 +51,9 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            String itemName = getItem(i).getType();
-            if (itemName.equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            String itemName = item(i).type();
+            if (itemName.equals(item.type())) {
                 inventory.removeStack(i);
             }
         }
@@ -61,11 +61,11 @@ public class FabricInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getContents() {
-        int size = getSize();
+    public ItemStack[] contents() {
+        int size = size();
         ItemStack[] contents = new ItemStack[size];
         for (int i = 0; i < size; i++) {
-            contents[i] = getItem(i);
+            contents[i] = item(i);
         }
 
         return contents;
@@ -74,17 +74,17 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setContents(ItemStack[] item) {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             setItem(i, item[i]);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getStorageContents() {
-        ItemStack[] contents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
+    public ItemStack[] storageContents() {
+        ItemStack[] contents = new ItemStack[size()];
+        for (int i = 0; i < size(); i++) {
+            contents[i] = item(i);
         }
 
         return contents;
@@ -93,7 +93,7 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] item) {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             setItem(i, item[i]);
         }
     }
@@ -101,8 +101,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 return true;
             }
         }
@@ -112,8 +112,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 return true;
             }
         }
@@ -124,9 +124,9 @@ public class FabricInventory implements Inventory {
     @Override
     public boolean containsAtLeast(ItemStack item, int amount) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                total += item(i).count();
             }
         }
         return total >= amount;
@@ -136,9 +136,9 @@ public class FabricInventory implements Inventory {
     @Override
     public boolean containsAtLeast(String type, int count) {
         int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
-                total += getItem(i).getCount();
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
+                total += item(i).count();
             }
         }
         return total >= count;
@@ -148,9 +148,9 @@ public class FabricInventory implements Inventory {
     @Override
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, ItemStack> map = new HashMap<>();
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                map.put(i, getItem(i));
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
+                map.put(i, item(i));
             }
         }
         return map;
@@ -159,8 +159,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 return i;
             }
         }
@@ -170,8 +170,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 return i;
             }
         }
@@ -181,8 +181,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int firstEmpty() {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals("minecraft:air")) {
                 return i;
             }
         }
@@ -192,8 +192,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(item.type())) {
                 inventory.removeStack(i);
             }
         }
@@ -202,8 +202,8 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (item(i).type().equals(type)) {
                 inventory.removeStack(i);
             }
         }
@@ -212,7 +212,7 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void clear() {
-        for (int i = 0; i < getSize(); i++) {
+        for (int i = 0; i < size(); i++) {
             inventory.removeStack(i);
         }
     }

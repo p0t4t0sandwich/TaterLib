@@ -25,7 +25,7 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
      *
      * @return The entity.
      */
-    public net.minecraft.entity.LivingEntity getEntity() {
+    public net.minecraft.entity.LivingEntity entity() {
         return entity;
     }
 
@@ -38,12 +38,12 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
     /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(DamageSource.mob(((FabricLivingEntity) source).getEntity()), (float) amount);
+        entity.damage(DamageSource.mob(((FabricLivingEntity) source).entity()), (float) amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.getHealth();
     }
 
@@ -55,7 +55,7 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
@@ -67,7 +67,7 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.getHealthMaximum();
     }
 

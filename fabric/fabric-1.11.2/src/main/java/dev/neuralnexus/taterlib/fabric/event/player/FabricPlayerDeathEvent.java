@@ -20,13 +20,13 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new FabricPlayer(player);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDeathMessage() {
+    public String deathMessage() {
         return source.getDeathMessage(player).asFormattedString();
     }
 
@@ -36,7 +36,7 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKeepInventory() {
+    public boolean keepInventory() {
         return false;
     }
 

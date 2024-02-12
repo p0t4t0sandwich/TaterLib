@@ -24,20 +24,17 @@ public class VanillaPlayerMixin_1_19_3 {
     public void setSpawn(Location location, boolean forced) {
         // TODO: Abstract world information
         ResourceLocation resourceLocation;
-        String[] resourceString = location.getWorld().split(":");
+        String[] resourceString = location.world().split(":");
         if (resourceString.length != 1) {
             resourceLocation = new ResourceLocation(resourceString[0], resourceString[1]);
         } else {
             resourceLocation = new ResourceLocation(resourceString[0]);
         }
         ResourceKey<Level> dimension = ResourceKey.create(Registries.DIMENSION, resourceLocation);
-        ((ServerPlayer) ((VanillaPlayer) (Object) (this)).getPlayer())
+        ((ServerPlayer) ((VanillaPlayer) (Object) (this)).player())
                 .setRespawnPosition(
                         dimension,
-                        new BlockPos(
-                                (int) location.getX(),
-                                (int) location.getY(),
-                                (int) location.getZ()),
+                        new BlockPos((int) location.x(), (int) location.y(), (int) location.z()),
                         0,
                         forced,
                         false);

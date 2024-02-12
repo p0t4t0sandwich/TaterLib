@@ -67,7 +67,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static boolean isHooked(String hookName) {
-        return hooks.stream().anyMatch(hook -> hook.getName().equalsIgnoreCase(hookName));
+        return hooks.stream().anyMatch(hook -> hook.name().equalsIgnoreCase(hookName));
     }
 
     /**
@@ -76,7 +76,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static Optional<Hook> getHook(String hookName) {
-        return hooks.stream().filter(hook -> hook.getName().equalsIgnoreCase(hookName)).findFirst();
+        return hooks.stream().filter(hook -> hook.name().equalsIgnoreCase(hookName)).findFirst();
     }
 
     /**
@@ -85,7 +85,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static void removeHook(String hookName) {
-        hooks.removeIf(hook -> hook.getName().equalsIgnoreCase(hookName));
+        hooks.removeIf(hook -> hook.name().equalsIgnoreCase(hookName));
     }
 
     /**

@@ -9,7 +9,7 @@ public interface PlayerAdvancementEvent extends PlayerEvent {
      *
      * @return The advancement
      */
-    String getAdvancement();
+    String advancement();
 
     /** Abstract class for player advancement done events */
     interface AdvancementFinished extends PlayerAdvancementEvent {}
@@ -21,6 +21,6 @@ public interface PlayerAdvancementEvent extends PlayerEvent {
          *
          * @return The criterion
          */
-        Collection<String> getCriterion();
+        Collection<String> criterion();
     }
 }
