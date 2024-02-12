@@ -82,6 +82,13 @@ new issue to discuss the changes you’d like to make.
 
 ### Code style
 
+#### Getter/Setter Methods
+
+It's preferred to use `propertName()` rather than `getPropertyName()` for getter methods, it's a small thing, but it
+helps keep the codebase consistent and makes working with nested properties a bit cleaner.
+
+#### Formatting
+
 To keep things simple, we use [google-java-format](https://plugins.jetbrains.com/plugin/8527-google-java-format) for
 IntelliJ IDEA to format our code. The only deviation from the default settings is that we use the ASOP style format. You
 can set this just by going to `Settings > google-java-format Settings > Code style` and selecting `AOSP` from the
@@ -91,7 +98,7 @@ I usually use the following settings applied under `Settings > Tools > Actions o
 
 - Reformat code
 - Optimize imports
-- Rearage code
+- Rearrange code
 - Run code cleanup
 
 ### Tips, Tricks, and Other Notes

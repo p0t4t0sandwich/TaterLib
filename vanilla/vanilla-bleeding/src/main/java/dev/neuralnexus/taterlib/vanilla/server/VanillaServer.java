@@ -56,12 +56,6 @@ public class VanillaServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String name() {
-        return "local";
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String brand() {
         return server.getServerModName();
     }

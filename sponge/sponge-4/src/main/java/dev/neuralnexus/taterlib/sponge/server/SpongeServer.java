@@ -17,12 +17,6 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String name() {
-        return "local";
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String brand() {
         // Cast this.server to MinecraftServer, then
         // Reflect to get ((MinecraftServer) server).getServerModName()

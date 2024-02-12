@@ -1,8 +1,11 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
+import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.ProxyServer;
+import dev.neuralnexus.taterlib.server.Server;
 
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -12,7 +15,6 @@ import java.util.UUID;
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer {
     private final ProxiedPlayer player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -21,22 +23,6 @@ public class BungeePlayer implements ProxyPlayer {
      */
     public BungeePlayer(ProxiedPlayer player) {
         this.player = player;
-        if (player.getServer() != null) {
-            this.serverName = player.getServer().getInfo().getName();
-        } else {
-            this.serverName = "local";
-        }
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The BungeeCord player.
-     * @param serverName The name of the server the player is on.
-     */
-    public BungeePlayer(ProxiedPlayer player, String serverName) {
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -49,14 +35,23 @@ public class BungeePlayer implements ProxyPlayer {
     }
 
     /**
+     * Gets the proxy server the player is connected to.
+     *
+     * @return The server the player is connected to.
+     */
+    public ProxyServer proxyServer() {
+        return BungeeProxyServer.instance();
+    }
+
+    /**
      * Connect the player to a server.
      *
      * @param serverName The name of the server to connect to.
      */
     @Override
     public void connect(String serverName) {
-        if (ProxyServer.getInstance().getServerInfo(serverName) == null) return;
-        ServerInfo server = ProxyServer.getInstance().getServerInfo(serverName);
+        if (net.md_5.bungee.api.ProxyServer.getInstance().getServerInfo(serverName) == null) return;
+        ServerInfo server = net.md_5.bungee.api.ProxyServer.getInstance().getServerInfo(serverName);
         player.connect(server);
     }
 
@@ -86,14 +81,8 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new BungeeServer(player.getServer().getInfo());
     }
 
     /** {@inheritDoc} */

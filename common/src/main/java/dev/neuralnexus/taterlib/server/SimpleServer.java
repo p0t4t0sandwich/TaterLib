@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.server;
 
+import dev.neuralnexus.taterlib.config.ConfigLoader;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import java.util.Set;
@@ -14,7 +15,9 @@ public interface SimpleServer {
      *
      * @return The name of the server.
      */
-    String name();
+    default String name() {
+        return ConfigLoader.config().server().name();
+    }
 
     /** Get the server's brand. */
     String brand();

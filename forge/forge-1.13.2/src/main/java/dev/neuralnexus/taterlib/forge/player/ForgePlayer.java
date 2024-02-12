@@ -4,9 +4,11 @@ import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +22,7 @@ import java.util.UUID;
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final EntityPlayer player;
-    private String serverName;
+    private final String serverName;
 
     /**
      * Constructor.
@@ -80,14 +82,8 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new ForgeServer(player.getServer());
     }
 
     /** {@inheritDoc} */

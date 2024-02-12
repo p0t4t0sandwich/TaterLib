@@ -25,18 +25,6 @@ public class VanillaPlayer_1_19_3 extends VanillaPlayer {
         this.player = player;
     }
 
-    /**
-     * Constructor.
-     *
-     * @param player The player.
-     * @param serverName The server name.
-     */
-    public VanillaPlayer_1_19_3(
-            net.minecraft.world.entity.player.Player player, String serverName) {
-        super(player, serverName);
-        this.player = player;
-    }
-
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {

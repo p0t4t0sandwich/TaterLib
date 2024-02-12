@@ -20,12 +20,6 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String name() {
-        return "local";
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String brand() {
         return ((CraftServer) server).getServer().getServerModName();
     }

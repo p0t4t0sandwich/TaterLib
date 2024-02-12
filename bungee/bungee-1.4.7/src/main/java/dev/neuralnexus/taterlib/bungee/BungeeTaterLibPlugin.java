@@ -35,7 +35,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         api.setIsPluginLoaded(
                 (pluginId) ->
                         ProxyServer.getInstance().getPluginManager().getPlugin(pluginId) != null);
-        api.setServer(() -> new BungeeProxyServer(ProxyServer.getInstance()));
+        api.setServer(BungeeProxyServer::instance);
     }
 
     @Override

@@ -3,8 +3,10 @@ package dev.neuralnexus.taterlib.sponge.player;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.kyori.adventure.text.Component;
@@ -23,7 +25,6 @@ import java.util.UUID;
 /** Sponge implementation of {@link Player}. */
 public class SpongePlayer extends SpongeLivingEntity implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -33,20 +34,6 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
     public SpongePlayer(org.spongepowered.api.entity.living.player.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Sponge player.
-     * @param serverName The name of the server the player is on.
-     */
-    public SpongePlayer(
-            org.spongepowered.api.entity.living.player.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -84,14 +71,8 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+    public Server server() {
+        return new SpongeServer(Sponge.server());
     }
 
     /** {@inheritDoc} */

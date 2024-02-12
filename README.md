@@ -194,3 +194,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Used configurate to create config system
 - Refactored TaterLib common logic into CommonModule, added TaterModuleLoader, and overall improved module support
 - Reformatted getters to be more idiomatic (e.g. `getInventory` -> `inventory`)
+- Refactor `Player.serverName` into `Player.server().name()` and add `Server#name()`

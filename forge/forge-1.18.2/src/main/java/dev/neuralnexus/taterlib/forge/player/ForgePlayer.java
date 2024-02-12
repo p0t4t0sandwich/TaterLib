@@ -4,9 +4,11 @@ import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import net.minecraft.core.BlockPos;
@@ -19,7 +21,6 @@ import java.util.UUID;
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -29,19 +30,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     public ForgePlayer(net.minecraft.world.entity.player.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Forge player.
-     * @param serverName The server name.
-     */
-    public ForgePlayer(net.minecraft.world.entity.player.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -79,14 +67,8 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new ForgeServer(player.getServer());
     }
 
     /** {@inheritDoc} */

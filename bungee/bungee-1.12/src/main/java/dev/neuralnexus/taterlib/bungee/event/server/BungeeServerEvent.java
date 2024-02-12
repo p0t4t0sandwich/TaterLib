@@ -9,6 +9,6 @@ public class BungeeServerEvent implements ServerEvent {
     /** {@inheritDoc} */
     @Override
     public ProxyServer server() {
-        return new BungeeProxyServer(net.md_5.bungee.api.ProxyServer.getInstance());
+        return BungeeProxyServer.instance();
     }
 }

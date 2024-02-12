@@ -4,7 +4,9 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
+import dev.neuralnexus.taterlib.velocity.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;
 
@@ -13,7 +15,6 @@ import java.util.UUID;
 /** Velocity implementation of {@link ProxyPlayer}. */
 public class VelocityPlayer implements ProxyPlayer {
     private final com.velocitypowered.api.proxy.Player player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -22,22 +23,6 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     public VelocityPlayer(com.velocitypowered.api.proxy.Player player) {
         this.player = player;
-        if (player.getCurrentServer().isPresent()) {
-            this.serverName = player.getCurrentServer().get().getServerInfo().getName();
-        } else {
-            this.serverName = "local";
-        }
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Velocity player.
-     * @param serverName The name of the server the player is on.
-     */
-    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, String serverName) {
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -88,14 +73,9 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        if (!player.getCurrentServer().isPresent()) return null;
+        return new VelocityServer(player.getCurrentServer().get().getServer());
     }
 
     /** {@inheritDoc} */

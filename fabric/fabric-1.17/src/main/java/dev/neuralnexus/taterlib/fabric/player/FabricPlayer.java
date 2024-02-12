@@ -2,9 +2,11 @@ package dev.neuralnexus.taterlib.fabric.player;
 
 import dev.neuralnexus.taterlib.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import me.lucko.fabric.api.permissions.v0.Options;
@@ -23,7 +25,6 @@ import java.util.UUID;
 /** Fabric implementation of {@link Player}. */
 public class FabricPlayer extends FabricLivingEntity implements Player {
     private final PlayerEntity player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -33,19 +34,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     public FabricPlayer(PlayerEntity player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Fabric player.
-     * @param serverName The server name.
-     */
-    public FabricPlayer(PlayerEntity player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -83,14 +71,8 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new FabricServer(player.getServer());
     }
 
     /** {@inheritDoc} */

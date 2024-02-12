@@ -3,9 +3,11 @@ package dev.neuralnexus.taterlib.bukkit.player;
 import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
+import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.utils.Location;
 
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
@@ -17,7 +19,7 @@ import java.util.UUID;
 public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = BukkitTaterLibPlugin.plugin;
-    private String serverName;
+    private final String serverName;
 
     /**
      * Constructor.
@@ -104,14 +106,8 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new BukkitServer(player.getServer());
     }
 
     /** {@inheritDoc} */

@@ -3,9 +3,11 @@ package dev.neuralnexus.taterlib.vanilla.player;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.vanilla.inventory.VanillaPlayerInventory;
+import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -22,7 +24,7 @@ import java.util.UUID;
 /** Vanilla implementation of {@link Player}. */
 public class VanillaPlayer extends VanillaLivingEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
-    private String serverName;
+    private final String serverName;
 
     /**
      * Constructor.
@@ -33,18 +35,6 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         super(player);
         this.player = player;
         this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The player.
-     * @param serverName The server name.
-     */
-    public VanillaPlayer(net.minecraft.world.entity.player.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -82,14 +72,8 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return VanillaServer.instance();
     }
 
     /** {@inheritDoc} */

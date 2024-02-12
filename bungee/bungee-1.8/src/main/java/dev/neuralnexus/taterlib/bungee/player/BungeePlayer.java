@@ -1,6 +1,8 @@
 package dev.neuralnexus.taterlib.bungee.player;
 
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.Server;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -12,7 +14,6 @@ import java.util.UUID;
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer {
     private final ProxiedPlayer player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -21,22 +22,6 @@ public class BungeePlayer implements ProxyPlayer {
      */
     public BungeePlayer(ProxiedPlayer player) {
         this.player = player;
-        if (player.getServer() != null) {
-            this.serverName = player.getServer().getInfo().getName();
-        } else {
-            this.serverName = "local";
-        }
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The BungeeCord player.
-     * @param serverName The name of the server the player is on.
-     */
-    public BungeePlayer(ProxiedPlayer player, String serverName) {
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -86,14 +71,8 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public String serverName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new BungeeServer(player.getServer().getInfo());
     }
 
     /** {@inheritDoc} */

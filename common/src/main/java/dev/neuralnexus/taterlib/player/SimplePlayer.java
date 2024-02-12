@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.placeholder.PlaceholderParser;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 
 /**
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
@@ -22,14 +23,7 @@ public interface SimplePlayer extends CommandSender, Connection {
      *
      * @return The server the player is on
      */
-    String serverName();
-
-    /**
-     * Set the server the player is on
-     *
-     * @param serverName The server the player is on
-     */
-    void setServerName(String serverName);
+    SimpleServer server();
 
     /**
      * Get the prefix of the player
@@ -109,7 +103,7 @@ public interface SimplePlayer extends CommandSender, Connection {
                 .parseString("displayname", this.displayName())
                 .parseString("prefix", this.prefix())
                 .parseString("suffix", this.suffix())
-                .parseString("server", this.serverName())
+                .parseString("server", this.server().name())
                 .parseSectionSign();
     }
 }
