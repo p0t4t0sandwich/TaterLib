@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.fabric.command.FabricCommandSender;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
@@ -16,19 +17,14 @@ public class FabricPermissionsHook implements PermissionsHook {
         return "fabricpermissions";
     }
 
-    /**
-     * Get if a sender has a permission
-     *
-     * @param commandSender The sender to check
-     * @param permission The permission to check
-     * @return If the sender has the permission
-     */
+    /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(CommandSender commandSender, String permission) {
-        if (commandSender instanceof Player) {
-            return Permissions.check(((FabricPlayer) commandSender).player(), permission, 4);
-        } else {
-            return Permissions.check(((FabricCommandSender) commandSender).sender(), permission, 4);
+    public boolean hasPermission(Permissible permissible, String permission) {
+        if (permissible instanceof Player) {
+            return Permissions.check(((FabricPlayer) permissible).player(), permission, 4);
+        } else if (permissible instanceof CommandSender) {
+            return Permissions.check(((FabricCommandSender) permissible).sender(), permission, 4);
         }
+        return false;
     }
 }

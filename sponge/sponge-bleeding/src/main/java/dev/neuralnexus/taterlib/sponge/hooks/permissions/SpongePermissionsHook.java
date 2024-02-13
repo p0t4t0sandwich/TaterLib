@@ -1,11 +1,12 @@
 package dev.neuralnexus.taterlib.sponge.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.command.SpongeCommandSender;
-import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 
+import dev.neuralnexus.taterlib.vanilla.player.VanillaPlayer;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 /** A hook for Sponge permissions */
@@ -16,20 +17,15 @@ public class SpongePermissionsHook implements PermissionsHook {
         return "spongepermissions";
     }
 
-    /**
-     * Get if a sender has a permission
-     *
-     * @param commandSender The sender to check
-     * @param permission The permission to check
-     * @return If the sender has the permission
-     */
+    /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(CommandSender commandSender, String permission) {
-        if (commandSender instanceof Player) {
-            return ((ServerPlayer) ((VanillaPlayer) commandSender).player())
+    public boolean hasPermission(Permissible permissible, String permission) {
+        if (permissible instanceof Player) {
+            return ((ServerPlayer) ((VanillaPlayer) permissible).player())
                     .hasPermission(permission);
-        } else {
-            return (((SpongeCommandSender) commandSender).sender().hasPermission(permission));
+        } else if (permissible instanceof CommandSender) {
+            return (((SpongeCommandSender) permissible).sender().hasPermission(permission));
         }
+        return false;
     }
 }

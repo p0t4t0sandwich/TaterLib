@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.util.UUID;
 
-/** Bukkit implementation of {@link Sender} */
+/** Bukkit implementation of {@link CommandSender} */
 public class ForgeSender implements CommandSender {
     private final ICommandSender sender;
     private final Command command;

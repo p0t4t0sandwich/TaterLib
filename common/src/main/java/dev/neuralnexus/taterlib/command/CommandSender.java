@@ -1,18 +1,9 @@
 package dev.neuralnexus.taterlib.command;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.player.Player;
 
-import java.util.UUID;
-
-public interface CommandSender {
-    /**
-     * Get the UUID of the player
-     *
-     * @return The UUID of the player
-     */
-    UUID uuid();
-
+public interface CommandSender extends Permissible {
     /**
      * Get the name of the player
      *
@@ -21,29 +12,11 @@ public interface CommandSender {
     String name();
 
     /**
-     * Send a message to the sender
+     * Send a message to the command sender
      *
      * @param message The message to send
      */
     void sendMessage(String message);
-
-    /**
-     * Get the permission level of the player
-     *
-     * @param permissionLevel The permission level of the player
-     * @return The permission level of the player
-     */
-    boolean hasPermission(int permissionLevel);
-
-    /**
-     * Check if the sender has a permission
-     *
-     * @param permission The permission to check
-     * @return Whether the player has the permission
-     */
-    default boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
-    }
 
     /**
      * Check if the sender is a player
@@ -52,5 +25,14 @@ public interface CommandSender {
      */
     default boolean isPlayer() {
         return this instanceof Player;
+    }
+
+    /**
+     * Get the player if the sender is a player
+     *
+     * @return The player if the sender is a player
+     */
+    default Player asPlayer() {
+        return (Player) this;
     }
 }

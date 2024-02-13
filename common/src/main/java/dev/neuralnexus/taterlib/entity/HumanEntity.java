@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 
 /** The interface for a HumanEntity */
-public interface HumanEntity extends LivingEntity, InventoryHolder {
+public interface HumanEntity extends LivingEntity, InventoryHolder, Permissible {
     /**
      * Get player's Inventory
      *

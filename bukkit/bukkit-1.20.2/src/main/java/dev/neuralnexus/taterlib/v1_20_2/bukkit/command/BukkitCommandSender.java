@@ -17,7 +17,7 @@ public class BukkitCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public org.bukkit.command.CommandSender getSender() {
+    public org.bukkit.command.CommandSender sender() {
         return commandSender;
     }
 

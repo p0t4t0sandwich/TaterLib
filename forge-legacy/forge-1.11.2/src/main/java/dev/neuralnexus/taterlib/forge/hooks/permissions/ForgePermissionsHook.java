@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.forge.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.forge.command.ForgeSender;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
@@ -18,15 +19,9 @@ public class ForgePermissionsHook implements PermissionsHook {
         return "forgepermissions";
     }
 
-    /**
-     * Get if a sender has a permission
-     *
-     * @param sender The sender to check
-     * @param permission The permission to check
-     * @return If the sender has the permission
-     */
+    /** {@inheritDoc} */
     @Override
-    public boolean hasPermission(CommandSender sender, String permission) {
+    public boolean hasPermission(Permissible sender, String permission) {
         if (sender.hasPermission(4)) {
             return true;
         }
@@ -34,14 +29,19 @@ public class ForgePermissionsHook implements PermissionsHook {
         EntityPlayer player;
         if (sender instanceof Player) {
             player = ((ForgePlayer) sender).getPlayer();
-        } else {
+        } else if (sender instanceof CommandSender) {
             ICommandSender source = ((ForgeSender) sender).sender();
             if (source.getCommandSenderEntity() == null) {
                 return false;
             }
             player = (EntityPlayer) source.getCommandSenderEntity();
+        } else {
+            player = null;
         }
-        return PermissionAPI.getPermissionHandler()
-                .hasPermission(player.getGameProfile(), permission, null);
+        if (player != null) {
+            return PermissionAPI.getPermissionHandler()
+                    .hasPermission(player.getGameProfile(), permission, null);
+        }
+        return false;
     }
 }
