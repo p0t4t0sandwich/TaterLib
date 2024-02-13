@@ -85,38 +85,6 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.position().x();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.position().y();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.position().z();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        // TODO: Find a way to get the yaw
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        // TODO: Find a way to get the pitch
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         if (!entity.get(Keys.MAP_WORLD).isPresent()) {
             return null;

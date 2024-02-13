@@ -85,36 +85,6 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        return entity.getYRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        return entity.getXRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         return entity.getLevel().dimension().location().toString();
     }

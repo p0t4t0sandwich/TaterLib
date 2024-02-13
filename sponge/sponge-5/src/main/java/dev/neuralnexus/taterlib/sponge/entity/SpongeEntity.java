@@ -79,36 +79,6 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.getLocation().getPosition().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.getLocation().getPosition().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.getLocation().getPosition().getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        return (float) entity.getRotation().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        return (float) entity.getRotation().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         return entity.getWorld().getName();
     }

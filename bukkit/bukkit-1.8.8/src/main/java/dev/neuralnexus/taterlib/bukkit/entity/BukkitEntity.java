@@ -72,36 +72,6 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.getLocation().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.getLocation().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.getLocation().getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        return entity.getLocation().getYaw();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        return entity.getLocation().getPitch();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         if (entity.getLocation().getWorld() == null) {
             return null;

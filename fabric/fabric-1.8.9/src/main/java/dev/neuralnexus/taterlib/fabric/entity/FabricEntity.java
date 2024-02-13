@@ -77,36 +77,6 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.getPos().x;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.getPos().y;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.getPos().z;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        return (float) entity.getRotation().x;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        return (float) entity.getRotation().y;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         return entity.world.dimension.getName().replace(" ", "_").toLowerCase();
     }

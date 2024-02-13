@@ -42,35 +42,45 @@ public interface Entity extends Nameable {
      *
      * @return The x position of the entity
      */
-    double x();
+    default double x() {
+        return location().x();
+    }
 
     /**
      * Get the y position of the entity
      *
      * @return The y position of the entity
      */
-    double y();
+    default double y() {
+        return location().y();
+    }
 
     /**
      * Get the z position of the entity
      *
      * @return The z position of the entity
      */
-    double z();
+    default double z() {
+        return location().z();
+    }
 
     /**
      * Get the yaw of the entity
      *
      * @return The yaw of the entity
      */
-    float yaw();
+    default float yaw() {
+        return location().yaw();
+    }
 
     /**
      * Get the pitch of the entity
      *
      * @return The pitch of the entity
      */
-    float pitch();
+    default float pitch() {
+        return location().pitch();
+    }
 
     /**
      * Get the current dimension of the entity

@@ -78,36 +78,6 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return entity.posX;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return entity.posY;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return entity.posZ;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float yaw() {
-        return entity.rotationPitch;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float pitch() {
-        return entity.rotationYaw;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String dimension() {
         return entity.worldObj.provider.getDimensionName().replace(" ", "_").toLowerCase();
     }
