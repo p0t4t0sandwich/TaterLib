@@ -479,12 +479,30 @@ public enum ServerType {
     }
 
     /**
+     * Check if the server is running a NeoForge hybrid.
+     *
+     * @return True if the server is running a NeoForge hybrid, false otherwise.
+     */
+    public boolean isNeoForgeHybrid() {
+        return this.is(MOHIST_NEO, ARCLIGHT_NEO);
+    }
+
+    /**
      * Check if the server is running a fork of Forge.
      *
      * @return True if the server is running a fork of Forge, false otherwise.
      */
     public boolean isForgeBased() {
         return this.is(FORGE, SPONGE_FORGE, NEOFORGE, GOLDENFORGE) || this.isForgeHybrid();
+    }
+
+    /**
+     * Check if the server is running a fork of NeoForge.
+     *
+     * @return True if the server is running a fork of NeoForge, false otherwise.
+     */
+    public boolean isNeoForgeBased() {
+        return this.is(NEOFORGE) || this.isNeoForgeHybrid();
     }
 
     /**

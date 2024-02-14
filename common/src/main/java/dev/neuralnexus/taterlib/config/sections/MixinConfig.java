@@ -91,7 +91,7 @@ public class MixinConfig {
     /** Returns whether the mixin should be applied. */
     public boolean checkMixin() {
         return enabled()
-                && checkVersions(MinecraftVersion.getMinecraftVersion())
+                && checkVersions(MinecraftVersion.minecraftVersion())
                 && checkServerTypes(ServerType.serverType())
                 && checkDepends(TaterAPIProvider.get()::isPluginModLoaded);
     }

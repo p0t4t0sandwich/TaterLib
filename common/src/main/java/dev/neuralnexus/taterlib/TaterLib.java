@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.ConfigLoader;
+import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
@@ -72,6 +73,9 @@ public class TaterLib {
 
         // Config
         ConfigLoader.load();
+
+        // Dump basic debug info
+        new DumpInfo().saveDump();
 
         if (STARTED) {
             instance.logger.info(Constants.PROJECT_NAME + " has already started!");

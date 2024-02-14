@@ -18,7 +18,7 @@ public class BungeeLoaderPlugin extends Plugin {
 
     public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
         String version = "";
-        switch (MinecraftVersion.getMinecraftVersion()) {
+        switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
             case V1_20_2:
@@ -28,7 +28,7 @@ public class BungeeLoaderPlugin extends Plugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".bungee.BungeeTaterLibPlugin";

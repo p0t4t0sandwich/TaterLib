@@ -36,7 +36,7 @@ public class ForgeLoaderPlugin {
 
     public static Plugin getPlugin() {
         String version = "Unsupported";
-        switch (MinecraftVersion.getMinecraftVersion()) {
+        switch (MinecraftVersion.minecraftVersion()) {
             case V1_19:
             case V1_19_1:
             case V1_19_2:
@@ -53,7 +53,7 @@ public class ForgeLoaderPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib." + version + ".forge.ForgeTaterLibPlugin";

@@ -20,7 +20,7 @@ import java.util.Set;
 /** API Provider */
 public class TaterAPIProvider {
     private static final ServerType serverType = ServerType.serverType();
-    private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
+    private static final MinecraftVersion minecraftVersion = MinecraftVersion.minecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
     private static boolean eventListenersRegistered = false;

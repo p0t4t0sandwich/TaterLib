@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.player.Player;
 
 public class TaterLibCommand implements Command {
@@ -56,6 +57,30 @@ public class TaterLibCommand implements Command {
                                 + TaterLib.Constants.PROJECT_NAME
                                 + " v"
                                 + TaterLib.Constants.PROJECT_VERSION;
+                break;
+            case "dump":
+                DumpInfo dumpInfo = new DumpInfo();
+                dumpInfo.saveDump();
+                text =
+                        "&6ServerType: &a"
+                                + dumpInfo.serverType.getName()
+                                + "\n&6MinecraftVersion: &a"
+                                + dumpInfo.minecraftVersion.getVersion()
+                                + "\n&6TaterLibVersion: &a"
+                                + dumpInfo.taterlibVersion
+                                + "\n&6IsForgeHybrid: &a"
+                                + dumpInfo.isForgeHybrid
+                                + "\n&6IsFabricHybrid: &a"
+                                + dumpInfo.isFabricHybrid
+                                + "\n&6IsSpongeForge: &a"
+                                + dumpInfo.isSpongeForge
+                                + "\n&6IsSinytraConnector: &a"
+                                + dumpInfo.isSinytraConnector;
+                break;
+            case "fulldump":
+                DumpInfo fullDumpInfo = new DumpInfo();
+                fullDumpInfo.saveDump();
+                text = "&aFull dump saved to logs/taterlib-fulldump.json";
                 break;
             default:
                 text = usage();

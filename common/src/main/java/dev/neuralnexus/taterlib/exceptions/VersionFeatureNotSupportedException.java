@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 public class VersionFeatureNotSupportedException extends RuntimeException {
     private static final String message =
             "This feature is not supported on Minecraft "
-                    + MinecraftVersion.getMinecraftVersion().toString()
+                    + MinecraftVersion.minecraftVersion().toString()
                     + "!";
 
     public VersionFeatureNotSupportedException() {

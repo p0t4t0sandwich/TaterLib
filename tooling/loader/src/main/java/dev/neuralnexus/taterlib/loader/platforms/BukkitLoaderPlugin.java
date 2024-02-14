@@ -25,7 +25,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public static Plugin getPlugin() {
         String version = "";
-        switch (MinecraftVersion.getMinecraftVersion()) {
+        switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
                 version = "." + MinecraftVersion.V1_20.getDelimiterString();
@@ -39,7 +39,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".bukkit.BukkitTaterLibPlugin";

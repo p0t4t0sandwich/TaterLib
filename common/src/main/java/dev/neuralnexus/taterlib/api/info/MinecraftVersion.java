@@ -221,7 +221,7 @@ public enum MinecraftVersion {
      *
      * @return The version of Minecraft the server is running
      */
-    public static MinecraftVersion getMinecraftVersion() {
+    public static MinecraftVersion minecraftVersion() {
         if (minecraftVersion != UNKNOWN) {
             return minecraftVersion;
         }

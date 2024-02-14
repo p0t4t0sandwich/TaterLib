@@ -96,9 +96,12 @@ General notes:
 
 ## Commands and Permissions
 
-| Command                      | Permission         | Description           |
-|------------------------------|--------------------|-----------------------|
-| `/taterlib <version/reload>` | `taterlib.command` | Root TaterLib Command |
+| Command              | Permission                  | Description              |
+|----------------------|-----------------------------|--------------------------|
+| `/taterlib version`  | `taterlib.command.version`  | Get the TaterLib version |
+| `/taterlib reload`   | `taterlib.command.reload`   | Reload TaterLib config   |
+| `/taterlib dump`     | `taterlib.command.dump`     | Dump TaterLib info       |
+| `/taterlib fulldump` | `taterlib.command.fulldump` | Dump TaterLib info       |
 
 ## Projects that use TaterLib
 
@@ -197,3 +200,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Refactor `Player.serverName` into `Player.server().name()` and add `Server#name()`
 - Added `Permissible` to `CommandSender`, refactored permission hooks to use `Permissible`
 - Added `ModInfo` and `PluginInfo` abstractions
+- Added `DumpInfo` and `FullDumpInfo`, along with the `/taterlib dump | fulldump` commands
