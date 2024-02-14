@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.sponge.hooks.permissions.SpongePermissionsHook;
@@ -18,6 +19,8 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
 
+import java.util.stream.Collectors;
+
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     private PluginContainer container;
 
@@ -28,7 +31,18 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         pluginStart(container, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
-        api.setIsPluginLoaded((pluginId) -> Sponge.pluginManager().plugin(pluginId).isPresent());
+        api.setPluginList(
+                () ->
+                        Sponge.pluginManager().plugins().stream()
+                                .map(
+                                        pluginContainer ->
+                                                new PluginInfo(
+                                                        pluginContainer.metadata().id(),
+                                                        pluginContainer
+                                                                .metadata()
+                                                                .version()
+                                                                .toString()))
+                                .collect(Collectors.toSet()));
         api.setServer(() -> new SpongeServer(Sponge.server()));
     }
 

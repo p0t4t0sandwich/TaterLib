@@ -27,11 +27,12 @@ import java.util.Set;
 public class ConfigLoader {
     private static final Path configPath =
             Paths.get(
-                    TaterAPIProvider.get().configFolder()
+                    TaterAPIProvider.serverType().dataFolders().configFolder()
                             + File.separator
                             + TaterLib.Constants.PROJECT_NAME
                             + File.separator
-                            + "taterlib.conf");
+                            + TaterLib.Constants.PROJECT_ID
+                            + ".conf");
     private static final String defaultConfigPath = "source.taterlib.conf";
     private static Config config;
 

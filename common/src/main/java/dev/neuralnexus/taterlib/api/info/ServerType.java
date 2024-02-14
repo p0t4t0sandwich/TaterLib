@@ -7,71 +7,73 @@ import java.util.Arrays;
 /** Represents the type of server the server is running. */
 public enum ServerType {
     // Bukkit fork
-    CRAFTBUKKIT("CraftBukkit"),
-    BUKKIT("Bukkit"),
-    POSEIDON("Poseidon"),
-    SPIGOT("Spigot"),
-    PAPER("Paper"),
-    FOLIA("Folia"),
-    PURPUR("Purpur"),
-    PUFFERFISH("Pufferfish"),
+    CRAFTBUKKIT("CraftBukkit", DataFolders.PLUGINS),
+    BUKKIT("Bukkit", DataFolders.PLUGINS),
+    POSEIDON("Poseidon", DataFolders.PLUGINS),
+    SPIGOT("Spigot", DataFolders.PLUGINS),
+    PAPER("Paper", DataFolders.PLUGINS),
+    FOLIA("Folia", DataFolders.PLUGINS),
+    PURPUR("Purpur", DataFolders.PLUGINS),
+    PUFFERFISH("Pufferfish", DataFolders.PLUGINS),
 
     // Bukkit + NeoForge Hybrids
-    NEOFORGE_HYBRID("NeoForge Hybrid"),
-    MOHIST_NEO("Mohist Neo"),
-    ARCLIGHT_NEO("Arclight Neo"),
+    NEOFORGE_HYBRID("NeoForge Hybrid", DataFolders.HYBRID),
+    MOHIST_NEO("Mohist Neo", DataFolders.HYBRID),
+    ARCLIGHT_NEO("Arclight Neo", DataFolders.HYBRID),
 
     // Bukkit + Forge Hybrids
-    FORGE_HYBRID("Forge Hybrid"),
-    CAULDRON("Cauldron"),
-    KCUALDRON("KCauldron"),
-    THERMOS("Thermos"),
-    CRUCIBLE("Crucible"),
-    MCPC_PLUS_PLUS("MCPC++"),
-    MOHIST("Mohist"),
-    MAGMA("Magma"),
-    ARCLIGHT("Arclight"),
-    KETTING("Ketting"),
+    FORGE_HYBRID("Forge Hybrid", DataFolders.HYBRID),
+    CAULDRON("Cauldron", DataFolders.HYBRID),
+    KCUALDRON("KCauldron", DataFolders.HYBRID),
+    THERMOS("Thermos", DataFolders.HYBRID),
+    CRUCIBLE("Crucible", DataFolders.HYBRID),
+    MCPC_PLUS_PLUS("MCPC++", DataFolders.HYBRID),
+    MOHIST("Mohist", DataFolders.HYBRID),
+    MAGMA("Magma", DataFolders.HYBRID),
+    ARCLIGHT("Arclight", DataFolders.HYBRID),
+    KETTING("Ketting", DataFolders.HYBRID),
 
     // Bukkit + Fabric Hybrids
-    FABRIC_HYBRID("Fabric Hybrid"),
-    CARDBOARD("Cardboard"),
-    BANNER("Banner"),
+    FABRIC_HYBRID("Fabric Hybrid", DataFolders.HYBRID),
+    CARDBOARD("Cardboard", DataFolders.HYBRID),
+    BANNER("Banner", DataFolders.HYBRID),
 
     // BungeeCord
-    BUNGEECORD("BungeeCord"),
-    WATERFALL("Waterfall"),
-    TRAVERTINE("Travertine"),
-    HEXACORD("Hexacord"),
+    BUNGEECORD("BungeeCord", DataFolders.PLUGINS),
+    WATERFALL("Waterfall", DataFolders.PLUGINS),
+    TRAVERTINE("Travertine", DataFolders.PLUGINS),
+    HEXACORD("Hexacord", DataFolders.PLUGINS),
 
     // Fabric
-    FABRIC("Fabric"),
-    QUILT("Quilt"),
+    FABRIC("Fabric", DataFolders.MODS),
+    QUILT("Quilt", DataFolders.MODS),
 
     // Forge
-    FORGE("Forge"),
-    GOLDENFORGE("GoldenForge"),
-    NEOFORGE("NeoForge"),
+    FORGE("Forge", DataFolders.MODS),
+    GOLDENFORGE("GoldenForge", DataFolders.MODS),
+    NEOFORGE("NeoForge", DataFolders.MODS),
 
     // Sponge
-    SPONGE("Sponge"),
-    SPONGE_FORGE("SpongeForge"),
-    SPONGE_VANILLA("SpongeVanilla"),
+    SPONGE("Sponge", DataFolders.MODS),
+    SPONGE_FORGE("SpongeForge", DataFolders.MODS),
+    SPONGE_VANILLA("SpongeVanilla", DataFolders.MODS),
 
     // Velocity
-    VELOCITY("Velocity"),
+    VELOCITY("Velocity", DataFolders.PLUGINS),
 
     // Vanilla
-    VANILLA("Vanilla"),
+    VANILLA("Vanilla", DataFolders.UNKNOWN),
 
     // Unknown
-    UNKNOWN("Unknown");
+    UNKNOWN("Unknown", DataFolders.UNKNOWN);
 
     private static ServerType serverType = UNKNOWN;
     private final String name;
+    private final DataFolders dataFolders;
 
-    ServerType(String name) {
+    ServerType(String name, DataFolders dataFolders) {
         this.name = name;
+        this.dataFolders = dataFolders;
     }
 
     /**
@@ -79,7 +81,7 @@ public enum ServerType {
      *
      * @return The current server type
      */
-    public static ServerType getServerType() {
+    public static ServerType serverType() {
         if (serverType != UNKNOWN) {
             return serverType;
         }
@@ -375,6 +377,15 @@ public enum ServerType {
     }
 
     /**
+     * Get the data folders for the server type
+     *
+     * @return The data folders for the server type
+     */
+    public DataFolders dataFolders() {
+        return serverType().dataFolders;
+    }
+
+    /**
      * Get the name of the server type
      *
      * @return The name of the server type
@@ -528,5 +539,38 @@ public enum ServerType {
      */
     public boolean isProxy() {
         return this.isBungeeCordBased() || this.isVelocityBased();
+    }
+
+    public enum DataFolders {
+        PLUGINS("plugins", "plugins"),
+        MODS("mods", "config"),
+        HYBRID("mods", "config"),
+        UNKNOWN("", "");
+
+        private final String modFolder;
+        private final String configFolder;
+
+        DataFolders(String modFolder, String configFolder) {
+            this.modFolder = modFolder;
+            this.configFolder = configFolder;
+        }
+
+        /**
+         * Get the mod folder
+         *
+         * @return The mod folder
+         */
+        public String modFolder() {
+            return modFolder;
+        }
+
+        /**
+         * Get the config folder
+         *
+         * @return The config folder
+         */
+        public String configFolder() {
+            return configFolder;
+        }
     }
 }

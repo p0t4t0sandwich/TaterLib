@@ -196,3 +196,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Reformatted getters to be more idiomatic (e.g. `getInventory` -> `inventory`)
 - Refactor `Player.serverName` into `Player.server().name()` and add `Server#name()`
 - Added `Permissible` to `CommandSender`, refactored permission hooks to use `Permissible`
+- Added `ModInfo` and `PluginInfo` abstractions

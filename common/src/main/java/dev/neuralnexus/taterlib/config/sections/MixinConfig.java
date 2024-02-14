@@ -14,11 +14,11 @@ import java.util.function.Predicate;
 /** A class for parsing mixin configurations. */
 @ConfigSerializable
 public class MixinConfig {
-    @Setting private String name;
-    @Setting private boolean enabled;
     @Setting private final Set<String> versions = new HashSet<>();
     @Setting private final Set<String> serverTypes = new HashSet<>();
     @Setting private final Set<String> depends = new HashSet<>();
+    @Setting private String name;
+    @Setting private boolean enabled;
 
     /** Returns the name of the mixin. */
     public String name() {
@@ -92,7 +92,7 @@ public class MixinConfig {
     public boolean checkMixin() {
         return enabled()
                 && checkVersions(MinecraftVersion.getMinecraftVersion())
-                && checkServerTypes(ServerType.getServerType())
+                && checkServerTypes(ServerType.serverType())
                 && checkDepends(TaterAPIProvider.get()::isPluginModLoaded);
     }
 }

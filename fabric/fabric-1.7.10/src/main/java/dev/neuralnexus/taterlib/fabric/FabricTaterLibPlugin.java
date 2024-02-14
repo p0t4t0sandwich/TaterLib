@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
@@ -31,6 +32,8 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 
+import java.util.stream.Collectors;
+
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     public static MinecraftServer server;
 
@@ -44,7 +47,19 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setIsModLoaded((modId) -> FabricLoader.getInstance().isModLoaded(modId));
+        api.setModList(
+                () ->
+                        FabricLoader.getInstance().getAllMods().stream()
+                                .map(
+                                        modContainer ->
+                                                new ModInfo(
+                                                        modContainer.getMetadata().getId(),
+                                                        modContainer.getMetadata().getName(),
+                                                        modContainer
+                                                                .getMetadata()
+                                                                .getVersion()
+                                                                .getFriendlyString()))
+                                .collect(Collectors.toSet()));
         api.setServer(() -> new FabricServer(server));
 
         if (!TaterAPIProvider.areEventListenersRegistered()) {

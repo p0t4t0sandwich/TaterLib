@@ -21,6 +21,6 @@ public class ServerTypeTest {
      */
     @Test
     public void testToString() {
-        assertEquals(ServerType.UNKNOWN, ServerType.getServerType());
+        assertEquals(ServerType.UNKNOWN, ServerType.serverType());
     }
 }

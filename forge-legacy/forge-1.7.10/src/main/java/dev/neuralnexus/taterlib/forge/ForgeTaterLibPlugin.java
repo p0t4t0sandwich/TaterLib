@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
@@ -30,6 +31,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
+
+import java.util.stream.Collectors;
 
 /** Forge entry point. */
 // @Mod(
@@ -56,7 +59,16 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setIsModLoaded(Loader::isModLoaded);
+        api.setModList(
+                () ->
+                        Loader.instance().getModList().stream()
+                                .map(
+                                        modContainer ->
+                                                new ModInfo(
+                                                        modContainer.getModId(),
+                                                        modContainer.getName(),
+                                                        modContainer.getVersion()))
+                                .collect(Collectors.toSet()));
         api.setServer(() -> new ForgeServer(server));
 
         if (!TaterAPIProvider.areEventListenersRegistered()) {

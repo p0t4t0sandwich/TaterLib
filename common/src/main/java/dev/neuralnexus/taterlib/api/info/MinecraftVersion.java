@@ -225,7 +225,7 @@ public enum MinecraftVersion {
         if (minecraftVersion != UNKNOWN) {
             return minecraftVersion;
         }
-        ServerType serverType = ServerType.getServerType();
+        ServerType serverType = ServerType.serverType();
         String version = "";
         if (serverType.isBukkitBased()) {
             version = getBukkitMCVersion();

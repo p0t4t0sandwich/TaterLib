@@ -19,7 +19,7 @@ import java.util.Set;
 
 /** API Provider */
 public class TaterAPIProvider {
-    private static final ServerType serverType = ServerType.getServerType();
+    private static final ServerType serverType = ServerType.serverType();
     private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
@@ -140,10 +140,10 @@ public class TaterAPIProvider {
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void register() {
-        TaterAPI bukkitApi = new TaterAPI("plugins");
-        TaterAPI bungeeApi = new TaterAPI("plugins");
-        TaterAPI forgeApi = new TaterAPI("config");
-        TaterAPI fabricApi = new TaterAPI("config");
+        TaterAPI bukkitApi = new TaterAPI();
+        TaterAPI bungeeApi = new TaterAPI();
+        TaterAPI forgeApi = new TaterAPI();
+        TaterAPI fabricApi = new TaterAPI();
 
         if (serverType.isBukkitBased()) {
             apis.put(serverType, bukkitApi);
@@ -156,7 +156,6 @@ public class TaterAPIProvider {
         }
 
         // Secondary logical check is for Sinytra Connector
-        // TODO: Find some way to init the Fabric side, since SC doesn't load duplicate modIds
         if (serverType.isFabricBased() || (serverType.isForgeBased() && ServerType.isFabric())) {
             apis.put(serverType, fabricApi);
             apis.put(ServerType.FABRIC, fabricApi);
@@ -172,63 +171,72 @@ public class TaterAPIProvider {
         }
 
         // Check for SpongeForge, then Sponge
-        // TODO: Find some way to init the Sponge side, since SF doesn't load duplicate modIds
         if (serverType.isSpongeBased() && serverType.isForgeBased()) {
-            apis.put(serverType, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE_FORGE, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE, new TaterAPI("config"));
+            apis.put(serverType, new TaterAPI());
+            apis.put(ServerType.SPONGE_FORGE, new TaterAPI());
+            apis.put(ServerType.SPONGE, new TaterAPI());
         } else if (serverType.isSpongeBased()) {
-            apis.put(serverType, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE_VANILLA, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE, new TaterAPI("config"));
+            apis.put(serverType, new TaterAPI());
+            apis.put(ServerType.SPONGE_VANILLA, new TaterAPI());
+            apis.put(ServerType.SPONGE, new TaterAPI());
         }
 
         if (serverType.isVelocityBased()) {
-            apis.put(ServerType.VELOCITY, new TaterAPI("plugins"));
+            apis.put(ServerType.VELOCITY, new TaterAPI());
         }
 
         if (serverType.isHybrid()) {
-            // Sets defaults, so it might give a proper result for hybrids that don't have hooks
-            TaterAPI hybridApi = new TaterAPI("config");
-            hybridApi.setIsModLoaded((modid) -> apis.get(ServerType.FORGE).isModLoaded(modid));
-            hybridApi.setIsPluginLoaded(
-                    (plugin) -> apis.get(ServerType.BUKKIT).isPluginLoaded(plugin));
+            TaterAPI hybridApi = new TaterAPI();
 
             switch (serverType) {
                 case MOHIST:
+                    addHook(new MohistHook());
+                    bukkitApi.setModList(() -> get(ServerType.FORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.FORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    apis.put(ServerType.MOHIST, hybridApi);
+                    break;
                 case MOHIST_NEO:
-                    MohistHook mohistHook = new MohistHook();
-                    addHook(mohistHook);
-                    bukkitApi.setIsModLoaded(mohistHook::hasMod);
-                    bukkitApi.setIsPluginLoaded(mohistHook::hasPlugin);
-                    forgeApi.setIsModLoaded(mohistHook::hasMod);
-                    forgeApi.setIsPluginLoaded(mohistHook::hasPlugin);
-                    hybridApi.setIsModLoaded(mohistHook::hasMod);
-                    hybridApi.setIsPluginLoaded(mohistHook::hasPlugin);
+                    addHook(new MohistHook());
+                    bukkitApi.setModList(() -> get(ServerType.NEOFORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.NEOFORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
                     apis.put(ServerType.MOHIST, hybridApi);
                     break;
                 case MAGMA:
                     MagmaHook magmaHook = new MagmaHook();
                     addHook(magmaHook);
-                    bukkitApi.setIsModLoaded(magmaHook::hasMod);
-                    forgeApi.setIsModLoaded(magmaHook::hasMod);
-                    hybridApi.setIsModLoaded(magmaHook::hasMod);
+                    bukkitApi.setModList(() -> get(ServerType.FORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.FORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
                     apis.put(ServerType.MAGMA, hybridApi);
                     break;
                 case ARCLIGHT:
+                    addHook(new ArclightHook());
+                    bukkitApi.setModList(() -> get(ServerType.FORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.FORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    apis.put(ServerType.ARCLIGHT, hybridApi);
+                    break;
                 case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
+                    bukkitApi.setModList(() -> get(ServerType.NEOFORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.NEOFORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
                     apis.put(ServerType.ARCLIGHT, hybridApi);
                     break;
                 case KETTING:
                     KettingHook kettingHook = new KettingHook();
                     addHook(kettingHook);
-                    bukkitApi.setIsModLoaded(kettingHook::hasMod);
-                    bukkitApi.setIsPluginLoaded(kettingHook::hasPlugin);
-                    forgeApi.setIsModLoaded(kettingHook::hasMod);
-                    forgeApi.setIsPluginLoaded(kettingHook::hasPlugin);
-                    hybridApi.setIsModLoaded(kettingHook::hasMod);
-                    hybridApi.setIsPluginLoaded(kettingHook::hasPlugin);
+                    bukkitApi.setModList(() -> get(ServerType.FORGE).modList());
+                    forgeApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
+                    hybridApi.setModList(() -> get(ServerType.FORGE).modList());
+                    hybridApi.setPluginList(() -> get(ServerType.BUKKIT).pluginList());
                     apis.put(ServerType.KETTING, hybridApi);
                     break;
             }

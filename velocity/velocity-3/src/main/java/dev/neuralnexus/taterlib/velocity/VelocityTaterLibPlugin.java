@@ -12,6 +12,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
@@ -31,6 +32,7 @@ import dev.neuralnexus.taterlib.velocity.server.VelocityProxyServer;
 import org.slf4j.Logger;
 
 import java.time.Duration;
+import java.util.stream.Collectors;
 
 @Plugin(
         id = TaterLib.Constants.PROJECT_ID,
@@ -75,8 +77,19 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
         pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
-        api.setIsPluginLoaded(
-                (pluginId) -> server.getPluginManager().getPlugin(pluginId).isPresent());
+        api.setPluginList(
+                () ->
+                        server.getPluginManager().getPlugins().stream()
+                                .map(
+                                        p ->
+                                                new PluginInfo(
+                                                        p.getDescription()
+                                                                .getName()
+                                                                .orElse("Unknown"),
+                                                        p.getDescription()
+                                                                .getVersion()
+                                                                .orElse("Unknown")))
+                                .collect(Collectors.toSet()));
         api.setServer(VelocityProxyServer::instance);
     }
 
