@@ -18,10 +18,12 @@ import java.util.stream.Collectors;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
                 plugin,
+                server,
+                logger,
                 new LoggerAdapter(
                         "[" + TaterLib.Constants.PROJECT_NAME + "] ",
                         TaterLib.Constants.PROJECT_ID,

@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /** Bukkit entry point. */
@@ -13,7 +14,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     private static Loader loader;
 
     public BukkitLoaderPlugin() {
-        loader = new TaterLibLoader(this, getLogger());
+        loader = new TaterLibLoader(this, Bukkit.getServer(), getLogger());
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().isForgeHybrid()) {
             loader.registerPlugin(ForgeLoaderPlugin.getPlugin());

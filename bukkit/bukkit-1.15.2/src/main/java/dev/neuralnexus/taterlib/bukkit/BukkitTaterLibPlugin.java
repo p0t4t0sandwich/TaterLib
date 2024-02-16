@@ -34,12 +34,11 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         pluginStart(
-                BukkitTaterLibPlugin.plugin,
-                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
         api.setPluginList(
                 () ->

@@ -33,10 +33,13 @@ import java.util.stream.Collectors;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
-                plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
+                plugin,
+                server,
+                logger,
+                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setModList(
                 () ->

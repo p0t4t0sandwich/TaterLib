@@ -41,6 +41,7 @@ dependencies {
     implementation('org.spongepowered:configurate-hocon:4.1.2')
 
     // bStats
+    implementation('org.bstats:bstats-base:3.0.2')
     implementation('org.bstats:bstats-bukkit:3.0.2')
     implementation('org.bstats:bstats-bungeecord:3.0.2')
     implementation('org.bstats:bstats-sponge:3.0.2')
@@ -98,6 +99,7 @@ shadowJar {
         include(dependency('com.typesafe:config:1.4.1'))
 
         // bStats
+        include(dependency('org.bstats:bstats-base:3.0.2'))
         include(dependency('org.bstats:bstats-bukkit:3.0.2'))
         include(dependency('org.bstats:bstats-bungeecord:3.0.2'))
         include(dependency('org.bstats:bstats-sponge:3.0.2'))

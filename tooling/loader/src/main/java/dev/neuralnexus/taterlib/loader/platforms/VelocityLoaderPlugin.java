@@ -25,7 +25,7 @@ public class VelocityLoaderPlugin {
 
     @Inject
     public VelocityLoaderPlugin(ProxyServer server, Logger logger) {
-        loader = new TaterLibLoader(new Object[] {server, this}, logger);
+        loader = new TaterLibLoader(this, server, logger);
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }

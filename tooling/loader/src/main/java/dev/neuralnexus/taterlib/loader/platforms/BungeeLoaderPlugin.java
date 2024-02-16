@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
 
+import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 /** Bungee entry point. */
@@ -11,7 +12,7 @@ public class BungeeLoaderPlugin extends Plugin {
     private static Loader loader;
 
     public BungeeLoaderPlugin() {
-        loader = new TaterLibLoader(this, getLogger());
+        loader = new TaterLibLoader(this, ProxyServer.getInstance(), getLogger());
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }

@@ -30,8 +30,6 @@ import dev.neuralnexus.taterlib.v1_20_2.forge.player.ForgePlayerListener;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
-import org.apache.logging.log4j.LogManager;
-
 import java.util.stream.Collectors;
 
 /** Forge entry point. */
@@ -41,7 +39,7 @@ import java.util.stream.Collectors;
 //        serverSideOnly = true,
 //        acceptableRemoteVersions = "*")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    public static MinecraftServer server;
+    public static MinecraftServer minecraftServer;
 
     /**
      * Registers the TaterLib command.
@@ -54,10 +52,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
-                plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setModList(
                 () ->
@@ -69,7 +67,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                         modContainer.getName(),
                                                         modContainer.getVersion()))
                                 .collect(Collectors.toSet()));
-        api.setServer(() -> new ForgeServer(server));
+        api.setServer(() -> new ForgeServer(minecraftServer));
 
         if (!TaterAPIProvider.areEventListenersRegistered()) {
             TaterAPIProvider.setEventListenersRegistered(true);
@@ -101,7 +99,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        server = event.getServer();
+        minecraftServer = event.getServer();
         ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
     }
 

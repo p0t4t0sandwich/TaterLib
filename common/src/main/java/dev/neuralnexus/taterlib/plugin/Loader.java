@@ -1,11 +1,14 @@
 package dev.neuralnexus.taterlib.plugin;
 
 public interface Loader {
-    /** Get the platform's logger. */
-    Object logger();
-
     /** Get the platform's server/plugin/container. */
     Object plugin();
+
+    /** Get the platform's server. */
+    Object server();
+
+    /** Get the platform's logger. */
+    Object logger();
 
     /** Register a plugin. */
     void registerPlugin(Plugin plugin);

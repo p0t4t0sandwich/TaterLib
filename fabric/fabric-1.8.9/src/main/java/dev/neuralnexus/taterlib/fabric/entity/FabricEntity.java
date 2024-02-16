@@ -91,7 +91,7 @@ public class FabricEntity implements Entity {
     @Override
     public void teleport(Location location) {
         if (!location.world().equals(dimension())) {
-            MinecraftServer server = FabricTaterLibPlugin.server;
+            MinecraftServer server = FabricTaterLibPlugin.minecraftServer;
             if (server == null) return;
             // TODO: Cross version this and add: location.getWorld().split(":")[1]);
             Arrays.stream(server.worlds)

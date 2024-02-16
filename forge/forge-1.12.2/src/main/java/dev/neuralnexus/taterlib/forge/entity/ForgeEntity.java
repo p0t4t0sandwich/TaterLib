@@ -98,7 +98,7 @@ public class ForgeEntity implements Entity {
     @Override
     public void teleport(Location location) {
         if (!location.world().equals(dimension())) {
-            MinecraftServer server = ForgeTaterLibPlugin.server;
+            MinecraftServer server = ForgeTaterLibPlugin.minecraftServer;
             if (server == null) return;
             // TODO: Cross version this and add: location.getWorld().split(":")[1]);
             DimensionType dimension = DimensionType.byName(location.world());

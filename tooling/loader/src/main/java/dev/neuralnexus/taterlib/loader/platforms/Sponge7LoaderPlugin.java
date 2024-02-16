@@ -10,6 +10,7 @@ import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
 
 import org.slf4j.Logger;
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
 import org.spongepowered.api.event.game.state.GameStoppedServerEvent;
@@ -27,7 +28,7 @@ public class Sponge7LoaderPlugin {
 
     @Inject
     public Sponge7LoaderPlugin(PluginContainer container, Logger logger) {
-        loader = new TaterLibLoader(container, logger);
+        loader = new TaterLibLoader(container, Sponge.getServer(), logger);
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
             loader.registerPlugin(ForgeLoaderPlugin.getPlugin());

@@ -21,7 +21,7 @@ public class ForgeLoaderPlugin {
     private static Loader loader;
 
     public ForgeLoaderPlugin() {
-        loader = new TaterLibLoader(this, null);
+        loader = new TaterLibLoader(this, null, null);
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().isForgeHybrid()) {
             loader.registerPlugin(BukkitLoaderPlugin.getPlugin());

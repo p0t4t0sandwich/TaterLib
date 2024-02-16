@@ -32,7 +32,8 @@ public class FabricCommandSender implements CommandSender {
     @Override
     public UUID uuid() {
         PlayerEntity player =
-                ((List<PlayerEntity>) FabricTaterLibPlugin.server.getPlayerManager().players)
+                ((List<PlayerEntity>)
+                                FabricTaterLibPlugin.minecraftServer.getPlayerManager().players)
                         .stream()
                                 .filter(
                                         p ->

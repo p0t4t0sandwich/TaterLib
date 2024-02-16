@@ -1,7 +1,5 @@
 package dev.neuralnexus.taterlib.v1_20_2.forge;
 
-import com.mojang.logging.LogUtils;
-
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
@@ -28,9 +26,10 @@ import java.util.stream.Collectors;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogUtils.getLogger()));
+        pluginStart(
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setModList(
                 () ->

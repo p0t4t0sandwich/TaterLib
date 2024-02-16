@@ -92,7 +92,7 @@ public class FabricEntity implements Entity {
     @Override
     public void teleport(Location location) {
         if (!location.world().equals(dimension())) {
-            MinecraftServer server = FabricTaterLibPlugin.server;
+            MinecraftServer server = FabricTaterLibPlugin.minecraftServer;
             if (server == null) return;
             DimensionType dimension = DimensionType.fromName(location.world());
             entity.changeDimension(dimension.getId());

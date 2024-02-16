@@ -42,12 +42,12 @@ import java.util.stream.Collectors;
         description = TaterLib.Constants.PROJECT_DESCRIPTION,
         url = TaterLib.Constants.PROJECT_URL)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
-    private static ProxyServer server;
+    private static ProxyServer proxyServer;
     private static Object plugin;
 
     @Inject
     public VelocityTaterLibPlugin(ProxyServer server, Logger logger) {
-        platformInit(new Object[] {server, this}, logger);
+        platformInit(this, server, logger);
     }
 
     /**
@@ -56,7 +56,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
      * @return The proxy server.
      */
     public static ProxyServer getProxyServer() {
-        return server;
+        return proxyServer;
     }
 
     @Subscribe
@@ -70,16 +70,17 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
-        VelocityTaterLibPlugin.server = (ProxyServer) ((Object[]) plugin)[0];
-        VelocityTaterLibPlugin.plugin = ((Object[]) plugin)[1];
+    public void platformInit(Object plugin, Object server, Object logger) {
+        VelocityTaterLibPlugin.plugin = plugin;
+        VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
 
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
-        pluginStart(server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        pluginStart(
+                server, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
         api.setPluginList(
                 () ->
-                        server.getPluginManager().getPlugins().stream()
+                        proxyServer.getPluginManager().getPlugins().stream()
                                 .map(
                                         p ->
                                                 new PluginInfo(
@@ -96,12 +97,13 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformEnable() {
         // Register listeners
-        EventManager eventManager = server.getEventManager();
+        EventManager eventManager = proxyServer.getEventManager();
         eventManager.register(plugin, new VelocityPlayerListener());
         eventManager.register(plugin, new VelocityPluginMessageListener());
         eventManager.register(plugin, new VelocityServerListener());
 
-        server.getScheduler()
+        proxyServer
+                .getScheduler()
                 .buildTask(
                         plugin,
                         () -> {

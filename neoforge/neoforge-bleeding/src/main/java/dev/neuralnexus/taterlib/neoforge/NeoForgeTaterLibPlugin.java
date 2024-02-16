@@ -16,9 +16,10 @@ import java.util.stream.Collectors;
 
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
-        pluginStart(plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        pluginStart(
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
         api.setModList(
                 () ->

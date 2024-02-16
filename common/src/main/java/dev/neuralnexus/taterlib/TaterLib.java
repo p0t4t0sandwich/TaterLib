@@ -1,6 +1,10 @@
 package dev.neuralnexus.taterlib;
 
+import com.google.common.collect.ImmutableMap;
+
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.bstats.MetricsAdapter;
 import dev.neuralnexus.taterlib.config.ConfigLoader;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
@@ -14,6 +18,8 @@ public class TaterLib {
     private static boolean RELOADED = false;
     private static ModuleLoader moduleLoader;
     private Object plugin;
+    private Object pluginServer;
+    private Object pluginLogger;
     private AbstractLogger logger;
 
     /**
@@ -44,6 +50,24 @@ public class TaterLib {
     }
 
     /**
+     * Set the plugin server
+     *
+     * @param pluginServer The plugin server
+     */
+    private static void setPluginServer(Object pluginServer) {
+        instance.pluginServer = pluginServer;
+    }
+
+    /**
+     * Set the plugin logger
+     *
+     * @param pluginLogger The plugin logger
+     */
+    private static void setPluginLogger(Object pluginLogger) {
+        instance.pluginLogger = pluginLogger;
+    }
+
+    /**
      * Get the logger
      *
      * @return The logger
@@ -65,11 +89,31 @@ public class TaterLib {
      * Start
      *
      * @param plugin The plugin
+     * @param pluginServer The plugin server
      * @param logger The logger
      */
-    public static void start(Object plugin, AbstractLogger logger) {
+    public static void start(
+            Object plugin, Object pluginServer, Object pluginLogger, AbstractLogger logger) {
+        if (pluginServer != null) {
+            setPluginServer(pluginServer);
+        }
+        if (pluginLogger != null) {
+            setPluginLogger(pluginLogger);
+        }
         setPlugin(plugin);
         setLogger(logger);
+
+        // Set up bStats
+        MetricsAdapter.setupMetrics(
+                plugin,
+                pluginServer,
+                pluginLogger,
+                ImmutableMap.<ServerType, Integer>builder()
+                        .put(ServerType.BUKKIT, 21008)
+                        .put(ServerType.BUNGEECORD, 21009)
+                        .put(ServerType.SPONGE, 21010)
+                        .put(ServerType.VELOCITY, 21011)
+                        .build());
 
         // Config
         ConfigLoader.load();
@@ -97,7 +141,7 @@ public class TaterLib {
 
     /** Start */
     public static void start() {
-        start(instance.plugin, instance.logger);
+        start(instance.plugin, instance.pluginServer, instance.pluginLogger, instance.logger);
     }
 
     /** Stop */
@@ -143,6 +187,5 @@ public class TaterLib {
         public static final String PROJECT_DESCRIPTION =
                 "A cross API code library for various generalizations used in the Tater* plugins";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
-        public static final String BSTATS_ID = "21008";
     }
 }

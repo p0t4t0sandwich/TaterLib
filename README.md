@@ -203,3 +203,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Permissible` to `CommandSender`, refactored permission hooks to use `Permissible`
 - Added `ModInfo` and `PluginInfo` abstractions
 - Added `DumpInfo` and `FullDumpInfo`, along with the `/taterlib dump | fulldump` commands
+- Added bStats support for Bukkit, Bungee, Sponge, and Velocity

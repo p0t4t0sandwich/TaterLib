@@ -13,7 +13,7 @@ public class FabricLoaderPlugin implements ModInitializer {
     private static Loader loader;
 
     public FabricLoaderPlugin() {
-        loader = new TaterLibLoader(this, null);
+        loader = new TaterLibLoader(this, null, null);
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().isFabricHybrid()) {
             loader.registerPlugin(BukkitLoaderPlugin.getPlugin());

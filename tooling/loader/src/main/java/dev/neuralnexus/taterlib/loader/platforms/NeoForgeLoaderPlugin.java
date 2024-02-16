@@ -21,7 +21,7 @@ public class NeoForgeLoaderPlugin {
 
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
-        loader = new TaterLibLoader(this, LogUtils.getLogger());
+        loader = new TaterLibLoader(this, null, LogUtils.getLogger());
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }
