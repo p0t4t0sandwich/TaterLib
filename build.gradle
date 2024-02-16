@@ -152,7 +152,7 @@ tasks.register('build_api', Jar) {
         into("META-INF")
     }
     ArrayList<File> jarFiles = [
-            file("./target/${project_id}-common-${version}.jar"),
+            file("./target/${project_id}-common-${version}.jar")
     ]
     from {
         jarFiles.collect {

@@ -143,5 +143,6 @@ public class TaterLib {
         public static final String PROJECT_DESCRIPTION =
                 "A cross API code library for various generalizations used in the Tater* plugins";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
+        public static final String BSTATS_ID = "21008";
     }
 }

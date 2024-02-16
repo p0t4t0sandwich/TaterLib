@@ -73,6 +73,7 @@ include(
         // Tooling
         'tooling:entrypoint-spoof',
         'tooling:loader',
+        'tooling:bstats-adapter',
 
         // Common
         'common',
