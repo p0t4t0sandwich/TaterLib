@@ -37,6 +37,7 @@ public enum ServerType {
     FABRIC_HYBRID("Fabric Hybrid", DataFolders.HYBRID),
     CARDBOARD("Cardboard", DataFolders.HYBRID),
     BANNER("Banner", DataFolders.HYBRID),
+    ARCLIGHT_FABRIC("Arclight Fabric", DataFolders.HYBRID),
 
     // BungeeCord
     BUNGEECORD("BungeeCord", DataFolders.PLUGINS),
@@ -113,6 +114,8 @@ public enum ServerType {
             // Add NeoForge Hybrid check
             if (isNeoForge()) {
                 serverType = ARCLIGHT_NEO;
+            } else if (isFabric()) {
+                serverType = ARCLIGHT_FABRIC;
             } else {
                 serverType = ARCLIGHT;
             }
@@ -511,7 +514,7 @@ public enum ServerType {
      * @return True if the server is running a Fabric hybrid, false otherwise.
      */
     public boolean isFabricHybrid() {
-        return this.is(CARDBOARD, BANNER);
+        return this.is(CARDBOARD, BANNER, ARCLIGHT_FABRIC);
     }
 
     /**
@@ -529,7 +532,7 @@ public enum ServerType {
      * @return True if the server is running on a hybrid, false otherwise.
      */
     public boolean isHybrid() {
-        return this.isForgeHybrid() || this.isFabricHybrid();
+        return this.isForgeHybrid() || this.isNeoForgeHybrid() || this.isFabricHybrid();
     }
 
     /**
