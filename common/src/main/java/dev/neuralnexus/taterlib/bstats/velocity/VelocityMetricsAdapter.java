@@ -1,13 +1,12 @@
 package dev.neuralnexus.taterlib.bstats.velocity;
 
-import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
+
+import dev.neuralnexus.taterlib.api.info.ServerType;
 
 import org.slf4j.Logger;
 
-import java.io.File;
 import java.lang.reflect.Constructor;
-import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -15,25 +14,7 @@ import java.nio.file.Paths;
 public class VelocityMetricsAdapter {
     public static Object setupMetrics(
             Object plugin, Object server, Object pluginLogger, int pluginId) {
-        // ------------------------------------------------------------------------------------------
-        System.out.println(
-                "VelocityMetricsAdapter.setupMetrics: " + (plugin instanceof PluginContainer));
-        // ------------------------------------------------------------------------------------------
-
-        Path configDir = Paths.get("plugins");
-        try {
-            configDir =
-                    Paths.get(
-                            VelocityMetricsAdapter.class
-                                            .getProtectionDomain()
-                                            .getCodeSource()
-                                            .getLocation()
-                                            .toURI()
-                                    + File.separator
-                                    + "plugins");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+        Path configDir = Paths.get(ServerType.VELOCITY.dataFolders().configFolder());
         // Reflect to get Metrics class, as it's not public and dependency injection is a bit weird
         // from here
         try {
