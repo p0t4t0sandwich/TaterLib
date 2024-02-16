@@ -6,12 +6,12 @@ import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
-import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent
@@ -53,7 +53,7 @@ public class VelocityBrigadierCommandRegisterEvent
             Object plugin,
             String commandName,
             String... aliases) {
-        CommandManager commandManager = ((ProxyServer) plugin).getCommandManager();
+        CommandManager commandManager = VelocityTaterLibPlugin.getProxyServer().getCommandManager();
         CommandMeta commandMeta =
                 commandManager.metaBuilder(commandName).aliases(aliases).plugin(plugin).build();
         commandManager.register(commandMeta, new BrigadierCommand(node));

@@ -39,6 +39,7 @@ dependencies {
 
     // Config
     implementation('org.spongepowered:configurate-hocon:4.1.2')
+    implementation('io.leangen.geantyref:geantyref:1.3.15')
 
     // bStats
     implementation('org.bstats:bstats-base:3.0.2')
@@ -97,6 +98,7 @@ shadowJar {
         include(dependency('org.spongepowered:configurate-core:4.1.2'))
         include(dependency('org.spongepowered:configurate-hocon:4.1.2'))
         include(dependency('com.typesafe:config:1.4.1'))
+        include(dependency('io.leangen.geantyref:geantyref:1.3.15'))
 
         // bStats
         include(dependency('org.bstats:bstats-base:3.0.2'))
@@ -120,11 +122,12 @@ shadowJar {
     // Config
     relocate('org.spongepowered.configurate', "${group_id}.${project_id}.lib.configurate")
     relocate('com.typesafe.config', "${group_id}.${project_id}.lib.typesafe.config")
-//    relocate('org.intellij', "${group_id}.${project_id}.lib.intellij")
-//    relocate('org.jetbrains', "${group_id}.${project_id}.lib.jetbrains")
+    relocate('io.leangen.geantyref', "${group_id}.${project_id}.lib.geantyref")
 
     // bStats
-    relocate('org.bstats', "${group_id}.${project_id}.lib.bstats")
+    relocate('org.bstats', "${group_id}.${project_id}.lib.bstats") {
+        exclude 'org.bstats.sponge.*'
+    }
 
     // MySQL
     relocate('com.zaxxer.hikari', "${group_id}.${project_id}.lib.hikari")

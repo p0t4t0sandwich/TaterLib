@@ -6,6 +6,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
+import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.taterlib.TaterLib;
@@ -42,12 +43,12 @@ import java.util.stream.Collectors;
         description = TaterLib.Constants.PROJECT_DESCRIPTION,
         url = TaterLib.Constants.PROJECT_URL)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
+    private static PluginContainer plugin;
     private static ProxyServer proxyServer;
-    private static Object plugin;
 
     @Inject
-    public VelocityTaterLibPlugin(ProxyServer server, Logger logger) {
-        platformInit(this, server, logger);
+    public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
+        platformInit(plugin, server, logger);
     }
 
     /**
@@ -71,12 +72,12 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object server, Object logger) {
-        VelocityTaterLibPlugin.plugin = plugin;
+        VelocityTaterLibPlugin.plugin = (PluginContainer) plugin;
         VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
 
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
         pluginStart(
-                server, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
         api.setPluginList(
                 () ->

@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 import org.spongepowered.plugin.PluginContainer;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,10 +30,11 @@ public class SpongeMetricsAdapter {
         // from here
         try {
             Class<?> metricsClass = Class.forName("org.bstats.sponge.Metrics");
-            return metricsClass
-                    .getDeclaredConstructor(
-                            PluginContainer.class, Logger.class, Path.class, int.class)
-                    .newInstance(plugin, pluginLogger, configDir, pluginId);
+            Constructor<?> constructor =
+                    metricsClass.getDeclaredConstructor(
+                            PluginContainer.class, Logger.class, Path.class, int.class);
+            constructor.setAccessible(true);
+            return constructor.newInstance(plugin, pluginLogger, configDir, pluginId);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

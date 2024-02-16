@@ -146,6 +146,9 @@ public class ConfigLoader {
      * @return The loaded configuration.
      */
     public static Config config() {
+        if (config == null) {
+            load();
+        }
         return config;
     }
 }
