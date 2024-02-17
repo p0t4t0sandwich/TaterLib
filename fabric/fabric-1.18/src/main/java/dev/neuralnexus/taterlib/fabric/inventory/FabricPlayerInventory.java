@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
-/** Abstracts a Fabric player inventory to an AbstractPlayerInventory. */
+/** Fabric implementation of {@link PlayerInventory}. */
 public class FabricPlayerInventory extends FabricInventory implements PlayerInventory {
     private final net.minecraft.entity.player.PlayerInventory playerInventory;
 
@@ -32,7 +33,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     public void setArmorContents(ItemStack[] items) {
         playerInventory.armor.clear();
         for (int i = 0; i < 4; i++) {
-            playerInventory.armor.add(i, ((FabricItemStack) items[i]).getItemStack());
+            playerInventory.armor.add(i, ((FabricItemStack) items[i]).itemStack());
         }
     }
 
@@ -50,6 +51,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     @Override
     public void setExtraContents(ItemStack[] items) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
@@ -61,7 +63,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setHelmet(ItemStack item) {
-        playerInventory.armor.set(0, ((FabricItemStack) item).getItemStack());
+        playerInventory.armor.set(0, ((FabricItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -73,7 +75,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setChestplate(ItemStack item) {
-        playerInventory.armor.set(1, ((FabricItemStack) item).getItemStack());
+        playerInventory.armor.set(1, ((FabricItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -85,7 +87,7 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setLeggings(ItemStack item) {
-        playerInventory.armor.set(2, ((FabricItemStack) item).getItemStack());
+        playerInventory.armor.set(2, ((FabricItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -97,46 +99,49 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setBoots(ItemStack item) {
-        playerInventory.armor.set(3, ((FabricItemStack) item).getItemStack());
+        playerInventory.armor.set(3, ((FabricItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void setItem(String equipmentSlot, ItemStack item) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack item(String equipmentSlot) {
         // TODO: Implement
-        return null;
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack itemInMainHand() {
         // TODO: Implement
-        return null;
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setItemInMainHand(ItemStack item) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack itemInOffHand() {
         // TODO: Implement
-        return null;
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setItemInOffHand(ItemStack item) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */

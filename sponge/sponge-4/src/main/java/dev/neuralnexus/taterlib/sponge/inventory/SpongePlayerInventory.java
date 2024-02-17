@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.sponge.inventory;
 
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
@@ -8,7 +9,7 @@ import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
 
-/** Abstracts a Sponge player inventory to an AbstractPlayerInventory. */
+/** Sponge implementation of {@link PlayerInventory}. */
 public class SpongePlayerInventory extends SpongeInventory implements PlayerInventory {
     private final CarriedInventory<Player> playerInventory;
 
@@ -59,16 +60,13 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                     if (inventory instanceof EquipmentInventory) {
                         EquipmentInventory armor = (EquipmentInventory) inventory;
                         armor.set(
-                                EquipmentTypes.HEADWEAR,
-                                ((SpongeItemStack) items[0]).getItemStack());
+                                EquipmentTypes.HEADWEAR, ((SpongeItemStack) items[0]).itemStack());
                         armor.set(
                                 EquipmentTypes.CHESTPLATE,
-                                ((SpongeItemStack) items[1]).getItemStack());
+                                ((SpongeItemStack) items[1]).itemStack());
                         armor.set(
-                                EquipmentTypes.LEGGINGS,
-                                ((SpongeItemStack) items[2]).getItemStack());
-                        armor.set(
-                                EquipmentTypes.BOOTS, ((SpongeItemStack) items[3]).getItemStack());
+                                EquipmentTypes.LEGGINGS, ((SpongeItemStack) items[2]).itemStack());
+                        armor.set(EquipmentTypes.BOOTS, ((SpongeItemStack) items[3]).itemStack());
                     }
                 });
     }
@@ -77,13 +75,14 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     @Override
     public ItemStack[] extraContents() {
         // TODO: Implement
-        return new ItemStack[0];
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setExtraContents(ItemStack[] items) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
@@ -111,8 +110,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                         if (inventory instanceof EquipmentInventory) {
                             EquipmentInventory armor = (EquipmentInventory) inventory;
                             armor.set(
-                                    EquipmentTypes.HEADWEAR,
-                                    ((SpongeItemStack) item).getItemStack());
+                                    EquipmentTypes.HEADWEAR, ((SpongeItemStack) item).itemStack());
                         }
                     });
         }
@@ -144,7 +142,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                             EquipmentInventory armor = (EquipmentInventory) inventory;
                             armor.set(
                                     EquipmentTypes.CHESTPLATE,
-                                    ((SpongeItemStack) item).getItemStack());
+                                    ((SpongeItemStack) item).itemStack());
                         }
                     });
         }
@@ -175,8 +173,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                         if (inventory instanceof EquipmentInventory) {
                             EquipmentInventory armor = (EquipmentInventory) inventory;
                             armor.set(
-                                    EquipmentTypes.LEGGINGS,
-                                    ((SpongeItemStack) item).getItemStack());
+                                    EquipmentTypes.LEGGINGS, ((SpongeItemStack) item).itemStack());
                         }
                     });
         }
@@ -206,8 +203,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                     inventory -> {
                         if (inventory instanceof EquipmentInventory) {
                             EquipmentInventory armor = (EquipmentInventory) inventory;
-                            armor.set(
-                                    EquipmentTypes.BOOTS, ((SpongeItemStack) item).getItemStack());
+                            armor.set(EquipmentTypes.BOOTS, ((SpongeItemStack) item).itemStack());
                         }
                     });
         }
@@ -217,36 +213,38 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     @Override
     public void setItem(String equipmentSlot, ItemStack item) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack item(String equipmentSlot) {
         // TODO: Implement
-        return null;
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack itemInMainHand() {
         // TODO: Implement
-        return null;
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setItemInMainHand(ItemStack item) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public ItemStack itemInOffHand() {
         // TODO: Implement
-        return null;
         //        ItemStack offHand =
         // playerInventory.getEquipment().peek(EquipmentTypes.OFF_HAND).orElse(null);
         //        return offHand == null ? null : new SpongeItemStack(offHand);
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
@@ -255,14 +253,15 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         // TODO: Implement
         //        if (item != null) {
         //            playerInventory.getEquipment().set(EquipmentTypes.OFF_HAND, ((SpongeItemStack)
-        // item).getItemStack());
+        // item).itemStack());
         //        }
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public int heldItemSlot() {
         // TODO: Implement
-        return 0;
+        throw new VersionFeatureNotSupportedException();
     }
 }

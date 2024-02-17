@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.inventory;
 
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
@@ -34,19 +35,19 @@ public class VanillaInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.setItem(slot, ((VanillaItemStack) item).getItemStack());
+        inventory.setItem(slot, ((VanillaItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
-        inventory.add(((VanillaItemStack) item).getItemStack());
+        inventory.add(((VanillaItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        inventory.removeItem(((VanillaItemStack) item).getItemStack());
+        inventory.removeItem(((VanillaItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -63,7 +64,7 @@ public class VanillaInventory implements Inventory {
     @Override
     public void setContents(ItemStack[] items) {
         for (int i = 0; i < size(); i++) {
-            inventory.setItem(i, ((VanillaItemStack) items[i]).getItemStack());
+            inventory.setItem(i, ((VanillaItemStack) items[i]).itemStack());
         }
     }
 
@@ -71,13 +72,14 @@ public class VanillaInventory implements Inventory {
     @Override
     public ItemStack[] storageContents() {
         // TODO: Implement
-        return new ItemStack[0];
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
@@ -175,7 +177,7 @@ public class VanillaInventory implements Inventory {
     @Override
     public void remove(ItemStack item) {
         for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((VanillaItemStack) item).getItemStack());
+            inventory.removeItem(((VanillaItemStack) item).itemStack());
         }
     }
 
@@ -184,7 +186,7 @@ public class VanillaInventory implements Inventory {
     public void remove(String type) {
         for (int i = 0; i < size(); i++) {
             if (item(i).type().equals(type)) {
-                inventory.removeItem(((VanillaItemStack) item(i)).getItemStack());
+                inventory.removeItem(((VanillaItemStack) item(i)).itemStack());
             }
         }
     }
@@ -193,13 +195,13 @@ public class VanillaInventory implements Inventory {
     @Override
     public void clear() {
         for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((VanillaItemStack) item(i)).getItemStack());
+            inventory.removeItem(((VanillaItemStack) item(i)).itemStack());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
-        inventory.removeItem(((VanillaItemStack) item(slot)).getItemStack());
+        inventory.removeItem(((VanillaItemStack) item(slot)).itemStack());
     }
 }

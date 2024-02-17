@@ -38,7 +38,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
         org.bukkit.inventory.ItemStack[] itemStacks =
                 new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
-            itemStacks[i] = items[i] == null ? null : ((BukkitItemStack) items[i]).getItemStack();
+            itemStacks[i] = items[i] == null ? null : ((BukkitItemStack) items[i]).itemStack();
         }
 
         playerInventory.setArmorContents(itemStacks);
@@ -63,7 +63,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
         org.bukkit.inventory.ItemStack[] itemStacks =
                 new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
-            itemStacks[i] = items[i] == null ? null : ((BukkitItemStack) items[i]).getItemStack();
+            itemStacks[i] = items[i] == null ? null : ((BukkitItemStack) items[i]).itemStack();
         }
 
         playerInventory.setExtraContents(itemStacks);
@@ -78,7 +78,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setHelmet(ItemStack item) {
-        playerInventory.setHelmet(((BukkitItemStack) item).getItemStack());
+        playerInventory.setHelmet(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -90,7 +90,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setChestplate(ItemStack item) {
-        playerInventory.setChestplate(((BukkitItemStack) item).getItemStack());
+        playerInventory.setChestplate(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -102,7 +102,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setLeggings(ItemStack item) {
-        playerInventory.setLeggings(((BukkitItemStack) item).getItemStack());
+        playerInventory.setLeggings(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -114,7 +114,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setBoots(ItemStack item) {
-        playerInventory.setBoots(((BukkitItemStack) item).getItemStack());
+        playerInventory.setBoots(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -122,7 +122,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     public void setItem(String equipmentSlot, ItemStack item) {
         playerInventory.setItem(
                 EquipmentSlot.valueOf(equipmentSlot.toUpperCase()),
-                ((BukkitItemStack) item).getItemStack());
+                ((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -141,7 +141,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setItemInMainHand(ItemStack item) {
-        playerInventory.setItemInMainHand(((BukkitItemStack) item).getItemStack());
+        playerInventory.setItemInMainHand(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -153,7 +153,7 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setItemInOffHand(ItemStack item) {
-        playerInventory.setItemInOffHand(((BukkitItemStack) item).getItemStack());
+        playerInventory.setItemInOffHand(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */

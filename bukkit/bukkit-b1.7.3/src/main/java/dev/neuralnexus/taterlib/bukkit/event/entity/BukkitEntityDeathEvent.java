@@ -26,7 +26,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     public void setDrops(List<ItemStack> drops) {
         event.getDrops().clear();
         List<org.bukkit.inventory.ItemStack> eventDrops = event.getDrops();
-        drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).getItemStack()));
+        drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).itemStack()));
     }
 
     /** {@inheritDoc} */

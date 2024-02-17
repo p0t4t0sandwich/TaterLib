@@ -1,9 +1,11 @@
 package dev.neuralnexus.taterlib.fabric.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
-/** Abstracts a Fabric item stack to an AbstractItemStack. */
+import java.util.List;
+
+/** Fabric implementation of {@link ItemStack}. */
 public class FabricItemStack implements ItemStack {
     private final net.minecraft.item.ItemStack itemStack;
 
@@ -21,20 +23,8 @@ public class FabricItemStack implements ItemStack {
      *
      * @return The Fabric item stack.
      */
-    public net.minecraft.item.ItemStack getItemStack() {
+    public net.minecraft.item.ItemStack itemStack() {
         return itemStack;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemMeta getMeta() {
-        return new FabricItemMeta(itemStack);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setMeta(ItemMeta itemMeta) {
-        // TODO: Implement
     }
 
     /** {@inheritDoc} */
@@ -63,5 +53,64 @@ public class FabricItemStack implements ItemStack {
     @Override
     public ItemStack clone() {
         return new FabricItemStack(itemStack.copy());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasDisplayName() {
+        return itemStack.hasCustomName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String displayName() {
+        return itemStack.getCustomName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setDisplayName(String name) {
+        itemStack.setCustomName(name);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasLore() {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<String> lore() {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setLore(List<String> lore) {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasEnchants() {
+        return !itemStack.getEnchantments().isEmpty();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean unbreakable() {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setUnbreakable(boolean unbreakable) {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 }

@@ -109,14 +109,16 @@ public interface PlayerInventory extends Inventory {
     void setItemInMainHand(ItemStack item);
 
     /**
-     * Get the offhand item of the inventory
+     * Get the offhand item of the inventory <br>
+     * Unavailable prior to 1.9
      *
      * @return The offhand item of the inventory
      */
     ItemStack itemInOffHand();
 
     /**
-     * Set the offhand item of the inventory
+     * Set the offhand item of the inventory <br>
+     * Unavailable prior to 1.9
      *
      * @param item The offhand item of the inventory
      */

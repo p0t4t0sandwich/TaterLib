@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
 import dev.neuralnexus.taterlib.utils.Location;
@@ -66,8 +67,10 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
-        // TODO: IMPLEMENT NAME TAGS SUPPORT
+        // TODO: Implement
+        // NAME TAGS SUPPORT
         //        entity.setCustomName(name);
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */

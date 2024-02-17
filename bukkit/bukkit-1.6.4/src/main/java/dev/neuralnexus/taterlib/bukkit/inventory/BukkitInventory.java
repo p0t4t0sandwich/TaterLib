@@ -38,19 +38,19 @@ public class BukkitInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.setItem(slot, ((BukkitItemStack) item).getItemStack());
+        inventory.setItem(slot, ((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
-        inventory.addItem(((BukkitItemStack) item).getItemStack());
+        inventory.addItem(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        inventory.removeItem(((BukkitItemStack) item).getItemStack());
+        inventory.removeItem(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -71,7 +71,7 @@ public class BukkitInventory implements Inventory {
         org.bukkit.inventory.ItemStack[] contents =
                 new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
-            contents[i] = ((BukkitItemStack) items[i]).getItemStack();
+            contents[i] = ((BukkitItemStack) items[i]).itemStack();
         }
 
         inventory.setContents(contents);
@@ -96,7 +96,7 @@ public class BukkitInventory implements Inventory {
         org.bukkit.inventory.ItemStack[] storageContents =
                 new org.bukkit.inventory.ItemStack[items.length];
         for (int i = 0; i < items.length; i++) {
-            storageContents[i] = ((BukkitItemStack) items[i]).getItemStack();
+            storageContents[i] = ((BukkitItemStack) items[i]).itemStack();
         }
 
         inventory.setContents(storageContents);
@@ -105,7 +105,7 @@ public class BukkitInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
-        return inventory.contains(((BukkitItemStack) item).getItemStack());
+        return inventory.contains(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -120,7 +120,7 @@ public class BukkitInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean containsAtLeast(ItemStack item, int count) {
-        return inventory.containsAtLeast(((BukkitItemStack) item).getItemStack(), count);
+        return inventory.containsAtLeast(((BukkitItemStack) item).itemStack(), count);
     }
 
     /** {@inheritDoc} */
@@ -139,7 +139,7 @@ public class BukkitInventory implements Inventory {
     public Map<Integer, ItemStack> all(ItemStack item) {
         Map<Integer, org.bukkit.inventory.ItemStack> all =
                 (Map<Integer, org.bukkit.inventory.ItemStack>)
-                        inventory.all(((BukkitItemStack) item).getItemStack());
+                        inventory.all(((BukkitItemStack) item).itemStack());
         Map<Integer, ItemStack> abstractAll = new HashMap<>();
         for (Map.Entry<Integer, org.bukkit.inventory.ItemStack> entry : all.entrySet()) {
             abstractAll.put(
@@ -152,7 +152,7 @@ public class BukkitInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public int first(ItemStack item) {
-        return inventory.first(((BukkitItemStack) item).getItemStack());
+        return inventory.first(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -173,7 +173,7 @@ public class BukkitInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void remove(ItemStack item) {
-        inventory.remove(((BukkitItemStack) item).getItemStack());
+        inventory.remove(((BukkitItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */

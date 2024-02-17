@@ -37,19 +37,19 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.slot(slot).get().set(((SpongeItemStack) item).getItemStack());
+        inventory.slot(slot).get().set(((SpongeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
-        inventory.offer(((SpongeItemStack) item).getItemStack());
+        inventory.offer(((SpongeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        if (inventory.contains(((SpongeItemStack) item).getItemStack())) {
+        if (inventory.contains(((SpongeItemStack) item).itemStack())) {
             for (int i = 0; i < size(); i++) {
                 if (item(i).equals(item)) {
                     setItem(i, null);
@@ -99,7 +99,7 @@ public class SpongeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public boolean contains(ItemStack item) {
-        return inventory.contains(((SpongeItemStack) item).getItemStack());
+        return inventory.contains(((SpongeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */

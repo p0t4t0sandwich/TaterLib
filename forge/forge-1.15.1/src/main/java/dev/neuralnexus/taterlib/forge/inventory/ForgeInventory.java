@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
@@ -8,7 +9,7 @@ import net.minecraft.inventory.IInventory;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Abstracts a Forge inventory to an AbstractInventory. */
+/** Forge implementation of {@link Inventory}. */
 public class ForgeInventory implements Inventory {
     private final IInventory inventory;
 
@@ -36,7 +37,7 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.setItem(slot, ((ForgeItemStack) item).getItemStack());
+        inventory.setItem(slot, ((ForgeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -72,7 +73,7 @@ public class ForgeInventory implements Inventory {
     @Override
     public void setContents(ItemStack[] items) {
         for (int i = 0; i < size(); i++) {
-            inventory.setItem(i, ((ForgeItemStack) items[i]).getItemStack());
+            inventory.setItem(i, ((ForgeItemStack) items[i]).itemStack());
         }
     }
 
@@ -80,13 +81,14 @@ public class ForgeInventory implements Inventory {
     @Override
     public ItemStack[] storageContents() {
         // TODO: Implement
-        return new ItemStack[0];
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */

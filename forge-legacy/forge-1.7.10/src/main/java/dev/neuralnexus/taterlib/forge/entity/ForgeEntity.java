@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
 import dev.neuralnexus.taterlib.utils.Location;
@@ -66,8 +67,8 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
-        // TODO: IMPLEMENT NAME TAGS SUPPORT
-        //        entity.setCustomName(name);
+        // TODO: Implement NAME TAGS SUPPORT
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */

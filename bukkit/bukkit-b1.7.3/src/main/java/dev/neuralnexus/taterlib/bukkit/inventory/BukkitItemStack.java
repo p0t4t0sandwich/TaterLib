@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
+import java.util.List;
 
 /** Abstracts a Bukkit item stack to an AbstractItemStack. */
 public class BukkitItemStack implements ItemStack {
@@ -21,20 +23,8 @@ public class BukkitItemStack implements ItemStack {
      *
      * @return The Bukkit item stack.
      */
-    public org.bukkit.inventory.ItemStack getItemStack() {
+    public org.bukkit.inventory.ItemStack itemStack() {
         return itemStack;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemMeta getMeta() {
-        return new BukkitItemMeta(new Object());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setMeta(ItemMeta item) {
-        //        itemStack.setItemMeta(((BukkitItemMeta) item).getItemMeta());
     }
 
     /** {@inheritDoc} */
@@ -59,5 +49,61 @@ public class BukkitItemStack implements ItemStack {
     @Override
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasDisplayName() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String displayName() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setDisplayName(String name) {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasLore() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<String> lore() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setLore(List<String> lore) {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasEnchants() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean unbreakable() {
+        // TODO: Planned internal module covering this functionality
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setUnbreakable(boolean unbreakable) {
+        // TODO: Planned internal module covering this functionality
+        throw new VersionFeatureNotSupportedException();
     }
 }

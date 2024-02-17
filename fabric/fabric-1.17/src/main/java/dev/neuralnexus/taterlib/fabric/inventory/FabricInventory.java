@@ -34,7 +34,7 @@ public class FabricInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.setStack(slot, ((FabricItemStack) item).getItemStack());
+        inventory.setStack(slot, ((FabricItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */

@@ -1,12 +1,13 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/** Abstracts a Forge inventory to an AbstractInventory. */
+/** Forge implementation of {@link Inventory}. */
 public class ForgeInventory implements Inventory {
     private final net.minecraft.world.entity.player.Inventory inventory;
 
@@ -34,19 +35,19 @@ public class ForgeInventory implements Inventory {
     /** {@inheritDoc} */
     @Override
     public void setItem(int slot, ItemStack item) {
-        inventory.setItem(slot, ((ForgeItemStack) item).getItemStack());
+        inventory.setItem(slot, ((ForgeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void addItem(ItemStack item) {
-        inventory.add(((ForgeItemStack) item).getItemStack());
+        inventory.add(((ForgeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
     public void removeItem(ItemStack item) {
-        inventory.removeItem(((ForgeItemStack) item).getItemStack());
+        inventory.removeItem(((ForgeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
@@ -63,7 +64,7 @@ public class ForgeInventory implements Inventory {
     @Override
     public void setContents(ItemStack[] items) {
         for (int i = 0; i < size(); i++) {
-            inventory.setItem(i, ((ForgeItemStack) items[i]).getItemStack());
+            inventory.setItem(i, ((ForgeItemStack) items[i]).itemStack());
         }
     }
 
@@ -71,13 +72,14 @@ public class ForgeInventory implements Inventory {
     @Override
     public ItemStack[] storageContents() {
         // TODO: Implement
-        return new ItemStack[0];
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setStorageContents(ItemStack[] items) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
@@ -175,7 +177,7 @@ public class ForgeInventory implements Inventory {
     @Override
     public void remove(ItemStack item) {
         for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((ForgeItemStack) item).getItemStack());
+            inventory.removeItem(((ForgeItemStack) item).itemStack());
         }
     }
 
@@ -184,7 +186,7 @@ public class ForgeInventory implements Inventory {
     public void remove(String type) {
         for (int i = 0; i < size(); i++) {
             if (item(i).type().equals(type)) {
-                inventory.removeItem(((ForgeItemStack) item(i)).getItemStack());
+                inventory.removeItem(((ForgeItemStack) item(i)).itemStack());
             }
         }
     }
@@ -193,13 +195,13 @@ public class ForgeInventory implements Inventory {
     @Override
     public void clear() {
         for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((ForgeItemStack) item(i)).getItemStack());
+            inventory.removeItem(((ForgeItemStack) item(i)).itemStack());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
-        inventory.removeItem(((ForgeItemStack) item(slot)).getItemStack());
+        inventory.removeItem(((ForgeItemStack) item(slot)).itemStack());
     }
 }
