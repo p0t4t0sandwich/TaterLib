@@ -64,9 +64,9 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                                                 .getFriendlyString()))
                                 .collect(Collectors.toSet()));
         api.setServer(() -> new FabricServer(minecraftServer));
+        TaterAPIProvider.setPrimaryServerType(ServerType.FABRIC);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(
                     s -> FabricTaterLibPlugin.minecraftServer = s);

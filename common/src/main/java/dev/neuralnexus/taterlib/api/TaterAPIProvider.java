@@ -27,7 +27,7 @@ public class TaterAPIProvider {
     private static final MinecraftVersion minecraftVersion = MinecraftVersion.minecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
-    private static boolean eventListenersRegistered = false;
+    private static ServerType primaryServerType;
     private static PlayerDataStore playerDataStore;
 
     /**
@@ -132,14 +132,16 @@ public class TaterAPIProvider {
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
-    public static boolean areEventListenersRegistered() {
-        return eventListenersRegistered;
+    public static boolean isPrimaryServerType(ServerType serverType) {
+        return primaryServerType == serverType;
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
-    public static void setEventListenersRegistered(boolean registered) {
-        eventListenersRegistered = registered;
+    public static void setPrimaryServerType(ServerType serverType) {
+        if (primaryServerType == null) {
+            primaryServerType = serverType;
+        }
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */

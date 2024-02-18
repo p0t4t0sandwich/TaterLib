@@ -16,6 +16,9 @@ import java.util.Set;
 public class SpongeMetricsAdapter {
     public static Object setupMetrics(
             Object plugin, Object pluginLogger, int pluginId, Set<CustomChart> charts) {
+        if (!(plugin instanceof PluginContainer)) {
+            return null;
+        }
         Path configDir = Paths.get(ServerType.SPONGE.dataFolders().configFolder());
         if (configDir.toFile().exists()) {
             configDir = configDir.toAbsolutePath();

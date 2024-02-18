@@ -9,6 +9,9 @@ import java.util.Set;
 /** Bukkit metrics adapter for BStats to allow for easy multi-platform support. */
 public class BukkitMetricsAdapter {
     public static Object setupMetrics(Object plugin, int pluginId, Set<CustomChart> charts) {
+        if (!(plugin instanceof JavaPlugin)) {
+            return null;
+        }
         Metrics metrics = new Metrics((JavaPlugin) plugin, pluginId);
         charts.forEach(metrics::addCustomChart);
         return metrics;

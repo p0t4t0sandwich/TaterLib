@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.forge;
 
-import com.mojang.logging.LogUtils;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
@@ -48,9 +47,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                         modContainer.getVersion().toString()))
                                 .collect(Collectors.toSet()));
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
+        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

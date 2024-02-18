@@ -53,12 +53,12 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                                         p.getDescription().getVersion()))
                                 .collect(Collectors.toSet()));
         api.setServer(VanillaServer::instance);
+        TaterAPIProvider.setPrimaryServerType(ServerType.BUKKIT);
     }
 
     @Override
     public void platformEnable() {
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.BUKKIT)) {
             // Register listeners
             PluginManager pluginManager = plugin.getServer().getPluginManager();
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);

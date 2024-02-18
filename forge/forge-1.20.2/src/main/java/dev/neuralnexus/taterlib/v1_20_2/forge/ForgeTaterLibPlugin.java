@@ -42,9 +42,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                         modContainer.getVersion().toString()))
                                 .collect(Collectors.toSet()));
         api.setServer(VanillaServer::instance);
+        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

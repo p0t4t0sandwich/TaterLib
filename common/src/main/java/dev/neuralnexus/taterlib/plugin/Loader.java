@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.plugin;
 
+import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 
@@ -48,7 +49,17 @@ public interface Loader {
     /** Run Enable on all plugins. */
     default void onEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
-        plugins().forEach(Plugin::platformEnable);
+        plugins()
+                .forEach(
+                        plugin -> {
+                            try {
+                                plugin.platformEnable();
+                            } catch (Exception e) {
+                                if (!(plugin instanceof TaterLibPlugin)) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
     }
 
     /** Run Disable on all plugins. */

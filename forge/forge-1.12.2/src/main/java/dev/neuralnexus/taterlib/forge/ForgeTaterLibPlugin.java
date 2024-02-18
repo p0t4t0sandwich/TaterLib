@@ -29,8 +29,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
-import org.apache.logging.log4j.LogManager;
-
 import java.util.stream.Collectors;
 
 /** Forge entry point. */
@@ -69,9 +67,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                         modContainer.getVersion()))
                                 .collect(Collectors.toSet()));
         api.setServer(() -> new ForgeServer(minecraftServer));
+        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
