@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
-
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
@@ -34,7 +33,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
             return false;
         }
         // Forge is picking up on Vanilla mixins
-        if (TaterAPIProvider.serverType().is(ServerType.FORGE, ServerType.SPONGE_FORGE)
+        if (TaterAPIProvider.serverType().isForgeBased()
                 && mixinClassName.contains(".vanilla.mixin")) {
             return false;
         }

@@ -227,16 +227,16 @@ public enum MinecraftVersion {
         }
         ServerType serverType = ServerType.serverType();
         String version = "";
-        if (serverType.isBukkitBased()) {
-            version = getBukkitMCVersion();
-        } else if (serverType.isBungeeCordBased()) {
+        if (serverType.isBungeeCordBased()) {
             version = getBungeeCordMCVersion();
         } else if (serverType.isFabricBased()) {
             version = getFabricMCVersion();
-        } else if (serverType.is(ServerType.NEOFORGE)) {
+        } else if (serverType.isNeoForgeBased()) {
             version = getNeoForgeMCVersion();
         } else if (serverType.isForgeBased()) {
             version = getForgeMCVersion();
+        } else if (serverType.isBukkitBased()) {
+            version = getBukkitMCVersion();
         } else if (serverType.isSpongeBased()) {
             version = getSpongeMCVersion();
         } else if (serverType.isVelocityBased()) {
