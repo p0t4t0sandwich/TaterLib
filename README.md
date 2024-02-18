@@ -114,6 +114,22 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 - [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)
 
+### Bukkit
+
+![image](https://bstats.org/signatures/bukkit/TaterLib.svg)
+
+### BungeeCord
+
+![image](https://bstats.org/signatures/bungeecord/TaterLib.svg)
+
+### Sponge
+
+![image](https://bstats.org/signatures/sponge/TaterLib.svg)
+
+### Velocity
+
+![image](https://bstats.org/signatures/velocity/TaterLib.svg)
+
 ## Release Notes
 
 ### 1.1.0-R0.16

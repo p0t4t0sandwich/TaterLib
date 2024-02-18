@@ -11,6 +11,10 @@ import dev.neuralnexus.taterlib.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 
+import org.bstats.charts.SimplePie;
+
+import java.util.Collections;
+
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
@@ -114,7 +118,9 @@ public class TaterLib {
                         .put(ServerType.BUNGEECORD, 21009)
                         .put(ServerType.SPONGE, 21010)
                         .put(ServerType.VELOCITY, 21011)
-                        .build());
+                        .build(),
+                Collections.singleton(
+                        new SimplePie("server_type", () -> ServerType.serverType().toString())));
 
         // Config
         ConfigLoader.load();
@@ -186,7 +192,7 @@ public class TaterLib {
         public static final String PROJECT_VERSION = "1.1.0-R0.16-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION =
-                "A cross API code library for various generalizations used in the Tater* plugins";
+                "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
     }
 }
