@@ -1,7 +1,6 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
@@ -23,9 +22,9 @@ public class ForgeLoaderPlugin {
     public ForgeLoaderPlugin() {
         loader = new TaterLibLoader(this, null, null);
         loader.registerPlugin(getPlugin());
-        if (TaterAPIProvider.serverType().isForgeHybrid()) {
-            loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
-        }
+        // if (TaterAPIProvider.serverType().isForgeHybrid()) {
+        //     loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
+        // }
         // Sinytra Connector support
         if (ServerType.isFabric()) {
             loader.registerPlugin(FabricLoaderPlugin.getPlugin());

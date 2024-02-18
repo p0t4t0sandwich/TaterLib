@@ -1,6 +1,5 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
@@ -15,9 +14,9 @@ public class FabricLoaderPlugin implements ModInitializer {
     public FabricLoaderPlugin() {
         loader = new TaterLibLoader(this, null, null);
         loader.registerPlugin(getPlugin());
-        if (TaterAPIProvider.serverType().isFabricHybrid()) {
-            loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
-        }
+        // if (TaterAPIProvider.serverType().isFabricHybrid()) {
+        //     loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
+        // }
         loader.onInit();
     }
 
