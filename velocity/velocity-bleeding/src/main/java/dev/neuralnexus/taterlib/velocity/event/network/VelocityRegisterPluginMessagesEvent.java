@@ -12,7 +12,7 @@ public class VelocityRegisterPluginMessagesEvent implements RegisterPluginMessag
     /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
-        VelocityTaterLibPlugin.getProxyServer()
+        VelocityTaterLibPlugin.proxyServer
                 .getChannelRegistrar()
                 .register(MinecraftChannelIdentifier.from(channel));
     }

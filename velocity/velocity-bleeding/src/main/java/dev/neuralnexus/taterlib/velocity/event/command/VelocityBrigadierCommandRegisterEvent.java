@@ -53,7 +53,7 @@ public class VelocityBrigadierCommandRegisterEvent
             Object plugin,
             String commandName,
             String... aliases) {
-        CommandManager commandManager = VelocityTaterLibPlugin.getProxyServer().getCommandManager();
+        CommandManager commandManager = VelocityTaterLibPlugin.proxyServer.getCommandManager();
         CommandMeta commandMeta =
                 commandManager.metaBuilder(commandName).aliases(aliases).plugin(plugin).build();
         commandManager.register(commandMeta, new BrigadierCommand(node));

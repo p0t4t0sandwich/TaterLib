@@ -13,7 +13,7 @@ public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
     /** {@inheritDoc} */
     @Override
     public void registerCommand(Object plugin, Command command, String... aliases) {
-        CommandManager commandManager = VelocityTaterLibPlugin.getProxyServer().getCommandManager();
+        CommandManager commandManager = VelocityTaterLibPlugin.proxyServer.getCommandManager();
         CommandMeta commandMeta =
                 commandManager.metaBuilder(command.name()).aliases(aliases).plugin(plugin).build();
         commandManager.register(commandMeta, new VelocityCommandWrapper(command::execute));

@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
+import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
 import dev.neuralnexus.taterlib.player.Player;
 
 public class TaterLibCommand implements Command {
@@ -27,7 +28,7 @@ public class TaterLibCommand implements Command {
 
     @Override
     public String usage() {
-        return "&cUsage: /taterlib <reload | version>";
+        return "&cUsage: /taterlib <reload | version | dump | fulldump>";
     }
 
     @Override
@@ -82,7 +83,7 @@ public class TaterLibCommand implements Command {
                                 + dumpInfo.isSinytraConnector;
                 break;
             case "fulldump":
-                DumpInfo fullDumpInfo = new DumpInfo();
+                FullDumpInfo fullDumpInfo = new FullDumpInfo();
                 fullDumpInfo.saveDump();
                 text = "&aFull dump saved to logs/taterlib-fulldump.json";
                 break;

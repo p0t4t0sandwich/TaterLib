@@ -206,3 +206,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added bStats support for Bukkit, Bungee, Sponge, and Velocity
 - Added Arclight Fabric server type
 - Merged `ItemMeta` into `ItemStack`
+- Created player metadata API

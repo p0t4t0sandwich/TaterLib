@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 /** Velocity implementation of {@link ProxyServer}. */
 public class VelocityProxyServer implements ProxyServer {
     private static final com.velocitypowered.api.proxy.ProxyServer server =
-            VelocityTaterLibPlugin.getProxyServer();
+            VelocityTaterLibPlugin.proxyServer;
     private static VelocityProxyServer instance;
 
     /**

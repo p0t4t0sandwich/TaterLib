@@ -2,70 +2,109 @@ package dev.neuralnexus.taterlib.api.info;
 
 import static dev.neuralnexus.taterlib.Utils.reflectCheck;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Arrays;
 
 /** Represents the type of server the server is running. */
 public enum ServerType {
     // Bukkit fork
+    @SerializedName("CraftBukkit")
     CRAFTBUKKIT("CraftBukkit", DataFolders.PLUGINS),
+    @SerializedName("Bukkit")
     BUKKIT("Bukkit", DataFolders.PLUGINS),
+    @SerializedName("Poseidon")
     POSEIDON("Poseidon", DataFolders.PLUGINS),
+    @SerializedName("Spigot")
     SPIGOT("Spigot", DataFolders.PLUGINS),
+    @SerializedName("Paper")
     PAPER("Paper", DataFolders.PLUGINS),
+    @SerializedName("Folia")
     FOLIA("Folia", DataFolders.PLUGINS),
+    @SerializedName("Purpur")
     PURPUR("Purpur", DataFolders.PLUGINS),
+    @SerializedName("Pufferfish")
     PUFFERFISH("Pufferfish", DataFolders.PLUGINS),
 
     // Bukkit + NeoForge Hybrids
     NEOFORGE_HYBRID("NeoForge Hybrid", DataFolders.HYBRID),
+    @SerializedName("Mohist Neo")
     MOHIST_NEO("Mohist Neo", DataFolders.HYBRID),
+    @SerializedName("Arclight Neo")
     ARCLIGHT_NEO("Arclight Neo", DataFolders.HYBRID),
 
     // Bukkit + Forge Hybrids
     FORGE_HYBRID("Forge Hybrid", DataFolders.HYBRID),
+    @SerializedName("Cauldron")
     CAULDRON("Cauldron", DataFolders.HYBRID),
+    @SerializedName("KCauldron")
     KCUALDRON("KCauldron", DataFolders.HYBRID),
+    @SerializedName("Thermos")
     THERMOS("Thermos", DataFolders.HYBRID),
+    @SerializedName("Crucible")
     CRUCIBLE("Crucible", DataFolders.HYBRID),
+    @SerializedName("MCPC++")
     MCPC_PLUS_PLUS("MCPC++", DataFolders.HYBRID),
+    @SerializedName("Mohist")
     MOHIST("Mohist", DataFolders.HYBRID),
+    @SerializedName("Magma")
     MAGMA("Magma", DataFolders.HYBRID),
+    @SerializedName("Arclight")
     ARCLIGHT("Arclight", DataFolders.HYBRID),
+    @SerializedName("Ketting")
     KETTING("Ketting", DataFolders.HYBRID),
 
     // Bukkit + Fabric Hybrids
     FABRIC_HYBRID("Fabric Hybrid", DataFolders.HYBRID),
+    @SerializedName("Cardboard")
     CARDBOARD("Cardboard", DataFolders.HYBRID),
+    @SerializedName("Banner")
     BANNER("Banner", DataFolders.HYBRID),
+    @SerializedName("Arclight Fabric")
     ARCLIGHT_FABRIC("Arclight Fabric", DataFolders.HYBRID),
 
     // BungeeCord
+    @SerializedName("BungeeCord")
     BUNGEECORD("BungeeCord", DataFolders.PLUGINS),
+    @SerializedName("Waterfall")
     WATERFALL("Waterfall", DataFolders.PLUGINS),
+    @SerializedName("Travertine")
     TRAVERTINE("Travertine", DataFolders.PLUGINS),
+    @SerializedName("Hexacord")
     HEXACORD("Hexacord", DataFolders.PLUGINS),
 
     // Fabric
+    @SerializedName("Fabric")
     FABRIC("Fabric", DataFolders.MODS),
+    @SerializedName("Quilt")
     QUILT("Quilt", DataFolders.MODS),
 
     // Forge
+    @SerializedName("Forge")
     FORGE("Forge", DataFolders.MODS),
+    @SerializedName("GoldenForge")
     GOLDENFORGE("GoldenForge", DataFolders.MODS),
+    @SerializedName("NeoForge")
     NEOFORGE("NeoForge", DataFolders.MODS),
 
     // Sponge
+    @SerializedName("Sponge")
     SPONGE("Sponge", DataFolders.MODS),
+    @SerializedName("SpongeForge")
     SPONGE_FORGE("SpongeForge", DataFolders.MODS),
+    @SerializedName("SpongeVanilla")
     SPONGE_VANILLA("SpongeVanilla", DataFolders.MODS),
 
     // Velocity
+    @SerializedName("Velocity")
     VELOCITY("Velocity", DataFolders.PLUGINS),
 
     // Vanilla
+    @SerializedName("Vanilla")
     VANILLA("Vanilla", DataFolders.UNKNOWN),
 
     // Unknown
+    @SerializedName("Unknown")
     UNKNOWN("Unknown", DataFolders.UNKNOWN);
 
     private static ServerType serverType = UNKNOWN;

@@ -41,9 +41,8 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     @Override
     public void connect(String serverName) {
-        if (!VelocityTaterLibPlugin.getProxyServer().getServer(serverName).isPresent()) return;
-        RegisteredServer server =
-                VelocityTaterLibPlugin.getProxyServer().getServer(serverName).get();
+        if (!VelocityTaterLibPlugin.proxyServer.getServer(serverName).isPresent()) return;
+        RegisteredServer server = VelocityTaterLibPlugin.proxyServer.getServer(serverName).get();
         player.createConnectionRequest(server).fireAndForget();
     }
 

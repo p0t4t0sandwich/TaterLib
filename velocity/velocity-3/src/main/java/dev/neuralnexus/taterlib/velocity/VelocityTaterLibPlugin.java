@@ -43,21 +43,12 @@ import java.util.stream.Collectors;
         description = TaterLib.Constants.PROJECT_DESCRIPTION,
         url = TaterLib.Constants.PROJECT_URL)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
-    private static PluginContainer plugin;
-    private static ProxyServer proxyServer;
+    public static PluginContainer plugin;
+    public static ProxyServer proxyServer;
 
     @Inject
     public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
         platformInit(plugin, server, logger);
-    }
-
-    /**
-     * Gets the proxy server.
-     *
-     * @return The proxy server.
-     */
-    public static ProxyServer getProxyServer() {
-        return proxyServer;
     }
 
     @Subscribe
@@ -72,6 +63,9 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void platformInit(Object plugin, Object server, Object logger) {
+        // TODO: Remove when Velocity loader is implemented
+        TaterAPIProvider.register();
+
         VelocityTaterLibPlugin.plugin = (PluginContainer) plugin;
         VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
 
