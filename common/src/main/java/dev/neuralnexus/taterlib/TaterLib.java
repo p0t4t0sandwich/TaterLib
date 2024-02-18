@@ -90,6 +90,7 @@ public class TaterLib {
      *
      * @param plugin The plugin
      * @param pluginServer The plugin server
+     * @param pluginLogger The plugin logger
      * @param logger The logger
      */
     public static void start(

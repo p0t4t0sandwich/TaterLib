@@ -6,6 +6,9 @@ import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.placeholder.PlaceholderParser;
 import dev.neuralnexus.taterlib.server.SimpleServer;
 
+import java.lang.reflect.Type;
+import java.util.Optional;
+
 /**
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
@@ -89,6 +92,57 @@ public interface SimplePlayer extends CommandSender, Connection {
         if (!TaterAPIProvider.isHooked("luckperms")) return;
         LuckPermsHook luckPermsHook = LuckPermsHook.get();
         luckPermsHook.setSuffix(uuid(), suffix, priority);
+    }
+
+    /**
+     * Get stored metadata for the player
+     *
+     * @param key The key to get
+     * @return The value
+     */
+    default Optional<Object> getMeta(String key) {
+        return TaterAPIProvider.playerDataStore().get(this, key);
+    }
+
+    /**
+     * Get stored metadata for the player
+     *
+     * @param key The key to get
+     * @param clazz The class of the object to get
+     * @return The value
+     */
+    default <T> Optional<T> getMeta(String key, Class<T> clazz) {
+        return TaterAPIProvider.playerDataStore().get(this, key, clazz);
+    }
+
+    /**
+     * Get stored metadata for the player
+     *
+     * @param key The key to get
+     * @param type The type of the object to get
+     * @return The value
+     */
+    default <T> Optional<T> getMeta(String key, Type type) {
+        return TaterAPIProvider.playerDataStore().get(this, key, type);
+    }
+
+    /**
+     * Set stored metadata for the player
+     *
+     * @param key The key to set
+     * @param value The value to set
+     */
+    default void setMeta(String key, Object value) {
+        TaterAPIProvider.playerDataStore().set(this, key, value);
+    }
+
+    /**
+     * Delete stored metadata for the player
+     *
+     * @param key The key to delete
+     */
+    default void deleteMeta(String key) {
+        TaterAPIProvider.playerDataStore().delete(this, key);
     }
 
     /**

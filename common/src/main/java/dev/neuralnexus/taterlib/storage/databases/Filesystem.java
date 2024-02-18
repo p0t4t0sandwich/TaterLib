@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.storage;
+package dev.neuralnexus.taterlib.storage.databases;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 
@@ -17,9 +17,7 @@ public class Filesystem implements Database<String> {
      */
     public Filesystem(Database.DatabaseConfig config) {
         this.connection =
-                "."
-                        + File.separator
-                        + TaterAPIProvider.serverType().dataFolders().configFolder()
+                TaterAPIProvider.serverType().dataFolders().configFolder()
                         + File.separator
                         + config.host;
         this.database = config.database;
@@ -27,19 +25,19 @@ public class Filesystem implements Database<String> {
 
     /** {@inheritDoc} */
     @Override
-    public Database.Type getType() {
+    public Database.Type type() {
         return type;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getConnection() {
+    public String connection() {
         return connection;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDatabase() {
+    public String database() {
         return database;
     }
 }

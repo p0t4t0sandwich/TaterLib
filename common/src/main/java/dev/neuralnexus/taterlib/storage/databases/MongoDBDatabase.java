@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.storage;
+package dev.neuralnexus.taterlib.storage.databases;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -33,19 +33,19 @@ public class MongoDBDatabase implements Database<MongoClient> {
 
     /** {@inheritDoc} */
     @Override
-    public Database.Type getType() {
+    public Database.Type type() {
         return type;
     }
 
     /** {@inheritDoc} */
     @Override
-    public MongoClient getConnection() {
+    public MongoClient connection() {
         return connection;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDatabase() {
+    public String database() {
         return database;
     }
 }

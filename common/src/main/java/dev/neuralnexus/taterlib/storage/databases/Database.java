@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.storage;
+package dev.neuralnexus.taterlib.storage.databases;
 
 /**
  * Database interface
@@ -11,21 +11,21 @@ public interface Database<T> {
      *
      * @return The type of the database
      */
-    Database.Type getType();
+    Database.Type type();
 
     /**
      * Get the connection
      *
      * @return The connection
      */
-    T getConnection();
+    T connection();
 
     /**
      * Get the database
      *
      * @return The database
      */
-    String getDatabase();
+    String database();
 
     /** Database type enum */
     enum Type {

@@ -1,17 +1,17 @@
 package dev.neuralnexus.taterlib.modules.core;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.config.ConfigLoader;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.GenericEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.hooks.TaterLibHook;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterlib.storage.databases.Database;
+import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 /** TaterLib's core module. */
 public class CoreModule implements PluginModule {
@@ -35,16 +35,17 @@ public class CoreModule implements PluginModule {
             // Setup Generic Events
             GenericEvents.setup();
 
-            TaterAPI api = TaterAPIProvider.get();
-
-            // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)
-            TaterAPIProvider.addHook(new TaterLibHook());
+            // Set up local player metadata store
+            TaterAPIProvider.setPlayerDataStore(
+                    new PlayerDataStore(
+                            new Database.DatabaseConfig(
+                                    TaterLib.Constants.PROJECT_NAME, 0, "playerdata", "", "")));
 
             // Register hooks
             ServerEvents.STARTED.register(
                     event -> {
                         // Register LuckPerms hook
-                        if (api.isPluginModLoaded("LuckPerms")
+                        if (TaterAPIProvider.get().isPluginModLoaded("LuckPerms")
                                 && ConfigLoader.config().checkHook("LuckPerms")) {
                             TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPIProvider.addHook(new LuckPermsHook());

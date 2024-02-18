@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.storage;
+package dev.neuralnexus.taterlib.storage.databases;
 
 /** Data source class */
 public class DataSource {

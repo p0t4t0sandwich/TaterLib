@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.storage;
+package dev.neuralnexus.taterlib.storage.databases;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -42,13 +42,13 @@ public class MySQLDatabase implements Database<Connection> {
 
     /** {@inheritDoc} */
     @Override
-    public Database.Type getType() {
+    public Database.Type type() {
         return type;
     }
 
     /** {@inheritDoc} */
     @Override
-    public Connection getConnection() {
+    public Connection connection() {
         try {
             return ds.getConnection();
         } catch (SQLException e) {
@@ -59,7 +59,7 @@ public class MySQLDatabase implements Database<Connection> {
 
     /** {@inheritDoc} */
     @Override
-    public String getDatabase() {
+    public String database() {
         return database;
     }
 }

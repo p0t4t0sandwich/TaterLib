@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MagmaHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 import org.jetbrains.annotations.ApiStatus;
 
@@ -27,6 +28,7 @@ public class TaterAPIProvider {
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
     private static final Set<Hook> hooks = new HashSet<>();
     private static boolean eventListenersRegistered = false;
+    private static PlayerDataStore playerDataStore;
 
     /**
      * Get Minecraft version
@@ -138,6 +140,26 @@ public class TaterAPIProvider {
     @ApiStatus.Internal
     public static void setEventListenersRegistered(boolean registered) {
         eventListenersRegistered = registered;
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static void setPlayerDataStore(PlayerDataStore playerDataStore) {
+        TaterAPIProvider.playerDataStore = playerDataStore;
+    }
+
+    /**
+     * Get the player data store <br>
+     * Please note, this is for local storage only, and should not be used for cross-server data
+     * storage. <br>
+     * For cross-server data storage, use TODO: <b>ToBeNamed</b> <br>
+     * Currently only supports primitive types, but you could use GSON to store the data as a string
+     * first, then store it in the player data store.
+     *
+     * @return The player data store
+     */
+    public static PlayerDataStore playerDataStore() {
+        return playerDataStore;
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
