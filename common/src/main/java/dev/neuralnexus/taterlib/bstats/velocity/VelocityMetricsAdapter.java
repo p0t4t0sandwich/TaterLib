@@ -15,6 +15,10 @@ public class VelocityMetricsAdapter {
     public static Object setupMetrics(
             Object plugin, Object server, Object pluginLogger, int pluginId) {
         Path configDir = Paths.get(ServerType.VELOCITY.dataFolders().configFolder());
+        if (configDir.toFile().exists()) {
+            configDir = configDir.toAbsolutePath();
+        }
+
         // Reflect to get Metrics class, as it's not public and dependency injection is a bit weird
         // from here
         try {

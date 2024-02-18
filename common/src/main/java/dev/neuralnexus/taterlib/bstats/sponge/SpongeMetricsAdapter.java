@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 public class SpongeMetricsAdapter {
     public static Object setupMetrics(Object plugin, Object pluginLogger, int pluginId) {
         Path configDir = Paths.get(ServerType.SPONGE.dataFolders().configFolder());
+        if (configDir.toFile().exists()) {
+            configDir = configDir.toAbsolutePath();
+        }
         // Reflect to get Metrics class, as it's not public and dependency injection is a bit weird
         // from here
         try {
