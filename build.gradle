@@ -205,7 +205,7 @@ tasks.register('build_entrypoint_spoof', Jar) {
     // TODO: remove this redundant garbage
     dependsOn('tooling:entrypoint-spoof:build')
 
-    archiveFileName = "entrypoint-spoof-${version}.jar"
+    archiveFileName = "entrypoint-spoof-0.1.1.jar"
     destinationDirectory = file("./build/libs")
 
     from(["README.md", "LICENSE"]) {
@@ -213,7 +213,7 @@ tasks.register('build_entrypoint_spoof', Jar) {
     }
 
     from {
-        zipTree(file("./target/entrypoint-spoof-0.1.0.jar"))
+        zipTree(file("./tooling/entrypoint-spoof/build/libs/entrypoint-spoof-0.1.1.jar"))
     }
 }
 
@@ -1099,7 +1099,7 @@ publishing {
         }
         uploadEntryPointSpoof(MavenPublication) {
             groupId = group_id
-            version = "0.1.0"
+            version = "0.1.1"
 
             artifact(build_entrypoint_spoof) {
                 artifactId = "entrypoint-spoof"
