@@ -57,13 +57,13 @@ public class VanillaCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender sender(CommandSourceStack source) {
+    public CommandSender getSender(CommandSourceStack source) {
         return new VanillaCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player player(CommandSourceStack source) {
+    public Player getPlayer(CommandSourceStack source) {
         return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 

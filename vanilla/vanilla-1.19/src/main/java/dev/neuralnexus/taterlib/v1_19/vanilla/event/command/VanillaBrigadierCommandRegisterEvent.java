@@ -54,13 +54,13 @@ public class VanillaBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender sender(CommandSourceStack source) {
+    public CommandSender getSender(CommandSourceStack source) {
         return new VanillaCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player player(CommandSourceStack source) {
+    public Player getPlayer(CommandSourceStack source) {
         return new VanillaPlayer(source.getPlayer());
     }
 

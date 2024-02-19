@@ -15,7 +15,7 @@ public class SimpleBrigadierWrapper {
     private static int contextWrapper(
             BrigadierCommandRegisterEvent event, CommandContext context, Command command) {
         Object source = context.getSource();
-        CommandSender commandSender = event.sender(source);
+        CommandSender commandSender = event.getSender(source);
         String[] args = new String[] {};
         try {
             args = ((String) context.getArgument("args", String.class)).split(" ");
@@ -23,7 +23,7 @@ public class SimpleBrigadierWrapper {
         }
         boolean isPlayer = event.isPlayer(source);
         if (isPlayer) {
-            commandSender = event.player(source);
+            commandSender = event.getPlayer(source);
         }
         return command.execute(commandSender, command.name(), args) ? 1 : 0;
     }

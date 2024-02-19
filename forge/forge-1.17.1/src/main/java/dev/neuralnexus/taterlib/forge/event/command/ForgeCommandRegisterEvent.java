@@ -54,13 +54,13 @@ public class ForgeCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender sender(CommandSourceStack source) {
+    public CommandSender getSender(CommandSourceStack source) {
         return new ForgeCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player player(CommandSourceStack source) {
+    public Player getPlayer(CommandSourceStack source) {
         return new ForgePlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 

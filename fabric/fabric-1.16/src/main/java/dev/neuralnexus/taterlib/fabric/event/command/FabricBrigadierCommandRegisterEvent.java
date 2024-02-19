@@ -53,13 +53,13 @@ public class FabricBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender sender(ServerCommandSource source) {
+    public CommandSender getSender(ServerCommandSource source) {
         return new FabricCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player player(ServerCommandSource source) {
+    public Player getPlayer(ServerCommandSource source) {
         return new FabricPlayer((PlayerEntity) source.getEntity());
     }
 

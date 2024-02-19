@@ -37,7 +37,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The sender.
      */
-    CommandSender sender(S source);
+    CommandSender getSender(S source);
 
     /**
      * Get the player.
@@ -45,7 +45,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The player.
      */
-    SimplePlayer player(S source);
+    SimplePlayer getPlayer(S source);
 
     /**
      * Check if the source is a player.

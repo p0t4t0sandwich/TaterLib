@@ -52,13 +52,13 @@ public class ForgeBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandSender sender(CommandSource source) {
+    public CommandSender getSender(CommandSource source) {
         return new ForgeCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player player(CommandSource source) {
+    public Player getPlayer(CommandSource source) {
         return new ForgePlayer((PlayerEntity) source.getEntity());
     }
 
