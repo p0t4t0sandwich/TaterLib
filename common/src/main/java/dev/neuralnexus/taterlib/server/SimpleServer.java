@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.server;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.config.ConfigLoader;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import java.util.Optional;
@@ -21,7 +21,7 @@ public interface SimpleServer {
      * @return The name of the server.
      */
     default String name() {
-        return ConfigLoader.config().server().name();
+        return TaterLibConfigLoader.config().server().name();
     }
 
     /** Get the server's brand. */

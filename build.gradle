@@ -85,9 +85,8 @@ var List<String> legacyForgeVersions = [
 
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
-    String dir = "./target"
     ArrayList<File> jarFiles = [
-            file("${dir}/${project_id}-common-${version}.jar"),
+            file("./common/build/libs/${project_id}-common-${version}.jar"),
             file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
     ]
 
@@ -152,7 +151,7 @@ tasks.register('build_api', Jar) {
         into("META-INF")
     }
     ArrayList<File> jarFiles = [
-            file("./target/${project_id}-common-${version}.jar")
+            file("./common/build/libs/${project_id}-common-${version}.jar")
     ]
     from {
         jarFiles.collect {
@@ -190,7 +189,7 @@ tasks.register('build_api_full', Jar) {
         into("META-INF")
     }
     ArrayList<File> jarFiles = [
-            file("./target/${project_id}-common-${version}.jar"),
+            file("./common/build/libs/${project_id}-common-${version}.jar"),
             file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
     ]
     from {

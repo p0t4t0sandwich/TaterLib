@@ -30,23 +30,27 @@ repositories {
 }
 
 dependencies {
-    // Project
-    compileOnly(project(':tooling:entrypoint-spoof'))
-
     // Test
     testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
     testRuntimeOnly('org.junit.platform:junit-platform-launcher')
 
-    // Config
+    // Configurate
     implementation('org.spongepowered:configurate-hocon:4.1.2')
     implementation('io.leangen.geantyref:geantyref:1.3.15')
 
     // bStats
+    compileOnly(project(':tooling:entrypoint-spoof'))
     implementation('org.bstats:bstats-base:3.0.2')
     implementation('org.bstats:bstats-bukkit:3.0.2')
     implementation('org.bstats:bstats-bungeecord:3.0.2')
     implementation('org.bstats:bstats-sponge:3.0.2')
     implementation('org.bstats:bstats-velocity:3.0.2')
+
+    // Gson
+    implementation('com.google.code.gson:gson:2.10.1')
+
+    // Guava
+    implementation('com.google.guava:guava:33.0.0-jre')
 
     // MySQL
     implementation("com.zaxxer:HikariCP:4.0.3")
@@ -56,9 +60,6 @@ dependencies {
     implementation('org.mongodb:mongodb-driver-sync:4.9.1')
     implementation('org.mongodb:mongodb-driver-core:4.9.1')
     implementation('org.mongodb:bson:4.9.1')
-
-    // Gson
-    implementation('com.google.code.gson:gson:2.10.1')
 
     // Logging
     compileOnly("org.slf4j:slf4j-api:1.7.32")
@@ -70,22 +71,14 @@ dependencies {
     // Mixin
     compileOnly("org.spongepowered:mixin:0.8.5")
 
-    // LuckPerms
+    // Cross API dependencies
     compileOnly("net.luckperms:api:5.4")
-
-    // Spark
     compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
 
-    // Arclight
+    // Hybrid APIs
     compileOnly("io.izzel.arclight:arclight-api:1.6.3")
-
-    // Ketting
     compileOnly("org.kettingpowered:kettingcore:1.2")
-
-    // Magma
     compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
-
-    // Mohist
     compileOnly("com.mohistmc:mohistdev:1.16.5")
 }
 
@@ -103,6 +96,12 @@ shadowJar {
         include(dependency('com.typesafe:config:1.4.1'))
         include(dependency('io.leangen.geantyref:geantyref:1.3.15'))
 
+        // Gson
+        include(dependency('com.google.code.gson:gson:2.10.1'))
+
+        // Guava
+        include(dependency('com.google.guava:guava:33.0.0-jre'))
+
         // bStats
         include(dependency('org.bstats:bstats-base:3.0.2'))
         include(dependency('org.bstats:bstats-bukkit:3.0.2'))
@@ -118,14 +117,18 @@ shadowJar {
         include(dependency('org.mongodb:mongodb-driver-sync:4.9.1'))
         include(dependency('org.mongodb:mongodb-driver-core:4.9.1'))
         include(dependency('org.mongodb:bson:4.9.1'))
-
-        // Gson
-        include(dependency('com.google.code.gson:gson:2.10.1'))
     }
-    // Config
+    // Configurate
     relocate('org.spongepowered.configurate', "${group_id}.${project_id}.lib.configurate")
     relocate('com.typesafe.config', "${group_id}.${project_id}.lib.typesafe.config")
     relocate('io.leangen.geantyref', "${group_id}.${project_id}.lib.geantyref")
+
+    // Gson
+    relocate('com.google.gson', "${group_id}.${project_id}.lib.gson")
+
+    // Guava
+    relocate('com.google.common', "${group_id}.${project_id}.lib.guava")
+    relocate('com.google.thirdparty', "${group_id}.${project_id}.lib.google.thirdparty")
 
     // bStats
     relocate('org.bstats', "${group_id}.${project_id}.lib.bstats") {
@@ -140,10 +143,6 @@ shadowJar {
     relocate('com.mongodb', "${group_id}.${project_id}.lib.mongodb")
     relocate('org.bson', "${group_id}.${project_id}.lib.bson")
 
-    // Gson
-    relocate('com.google.gson', "${group_id}.${project_id}.lib.gson")
-
-    destinationDirectory = file('../target')
     archiveFileName = "${project_id}-common-${version}.jar"
 }
 

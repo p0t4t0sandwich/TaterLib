@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
-import dev.neuralnexus.taterlib.config.versions.Config_V1;
+import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 
 import io.leangen.geantyref.TypeToken;
 
@@ -24,7 +24,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /** A class for loading TaterLib configuration. */
-public class ConfigLoader {
+public class TaterLibConfigLoader {
     private static final Path configPath =
             Paths.get(
                     TaterAPIProvider.serverType().dataFolders().configFolder()
@@ -33,8 +33,9 @@ public class ConfigLoader {
                             + File.separator
                             + TaterLib.Constants.PROJECT_ID
                             + ".conf");
-    private static final String defaultConfigPath = "source.taterlib.conf";
-    private static Config config;
+    private static final String defaultConfigPath =
+            "source." + TaterLib.Constants.PROJECT_ID + ".conf";
+    private static TaterLibConfig config;
 
     /** Copy the default configuration to the config folder. */
     public static void copyDefaults() {
@@ -45,13 +46,15 @@ public class ConfigLoader {
             Files.createDirectories(configPath.getParent());
             Files.copy(
                     Objects.requireNonNull(
-                            ConfigLoader.class
+                            TaterLibConfigLoader.class
                                     .getClassLoader()
                                     .getResourceAsStream(defaultConfigPath)),
                     configPath);
         } catch (IOException e) {
-            System.err.println(
-                    "An error occurred while copying the default configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error(
+                            "An error occurred while copying the default configuration: "
+                                    + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -68,8 +71,8 @@ public class ConfigLoader {
         try {
             root = loader.load();
         } catch (IOException e) {
-            System.err.println(
-                    "An error occurred while loading this configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -85,8 +88,10 @@ public class ConfigLoader {
         try {
             server = serverNode.get(serverType);
         } catch (SerializationException e) {
-            System.err.println(
-                    "An error occurred while loading the server configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error(
+                            "An error occurred while loading the server configuration: "
+                                    + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -98,8 +103,10 @@ public class ConfigLoader {
         try {
             modules = moduleNode.get(moduleType);
         } catch (SerializationException e) {
-            System.err.println(
-                    "An error occurred while loading the modules configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error(
+                            "An error occurred while loading the modules configuration: "
+                                    + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -111,8 +118,10 @@ public class ConfigLoader {
         try {
             hooks = hookNode.get(hookType);
         } catch (SerializationException e) {
-            System.err.println(
-                    "An error occurred while loading the hooks configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error(
+                            "An error occurred while loading the hooks configuration: "
+                                    + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -124,8 +133,10 @@ public class ConfigLoader {
         try {
             mixins = mixinNode.get(type);
         } catch (SerializationException e) {
-            System.err.println(
-                    "An error occurred while loading the mixins configuration: " + e.getMessage());
+            TaterLib.logger()
+                    .error(
+                            "An error occurred while loading the mixins configuration: "
+                                    + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }
@@ -133,7 +144,7 @@ public class ConfigLoader {
 
         switch (version) {
             case 1:
-                config = new Config_V1(version, server, modules, hooks, mixins);
+                config = new TaterLibConfig_V1(version, server, modules, hooks, mixins);
                 break;
             default:
                 System.err.println("Unknown configuration version: " + version);
@@ -145,7 +156,7 @@ public class ConfigLoader {
      *
      * @return The loaded configuration.
      */
-    public static Config config() {
+    public static TaterLibConfig config() {
         if (config == null) {
             load();
         }

@@ -5,7 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bstats.MetricsAdapter;
-import dev.neuralnexus.taterlib.config.ConfigLoader;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
@@ -123,7 +123,7 @@ public class TaterLib {
                         new SimplePie("server_type", () -> ServerType.serverType().toString())));
 
         // Config
-        ConfigLoader.load();
+        TaterLibConfigLoader.load();
 
         // Dump basic debug info
         new DumpInfo().saveDump();

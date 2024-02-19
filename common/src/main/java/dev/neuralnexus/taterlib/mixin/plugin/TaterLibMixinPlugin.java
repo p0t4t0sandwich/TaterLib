@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib.mixin.plugin;
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.config.ConfigLoader;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -39,7 +39,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
         }
 
         // Check if the mixin should be applied
-        boolean result = ConfigLoader.config().checkMixin(mixinClassName);
+        boolean result = TaterLibConfigLoader.config().checkMixin(mixinClassName);
         System.out.println(
                 Utils.ansiParser(
                         "§6[TaterLib]: "

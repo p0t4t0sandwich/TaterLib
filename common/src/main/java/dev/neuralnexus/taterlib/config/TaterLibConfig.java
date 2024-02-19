@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import java.util.Set;
 
 /** A class for TaterLib configuration. */
-public interface Config {
+public interface TaterLibConfig {
     /**
      * Get the version of the configuration.
      *
