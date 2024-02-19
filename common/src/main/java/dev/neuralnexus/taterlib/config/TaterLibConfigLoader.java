@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 import io.leangen.geantyref.TypeToken;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
+import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
 import org.spongepowered.configurate.serialize.SerializationException;
@@ -70,7 +71,7 @@ public class TaterLibConfigLoader {
         CommentedConfigurationNode root;
         try {
             root = loader.load();
-        } catch (IOException e) {
+        } catch (ConfigurateException e) {
             TaterLib.logger()
                     .error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
@@ -148,6 +149,91 @@ public class TaterLibConfigLoader {
                 break;
             default:
                 System.err.println("Unknown configuration version: " + version);
+        }
+    }
+
+    /** Unload the configuration. */
+    public static void unload() {
+        config = null;
+    }
+
+    /** Save the configuration to the file. */
+    public static void save() {
+        if (config == null) {
+            return;
+        }
+        final HoconConfigurationLoader loader =
+                HoconConfigurationLoader.builder().path(configPath).build();
+        CommentedConfigurationNode root;
+        try {
+            root = loader.load();
+        } catch (ConfigurateException e) {
+            TaterLib.logger()
+                    .error("An error occurred while loading this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+            return;
+        }
+
+        try {
+            root.node("version").set(config.version());
+        } catch (SerializationException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+
+        try {
+            root.node("server").set(config.server());
+        } catch (SerializationException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+
+        try {
+            root.node("modules").set(config.modules());
+        } catch (SerializationException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+
+        try {
+            root.node("hooks").set(config.hooks());
+        } catch (SerializationException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+
+        try {
+            root.node("mixins").set(config.mixins());
+        } catch (SerializationException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
+        }
+
+        try {
+            loader.save(root);
+        } catch (ConfigurateException e) {
+            TaterLib.logger()
+                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                e.getCause().printStackTrace();
+            }
         }
     }
 

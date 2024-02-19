@@ -163,6 +163,7 @@ public class TaterLib {
         moduleLoader.stopModules();
 
         // Remove references to objects
+        TaterLibConfigLoader.unload();
 
         instance.logger.info(Constants.PROJECT_NAME + " has been stopped!");
         TaterAPIProvider.unregister();
