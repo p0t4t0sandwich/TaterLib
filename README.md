@@ -223,3 +223,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added Arclight Fabric server type
 - Merged `ItemMeta` into `ItemStack`
 - Created player metadata API
+- Added `Server.currentTPS()`, `SimpleServer.getPlayer(String)`, and `SimpleServer.getPlayer(UUID)`

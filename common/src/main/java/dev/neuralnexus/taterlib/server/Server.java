@@ -16,4 +16,11 @@ public interface Server extends SimpleServer {
         Optional<TPSProvider> provider = TaterAPIProvider.getTPSProvider();
         return provider.map(TPSProvider::currentTPS).orElse(-1.0);
     }
+
+    //    /**
+    //     * Get the server's current tick.
+    //     *
+    //     * @return The server's current tick.
+    //     */
+    //    long currentTick();
 }
