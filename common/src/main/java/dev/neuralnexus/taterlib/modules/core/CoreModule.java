@@ -7,6 +7,7 @@ import dev.neuralnexus.taterlib.config.ConfigLoader;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.GenericEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.hooks.metrics.SparkHook;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
 import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.plugin.PluginModule;
@@ -49,6 +50,12 @@ public class CoreModule implements PluginModule {
                                 && ConfigLoader.config().checkHook("LuckPerms")) {
                             TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPIProvider.addHook(new LuckPermsHook());
+                        }
+                        // Register Spark hook
+                        if (TaterAPIProvider.get().isPluginModLoaded("Spark")
+                                && ConfigLoader.config().checkHook("Spark")) {
+                            TaterLib.logger().info("Spark detected, enabling Spark hook.");
+                            TaterAPIProvider.addHook(new SparkHook());
                         }
                     });
 

@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MagmaHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterlib.server.metrics.TPSProvider;
 import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -103,6 +104,18 @@ public class TaterAPIProvider {
         return hooks.stream()
                 .filter(hook -> hook instanceof PermissionsHook)
                 .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(permissible, permission));
+    }
+
+    /**
+     * Get TPSProvider hooks
+     *
+     * @return The TPSProvider hook
+     */
+    public static Optional<TPSProvider> getTPSProvider() {
+        return hooks.stream()
+                .filter(hook -> hook instanceof TPSProvider)
+                .map(hook -> (TPSProvider) hook)
+                .findFirst();
     }
 
     /**

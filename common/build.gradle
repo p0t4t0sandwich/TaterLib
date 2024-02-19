@@ -73,6 +73,9 @@ dependencies {
     // LuckPerms
     compileOnly("net.luckperms:api:5.4")
 
+    // Spark
+    compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
+
     // Arclight
     compileOnly("io.izzel.arclight:arclight-api:1.6.3")
 
