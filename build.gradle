@@ -167,6 +167,39 @@ tasks.register('build_api', Jar) {
     }
 }
 
+// --------------------------- Build api full ---------------------------
+tasks.register('build_api_full', Jar) {
+    dependsOn('clear_build')
+    dependsOn(':common:shadowJar')
+    dependsOn(':tooling:loader:build')
+
+    archiveFileName = "${project_id}-api-full-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} API With Libs",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    ArrayList<File> jarFiles = [
+            file("./target/${project_id}-common-${version}.jar"),
+            file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
+    ]
+    from {
+        jarFiles.collect {
+            zipTree(it)
+        }
+    }
+}
+
 // --------------------------- Build Entry Point Spoof --------------------------------
 tasks.register('build_entrypoint_spoof', Jar) {
     // TODO: remove this redundant garbage
@@ -1000,6 +1033,41 @@ publishing {
 
             artifact(build_api) {
                 artifactId = "${project_id}-api"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
+        uploadAPIFull(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api_full) {
+                artifactId = "${project_id}-api-full"
             }
 
             pom {

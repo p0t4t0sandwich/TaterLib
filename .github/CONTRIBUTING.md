@@ -156,11 +156,12 @@ If you're feeling really ambitious, you could try to add support for other moddi
 following:
 
 * [Nukkit](https://github.com/CloudburstMC/Nukkit)
+* [Krypton](https://github.com/KryptonMC/Krypton)
 * RiftMC
 * LiteLoader
 * Meddle
 * Risugami
 * LitLaunch
 * RealML
-* [Minestorm](https://github.com/Minestom/Minestom)
+* [Minestom](https://github.com/Minestom/Minestom)
 * [Cursed Fabric](https://minecraft-cursed-legacy.github.io/)

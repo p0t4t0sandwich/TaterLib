@@ -605,7 +605,7 @@ public enum ServerType {
         PLUGINS("plugins", "plugins"),
         MODS("mods", "config"),
         HYBRID("mods", "config"),
-        UNKNOWN("", "");
+        UNKNOWN(".", ".");
 
         private final String modFolder;
         private final String configFolder;
