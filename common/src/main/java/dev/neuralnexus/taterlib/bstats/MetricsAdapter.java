@@ -23,13 +23,11 @@ public class MetricsAdapter {
             Object pluginLogger,
             Map<ServerType, Integer> pluginIds,
             Set<CustomChart> charts) {
-
         ServerType serverType = ServerType.serverType();
         if (serverType.isBukkitBased()) {
-            // TODO: Find a way to adapt the charts, or ask Bastian if I can butcher this further
             if (serverType.is(ServerType.POSEIDON)) {
                 return BukkitPoseidonMetricsAdapter.setupMetrics(
-                        plugin, pluginIds.get(ServerType.BUKKIT), Collections.emptySet());
+                        plugin, pluginIds.get(ServerType.BUKKIT), charts);
             }
             // Return early if there's no implementation available.
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
