@@ -224,3 +224,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Merged `ItemMeta` into `ItemStack`
 - Created player metadata API
 - Added `Server.currentTPS()`, `SimpleServer.getPlayer(String)`, and `SimpleServer.getPlayer(UUID)`
+- `PlayerServerSwitchEvent.toServer`/`fromServer` now return a `Server` rather than a `String`

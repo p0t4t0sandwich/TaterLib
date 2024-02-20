@@ -19,7 +19,6 @@ import java.util.UUID;
 public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = BukkitTaterLibPlugin.plugin;
-    private final String serverName;
 
     /**
      * Constructor.
@@ -29,19 +28,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     public BukkitPlayer(org.bukkit.entity.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param serverName The name of the server the player is on.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -54,21 +40,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         super(player);
         this.player = player;
         this.plugin = plugin;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param plugin The plugin.
-     * @param serverName The name of the server the player is on.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin, String serverName) {
-        super(player);
-        this.player = player;
-        this.plugin = plugin;
-        this.serverName = serverName;
     }
 
     /**

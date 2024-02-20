@@ -22,7 +22,6 @@ import java.util.UUID;
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final EntityPlayer player;
-    private final String serverName;
 
     /**
      * Constructor.
@@ -32,19 +31,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     public ForgePlayer(EntityPlayer player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Forge player.
-     * @param serverName The server name.
-     */
-    public ForgePlayer(EntityPlayer player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**

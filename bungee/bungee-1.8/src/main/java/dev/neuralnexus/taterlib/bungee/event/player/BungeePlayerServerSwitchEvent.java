@@ -1,8 +1,10 @@
 package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.event.player.PlayerServerSwitchEvent;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.Server;
 
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 
@@ -22,13 +24,13 @@ public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String toServer() {
-        return event.getServer().getInfo().getName();
+    public Server toServer() {
+        return new BungeeServer(event.getPlayer().getServer().getInfo());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String fromServer() {
-        return event.getPlayer().getServer().getInfo().getName();
+    public Server fromServer() {
+        return new BungeeServer(event.getServer().getInfo());
     }
 }

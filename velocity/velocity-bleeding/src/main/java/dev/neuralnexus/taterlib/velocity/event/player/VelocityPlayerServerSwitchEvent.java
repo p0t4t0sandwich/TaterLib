@@ -4,7 +4,9 @@ import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
 import dev.neuralnexus.taterlib.event.player.PlayerServerSwitchEvent;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.server.VelocityServer;
 
 /** Velocity implementation of {@link PlayerServerSwitchEvent}. */
 public class VelocityPlayerServerSwitchEvent implements PlayerServerSwitchEvent {
@@ -22,15 +24,15 @@ public class VelocityPlayerServerSwitchEvent implements PlayerServerSwitchEvent 
 
     /** {@inheritDoc} */
     @Override
-    public String toServer() {
+    public Server toServer() {
         if (!event.getPlayer().getCurrentServer().isPresent()) return null;
-        return event.getPlayer().getCurrentServer().get().getServerInfo().getName();
+        return new VelocityServer(event.getPlayer().getCurrentServer().get().getServer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String fromServer() {
+    public Server fromServer() {
         if (!event.getPreviousServer().isPresent()) return null;
-        return event.getPreviousServer().get().getServerInfo().getName();
+        return new VelocityServer(event.getPreviousServer().get());
     }
 }

@@ -24,7 +24,6 @@ import java.util.UUID;
 /** Vanilla implementation of {@link Player}. */
 public class VanillaPlayer extends VanillaLivingEntity implements Player {
     private final net.minecraft.world.entity.player.Player player;
-    private final String serverName;
 
     /**
      * Constructor.
@@ -34,7 +33,6 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
     public VanillaPlayer(net.minecraft.world.entity.player.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
     }
 
     /**
