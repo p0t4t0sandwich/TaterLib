@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /** General dump information for debugging. */
 public class DumpInfo {
@@ -26,6 +28,10 @@ public class DumpInfo {
 
     /** Save the dump to a file. */
     public void saveDump() {
+        Path logs = Paths.get("logs");
+        if (!logs.toFile().exists()) {
+            logs.toFile().mkdir();
+        }
         try (Writer writer = new FileWriter("logs" + File.separator + "taterlib-dump.json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(this, writer);

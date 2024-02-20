@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Set;
 
 /** Full dump information for debugging. */
@@ -52,6 +54,10 @@ public class FullDumpInfo extends DumpInfo {
     /** Save the dump to a file. */
     @Override
     public void saveDump() {
+        Path logs = Paths.get("logs");
+        if (!logs.toFile().exists()) {
+            logs.toFile().mkdir();
+        }
         try (Writer writer = new FileWriter("logs" + File.separator + "taterlib-fulldump.json")) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(this, writer);
