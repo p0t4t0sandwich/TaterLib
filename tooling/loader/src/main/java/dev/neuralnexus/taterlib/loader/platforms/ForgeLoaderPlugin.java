@@ -41,7 +41,7 @@ public class ForgeLoaderPlugin {
             case V1_19_2:
             case V1_19_3:
             case V1_19_4:
-                version = MinecraftVersion.V1_19_4.getDelimiterString();
+                version = MinecraftVersion.V1_19.getDelimiterString();
                 break;
             case V1_20:
             case V1_20_1:
