@@ -192,7 +192,7 @@ public enum MinecraftVersion {
         if (!version.toLowerCase().contains("a1") && !version.toLowerCase().contains("b1")) {
             values = values.sorted((o1, o2) -> o2.ordinal() - o1.ordinal());
         }
-        if (version.contains("CB1060")) {
+        if (version.contains("1.1.8 (MC: 1.7.3)")) {
             return B1_7_3;
         }
         return values.filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);

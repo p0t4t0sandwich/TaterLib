@@ -27,7 +27,7 @@ public class MetricsAdapter {
         if (serverType.isBukkitBased()) {
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
                 return BukkitBetaMetricsAdapter.setupMetrics(
-                        plugin, pluginIds.get(ServerType.BUKKIT), charts);
+                        plugin, pluginIds.get(ServerType.BUKKIT), Collections.emptySet());
             }
             return BukkitMetricsAdapter.setupMetrics(
                     plugin, pluginIds.get(ServerType.BUKKIT), charts);

@@ -120,7 +120,10 @@ public class TaterLib {
                         .put(ServerType.VELOCITY, 21011)
                         .build(),
                 Collections.singleton(
-                        new SimplePie("server_type", () -> ServerType.serverType().toString())));
+                        new SimplePie(
+                                "server_type",
+                                () -> ServerType.serverType().toString())));
+
 
         // Config
         TaterLibConfigLoader.load();

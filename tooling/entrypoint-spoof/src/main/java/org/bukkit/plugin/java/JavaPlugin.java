@@ -8,16 +8,20 @@ import java.util.logging.Logger;
 
 /** Fake Bukkit abstract Plugin class to simplify the creation of entrypoints. */
 public abstract class JavaPlugin extends PluginBase {
+    Logger logger;
+    Server server;
+    File dataFolder;
+
     public Logger getLogger() {
-        return null;
+        return logger;
     }
 
     public Server getServer() {
-        return null;
+        return server;
     }
 
     public File getDataFolder() {
-        return null;
+        return dataFolder;
     }
 
     public final boolean isEnabled() {
