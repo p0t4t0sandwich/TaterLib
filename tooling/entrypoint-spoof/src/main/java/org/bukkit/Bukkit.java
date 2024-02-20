@@ -1,21 +1,26 @@
 package org.bukkit;
 
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import java.util.logging.Logger;
 
 /** Fake Bukkit class. */
 public class Bukkit {
+    static Logger logger;
+    static Server server;
+    static BukkitScheduler scheduler;
+
     public static Logger getLogger() {
-        return null;
+        return logger;
     }
 
     public static Server getServer() {
-        return null;
+        return server;
     }
 
     public static BukkitScheduler getScheduler() {
-        return null;
+        return scheduler;
     }
 
     public static boolean getOnlineMode() {
@@ -23,14 +28,14 @@ public class Bukkit {
     }
 
     public static String getVersion() {
-        return null;
+        return "";
     }
 
     public static String getName() {
-        return null;
+        return "";
     }
 
-    public static Object[] getOnlinePlayers() {
-        return null;
+    public static Player[] getOnlinePlayers() {
+        return server.getOnlinePlayers();
     }
 }
