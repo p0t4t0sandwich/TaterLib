@@ -53,8 +53,9 @@ subprojects {
 
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
-    dependsOn('build_api')
-//    dependsOn('build_b1_7_3')
+    dependsOn(':common:test')
+    dependsOn('publishUploadAPIPublicationToNeuralNexusSnapshotsRepository')
+    dependsOn('build_b1_7_3')
 //    dependsOn('build_1_2_5')
 //    dependsOn('build_1_6_4')
 //    dependsOn('build_1_7_10')
@@ -70,7 +71,7 @@ tasks.register('build_all') {
 //    dependsOn('build_1_17')
 //    dependsOn('build_1_18')
 //    dependsOn('build_1_18_2')
-    dependsOn('build_1_19_x')
+//    dependsOn('build_1_19_x')
     dependsOn('build_1_20_x')
 //    dependsOn('build_bleeding')
 }
@@ -204,7 +205,7 @@ tasks.register('build_entrypoint_spoof', Jar) {
     // TODO: remove this redundant garbage
     dependsOn('tooling:entrypoint-spoof:build')
 
-    archiveFileName = "entrypoint-spoof-0.1.1.jar"
+    archiveFileName = "entrypoint-spoof-${entrypoint_spoof_version}.jar"
     destinationDirectory = file("./build/libs")
 
     from(["README.md", "LICENSE"]) {
@@ -212,7 +213,7 @@ tasks.register('build_entrypoint_spoof', Jar) {
     }
 
     from {
-        zipTree(file("./tooling/entrypoint-spoof/build/libs/entrypoint-spoof-0.1.1.jar"))
+        zipTree(file("./tooling/entrypoint-spoof/build/libs/entrypoint-spoof-${entrypoint_spoof_version}.jar"))
     }
 }
 
@@ -1020,10 +1021,6 @@ tasks.register('build_bleeding', Jar) {
     }
 }
 
-clean {
-    delete('target')
-}
-
 publishing {
     publications {
         uploadAPI(MavenPublication) {
@@ -1098,7 +1095,7 @@ publishing {
         }
         uploadEntryPointSpoof(MavenPublication) {
             groupId = group_id
-            version = "0.1.1"
+            version = "${entrypoint_spoof_version}"
 
             artifact(build_entrypoint_spoof) {
                 artifactId = "entrypoint-spoof"
