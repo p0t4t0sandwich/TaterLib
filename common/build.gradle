@@ -50,7 +50,7 @@ dependencies {
     implementation('com.google.code.gson:gson:2.10.1')
 
     // Guava
-    implementation('com.google.guava:guava:33.0.0-jre')
+    implementation('com.google.guava:guava:33.0.0-android')
 
     // MySQL
     implementation("com.zaxxer:HikariCP:4.0.3")
@@ -89,6 +89,7 @@ shadowJar {
         include(dependency("${group_id}:${project_id}:${version}"))
         exclude('META-INF', 'META-INF/**')
         exclude('LICENSE')
+        exclude('INFO_BIN', 'INFO_SRC')
 
         // Config
         include(dependency('org.spongepowered:configurate-core:4.1.2'))
