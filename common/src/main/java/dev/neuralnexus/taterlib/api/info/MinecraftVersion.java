@@ -189,8 +189,11 @@ public enum MinecraftVersion {
      */
     public static MinecraftVersion from(String version) {
         Stream<MinecraftVersion> values = Arrays.stream(MinecraftVersion.values());
-        if (!version.contains("a1") && !version.contains("b1")) {
+        if (!version.toLowerCase().contains("a1") && !version.toLowerCase().contains("b1")) {
             values = values.sorted((o1, o2) -> o2.ordinal() - o1.ordinal());
+        }
+        if (version.contains("CB1060")) {
+            return B1_7_3;
         }
         return values.filter(v -> version.contains(v.toString())).findFirst().orElse(UNKNOWN);
     }

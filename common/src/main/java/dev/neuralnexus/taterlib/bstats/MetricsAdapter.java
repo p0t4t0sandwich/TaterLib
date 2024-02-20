@@ -3,8 +3,8 @@ package dev.neuralnexus.taterlib.bstats;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.bstats.bukkit.BukkitBetaMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.bukkit.BukkitMetricsAdapter;
-import dev.neuralnexus.taterlib.bstats.bukkit.BukkitPoseidonMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.bungeecord.BungeeCordMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.sponge.SpongeMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.velocity.VelocityMetricsAdapter;
@@ -25,13 +25,9 @@ public class MetricsAdapter {
             Set<CustomChart> charts) {
         ServerType serverType = ServerType.serverType();
         if (serverType.isBukkitBased()) {
-            if (serverType.is(ServerType.POSEIDON)) {
-                return BukkitPoseidonMetricsAdapter.setupMetrics(
-                        plugin, pluginIds.get(ServerType.BUKKIT), charts);
-            }
-            // Return early if there's no implementation available.
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
-                return null;
+                return BukkitBetaMetricsAdapter.setupMetrics(
+                        plugin, pluginIds.get(ServerType.BUKKIT), charts);
             }
             return BukkitMetricsAdapter.setupMetrics(
                     plugin, pluginIds.get(ServerType.BUKKIT), charts);

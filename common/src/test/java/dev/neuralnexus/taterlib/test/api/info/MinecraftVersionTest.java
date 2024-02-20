@@ -12,6 +12,8 @@ public class MinecraftVersionTest {
     private static final String REGULAR_VERSION_STRING = "1.16.5";
     private static final String PREFIXED_VERSION_STRING = "someprefix1.20";
     private static final String SUFFIXED_VERSION_STRING = "b1.8somesuffix";
+    private static final String PROJECT_POSIDON_STRING =
+            "1.1.8 (MC: 1.7.3) - A fork of CB1060-1092";
     private static final String REGULAR_RANGE_STRING = "(1.17,1.20]";
     private static final String OPEN_START_RANGE_STRING = "(,1.20]";
     private static final String OPEN_END_RANGE_STRING = "[1.17,)";
@@ -21,6 +23,7 @@ public class MinecraftVersionTest {
         assertEquals(MinecraftVersion.V1_16_5, MinecraftVersion.from(REGULAR_VERSION_STRING));
         assertEquals(MinecraftVersion.V1_20, MinecraftVersion.from(PREFIXED_VERSION_STRING));
         assertEquals(MinecraftVersion.B1_8, MinecraftVersion.from(SUFFIXED_VERSION_STRING));
+        assertEquals(MinecraftVersion.B1_7_3, MinecraftVersion.from(PROJECT_POSIDON_STRING));
     }
 
     @Test
