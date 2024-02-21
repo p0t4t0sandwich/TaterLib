@@ -1,5 +1,6 @@
 package dev.neuralnexus.taterlib.bstats.sponge;
 
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 
 import org.apache.logging.log4j.Logger;
@@ -16,6 +17,11 @@ import java.util.Set;
 public class SpongeMetricsAdapter {
     public static Object setupMetrics(
             Object plugin, Object pluginLogger, int pluginId, Set<CustomChart> charts) {
+        // TODO: look into SpongeForge support
+        if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
+            return null;
+        }
+
         if (!(plugin instanceof PluginContainer)) {
             return null;
         }

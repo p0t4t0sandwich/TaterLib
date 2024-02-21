@@ -55,24 +55,27 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
                                                                 .orElse("Unknown")))
                                 .collect(Collectors.toSet()));
         api.setServer(() -> new SpongeServer(Sponge.getServer()));
+        TaterAPIProvider.setPrimaryServerType(ServerType.SPONGE);
     }
 
     @Override
     public void platformEnable() {
-        // Register listeners
-        EventManager eventManager = Sponge.getEventManager();
-        eventManager.registerListeners(container, new SpongeBlockListener());
-        Sponge.getScheduler()
-                .createTaskBuilder()
-                .delay(10, TimeUnit.SECONDS)
-                .execute(
-                        () ->
-                                CommandEvents.REGISTER_COMMAND.invoke(
-                                        new SpongeCommandRegisterEvent()))
-                .submit(container);
-        eventManager.registerListeners(container, new SpongeEntityListener());
-        eventManager.registerListeners(container, new SpongePlayerListener());
-        eventManager.registerListeners(container, new SpongeServerListener());
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.SPONGE)) {
+            // Register listeners
+            EventManager eventManager = Sponge.getEventManager();
+            eventManager.registerListeners(container, new SpongeBlockListener());
+            Sponge.getScheduler()
+                    .createTaskBuilder()
+                    .delay(10, TimeUnit.SECONDS)
+                    .execute(
+                            () ->
+                                    CommandEvents.REGISTER_COMMAND.invoke(
+                                            new SpongeCommandRegisterEvent()))
+                    .submit(container);
+            eventManager.registerListeners(container, new SpongeEntityListener());
+            eventManager.registerListeners(container, new SpongePlayerListener());
+            eventManager.registerListeners(container, new SpongeServerListener());
+        }
     }
 
     @Override

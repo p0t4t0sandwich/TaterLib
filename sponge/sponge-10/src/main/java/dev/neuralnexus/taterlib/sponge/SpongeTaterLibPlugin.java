@@ -45,17 +45,20 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
                                                                 .toString()))
                                 .collect(Collectors.toSet()));
         api.setServer(() -> new SpongeServer(Sponge.server()));
+        TaterAPIProvider.setPrimaryServerType(ServerType.SPONGE);
     }
 
     @Override
     public void platformEnable() {
-        // Register listeners
-        EventManager eventManager = Sponge.eventManager();
-        eventManager.registerListeners(container, new SpongeBlockListener());
-        eventManager.registerListeners(container, new SpongeCommandListener());
-        eventManager.registerListeners(container, new SpongeEntityListener());
-        eventManager.registerListeners(container, new SpongePlayerListener());
-        eventManager.registerListeners(container, new SpongeServerListener());
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.SPONGE)) {
+            // Register listeners
+            EventManager eventManager = Sponge.eventManager();
+            eventManager.registerListeners(container, new SpongeBlockListener());
+            eventManager.registerListeners(container, new SpongeCommandListener());
+            eventManager.registerListeners(container, new SpongeEntityListener());
+            eventManager.registerListeners(container, new SpongePlayerListener());
+            eventManager.registerListeners(container, new SpongeServerListener());
+        }
     }
 
     @Override

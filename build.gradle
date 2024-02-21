@@ -887,8 +887,8 @@ tasks.register('build_1_18_2', Jar) {
     // Uses 1.19 permission schema
 }
 
-// --------------------------- Build 1.19.x --------------------------------
-tasks.register('build_1_19_x', Jar) {
+// --------------------------- Build 1.19 --------------------------------
+tasks.register('build_1_19', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
             .put("bukkit", Arrays.asList("1.15.2"))
             .put("bungee", Arrays.asList("1.20"))
@@ -906,7 +906,89 @@ tasks.register('build_1_19_x', Jar) {
         }
     }
 
-    String mc_version = '1.19.x'
+    String mc_version = '1.19'
+    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
+// --------------------------- Build 1.19.2 --------------------------------
+tasks.register('build_1_19_2', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("forge", Arrays.asList("1.19.2"))
+            .put("sponge", Arrays.asList("10"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    String mc_version = '1.19.2'
+    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
+// --------------------------- Build 1.19.4 --------------------------------
+tasks.register('build_1_19_4', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("forge", Arrays.asList("1.19.4"))
+            .put("sponge", Arrays.asList("10"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    String mc_version = '1.19.4'
     archiveFileName = "${project_id}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE

@@ -39,11 +39,14 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
                                                                 .toString()))
                                 .collect(Collectors.toSet()));
         api.setServer(VanillaServerReflect::instance);
+        TaterAPIProvider.setPrimaryServerType(ServerType.SPONGE);
     }
 
     @Override
     public void platformEnable() {
-        Sponge.eventManager().registerListeners(container, new SpongeCommandListener());
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.SPONGE)) {
+            Sponge.eventManager().registerListeners(container, new SpongeCommandListener());
+        }
     }
 
     @Override

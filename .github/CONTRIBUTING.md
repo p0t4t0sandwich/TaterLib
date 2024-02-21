@@ -87,6 +87,15 @@ new issue to discuss the changes you’d like to make.
 It's preferred to use `propertName()` rather than `getPropertyName()` for getter methods, it's a small thing, but it
 helps keep the codebase consistent and makes working with nested properties a bit cleaner.
 
+#### Streams and other Functional APIs
+
+It’s suggested to adopt a functional code style to reduce overall complexity, though an argument can be made for heavily
+nested loops that don’t run often enough to benefit from the JVM’s JIT compiler, or other performance sensitive code.
+
+In general, rather than returning `null`, it's preferred to wrap the return type in an `Optional`, I understand that
+annotations like `@Nullable` and `@NotNull` exist, but in a codebase that ranges from beta MC to modern MC, I feel
+things will be more robust in the long term if we use `Optional` instead.
+
 #### Formatting
 
 To keep things simple, we use [google-java-format](https://plugins.jetbrains.com/plugin/8527-google-java-format) for

@@ -64,7 +64,8 @@ public class TaterAPI {
      * @return If the plugin is loaded
      */
     public boolean isPluginLoaded(String pluginName) {
-        return pluginList.get().stream().anyMatch(plugin -> plugin.name().equals(pluginName));
+        return pluginList.get().stream()
+                .anyMatch(plugin -> plugin.name().equalsIgnoreCase(pluginName));
     }
 
     /**
@@ -74,23 +75,18 @@ public class TaterAPI {
      * @return If the mod is loaded
      */
     public boolean isModLoaded(String modId) {
-        return modList.get().stream().anyMatch(mod -> mod.id().equals(modId));
+        return modList.get().stream().anyMatch(mod -> mod.id().equalsIgnoreCase(modId));
     }
 
     /**
      * Get if a plugin/mod is loaded <br>
      * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started {@link ServerEvents#STARTED} <br>
-     * 2nd Note: When looking for a plugin, the name is case-sensitive. <br>
-     * For example, "luckperms" will not match "LuckPerms". <br>
-     * When considering cross-API libraries, it's best to use the capitalized name, as this method
-     * runs the check again to check for a lowercase modId. <br>
-     * For example, "LuckPerms" will match "LuckPerms" and "luckperms".
+     * server has started {@link ServerEvents#STARTED}
      *
      * @param pluginNameOrModId The name of the plugin or modId of the mod
      */
     public boolean isPluginModLoaded(String pluginNameOrModId) {
-        return isPluginLoaded(pluginNameOrModId) || isModLoaded(pluginNameOrModId.toLowerCase());
+        return isPluginLoaded(pluginNameOrModId) || isModLoaded(pluginNameOrModId);
     }
 
     /**

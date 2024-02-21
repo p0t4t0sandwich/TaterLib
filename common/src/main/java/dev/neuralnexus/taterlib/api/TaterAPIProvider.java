@@ -5,6 +5,7 @@ import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.entity.Permissible;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.hooks.Hook;
 import dev.neuralnexus.taterlib.hooks.hybrids.ArclightHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
@@ -143,6 +144,17 @@ public class TaterAPIProvider {
         throw new NotLoadedException(serverType);
     }
 
+    /**
+     * Get if a plugin/mod is loaded <br>
+     * Note: Unless you need to check at a specific time, it's best to run this check after the
+     * server has started {@link ServerEvents#STARTED}
+     *
+     * @param pluginNameOrModId The name of the plugin or modId of the mod
+     */
+    public static boolean isPluginModLoaded(String pluginNameOrModId) {
+        return apis.values().stream().anyMatch(api -> api.isPluginModLoaded(pluginNameOrModId));
+    }
+
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static boolean isPrimaryServerType(ServerType serverType) {
@@ -213,9 +225,10 @@ public class TaterAPIProvider {
 
         // Check for SpongeForge, then Sponge
         if (serverType.isSpongeBased() && serverType.isForgeBased()) {
-            apis.put(serverType, new TaterAPI());
-            apis.put(ServerType.SPONGE_FORGE, new TaterAPI());
-            apis.put(ServerType.SPONGE, new TaterAPI());
+            TaterAPI spongeForgeApi = new TaterAPI();
+            spongeForgeApi.setModList(() -> get(ServerType.FORGE).modList());
+            apis.put(serverType, spongeForgeApi);
+            apis.put(ServerType.SPONGE, spongeForgeApi);
         } else if (serverType.isSpongeBased()) {
             apis.put(serverType, new TaterAPI());
             apis.put(ServerType.SPONGE_VANILLA, new TaterAPI());
