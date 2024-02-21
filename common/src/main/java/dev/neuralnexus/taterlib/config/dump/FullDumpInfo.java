@@ -8,6 +8,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -19,6 +20,9 @@ import java.util.Set;
 
 /** Full dump information for debugging. */
 public class FullDumpInfo extends DumpInfo {
+    public String latestLog;
+    public String debugLog;
+    public String latestCrashLog;
     public Set<PluginInfo> bukkitPlugins;
     public Set<PluginInfo> bungeePlugins;
     public Set<PluginInfo> spongePlugins;
@@ -54,6 +58,10 @@ public class FullDumpInfo extends DumpInfo {
     /** Save the dump to a file. */
     @Override
     public void saveDump() {
+        MCLogsAPI.uploadLatestLog().ifPresent(upload -> latestLog = upload.getUrl());
+        MCLogsAPI.uploadLatestDebugLog().ifPresent(upload -> debugLog = upload.getUrl());
+        MCLogsAPI.uploadLatestCrashReport().ifPresent(upload -> latestCrashLog = upload.getUrl());
+
         Path logs = Paths.get("logs");
         if (!logs.toFile().exists()) {
             logs.toFile().mkdir();

@@ -5,7 +5,7 @@ body:
   - type: textarea
     attributes:
       label: Debug Information
-      description: Please run `/taterlib dump` (or `/taterlib fulldump` for some extra mod/plugin info) and paste the output here (debug output is also in `logs/taterlib-dump.json`).
+      description: Please run `/taterlib fulldump` and send the resulting link, **or** attach the `logs/taterlib-fulldump.json` file to this report.
     validations:
       required: true
   - type: textarea
@@ -27,17 +27,8 @@ body:
       required: true
   - type: textarea
     attributes:
-      label: Logs
-      description: |
-        Include the full client/server/proxy logs e.g. `logs/latest.log`, `logs/debug.log`, and `crash-reports/*.txt` (upload
-        them all if applicable). Use a paste site like https://mclo.gs (use (GitHub Gists)[https://gist.github.com] if the
-        logs are too long). Do not paste them directly into the issue. If you trim the logs, you will not receive support.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
       label: TaterLib Configuration
-      description: Include your `taterlib.toml` file (omit sensitive information)
+      description: Include your `taterlib.conf` file (omit sensitive information)
     validations:
       required: false
   - type: textarea

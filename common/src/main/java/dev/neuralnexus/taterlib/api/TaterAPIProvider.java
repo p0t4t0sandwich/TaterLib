@@ -228,6 +228,7 @@ public class TaterAPIProvider {
             TaterAPI spongeForgeApi = new TaterAPI();
             spongeForgeApi.setModList(() -> get(ServerType.FORGE).modList());
             apis.put(serverType, spongeForgeApi);
+            apis.put(ServerType.SPONGE_FORGE, spongeForgeApi);
             apis.put(ServerType.SPONGE, spongeForgeApi);
         } else if (serverType.isSpongeBased()) {
             apis.put(serverType, new TaterAPI());

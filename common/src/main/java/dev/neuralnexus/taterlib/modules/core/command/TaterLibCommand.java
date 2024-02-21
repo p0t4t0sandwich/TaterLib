@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
+import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 import dev.neuralnexus.taterlib.player.Player;
 
 public class TaterLibCommand implements Command {
@@ -38,10 +39,10 @@ public class TaterLibCommand implements Command {
 
     @Override
     public String execute(String[] args) {
-        String text;
         if (args.length == 0) {
             return usage();
         }
+        String text;
         switch (args[0].toLowerCase()) {
             case "reload":
                 try {
@@ -86,6 +87,10 @@ public class TaterLibCommand implements Command {
                 FullDumpInfo fullDumpInfo = new FullDumpInfo();
                 fullDumpInfo.saveDump();
                 text = "&aFull dump saved to logs/taterlib-fulldump.json";
+                text +=
+                        MCLogsAPI.uploadLogString("logs/taterlib-fulldump.json")
+                                .map(u -> "\n&aFull dump uploaded to MCLogs: " + u.getUrl())
+                                .orElse("\n&cFailed to upload full dump to MCLogs.");
                 break;
             default:
                 text = usage();
@@ -95,17 +100,17 @@ public class TaterLibCommand implements Command {
     }
 
     @Override
-    public boolean execute(CommandSender commandSender, String label, String[] args) {
-        if (commandSender instanceof Player) {
-            if (!commandSender.hasPermission(permission())) {
-                commandSender.sendMessage(
+    public boolean execute(CommandSender sender, String label, String[] args) {
+        if (sender instanceof Player) {
+            if (!sender.hasPermission(permission())) {
+                sender.sendMessage(
                         Utils.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));
             } else {
-                commandSender.sendMessage(Utils.substituteSectionSign(execute(args)));
+                sender.sendMessage(Utils.substituteSectionSign(execute(args)));
             }
         } else {
-            commandSender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
+            sender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
         }
         return true;
     }

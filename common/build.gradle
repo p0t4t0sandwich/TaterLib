@@ -46,6 +46,9 @@ dependencies {
     implementation('org.bstats:bstats-sponge:3.0.2')
     implementation('org.bstats:bstats-velocity:3.0.2')
 
+    // MCLogs
+    implementation('gs.mclo:api:3.0.1')
+
     // Gson
     implementation('com.google.code.gson:gson:2.10.1')
 
@@ -110,6 +113,9 @@ shadowJar {
         include(dependency('org.bstats:bstats-sponge:3.0.2'))
         include(dependency('org.bstats:bstats-velocity:3.0.2'))
 
+        // MCLogs
+        include(dependency('gs.mclo:api:3.0.1'))
+
         // MySQL
         include(dependency('com.zaxxer:HikariCP:4.0.3'))
         include(dependency('com.mysql:mysql-connector-j:8.3.0'))
@@ -135,6 +141,9 @@ shadowJar {
     relocate('org.bstats', "${group_id}.${project_id}.lib.bstats") {
         exclude 'org.bstats.sponge.*'
     }
+
+    // MCLogs
+    relocate("gs.mclo", "${group_id}.${project_id}.lib.mclogs")
 
     // MySQL
     relocate('com.zaxxer.hikari', "${group_id}.${project_id}.lib.hikari")
