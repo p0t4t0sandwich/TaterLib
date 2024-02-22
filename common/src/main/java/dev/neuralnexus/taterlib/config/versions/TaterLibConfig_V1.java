@@ -6,22 +6,22 @@ import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
-import java.util.Set;
+import java.util.List;
 
 /** A class for TaterLib configuration. */
 public class TaterLibConfig_V1 implements TaterLibConfig {
     public final int version;
-    public final Set<ModuleConfig> modules;
-    public final Set<HookConfig> hooks;
-    public final Set<MixinConfig> mixins;
+    public final List<ModuleConfig> modules;
+    public final List<HookConfig> hooks;
+    public final List<MixinConfig> mixins;
     private final ServerConfig server;
 
     public TaterLibConfig_V1(
             int version,
             ServerConfig server,
-            Set<ModuleConfig> modules,
-            Set<HookConfig> hooks,
-            Set<MixinConfig> mixins) {
+            List<ModuleConfig> modules,
+            List<HookConfig> hooks,
+            List<MixinConfig> mixins) {
         this.version = version;
         this.server = server;
         this.modules = modules;
@@ -40,17 +40,17 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
     }
 
     @Override
-    public Set<ModuleConfig> modules() {
+    public List<ModuleConfig> modules() {
         return modules;
     }
 
     @Override
-    public Set<HookConfig> hooks() {
+    public List<HookConfig> hooks() {
         return hooks;
     }
 
     @Override
-    public Set<MixinConfig> mixins() {
+    public List<MixinConfig> mixins() {
         return mixins;
     }
 }

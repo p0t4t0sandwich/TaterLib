@@ -9,10 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,7 +44,7 @@ public class BukkitServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method onlinePlayersMethod =
@@ -58,12 +55,12 @@ public class BukkitServer implements Server {
                                     .stream()
                             : Arrays.stream(
                                     ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())));
-            return players.map(BukkitPlayer::new).collect(Collectors.toSet());
+            return players.map(BukkitPlayer::new).collect(Collectors.toList());
         } catch (NoSuchMethodException
                 | InvocationTargetException
                 | IllegalAccessException
                 | ClassNotFoundException e) {
-            return new HashSet<>();
+            return Collections.emptyList();
         }
     }
 }

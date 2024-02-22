@@ -5,14 +5,14 @@ import dev.neuralnexus.taterlib.plugin.Loader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 /** Loader entry point. */
 public class TaterLibLoader implements Loader {
     private final Object plugin;
     private final Object pluginServer;
     private final Object pluginLogger;
-    private final Collection<Plugin> plugins = new ArrayList<>();
+    private final List<Plugin> plugins = new ArrayList<>();
 
     public TaterLibLoader(Object plugin, Object pluginServer, Object pluginLogger) {
         this.plugin = plugin;
@@ -37,7 +37,7 @@ public class TaterLibLoader implements Loader {
     }
 
     @Override
-    public Collection<Plugin> plugins() {
+    public List<Plugin> plugins() {
         return plugins;
     }
 }

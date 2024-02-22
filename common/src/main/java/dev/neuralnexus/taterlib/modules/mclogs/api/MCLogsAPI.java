@@ -131,9 +131,9 @@ public class MCLogsAPI {
      *
      * @return A list of all logs in the ./logs directory.
      */
-    public static Set<String> listLogs() {
+    public static List<String> listLogs() {
         return Arrays.stream(client.listLogsInDirectory("." + File.separator))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     /**
@@ -141,8 +141,8 @@ public class MCLogsAPI {
      *
      * @return A list of all crash reports in the ./crash-reports directory.
      */
-    public static Set<String> listCrashReports() {
+    public static List<String> listCrashReports() {
         return Arrays.stream(client.listCrashReportsInDirectory("." + File.separator))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

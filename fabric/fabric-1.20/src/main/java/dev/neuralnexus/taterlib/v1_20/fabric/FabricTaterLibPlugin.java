@@ -41,7 +41,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                                                 .getMetadata()
                                                                 .getVersion()
                                                                 .getFriendlyString()))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(VanillaServer::instance);
     }
 }

@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_20_2.forge.player;
+package dev.neuralnexus.taterlib.forge.listeners.player;
 
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

@@ -51,7 +51,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                                 new PluginInfo(
                                                         p.getName(),
                                                         p.getDescription().getVersion()))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(VanillaServer::instance);
         TaterAPIProvider.setPrimaryServerType(ServerType.BUKKIT);
     }

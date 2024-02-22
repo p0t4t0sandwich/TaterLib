@@ -118,7 +118,7 @@ public class TaterLib {
                         .put(ServerType.SPONGE, 21010)
                         .put(ServerType.VELOCITY, 21011)
                         .build(),
-                Collections.singleton(
+                Collections.singletonList(
                         new SimplePie("server_type", () -> ServerType.serverType().toString())));
 
         // Config

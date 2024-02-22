@@ -21,8 +21,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
@@ -98,9 +98,9 @@ public class TaterLibConfigLoader {
             }
         }
 
-        TypeToken<Set<ModuleConfig>> moduleType = new TypeToken<Set<ModuleConfig>>() {};
+        TypeToken<List<ModuleConfig>> moduleType = new TypeToken<List<ModuleConfig>>() {};
         ConfigurationNode moduleNode = root.node("modules");
-        Set<ModuleConfig> modules = null;
+        List<ModuleConfig> modules = null;
         try {
             modules = moduleNode.get(moduleType);
         } catch (SerializationException e) {
@@ -113,9 +113,9 @@ public class TaterLibConfigLoader {
             }
         }
 
-        TypeToken<Set<HookConfig>> hookType = new TypeToken<Set<HookConfig>>() {};
+        TypeToken<List<HookConfig>> hookType = new TypeToken<List<HookConfig>>() {};
         ConfigurationNode hookNode = root.node("hooks");
-        Set<HookConfig> hooks = null;
+        List<HookConfig> hooks = null;
         try {
             hooks = hookNode.get(hookType);
         } catch (SerializationException e) {
@@ -128,9 +128,9 @@ public class TaterLibConfigLoader {
             }
         }
 
-        TypeToken<Set<MixinConfig>> type = new TypeToken<Set<MixinConfig>>() {};
+        TypeToken<List<MixinConfig>> type = new TypeToken<List<MixinConfig>>() {};
         ConfigurationNode mixinNode = root.node("mixins");
-        Set<MixinConfig> mixins = null;
+        List<MixinConfig> mixins = null;
         try {
             mixins = mixinNode.get(type);
         } catch (SerializationException e) {

@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.ProxyServer;
 import dev.neuralnexus.taterlib.server.Server;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link ProxyServer}. */
@@ -45,15 +45,15 @@ public class BungeeProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
-        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
+    public List<SimplePlayer> onlinePlayers() {
+        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Server> servers() {
+    public List<Server> servers() {
         return server.getServers().values().stream()
                 .map(BungeeServer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

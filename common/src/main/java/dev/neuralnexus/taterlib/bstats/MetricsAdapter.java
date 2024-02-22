@@ -12,8 +12,8 @@ import dev.neuralnexus.taterlib.bstats.velocity.VelocityMetricsAdapter;
 import org.bstats.charts.CustomChart;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /** Metrics adapter for BStats to allow for easy multi-platform support. */
 public class MetricsAdapter {
@@ -22,12 +22,12 @@ public class MetricsAdapter {
             Object pluginServer,
             Object pluginLogger,
             Map<ServerType, Integer> pluginIds,
-            Set<CustomChart> charts) {
+            List<CustomChart> charts) {
         ServerType serverType = ServerType.serverType();
         if (serverType.isBukkitBased()) {
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
                 return BukkitBetaMetricsAdapter.setupMetrics(
-                        plugin, pluginIds.get(ServerType.BUKKIT), Collections.emptySet());
+                        plugin, pluginIds.get(ServerType.BUKKIT), Collections.emptyList());
             }
             return BukkitMetricsAdapter.setupMetrics(
                     plugin, pluginIds.get(ServerType.BUKKIT), charts);
@@ -49,6 +49,6 @@ public class MetricsAdapter {
             Object pluginServer,
             Object pluginLogger,
             Map<ServerType, Integer> pluginIds) {
-        return setupMetrics(plugin, pluginServer, pluginLogger, pluginIds, Collections.emptySet());
+        return setupMetrics(plugin, pluginServer, pluginLogger, pluginIds, Collections.emptyList());
     }
 }

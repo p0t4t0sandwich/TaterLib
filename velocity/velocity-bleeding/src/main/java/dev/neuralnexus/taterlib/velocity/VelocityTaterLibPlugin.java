@@ -85,7 +85,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                                                         p.getDescription()
                                                                 .getVersion()
                                                                 .orElse("Unknown")))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(VelocityProxyServer::instance);
     }
 

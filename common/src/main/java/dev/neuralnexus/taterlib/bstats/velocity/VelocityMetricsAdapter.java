@@ -11,7 +11,7 @@ import org.slf4j.Logger;
 import java.lang.reflect.Constructor;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.List;
 
 /** Velocity metrics adapter for BStats to allow for easy multi-platform support. */
 public class VelocityMetricsAdapter {
@@ -20,7 +20,7 @@ public class VelocityMetricsAdapter {
             Object server,
             Object pluginLogger,
             int pluginId,
-            Set<CustomChart> charts) {
+            List<CustomChart> charts) {
         Path configDir = Paths.get(ServerType.VELOCITY.dataFolders().configFolder());
         if (configDir.toFile().exists()) {
             configDir = configDir.toAbsolutePath();

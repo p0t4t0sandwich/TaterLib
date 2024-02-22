@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_20_2.forge.player;
+package dev.neuralnexus.taterlib.forge.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.forge.event.player.*;

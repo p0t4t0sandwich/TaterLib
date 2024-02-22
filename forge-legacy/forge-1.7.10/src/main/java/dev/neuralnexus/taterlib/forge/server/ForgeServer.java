@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link Server}. */
@@ -28,8 +27,8 @@ public class ForgeServer implements Server {
     /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return ((List<EntityPlayer>) server.getConfigurationManager().playerEntityList)
-                .stream().map(ForgePlayer::new).collect(Collectors.toSet());
+                .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }
 }

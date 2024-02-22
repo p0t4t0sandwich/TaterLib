@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.server;
 
-import java.util.Set;
+import java.util.List;
 
 /** Represents a proxy server. */
 public interface ProxyServer extends SimpleServer {
@@ -9,5 +9,5 @@ public interface ProxyServer extends SimpleServer {
      *
      * @return The servers that are connected to this proxy.
      */
-    Set<Server> servers();
+    List<Server> servers();
 }

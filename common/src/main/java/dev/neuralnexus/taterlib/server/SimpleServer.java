@@ -6,8 +6,8 @@ import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -32,7 +32,7 @@ public interface SimpleServer {
      *
      * @return The set of online players.
      */
-    Set<SimplePlayer> onlinePlayers();
+    List<SimplePlayer> onlinePlayers();
 
     /**
      * Get a player by their name.

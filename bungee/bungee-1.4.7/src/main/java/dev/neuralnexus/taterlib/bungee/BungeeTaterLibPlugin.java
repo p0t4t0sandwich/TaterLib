@@ -44,7 +44,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
                                                 new PluginInfo(
                                                         p.getDescription().getName(),
                                                         p.getDescription().getVersion()))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(BungeeProxyServer::instance);
     }
 

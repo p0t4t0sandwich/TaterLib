@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraft.server.MinecraftServer;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link Server}. */
@@ -25,9 +25,9 @@ public class ForgeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return server.getConfigurationManager().playerEntityList.stream()
                 .map(ForgePlayer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

@@ -8,13 +8,13 @@ import dev.neuralnexus.taterlib.server.SimpleServer;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
-    private Supplier<Set<PluginInfo>> pluginList = Collections::emptySet;
-    private Supplier<Set<ModInfo>> modList = Collections::emptySet;
+    private Supplier<List<PluginInfo>> pluginList = Collections::emptyList;
+    private Supplier<List<ModInfo>> modList = Collections::emptyList;
     private Supplier<SimpleServer> minecraftServer = () -> null;
 
     /**
@@ -22,7 +22,7 @@ public class TaterAPI {
      *
      * @return The plugin list
      */
-    public Set<PluginInfo> pluginList() {
+    public List<PluginInfo> pluginList() {
         return pluginList.get();
     }
 
@@ -33,7 +33,7 @@ public class TaterAPI {
      * @param pluginList The pluginList supplier
      */
     @ApiStatus.Internal
-    public void setPluginList(Supplier<Set<PluginInfo>> pluginList) {
+    public void setPluginList(Supplier<List<PluginInfo>> pluginList) {
         this.pluginList = pluginList;
     }
 
@@ -42,7 +42,7 @@ public class TaterAPI {
      *
      * @return The mod list
      */
-    public Set<ModInfo> modList() {
+    public List<ModInfo> modList() {
         return modList.get();
     }
 
@@ -53,7 +53,7 @@ public class TaterAPI {
      * @param modList The modList supplier
      */
     @ApiStatus.Internal
-    public void setModList(Supplier<Set<ModInfo>> modList) {
+    public void setModList(Supplier<List<ModInfo>> modList) {
         this.modList = modList;
     }
 

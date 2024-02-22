@@ -16,20 +16,20 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Set;
+import java.util.List;
 
 /** Full dump information for debugging. */
 public class FullDumpInfo extends DumpInfo {
     public String latestLog;
     public String debugLog;
     public String latestCrashLog;
-    public Set<PluginInfo> bukkitPlugins;
-    public Set<PluginInfo> bungeePlugins;
-    public Set<PluginInfo> spongePlugins;
-    public Set<PluginInfo> velocityPlugins;
-    public Set<ModInfo> forgeMods;
-    public Set<ModInfo> neoForgeMods;
-    public Set<ModInfo> fabricMods;
+    public List<PluginInfo> bukkitPlugins;
+    public List<PluginInfo> bungeePlugins;
+    public List<PluginInfo> spongePlugins;
+    public List<PluginInfo> velocityPlugins;
+    public List<ModInfo> forgeMods;
+    public List<ModInfo> neoForgeMods;
+    public List<ModInfo> fabricMods;
 
     public FullDumpInfo() {
         if (serverType.isBukkitBased()) {

@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface Loader {
     /** Get the platform's server/plugin/container. */
@@ -17,7 +17,7 @@ public interface Loader {
     Object logger();
 
     /** Get the collection of plugins. */
-    Collection<Plugin> plugins();
+    List<Plugin> plugins();
 
     /** Register a plugin. */
     default void registerPlugin(Plugin plugin) {

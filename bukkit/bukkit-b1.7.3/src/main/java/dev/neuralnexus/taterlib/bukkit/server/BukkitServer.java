@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,9 +26,9 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return Arrays.stream(server.getOnlinePlayers())
                 .map(BukkitPlayer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

@@ -8,7 +8,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Fabric implementation of {@link Server}. */
@@ -28,8 +27,8 @@ public class FabricServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return ((List<PlayerEntity>) server.getPlayerManager().players)
-                .stream().map(FabricPlayer::new).collect(Collectors.toSet());
+                .stream().map(FabricPlayer::new).collect(Collectors.toList());
     }
 }

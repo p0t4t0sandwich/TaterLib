@@ -1,11 +1,11 @@
 package dev.neuralnexus.taterlib.plugin;
 
-import java.util.Set;
+import java.util.List;
 
 /** PluginModule loader. */
 public interface ModuleLoader {
     /** Get the modules. */
-    Set<PluginModule> modules();
+    List<PluginModule> modules();
 
     /**
      * Register a module.

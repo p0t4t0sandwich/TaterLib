@@ -6,6 +6,7 @@ import dev.neuralnexus.taterlib.server.Server;
 
 import net.minecraft.server.MinecraftServer;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,9 +26,9 @@ public class FabricServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return server.getPlayerManager().getPlayers().stream()
                 .map(FabricPlayer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

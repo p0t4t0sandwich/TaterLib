@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
-import java.util.Set;
+import java.util.List;
 
 /** A class for TaterLib configuration. */
 public interface TaterLibConfig {
@@ -28,21 +28,21 @@ public interface TaterLibConfig {
      *
      * @return The modules in the configuration.
      */
-    Set<ModuleConfig> modules();
+    List<ModuleConfig> modules();
 
     /**
      * Get the hooks in the configuration.
      *
      * @return The hooks in the configuration.
      */
-    Set<HookConfig> hooks();
+    List<HookConfig> hooks();
 
     /**
      * Get the mixins in the configuration.
      *
      * @return The mixins in the configuration.
      */
-    Set<MixinConfig> mixins();
+    List<MixinConfig> mixins();
 
     /**
      * Check if a module is enabled in the configuration.

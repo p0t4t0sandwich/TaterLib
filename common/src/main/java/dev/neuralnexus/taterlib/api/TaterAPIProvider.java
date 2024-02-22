@@ -17,10 +17,7 @@ import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 
 /** API Provider */
@@ -28,7 +25,7 @@ public class TaterAPIProvider {
     private static final ServerType serverType = ServerType.serverType();
     private static final MinecraftVersion minecraftVersion = MinecraftVersion.minecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
-    private static final Set<Hook> hooks = new HashSet<>();
+    private static final List<Hook> hooks = new ArrayList<>();
     private static ServerType primaryServerType;
     private static PlayerDataStore playerDataStore;
 
@@ -242,10 +239,10 @@ public class TaterAPIProvider {
 
         if (serverType.isHybrid()) {
             TaterAPI hybridApi = new TaterAPI();
-            Supplier<Set<PluginInfo>> bukkitPluginList = () -> get(ServerType.BUKKIT).pluginList();
-            Supplier<Set<ModInfo>> fabricModList = () -> get(ServerType.FABRIC).modList();
-            Supplier<Set<ModInfo>> forgeModList = () -> get(ServerType.FORGE).modList();
-            Supplier<Set<ModInfo>> neoForgeModList = () -> get(ServerType.NEOFORGE).modList();
+            Supplier<List<PluginInfo>> bukkitPluginList = () -> get(ServerType.BUKKIT).pluginList();
+            Supplier<List<ModInfo>> fabricModList = () -> get(ServerType.FABRIC).modList();
+            Supplier<List<ModInfo>> forgeModList = () -> get(ServerType.FORGE).modList();
+            Supplier<List<ModInfo>> neoForgeModList = () -> get(ServerType.NEOFORGE).modList();
 
             hybridApi.setPluginList(bukkitPluginList);
             if (serverType.isForgeHybrid()) {

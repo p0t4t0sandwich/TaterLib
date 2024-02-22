@@ -40,7 +40,7 @@ public class CoreModule implements PluginModule {
             // Setup Generic Events
             GenericEvents.setup();
 
-            // Set up local player metadata store
+            // Setup local player metadata store
             TaterAPIProvider.setPlayerDataStore(
                     new PlayerDataStore(
                             new Database.DatabaseConfig(

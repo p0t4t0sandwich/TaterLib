@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.velocity.player.VelocityPlayer;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link ProxyServer}. */
@@ -48,13 +48,17 @@ public class VelocityProxyServer implements ProxyServer {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
-        return server.getAllPlayers().stream().map(VelocityPlayer::new).collect(Collectors.toSet());
+    public List<SimplePlayer> onlinePlayers() {
+        return server.getAllPlayers().stream()
+                .map(VelocityPlayer::new)
+                .collect(Collectors.toList());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Server> servers() {
-        return server.getAllServers().stream().map(VelocityServer::new).collect(Collectors.toSet());
+    public List<Server> servers() {
+        return server.getAllServers().stream()
+                .map(VelocityServer::new)
+                .collect(Collectors.toList());
     }
 }

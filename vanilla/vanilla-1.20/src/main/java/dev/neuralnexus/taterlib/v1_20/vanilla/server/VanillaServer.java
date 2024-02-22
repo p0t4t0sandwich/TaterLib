@@ -8,6 +8,7 @@ import net.minecraft.server.MinecraftServer;
 
 import org.jetbrains.annotations.ApiStatus;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -58,9 +59,9 @@ public class VanillaServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(VanillaPlayer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

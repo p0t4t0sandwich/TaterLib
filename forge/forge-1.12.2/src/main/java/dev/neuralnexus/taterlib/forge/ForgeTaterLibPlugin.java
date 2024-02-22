@@ -65,7 +65,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                         modContainer.getModId(),
                                                         modContainer.getName(),
                                                         modContainer.getVersion()))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(() -> new ForgeServer(minecraftServer));
         TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
 

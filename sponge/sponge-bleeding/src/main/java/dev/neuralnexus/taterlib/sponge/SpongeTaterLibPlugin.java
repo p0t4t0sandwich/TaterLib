@@ -37,7 +37,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
                                                                 .metadata()
                                                                 .version()
                                                                 .toString()))
-                                .collect(Collectors.toSet()));
+                                .collect(Collectors.toList()));
         api.setServer(VanillaServerReflect::instance);
         TaterAPIProvider.setPrimaryServerType(ServerType.SPONGE);
     }

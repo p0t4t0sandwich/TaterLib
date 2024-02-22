@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -352,10 +352,10 @@ public enum MinecraftVersion {
      *
      * @return A set of all the enums
      */
-    public static Set<String> getValues() {
+    public static List<String> getValues() {
         return Arrays.stream(MinecraftVersion.values())
                 .map(Enum::toString)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     /**

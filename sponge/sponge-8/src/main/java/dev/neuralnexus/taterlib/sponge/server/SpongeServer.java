@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Sponge implementation of {@link Server}. */
@@ -32,7 +32,7 @@ public class SpongeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> onlinePlayers() {
-        return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toSet());
+    public List<SimplePlayer> onlinePlayers() {
+        return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toList());
     }
 }
