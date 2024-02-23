@@ -19,6 +19,15 @@ public interface ItemStack {
     int count();
 
     /**
+     * Get the amount of the item
+     *
+     * @return The amount of the item
+     */
+    default int amount() {
+        return count();
+    }
+
+    /**
      * Set the amount of the item
      *
      * @param count The amount of the item

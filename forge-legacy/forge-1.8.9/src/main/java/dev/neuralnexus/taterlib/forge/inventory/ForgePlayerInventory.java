@@ -6,6 +6,10 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
 import net.minecraft.entity.player.InventoryPlayer;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /** Forge implementation of {@link PlayerInventory}. */
 public class ForgePlayerInventory extends ForgeInventory implements PlayerInventory {
     private final InventoryPlayer playerInventory;
@@ -22,129 +26,35 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] armorContents() {
-        ItemStack[] armorContents = new ItemStack[4];
-        for (int i = 0; i < 4; i++) {
-            armorContents[i] = new ForgeItemStack(playerInventory.armorInventory[i]);
-        }
-        return armorContents;
+    public List<ItemStack> armor() {
+        return Arrays.stream(playerInventory.armorInventory)
+                .map(ForgeItemStack::new)
+                .collect(Collectors.toList());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setArmorContents(ItemStack[] items) {
-        clear();
-        for (int i = 0; i < 4; i++) {
-            playerInventory.armorInventory[i] = ((ForgeItemStack) items[i]).itemStack();
+    public void setArmor(List<ItemStack> armor) {
+        for (int i = 0; i < playerInventory.armorInventory.length; i++) {
+            playerInventory.armorInventory[i] = ((ForgeItemStack) armor.get(i)).itemStack();
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] extraContents() {
-        return new ItemStack[2];
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setExtraContents(ItemStack[] items) {
-        // TODO: Implement
+    public ItemStack offhand() {
         throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack helmet() {
-        return new ForgeItemStack(playerInventory.armorInventory[0]);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setHelmet(ItemStack item) {
-        playerInventory.armorInventory[0] = ((ForgeItemStack) item).itemStack();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack chestplate() {
-        return new ForgeItemStack(playerInventory.armorInventory[1]);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setChestplate(ItemStack item) {
-        playerInventory.armorInventory[1] = ((ForgeItemStack) item).itemStack();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack leggings() {
-        return new ForgeItemStack(playerInventory.armorInventory[2]);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setLeggings(ItemStack item) {
-        playerInventory.armorInventory[2] = ((ForgeItemStack) item).itemStack();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack boots() {
-        return new ForgeItemStack(playerInventory.armorInventory[3]);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setBoots(ItemStack item) {
-        playerInventory.armorInventory[3] = ((ForgeItemStack) item).itemStack();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItem(String type, ItemStack item) {
-        // TODO: Implement
+    public void setOffhand(ItemStack offhand) {
         throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack item(String type) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack itemInMainHand() {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItemInMainHand(ItemStack item) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack itemInOffHand() {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItemInOffHand(ItemStack item) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int heldItemSlot() {
+    public int selectedSlot() {
         return playerInventory.currentItem;
     }
 }

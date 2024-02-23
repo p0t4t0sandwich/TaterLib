@@ -1,11 +1,10 @@
 package dev.neuralnexus.taterlib.forge.inventory;
 
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Forge implementation of {@link Inventory}. */
 public class ForgeInventory implements Inventory {
@@ -28,156 +27,44 @@ public class ForgeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack item(int slot) {
+    public ItemStack get(int slot) {
         return new ForgeItemStack(inventory.getItem(slot));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setItem(int slot, ItemStack item) {
+    public void set(int slot, ItemStack item) {
         inventory.setItem(slot, ((ForgeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addItem(ItemStack item) {
-        inventory.add(((ForgeItemStack) item).itemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void removeItem(ItemStack item) {
-        inventory.removeItem(((ForgeItemStack) item).itemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack[] contents() {
-        ItemStack[] abstractContents = new ItemStack[size()];
+    public void add(ItemStack item) {
+        int firstEmpty = -1;
         for (int i = 0; i < size(); i++) {
-            abstractContents[i] = new ForgeItemStack(inventory.getItem(i));
-        }
-        return abstractContents;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setContents(ItemStack[] items) {
-        for (int i = 0; i < size(); i++) {
-            inventory.setItem(i, ((ForgeItemStack) items[i]).itemStack());
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack[] storageContents() {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setStorageContents(ItemStack[] items) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean contains(ItemStack item) {
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(item.type())) {
-                return true;
+            if (get(i).type().equals("minecraft:air")) {
+                firstEmpty = i;
             }
         }
-        return false;
+        if (firstEmpty == -1) return;
+        set(firstEmpty, item);
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean contains(String type) {
+    public List<ItemStack> contents() {
+        List<ItemStack> contents = new ArrayList<>(size());
         for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(type)) {
-                return true;
-            }
+            contents.set(i, get(i));
         }
-        return false;
+        return contents;
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean containsAtLeast(ItemStack item, int count) {
-        int total = 0;
+    public void setContents(List<ItemStack> items) {
         for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(item.type())) {
-                total += item(i).count();
-            }
-        }
-        return total >= count;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean containsAtLeast(String type, int count) {
-        int total = 0;
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(type)) {
-                total += item(i).count();
-            }
-        }
-        return total >= count;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<Integer, ItemStack> all(ItemStack item) {
-        Map<Integer, ItemStack> map = new HashMap<>();
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(item.type())) {
-                map.put(i, item(i));
-            }
-        }
-        return map;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int first(ItemStack item) {
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(item.type())) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int first(String type) {
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(type)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int firstEmpty() {
-        for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals("minecraft:air")) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void remove(ItemStack item) {
-        for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((ForgeItemStack) item).itemStack());
+            set(i, items.get(i));
         }
     }
 
@@ -185,23 +72,15 @@ public class ForgeInventory implements Inventory {
     @Override
     public void remove(String type) {
         for (int i = 0; i < size(); i++) {
-            if (item(i).type().equals(type)) {
-                inventory.removeItem(((ForgeItemStack) item(i)).itemStack());
+            if (get(i).type().equals(type)) {
+                inventory.removeItemNoUpdate(i);
             }
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void clear() {
-        for (int i = 0; i < size(); i++) {
-            inventory.removeItem(((ForgeItemStack) item(i)).itemStack());
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void clear(int slot) {
-        inventory.removeItem(((ForgeItemStack) item(slot)).itemStack());
+        inventory.removeItemNoUpdate(slot);
     }
 }

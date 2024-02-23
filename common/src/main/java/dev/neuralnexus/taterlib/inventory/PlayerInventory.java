@@ -1,133 +1,146 @@
 package dev.neuralnexus.taterlib.inventory;
 
+import java.util.List;
+
 /** The interface for an AbstractPlayerInventory */
 public interface PlayerInventory extends Inventory {
     /**
-     * Get the armor contents of the inventory
+     * Get the player's items
      *
-     * @return The armor contents of the inventory
+     * @return The player's items
      */
-    ItemStack[] armorContents();
-
-    /** Set the armor contents of the inventory */
-    void setArmorContents(ItemStack[] items);
+    default List<ItemStack> items() {
+        return contents();
+    }
 
     /**
-     * Get the extra contents of the inventory
+     * Set the player's items
      *
-     * @return The extra contents of the inventory
+     * @param items The items to set
      */
-    ItemStack[] extraContents();
-
-    /** Set the extra contents of the inventory */
-    void setExtraContents(ItemStack[] items);
+    default void setItems(List<ItemStack> items) {
+        setContents(items);
+    }
 
     /**
-     * Get the helmet of the inventory
+     * Get the player's armor
      *
-     * @return The helmet of the inventory
+     * @return The player's armor
      */
-    ItemStack helmet();
+    List<ItemStack> armor();
 
     /**
-     * Set the helmet of the inventory
+     * Set the player's armor
      *
-     * @param item The helmet of the inventory
+     * @param armor The armor to set
      */
-    void setHelmet(ItemStack item);
+    void setArmor(List<ItemStack> armor);
 
     /**
-     * Get the chestplate of the inventory
+     * Get the player's helmet
      *
-     * @return The chestplate of the inventory
+     * @return The player's helmet
      */
-    ItemStack chestplate();
+    default ItemStack helmet() {
+        return armor().get(3);
+    }
 
     /**
-     * Set the chestplate of the inventory
+     * Set the player's helmet
      *
-     * @param item The chestplate of the inventory
+     * @param helmet The helmet to set
      */
-    void setChestplate(ItemStack item);
+    default void setHelmet(ItemStack helmet) {
+        List<ItemStack> armor = armor();
+        armor.set(3, helmet);
+        setArmor(armor);
+    }
 
     /**
-     * Get the leggings of the inventory
+     * Get the player's chestplate
      *
-     * @return The leggings of the inventory
+     * @return The player's chestplate
      */
-    ItemStack leggings();
+    default ItemStack chestplate() {
+        return armor().get(2);
+    }
 
     /**
-     * Set the leggings of the inventory
+     * Set the player's chestplate
      *
-     * @param item The leggings of the inventory
+     * @param chestplate The chestplate to set
      */
-    void setLeggings(ItemStack item);
+    default void setChestplate(ItemStack chestplate) {
+        List<ItemStack> armor = armor();
+        armor.set(2, chestplate);
+        setArmor(armor);
+    }
 
     /**
-     * Get the boots of the inventory
+     * Get the player's leggings
      *
-     * @return The boots of the inventory
+     * @return The player's leggings
      */
-    ItemStack boots();
+    default ItemStack leggings() {
+        return armor().get(1);
+    }
 
     /**
-     * Set the boots of the inventory
+     * Set the player's leggings
      *
-     * @param item The boots of the inventory
+     * @param leggings The leggings to set
      */
-    void setBoots(ItemStack item);
+    default void setLeggings(ItemStack leggings) {
+        List<ItemStack> armor = armor();
+        armor.set(1, leggings);
+        setArmor(armor);
+    }
 
     /**
-     * Set an item in a specific equipment slot
+     * Get the player's boots
      *
-     * @param equipmentSlot The equipment slot to set the item in
+     * @return The player's boots
+     */
+    default ItemStack boots() {
+        return armor().get(0);
+    }
+
+    /**
+     * Get the player's offhand
+     *
+     * @return The player's offhand
+     */
+    ItemStack offhand();
+
+    /**
+     * Set the player's offhand
+     *
+     * @param offhand The offhand to set
+     */
+    void setOffhand(ItemStack offhand);
+
+    /**
+     * Get the player's selected slot
+     *
+     * @return The player's selected slot
+     */
+    int selectedSlot();
+
+    /**
+     * Get the player's main hand
+     *
+     * @return The player's main hand
+     */
+    default ItemStack mainHand() {
+        return get(selectedSlot());
+    }
+
+    /**
+     * Set the item in the player's main hand
+     *
      * @param item The item to set
      */
-    void setItem(String equipmentSlot, ItemStack item);
-
-    /**
-     * Get an item in a specific equipment slot
-     *
-     * @param equipmentSlot The equipment slot to get the item from
-     * @return The item in the equipment slot
-     */
-    ItemStack item(String equipmentSlot);
-
-    /**
-     * Get the held item of the inventory
-     *
-     * @return The held item of the inventory
-     */
-    ItemStack itemInMainHand();
-
-    /**
-     * Set the held item of the inventory
-     *
-     * @param item The held item of the inventory
-     */
-    void setItemInMainHand(ItemStack item);
-
-    /**
-     * Get the offhand item of the inventory <br>
-     * Unavailable prior to 1.9
-     *
-     * @return The offhand item of the inventory
-     */
-    ItemStack itemInOffHand();
-
-    /**
-     * Set the offhand item of the inventory <br>
-     * Unavailable prior to 1.9
-     *
-     * @param item The offhand item of the inventory
-     */
-    void setItemInOffHand(ItemStack item);
-
-    /**
-     * Get the held item slot of the inventory
-     *
-     * @return The held item slot of the inventory
-     */
-    int heldItemSlot();
+    default void setMainHand(ItemStack item) {
+        set(selectedSlot(), item);
+    }
 }
