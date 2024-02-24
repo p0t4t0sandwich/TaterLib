@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.fabric.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.fabric.world.FabricLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.Entity;
 
@@ -34,6 +34,6 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
     /** {@inheritDoc} */
     @Override
     public Location location() {
-        return new FabricLocation(((FabricEntity) entity()).getEntity());
+        return new FabricLocation(((FabricEntity) entity()).entity());
     }
 }

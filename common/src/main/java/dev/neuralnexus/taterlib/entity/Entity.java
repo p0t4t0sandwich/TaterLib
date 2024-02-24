@@ -1,8 +1,11 @@
 package dev.neuralnexus.taterlib.entity;
 
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
+import dev.neuralnexus.taterlib.world.World;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
 public interface Entity extends Nameable {
@@ -36,6 +39,36 @@ public interface Entity extends Nameable {
      * @return The position of the entity
      */
     Location location();
+
+    /**
+     * Get the world of the entity
+     *
+     * @return The world of the entity
+     */
+    default World world() {
+        return location().world();
+    }
+
+    /**
+     * Get nearby entities
+     *
+     * @param radius The radius
+     * @param predicate The predicate
+     * @return The entities in the world that match the parameters
+     */
+    default List<Entity> nearbyEntities(double radius, Predicate<Entity> predicate) {
+        return location().world().entities(this, radius, predicate);
+    }
+
+    /**
+     * Get nearby entities
+     *
+     * @param radius The radius
+     * @return The entities in the world that match the parameters
+     */
+    default List<Entity> nearbyEntities(double radius) {
+        return nearbyEntities(radius, e -> true);
+    }
 
     /**
      * Get the x position of the entity

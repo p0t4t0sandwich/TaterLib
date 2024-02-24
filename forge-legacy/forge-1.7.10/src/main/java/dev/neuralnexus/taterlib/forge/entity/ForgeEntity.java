@@ -3,12 +3,14 @@ package dev.neuralnexus.taterlib.forge.entity;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldServer;
 
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
@@ -93,23 +95,14 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.world().equals(dimension())) {
-            MinecraftServer server = ForgeTaterLibPlugin.minecraftServer;
-            if (server == null) return;
-            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
-            Arrays.stream(server.worldServers)
-                    .filter(
-                            worldServer ->
-                                    worldServer
-                                            .provider
-                                            .getDimensionName()
-                                            .replace(" ", "_")
-                                            .toLowerCase()
-                                            .equals(location.world()))
-                    .findFirst()
-                    .ifPresent(
-                            worldServer ->
-                                    entity.travelToDimension(worldServer.provider.dimensionId));
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<WorldServer> serverLevel =
+                    new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                            .world(location.world().dimension())
+                            .map(ForgeServerWorld.class::cast)
+                            .map(ForgeServerWorld::world);
+            if (!serverLevel.isPresent()) return;
+            entity.travelToDimension(serverLevel.get().provider.dimensionId);
         }
         entity.setPosition(location.x(), location.y(), location.z());
     }

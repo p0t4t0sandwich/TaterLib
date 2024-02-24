@@ -3,7 +3,8 @@ package dev.neuralnexus.taterlib.forge.event.block;
 import dev.neuralnexus.taterlib.block.Block;
 import dev.neuralnexus.taterlib.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.forge.block.ForgeBlock;
-import dev.neuralnexus.taterlib.utils.Position;
+
+import net.minecraft.util.ChunkCoordinates;
 
 /** Forge implementation of {@link BlockEvent}. */
 public class ForgeBlockEvent implements BlockEvent {
@@ -16,6 +17,6 @@ public class ForgeBlockEvent implements BlockEvent {
     /** {@inheritDoc} */
     @Override
     public Block block() {
-        return new ForgeBlock(new Position(event.x, event.y, event.z), this.event.block);
+        return new ForgeBlock(new ChunkCoordinates(event.x, event.y, event.z), this.event.block);
     }
 }

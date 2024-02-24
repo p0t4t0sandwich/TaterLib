@@ -1,8 +1,11 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.ServerWorld;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -61,5 +64,11 @@ public class BukkitServer implements Server {
                 | ClassNotFoundException e) {
             return Collections.emptyList();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ServerWorld> worlds() {
+        return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());
     }
 }

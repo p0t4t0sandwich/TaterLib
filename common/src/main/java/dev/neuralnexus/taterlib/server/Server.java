@@ -2,7 +2,9 @@ package dev.neuralnexus.taterlib.server;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.server.metrics.TPSProvider;
+import dev.neuralnexus.taterlib.world.ServerWorld;
 
+import java.util.List;
 import java.util.Optional;
 
 /** Abstracts a Minecraft server. */
@@ -23,4 +25,21 @@ public interface Server extends SimpleServer {
     //     * @return The server's current tick.
     //     */
     //    long currentTick();
+
+    /**
+     * Get the server's worlds.
+     *
+     * @return The server's worlds.
+     */
+    List<ServerWorld> worlds();
+
+    /**
+     * Get the server's world by dimension.
+     *
+     * @param dimension The dimension.
+     * @return The server's world by dimension.
+     */
+    default Optional<ServerWorld> world(String dimension) {
+        return worlds().stream().filter(world -> world.dimension().equals(dimension)).findFirst();
+    }
 }

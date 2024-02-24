@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraftforge.event.entity.player.PlayerEvent;
 

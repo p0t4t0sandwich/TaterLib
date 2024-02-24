@@ -1,12 +1,17 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.sponge.world.SpongeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Entity}. */
@@ -94,8 +99,14 @@ public class SpongeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        Optional<World> serverLevel =
+                new SpongeServer(Sponge.getServer())
+                        .world(location.world().dimension())
+                        .map(SpongeServerWorld.class::cast)
+                        .map(SpongeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
         entity.setLocation(
                 new org.spongepowered.api.world.Location<>(
-                        entity.getWorld(), location.x(), location.y(), location.z()));
+                        serverLevel.get(), location.x(), location.y(), location.z()));
     }
 }

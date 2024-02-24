@@ -7,7 +7,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import me.lucko.fabric.api.permissions.v0.Options;
 
@@ -111,6 +111,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
+        // TODO: Dimension aware spawn setting
         player.setPlayerSpawn(new BlockPos(location.x(), location.y(), location.z()), forced);
     }
 

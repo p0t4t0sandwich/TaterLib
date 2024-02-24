@@ -1,17 +1,15 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
@@ -100,17 +98,16 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.world().equals(dimension())) {
-            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-            if (server == null) return;
-            ResourceKey<Level> dimension =
-                    ResourceKey.create(
-                            Registries.DIMENSION, new ResourceLocation(location.world()));
-            ServerLevel serverLevel = server.getLevel(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerLevel> serverLevel =
+                    new ForgeServer(ServerLifecycleHooks.getCurrentServer())
+                            .world(location.world().dimension())
+                            .map(ForgeServerWorld.class::cast)
+                            .map(ForgeServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
-                        serverLevel,
+                        serverLevel.get(),
                         location.x(),
                         location.y(),
                         location.z(),
@@ -118,7 +115,7 @@ public class ForgeEntity implements Entity {
                         player.getXRot());
                 return;
             } else {
-                entity.changeDimension(serverLevel);
+                entity.changeDimension(serverLevel.get());
             }
         }
         entity.teleportTo(location.x(), location.y(), location.z());

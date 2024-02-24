@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.bukkit.plugin.Plugin;
 
@@ -89,10 +89,13 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
+        // TODO: Create some different way to send plugin messages
+        throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage(plugin, channel, data);
     }
 
     public void sendPluginMessage(Plugin plugin, String channel, byte[] data) {
+        throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage(plugin, channel, data);
     }
 
@@ -105,6 +108,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public int ping() {
+        // TODO: Find the field that stores the ping
         //        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
         return -1;
     }
@@ -123,6 +127,8 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     @Override
     public void setSpawn(Location location, boolean forced) {
+        // TODO: Write a module to set bed spawns/respawn points
+        throw new VersionFeatureNotSupportedException();
         //        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position),
         // forced);
     }

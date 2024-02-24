@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.forge.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraftforge.event.entity.living.MobSpawnEvent;
 

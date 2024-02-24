@@ -1,19 +1,23 @@
 package dev.neuralnexus.taterlib.forge.player;
 
+import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.WorldServer;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
@@ -100,6 +104,13 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
+        Optional<WorldServer> serverLevel =
+                new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                        .world(location.world().dimension())
+                        .map(ForgeServerWorld.class::cast)
+                        .map(ForgeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
+        player.setSpawnDimension(serverLevel.get().provider.getDimensionType().getId());
         player.setSpawnPoint(new BlockPos(location.x(), location.y(), location.z()), forced);
     }
 

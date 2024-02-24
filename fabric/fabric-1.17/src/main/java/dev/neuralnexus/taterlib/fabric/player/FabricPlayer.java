@@ -3,11 +3,12 @@ package dev.neuralnexus.taterlib.fabric.player;
 import dev.neuralnexus.taterlib.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.fabric.server.FabricServer;
+import dev.neuralnexus.taterlib.fabric.world.FabricWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import me.lucko.fabric.api.permissions.v0.Options;
 
@@ -18,7 +19,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 import java.util.UUID;
 
@@ -112,12 +112,11 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
-        // TODO: Abstract world information
         ((ServerPlayerEntity) player)
                 .setSpawnPoint(
-                        World.OVERWORLD,
+                        ((FabricWorld) location.world()).world().getRegistryKey(),
                         new BlockPos(location.x(), location.y(), location.z()),
-                        0,
+                        0.0F,
                         forced,
                         false);
     }

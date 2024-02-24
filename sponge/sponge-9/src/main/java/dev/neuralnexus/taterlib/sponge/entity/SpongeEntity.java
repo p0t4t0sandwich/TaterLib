@@ -1,11 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.sponge.world.SpongeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -14,6 +17,7 @@ import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Entity}. */
@@ -80,7 +84,7 @@ public class SpongeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public Location location() {
-        return new SpongeLocation(entity.location());
+        return new SpongeLocation(entity.serverLocation());
     }
 
     /** {@inheritDoc} */
@@ -103,9 +107,14 @@ public class SpongeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        Optional<ServerWorld> serverLevel =
+                new SpongeServer(Sponge.server())
+                        .world(location.world().dimension())
+                        .map(SpongeServerWorld.class::cast)
+                        .map(SpongeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
         entity.setLocation(
                 ServerLocation.of(
-                        (ServerWorld) entity.location().world(),
-                        new Vector3d(location.x(), location.y(), location.z())));
+                        serverLevel.get(), new Vector3d(location.x(), location.y(), location.z())));
     }
 }

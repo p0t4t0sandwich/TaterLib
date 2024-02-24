@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.event.player;
 
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 /** Abstract class for player respawn events. */
 public interface PlayerRespawnEvent extends PlayerEvent {

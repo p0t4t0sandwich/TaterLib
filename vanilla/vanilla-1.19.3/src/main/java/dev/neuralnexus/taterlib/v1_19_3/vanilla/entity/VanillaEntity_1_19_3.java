@@ -1,17 +1,15 @@
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
+
+import java.util.Optional;
 
 /** Vanilla implementation of {@link Entity}. */
 public class VanillaEntity_1_19_3 extends VanillaEntity {
@@ -30,17 +28,16 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.world().equals(dimension())) {
-            MinecraftServer server = VanillaServer.server();
-            if (server == null) return;
-            ResourceKey<Level> dimension =
-                    ResourceKey.create(
-                            Registries.DIMENSION, new ResourceLocation(location.world()));
-            ServerLevel serverLevel = server.getLevel(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerLevel> serverLevel =
+                    VanillaServer.instance()
+                            .world(location.world().dimension())
+                            .map(VanillaServerWorld.class::cast)
+                            .map(VanillaServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
-                        serverLevel,
+                        serverLevel.get(),
                         location.x(),
                         location.y(),
                         location.z(),
@@ -48,7 +45,7 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
                         player.getXRot());
                 return;
             } else {
-                entity.changeDimension(serverLevel);
+                entity.changeDimension(serverLevel.get());
             }
         }
         entity.teleportTo(location.x(), location.y(), location.z());

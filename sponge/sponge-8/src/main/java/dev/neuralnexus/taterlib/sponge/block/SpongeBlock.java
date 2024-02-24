@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.block;
 
 import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.utils.Position;
+import dev.neuralnexus.taterlib.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -28,7 +28,7 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public Position blockPos() {
-        return new Position(pos.blockX(), pos.blockY(), pos.blockZ());
+    public BlockPos blockPos() {
+        return new BlockPos(pos.blockX(), pos.blockY(), pos.blockZ());
     }
 }

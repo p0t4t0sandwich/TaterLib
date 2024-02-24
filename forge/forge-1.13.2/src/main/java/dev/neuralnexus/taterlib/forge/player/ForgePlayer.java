@@ -5,17 +5,17 @@ import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.dimension.DimensionType;
 
 import java.util.UUID;
 
@@ -109,7 +109,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
         player.setSpawnPoint(
                 new BlockPos(location.x(), location.y(), location.z()),
                 forced,
-                DimensionType.OVERWORLD);
+                ((ForgeWorld) location.world()).world().dimension.getType());
     }
 
     /** {@inheritDoc} */

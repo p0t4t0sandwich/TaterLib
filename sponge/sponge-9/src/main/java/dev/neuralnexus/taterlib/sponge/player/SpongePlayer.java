@@ -7,7 +7,7 @@ import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;

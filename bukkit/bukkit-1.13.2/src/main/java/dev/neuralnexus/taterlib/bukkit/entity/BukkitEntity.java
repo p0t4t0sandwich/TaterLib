@@ -1,8 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.entity;
 
-import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitLocation;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitWorld;
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import java.util.UUID;
 
@@ -90,7 +91,7 @@ public class BukkitEntity implements Entity {
     public void teleport(Location location) {
         entity.teleport(
                 new org.bukkit.Location(
-                        org.bukkit.Bukkit.getWorld(location.world()),
+                        ((BukkitWorld) location.world()).world(),
                         location.x(),
                         location.y(),
                         location.z()));

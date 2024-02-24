@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bukkit.event.entity;
 
-import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.bukkit.event.entity.CreatureSpawnEvent;
 

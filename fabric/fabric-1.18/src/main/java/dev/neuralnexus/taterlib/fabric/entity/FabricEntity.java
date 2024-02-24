@@ -2,18 +2,16 @@ package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
-import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
+import dev.neuralnexus.taterlib.fabric.world.FabricLocation;
+import dev.neuralnexus.taterlib.fabric.world.FabricServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
@@ -96,17 +94,16 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.world().equals(dimension())) {
-            MinecraftServer server = FabricTaterLibPlugin.minecraftServer;
-            if (server == null) return;
-            RegistryKey<World> dimension =
-                    RegistryKey.of(
-                            Registry.WORLD_KEY, new Identifier(location.world().split(":")[1]));
-            ServerWorld serverLevel = server.getWorld(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerWorld> serverLevel =
+                    new FabricServer(FabricTaterLibPlugin.minecraftServer)
+                            .world(location.world().dimension())
+                            .map(FabricServerWorld.class::cast)
+                            .map(FabricServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayerEntity player) {
                 player.teleport(
-                        serverLevel,
+                        serverLevel.get(),
                         location.x(),
                         location.y(),
                         location.z(),
@@ -114,7 +111,7 @@ public class FabricEntity implements Entity {
                         player.getPitch());
                 return;
             } else {
-                entity.moveToWorld(serverLevel);
+                entity.moveToWorld(serverLevel.get());
             }
         }
         entity.teleport(location.x(), location.y(), location.z());

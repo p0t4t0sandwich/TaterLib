@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.v1_20.vanilla.event.entity;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.v1_20.vanilla.util.VanillaLocation;
+import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.world.entity.Entity;
 

@@ -8,7 +8,7 @@ import dev.neuralnexus.taterlib.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;

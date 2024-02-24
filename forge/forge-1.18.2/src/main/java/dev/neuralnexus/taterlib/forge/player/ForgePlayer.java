@@ -5,16 +5,16 @@ import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
@@ -107,8 +107,8 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     public void setSpawn(Location location, boolean forced) {
         ((ServerPlayer) player)
                 .setRespawnPosition(
-                        Level.OVERWORLD,
-                        new BlockPos(location.x(), location.y(), location.z()),
+                        ((ForgeWorld) location.world()).world().dimension(),
+                        new BlockPos((int) location.x(), (int) location.y(), (int) location.z()),
                         0.0F,
                         forced,
                         false);

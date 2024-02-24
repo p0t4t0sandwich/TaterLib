@@ -3,12 +3,14 @@ package dev.neuralnexus.taterlib.fabric.entity;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
-import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
+import dev.neuralnexus.taterlib.fabric.world.FabricLocation;
+import dev.neuralnexus.taterlib.fabric.world.FabricServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.world.ServerWorld;
 
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
@@ -94,24 +96,14 @@ public class FabricEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.world().equals(dimension())) {
-            MinecraftServer server = FabricTaterLibPlugin.minecraftServer;
-            if (server == null) return;
-            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
-            Arrays.stream(server.worlds)
-                    .filter(
-                            worldServer ->
-                                    worldServer
-                                            .dimension
-                                            .getName()
-                                            .replace(" ", "_")
-                                            .toLowerCase()
-                                            .equals(location.world()))
-                    .findFirst()
-                    .ifPresent(
-                            worldServer ->
-                                    entity.teleportToDimension(
-                                            worldServer.dimension.dimensionType));
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerWorld> serverLevel =
+                    new FabricServer(FabricTaterLibPlugin.minecraftServer)
+                            .world(location.world().dimension())
+                            .map(FabricServerWorld.class::cast)
+                            .map(FabricServerWorld::world);
+            if (!serverLevel.isPresent()) return;
+            entity.teleportToDimension(serverLevel.get().dimension.dimensionType);
         }
         entity.updatePosition(location.x(), location.y(), location.z());
     }

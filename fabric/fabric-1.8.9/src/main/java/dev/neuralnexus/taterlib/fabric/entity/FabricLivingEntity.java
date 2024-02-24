@@ -25,7 +25,7 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
      *
      * @return The entity.
      */
-    public net.minecraft.entity.LivingEntity getEntity() {
+    public net.minecraft.entity.LivingEntity entity() {
         return entity;
     }
 
@@ -38,7 +38,7 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
     /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(DamageSource.mob(((FabricLivingEntity) source).getEntity()), (float) amount);
+        entity.damage(DamageSource.mob(((FabricLivingEntity) source).entity()), (float) amount);
     }
 
     /** {@inheritDoc} */

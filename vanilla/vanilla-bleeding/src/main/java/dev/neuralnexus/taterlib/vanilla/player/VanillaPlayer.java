@@ -4,20 +4,17 @@ import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.vanilla.inventory.VanillaPlayerInventory;
 import dev.neuralnexus.taterlib.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.vanilla.world.VanillaWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
-import net.minecraft.world.level.Level;
 
 import java.util.UUID;
 
@@ -110,13 +107,9 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
-        // TODO: Abstract world information
-        ResourceKey<Level> dimension =
-                ResourceKey.create(
-                        Registries.DIMENSION, new ResourceLocation(location.world().split(":")[1]));
         ((ServerPlayer) player)
                 .setRespawnPosition(
-                        dimension,
+                        ((VanillaWorld) location.world()).world().dimension(),
                         new BlockPos((int) location.x(), (int) location.y(), (int) location.z()),
                         0,
                         forced,

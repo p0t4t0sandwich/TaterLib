@@ -1,16 +1,15 @@
 package dev.neuralnexus.taterlib.forge.block;
 
 import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.utils.Position;
-
-import net.minecraft.core.BlockPos;
+import dev.neuralnexus.taterlib.world.BlockPos;
 
 /** Forge implementation of {@link Block}. */
 public class ForgeBlock implements Block {
-    private final BlockPos pos;
+    private final net.minecraft.core.BlockPos pos;
     private final net.minecraft.world.level.block.Block block;
 
-    public ForgeBlock(BlockPos pos, net.minecraft.world.level.block.Block block) {
+    public ForgeBlock(
+            net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.Block block) {
         this.pos = pos;
         this.block = block;
     }
@@ -23,7 +22,7 @@ public class ForgeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public Position blockPos() {
-        return new Position(pos.getX(), pos.getY(), pos.getZ());
+    public BlockPos blockPos() {
+        return new BlockPos(pos.getX(), pos.getY(), pos.getZ());
     }
 }

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.player;
 
 import dev.neuralnexus.taterlib.entity.HumanEntity;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 /** The interface for a Player */
 public interface Player extends SimplePlayer, HumanEntity {

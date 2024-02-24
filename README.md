@@ -228,3 +228,4 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Server.currentTPS()`, `SimpleServer.getPlayer(String)`, and `SimpleServer.getPlayer(UUID)`
 - `PlayerServerSwitchEvent.toServer`/`fromServer` now return a `Server` rather than a `String`
 - Overhauled the `Inventory`/`PlayerInventory` interfaces
+- Created `World` and `ServerWorld` abstractions

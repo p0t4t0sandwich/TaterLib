@@ -4,11 +4,12 @@ import dev.neuralnexus.taterlib.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.plugin.Plugin;
@@ -126,7 +127,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     public void setSpawn(Location location, boolean forced) {
         player.setBedSpawnLocation(
                 new org.bukkit.Location(
-                        org.bukkit.Bukkit.getWorld(location.world()),
+                        ((BukkitWorld) location.world()).world(),
                         location.x(),
                         location.y(),
                         location.z()));
