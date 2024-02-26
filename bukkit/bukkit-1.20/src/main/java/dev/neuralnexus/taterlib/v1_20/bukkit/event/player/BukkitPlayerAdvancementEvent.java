@@ -31,7 +31,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
         /** {@inheritDoc} */
         @Override
         public String advancement() {
-            return event.getAdvancement().getKey().getKey();
+            return event.getAdvancement().getDisplay().getTitle();
         }
     }
 }
