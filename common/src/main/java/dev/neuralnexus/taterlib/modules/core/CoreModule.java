@@ -17,7 +17,6 @@ import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 /** TaterLib's core module. */
 public class CoreModule implements PluginModule {
-    private static final boolean RELOADED = false;
     private static boolean STARTED = false;
 
     @Override
@@ -33,7 +32,7 @@ public class CoreModule implements PluginModule {
         }
         STARTED = true;
 
-        if (!RELOADED) {
+        if (!TaterLib.hasReloaded()) {
             // Dump basic debug info
             new DumpInfo().saveDump();
 

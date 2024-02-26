@@ -10,7 +10,6 @@ import dev.neuralnexus.taterlib.plugin.PluginModule;
 /** MCLogs module. */
 public class MCLogsModule implements PluginModule {
     private static boolean STARTED = false;
-    private static final boolean RELOADED = false;
 
     @Override
     public String name() {
@@ -25,7 +24,7 @@ public class MCLogsModule implements PluginModule {
         }
         STARTED = true;
 
-        if (!RELOADED) {
+        if (!TaterLib.hasReloaded()) {
             // Register commands
             CommandEvents.REGISTER_COMMAND.register(
                     event -> {

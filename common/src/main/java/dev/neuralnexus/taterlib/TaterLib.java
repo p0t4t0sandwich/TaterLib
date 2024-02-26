@@ -26,6 +26,15 @@ public class TaterLib {
     private AbstractLogger logger;
 
     /**
+     * Get if the plugin has reloaded
+     *
+     * @return If the plugin has reloaded
+     */
+    public static boolean hasReloaded() {
+        return RELOADED;
+    }
+
+    /**
      * Getter for the singleton instance of the class.
      *
      * @return The singleton instance
