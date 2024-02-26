@@ -1,11 +1,17 @@
 package dev.neuralnexus.taterlib.plugin;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** PluginModule loader. */
 public interface ModuleLoader {
     /** Get the modules. */
     List<PluginModule> modules();
+
+    /** Get list of module names. */
+    default List<String> moduleNames() {
+        return modules().stream().map(PluginModule::name).collect(Collectors.toList());
+    }
 
     /**
      * Register a module.
