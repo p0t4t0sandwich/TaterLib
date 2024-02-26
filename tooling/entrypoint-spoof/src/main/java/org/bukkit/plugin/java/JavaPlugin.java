@@ -11,6 +11,7 @@ public abstract class JavaPlugin extends PluginBase {
     Logger logger;
     Server server;
     File dataFolder;
+    PluginDescriptionFile description;
 
     public Logger getLogger() {
         return logger;
@@ -29,6 +30,6 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     public PluginDescriptionFile getDescription() {
-        return null;
+        return description;
     }
 }

@@ -157,7 +157,7 @@ public interface SimplePlayer extends CommandSender, Connection {
                 .parseString("displayname", this.displayName())
                 .parseString("prefix", this.prefix())
                 .parseString("suffix", this.suffix())
-                .parseString("server", this.server().name())
+                .parseString("server", this.server() != null ? this.server().name() : "noServer")
                 .parseSectionSign();
     }
 }
