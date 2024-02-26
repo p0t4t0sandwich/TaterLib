@@ -24,6 +24,7 @@ import dev.neuralnexus.taterlib.velocity.event.command.VelocityCommandRegisterEv
 import dev.neuralnexus.taterlib.velocity.event.network.VelocityRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartedEvent;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppedEvent;
+import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppingEvent;
 import dev.neuralnexus.taterlib.velocity.hooks.permissions.VelocityPermissionsHook;
 import dev.neuralnexus.taterlib.velocity.listeners.network.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.listeners.player.VelocityPlayerListener;
@@ -58,6 +59,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Subscribe
     public void onProxyShutdown(ProxyShutdownEvent event) {
+        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
         platformDisable();
     }
 
