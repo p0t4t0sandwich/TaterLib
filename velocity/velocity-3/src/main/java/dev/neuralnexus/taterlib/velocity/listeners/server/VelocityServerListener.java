@@ -6,7 +6,6 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStartingEvent;
-import dev.neuralnexus.taterlib.velocity.event.server.VelocityServerStoppingEvent;
 
 /** Listens for server events. */
 public class VelocityServerListener {
@@ -27,6 +26,6 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStopping(ProxyShutdownEvent event) {
-        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
+//        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
     }
 }

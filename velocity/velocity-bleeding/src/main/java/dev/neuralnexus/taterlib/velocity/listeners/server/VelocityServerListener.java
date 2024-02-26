@@ -27,6 +27,6 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStopping(ProxyShutdownEvent event) {
-        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
+        //        ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
     }
 }
