@@ -18,7 +18,10 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
     /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
-        return new VelocityPlayer(event.getPlayer());
+        if (event.getPlayer().getCurrentServer().isPresent()) {
+            return new VelocityPlayer(event.getPlayer());
+        }
+        return new VelocityPlayer(event.getPlayer(), event.getServer());
     }
 
     /** {@inheritDoc} */

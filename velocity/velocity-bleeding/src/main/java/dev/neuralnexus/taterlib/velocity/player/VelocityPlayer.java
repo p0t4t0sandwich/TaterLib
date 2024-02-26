@@ -5,7 +5,6 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;
@@ -15,6 +14,7 @@ import java.util.UUID;
 /** Velocity implementation of {@link ProxyPlayer}. */
 public class VelocityPlayer implements ProxyPlayer {
     private final com.velocitypowered.api.proxy.Player player;
+    private RegisteredServer server = null;
 
     /**
      * Constructor.
@@ -23,6 +23,17 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     public VelocityPlayer(com.velocitypowered.api.proxy.Player player) {
         this.player = player;
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param player The Velocity player.
+     * @param server The server the player is connected to.
+     */
+    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, RegisteredServer server) {
+        this.player = player;
+        this.server = server;
     }
 
     /**
@@ -73,6 +84,7 @@ public class VelocityPlayer implements ProxyPlayer {
     /** {@inheritDoc} */
     @Override
     public Server server() {
+        if (server != null) return new VelocityServer(server);
         if (!player.getCurrentServer().isPresent()) return null;
         return new VelocityServer(player.getCurrentServer().get().getServer());
     }
