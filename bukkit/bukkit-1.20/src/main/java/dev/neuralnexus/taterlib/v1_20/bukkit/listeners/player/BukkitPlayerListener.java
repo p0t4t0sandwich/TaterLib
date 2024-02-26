@@ -1,14 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapter;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.BukkitCancellableEventWrapper;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.player.BukkitPlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.player.BukkitPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerAdvancementEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerDeathEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerMessageEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerRespawnEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.player.*;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -25,13 +18,8 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerAdvancement(PlayerAdvancementDoneEvent event) {
-        org.bukkit.advancement.Advancement advancement = event.getAdvancement();
-        if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
-            PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                    new VanillaPlayerAdvancementEvent.AdvancementFinished(
-                            BukkitAdapter.get().player(event.getPlayer()),
-                            BukkitAdapter.get().advancement(event.getAdvancement())));
-        }
+        PlayerEvents.ADVANCEMENT_FINISHED.invoke(
+                new BukkitPlayerAdvancementEvent.AdvancementFinished(event));
     }
 
     /**
@@ -41,10 +29,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        PlayerEvents.DEATH.invoke(
-                new VanillaPlayerDeathEvent(
-                        BukkitAdapter.get().player(event.getEntity()),
-                        BukkitAdapter.get().lastDamageSource(event.getEntity())));
+        PlayerEvents.DEATH.invoke(new BukkitPlayerDeathEvent(event));
     }
 
     /**
@@ -74,11 +59,7 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMessage(AsyncPlayerChatEvent event) {
-        PlayerEvents.MESSAGE.invoke(
-                new VanillaPlayerMessageEvent(
-                        BukkitAdapter.get().player(event.getPlayer()),
-                        event.getMessage(),
-                        new BukkitCancellableEventWrapper<>(event)));
+        PlayerEvents.MESSAGE.invoke(new BukkitPlayerMessageEvent(event));
     }
 
     /**
@@ -88,9 +69,6 @@ public class BukkitPlayerListener implements Listener {
      */
     @EventHandler
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        PlayerEvents.RESPAWN.invoke(
-                new VanillaPlayerRespawnEvent(
-                        BukkitAdapter.get().player(event.getPlayer()),
-                        event.getPlayer().getHealth() > 0.0F));
+        PlayerEvents.RESPAWN.invoke(new BukkitPlayerRespawnEvent(event));
     }
 }

@@ -1013,7 +1013,7 @@ tasks.register('build_1_19_4', Jar) {
 // --------------------------- Build 1.20.x --------------------------------
 tasks.register('build_1_20_x', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.20", "1.20.2", "1.20.4"))
+            .put("bukkit", Arrays.asList("1.20"))
             .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.20", "1.20.2"))
             .put("forge", Arrays.asList("1.20", "1.20.2"))

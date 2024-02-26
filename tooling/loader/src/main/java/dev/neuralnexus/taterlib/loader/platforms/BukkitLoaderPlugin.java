@@ -29,14 +29,10 @@ public class BukkitLoaderPlugin extends JavaPlugin {
         switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
-                version = "." + MinecraftVersion.V1_20.getDelimiterString();
-                break;
             case V1_20_2:
-                version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
-                break;
             case V1_20_3:
             case V1_20_4:
-                version = "." + MinecraftVersion.V1_20_4.getDelimiterString();
+                version = "." + MinecraftVersion.V1_20.getDelimiterString();
                 break;
             default:
                 System.err.println(

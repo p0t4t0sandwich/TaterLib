@@ -10,20 +10,18 @@ import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapter;
 import dev.neuralnexus.taterlib.v1_20.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.networking.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.server.BukkitServerStartingEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.server.BukkitServerStoppedEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.event.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_20.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.BukkitPlayerListener;
-import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.PaperPlayerAdvancementListener;
+import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.server.BukkitServerListener;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppingEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.v1_20.bukkit.server.BukkitServer;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -34,7 +32,6 @@ import java.util.stream.Collectors;
 
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
-    private static boolean hasStarted = false;
 
     @Override
     public void platformInit(Object plugin, Object server, Object logger) {
@@ -52,7 +49,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                                         p.getName(),
                                                         p.getDescription().getVersion()))
                                 .collect(Collectors.toList()));
-        api.setServer(VanillaServer::instance);
+        api.setServer(() -> new BukkitServer(Bukkit.getServer()));
         TaterAPIProvider.setPrimaryServerType(ServerType.BUKKIT);
     }
 
@@ -65,13 +62,9 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
             pluginManager.registerEvents(new BukkitEntityListener(), plugin);
             pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
             if (TaterAPIProvider.serverType().isPaperBased()) {
-                pluginManager.registerEvents(new PaperPlayerAdvancementListener(), plugin);
+                pluginManager.registerEvents(new PaperPlayerListener(), plugin);
             }
-            if (!hasStarted) {
-                hasStarted = true;
-                ServerEvents.STARTING.invoke(
-                        new VanillaServerStartingEvent(BukkitAdapter.get().server()));
-            }
+            ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
             pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
             Bukkit.getServer()
@@ -82,14 +75,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                 // Register commands
                                 CommandEvents.REGISTER_COMMAND.invoke(
                                         new BukkitCommandRegisterEvent());
-
-                                if (TaterAPIProvider.isBrigadierSupported()) {
-                                    // Register Brigadier commands
-                                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                            new VanillaBrigadierCommandRegisterEvent(
-                                                    BukkitAdapter.get().commandDispatcher(),
-                                                    BukkitAdapter.get().commandSelection()));
-                                }
 
                                 // Register plugin messages
                                 NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
@@ -102,8 +87,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.server()));
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.server()));
+        ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
+        ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());
         pluginStop();
     }
 }

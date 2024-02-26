@@ -6,7 +6,7 @@ import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 
-/** Sponge implementation of {@link BlockBreakEvent}. */
+/** Sponge implementation of {@link PlayerBlockBreakEvent}. */
 public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlockBreakEvent {
     private final ChangeBlockEvent.Pre event;
 
