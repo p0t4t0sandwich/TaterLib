@@ -14,7 +14,4 @@ public interface PluginModule {
 
     /** Stop the module. */
     void stop();
-
-    /** Reload the module. */
-    void reload();
 }

@@ -40,9 +40,4 @@ public interface ModuleLoader {
     default void stopModules() {
         modules().forEach(PluginModule::stop);
     }
-
-    /** Reload the modules. */
-    default void reloadModules() {
-        modules().forEach(PluginModule::reload);
-    }
 }

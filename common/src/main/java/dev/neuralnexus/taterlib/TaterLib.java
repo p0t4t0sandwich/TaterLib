@@ -137,6 +137,7 @@ public class TaterLib {
         }
 
         // Start modules
+        logger().info("Starting modules: " + moduleLoader.moduleNames());
         moduleLoader.startModules();
 
         instance.logger.info(Constants.PROJECT_NAME + " has been started!");
@@ -156,6 +157,7 @@ public class TaterLib {
         STARTED = false;
 
         // Stop modules
+        logger().info("Stopping modules: " + moduleLoader.moduleNames());
         moduleLoader.stopModules();
 
         // Remove references to objects

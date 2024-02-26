@@ -17,8 +17,8 @@ import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 /** TaterLib's core module. */
 public class CoreModule implements PluginModule {
+    private static final boolean RELOADED = false;
     private static boolean STARTED = false;
-    private static boolean RELOADED = false;
 
     @Override
     public String name() {
@@ -75,8 +75,6 @@ public class CoreModule implements PluginModule {
                         event.registerCommand(TaterLib.plugin(), command);
                     });
         }
-
-        TaterLib.logger().info("Submodule " + name() + " has been started!");
     }
 
     @Override
@@ -86,26 +84,5 @@ public class CoreModule implements PluginModule {
             return;
         }
         STARTED = false;
-
-        // Remove references to objects
-
-        TaterLib.logger().info("Submodule " + name() + " has been stopped!");
-    }
-
-    @Override
-    public void reload() {
-        if (!STARTED) {
-            TaterLib.logger().info("Submodule " + name() + " has not been started!");
-            return;
-        }
-        RELOADED = true;
-
-        // Stop
-        stop();
-
-        // Start
-        start();
-
-        TaterLib.logger().info("Submodule " + name() + " has been reloaded!");
     }
 }
