@@ -249,8 +249,12 @@ tasks.register('build_entrypoint_spoof', Jar) {
 // --------------------------- Build Legacy Forge --------------------------------
 tasks.register('build_legacy_forge', Exec) {
     try {
+        var String java_8_dir = java_8_home
+        if (System.getenv("JAVA_8_HOME") != null) {
+            java_8_dir = System.getenv("JAVA_8_HOME")
+        }
         executable 'bash'
-        args '-c', "export JAVA_HOME=${java_8_home} && cd forge-legacy && ./gradlew forge-1.7.10:setupDecompWorkspace && ./gradlew build"
+        args '-c', "export JAVA_HOME=${java_8_dir} cd forge-legacy && ./gradlew forge-1.7.10:setupDecompWorkspace && ./gradlew build"
     } catch (Exception e) {
         println(e)
     }
