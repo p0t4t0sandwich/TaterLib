@@ -134,7 +134,7 @@ public class TaterLib {
         TaterLibConfigLoader.load();
 
         if (STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has already started!");
+            logger().info(Constants.PROJECT_NAME + " has already started!");
             return;
         }
         STARTED = true;
@@ -149,7 +149,7 @@ public class TaterLib {
         logger().info("Starting modules: " + moduleLoader.moduleNames());
         moduleLoader.startModules();
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been started!");
+        logger().info(Constants.PROJECT_NAME + " has been started!");
     }
 
     /** Start */
@@ -160,7 +160,7 @@ public class TaterLib {
     /** Stop */
     public static void stop() {
         if (!STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has already stopped!");
+            logger().info(Constants.PROJECT_NAME + " has already stopped!");
             return;
         }
         STARTED = false;
@@ -172,14 +172,14 @@ public class TaterLib {
         // Remove references to objects
         TaterLibConfigLoader.unload();
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been stopped!");
+        logger().info(Constants.PROJECT_NAME + " has been stopped!");
         TaterAPIProvider.unregister();
     }
 
     /** Reload */
     public static void reload() {
         if (!STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has not been started!");
+            logger().info(Constants.PROJECT_NAME + " has not been started!");
             return;
         }
         RELOADED = true;
@@ -190,7 +190,7 @@ public class TaterLib {
         // Start
         start();
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been reloaded!");
+        logger().info(Constants.PROJECT_NAME + " has been reloaded!");
     }
 
     /** Constants used throughout the plugin. */
