@@ -53,8 +53,36 @@ subprojects {
 
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
-    dependsOn('build_api')
-//    dependsOn('build_b1_7_3')
+    dependsOn(':common:test')
+    dependsOn('publishUploadAPIFullPublicationToNeuralNexusReleasesRepository')
+    dependsOn('build_b1_7_3')
+    dependsOn('build_1_2_5')
+    dependsOn('build_1_6_4')
+    dependsOn('build_1_7_10')
+    dependsOn('build_1_8')
+    dependsOn('build_1_9')
+    dependsOn('build_1_10')
+    dependsOn('build_1_11')
+    dependsOn('build_1_12')
+    dependsOn('build_1_13')
+    dependsOn('build_1_14')
+    dependsOn('build_1_15')
+    dependsOn('build_1_16')
+    dependsOn('build_1_17')
+    dependsOn('build_1_18')
+    dependsOn('build_1_18_2')
+    dependsOn('build_1_19')
+    dependsOn('build_1_19_2')
+    dependsOn('build_1_19_4')
+    dependsOn('build_1_20_x')
+    dependsOn('build_bleeding')
+}
+
+// --------------------------- Build Dev --------------------------------
+tasks.register('build_dev') {
+    dependsOn(':common:test')
+    dependsOn('publishUploadAPIFullPublicationToNeuralNexusSnapshotsRepository')
+    dependsOn('build_b1_7_3')
 //    dependsOn('build_1_2_5')
 //    dependsOn('build_1_6_4')
 //    dependsOn('build_1_7_10')
@@ -70,7 +98,9 @@ tasks.register('build_all') {
 //    dependsOn('build_1_17')
 //    dependsOn('build_1_18')
 //    dependsOn('build_1_18_2')
-    dependsOn('build_1_19_x')
+//    dependsOn('build_1_19')
+//    dependsOn('build_1_19_2')
+//    dependsOn('build_1_19_4')
     dependsOn('build_1_20_x')
 //    dependsOn('build_bleeding')
 }
@@ -85,9 +115,8 @@ var List<String> legacyForgeVersions = [
 
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
-    String dir = "./target"
     ArrayList<File> jarFiles = [
-            file("${dir}/${project_id}-common-${version}.jar"),
+            file("./common/build/libs/${project_id}-common-${version}.jar"),
             file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
     ]
 
@@ -152,7 +181,7 @@ tasks.register('build_api', Jar) {
         into("META-INF")
     }
     ArrayList<File> jarFiles = [
-            file("./target/${project_id}-common-${version}.jar"),
+            file("./common/build/libs/${project_id}-common-${version}.jar")
     ]
     from {
         jarFiles.collect {
@@ -167,12 +196,45 @@ tasks.register('build_api', Jar) {
     }
 }
 
+// --------------------------- Build api full ---------------------------
+tasks.register('build_api_full', Jar) {
+    dependsOn('clear_build')
+    dependsOn(':common:shadowJar')
+    dependsOn(':tooling:loader:build')
+
+    archiveFileName = "${project_id}-api-full-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} API With Libs",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    ArrayList<File> jarFiles = [
+            file("./common/build/libs/${project_id}-common-${version}.jar"),
+            file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
+    ]
+    from {
+        jarFiles.collect {
+            zipTree(it)
+        }
+    }
+}
+
 // --------------------------- Build Entry Point Spoof --------------------------------
 tasks.register('build_entrypoint_spoof', Jar) {
     // TODO: remove this redundant garbage
     dependsOn('tooling:entrypoint-spoof:build')
 
-    archiveFileName = "entrypoint-spoof-${version}.jar"
+    archiveFileName = "entrypoint-spoof-${entrypoint_spoof_version}.jar"
     destinationDirectory = file("./build/libs")
 
     from(["README.md", "LICENSE"]) {
@@ -180,7 +242,7 @@ tasks.register('build_entrypoint_spoof', Jar) {
     }
 
     from {
-        zipTree(file("./target/entrypoint-spoof-0.1.0.jar"))
+        zipTree(file("./tooling/entrypoint-spoof/build/libs/entrypoint-spoof-${entrypoint_spoof_version}.jar"))
     }
 }
 
@@ -854,8 +916,8 @@ tasks.register('build_1_18_2', Jar) {
     // Uses 1.19 permission schema
 }
 
-// --------------------------- Build 1.19.x --------------------------------
-tasks.register('build_1_19_x', Jar) {
+// --------------------------- Build 1.19 --------------------------------
+tasks.register('build_1_19', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
             .put("bukkit", Arrays.asList("1.15.2"))
             .put("bungee", Arrays.asList("1.20"))
@@ -873,7 +935,89 @@ tasks.register('build_1_19_x', Jar) {
         }
     }
 
-    String mc_version = '1.19.x'
+    String mc_version = '1.19'
+    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
+// --------------------------- Build 1.19.2 --------------------------------
+tasks.register('build_1_19_2', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("forge", Arrays.asList("1.19.2"))
+            .put("sponge", Arrays.asList("10"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    String mc_version = '1.19.2'
+    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
+// --------------------------- Build 1.19.4 --------------------------------
+tasks.register('build_1_19_4', Jar) {
+    var platformVersions = ImmutableMap.<String, List<String>> builder()
+            .put("bukkit", Arrays.asList("1.15.2"))
+            .put("bungee", Arrays.asList("1.20"))
+            .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("forge", Arrays.asList("1.19.4"))
+            .put("sponge", Arrays.asList("10"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
+            .put("velocity", Arrays.asList("3"))
+            .build()
+
+    dependsOn('build_api')
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+
+    String mc_version = '1.19.4'
     archiveFileName = "${project_id}-${mc_version}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
@@ -898,7 +1042,7 @@ tasks.register('build_1_19_x', Jar) {
 // --------------------------- Build 1.20.x --------------------------------
 tasks.register('build_1_20_x', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.20", "1.20.2", "1.20.4"))
+            .put("bukkit", Arrays.asList("1.20"))
             .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.20", "1.20.2"))
             .put("forge", Arrays.asList("1.20", "1.20.2"))
@@ -988,10 +1132,6 @@ tasks.register('build_bleeding', Jar) {
     }
 }
 
-clean {
-    delete('target')
-}
-
 publishing {
     publications {
         uploadAPI(MavenPublication) {
@@ -1029,9 +1169,44 @@ publishing {
                 }
             }
         }
+        uploadAPIFull(MavenPublication) {
+            groupId = group_id
+            version = version
+
+            artifact(build_api_full) {
+                artifactId = "${project_id}-api-full"
+            }
+
+            pom {
+                name = project_name
+                description = project_description
+                url = homepage_url
+                licenses {
+                    license {
+                        name = 'GPL-3'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                    }
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'p0t4t0sandwich'
+                        name = 'Dylan Sperrer'
+                        email = 'dylan@neuralnexus.dev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
+                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
+                }
+            }
+        }
         uploadEntryPointSpoof(MavenPublication) {
             groupId = group_id
-            version = "0.1.0"
+            version = "${entrypoint_spoof_version}"
 
             artifact(build_entrypoint_spoof) {
                 artifactId = "entrypoint-spoof"

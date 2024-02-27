@@ -21,19 +21,19 @@ public class SpongeCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public CommandCause getSender() {
+    public CommandCause sender() {
         return sender;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "CONSOLE";
     }
 

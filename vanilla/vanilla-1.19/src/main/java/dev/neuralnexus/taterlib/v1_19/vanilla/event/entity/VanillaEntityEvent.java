@@ -17,7 +17,7 @@ public class VanillaEntityEvent implements EntityEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         if (this.entity instanceof Player) {
             return new VanillaPlayer((Player) this.entity);
         } else {

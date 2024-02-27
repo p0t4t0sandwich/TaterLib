@@ -36,7 +36,7 @@ public class ForgeCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<CommandSource> getDispatcher() {
+    public CommandDispatcher<CommandSource> dispatcher() {
         return event.getDispatcher();
     }
 

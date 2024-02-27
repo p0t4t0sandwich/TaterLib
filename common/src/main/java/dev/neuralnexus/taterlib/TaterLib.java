@@ -1,29 +1,45 @@
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterlib.api.TaterAPI;
+import com.google.common.collect.ImmutableMap;
+
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.command.TaterLibCommand;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.GenericEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.hooks.TaterLibHook;
-import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
+import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.bstats.MetricsAdapter;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.modules.core.CoreModule;
+import dev.neuralnexus.taterlib.plugin.ModuleLoader;
+
+import org.bstats.charts.SimplePie;
+
+import java.util.Collections;
 
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
+    private static ModuleLoader moduleLoader;
     private Object plugin;
+    private Object pluginServer;
+    private Object pluginLogger;
     private AbstractLogger logger;
+
+    /**
+     * Get if the plugin has reloaded
+     *
+     * @return If the plugin has reloaded
+     */
+    public static boolean hasReloaded() {
+        return RELOADED;
+    }
 
     /**
      * Getter for the singleton instance of the class.
      *
      * @return The singleton instance
      */
-    public static TaterLib getInstance() {
+    public static TaterLib instance() {
         return instance;
     }
 
@@ -32,7 +48,7 @@ public class TaterLib {
      *
      * @return The plugin
      */
-    public static Object getPlugin() {
+    public static Object plugin() {
         return instance.plugin;
     }
 
@@ -46,11 +62,29 @@ public class TaterLib {
     }
 
     /**
+     * Set the plugin server
+     *
+     * @param pluginServer The plugin server
+     */
+    private static void setPluginServer(Object pluginServer) {
+        instance.pluginServer = pluginServer;
+    }
+
+    /**
+     * Set the plugin logger
+     *
+     * @param pluginLogger The plugin logger
+     */
+    private static void setPluginLogger(Object pluginLogger) {
+        instance.pluginLogger = pluginLogger;
+    }
+
+    /**
      * Get the logger
      *
      * @return The logger
      */
-    public static AbstractLogger getLogger() {
+    public static AbstractLogger logger() {
         return instance.logger;
     }
 
@@ -67,66 +101,85 @@ public class TaterLib {
      * Start
      *
      * @param plugin The plugin
+     * @param pluginServer The plugin server
+     * @param pluginLogger The plugin logger
      * @param logger The logger
      */
-    public static void start(Object plugin, AbstractLogger logger) {
+    public static void start(
+            Object plugin, Object pluginServer, Object pluginLogger, AbstractLogger logger) {
+        if (pluginServer != null) {
+            setPluginServer(pluginServer);
+        }
+        if (pluginLogger != null) {
+            setPluginLogger(pluginLogger);
+        }
         setPlugin(plugin);
         setLogger(logger);
 
+        // Set up bStats
+        MetricsAdapter.setupMetrics(
+                plugin,
+                pluginServer,
+                pluginLogger,
+                ImmutableMap.<ServerType, Integer>builder()
+                        .put(ServerType.BUKKIT, 21008)
+                        .put(ServerType.BUNGEECORD, 21009)
+                        .put(ServerType.SPONGE, 21010)
+                        .put(ServerType.VELOCITY, 21011)
+                        .build(),
+                Collections.singletonList(
+                        new SimplePie("server_type", () -> ServerType.serverType().toString())));
+
+        // Config
+        TaterLibConfigLoader.load();
+
         if (STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has already started!");
+            logger().info(Constants.PROJECT_NAME + " has already started!");
             return;
         }
         STARTED = true;
 
         if (!RELOADED) {
-            // Setup Generic Events
-            GenericEvents.setup();
-
-            TaterAPI api = TaterAPIProvider.get();
-
-            // Register TaterLib hook (in case other plugins use hooks to check for TaterLib)
-            TaterAPIProvider.addHook(new TaterLibHook());
-
-            // Register hooks
-            ServerEvents.STARTED.register(
-                    event -> {
-                        // Register LuckPerms hook
-                        if (api.isPluginModLoaded("LuckPerms")) {
-                            instance.logger.info("LuckPerms detected, enabling LuckPerms hook.");
-                            TaterAPIProvider.addHook(new LuckPermsHook());
-                        }
-                    });
-
-            // Register commands
-            CommandEvents.REGISTER_COMMAND.register(
-                    (event -> event.registerCommand(TaterLib.getPlugin(), new TaterLibCommand())));
+            // Register modules
+            moduleLoader = new TaterLibModuleLoader();
+            moduleLoader.registerModule(new CoreModule());
         }
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been started!");
+        // Start modules
+        logger().info("Starting modules: " + moduleLoader.moduleNames());
+        moduleLoader.startModules();
+
+        logger().info(Constants.PROJECT_NAME + " has been started!");
     }
 
     /** Start */
     public static void start() {
-        start(instance.plugin, instance.logger);
+        start(instance.plugin, instance.pluginServer, instance.pluginLogger, instance.logger);
     }
 
     /** Stop */
     public static void stop() {
         if (!STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has already stopped!");
+            logger().info(Constants.PROJECT_NAME + " has already stopped!");
             return;
         }
         STARTED = false;
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been stopped!");
+        // Stop modules
+        logger().info("Stopping modules: " + moduleLoader.moduleNames());
+        moduleLoader.stopModules();
+
+        // Remove references to objects
+        TaterLibConfigLoader.unload();
+
+        logger().info(Constants.PROJECT_NAME + " has been stopped!");
         TaterAPIProvider.unregister();
     }
 
     /** Reload */
     public static void reload() {
         if (!STARTED) {
-            instance.logger.info(Constants.PROJECT_NAME + " has not been started!");
+            logger().info(Constants.PROJECT_NAME + " has not been started!");
             return;
         }
         RELOADED = true;
@@ -137,7 +190,7 @@ public class TaterLib {
         // Start
         start();
 
-        instance.logger.info(Constants.PROJECT_NAME + " has been reloaded!");
+        logger().info(Constants.PROJECT_NAME + " has been reloaded!");
     }
 
     /** Constants used throughout the plugin. */
@@ -147,7 +200,7 @@ public class TaterLib {
         public static final String PROJECT_VERSION = "1.1.0-R0.16-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION =
-                "A cross API code library for various generalizations used in the Tater* plugins";
+                "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";
         public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
     }
 }

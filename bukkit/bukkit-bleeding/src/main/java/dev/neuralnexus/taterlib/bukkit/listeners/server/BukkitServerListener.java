@@ -18,7 +18,7 @@ public class BukkitServerListener implements Listener {
     @EventHandler
     public void onServerStarted(ServerLoadEvent event) {
         if (event.getType() == ServerLoadEvent.LoadType.STARTUP) {
-            ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(VanillaServer.getServer()));
+            ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(VanillaServer.server()));
         }
     }
 }

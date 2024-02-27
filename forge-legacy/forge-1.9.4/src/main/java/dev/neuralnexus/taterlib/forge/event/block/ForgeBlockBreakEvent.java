@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
 
-/** Forge implementation of {@link BlockBreakEvent}. */
+/** Forge implementation of {@link PlayerBlockBreakEvent}. */
 public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlockBreakEvent {
     private final net.minecraftforge.event.world.BlockEvent.BreakEvent event;
 
@@ -15,7 +15,7 @@ public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlock
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -27,7 +27,7 @@ public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlock
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.getPlayer());
     }
 }

@@ -82,6 +82,29 @@ new issue to discuss the changes you’d like to make.
 
 ### Code style
 
+#### Simplifying the Codebase
+
+Whenever possible, it's preferred to abstract as much as you can to the `common` subprojects as `default` methods on the
+interfaces. For example, using `Entity#location()` to get `x()/y()/z()` rather than implementing `x()/y()/z()` on every
+platform `Entity` implementation. Yes it does add a little bit of extra abstraction, but that's sorta the game we're
+playing here. (Makes it so we don't need to re-implement the same thing 40 times over.)
+
+#### Getter/Setter Methods
+
+It's preferred to use `propertName()` rather than `getPropertyName()` for getter methods, it's a small thing, but it
+helps keep the codebase consistent and makes working with nested properties a bit cleaner.
+
+#### Streams and other Functional APIs
+
+It’s suggested to adopt a functional code style to reduce overall complexity, though an argument can be made for heavily
+nested loops that don’t run often enough to benefit from the JVM’s JIT compiler, or other performance sensitive code.
+
+In general, rather than returning `null`, it's preferred to wrap the return type in an `Optional`, I understand that
+annotations like `@Nullable` and `@NotNull` exist, but in a codebase that ranges from beta MC to modern MC, I feel
+things will be more robust in the long term if we use `Optional` instead.
+
+#### Formatting
+
 To keep things simple, we use [google-java-format](https://plugins.jetbrains.com/plugin/8527-google-java-format) for
 IntelliJ IDEA to format our code. The only deviation from the default settings is that we use the ASOP style format. You
 can set this just by going to `Settings > google-java-format Settings > Code style` and selecting `AOSP` from the
@@ -91,7 +114,7 @@ I usually use the following settings applied under `Settings > Tools > Actions o
 
 - Reformat code
 - Optimize imports
-- Rearage code
+- Rearrange code
 - Run code cleanup
 
 ### Tips, Tricks, and Other Notes
@@ -103,7 +126,8 @@ remap, and validate the vanilla source. Please note: exclude the `settings.gradl
 least, un-comment the other entries once you're finished.
 
 PRs are not considered finished until every platform/version has the feature implemented (excluding unsupported events).
-For methods that aren't supported by and older version, please add the `VersionFeatureNotSuportedException`.
+For methods that aren't supported by and older version, or need some extra setup via a custom TaterLib module (add a
+todo note inside the method), please add the `VersionFeatureNotSuportedException`.
 
 Please remember: You are not expected to know everything about every modding platform. If you're not sure about
 something, feel free to ask. Or if you're feeling a bit overwhelmed, ask for help, you aren't alone while
@@ -149,11 +173,13 @@ If you're feeling really ambitious, you could try to add support for other moddi
 following:
 
 * [Nukkit](https://github.com/CloudburstMC/Nukkit)
+* [Krypton](https://github.com/KryptonMC/Krypton)
 * RiftMC
 * LiteLoader
 * Meddle
 * Risugami
 * LitLaunch
 * RealML
-* [Minestorm](https://github.com/Minestom/Minestom)
+* [Minestom](https://github.com/Minestom/Minestom)
 * [Cursed Fabric](https://minecraft-cursed-legacy.github.io/)
+* [Babric](https://babric.github.io/)

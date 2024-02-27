@@ -4,16 +4,16 @@ import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
+import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.taterlib.loader.TaterLibLoader;
 import dev.neuralnexus.taterlib.plugin.Loader;
-import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import org.slf4j.Logger;
 
 /** Velocity entry point. */
-// @Plugin(
+//@Plugin(
 //        id = TaterLib.Constants.PROJECT_ID,
 //        name = TaterLib.Constants.PROJECT_NAME,
 //        version = TaterLib.Constants.PROJECT_VERSION,
@@ -24,13 +24,13 @@ public class VelocityLoaderPlugin {
     private static Loader loader;
 
     @Inject
-    public VelocityLoaderPlugin(ProxyServer server, Logger logger) {
-        loader = new TaterLibLoader(new Object[] {server, this}, logger);
+    public VelocityLoaderPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
+        loader = new TaterLibLoader(plugin, server, logger);
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }
 
-    public static Plugin getPlugin() {
+    public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
         //        String version = "Unsupported";
         //        switch (MinecraftVersion.getMinecraftVersion()) {
         //            case V1_20:

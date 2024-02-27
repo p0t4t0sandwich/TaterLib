@@ -29,8 +29,8 @@ public class BukkitPlayerListener implements Listener {
         if (advancement.getDisplay() != null && advancement.getDisplay().shouldAnnounceChat()) {
             PlayerEvents.ADVANCEMENT_FINISHED.invoke(
                     new VanillaPlayerAdvancementEvent.AdvancementFinished(
-                            BukkitAdapters.getPlayer(event.getPlayer()),
-                            BukkitAdapters.getAdvancement(event.getAdvancement())));
+                            BukkitAdapters.player(event.getPlayer()),
+                            BukkitAdapters.advancement(event.getAdvancement())));
         }
     }
 
@@ -43,8 +43,8 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerDeath(PlayerDeathEvent event) {
         PlayerEvents.DEATH.invoke(
                 new VanillaPlayerDeathEvent(
-                        BukkitAdapters.getPlayer(event.getEntity()),
-                        BukkitAdapters.getLastDamageSource(event.getEntity())));
+                        BukkitAdapters.player(event.getEntity()),
+                        BukkitAdapters.lastDamageSource(event.getEntity())));
     }
 
     /**
@@ -76,7 +76,7 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerMessage(AsyncPlayerChatEvent event) {
         PlayerEvents.MESSAGE.invoke(
                 new VanillaPlayerMessageEvent(
-                        BukkitAdapters.getPlayer(event.getPlayer()),
+                        BukkitAdapters.player(event.getPlayer()),
                         event.getMessage(),
                         new BukkitCancellableEventWrapper<>(event)));
     }
@@ -90,7 +90,7 @@ public class BukkitPlayerListener implements Listener {
     public void onPlayerRespawn(PlayerRespawnEvent event) {
         PlayerEvents.RESPAWN.invoke(
                 new VanillaPlayerRespawnEvent(
-                        BukkitAdapters.getPlayer(event.getPlayer()),
+                        BukkitAdapters.player(event.getPlayer()),
                         event.getPlayer().getHealth() > 0.0F));
     }
 }

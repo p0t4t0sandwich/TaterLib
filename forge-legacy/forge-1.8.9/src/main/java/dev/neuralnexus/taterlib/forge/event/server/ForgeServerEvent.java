@@ -17,7 +17,7 @@ public class ForgeServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
-        return new ForgeServer(ForgeTaterLibPlugin.server);
+    public SimpleServer server() {
+        return new ForgeServer(ForgeTaterLibPlugin.minecraftServer);
     }
 }

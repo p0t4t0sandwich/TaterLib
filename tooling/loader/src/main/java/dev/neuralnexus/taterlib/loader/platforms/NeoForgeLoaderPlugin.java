@@ -21,14 +21,14 @@ public class NeoForgeLoaderPlugin {
 
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
-        loader = new TaterLibLoader(this, LogUtils.getLogger());
+        loader = new TaterLibLoader(this, null, LogUtils.getLogger());
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }
 
     public static Plugin getPlugin() {
         String version = "";
-        switch (MinecraftVersion.getMinecraftVersion()) {
+        switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
             case V1_20_2:
@@ -38,7 +38,7 @@ public class NeoForgeLoaderPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".neoforge.NeoForgeTaterLibPlugin";

@@ -25,7 +25,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
@@ -39,7 +39,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         return 0;
     }
 
@@ -49,19 +49,19 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         return new SpongeEntity(event.entity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer((org.spongepowered.api.entity.living.player.Player) event.entity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDeathMessage() {
+    public String deathMessage() {
         if (!this.deathMessage.isEmpty()) {
             return this.deathMessage;
         }
@@ -78,7 +78,7 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKeepInventory() {
+    public boolean keepInventory() {
         return event.keepInventory();
     }
 

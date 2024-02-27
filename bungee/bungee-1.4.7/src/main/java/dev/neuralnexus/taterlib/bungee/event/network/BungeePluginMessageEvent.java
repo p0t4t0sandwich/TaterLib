@@ -16,13 +16,13 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return event.getTag();
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return event.getData();
     }
 
@@ -38,7 +38,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public ProxyPlayer getPlayer() {
+        public ProxyPlayer player() {
             return new dev.neuralnexus.taterlib.bungee.player.BungeePlayer(
                     (ProxiedPlayer) event.getReceiver());
         }
@@ -56,7 +56,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.server.Server getServer() {
+        public dev.neuralnexus.taterlib.server.Server server() {
             return new BungeeServer(
                     ((net.md_5.bungee.api.connection.Server) event.getReceiver()).getInfo());
         }

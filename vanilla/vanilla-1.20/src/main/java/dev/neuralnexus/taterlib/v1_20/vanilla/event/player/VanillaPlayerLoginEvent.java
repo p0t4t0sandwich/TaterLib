@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 
 import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +19,7 @@ public class VanillaPlayerLoginEvent extends VanillaPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         return player.getName().getString() + " joined the game";
     }
 
@@ -26,5 +27,6 @@ public class VanillaPlayerLoginEvent extends VanillaPlayerEvent implements Playe
     @Override
     public void setLoginMessage(String message) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 }

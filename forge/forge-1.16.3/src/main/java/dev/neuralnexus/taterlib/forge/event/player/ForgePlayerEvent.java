@@ -14,7 +14,7 @@ public class ForgePlayerEvent implements PlayerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.getPlayer());
     }
 }

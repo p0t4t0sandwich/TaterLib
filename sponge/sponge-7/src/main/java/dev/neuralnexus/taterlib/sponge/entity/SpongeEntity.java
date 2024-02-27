@@ -1,12 +1,17 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.sponge.world.SpongeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
+import org.spongepowered.api.world.World;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Entity}. */
@@ -27,19 +32,19 @@ public class SpongeEntity implements Entity {
      *
      * @return The Sponge entity.
      */
-    public org.spongepowered.api.entity.Entity getEntity() {
+    public org.spongepowered.api.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return -1;
     }
 
@@ -51,13 +56,13 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (!entity.get(Keys.DISPLAY_NAME).isPresent()
                 && entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
             return null;
@@ -73,57 +78,33 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new SpongeLocation(entity.getLocation());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.getLocation().getPosition().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.getLocation().getPosition().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.getLocation().getPosition().getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return (float) entity.getRotation().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return (float) entity.getRotation().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.getWorld().getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        Optional<World> serverLevel =
+                new SpongeServer(Sponge.getServer())
+                        .world(location.world().dimension())
+                        .map(SpongeServerWorld.class::cast)
+                        .map(SpongeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
         entity.setLocation(
                 new org.spongepowered.api.world.Location<>(
-                        entity.getWorld(), location.getX(), location.getY(), location.getZ()));
+                        serverLevel.get(), location.x(), location.y(), location.z()));
     }
 }

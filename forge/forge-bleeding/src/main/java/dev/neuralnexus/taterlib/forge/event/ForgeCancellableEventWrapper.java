@@ -17,7 +17,7 @@ public class ForgeCancellableEventWrapper implements Cancellable {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return this.event.isCanceled();
     }
 

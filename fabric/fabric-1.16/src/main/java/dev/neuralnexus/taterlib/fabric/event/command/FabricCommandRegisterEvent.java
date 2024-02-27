@@ -37,7 +37,7 @@ public class FabricCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<ServerCommandSource> getDispatcher() {
+    public CommandDispatcher<ServerCommandSource> dispatcher() {
         return dispatcher;
     }
 

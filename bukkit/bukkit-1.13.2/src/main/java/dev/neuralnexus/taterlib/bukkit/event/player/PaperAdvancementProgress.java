@@ -18,13 +18,13 @@ public class PaperAdvancementProgress extends BukkitPlayerAdvancementEvent
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return event.getAdvancement().getKey().getKey();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Collection<String> getCriterion() {
+    public Collection<String> criterion() {
         return event.getAdvancement().getCriteria();
     }
 }

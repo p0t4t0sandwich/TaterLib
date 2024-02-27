@@ -14,7 +14,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
 
         /** {@inheritDoc} */
         @Override
-        public String getAdvancement() {
+        public String advancement() {
             return event.getAdvancement().getKey().getKey();
         }
     }

@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.v1_19.vanilla.event.entity;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.v1_19.vanilla.util.VanillaLocation;
+import dev.neuralnexus.taterlib.world.Location;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaLocation;
 
 import net.minecraft.world.entity.Entity;
 
@@ -20,8 +20,8 @@ public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -32,7 +32,7 @@ public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new VanillaLocation(entity);
     }
 }

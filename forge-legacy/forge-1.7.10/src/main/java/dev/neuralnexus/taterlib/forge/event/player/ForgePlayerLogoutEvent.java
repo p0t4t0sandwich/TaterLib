@@ -16,7 +16,7 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
             return this.logoutMessage;
         }

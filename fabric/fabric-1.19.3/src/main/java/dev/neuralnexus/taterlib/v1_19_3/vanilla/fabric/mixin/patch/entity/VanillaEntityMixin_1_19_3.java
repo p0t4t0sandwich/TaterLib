@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.fabric.mixin.patch.entity;
 
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 
@@ -13,12 +14,18 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
+import org.spongepowered.asm.mixin.Shadow;
+
+import java.util.Optional;
 
 /** Patch mixin for VanillaEntity 1.19.3. */
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityMixin_1_19_3 {
+    @Shadow @Final private Entity entity;
+
     /**
      * @author Dylan Sperrer (p0t4t0sandwich)
      * @reason Patch for 1.19.3
@@ -26,34 +33,27 @@ public class VanillaEntityMixin_1_19_3 {
     @Overwrite
     public void teleport(Location location) {
         VanillaEntity self = (VanillaEntity) (Object) this;
-        Entity entity = self.getEntity();
-        if (!location.getWorld().equals(self.getDimension())) {
-            MinecraftServer server = VanillaServer.getServer();
-            if (server == null) return;
-            ResourceLocation resourceLocation;
-            String[] resourceString = location.getWorld().split(":");
-            if (resourceString.length != 1) {
-                resourceLocation = new ResourceLocation(resourceString[0], resourceString[1]);
-            } else {
-                resourceLocation = new ResourceLocation(resourceString[0]);
-            }
-            ResourceKey<Level> dimension =
-                    ResourceKey.create(Registries.DIMENSION, resourceLocation);
-            ServerLevel serverLevel = server.getLevel(dimension);
-            if (serverLevel == null) return;
+        Entity entity = self.entity();
+        if (!location.world().dimension().equals(self.dimension())) {
+            Optional<ServerLevel> serverLevel =
+                    VanillaServer.instance()
+                            .world(location.world().dimension())
+                            .map(VanillaServerWorld.class::cast)
+                            .map(VanillaServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
-                        serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        serverLevel.get(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
             } else {
-                entity.changeDimension(serverLevel);
+                entity.changeDimension(serverLevel.get());
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

@@ -19,7 +19,7 @@ public class EventManager<T extends Event> {
         this.eventClass = eventClass;
     }
 
-    public Class<T> getEventClass() {
+    public Class<T> eventClass() {
         return this.eventClass;
     }
 
@@ -27,7 +27,7 @@ public class EventManager<T extends Event> {
         this.listeners.add(listener);
     }
 
-    public ArrayList<Consumer<T>> getListeners() {
+    public ArrayList<Consumer<T>> listeners() {
         return this.listeners;
     }
 

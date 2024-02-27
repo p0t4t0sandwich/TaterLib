@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.fabric.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.fabric.command.FabricCommandSender;
 import dev.neuralnexus.taterlib.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
@@ -13,26 +14,21 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 public class FabricPermissionsHook implements PermissionsHook {
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "fabricpermissions";
     }
 
-    /**
-     * Get if a sender has a permission
-     *
-     * @param commandSender The sender to check
-     * @param permission The permission to check
-     * @return If the sender has the permission
-     */
+    /** {@inheritDoc} */
     @SuppressWarnings({"deprecation", "UnstableApiUsage"})
     @Override
-    public boolean hasPermission(CommandSender commandSender, String permission) {
-        if (commandSender instanceof Player) {
+    public boolean hasPermission(Permissible permissible, String permission) {
+        if (permissible instanceof Player) {
             return PermissionsApiHolder.getPlayerPermissionsApi()
                     .hasPermission(
-                            (ServerPlayerEntity) ((FabricPlayer) commandSender).getPlayer(), permission);
-        } else {
-            return ((FabricCommandSender) commandSender).getSender().hasPermission(permission);
+                            (ServerPlayerEntity) ((FabricPlayer) permissible).player(), permission);
+        } else if (permissible instanceof CommandSender) {
+            return ((FabricCommandSender) permissible).sender().hasPermission(permission);
         }
+        return false;
     }
 }

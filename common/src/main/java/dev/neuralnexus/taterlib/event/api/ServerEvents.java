@@ -33,7 +33,7 @@ public class ServerEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(Arrays.asList(STARTING, STARTED, STOPPING, STOPPED));
     }
 }

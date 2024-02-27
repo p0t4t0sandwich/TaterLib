@@ -32,7 +32,7 @@ public class SpongeCommandWrapper implements CommandExecutor {
             CommandCause sender = context.cause();
             if (sender instanceof Player player) {
                 callback.execute(
-                        new VanillaPlayer(SpongeAdapters.getPlayer(player)), commandName, args);
+                        new VanillaPlayer(SpongeAdapters.player(player)), commandName, args);
             }
             callback.execute(new SpongeCommandSender(sender), commandName, args);
         } catch (Exception e) {

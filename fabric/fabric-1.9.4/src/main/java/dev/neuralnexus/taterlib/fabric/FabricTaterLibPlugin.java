@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.fabric.event.api.FabricBlockEvents;
@@ -31,28 +32,44 @@ import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
 
+import java.util.stream.Collectors;
+
 public class FabricTaterLibPlugin implements TaterLibPlugin {
-    public static MinecraftServer server;
+    public static MinecraftServer minecraftServer;
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         pluginStart(
                 plugin,
+                server,
+                logger,
                 new LoggerAdapter(
                         "[" + TaterLib.Constants.PROJECT_NAME + "] ",
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setIsModLoaded((modId) -> FabricLoader.getInstance().isModLoaded(modId));
-        api.setServer(() -> new FabricServer(server));
+        api.setModList(
+                () ->
+                        FabricLoader.getInstance().getAllMods().stream()
+                                .map(
+                                        modContainer ->
+                                                new ModInfo(
+                                                        modContainer.getMetadata().getId(),
+                                                        modContainer.getMetadata().getName(),
+                                                        modContainer
+                                                                .getMetadata()
+                                                                .getVersion()
+                                                                .getFriendlyString()))
+                                .collect(Collectors.toList()));
+        api.setServer(() -> new FabricServer(minecraftServer));
+        TaterAPIProvider.setPrimaryServerType(ServerType.FABRIC);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    server -> FabricTaterLibPlugin.server = server);
-            ServerLifecycleEvents.SERVER_STOPPED.register(server -> pluginStop());
+                    s -> FabricTaterLibPlugin.minecraftServer = s);
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> pluginStop());
 
             // Register Fabric API command events
             CommandRegistrar.EVENT.register(
@@ -62,23 +79,22 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             // Register Fabric API player events
             ServerPlayConnectionEvents.JOIN.register(
-                    (handler, sender, server) ->
+                    (handler, sender, s) ->
                             PlayerEvents.LOGIN.invoke(
-                                    new FabricPlayerLoginEvent(handler, sender, server)));
+                                    new FabricPlayerLoginEvent(handler, sender, s)));
             ServerPlayConnectionEvents.DISCONNECT.register(
-                    (handler, server) ->
-                            PlayerEvents.LOGOUT.invoke(
-                                    new FabricPlayerLogoutEvent(handler, server)));
+                    (handler, s) ->
+                            PlayerEvents.LOGOUT.invoke(new FabricPlayerLogoutEvent(handler, s)));
 
             // Register Fabric API server events
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    server -> ServerEvents.STARTING.invoke(new FabricServerStartingEvent(server)));
+                    s -> ServerEvents.STARTING.invoke(new FabricServerStartingEvent(s)));
             ServerLifecycleEvents.SERVER_STARTED.register(
-                    server -> ServerEvents.STARTED.invoke(new FabricServerStartedEvent(server)));
+                    s -> ServerEvents.STARTED.invoke(new FabricServerStartedEvent(s)));
             ServerLifecycleEvents.SERVER_STOPPING.register(
-                    server -> ServerEvents.STOPPING.invoke(new FabricServerStoppingEvent(server)));
+                    s -> ServerEvents.STOPPING.invoke(new FabricServerStoppingEvent(s)));
             ServerLifecycleEvents.SERVER_STOPPED.register(
-                    server -> ServerEvents.STOPPED.invoke(new FabricServerStoppedEvent(server)));
+                    s -> ServerEvents.STOPPED.invoke(new FabricServerStoppedEvent(s)));
 
             // Register TaterLib Block events
             FabricBlockEvents.BLOCK_BREAK.register(

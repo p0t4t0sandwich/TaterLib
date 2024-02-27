@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
@@ -28,27 +29,36 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
     private static boolean hasStarted = false;
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         pluginStart(
-                BukkitTaterLibPlugin.plugin,
-                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
-        api.setIsPluginLoaded(
-                (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
-        api.setServer(VanillaServer::getInstance);
+        api.setPluginList(
+                () ->
+                        Arrays.stream(Bukkit.getServer().getPluginManager().getPlugins())
+                                .map(
+                                        p ->
+                                                new PluginInfo(
+                                                        p.getName(),
+                                                        p.getDescription().getVersion()))
+                                .collect(Collectors.toList()));
+        api.setServer(VanillaServer::instance);
+        TaterAPIProvider.setPrimaryServerType(ServerType.BUKKIT);
     }
 
     @Override
     public void platformEnable() {
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.BUKKIT)) {
             // Register listeners
             PluginManager pluginManager = plugin.getServer().getPluginManager();
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);
@@ -60,7 +70,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
             if (!hasStarted) {
                 hasStarted = true;
                 ServerEvents.STARTING.invoke(
-                        new VanillaServerStartingEvent(BukkitAdapters.getServer()));
+                        new VanillaServerStartingEvent(BukkitAdapters.server()));
             }
             pluginManager.registerEvents(new BukkitServerListener(), plugin);
 
@@ -72,8 +82,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                         // Register brigadier commands
                                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
                                                 new VanillaBrigadierCommandRegisterEvent(
-                                                        BukkitAdapters.getCommandDispatcher(),
-                                                        BukkitAdapters.getCommandSelection())),
+                                                        BukkitAdapters.commandDispatcher(),
+                                                        BukkitAdapters.commandSelection())),
                                 1);
             }
 
@@ -97,8 +107,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.getServer()));
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.getServer()));
+        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(VanillaServer.server()));
+        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(VanillaServer.server()));
         pluginStop();
     }
 }

@@ -25,7 +25,7 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public String getName() {
-        return command.getName();
+        return command.name();
     }
 
     @Override
@@ -35,16 +35,16 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public String getUsage(ICommandSender sender) {
-        return command.getUsage();
+        return command.usage();
     }
 
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args)
             throws CommandException {
         if (sender instanceof EntityPlayer) {
-            command.execute(new ForgePlayer((EntityPlayer) sender), command.getName(), args);
+            command.execute(new ForgePlayer((EntityPlayer) sender), command.name(), args);
         } else {
-            command.execute(new ForgeCommandSender(sender, command), command.getName(), args);
+            command.execute(new ForgeCommandSender(sender, command), command.name(), args);
         }
     }
 }

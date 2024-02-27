@@ -10,5 +10,5 @@ public interface ProxyPlayerEvent extends Event {
      *
      * @return The player
      */
-    ProxyPlayer getPlayer();
+    ProxyPlayer player();
 }

@@ -17,7 +17,7 @@ public class VanillaCancellableCallbackWrapper implements Cancellable {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return ci.isCancelled();
     }
 

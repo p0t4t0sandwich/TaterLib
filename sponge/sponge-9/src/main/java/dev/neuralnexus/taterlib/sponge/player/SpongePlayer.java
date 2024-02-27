@@ -3,9 +3,11 @@ package dev.neuralnexus.taterlib.sponge.player;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.sponge.inventory.SpongePlayerInventory;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -23,7 +25,6 @@ import java.util.UUID;
 /** Sponge implementation of {@link Player}. */
 public class SpongePlayer extends SpongeLivingEntity implements Player {
     private final org.spongepowered.api.entity.living.player.Player player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -33,20 +34,6 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
     public SpongePlayer(org.spongepowered.api.entity.living.player.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Sponge player.
-     * @param serverName The name of the server the player is on.
-     */
-    public SpongePlayer(
-            org.spongepowered.api.entity.living.player.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -54,44 +41,38 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
      *
      * @return The Sponge player
      */
-    public org.spongepowered.api.entity.living.player.Player getPlayer() {
+    public org.spongepowered.api.entity.living.player.Player player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.uniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayer) player).connection().address().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.name();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return PlainTextComponentSerializer.plainText().serialize(player.displayName().get());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String serverName) {
-        this.serverName = serverName;
+    public Server server() {
+        return new SpongeServer(Sponge.server());
     }
 
     /** {@inheritDoc} */
@@ -113,19 +94,19 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new SpongePlayerInventory(player.inventory());
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayer) player).connection().latency();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayer) player).kick(Component.text(message));
     }
 
@@ -164,7 +145,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }
 

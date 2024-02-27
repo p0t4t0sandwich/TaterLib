@@ -11,7 +11,7 @@ public class TaterMixinServiceUtils {
      *
      * @return The Minecraft version.
      */
-    public static String getMCVersion() throws ClassNotFoundException, IOException {
+    public static String mcVersion() throws ClassNotFoundException, IOException {
         // Fine to do since obfuscated situations are covered by Forge
         // Reflect to get SharedConstants.VERSION_STRING
         return (String)

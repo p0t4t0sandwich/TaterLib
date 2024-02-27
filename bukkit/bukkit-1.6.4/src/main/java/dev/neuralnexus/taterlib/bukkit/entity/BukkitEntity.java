@@ -1,8 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.entity;
 
-import dev.neuralnexus.taterlib.bukkit.util.BukkitLocation;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitLocation;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitWorld;
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 import java.util.UUID;
 
@@ -24,19 +25,19 @@ public class BukkitEntity implements Entity {
      *
      * @return The Bukkit entity.
      */
-    public org.bukkit.entity.Entity getEntity() {
+    public org.bukkit.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getEntityId();
     }
 
@@ -48,13 +49,13 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         return entity.getType().name();
     }
 
@@ -66,43 +67,13 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new BukkitLocation(entity.getLocation());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.getLocation().getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.getLocation().getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.getLocation().getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return entity.getLocation().getYaw();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return entity.getLocation().getPitch();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         if (entity.getLocation().getWorld() == null) {
             return null;
         }
@@ -111,7 +82,7 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.getLocation().getBlock().getBiome().name();
     }
 
@@ -120,9 +91,9 @@ public class BukkitEntity implements Entity {
     public void teleport(Location location) {
         entity.teleport(
                 new org.bukkit.Location(
-                        org.bukkit.Bukkit.getWorld(location.getWorld()),
-                        location.getX(),
-                        location.getY(),
-                        location.getZ()));
+                        ((BukkitWorld) location.world()).world(),
+                        location.x(),
+                        location.y(),
+                        location.z()));
     }
 }

@@ -23,7 +23,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
 
     /** {@inheritDoc} */
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -49,7 +49,7 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         if (droppedExp != 0) {
             return droppedExp;
         }

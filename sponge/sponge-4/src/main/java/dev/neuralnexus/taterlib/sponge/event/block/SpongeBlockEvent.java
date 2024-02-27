@@ -20,7 +20,7 @@ public class SpongeBlockEvent implements BlockEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Block getBlock() {
+    public Block block() {
         List<Location<World>> locations = event.getLocations();
         if (!locations.isEmpty()) {
             Location<World> location = locations.get(0);

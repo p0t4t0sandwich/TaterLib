@@ -24,7 +24,7 @@ public class Sponge8LoaderPlugin {
 
     @Inject
     public Sponge8LoaderPlugin(PluginContainer container, Logger logger) {
-        loader = new TaterLibLoader(container, logger);
+        loader = new TaterLibLoader(container, null, logger);
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
             loader.registerPlugin(ForgeLoaderPlugin.getPlugin());
@@ -34,7 +34,7 @@ public class Sponge8LoaderPlugin {
 
     public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
         String version = "";
-        switch (MinecraftVersion.getMinecraftVersion()) {
+        switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
             case V1_20_2:
@@ -44,7 +44,7 @@ public class Sponge8LoaderPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.getMinecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";

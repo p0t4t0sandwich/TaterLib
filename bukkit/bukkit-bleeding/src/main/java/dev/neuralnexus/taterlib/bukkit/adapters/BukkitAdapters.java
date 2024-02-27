@@ -73,7 +73,7 @@ public class BukkitAdapters {
      *
      * @return The Minecraft server.
      */
-    public static MinecraftServer getServer() {
+    public static MinecraftServer server() {
         // ((CraftServer) Bukkit.getServer()).getServer();
         Object craftServer = reflectAndCast("CraftServer", Bukkit.getServer());
         try {
@@ -89,10 +89,10 @@ public class BukkitAdapters {
      *
      * @return The CommandDispatcher.
      */
-    public static CommandDispatcher<CommandSourceStack> getCommandDispatcher() {
+    public static CommandDispatcher<CommandSourceStack> commandDispatcher() {
         // ((CraftServer)
         // Bukkit.getServer()).getServer().resources.managers().getCommands().getDispatcher();
-        return getServer().resources.managers().getCommands().getDispatcher();
+        return server().resources.managers().getCommands().getDispatcher();
     }
 
     /**
@@ -100,7 +100,7 @@ public class BukkitAdapters {
      *
      * @return The Commands.CommandSelection
      */
-    public static Commands.CommandSelection getCommandSelection() {
+    public static Commands.CommandSelection commandSelection() {
         return Commands.CommandSelection.DEDICATED;
     }
 
@@ -110,7 +110,7 @@ public class BukkitAdapters {
      * @param block The Bukkit block.
      * @return The Vanilla block.
      */
-    public static BlockPos getBlockPos(Block block) {
+    public static BlockPos blockPos(Block block) {
         // ((CraftBlock) block).getPosition();
         Object craftBlock = reflectAndCast("block.CraftBlock", block);
         try {
@@ -127,7 +127,7 @@ public class BukkitAdapters {
      * @param block The Bukkit block.
      * @return The Vanilla block state.
      */
-    public static BlockState getBlockState(Block block) {
+    public static BlockState blockState(Block block) {
         // ((CraftBlock) block).getNMS();
         Object craftBlock = reflectAndCast("block.CraftBlock", block);
         try {
@@ -144,7 +144,7 @@ public class BukkitAdapters {
      * @param player The Bukkit player.
      * @return The Vanilla player.
      */
-    public static ServerPlayer getPlayer(org.bukkit.entity.Player player) {
+    public static ServerPlayer player(org.bukkit.entity.Player player) {
         // ((CraftPlayer) player).getHandle();
         return (ServerPlayer) reflectAndGetHandle("entity.CraftPlayer", player);
     }
@@ -155,7 +155,7 @@ public class BukkitAdapters {
      * @param world The Bukkit world.
      * @return The Vanilla level.
      */
-    public static Level getLevel(World world) {
+    public static Level level(World world) {
         // ((CraftWorld) world).getHandle();
         return (Level) reflectAndGetHandle("CraftWorld", world);
     }
@@ -166,7 +166,7 @@ public class BukkitAdapters {
      * @param entity The Bukkit entity.
      * @return The Vanilla entity.
      */
-    public static Entity getEntity(org.bukkit.entity.Entity entity) {
+    public static Entity entity(org.bukkit.entity.Entity entity) {
         // ((CraftEntity) entity).getHandle();
         return (Entity) reflectAndGetHandle("entity.CraftEntity", entity);
     }
@@ -177,9 +177,9 @@ public class BukkitAdapters {
      * @param entity The Bukkit entity.
      * @return The Vanilla damage source.
      */
-    public static DamageSource getLastDamageSource(org.bukkit.entity.Entity entity) {
+    public static DamageSource lastDamageSource(org.bukkit.entity.Entity entity) {
         // ((LivingEntity) ((CraftEntity) entity).getHandle()).getLastDamageSource();
-        return ((LivingEntity) getEntity(entity)).getLastDamageSource();
+        return ((LivingEntity) entity(entity)).getLastDamageSource();
     }
 
     /**
@@ -188,7 +188,7 @@ public class BukkitAdapters {
      * @param advancement The Bukkit advancement.
      * @return The Vanilla advancement.
      */
-    public static AdvancementHolder getAdvancement(org.bukkit.advancement.Advancement advancement) {
+    public static AdvancementHolder advancement(org.bukkit.advancement.Advancement advancement) {
         // ((CraftAdvancement) advancement).getHandle();
         return (AdvancementHolder) reflectAndGetHandle("advancement.CraftAdvancement", advancement);
     }

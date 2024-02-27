@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.bukkit.block;
 
 import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.utils.Position;
+import dev.neuralnexus.taterlib.world.BlockPos;
 
 /** Bukkit implementation of {@link Block}. */
 public class BukkitBlock implements Block {
@@ -13,14 +13,14 @@ public class BukkitBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         String blockType = block.getType().toString();
         return "minecraft:" + blockType.toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
-        return new Position(block.getX(), block.getY(), block.getZ());
+    public BlockPos blockPos() {
+        return new BlockPos(block.getX(), block.getY(), block.getZ());
     }
 }

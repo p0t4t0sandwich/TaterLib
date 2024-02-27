@@ -17,7 +17,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     }
 
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         return event.getDrops().stream().map(BukkitItemStack::new).collect(Collectors.toList());
     }
 
@@ -26,7 +26,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
     public void setDrops(List<ItemStack> drops) {
         event.getDrops().clear();
         List<org.bukkit.inventory.ItemStack> eventDrops = event.getDrops();
-        drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).getItemStack()));
+        drops.forEach(item -> eventDrops.add(((BukkitItemStack) item).itemStack()));
     }
 
     /** {@inheritDoc} */
@@ -37,7 +37,7 @@ public class BukkitEntityDeathEvent extends BukkitEntityEvent implements EntityD
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         return 0;
     }
 

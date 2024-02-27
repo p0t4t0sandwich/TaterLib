@@ -17,15 +17,13 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
-        ProxyPlayer player = new BungeePlayer(event.getPlayer());
-        player.setServerName(event.getPlayer().getServer().getInfo().getName());
-        return player;
+    public ProxyPlayer player() {
+        return new BungeePlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         if (!loginMessage.isEmpty()) {
             return loginMessage;
         }

@@ -22,8 +22,8 @@ public class BukkitEntityListener implements Listener {
     public void onEntityDamage(EntityDamageEvent event) {
         EntityEvents.DAMAGE.invoke(
                 new VanillaEntityDamageEvent(
-                        BukkitAdapters.getEntity(event.getEntity()),
-                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        BukkitAdapters.entity(event.getEntity()),
+                        BukkitAdapters.lastDamageSource(event.getEntity()),
                         (float) event.getDamage(),
                         new BukkitCancellableEventWrapper<>(event)));
     }
@@ -38,8 +38,8 @@ public class BukkitEntityListener implements Listener {
         // TODO: Branch into own event EntityEvents.DAMAGE_BY_ENTITY
         EntityEvents.DAMAGE.invoke(
                 new VanillaEntityDamageEvent(
-                        BukkitAdapters.getEntity(event.getEntity()),
-                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        BukkitAdapters.entity(event.getEntity()),
+                        BukkitAdapters.lastDamageSource(event.getEntity()),
                         (float) event.getDamage(),
                         new BukkitCancellableEventWrapper<>(event)));
     }
@@ -54,8 +54,8 @@ public class BukkitEntityListener implements Listener {
         // TODO: Branch into own event EntityEvents.DAMAGE_BY_BLOCK
         EntityEvents.DAMAGE.invoke(
                 new VanillaEntityDamageEvent(
-                        BukkitAdapters.getEntity(event.getEntity()),
-                        BukkitAdapters.getLastDamageSource(event.getEntity()),
+                        BukkitAdapters.entity(event.getEntity()),
+                        BukkitAdapters.lastDamageSource(event.getEntity()),
                         (float) event.getDamage(),
                         new BukkitCancellableEventWrapper<>(event)));
     }
@@ -69,8 +69,8 @@ public class BukkitEntityListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         EntityEvents.DEATH.invoke(
                 new VanillaEntityDeathEvent(
-                        BukkitAdapters.getEntity(event.getEntity()),
-                        BukkitAdapters.getLastDamageSource(event.getEntity())));
+                        BukkitAdapters.entity(event.getEntity()),
+                        BukkitAdapters.lastDamageSource(event.getEntity())));
     }
 
     /**
@@ -82,7 +82,7 @@ public class BukkitEntityListener implements Listener {
     public void onEntitySpawn(EntitySpawnEvent event) {
         EntityEvents.SPAWN.invoke(
                 new VanillaEntitySpawnEvent(
-                        BukkitAdapters.getEntity(event.getEntity()),
+                        BukkitAdapters.entity(event.getEntity()),
                         new BukkitCancellableEventWrapper<>(event)));
     }
 }

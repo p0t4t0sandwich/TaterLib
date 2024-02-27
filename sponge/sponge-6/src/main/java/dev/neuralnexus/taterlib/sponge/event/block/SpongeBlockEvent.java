@@ -20,7 +20,7 @@ public class SpongeBlockEvent implements BlockEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Block getBlock() {
+    public Block block() {
         Cause cause = event.getCause();
         LocatableBlock locatableBlock = cause.first(LocatableBlock.class).orElse(null);
         if (locatableBlock == null) {

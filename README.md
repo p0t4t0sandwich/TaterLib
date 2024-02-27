@@ -28,14 +28,27 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 ## Download
 
 [![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/TaterLib/releases)
-[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)
-[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)
-
 [![Spigot](https://img.shields.io/spiget/downloads/111852?label=Spigot&logo=spigotmc&color=ED8106)](https://www.spigotmc.org/resources/taterlib.111852/)
 [![Hangar](https://img.shields.io/badge/Hangar-download-blue)](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
 [![Modrinth](https://img.shields.io/modrinth/dt/taterlib?label=Modrinth&logo=modrinth&color=00AF5C)](https://modrinth.com/mod/taterlib)
 [![CurseForge](https://img.shields.io/curseforge/dt/900128?label=CurseForge&logo=curseforge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/taterlib)
 [![Sponge](https://img.shields.io/ore/dt/taterlib?label=Sponge&logo=https%3A%2F%2Fspongepowered.org%2Ffavicon.ico&color=F7CF0D)](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
+
+Jenkins:
+
+- Dev
+  [![Jenkins Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLib%2F)](https://jenkins.neuralnexus.dev/job/TaterLib/)
+
+- Release
+  [![Jenkins Dev Builds](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
+
+Maven:
+
+- Dev
+  [![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)
+
+- Release
+  [![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)
 
 ### Adding to your project
 
@@ -43,7 +56,7 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 repositories {
     maven {
         name = 'NeuralNexus'
-        url = 'https://maven.neuralnexus.dev/repository/releases'
+        url = 'https://maven.neuralnexus.dev/releases'
     }
 }
 
@@ -60,15 +73,17 @@ TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
 
 General notes:
 
-- Sponge is not available pre 1.8
 - No Fabric on 1.13
 - No Fabric/Forge below 1.7.10
 
 | Server type | Versions    | Jar Name                        |
 |-------------|-------------|---------------------------------|
 | 1.20.x      | 1.20-1.20.4 | `TaterLib-1.20.x-<version>.jar` |
-| 1.19        | 1.19-1.19.4 | `TaterLib-1.19-<version>.jar`   |
-| 1.18        | 1.18-1.18.2 | `TaterLib-1.18-<version>.jar`   |
+| 1.19.4      | 1.19.4      | `TaterLib-1.19.4-<version>.jar` |
+| 1.19.2      | 1.19.2      | `TaterLib-1.19.2-<version>.jar` |
+| 1.19        | 1.19        | `TaterLib-1.19-<version>.jar`   |
+| 1.18.2      | 1.18.2      | `TaterLib-1.18.2-<version>.jar` |
+| 1.18        | 1.18        | `TaterLib-1.18-<version>.jar`   |
 | 1.17        | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar`   |
 | 1.16        | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar`   |
 | 1.15        | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar`   |
@@ -96,9 +111,12 @@ General notes:
 
 ## Commands and Permissions
 
-| Command                      | Permission         | Description           |
-|------------------------------|--------------------|-----------------------|
-| `/taterlib <version/reload>` | `taterlib.command` | Root TaterLib Command |
+| Command              | Permission                  | Description              |
+|----------------------|-----------------------------|--------------------------|
+| `/taterlib version`  | `taterlib.command.version`  | Get the TaterLib version |
+| `/taterlib reload`   | `taterlib.command.reload`   | Reload TaterLib config   |
+| `/taterlib dump`     | `taterlib.command.dump`     | Dump TaterLib info       |
+| `/taterlib fulldump` | `taterlib.command.fulldump` | Dump TaterLib info       |
 
 ## Projects that use TaterLib
 
@@ -108,6 +126,22 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 - [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)
+
+### Bukkit
+
+![image](https://bstats.org/signatures/bukkit/TaterLib.svg)
+
+### BungeeCord
+
+![image](https://bstats.org/signatures/bungeecord/TaterLib.svg)
+
+### Sponge
+
+![image](https://bstats.org/signatures/sponge/TaterLib.svg)
+
+### Velocity
+
+![image](https://bstats.org/signatures/velocity/TaterLib.svg)
 
 ## Release Notes
 
@@ -147,7 +181,7 @@ Feel free to open a PR to add your plugin/mod to this list!
     - Bukkit 1.8.8, 1.13.2
     - BungeeCord 1.4.7, 1.8, 1.12
     - Fabric 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2
-    - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2
+    - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.18.2, 1.19.2, 1.19.4
     - Sponge 4, 5
 - Abstracted `ProxyPlayer`s, specifically adding a `connect` method
 - Added `Block` abstraction and `BlockBreakEvent`
@@ -190,3 +224,19 @@ Feel free to open a PR to add your plugin/mod to this list!
 - Added `Damageable` and `LivingEntity` interfaces
 - Added dummy entity interfaces all set up for adding new Entity interfaces
 - Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`
+- Added single-version support for `MinecraftVersion.parseRange`
+- Used configurate to create config system
+- Refactored TaterLib common logic into CommonModule, added TaterModuleLoader, and overall improved module support
+- Reformatted getters to be more idiomatic (e.g. `getInventory` -> `inventory`)
+- Refactor `Player.serverName` into `Player.server().name()` and add `Server#name()`
+- Added `Permissible` to `CommandSender`, refactored permission hooks to use `Permissible`
+- Added `ModInfo` and `PluginInfo` abstractions
+- Added `DumpInfo` and `FullDumpInfo`, along with the `/taterlib dump | fulldump` commands
+- Added bStats support for Bukkit, Bungee, Sponge, and Velocity
+- Added Arclight Fabric server type
+- Merged `ItemMeta` into `ItemStack`
+- Created player metadata API
+- Added `Server.currentTPS()`, `SimpleServer.getPlayer(String)`, and `SimpleServer.getPlayer(UUID)`
+- `PlayerServerSwitchEvent.toServer`/`fromServer` now return a `Server` rather than a `String`
+- Overhauled the `Inventory`/`PlayerInventory` interfaces
+- Created `World` and `ServerWorld` abstractions

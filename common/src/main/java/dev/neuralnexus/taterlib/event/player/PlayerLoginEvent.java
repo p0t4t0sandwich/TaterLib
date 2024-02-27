@@ -7,7 +7,7 @@ public interface PlayerLoginEvent extends PlayerEvent {
      *
      * @return The login message.
      */
-    String getLoginMessage();
+    String loginMessage();
 
     /**
      * Sets the login message.

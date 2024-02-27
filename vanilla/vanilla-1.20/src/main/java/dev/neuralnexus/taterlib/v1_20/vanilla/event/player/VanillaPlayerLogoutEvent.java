@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 
 import net.minecraft.server.level.ServerPlayer;
 
@@ -15,7 +16,7 @@ public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements Play
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         return player.getName().getString() + " left the game";
     }
 
@@ -23,5 +24,6 @@ public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements Play
     @Override
     public void setLogoutMessage(String message) {
         // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 }

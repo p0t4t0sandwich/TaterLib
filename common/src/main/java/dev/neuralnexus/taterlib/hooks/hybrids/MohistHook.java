@@ -31,7 +31,7 @@ public class MohistHook implements Hook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "mohist";
     }
 
@@ -62,7 +62,7 @@ public class MohistHook implements Hook {
      *
      * @return The mod list
      */
-    public Set<String> getModList() {
+    public Set<String> modList() {
         return ServerAPI.modlists;
     }
 

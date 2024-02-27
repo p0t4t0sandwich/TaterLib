@@ -1,23 +1,28 @@
 package dev.neuralnexus.taterlib.forge.player;
 
+import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.forge.inventory.ForgePlayerInventory;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.WorldServer;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {
     private final EntityPlayer player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -27,19 +32,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     public ForgePlayer(EntityPlayer player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Forge player.
-     * @param serverName The server name.
-     */
-    public ForgePlayer(EntityPlayer player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -53,38 +45,32 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((EntityPlayerMP) player).getPlayerIP();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName().getFormattedText();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new ForgeServer(((EntityPlayerMP) player).mcServer);
     }
 
     /** {@inheritDoc} */
@@ -99,19 +85,19 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new ForgePlayerInventory(player.inventory);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((EntityPlayerMP) player).ping;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((EntityPlayerMP) player)
                 .playerNetServerHandler.onDisconnect(new ChatComponentText(message));
     }
@@ -119,13 +105,45 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
-        player.setSpawnPoint(
-                new BlockPos(location.getX(), location.getY(), location.getZ()), forced);
+        Optional<WorldServer> serverLevel =
+                new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                        .world(location.world().dimension())
+                        .map(ForgeServerWorld.class::cast)
+                        .map(ForgeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
+        player.setSpawnChunk(
+                new BlockPos(location.x(), location.y(), location.z()),
+                forced,
+                serverLevel.get().provider.getDimensionId());
     }
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public void allowFlight(boolean allow) {
+        player.capabilities.allowFlying = allow;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean canFly() {
+        return player.capabilities.allowFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFlying() {
+        return player.capabilities.isFlying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setFlying(boolean flying) {
+        player.capabilities.isFlying = flying;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GameMode gameMode() {
         return GameMode.fromName(
                 ((EntityPlayerMP) player).theItemInWorldManager.getGameType().getName());
     }
@@ -133,7 +151,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType(net.minecraft.world.WorldSettings.GameType.getByID(gameMode.getId()));
+        player.setGameType(net.minecraft.world.WorldSettings.GameType.getByID(gameMode.id()));
     }
 
     /** {@inheritDoc} */

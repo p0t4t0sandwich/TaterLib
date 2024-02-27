@@ -23,16 +23,17 @@ public class FabricCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public PermissibleCommandSource getSender() {
+    public PermissibleCommandSource sender() {
         return source;
     }
 
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         PlayerEntity player =
-                ((List<PlayerEntity>) FabricTaterLibPlugin.server.getPlayerManager().players)
+                ((List<PlayerEntity>)
+                                FabricTaterLibPlugin.minecraftServer.getPlayerManager().players)
                         .stream()
                                 .filter(
                                         p ->
@@ -52,7 +53,7 @@ public class FabricCommandSender implements CommandSender {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return source.getName().asFormattedString();
     }
 

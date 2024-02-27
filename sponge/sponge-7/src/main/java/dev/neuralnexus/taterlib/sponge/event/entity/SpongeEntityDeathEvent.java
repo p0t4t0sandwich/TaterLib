@@ -20,7 +20,7 @@ public class SpongeEntityDeathEvent implements EntityDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
@@ -34,7 +34,7 @@ public class SpongeEntityDeathEvent implements EntityDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         return 0;
     }
 
@@ -44,7 +44,7 @@ public class SpongeEntityDeathEvent implements EntityDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         return new SpongeEntity(event.getTargetEntity());
     }
 }

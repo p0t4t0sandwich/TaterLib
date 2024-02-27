@@ -17,7 +17,7 @@ public class ForgeEntityEvent implements EntityEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         if (event.getEntity() instanceof Player) {
             return new ForgePlayer((Player) event.getEntity());
         } else {

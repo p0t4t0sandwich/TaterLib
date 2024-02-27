@@ -35,7 +35,7 @@ public class ArclightHook implements Hook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "arclight";
     }
 
@@ -51,7 +51,7 @@ public class ArclightHook implements Hook {
      *
      * @return The Arclight version
      */
-    public ArclightVersion getVersion() {
+    public ArclightVersion version() {
         return Arclight.getVersion();
     }
 }

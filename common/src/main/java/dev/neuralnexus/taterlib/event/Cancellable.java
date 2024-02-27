@@ -7,7 +7,7 @@ public interface Cancellable {
      *
      * @return Whether the event is cancelled.
      */
-    boolean isCancelled();
+    boolean cancelled();
 
     /**
      * Sets whether the event is cancelled.

@@ -17,18 +17,16 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
-        ProxyPlayer player = new VelocityPlayer(event.getPlayer());
+    public ProxyPlayer player() {
         if (event.getPlayer().getCurrentServer().isPresent()) {
-            player.setServerName(
-                    event.getPlayer().getCurrentServer().get().getServerInfo().getName());
+            return new VelocityPlayer(event.getPlayer());
         }
-        return player;
+        return new VelocityPlayer(event.getPlayer(), event.getServer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         if (!loginMessage.isEmpty()) {
             return loginMessage;
         }

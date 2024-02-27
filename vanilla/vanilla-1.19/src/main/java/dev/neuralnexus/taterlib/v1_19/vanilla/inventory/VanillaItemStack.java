@@ -1,7 +1,11 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
+import net.minecraft.network.chat.Component;
+
+import java.util.List;
 
 /** Vanilla implementation of {@link ItemStack} */
 public class VanillaItemStack implements ItemStack {
@@ -10,36 +14,24 @@ public class VanillaItemStack implements ItemStack {
     /**
      * Constructor.
      *
-     * @param itemStack The Forge item stack.
+     * @param itemStack The Vanilla item stack.
      */
     public VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
     /**
-     * Getter for the Forge item stack.
+     * Getter for the Vanilla item stack.
      *
-     * @return The Forge item stack.
+     * @return The Vanilla item stack.
      */
-    public net.minecraft.world.item.ItemStack getItemStack() {
+    public net.minecraft.world.item.ItemStack itemStack() {
         return itemStack;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemMeta getMeta() {
-        return new VanillaItemMeta(itemStack);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setMeta(ItemMeta item) {
-        // TODO: Implement
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getType() {
+    public String type() {
         String itemName = itemStack.getItem().toString();
         if (!itemName.contains(":")) {
             return "minecraft:" + itemName;
@@ -49,7 +41,7 @@ public class VanillaItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.getCount();
     }
 
@@ -63,5 +55,63 @@ public class VanillaItemStack implements ItemStack {
     @Override
     public ItemStack clone() {
         return new VanillaItemStack(itemStack.copy());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasDisplayName() {
+        return itemStack.hasCustomHoverName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String displayName() {
+        return itemStack.getDisplayName().getString();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setDisplayName(String name) {
+        itemStack.setHoverName(Component.nullToEmpty(name));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasLore() {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<String> lore() {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setLore(List<String> lore) {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasEnchants() {
+        return itemStack.isEnchanted();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean unbreakable() {
+        return itemStack.isDamageableItem();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setUnbreakable(boolean unbreakable) {
+        // TODO: Implement
+        throw new VersionFeatureNotSupportedException();
     }
 }

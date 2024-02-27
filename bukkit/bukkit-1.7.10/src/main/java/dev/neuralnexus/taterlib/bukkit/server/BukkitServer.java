@@ -1,15 +1,19 @@
 package dev.neuralnexus.taterlib.bukkit.server;
 
 import dev.neuralnexus.taterlib.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.bukkit.world.BukkitServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.ServerWorld;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /** Bukkit implementation of {@link Server}. */
 public class BukkitServer implements Server {
@@ -21,13 +25,7 @@ public class BukkitServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
-        return "local";
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getBrand() {
+    public String brand() {
         // Reflect to get ((CraftServer) server).getServer().getServerModName
         try {
             return (String)
@@ -48,15 +46,29 @@ public class BukkitServer implements Server {
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
-            Method method = server.getClass().getMethod("getOnlinePlayers");
-            Collection<? extends org.bukkit.entity.Player> players =
-                    (Collection<? extends org.bukkit.entity.Player>) method.invoke(server);
-            return players.stream().map(BukkitPlayer::new).collect(Collectors.toSet());
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            return new HashSet<>();
+            Method onlinePlayersMethod =
+                    Class.forName("org.bukkit.Server").getMethod("getOnlinePlayers");
+            Stream<Player> players =
+                    onlinePlayersMethod.getReturnType().equals(Collection.class)
+                            ? ((Collection<Player>) onlinePlayersMethod.invoke(Bukkit.getServer()))
+                                    .stream()
+                            : Arrays.stream(
+                                    ((Player[]) onlinePlayersMethod.invoke(Bukkit.getServer())));
+            return players.map(BukkitPlayer::new).collect(Collectors.toList());
+        } catch (NoSuchMethodException
+                | InvocationTargetException
+                | IllegalAccessException
+                | ClassNotFoundException e) {
+            return Collections.emptyList();
         }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ServerWorld> worlds() {
+        return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());
     }
 }

@@ -14,7 +14,7 @@ public class BukkitBlockEvent implements BlockEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Block getBlock() {
+    public Block block() {
         return new BukkitBlock(event.getBlock());
     }
 }

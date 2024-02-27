@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemMeta;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
+import java.util.List;
 
 /** Abstracts a Bukkit item stack to an AbstractItemStack. */
 public class BukkitItemStack implements ItemStack {
@@ -21,31 +23,19 @@ public class BukkitItemStack implements ItemStack {
      *
      * @return The Bukkit item stack.
      */
-    public org.bukkit.inventory.ItemStack getItemStack() {
+    public org.bukkit.inventory.ItemStack itemStack() {
         return itemStack;
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemMeta getMeta() {
-        return new BukkitItemMeta(itemStack.getItemMeta());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setMeta(ItemMeta item) {
-        itemStack.setItemMeta(((BukkitItemMeta) item).getItemMeta());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getType() {
+    public String type() {
         return "minecraft:" + itemStack.getType().name().toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getCount() {
+    public int count() {
         return itemStack.getAmount();
     }
 
@@ -59,5 +49,59 @@ public class BukkitItemStack implements ItemStack {
     @Override
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasDisplayName() {
+        return itemStack.getItemMeta().hasDisplayName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String displayName() {
+        return itemStack.getItemMeta().getDisplayName();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setDisplayName(String name) {
+        itemStack.getItemMeta().setDisplayName(name);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasLore() {
+        return itemStack.getItemMeta().hasLore();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<String> lore() {
+        return itemStack.getItemMeta().getLore();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setLore(List<String> lore) {
+        itemStack.getItemMeta().setLore(lore);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasEnchants() {
+        return itemStack.getItemMeta().hasEnchants();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean unbreakable() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setUnbreakable(boolean unbreakable) {
+        throw new VersionFeatureNotSupportedException();
     }
 }

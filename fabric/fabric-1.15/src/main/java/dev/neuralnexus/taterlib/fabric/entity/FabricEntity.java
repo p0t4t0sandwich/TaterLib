@@ -2,16 +2,16 @@ package dev.neuralnexus.taterlib.fabric.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.fabric.FabricTaterLibPlugin;
-import dev.neuralnexus.taterlib.fabric.util.FabricLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
+import dev.neuralnexus.taterlib.fabric.world.FabricLocation;
+import dev.neuralnexus.taterlib.fabric.world.FabricServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.dimension.DimensionType;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
@@ -32,19 +32,19 @@ public class FabricEntity implements Entity {
      *
      * @return The Fabric entity.
      */
-    public net.minecraft.entity.Entity getEntity() {
+    public net.minecraft.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUuid();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getEntityId();
     }
 
@@ -56,13 +56,13 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName().toString();
     }
@@ -75,76 +75,46 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new FabricLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return entity.getYaw(0F);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return entity.getPitch(0F);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.getEntityWorld().getDimension().getType().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.getEntityWorld().getBiome(entity.getBlockPos()).getName().asFormattedString();
     }
 
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = FabricTaterLibPlugin.server;
-            if (server == null) return;
-            DimensionType dimension =
-                    DimensionType.byId(new Identifier(location.getWorld().split(":")[1]));
-            ServerWorld serverLevel = server.getWorld(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerWorld> serverLevel =
+                    new FabricServer(FabricTaterLibPlugin.minecraftServer)
+                            .world(location.world().dimension())
+                            .map(FabricServerWorld.class::cast)
+                            .map(FabricServerWorld::world);
+            if (!serverLevel.isPresent()) return;
             if (entity instanceof ServerPlayerEntity) {
                 ServerPlayerEntity player = (ServerPlayerEntity) entity;
                 player.teleport(
-                        serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        serverLevel.get(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.yaw,
                         player.pitch);
                 return;
             } else {
-                entity.changeDimension(dimension);
+                entity.changeDimension(serverLevel.get().dimension.getType());
             }
         }
-        entity.teleport(location.getX(), location.getY(), location.getZ());
+        entity.teleport(location.x(), location.y(), location.z());
     }
 }

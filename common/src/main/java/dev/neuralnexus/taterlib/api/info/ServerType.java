@@ -2,76 +2,118 @@ package dev.neuralnexus.taterlib.api.info;
 
 import static dev.neuralnexus.taterlib.Utils.reflectCheck;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Arrays;
 
 /** Represents the type of server the server is running. */
 public enum ServerType {
     // Bukkit fork
-    CRAFTBUKKIT("CraftBukkit"),
-    BUKKIT("Bukkit"),
-    POSEIDON("Poseidon"),
-    SPIGOT("Spigot"),
-    PAPER("Paper"),
-    FOLIA("Folia"),
-    PURPUR("Purpur"),
-    PUFFERFISH("Pufferfish"),
+    @SerializedName("CraftBukkit")
+    CRAFTBUKKIT("CraftBukkit", DataFolders.PLUGINS),
+    @SerializedName("Bukkit")
+    BUKKIT("Bukkit", DataFolders.PLUGINS),
+    @SerializedName("Poseidon")
+    POSEIDON("Poseidon", DataFolders.PLUGINS),
+    @SerializedName("Spigot")
+    SPIGOT("Spigot", DataFolders.PLUGINS),
+    @SerializedName("Paper")
+    PAPER("Paper", DataFolders.PLUGINS),
+    @SerializedName("Folia")
+    FOLIA("Folia", DataFolders.PLUGINS),
+    @SerializedName("Purpur")
+    PURPUR("Purpur", DataFolders.PLUGINS),
+    @SerializedName("Pufferfish")
+    PUFFERFISH("Pufferfish", DataFolders.PLUGINS),
 
     // Bukkit + NeoForge Hybrids
-    NEOFORGE_HYBRID("NeoForge Hybrid"),
-    MOHIST_NEO("Mohist Neo"),
-    ARCLIGHT_NEO("Arclight Neo"),
+    NEOFORGE_HYBRID("NeoForge Hybrid", DataFolders.HYBRID),
+    @SerializedName("Mohist Neo")
+    MOHIST_NEO("Mohist Neo", DataFolders.HYBRID),
+    @SerializedName("Arclight Neo")
+    ARCLIGHT_NEO("Arclight Neo", DataFolders.HYBRID),
 
     // Bukkit + Forge Hybrids
-    FORGE_HYBRID("Forge Hybrid"),
-    CAULDRON("Cauldron"),
-    KCUALDRON("KCauldron"),
-    THERMOS("Thermos"),
-    CRUCIBLE("Crucible"),
-    MCPC_PLUS_PLUS("MCPC++"),
-    MOHIST("Mohist"),
-    MAGMA("Magma"),
-    ARCLIGHT("Arclight"),
-    KETTING("Ketting"),
+    FORGE_HYBRID("Forge Hybrid", DataFolders.HYBRID),
+    @SerializedName("Cauldron")
+    CAULDRON("Cauldron", DataFolders.HYBRID),
+    @SerializedName("KCauldron")
+    KCUALDRON("KCauldron", DataFolders.HYBRID),
+    @SerializedName("Thermos")
+    THERMOS("Thermos", DataFolders.HYBRID),
+    @SerializedName("Crucible")
+    CRUCIBLE("Crucible", DataFolders.HYBRID),
+    @SerializedName("MCPC++")
+    MCPC_PLUS_PLUS("MCPC++", DataFolders.HYBRID),
+    @SerializedName("Mohist")
+    MOHIST("Mohist", DataFolders.HYBRID),
+    @SerializedName("Magma")
+    MAGMA("Magma", DataFolders.HYBRID),
+    @SerializedName("Arclight")
+    ARCLIGHT("Arclight", DataFolders.HYBRID),
+    @SerializedName("Ketting")
+    KETTING("Ketting", DataFolders.HYBRID),
 
     // Bukkit + Fabric Hybrids
-    FABRIC_HYBRID("Fabric Hybrid"),
-    CARDBOARD("Cardboard"),
-    BANNER("Banner"),
+    FABRIC_HYBRID("Fabric Hybrid", DataFolders.HYBRID),
+    @SerializedName("Cardboard")
+    CARDBOARD("Cardboard", DataFolders.HYBRID),
+    @SerializedName("Banner")
+    BANNER("Banner", DataFolders.HYBRID),
+    @SerializedName("Arclight Fabric")
+    ARCLIGHT_FABRIC("Arclight Fabric", DataFolders.HYBRID),
 
     // BungeeCord
-    BUNGEECORD("BungeeCord"),
-    WATERFALL("Waterfall"),
-    TRAVERTINE("Travertine"),
-    HEXACORD("Hexacord"),
+    @SerializedName("BungeeCord")
+    BUNGEECORD("BungeeCord", DataFolders.PLUGINS),
+    @SerializedName("Waterfall")
+    WATERFALL("Waterfall", DataFolders.PLUGINS),
+    @SerializedName("Travertine")
+    TRAVERTINE("Travertine", DataFolders.PLUGINS),
+    @SerializedName("Hexacord")
+    HEXACORD("Hexacord", DataFolders.PLUGINS),
 
     // Fabric
-    FABRIC("Fabric"),
-    QUILT("Quilt"),
+    @SerializedName("Fabric")
+    FABRIC("Fabric", DataFolders.MODS),
+    @SerializedName("Quilt")
+    QUILT("Quilt", DataFolders.MODS),
 
     // Forge
-    FORGE("Forge"),
-    GOLDENFORGE("GoldenForge"),
-    NEOFORGE("NeoForge"),
+    @SerializedName("Forge")
+    FORGE("Forge", DataFolders.MODS),
+    @SerializedName("GoldenForge")
+    GOLDENFORGE("GoldenForge", DataFolders.MODS),
+    @SerializedName("NeoForge")
+    NEOFORGE("NeoForge", DataFolders.MODS),
 
     // Sponge
-    SPONGE("Sponge"),
-    SPONGE_FORGE("SpongeForge"),
-    SPONGE_VANILLA("SpongeVanilla"),
+    @SerializedName("Sponge")
+    SPONGE("Sponge", DataFolders.MODS),
+    @SerializedName("SpongeForge")
+    SPONGE_FORGE("SpongeForge", DataFolders.MODS),
+    @SerializedName("SpongeVanilla")
+    SPONGE_VANILLA("SpongeVanilla", DataFolders.MODS),
 
     // Velocity
-    VELOCITY("Velocity"),
+    @SerializedName("Velocity")
+    VELOCITY("Velocity", DataFolders.PLUGINS),
 
     // Vanilla
-    VANILLA("Vanilla"),
+    @SerializedName("Vanilla")
+    VANILLA("Vanilla", DataFolders.UNKNOWN),
 
     // Unknown
-    UNKNOWN("Unknown");
+    @SerializedName("Unknown")
+    UNKNOWN("Unknown", DataFolders.UNKNOWN);
 
     private static ServerType serverType = UNKNOWN;
     private final String name;
+    private final DataFolders dataFolders;
 
-    ServerType(String name) {
+    ServerType(String name, DataFolders dataFolders) {
         this.name = name;
+        this.dataFolders = dataFolders;
     }
 
     /**
@@ -79,7 +121,7 @@ public enum ServerType {
      *
      * @return The current server type
      */
-    public static ServerType getServerType() {
+    public static ServerType serverType() {
         if (serverType != UNKNOWN) {
             return serverType;
         }
@@ -111,6 +153,8 @@ public enum ServerType {
             // Add NeoForge Hybrid check
             if (isNeoForge()) {
                 serverType = ARCLIGHT_NEO;
+            } else if (isFabric()) {
+                serverType = ARCLIGHT_FABRIC;
             } else {
                 serverType = ARCLIGHT;
             }
@@ -375,6 +419,15 @@ public enum ServerType {
     }
 
     /**
+     * Get the data folders for the server type
+     *
+     * @return The data folders for the server type
+     */
+    public DataFolders dataFolders() {
+        return serverType().dataFolders;
+    }
+
+    /**
      * Get the name of the server type
      *
      * @return The name of the server type
@@ -468,6 +521,15 @@ public enum ServerType {
     }
 
     /**
+     * Check if the server is running a NeoForge hybrid.
+     *
+     * @return True if the server is running a NeoForge hybrid, false otherwise.
+     */
+    public boolean isNeoForgeHybrid() {
+        return this.is(MOHIST_NEO, ARCLIGHT_NEO);
+    }
+
+    /**
      * Check if the server is running a fork of Forge.
      *
      * @return True if the server is running a fork of Forge, false otherwise.
@@ -477,12 +539,21 @@ public enum ServerType {
     }
 
     /**
+     * Check if the server is running a fork of NeoForge.
+     *
+     * @return True if the server is running a fork of NeoForge, false otherwise.
+     */
+    public boolean isNeoForgeBased() {
+        return this.is(NEOFORGE) || this.isNeoForgeHybrid();
+    }
+
+    /**
      * Check if the server is running a Fabric hybrid.
      *
      * @return True if the server is running a Fabric hybrid, false otherwise.
      */
     public boolean isFabricHybrid() {
-        return this.is(CARDBOARD, BANNER);
+        return this.is(CARDBOARD, BANNER, ARCLIGHT_FABRIC);
     }
 
     /**
@@ -500,7 +571,7 @@ public enum ServerType {
      * @return True if the server is running on a hybrid, false otherwise.
      */
     public boolean isHybrid() {
-        return this.isForgeHybrid() || this.isFabricHybrid();
+        return this.isForgeHybrid() || this.isNeoForgeHybrid() || this.isFabricHybrid();
     }
 
     /**
@@ -528,5 +599,38 @@ public enum ServerType {
      */
     public boolean isProxy() {
         return this.isBungeeCordBased() || this.isVelocityBased();
+    }
+
+    public enum DataFolders {
+        PLUGINS("plugins", "plugins"),
+        MODS("mods", "config"),
+        HYBRID("mods", "config"),
+        UNKNOWN(".", ".");
+
+        private final String modFolder;
+        private final String configFolder;
+
+        DataFolders(String modFolder, String configFolder) {
+            this.modFolder = modFolder;
+            this.configFolder = configFolder;
+        }
+
+        /**
+         * Get the mod folder
+         *
+         * @return The mod folder
+         */
+        public String modFolder() {
+            return modFolder;
+        }
+
+        /**
+         * Get the config folder
+         *
+         * @return The config folder
+         */
+        public String configFolder() {
+            return configFolder;
+        }
     }
 }

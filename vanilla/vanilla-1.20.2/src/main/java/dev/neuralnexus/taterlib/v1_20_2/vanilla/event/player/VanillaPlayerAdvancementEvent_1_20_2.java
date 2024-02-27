@@ -20,7 +20,7 @@ public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return advancement.value().display().get().getTitle().getString();
     }
 
@@ -45,7 +45,7 @@ public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
 
         /** {@inheritDoc} */
         @Override
-        public Collection<String> getCriterion() {
+        public Collection<String> criterion() {
             return advancement.value().criteria().keySet();
         }
     }

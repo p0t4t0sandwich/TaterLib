@@ -10,5 +10,5 @@ public interface BlockEvent extends Event {
      *
      * @return The block that was broken.
      */
-    Block getBlock();
+    Block block();
 }

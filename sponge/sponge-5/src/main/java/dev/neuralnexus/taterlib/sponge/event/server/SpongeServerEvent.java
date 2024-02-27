@@ -17,7 +17,7 @@ public class SpongeServerEvent implements ServerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleServer getServer() {
+    public SimpleServer server() {
         return new SpongeServer(Sponge.getServer());
     }
 }

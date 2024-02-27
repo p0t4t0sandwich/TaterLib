@@ -31,7 +31,7 @@ public class MagmaHook implements Hook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "magma";
     }
 
@@ -51,7 +51,7 @@ public class MagmaHook implements Hook {
      *
      * @return The mod list
      */
-    public Set<String> getModList() {
+    public Set<String> modList() {
         return ServerAPI.modList;
     }
 

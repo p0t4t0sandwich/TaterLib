@@ -27,7 +27,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         if (!drops.isEmpty()) {
             return drops;
         }
@@ -53,7 +53,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         if (droppedExp != 0) {
             return droppedExp;
         }
@@ -68,19 +68,19 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         return new ForgeEntity(event.getEntity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer((net.minecraft.world.entity.player.Player) event.getEntity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDeathMessage() {
+    public String deathMessage() {
         if (!deathMessage.isEmpty()) {
             return deathMessage;
         }
@@ -95,7 +95,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKeepInventory() {
+    public boolean keepInventory() {
         return false;
     }
 

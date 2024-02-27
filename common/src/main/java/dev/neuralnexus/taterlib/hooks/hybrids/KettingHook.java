@@ -9,10 +9,7 @@ import org.kettingpowered.ketting.core.Ketting;
 import org.kettingpowered.ketting.types.Mod;
 import org.kettingpowered.ketting.types.Plugin;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,7 +36,7 @@ public class KettingHook implements Hook {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "ketting";
     }
 
@@ -48,16 +45,16 @@ public class KettingHook implements Hook {
      *
      * @return The mod list
      */
-    public Set<String> getModList() {
+    public List<String> modList() {
         Optional<ForgeAdapter> adapter = Ketting.getInstance().getForgeAdapter();
         if (!adapter.isPresent()) {
-            return new HashSet<>();
+            return Collections.emptyList();
         }
         List<Mod> mods = adapter.get().getMods();
         if (mods == null) {
-            return new HashSet<>();
+            return Collections.emptyList();
         }
-        return mods.stream().map(Mod::modId).collect(Collectors.toSet());
+        return mods.stream().map(Mod::modId).collect(Collectors.toList());
     }
 
     /**
@@ -65,16 +62,16 @@ public class KettingHook implements Hook {
      *
      * @return The plugin list
      */
-    public Set<String> getPluginList() {
+    public List<String> pluginList() {
         Optional<BukkitAdapter> adapter = Ketting.getInstance().getBukkitAdapter();
         if (!adapter.isPresent()) {
-            return new HashSet<>();
+            return Collections.emptyList();
         }
         List<Plugin> plugins = adapter.get().getPlugins();
         if (plugins == null) {
-            return new HashSet<>();
+            return Collections.emptyList();
         }
-        return plugins.stream().map(plugin -> plugin.info().name()).collect(Collectors.toSet());
+        return plugins.stream().map(plugin -> plugin.info().name()).collect(Collectors.toList());
     }
 
     /**
@@ -110,7 +107,7 @@ public class KettingHook implements Hook {
      *
      * @return The KettingCore version
      */
-    public String getCoreVersion() {
+    public String coreVersion() {
         return Ketting.getCoreVersion();
     }
 
@@ -119,7 +116,7 @@ public class KettingHook implements Hook {
      *
      * @return The MC version
      */
-    public String getMcVersion() {
+    public String mcVersion() {
         return Ketting.getMcVersion();
     }
 

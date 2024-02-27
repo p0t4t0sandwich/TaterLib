@@ -22,7 +22,7 @@ public interface Damageable extends Entity {
      *
      * @return The current health of the entity
      */
-    double getHealth();
+    double health();
 
     /**
      * Sets the entity's health.
@@ -36,7 +36,7 @@ public interface Damageable extends Entity {
      *
      * @return The absorption amount of the entity
      */
-    double getAbsorptionAmount();
+    double absorptionAmount();
 
     /**
      * Sets the entity's absorption amount.
@@ -50,7 +50,7 @@ public interface Damageable extends Entity {
      *
      * @return The maximum health of this entity
      */
-    double getMaxHealth();
+    double maxHealth();
 
     /**
      * Sets the maximum health this entity has.

@@ -10,5 +10,5 @@ public interface ServerEvent extends Event {
      *
      * @return The server.
      */
-    SimpleServer getServer();
+    SimpleServer server();
 }

@@ -1,51 +1,60 @@
 package dev.neuralnexus.taterlib.api;
 
+import dev.neuralnexus.taterlib.api.info.ModInfo;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.function.Predicate;
+import java.util.Collections;
+import java.util.List;
 import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
-    private final String configFolder;
-    private Predicate<String> isModLoaded = (modid) -> false;
-    private Predicate<String> isPluginLoaded = (pluginName) -> false;
+    private Supplier<List<PluginInfo>> pluginList = Collections::emptyList;
+    private Supplier<List<ModInfo>> modList = Collections::emptyList;
     private Supplier<SimpleServer> minecraftServer = () -> null;
 
-    public TaterAPI(String configFolder) {
-        this.configFolder = configFolder;
-    }
-
     /**
-     * Get config folder
+     * Get the plugin list
      *
-     * @return The config folder
+     * @return The plugin list
      */
-    public String configFolder() {
-        return configFolder;
+    public List<PluginInfo> pluginList() {
+        return pluginList.get();
     }
 
     /**
-     * Set the isPluginLoaded predicate
+     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
+     * Set the pluginList supplier
      *
-     * @param isPluginLoaded The isPluginLoaded predicate
+     * @param pluginList The pluginList supplier
      */
     @ApiStatus.Internal
-    public void setIsPluginLoaded(Predicate<String> isPluginLoaded) {
-        this.isPluginLoaded = isPluginLoaded;
+    public void setPluginList(Supplier<List<PluginInfo>> pluginList) {
+        this.pluginList = pluginList;
     }
 
     /**
-     * Set the isModLoaded predicate
+     * Get the mod list
      *
-     * @param isModLoaded The isModLoaded predicate
+     * @return The mod list
+     */
+    public List<ModInfo> modList() {
+        return modList.get();
+    }
+
+    /**
+     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
+     * Set the modList supplier
+     *
+     * @param modList The modList supplier
      */
     @ApiStatus.Internal
-    public void setIsModLoaded(Predicate<String> isModLoaded) {
-        this.isModLoaded = isModLoaded;
+    public void setModList(Supplier<List<ModInfo>> modList) {
+        this.modList = modList;
     }
 
     /**
@@ -55,34 +64,29 @@ public class TaterAPI {
      * @return If the plugin is loaded
      */
     public boolean isPluginLoaded(String pluginName) {
-        return isPluginLoaded.test(pluginName);
+        return pluginList.get().stream()
+                .anyMatch(plugin -> plugin.name().equalsIgnoreCase(pluginName));
     }
 
     /**
      * Get if a mod is loaded
      *
-     * @param modid The modid of the mod
+     * @param modId The modId of the mod
      * @return If the mod is loaded
      */
-    public boolean isModLoaded(String modid) {
-        return isModLoaded.test(modid);
+    public boolean isModLoaded(String modId) {
+        return modList.get().stream().anyMatch(mod -> mod.id().equalsIgnoreCase(modId));
     }
 
     /**
      * Get if a plugin/mod is loaded <br>
      * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started {@link ServerEvents#STARTED} <br>
-     * 2nd Note: When looking for a plugin, the name is case-sensitive. <br>
-     * For example, "luckperms" will not match "LuckPerms". <br>
-     * When considering cross-API libraries, it's best to use the capitalized name, as this method
-     * runs the check again to check for a lowercase modid. <br>
-     * For example, "LuckPerms" will match "LuckPerms" and "luckperms".
+     * server has started {@link ServerEvents#STARTED}
      *
-     * @param pluginNameOrModId The name of the plugin or modid of the mod
+     * @param pluginNameOrModId The name of the plugin or modId of the mod
      */
     public boolean isPluginModLoaded(String pluginNameOrModId) {
-        return isPluginLoaded.test(pluginNameOrModId)
-                || isModLoaded.test(pluginNameOrModId.toLowerCase());
+        return isPluginLoaded(pluginNameOrModId) || isModLoaded(pluginNameOrModId);
     }
 
     /**

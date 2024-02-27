@@ -22,7 +22,7 @@ public class VanillaBlockEvent implements BlockEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Block getBlock() {
+    public Block block() {
         return new VanillaBlock(blockPos, blockState.getBlock());
     }
 }

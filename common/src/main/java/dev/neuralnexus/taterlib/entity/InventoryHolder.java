@@ -4,5 +4,10 @@ import dev.neuralnexus.taterlib.inventory.Inventory;
 
 /** Represents an entity that can have an inventory */
 public interface InventoryHolder {
-    Inventory getInventory();
+    /**
+     * Get the inventory of the entity
+     *
+     * @return The inventory of the entity
+     */
+    Inventory inventory();
 }

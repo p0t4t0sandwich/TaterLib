@@ -2,13 +2,13 @@ package dev.neuralnexus.taterlib.bungee.event.player;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /** Bungee implementation of {@link PlayerMessageEvent}. */
@@ -21,7 +21,7 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -33,13 +33,13 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
+    public ProxyPlayer player() {
         return new BungeePlayer((ProxiedPlayer) event.getSender());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return event.getMessage();
     }
 
@@ -52,10 +52,14 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
     /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
-        return new HashSet<>();
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
+    }
 }

@@ -88,8 +88,6 @@ include(
         'bukkit:bukkit-1.13.2',
         'bukkit:bukkit-1.15.2',
         'bukkit:bukkit-1.20',
-        'bukkit:bukkit-1.20.2',
-        'bukkit:bukkit-1.20.4',
 
         // Bungee
         'bungee:bungee-1.4.7',
@@ -128,6 +126,8 @@ include(
         'forge:forge-1.18',
         'forge:forge-1.18.2',
         'forge:forge-1.19',
+        'forge:forge-1.19.2',
+        'forge:forge-1.19.4',
         'forge:forge-1.20',
         'forge:forge-1.20.2',
 

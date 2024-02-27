@@ -14,7 +14,7 @@ public class BukkitPlayerEvent implements PlayerEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new BukkitPlayer(event.getPlayer());
     }
 }

@@ -14,8 +14,6 @@
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.15.2" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.2.5" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.20" />
-            <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.2" />
-            <option value="$PROJECT_DIR$/bukkit/bukkit-1.20.4" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.6.4" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.7.10" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.8.8" />
@@ -57,6 +55,8 @@
             <option value="$PROJECT_DIR$/forge/forge-1.18" />
             <option value="$PROJECT_DIR$/forge/forge-1.18.2" />
             <option value="$PROJECT_DIR$/forge/forge-1.19" />
+            <option value="$PROJECT_DIR$/forge/forge-1.19.2" />
+            <option value="$PROJECT_DIR$/forge/forge-1.19.4" />
             <option value="$PROJECT_DIR$/forge/forge-1.20" />
             <option value="$PROJECT_DIR$/forge/forge-1.20.2" />
             <option value="$PROJECT_DIR$/forge/forge-bleeding" />

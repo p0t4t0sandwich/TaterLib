@@ -15,7 +15,7 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -27,12 +27,12 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
 
     /** {@inheritDoc} */
     @Override
-    public String getCause() {
+    public String cause() {
         return event.getSource().toString();
     }
 
     @Override
-    public double getDamage() {
+    public double damage() {
         return event.getAmount();
     }
 }

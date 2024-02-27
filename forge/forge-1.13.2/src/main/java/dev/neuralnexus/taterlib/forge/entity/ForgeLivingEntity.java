@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.forge.entity;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.entity.LivingEntity;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
@@ -27,7 +26,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
      *
      * @return The entity.
      */
-    public EntityLivingBase getEntity() {
+    public EntityLivingBase entity() {
         return entity;
     }
 
@@ -41,13 +40,12 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
     @Override
     public void damage(double amount, Entity source) {
         entity.attackEntityFrom(
-                DamageSource.causeMobDamage(((ForgeLivingEntity) source).getEntity()),
-                (float) amount);
+                DamageSource.causeMobDamage(((ForgeLivingEntity) source).entity()), (float) amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.getHealth();
     }
 
@@ -59,7 +57,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
@@ -71,7 +69,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.getMaxHealth();
     }
 

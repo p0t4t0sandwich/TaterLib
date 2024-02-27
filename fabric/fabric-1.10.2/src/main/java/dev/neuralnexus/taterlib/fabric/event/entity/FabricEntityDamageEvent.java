@@ -23,7 +23,7 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return ci.isCancelled();
     }
 
@@ -37,13 +37,13 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
 
     /** {@inheritDoc} */
     @Override
-    public String getCause() {
+    public String cause() {
         return damageSource.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getDamage() {
+    public double damage() {
         return damage;
     }
 }

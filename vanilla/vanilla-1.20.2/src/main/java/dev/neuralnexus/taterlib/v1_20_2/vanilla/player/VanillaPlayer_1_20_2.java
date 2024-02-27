@@ -21,27 +21,6 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
         this.player = player;
     }
 
-    /**
-     * Constructor.
-     *
-     * @param player The player.
-     * @param serverName The server name.
-     */
-    public VanillaPlayer_1_20_2(
-            net.minecraft.world.entity.player.Player player, String serverName) {
-        super(player, serverName);
-        this.player = player;
-    }
-
-    /**
-     * Gets the player
-     *
-     * @return The player
-     */
-    public net.minecraft.world.entity.player.Player getPlayer() {
-        return player;
-    }
-
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
@@ -53,7 +32,7 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayer) player).connection.latency();
     }
 }

@@ -1,12 +1,15 @@
 package dev.neuralnexus.taterlib.forge.server;
 
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import net.minecraft.server.MinecraftServer;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link Server}. */
@@ -19,21 +22,23 @@ public class ForgeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
-        return "local";
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getBrand() {
+    public String brand() {
         return server.getServerModName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
+    public List<SimplePlayer> onlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(ForgePlayer::new)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ServerWorld> worlds() {
+        List<ServerWorld> worlds = new ArrayList<>();
+        server.getAllLevels().forEach(world -> worlds.add(new ForgeServerWorld(world)));
+        return worlds;
     }
 }

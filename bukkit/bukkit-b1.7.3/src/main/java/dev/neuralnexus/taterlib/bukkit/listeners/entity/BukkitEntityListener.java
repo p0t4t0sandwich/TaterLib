@@ -20,18 +20,19 @@ public class BukkitEntityListener extends EntityListener {
     @Override
     public void onEntityDamage(EntityDamageEvent event) {
         EntityEvents.DAMAGE.invoke(new BukkitEntityDamageEvent(event));
-        switch (event.getCause()) {
-            case ENTITY_ATTACK:
-                EntityEvents.DAMAGE_BY_ENTITY.invoke(
-                        new BukkitEntityDamageEvent.DamageByEntity(
-                                (EntityDamageByEntityEvent) event));
-                break;
-            case SUFFOCATION:
-                EntityEvents.DAMAGE_BY_BLOCK.invoke(
-                        new BukkitEntityDamageEvent.DamageByBlock(
-                                (EntityDamageByBlockEvent) event));
-                break;
-        }
+        // TODO: Find a fix for this
+        //        switch (event.getCause()) {
+        //            case ENTITY_ATTACK:
+        //                EntityEvents.DAMAGE_BY_ENTITY.invoke(
+        //                        new BukkitEntityDamageEvent.DamageByEntity(
+        //                                (EntityDamageByEntityEvent) event));
+        //                break;
+        //            case SUFFOCATION:
+        //                EntityEvents.DAMAGE_BY_BLOCK.invoke(
+        //                        new BukkitEntityDamageEvent.DamageByBlock(
+        //                                (EntityDamageByBlockEvent) event));
+        //                break;
+        //        }
     }
 
     //    /**

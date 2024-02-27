@@ -3,10 +3,10 @@ package dev.neuralnexus.taterlib.sponge.inventory;
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-/** Abstracts a Sponge inventory to an AbstractInventory. */
+/** Sponge implementation of {@link Inventory}. */
 public class SpongeInventory implements Inventory {
     private final org.spongepowered.api.item.inventory.Inventory inventory;
 
@@ -21,13 +21,13 @@ public class SpongeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public int getSize() {
+    public int size() {
         return inventory.capacity();
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getItem(int slot) {
+    public ItemStack get(int slot) {
         if (!inventory.peek(slot).isPresent()) {
             return null;
         }
@@ -36,187 +36,51 @@ public class SpongeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public void setItem(int slot, ItemStack item) {
+    public void set(int slot, ItemStack item) {
         if (inventory.peek(slot).isPresent()) {
             inventory
                     .peek(slot)
                     .get()
-                    .setRawData(((SpongeItemStack) item).getItemStack().toContainer());
+                    .setRawData(((SpongeItemStack) item).itemStack().toContainer());
         } else {
-            inventory.set(((SpongeItemStack) item).getItemStack());
+            inventory.set(((SpongeItemStack) item).itemStack());
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addItem(ItemStack item) {
-        inventory.offer(((SpongeItemStack) item).getItemStack());
+    public void add(ItemStack item) {
+        inventory.offer(((SpongeItemStack) item).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void removeItem(ItemStack item) {
-        if (inventory.contains(((SpongeItemStack) item).getItemStack())) {
-            for (int i = 0; i < getSize(); i++) {
-                if (getItem(i).equals(item)) {
-                    setItem(i, null);
-                    break;
-                }
-            }
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack[] getContents() {
-        ItemStack[] contents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
+    public List<ItemStack> contents() {
+        List<ItemStack> contents = new ArrayList<>(size());
+        for (int i = 0; i < size(); i++) {
+            contents.add(get(i));
         }
         return contents;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setContents(ItemStack[] items) {
-        for (int i = 0; i < getSize(); i++) {
-            setItem(i, items[i]);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack[] getStorageContents() {
-        ItemStack[] contents = new ItemStack[getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            contents[i] = getItem(i);
-        }
-
-        return contents;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setStorageContents(ItemStack[] items) {
-        for (int i = 0; i < getSize(); i++) {
-            setItem(i, items[i]);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean contains(ItemStack item) {
-        return inventory.contains(((SpongeItemStack) item).getItemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean contains(String type) {
-        for (ItemStack item : getContents()) {
-            if (item.getType().equals(type)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean containsAtLeast(ItemStack item, int amount) {
-        int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                total += getItem(i).getCount();
-            }
-        }
-        return total >= amount;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean containsAtLeast(String type, int amount) {
-        int total = 0;
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
-                total += getItem(i).getCount();
-            }
-        }
-        return total >= amount;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Map<Integer, ItemStack> all(ItemStack item) {
-        Map<Integer, ItemStack> map = new HashMap<>();
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                map.put(i, getItem(i));
-            }
-        }
-        return map;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int first(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int first(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int firstEmpty() {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals("minecraft:air")) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void remove(ItemStack item) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(item.getType())) {
-                if (inventory.peek(i).isPresent()) {
-                    inventory.peek(i).get().setQuantity(0);
-                }
-            }
+    public void setContents(List<ItemStack> items) {
+        for (int i = 0; i < size(); i++) {
+            set(i, items.get(i));
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public void remove(String type) {
-        for (int i = 0; i < getSize(); i++) {
-            if (getItem(i).getType().equals(type)) {
+        for (int i = 0; i < size(); i++) {
+            if (get(i).type().equals(type)) {
                 if (inventory.peek(i).isPresent()) {
                     inventory.peek(i).get().setQuantity(0);
                 }
             }
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void clear() {
-        inventory.clear();
     }
 
     /** {@inheritDoc} */

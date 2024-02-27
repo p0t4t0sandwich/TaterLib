@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.fabric.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /** Fabric implementation of {@link PlayerMessageEvent}. */
@@ -23,7 +23,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return ci.isCancelled();
     }
 
@@ -37,7 +37,7 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return message;
     }
 
@@ -50,10 +50,14 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
     /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
-        return new HashSet<>();
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
+    }
 }

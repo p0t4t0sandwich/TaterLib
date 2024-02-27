@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
@@ -25,26 +26,35 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         pluginStart(
-                BukkitTaterLibPlugin.plugin,
-                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
-        api.setIsPluginLoaded(
-                (pluginId) -> Bukkit.getServer().getPluginManager().isPluginEnabled(pluginId));
+        api.setPluginList(
+                () ->
+                        Arrays.stream(Bukkit.getServer().getPluginManager().getPlugins())
+                                .map(
+                                        p ->
+                                                new PluginInfo(
+                                                        p.getName(),
+                                                        p.getDescription().getVersion()))
+                                .collect(Collectors.toList()));
         api.setServer(() -> new BukkitServer(Bukkit.getServer()));
+        TaterAPIProvider.setPrimaryServerType(ServerType.BUKKIT);
     }
 
     @Override
     public void platformEnable() {
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.BUKKIT)) {
             // Register listeners
             PluginManager pluginManager = Bukkit.getServer().getPluginManager();
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);

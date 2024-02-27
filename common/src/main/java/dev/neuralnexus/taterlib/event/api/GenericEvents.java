@@ -14,13 +14,13 @@ public class GenericEvents {
     /** Set of all event managers. */
     public static final Set<EventManager<? extends Event>> EVENTS =
             ImmutableSet.<EventManager<? extends Event>>builder()
-                    .addAll(BlockEvents.getEvents())
-                    .addAll(CommandEvents.getEvents())
-                    .addAll(EntityEvents.getEvents())
-                    .addAll(NetworkEvents.getEvents())
-                    .addAll(PlayerEvents.getEvents())
-                    .addAll(PluginEvents.getEvents())
-                    .addAll(ServerEvents.getEvents())
+                    .addAll(BlockEvents.events())
+                    .addAll(CommandEvents.events())
+                    .addAll(EntityEvents.events())
+                    .addAll(NetworkEvents.events())
+                    .addAll(PlayerEvents.events())
+                    .addAll(PluginEvents.events())
+                    .addAll(ServerEvents.events())
                     .build();
 
     /** Set up generic events. */

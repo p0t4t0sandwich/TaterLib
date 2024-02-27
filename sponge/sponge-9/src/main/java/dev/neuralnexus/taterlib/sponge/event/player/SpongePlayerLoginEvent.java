@@ -19,13 +19,13 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(event.player());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         if (!this.loginMessage.isEmpty()) {
             return this.loginMessage;
         }

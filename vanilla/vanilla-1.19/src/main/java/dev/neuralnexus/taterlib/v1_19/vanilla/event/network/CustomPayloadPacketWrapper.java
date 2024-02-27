@@ -24,13 +24,13 @@ public class CustomPayloadPacketWrapper implements CustomPayloadWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public String getChannel() {
+    public String channel() {
         return channel;
     }
 
     /** {@inheritDoc} */
     @Override
-    public byte[] getData() {
+    public byte[] data() {
         return data;
     }
 }

@@ -17,7 +17,7 @@ public class BlockEvents {
      *
      * @return The events.
      */
-    public static Set<EventManager<? extends Event>> getEvents() {
+    public static Set<EventManager<? extends Event>> events() {
         return Collections.singleton(PLAYER_BLOCK_BREAK);
     }
 }

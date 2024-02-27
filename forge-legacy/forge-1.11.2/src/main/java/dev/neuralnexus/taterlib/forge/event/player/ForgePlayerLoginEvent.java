@@ -16,7 +16,7 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         if (!this.loginMessage.isEmpty()) {
             return this.loginMessage;
         }

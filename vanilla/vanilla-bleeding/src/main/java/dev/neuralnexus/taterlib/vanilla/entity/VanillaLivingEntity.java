@@ -24,7 +24,7 @@ public class VanillaLivingEntity extends VanillaEntity implements LivingEntity {
      *
      * @return The entity.
      */
-    public net.minecraft.world.entity.LivingEntity getEntity() {
+    public net.minecraft.world.entity.LivingEntity entity() {
         return entity;
     }
 
@@ -40,13 +40,13 @@ public class VanillaLivingEntity extends VanillaEntity implements LivingEntity {
         entity.hurt(
                 entity.getCommandSenderWorld()
                         .damageSources()
-                        .mobAttack(((VanillaLivingEntity) source).getEntity()),
+                        .mobAttack(((VanillaLivingEntity) source).entity()),
                 (float) amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.getHealth();
     }
 
@@ -58,7 +58,7 @@ public class VanillaLivingEntity extends VanillaEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
@@ -70,7 +70,7 @@ public class VanillaLivingEntity extends VanillaEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.getMaxHealth();
     }
 

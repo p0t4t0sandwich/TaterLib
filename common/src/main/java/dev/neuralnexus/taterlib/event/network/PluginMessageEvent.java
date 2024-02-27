@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.event.network;
 
 import dev.neuralnexus.taterlib.event.Event;
+import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 /** Abstract class for plugin message events. */
 public interface PluginMessageEvent extends Event {
@@ -9,14 +10,14 @@ public interface PluginMessageEvent extends Event {
      *
      * @return The channel of the plugin message.
      */
-    String getChannel();
+    String channel();
 
     /**
      * Gets the data of the plugin message.
      *
      * @return The data of the plugin message.
      */
-    byte[] getData();
+    byte[] data();
 
     /** Abstract class for player plugin message events. */
     interface Player extends PluginMessageEvent {
@@ -25,7 +26,7 @@ public interface PluginMessageEvent extends Event {
          *
          * @return The player of the plugin message.
          */
-        dev.neuralnexus.taterlib.player.SimplePlayer getPlayer();
+        SimplePlayer player();
     }
 
     /** Abstract class for server plugin message events. */
@@ -35,6 +36,6 @@ public interface PluginMessageEvent extends Event {
          *
          * @return The server of the plugin message.
          */
-        dev.neuralnexus.taterlib.server.Server getServer();
+        dev.neuralnexus.taterlib.server.Server server();
     }
 }

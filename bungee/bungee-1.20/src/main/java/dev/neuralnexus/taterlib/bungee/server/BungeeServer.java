@@ -1,12 +1,14 @@
 package dev.neuralnexus.taterlib.bungee.server;
 
 import dev.neuralnexus.taterlib.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link Server}. */
@@ -19,20 +21,26 @@ public class BungeeServer implements Server {
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return server.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBrand() {
+    public String brand() {
         // TODO: Pass this information up through plugin messages as a way to sync the server brand
-        return "Unknown";
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<SimplePlayer> getOnlinePlayers() {
-        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toSet());
+    public List<SimplePlayer> onlinePlayers() {
+        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ServerWorld> worlds() {
+        throw new VersionFeatureNotSupportedException();
     }
 }

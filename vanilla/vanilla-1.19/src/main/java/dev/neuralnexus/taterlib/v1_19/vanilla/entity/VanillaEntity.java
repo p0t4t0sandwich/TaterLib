@@ -1,18 +1,15 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
-import dev.neuralnexus.taterlib.v1_19.vanilla.util.VanillaLocation;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaLocation;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
@@ -36,19 +33,19 @@ public class VanillaEntity implements Entity {
      *
      * @return The entity.
      */
-    public net.minecraft.world.entity.Entity getEntity() {
+    public net.minecraft.world.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUUID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getId();
     }
 
@@ -60,13 +57,13 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName().toString();
     }
@@ -79,49 +76,19 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new VanillaLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return entity.getYRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return entity.getXRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.getLevel().dimension().location().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         Optional<ResourceKey<Biome>> holder =
                 entity.getLevel().getBiome(entity.blockPosition()).unwrap().left();
         return holder.map(biomeResourceKey -> biomeResourceKey.registry().toString()).orElse(null);
@@ -130,27 +97,26 @@ public class VanillaEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = VanillaServer.getServer();
-            if (server == null) return;
-            ResourceKey<Level> dimension =
-                    ResourceKey.create(
-                            Registry.DIMENSION_REGISTRY, new ResourceLocation(location.getWorld()));
-            ServerLevel serverLevel = server.getLevel(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerLevel> serverLevel =
+                    VanillaServer.instance()
+                            .world(location.world().dimension())
+                            .map(VanillaServerWorld.class::cast)
+                            .map(VanillaServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
-                        serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        serverLevel.get(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
             } else {
-                entity.changeDimension(serverLevel);
+                entity.changeDimension(serverLevel.get());
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

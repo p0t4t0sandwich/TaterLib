@@ -22,7 +22,7 @@ public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerL
 
     /** {@inheritDoc} */
     @Override
-    public String getLoginMessage() {
+    public String loginMessage() {
         return handler.player.getName().getString() + " joined the game";
     }
 

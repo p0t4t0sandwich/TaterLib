@@ -2,10 +2,9 @@ package dev.neuralnexus.taterlib.v1_20.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /** Vanilla implementation of {@link PlayerMessageEvent}. */
@@ -22,8 +21,8 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
-        return cancel.isCancelled();
+    public boolean cancelled() {
+        return cancel.cancelled();
     }
 
     /** {@inheritDoc} */
@@ -34,7 +33,7 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         return message;
     }
 
@@ -47,10 +46,14 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
     /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
-        return new HashSet<>();
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
+    }
 }

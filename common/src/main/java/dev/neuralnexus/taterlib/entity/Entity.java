@@ -1,8 +1,11 @@
 package dev.neuralnexus.taterlib.entity;
 
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
+import dev.neuralnexus.taterlib.world.World;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
 public interface Entity extends Nameable {
@@ -11,14 +14,14 @@ public interface Entity extends Nameable {
      *
      * @return The UUID of the entity
      */
-    UUID getUniqueId();
+    UUID uuid();
 
     /**
      * Get the id of the entity
      *
      * @return The id of the entity
      */
-    int getEntityId();
+    int entityId();
 
     /** Remove the entity */
     void remove();
@@ -28,63 +31,103 @@ public interface Entity extends Nameable {
      *
      * @return The type of the entity
      */
-    String getType();
+    String type();
 
     /**
      * Get the location of the entity
      *
      * @return The position of the entity
      */
-    Location getLocation();
+    Location location();
+
+    /**
+     * Get the world of the entity
+     *
+     * @return The world of the entity
+     */
+    default World world() {
+        return location().world();
+    }
+
+    /**
+     * Get nearby entities
+     *
+     * @param radius The radius
+     * @param predicate The predicate
+     * @return The entities in the world that match the parameters
+     */
+    default List<Entity> nearbyEntities(double radius, Predicate<Entity> predicate) {
+        return location().world().entities(this, radius, predicate);
+    }
+
+    /**
+     * Get nearby entities
+     *
+     * @param radius The radius
+     * @return The entities in the world that match the parameters
+     */
+    default List<Entity> nearbyEntities(double radius) {
+        return nearbyEntities(radius, e -> true);
+    }
 
     /**
      * Get the x position of the entity
      *
      * @return The x position of the entity
      */
-    double getX();
+    default double x() {
+        return location().x();
+    }
 
     /**
      * Get the y position of the entity
      *
      * @return The y position of the entity
      */
-    double getY();
+    default double y() {
+        return location().y();
+    }
 
     /**
      * Get the z position of the entity
      *
      * @return The z position of the entity
      */
-    double getZ();
+    default double z() {
+        return location().z();
+    }
 
     /**
      * Get the yaw of the entity
      *
      * @return The yaw of the entity
      */
-    float getYaw();
+    default float yaw() {
+        return location().yaw();
+    }
 
     /**
      * Get the pitch of the entity
      *
      * @return The pitch of the entity
      */
-    float getPitch();
+    default float pitch() {
+        return location().pitch();
+    }
 
     /**
      * Get the current dimension of the entity
      *
      * @return The current dimension of the entity
      */
-    String getDimension();
+    String dimension();
 
     /**
      * Get the current biome of the entity
      *
      * @return The current biome of the entity
      */
-    String getBiome();
+    String biome();
 
     /**
      * Teleport the entity to the given Location
@@ -99,6 +142,6 @@ public interface Entity extends Nameable {
      * @param entity The entity to teleport the entity to
      */
     default void teleport(Entity entity) {
-        teleport(entity.getLocation());
+        teleport(entity.location());
     }
 }

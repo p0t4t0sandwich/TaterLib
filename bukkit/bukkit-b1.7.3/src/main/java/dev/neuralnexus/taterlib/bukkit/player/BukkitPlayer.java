@@ -2,11 +2,13 @@ package dev.neuralnexus.taterlib.bukkit.player;
 
 import dev.neuralnexus.taterlib.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.bukkit.inventory.BukkitPlayerInventory;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSuportedException;
+import dev.neuralnexus.taterlib.bukkit.server.BukkitServer;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.bukkit.plugin.Plugin;
 
@@ -16,7 +18,6 @@ import java.util.UUID;
 public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = null;
-    private String serverName;
 
     /**
      * Constructor.
@@ -26,19 +27,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     public BukkitPlayer(org.bukkit.entity.Player player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param serverName The name of the server the player is on.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -51,21 +39,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         super(player);
         this.player = player;
         this.plugin = plugin;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param plugin The plugin.
-     * @param serverName The name of the server the player is on.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin, String serverName) {
-        super(player);
-        this.player = player;
-        this.plugin = plugin;
-        this.serverName = serverName;
     }
 
     /**
@@ -73,44 +46,38 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
      *
      * @return The Bukkit player
      */
-    public org.bukkit.entity.Player getPlayer() {
+    public org.bukkit.entity.Player player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new BukkitServer(player.getServer());
     }
 
     /** {@inheritDoc} */
@@ -122,22 +89,26 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
+        // TODO: Create some different way to send plugin messages
+        throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage(plugin, channel, data);
     }
 
     public void sendPluginMessage(Plugin plugin, String channel, byte[] data) {
+        throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage(plugin, channel, data);
     }
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
+        // TODO: Find the field that stores the ping
         //        ((CraftPlayer) player).getHandle().netServerHandler.networkManager.f;
         return -1;
     }
@@ -150,12 +121,14 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String reason) {
+    public void kick(String reason) {
         player.kickPlayer(reason);
     }
 
     @Override
     public void setSpawn(Location location, boolean forced) {
+        // TODO: Write a module to set bed spawns/respawn points
+        throw new VersionFeatureNotSupportedException();
         //        player.setBedSpawnLocation(BukkitConversions.locationFromPosition(position),
         // forced);
     }
@@ -164,30 +137,30 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     @Override
     public void allowFlight(boolean allow) {
         // TODO: Write a module to allow flight
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean canFly() {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
-        throw new VersionFeatureNotSuportedException();
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(player.getGameMode().name());
     }
 

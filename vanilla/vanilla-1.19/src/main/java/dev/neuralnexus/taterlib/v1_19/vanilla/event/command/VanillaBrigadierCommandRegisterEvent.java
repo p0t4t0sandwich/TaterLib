@@ -35,7 +35,7 @@ public class VanillaBrigadierCommandRegisterEvent
 
     /** {@inheritDoc} */
     @Override
-    public CommandDispatcher<CommandSourceStack> getDispatcher() {
+    public CommandDispatcher<CommandSourceStack> dispatcher() {
         return dispatcher;
     }
 

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.block;
 
-import dev.neuralnexus.taterlib.utils.Position;
+import dev.neuralnexus.taterlib.world.BlockPos;
 
 /** Abstract implementation of a block. */
 public interface Block {
@@ -9,12 +9,12 @@ public interface Block {
      *
      * @return The type of the block.
      */
-    String getType();
+    String type();
 
     /**
      * Get the block location.
      *
      * @return The block location.
      */
-    Position getBlockPos();
+    BlockPos blockPos();
 }

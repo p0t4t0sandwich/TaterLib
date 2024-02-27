@@ -21,13 +21,13 @@ public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements 
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new VanillaPlayer(player);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDeathMessage() {
+    public String deathMessage() {
         return source.getLocalizedDeathMessage(player).getString();
     }
 
@@ -37,7 +37,7 @@ public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements 
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKeepInventory() {
+    public boolean keepInventory() {
         return false;
     }
 

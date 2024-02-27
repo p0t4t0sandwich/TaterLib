@@ -3,7 +3,10 @@ package dev.neuralnexus.taterlib.forge.inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 
-/** Abstracts a Forge player inventory to an AbstractPlayerInventory. */
+import java.util.List;
+import java.util.stream.Collectors;
+
+/** Forge implementation of {@link PlayerInventory}. */
 public class ForgePlayerInventory extends ForgeInventory implements PlayerInventory {
     private final net.minecraft.entity.player.PlayerInventory playerInventory;
 
@@ -19,129 +22,38 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getArmorContents() {
-        ItemStack[] armorContents = new ItemStack[4];
-        for (int i = 0; i < 4; i++) {
-            armorContents[i] = new ForgeItemStack(playerInventory.armorInventory.get(i));
-        }
-        return armorContents;
+    public List<ItemStack> armor() {
+        return playerInventory.armorInventory.stream()
+                .map(ForgeItemStack::new)
+                .collect(Collectors.toList());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setArmorContents(ItemStack[] items) {
+    public void setArmor(List<ItemStack> armor) {
         playerInventory.armorInventory.clear();
-        for (int i = 0; i < 4; i++) {
-            playerInventory.armorInventory.add(i, ((ForgeItemStack) items[i]).getItemStack());
-        }
+        armor.stream()
+                .map(ForgeItemStack.class::cast)
+                .map(ForgeItemStack::itemStack)
+                .forEach(playerInventory.armorInventory::add);
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack[] getExtraContents() {
-        ItemStack[] extraContents = new ItemStack[2];
-        for (int i = 0; i < 2; i++) {
-            extraContents[i] = new ForgeItemStack(playerInventory.offHandInventory.get(i));
-        }
-        return extraContents;
+    public ItemStack offhand() {
+        return new ForgeItemStack(playerInventory.offHandInventory.get(0));
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setExtraContents(ItemStack[] items) {
-        // TODO: Implement
+    public void setOffhand(ItemStack offhand) {
+        playerInventory.offHandInventory.clear();
+        playerInventory.offHandInventory.add(((ForgeItemStack) offhand).itemStack());
     }
 
     /** {@inheritDoc} */
     @Override
-    public ItemStack getHelmet() {
-        return new ForgeItemStack(playerInventory.armorInventory.get(0));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setHelmet(ItemStack item) {
-        playerInventory.armorInventory.set(0, ((ForgeItemStack) item).getItemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getChestplate() {
-        return new ForgeItemStack(playerInventory.armorInventory.get(1));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setChestplate(ItemStack item) {
-        playerInventory.armorInventory.set(1, ((ForgeItemStack) item).getItemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getLeggings() {
-        return new ForgeItemStack(playerInventory.armorInventory.get(2));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setLeggings(ItemStack item) {
-        playerInventory.armorInventory.set(2, ((ForgeItemStack) item).getItemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getBoots() {
-        return new ForgeItemStack(playerInventory.armorInventory.get(3));
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setBoots(ItemStack item) {
-        playerInventory.armorInventory.set(3, ((ForgeItemStack) item).getItemStack());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItem(String type, ItemStack item) {
-        // TODO: Implement
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getItem(String type) {
-        // TODO: Implement
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getItemInMainHand() {
-        // TODO: Implement
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItemInMainHand(ItemStack item) {
-        // TODO: Implement
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ItemStack getItemInOffHand() {
-        // TODO: Implement
-        return null;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setItemInOffHand(ItemStack item) {
-        // TODO: Implement
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getHeldItemSlot() {
+    public int selectedSlot() {
         return playerInventory.currentItem;
     }
 }

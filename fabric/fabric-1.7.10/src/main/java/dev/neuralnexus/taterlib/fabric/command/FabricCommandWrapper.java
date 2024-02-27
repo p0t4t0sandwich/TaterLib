@@ -32,9 +32,9 @@ public class FabricCommandWrapper implements CommandCallable {
         String[] args = arguments.split(" ");
         try {
             if (source instanceof PlayerEntity) {
-                command.execute(new FabricPlayer((PlayerEntity) source), command.getName(), args);
+                command.execute(new FabricPlayer((PlayerEntity) source), command.name(), args);
             }
-            command.execute(new FabricCommandSender(source), command.getName(), args);
+            command.execute(new FabricCommandSender(source), command.name(), args);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +52,7 @@ public class FabricCommandWrapper implements CommandCallable {
 
     @Override
     public boolean testPermission(PermissibleCommandSource source) {
-        return command.getPermission().isEmpty() || source.hasPermission(command.getPermission());
+        return command.permission().isEmpty() || source.hasPermission(command.permission());
     }
 
     @Override
@@ -67,6 +67,6 @@ public class FabricCommandWrapper implements CommandCallable {
 
     @Override
     public Text getUsage(PermissibleCommandSource source) {
-        return new TranslatableText(command.getUsage());
+        return new TranslatableText(command.usage());
     }
 }

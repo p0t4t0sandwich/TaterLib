@@ -17,13 +17,13 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
             return this.logoutMessage;
         }

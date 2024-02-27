@@ -21,7 +21,7 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public List<ItemStack> getDrops() {
+    public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
@@ -35,7 +35,7 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
 
     /** {@inheritDoc} */
     @Override
-    public int getDroppedExp() {
+    public int droppedExp() {
         return source.getEntity() instanceof LivingEntity
                 ? ((LivingEntity) source.getEntity()).getExperienceReward()
                 : 0;

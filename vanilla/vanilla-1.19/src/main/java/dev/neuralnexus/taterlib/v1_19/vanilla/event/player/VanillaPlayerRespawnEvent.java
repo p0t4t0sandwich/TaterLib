@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.utils.Location;
-import dev.neuralnexus.taterlib.v1_19.vanilla.util.VanillaLocation;
+import dev.neuralnexus.taterlib.world.Location;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaLocation;
 
 import net.minecraft.world.entity.player.Player;
 
@@ -19,7 +19,7 @@ public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements Pla
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
+    public Location respawnLocation() {
         return new VanillaLocation(player);
     }
 

@@ -4,8 +4,8 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 /** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {
@@ -18,8 +18,8 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
-        return new ForgeLocation(((ForgePlayer) getPlayer()).getPlayer());
+    public Location respawnLocation() {
+        return new ForgeLocation(((ForgePlayer) player()).getPlayer());
     }
 
     /** {@inheritDoc} */

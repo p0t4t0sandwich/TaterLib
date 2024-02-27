@@ -16,6 +16,6 @@ public class BukkitPluginMessageListener implements PluginMessageListener {
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(channel, bytes));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(
-                        channel, bytes, BukkitAdapters.getPlayer(player)));
+                        channel, bytes, BukkitAdapters.player(player)));
     }
 }

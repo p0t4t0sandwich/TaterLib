@@ -1,13 +1,16 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.forge.ForgeTaterLibPlugin;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.WorldServer;
 
-import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
@@ -28,19 +31,19 @@ public class ForgeEntity implements Entity {
      *
      * @return The Forge entity.
      */
-    public net.minecraft.entity.Entity getEntity() {
+    public net.minecraft.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUniqueID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getEntityId();
     }
 
@@ -52,13 +55,13 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getCommandSenderName().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getFormattedCommandSenderName() == null) return null;
         return entity.getFormattedCommandSenderName().getFormattedText();
     }
@@ -66,55 +69,25 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
-        // TODO: IMPLEMENT NAME TAGS SUPPORT
-        //        entity.setCustomName(name);
+        // TODO: Implement NAME TAGS SUPPORT
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new ForgeLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.posX;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.posY;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.posZ;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return entity.rotationPitch;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return entity.rotationYaw;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.worldObj.provider.getDimensionName().replace(" ", "_").toLowerCase();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         return entity.worldObj.provider.getBiomeGenForCoords((int) entity.posX, (int) entity.posZ)
                 .biomeName;
     }
@@ -122,24 +95,15 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = ForgeTaterLibPlugin.server;
-            if (server == null) return;
-            // TODO: Cross version this and add: location.getWorld().split(":")[1]);
-            Arrays.stream(server.worldServers)
-                    .filter(
-                            worldServer ->
-                                    worldServer
-                                            .provider
-                                            .getDimensionName()
-                                            .replace(" ", "_")
-                                            .toLowerCase()
-                                            .equals(location.getWorld()))
-                    .findFirst()
-                    .ifPresent(
-                            worldServer ->
-                                    entity.travelToDimension(worldServer.provider.dimensionId));
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<WorldServer> serverLevel =
+                    new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                            .world(location.world().dimension())
+                            .map(ForgeServerWorld.class::cast)
+                            .map(ForgeServerWorld::world);
+            if (!serverLevel.isPresent()) return;
+            entity.travelToDimension(serverLevel.get().provider.dimensionId);
         }
-        entity.setPosition(location.getX(), location.getY(), location.getZ());
+        entity.setPosition(location.x(), location.y(), location.z());
     }
 }

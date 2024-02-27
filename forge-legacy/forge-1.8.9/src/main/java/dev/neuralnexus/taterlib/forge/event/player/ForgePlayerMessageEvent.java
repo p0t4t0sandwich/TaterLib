@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import net.minecraftforge.event.ServerChatEvent;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /** Forge implementation of {@link PlayerMessageEvent}. */
@@ -21,7 +21,7 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCanceled();
     }
 
@@ -33,13 +33,13 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.player);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         if (!this.message.isEmpty()) {
             return this.message;
         }
@@ -55,10 +55,14 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
     /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
-        return new HashSet<>();
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
+    }
 }

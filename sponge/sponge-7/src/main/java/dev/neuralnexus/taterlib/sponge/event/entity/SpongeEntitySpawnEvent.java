@@ -3,8 +3,8 @@ package dev.neuralnexus.taterlib.sponge.event.entity;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterlib.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 
@@ -18,7 +18,7 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isCancelled();
     }
 
@@ -30,13 +30,13 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Entity getEntity() {
+    public Entity entity() {
         return new SpongeEntity(event.getEntities().get(0));
     }
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new SpongeLocation(event.getEntities().get(0).getLocation());
     }
 }

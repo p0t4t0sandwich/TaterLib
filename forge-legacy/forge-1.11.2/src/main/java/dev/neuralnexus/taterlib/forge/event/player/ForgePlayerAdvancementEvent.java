@@ -19,13 +19,13 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String getAdvancement() {
+    public String advancement() {
         return event.getAchievement().getStatName().getFormattedText();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new ForgePlayer(event.getEntityPlayer());
     }
 
@@ -49,7 +49,7 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
 
         /** {@inheritDoc} */
         @Override
-        public Collection<String> getCriterion() {
+        public Collection<String> criterion() {
             return Collections.singleton(this.event.getAchievement().getCriteria().getName());
         }
     }

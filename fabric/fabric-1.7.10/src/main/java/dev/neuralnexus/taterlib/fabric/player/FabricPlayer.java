@@ -2,10 +2,12 @@ package dev.neuralnexus.taterlib.fabric.player;
 
 import dev.neuralnexus.taterlib.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.fabric.inventory.FabricPlayerInventory;
+import dev.neuralnexus.taterlib.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.legacyfabric.fabric.api.networking.v1.PacketByteBufs;
 import net.legacyfabric.fabric.api.networking.v1.ServerPlayNetworking;
@@ -20,7 +22,6 @@ import java.util.UUID;
 /** Fabric implementation of {@link Player}. */
 public class FabricPlayer extends FabricLivingEntity implements Player {
     private final PlayerEntity player;
-    private String serverName;
 
     /**
      * Constructor.
@@ -30,19 +31,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     public FabricPlayer(PlayerEntity player) {
         super(player);
         this.player = player;
-        this.serverName = "local";
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Fabric player.
-     * @param serverName The server name.
-     */
-    public FabricPlayer(PlayerEntity player, String serverName) {
-        super(player);
-        this.player = player;
-        this.serverName = serverName;
     }
 
     /**
@@ -50,44 +38,38 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
      *
      * @return The Fabric player
      */
-    public PlayerEntity getPlayer() {
+    public PlayerEntity player() {
         return player;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUuid();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return ((ServerPlayerEntity) player).getIp();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getName().asFormattedString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getName().asFormattedString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        return new FabricServer(((ServerPlayerEntity) player).server);
     }
 
     /** {@inheritDoc} */
@@ -106,28 +88,28 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public PlayerInventory getInventory() {
+    public PlayerInventory inventory() {
         return new FabricPlayerInventory(player.inventory);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return ((ServerPlayerEntity) player).ping;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         ((ServerPlayerEntity) player).networkHandler.onDisconnected(new TranslatableText(message));
     }
 
     /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
+        // TODO: Dimension aware spawn setting
         player.method_4573(
-                new BlockPos((int) location.getX(), (int) location.getY(), (int) location.getZ()),
-                forced);
+                new BlockPos((int) location.x(), (int) location.y(), (int) location.z()), forced);
     }
 
     /** {@inheritDoc} */
@@ -156,7 +138,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public GameMode getGameMode() {
+    public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
     }
@@ -166,12 +148,12 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
     public void setGameMode(GameMode gameMode) {
         ((ServerPlayerEntity) player)
                 .interactionManager.setGameMode(
-                        net.minecraft.world.GameMode.setGameModeWithId(gameMode.getId()));
+                        net.minecraft.world.GameMode.setGameModeWithId(gameMode.id()));
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getPrefix() {
+    public String prefix() {
         // TODO: Find a way to get LP prefixes/suffixes
         //        return Options.get(player, "prefix", "");
         return "";
@@ -179,7 +161,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String getSuffix() {
+    public String suffix() {
         // TODO: Find a way to get LP prefixes/suffixes
         //        return Options.get(player, "suffix", "");
         return "";

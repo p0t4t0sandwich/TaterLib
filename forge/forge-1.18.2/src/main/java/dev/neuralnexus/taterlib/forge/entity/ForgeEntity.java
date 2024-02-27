@@ -1,19 +1,18 @@
 package dev.neuralnexus.taterlib.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.forge.util.ForgeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.forge.world.ForgeLocation;
+import dev.neuralnexus.taterlib.forge.world.ForgeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
@@ -34,19 +33,19 @@ public class ForgeEntity implements Entity {
      *
      * @return The Forge entity.
      */
-    public net.minecraft.world.entity.Entity getEntity() {
+    public net.minecraft.world.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.getUUID();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return entity.getId();
     }
 
@@ -58,13 +57,13 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.getType().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (entity.getCustomName() == null) return null;
         return entity.getCustomName().getString();
     }
@@ -77,49 +76,19 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
+    public Location location() {
         return new ForgeLocation(entity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.getY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        return entity.getXRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        return entity.getYRot();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         return entity.level.dimension().location().toString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         ResourceLocation biomeRegistry =
                 entity.level.getBiome(entity.blockPosition()).value().getRegistryName();
         if (biomeRegistry == null) return null;
@@ -129,28 +98,26 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
-        if (!location.getWorld().equals(getDimension())) {
-            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-            if (server == null) return;
-            ResourceKey<Level> dimension =
-                    ResourceKey.create(
-                            Registry.DIMENSION_REGISTRY,
-                            new ResourceLocation(location.getWorld().split(":")[1]));
-            ServerLevel serverLevel = server.getLevel(dimension);
-            if (serverLevel == null) return;
+        if (!location.world().dimension().equals(dimension())) {
+            Optional<ServerLevel> serverLevel =
+                    new ForgeServer(ServerLifecycleHooks.getCurrentServer())
+                            .world(location.world().dimension())
+                            .map(ForgeServerWorld.class::cast)
+                            .map(ForgeServerWorld::world);
+            if (serverLevel.isEmpty()) return;
             if (entity instanceof ServerPlayer player) {
                 player.teleportTo(
-                        serverLevel,
-                        location.getX(),
-                        location.getY(),
-                        location.getZ(),
+                        serverLevel.get(),
+                        location.x(),
+                        location.y(),
+                        location.z(),
                         player.getYRot(),
                         player.getXRot());
                 return;
             } else {
-                entity.changeDimension(serverLevel);
+                entity.changeDimension(serverLevel.get());
             }
         }
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
+        entity.teleportTo(location.x(), location.y(), location.z());
     }
 }

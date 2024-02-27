@@ -4,7 +4,9 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.velocity.VelocityTaterLibPlugin;
+import dev.neuralnexus.taterlib.velocity.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;
 
@@ -13,7 +15,7 @@ import java.util.UUID;
 /** Velocity implementation of {@link ProxyPlayer}. */
 public class VelocityPlayer implements ProxyPlayer {
     private final com.velocitypowered.api.proxy.Player player;
-    private String serverName;
+    private RegisteredServer server = null;
 
     /**
      * Constructor.
@@ -22,22 +24,17 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     public VelocityPlayer(com.velocitypowered.api.proxy.Player player) {
         this.player = player;
-        if (player.getCurrentServer().isPresent()) {
-            this.serverName = player.getCurrentServer().get().getServerInfo().getName();
-        } else {
-            this.serverName = "local";
-        }
     }
 
     /**
      * Constructor.
      *
      * @param player The Velocity player.
-     * @param serverName The name of the server the player is on.
+     * @param server The server the player is connected to.
      */
-    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, String serverName) {
+    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, RegisteredServer server) {
         this.player = player;
-        this.serverName = serverName;
+        this.server = server;
     }
 
     /**
@@ -45,7 +42,7 @@ public class VelocityPlayer implements ProxyPlayer {
      *
      * @return The Velocity player
      */
-    public com.velocitypowered.api.proxy.Player getPlayer() {
+    public com.velocitypowered.api.proxy.Player player() {
         return player;
     }
 
@@ -56,46 +53,41 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     @Override
     public void connect(String serverName) {
-        if (!VelocityTaterLibPlugin.getProxyServer().getServer(serverName).isPresent()) return;
-        RegisteredServer server =
-                VelocityTaterLibPlugin.getProxyServer().getServer(serverName).get();
+        if (!VelocityTaterLibPlugin.proxyServer.getServer(serverName).isPresent()) return;
+        RegisteredServer server = VelocityTaterLibPlugin.proxyServer.getServer(serverName).get();
         player.createConnectionRequest(server).fireAndForget();
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return player.getUniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getIPAddress() {
+    public String ipAddress() {
         return player.getRemoteAddress().getAddress().getHostAddress();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return player.getUsername();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getDisplayName() {
+    public String displayName() {
         return player.getUsername();
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getServerName() {
-        return serverName;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setServerName(String server) {
-        this.serverName = server;
+    public Server server() {
+        if (server != null) return new VelocityServer(server);
+        if (!player.getCurrentServer().isPresent()) return null;
+        return new VelocityServer(player.getCurrentServer().get().getServer());
     }
 
     /** {@inheritDoc} */
@@ -122,13 +114,13 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public int getPing() {
+    public int ping() {
         return (int) player.getPing();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void kickPlayer(String message) {
+    public void kick(String message) {
         player.disconnect(Component.text(message));
     }
 }

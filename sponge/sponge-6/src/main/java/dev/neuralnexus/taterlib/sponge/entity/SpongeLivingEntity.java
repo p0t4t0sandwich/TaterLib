@@ -28,7 +28,7 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
      *
      * @return The Sponge entity.
      */
-    public Living getEntity() {
+    public Living entity() {
         return entity;
     }
 
@@ -45,13 +45,13 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
                 amount,
                 EntityDamageSource.builder()
                         .type(DamageTypes.ATTACK)
-                        .entity(((SpongeLivingEntity) source).getEntity())
+                        .entity(((SpongeLivingEntity) source).entity())
                         .build());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getHealth() {
+    public double health() {
         return entity.health().get();
     }
 
@@ -63,7 +63,7 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getAbsorptionAmount() {
+    public double absorptionAmount() {
         return entity.getHealthData().get(Keys.ABSORPTION).get();
     }
 
@@ -75,7 +75,7 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
 
     /** {@inheritDoc} */
     @Override
-    public double getMaxHealth() {
+    public double maxHealth() {
         return entity.maxHealth().get();
     }
 

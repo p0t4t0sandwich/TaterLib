@@ -7,7 +7,7 @@ public interface PlayerLogoutEvent extends PlayerEvent {
      *
      * @return The logout message.
      */
-    String getLogoutMessage();
+    String logoutMessage();
 
     /**
      * Sets the logout message.

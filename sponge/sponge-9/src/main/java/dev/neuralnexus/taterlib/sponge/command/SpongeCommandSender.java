@@ -20,19 +20,19 @@ public class SpongeCommandSender implements CommandSender {
      *
      * @return The sender
      */
-    public CommandCause getSender() {
+    public CommandCause sender() {
         return sender;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return new UUID(0, 0);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getName() {
+    public String name() {
         return "CONSOLE";
     }
 
@@ -41,7 +41,7 @@ public class SpongeCommandSender implements CommandSender {
     public void sendMessage(String message) {
         // TODO: Figure out how identity works in Sponge
         //        sender.sendMessage(sender, Component.text(message));
-        TaterLib.getLogger().info(message);
+        TaterLib.logger().info(message);
     }
 
     /** {@inheritDoc} */

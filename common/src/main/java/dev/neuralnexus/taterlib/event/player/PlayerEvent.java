@@ -10,5 +10,5 @@ public interface PlayerEvent extends Event {
      *
      * @return The player
      */
-    SimplePlayer getPlayer();
+    SimplePlayer player();
 }

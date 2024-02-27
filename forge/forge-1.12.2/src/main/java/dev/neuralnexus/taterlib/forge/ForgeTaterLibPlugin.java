@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
@@ -28,7 +29,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
-import org.apache.logging.log4j.LogManager;
+import java.util.stream.Collectors;
 
 /** Forge entry point. */
 // @Mod(
@@ -37,7 +38,7 @@ import org.apache.logging.log4j.LogManager;
 //        serverSideOnly = true,
 //        acceptableRemoteVersions = "*")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    public static MinecraftServer server;
+    public static MinecraftServer minecraftServer;
 
     /**
      * Registers the TaterLib command.
@@ -50,16 +51,25 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformInit(Object plugin, Object logger) {
+    public void platformInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
-                plugin, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
+                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setIsModLoaded(Loader::isModLoaded);
-        api.setServer(() -> new ForgeServer(server));
+        api.setModList(
+                () ->
+                        Loader.instance().getModList().stream()
+                                .map(
+                                        modContainer ->
+                                                new ModInfo(
+                                                        modContainer.getModId(),
+                                                        modContainer.getName(),
+                                                        modContainer.getVersion()))
+                                .collect(Collectors.toList()));
+        api.setServer(() -> new ForgeServer(minecraftServer));
+        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
 
-        if (!TaterAPIProvider.areEventListenersRegistered()) {
-            TaterAPIProvider.setEventListenersRegistered(true);
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
@@ -88,7 +98,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        server = event.getServer();
+        minecraftServer = event.getServer();
         ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
     }
 

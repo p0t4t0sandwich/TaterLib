@@ -3,8 +3,8 @@ package dev.neuralnexus.taterlib.sponge.event.player;
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent;
 
@@ -18,13 +18,13 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
     /** {@inheritDoc} */
     @Override
-    public Location getRespawnLocation() {
+    public Location respawnLocation() {
         return new SpongeLocation(event.getTargetEntity().getLocation());
     }
 

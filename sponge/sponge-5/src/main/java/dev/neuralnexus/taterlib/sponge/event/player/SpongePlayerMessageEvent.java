@@ -1,13 +1,13 @@
 package dev.neuralnexus.taterlib.sponge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.sponge.player.SpongePlayer;
 
 import org.spongepowered.api.event.message.MessageEvent;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /** Sponge implementation of {@link PlayerMessageEvent}. */
@@ -24,7 +24,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public boolean isCancelled() {
+    public boolean cancelled() {
         return event.isMessageCancelled();
     }
 
@@ -36,13 +36,13 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public Player getPlayer() {
+    public Player player() {
         return new SpongePlayer(players[0]);
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getMessage() {
+    public String message() {
         if (!this.message.isEmpty()) {
             return this.message;
         }
@@ -58,10 +58,14 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
-        return new HashSet<>();
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {}
+    public void setRecipients(Set<SimplePlayer> recipients) {
+        // TODO: Chat recipients module
+        throw new VersionFeatureNotSupportedException();
+    }
 }

@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.event.player;
 
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.world.Location;
 
 /** Abstract class for player respawn events. */
 public interface PlayerRespawnEvent extends PlayerEvent {
@@ -9,7 +9,7 @@ public interface PlayerRespawnEvent extends PlayerEvent {
      *
      * @return The location.
      */
-    Location getRespawnLocation();
+    Location respawnLocation();
 
     /**
      * Weather the respawn location is the player's bed.

@@ -7,25 +7,25 @@ public interface Connection {
      *
      * @return The IP address of the player
      */
-    String getIPAddress();
+    String ipAddress();
 
     /**
      * Get player's ping
      *
      * @return The player's ping
      */
-    int getPing();
+    int ping();
 
     /**
      * Kick the player
      *
      * @param message The reason to kick the player
      */
-    void kickPlayer(String message);
+    void kick(String message);
 
     /** Disconnect the player (kick with no message) */
     default void disconnect() {
-        kickPlayer("");
+        kick("");
     }
 
     /**

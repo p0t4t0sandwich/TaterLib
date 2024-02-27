@@ -1,15 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19_4.vanilla.mixin.patch.event.entity;
 
 import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
-import dev.neuralnexus.taterlib.utils.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;

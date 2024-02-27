@@ -9,17 +9,18 @@ import dev.neuralnexus.taterlib.plugin.Plugin;
 /** General TaterLib plugin interface. */
 public interface TaterLibPlugin extends Plugin {
     @Override
-    default String getName() {
+    default String name() {
         return TaterLib.Constants.PROJECT_NAME;
     }
 
     @Override
-    default String getId() {
+    default String id() {
         return TaterLib.Constants.PROJECT_ID;
     }
 
     @Override
-    default void pluginStart(Object plugin, AbstractLogger logger) {
+    default void pluginStart(
+            Object plugin, Object pluginServer, Object pluginLogger, AbstractLogger logger) {
         logger.info(
                 TaterLib.Constants.PROJECT_NAME
                         + " is running on "
@@ -27,13 +28,13 @@ public interface TaterLibPlugin extends Plugin {
                         + " "
                         + TaterAPIProvider.minecraftVersion()
                         + "!");
-        TaterLib.start(plugin, logger);
+        TaterLib.start(plugin, pluginServer, pluginLogger, logger);
     }
 
     @Override
     default void pluginStop() {
         TaterLib.stop();
-        TaterLib.getLogger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
+        TaterLib.logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
         PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }

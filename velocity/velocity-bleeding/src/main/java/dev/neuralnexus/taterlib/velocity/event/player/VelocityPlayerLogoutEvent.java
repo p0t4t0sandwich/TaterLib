@@ -17,13 +17,13 @@ public class VelocityPlayerLogoutEvent implements PlayerLogoutEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ProxyPlayer getPlayer() {
+    public ProxyPlayer player() {
         return new VelocityPlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getLogoutMessage() {
+    public String logoutMessage() {
         if (!logoutMessage.isEmpty()) {
             return logoutMessage;
         }

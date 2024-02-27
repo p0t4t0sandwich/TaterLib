@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.sponge.block;
 
 import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.utils.Position;
+import dev.neuralnexus.taterlib.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;
@@ -21,14 +21,14 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         Registry<BlockType> registry = RegistryTypes.BLOCK_TYPE.get();
         return registry.findValueKey(block.type()).get().asString();
     }
 
     /** {@inheritDoc} */
     @Override
-    public Position getBlockPos() {
-        return new Position(pos.blockX(), pos.blockY(), pos.blockZ());
+    public BlockPos blockPos() {
+        return new BlockPos(pos.blockX(), pos.blockY(), pos.blockZ());
     }
 }

@@ -26,7 +26,7 @@ public enum GameMode {
      */
     public static GameMode fromId(final int id) {
         for (final GameMode gameMode : GameMode.values()) {
-            if (gameMode.getId() == id) {
+            if (gameMode.id() == id) {
                 return gameMode;
             }
         }
@@ -41,7 +41,7 @@ public enum GameMode {
      */
     public static GameMode fromName(final String name) {
         for (final GameMode gameMode : GameMode.values()) {
-            if (gameMode.getName().equalsIgnoreCase(name)) {
+            if (gameMode.gameModeName().equalsIgnoreCase(name)) {
                 return gameMode;
             }
         }
@@ -56,7 +56,7 @@ public enum GameMode {
      */
     public static GameMode fromAlias(final String alias) {
         for (final GameMode gameMode : GameMode.values()) {
-            if (gameMode.getAlias().equalsIgnoreCase(alias)) {
+            if (gameMode.alias().equalsIgnoreCase(alias)) {
                 return gameMode;
             }
         }
@@ -93,7 +93,7 @@ public enum GameMode {
      *
      * @return The ID of the game mode.
      */
-    public int getId() {
+    public int id() {
         return this.id;
     }
 
@@ -102,7 +102,7 @@ public enum GameMode {
      *
      * @return The name of the game mode.
      */
-    public String getName() {
+    public String gameModeName() {
         return this.name;
     }
 
@@ -111,7 +111,7 @@ public enum GameMode {
      *
      * @return The alias of the game mode.
      */
-    public String getAlias() {
+    public String alias() {
         return this.alias;
     }
 

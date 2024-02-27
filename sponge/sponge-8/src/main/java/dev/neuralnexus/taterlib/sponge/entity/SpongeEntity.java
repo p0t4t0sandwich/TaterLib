@@ -1,11 +1,14 @@
 package dev.neuralnexus.taterlib.sponge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.sponge.util.SpongeLocation;
-import dev.neuralnexus.taterlib.utils.Location;
+import dev.neuralnexus.taterlib.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.sponge.world.SpongeLocation;
+import dev.neuralnexus.taterlib.sponge.world.SpongeServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 
+import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
@@ -14,6 +17,7 @@ import org.spongepowered.api.world.server.ServerLocation;
 import org.spongepowered.api.world.server.ServerWorld;
 import org.spongepowered.math.vector.Vector3d;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Entity}. */
@@ -34,19 +38,19 @@ public class SpongeEntity implements Entity {
      *
      * @return The Sponge entity.
      */
-    public org.spongepowered.api.entity.Entity getEntity() {
+    public org.spongepowered.api.entity.Entity entity() {
         return entity;
     }
 
     /** {@inheritDoc} */
     @Override
-    public UUID getUniqueId() {
+    public UUID uuid() {
         return entity.uniqueId();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getEntityId() {
+    public int entityId() {
         return -1;
     }
 
@@ -58,13 +62,13 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getType() {
+    public String type() {
         return entity.type().toString().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
     @Override
-    public String getCustomName() {
+    public String customName() {
         if (!entity.get(Keys.CUSTOM_NAME).isPresent()) {
             return null;
         }
@@ -79,45 +83,13 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public Location getLocation() {
-        return new SpongeLocation(entity.location());
+    public Location location() {
+        return new SpongeLocation(entity.serverLocation());
     }
 
     /** {@inheritDoc} */
     @Override
-    public double getX() {
-        return entity.position().x();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getY() {
-        return entity.position().y();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double getZ() {
-        return entity.position().z();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getYaw() {
-        // TODO: Find a way to get the yaw
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public float getPitch() {
-        // TODO: Find a way to get the pitch
-        return 0;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String getDimension() {
+    public String dimension() {
         if (!entity.get(Keys.MAP_WORLD).isPresent()) {
             return null;
         }
@@ -126,7 +98,7 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String getBiome() {
+    public String biome() {
         Biome biome = entity.location().world().biome(entity.location().blockPosition());
         Registry<Biome> registry = entity.location().world().registry(RegistryTypes.BIOME);
         return registry.findValueKey(biome).get().asString();
@@ -135,9 +107,14 @@ public class SpongeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
+        Optional<ServerWorld> serverLevel =
+                new SpongeServer(Sponge.server())
+                        .world(location.world().dimension())
+                        .map(SpongeServerWorld.class::cast)
+                        .map(SpongeServerWorld::world);
+        if (!serverLevel.isPresent()) return;
         entity.setLocation(
                 ServerLocation.of(
-                        (ServerWorld) entity.location().world(),
-                        new Vector3d(location.getX(), location.getY(), location.getZ())));
+                        serverLevel.get(), new Vector3d(location.x(), location.y(), location.z())));
     }
 }

@@ -1,29 +1,33 @@
 package dev.neuralnexus.taterlib.api;
 
 import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.info.ModInfo;
+import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterlib.entity.Permissible;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.hooks.Hook;
 import dev.neuralnexus.taterlib.hooks.hybrids.ArclightHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.KettingHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MagmaHook;
 import dev.neuralnexus.taterlib.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterlib.server.metrics.TPSProvider;
+import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Supplier;
 
 /** API Provider */
 public class TaterAPIProvider {
-    private static final ServerType serverType = ServerType.getServerType();
-    private static final MinecraftVersion minecraftVersion = MinecraftVersion.getMinecraftVersion();
+    private static final ServerType serverType = ServerType.serverType();
+    private static final MinecraftVersion minecraftVersion = MinecraftVersion.minecraftVersion();
     private static final HashMap<ServerType, TaterAPI> apis = new HashMap<>();
-    private static final Set<Hook> hooks = new HashSet<>();
-    private static boolean eventListenersRegistered = false;
+    private static final List<Hook> hooks = new ArrayList<>();
+    private static ServerType primaryServerType;
+    private static PlayerDataStore playerDataStore;
 
     /**
      * Get Minecraft version
@@ -67,7 +71,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static boolean isHooked(String hookName) {
-        return hooks.stream().anyMatch(hook -> hook.getName().equalsIgnoreCase(hookName));
+        return hooks.stream().anyMatch(hook -> hook.name().equalsIgnoreCase(hookName));
     }
 
     /**
@@ -76,7 +80,7 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static Optional<Hook> getHook(String hookName) {
-        return hooks.stream().filter(hook -> hook.getName().equalsIgnoreCase(hookName)).findFirst();
+        return hooks.stream().filter(hook -> hook.name().equalsIgnoreCase(hookName)).findFirst();
     }
 
     /**
@@ -85,20 +89,31 @@ public class TaterAPIProvider {
      * @param hookName The name of the hook
      */
     public static void removeHook(String hookName) {
-        hooks.removeIf(hook -> hook.getName().equalsIgnoreCase(hookName));
+        hooks.removeIf(hook -> hook.name().equalsIgnoreCase(hookName));
     }
 
     /**
      * Check Sender permissions
      *
-     * @param commandSender The sender
+     * @param permissible The entity to check
      * @param permission The permission
      */
-    public static boolean hasPermission(CommandSender commandSender, String permission) {
+    public static boolean hasPermission(Permissible permissible, String permission) {
         return hooks.stream()
                 .filter(hook -> hook instanceof PermissionsHook)
-                .anyMatch(
-                        hook -> ((PermissionsHook) hook).hasPermission(commandSender, permission));
+                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(permissible, permission));
+    }
+
+    /**
+     * Get TPSProvider hooks
+     *
+     * @return The TPSProvider hook
+     */
+    public static Optional<TPSProvider> getTPSProvider() {
+        return hooks.stream()
+                .filter(hook -> hook instanceof TPSProvider)
+                .map(hook -> (TPSProvider) hook)
+                .findFirst();
     }
 
     /**
@@ -126,25 +141,59 @@ public class TaterAPIProvider {
         throw new NotLoadedException(serverType);
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
-    @ApiStatus.Internal
-    public static boolean areEventListenersRegistered() {
-        return eventListenersRegistered;
+    /**
+     * Get if a plugin/mod is loaded <br>
+     * Note: Unless you need to check at a specific time, it's best to run this check after the
+     * server has started {@link ServerEvents#STARTED}
+     *
+     * @param pluginNameOrModId The name of the plugin or modId of the mod
+     */
+    public static boolean isPluginModLoaded(String pluginNameOrModId) {
+        return apis.values().stream().anyMatch(api -> api.isPluginModLoaded(pluginNameOrModId));
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
-    public static void setEventListenersRegistered(boolean registered) {
-        eventListenersRegistered = registered;
+    public static boolean isPrimaryServerType(ServerType serverType) {
+        return primaryServerType == serverType;
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static void setPrimaryServerType(ServerType serverType) {
+        if (primaryServerType == null) {
+            primaryServerType = serverType;
+        }
+    }
+
+    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
+    @ApiStatus.Internal
+    public static void setPlayerDataStore(PlayerDataStore playerDataStore) {
+        TaterAPIProvider.playerDataStore = playerDataStore;
+    }
+
+    /**
+     * Get the player data store <br>
+     * Please note, this is for local storage only, and should not be used for cross-server data
+     * storage. <br>
+     * For cross-server data storage, use TODO: <b>ToBeNamed</b> <br>
+     * Currently only supports primitive types, but you could use GSON to store the data as a string
+     * first, then store it in the player data store.
+     *
+     * @return The player data store
+     */
+    public static PlayerDataStore playerDataStore() {
+        return playerDataStore;
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void register() {
-        TaterAPI bukkitApi = new TaterAPI("plugins");
-        TaterAPI bungeeApi = new TaterAPI("plugins");
-        TaterAPI forgeApi = new TaterAPI("config");
-        TaterAPI fabricApi = new TaterAPI("config");
+        TaterAPI bukkitApi = new TaterAPI();
+        TaterAPI bungeeApi = new TaterAPI();
+        TaterAPI neoForgeApi = new TaterAPI();
+        TaterAPI forgeApi = new TaterAPI();
+        TaterAPI fabricApi = new TaterAPI();
 
         if (serverType.isBukkitBased()) {
             apis.put(serverType, bukkitApi);
@@ -157,7 +206,6 @@ public class TaterAPIProvider {
         }
 
         // Secondary logical check is for Sinytra Connector
-        // TODO: Find some way to init the Fabric side, since SC doesn't load duplicate modIds
         if (serverType.isFabricBased() || (serverType.isForgeBased() && ServerType.isFabric())) {
             apis.put(serverType, fabricApi);
             apis.put(ServerType.FABRIC, fabricApi);
@@ -165,7 +213,7 @@ public class TaterAPIProvider {
 
         if (serverType.isForgeBased()) {
             if (serverType.is(ServerType.NEOFORGE)) {
-                apis.put(ServerType.NEOFORGE, forgeApi);
+                apis.put(ServerType.NEOFORGE, neoForgeApi);
             } else {
                 apis.put(serverType, forgeApi);
                 apis.put(ServerType.FORGE, forgeApi);
@@ -173,64 +221,79 @@ public class TaterAPIProvider {
         }
 
         // Check for SpongeForge, then Sponge
-        // TODO: Find some way to init the Sponge side, since SF doesn't load duplicate modIds
         if (serverType.isSpongeBased() && serverType.isForgeBased()) {
-            apis.put(serverType, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE_FORGE, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE, new TaterAPI("config"));
+            TaterAPI spongeForgeApi = new TaterAPI();
+            spongeForgeApi.setModList(() -> get(ServerType.FORGE).modList());
+            apis.put(serverType, spongeForgeApi);
+            apis.put(ServerType.SPONGE_FORGE, spongeForgeApi);
+            apis.put(ServerType.SPONGE, spongeForgeApi);
         } else if (serverType.isSpongeBased()) {
-            apis.put(serverType, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE_VANILLA, new TaterAPI("config"));
-            apis.put(ServerType.SPONGE, new TaterAPI("config"));
+            apis.put(serverType, new TaterAPI());
+            apis.put(ServerType.SPONGE_VANILLA, new TaterAPI());
+            apis.put(ServerType.SPONGE, new TaterAPI());
         }
 
         if (serverType.isVelocityBased()) {
-            apis.put(ServerType.VELOCITY, new TaterAPI("plugins"));
+            apis.put(ServerType.VELOCITY, new TaterAPI());
         }
 
         if (serverType.isHybrid()) {
-            // Sets defaults, so it might give a proper result for hybrids that don't have hooks
-            TaterAPI hybridApi = new TaterAPI("config");
-            hybridApi.setIsModLoaded((modid) -> apis.get(ServerType.FORGE).isModLoaded(modid));
-            hybridApi.setIsPluginLoaded(
-                    (plugin) -> apis.get(ServerType.BUKKIT).isPluginLoaded(plugin));
+            TaterAPI hybridApi = new TaterAPI();
+            Supplier<List<PluginInfo>> bukkitPluginList = () -> get(ServerType.BUKKIT).pluginList();
+            Supplier<List<ModInfo>> fabricModList = () -> get(ServerType.FABRIC).modList();
+            Supplier<List<ModInfo>> forgeModList = () -> get(ServerType.FORGE).modList();
+            Supplier<List<ModInfo>> neoForgeModList = () -> get(ServerType.NEOFORGE).modList();
+
+            hybridApi.setPluginList(bukkitPluginList);
+            if (serverType.isForgeHybrid()) {
+                bukkitApi.setModList(forgeModList);
+                forgeApi.setPluginList(bukkitPluginList);
+                hybridApi.setModList(forgeModList);
+            } else if (serverType.isNeoForgeHybrid()) {
+                bukkitApi.setModList(neoForgeModList);
+                neoForgeApi.setPluginList(bukkitPluginList);
+                hybridApi.setModList(neoForgeModList);
+            } else if (serverType.isFabricHybrid()) {
+                bukkitApi.setModList(fabricModList);
+                fabricApi.setPluginList(bukkitPluginList);
+                hybridApi.setModList(fabricModList);
+            }
 
             switch (serverType) {
-                case MOHIST:
-                case MOHIST_NEO:
-                    MohistHook mohistHook = new MohistHook();
-                    addHook(mohistHook);
-                    bukkitApi.setIsModLoaded(mohistHook::hasMod);
-                    bukkitApi.setIsPluginLoaded(mohistHook::hasPlugin);
-                    forgeApi.setIsModLoaded(mohistHook::hasMod);
-                    forgeApi.setIsPluginLoaded(mohistHook::hasPlugin);
-                    hybridApi.setIsModLoaded(mohistHook::hasMod);
-                    hybridApi.setIsPluginLoaded(mohistHook::hasPlugin);
-                    apis.put(ServerType.MOHIST, hybridApi);
-                    break;
-                case MAGMA:
-                    MagmaHook magmaHook = new MagmaHook();
-                    addHook(magmaHook);
-                    bukkitApi.setIsModLoaded(magmaHook::hasMod);
-                    forgeApi.setIsModLoaded(magmaHook::hasMod);
-                    hybridApi.setIsModLoaded(magmaHook::hasMod);
-                    apis.put(ServerType.MAGMA, hybridApi);
-                    break;
                 case ARCLIGHT:
-                case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
                     apis.put(ServerType.ARCLIGHT, hybridApi);
                     break;
+                case ARCLIGHT_NEO:
+                    addHook(new ArclightHook());
+                    apis.put(ServerType.ARCLIGHT_NEO, hybridApi);
+                    break;
+                case ARCLIGHT_FABRIC:
+                    addHook(new ArclightHook());
+                    apis.put(ServerType.ARCLIGHT_FABRIC, hybridApi);
+                    break;
+                case BANNER:
+                    // TODO: check for Banner API
+                    apis.put(ServerType.BANNER, hybridApi);
+                    break;
+                case CARDBOARD:
+                    // TODO: check for Cardboard API
+                    apis.put(ServerType.CARDBOARD, hybridApi);
                 case KETTING:
-                    KettingHook kettingHook = new KettingHook();
-                    addHook(kettingHook);
-                    bukkitApi.setIsModLoaded(kettingHook::hasMod);
-                    bukkitApi.setIsPluginLoaded(kettingHook::hasPlugin);
-                    forgeApi.setIsModLoaded(kettingHook::hasMod);
-                    forgeApi.setIsPluginLoaded(kettingHook::hasPlugin);
-                    hybridApi.setIsModLoaded(kettingHook::hasMod);
-                    hybridApi.setIsPluginLoaded(kettingHook::hasPlugin);
+                    addHook(new KettingHook());
                     apis.put(ServerType.KETTING, hybridApi);
+                    break;
+                case MAGMA:
+                    addHook(new MagmaHook());
+                    apis.put(ServerType.MAGMA, hybridApi);
+                    break;
+                case MOHIST:
+                    addHook(new MohistHook());
+                    apis.put(ServerType.MOHIST, hybridApi);
+                    break;
+                case MOHIST_NEO:
+                    addHook(new MohistHook());
+                    apis.put(ServerType.MOHIST_NEO, hybridApi);
                     break;
             }
         }

@@ -1,8 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.command;
 
 import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.v1_20.bukkit.adapters.BukkitAdapter;
-import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_20.bukkit.player.BukkitPlayer;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,8 +19,7 @@ public class BukkitCommandWrapper implements CommandExecutor {
     public boolean onCommand(
             CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
         if (sender instanceof Player) {
-            return callback.execute(
-                    new VanillaPlayer(BukkitAdapter.get().getPlayer((Player) sender)), label, args);
+            return callback.execute(new BukkitPlayer((Player) sender), label, args);
         }
         return callback.execute(new BukkitCommandSender(sender), label, args);
     }
