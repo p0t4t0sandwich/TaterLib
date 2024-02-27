@@ -53,8 +53,7 @@ subprojects {
 
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
-    dependsOn(':common:test')
-    dependsOn('publishUploadAPIFullPublicationToNeuralNexusReleasesRepository')
+    doFirst('publishUploadAPIFullPublicationToNeuralNexusReleasesRepository')
     dependsOn('build_b1_7_3')
     dependsOn('build_1_2_5')
     dependsOn('build_1_6_4')
@@ -80,7 +79,6 @@ tasks.register('build_all') {
 
 // --------------------------- Build Dev --------------------------------
 tasks.register('build_dev') {
-    dependsOn(':common:test')
     dependsOn('publishUploadAPIFullPublicationToNeuralNexusSnapshotsRepository')
     dependsOn('build_b1_7_3')
 //    dependsOn('build_1_2_5')
@@ -161,6 +159,7 @@ tasks.register('clear_build') {
 // --------------------------- Build api --------------------------------
 tasks.register('build_api', Jar) {
     dependsOn('clear_build')
+    dependsOn(':common:test')
     dependsOn(':common:shadowJar')
     dependsOn(':tooling:loader:build')
 
