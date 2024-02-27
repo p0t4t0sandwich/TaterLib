@@ -1,0 +1,22 @@
+name: Feature Request
+description: Suggest a new idea for TaterLib
+labels: 'feature'
+body:
+  - type: textarea
+    attributes:
+      label: Description of behavior
+      description: What should the feature do? (eg, specific API, plugin/mod integration, etc)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Use case
+      description: How would you use this feature? (eg, is it useful for developers, or more for end users?)
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Any other information you'd like to provide? (links to docs, examples, etc)
+    validations:
+      required: false
