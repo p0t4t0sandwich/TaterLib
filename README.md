@@ -1,6 +1,6 @@
 # TaterLib
 
-[![License](https://img.shields.io/github/license/p0t4t0sandwich/TaterLib?color=blue)](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/LICENSE)
+[![License](https://img.shields.io/github/license/p0t4t0sandwich/TaterLib?color=blue)](https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE)
 [![Github](https://img.shields.io/github/stars/p0t4t0sandwich/TaterLib)](https://github.com/p0t4t0sandwich/TaterLib)
 [![Github Issues](https://img.shields.io/github/issues/p0t4t0sandwich/TaterLib?label=Issues)](https://github.com/p0t4t0sandwich/TaterLib/issues)
 [![Discord](https://img.shields.io/discord/1067482396246683708?color=7289da&logo=discord&logoColor=white)](https://discord.neuralnexus.dev)
@@ -28,27 +28,22 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 ## Download
 
 [![Github Releases](https://img.shields.io/github/downloads/p0t4t0sandwich/TaterLib/total?label=Github&logo=github&color=181717)](https://github.com/p0t4t0sandwich/TaterLib/releases)
+
 [![Spigot](https://img.shields.io/spiget/downloads/111852?label=Spigot&logo=spigotmc&color=ED8106)](https://www.spigotmc.org/resources/taterlib.111852/)
 [![Hangar](https://img.shields.io/badge/Hangar-download-blue)](https://hangar.papermc.io/p0t4t0sandwich/TaterLib)
+[![CurseForge](https://img.shields.io/curseforge/dt/980381?label=Bukkit&logo=https%3A%2F%2Fbukkit.org%2favicon.ico&color=1E6AB7)](https://www.curseforge.com/minecraft/bukkit-plugins/taterlib)
+
 [![Modrinth](https://img.shields.io/modrinth/dt/taterlib?label=Modrinth&logo=modrinth&color=00AF5C)](https://modrinth.com/mod/taterlib)
 [![CurseForge](https://img.shields.io/curseforge/dt/900128?label=CurseForge&logo=curseforge&color=F16436)](https://www.curseforge.com/minecraft/mc-mods/taterlib)
 [![Sponge](https://img.shields.io/ore/dt/taterlib?label=Sponge&logo=https%3A%2F%2Fspongepowered.org%2Ffavicon.ico&color=F7CF0D)](https://ore.spongepowered.org/p0t4t0sandwich/TaterLib)
 
-Jenkins:
+[![BuiltByBit](https://img.shields.io/badge/BuiltByBit-download-blue?logo=https%3A%2F%2Fbuiltbybit.com%2Ffavicon.ico)](https://builtbybit.com/resources/taterlib.40265/)
+[![PolyMart](https://img.shields.io/badge/PolyMart-download-cyan?logo=https%3A%2F%2Fpolymart.org%2Ffavicon.ico)](https://polymart.org/resource/taterlib.5552)
+[![Craftaro](https://img.shields.io/badge/Craftaro-download-orange?logo=https%3A%2F%2Fcraftaro.com%2Ffavicon.ico)](https://craftaro.com/marketplace/product/taterlib.2771)
 
-- Dev
-  [![Jenkins Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLib%2F)](https://jenkins.neuralnexus.dev/job/TaterLib/)
+[![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)[![Jenkins Dev Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
 
-- Release
-  [![Jenkins Dev Builds](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
-
-Maven:
-
-- Dev
-  [![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)
-
-- Release
-  [![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)[![Jenkins Builds](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLib%2F)](https://jenkins.neuralnexus.dev/job/TaterLib/)
 
 ### Adding to your project
 
@@ -126,6 +121,8 @@ Feel free to open a PR to add your plugin/mod to this list!
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
 - [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)
+
+## Metrics
 
 ### Bukkit
 
