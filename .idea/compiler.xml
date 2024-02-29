@@ -347,7 +347,6 @@
           <entry name="$MAVEN_REPOSITORY$/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar" />
         </processorPath>
         <module name="TaterLib.velocity.velocity-3.main" />
-        <module name="TaterLib.velocity.velocity-bleeding.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -603,6 +602,9 @@
       <module name="TaterLib.bleeding.sponge-bleeding.test" target="17" />
       <module name="TaterLib.bleeding.vanilla-bleeding" target="17" />
       <module name="TaterLib.fabric.fabric-1.20.4" target="17" />
+      <module name="TaterLib.fabric.fabric-bleeding" target="17" />
+      <module name="TaterLib.fabric.fabric-bleeding.main" target="17" />
+      <module name="TaterLib.fabric.fabric-bleeding.test" target="17" />
       <module name="TaterLib.forge-1.17" target="16" />
       <module name="TaterLib.forge-1.17.main" target="16" />
       <module name="TaterLib.forge-1.17.test" target="16" />
@@ -628,12 +630,21 @@
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
       <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
+      <module name="TaterLib.forge.forge-bleeding" target="17" />
+      <module name="TaterLib.forge.forge-bleeding.main" target="17" />
+      <module name="TaterLib.forge.forge-bleeding.test" target="17" />
       <module name="TaterLib.neoforge-1.20.1.main" target="17" />
       <module name="TaterLib.neoforge-1.20.1.test" target="17" />
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
       <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
+      <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
+      <module name="TaterLib.neoforge.neoforge-bleeding.main" target="17" />
+      <module name="TaterLib.neoforge.neoforge-bleeding.test" target="17" />
+      <module name="TaterLib.sponge.sponge-bleeding" target="17" />
+      <module name="TaterLib.sponge.sponge-bleeding.main" target="17" />
+      <module name="TaterLib.sponge.sponge-bleeding.test" target="17" />
       <module name="TaterLib.sponge10" target="17" />
       <module name="TaterLib.sponge10.main" target="17" />
       <module name="TaterLib.sponge10.test" target="17" />
@@ -646,6 +657,9 @@
       <module name="TaterLib.vanilla.vanilla-1.19.2" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.2.main" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.2.test" target="17" />
+      <module name="TaterLib.vanilla.vanilla-bleeding" target="17" />
+      <module name="TaterLib.vanilla.vanilla-bleeding.main" target="17" />
+      <module name="TaterLib.vanilla.vanilla-bleeding.test" target="17" />
       <module name="vanilla-bleeding.TaterLib.bleeding.vanilla-bleeding.main" target="17" />
       <module name="vanilla-bleeding.TaterLib.bleeding.vanilla-bleeding.test" target="17" />
     </bytecodeTargetLevel>

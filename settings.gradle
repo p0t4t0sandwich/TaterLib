@@ -61,14 +61,14 @@ rootProject.name = 'TaterLib'
 
 include(
         // Bleeding
-        'bukkit:bukkit-bleeding',
-        'bungee:bungee-bleeding',
-        'fabric:fabric-bleeding',
-        'forge:forge-bleeding',
-        'neoforge:neoforge-bleeding',
-        'sponge:sponge-bleeding',
-        'vanilla:vanilla-bleeding',
-        'velocity:velocity-bleeding',
+//        'bukkit:bukkit-bleeding',
+//        'bungee:bungee-bleeding',
+//        'fabric:fabric-bleeding',
+//        'forge:forge-bleeding',
+//        'neoforge:neoforge-bleeding',
+//        'sponge:sponge-bleeding',
+//        'vanilla:vanilla-bleeding',
+//        'velocity:velocity-bleeding',
 
         // Tooling
         'tooling:entrypoint-spoof',

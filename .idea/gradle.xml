@@ -18,13 +18,11 @@
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.7.10" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-1.8.8" />
             <option value="$PROJECT_DIR$/bukkit/bukkit-b1.7.3" />
-            <option value="$PROJECT_DIR$/bukkit/bukkit-bleeding" />
             <option value="$PROJECT_DIR$/bungee" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.12" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.20" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.4.7" />
             <option value="$PROJECT_DIR$/bungee/bungee-1.8" />
-            <option value="$PROJECT_DIR$/bungee/bungee-bleeding" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/fabric" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.10.2" />
@@ -44,7 +42,6 @@
             <option value="$PROJECT_DIR$/fabric/fabric-1.7.10" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.8.9" />
             <option value="$PROJECT_DIR$/fabric/fabric-1.9.4" />
-            <option value="$PROJECT_DIR$/fabric/fabric-bleeding" />
             <option value="$PROJECT_DIR$/forge" />
             <option value="$PROJECT_DIR$/forge/forge-1.12.2" />
             <option value="$PROJECT_DIR$/forge/forge-1.13.2" />
@@ -59,10 +56,8 @@
             <option value="$PROJECT_DIR$/forge/forge-1.19.4" />
             <option value="$PROJECT_DIR$/forge/forge-1.20" />
             <option value="$PROJECT_DIR$/forge/forge-1.20.2" />
-            <option value="$PROJECT_DIR$/forge/forge-bleeding" />
             <option value="$PROJECT_DIR$/neoforge" />
             <option value="$PROJECT_DIR$/neoforge/neoforge-1.20.2" />
-            <option value="$PROJECT_DIR$/neoforge/neoforge-bleeding" />
             <option value="$PROJECT_DIR$/sponge" />
             <option value="$PROJECT_DIR$/sponge/sponge-10" />
             <option value="$PROJECT_DIR$/sponge/sponge-11" />
@@ -72,7 +67,6 @@
             <option value="$PROJECT_DIR$/sponge/sponge-7" />
             <option value="$PROJECT_DIR$/sponge/sponge-8" />
             <option value="$PROJECT_DIR$/sponge/sponge-9" />
-            <option value="$PROJECT_DIR$/sponge/sponge-bleeding" />
             <option value="$PROJECT_DIR$/tooling" />
             <option value="$PROJECT_DIR$/tooling/entrypoint-spoof" />
             <option value="$PROJECT_DIR$/tooling/loader" />
@@ -83,10 +77,8 @@
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.19.4" />
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.20" />
             <option value="$PROJECT_DIR$/vanilla/vanilla-1.20.2" />
-            <option value="$PROJECT_DIR$/vanilla/vanilla-bleeding" />
             <option value="$PROJECT_DIR$/velocity" />
             <option value="$PROJECT_DIR$/velocity/velocity-3" />
-            <option value="$PROJECT_DIR$/velocity/velocity-bleeding" />
           </set>
         </option>
       </GradleProjectSettings>
