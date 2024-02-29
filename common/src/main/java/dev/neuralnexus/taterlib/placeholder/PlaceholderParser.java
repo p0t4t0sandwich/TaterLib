@@ -48,6 +48,9 @@ public class PlaceholderParser {
      * @return The placeholder parser.
      */
     public PlaceholderParser parseString(String placeholder, String value) {
+        if (value == null) {
+            value = "";
+        }
         this.input = input.replace("%" + placeholder + "%", value);
         return this;
     }
