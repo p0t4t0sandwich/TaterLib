@@ -27,7 +27,7 @@ public class ForgeLoaderPlugin {
         // }
         // Sinytra Connector support
         if (ServerType.isFabric()) {
-            loader.registerPlugin(FabricLoaderPlugin.getPlugin());
+            loader.registerPlugin(FabricLoaderPlugin.plugin());
         }
         loader.onInit();
         loader.onEnable();

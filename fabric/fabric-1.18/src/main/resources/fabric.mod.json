@@ -21,11 +21,11 @@
   "environment": "*",
   "entrypoints": {
     "server": [
-      "${group_id}.${project_id}.fabric.Fabric${project_name}Plugin"
+      "${group_id}.${project_id}.v1_18.fabric.Fabric${project_name}Plugin"
     ]
   },
   "mixins": [
-    "${project_id}.mixins.json"
+    "${project_id}.mixins.fabric.v1_18.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",

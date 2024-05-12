@@ -28,7 +28,7 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project_id}.fabric.accesswidener")
+    accessWidenerPath = file("src/main/resources/${project_id}.fabric.v1_19.accesswidener")
     mixin {
         defaultRefmapName.set("${project_id}.mixins.fabric.v1_19.refmap.json")
     }

@@ -14,15 +14,15 @@ public class FabricLoaderPlugin implements ModInitializer {
 
     public FabricLoaderPlugin() {
         loader = new TaterLibLoader(this, null, null);
-        loader.registerPlugin(getPlugin());
+        loader.registerPlugin(plugin());
         if (TaterAPIProvider.serverType().isFabricHybrid()) {
-            loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
+            loader.registerPlugin(BukkitLoaderPlugin.plugin());
         }
         loader.onInit();
     }
 
-    public static Plugin getPlugin() {
-        String version = "";
+    public static Plugin plugin() {
+        String version;
         switch (MinecraftVersion.minecraftVersion()) {
             case V1_19:
             case V1_19_1:

@@ -15,17 +15,17 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public BukkitLoaderPlugin() {
         loader = new TaterLibLoader(this, Bukkit.getServer(), Bukkit.getLogger());
-        loader.registerPlugin(getPlugin());
+        loader.registerPlugin(plugin());
         if (TaterAPIProvider.serverType().isForgeHybrid()) {
             loader.registerPlugin(ForgeLoaderPlugin.getPlugin());
         } else if (TaterAPIProvider.serverType().isFabricHybrid()) {
-            loader.registerPlugin(FabricLoaderPlugin.getPlugin());
+            loader.registerPlugin(FabricLoaderPlugin.plugin());
         }
         loader.onInit();
     }
 
-    public static Plugin getPlugin() {
-        String version = "";
+    public static Plugin plugin() {
+        String version;
         switch (MinecraftVersion.minecraftVersion()) {
             case V1_20:
             case V1_20_1:
