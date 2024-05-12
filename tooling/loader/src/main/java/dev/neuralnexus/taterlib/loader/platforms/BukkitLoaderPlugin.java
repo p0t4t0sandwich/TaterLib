@@ -41,7 +41,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
             version = "." + MinecraftVersion.V1_13_2.getDelimiterString();
         } else if (mcv.isInRange(true, MinecraftVersion.V1_14, true, MinecraftVersion.V1_15_2)) {
             version = "." + MinecraftVersion.V1_15_2.getDelimiterString();
-        } else if (mcv.parseRange("[1.16, 1.20.4]")) {
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
