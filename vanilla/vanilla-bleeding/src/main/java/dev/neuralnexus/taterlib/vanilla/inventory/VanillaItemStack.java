@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.vanilla.inventory;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 
 import java.util.List;
@@ -60,7 +61,8 @@ public class VanillaItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomHoverName();
+        itemStack.getHoverName();
+        return itemStack.get(DataComponents.CUSTOM_NAME) != null;
     }
 
     /** {@inheritDoc} */
@@ -72,7 +74,7 @@ public class VanillaItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
-        itemStack.setHoverName(Component.nullToEmpty(name));
+        itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
     }
 
     /** {@inheritDoc} */
