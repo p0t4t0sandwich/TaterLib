@@ -399,8 +399,7 @@ public enum ServerType {
 
     /** Check if the server is running GoldenForge. */
     public static boolean isGoldenForge() {
-        // TODO: Find a GoldenForge class
-        return reflectCheck("not.defined");
+        return reflectCheck("org.goldenforgelauncher.GoldenForgeEntryPoint");
     }
 
     /** Check if the server is running NeoForge. */
