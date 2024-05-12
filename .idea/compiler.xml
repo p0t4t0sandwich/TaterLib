@@ -590,8 +590,6 @@
       <module name="forge-bleeding.TaterLib.bleeding.forge-bleeding.test" target="17" />
       <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
       <module name="forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
-      <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.main" target="17" />
-      <module name="forge.forge-1.18.2.TaterLib.forge.forge-1.18.2.test" target="17" />
       <module name="neoforge-bleeding.TaterLib.bleeding.neoforge-bleeding.main" target="17" />
       <module name="TaterLib.bleeding.fabric-bleeding" target="17" />
       <module name="TaterLib.bleeding.forge-bleeding" target="17" />
@@ -623,12 +621,6 @@
       <module name="TaterLib.forge.forge-1.17" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.main" target="16" />
       <module name="TaterLib.forge.forge-1.17.TaterLib.forge.forge-1.17.test" target="16" />
-      <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.main" target="17" />
-      <module name="TaterLib.forge.forge-1.18.TaterLib.forge.forge-1.18.test" target="17" />
-      <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" target="17" />
-      <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.test" target="17" />
-      <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" target="17" />
-      <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.test" target="17" />
       <module name="TaterLib.forge.forge-1.20.4" target="17" />
       <module name="TaterLib.forge.forge-bleeding" target="17" />
       <module name="TaterLib.forge.forge-bleeding.main" target="17" />
@@ -638,7 +630,6 @@
       <module name="TaterLib.neoforge-1.20.2" target="17" />
       <module name="TaterLib.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge-1.20.2.test" target="17" />
-      <module name="TaterLib.neoforge.neoforge-1.20.2.TaterLib.neoforge.neoforge-1.20.2.main" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding.main" target="17" />
       <module name="TaterLib.neoforge.neoforge-bleeding.test" target="17" />

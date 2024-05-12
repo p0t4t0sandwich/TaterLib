@@ -9,3 +9,5 @@
 
 # iml files with module information
 modules
+# GitHub Copilot persisted chat sessions
+/copilot/chatSessions

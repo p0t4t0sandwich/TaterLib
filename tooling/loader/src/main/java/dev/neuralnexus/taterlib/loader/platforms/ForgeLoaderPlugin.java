@@ -52,7 +52,8 @@ public class ForgeLoaderPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
+                version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".forge.ForgeTaterLibPlugin";

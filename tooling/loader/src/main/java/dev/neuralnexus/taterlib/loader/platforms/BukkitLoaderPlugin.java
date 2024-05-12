@@ -36,7 +36,8 @@ public class BukkitLoaderPlugin extends JavaPlugin {
                 break;
             default:
                 System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion());
+                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
+                version = "." + MinecraftVersion.V1_20.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".bukkit.BukkitTaterLibPlugin";
