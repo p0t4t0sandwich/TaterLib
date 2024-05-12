@@ -53,9 +53,6 @@ subprojects {
 
 // --------------------------- Build all --------------------------------
 tasks.register('build_all') {
-    dependsOn('build_b1_7_3')
-    dependsOn('build_1_2_5')
-    dependsOn('build_1_6_4')
     dependsOn('build_1_7_10')
     dependsOn('build_1_8')
     dependsOn('build_1_9')
@@ -78,9 +75,6 @@ tasks.register('build_all') {
 
 // --------------------------- Build Dev --------------------------------
 tasks.register('build_dev') {
-    dependsOn('build_b1_7_3')
-//    dependsOn('build_1_2_5')
-//    dependsOn('build_1_6_4')
 //    dependsOn('build_1_7_10')
 //    dependsOn('build_1_8')
 //    dependsOn('build_1_9')
@@ -253,121 +247,11 @@ tasks.register('build_legacy_forge', Exec) {
     }
 }
 
-// --------------------------- Build b1.7.3 --------------------------------
-tasks.register('build_b1_7_3', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("b1.7.3"))
-            .build()
-
-    dependsOn('build_api')
-    platformVersions.each { platform, versions ->
-        versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
-        }
-    }
-
-    String mc_version = 'b1.7.3'
-    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
-// --------------------------- Build 1.2.5 --------------------------------
-tasks.register('build_1_2_5', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.2.5"))
-            .put("bungee", Arrays.asList("1.4.7"))
-            .build()
-
-    dependsOn('build_api')
-    platformVersions.each { platform, versions ->
-        versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
-        }
-    }
-
-    String mc_version = '1.2.5'
-    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
-// --------------------------- Build 1.6.4 --------------------------------
-tasks.register('build_1_6_4', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.6.4"))
-            .put("bungee", Arrays.asList("1.4.7"))
-            .build()
-
-    dependsOn('build_api')
-    platformVersions.each { platform, versions ->
-        versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
-        }
-    }
-
-    String mc_version = '1.6.4'
-    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
 // --------------------------- Build 1.7.10 --------------------------------
 tasks.register('build_1_7_10', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.7.10"))
-            .put("bungee", Arrays.asList("1.4.7"))
             .put("fabric", Arrays.asList("1.7.10"))
             .put("forge", Arrays.asList("1.7.10"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -406,12 +290,9 @@ tasks.register('build_1_7_10', Jar) {
 // --------------------------- Build 1.8 --------------------------------
 tasks.register('build_1_8', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.8.8"))
-            .put("bungee", Arrays.asList("1.8"))
             .put("fabric", Arrays.asList("1.8.9"))
             .put("forge", Arrays.asList("1.8.9"))
             .put("sponge", Arrays.asList("4"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -450,12 +331,9 @@ tasks.register('build_1_8', Jar) {
 // --------------------------- Build 1.9 --------------------------------
 tasks.register('build_1_9', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.8.8"))
-            .put("bungee", Arrays.asList("1.8"))
             .put("fabric", Arrays.asList("1.9.4"))
             .put("forge", Arrays.asList("1.9.4"))
             .put("sponge", Arrays.asList("5"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -494,12 +372,9 @@ tasks.register('build_1_9', Jar) {
 // --------------------------- Build 1.10 --------------------------------
 tasks.register('build_1_10', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.8.8"))
-            .put("bungee", Arrays.asList("1.8"))
             .put("fabric", Arrays.asList("1.10.2"))
             .put("forge", Arrays.asList("1.10.2"))
             .put("sponge", Arrays.asList("5"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -538,12 +413,9 @@ tasks.register('build_1_10', Jar) {
 // --------------------------- Build 1.11 --------------------------------
 tasks.register('build_1_11', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.8.8"))
-            .put("bungee", Arrays.asList("1.8"))
             .put("fabric", Arrays.asList("1.11.2"))
             .put("forge", Arrays.asList("1.11.2"))
             .put("sponge", Arrays.asList("6"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -583,12 +455,9 @@ tasks.register('build_1_11', Jar) {
 // --------------------------- Build 1.12 --------------------------------
 tasks.register('build_1_12', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.8.8"))
-            .put("bungee", Arrays.asList("1.12"))
             .put("fabric", Arrays.asList("1.12.2"))
             .put("forge", Arrays.asList("1.12.2"))
             .put("sponge", Arrays.asList("7"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -624,11 +493,8 @@ tasks.register('build_1_12', Jar) {
 // --------------------------- Build 1.13 --------------------------------
 tasks.register('build_1_13', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.13.2"))
-            .put("bungee", Arrays.asList("1.12"))
             .put("forge", Arrays.asList("1.13.2"))
             .put("sponge", Arrays.asList("8"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -664,12 +530,9 @@ tasks.register('build_1_13', Jar) {
 // --------------------------- Build 1.14 --------------------------------
 tasks.register('build_1_14', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.13.2"))
-            .put("bungee", Arrays.asList("1.12"))
             .put("fabric", Arrays.asList("1.14"))
             .put("forge", Arrays.asList("1.14.4"))
             .put("sponge", Arrays.asList("8"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -705,12 +568,9 @@ tasks.register('build_1_14', Jar) {
 // --------------------------- Build 1.15 --------------------------------
 tasks.register('build_1_15', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.15"))
             .put("forge", Arrays.asList("1.15.1"))
             .put("sponge", Arrays.asList("8"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -746,12 +606,9 @@ tasks.register('build_1_15', Jar) {
 // --------------------------- Build 1.16 --------------------------------
 tasks.register('build_1_16', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.16"))
             .put("forge", Arrays.asList("1.16.3"))
             .put("sponge", Arrays.asList("8"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -787,12 +644,9 @@ tasks.register('build_1_16', Jar) {
 // --------------------------- Build 1.17 --------------------------------
 tasks.register('build_1_17', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.17"))
             .put("forge", Arrays.asList("1.17.1"))
             .put("sponge", Arrays.asList("9"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -828,12 +682,9 @@ tasks.register('build_1_17', Jar) {
 // --------------------------- Build 1.18 --------------------------------
 tasks.register('build_1_18', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.18"))
             .put("forge", Arrays.asList("1.18"))
             .put("sponge", Arrays.asList("9"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -869,12 +720,9 @@ tasks.register('build_1_18', Jar) {
 // --------------------------- Build 1.18.2 --------------------------------
 tasks.register('build_1_18_2', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.18"))
             .put("forge", Arrays.asList("1.18.2"))
             .put("sponge", Arrays.asList("9"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -916,13 +764,10 @@ tasks.register('build_1_18_2', Jar) {
 // --------------------------- Build 1.19 --------------------------------
 tasks.register('build_1_19', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
             .put("forge", Arrays.asList("1.19"))
             .put("sponge", Arrays.asList("10"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -957,13 +802,10 @@ tasks.register('build_1_19', Jar) {
 // --------------------------- Build 1.19.2 --------------------------------
 tasks.register('build_1_19_2', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
             .put("forge", Arrays.asList("1.19.2"))
             .put("sponge", Arrays.asList("10"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
@@ -998,13 +840,10 @@ tasks.register('build_1_19_2', Jar) {
 // --------------------------- Build 1.19.4 --------------------------------
 tasks.register('build_1_19_4', Jar) {
     var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("1.15.2"))
-            .put("bungee", Arrays.asList("1.20"))
             .put("fabric", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
             .put("forge", Arrays.asList("1.19.4"))
             .put("sponge", Arrays.asList("10"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4"))
-            .put("velocity", Arrays.asList("3"))
             .build()
 
     dependsOn('build_api')
