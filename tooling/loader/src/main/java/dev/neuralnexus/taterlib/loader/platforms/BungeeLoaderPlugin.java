@@ -18,19 +18,20 @@ public class BungeeLoaderPlugin extends Plugin {
     }
 
     public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
-        String version = "";
-//                switch (MinecraftVersion.minecraftVersion()) {
-//                    case V1_20:
-//                    case V1_20_1:
-//                    case V1_20_2:
-//                    case V1_20_3:
-//                    case V1_20_4:
-//                        version = "." + MinecraftVersion.V1_20.getDelimiterString();
-//                        break;
-//                    default:
-//                        System.err.println(
-//                                "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-//                }
+        String version;
+        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        if (mcv.isInRange(true, MinecraftVersion.V1_4_2, true, MinecraftVersion.V1_7_10)) {
+            version = "." + MinecraftVersion.V1_4_7.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_11_2)) {
+            version = "." + MinecraftVersion.V1_8.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_15_2)) {
+            version = "." + MinecraftVersion.V1_12.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_20_6)) {
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        } else {
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".bungee.BungeeTaterLibPlugin";
         try {
