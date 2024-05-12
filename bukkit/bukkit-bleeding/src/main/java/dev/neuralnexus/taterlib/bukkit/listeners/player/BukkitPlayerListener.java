@@ -2,7 +2,6 @@ package dev.neuralnexus.taterlib.bukkit.listeners.player;
 
 import dev.neuralnexus.taterlib.bukkit.adapters.BukkitAdapters;
 import dev.neuralnexus.taterlib.bukkit.event.BukkitCancellableEventWrapper;
-import dev.neuralnexus.taterlib.bukkit.event.player.*;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.vanilla.event.player.VanillaPlayerDeathEvent;

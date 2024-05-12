@@ -26,18 +26,26 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public static Plugin plugin() {
         String version;
-        switch (MinecraftVersion.minecraftVersion()) {
-            case V1_20:
-            case V1_20_1:
-            case V1_20_2:
-            case V1_20_3:
-            case V1_20_4:
-                version = "." + MinecraftVersion.V1_20.getDelimiterString();
-                break;
-            default:
-                System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-                version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        if (mcv.isInRange(true, MinecraftVersion.B1_7, true, MinecraftVersion.B1_7_3)) {
+            version = "." + MinecraftVersion.B1_7_3.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_2_1, true, MinecraftVersion.V1_2_5)) {
+            version = "." + MinecraftVersion.V1_2_5.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_6_1, true, MinecraftVersion.V1_6_4)) {
+            version = "." + MinecraftVersion.V1_6_4.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_7_2, true, MinecraftVersion.V1_7_10)) {
+            version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+            version = "." + MinecraftVersion.V1_8_8.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_13_2)) {
+            version = "." + MinecraftVersion.V1_13_2.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_14, true, MinecraftVersion.V1_15_2)) {
+            version = "." + MinecraftVersion.V1_15_2.getDelimiterString();
+        } else if (mcv.parseRange("[1.16, 1.20.4]")) {
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        } else {
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".bukkit.BukkitTaterLibPlugin";
