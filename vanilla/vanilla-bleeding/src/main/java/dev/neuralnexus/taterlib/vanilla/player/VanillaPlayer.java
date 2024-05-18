@@ -83,7 +83,7 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
-                                new VanillaCustomPacketPayload_1_20_4(channel, data)));
+                                new VanillaCustomPacketPayload_1_20_6(channel, data)));
     }
 
     /** {@inheritDoc} */
