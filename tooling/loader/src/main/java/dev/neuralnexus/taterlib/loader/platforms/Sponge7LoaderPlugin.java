@@ -44,9 +44,9 @@ public class Sponge7LoaderPlugin {
                 //                version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
                 //                break;
             default:
-                System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-                version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
+//                System.err.println(
+//                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
+//                version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";

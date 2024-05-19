@@ -22,26 +22,15 @@ public class FabricLoaderPlugin implements ModInitializer {
     }
 
     public static Plugin plugin() {
-        String version;
-        switch (MinecraftVersion.minecraftVersion()) {
-            case V1_19:
-            case V1_19_1:
-            case V1_19_2:
-            case V1_19_3:
-            case V1_19_4:
-                version = "." + MinecraftVersion.V1_19.getDelimiterString();
-                break;
-            case V1_20:
-            case V1_20_1:
-            case V1_20_2:
-            case V1_20_3:
-            case V1_20_4:
-                version = "." + MinecraftVersion.V1_20.getDelimiterString();
-                break;
-            default:
-                System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-                version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        String version = "";
+        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
+            version = "." + MinecraftVersion.V1_19.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        } else {
+//            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+//            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".fabric.FabricTaterLibPlugin";

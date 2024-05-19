@@ -31,6 +31,7 @@ minecraft.accessTransformers.entry 'public net.minecraft.server.network.ServerCo
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':common'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
 }
 
 tasks.withType(ProcessResources).configureEach {
