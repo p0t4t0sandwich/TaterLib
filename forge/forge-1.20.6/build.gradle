@@ -1,0 +1,31 @@
+plugins {
+    id('net.minecraftforge.gradle') version('[6.0.24,6.2)')
+}
+
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = targetCompatibility = java_version
+
+minecraft {
+    mappings(channel: mapping_channel, version: mapping_version)
+    reobf = false
+}
+
+dependencies {
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+
+    // Hack fix for now, force jopt-simple to be exactly 5.0.4 because Mojang ships that version, but some transtive dependencies request 6.0+
+    implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+
+    compileOnly(project(':common'))
+    compileOnly(project(':vanilla:vanilla-1.20'))
+}
+
+tasks.withType(ProcessResources).configureEach {
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand project.properties
+    }
+}

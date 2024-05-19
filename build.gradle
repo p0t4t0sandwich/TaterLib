@@ -881,7 +881,7 @@ tasks.register('build_1_20_x', Jar) {
             .put("bukkit", Arrays.asList("b1.7.3", "1.2.5", "1.6.4", "1.7.10", "1.8.8", "1.13.2", "1.15.2", "1.20"))
             .put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
             .put("fabric", Arrays.asList("1.20", "1.20.2", "1.20.6"))
-            .put("forge", Arrays.asList("1.20", "1.20.2"))
+            .put("forge", Arrays.asList("1.20", "1.20.2", "1.20.6"))
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("11"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2", "1.20.6"))
@@ -909,8 +909,7 @@ tasks.register('build_1_20_x', Jar) {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "${project_id}.mixins.vanilla.v1_20.json, ${project_id}.mixins.vanilla.v1_20_2.json, ${project_id}.mixins.forge.patch.v1_20_2.json"
-//, ${project_id}.mixins.forge.v1_20_2.json"
+                'MixinConfigs': "${project_id}.mixins.vanilla.v1_20.json, ${project_id}.mixins.vanilla.patch.v1_20_2.json, ${project_id}.mixins.vanilla.v1_20_2.json, ${project_id}.mixins.vanilla.patch.v1_20_6.json, ${project_id}.mixins.vanilla.v1_20_6.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
