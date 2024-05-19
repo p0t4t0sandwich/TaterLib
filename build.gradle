@@ -884,7 +884,7 @@ tasks.register('build_1_20_x', Jar) {
             .put("forge", Arrays.asList("1.20", "1.20.2"))
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("11"))
-            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2"))
+            .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2", "1.20.6"))
             .put("velocity", Arrays.asList("3"))
             .build()
 

@@ -67,7 +67,7 @@ include(
 //        'forge:forge-bleeding',
 //        'neoforge:neoforge-bleeding',
 //        'sponge:sponge-bleeding',
-        'vanilla:vanilla-bleeding',
+//        'vanilla:vanilla-bleeding',
 //        'velocity:velocity-bleeding',
 
         // Tooling
@@ -151,6 +151,7 @@ include(
         'vanilla:vanilla-1.19.4',
         'vanilla:vanilla-1.20',
         'vanilla:vanilla-1.20.2',
+        'vanilla:vanilla-1.20.6',
 
         // Velocity
         'velocity:velocity-3'

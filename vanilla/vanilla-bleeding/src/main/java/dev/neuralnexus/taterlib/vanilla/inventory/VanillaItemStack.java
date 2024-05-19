@@ -61,7 +61,6 @@ public class VanillaItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
-        itemStack.getHoverName();
         return itemStack.get(DataComponents.CUSTOM_NAME) != null;
     }
 

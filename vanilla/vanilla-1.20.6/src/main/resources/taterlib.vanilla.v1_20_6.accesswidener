@@ -1,0 +1,11 @@
+accessWidener    v1    named
+
+# MinecraftServerMixin_1_20
+accessible field net/minecraft/server/MinecraftServer resources Lnet/minecraft/server/MinecraftServer$ReloadableResources;
+accessible method net/minecraft/server/MinecraftServer$ReloadableResources managers ()Lnet/minecraft/server/ReloadableServerResources;
+
+# PlayerAdvancementsMixin_1_20
+accessible field net/minecraft/server/PlayerAdvancements player Lnet/minecraft/server/level/ServerPlayer;
+
+# ServerCommonPacketListenerImplMixin_1_20_2
+accessible field net/minecraft/server/network/ServerCommonPacketListenerImpl server Lnet/minecraft/server/MinecraftServer;
