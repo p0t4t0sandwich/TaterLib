@@ -27,19 +27,13 @@ public class NeoForgeLoaderPlugin {
     }
 
     public static Plugin getPlugin() {
-        String version = "";
-        switch (MinecraftVersion.minecraftVersion()) {
-            case V1_20:
-            case V1_20_1:
-            case V1_20_2:
-            case V1_20_3:
-            case V1_20_4:
-                version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
-                break;
-            default:
-                System.err.println(
-                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-                version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+        String version;
+        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
+            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+        } else {
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".neoforge.NeoForgeTaterLibPlugin";
