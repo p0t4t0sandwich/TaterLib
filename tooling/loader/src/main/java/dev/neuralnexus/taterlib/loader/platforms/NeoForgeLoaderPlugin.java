@@ -22,11 +22,11 @@ public class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
         loader = new TaterLibLoader(this, null, LogUtils.getLogger());
-        loader.registerPlugin(getPlugin());
+        loader.registerPlugin(plugin());
         loader.onInit();
     }
 
-    public static Plugin getPlugin() {
+    public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
         if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {

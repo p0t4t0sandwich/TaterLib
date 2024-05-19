@@ -17,7 +17,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
         loader = new TaterLibLoader(this, Bukkit.getServer(), Bukkit.getLogger());
         loader.registerPlugin(plugin());
         if (TaterAPIProvider.serverType().isForgeHybrid()) {
-            loader.registerPlugin(ForgeLoaderPlugin.getPlugin());
+            loader.registerPlugin(ForgeLoaderPlugin.plugin());
         } else if (TaterAPIProvider.serverType().isFabricHybrid()) {
             loader.registerPlugin(FabricLoaderPlugin.plugin());
         }

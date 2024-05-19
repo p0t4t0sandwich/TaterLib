@@ -27,7 +27,7 @@ public class Sponge8LoaderPlugin {
         loader = new TaterLibLoader(container, null, logger);
         loader.registerPlugin(getPlugin());
         if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
-            loader.registerPlugin(ForgeLoaderPlugin.getPlugin());
+            loader.registerPlugin(ForgeLoaderPlugin.plugin());
         }
         loader.onInit();
     }
