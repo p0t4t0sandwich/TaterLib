@@ -116,14 +116,12 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
             isNeoForge = true
         }
 
-        // Fix for Legacy Forge project directories
-        var String platformDir = platform
-        if (platform == 'forge' && versions.stream().anyMatch(legacyForgeVersions::contains)) {
-            platformDir = 'forge-legacy'
-        }
-
         versions.each { mcVersion ->
-            jarFiles.add(file("${platformDir}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar"))
+            if (platform == 'forge' && legacyForgeVersions.contains(mcVersion)) {
+                jarFiles.add(file("forge-legacy/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar"))
+            } else {
+                jarFiles.add(file("${platform}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar"))
+            }
         }
     }
 
@@ -881,7 +879,12 @@ tasks.register('build_1_20_x', Jar) {
             .put("bukkit", Arrays.asList("b1.7.3", "1.2.5", "1.6.4", "1.7.10", "1.8.8", "1.13.2", "1.15.2", "1.20"))
             .put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
             .put("fabric", Arrays.asList("1.20", "1.20.2", "1.20.6"))
-            .put("forge", Arrays.asList("1.20", "1.20.2", "1.20.6"))
+            .put("forge", Arrays.asList(
+                    "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
+                    "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
+                    "1.18", "1.18.2",
+                    "1.19", "1.19.2", "1.19.4",
+                    "1.20", "1.20.2", "1.20.6"))
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("11"))
             .put("vanilla", Arrays.asList("1.19", "1.19.1", "1.19.3", "1.19.4", "1.20", "1.20.2", "1.20.6"))
@@ -891,7 +894,11 @@ tasks.register('build_1_20_x', Jar) {
     dependsOn('build_api')
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            if (platform == 'forge' && legacyForgeVersions.contains(mcVersion)) {
+                dependsOn('build_legacy_forge')
+            } else {
+                dependsOn(":${platform}:${platform}-${mcVersion}:build")
+            }
         }
     }
 
