@@ -19,7 +19,13 @@ description = '''${project_description}'''
 [[mixins]]
 config="${project_id}.mixins.vanilla.v1_20.json"
 [[mixins]]
+config="{project_id}.mixins.vanilla.patch.v1_20_2.json"
+[[mixins]]
 config="${project_id}.mixins.vanilla.v1_20_2.json"
+[[mixins]]
+config="{project_id}.mixins.vanilla.patch.v1_20_6.json"
+[[mixins]]
+config="${project_id}.mixins.vanilla.v1_20_6.json"
 
 # Forge Dependency
 [[dependencies.${ project_id }]]

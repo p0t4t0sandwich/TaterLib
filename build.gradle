@@ -51,50 +51,6 @@ subprojects {
     }
 }
 
-// --------------------------- Build all --------------------------------
-tasks.register('build_all') {
-    dependsOn('build_1_7_10')
-    dependsOn('build_1_8')
-    dependsOn('build_1_9')
-    dependsOn('build_1_10')
-    dependsOn('build_1_11')
-    dependsOn('build_1_12')
-    dependsOn('build_1_13')
-    dependsOn('build_1_14')
-    dependsOn('build_1_15')
-    dependsOn('build_1_16')
-    dependsOn('build_1_17')
-    dependsOn('build_1_18')
-    dependsOn('build_1_18_2')
-    dependsOn('build_1_19')
-    dependsOn('build_1_19_2')
-    dependsOn('build_1_19_4')
-    dependsOn('build_1_20_x')
-    dependsOn('build_bleeding')
-}
-
-// --------------------------- Build Dev --------------------------------
-tasks.register('build_dev') {
-//    dependsOn('build_1_7_10')
-//    dependsOn('build_1_8')
-//    dependsOn('build_1_9')
-//    dependsOn('build_1_10')
-//    dependsOn('build_1_11')
-//    dependsOn('build_1_12')
-//    dependsOn('build_1_13')
-//    dependsOn('build_1_14')
-//    dependsOn('build_1_15')
-//    dependsOn('build_1_16')
-//    dependsOn('build_1_17')
-//    dependsOn('build_1_18')
-//    dependsOn('build_1_18_2')
-//    dependsOn('build_1_19')
-//    dependsOn('build_1_19_2')
-//    dependsOn('build_1_19_4')
-    dependsOn('build_1_20_x')
-//    dependsOn('build_bleeding')
-}
-
 var List<String> legacyForgeVersions = [
         "1.7.10",
         "1.8.9",
