@@ -28,25 +28,27 @@ public class Sponge7LoaderPlugin {
     @Inject
     public Sponge7LoaderPlugin(PluginContainer container, Logger logger) {
         loader = new TaterLibLoader(container, null, logger);
-        loader.registerPlugin(getPlugin());
+        loader.registerPlugin(plugin());
         if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
             loader.registerPlugin(ForgeLoaderPlugin.plugin());
         }
         loader.onInit();
     }
 
-    public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
-        String version = "";
-        switch (MinecraftVersion.minecraftVersion()) {
-                //            case V1_12:
-                //            case V1_12_1:
-                //            case V1_12_2:
-                //                version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
-                //                break;
-            default:
-//                System.err.println(
-//                        "Unsupported Minecraft version: " + MinecraftVersion.minecraftVersion() + "We'll try to load the latest version.");
-//                version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
+    public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
+        String version;
+        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+            version = "." + MinecraftVersion.V1_8.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_10_2)) {
+            version = "." + MinecraftVersion.V1_9.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_11, true, MinecraftVersion.V1_11_2)) {
+            version = "." + MinecraftVersion.V1_11.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_12_2)) {
+            version = "." + MinecraftVersion.V1_12.getDelimiterString();
+        } else {
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_12.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";

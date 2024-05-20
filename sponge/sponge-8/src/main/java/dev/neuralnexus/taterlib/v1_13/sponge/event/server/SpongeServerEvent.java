@@ -1,0 +1,23 @@
+package dev.neuralnexus.taterlib.v1_13.sponge.event.server;
+
+import dev.neuralnexus.taterlib.event.server.ServerEvent;
+import dev.neuralnexus.taterlib.server.SimpleServer;
+import dev.neuralnexus.taterlib.v1_13.sponge.server.SpongeServer;
+
+import org.spongepowered.api.Sponge;
+import org.spongepowered.api.event.lifecycle.LifecycleEvent;
+
+/** Sponge implementation of {@link ServerEvent}. */
+public class SpongeServerEvent implements ServerEvent {
+    private final LifecycleEvent event;
+
+    public SpongeServerEvent(LifecycleEvent event) {
+        this.event = event;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SimpleServer server() {
+        return new SpongeServer(Sponge.server());
+    }
+}

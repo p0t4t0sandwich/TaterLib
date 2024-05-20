@@ -1,0 +1,13 @@
+package dev.neuralnexus.taterlib.v1_13.sponge.event.server;
+
+import dev.neuralnexus.taterlib.event.server.ServerStartedEvent;
+
+import org.spongepowered.api.Server;
+import org.spongepowered.api.event.lifecycle.StartedEngineEvent;
+
+/** Sponge implementation of {@link ServerStartedEvent}. */
+public class SpongeServerStartedEvent extends SpongeServerEvent implements ServerStartedEvent {
+    public SpongeServerStartedEvent(StartedEngineEvent<Server> event) {
+        super(event);
+    }
+}

@@ -25,21 +25,27 @@ public class Sponge8LoaderPlugin {
     @Inject
     public Sponge8LoaderPlugin(PluginContainer container, Logger logger) {
         loader = new TaterLibLoader(container, null, logger);
-        loader.registerPlugin(getPlugin());
+        loader.registerPlugin(plugin());
         if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
             loader.registerPlugin(ForgeLoaderPlugin.plugin());
         }
         loader.onInit();
     }
 
-    public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
-        String version = "";
+    public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
+        String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+        if (mcv.isInRange(true, MinecraftVersion.V1_13, true, MinecraftVersion.V1_16_5)) {
+            version = "." + MinecraftVersion.V1_13.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_17, true, MinecraftVersion.V1_18_2)) {
+            version = "." + MinecraftVersion.V1_17.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
+            version = "." + MinecraftVersion.V1_19.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
-//            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
-//            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";
