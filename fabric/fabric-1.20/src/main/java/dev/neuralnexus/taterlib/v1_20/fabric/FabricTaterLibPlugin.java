@@ -6,10 +6,20 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20.fabric.hooks.permissions.FabricPermissionsHook;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartedEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppedEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 
 import org.apache.logging.log4j.LogManager;
@@ -43,5 +53,25 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                                                 .getFriendlyString()))
                                 .collect(Collectors.toList()));
         api.setServer(VanillaServer::instance);
+
+        ServerLifecycleEvents.SERVER_STARTING.register(
+                s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
+        ServerLifecycleEvents.SERVER_STARTED.register(
+                s -> ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(s)));
+        ServerLifecycleEvents.SERVER_STOPPING.register(
+                s -> ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(s)));
+        ServerLifecycleEvents.SERVER_STOPPED.register(
+                s -> ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(s)));
+
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                    new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
+
+            // Sponge has its own, nicer simple command system
+            if (!TaterAPIProvider.serverType().isSpongeBased()) {
+                CommandEvents.REGISTER_COMMAND.invoke(
+                        new VanillaCommandRegisterEvent(dispatcher, environment));
+            }
+        });
     }
 }

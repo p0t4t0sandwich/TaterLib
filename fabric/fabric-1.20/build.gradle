@@ -12,6 +12,16 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
+    // Fabric API
+    Set<String> apiModules = [
+            'fabric-command-api-v2',
+            'fabric-lifecycle-events-v1'
+    ]
+
+    apiModules.forEach {
+        modImplementation(fabricApi.module(it, project.fabric_version))
+    }
+
     // Lucko's Permissions API
     include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 
@@ -29,7 +39,6 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project_id}.fabric.v1_20.accesswidener")
     mixin {
         defaultRefmapName.set("${project_id}.mixins.fabric.v1_20.refmap.json")
     }
