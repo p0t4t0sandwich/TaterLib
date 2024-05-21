@@ -1,7 +1,9 @@
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.fabric.mixin.listeners.network;
 
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.network.CustomPayloadPacketWrapper_1_20_2;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -23,12 +25,11 @@ public class CustomPayloadMixin_1_20_2 {
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacketWrapper_1_20_2 wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
+        CustomPayloadWrapper wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
-
-        ServerCommonPacketListenerImpl self = (ServerCommonPacketListenerImpl) (Object) this;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent.Player(
-                        wrapper, self.server.getPlayerList().getPlayer(self.getOwner().getId())));
+                new VanillaPluginMessageEvent.Player(wrapper,
+                        VanillaServer.server().getPlayerList().getPlayer(
+                                ((ServerCommonPacketListenerImpl) (Object) this).getOwner().getId())));
     }
 }

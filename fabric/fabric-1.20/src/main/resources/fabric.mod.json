@@ -27,7 +27,9 @@
   "mixins": [
     "${project_id}.mixins.fabric.v1_20.json",
     "${project_id}.mixins.fabric.v1_20_2.json",
-    "${project_id}.mixins.fabric.patch.v1_20_2.json"
+    "${project_id}.mixins.fabric.patch.v1_20_2.json",
+    "${project_id}.mixins.fabric.v1_20_6.json",
+    "${project_id}.mixins.fabric.patch.v1_20_6.json"
   ],
   "accessWidener": "${project_id}.fabric.v1_20.accesswidener",
   "depends": {

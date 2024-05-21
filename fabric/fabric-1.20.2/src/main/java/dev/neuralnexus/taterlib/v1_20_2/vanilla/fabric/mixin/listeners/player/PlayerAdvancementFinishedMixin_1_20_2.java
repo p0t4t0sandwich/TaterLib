@@ -8,7 +8,10 @@ import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.server.PlayerAdvancements;
 
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -16,6 +19,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Mixin for the player advancement finished listener. */
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementFinishedMixin_1_20_2 {
+    @Shadow private ServerPlayer player;
+
     /** Called when a player completes an advancement. */
     @Inject(method = "unregisterListeners", at = @At("HEAD"))
     public void onPlayerAdvancementFinished(AdvancementHolder advancementHolder, CallbackInfo ci) {
@@ -28,7 +33,7 @@ public abstract class PlayerAdvancementFinishedMixin_1_20_2 {
                             .isDone()) {
                 PlayerEvents.ADVANCEMENT_FINISHED.invoke(
                         new VanillaPlayerAdvancementEvent_1_20_2.AdvancementFinished(
-                                ((PlayerAdvancements) (Object) this).player, advancementHolder));
+                                player, advancementHolder));
             }
         }
     }
