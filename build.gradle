@@ -4,7 +4,7 @@ plugins {
     id('java')
     id('maven-publish')
     id('com.github.johnrengelman.shadow') version('8.1.1')
-    id('fabric-loom') version('1.4-SNAPSHOT') apply(false)
+    id('fabric-loom') version('1.6-SNAPSHOT') apply(false)
     id('net.neoforged.gradle.userdev') version('7.0.80') apply(false)
 }
 
