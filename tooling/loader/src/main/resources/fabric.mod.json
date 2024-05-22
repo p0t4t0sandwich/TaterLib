@@ -52,6 +52,7 @@
   },
   "suggests": {
     "fabric-api-base": "*",
+    "legacy-fabric-api-base": "*",
     "luckperms": "*"
   }
 }

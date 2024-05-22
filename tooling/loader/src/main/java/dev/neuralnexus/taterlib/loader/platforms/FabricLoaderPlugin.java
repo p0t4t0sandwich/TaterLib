@@ -22,15 +22,37 @@ public class FabricLoaderPlugin implements ModInitializer {
     }
 
     public static Plugin plugin() {
-        String version = "";
+        String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
+        if (mcv.isInRange(true, MinecraftVersion.V1_7_2, true, MinecraftVersion.V1_7_10)) {
+            version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+            version = "." + MinecraftVersion.V1_8_9.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_9_4)) {
+            version = "." + MinecraftVersion.V1_9_4.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_10, true, MinecraftVersion.V1_10_2)) {
+            version = "." + MinecraftVersion.V1_10_2.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_11, true, MinecraftVersion.V1_11_2)) {
+            version = "." + MinecraftVersion.V1_11_2.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_12_2)) {
+            version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_13, true, MinecraftVersion.V1_14_4)) {
+            version = "." + MinecraftVersion.V1_14.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_15, true, MinecraftVersion.V1_15_2)) {
+            version = "." + MinecraftVersion.V1_15.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_16_5)) {
+            version = "." + MinecraftVersion.V1_16.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_17, true, MinecraftVersion.V1_17_1)) {
+            version = "." + MinecraftVersion.V1_17.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_18, true, MinecraftVersion.V1_18_2)) {
+            version = "." + MinecraftVersion.V1_18.getDelimiterString();
+        } else if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
         } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
-//            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
-//            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".fabric.FabricTaterLibPlugin";

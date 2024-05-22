@@ -54,24 +54,31 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                 .collect(Collectors.toList()));
         api.setServer(VanillaServer::instance);
 
-        ServerLifecycleEvents.SERVER_STARTING.register(
-                s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
-        ServerLifecycleEvents.SERVER_STARTED.register(
-                s -> ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(s)));
-        ServerLifecycleEvents.SERVER_STOPPING.register(
-                s -> ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(s)));
-        ServerLifecycleEvents.SERVER_STOPPED.register(
-                s -> ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(s)));
+        if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
+            // Initialize plugin data
+            ServerLifecycleEvents.SERVER_STARTING.register(VanillaServer::setServer);
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> pluginStop());
 
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                    new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
+            // Register Fabric API command events
+            CommandRegistrationCallback.EVENT.register(
+                    (dispatcher, registryAccess, environment) -> {
+                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
+                                new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
+                        // Sponge has its own, nicer simple command system
+                        if (!TaterAPIProvider.serverType().isSpongeBased()) {
+                            CommandEvents.REGISTER_COMMAND.invoke(
+                                    new VanillaCommandRegisterEvent(dispatcher, environment));
+                        }
+                    });
 
-            // Sponge has its own, nicer simple command system
-            if (!TaterAPIProvider.serverType().isSpongeBased()) {
-                CommandEvents.REGISTER_COMMAND.invoke(
-                        new VanillaCommandRegisterEvent(dispatcher, environment));
-            }
-        });
+            ServerLifecycleEvents.SERVER_STARTING.register(
+                    s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
+            ServerLifecycleEvents.SERVER_STARTED.register(
+                    s -> ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(s)));
+            ServerLifecycleEvents.SERVER_STOPPING.register(
+                    s -> ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(s)));
+            ServerLifecycleEvents.SERVER_STOPPED.register(
+                    s -> ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(s)));
+        }
     }
 }
