@@ -1,0 +1,22 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "${group_id}.${project_id}.v1_17.fabric.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "listeners.block.PlayerBlockBreakMixin_1_17",
+    "listeners.entity.EntityDamageMixin_1_17",
+    "listeners.entity.EntityDeathMixin_1_17"
+  ],
+  "server": [
+    "listeners.entity.EntitySpawnMixin_1_17",
+    "listeners.player.PlayerAdvancementFinishedMixin_1_17",
+    "listeners.player.PlayerAdvancementProgressMixin_1_17",
+    "listeners.player.PlayerDeathMixin_1_17",
+    "listeners.player.PlayerMessageMixin_1_17",
+    "listeners.player.PlayerRespawnMixin_1_17"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

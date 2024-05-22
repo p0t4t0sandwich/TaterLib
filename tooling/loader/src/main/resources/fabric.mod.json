@@ -25,6 +25,17 @@
     ]
   },
   "mixins": [
+    "${project_id}.mixins.fabric.v1_7_10.json",
+    "${project_id}.mixins.fabric.v1_8_9.json",
+    "${project_id}.mixins.fabric.v1_9_4.json",
+    "${project_id}.mixins.fabric.v1_10_2.json",
+    "${project_id}.mixins.fabric.v1_11_2.json",
+    "${project_id}.mixins.fabric.v1_12_2.json",
+    "${project_id}.mixins.fabric.v1_14.json",
+    "${project_id}.mixins.fabric.v1_15.json",
+    "${project_id}.mixins.fabric.v1_16.json",
+    "${project_id}.mixins.fabric.v1_17.json",
+    "${project_id}.mixins.fabric.v1_18.json",
     "${project_id}.mixins.fabric.v1_19.json",
     "${project_id}.mixins.fabric.v1_19_1.json",
     "${project_id}.mixins.fabric.patch.v1_19_1.json",

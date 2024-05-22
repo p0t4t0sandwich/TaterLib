@@ -4,17 +4,17 @@
   "package": "${group_id}.${project_id}.v1_18.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "listeners.block.FabricBlockBreakMixin",
-    "listeners.entity.FabricEntityDamageMixin",
-    "listeners.entity.FabricEntityDeathMixin"
+    "listeners.block.PlayerBlockBreakMixin_1_18",
+    "listeners.entity.EntityDamageMixin_1_18",
+    "listeners.entity.EntityDeathMixin_1_18"
   ],
   "server": [
-    "listeners.entity.FabricEntitySpawnMixin",
-    "listeners.player.FabricPlayerAdvancementFinishedMixin",
-    "listeners.player.FabricPlayerAdvancementProgressMixin",
-    "listeners.player.FabricPlayerDeathMixin",
-    "listeners.player.FabricPlayerMessageMixin",
-    "listeners.player.FabricPlayerRespawnMixin"
+    "listeners.entity.EntitySpawnMixin_1_18",
+    "listeners.player.PlayerAdvancementFinishedMixin_1_18",
+    "listeners.player.PlayerAdvancementProgressMixin_1_18",
+    "listeners.player.PlayerDeathMixin_1_18",
+    "listeners.player.PlayerMessageMixin_1_18",
+    "listeners.player.PlayerRespawnMixin_1_18"
   ],
   "injectors": {
     "defaultRequire": 1

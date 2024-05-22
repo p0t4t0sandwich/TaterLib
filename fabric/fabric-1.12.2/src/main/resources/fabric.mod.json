@@ -2,41 +2,7 @@
   "schemaVersion": 1,
   "id": "${project_id}",
   "version": "${version}",
-  "name": "${project_name}",
-  "description": "${project_description}",
-  "authors": [
-    {
-      "name": "p0t4t0sandwich",
-      "contact": {
-        "sources": "https://github.com/p0t4t0sandwich/",
-        "homepage": "https://links.sperrer.ca/"
-      }
-    }
-  ],
-  "contact": {
-    "repo": "${repo_url}"
-  },
-  "license": "${license}",
-  "icon": "assets/${project_name}/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "server": [
-      "${group_id}.${project_id}.fabric.Fabric${project_name}Plugin"
-    ]
-  },
   "mixins": [
-    "${project_id}.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.9.0",
-    "legacy-fabric-api-base": "*",
-    "legacy-fabric-command-api-v2": "*",
-    "legacy-fabric-lifecycle-events-v1": "*",
-    "legacy-fabric-networking-api-v1": "*",
-    "legacy-fabric-permissions-api-v1": "*",
-    "minecraft": ">=${minecraft_version}"
-  },
-  "suggests": {
-    "luckperms": "*"
-  }
+    "${project_id}.mixins.fabric.v1_12_2.json"
+  ]
 }

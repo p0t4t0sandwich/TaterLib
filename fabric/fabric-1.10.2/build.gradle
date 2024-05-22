@@ -30,7 +30,13 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.json".toString()]) {
+    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.v1_10_2.json".toString()]) {
         expand project.properties
+    }
+}
+
+loom {
+    mixin {
+        defaultRefmapName.set("${project_id}.mixins.fabric.v1_10_2.refmap.json")
     }
 }
