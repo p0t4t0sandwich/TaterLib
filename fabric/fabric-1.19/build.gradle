@@ -17,6 +17,16 @@ dependencies {
 //    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
     modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
 
+    // Fabric API
+    Set<String> apiModules = [
+            'fabric-command-api-v2',
+            'fabric-lifecycle-events-v1'
+    ]
+
+    apiModules.forEach {
+        modImplementation(fabricApi.module(it, project.fabric_version))
+    }
+
     compileOnly(project(':common'))
     implementation(project(':vanilla:vanilla-1.19'))
 }
@@ -28,7 +38,6 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/${project_id}.fabric.v1_19.accesswidener")
     mixin {
         defaultRefmapName.set("${project_id}.mixins.fabric.v1_19.refmap.json")
     }

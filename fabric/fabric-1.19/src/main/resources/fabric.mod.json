@@ -25,19 +25,14 @@
     ]
   },
   "mixins": [
-    "${project_id}.mixins.fabric.v1_19.json",
-    "${project_id}.mixins.fabric.v1_19_1.json",
-    "${project_id}.mixins.fabric.patch.v1_19_1.json",
-    "${project_id}.mixins.fabric.patch.v1_19_3.json",
-    "${project_id}.mixins.fabric.v1_19_4.json",
-    "${project_id}.mixins.fabric.patch.v1_19_4.json"
+    "${project_id}.mixins.fabric.v1_19.json"
   ],
-  "accessWidener": "${project_id}.fabric.v1_19.accesswidener",
   "depends": {
     "fabricloader": ">=0.9.0",
     "minecraft": ">=${min_minecraft_version}"
   },
   "suggests": {
+    "fabric-api-base": "*",
     "luckperms": "*"
   }
 }

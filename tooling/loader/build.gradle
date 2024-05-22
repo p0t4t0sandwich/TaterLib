@@ -29,7 +29,7 @@ jar {
     exclude('dev/neuralnexus/taterlib/sponge')
     exclude('dev/neuralnexus/taterlib/velocity')
 
-    exclude('fabric.mod.json')
+//    exclude('fabric.mod.json')
     exclude('META-INF/mods.toml')
     exclude('mcmod.info')
     exclude('pack.mcmeta')

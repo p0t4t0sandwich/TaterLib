@@ -16,11 +16,7 @@
     "player.PlayerLoginMixin_1_19",
     "player.PlayerLogoutMixin_1_19",
     "player.PlayerMessageMixin_1_19",
-    "player.PlayerRespawnMixin_1_19",
-    "server.ServerStartedMixin_1_19",
-    "server.ServerStartingMixin_1_19",
-    "server.ServerStoppedMixin_1_19",
-    "server.ServerStoppingMixin_1_19"
+    "player.PlayerRespawnMixin_1_19"
   ],
   "injectors": {
     "defaultRequire": 1
