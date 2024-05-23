@@ -82,12 +82,6 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return entity.getLevel().dimension().location().toString();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         Optional<ResourceKey<Biome>> holder =
                 entity.getLevel().getBiome(entity.blockPosition()).unwrap().left();

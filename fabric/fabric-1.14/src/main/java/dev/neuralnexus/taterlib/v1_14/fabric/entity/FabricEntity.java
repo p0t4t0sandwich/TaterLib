@@ -81,12 +81,6 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return entity.getEntityWorld().getDimension().getType().toString();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         return entity.getEntityWorld()
                 .getBiome(entity.getBlockPos())

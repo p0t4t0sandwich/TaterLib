@@ -83,12 +83,6 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return entity.world.dimension.getName().replace(" ", "_").toLowerCase();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         return entity.world.getBiome((int) entity.x, (int) entity.z).name;
     }

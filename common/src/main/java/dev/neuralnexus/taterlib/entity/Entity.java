@@ -120,7 +120,9 @@ public interface Entity extends Nameable {
      *
      * @return The current dimension of the entity
      */
-    String dimension();
+    default String dimension() {
+        return world().dimension();
+    }
 
     /**
      * Get the current biome of the entity

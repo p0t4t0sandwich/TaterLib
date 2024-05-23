@@ -82,12 +82,6 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return DimensionType.getById(entity.dimension).getName().replace(" ", "_").toLowerCase();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         ResourceLocation biomeRegistry =
                 entity.worldObj.getBiomeForCoordsBody(entity.getPosition()).getRegistryName();

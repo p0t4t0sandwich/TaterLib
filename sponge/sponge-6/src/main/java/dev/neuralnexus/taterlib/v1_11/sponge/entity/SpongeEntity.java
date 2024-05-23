@@ -84,12 +84,6 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return entity.getWorld().getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
     }

@@ -73,15 +73,6 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        if (entity.getLocation().getWorld() == null) {
-            return null;
-        }
-        return entity.getLocation().getWorld().getName();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         return entity.getLocation().getBlock().getBiome().name();
     }

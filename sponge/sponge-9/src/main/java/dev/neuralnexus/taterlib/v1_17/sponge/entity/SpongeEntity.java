@@ -89,15 +89,6 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        if (!entity.get(Keys.MAP_WORLD).isPresent()) {
-            return null;
-        }
-        return entity.get(Keys.MAP_WORLD).get().asString();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public String biome() {
         Biome biome = entity.location().world().biome(entity.location().blockPosition());
         Registry<Biome> registry = entity.location().world().registry(RegistryTypes.BIOME);
