@@ -1,9 +1,12 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.v1_20.vanilla.fabric.mixin.listeners",
+  "injectors": {
+    "defaultRequire": 1
+  },
   "required": false,
   "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "package": "${group_id}.${project_id}.v1_20.vanilla.fabric.mixin.listeners",
   "mixins": [
     "block.PlayerBlockBreakMixin_1_20",
     "entity.EntityDamageMixin_1_20",
@@ -17,8 +20,5 @@
     "player.PlayerLogoutMixin_1_20",
     "player.PlayerMessageMixin_1_20",
     "player.PlayerRespawnMixin_1_20"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  ]
 }

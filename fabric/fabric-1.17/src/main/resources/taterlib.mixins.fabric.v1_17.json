@@ -1,8 +1,11 @@
 {
-  "required": true,
-  "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.v1_17.fabric.mixin",
   "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
   "mixins": [
     "listeners.block.PlayerBlockBreakMixin_1_17",
     "listeners.entity.EntityDamageMixin_1_17",
@@ -15,8 +18,5 @@
     "listeners.player.PlayerDeathMixin_1_17",
     "listeners.player.PlayerMessageMixin_1_17",
     "listeners.player.PlayerRespawnMixin_1_17"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  ]
 }

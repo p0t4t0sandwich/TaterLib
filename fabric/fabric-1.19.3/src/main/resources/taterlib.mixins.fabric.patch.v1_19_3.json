@@ -1,14 +1,14 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.v1_19_3.vanilla.fabric.mixin.patch",
+  "injectors": {
+    "defaultRequire": 1
+  },
   "required": false,
   "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "package": "${group_id}.${project_id}.v1_19_3.vanilla.fabric.mixin.patch",
   "mixins": [
     "entity.VanillaEntityMixin_1_19_3",
     "player.VanillaPlayerMixin_1_19_3"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  ]
 }

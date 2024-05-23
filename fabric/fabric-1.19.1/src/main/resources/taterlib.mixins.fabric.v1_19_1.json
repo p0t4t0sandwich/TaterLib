@@ -1,13 +1,13 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "${group_id}.${project_id}.v1_19_1.vanilla.fabric.mixin.listeners",
-  "required": false,
-  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
-  "mixins": [
-    "player.PlayerMessageMixin_1_19_1"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "required": false,
+  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "package": "${group_id}.${project_id}.v1_19_1.vanilla.fabric.mixin.listeners",
+  "mixins": [
+    "player.PlayerMessageMixin_1_19_1"
+  ]
 }

@@ -28,7 +28,8 @@ tasks.withType(ProcessResources).configureEach {
 
 loom {
     mixin {
-        defaultRefmapName.set("${project_id}.mixins.fabric.v1_20_6.refmap.json")
+        useLegacyMixinAp = false
+//        defaultRefmapName.set("${project_id}.mixins.fabric.v1_20_6.refmap.json")
     }
 }
 
