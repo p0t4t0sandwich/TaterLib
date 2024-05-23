@@ -26,13 +26,6 @@ tasks.withType(ProcessResources).configureEach {
     }
 }
 
-loom {
-    mixin {
-        useLegacyMixinAp = false
-//        defaultRefmapName.set("${project_id}.mixins.fabric.v1_20_6.refmap.json")
-    }
-}
-
 shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.20.6'))
@@ -52,5 +45,7 @@ task remappedShadowJar(type: RemapJarTask) {
     input = tasks.shadowJar.archiveFile
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
+
+loom.mixin.useLegacyMixinAp = false
 
 tasks.assemble.dependsOn('remappedShadowJar')
