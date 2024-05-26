@@ -21,6 +21,7 @@ dependencies {
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
 
     compileOnly(project(':common'))
+    compileOnly(project(':forge:forge-utils-modern'))
     compileOnly(project(':vanilla:vanilla-1.20'))
 }
 

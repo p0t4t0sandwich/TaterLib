@@ -774,6 +774,7 @@ tasks.register('build_monojar', Jar) {
                     "1.19", "1.19.1", "1.19.3", "1.19.4",
                     "1.20", "1.20.2", "1.20.6"))
             .put("forge", Arrays.asList(
+                    "utils-modern",
                     "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
                     "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
                     "1.18", "1.18.2",
@@ -813,52 +814,6 @@ tasks.register('build_monojar', Jar) {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "${project_id}.mixins.vanilla.v1_20.json, ${project_id}.mixins.vanilla.patch.v1_20_2.json, ${project_id}.mixins.vanilla.v1_20_2.json, ${project_id}.mixins.vanilla.patch.v1_20_6.json, ${project_id}.mixins.vanilla.v1_20_6.json"
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
-// --------------------------- Build Bleeding --------------------------------
-tasks.register('build_bleeding', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList("bleeding"))
-            .put("bungee", Arrays.asList("bleeding"))
-            .put("fabric", Arrays.asList("bleeding"))
-            .put("forge", Arrays.asList("bleeding"))
-            .put("neoforge", Arrays.asList("bleeding"))
-            .put("sponge", Arrays.asList("bleeding"))
-            .put("vanilla", Arrays.asList("bleeding"))
-            .put("velocity", Arrays.asList("bleeding"))
-            .build()
-
-    dependsOn('build_api')
-    platformVersions.each { platform, versions ->
-        versions.each { mcVersion ->
-            dependsOn(":${platform}:${platform}-${mcVersion}:build")
-        }
-    }
-
-    String mc_version = 'bleeding'
-    archiveFileName = "${project_id}-${mc_version}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'Access-Widener': "${project_id}.sponge.accesswidener",
-                'FMLCorePluginContainsFMLMod': 'true',
-                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "${project_id}.mixins.vanilla.bleeding.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {

@@ -1,7 +1,6 @@
 plugins {
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
-    id('org.spongepowered.mixin') version('0.7.+')
-    id('org.parchmentmc.librarian.forgegradle') version('1.+')
+    id('org.spongepowered.mixin') version('0.7-SNAPSHOT')
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
@@ -13,8 +12,9 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-//    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
+    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
+    compileOnly(project(':forge:forge-utils-modern'))
     compileOnly(project(':forge:forge-1.20'))
     compileOnly(project(':vanilla:vanilla-1.20'))
     implementation(project(':vanilla:vanilla-1.20.2'))
@@ -48,5 +48,5 @@ reobf {
     shadowJar {}
 }
 
-tasks.reobfShadowJar.dependsOn('shadowJar')
-tasks.assemble.dependsOn('reobfShadowJar')
+tasks.shadowJar.finalizedBy('reobfShadowJar')
+tasks.build.dependsOn('reobfShadowJar')

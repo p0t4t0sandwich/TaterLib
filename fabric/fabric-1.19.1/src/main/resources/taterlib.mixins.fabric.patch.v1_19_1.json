@@ -5,7 +5,7 @@
     "defaultRequire": 1
   },
   "required": false,
-  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
   "package": "${group_id}.${project_id}.v1_19_1.vanilla.fabric.mixin.patch",
   "mixins": [
     "command.VanillaCommandSenderMixin_1_19_1"

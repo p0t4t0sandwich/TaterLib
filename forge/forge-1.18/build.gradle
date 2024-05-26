@@ -1,6 +1,5 @@
 plugins {
     id('net.minecraftforge.gradle') version('[6.0,6.2)')
-    id('org.parchmentmc.librarian.forgegradle') version('1.+')
 }
 
 base {
@@ -17,6 +16,7 @@ minecraft {
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
+    compileOnly(project(':forge:forge-utils-modern'))
 }
 
 tasks.withType(ProcessResources).configureEach {

@@ -58,6 +58,7 @@
             <option value="$PROJECT_DIR$/forge/forge-1.20" />
             <option value="$PROJECT_DIR$/forge/forge-1.20.2" />
             <option value="$PROJECT_DIR$/forge/forge-1.20.6" />
+            <option value="$PROJECT_DIR$/forge/forge-utils-modern" />
             <option value="$PROJECT_DIR$/neoforge" />
             <option value="$PROJECT_DIR$/neoforge/neoforge-1.20.2" />
             <option value="$PROJECT_DIR$/sponge" />

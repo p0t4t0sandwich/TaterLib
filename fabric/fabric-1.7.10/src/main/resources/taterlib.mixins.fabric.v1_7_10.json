@@ -5,7 +5,7 @@
     "defaultRequire": 1
   },
   "required": false,
-  "plugin": "${group_id}.${project_id}.mixin.plugin.TaterLibMixinPlugin",
+  "plugin": "${group_id}.${project_id}.mixin.plugin.${project_name}MixinPlugin",
   "mixins": [
     "listeners.block.PlayerBlockBreakMixin_1_7_10",
     "listeners.entity.EntityDamageMixin_1_7_10",

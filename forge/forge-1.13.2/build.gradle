@@ -13,6 +13,7 @@ minecraft {
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
+    compileOnly(project(':forge:forge-utils-modern'))
 }
 
 tasks.withType(ProcessResources).configureEach {

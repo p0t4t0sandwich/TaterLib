@@ -4,9 +4,9 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.utils.forge.modern.FMLAdapters;
 import dev.neuralnexus.taterlib.v1_19_4.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_19_4.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_19_4.forge.listeners.block.ForgeBlockListener;
@@ -27,27 +27,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
-import java.util.stream.Collectors;
-
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void platformInit(Object plugin, Object server, Object logger) {
-        TaterAPIProvider.addHook(new ForgePermissionsHook());
-        pluginStart(
-                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setModList(
-                () ->
-                        ModList.get().getMods().stream()
-                                .map(
-                                        modContainer ->
-                                                new ModInfo(
-                                                        modContainer.getModId(),
-                                                        modContainer.getDisplayName(),
-                                                        modContainer.getVersion().toString()))
-                                .collect(Collectors.toList()));
-        api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
         TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
+        TaterAPIProvider.addHook(new ForgePermissionsHook());
+        pluginStart(plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
+        api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
             // Register listeners
