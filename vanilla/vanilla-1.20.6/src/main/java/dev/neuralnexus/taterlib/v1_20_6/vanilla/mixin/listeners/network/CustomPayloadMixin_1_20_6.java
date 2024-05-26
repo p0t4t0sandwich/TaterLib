@@ -1,12 +1,16 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.listeners.network;
 
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.CustomPayloadPacketWrapper_1_20;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.event.network.CustomPayloadPacketWrapper_1_20_6;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
 
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,10 +29,9 @@ public class CustomPayloadMixin_1_20_6 {
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacketWrapper_1_20_6 wrapper = new CustomPayloadPacketWrapper_1_20_6(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
-
-        ServerCommonPacketListenerImpl self = (ServerCommonPacketListenerImpl) (Object) this;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent.Player(
-                        wrapper, self.server.getPlayerList().getPlayer(self.getOwner().getId())));
+                new VanillaPluginMessageEvent.Player(wrapper,
+                        VanillaServer.server().getPlayerList().getPlayer(
+                                ((ServerCommonPacketListenerImpl) (Object) this).getOwner().getId())));
     }
 }
