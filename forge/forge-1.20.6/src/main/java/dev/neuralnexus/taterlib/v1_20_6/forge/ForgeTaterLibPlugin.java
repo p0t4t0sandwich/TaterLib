@@ -20,7 +20,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
+        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
         api.setModList(
                 () ->
                         ModList.get().getMods().stream()
