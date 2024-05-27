@@ -62,47 +62,51 @@ dependencies {
 
 There's also a snapshot repository available at `https://maven.neuralnexus.dev/repository/snapshots`
 
-### Compatibility Cheatsheet
+### Supported Platforms and Versions
 
-TaterLib supports: Bukkit, BungeeCord, Fabric, Forge, Sponge, and Velocity
+#### Bukkit
 
-General notes:
+- Spigot/Paper/etc
+- Hybrid support included
+- b1.7.3, 1.2.5, 1.6.4-1.20.x
 
-- No Fabric on 1.13
-- No Fabric/Forge below 1.7.10
+#### BungeeCord
 
-| Server type | Versions    | Jar Name                        |
-|-------------|-------------|---------------------------------|
-| 1.20.x      | 1.20-1.20.4 | `TaterLib-1.20.x-<version>.jar` |
-| 1.19.4      | 1.19.4      | `TaterLib-1.19.4-<version>.jar` |
-| 1.19.2      | 1.19.2      | `TaterLib-1.19.2-<version>.jar` |
-| 1.19        | 1.19        | `TaterLib-1.19-<version>.jar`   |
-| 1.18.2      | 1.18.2      | `TaterLib-1.18.2-<version>.jar` |
-| 1.18        | 1.18        | `TaterLib-1.18-<version>.jar`   |
-| 1.17        | 1.17-1.17.1 | `TaterLib-1.17-<version>.jar`   |
-| 1.16        | 1.16-1.16.5 | `TaterLib-1.16-<version>.jar`   |
-| 1.15        | 1.15-1.15.2 | `TaterLib-1.15-<version>.jar`   |
-| 1.14        | 1.14-1.14.3 | `TaterLib-1.14-<version>.jar`   |
-| 1.13        | 1.13-1.13.2 | `TaterLib-1.13-<version>.jar`   |
-| 1.12        | 1.12-1.12.2 | `TaterLib-1.12-<version>.jar`   |
-| 1.11        | 1.11-1.11.2 | `TaterLib-1.11-<version>.jar`   |
-| 1.10        | 1.10-1.10.2 | `TaterLib-1.10-<version>.jar`   |
-| 1.9         | 1.9-1.9.4   | `TaterLib-1.9-<version>.jar`    |
-| 1.8         | 1.8-1.8.8   | `TaterLib-1.8-<version>.jar`    |
-| 1.7         | 1.7-1.7.10  | `TaterLib-1.7.10-<version>.jar` |
-| 1.6.4       | 1.6.4       | `TaterLib-1.6.4-<version>.jar`  |
-| 1.2.5       | 1.2.5       | `TaterLib-1.2.5-<version>.jar`  |
-| b1.7.3      | b1.7.3      | `TaterLib-b1.7.3-<version>.jar` |
+- Waterfall/Travertine/etc
+- 1.4.7-1.20.x
+
+#### Fabric
+
+- Quilt
+- 1.7.10-1.12.2, 1.14-1.20.x
+- Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the moment
+
+#### Forge
+
+- 1.7.10-1.20.x
+
+#### NeoForge
+
+- 1.20.2-1.20.x
+
+#### Sponge
+
+- SpongeForge/SpongeVanilla
+- APIs 4-11
+
+#### Velocity
+
+- v3
 
 ## Dependencies
 
 - [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
-- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and
-  below
+- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and below
 
 ### Optional Dependencies
 
 - [LuckPerms](https://luckperms.net/) - For permissions/prefix/suffix support
+- [Spark](https://spark.lucko.me/) - For simple TPS/System info
 
 ## Commands and Permissions
 
@@ -119,7 +123,7 @@ Feel free to open a PR to add your plugin/mod to this list!
 
 - [BadSpawns](https://github.com/p0t4t0sandwich/BadSpawns)
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
-- [TaterComms](https://github.com/p0t4t0sandwich/TaterComms)
+- [Switchboard](https://github.com/p0t4t0sandwich/Switchboard)
 - [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)
 
 ## Metrics
@@ -139,101 +143,3 @@ Feel free to open a PR to add your plugin/mod to this list!
 ### Velocity
 
 ![image](https://bstats.org/signatures/velocity/TaterLib.svg)
-
-## Release Notes
-
-### 1.1.0-R0.16
-
-- Fixes to Sponge8-11 component serialization
-- Fixed `SpongeEntity.getType` returning a properly formatted entity resource
-- Reworked the entire event system
-- Added `getEntity` to `AbstractEntity` implementations
-- Removed redundant event abstraction
-- Reworked TaterLib PlayerListener and reload command
-- Implemented `EntitySpawnEvent` for 1.7.10-b1.7.3
-- Implemented rudimentary `PlayerDeathEvent` for b1.7.3
-- Added support for NeoForge 1.20.2
-- Removed the `...taterlib.{platform}.abstractions` package name
-- Renamed `...taterlib.{platform}.abstractions.events` to `...taterlib.{platform}.event.api`
-- Moved `...taterlib.{platform}.abstractions.item.*` to `...taterlib.{platform}.inventory`
-- Moved `...taterlib.{platform}.player.PlayerInventory` to `...taterlib.{platform}.inventory.PlayerInventory`
-- Removed the `Abstract` prefix from all common interfaces
-- Added the ability to set a player's prefix/suffix
-- Added numerical permission checks to `Player` for Forge/Fabric
-- Abstracted Brigadier commands
-- Abstracted simple commands
-- Simplified Plugin abstractions so depending on TaterLib is easier
-- Refactored TaterLib helper methods to be wrapped in the `TaterAPI` class
-- Added MinecraftVersion and ServerType enums.
-- Created `TaterAPI#isBrigadierSupported()`
-- Abstracted plugin/mod isLoaded checks
-- `Player` now inherits `Entity`
-- Added `Entity#teleport(Location)` and `Entity#teleport(Entity)`
-- Abstracted brigadier helper into a wrapper class
-- Implemented registering simple commands for Forge/Fabric
-- Updated database utils
-- Added `Server` abstraction and `TaterAPI#getServer()`
-- Ported to:
-    - 1.20.4
-    - Bukkit 1.8.8, 1.13.2
-    - BungeeCord 1.4.7, 1.8, 1.12
-    - Fabric 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.12.2
-    - Forge 1.7.10, 1.8.9, 1.9.4, 1.10.2, 1.11.2, 1.18.2, 1.19.2, 1.19.4
-    - Sponge 4, 5
-- Abstracted `ProxyPlayer`s, specifically adding a `connect` method
-- Added `Block` abstraction and `BlockBreakEvent`
-- Updated `Server` implementation and added `ProxyServer` for proxies
-- Added `ServerEvent#getServer()`
-- Fixes to `BukkitPlayerAdvancementEvent`
-    - `getPlayer` was returning null
-    - `getAdvancement` was returning the wrong string
-- Abstracted `TaterAPI#registerChannels(Set<String>)` into `RegisterPluginMessagesEvent`
-- Added `PluginEnableEvent` and `PluginDisableEvent`
-- Modified TaterAPIProvider to handle multiple API implementations simultaneously
-- Added basic hybrid API hooks: Arclight, Ketting, Magma, Mohist
-- Renamed `isPluginLoaded` to `isPluginModLoaded` and split it into `isPluginLoaded` and `isModLoaded`, while
-  adding helper instantiations from hybrid hooks
-- Added `Server#broadcastMessage(String)`
-- Renamed path `dev.neuralnexus.taterlib.common` to `dev.neuralnexus.taterlib` to simplify imports
-- Improved the hook system to allow for multiple permission managers to be used simultaneously
-- Build system overhaul, no sketchy `build.sh` anymore
-- Added `GameMode` enum, `Player#getPing()`, `Player#getGameMode()` and `Player#setGameMode()`
-- Added `Sender#isPlayer()`
-- Fixed `Entity#teleport(Location)` and `Entity#teleport(Entity)` in cross-dimensional cases
-- Added `Player#getIPAddress()`
-- Created a custom loader implementation, to allow for better compatibility with hybrids, Sinytra Connector, and
-  SpongeForge
-- Added `SpongeForge` server type
-- Added Brigadier support for Sponge and Bukkit
-- Renamed `Sender` to `CommandSender`
-- Split `Server` into `SimpleServer` and `ProxyServer`
-- Added some tests and more `MinecraftVersion` utilities
-- Renamed `Event` to `EventManager` and created a base `Event` interface
-- Added `Event#getName()`
-- Created generic event handler
-- Renamed `PluginMessageEvents` to `NetworkEvents`
-- Split out `SimplePlayer` and `ProxyPlayer`
-- Created `Connection` interface for kick/disconnect/ping/pluginMessage
-- Loader can now detect and register more plugin instances in multi-API environments
-- Added `ServerType.NEOFORGE_HYBRID`
-- Events should no longer register twice in multi-API environments
-- Pulled `CommonPluginEnableEvent` into the loader
-- Added `Damageable` and `LivingEntity` interfaces
-- Added dummy entity interfaces all set up for adding new Entity interfaces
-- Added `Player.allowFlight`/`canFly`/`isFlying`/`setFlying`
-- Added single-version support for `MinecraftVersion.parseRange`
-- Used configurate to create config system
-- Refactored TaterLib common logic into CommonModule, added TaterModuleLoader, and overall improved module support
-- Reformatted getters to be more idiomatic (e.g. `getInventory` -> `inventory`)
-- Refactor `Player.serverName` into `Player.server().name()` and add `Server#name()`
-- Added `Permissible` to `CommandSender`, refactored permission hooks to use `Permissible`
-- Added `ModInfo` and `PluginInfo` abstractions
-- Added `DumpInfo` and `FullDumpInfo`, along with the `/taterlib dump | fulldump` commands
-- Added bStats support for Bukkit, Bungee, Sponge, and Velocity
-- Added Arclight Fabric server type
-- Merged `ItemMeta` into `ItemStack`
-- Created player metadata API
-- Added `Server.currentTPS()`, `SimpleServer.getPlayer(String)`, and `SimpleServer.getPlayer(UUID)`
-- `PlayerServerSwitchEvent.toServer`/`fromServer` now return a `Server` rather than a `String`
-- Overhauled the `Inventory`/`PlayerInventory` interfaces
-- Created `World` and `ServerWorld` abstractions
