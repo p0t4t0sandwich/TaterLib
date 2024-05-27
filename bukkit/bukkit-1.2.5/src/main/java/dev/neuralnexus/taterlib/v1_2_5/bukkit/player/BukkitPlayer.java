@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.v1_2_5.bukkit.player;
 
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.world.BukkitWorld;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.world.Location;
 
 import org.bukkit.craftbukkit.entity.CraftPlayer;

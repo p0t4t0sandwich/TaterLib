@@ -6,6 +6,9 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_8.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_8.bungee.event.server.BungeeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_8.bungee.event.server.BungeeServerStartingEvent;
@@ -15,9 +18,6 @@ import dev.neuralnexus.taterlib.v1_8.bungee.hooks.permissions.BungeePermissionsH
 import dev.neuralnexus.taterlib.v1_8.bungee.listeners.network.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.v1_8.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.v1_8.bungee.server.BungeeProxyServer;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;

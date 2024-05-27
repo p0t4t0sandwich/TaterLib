@@ -2,11 +2,11 @@ package dev.neuralnexus.taterlib.v1_16_3.forge.event.player;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_16_3.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_16_3.forge.inventory.ForgeItemStack;
 import dev.neuralnexus.taterlib.v1_16_3.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

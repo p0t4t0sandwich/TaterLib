@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.event.entity;
 
-import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.world.Location;
 
 /** Bukkit implementation of {@link EntitySpawnEvent}. */

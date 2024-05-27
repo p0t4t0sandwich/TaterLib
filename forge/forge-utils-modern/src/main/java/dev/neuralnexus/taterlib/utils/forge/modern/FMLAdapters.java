@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.utils.forge.modern;
 
 import dev.neuralnexus.taterlib.api.info.ModInfo;
+
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.forgespi.language.IModInfo;
 

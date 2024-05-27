@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.event.network;
 
-import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
-
 import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
+
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 /** Bungee implementation of {@link PluginMessageEvent}. */

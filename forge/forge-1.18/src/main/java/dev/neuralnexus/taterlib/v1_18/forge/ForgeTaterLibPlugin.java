@@ -4,20 +4,19 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.utils.forge.modern.FMLAdapters;
 import dev.neuralnexus.taterlib.v1_18.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.entity.ForgeEntityListener;
+import dev.neuralnexus.taterlib.v1_18.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.v1_18.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.v1_18.forge.server.ForgeServer;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.v1_18.forge.listeners.player.ForgePlayerListener;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
@@ -29,8 +28,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 import org.apache.logging.log4j.LogManager;
-
-import java.util.stream.Collectors;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override

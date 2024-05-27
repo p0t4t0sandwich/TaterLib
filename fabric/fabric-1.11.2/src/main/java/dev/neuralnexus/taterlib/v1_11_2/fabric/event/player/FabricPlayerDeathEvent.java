@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_11_2.fabric.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.event.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

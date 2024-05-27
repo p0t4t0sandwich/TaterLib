@@ -1,8 +1,6 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.listeners.network;
 
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.CustomPayloadPacketWrapper_1_20;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.event.network.CustomPayloadPacketWrapper_1_20_6;
@@ -10,7 +8,6 @@ import dev.neuralnexus.taterlib.v1_20_6.vanilla.event.network.CustomPayloadPacke
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
 
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

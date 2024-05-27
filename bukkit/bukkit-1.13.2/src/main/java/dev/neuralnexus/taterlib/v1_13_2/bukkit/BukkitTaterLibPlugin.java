@@ -6,6 +6,10 @@ import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.server.BukkitServerStartingEvent;
@@ -18,10 +22,6 @@ import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.player.BukkitPlayerList
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.player.PaperPlayerListener;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.server.BukkitServerListener;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;

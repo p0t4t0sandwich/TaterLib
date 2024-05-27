@@ -11,7 +11,11 @@ import org.jetbrains.annotations.NotNull;
 
 /** CustomPacketPayload implementation for 1.20.6 */
 public class VanillaCustomPacketPayload_1_20_6 implements CustomPacketPayload {
-    public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload_1_20_6> STREAM_CODEC = CustomPacketPayload.codec(VanillaCustomPacketPayload_1_20_6::write, VanillaCustomPacketPayload_1_20_6::new);
+    public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload_1_20_6>
+            STREAM_CODEC =
+                    CustomPacketPayload.codec(
+                            VanillaCustomPacketPayload_1_20_6::write,
+                            VanillaCustomPacketPayload_1_20_6::new);
 
     private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf;

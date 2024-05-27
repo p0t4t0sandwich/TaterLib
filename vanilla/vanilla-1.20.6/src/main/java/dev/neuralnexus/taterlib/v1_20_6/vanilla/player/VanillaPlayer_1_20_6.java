@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.v1_20_6.vanilla.player;
 
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
-
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload_1_20_6;
+
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
 

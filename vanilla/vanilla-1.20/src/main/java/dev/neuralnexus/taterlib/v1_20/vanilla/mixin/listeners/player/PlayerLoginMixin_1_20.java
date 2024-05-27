@@ -19,10 +19,10 @@ public class PlayerLoginMixin_1_20 {
     @Inject(
             method = "placeNewPlayer",
             at =
-            @At(
-                    value = "INVOKE",
-                    target =
-                            "Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;<init>(Lnet/minecraft/world/entity/player/Abilities;)V"))
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;<init>(Lnet/minecraft/world/entity/player/Abilities;)V"))
     private void onLogin(Connection connection, ServerPlayer player, CallbackInfo ci) {
         PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(connection, player));
     }

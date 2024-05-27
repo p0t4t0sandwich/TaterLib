@@ -37,7 +37,9 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
     /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
-        entity.hurt(entity.getLevel().damageSources().mobAttack(((ForgeLivingEntity) source).entity()), (float) amount);
+        entity.hurt(
+                entity.getLevel().damageSources().mobAttack(((ForgeLivingEntity) source).entity()),
+                (float) amount);
     }
 
     /** {@inheritDoc} */

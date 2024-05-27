@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.event.network;
 
+import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.listeners.network.BukkitPluginMessageListener;
-import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.messaging.Messenger;

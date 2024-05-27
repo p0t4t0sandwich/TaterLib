@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.server;
 
-import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.ProxyServer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
 
 import java.util.List;
 import java.util.stream.Collectors;

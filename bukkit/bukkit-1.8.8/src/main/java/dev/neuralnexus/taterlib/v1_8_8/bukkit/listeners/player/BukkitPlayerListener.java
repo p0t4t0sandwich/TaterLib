@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.event.player.*;
+
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

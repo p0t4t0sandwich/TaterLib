@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_9_4.fabric.event.block;
 
 import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_9_4.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.v1_9_4.fabric.player.FabricPlayer;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

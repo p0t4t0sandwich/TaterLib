@@ -1,8 +1,10 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.patch.inventory;
 
 import dev.neuralnexus.taterlib.v1_20.vanilla.inventory.VanillaItemStack;
+
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 

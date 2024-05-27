@@ -1,14 +1,14 @@
 package dev.neuralnexus.taterlib.v1_9_4.forge.player;
 
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.v1_9_4.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_9_4.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_9_4.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_9_4.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeServerWorld;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.EntityPlayer;

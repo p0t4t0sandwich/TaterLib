@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_14.fabric.server;
 
-import dev.neuralnexus.taterlib.v1_14.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.v1_14.fabric.world.FabricServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_14.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_14.fabric.world.FabricServerWorld;
 import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import net.minecraft.server.MinecraftServer;

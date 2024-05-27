@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaLocation;
+import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.world.entity.player.Player;
 

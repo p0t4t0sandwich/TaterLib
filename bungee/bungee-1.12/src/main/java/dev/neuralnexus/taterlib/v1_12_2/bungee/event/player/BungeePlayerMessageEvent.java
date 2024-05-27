@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.event.player;
 
-import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
+import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;

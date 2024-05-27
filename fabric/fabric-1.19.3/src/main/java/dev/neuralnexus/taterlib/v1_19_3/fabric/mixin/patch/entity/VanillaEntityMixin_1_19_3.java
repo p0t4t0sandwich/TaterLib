@@ -1,18 +1,13 @@
 package dev.neuralnexus.taterlib.v1_19_3.fabric.mixin.patch.entity;
 
-import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
+import dev.neuralnexus.taterlib.world.Location;
 
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

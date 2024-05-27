@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.event.command;
 
-import dev.neuralnexus.taterlib.v1_7_10.bukkit.command.BukkitCommandWrapper;
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_7_10.bukkit.command.BukkitCommandWrapper;
 
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;

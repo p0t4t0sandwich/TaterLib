@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.player;
 
-import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeProxyServer;
-import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.server.ProxyServer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeProxyServer;
+import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
 
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;

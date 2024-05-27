@@ -8,6 +8,7 @@ import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_12_2.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_12_2.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_12_2.forge.event.server.ForgeServerStartingEvent;
@@ -16,9 +17,8 @@ import dev.neuralnexus.taterlib.v1_12_2.forge.event.server.ForgeServerStoppingEv
 import dev.neuralnexus.taterlib.v1_12_2.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.entity.ForgeEntityListener;
-import dev.neuralnexus.taterlib.v1_12_2.forge.server.ForgeServer;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.player.ForgePlayerListener;
+import dev.neuralnexus.taterlib.v1_12_2.forge.server.ForgeServer;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;

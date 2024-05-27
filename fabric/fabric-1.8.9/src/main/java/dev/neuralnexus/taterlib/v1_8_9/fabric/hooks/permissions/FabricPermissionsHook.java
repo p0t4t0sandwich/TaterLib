@@ -2,10 +2,10 @@ package dev.neuralnexus.taterlib.v1_8_9.fabric.hooks.permissions;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.entity.Permissible;
-import dev.neuralnexus.taterlib.v1_8_9.fabric.command.FabricCommandSender;
-import dev.neuralnexus.taterlib.v1_8_9.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.v1_8_9.fabric.command.FabricCommandSender;
+import dev.neuralnexus.taterlib.v1_8_9.fabric.player.FabricPlayer;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissionsApiHolder;
 import net.minecraft.entity.player.ServerPlayerEntity;

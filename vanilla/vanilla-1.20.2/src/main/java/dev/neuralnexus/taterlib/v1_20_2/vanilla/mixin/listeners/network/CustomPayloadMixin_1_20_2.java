@@ -27,8 +27,13 @@ public class CustomPayloadMixin_1_20_2 {
         CustomPayloadPacketWrapper_1_20_2 wrapper = new CustomPayloadPacketWrapper_1_20_2(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent.Player(wrapper,
-                        VanillaServer.server().getPlayerList().getPlayer(
-                                ((ServerCommonPacketListenerImpl) (Object) this).getOwner().getId())));
+                new VanillaPluginMessageEvent.Player(
+                        wrapper,
+                        VanillaServer.server()
+                                .getPlayerList()
+                                .getPlayer(
+                                        ((ServerCommonPacketListenerImpl) (Object) this)
+                                                .getOwner()
+                                                .getId())));
     }
 }

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_8.bungee.event.server;
 
-import dev.neuralnexus.taterlib.v1_8.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
 import dev.neuralnexus.taterlib.server.ProxyServer;
+import dev.neuralnexus.taterlib.v1_8.bungee.server.BungeeProxyServer;
 
 /** Bungee implementation of {@link ServerEvent}. */
 public class BungeeServerEvent implements ServerEvent {

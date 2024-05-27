@@ -13,7 +13,7 @@ import dev.neuralnexus.taterlib.plugin.Loader;
 import org.slf4j.Logger;
 
 /** Velocity entry point. */
-//@Plugin(
+// @Plugin(
 //        id = TaterLib.Constants.PROJECT_ID,
 //        name = TaterLib.Constants.PROJECT_NAME,
 //        version = TaterLib.Constants.PROJECT_VERSION,

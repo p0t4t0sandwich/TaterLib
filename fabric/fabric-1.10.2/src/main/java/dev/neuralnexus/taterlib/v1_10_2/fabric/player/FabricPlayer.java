@@ -1,12 +1,12 @@
 package dev.neuralnexus.taterlib.v1_10_2.fabric.player;
 
-import dev.neuralnexus.taterlib.v1_10_2.fabric.entity.FabricLivingEntity;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.inventory.FabricPlayerInventory;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_10_2.fabric.entity.FabricLivingEntity;
+import dev.neuralnexus.taterlib.v1_10_2.fabric.inventory.FabricPlayerInventory;
+import dev.neuralnexus.taterlib.v1_10_2.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.world.Location;
 
 import net.legacyfabric.fabric.api.networking.v1.PacketByteBufs;

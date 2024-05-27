@@ -1,15 +1,15 @@
 package dev.neuralnexus.taterlib.v1_15_1.forge.player;
 
+import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.player.GameMode;
+import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.v1_15_1.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_15_1.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_15_1.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.v1_15_1.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.v1_15_1.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_15_1.forge.world.ForgeWorld;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.PlayerEntity;

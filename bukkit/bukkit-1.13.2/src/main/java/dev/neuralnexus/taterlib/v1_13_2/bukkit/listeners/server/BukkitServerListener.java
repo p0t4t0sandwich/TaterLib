@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.server;
 
-import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.server.BukkitServerStartedEvent;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.server.BukkitServerStartedEvent;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

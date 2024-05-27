@@ -9,7 +9,6 @@ import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldServer;
 
 import java.util.Optional;

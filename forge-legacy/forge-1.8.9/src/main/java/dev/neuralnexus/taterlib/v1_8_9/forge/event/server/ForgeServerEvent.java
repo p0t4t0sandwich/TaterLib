@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_8_9.forge.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
+import dev.neuralnexus.taterlib.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_8_9.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8_9.forge.server.ForgeServer;
-import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import net.minecraftforge.fml.common.event.FMLStateEvent;
 

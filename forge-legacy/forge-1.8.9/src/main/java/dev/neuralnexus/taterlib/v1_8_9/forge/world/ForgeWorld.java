@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_8_9.forge.world;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_8_9.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_8_9.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.world.World;
 

@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.entity;
 
+import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitWorld;
-import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.world.Location;
 
 import java.util.UUID;

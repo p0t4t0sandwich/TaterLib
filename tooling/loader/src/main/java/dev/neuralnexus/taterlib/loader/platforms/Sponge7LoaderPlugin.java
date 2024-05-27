@@ -47,7 +47,10 @@ public class Sponge7LoaderPlugin {
         } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_12_2)) {
             version = "." + MinecraftVersion.V1_12.getDelimiterString();
         } else {
-            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            System.err.println(
+                    "Unsupported Minecraft version: "
+                            + mcv
+                            + ". We'll try to load the latest version.");
             version = "." + MinecraftVersion.V1_12.getDelimiterString();
         }
         String pluginClassName =

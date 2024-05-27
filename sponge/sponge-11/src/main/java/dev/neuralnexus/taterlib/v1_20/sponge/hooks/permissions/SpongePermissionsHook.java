@@ -5,8 +5,8 @@ import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_20.sponge.command.SpongeCommandSender;
-
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
+
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 /** A hook for Sponge permissions */

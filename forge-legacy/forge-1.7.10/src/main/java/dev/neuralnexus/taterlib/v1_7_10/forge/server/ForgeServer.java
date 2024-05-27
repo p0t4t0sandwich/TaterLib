@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_7_10.forge.server;
 
-import dev.neuralnexus.taterlib.v1_7_10.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.v1_7_10.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_7_10.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_7_10.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import net.minecraft.entity.player.EntityPlayer;

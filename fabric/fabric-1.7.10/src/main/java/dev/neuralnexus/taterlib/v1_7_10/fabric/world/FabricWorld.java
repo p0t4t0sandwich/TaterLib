@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_7_10.fabric.world;
 
 import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.world.World;
 

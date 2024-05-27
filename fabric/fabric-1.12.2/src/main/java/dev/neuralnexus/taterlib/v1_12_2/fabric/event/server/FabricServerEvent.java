@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_12_2.fabric.event.server;
 
 import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.v1_12_2.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.server.SimpleServer;
+import dev.neuralnexus.taterlib.v1_12_2.fabric.server.FabricServer;
 
 import net.minecraft.server.MinecraftServer;
 

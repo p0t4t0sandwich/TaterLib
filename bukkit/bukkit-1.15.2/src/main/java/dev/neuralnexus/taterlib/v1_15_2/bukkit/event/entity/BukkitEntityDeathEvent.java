@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.event.entity;
 
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.inventory.BukkitItemStack;
 import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterlib.v1_15_2.bukkit.inventory.BukkitItemStack;
 
 import java.util.List;
 import java.util.stream.Collectors;

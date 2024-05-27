@@ -7,6 +7,7 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
+import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_18.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_18.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.v1_18.fabric.event.api.FabricPlayerEvents;
@@ -23,7 +24,6 @@ import dev.neuralnexus.taterlib.v1_18.fabric.event.server.FabricServerStoppedEve
 import dev.neuralnexus.taterlib.v1_18.fabric.event.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_18.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.fabric.server.FabricServer;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;

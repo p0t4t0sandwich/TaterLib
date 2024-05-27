@@ -10,9 +10,9 @@ import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_16.fabric.command.FabricCommandSender;
 import dev.neuralnexus.taterlib.v1_16.fabric.player.FabricPlayer;
-import dev.neuralnexus.taterlib.player.Player;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;

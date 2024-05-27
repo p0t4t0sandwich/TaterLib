@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.v1_14_4.forge.hooks.permissions;
 
 import dev.neuralnexus.taterlib.entity.Permissible;
-import dev.neuralnexus.taterlib.v1_14_4.forge.command.ForgeCommandSender;
-import dev.neuralnexus.taterlib.v1_14_4.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterlib.v1_14_4.forge.command.ForgeCommandSender;
+import dev.neuralnexus.taterlib.v1_14_4.forge.player.ForgePlayer;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;

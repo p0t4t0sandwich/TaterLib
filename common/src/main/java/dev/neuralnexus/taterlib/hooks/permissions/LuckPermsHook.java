@@ -1,7 +1,5 @@
 package dev.neuralnexus.taterlib.hooks.permissions;
 
-
-
 import dev.neuralnexus.taterlib.entity.Permissible;
 
 import net.luckperms.api.LuckPerms;

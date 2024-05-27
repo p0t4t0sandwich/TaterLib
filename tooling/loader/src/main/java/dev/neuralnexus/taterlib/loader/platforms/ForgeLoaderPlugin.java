@@ -73,7 +73,10 @@ public class ForgeLoaderPlugin {
         } else if (mcv.isInRange(true, MinecraftVersion.V1_20_5, true, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20_6.getDelimiterString();
         } else {
-            System.err.println("Unsupported Minecraft version: " + mcv + ". We'll try to load the latest version.");
+            System.err.println(
+                    "Unsupported Minecraft version: "
+                            + mcv
+                            + ". We'll try to load the latest version.");
             version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         }
         String pluginClassName =

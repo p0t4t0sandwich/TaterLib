@@ -79,7 +79,8 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 - Quilt
 - 1.7.10-1.12.2, 1.14-1.20.x
-- Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the moment
+- Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the
+  moment
 
 #### Forge
 
@@ -101,7 +102,8 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 ## Dependencies
 
 - [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
-- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and below
+- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and
+  below
 
 ### Optional Dependencies
 
