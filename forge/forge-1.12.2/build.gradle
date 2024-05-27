@@ -14,9 +14,3 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
 }
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['mcmod.info', 'pack.mcmeta']) {
-        expand project.properties
-    }
-}

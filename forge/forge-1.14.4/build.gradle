@@ -15,9 +15,3 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':forge:forge-utils-modern'))
 }
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand project.properties
-    }
-}

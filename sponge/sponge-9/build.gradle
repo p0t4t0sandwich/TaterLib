@@ -17,7 +17,7 @@ sponge {
     plugin(project_id) {
         version("${minecraft_version}-${project.version}")
         displayName(project_name)
-        entrypoint("${group_id}.${project_id}.sponge.Sponge${project_name}Plugin")
+        entrypoint("dev.neuralnexus.taterlib.sponge.Sponge${project_name}Plugin")
         description(project_description)
         links {
             homepage(homepage_url)

@@ -11,7 +11,7 @@ sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
-    accessWideners(file("src/main/resources/${project_id}.vanilla.v1_19.accesswidener"))
+    accessWideners(file("src/main/resources/META-INF/taterlib.v1_19.vanilla.accesswidener"))
 }
 
 dependencies {
@@ -20,8 +20,3 @@ dependencies {
     compileOnly(project(':common'))
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(["${project_id}.mixins.vanilla.v1_19.json".toString()]) {
-        expand project.properties
-    }
-}

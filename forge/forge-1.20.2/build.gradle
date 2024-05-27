@@ -21,26 +21,16 @@ dependencies {
 }
 
 mixin {
-    add(sourceSets.main, "${project_id}.mixins.forge.refmap.v1_20_2.json")
-    config("${project_id}.mixins.forge.v1_20_2.json")
-}
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta', "${project_id}.mixins.forge.patch.v1_20_2.json".toString()]) {
-        expand project.properties
-    }
+    add(sourceSets.main, "taterlib.mixins.v1_20_2.forge.refmap.json")
+    config("taterlib.mixins.v1_20_2.forge.json")
 }
 
 shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.20.2'))
-//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.v1_20_2.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20_2.vanilla.forge.mixin.fake")
-    relocate("${group_id}.${project_id}.v1_20_2.vanilla.forge", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
-    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.forge")
-    relocate("${group_id}.${project_id}.v1_20_2.vanilla", "${group_id}.${project_id}.v1_20_2.vanilla.forge")
+    relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.forge")
+    relocate("dev.neuralnexus.taterlib.v1_20_2.vanilla", "dev.neuralnexus.taterlib.v1_20_2.vanilla.forge")
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
 
@@ -49,4 +39,4 @@ reobf {
 }
 
 tasks.shadowJar.finalizedBy('reobfShadowJar')
-tasks.build.dependsOn('reobfShadowJar')
+tasks.assemble.dependsOn('reobfShadowJar')

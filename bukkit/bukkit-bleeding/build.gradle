@@ -25,7 +25,7 @@ shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-bleeding'))
     }
-    relocate("${group_id}.${project_id}.vanilla", "${group_id}.${project_id}.vanilla.bukkit")
+    relocate("dev.neuralnexus.taterlib.vanilla", "dev.neuralnexus.taterlib.vanilla.bukkit")
 }
 
 //tasks.register('moveJarToTarget', Copy) {

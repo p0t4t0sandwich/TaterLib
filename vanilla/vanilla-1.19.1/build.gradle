@@ -11,18 +11,10 @@ sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
-    accessWideners(file("src/main/resources/${project_id}.vanilla.v1_19_1.accesswidener"))
 }
 
 dependencies {
-    compileOnly('com.mojang:brigadier:1.0.18')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.19'))
-}
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(["${project_id}.mixins.vanilla.v1_19_1.json".toString()]) {
-        expand project.properties
-    }
 }

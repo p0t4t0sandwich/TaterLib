@@ -7,6 +7,8 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
@@ -14,7 +16,6 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
     // Lucko's Permissions API
-//    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
     modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
 
     // Fabric API
@@ -32,23 +33,20 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.v1_19.json".toString()]) {
+    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_19.json".toString()]) {
         expand project.properties
     }
 }
 
-loom.mixin.useLegacyMixinAp = false
-
 shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.19'))
-//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
     // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.v1_19.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_19.vanilla.fabric.mixin.fake")
-    relocate("${group_id}.${project_id}.v1_19.vanilla.fabric", "${group_id}.${project_id}.v1_19.vanilla.fabric")
-    relocate("${group_id}.${project_id}.v1_19.vanilla", "${group_id}.${project_id}.v1_19.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla.mixin.listeners", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric.mixin.fake")
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla.fabric", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
 }
 
 task remappedShadowJar(type: RemapJarTask) {

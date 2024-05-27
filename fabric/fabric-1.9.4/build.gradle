@@ -7,6 +7,8 @@ base {
     archivesName = "${project_id}-fabric-${minecraft_version}"
 }
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     compileOnly(project(':common'))
 
@@ -30,9 +32,7 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.v1_9_4.json".toString()]) {
+    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_9_4.json".toString()]) {
         expand project.properties
     }
 }
-
-loom.mixin.useLegacyMixinAp = false

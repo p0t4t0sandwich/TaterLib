@@ -14,15 +14,8 @@ minecraft {
 }
 
 dependencies {
-    compileOnly('com.mojang:brigadier:1.0.18')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.20'))
     compileOnly(project(':vanilla:vanilla-1.20.2'))
-}
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(["${project_id}.mixins.vanilla.v1_20_6.json".toString()]) {
-        expand project.properties
-    }
 }

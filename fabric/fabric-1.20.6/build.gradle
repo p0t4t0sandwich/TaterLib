@@ -7,6 +7,8 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings loom.officialMojangMappings()
@@ -17,27 +19,15 @@ dependencies {
     implementation(project(':vanilla:vanilla-1.20.6'))
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching([
-            "${project_id}.mixins.fabric.v1_20_6.json".toString(),
-            "${project_id}.mixins.fabric.patch.v1_20_6.json".toString()
-    ]) {
-        expand project.properties
-    }
-}
-
 shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.20.6'))
-//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
+//        exclude("dev.neuralnexus.taterlib.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.v1_20_6.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20_6.vanilla.fabric.mixin.fake")
-    relocate("${group_id}.${project_id}.v1_20_6.vanilla.fabric", "${group_id}.${project_id}.v1_20_6.vanilla.fabric")
-    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.fabric")
-    relocate("${group_id}.${project_id}.v1_20_2.vanilla", "${group_id}.${project_id}.v1_20_2.vanilla.fabric")
-    relocate("${group_id}.${project_id}.v1_20_6.vanilla", "${group_id}.${project_id}.v1_20_6.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_20_2.vanilla", "dev.neuralnexus.taterlib.v1_20_2.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_20_6.vanilla", "dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric")
 }
 
 task remappedShadowJar(type: RemapJarTask) {
@@ -45,7 +35,5 @@ task remappedShadowJar(type: RemapJarTask) {
     input = tasks.shadowJar.archiveFile
     archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
-
-loom.mixin.useLegacyMixinAp = false
 
 tasks.assemble.dependsOn('remappedShadowJar')

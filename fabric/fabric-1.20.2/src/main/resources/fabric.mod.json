@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "${project_id}",
-  "version": "${version}",
+  "id": "taterlib",
+  "version": "0.1.0",
   "mixins": [
-    "${project_id}.mixins.fabric.v1_20_2.json",
-    "${project_id}.mixins.fabric.patch.v1_20_2.json"
+    "taterlib.mixins.v1_20_2.fabric.json",
+    "taterlib.mixins.v1_20_2.fabric.patch.json"
   ]
 }

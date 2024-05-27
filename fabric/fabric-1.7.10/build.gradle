@@ -30,7 +30,7 @@ dependencies {
 }
 
 tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.v1_7_10.json".toString()]) {
+    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_7_10.json".toString()]) {
         expand project.properties
     }
 }

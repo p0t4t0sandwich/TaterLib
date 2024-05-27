@@ -9,6 +9,8 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     compileOnly(project(':common'))
 
@@ -32,11 +34,3 @@ dependencies {
     // Lucko's Permissions API
     include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 }
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "${project_id}.mixins.fabric.v1_17.json".toString()]) {
-        expand project.properties
-    }
-}
-
-loom.mixin.useLegacyMixinAp = false

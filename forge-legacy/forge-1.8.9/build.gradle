@@ -21,12 +21,6 @@ dependencies {
     compile("dev.neuralnexus:taterlib-api:${version}")
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['mcmod.info', 'pack.mcmeta']) {
-        expand project.properties
-    }
-}
-
 jar {
     archiveName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

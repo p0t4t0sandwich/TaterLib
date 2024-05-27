@@ -7,6 +7,8 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings loom.officialMojangMappings()
@@ -29,27 +31,12 @@ dependencies {
     implementation(project(':vanilla:vanilla-1.20'))
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching([
-            'fabric.mod.json',
-            "${project_id}.mixins.fabric.v1_20.json".toString()
-    ]) {
-        expand project.properties
-    }
-}
-
-loom.mixin.useLegacyMixinAp = false
-
 shadowJar {
     dependencies {
         include(project(':vanilla:vanilla-1.20'))
-//        exclude("${group_id}.${project_id}.vanilla.mixin.listeners")
         exclude('/mappings/*')
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("${group_id}.${project_id}.v1_20.vanilla.mixin.listeners", "${group_id}.${project_id}.v1_20.vanilla.fabric.mixin.fake")
-    relocate("${group_id}.${project_id}.v1_20.vanilla.fabric", "${group_id}.${project_id}.v1_20.vanilla.fabric")
-    relocate("${group_id}.${project_id}.v1_20.vanilla", "${group_id}.${project_id}.v1_20.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.fabric")
 }
 
 task remappedShadowJar(type: RemapJarTask) {
