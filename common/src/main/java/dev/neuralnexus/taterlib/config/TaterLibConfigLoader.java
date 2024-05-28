@@ -36,112 +36,30 @@ public class TaterLibConfigLoader {
                             + ".conf");
     private static final String defaultConfigPath =
             "source." + TaterLib.Constants.PROJECT_ID + ".conf";
+    private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
+    private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
+    private static final TypeToken<List<ModuleConfig>> moduleType = new TypeToken<List<ModuleConfig>>() {};
+    private static final TypeToken<List<HookConfig>> hookType = new TypeToken<List<HookConfig>>() {};
+    private static final TypeToken<List<MixinConfig>> mixinType = new TypeToken<List<MixinConfig>>() {};
     private static TaterLibConfig config;
-
-    /** Copy the default configuration to the config folder. */
-    public static void copyDefaults() {
-        if (configPath.toFile().exists()) {
-            return;
-        }
-        try {
-            Files.createDirectories(configPath.getParent());
-            Files.copy(
-                    Objects.requireNonNull(
-                            TaterLibConfigLoader.class
-                                    .getClassLoader()
-                                    .getResourceAsStream(defaultConfigPath)),
-                    configPath);
-        } catch (IOException e) {
-            TaterLib.logger()
-                    .error(
-                            "An error occurred while copying the default configuration: "
-                                    + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-    }
 
     /** Load the configuration from the file. */
     public static void load() {
-        copyDefaults();
+        ConfigUtils.copyDefaults(TaterLib.class, configPath, defaultConfigPath, TaterLib.logger());
 
         final HoconConfigurationLoader loader =
                 HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root;
-        try {
-            root = loader.load();
-        } catch (ConfigurateException e) {
-            TaterLib.logger()
-                    .error("An error occurred while loading this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+        CommentedConfigurationNode root = ConfigUtils.getRoot(loader);
+        if (root == null) {
             return;
         }
 
         ConfigurationNode versionNode = root.node("version");
         int version = versionNode.getInt(1);
-
-        TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
-        ConfigurationNode serverNode = root.node("server");
-        ServerConfig server = null;
-        try {
-            server = serverNode.get(serverType);
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error(
-                            "An error occurred while loading the server configuration: "
-                                    + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        TypeToken<List<ModuleConfig>> moduleType = new TypeToken<List<ModuleConfig>>() {};
-        ConfigurationNode moduleNode = root.node("modules");
-        List<ModuleConfig> modules = null;
-        try {
-            modules = moduleNode.get(moduleType);
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error(
-                            "An error occurred while loading the modules configuration: "
-                                    + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        TypeToken<List<HookConfig>> hookType = new TypeToken<List<HookConfig>>() {};
-        ConfigurationNode hookNode = root.node("hooks");
-        List<HookConfig> hooks = null;
-        try {
-            hooks = hookNode.get(hookType);
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error(
-                            "An error occurred while loading the hooks configuration: "
-                                    + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        TypeToken<List<MixinConfig>> type = new TypeToken<List<MixinConfig>>() {};
-        ConfigurationNode mixinNode = root.node("mixins");
-        List<MixinConfig> mixins = null;
-        try {
-            mixins = mixinNode.get(type);
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error(
-                            "An error occurred while loading the mixins configuration: "
-                                    + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
+        ServerConfig server = ConfigUtils.get(root, serverType, "server", TaterLib.logger());
+        List<ModuleConfig> modules = ConfigUtils.get(root, moduleType, "modules", TaterLib.logger());
+        List<HookConfig> hooks = ConfigUtils.get(root, hookType, "hooks", TaterLib.logger());
+        List<MixinConfig> mixins = ConfigUtils.get(root, mixinType, "mixins", TaterLib.logger());
 
         switch (version) {
             case 1:
@@ -164,67 +82,16 @@ public class TaterLibConfigLoader {
         }
         final HoconConfigurationLoader loader =
                 HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root;
-        try {
-            root = loader.load();
-        } catch (ConfigurateException e) {
-            TaterLib.logger()
-                    .error("An error occurred while loading this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+        CommentedConfigurationNode root = ConfigUtils.getRoot(loader);
+        if (root == null) {
             return;
         }
 
-        try {
-            root.node("version").set(config.version());
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        try {
-            root.node("server").set(config.server());
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        try {
-            root.node("modules").set(config.modules());
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        try {
-            root.node("hooks").set(config.hooks());
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
-
-        try {
-            root.node("mixins").set(config.mixins());
-        } catch (SerializationException e) {
-            TaterLib.logger()
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
-        }
+        ConfigUtils.set(root, versionType, "version", config.version(), TaterLib.logger());
+        ConfigUtils.set(root, serverType, "server", config.server(), TaterLib.logger());
+        ConfigUtils.set(root, moduleType, "modules", config.modules(), TaterLib.logger());
+        ConfigUtils.set(root, hookType, "hooks", config.hooks(), TaterLib.logger());
+        ConfigUtils.set(root, mixinType, "mixins", config.mixins(), TaterLib.logger());
 
         try {
             loader.save(root);
