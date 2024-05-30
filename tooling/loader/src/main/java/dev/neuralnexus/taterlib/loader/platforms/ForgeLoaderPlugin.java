@@ -36,9 +36,7 @@ public class ForgeLoaderPlugin {
     public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_7_2, true, MinecraftVersion.V1_7_10)) {
-            version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+        if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
             version = "." + MinecraftVersion.V1_8_9.getDelimiterString();
         } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_9_4)) {
             version = "." + MinecraftVersion.V1_9_4.getDelimiterString();
