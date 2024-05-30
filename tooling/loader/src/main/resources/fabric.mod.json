@@ -17,7 +17,7 @@
     "repo": "${repo_url}"
   },
   "license": "${license}",
-  "icon": "${project_name}.png",
+  "icon": "${project_name}.png.gz",
   "environment": "*",
   "entrypoints": {
     "main": [
