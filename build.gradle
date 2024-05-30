@@ -813,14 +813,13 @@ tasks.register('build_monojar', Jar) {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "taterlib.mixins.vanilla.v1_20.json," +
-                        "taterlib.mixins.forge.v1_20.json" +
-                        "taterlib.mixins.vanilla.patch.v1_20_2.json," +
-                        "taterlib.mixins.vanilla.v1_20_2.json," +
-                        "taterlib.mixins.forge.patch.v1_20_2.json" +
-                        "taterlib.mixins.forge.v1_20_2.json" +
-                        "taterlib.mixins.vanilla.patch.v1_20_6.json," +
-                        "taterlib.mixins.vanilla.v1_20_6.json"
+                'MixinConfigs': "taterlib.mixins.v1_20.vanilla.json," +
+                        "taterlib.mixins.v1_20.forge.json," +
+                        "taterlib.mixins.v1_20_2.vanilla.patch.json," +
+                        "taterlib.mixins.v1_20_2.vanilla.json," +
+                        "taterlib.mixins.v1_20_2.forge.json," +
+                        "taterlib.mixins.v1_20_6.vanilla.patch.json," +
+                        "taterlib.mixins.v1_20_6.vanilla.json"
     }
 
     from(["README.md", "LICENSE", "LICENSE-API"]) {
