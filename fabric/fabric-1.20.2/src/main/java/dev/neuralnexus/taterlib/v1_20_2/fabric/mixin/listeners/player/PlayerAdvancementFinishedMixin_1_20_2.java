@@ -21,7 +21,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class PlayerAdvancementFinishedMixin_1_20_2 {
     @Shadow private ServerPlayer player;
 
-    @Shadow public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancement);
+    @Shadow
+    public abstract AdvancementProgress getOrStartProgress(AdvancementHolder advancement);
 
     /** Called when a player completes an advancement. */
     @Inject(method = "unregisterListeners", at = @At("HEAD"))

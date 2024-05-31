@@ -17,8 +17,8 @@ public class VanillaItemStackMixin_1_20_6 {
      */
     @Overwrite
     public boolean hasDisplayName() {
-        return ((VanillaItemStack) (Object) this).itemStack()
-                .get(DataComponents.CUSTOM_NAME) != null;
+        return ((VanillaItemStack) (Object) this).itemStack().get(DataComponents.CUSTOM_NAME)
+                != null;
     }
 
     /**
@@ -27,7 +27,8 @@ public class VanillaItemStackMixin_1_20_6 {
      */
     @Overwrite
     public void setDisplayName(String name) {
-        ((VanillaItemStack) (Object) this).itemStack()
+        ((VanillaItemStack) (Object) this)
+                .itemStack()
                 .set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
     }
 }

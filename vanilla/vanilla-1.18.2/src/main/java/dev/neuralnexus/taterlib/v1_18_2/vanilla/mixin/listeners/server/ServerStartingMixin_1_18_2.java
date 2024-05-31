@@ -28,9 +28,9 @@ public class ServerStartingMixin_1_18_2 {
     @Inject(
             method = "runServer",
             at =
-            @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/server/MinecraftServer;initServer()Z"))
+                    @At(
+                            value = "INVOKE",
+                            target = "Lnet/minecraft/server/MinecraftServer;initServer()Z"))
     private void onServerStarting(CallbackInfo info) {
         // Fire the server starting event
         ServerEvents.STARTING.invoke(

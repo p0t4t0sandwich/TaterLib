@@ -38,7 +38,8 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
     @Override
     public int droppedExp() {
         if (source.getEntity() instanceof LivingEntity entity) {
-            if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() instanceof Player player) {
+            if (entity.getLastHurtByMob() != null
+                    && entity.getLastHurtByMob() instanceof Player player) {
                 return entity.getExperienceReward(player);
             }
         }

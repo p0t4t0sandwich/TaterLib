@@ -2,7 +2,9 @@ package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
+
 import io.leangen.geantyref.TypeToken;
+
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;

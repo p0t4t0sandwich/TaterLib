@@ -40,8 +40,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
         /** {@inheritDoc} */
         @Override
         public ProxyPlayer player() {
-            return new BungeePlayer(
-                    (ProxiedPlayer) event.getReceiver());
+            return new BungeePlayer((ProxiedPlayer) event.getReceiver());
         }
     }
 

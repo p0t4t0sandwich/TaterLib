@@ -16,8 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 /** Mixin for the player advancement progress listener. */
 @Mixin(PlayerAdvancements.class)
 public class PlayerAdvancementProgressMixin_1_20_2 {
-    @Shadow
-    private ServerPlayer player;
+    @Shadow private ServerPlayer player;
 
     /** Called when a player progresses an advancement. */
     @Inject(method = "award", at = @At("HEAD"))
@@ -27,8 +26,6 @@ public class PlayerAdvancementProgressMixin_1_20_2 {
             CallbackInfoReturnable<Boolean> cir) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
                 new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
-                        player,
-                        advancementHolder,
-                        criterionName));
+                        player, advancementHolder, criterionName));
     }
 }

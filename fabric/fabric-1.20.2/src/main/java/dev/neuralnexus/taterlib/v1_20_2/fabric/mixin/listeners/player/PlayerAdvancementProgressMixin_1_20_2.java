@@ -26,8 +26,6 @@ public class PlayerAdvancementProgressMixin_1_20_2 {
             CallbackInfoReturnable<Boolean> cir) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
                 new VanillaPlayerAdvancementEvent_1_20_2.AdvancementProgress(
-                        player,
-                        advancementHolder,
-                        criterionName));
+                        player, advancementHolder, criterionName));
     }
 }

@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.server;
 
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.world.BukkitServerWorld;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterlib.v1_15_2.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_15_2.bukkit.world.BukkitServerWorld;
 import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import java.util.List;

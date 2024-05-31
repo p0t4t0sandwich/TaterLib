@@ -38,9 +38,12 @@ public class TaterLibConfigLoader {
             "source." + TaterLib.Constants.PROJECT_ID + ".conf";
     private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
     private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
-    private static final TypeToken<List<ModuleConfig>> moduleType = new TypeToken<List<ModuleConfig>>() {};
-    private static final TypeToken<List<HookConfig>> hookType = new TypeToken<List<HookConfig>>() {};
-    private static final TypeToken<List<MixinConfig>> mixinType = new TypeToken<List<MixinConfig>>() {};
+    private static final TypeToken<List<ModuleConfig>> moduleType =
+            new TypeToken<List<ModuleConfig>>() {};
+    private static final TypeToken<List<HookConfig>> hookType =
+            new TypeToken<List<HookConfig>>() {};
+    private static final TypeToken<List<MixinConfig>> mixinType =
+            new TypeToken<List<MixinConfig>>() {};
     private static TaterLibConfig config;
 
     /** Load the configuration from the file. */
@@ -57,7 +60,8 @@ public class TaterLibConfigLoader {
         ConfigurationNode versionNode = root.node("version");
         int version = versionNode.getInt(1);
         ServerConfig server = ConfigUtils.get(root, serverType, "server", TaterLib.logger());
-        List<ModuleConfig> modules = ConfigUtils.get(root, moduleType, "modules", TaterLib.logger());
+        List<ModuleConfig> modules =
+                ConfigUtils.get(root, moduleType, "modules", TaterLib.logger());
         List<HookConfig> hooks = ConfigUtils.get(root, hookType, "hooks", TaterLib.logger());
         List<MixinConfig> mixins = ConfigUtils.get(root, mixinType, "mixins", TaterLib.logger());
 

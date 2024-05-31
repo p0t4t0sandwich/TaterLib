@@ -15,8 +15,7 @@ import dev.neuralnexus.taterlib.plugin.Plugin;
         name = TaterLib.Constants.PROJECT_NAME,
         useMetadata = true,
         acceptableRemoteVersions = "*",
-        bukkitPlugin = TaterLib.Constants.PROJECT_NAME
-)
+        bukkitPlugin = TaterLib.Constants.PROJECT_NAME)
 public class LegacyForgeLoaderPlugin {
     private static Loader loader;
 

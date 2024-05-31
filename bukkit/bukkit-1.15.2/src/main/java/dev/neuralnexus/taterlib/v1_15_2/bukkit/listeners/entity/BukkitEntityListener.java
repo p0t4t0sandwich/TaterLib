@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.entity;
 
+import dev.neuralnexus.taterlib.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.entity.BukkitEntitySpawnEvent;
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
