@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_20.forge.event;
+package dev.neuralnexus.taterlib.utils.forge.modern.event;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 

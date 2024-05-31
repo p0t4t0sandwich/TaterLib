@@ -1,5 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.listeners.network;
 
+import com.mojang.authlib.GameProfile;
+
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
@@ -9,13 +11,17 @@ import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the plugin messages listener. */
 @Mixin(ServerCommonPacketListenerImpl.class)
-public class CustomPayloadMixin_1_20_6 {
+public abstract class CustomPayloadMixin_1_20_6 {
+    @Shadow
+    public abstract GameProfile getOwner();
+
     /**
      * Called when a custom payload packet is received. (often used for plugin messages)
      *
@@ -28,7 +34,8 @@ public class CustomPayloadMixin_1_20_6 {
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(wrapper,
-                        VanillaServer.server().getPlayerList().getPlayer(
-                                ((ServerCommonPacketListenerImpl) (Object) this).getOwner().getId())));
+                        VanillaServer.server()
+                                .getPlayerList()
+                                .getPlayer(getOwner().getId())));
     }
 }
