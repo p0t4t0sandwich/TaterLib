@@ -1,0 +1,35 @@
+plugins {
+    id('net.minecraftforge.gradle') version('[6.0,6.2)')
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = targetCompatibility = java_version
+
+minecraft {
+    mappings(channel: mapping_channel, version: mapping_version)
+}
+
+dependencies {
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    compileOnly('org.spongepowered:mixin:0.8.5')
+    compileOnly(project(':common'))
+    compileOnly(project(':forge:forge-utils-modern'))
+    compileOnly(project(':vanilla:vanilla-1.19'))
+    implementation(project(":vanilla:vanilla-${minecraft_version}"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${minecraft_version}"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.forge")
+    relocate("dev.neuralnexus.taterlib.v1_19_1.vanilla", "dev.neuralnexus.taterlib.v1_19_1.vanilla.forge")
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}
+
+reobf {
+    shadowJar {}
+}
+
+tasks.shadowJar.finalizedBy('reobfShadowJar')
+tasks.assemble.dependsOn('reobfShadowJar')

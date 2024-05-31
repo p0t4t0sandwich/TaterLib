@@ -117,6 +117,7 @@ include(
         'forge:forge-1.18',
         'forge:forge-1.18.2',
         'forge:forge-1.19',
+        'forge:forge-1.19.1',
         'forge:forge-1.19.2',
         'forge:forge-1.19.4',
         'forge:forge-1.20',
