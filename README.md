@@ -84,6 +84,7 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 #### Forge
 
+- Supports Sinytra Connector
 - 1.7.10-1.20.x
 
 #### NeoForge
@@ -123,7 +124,6 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 Feel free to open a PR to add your plugin/mod to this list!
 
-- [BadSpawns](https://github.com/p0t4t0sandwich/BadSpawns)
 - [BeeNameGenerator](https://github.com/p0t4t0sandwich/BeeNameGeneratorPlugin)
 - [Switchboard](https://github.com/p0t4t0sandwich/Switchboard)
 - [TaterUtils](https://github.com/p0t4t0sandwich/TaterUtils)

@@ -1,0 +1,28 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "package": "dev.neuralnexus.taterlib.v1_18.vanilla.mixin.listeners",
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "mixins": [
+    "block.PlayerBlockBreakMixin_1_18",
+    "entity.EntityDamageMixin_1_18",
+    "entity.EntityDeathMixin_1_18",
+    "entity.EntitySpawnMixin_1_18",
+    "network.CustomPayloadMixin_1_18",
+    "player.PlayerAdvancementFinishedMixin_1_18",
+    "player.PlayerAdvancementProgressMixin_1_18",
+    "player.PlayerDeathMixin_1_18",
+    "player.PlayerLoginMixin_1_18",
+    "player.PlayerLogoutMixin_1_18",
+    "player.PlayerMessageMixin_1_18",
+    "player.PlayerRespawnMixin_1_18",
+    "server.ServerStartedMixin_1_18",
+    "server.ServerStartingMixin_1_18",
+    "server.ServerStoppedMixin_1_18",
+    "server.ServerStoppingMixin_1_18"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

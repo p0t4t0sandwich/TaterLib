@@ -1,0 +1,8 @@
+accessWidener    v1    named
+
+# MinecraftServerMixin_1_18_2
+accessible field net/minecraft/server/MinecraftServer resources Lnet/minecraft/server/MinecraftServer$ReloadableResources;
+accessible method net/minecraft/server/MinecraftServer$ReloadableResources managers ()Lnet/minecraft/server/ReloadableServerResources;
+
+# VanillaEntityDeathEvent 1.18
+accessible method net/minecraft/world/entity/LivingEntity getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I

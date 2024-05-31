@@ -18,7 +18,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Mixin for the player advancement finished listener. */
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementFinishedMixin_1_19 {
-    @Shadow public ServerPlayer player;
+    @Shadow
+    private ServerPlayer player;
 
     @Shadow
     public abstract AdvancementProgress getOrStartProgress(Advancement advancement);
