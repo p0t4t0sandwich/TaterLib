@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.v1_19.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerEvent;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.v1_19.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 
 /** Forge implementation of {@link PlayerEvent}. */
 public class ForgePlayerEvent implements PlayerEvent {
@@ -15,6 +15,6 @@ public class ForgePlayerEvent implements PlayerEvent {
     /** {@inheritDoc} */
     @Override
     public Player player() {
-        return new ForgePlayer(event.getEntity());
+        return new VanillaPlayer(event.getEntity());
     }
 }

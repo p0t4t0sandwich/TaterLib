@@ -542,6 +542,7 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/6d1c8bf4c28e697f472a83bd6add76ec4951734/mixin-0.8.5-processor.jar" />
         </processorPath>
+        <module name="TaterLib.forge.forge-1.19.TaterLib.forge.forge-1.19.main" />
         <module name="TaterLib.forge.forge-1.20.TaterLib.forge.forge-1.20.main~1" />
         <module name="TaterLib.forge.forge-1.20.2.TaterLib.forge.forge-1.20.2.main" />
       </profile>

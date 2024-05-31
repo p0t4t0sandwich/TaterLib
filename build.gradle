@@ -814,7 +814,9 @@ tasks.register('build_monojar', Jar) {
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "taterlib.mixins.v1_20.vanilla.json," +
+                'MixinConfigs': "" +
+                        "taterlib.mixins.v1_19.forge.json," +
+                        "taterlib.mixins.v1_20.vanilla.json," +
                         "taterlib.mixins.v1_20.forge.json," +
                         "taterlib.mixins.v1_20_2.vanilla.patch.json," +
                         "taterlib.mixins.v1_20_2.vanilla.json," +
