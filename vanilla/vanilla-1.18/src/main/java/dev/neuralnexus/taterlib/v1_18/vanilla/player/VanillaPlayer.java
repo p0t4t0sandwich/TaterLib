@@ -86,9 +86,9 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
     public void sendPluginMessage(String channel, byte[] data) {
         String[] channelParts = channel.split(":");
         if (channelParts.length == 1) {
-            channelParts = new String[] {"tl-user-forgot", channelParts[0]};
+            channel = "tl-user-forgot:" + channelParts[0];
         }
-        ResourceLocation id = new ResourceLocation(channelParts[0], channelParts[1]);
+        ResourceLocation id = ResourceLocation.of(channel, ':');
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
         ((ServerPlayer) player).connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));

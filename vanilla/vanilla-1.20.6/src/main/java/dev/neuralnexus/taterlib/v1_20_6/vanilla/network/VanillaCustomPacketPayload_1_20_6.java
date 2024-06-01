@@ -23,10 +23,9 @@ public class VanillaCustomPacketPayload_1_20_6 implements CustomPacketPayload {
     public VanillaCustomPacketPayload_1_20_6(String channel, byte[] data) {
         String[] channelParts = channel.split(":");
         if (channelParts.length == 1) {
-            id = new ResourceLocation("tl-user-forgot", channelParts[0]);
-        } else {
-            id = new ResourceLocation(channelParts[0], channelParts[1]);
+            channel = "tl-user-forgot:" + channelParts[0];
         }
+        id = ResourceLocation.of(channel, ':');
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
     }
