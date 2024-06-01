@@ -783,7 +783,7 @@ tasks.register('build_monojar', Jar) {
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("4", "5", "6", "7", "8", "9", "10", "11"))
             .put("vanilla", Arrays.asList(
-                    "1.18", "1.18.2",
+                    "1.17", "1.18", "1.18.2",
                     "1.19", "1.19.1", "1.19.3", "1.19.4",
                     "1.20", "1.20.2", "1.20.6"))
             .put("velocity", Arrays.asList("3"))
@@ -815,6 +815,7 @@ tasks.register('build_monojar', Jar) {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "" +
+                        "taterlib.mixins.v1_17_1.forge.json," +
                         "taterlib.mixins.v1_18.forge.json," +
                         "taterlib.mixins.v1_19.forge.json," +
                         "taterlib.mixins.v1_19_1.forge.patch.json," +

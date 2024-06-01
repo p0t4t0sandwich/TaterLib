@@ -11,8 +11,8 @@ import dev.neuralnexus.taterlib.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.v1_17_1.forge.command.ForgeCommandSender;
-import dev.neuralnexus.taterlib.v1_17_1.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_17.vanilla.command.VanillaCommandSender;
+import dev.neuralnexus.taterlib.v1_17.vanilla.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -55,13 +55,13 @@ public class ForgeCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public CommandSender getSender(CommandSourceStack source) {
-        return new ForgeCommandSender(source);
+        return new VanillaCommandSender(source);
     }
 
     /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
-        return new ForgePlayer((net.minecraft.world.entity.player.Player) source.getEntity());
+        return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 
     /** {@inheritDoc} */
