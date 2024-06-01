@@ -1,0 +1,77 @@
+package dev.neuralnexus.taterlib.v1_17.vanilla.inventory;
+
+import dev.neuralnexus.taterlib.inventory.Inventory;
+import dev.neuralnexus.taterlib.inventory.ItemStack;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/** The Vanilla implementation of {@link Inventory} */
+public class VanillaInventory implements Inventory {
+    private final net.minecraft.world.entity.player.Inventory inventory;
+
+    /**
+     * Constructor.
+     *
+     * @param inventory The Forge inventory.
+     */
+    public VanillaInventory(net.minecraft.world.entity.player.Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int size() {
+        return inventory.getContainerSize();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ItemStack get(int slot) {
+        return new VanillaItemStack(inventory.getItem(slot));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void set(int slot, ItemStack item) {
+        inventory.setItem(slot, ((VanillaItemStack) item).itemStack());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void add(ItemStack item) {
+        inventory.add(((VanillaItemStack) item).itemStack());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ItemStack> contents() {
+        return inventory.items.stream().map(VanillaItemStack::new).collect(Collectors.toList());
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setContents(List<ItemStack> items) {
+        inventory.items.clear();
+        items.stream()
+                .map(VanillaItemStack.class::cast)
+                .map(VanillaItemStack::itemStack)
+                .forEach(inventory.items::add);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void remove(String type) {
+        for (int i = 0; i < size(); i++) {
+            if (get(i).type().equals(type)) {
+                inventory.removeItem(((VanillaItemStack) get(i)).itemStack());
+            }
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void clear(int slot) {
+        inventory.removeItem(((VanillaItemStack) get(slot)).itemStack());
+    }
+}
