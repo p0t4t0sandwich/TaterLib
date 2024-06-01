@@ -14,7 +14,7 @@ public class VanillaEntityDamageEventMixin_1_19_4 {
      * @reason Patch for 1.19.4
      */
     @Overwrite
-    public String getCause() {
+    public String cause() {
         return ((VanillaEntityDamageEvent) (Object) this).getSource().type().msgId();
     }
 }

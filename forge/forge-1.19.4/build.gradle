@@ -17,5 +17,5 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
     compileOnly(project(':forge:forge-utils-modern'))
-    compileOnly(project(':forge:forge-1.19'))
+    compileOnly(project(':vanilla:vanilla-1.19'))
 }
