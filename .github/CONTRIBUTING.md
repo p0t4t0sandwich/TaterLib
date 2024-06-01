@@ -103,6 +103,18 @@ In general, rather than returning `null`, it's preferred to wrap the return type
 annotations like `@Nullable` and `@NotNull` exist, but in a codebase that ranges from beta MC to modern MC, I feel
 things will be more robust in the long term if we use `Optional` instead.
 
+#### Mixins
+
+Before you add a mixin to a modding platform, please ensure that there aren't any built-in platform methods for
+accomplishing the same task. This both reduces complexity, and makes TaterLib more compatible with other mods.
+Exceptions can be made for Fabric, where they do not supply cancelable event listeners, in which case, we need to make
+and ship our own implementations.
+
+#### Access Transformers/Wideners
+
+They're great, but they're not always the best solution. Limit their usage when possible, mainly because it'll force a
+re-decompile/resync with some build tools.
+
 #### Formatting
 
 To keep things simple, we use [google-java-format](https://plugins.jetbrains.com/plugin/8527-google-java-format) for
@@ -135,11 +147,6 @@ working on PRs.
 
 It sounds like a lot, but most of the code is repetitive, and you'll get the hang of it after a bit. Even if you just
 start a PR, someone else can pick it up and help finish it.
-
-#### Access Transformers/Wideners
-
-They're great, but they're not always the best solution. Limit their usage when possible, mainly because it'll force a
-re-decompile/resync with some build tools.
 
 ### Commit messages
 
@@ -183,3 +190,4 @@ following:
 * [Minestom](https://github.com/Minestom/Minestom)
 * [Cursed Fabric](https://minecraft-cursed-legacy.github.io/)
 * [Babric](https://babric.github.io/)
+* ModLoader
