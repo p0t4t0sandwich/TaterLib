@@ -4,7 +4,7 @@ import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
-import dev.neuralnexus.taterlib.v1_18.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
 
 import net.minecraftforge.event.ServerChatEvent;
 
@@ -34,7 +34,7 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
     /** {@inheritDoc} */
     @Override
     public Player player() {
-        return new ForgePlayer(event.getPlayer());
+        return new VanillaPlayer(event.getPlayer());
     }
 
     /** {@inheritDoc} */

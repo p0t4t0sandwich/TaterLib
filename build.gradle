@@ -815,6 +815,7 @@ tasks.register('build_monojar', Jar) {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "" +
+                        "taterlib.mixins.v1_18.forge.json," +
                         "taterlib.mixins.v1_19.forge.json," +
                         "taterlib.mixins.v1_19_1.forge.patch.json," +
                         "taterlib.mixins.v1_19_3.forge.patch.json." +

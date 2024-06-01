@@ -3,8 +3,8 @@ package dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions;
 import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.v1_18.forge.command.ForgeCommandSender;
-import dev.neuralnexus.taterlib.v1_18.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.command.VanillaCommandSender;
+import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.server.permission.PermissionAPI;
@@ -26,9 +26,9 @@ public class ForgePermissionsHook implements PermissionsHook {
 
         net.minecraft.world.entity.player.Player player;
         if (permissible instanceof Player) {
-            player = ((ForgePlayer) permissible).player();
+            player = ((VanillaPlayer) permissible).player();
         } else {
-            CommandSourceStack source = ((ForgeCommandSender) permissible).sender();
+            CommandSourceStack source = ((VanillaCommandSender) permissible).sender();
             if (source.getEntity() == null) {
                 return false;
             }

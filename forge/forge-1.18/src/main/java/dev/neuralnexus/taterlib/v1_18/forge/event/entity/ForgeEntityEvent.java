@@ -3,7 +3,6 @@ package dev.neuralnexus.taterlib.v1_18.forge.event.entity;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_18.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.v1_18.forge.player.ForgePlayer;
 
 import net.minecraft.world.entity.player.Player;
 

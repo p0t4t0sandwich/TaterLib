@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.v1_18.forge.event.block;
 
 import dev.neuralnexus.taterlib.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.v1_18.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
 
 /** Forge implementation of {@link PlayerBlockBreakEvent}. */
 public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlockBreakEvent {
@@ -28,6 +28,6 @@ public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlock
     /** {@inheritDoc} */
     @Override
     public Player player() {
-        return new ForgePlayer(event.getPlayer());
+        return new VanillaPlayer(event.getPlayer());
     }
 }
