@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_19_3.vanilla.mixin.patch.entity;
+package dev.neuralnexus.taterlib.v1_19_3.forge.mixin.patch.entity;
 
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;

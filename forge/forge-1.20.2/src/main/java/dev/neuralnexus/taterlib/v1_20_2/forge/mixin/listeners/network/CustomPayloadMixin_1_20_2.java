@@ -36,8 +36,6 @@ public abstract class CustomPayloadMixin_1_20_2 {
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(
                         wrapper,
-                        VanillaServer.server()
-                                .getPlayerList()
-                                .getPlayer(getOwner().getId())));
+                        VanillaServer.server().getPlayerList().getPlayer(getOwner().getId())));
     }
 }

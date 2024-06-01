@@ -778,7 +778,7 @@ tasks.register('build_monojar', Jar) {
                     "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
                     "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
                     "1.18", "1.18.2",
-                    "1.19", "1.19.1", "1.19.2", "1.19.4",
+                    "1.19", "1.19.1", "1.19.3", "1.19.4",
                     "1.20", "1.20.2", "1.20.6"))
             .put("neoforge", Arrays.asList("1.20.2"))
             .put("sponge", Arrays.asList("4", "5", "6", "7", "8", "9", "10", "11"))
@@ -816,7 +816,9 @@ tasks.register('build_monojar', Jar) {
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "" +
                         "taterlib.mixins.v1_19.forge.json," +
-                        "taterlib.mixins.v1_19_1.forge.patch.json"
+                        "taterlib.mixins.v1_19_1.forge.patch.json," +
+                        "taterlib.mixins.v1_19_3.forge.patch.json." +
+                        "taterlib.mixins.v1_19_4.forge.patch.json." +
                         "taterlib.mixins.v1_20.vanilla.json," +
                         "taterlib.mixins.v1_20.forge.json," +
                         "taterlib.mixins.v1_20_2.vanilla.patch.json," +
