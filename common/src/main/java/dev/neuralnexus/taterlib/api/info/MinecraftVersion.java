@@ -660,6 +660,17 @@ public enum MinecraftVersion {
     }
 
     /**
+     * Get if the version of Minecraft the server is running is within the defined range. Assumed to
+     * be an inclusive range.
+     *
+     * @param start The start of the range
+     * @param end The end of the range
+     */
+    public boolean isInRange(@Nullable MinecraftVersion start, @Nullable MinecraftVersion end) {
+        return this.isInRange(true, start, true, end);
+    }
+
+    /**
      * Get if the version of Minecraft the server is running is within the defined range. <br>
      * Strings are read in the format of: <b>(1.17,1.20]</b> or <b>[1.17,)</b> or <b>(,1.20]</b>
      *

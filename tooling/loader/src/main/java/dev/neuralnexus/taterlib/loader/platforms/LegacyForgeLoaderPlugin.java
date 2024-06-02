@@ -36,7 +36,7 @@ public class LegacyForgeLoaderPlugin {
     public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_7_2, true, MinecraftVersion.V1_7_10)) {
+        if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
             version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
         } else {
             System.err.println(

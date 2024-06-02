@@ -29,7 +29,7 @@ public class NeoForgeLoaderPlugin {
     public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
+        if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         } else {
             System.err.println(

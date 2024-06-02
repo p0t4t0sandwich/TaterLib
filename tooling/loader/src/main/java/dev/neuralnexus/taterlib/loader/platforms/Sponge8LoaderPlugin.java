@@ -35,13 +35,13 @@ public class Sponge8LoaderPlugin {
     public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_13, true, MinecraftVersion.V1_16_5)) {
+        if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_16_5)) {
             version = "." + MinecraftVersion.V1_13.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_17, true, MinecraftVersion.V1_18_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_18_2)) {
             version = "." + MinecraftVersion.V1_17.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println(

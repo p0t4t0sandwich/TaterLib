@@ -40,7 +40,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
             MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
             if (TaterAPIProvider.minecraftVersion()
-                    .isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_1)) {
+                    .isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_1)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
             } else if (TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());

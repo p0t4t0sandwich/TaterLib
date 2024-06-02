@@ -36,33 +36,33 @@ public class ForgeLoaderPlugin {
     public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+        if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
             version = "." + MinecraftVersion.V1_8_9.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_9_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
             version = "." + MinecraftVersion.V1_9_4.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_10, true, MinecraftVersion.V1_10_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_10, MinecraftVersion.V1_10_2)) {
             version = "." + MinecraftVersion.V1_10_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_11, true, MinecraftVersion.V1_11_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
             version = "." + MinecraftVersion.V1_11_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_12_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
             version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_13, true, MinecraftVersion.V1_13_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_13_2)) {
             version = "." + MinecraftVersion.V1_13_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_14, true, MinecraftVersion.V1_14_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_14_4)) {
             version = "." + MinecraftVersion.V1_14_4.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_15, true, MinecraftVersion.V1_15_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_15, MinecraftVersion.V1_15_2)) {
             version = "." + MinecraftVersion.V1_15_1.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_16_5)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_16_5)) {
             version = "." + MinecraftVersion.V1_16_3.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_17, true, MinecraftVersion.V1_17_1)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_17_1)) {
             version = "." + MinecraftVersion.V1_17_1.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_18, true, MinecraftVersion.V1_18_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_2)) {
             version = "." + MinecraftVersion.V1_18.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_20_5, true, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20_6.getDelimiterString();
         } else {
             System.err.println(

@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric.mixin.listeners.network;
 
 import com.mojang.authlib.GameProfile;
+
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;

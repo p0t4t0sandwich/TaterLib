@@ -27,21 +27,21 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     public static Plugin plugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.B1_7, true, MinecraftVersion.B1_7_3)) {
+        if (mcv.isInRange(MinecraftVersion.B1_7, MinecraftVersion.B1_7_3)) {
             version = "." + MinecraftVersion.B1_7_3.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_2_1, true, MinecraftVersion.V1_2_5)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_2_1, MinecraftVersion.V1_2_5)) {
             version = "." + MinecraftVersion.V1_2_5.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_6_1, true, MinecraftVersion.V1_6_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_6_1, MinecraftVersion.V1_6_4)) {
             version = "." + MinecraftVersion.V1_6_4.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_7_2, true, MinecraftVersion.V1_7_10)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
             version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_8_9)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
             version = "." + MinecraftVersion.V1_8_8.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_9, true, MinecraftVersion.V1_13_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_13_2)) {
             version = "." + MinecraftVersion.V1_13_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_14, true, MinecraftVersion.V1_15_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_15_2)) {
             version = "." + MinecraftVersion.V1_15_2.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println(

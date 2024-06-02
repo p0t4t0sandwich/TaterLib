@@ -20,13 +20,13 @@ public class BungeeLoaderPlugin extends Plugin {
     public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
         String version;
         MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
-        if (mcv.isInRange(true, MinecraftVersion.V1_4_2, true, MinecraftVersion.V1_7_10)) {
+        if (mcv.isInRange(MinecraftVersion.V1_4_2, MinecraftVersion.V1_7_10)) {
             version = "." + MinecraftVersion.V1_4_7.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_8, true, MinecraftVersion.V1_11_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_11_2)) {
             version = "." + MinecraftVersion.V1_8.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_12, true, MinecraftVersion.V1_15_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_15_2)) {
             version = "." + MinecraftVersion.V1_12.getDelimiterString();
-        } else if (mcv.isInRange(true, MinecraftVersion.V1_16, true, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println(
