@@ -50,7 +50,8 @@ public class BukkitEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String type() {
-        return entity.getType().toString();
+        // TODO: Add ModId support
+        return "minecraft:" + entity.getType().toString().toLowerCase();
     }
 
     /** {@inheritDoc} */
