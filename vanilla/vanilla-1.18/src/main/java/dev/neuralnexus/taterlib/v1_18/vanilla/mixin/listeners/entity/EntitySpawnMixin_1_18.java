@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_18.vanilla.mixin.listeners.entity;
 
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.v1_18.vanilla.event.VanillaCancellableCallbackWrapper;
+import dev.neuralnexus.taterlib.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.entity.VanillaEntitySpawnEvent;
 
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +19,6 @@ class EntitySpawnMixin_1_18 {
     @Inject(method = "addFreshEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityEvents.SPAWN.invoke(
-                new VanillaEntitySpawnEvent(entity, new VanillaCancellableCallbackWrapper(cir)));
+                new VanillaEntitySpawnEvent(entity, new MixinCancellableCallbackWrapper(cir)));
     }
 }

@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.mixin.listeners.block;
 
 import dev.neuralnexus.taterlib.event.api.BlockEvents;
-import dev.neuralnexus.taterlib.v1_19.vanilla.event.VanillaCancellableCallbackWrapper;
+import dev.neuralnexus.taterlib.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import net.minecraft.core.BlockPos;
@@ -36,6 +36,6 @@ public class PlayerBlockBreakMixin_1_19 {
                         player,
                         blockPos,
                         blockState,
-                        new VanillaCancellableCallbackWrapper(ci)));
+                        new MixinCancellableCallbackWrapper(ci)));
     }
 }

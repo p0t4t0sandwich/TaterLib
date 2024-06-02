@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_19.fabric.mixin.listeners.entity;
 
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.v1_19.vanilla.event.VanillaCancellableCallbackWrapper;
+import dev.neuralnexus.taterlib.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;
 
 import net.minecraft.world.damagesource.CombatTracker;
@@ -24,6 +24,6 @@ class EntityDamageMixin_1_19 {
                         damageSource.getDirectEntity(),
                         damageSource,
                         damage,
-                        new VanillaCancellableCallbackWrapper(ci)));
+                        new MixinCancellableCallbackWrapper(ci)));
     }
 }

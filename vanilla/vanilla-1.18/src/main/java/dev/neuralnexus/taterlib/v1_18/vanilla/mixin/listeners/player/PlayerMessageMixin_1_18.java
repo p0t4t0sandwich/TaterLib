@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_18.vanilla.mixin.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_18.vanilla.event.VanillaCancellableCallbackWrapper;
+import dev.neuralnexus.taterlib.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.player.VanillaPlayerMessageEvent;
 
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
@@ -26,6 +26,6 @@ public class PlayerMessageMixin_1_18 {
                 new VanillaPlayerMessageEvent(
                         ((ServerGamePacketListenerImpl) (Object) this).getPlayer(),
                         serverboundChatPacket.getMessage(),
-                        new VanillaCancellableCallbackWrapper(ci)));
+                        new MixinCancellableCallbackWrapper(ci)));
     }
 }

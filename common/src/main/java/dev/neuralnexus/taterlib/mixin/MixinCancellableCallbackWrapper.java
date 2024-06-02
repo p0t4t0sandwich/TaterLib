@@ -1,17 +1,17 @@
-package dev.neuralnexus.taterlib.v1_18.vanilla.event;
+package dev.neuralnexus.taterlib.mixin;
 
 import dev.neuralnexus.taterlib.event.Cancellable;
 
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
- * Wrapper for Vanilla mixin events that implement {@link
+ * Wrapper for mixin events that implement {@link
  * org.spongepowered.asm.mixin.injection.callback.Cancellable}.
  */
-public class VanillaCancellableCallbackWrapper implements Cancellable {
+public class MixinCancellableCallbackWrapper implements Cancellable {
     private final CallbackInfo ci;
 
-    public VanillaCancellableCallbackWrapper(CallbackInfo ci) {
+    public MixinCancellableCallbackWrapper(CallbackInfo ci) {
         this.ci = ci;
     }
 
