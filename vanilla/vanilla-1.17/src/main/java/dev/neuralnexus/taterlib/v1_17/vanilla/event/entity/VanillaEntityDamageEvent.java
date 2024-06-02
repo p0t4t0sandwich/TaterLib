@@ -25,7 +25,7 @@ public class VanillaEntityDamageEvent extends VanillaEntityEvent implements Enti
      *
      * @return The source of the damage
      */
-    public DamageSource getSource() {
+    public DamageSource source() {
         return damageSource;
     }
 
