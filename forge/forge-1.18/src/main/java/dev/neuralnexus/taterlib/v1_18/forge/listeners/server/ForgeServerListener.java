@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib.v1_18.forge.listeners.server;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_18.forge.event.server.ForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_18.forge.event.server.ForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_18.forge.event.server.ForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_18.forge.event.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterlib.v1_18.vanilla.event.server.VanillaServerStartedEvent;
+import dev.neuralnexus.taterlib.v1_18.vanilla.event.server.VanillaServerStartingEvent;
+import dev.neuralnexus.taterlib.v1_18.vanilla.event.server.VanillaServerStoppedEvent;
+import dev.neuralnexus.taterlib.v1_18.vanilla.event.server.VanillaServerStoppingEvent;
 
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -21,7 +21,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(event.getServer()));
     }
 
     /**
@@ -31,7 +31,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarted(ServerStartedEvent event) {
-        ServerEvents.STARTED.invoke(new ForgeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(event.getServer()));
     }
 
     /**
@@ -41,7 +41,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new ForgeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(event.getServer()));
     }
 
     /**
@@ -51,6 +51,6 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopped(ServerStoppedEvent event) {
-        ServerEvents.STOPPED.invoke(new ForgeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(event.getServer()));
     }
 }

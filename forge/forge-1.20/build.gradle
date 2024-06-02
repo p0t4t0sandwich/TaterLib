@@ -20,6 +20,7 @@ dependencies {
     annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':common'))
     compileOnly(project(':forge:forge-utils-modern'))
+    compileOnly(project(':forge:forge-1.20.2'))
     implementation(project(":vanilla:vanilla-${minecraft_version}"))
 }
 

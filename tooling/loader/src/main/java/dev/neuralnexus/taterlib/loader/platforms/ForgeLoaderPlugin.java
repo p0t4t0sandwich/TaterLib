@@ -61,7 +61,7 @@ public class ForgeLoaderPlugin {
         } else if (mcv.isInRange(true, MinecraftVersion.V1_19, true, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
         } else if (mcv.isInRange(true, MinecraftVersion.V1_20, true, MinecraftVersion.V1_20_4)) {
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+            version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else if (mcv.isInRange(true, MinecraftVersion.V1_20_5, true, MinecraftVersion.V1_20_6)) {
             version = "." + MinecraftVersion.V1_20_6.getDelimiterString();
         } else {

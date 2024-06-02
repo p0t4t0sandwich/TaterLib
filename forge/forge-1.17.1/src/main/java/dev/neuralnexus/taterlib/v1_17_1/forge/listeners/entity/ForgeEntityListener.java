@@ -1,9 +1,10 @@
 package dev.neuralnexus.taterlib.v1_17_1.forge.listeners.entity;
 
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.v1_17_1.forge.event.entity.ForgeEntityDamageEvent;
-import dev.neuralnexus.taterlib.v1_17_1.forge.event.entity.ForgeEntityDeathEvent;
-import dev.neuralnexus.taterlib.v1_17_1.forge.event.entity.ForgeEntitySpawnEvent;
+import dev.neuralnexus.taterlib.utils.forge.modern.event.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.v1_17.vanilla.event.entity.VanillaEntityDamageEvent;
+import dev.neuralnexus.taterlib.v1_17.vanilla.event.entity.VanillaEntityDeathEvent;
+import dev.neuralnexus.taterlib.v1_17.vanilla.event.entity.VanillaEntitySpawnEvent;
 
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -19,7 +20,12 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntityDamage(LivingDamageEvent event) {
-        EntityEvents.DAMAGE.invoke(new ForgeEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        event.getEntity(),
+                        event.getSource(),
+                        event.getAmount(),
+                        new ForgeCancellableEventWrapper(event)));
     }
 
     /**
@@ -29,7 +35,8 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntityDeath(LivingDeathEvent event) {
-        EntityEvents.DEATH.invoke(new ForgeEntityDeathEvent(event));
+        EntityEvents.DEATH.invoke(
+                new VanillaEntityDeathEvent(event.getEntity(), event.getSource()));
     }
 
     /**
@@ -39,6 +46,8 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntitySpawn(LivingSpawnEvent.SpecialSpawn event) {
-        EntityEvents.SPAWN.invoke(new ForgeEntitySpawnEvent(event));
+        EntityEvents.SPAWN.invoke(
+                new VanillaEntitySpawnEvent(
+                        event.getEntity(), new ForgeCancellableEventWrapper(event)));
     }
 }
