@@ -15,6 +15,6 @@ public class VanillaEntityDamageEventMixin_1_19_4 {
      */
     @Overwrite
     public String cause() {
-        return ((VanillaEntityDamageEvent) (Object) this).getSource().type().msgId();
+        return ((VanillaEntityDamageEvent) (Object) this).source().type().msgId();
     }
 }
