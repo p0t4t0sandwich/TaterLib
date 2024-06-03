@@ -72,10 +72,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerEvents.LOGIN.invoke(
-                new VanillaPlayerLoginEvent(
-                        ((ServerPlayer) event.getEntity()).connection.connection,
-                        (ServerPlayer) event.getEntity()));
+        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent((ServerPlayer) event.getEntity()));
     }
 
     /**

@@ -24,6 +24,6 @@ public class PlayerLoginMixin_1_18 {
                             target =
                                     "Lnet/minecraft/network/protocol/game/ClientboundPlayerAbilitiesPacket;<init>(Lnet/minecraft/world/entity/player/Abilities;)V"))
     private void onLogin(Connection connection, ServerPlayer player, CallbackInfo ci) {
-        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(connection, player));
+        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(player));
     }
 }

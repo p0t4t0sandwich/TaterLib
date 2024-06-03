@@ -29,6 +29,6 @@ public class PlayerLoginMixin_1_20_2 {
             ServerPlayer player,
             CommonListenerCookie cookie,
             CallbackInfo ci) {
-        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(connection, player));
+        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(player));
     }
 }

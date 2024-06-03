@@ -11,12 +11,10 @@ loom.mixin.useLegacyMixinAp = false
 dependencies {
     compileOnly(project(path: ':common', configuration: 'shadow'))
 
-    // Minecraft and Fabric mappings
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
-    // Fabric API
     Set<String> apiModules = [
             'fabric-api-base',
             'fabric-command-api-v1',

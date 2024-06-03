@@ -7,11 +7,14 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppedEvent;
@@ -20,6 +23,7 @@ import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.loader.api.FabricLoader;
 
 import org.apache.logging.log4j.LogManager;
@@ -55,11 +59,10 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         api.setServer(VanillaServer::instance);
 
         if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
-            // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(VanillaServer::setServer);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> pluginStop());
 
-            // Register Fabric API command events
+            // Register Fabric API events
             CommandRegistrationCallback.EVENT.register(
                     (dispatcher, registryAccess, environment) -> {
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
@@ -70,6 +73,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                     new VanillaCommandRegisterEvent(dispatcher, environment));
                         }
                     });
+
+            ServerPlayConnectionEvents.JOIN.register(
+                    (handler, sender, s) ->
+                            PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(handler.player)));
+            ServerPlayConnectionEvents.DISCONNECT.register(
+                    (handler, s) ->
+                            PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(handler.player)));
 
             ServerLifecycleEvents.SERVER_STARTING.register(
                     s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));

@@ -16,8 +16,6 @@
     "player.PlayerAdvancementFinishedMixin_1_19",
     "player.PlayerAdvancementProgressMixin_1_19",
     "player.PlayerDeathMixin_1_19",
-    "player.PlayerLoginMixin_1_19",
-    "player.PlayerLogoutMixin_1_19",
     "player.PlayerMessageMixin_1_19",
     "player.PlayerRespawnMixin_1_19"
   ]
