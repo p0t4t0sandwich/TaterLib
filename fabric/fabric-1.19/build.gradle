@@ -14,9 +14,6 @@ dependencies {
     mappings loom.officialMojangMappings()
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
-    // Lucko's Permissions API
-    modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
-
     Set<String> apiModules = [
             'fabric-command-api-v2',
             'fabric-lifecycle-events-v1',
@@ -27,14 +24,11 @@ dependencies {
         modImplementation(fabricApi.module(it, project.fabric_version))
     }
 
+    // Lucko's Permissions API
+    modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
+
     compileOnly(project(':common'))
     implementation(project(':vanilla:vanilla-1.19'))
-}
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_19.json".toString()]) {
-        expand project.properties
-    }
 }
 
 shadowJar {
@@ -42,9 +36,6 @@ shadowJar {
         include(project(':vanilla:vanilla-1.19'))
         exclude('/mappings/*')
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("dev.neuralnexus.taterlib.v1_19.vanilla.mixin.listeners", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric.mixin.fake")
-    relocate("dev.neuralnexus.taterlib.v1_19.vanilla.fabric", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
 }
 

@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.modules.bungeecord.api.events;
 
 import com.google.common.io.ByteArrayDataInput;
+
 import dev.neuralnexus.taterlib.event.Event;
 
 /** Response to BungeeCord plugin message IP request. */

@@ -15,18 +15,13 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     compileOnly(project(':common'))
     compileOnly(project(':vanilla:vanilla-1.19'))
-    implementation(project(':vanilla:vanilla-1.19.1'))
 }
 
 shadowJar {
     dependencies {
-        include(project(':vanilla:vanilla-1.19.1'))
         exclude('/mappings/*')
     }
-    // Cheap trick to get rid of mixin.listeners, since the exclude above doesn't work
-    relocate("dev.neuralnexus.taterlib.v1_19_1.vanilla.mixin.listeners", "dev.neuralnexus.taterlib.v1_19_1.vanilla.fabric.mixin.fake")
-    relocate("dev.neuralnexus.taterlib.v1_19_1.vanilla.fabric", "dev.neuralnexus.taterlib.v1_19_1.vanilla.fabric")
-    relocate("dev.neuralnexus.taterlib.v1_19_1.vanilla", "dev.neuralnexus.taterlib.v1_19_1.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
 }
 
 task remappedShadowJar(type: RemapJarTask) {

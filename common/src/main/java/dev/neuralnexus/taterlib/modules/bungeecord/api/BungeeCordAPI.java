@@ -12,7 +12,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * API for the BungeeCord module based on <a href="https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/">This wiki entry</a>
+ * API for the BungeeCord module based on <a
+ * href="https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/">This wiki entry</a>
  */
 @SuppressWarnings("UnstableApiUsage")
 public class BungeeCordAPI {
@@ -88,7 +89,8 @@ public class BungeeCordAPI {
      * Get the amount of players on a certain server, or on ALL the servers
      *
      * @param player The player sending the plugin message
-     * @param server The name of the server to get the player count of, or ALL to get the global player count
+     * @param server The name of the server to get the player count of, or ALL to get the global
+     *     player count
      */
     public void PlayerCount(Player player, String server) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -101,7 +103,8 @@ public class BungeeCordAPI {
      * Get a list of players connected on a certain server, or on ALL of the servers
      *
      * @param player The player sending the plugin message
-     * @param server The name of the server to get the list of connected players, or ALL for global online player list
+     * @param server The name of the server to get the list of connected players, or ALL for global
+     *     online player list
      */
     public void PlayerList(Player player, String server) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
@@ -149,7 +152,8 @@ public class BungeeCordAPI {
     }
 
     /**
-     * Send a raw message (as in, a chat message) to the specified player. The advantage of this method over Message is that you can include click events and hover events
+     * Send a raw message (as in, a chat message) to the specified player. The advantage of this
+     * method over Message is that you can include click events and hover events
      *
      * @param player The player sending the plugin message
      * @param target The player to send the message to
@@ -179,12 +183,13 @@ public class BungeeCordAPI {
      * <b>Remember, the sending and receiving server(s) need to have a player online</b>
      *
      * @param player The player sending the plugin message
-     * @param server server to send to, ALL to send to every server (except the one sending the plugin message), or ONLINE to send to every server that's online (except the one sending the plugin message)
+     * @param server server to send to, ALL to send to every server (except the one sending the
+     *     plugin message), or ONLINE to send to every server that's online (except the one sending
+     *     the plugin message)
      * @param subchannel Subchannel for plugin usage
      * @param message the message to send
      */
-    public void Forward(
-            Player player, String server, String subchannel, byte[] message) {
+    public void Forward(Player player, String server, String subchannel, byte[] message) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(FORWARD.type());
         out.writeUTF(server);
@@ -194,7 +199,7 @@ public class BungeeCordAPI {
         DataOutputStream msgout = new DataOutputStream(msgbytes);
         try {
             msgout.write(message);
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -284,13 +289,13 @@ public class BungeeCordAPI {
     }
 
     /**
-     * Kick any player on this proxy with a raw disconnect message, which allows you to use hex colors - like MessageRaw, but for KickPlayer
+     * Kick any player on this proxy with a raw disconnect message, which allows you to use hex
+     * colors - like MessageRaw, but for KickPlayer
      *
      * @param player The player sending the plugin message
      * @param target the name of the player
      * @param reason the reason the player is kicked with
      */
-
     public void KickPlayerRaw(Player player, String target, String reason) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(KICK_PLAYER_RAW.type());

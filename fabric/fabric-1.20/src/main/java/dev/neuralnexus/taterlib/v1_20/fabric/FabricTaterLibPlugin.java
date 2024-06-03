@@ -79,7 +79,8 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                             PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(handler.player)));
             ServerPlayConnectionEvents.DISCONNECT.register(
                     (handler, s) ->
-                            PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(handler.player)));
+                            PlayerEvents.LOGOUT.invoke(
+                                    new VanillaPlayerLogoutEvent(handler.player)));
 
             ServerLifecycleEvents.SERVER_STARTING.register(
                     s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
