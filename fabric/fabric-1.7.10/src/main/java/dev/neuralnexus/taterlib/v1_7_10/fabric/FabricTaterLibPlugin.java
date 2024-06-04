@@ -4,10 +4,10 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderAdapters;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricPlayerEvents;
@@ -24,15 +24,12 @@ import dev.neuralnexus.taterlib.v1_7_10.fabric.event.server.FabricServerStopping
 import dev.neuralnexus.taterlib.v1_7_10.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.server.FabricServer;
 
-import net.fabricmc.loader.api.FabricLoader;
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
 import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 
 import org.apache.logging.log4j.LogManager;
-
-import java.util.stream.Collectors;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     public static MinecraftServer minecraftServer;
@@ -49,19 +46,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setModList(
-                () ->
-                        FabricLoader.getInstance().getAllMods().stream()
-                                .map(
-                                        modContainer ->
-                                                new ModInfo(
-                                                        modContainer.getMetadata().getId(),
-                                                        modContainer.getMetadata().getName(),
-                                                        modContainer
-                                                                .getMetadata()
-                                                                .getVersion()
-                                                                .getFriendlyString()))
-                                .collect(Collectors.toList()));
+        api.setModList(FabricLoaderAdapters::adaptModList);
         api.setServer(() -> new FabricServer(minecraftServer));
         TaterAPIProvider.setPrimaryServerType(ServerType.FABRIC);
 

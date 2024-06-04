@@ -7,9 +7,9 @@ base {
     archivesName = "${project_id}-fabric-${minecraft_version}"
 }
 
-dependencies {
-    compileOnly(project(':common'))
+loom.mixin.useLegacyMixinAp = false
 
+dependencies {
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
@@ -25,12 +25,7 @@ dependencies {
     apiModules.forEach {
         modImplementation(legacy.apiModule(it, project.fabric_version))
     }
-}
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_7_10.json".toString()]) {
-        expand project.properties
-    }
+    compileOnly(project(':common'))
+    compileOnly(project(':fabric:fabric-utils'))
 }
-
-loom.mixin.useLegacyMixinAp = false

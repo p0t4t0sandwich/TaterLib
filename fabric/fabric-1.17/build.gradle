@@ -28,6 +28,7 @@ dependencies {
     modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
 
     compileOnly(project(':common'))
+    compileOnly(project(':fabric:fabric-utils'))
     implementation(project(':vanilla:vanilla-1.17'))
 }
 

@@ -10,8 +10,6 @@ base {
 loom.mixin.useLegacyMixinAp = false
 
 dependencies {
-    compileOnly(project(':common'))
-
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
@@ -27,4 +25,7 @@ dependencies {
     apiModules.forEach {
         modImplementation(legacy.apiModule(it, project.fabric_version))
     }
+
+    compileOnly(project(':common'))
+    compileOnly(project(':fabric:fabric-utils'))
 }

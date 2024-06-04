@@ -1,0 +1,15 @@
+plugins {
+    id('fabric-loom') version('1.6-SNAPSHOT')
+}
+
+base {
+    archivesName = "${project_id}-fabric-utils"
+}
+
+dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings("net.fabricmc:yarn:${project.yarn_mappings}")
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+//    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+    compileOnly(project(':common'))
+}

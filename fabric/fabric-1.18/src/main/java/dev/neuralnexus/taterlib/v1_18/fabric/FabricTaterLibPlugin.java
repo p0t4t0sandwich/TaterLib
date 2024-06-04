@@ -4,12 +4,12 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderAdapters;
 import dev.neuralnexus.taterlib.v1_18.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.command.VanillaCommandRegisterEvent;
@@ -24,12 +24,9 @@ import dev.neuralnexus.taterlib.v1_18.vanilla.server.VanillaServer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.commands.Commands;
 
 import org.apache.logging.log4j.LogManager;
-
-import java.util.stream.Collectors;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
@@ -44,19 +41,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setModList(
-                () ->
-                        FabricLoader.getInstance().getAllMods().stream()
-                                .map(
-                                        modContainer ->
-                                                new ModInfo(
-                                                        modContainer.getMetadata().getId(),
-                                                        modContainer.getMetadata().getName(),
-                                                        modContainer
-                                                                .getMetadata()
-                                                                .getVersion()
-                                                                .getFriendlyString()))
-                                .collect(Collectors.toList()));
+        api.setModList(FabricLoaderAdapters::adaptModList);
         api.setServer(VanillaServer::instance);
 
         if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
@@ -65,9 +50,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             CommandRegistrationCallback.EVENT.register(
                     (dispatcher, dedicated) -> {
-                        Commands.CommandSelection commandSelection = dedicated ? Commands.CommandSelection.DEDICATED : Commands.CommandSelection.INTEGRATED;
+                        Commands.CommandSelection commandSelection =
+                                dedicated
+                                        ? Commands.CommandSelection.DEDICATED
+                                        : Commands.CommandSelection.INTEGRATED;
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaBrigadierCommandRegisterEvent(dispatcher, commandSelection));
+                                new VanillaBrigadierCommandRegisterEvent(
+                                        dispatcher, commandSelection));
                         // Sponge has its own, nicer simple command system
                         if (!TaterAPIProvider.serverType().isSpongeBased()) {
                             CommandEvents.REGISTER_COMMAND.invoke(
@@ -79,7 +68,9 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                     (handler, sender, s) ->
                             PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(handler.player)));
             ServerPlayConnectionEvents.DISCONNECT.register(
-                    (handler, s) -> PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(handler.player)));
+                    (handler, s) ->
+                            PlayerEvents.LOGOUT.invoke(
+                                    new VanillaPlayerLogoutEvent(handler.player)));
 
             ServerLifecycleEvents.SERVER_STARTING.register(
                     s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
