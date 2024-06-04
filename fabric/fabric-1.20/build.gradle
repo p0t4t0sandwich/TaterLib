@@ -34,8 +34,8 @@ dependencies {
 
 shadowJar {
     dependencies {
-        include(project(':vanilla:vanilla-1.20'))
         exclude('/mappings/*')
+        include(project(':vanilla:vanilla-1.20'))
     }
     relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.fabric")
 }
