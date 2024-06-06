@@ -1,5 +1,10 @@
 buildscript {
     repositories {
+        // NeuralNexus Mirror
+        maven {
+            name = "NeuralNexus"
+            url = "https://maven.neuralnexus.dev/mirror"
+        }
         maven { url = 'https://maven.minecraftforge.net/' }
     }
     dependencies {

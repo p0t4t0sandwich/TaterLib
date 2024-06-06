@@ -25,6 +25,12 @@ subprojects {
         mavenLocal()
         mavenCentral()
 
+        // NeuralNexus Mirror
+        maven {
+            name = 'NeuralNexus Mirror'
+            url = 'https://maven.neuralnexus.dev/mirror'
+        }
+
         // Minecraft
         maven {
             name = "minecraft-repo"

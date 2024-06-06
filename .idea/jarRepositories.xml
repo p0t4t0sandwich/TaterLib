@@ -176,5 +176,10 @@
       <option name="name" value="maven4" />
       <option name="url" value="https://s01.oss.sonatype.org/content/repositories/snapshots/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="NeuralNexus Mirror" />
+      <option name="name" value="NeuralNexus Mirror" />
+      <option name="url" value="https://maven.neuralnexus.dev/mirror" />
+    </remote-repository>
   </component>
 </project>

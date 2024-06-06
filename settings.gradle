@@ -4,6 +4,12 @@ pluginManagement {
         mavenCentral()
         mavenLocal()
 
+        // NeuralNexus Mirror
+        maven {
+            name = 'NeuralNexus Mirror'
+            url = 'https://maven.neuralnexus.dev/mirror'
+        }
+
         // Fabric
         maven {
             name = 'Fabric'
