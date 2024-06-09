@@ -57,7 +57,7 @@ public class ForgeEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String type() {
-        return entity.getName();
+        return entity.getName().split("entity\\.")[1].replace(".", ":");
     }
 
     /** {@inheritDoc} */
