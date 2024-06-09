@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.v1_12.sponge.inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 import org.spongepowered.api.data.key.Keys;
+import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
@@ -18,7 +19,10 @@ public class SpongeItemStack implements ItemStack {
      * @param itemStack The Sponge item stack.
      */
     public SpongeItemStack(org.spongepowered.api.item.inventory.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack =
+                itemStack == null
+                        ? org.spongepowered.api.item.inventory.ItemStack.of(ItemTypes.AIR)
+                        : itemStack;
     }
 
     /**

@@ -22,7 +22,10 @@ public class SpongeItemStack implements ItemStack {
      * @param itemStack The Sponge item stack.
      */
     public SpongeItemStack(org.spongepowered.api.item.inventory.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack =
+                itemStack == null
+                        ? org.spongepowered.api.item.inventory.ItemStack.of(ItemTypes.AIR)
+                        : itemStack;
     }
 
     /**
