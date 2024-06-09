@@ -5,6 +5,10 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitWorld;
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.world.Location;
 
+import net.minecraft.server.EntityTypes;
+
+import org.bukkit.craftbukkit.entity.CraftEntity;
+
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
@@ -50,7 +54,8 @@ public class BukkitEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public String type() {
-        return "minecraft.entity";
+        // TODO: Add ModId support ?
+        return "minecraft:" + EntityTypes.b(((CraftEntity) entity).getHandle()).toLowerCase();
     }
 
     /** {@inheritDoc} */
