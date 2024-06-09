@@ -29,7 +29,7 @@ subprojects {
             name = "NeuralNexus Snapshots"
             url = "https://maven.neuralnexus.dev/snapshots"
         }
-        
+
         // NeuralNexus Mirror
         maven {
             name = "NeuralNexus"

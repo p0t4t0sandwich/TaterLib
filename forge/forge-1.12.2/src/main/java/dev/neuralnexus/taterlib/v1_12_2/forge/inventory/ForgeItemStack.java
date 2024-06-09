@@ -16,7 +16,8 @@ public class ForgeItemStack implements ItemStack {
      * @param itemStack The Forge item stack.
      */
     public ForgeItemStack(net.minecraft.item.ItemStack itemStack) {
-        this.itemStack = itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
+        this.itemStack =
+                itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
     }
 
     /**

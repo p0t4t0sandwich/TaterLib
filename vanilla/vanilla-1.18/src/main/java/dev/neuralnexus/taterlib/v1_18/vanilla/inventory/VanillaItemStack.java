@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Items;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ public class VanillaItemStack implements ItemStack {
      * @param itemStack The Vanilla item stack.
      */
     public VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack =
+                itemStack == null ? new net.minecraft.world.item.ItemStack(Items.AIR) : itemStack;
     }
 
     /**

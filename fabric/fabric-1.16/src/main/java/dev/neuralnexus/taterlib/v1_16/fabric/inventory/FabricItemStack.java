@@ -18,7 +18,8 @@ public class FabricItemStack implements ItemStack {
      * @param itemStack The Fabric item stack.
      */
     public FabricItemStack(net.minecraft.item.ItemStack itemStack) {
-        this.itemStack = itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
+        this.itemStack =
+                itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
     }
 
     /**
