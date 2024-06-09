@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.inventory;
 
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
@@ -65,7 +66,9 @@ public class BukkitItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
-        itemStack.getItemMeta().setDisplayName(name);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setDisplayName(name);
+        itemStack.setItemMeta(meta);
     }
 
     /** {@inheritDoc} */
@@ -83,7 +86,9 @@ public class BukkitItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
-        itemStack.getItemMeta().setLore(lore);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setLore(lore);
+        itemStack.setItemMeta(meta);
     }
 
     /** {@inheritDoc} */
@@ -101,6 +106,8 @@ public class BukkitItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        itemStack.getItemMeta().setUnbreakable(unbreakable);
+        ItemMeta meta = itemStack.getItemMeta();
+        meta.setUnbreakable(unbreakable);
+        itemStack.setItemMeta(meta);
     }
 }
