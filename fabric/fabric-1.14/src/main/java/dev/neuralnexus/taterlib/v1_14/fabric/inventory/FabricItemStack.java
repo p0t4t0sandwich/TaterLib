@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.v1_14.fabric.inventory;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
+import net.minecraft.item.Items;
 import net.minecraft.network.chat.TranslatableComponent;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class FabricItemStack implements ItemStack {
      * @param itemStack The Fabric item stack.
      */
     public FabricItemStack(net.minecraft.item.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack = itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
     }
 
     /**

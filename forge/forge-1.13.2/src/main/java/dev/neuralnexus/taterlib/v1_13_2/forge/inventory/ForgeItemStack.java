@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.inventory;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
+import net.minecraft.init.Items;
 import net.minecraft.util.text.TextComponentString;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class ForgeItemStack implements ItemStack {
      * @param itemStack The Forge item stack.
      */
     public ForgeItemStack(net.minecraft.item.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack = itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
     }
 
     /**
