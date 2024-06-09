@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.v1_6_4.bukkit.inventory;
 
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class BukkitItemStack implements ItemStack {
      * @param itemStack The Bukkit item stack.
      */
     public BukkitItemStack(org.bukkit.inventory.ItemStack itemStack) {
-        this.itemStack = itemStack;
+        this.itemStack = itemStack == null ? new org.bukkit.inventory.ItemStack(Material.AIR) : itemStack;
     }
 
     /**
