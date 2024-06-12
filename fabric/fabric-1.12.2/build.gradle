@@ -1,6 +1,6 @@
 plugins {
-    id('fabric-loom') version('1.6-SNAPSHOT')
-    id('legacy-looming') version('1.6-SNAPSHOT')
+    alias(libs.plugins.loom)
+    alias(libs.plugins.legacyloom)
 }
 
 base {

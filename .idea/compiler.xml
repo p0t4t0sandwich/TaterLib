@@ -644,6 +644,7 @@
       <module name="TaterLib.forge.forge-bleeding" target="17" />
       <module name="TaterLib.forge.forge-bleeding.main" target="17" />
       <module name="TaterLib.forge.forge-bleeding.test" target="17" />
+      <module name="TaterLib.main" target="21" />
       <module name="TaterLib.neoforge-1.20.1.main" target="17" />
       <module name="TaterLib.neoforge-1.20.1.test" target="17" />
       <module name="TaterLib.neoforge-1.20.2" target="17" />
@@ -664,6 +665,7 @@
       <module name="TaterLib.sponge9" target="17" />
       <module name="TaterLib.sponge9.main" target="17" />
       <module name="TaterLib.sponge9.test" target="17" />
+      <module name="TaterLib.test" target="21" />
       <module name="TaterLib.vanilla.vanilla-1.18.1.main" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.18.1.test" target="17" />
       <module name="TaterLib.vanilla.vanilla-1.19.2" target="17" />

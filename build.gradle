@@ -1,18 +1,15 @@
 import com.google.common.collect.ImmutableMap
 
 plugins {
-    id('java')
     id('maven-publish')
-    id('com.github.johnrengelman.shadow') version('8.1.1')
-    id('fabric-loom') version('1.6-SNAPSHOT') apply(false)
-    id("org.spongepowered.gradle.vanilla") version("0.2.1-SNAPSHOT") apply(false)
+    alias(libs.plugins.loom) apply(false)
+    alias(libs.plugins.vanillagradle) apply(false)
 }
 
 defaultTasks('build')
 
 subprojects {
     apply(plugin: 'java')
-    apply(plugin: 'com.github.johnrengelman.shadow')
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -263,41 +260,6 @@ publishing {
 
             artifact(build_api) {
                 artifactId = "${project_id}-api"
-            }
-
-            pom {
-                name = project_name
-                description = project_description
-                url = homepage_url
-                licenses {
-                    license {
-                        name = 'GPL-3'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
-                    }
-                    license {
-                        name = 'MIT License'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'p0t4t0sandwich'
-                        name = 'Dylan Sperrer'
-                        email = 'dylan@neuralnexus.dev'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
-                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
-                }
-            }
-        }
-        uploadAPIFull(MavenPublication) {
-            groupId = group_id
-            version = version
-
-            artifact(build_api_full) {
-                artifactId = "${project_id}-api-full"
             }
 
             pom {

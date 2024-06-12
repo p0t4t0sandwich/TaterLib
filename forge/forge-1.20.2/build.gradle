@@ -1,6 +1,7 @@
 plugins {
-    id('net.minecraftforge.gradle') version('[6.0,6.2)')
-    id('org.spongepowered.mixin') version('0.7-SNAPSHOT')
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.mixin)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)

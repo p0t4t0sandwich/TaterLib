@@ -1,7 +1,8 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id('fabric-loom') version('1.6-SNAPSHOT')
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.loom)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
