@@ -16,26 +16,8 @@ public class SpongeLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return location.x();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setX(double x) {
         // TODO: Check to see of Location.position() is mutable
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockX() {
-        return location.blockX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return location.y();
     }
 
     /** {@inheritDoc} */
@@ -43,29 +25,11 @@ public class SpongeLocation implements Location {
     public void setY(double y) {
         // TODO: Check to see of Location.position() is mutable
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockY() {
-        return location.blockY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return location.z();
-    }
-
+    
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
         // TODO: Check to see of Location.position() is mutable
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockZ() {
-        return location.blockZ();
     }
 
     /** {@inheritDoc} */

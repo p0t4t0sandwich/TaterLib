@@ -29,26 +29,8 @@ public class FabricLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return position.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setX(double x) {
         position = new Vec3d(x, y(), z());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockX() {
-        return Math.floor(x());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return position.getY();
     }
 
     /** {@inheritDoc} */
@@ -56,29 +38,11 @@ public class FabricLocation implements Location {
     public void setY(double y) {
         position = new Vec3d(x(), y, z());
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockY() {
-        return Math.floor(y());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return position.getZ();
-    }
-
+    
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
         position = new Vec3d(x(), y(), z);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockZ() {
-        return Math.floor(z());
     }
 
     /** {@inheritDoc} */
@@ -108,7 +72,7 @@ public class FabricLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
-        return new BlockPos(blockX(), blockY(), blockZ());
+        return new BlockPos(position.x, position.y, position.z);
     }
 
     /** {@inheritDoc} */

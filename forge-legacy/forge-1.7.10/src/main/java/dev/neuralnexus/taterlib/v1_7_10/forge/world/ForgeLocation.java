@@ -112,7 +112,7 @@ public class ForgeLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
-        return new BlockPos(blockX(), blockY(), blockZ());
+        return new BlockPos(position.x(), position.y(), position.z());
     }
 
     /** {@inheritDoc} */

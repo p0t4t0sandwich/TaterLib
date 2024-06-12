@@ -7,7 +7,9 @@ public interface Location {
      *
      * @return The x position.
      */
-    double x();
+    default double x() {
+        return blockPosition().x();
+    }
 
     /**
      * Setter for the x position.
@@ -21,14 +23,18 @@ public interface Location {
      *
      * @return The block x position.
      */
-    double blockX();
+    default double blockX() {
+        return Math.floor(x());
+    }
 
     /**
      * Getter for the y position.
      *
      * @return The y position.
      */
-    double y();
+    default double y() {
+        return blockPosition().y();
+    }
 
     /**
      * Setter for the y position.
@@ -42,14 +48,18 @@ public interface Location {
      *
      * @return The block y position.
      */
-    double blockY();
+    default double blockY() {
+        return Math.floor(y());
+    }
 
     /**
      * Getter for the z position.
      *
      * @return The z position.
      */
-    double z();
+    default double z() {
+        return blockPosition().z();
+    }
 
     /**
      * Setter for the z position.
@@ -63,7 +73,9 @@ public interface Location {
      *
      * @return The block z position.
      */
-    double blockZ();
+    default double blockZ() {
+        return Math.floor(z());
+    }
 
     /**
      * Getter for the yaw.
@@ -150,8 +162,6 @@ public interface Location {
 
     /**
      * Builder for the location.
-     *
-     * @return The builder.
      */
     interface Builder {
         /**

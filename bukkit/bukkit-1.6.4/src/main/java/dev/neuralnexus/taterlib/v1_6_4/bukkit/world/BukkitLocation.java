@@ -15,26 +15,8 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return location.getX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setX(double x) {
         location.setX(x);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockX() {
-        return location.getBlockX();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return location.getY();
     }
 
     /** {@inheritDoc} */
@@ -45,26 +27,8 @@ public class BukkitLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double blockY() {
-        return location.getBlockY();
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return location.getZ();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setZ(double z) {
         location.setZ(z);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockZ() {
-        return location.getBlockZ();
     }
 
     /** {@inheritDoc} */
@@ -94,7 +58,7 @@ public class BukkitLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
-        return new BlockPos(location.getBlockX(), location.getBlockY(), location.getBlockZ());
+        return new BlockPos(location.getX(), location.getY(), location.getZ());
     }
 
     /** {@inheritDoc} */

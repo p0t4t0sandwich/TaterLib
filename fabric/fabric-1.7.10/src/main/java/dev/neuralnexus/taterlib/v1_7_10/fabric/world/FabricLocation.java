@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 
 /** Fabric implementation of {@link Location}. */
 public class FabricLocation implements Location {
-    private BlockPos blockPos;
+    private BlockPos position;
     private float yaw;
     private float pitch;
     private net.minecraft.world.World world;
@@ -24,8 +24,8 @@ public class FabricLocation implements Location {
 
     /** Creates a new location. */
     public FabricLocation(
-            BlockPos blockPos, float yaw, float pitch, net.minecraft.world.World world) {
-        this.blockPos = blockPos;
+            BlockPos position, float yaw, float pitch, net.minecraft.world.World world) {
+        this.position = position;
         this.yaw = yaw;
         this.pitch = pitch;
         this.world = world;
@@ -33,56 +33,20 @@ public class FabricLocation implements Location {
 
     /** {@inheritDoc} */
     @Override
-    public double x() {
-        return blockPos.x();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setX(double x) {
-        blockPos = new BlockPos(x, y(), z());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockX() {
-        return Math.floor(x());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double y() {
-        return blockPos.y();
+        position = new BlockPos(x, y(), z());
     }
 
     /** {@inheritDoc} */
     @Override
     public void setY(double y) {
-        blockPos = new BlockPos(x(), y, z());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockY() {
-        return Math.floor(y());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double z() {
-        return blockPos.z();
+        position = new BlockPos(x(), y, z());
     }
 
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
-        blockPos = new BlockPos(x(), y(), z);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public double blockZ() {
-        return Math.floor(z());
+        position = new BlockPos(x(), y(), z);
     }
 
     /** {@inheritDoc} */
@@ -112,7 +76,7 @@ public class FabricLocation implements Location {
     /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
-        return new BlockPos(blockX(), blockY(), blockZ());
+        return new BlockPos(position.x(), position.y(), position.z());
     }
 
     /** {@inheritDoc} */
