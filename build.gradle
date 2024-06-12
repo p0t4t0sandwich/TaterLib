@@ -68,7 +68,7 @@ var List<String> legacyForgeVersions = [
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
     ArrayList<File> jarFiles = [
-            file("./common/build/libs/${project_id}-common-${version}.jar"),
+            file("./common/build/libs/${project_id}-common-full-${version}.jar"),
             file("./tooling/loader/build/libs/${project_id}-loader-0.1.2.jar")
     ]
 
@@ -234,7 +234,8 @@ tasks.register('build_monojar', Jar) {
             .put("velocity", Arrays.asList("3"))
             .build()
 
-    dependsOn('build_api_full')
+    dependsOn(':common:shadowJar')
+    dependsOn(':tooling:loader:build')
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
             if (platform == 'forge' && legacyForgeVersions.contains(mcVersion)) {
