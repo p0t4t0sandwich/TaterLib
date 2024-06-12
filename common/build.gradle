@@ -93,6 +93,10 @@ dependencies {
 
 java.disableAutoTargetJvm()
 
+jar {
+    archiveFileName = "${project_id}-common-${version}.jar"
+}
+
 shadowJar {
     dependencies {
         include(dependency("${group_id}:${project_id}:${version}"))
@@ -159,7 +163,7 @@ shadowJar {
     relocate('com.mongodb', "dev.neuralnexus.taterlib.lib.mongodb")
     relocate('org.bson', "dev.neuralnexus.taterlib.lib.bson")
 
-    archiveFileName = "${project_id}-common-${version}.jar"
+    archiveFileName = "${project_id}-common-full-${version}.jar"
 }
 
 artifacts {
