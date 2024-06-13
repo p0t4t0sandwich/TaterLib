@@ -322,6 +322,8 @@ public enum MinecraftVersion {
     V1_20_5("1.20.5"),
     @SerializedName("1.20.6")
     V1_20_6("1.20.6"),
+    @SerializedName("1.21")
+    V1_21("1.21"),
     @SerializedName("Unknown")
     UNKNOWN("Unknown");
 
