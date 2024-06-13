@@ -113,6 +113,7 @@ include(
         'fabric:fabric-1.20',
         'fabric:fabric-1.20.2',
         'fabric:fabric-1.20.6',
+        'fabric:fabric-1.21',
 
         // Forge
         'forge:forge-utils-modern',

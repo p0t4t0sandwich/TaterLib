@@ -6,7 +6,7 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric.mixin.listeners",
+  "package": "dev.neuralnexus.taterlib.v1_20_6.fabric.mixin.listeners",
   "mixins": [
     "network.CustomPayloadMixin_1_20_6"
   ]

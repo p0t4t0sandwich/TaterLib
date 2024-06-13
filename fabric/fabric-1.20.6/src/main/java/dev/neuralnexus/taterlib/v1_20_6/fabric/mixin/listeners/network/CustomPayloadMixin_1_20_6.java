@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric.mixin.listeners.network;
+package dev.neuralnexus.taterlib.v1_20_6.fabric.mixin.listeners.network;
 
 import com.mojang.authlib.GameProfile;
 
