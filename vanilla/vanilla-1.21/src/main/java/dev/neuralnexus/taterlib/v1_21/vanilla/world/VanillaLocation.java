@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.v1_18.vanilla.world;
+package dev.neuralnexus.taterlib.v1_21.vanilla.world;
 
 import dev.neuralnexus.taterlib.world.BlockPos;
 import dev.neuralnexus.taterlib.world.Location;
@@ -17,7 +17,7 @@ public class VanillaLocation implements Location {
 
     /** Creates a new location from an Entity. */
     public VanillaLocation(Entity entity) {
-        this(entity.position(), entity.getXRot(), entity.getYRot(), entity.level);
+        this(entity.position(), entity.getXRot(), entity.getYRot(), entity.level());
     }
 
     /** Creates a new location. */

@@ -42,7 +42,7 @@ public class VanillaLocation implements Location {
     public void setX(double x) {
         position = new Vec3(x, y(), z());
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public void setY(double y) {
