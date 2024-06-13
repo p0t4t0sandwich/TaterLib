@@ -48,8 +48,10 @@ public class FabricLoaderPlugin implements ModInitializer {
             version = "." + MinecraftVersion.V1_18.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
+        } else if (mcv.is(MinecraftVersion.V1_21)) {
+            version = "." + MinecraftVersion.V1_21.getDelimiterString();
         } else {
             System.err.println(
                     "Unsupported Minecraft version: "

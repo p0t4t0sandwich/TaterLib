@@ -26,7 +26,7 @@ public class BungeeLoaderPlugin extends Plugin {
             version = "." + MinecraftVersion.V1_8.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_15_2)) {
             version = "." + MinecraftVersion.V1_12.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println(

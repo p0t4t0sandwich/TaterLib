@@ -41,7 +41,7 @@ public class Sponge8LoaderPlugin {
             version = "." + MinecraftVersion.V1_17.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = "." + MinecraftVersion.V1_19.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
             version = "." + MinecraftVersion.V1_20.getDelimiterString();
         } else {
             System.err.println(
