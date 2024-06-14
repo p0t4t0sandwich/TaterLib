@@ -13,9 +13,30 @@ import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
+    private Supplier<String> modLoaderVersion = () -> "Unknown";
     private Supplier<List<PluginInfo>> pluginList = Collections::emptyList;
     private Supplier<List<ModInfo>> modList = Collections::emptyList;
     private Supplier<SimpleServer> minecraftServer = () -> null;
+
+    /**
+     * Get the mod loader version
+     *
+     * @return The mod loader version
+     */
+    public String modLoaderVersion() {
+        return modLoaderVersion.get();
+    }
+
+    /**
+     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
+     * Set the modLoaderVersion supplier
+     *
+     * @param modLoaderVersion The modLoaderVersion supplier
+     */
+    @ApiStatus.Internal
+    public void setModLoaderVersion(Supplier<String> modLoaderVersion) {
+        this.modLoaderVersion = modLoaderVersion;
+    }
 
     /**
      * Get the plugin list

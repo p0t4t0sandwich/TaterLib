@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_2.neoforge.hooks.permissions.NeoForgePermissionsHook;
 
 import net.neoforged.fml.ModList;
+import net.neoforged.fml.loading.FMLLoader;
 
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.NEOFORGE);
+        api.setModLoaderVersion(FMLLoader.versionInfo()::neoForgeVersion);
         api.setModList(
                 () ->
                         ModList.get().getMods().stream()

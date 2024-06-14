@@ -1,6 +1,7 @@
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.inventory;
 
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 

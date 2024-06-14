@@ -21,6 +21,7 @@ import dev.neuralnexus.taterlib.v1_10_2.forge.listeners.player.ForgePlayerListen
 import dev.neuralnexus.taterlib.v1_10_2.forge.server.ForgeServer;
 
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -32,11 +33,6 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import java.util.stream.Collectors;
 
 /** Forge entry point. */
-// @Mod(
-//        modid = TaterLib.Constants.PROJECT_ID,
-//        useMetadata = true,
-//        serverSideOnly = true,
-//        acceptableRemoteVersions = "*")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public static MinecraftServer minecraftServer;
 
@@ -56,6 +52,28 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModLoaderVersion(
+                () -> {
+                    try {
+                        int majorVersion =
+                                ForgeVersion.class.getDeclaredField("majorVersion").getInt(null);
+                        int minorVersion =
+                                ForgeVersion.class.getDeclaredField("minorVersion").getInt(null);
+                        int revisionVersion =
+                                ForgeVersion.class.getDeclaredField("revisionVersion").getInt(null);
+                        int buildVersion =
+                                ForgeVersion.class.getDeclaredField("buildVersion").getInt(null);
+                        return majorVersion
+                                + "."
+                                + minorVersion
+                                + "."
+                                + revisionVersion
+                                + "."
+                                + buildVersion;
+                    } catch (IllegalAccessException | NoSuchFieldException e) {
+                        return "Unknown";
+                    }
+                });
         api.setModList(
                 () ->
                         Loader.instance().getModList().stream()

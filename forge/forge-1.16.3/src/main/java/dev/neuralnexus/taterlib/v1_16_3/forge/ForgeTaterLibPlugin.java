@@ -25,9 +25,12 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import org.apache.logging.log4j.LogManager;
+
+import java.lang.reflect.Field;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
@@ -40,6 +43,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                 logger,
                 new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModLoaderVersion(() -> {
+            try {
+                Field field = FMLLoader.class.getDeclaredField("forgeVersion");
+                field.setAccessible(true);
+                return (String) field.get(null);
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+                return "Unknown";
+            }
+        });
         api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 

@@ -68,8 +68,20 @@ public class LoggerAdapter implements AbstractLogger {
 
     /** {@inheritDoc} */
     @Override
+    public void warn(String message, Throwable throwable) {
+        this.logger.warn(Utils.ansiParser(this.prefix + message), throwable);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void error(String message) {
         this.logger.error(Utils.ansiParser(this.prefix + message));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void error(String message, Throwable throwable) {
+        this.logger.error(Utils.ansiParser(this.prefix + message), throwable);
     }
 
     /** {@inheritDoc} */

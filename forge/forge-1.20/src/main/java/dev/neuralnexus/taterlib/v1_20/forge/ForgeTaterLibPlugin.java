@@ -21,6 +21,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
@@ -30,6 +31,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModLoaderVersion(FMLLoader.versionInfo()::forgeVersion);
         api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
         api.setServer(VanillaServer::instance);
 

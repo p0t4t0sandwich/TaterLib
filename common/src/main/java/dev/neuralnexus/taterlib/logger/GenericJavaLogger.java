@@ -23,8 +23,22 @@ public class GenericJavaLogger implements AbstractLogger {
 
     /** {@inheritDoc} */
     @Override
+    public void warn(String message, Throwable throwable) {
+        this.logger.warning(message);
+        throwable.printStackTrace();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void error(String message) {
         this.logger.severe(message);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void error(String message, Throwable throwable) {
+        this.logger.severe(message);
+        throwable.printStackTrace();
     }
 
     /** {@inheritDoc} */

@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.forge.hooks.permissions.ForgePermissionsHook;
 
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
@@ -20,6 +21,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModLoaderVersion(FMLLoader.versionInfo()::forgeVersion);
         api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
         api.setServer(VanillaServer::instance);
     }

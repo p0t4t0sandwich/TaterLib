@@ -43,6 +43,8 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.SPONGE);
+        api.setModLoaderVersion(
+                () -> Sponge.getPluginManager().getPlugin("sponge").get().getVersion().toString());
         api.setPluginList(
                 () ->
                         Sponge.getPluginManager().getPlugins().stream()

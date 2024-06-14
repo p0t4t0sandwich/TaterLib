@@ -1,18 +1,12 @@
 package dev.neuralnexus.taterlib;
 
-import com.google.common.collect.ImmutableMap;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.bstats.MetricsAdapter;
+import dev.neuralnexus.taterlib.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.logger.AbstractLogger;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
-
-import org.bstats.charts.SimplePie;
-
-import java.util.Collections;
 
 /** Main class for the plugin. */
 public class TaterLib {
@@ -117,18 +111,7 @@ public class TaterLib {
         setLogger(logger);
 
         // Set up bStats
-        MetricsAdapter.setupMetrics(
-                plugin,
-                pluginServer,
-                pluginLogger,
-                ImmutableMap.<ServerType, Integer>builder()
-                        .put(ServerType.BUKKIT, 21008)
-                        .put(ServerType.BUNGEECORD, 21009)
-                        .put(ServerType.SPONGE, 21010)
-                        .put(ServerType.VELOCITY, 21011)
-                        .build(),
-                Collections.singletonList(
-                        new SimplePie("server_type", () -> ServerType.serverType().toString())));
+        TaterLibMetrics.initialize();
 
         // Config
         TaterLibConfigLoader.load();

@@ -38,6 +38,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUKKIT);
+        api.setModLoaderVersion(() -> Bukkit.getServer().getVersion());
         api.setPluginList(
                 () ->
                         Arrays.stream(Bukkit.getServer().getPluginManager().getPlugins())

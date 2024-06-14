@@ -24,8 +24,22 @@ public class GenericApacheLogger implements AbstractLogger {
 
     /** {@inheritDoc} */
     @Override
+    public void warn(String message, Throwable throwable) {
+        this.logger.warn(message);
+        throwable.printStackTrace();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void error(String message) {
         this.logger.error(message);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void error(String message, Throwable throwable) {
+        this.logger.error(message);
+        throwable.printStackTrace();
     }
 
     /** {@inheritDoc} */

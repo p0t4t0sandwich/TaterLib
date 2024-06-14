@@ -8,6 +8,7 @@ import dev.neuralnexus.taterlib.api.info.ServerType;
 import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
 import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderAdapters;
+import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderUtils;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.api.FabricPlayerEvents;
@@ -46,6 +47,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
         TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
+        api.setModLoaderVersion(FabricLoaderUtils::getModLoaderVersion);
         api.setModList(FabricLoaderAdapters::adaptModList);
         api.setServer(() -> new FabricServer(minecraftServer));
         TaterAPIProvider.setPrimaryServerType(ServerType.FABRIC);

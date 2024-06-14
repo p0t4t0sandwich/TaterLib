@@ -38,7 +38,7 @@ public class FabricLocation implements Location {
     public void setY(double y) {
         position = new Vec3d(x(), y, z());
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {

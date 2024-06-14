@@ -18,6 +18,7 @@ import dev.neuralnexus.taterlib.v1_17_1.forge.listeners.server.ForgeServerListen
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 
@@ -34,6 +35,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                 logger,
                 new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
+        api.setModLoaderVersion(FMLLoader.versionInfo()::forgeVersion);
         api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
         api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
 

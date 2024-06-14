@@ -17,11 +17,25 @@ public interface AbstractLogger {
     void warn(String message);
 
     /**
+     * Logs a warning message.
+     *
+     * @param message The message to log
+     */
+    void warn(String message, Throwable throwable);
+
+    /**
      * Logs an error message.
      *
      * @param message The message to log
      */
     void error(String message);
+
+    /**
+     * Logs an error message.
+     *
+     * @param message The message to log
+     */
+    void error(String message, Throwable throwable);
 
     /**
      * Logs a debug message.

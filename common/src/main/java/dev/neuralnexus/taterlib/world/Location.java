@@ -160,9 +160,7 @@ public interface Location {
         return Math.sqrt(x1 * x1 + y1 * y1 + z1 * z1);
     }
 
-    /**
-     * Builder for the location.
-     */
+    /** Builder for the location. */
     interface Builder {
         /**
          * Use an existing location to build from.

@@ -25,7 +25,7 @@ public class SpongeLocation implements Location {
     public void setY(double y) {
         // TODO: Check to see of Location.position() is mutable
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public void setZ(double z) {

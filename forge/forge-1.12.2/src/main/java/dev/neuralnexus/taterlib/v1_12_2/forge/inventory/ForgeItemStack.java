@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.v1_12_2.forge.inventory;
 
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
 import net.minecraft.init.Items;
 
 import java.util.List;

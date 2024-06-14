@@ -36,6 +36,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.BUNGEECORD);
+        api.setModLoaderVersion(() -> ProxyServer.getInstance().getVersion());
         api.setPluginList(
                 () ->
                         ProxyServer.getInstance().getPluginManager().getPlugins().stream()
