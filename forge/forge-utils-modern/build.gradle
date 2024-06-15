@@ -1,16 +1,8 @@
-plugins {
-    alias(libs.plugins.forgegradle)
-}
-
 base {
     archivesName = "${project_id}-forge-utils-modern"
 }
 
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
-}
-
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:entrypoint-spoof'))
 }

@@ -8,6 +8,8 @@ public interface Plugin {
 
     void onDisable();
 
+    String getName();
+
     Server getServer();
 
     PluginDescriptionFile getDescription();

@@ -7,4 +7,6 @@ public abstract class ProxyServer {
     public static ProxyServer getInstance() {
         return instance;
     }
+
+    public abstract String getVersion();
 }

@@ -8,7 +8,15 @@ public class Plugin {
         return null;
     }
 
+    public void onLoad() {}
+
     public void onEnable() {}
 
     public void onDisable() {}
+
+    final void init(PluginDescription description) {}
+
+    public PluginDescription getDescription() {
+        return new PluginDescription();
+    }
 }
