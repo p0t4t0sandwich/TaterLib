@@ -74,6 +74,7 @@
             <option value="$PROJECT_DIR$/sponge/sponge-8" />
             <option value="$PROJECT_DIR$/sponge/sponge-9" />
             <option value="$PROJECT_DIR$/tooling" />
+            <option value="$PROJECT_DIR$/tooling/conditional-mixins" />
             <option value="$PROJECT_DIR$/tooling/entrypoint-spoof" />
             <option value="$PROJECT_DIR$/tooling/loader" />
             <option value="$PROJECT_DIR$/vanilla" />

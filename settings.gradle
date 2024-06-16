@@ -69,6 +69,7 @@ include(
         // Tooling
         'tooling:entrypoint-spoof',
         'tooling:loader',
+        'tooling:conditional-mixins',
 
         // Common
         'common',
