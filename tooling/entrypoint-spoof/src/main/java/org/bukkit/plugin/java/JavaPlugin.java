@@ -13,6 +13,10 @@ public abstract class JavaPlugin extends PluginBase {
     File dataFolder;
     PluginDescriptionFile description;
 
+    public String getName() {
+        return "";
+    }
+
     public Logger getLogger() {
         return logger;
     }
