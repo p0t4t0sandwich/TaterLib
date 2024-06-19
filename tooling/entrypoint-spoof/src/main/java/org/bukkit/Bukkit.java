@@ -19,6 +19,10 @@ public class Bukkit {
         return server;
     }
 
+    public static PluginManager getPluginManager() {
+        return server.getPluginManager();
+    }
+
     public static BukkitScheduler getScheduler() {
         return scheduler;
     }

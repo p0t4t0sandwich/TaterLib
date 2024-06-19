@@ -11,4 +11,6 @@ public interface Server {
     String getName();
 
     Player[] getOnlinePlayers();
+
+    PluginManager getPluginManager();
 }
