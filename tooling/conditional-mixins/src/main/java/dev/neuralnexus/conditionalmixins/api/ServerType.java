@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Arrays;
 
+import static dev.neuralnexus.conditionalmixins.Utils.reflectCheck;
+
 /** Represents the type of server the server is running. */
 public enum ServerType {
     // Bukkit fork
@@ -629,24 +631,5 @@ public enum ServerType {
         public String configFolder() {
             return configFolder;
         }
-    }
-
-    /**
-     * Check if a class exists.
-     *
-     * @param className The class(es) to check.
-     * @return Whether the class exists.
-     */
-    public static boolean reflectCheck(String... className) {
-        return Arrays.stream(className)
-                .anyMatch(
-                        s -> {
-                            try {
-                                Class.forName(s);
-                                return true;
-                            } catch (ClassNotFoundException e) {
-                                return false;
-                            }
-                        });
     }
 }
