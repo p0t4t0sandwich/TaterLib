@@ -1,6 +1,12 @@
-package dev.neuralnexus.taterlib.loader.api.data;
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 
-import static dev.neuralnexus.taterlib.loader.utils.PathUtils.getPluginsFolder;
+package dev.neuralnexus.taterlib.loader.impl.metadata;
+
+import static dev.neuralnexus.taterlib.utils.PathUtils.getPluginsFolder;
 
 import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.api.ModInfo;

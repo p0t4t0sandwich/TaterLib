@@ -1,11 +1,16 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.mojang.logging.LogUtils;
 
-import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,20 +20,20 @@ import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /** NeoForge entry point. */
-@Mod(TaterLib.Constants.PROJECT_ID)
+@Mod(LoaderImpl.PROJECT_ID)
 public class NeoForgeLoaderPlugin {
     private static Loader loader;
 
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
-        loader = new TaterLibLoader(this, null, LogUtils.getLogger());
+        loader = new LoaderImpl(this, null, LogUtils.getLogger());
         loader.registerPlugin(plugin());
         loader.onInit();
     }
 
     public static Plugin plugin() {
         String version;
-        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        MinecraftVersion mcv = loader.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
             version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
         } else {

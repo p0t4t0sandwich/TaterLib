@@ -1,9 +1,14 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import org.bukkit.Bukkit;
@@ -14,11 +19,11 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     private static Loader loader;
 
     public BukkitLoaderPlugin() {
-        loader = new TaterLibLoader(this, Bukkit.getServer(), Bukkit.getLogger());
+        loader = new LoaderImpl(this, Bukkit.getServer(), Bukkit.getLogger());
         loader.registerPlugin(plugin());
-        if (TaterAPIProvider.serverType().isForgeHybrid()) {
+        if (loader.platform().isForgeHybrid()) {
             loader.registerPlugin(ForgeLoaderPlugin.plugin());
-        } else if (TaterAPIProvider.serverType().isFabricHybrid()) {
+        } else if (loader.platform().isFabricHybrid()) {
             loader.registerPlugin(FabricLoaderPlugin.plugin());
         }
         loader.onInit();
@@ -26,7 +31,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public static Plugin plugin() {
         String version;
-        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        MinecraftVersion mcv = loader.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.B1_7, MinecraftVersion.B1_7_3)) {
             version = "." + MinecraftVersion.B1_7_3.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_2_1, MinecraftVersion.V1_2_5)) {

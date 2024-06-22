@@ -1,13 +1,17 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.google.inject.Inject;
 
-import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.loader.api.Platform;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import org.slf4j.Logger;
 import org.spongepowered.api.event.Listener;
@@ -18,18 +22,18 @@ import org.spongepowered.api.plugin.PluginContainer;
 
 /** Sponge entry point. */
 @Plugin(
-        id = TaterLib.Constants.PROJECT_ID,
-        name = TaterLib.Constants.PROJECT_NAME,
-        version = TaterLib.Constants.PROJECT_VERSION,
-        description = TaterLib.Constants.PROJECT_DESCRIPTION)
+        id = LoaderImpl.PROJECT_ID,
+        name = LoaderImpl.PROJECT_NAME,
+        version = LoaderImpl.PROJECT_VERSION,
+        description = LoaderImpl.PROJECT_DESCRIPTION)
 public class Sponge7LoaderPlugin {
     private static Loader loader;
 
     @Inject
     public Sponge7LoaderPlugin(PluginContainer container, Logger logger) {
-        loader = new TaterLibLoader(container, null, logger);
+        loader = new LoaderImpl(container, null, logger);
         loader.registerPlugin(plugin());
-        if (TaterAPIProvider.serverType().is(ServerType.SPONGE_FORGE)) {
+        if (loader.platform().is(Platform.SPONGE_FORGE)) {
             loader.registerPlugin(ForgeLoaderPlugin.plugin());
         }
         loader.onInit();
@@ -37,7 +41,7 @@ public class Sponge7LoaderPlugin {
 
     public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
         String version;
-        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        MinecraftVersion mcv = loader.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
             version = "." + MinecraftVersion.V1_8.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_10_2)) {

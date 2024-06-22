@@ -38,6 +38,8 @@ spotless {
     }
 }
 
+tasks.build.dependsOn(spotlessApply)
+
 publishing {
     publications {
         entryPointSpoof(MavenPublication) {

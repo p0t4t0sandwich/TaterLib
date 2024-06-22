@@ -1,8 +1,14 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -12,14 +18,14 @@ public class BungeeLoaderPlugin extends Plugin {
     private static Loader loader;
 
     public BungeeLoaderPlugin() {
-        loader = new TaterLibLoader(this, ProxyServer.getInstance(), getLogger());
+        loader = new LoaderImpl(this, ProxyServer.getInstance(), getLogger());
         loader.registerPlugin(getPlugin());
         loader.onInit();
     }
 
     public static dev.neuralnexus.taterlib.plugin.Plugin getPlugin() {
         String version;
-        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        MinecraftVersion mcv = loader.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_4_2, MinecraftVersion.V1_7_10)) {
             version = "." + MinecraftVersion.V1_4_7.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_11_2)) {

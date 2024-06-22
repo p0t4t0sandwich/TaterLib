@@ -1,21 +1,27 @@
-package dev.neuralnexus.taterlib.loader.api.data.forge;
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 
-import cpw.mods.fml.common.Loader;
+package dev.neuralnexus.taterlib.loader.impl.metadata.forge;
 
 import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.api.ModInfo;
 import dev.neuralnexus.taterlib.loader.api.PlatformData;
 
+import net.minecraftforge.fml.common.Loader;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** Stores data about the CPW Loader platform */
-public class CPWLoaderData implements PlatformData {
+/** Stores data about the MCF Loader platform */
+public class MCFLoaderData implements PlatformData {
     @Override
     public MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {
-            // Reflect to get cpw.mods.fml.common.Loader.MC_VERSION
+            // Reflect to get net.minecraftforge.fml.common.Loader.MC_VERSION
             version = (String) Loader.class.getField("MC_VERSION").get(null);
         } catch (ReflectiveOperationException ignored) {
         }

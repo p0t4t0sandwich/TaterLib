@@ -1,12 +1,22 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.api;
+
+import static dev.neuralnexus.taterlib.utils.PathUtils.getConfigFolder;
+import static dev.neuralnexus.taterlib.utils.PathUtils.getModsFolder;
 
 import java.nio.file.Path;
 import java.util.List;
 
-import static dev.neuralnexus.taterlib.loader.utils.PathUtils.getModsFolder;
-import static dev.neuralnexus.taterlib.loader.utils.PathUtils.getConfigFolder;
-
 public interface PlatformData {
+    default Platform platform() {
+        return Platform.platform();
+    }
+
     MinecraftVersion minecraftVersion();
 
     String modLoaderVersion();

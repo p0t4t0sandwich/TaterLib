@@ -1,18 +1,23 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
-import dev.neuralnexus.taterlib.loader.TaterLibLoader;
-import dev.neuralnexus.taterlib.plugin.Loader;
+import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.loader.api.Platform;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.minecraftforge.fml.common.Mod;
 
 /** Forge entry point. */
 @Mod(
-        value = TaterLib.Constants.PROJECT_ID,
-        modid = TaterLib.Constants.PROJECT_ID,
+        value = LoaderImpl.PROJECT_ID,
+        modid = LoaderImpl.PROJECT_ID,
         useMetadata = true,
         serverSideOnly = true,
         acceptableRemoteVersions = "*")
@@ -20,13 +25,13 @@ public class ForgeLoaderPlugin {
     private static Loader loader;
 
     public ForgeLoaderPlugin() {
-        loader = new TaterLibLoader(this, null, null);
+        loader = new LoaderImpl(this, null, null);
         loader.registerPlugin(plugin());
-        // if (TaterAPIProvider.serverType().isForgeHybrid()) {
+        // if (loader.platform().isForgeHybrid()) {
         //     loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
         // }
         // Sinytra Connector support
-        if (ServerType.isFabric()) {
+        if (Platform.isFabric()) {
             loader.registerPlugin(FabricLoaderPlugin.plugin());
         }
         loader.onInit();
@@ -35,7 +40,7 @@ public class ForgeLoaderPlugin {
 
     public static Plugin plugin() {
         String version;
-        MinecraftVersion mcv = MinecraftVersion.minecraftVersion();
+        MinecraftVersion mcv = loader.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
             version = "." + MinecraftVersion.V1_8_9.getDelimiterString();
         } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
