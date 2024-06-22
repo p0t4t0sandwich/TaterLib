@@ -1,119 +1,78 @@
-package dev.neuralnexus.conditionalmixins.api;
+package dev.neuralnexus.taterlib.loader.api;
 
-import com.google.gson.annotations.SerializedName;
+import dev.neuralnexus.taterlib.loader.utils.ReflectionUtil;
 
 import java.util.Arrays;
 
-import static dev.neuralnexus.conditionalmixins.Utils.reflectCheck;
-
 /** Represents the type of server the server is running. */
-public enum ServerType {
+public enum Platform {
     // Bukkit fork
-    @SerializedName("CraftBukkit")
-    CRAFTBUKKIT("CraftBukkit", DataFolders.PLUGINS),
-    @SerializedName("Bukkit")
-    BUKKIT("Bukkit", DataFolders.PLUGINS),
-    @SerializedName("Poseidon")
-    POSEIDON("Poseidon", DataFolders.PLUGINS),
-    @SerializedName("Spigot")
-    SPIGOT("Spigot", DataFolders.PLUGINS),
-    @SerializedName("Paper")
-    PAPER("Paper", DataFolders.PLUGINS),
-    @SerializedName("Folia")
-    FOLIA("Folia", DataFolders.PLUGINS),
-    @SerializedName("Purpur")
-    PURPUR("Purpur", DataFolders.PLUGINS),
-    @SerializedName("Pufferfish")
-    PUFFERFISH("Pufferfish", DataFolders.PLUGINS),
+    CRAFTBUKKIT("CraftBukkit"),
+    BUKKIT("Bukkit"),
+    POSEIDON("Poseidon"),
+    SPIGOT("Spigot"),
+    PAPER("Paper"),
+    FOLIA("Folia"),
+    PURPUR("Purpur"),
+    PUFFERFISH("Pufferfish"),
 
     // Bukkit + NeoForge Hybrids
-    NEOFORGE_HYBRID("NeoForge Hybrid", DataFolders.HYBRID),
-    @SerializedName("Mohist Neo")
-    MOHIST_NEO("Mohist Neo", DataFolders.HYBRID),
-    @SerializedName("Arclight Neo")
-    ARCLIGHT_NEO("Arclight Neo", DataFolders.HYBRID),
+    NEOFORGE_HYBRID("NeoForge Hybrid"),
+    MOHIST_NEO("Mohist Neo"),
+    ARCLIGHT_NEO("Arclight Neo"),
 
     // Bukkit + Forge Hybrids
-    FORGE_HYBRID("Forge Hybrid", DataFolders.HYBRID),
-    @SerializedName("Cauldron")
-    CAULDRON("Cauldron", DataFolders.HYBRID),
-    @SerializedName("KCauldron")
-    KCUALDRON("KCauldron", DataFolders.HYBRID),
-    @SerializedName("Thermos")
-    THERMOS("Thermos", DataFolders.HYBRID),
-    @SerializedName("Crucible")
-    CRUCIBLE("Crucible", DataFolders.HYBRID),
-    @SerializedName("MCPC++")
-    MCPC_PLUS_PLUS("MCPC++", DataFolders.HYBRID),
-    @SerializedName("Mohist")
-    MOHIST("Mohist", DataFolders.HYBRID),
-    @SerializedName("Magma")
-    MAGMA("Magma", DataFolders.HYBRID),
-    @SerializedName("Arclight")
-    ARCLIGHT("Arclight", DataFolders.HYBRID),
-    @SerializedName("Ketting")
-    KETTING("Ketting", DataFolders.HYBRID),
+    FORGE_HYBRID("Forge Hybrid"),
+    CAULDRON("Cauldron"),
+    KCUALDRON("KCauldron"),
+    THERMOS("Thermos"),
+    CRUCIBLE("Crucible"),
+    MCPC_PLUS_PLUS("MCPC++"),
+    MOHIST("Mohist"),
+    MAGMA("Magma"),
+    ARCLIGHT("Arclight"),
+    KETTING("Ketting"),
 
     // Bukkit + Fabric Hybrids
-    FABRIC_HYBRID("Fabric Hybrid", DataFolders.HYBRID),
-    @SerializedName("Cardboard")
-    CARDBOARD("Cardboard", DataFolders.HYBRID),
-    @SerializedName("Banner")
-    BANNER("Banner", DataFolders.HYBRID),
-    @SerializedName("Arclight Fabric")
-    ARCLIGHT_FABRIC("Arclight Fabric", DataFolders.HYBRID),
+    FABRIC_HYBRID("Fabric Hybrid"),
+    CARDBOARD("Cardboard"),
+    BANNER("Banner"),
+    ARCLIGHT_FABRIC("Arclight Fabric"),
 
     // BungeeCord
-    @SerializedName("BungeeCord")
-    BUNGEECORD("BungeeCord", DataFolders.PLUGINS),
-    @SerializedName("Waterfall")
-    WATERFALL("Waterfall", DataFolders.PLUGINS),
-    @SerializedName("Travertine")
-    TRAVERTINE("Travertine", DataFolders.PLUGINS),
-    @SerializedName("Hexacord")
-    HEXACORD("Hexacord", DataFolders.PLUGINS),
+    BUNGEECORD("BungeeCord"),
+    WATERFALL("Waterfall"),
+    TRAVERTINE("Travertine"),
+    HEXACORD("Hexacord"),
 
     // Fabric
-    @SerializedName("Fabric")
-    FABRIC("Fabric", DataFolders.MODS),
-    @SerializedName("Quilt")
-    QUILT("Quilt", DataFolders.MODS),
+    FABRIC("Fabric"),
+    QUILT("Quilt"),
 
     // Forge
-    @SerializedName("Forge")
-    FORGE("Forge", DataFolders.MODS),
-    @SerializedName("GoldenForge")
-    GOLDENFORGE("GoldenForge", DataFolders.MODS),
-    @SerializedName("NeoForge")
-    NEOFORGE("NeoForge", DataFolders.MODS),
+    FORGE("Forge"),
+    GOLDENFORGE("GoldenForge"),
+    NEOFORGE("NeoForge"),
 
     // Sponge
-    @SerializedName("Sponge")
-    SPONGE("Sponge", DataFolders.MODS),
-    @SerializedName("SpongeForge")
-    SPONGE_FORGE("SpongeForge", DataFolders.MODS),
-    @SerializedName("SpongeVanilla")
-    SPONGE_VANILLA("SpongeVanilla", DataFolders.MODS),
+    SPONGE("Sponge"),
+    SPONGE_FORGE("SpongeForge"),
+    SPONGE_VANILLA("SpongeVanilla"),
 
     // Velocity
-    @SerializedName("Velocity")
-    VELOCITY("Velocity", DataFolders.PLUGINS),
+    VELOCITY("Velocity"),
 
     // Vanilla
-    @SerializedName("Vanilla")
-    VANILLA("Vanilla", DataFolders.UNKNOWN),
+    VANILLA("Vanilla"),
 
     // Unknown
-    @SerializedName("Unknown")
-    UNKNOWN("Unknown", DataFolders.UNKNOWN);
+    UNKNOWN("Unknown");
 
-    private static ServerType serverType = UNKNOWN;
+    private static Platform platform = UNKNOWN;
     private final String name;
-    private final DataFolders dataFolders;
 
-    ServerType(String name, DataFolders dataFolders) {
+    Platform(String name) {
         this.name = name;
-        this.dataFolders = dataFolders;
     }
 
     /**
@@ -121,9 +80,9 @@ public enum ServerType {
      *
      * @return The current server type
      */
-    public static ServerType serverType() {
-        if (serverType != UNKNOWN) {
-            return serverType;
+    public static Platform platform() {
+        if (platform != UNKNOWN) {
+            return platform;
         }
 
         // Time for some satan spaghetti. Hybrids are checked first, forks in descending order, and
@@ -131,109 +90,109 @@ public enum ServerType {
 
         // Bukkit + Forge Hybrids
         if (isCrucible()) {
-            serverType = CRUCIBLE;
+            platform = CRUCIBLE;
         } else if (isThermos()) {
-            serverType = THERMOS;
+            platform = THERMOS;
         } else if ((isKCauldron())) {
-            serverType = KCUALDRON;
+            platform = KCUALDRON;
         } else if (isCauldron()) {
-            serverType = CAULDRON;
+            platform = CAULDRON;
         } else if (isMCPCPlusPlus()) {
-            serverType = MCPC_PLUS_PLUS;
+            platform = MCPC_PLUS_PLUS;
         } else if (isMohist()) {
             // Add NeoForge Hybrid check
             if (isNeoForge()) {
-                serverType = MOHIST_NEO;
+                platform = MOHIST_NEO;
             } else {
-                serverType = MOHIST;
+                platform = MOHIST;
             }
         } else if (isMagma()) {
-            serverType = MAGMA;
+            platform = MAGMA;
         } else if (isArclight()) {
             // Add NeoForge Hybrid check
             if (isNeoForge()) {
-                serverType = ARCLIGHT_NEO;
+                platform = ARCLIGHT_NEO;
             } else if (isFabric()) {
-                serverType = ARCLIGHT_FABRIC;
+                platform = ARCLIGHT_FABRIC;
             } else {
-                serverType = ARCLIGHT;
+                platform = ARCLIGHT;
             }
         } else if (isKetting()) {
-            serverType = KETTING;
+            platform = KETTING;
         }
 
         // Bukkit + Fabric Hybrids
         else if (isCardboard()) {
-            serverType = CARDBOARD;
+            platform = CARDBOARD;
         } else if (isBanner()) {
-            serverType = BANNER;
+            platform = BANNER;
         }
 
         // Bukkit
         else if (isPufferfish()) {
-            serverType = PUFFERFISH;
+            platform = PUFFERFISH;
         } else if (isPurpur()) {
-            serverType = PURPUR;
+            platform = PURPUR;
         } else if (isFolia()) {
-            serverType = FOLIA;
+            platform = FOLIA;
         } else if (isPaper()) {
-            serverType = PAPER;
+            platform = PAPER;
         } else if (isSpigot()) {
-            serverType = SPIGOT;
+            platform = SPIGOT;
         } else if (isPoseidon()) {
-            serverType = POSEIDON;
+            platform = POSEIDON;
         } else if (isCraftBukkit()) {
-            serverType = CRAFTBUKKIT;
+            platform = CRAFTBUKKIT;
         } else if (isBukkit()) {
-            serverType = BUKKIT;
+            platform = BUKKIT;
         }
 
         // BungeeCord
         else if (isHexacord()) {
-            serverType = HEXACORD;
+            platform = HEXACORD;
         } else if (isTravertine()) {
-            serverType = TRAVERTINE;
+            platform = TRAVERTINE;
         } else if (isWaterfall()) {
-            serverType = WATERFALL;
+            platform = WATERFALL;
         } else if (isBungeeCord()) {
-            serverType = BUNGEECORD;
+            platform = BUNGEECORD;
         }
 
         // Forge
         // Before Fabric because of Sinytra Connector
         else if (isNeoForge()) {
-            serverType = NEOFORGE;
+            platform = NEOFORGE;
         } else if (isGoldenForge()) {
-            serverType = GOLDENFORGE;
+            platform = GOLDENFORGE;
         } else if (isSponge() && isForge()) {
-            serverType = SPONGE_FORGE;
+            platform = SPONGE_FORGE;
         } else if (isForge()) {
-            serverType = FORGE;
+            platform = FORGE;
         }
 
         // Fabric
         else if (isQuilt()) {
-            serverType = QUILT;
+            platform = QUILT;
         } else if (isFabric()) {
-            serverType = FABRIC;
+            platform = FABRIC;
         }
 
         // Sponge
         else if (isSponge() && !isForge()) {
-            serverType = SPONGE_VANILLA;
+            platform = SPONGE_VANILLA;
         }
 
         // Velocity
         else if (isVelocity()) {
-            serverType = VELOCITY;
+            platform = VELOCITY;
         }
 
         // Vanilla
         else if (isVanilla()) {
-            serverType = VANILLA;
+            platform = VANILLA;
         }
 
-        return serverType;
+        return platform;
     }
 
     /**
@@ -242,8 +201,8 @@ public enum ServerType {
      * @param serverType The server type
      * @return The server type
      */
-    public static ServerType from(String serverType) {
-        return Arrays.stream(ServerType.values())
+    public static Platform from(String serverType) {
+        return Arrays.stream(Platform.values())
                 .filter(s -> s.toString().equalsIgnoreCase(serverType))
                 .findFirst()
                 .orElse(UNKNOWN);
@@ -251,27 +210,28 @@ public enum ServerType {
 
     /** Check if the server is running Bukkit. */
     public static boolean isBukkit() {
-        return reflectCheck("org.bukkit.Bukkit");
+        return ReflectionUtil.checkForClass("org.bukkit.Bukkit");
     }
 
     /** Check if the server is running CraftBukkit. */
     public static boolean isCraftBukkit() {
-        return reflectCheck("org.bukkit.craftbukkit.CraftServer", "org.bukkit.craftbukkit.Main");
+        return ReflectionUtil.checkForClass(
+                "org.bukkit.craftbukkit.CraftServer", "org.bukkit.craftbukkit.Main");
     }
 
     /** Check if the server is running Spigot. */
     public static boolean isSpigot() {
-        return reflectCheck("org.spigotmc.CustomTimingsHandler");
+        return ReflectionUtil.checkForClass("org.spigotmc.CustomTimingsHandler");
     }
 
     /** Check if the server is running Poseidon. */
     public static boolean isPoseidon() {
-        return reflectCheck("com.legacyminecraft.poseidon.PoseidonConfig");
+        return ReflectionUtil.checkForClass("com.legacyminecraft.poseidon.PoseidonConfig");
     }
 
     /** Check if the server is running Paper. */
     public static boolean isPaper() {
-        return reflectCheck(
+        return ReflectionUtil.checkForClass(
                 "com.destroystokyo.paper.PaperConfig", "io.papermc.paperclip.Paperclip");
     }
 
@@ -281,149 +241,142 @@ public enum ServerType {
      * @return True if the server is running Folia, false otherwise.
      */
     public static boolean isFolia() {
-        return reflectCheck("io.papermc.paper.threadedregions.RegionizedServer");
+        return ReflectionUtil.checkForClass("io.papermc.paper.threadedregions.RegionizedServer");
     }
 
     /** Check if the server is running Purpur. */
     public static boolean isPurpur() {
-        return reflectCheck("org.purpurmc.purpur.PurpurWorldConfig");
+        return ReflectionUtil.checkForClass("org.purpurmc.purpur.PurpurWorldConfig");
     }
 
     /** Check if the server is running Pufferfish. */
     public static boolean isPufferfish() {
         // TODO: Find a Pufferfish class
-        return reflectCheck("not.defined");
+        return ReflectionUtil.checkForClass("not.defined");
     }
 
     /** Check if the server is running Cauldron. */
     public static boolean isCauldron() {
-        return reflectCheck("net.minecraftforge.cauldron.CauldronConfig");
+        return ReflectionUtil.checkForClass("net.minecraftforge.cauldron.CauldronConfig");
     }
 
     /** Check if the server is running KCauldron. */
     public static boolean isKCauldron() {
-        return reflectCheck("net.minecraftforge.kcauldron.KCauldronConfig");
+        return ReflectionUtil.checkForClass("net.minecraftforge.kcauldron.KCauldronConfig");
     }
 
     /** Check if the server is running Thermos. */
     public static boolean isThermos() {
         // TODO: find a Thermos class
-        return reflectCheck("not.defined");
+        return ReflectionUtil.checkForClass("not.defined");
     }
 
     /** Check if the server is running Crucible. */
     public static boolean isCrucible() {
-        return reflectCheck("io.github.crucible.CrucibleConfig");
+        return ReflectionUtil.checkForClass("io.github.crucible.CrucibleConfig");
     }
 
     /** Check if the server is running MCPC++. */
     public static boolean isMCPCPlusPlus() {
         // TODO: Find a MCPC++ class
-        return reflectCheck("not.defined");
+        return ReflectionUtil.checkForClass("not.defined");
     }
 
     /** Check if the server is running Mohist. */
     public static boolean isMohist() {
-        return reflectCheck("com.mohistmc.MohistMC", "com.mohistmc.MohistMCStart");
+        return ReflectionUtil.checkForClass("com.mohistmc.MohistMC", "com.mohistmc.MohistMCStart");
     }
 
     /** Check if the server is running Magma. */
     public static boolean isMagma() {
-        return reflectCheck(
+        return ReflectionUtil.checkForClass(
                 "org.magmafoundation.magma.Magma", "org.magmafoundation.magma.MagmaStart");
     }
 
     /** Check if the server is running Arclight. */
     public static boolean isArclight() {
-        return reflectCheck(
+        return ReflectionUtil.checkForClass(
                 "io.izzel.arclight.api.Arclight", "io.izzel.arclight.common.ArclightMain");
     }
 
     /** Check if the server is running Ketting. */
     public static boolean isKetting() {
-        return reflectCheck("org.kettingpowered.ketting.core.Ketting");
+        return ReflectionUtil.checkForClass("org.kettingpowered.ketting.core.Ketting");
     }
 
     /** Check if the server is running Cardboard. */
     public static boolean isCardboard() {
-        return reflectCheck("org.cardboardpowered.CardboardConfig");
+        return ReflectionUtil.checkForClass("org.cardboardpowered.CardboardConfig");
     }
 
     /** Check if the server is running Banner. */
     public static boolean isBanner() {
-        return reflectCheck("com.mohistmc.banner.BannerMCStart");
+        return ReflectionUtil.checkForClass("com.mohistmc.banner.BannerMCStart");
     }
 
     /** Check if the server is running BungeeCord. */
     public static boolean isBungeeCord() {
-        return reflectCheck("net.md_5.bungee.api.ProxyServer");
+        return ReflectionUtil.checkForClass("net.md_5.bungee.api.ProxyServer");
     }
 
     /** Check if the server is running Waterfall. */
     public static boolean isWaterfall() {
-        return reflectCheck("io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
+        return ReflectionUtil.checkForClass(
+                "io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
     }
 
     /** Check if the server is running Travertine. */
     public static boolean isTravertine() {
-        return reflectCheck("io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
+        return ReflectionUtil.checkForClass(
+                "io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
     }
 
     /** Check if the server is running Hexacord. */
     public static boolean isHexacord() {
         // TODO: Find a Hexacord class
-        return reflectCheck("not.defined");
+        return ReflectionUtil.checkForClass("not.defined");
     }
 
     /** Check if the server is running Fabric. */
     public static boolean isFabric() {
-        return reflectCheck("net.fabricmc.loader.api.FabricLoader");
+        return ReflectionUtil.checkForClass("net.fabricmc.loader.api.FabricLoader");
     }
 
     /** Check if the server is running Quilt. */
     public static boolean isQuilt() {
-        return reflectCheck("net.quiltservertools.quilt.api.QuiltServer");
+        return ReflectionUtil.checkForClass("net.quiltservertools.quilt.api.QuiltServer");
     }
 
     /** Check if the server is running Sponge. */
     public static boolean isSponge() {
-        return reflectCheck("org.spongepowered.api.Sponge");
+        return ReflectionUtil.checkForClass("org.spongepowered.api.Sponge");
     }
 
     /** Check if the server is running Forge. */
     public static boolean isForge() {
-        return reflectCheck(
+        return ReflectionUtil.checkForClass(
                 "net.minecraftforge.fml.loading.FMLLoader",
                 "net.minecraftforge.common.ForgeVersion");
     }
 
     /** Check if the server is running GoldenForge. */
     public static boolean isGoldenForge() {
-        return reflectCheck("org.goldenforgelauncher.GoldenForgeEntryPoint");
+        return ReflectionUtil.checkForClass("org.goldenforgelauncher.GoldenForgeEntryPoint");
     }
 
     /** Check if the server is running NeoForge. */
     public static boolean isNeoForge() {
-        return reflectCheck("net.neoforged.neoforge.common.NeoForge");
+        return ReflectionUtil.checkForClass("net.neoforged.neoforge.common.NeoForge");
     }
 
     /** Check if the server is running Velocity. */
     public static boolean isVelocity() {
-        return reflectCheck("com.velocitypowered.api.proxy.ProxyServer");
+        return ReflectionUtil.checkForClass("com.velocitypowered.api.proxy.ProxyServer");
     }
 
     /** Check if the server is running Vanilla. */
     public static boolean isVanilla() {
-        return reflectCheck("net.minecraft.server.MinecraftServer");
-    }
-
-    /**
-     * Get the data folders for the server type
-     *
-     * @return The data folders for the server type
-     */
-    public DataFolders dataFolders() {
-        return serverType().dataFolders;
+        return ReflectionUtil.checkForClass("net.minecraft.server.MinecraftServer");
     }
 
     /**
@@ -458,11 +411,11 @@ public enum ServerType {
     /**
      * Check if the server is running a specific server type.
      *
-     * @param serverType The server type to check for.
+     * @param platform The server type to check for.
      * @return True if the server is running the specified server type, false otherwise.
      */
-    public boolean is(ServerType... serverType) {
-        return Arrays.asList(serverType).contains(this);
+    public boolean is(Platform... platform) {
+        return Arrays.asList(platform).contains(this);
     }
 
     /**
@@ -598,38 +551,5 @@ public enum ServerType {
      */
     public boolean isProxy() {
         return this.isBungeeCordBased() || this.isVelocityBased();
-    }
-
-    public enum DataFolders {
-        PLUGINS("plugins", "plugins"),
-        MODS("mods", "config"),
-        HYBRID("mods", "config"),
-        UNKNOWN(".", ".");
-
-        private final String modFolder;
-        private final String configFolder;
-
-        DataFolders(String modFolder, String configFolder) {
-            this.modFolder = modFolder;
-            this.configFolder = configFolder;
-        }
-
-        /**
-         * Get the mod folder
-         *
-         * @return The mod folder
-         */
-        public String modFolder() {
-            return modFolder;
-        }
-
-        /**
-         * Get the config folder
-         *
-         * @return The config folder
-         */
-        public String configFolder() {
-            return configFolder;
-        }
     }
 }

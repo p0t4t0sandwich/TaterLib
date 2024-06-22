@@ -52,17 +52,28 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         pluginStart(
                 plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
         TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setModLoaderVersion(() -> {
-            try {
-                int majorVersion = ForgeVersion.class.getDeclaredField("majorVersion").getInt(null);
-                int minorVersion = ForgeVersion.class.getDeclaredField("minorVersion").getInt(null);
-                int revisionVersion = ForgeVersion.class.getDeclaredField("revisionVersion").getInt(null);
-                int buildVersion = ForgeVersion.class.getDeclaredField("buildVersion").getInt(null);
-                return majorVersion + "." + minorVersion + "." + revisionVersion + "." + buildVersion;
-            } catch (IllegalAccessException | NoSuchFieldException e) {
-                return "Unknown";
-            }
-        });
+        api.setModLoaderVersion(
+                () -> {
+                    try {
+                        int majorVersion =
+                                ForgeVersion.class.getDeclaredField("majorVersion").getInt(null);
+                        int minorVersion =
+                                ForgeVersion.class.getDeclaredField("minorVersion").getInt(null);
+                        int revisionVersion =
+                                ForgeVersion.class.getDeclaredField("revisionVersion").getInt(null);
+                        int buildVersion =
+                                ForgeVersion.class.getDeclaredField("buildVersion").getInt(null);
+                        return majorVersion
+                                + "."
+                                + minorVersion
+                                + "."
+                                + revisionVersion
+                                + "."
+                                + buildVersion;
+                    } catch (IllegalAccessException | NoSuchFieldException e) {
+                        return "Unknown";
+                    }
+                });
         api.setModList(
                 () ->
                         Loader.instance().getModList().stream()

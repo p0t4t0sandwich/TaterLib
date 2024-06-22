@@ -1,4 +1,4 @@
-package dev.neuralnexus.conditionalmixins.api;
+package dev.neuralnexus.taterlib.loader.api;
 
 /** Stores information about a mod */
 public class ModInfo {

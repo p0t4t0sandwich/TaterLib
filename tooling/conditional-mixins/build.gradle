@@ -10,8 +10,8 @@ jar {
 dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
-    compileOnly('com.google.code.gson:gson:2.10.1')
     compileOnly(project(':tooling:entrypoint-spoof'))
+    implementation(project(':tooling:loader'))
 }
 
 spotless {

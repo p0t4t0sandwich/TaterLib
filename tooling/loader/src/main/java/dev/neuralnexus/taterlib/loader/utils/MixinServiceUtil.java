@@ -1,12 +1,11 @@
-package dev.neuralnexus.conditionalmixins.mixin.utils;
+package dev.neuralnexus.taterlib.loader.utils;
 
-import jdk.internal.org.objectweb.asm.tree.FieldNode;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
 
 /** Helper/wrapper class to prevent ClassNotFound errors when Mixin is not present. */
-public class MixinServiceUtils {
+public class MixinServiceUtil {
     /**
      * Returns the Minecraft version.
      *

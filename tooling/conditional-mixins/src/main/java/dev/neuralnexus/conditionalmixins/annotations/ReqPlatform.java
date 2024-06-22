@@ -1,6 +1,6 @@
 package dev.neuralnexus.conditionalmixins.annotations;
 
-import dev.neuralnexus.conditionalmixins.api.ServerType;
+import dev.neuralnexus.taterlib.loader.api.Platform;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface ReqServerType {
-    ServerType[] value();
+public @interface ReqPlatform {
+    Platform[] value();
 }
