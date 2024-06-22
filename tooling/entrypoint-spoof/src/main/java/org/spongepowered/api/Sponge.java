@@ -5,7 +5,6 @@ import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 /** Fake Sponge API class. */
@@ -44,5 +43,48 @@ public final class Sponge {
 
     public static PluginManager getPluginManager() {
         return pluginManager();
+    }
+
+    public static Platform platform() {
+        return new Platform() {
+            @Override
+            public MinecraftVersion minecraftVersion() {
+                return new MinecraftVersion() {
+                    @Override
+                    public int compareTo(MinecraftVersion o) {
+                        return 0;
+                    }
+
+                    @Override
+                    public String name() {
+                        return "Unknown";
+                    }
+
+                    @Override
+                    public String getName() {
+                        return "";
+                    }
+
+                    @Override
+                    public int protocolVersion() {
+                        return 0;
+                    }
+
+                    @Override
+                    public boolean isLegacy() {
+                        return false;
+                    }
+                };
+            }
+
+            @Override
+            public MinecraftVersion getMinecraftVersion() {
+                return minecraftVersion();
+            }
+        };
+    }
+
+    public static Platform getPlatform() {
+        return platform();
     }
 }

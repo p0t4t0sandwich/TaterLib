@@ -5,6 +5,7 @@ import java.util.List;
 
 /** Fake Forge class. */
 public class Loader {
+    public static final String MC_VERSION = "0";
     private static Loader instance;
 
     public static Loader instance() {

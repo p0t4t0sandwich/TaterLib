@@ -5,9 +5,7 @@ import org.spongepowered.plugin.PluginContainer;
 import java.util.Collection;
 import java.util.Optional;
 
-/**
- * Fake Sponge interface
- */
+/** Fake Sponge interface */
 public interface PluginManager {
     Optional<PluginContainer> plugin(String id);
 

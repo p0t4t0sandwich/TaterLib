@@ -1,6 +1,4 @@
 package org.bukkit.event;
 
-/**
- * Fake Bukkit interface
- */
+/** Fake Bukkit interface */
 public interface Listener {}

@@ -1,9 +1,8 @@
 package net.minecraftforge.fml.loading;
 
-/**
- * Fake NeoForge class
- */
+/** Fake NeoForge class */
 public class FMLLoader {
+    private String mcVersion;
     private String forgeVersion;
 
     public static VersionInfo versionInfo() {

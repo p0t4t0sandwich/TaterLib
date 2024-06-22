@@ -1,7 +1,6 @@
 package net.minecraftforge.fml;
 
 import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
-import net.minecraftforge.forgespi.language.IModInfo;
 
 import java.util.Collections;
 import java.util.List;
