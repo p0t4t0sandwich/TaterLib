@@ -49,14 +49,6 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-    exclude('dev/neuralnexus/taterlib/bukkit')
-    exclude('dev/neuralnexus/taterlib/bungee')
-    exclude('dev/neuralnexus/taterlib/fabric')
-    exclude('dev/neuralnexus/taterlib/forge')
-    exclude('dev/neuralnexus/taterlib/neoforge')
-    exclude('dev/neuralnexus/taterlib/sponge')
-    exclude('dev/neuralnexus/taterlib/velocity')
-
 //    exclude('fabric.mod.json')
 //    exclude('META-INF/mods.toml')
 //    exclude('mcmod.info')
