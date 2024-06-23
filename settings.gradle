@@ -52,9 +52,10 @@ pluginManagement {
             url = 'https://repo.spongepowered.org/maven'
         }
 
+        // Unimined
         maven {
-            name = 'sponge-repo'
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
+            name = 'Unimined'
+            url = "https://maven.wagyourtail.xyz/releases"
         }
     }
 }
@@ -118,6 +119,9 @@ include(
         'fabric:fabric-1.20.2',
         'fabric:fabric-1.20.6',
         'fabric:fabric-1.21',
+
+        // Legacy Forge
+        'forge:forge-1.11.2',
 
         // Forge
         'forge:forge-utils-modern',

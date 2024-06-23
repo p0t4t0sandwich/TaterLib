@@ -8,6 +8,7 @@ neogradle = '7.0.145'
 mixin = '0.7-SNAPSHOT'
 spongegradle = '2.2.0'
 vanillagradle = '0.2.1-SNAPSHOT'
+unimined = '1.2.9'
 
 [plugins]
 blossom = { id = 'net.kyori.blossom', version.ref = 'blossom' }
@@ -20,3 +21,4 @@ neogradle = { id = 'net.neoforged.gradle.userdev', version.ref = 'neogradle' }
 mixin = { id = 'org.spongepowered.mixin', version.ref = 'mixin' }
 spongegradle = { id = 'org.spongepowered.gradle.plugin', version.ref = 'spongegradle' }
 vanillagradle = { id = 'org.spongepowered.gradle.vanilla', version.ref = 'vanillagradle' }
+unimined = { id = 'xyz.wagyourtail.unimined', version.ref = 'unimined' }

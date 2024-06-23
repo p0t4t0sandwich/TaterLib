@@ -1,0 +1,59 @@
+plugins {
+    alias(libs.plugins.unimined)
+}
+
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
+unimined.minecraft(sourceSets.main, true) {
+    version minecraft_version
+    minecraftForge {
+        loader forge_version
+    }
+    mappings {
+        searge()
+        mcp(mapping_channel, mapping_version)
+    }
+    defaultRemapJar = true
+}
+
+dependencies {
+//    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    compileOnly(project(':api'))
+    compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
+}
+
+// Old Script
+//buildscript {
+//    repositories {
+//        // NeuralNexus Mirror
+//        maven {
+//            name = "NeuralNexus"
+//            url = "https://maven.neuralnexus.dev/mirror"
+//        }
+//        maven { url = 'https://maven.minecraftforge.net/' }
+//    }
+//    dependencies {
+//        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+//    }
+//}
+//apply(plugin: 'net.minecraftforge.gradle.forge')
+//
+//sourceCompatibility = targetCompatibility = 1.8
+//
+//minecraft {
+//    version = "${minecraft_version}-${forge_version}"
+//    runDir = "run"
+//    mappings = "${mapping_channel}_${mapping_version}"
+//    makeObfSourceJar = false
+//}
+//
+//dependencies {
+//    compile("dev.neuralnexus:taterlib-api:${version}")
+//}
+//
+//jar {
+//    archiveName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+//}

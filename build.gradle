@@ -4,6 +4,7 @@ plugins {
     id('maven-publish')
     alias(libs.plugins.loom) apply(false)
     alias(libs.plugins.vanillagradle) apply(false)
+    alias(libs.plugins.unimined) apply(false)
 }
 
 defaultTasks('build')
