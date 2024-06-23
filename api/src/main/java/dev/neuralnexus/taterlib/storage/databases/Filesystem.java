@@ -17,9 +17,7 @@ public class Filesystem implements Database<String> {
      */
     public Filesystem(Database.DatabaseConfig config) {
         this.connection =
-                TaterAPIProvider.platformData().configFolder()
-                        + File.separator
-                        + config.host;
+                TaterAPIProvider.platformData().configFolder() + File.separator + config.host;
         this.database = config.database;
     }
 

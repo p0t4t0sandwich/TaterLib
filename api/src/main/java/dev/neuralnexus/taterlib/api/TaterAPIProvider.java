@@ -178,17 +178,6 @@ public class TaterAPIProvider {
     }
 
     /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
-     * Set the serverName supplier
-     *
-     * @param serverName The serverName supplier
-     */
-    @ApiStatus.Internal
-    public void setModLoaderVersion(Supplier<String> serverName) {
-        TaterAPIProvider.serverName = serverName;
-    }
-
-    /**
      * Get the server name
      *
      * @return The server name
@@ -344,6 +333,17 @@ public class TaterAPIProvider {
     @ApiStatus.Internal
     public static void unregister(Platform platform) {
         apis.remove(platform);
+    }
+
+    /**
+     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
+     * Set the serverName supplier
+     *
+     * @param serverName The serverName supplier
+     */
+    @ApiStatus.Internal
+    public void setModLoaderVersion(Supplier<String> serverName) {
+        TaterAPIProvider.serverName = serverName;
     }
 
     /**

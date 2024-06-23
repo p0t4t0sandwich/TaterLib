@@ -12,15 +12,18 @@
  *
  * Violations will result in a ban of your plugin and account from bStats.
  */
-package dev.neuralnexus.taterlib.bstats.bukkit;
+package dev.neuralnexus.taterlib.metrics.bstats.bukkit;
 
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.utils.PathUtils;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.config.Configuration;
 
 import java.io.*;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -210,7 +213,15 @@ public class BukkitBetaMetricsAdapter {
             //    }
 
             // Poseidon Implementation - Start
-            return Bukkit.getOnlinePlayers().length;
+            // Modified by p0t4t0sandwich to accommodate for transitive dependencies
+            try {
+                Method onlinePlayersMethod =
+                        Class.forName("org.bukkit.Server").getMethod("getOnlinePlayers");
+                return ((Object[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
+            } catch (Exception e) {
+                // Fallback to TaterLib's impl
+                return TaterAPIProvider.get().server().onlinePlayers().size();
+            }
             // Poseidon Implementation - End
         }
 

@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.metrics.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;

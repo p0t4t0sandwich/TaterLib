@@ -1,9 +1,9 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.taterlib.Utils;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;

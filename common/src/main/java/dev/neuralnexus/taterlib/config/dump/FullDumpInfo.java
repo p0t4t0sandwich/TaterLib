@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
-import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 
 import java.io.File;

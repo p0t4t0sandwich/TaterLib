@@ -1,13 +1,13 @@
-package dev.neuralnexus.taterlib.bstats;
+package dev.neuralnexus.taterlib.metrics.bstats;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.bstats.bukkit.BukkitBetaMetricsAdapter;
-import dev.neuralnexus.taterlib.bstats.bukkit.BukkitMetricsAdapter;
-import dev.neuralnexus.taterlib.bstats.bungeecord.BungeeCordMetricsAdapter;
-import dev.neuralnexus.taterlib.bstats.sponge.SpongeMetricsAdapter;
-import dev.neuralnexus.taterlib.bstats.velocity.VelocityMetricsAdapter;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.metrics.bstats.bukkit.BukkitBetaMetricsAdapter;
+import dev.neuralnexus.taterlib.metrics.bstats.bukkit.BukkitMetricsAdapter;
+import dev.neuralnexus.taterlib.metrics.bstats.bungeecord.BungeeCordMetricsAdapter;
+import dev.neuralnexus.taterlib.metrics.bstats.sponge.SpongeMetricsAdapter;
+import dev.neuralnexus.taterlib.metrics.bstats.velocity.VelocityMetricsAdapter;
 
 import org.bstats.charts.CustomChart;
 

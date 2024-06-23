@@ -72,7 +72,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
-        if (MinecraftVersion.minecraftVersion().isOlderThan(MinecraftVersion.V1_9)) {
+        if (MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_9)) {
             throw new VersionFeatureNotSupportedException();
         }
         // TODO: Implement
@@ -82,7 +82,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
-        if (MinecraftVersion.minecraftVersion().isOlderThan(MinecraftVersion.V1_9)) {
+        if (MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_9)) {
             throw new VersionFeatureNotSupportedException();
         }
         // TODO: Implement

@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.bstats.bungeecord;
+package dev.neuralnexus.taterlib.metrics.bstats.bungeecord;
 
 import net.md_5.bungee.api.plugin.Plugin;
 

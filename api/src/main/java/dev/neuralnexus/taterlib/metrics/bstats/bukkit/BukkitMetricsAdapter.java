@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.bstats.bukkit;
+package dev.neuralnexus.taterlib.metrics.bstats.bukkit;
 
 import org.bstats.bukkit.Metrics;
 import org.bstats.charts.CustomChart;

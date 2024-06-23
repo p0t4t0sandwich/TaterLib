@@ -1,9 +1,8 @@
 /**
- * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca The project is Licensed under <a
+ * href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a> The API is Licensed
+ * under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-
 package dev.neuralnexus.taterlib.api;
 
 import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
@@ -221,8 +220,7 @@ public enum Platform {
 
     /** Check if the server is running CraftBukkit. */
     public static boolean isCraftBukkit() {
-        return checkForClass(
-                "org.bukkit.craftbukkit.CraftServer", "org.bukkit.craftbukkit.Main");
+        return checkForClass("org.bukkit.craftbukkit.CraftServer", "org.bukkit.craftbukkit.Main");
     }
 
     /** Check if the server is running Spigot. */
@@ -327,14 +325,12 @@ public enum Platform {
 
     /** Check if the server is running Waterfall. */
     public static boolean isWaterfall() {
-        return checkForClass(
-                "io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
+        return checkForClass("io.github.waterfallmc.waterfall.conf.WaterfallConfiguration");
     }
 
     /** Check if the server is running Travertine. */
     public static boolean isTravertine() {
-        return checkForClass(
-                "io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
+        return checkForClass("io.github.waterfallmc.travertine.protocol.MultiVersionPacketV17");
     }
 
     /** Check if the server is running Hexacord. */

@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.bstats.sponge;
+package dev.neuralnexus.taterlib.metrics.bstats.sponge;
 
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.utils.PathUtils;

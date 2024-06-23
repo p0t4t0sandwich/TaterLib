@@ -1,6 +1,7 @@
-package dev.neuralnexus.taterlib.bstats.velocity;
+package dev.neuralnexus.taterlib.metrics.bstats.velocity;
 
 import com.velocitypowered.api.proxy.ProxyServer;
+
 import dev.neuralnexus.taterlib.utils.PathUtils;
 
 import org.bstats.charts.CustomChart;

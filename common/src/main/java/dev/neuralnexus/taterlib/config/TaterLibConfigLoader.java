@@ -8,7 +8,6 @@ import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 
-import dev.neuralnexus.taterlib.utils.ConfigUtil;
 import io.leangen.geantyref.TypeToken;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
@@ -57,8 +56,7 @@ public class TaterLibConfigLoader {
         ConfigurationNode versionNode = root.node("version");
         int version = versionNode.getInt(1);
         ServerConfig server = ConfigUtil.get(root, serverType, "server", TaterLib.logger());
-        List<ModuleConfig> modules =
-                ConfigUtil.get(root, moduleType, "modules", TaterLib.logger());
+        List<ModuleConfig> modules = ConfigUtil.get(root, moduleType, "modules", TaterLib.logger());
         List<HookConfig> hooks = ConfigUtil.get(root, hookType, "hooks", TaterLib.logger());
         List<MixinConfig> mixins = ConfigUtil.get(root, mixinType, "mixins", TaterLib.logger());
 

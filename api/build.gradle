@@ -7,38 +7,6 @@ tasks.named('test', Test) {
     maxHeapSize = '1G'
 }
 
-repositories {
-    // Arclight
-    maven {
-        name = 'Arclight Maven'
-        url = 'https://maven.izzel.io/releases'
-    }
-
-    // Mohist
-    maven {
-        name = 'Mohist Maven'
-        url = 'https://maven.mohistmc.com/'
-    }
-
-    // NeuralNexus -- For Magma
-    maven {
-        name = "NeuralNexus"
-        url = "https://maven.neuralnexus.dev/releases"
-    }
-
-    // Ketting
-    maven {
-        name = "Ketting"
-        url = "https://nexus.c0d3m4513r.com/repository/Ketting/"
-    }
-
-    // Sponge
-    maven {
-        name = 'SpongePowered'
-        url = 'https://repo.spongepowered.org/repository/maven-public/'
-    }
-}
-
 dependencies {
     // Test
     testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
@@ -55,17 +23,8 @@ dependencies {
     implementation('org.bstats:bstats-sponge:3.0.2')
     implementation('org.bstats:bstats-velocity:3.0.2')
 
-    // MCLogs
-    implementation('gs.mclo:api:3.0.1')
-
-    // Gson
-    implementation('com.google.code.gson:gson:2.10.1')
-
-    // Guava
-    implementation('com.google.guava:guava:33.0.0-jre')
-
     // MySQL
-    implementation("com.zaxxer:HikariCP:4.0.3")
+    implementation('com.zaxxer:HikariCP:4.0.3')
     implementation('com.mysql:mysql-connector-j:8.3.0')
 
     // MongoDB
@@ -73,26 +32,22 @@ dependencies {
     implementation('org.mongodb:mongodb-driver-core:4.9.1')
     implementation('org.mongodb:bson:4.9.1')
 
-    // Logging
-    compileOnly("org.slf4j:slf4j-api:1.7.32")
-    compileOnly("org.apache.logging.log4j:log4j-api:2.17.1")
-
     // Brigadier
     compileOnly('com.mojang:brigadier:1.0.18')
 
     // Mixin
-    compileOnly("org.spongepowered:mixin:0.8.5")
+    compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
 
     // Cross API dependencies
-    compileOnly("net.luckperms:api:5.4")
-    compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
+    compileOnly('net.luckperms:api:5.4')
+    compileOnly('me.lucko:spark-api:0.1-SNAPSHOT')
 
     // Hybrid APIs
-    compileOnly("io.izzel.arclight:arclight-api:1.6.3")
-    compileOnly("org.kettingpowered:kettingcore:1.2")
-    compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
-    compileOnly("com.mohistmc:mohistdev:1.16.5")
+    compileOnly('io.izzel.arclight:arclight-api:1.6.3')
+    compileOnly('org.kettingpowered:kettingcore:1.2')
+    compileOnly('org.magmafoundation:Magma-1.12.2:e586889b')
+    compileOnly('com.mohistmc:mohistdev:1.16.5')
 
     // Tooling
     compileOnly(project(':tooling:entrypoint-spoof'))
@@ -117,21 +72,12 @@ shadowJar {
         include(dependency('com.typesafe:config:1.4.1'))
         include(dependency('io.leangen.geantyref:geantyref:1.3.15'))
 
-        // Gson
-        include(dependency('com.google.code.gson:gson:2.10.1'))
-
-        // Guava
-        include(dependency('com.google.guava:guava:33.0.0-jre'))
-
         // bStats
         include(dependency('org.bstats:bstats-base:3.0.2'))
         include(dependency('org.bstats:bstats-bukkit:3.0.2'))
         include(dependency('org.bstats:bstats-bungeecord:3.0.2'))
         include(dependency('org.bstats:bstats-sponge:3.0.2'))
         include(dependency('org.bstats:bstats-velocity:3.0.2'))
-
-        // MCLogs
-        include(dependency('gs.mclo:api:3.0.1'))
 
         // MySQL
         include(dependency('com.zaxxer:HikariCP:4.0.3'))
@@ -147,20 +93,10 @@ shadowJar {
     relocate('com.typesafe.config', "dev.neuralnexus.taterlib.lib.typesafe.config")
     relocate('io.leangen.geantyref', "dev.neuralnexus.taterlib.lib.geantyref")
 
-    // Gson
-    relocate('com.google.gson', "dev.neuralnexus.taterlib.lib.gson")
-
-    // Guava
-    relocate('com.google.common', "dev.neuralnexus.taterlib.lib.guava")
-    relocate('com.google.thirdparty', "dev.neuralnexus.taterlib.lib.google.thirdparty")
-
     // bStats
     relocate('org.bstats', "dev.neuralnexus.taterlib.lib.bstats") {
         exclude 'org.bstats.sponge.*'
     }
-
-    // MCLogs
-    relocate("gs.mclo", "dev.neuralnexus.taterlib.lib.mclogs")
 
     // MySQL
     relocate('com.zaxxer.hikari', "dev.neuralnexus.taterlib.lib.hikari")
@@ -169,6 +105,11 @@ shadowJar {
     // MongoDB
     relocate('com.mongodb', "dev.neuralnexus.taterlib.lib.mongodb")
     relocate('org.bson', "dev.neuralnexus.taterlib.lib.bson")
+
+//    minimize() {
+//        exclude('org.spongepowered.configurate')
+//        exclude('org.bstats.*')
+//    }
 
     archiveFileName = "${project_id}-api-full-${version}.jar"
 }

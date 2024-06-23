@@ -181,5 +181,10 @@
       <option name="name" value="NeuralNexus Mirror" />
       <option name="url" value="https://maven.neuralnexus.dev/mirror" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Ketting" />
+      <option name="name" value="Ketting" />
+      <option name="url" value="https://reposilite.c0d3m4513r.com/repository/Ketting/" />
+    </remote-repository>
   </component>
 </project>

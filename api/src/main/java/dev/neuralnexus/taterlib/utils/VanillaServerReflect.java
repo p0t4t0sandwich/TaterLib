@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.utils;
 
 import com.google.common.collect.ImmutableMap;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.server.SimpleServer;
 
 /** Reflection utilities to get a relocated instance of VanillaServer. */

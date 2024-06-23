@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterlib.utils;
+package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.logger.Logger;
