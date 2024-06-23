@@ -27,6 +27,8 @@ dependencies {
     // Lucko's Permissions API
     include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
 
+    compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
     compileOnly(project(':fabric:fabric-utils'))
 }

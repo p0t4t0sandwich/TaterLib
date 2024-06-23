@@ -5,7 +5,7 @@ plugins {
 dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
-    compileOnly(project(':common'))
+    compileOnly(project(':api'))
     compileOnly(project(':tooling:entrypoint-spoof'))
 }
 

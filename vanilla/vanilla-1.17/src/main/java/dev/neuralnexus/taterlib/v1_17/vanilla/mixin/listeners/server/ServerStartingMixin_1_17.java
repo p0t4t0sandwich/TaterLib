@@ -48,7 +48,7 @@ public class ServerStartingMixin_1_17 {
                 new VanillaBrigadierCommandRegisterEvent(dispatcher, commandSelection));
 
         // Sponge has its own, nicer simple command system
-        if (!TaterAPIProvider.serverType().isSpongeBased()) {
+        if (!TaterAPIProvider.platform().isSpongeBased()) {
             CommandEvents.REGISTER_COMMAND.invoke(
                     new VanillaCommandRegisterEvent(dispatcher, commandSelection));
         }

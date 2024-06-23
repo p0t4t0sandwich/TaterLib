@@ -1,6 +1,6 @@
 package dev.neuralnexus.taterlib.v1_8.sponge.inventory;
 
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;

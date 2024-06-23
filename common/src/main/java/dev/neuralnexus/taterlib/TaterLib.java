@@ -1,10 +1,10 @@
 package dev.neuralnexus.taterlib;
 
-
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
-import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 
@@ -15,9 +15,8 @@ public class TaterLib {
     private static boolean RELOADED = false;
     private static ModuleLoader moduleLoader;
     private Object plugin;
-    private Object pluginServer;
-    private Object pluginLogger;
-    private AbstractLogger logger;
+    private Object server;
+    private Logger logger;
 
     /**
      * Get if the plugin has reloaded
@@ -58,19 +57,10 @@ public class TaterLib {
     /**
      * Set the plugin server
      *
-     * @param pluginServer The plugin server
+     * @param server The plugin server
      */
-    private static void setPluginServer(Object pluginServer) {
-        instance.pluginServer = pluginServer;
-    }
-
-    /**
-     * Set the plugin logger
-     *
-     * @param pluginLogger The plugin logger
-     */
-    private static void setPluginLogger(Object pluginLogger) {
-        instance.pluginLogger = pluginLogger;
+    private static void setPluginServer(Object server) {
+        instance.server = server;
     }
 
     /**
@@ -78,7 +68,7 @@ public class TaterLib {
      *
      * @return The logger
      */
-    public static AbstractLogger logger() {
+    public static Logger logger() {
         return instance.logger;
     }
 
@@ -87,7 +77,7 @@ public class TaterLib {
      *
      * @param logger The logger
      */
-    private static void setLogger(AbstractLogger logger) {
+    private static void setLogger(Logger logger) {
         instance.logger = logger;
     }
 
@@ -95,17 +85,12 @@ public class TaterLib {
      * Start
      *
      * @param plugin The plugin
-     * @param pluginServer The plugin server
-     * @param pluginLogger The plugin logger
+     * @param server The plugin server
      * @param logger The logger
      */
-    public static void start(
-            Object plugin, Object pluginServer, Object pluginLogger, AbstractLogger logger) {
-        if (pluginServer != null) {
-            setPluginServer(pluginServer);
-        }
-        if (pluginLogger != null) {
-            setPluginLogger(pluginLogger);
+    public static void start(Object plugin, Object server, Logger logger) {
+        if (server != null) {
+            setPluginServer(server);
         }
         setPlugin(plugin);
         setLogger(logger);
@@ -126,6 +111,7 @@ public class TaterLib {
             // Register modules
             moduleLoader = new TaterLibModuleLoader();
             moduleLoader.registerModule(new CoreModule());
+            moduleLoader.registerModule(new BungeeCordModule());
         }
 
         // Start modules
@@ -133,11 +119,6 @@ public class TaterLib {
         moduleLoader.startModules();
 
         logger().info(Constants.PROJECT_NAME + " has been started!");
-    }
-
-    /** Start */
-    public static void start() {
-        start(instance.plugin, instance.pluginServer, instance.pluginLogger, instance.logger);
     }
 
     /** Stop */
@@ -171,7 +152,7 @@ public class TaterLib {
         stop();
 
         // Start
-        start();
+        start(instance.plugin, instance.server, instance.logger);
 
         logger().info(Constants.PROJECT_NAME + " has been reloaded!");
     }

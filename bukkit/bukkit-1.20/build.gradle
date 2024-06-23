@@ -1,7 +1,9 @@
 dependencies {
     compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
     compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
+    compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
 }
 
 java.disableAutoTargetJvm()

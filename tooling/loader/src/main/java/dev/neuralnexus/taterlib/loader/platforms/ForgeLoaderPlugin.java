@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.api.Platform;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 

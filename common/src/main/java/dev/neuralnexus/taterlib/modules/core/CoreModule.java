@@ -66,9 +66,9 @@ public class CoreModule implements PluginModule {
             CommandEvents.REGISTER_COMMAND.register(
                     event -> {
                         Command command = new TaterLibCommand();
-                        if (TaterAPIProvider.serverType().isBungeeCordBased()) {
+                        if (TaterAPIProvider.platform().isBungeeCordBased()) {
                             command.setName("b" + command.name());
-                        } else if (TaterAPIProvider.serverType().isVelocityBased()) {
+                        } else if (TaterAPIProvider.platform().isVelocityBased()) {
                             command.setName("v" + command.name());
                         }
                         event.registerCommand(TaterLib.plugin(), command);

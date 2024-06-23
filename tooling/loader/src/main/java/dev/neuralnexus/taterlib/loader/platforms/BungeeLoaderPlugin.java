@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import net.md_5.bungee.api.ProxyServer;

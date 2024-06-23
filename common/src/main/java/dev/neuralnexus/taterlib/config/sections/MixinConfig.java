@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.config.sections;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
 
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import org.spongepowered.configurate.objectmapping.meta.Setting;
@@ -45,18 +45,18 @@ public class MixinConfig {
     }
 
     /** Returns whether the mixin is enabled for the specified server type. */
-    public boolean checkServerType(ServerType serverType, String serverTypeString) {
-        if (serverTypeString.startsWith("!")) {
-            return !serverType.is(serverTypeString.substring(1));
+    public boolean checkServerType(Platform platform, String platformString) {
+        if (platformString.startsWith("!")) {
+            return !platform.is(platformString.substring(1));
         } else {
-            return serverType.is(serverTypeString);
+            return platform.is(platformString);
         }
     }
 
     /** Returns whether the mixin is enabled for the specified server types. */
-    public boolean checkServerTypes(ServerType serverType) {
+    public boolean checkPlatforms(Platform platform) {
         return serverTypes.stream()
-                .allMatch(serverTypeString -> checkServerType(serverType, serverTypeString));
+                .allMatch(platformString -> checkServerType(platform, platformString));
     }
 
     /** Returns whether the mixin is enabled for the specified dependency. */
@@ -91,8 +91,8 @@ public class MixinConfig {
     /** Returns whether the mixin should be applied. */
     public boolean checkMixin() {
         return enabled()
-                && checkVersions(MinecraftVersion.minecraftVersion())
-                && checkServerTypes(ServerType.serverType())
+                && checkVersions(MinecraftVersion.get())
+                && checkPlatforms(Platform.get())
                 && checkDepends(TaterAPIProvider.get()::isPluginModLoaded);
     }
 }

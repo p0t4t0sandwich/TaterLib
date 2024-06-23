@@ -14,11 +14,11 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
@@ -49,22 +49,22 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Inject
     public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
-        platformInit(plugin, server, logger);
+        onInit(plugin, server, logger);
     }
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        platformEnable();
+        onEnable();
     }
 
     @Subscribe
     public void onProxyShutdown(ProxyShutdownEvent event) {
         ServerEvents.STOPPING.invoke(new VelocityServerStoppingEvent(event));
-        platformDisable();
+        onDisable();
     }
 
     @Override
-    public void platformInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server, Object logger) {
         // TODO: Remove when Velocity loader is implemented
         TaterAPIProvider.register();
 
@@ -72,28 +72,13 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
 
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
-        pluginStart(
-                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.VELOCITY);
-        api.setModLoaderVersion(() -> proxyServer.getVersion().getVersion());
-        api.setPluginList(
-                () ->
-                        proxyServer.getPluginManager().getPlugins().stream()
-                                .map(
-                                        p ->
-                                                new PluginInfo(
-                                                        p.getDescription()
-                                                                .getName()
-                                                                .orElse("Unknown"),
-                                                        p.getDescription()
-                                                                .getVersion()
-                                                                .orElse("Unknown")))
-                                .collect(Collectors.toList()));
+        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(Platform.VELOCITY);
         api.setServer(VelocityProxyServer::instance);
     }
 
     @Override
-    public void platformEnable() {
+    public void onEnable() {
         // Register listeners
         EventManager eventManager = proxyServer.getEventManager();
         eventManager.register(plugin, new VelocityPlayerListener());
@@ -123,8 +108,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformDisable() {
+    public void onDisable() {
         ServerEvents.STOPPED.invoke(new VelocityServerStoppedEvent());
-        pluginStop();
+        stop();
     }
 }

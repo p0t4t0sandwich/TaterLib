@@ -5,7 +5,7 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.ModInfo;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.loader.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.LoggerAdapter;
@@ -47,47 +47,14 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        pluginStart(
-                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setModLoaderVersion(
-                () -> {
-                    try {
-                        int majorVersion =
-                                ForgeVersion.class.getDeclaredField("majorVersion").getInt(null);
-                        int minorVersion =
-                                ForgeVersion.class.getDeclaredField("minorVersion").getInt(null);
-                        int revisionVersion =
-                                ForgeVersion.class.getDeclaredField("revisionVersion").getInt(null);
-                        int buildVersion =
-                                ForgeVersion.class.getDeclaredField("buildVersion").getInt(null);
-                        return majorVersion
-                                + "."
-                                + minorVersion
-                                + "."
-                                + revisionVersion
-                                + "."
-                                + buildVersion;
-                    } catch (IllegalAccessException | NoSuchFieldException e) {
-                        return "Unknown";
-                    }
-                });
-        api.setModList(
-                () ->
-                        Loader.instance().getModList().stream()
-                                .map(
-                                        modContainer ->
-                                                new ModInfo(
-                                                        modContainer.getModId(),
-                                                        modContainer.getName(),
-                                                        modContainer.getVersion()))
-                                .collect(Collectors.toList()));
+        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(Platform.FORGE);
         api.setServer(() -> new ForgeServer(minecraftServer));
-        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
+        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
 
-        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
+        if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

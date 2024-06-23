@@ -2,8 +2,8 @@ package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;
@@ -29,12 +29,12 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         // NeoForge is picking up on Forge mixins
-        if (TaterAPIProvider.serverType().is(ServerType.NEOFORGE)
+        if (TaterAPIProvider.platform().is(Platform.NEOFORGE)
                 && mixinClassName.contains(".forge.mixin")) {
             return false;
         }
         // Forge is picking up on Vanilla mixins
-        if (TaterAPIProvider.serverType().isForgeBased()
+        if (TaterAPIProvider.platform().isForgeBased()
                 // Forge 1.20.6 is Mojmapped, so it's alright
                 && !TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_5)
                 && mixinClassName.contains(".vanilla.mixin")) {

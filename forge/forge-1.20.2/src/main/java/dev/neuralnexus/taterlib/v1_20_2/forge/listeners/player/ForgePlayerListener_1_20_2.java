@@ -1,7 +1,7 @@
 package dev.neuralnexus.taterlib.v1_20_2.forge.listeners.player;
 
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.utils.forge.modern.event.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.*;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent_1_20_2;
 

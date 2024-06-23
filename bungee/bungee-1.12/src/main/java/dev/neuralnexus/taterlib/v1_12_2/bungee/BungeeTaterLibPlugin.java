@@ -5,10 +5,10 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.info.PluginInfo;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
+import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.event.server.BungeeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.event.server.BungeeServerStartingEvent;
@@ -30,27 +30,16 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     private Plugin plugin;
 
     @Override
-    public void platformInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server, Object logger) {
         this.plugin = (Plugin) plugin;
         TaterAPIProvider.addHook(new BungeePermissionsHook());
-        pluginStart(
-                plugin, server, logger, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(ServerType.BUNGEECORD);
-        api.setModLoaderVersion(() -> ProxyServer.getInstance().getVersion());
-        api.setPluginList(
-                () ->
-                        ProxyServer.getInstance().getPluginManager().getPlugins().stream()
-                                .map(
-                                        p ->
-                                                new PluginInfo(
-                                                        p.getDescription().getName(),
-                                                        p.getDescription().getVersion()))
-                                .collect(Collectors.toList()));
+        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        TaterAPI api = TaterAPIProvider.get(Platform.BUNGEECORD);
         api.setServer(BungeeProxyServer::instance);
     }
 
     @Override
-    public void platformEnable() {
+    public void onEnable() {
         // Register listeners
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
         ProxyServer.getInstance()
@@ -75,10 +64,10 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void platformDisable() {
+    public void onDisable() {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new BungeeServerStoppingEvent());
         ServerEvents.STOPPED.invoke(new BungeeServerStoppedEvent());
-        pluginStop();
+        stop();
     }
 }

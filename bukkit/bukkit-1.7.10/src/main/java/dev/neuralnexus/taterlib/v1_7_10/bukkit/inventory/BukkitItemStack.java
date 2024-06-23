@@ -18,7 +18,8 @@ public class BukkitItemStack implements ItemStack {
      * @param itemStack The Bukkit item stack.
      */
     public BukkitItemStack(org.bukkit.inventory.ItemStack itemStack) {
-        this.itemStack = itemStack == null ? new org.bukkit.inventory.ItemStack(Material.AIR) : itemStack;
+        this.itemStack =
+                itemStack == null ? new org.bukkit.inventory.ItemStack(Material.AIR) : itemStack;
     }
 
     /**

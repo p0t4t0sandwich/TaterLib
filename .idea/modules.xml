@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/PluginModDev.TaterLib.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/PluginModDev.TaterLib.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/api/TaterLib.api.main.iml" filepath="$PROJECT_DIR$/.idea/modules/api/TaterLib.api.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bleeding/bukkit-bleeding/TaterLib.bleeding.bukkit-bleeding.main.iml" filepath="$PROJECT_DIR$/.idea/modules/bleeding/bukkit-bleeding/TaterLib.bleeding.bukkit-bleeding.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bleeding/fabric-bleeding/TaterLib.bleeding.fabric-bleeding.main.iml" filepath="$PROJECT_DIR$/.idea/modules/bleeding/fabric-bleeding/TaterLib.bleeding.fabric-bleeding.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/bleeding/fabric-bleeding/TaterLib.bleeding.fabric-bleeding.test.iml" filepath="$PROJECT_DIR$/.idea/modules/bleeding/fabric-bleeding/TaterLib.bleeding.fabric-bleeding.test.iml" />

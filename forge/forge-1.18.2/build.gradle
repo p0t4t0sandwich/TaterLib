@@ -12,7 +12,9 @@ minecraft {
 
 dependencies {
     minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
     compileOnly(project(":vanilla:vanilla-1.18"))
 }
 

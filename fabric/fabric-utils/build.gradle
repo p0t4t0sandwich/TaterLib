@@ -11,5 +11,7 @@ dependencies {
     mappings("net.fabricmc:yarn:${project.yarn_mappings}")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 //    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+    compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
 }

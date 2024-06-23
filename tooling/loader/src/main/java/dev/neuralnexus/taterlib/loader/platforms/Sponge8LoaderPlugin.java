@@ -8,9 +8,9 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.google.inject.Inject;
 
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.api.Platform;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import org.apache.logging.log4j.Logger;

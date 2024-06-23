@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.mojang.logging.LogUtils;
 
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 

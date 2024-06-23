@@ -65,9 +65,9 @@ public class TaterLibCommand implements Command {
                 dumpInfo.saveDump();
                 text =
                         "&6ServerType: &a"
-                                + dumpInfo.serverType.getName()
+                                + dumpInfo.platform.toString()
                                 + "\n&6MinecraftVersion: &a"
-                                + dumpInfo.minecraftVersion.getVersion()
+                                + dumpInfo.minecraftVersion.toString()
                                 + "\n&6TaterLibVersion: &a"
                                 + dumpInfo.taterlibVersion
                                 + "\n&6IsForgeHybrid: "

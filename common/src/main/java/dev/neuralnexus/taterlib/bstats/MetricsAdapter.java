@@ -1,8 +1,8 @@
 package dev.neuralnexus.taterlib.bstats;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.bstats.bukkit.BukkitBetaMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.bukkit.BukkitMetricsAdapter;
 import dev.neuralnexus.taterlib.bstats.bungeecord.BungeeCordMetricsAdapter;
@@ -21,25 +21,25 @@ public class MetricsAdapter {
             Object plugin,
             Object pluginServer,
             Object pluginLogger,
-            Map<ServerType, Integer> pluginIds,
+            Map<Platform, Integer> pluginIds,
             List<CustomChart> charts) {
-        ServerType serverType = ServerType.serverType();
-        if (serverType.isBukkitBased()) {
+        Platform platform = Platform.get();
+        if (platform.isBukkitBased()) {
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
                 return BukkitBetaMetricsAdapter.setupMetrics(
-                        plugin, pluginIds.get(ServerType.BUKKIT), Collections.emptyList());
+                        plugin, pluginIds.get(Platform.BUKKIT), Collections.emptyList());
             }
             return BukkitMetricsAdapter.setupMetrics(
-                    plugin, pluginIds.get(ServerType.BUKKIT), charts);
-        } else if (serverType.isBungeeCordBased()) {
+                    plugin, pluginIds.get(Platform.BUKKIT), charts);
+        } else if (platform.isBungeeCordBased()) {
             return BungeeCordMetricsAdapter.setupMetrics(
-                    plugin, pluginIds.get(ServerType.BUNGEECORD), charts);
-        } else if (serverType.isSpongeBased()) {
+                    plugin, pluginIds.get(Platform.BUNGEECORD), charts);
+        } else if (platform.isSpongeBased()) {
             return SpongeMetricsAdapter.setupMetrics(
-                    plugin, pluginLogger, pluginIds.get(ServerType.SPONGE), charts);
-        } else if (serverType.isVelocityBased()) {
+                    plugin, pluginLogger, pluginIds.get(Platform.SPONGE), charts);
+        } else if (platform.isVelocityBased()) {
             return VelocityMetricsAdapter.setupMetrics(
-                    plugin, pluginServer, pluginLogger, pluginIds.get(ServerType.VELOCITY), charts);
+                    plugin, pluginServer, pluginLogger, pluginIds.get(Platform.VELOCITY), charts);
         }
         return null;
     }
@@ -48,7 +48,7 @@ public class MetricsAdapter {
             Object plugin,
             Object pluginServer,
             Object pluginLogger,
-            Map<ServerType, Integer> pluginIds) {
+            Map<Platform, Integer> pluginIds) {
         return setupMetrics(plugin, pluginServer, pluginLogger, pluginIds, Collections.emptyList());
     }
 }

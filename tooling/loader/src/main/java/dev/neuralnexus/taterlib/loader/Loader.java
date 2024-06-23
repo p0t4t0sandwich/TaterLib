@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.loader;
 
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
-import dev.neuralnexus.taterlib.loader.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.loader.api.Platform;
-import dev.neuralnexus.taterlib.loader.api.PlatformData;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
@@ -30,7 +30,7 @@ public interface Loader {
 
     /** Get the platform */
     default Platform platform() {
-        return platformData().platform();
+        return Platform.get();
     }
 
     /** Get the platform's Minecraft version. */
@@ -74,7 +74,7 @@ public interface Loader {
 
     /** Run Init on all plugins. */
     default void onInit() {
-        plugins().forEach(p -> p.platformInit(plugin(), plugin(), logger()));
+        plugins().forEach(p -> p.onInit(plugin(), plugin(), logger()));
     }
 
     /** Run Enable on all plugins. */
@@ -84,7 +84,7 @@ public interface Loader {
                 .forEach(
                         plugin -> {
                             try {
-                                plugin.platformEnable();
+                                plugin.onEnable();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -93,6 +93,6 @@ public interface Loader {
 
     /** Run Disable on all plugins. */
     default void onDisable() {
-        plugins().forEach(Plugin::platformDisable);
+        plugins().forEach(Plugin::onDisable);
     }
 }

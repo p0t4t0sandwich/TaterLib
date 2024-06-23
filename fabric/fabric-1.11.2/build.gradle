@@ -26,6 +26,8 @@ dependencies {
         modImplementation(legacy.apiModule(it, project.fabric_version))
     }
 
+    compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:loader'))
     compileOnly(project(':fabric:fabric-utils'))
 }

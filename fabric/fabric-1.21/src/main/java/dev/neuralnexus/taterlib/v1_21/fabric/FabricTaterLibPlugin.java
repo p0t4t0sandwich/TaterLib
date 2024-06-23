@@ -4,13 +4,11 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderAdapters;
-import dev.neuralnexus.taterlib.utils.fabric.FabricLoaderUtils;
+import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_21.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaCommandRegisterEvent;
@@ -30,24 +28,22 @@ import org.apache.logging.log4j.LogManager;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
-        pluginStart(
+        start(
                 plugin,
                 server,
-                logger,
                 new LoggerAdapter(
                         "[" + TaterLib.Constants.PROJECT_NAME + "] ",
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
-        TaterAPI api = TaterAPIProvider.get(ServerType.FABRIC);
-        api.setModLoaderVersion(FabricLoaderUtils::getModLoaderVersion);
-        api.setModList(FabricLoaderAdapters::adaptModList);
+        TaterAPI api = TaterAPIProvider.get(Platform.FABRIC);
         api.setServer(VanillaServer::instance);
+        TaterAPIProvider.setPrimaryServerType(Platform.FABRIC);
 
-        if (TaterAPIProvider.isPrimaryServerType(ServerType.FABRIC)) {
+        if (TaterAPIProvider.isPrimaryServerType(Platform.FABRIC)) {
             ServerLifecycleEvents.SERVER_STARTING.register(VanillaServer::setServer);
-            ServerLifecycleEvents.SERVER_STOPPED.register(s -> pluginStop());
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());
 
             // Register Fabric API events
             CommandRegistrationCallback.EVENT.register(
@@ -55,7 +51,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
                                 new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
                         // Sponge has its own, nicer simple command system
-                        if (!TaterAPIProvider.serverType().isSpongeBased()) {
+                        if (!TaterAPIProvider.platform().isSpongeBased()) {
                             CommandEvents.REGISTER_COMMAND.invoke(
                                     new VanillaCommandRegisterEvent(dispatcher, environment));
                         }

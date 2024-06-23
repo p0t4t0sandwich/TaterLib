@@ -3,7 +3,7 @@ package dev.neuralnexus.taterlib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
-import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 /** General TaterLib plugin interface. */
@@ -19,20 +19,19 @@ public interface TaterLibPlugin extends Plugin {
     }
 
     @Override
-    default void pluginStart(
-            Object plugin, Object pluginServer, Object pluginLogger, AbstractLogger logger) {
+    default void start(Object plugin, Object server, Logger logger) {
         logger.info(
                 TaterLib.Constants.PROJECT_NAME
                         + " is running on "
-                        + TaterAPIProvider.serverType()
+                        + TaterAPIProvider.platform()
                         + " "
                         + TaterAPIProvider.minecraftVersion()
                         + "!");
-        TaterLib.start(plugin, pluginServer, pluginLogger, logger);
+        TaterLib.start(plugin, server, logger);
     }
 
     @Override
-    default void pluginStop() {
+    default void stop() {
         TaterLib.stop();
         TaterLib.logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
         PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());

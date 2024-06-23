@@ -4,10 +4,9 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ServerType;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.logger.LoggerAdapter;
-import dev.neuralnexus.taterlib.utils.forge.modern.FMLAdapters;
+import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_15_1.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_15_1.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_15_1.forge.listeners.block.ForgeBlockListener;
@@ -21,42 +20,26 @@ import dev.neuralnexus.taterlib.v1_15_1.forge.server.ForgeServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import org.apache.logging.log4j.LogManager;
 
-import java.lang.reflect.Field;
-
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void platformInit(Object plugin, Object server, Object logger) {
-        TaterAPIProvider.setPrimaryServerType(ServerType.FORGE);
+    public void onInit(Object plugin, Object server, Object logger) {
+        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        pluginStart(
+        start(
                 plugin,
                 server,
-                logger,
                 new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
-        TaterAPI api = TaterAPIProvider.get(ServerType.FORGE);
-        api.setModLoaderVersion(
-                () -> {
-                    try {
-                        Field field = FMLLoader.class.getDeclaredField("forgeVersion");
-                        field.setAccessible(true);
-                        return (String) field.get(null);
-                    } catch (IllegalAccessException | NoSuchFieldException e) {
-                        return "Unknown";
-                    }
-                });
-        api.setModList(() -> FMLAdapters.adaptModList(ModList.get()));
+        TaterAPI api = TaterAPIProvider.get(Platform.FORGE);
         api.setServer(() -> new ForgeServer(ServerLifecycleHooks.getCurrentServer()));
 
-        if (TaterAPIProvider.isPrimaryServerType(ServerType.FORGE)) {
+        if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
@@ -89,6 +72,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @SubscribeEvent
     public void onServerStopped(FMLServerStoppedEvent event) {
-        pluginStop();
+        stop();
     }
 }

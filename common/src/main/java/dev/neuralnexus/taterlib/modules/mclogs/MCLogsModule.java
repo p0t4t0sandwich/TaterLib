@@ -29,9 +29,9 @@ public class MCLogsModule implements PluginModule {
             CommandEvents.REGISTER_COMMAND.register(
                     event -> {
                         Command command = new MCLogsCommand();
-                        if (TaterAPIProvider.serverType().isBungeeCordBased()) {
+                        if (TaterAPIProvider.platform().isBungeeCordBased()) {
                             command.setName("bmclogs");
-                        } else if (TaterAPIProvider.serverType().isVelocityBased()) {
+                        } else if (TaterAPIProvider.platform().isVelocityBased()) {
                             command.setName("vmclogs");
                         }
                         event.registerCommand(TaterLib.plugin(), command);

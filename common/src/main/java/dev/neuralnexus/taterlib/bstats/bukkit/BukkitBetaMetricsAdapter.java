@@ -14,8 +14,7 @@
  */
 package dev.neuralnexus.taterlib.bstats.bukkit;
 
-import dev.neuralnexus.taterlib.api.info.ServerType;
-
+import dev.neuralnexus.taterlib.utils.PathUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +23,6 @@ import org.bukkit.util.config.Configuration;
 import java.io.*;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledExecutorService;
@@ -77,7 +75,7 @@ public class BukkitBetaMetricsAdapter {
             // File bStatsFolder = new File(plugin.getDataFolder().getParentFile(), "bStats");
             File bStatsFolder =
                     new File(
-                            Paths.get(ServerType.BUKKIT.dataFolders().configFolder()).toFile(),
+                            PathUtils.getPluginsFolder().toFile(),
                             "bStats");
             // TaterLib Fix - End
             File configFile = new File(bStatsFolder, "config.yml");

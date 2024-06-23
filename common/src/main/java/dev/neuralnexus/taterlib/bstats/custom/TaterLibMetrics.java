@@ -2,7 +2,7 @@ package dev.neuralnexus.taterlib.bstats.custom;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.logger.AbstractLogger;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import org.bstats.MetricsBase;
 import org.bstats.charts.DrilldownPie;
@@ -18,14 +18,14 @@ import java.util.Collections;
 
 /** TaterLib's custom bStats implementation. */
 public class TaterLibMetrics {
-    private static final AbstractLogger LOGGER = TaterLib.logger();
+    private static final Logger LOGGER = TaterLib.logger();
     private static final int SERVICE_ID = 21198;
 
     public static void initialize() {
         MetricsConfig config;
         try {
-            if (TaterAPIProvider.serverType().isFabricBased()
-                    || TaterAPIProvider.serverType().isForgeBased()) {
+            if (TaterAPIProvider.platform().isFabricBased()
+                    || TaterAPIProvider.platform().isForgeBased()) {
                 config = new MetricsConfig(new File("configs/bstats/config.txt"), true);
             } else {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), true);
@@ -78,7 +78,7 @@ public class TaterLibMetrics {
         metrics.addCustomChart(
                 new SingleLineChart(
                         "players",
-                        () -> TaterAPIProvider.get().getServer().onlinePlayers().size()));
+                        () -> TaterAPIProvider.get().server().onlinePlayers().size()));
         metrics.addCustomChart(new SimplePie("online_mode", () -> finalOnlineMode));
         metrics.addCustomChart(
                 new SimplePie("taterlib_version", () -> TaterLib.Constants.PROJECT_VERSION));
@@ -89,7 +89,7 @@ public class TaterLibMetrics {
                 new SimplePie(
                         "minecraft_version", () -> TaterAPIProvider.minecraftVersion().toString()));
         metrics.addCustomChart(
-                new SimplePie("server_type", () -> TaterAPIProvider.serverType().toString()));
+                new SimplePie("server_type", () -> TaterAPIProvider.platform().toString()));
         metrics.addCustomChart(
                 new DrilldownPie(
                         "java_version",
