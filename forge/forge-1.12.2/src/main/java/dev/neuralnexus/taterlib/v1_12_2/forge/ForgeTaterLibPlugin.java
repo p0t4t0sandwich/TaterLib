@@ -2,10 +2,9 @@ package dev.neuralnexus.taterlib.v1_12_2.forge;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
-import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
@@ -21,16 +20,12 @@ import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.player.ForgePlayerListen
 import dev.neuralnexus.taterlib.v1_12_2.forge.server.ForgeServer;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.ForgeVersion;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-
-import java.util.stream.Collectors;
 
 /** Forge entry point. */
 public class ForgeTaterLibPlugin implements TaterLibPlugin {

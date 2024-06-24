@@ -1,10 +1,5 @@
-import com.google.common.collect.ImmutableMap
-
 plugins {
     id('maven-publish')
-    alias(libs.plugins.loom) apply(false)
-    alias(libs.plugins.vanillagradle) apply(false)
-    alias(libs.plugins.unimined) apply(false)
 }
 
 defaultTasks('build')
@@ -82,16 +77,14 @@ subprojects {
             name = "Ketting"
             url = "https://reposilite.c0d3m4513r.com/repository/Ketting/"
         }
+
+        // Legacy Fabric
+        maven {
+            name = "legacy-fabric"
+            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
+        }
     }
 }
-
-var List<String> legacyForgeVersions = [
-        "1.7.10",
-        "1.8.9",
-        "1.9.4",
-        "1.10.2",
-        "1.11.2"
-]
 
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
@@ -108,11 +101,7 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
         }
 
         versions.each { mcVersion ->
-            var platformDir = platform
-            if (platform == 'forge' && legacyForgeVersions.contains(mcVersion)) {
-                platformDir = 'forge-legacy'
-            }
-            jarFiles.add(file("${platformDir}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar") as File)
+            jarFiles.add(file("${platform}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar") as File)
         }
     }
 
@@ -170,57 +159,41 @@ tasks.register('build_api', Jar) {
     }
 }
 
-// --------------------------- Build Legacy Forge --------------------------------
-tasks.register('build_legacy_forge', Exec) {
-    try {
-        executable 'bash'
-        args '-c', "export JAVA_HOME=${java_8_home} && cd forge-legacy && ./gradlew forge-1.7.10:setupDecompWorkspace && ./gradlew build"
-    } catch (Exception e) {
-        println(e)
-    }
-}
-
 // --------------------------- Build MonoJar --------------------------------
 tasks.register('build_monojar', Jar) {
-    var platformVersions = ImmutableMap.<String, List<String>> builder()
-            .put("bukkit", Arrays.asList(
-                    "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
-                    "1.8.8", "1.13.2", "1.15.2", "1.20"))
-            .put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
-            .put("fabric", Arrays.asList(
-                    "utils",
-                    "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2",
-                    "1.14", "1.15", "1.16", "1.17", "1.18",
-                    "1.19", "1.19.1", "1.19.3", "1.19.4",
-                    "1.20", "1.20.2", "1.20.6", "1.21"))
-            .put("forge", Arrays.asList(
-                    "utils-modern",
-                    "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
-                    "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
-                    "1.18", "1.18.2",
-                    "1.19", "1.19.1", "1.19.3", "1.19.4",
-                    "1.20", "1.20.2", "1.20.6"))
-            .put("neoforge", Arrays.asList("1.20.2"))
-            .put("sponge", Arrays.asList(
-                    "4", "5", "6", "7",
-                    "8", "9", "10", "11"))
-            .put("vanilla", Arrays.asList(
-                    "1.17", "1.18", "1.18.2",
-                    "1.19", "1.19.1", "1.19.3", "1.19.4",
-                    "1.20", "1.20.2", "1.20.6", "1.21"))
-            .put("velocity", Arrays.asList("3"))
-            .build()
+    var platformVersions = [:]
+    platformVersions.put("bukkit", Arrays.asList(
+            "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
+            "1.8.8", "1.13.2", "1.15.2", "1.20"))
+    platformVersions.put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
+    platformVersions.put("fabric", Arrays.asList(
+            "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2",
+            "1.14", "1.15", "1.16", "1.17", "1.18",
+            "1.19", "1.19.1", "1.19.3", "1.19.4",
+            "1.20", "1.20.2", "1.20.6", "1.21"))
+    platformVersions.put("forge", Arrays.asList(
+            "utils-modern",
+            "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
+            "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
+            "1.18", "1.18.2",
+            "1.19", "1.19.1", "1.19.3", "1.19.4",
+            "1.20", "1.20.2", "1.20.6"))
+    platformVersions.put("neoforge", Arrays.asList("1.20.2"))
+    platformVersions.put("sponge", Arrays.asList(
+            "4", "5", "6", "7",
+            "8", "9", "10", "11"))
+    platformVersions.put("vanilla", Arrays.asList(
+            "1.17", "1.18", "1.18.2",
+            "1.19", "1.19.1", "1.19.3", "1.19.4",
+            "1.20", "1.20.2", "1.20.6", "1.21"))
+    platformVersions.put("velocity", Arrays.asList("3"))
 
     dependsOn(':api:shadowJar')
     dependsOn(':common:shadowJar')
     dependsOn(':tooling:loader:build')
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
-            if (platform == 'forge' && legacyForgeVersions.contains(mcVersion)) {
-                dependsOn('build_legacy_forge')
-            } else {
-                dependsOn(":${platform}:${platform}-${mcVersion}:build")
-            }
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
         }
     }
 

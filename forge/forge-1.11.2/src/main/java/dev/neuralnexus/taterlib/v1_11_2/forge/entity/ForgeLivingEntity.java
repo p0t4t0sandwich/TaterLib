@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
 import dev.neuralnexus.taterlib.entity.LivingEntity;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;

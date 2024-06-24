@@ -8,19 +8,19 @@ import net.minecraft.entity.player.EntityPlayer;
 
 /** Forge implementation of {@link EntityEvent}. */
 public class ForgeEntityEvent implements EntityEvent {
-  private final net.minecraftforge.event.entity.EntityEvent event;
+    private final net.minecraftforge.event.entity.EntityEvent event;
 
-  public ForgeEntityEvent(net.minecraftforge.event.entity.EntityEvent event) {
-    this.event = event;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public Entity entity() {
-    if (event.getEntity() instanceof EntityPlayer) {
-      return new ForgePlayer((EntityPlayer) event.getEntity());
-    } else {
-      return new ForgeEntity(event.getEntity());
+    public ForgeEntityEvent(net.minecraftforge.event.entity.EntityEvent event) {
+        this.event = event;
     }
-  }
+
+    /** {@inheritDoc} */
+    @Override
+    public Entity entity() {
+        if (event.getEntity() instanceof EntityPlayer) {
+            return new ForgePlayer((EntityPlayer) event.getEntity());
+        } else {
+            return new ForgeEntity(event.getEntity());
+        }
+    }
 }

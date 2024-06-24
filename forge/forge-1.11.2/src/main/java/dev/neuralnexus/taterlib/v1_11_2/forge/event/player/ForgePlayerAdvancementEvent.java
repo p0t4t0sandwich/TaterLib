@@ -3,9 +3,11 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.event.player;
 import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
+
+import net.minecraftforge.event.entity.player.AchievementEvent;
+
 import java.util.Collection;
 import java.util.Collections;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 
 /** Forge implementation of {@link PlayerAdvancementEvent}. */
 public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {

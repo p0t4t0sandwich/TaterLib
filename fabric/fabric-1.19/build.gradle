@@ -31,7 +31,6 @@ dependencies {
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
-    compileOnly(project(':fabric:fabric-utils'))
     implementation(project(':vanilla:vanilla-1.19'))
 }
 

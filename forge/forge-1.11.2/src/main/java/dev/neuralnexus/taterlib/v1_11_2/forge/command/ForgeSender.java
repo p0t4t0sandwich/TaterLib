@@ -2,9 +2,11 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.CommandSender;
-import java.util.UUID;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.text.TextComponentString;
+
+import java.util.UUID;
 
 /** Bukkit implementation of {@link Sender} */
 public class ForgeSender implements CommandSender {

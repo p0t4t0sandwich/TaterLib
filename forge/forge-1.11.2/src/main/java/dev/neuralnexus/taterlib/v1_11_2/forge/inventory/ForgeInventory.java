@@ -2,9 +2,11 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.inventory;
 
 import dev.neuralnexus.taterlib.inventory.Inventory;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
+
+import net.minecraft.inventory.IInventory;
+
 import java.util.ArrayList;
 import java.util.List;
-import net.minecraft.inventory.IInventory;
 
 /** Forge implementation of {@link Inventory}. */
 public class ForgeInventory implements Inventory {

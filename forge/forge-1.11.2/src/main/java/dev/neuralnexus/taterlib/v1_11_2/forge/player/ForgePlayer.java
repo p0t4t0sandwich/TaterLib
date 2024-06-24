@@ -10,13 +10,15 @@ import dev.neuralnexus.taterlib.v1_11_2.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_11_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.world.Location;
-import java.util.Optional;
-import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {

@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.loom)
-    alias(libs.plugins.legacyloom)
 }
 
 base {
@@ -12,22 +11,21 @@ dependencies {
     mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
 
-    Set<String> apiModules = [
-            'legacy-fabric-api-base',
-            'legacy-fabric-command-api-v2',
-            'legacy-fabric-lifecycle-events-v1',
-            'legacy-fabric-networking-api-v1',
-            'legacy-fabric-permissions-api-v1'
-    ]
-
-    apiModules.forEach {
-        modImplementation(legacy.apiModule(it, project.fabric_version))
-    }
+//    Set<String> apiModules = [
+//            'legacy-fabric-api-base',
+//            'legacy-fabric-command-api-v2',
+//            'legacy-fabric-lifecycle-events-v1',
+//            'legacy-fabric-networking-api-v1',
+//            'legacy-fabric-permissions-api-v1'
+//    ]
+//    apiModules.forEach {
+//        modImplementation(legacy.apiModule(it, project.fabric_version))
+//    }
+    modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}")
 
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
-    compileOnly(project(':fabric:fabric-utils'))
 }
 
 tasks.withType(ProcessResources).configureEach {

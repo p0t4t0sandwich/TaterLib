@@ -8,28 +8,28 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {
-  private final PlayerEvent.PlayerRespawnEvent event;
+    private final PlayerEvent.PlayerRespawnEvent event;
 
-  public ForgePlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
-    super(event);
-    this.event = event;
-  }
+    public ForgePlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
+        super(event);
+        this.event = event;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public Location respawnLocation() {
-    return new ForgeLocation(((ForgePlayer) player()).getPlayer());
-  }
+    /** {@inheritDoc} */
+    @Override
+    public Location respawnLocation() {
+        return new ForgeLocation(((ForgePlayer) player()).getPlayer());
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public boolean isBedSpawn() {
-    return false;
-  }
+    /** {@inheritDoc} */
+    @Override
+    public boolean isBedSpawn() {
+        return false;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public boolean isAnchorSpawn() {
-    return false;
-  }
+    /** {@inheritDoc} */
+    @Override
+    public boolean isAnchorSpawn() {
+        return false;
+    }
 }

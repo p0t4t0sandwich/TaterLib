@@ -1,9 +1,0 @@
-rootProject.name = 'TaterLib-Legacy'
-
-include(
-        'forge-1.7.10',
-        'forge-1.8.9',
-        'forge-1.9.4',
-        'forge-1.10.2',
-        'forge-1.11.2'
-)

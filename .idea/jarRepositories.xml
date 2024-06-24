@@ -186,5 +186,10 @@
       <option name="name" value="Ketting" />
       <option name="url" value="https://reposilite.c0d3m4513r.com/repository/Ketting/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="legacy-fabric" />
+      <option name="name" value="legacy-fabric" />
+      <option name="url" value="https://repo.legacyfabric.net/repository/legacyfabric/" />
+    </remote-repository>
   </component>
 </project>

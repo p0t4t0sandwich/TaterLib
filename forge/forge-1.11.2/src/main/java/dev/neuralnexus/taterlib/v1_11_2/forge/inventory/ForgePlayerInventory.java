@@ -2,9 +2,11 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.inventory;
 
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+
+import net.minecraft.entity.player.InventoryPlayer;
+
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.entity.player.InventoryPlayer;
 
 /** Forge implementation of {@link PlayerInventory}. */
 public class ForgePlayerInventory extends ForgeInventory implements PlayerInventory {

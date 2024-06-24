@@ -6,11 +6,13 @@ import dev.neuralnexus.taterlib.v1_11_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_11_2.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.world.Location;
-import java.util.Optional;
-import java.util.UUID;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
 public class ForgeEntity implements Entity {

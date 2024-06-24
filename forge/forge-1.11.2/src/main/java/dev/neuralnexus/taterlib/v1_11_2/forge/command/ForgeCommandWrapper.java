@@ -2,14 +2,16 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /** Wraps a command callback into a Forge CommandBase. */
 public class ForgeCommandWrapper extends CommandBase {

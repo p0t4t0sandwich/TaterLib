@@ -16,12 +16,6 @@ pluginManagement {
             url = 'https://maven.fabricmc.net/'
         }
 
-        // Legacy Fabric
-        maven {
-            name = "legacy-fabric"
-            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
-        }
-
         // Forge
         maven {
             name = 'Forge'
@@ -105,7 +99,6 @@ include(
         'fabric:fabric-1.12.2',
 
         // Fabric
-        'fabric:fabric-utils',
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
@@ -121,6 +114,10 @@ include(
         'fabric:fabric-1.21',
 
         // Legacy Forge
+        'forge:forge-1.7.10',
+        'forge:forge-1.8.9',
+        'forge:forge-1.9.4',
+        'forge:forge-1.10.2',
         'forge:forge-1.11.2',
 
         // Forge

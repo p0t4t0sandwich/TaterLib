@@ -5,7 +5,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 
 /** Forge implementation of {@link ServerStartedEvent}. */
 public class ForgeServerStartedEvent extends ForgeServerEvent implements ServerStartedEvent {
-  public ForgeServerStartedEvent(FMLServerStartedEvent event) {
-    super(event);
-  }
+    public ForgeServerStartedEvent(FMLServerStartedEvent event) {
+        super(event);
+    }
 }

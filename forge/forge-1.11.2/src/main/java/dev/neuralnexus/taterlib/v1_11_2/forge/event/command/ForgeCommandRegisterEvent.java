@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.event.command;
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_11_2.forge.command.ForgeCommandWrapper;
+
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /** Forge implementation of {@link CommandRegisterEvent}. */

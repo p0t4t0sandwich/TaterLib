@@ -5,10 +5,12 @@ import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.world.ServerWorld;
+
+import net.minecraft.server.MinecraftServer;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.server.MinecraftServer;
 
 /** Forge implementation of {@link Server}. */
 public class ForgeServer implements Server {

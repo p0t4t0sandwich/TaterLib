@@ -3,6 +3,7 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.world;
 import dev.neuralnexus.taterlib.world.BlockPos;
 import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.world.World;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
 
@@ -29,7 +30,7 @@ public class ForgeLocation implements Location {
   /** {@inheritDoc} */
   @Override
   public double x() {
-    return position.xCoord;
+    return position.x;
   }
 
   /** {@inheritDoc} */
@@ -47,7 +48,7 @@ public class ForgeLocation implements Location {
   /** {@inheritDoc} */
   @Override
   public double y() {
-    return position.yCoord;
+    return position.y;
   }
 
   /** {@inheritDoc} */
@@ -65,7 +66,7 @@ public class ForgeLocation implements Location {
   /** {@inheritDoc} */
   @Override
   public double z() {
-    return position.zCoord;
+    return position.z;
   }
 
   /** {@inheritDoc} */
@@ -107,7 +108,7 @@ public class ForgeLocation implements Location {
   /** {@inheritDoc} */
   @Override
   public BlockPos blockPosition() {
-    return new BlockPos(position.xCoord, position.yCoord, position.zCoord);
+    return new BlockPos(position.x, position.y, position.z);
   }
 
   /** {@inheritDoc} */

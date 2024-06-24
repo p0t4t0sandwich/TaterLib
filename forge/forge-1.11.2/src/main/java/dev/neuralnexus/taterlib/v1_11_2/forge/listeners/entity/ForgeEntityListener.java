@@ -4,6 +4,7 @@ import dev.neuralnexus.taterlib.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.entity.ForgeEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.entity.ForgeEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.entity.ForgeEntitySpawnEvent;
+
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
