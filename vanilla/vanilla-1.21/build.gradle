@@ -10,9 +10,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
-//    version(minecraft_version)
-    latestSnapshot()
-    accessWideners(file("src/main/resources/META-INF/taterlib.v1_21.vanilla.accesswidener"))
+    version(minecraft_version)
 }
 
 dependencies {

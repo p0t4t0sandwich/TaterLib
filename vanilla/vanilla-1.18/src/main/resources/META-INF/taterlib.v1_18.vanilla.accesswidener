@@ -1,7 +1,4 @@
 accessWidener    v1    named
 
-# ServerStartingMixin_1_18
-accessible field net/minecraft/server/MinecraftServer resources Lnet/minecraft/server/ServerResources;
-
 # VanillaEntityDeathEvent 1.18
 accessible method net/minecraft/world/entity/LivingEntity getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I

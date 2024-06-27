@@ -38,11 +38,7 @@ public class ServerStartingMixin_1_18_2 {
 
         // Register Brigadier commands
         CommandDispatcher<CommandSourceStack> dispatcher =
-                ((MinecraftServer) (Object) this)
-                        .resources
-                        .managers()
-                        .getCommands()
-                        .getDispatcher();
+                ((MinecraftServer) (Object) this).getCommands().getDispatcher();
         Commands.CommandSelection commandSelection =
                 ((MinecraftServer) (Object) this).isDedicatedServer()
                         ? Commands.CommandSelection.DEDICATED

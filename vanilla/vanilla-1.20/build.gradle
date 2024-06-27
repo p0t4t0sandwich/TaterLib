@@ -11,7 +11,6 @@ sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
     version(minecraft_version)
-    accessWideners(file("src/main/resources/META-INF/taterlib.v1_20.vanilla.accesswidener"))
 }
 
 dependencies {
