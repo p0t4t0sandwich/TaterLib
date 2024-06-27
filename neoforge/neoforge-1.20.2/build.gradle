@@ -9,12 +9,6 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-minecraft.accessTransformers.file file('src/main/resources/META-INF/taterlib.v1_20_2.neoforge.accesstransformer.cfg')
-
-// MinecraftServerMixin_1_20
-minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer resources # resources'
-minecraft.accessTransformers.entry 'public net.minecraft.server.MinecraftServer$ReloadableResources managers()Lnet/minecraft/server/ReloadableServerResources; # managers'
-
 dependencies {
     compileOnly("net.neoforged:neoforge:${neo_version}")
     compileOnly(project(':api'))

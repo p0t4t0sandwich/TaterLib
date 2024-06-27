@@ -12,7 +12,6 @@ sourceCompatibility = targetCompatibility = java_version
 minecraft {
     mappings(channel: mapping_channel, version: mapping_version)
     reobf = false
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 }
 
 dependencies {
