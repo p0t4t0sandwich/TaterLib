@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_9_4.forge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
@@ -10,13 +16,15 @@ import dev.neuralnexus.taterlib.v1_9_4.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_9_4.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeServerWorld;
 import dev.neuralnexus.taterlib.world.Location;
-import java.util.Optional;
-import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
+
+import java.util.Optional;
+import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player {

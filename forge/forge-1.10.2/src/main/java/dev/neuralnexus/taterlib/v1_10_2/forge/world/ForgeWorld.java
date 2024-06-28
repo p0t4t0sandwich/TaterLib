@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_10_2.forge.world;
 
 import dev.neuralnexus.taterlib.entity.Entity;
@@ -6,10 +12,12 @@ import dev.neuralnexus.taterlib.v1_10_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_10_2.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.world.Location;
 import dev.neuralnexus.taterlib.world.World;
+
+import net.minecraft.util.math.AxisAlignedBB;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import net.minecraft.util.math.AxisAlignedBB;
 
 /** Forge implementation of {@link World}. */
 public class ForgeWorld implements World {

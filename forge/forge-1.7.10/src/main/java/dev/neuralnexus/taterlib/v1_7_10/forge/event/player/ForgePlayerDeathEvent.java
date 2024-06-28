@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_7_10.forge.event.player;
 
 import dev.neuralnexus.taterlib.entity.Entity;
@@ -17,90 +23,90 @@ import java.util.stream.Collectors;
 
 /** Forge implementation of {@link PlayerDeathEvent}. */
 public class ForgePlayerDeathEvent implements PlayerDeathEvent {
-  private final LivingDeathEvent event;
-  private List<ItemStack> drops = new ArrayList<>();
-  private int droppedExp = 0;
-  private String deathMessage = "";
+    private final LivingDeathEvent event;
+    private List<ItemStack> drops = new ArrayList<>();
+    private int droppedExp = 0;
+    private String deathMessage = "";
 
-  public ForgePlayerDeathEvent(LivingDeathEvent event) {
-    this.event = event;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public List<ItemStack> drops() {
-    if (!drops.isEmpty()) {
-      return drops;
+    public ForgePlayerDeathEvent(LivingDeathEvent event) {
+        this.event = event;
     }
-    if (event.entity.capturedDrops == null) {
-      return new ArrayList<>();
+
+    /** {@inheritDoc} */
+    @Override
+    public List<ItemStack> drops() {
+        if (!drops.isEmpty()) {
+            return drops;
+        }
+        if (event.entity.capturedDrops == null) {
+            return new ArrayList<>();
+        }
+        return event.entity.capturedDrops.stream()
+                .map(itemEntity -> new ForgeItemStack(itemEntity.getEntityItem()))
+                .collect(Collectors.toList());
     }
-    return event.entity.capturedDrops.stream()
-        .map(itemEntity -> new ForgeItemStack(itemEntity.getEntityItem()))
-        .collect(Collectors.toList());
-  }
 
-  /** {@inheritDoc} */
-  @Override
-  public void setDrops(List<ItemStack> drops) {
-    this.drops = drops;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public void clearDrops() {
-    drops.clear();
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public int droppedExp() {
-    if (droppedExp != 0) {
-      return droppedExp;
+    /** {@inheritDoc} */
+    @Override
+    public void setDrops(List<ItemStack> drops) {
+        this.drops = drops;
     }
-    return 0;
-  }
 
-  /** {@inheritDoc} */
-  @Override
-  public void setDroppedExp(int exp) {
-    this.droppedExp = exp;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public Entity entity() {
-    return new ForgeEntity(event.entity);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public Player player() {
-    return new ForgePlayer((EntityPlayer) event.entity);
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public String deathMessage() {
-    if (!deathMessage.isEmpty()) {
-      return deathMessage;
+    /** {@inheritDoc} */
+    @Override
+    public void clearDrops() {
+        drops.clear();
     }
-    return event.source.getDeathMessage(event.entityLiving).getFormattedText();
-  }
 
-  /** {@inheritDoc} */
-  @Override
-  public void setDeathMessage(String deathMessage) {
-    this.deathMessage = deathMessage;
-  }
+    /** {@inheritDoc} */
+    @Override
+    public int droppedExp() {
+        if (droppedExp != 0) {
+            return droppedExp;
+        }
+        return 0;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public boolean keepInventory() {
-    return false;
-  }
+    /** {@inheritDoc} */
+    @Override
+    public void setDroppedExp(int exp) {
+        this.droppedExp = exp;
+    }
 
-  /** {@inheritDoc} */
-  @Override
-  public void setKeepInventory(boolean keepInventory) {}
+    /** {@inheritDoc} */
+    @Override
+    public Entity entity() {
+        return new ForgeEntity(event.entity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Player player() {
+        return new ForgePlayer((EntityPlayer) event.entity);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String deathMessage() {
+        if (!deathMessage.isEmpty()) {
+            return deathMessage;
+        }
+        return event.source.getDeathMessage(event.entityLiving).getFormattedText();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setDeathMessage(String deathMessage) {
+        this.deathMessage = deathMessage;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean keepInventory() {
+        return false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setKeepInventory(boolean keepInventory) {}
 }

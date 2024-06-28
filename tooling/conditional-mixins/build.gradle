@@ -1,7 +1,6 @@
 plugins {
     id('maven-publish')
     alias(libs.plugins.shadow)
-    alias(libs.plugins.spotless)
 }
 
 dependencies {
@@ -46,30 +45,6 @@ shadowJar {
 
     from(["README.md"]) {
         into("META-INF")
-    }
-}
-
-spotless {
-    format 'misc', {
-        target '*.gradle', '.gitattributes', '.gitignore'
-
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-    }
-    java {
-        importOrder()
-        removeUnusedImports()
-        cleanthat()
-        googleJavaFormat('1.17.0').aosp().formatJavadoc(true).reorderImports(true)
-        formatAnnotations()
-        licenseHeader """/**
- * Copyright (c) \$YEAR Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
- */
-
-"""
     }
 }
 
@@ -120,8 +95,6 @@ publishing {
         }
     }
 }
-
-tasks.build.dependsOn(spotlessApply)
 
 artifacts {
     archives(shadowJar)

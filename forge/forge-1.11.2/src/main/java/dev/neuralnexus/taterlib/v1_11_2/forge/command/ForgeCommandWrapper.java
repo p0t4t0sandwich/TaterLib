@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_11_2.forge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
@@ -15,36 +21,36 @@ import java.util.stream.Collectors;
 
 /** Wraps a command callback into a Forge CommandBase. */
 public class ForgeCommandWrapper extends CommandBase {
-  private final Command command;
-  private final List<String> aliases;
+    private final Command command;
+    private final List<String> aliases;
 
-  public ForgeCommandWrapper(Command command, String... aliases) {
-    this.command = command;
-    this.aliases = Arrays.stream(aliases).collect(Collectors.toList());
-  }
-
-  @Override
-  public String getName() {
-    return command.name();
-  }
-
-  @Override
-  public List<String> getAliases() {
-    return aliases;
-  }
-
-  @Override
-  public String getUsage(ICommandSender sender) {
-    return command.usage();
-  }
-
-  @Override
-  public void execute(MinecraftServer server, ICommandSender sender, String[] args)
-      throws CommandException {
-    if (sender instanceof EntityPlayer) {
-      command.execute(new ForgePlayer((EntityPlayer) sender), command.name(), args);
-    } else {
-      command.execute(new ForgeSender(sender, command), command.name(), args);
+    public ForgeCommandWrapper(Command command, String... aliases) {
+        this.command = command;
+        this.aliases = Arrays.stream(aliases).collect(Collectors.toList());
     }
-  }
+
+    @Override
+    public String getName() {
+        return command.name();
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return aliases;
+    }
+
+    @Override
+    public String getUsage(ICommandSender sender) {
+        return command.usage();
+    }
+
+    @Override
+    public void execute(MinecraftServer server, ICommandSender sender, String[] args)
+            throws CommandException {
+        if (sender instanceof EntityPlayer) {
+            command.execute(new ForgePlayer((EntityPlayer) sender), command.name(), args);
+        } else {
+            command.execute(new ForgeSender(sender, command), command.name(), args);
+        }
+    }
 }

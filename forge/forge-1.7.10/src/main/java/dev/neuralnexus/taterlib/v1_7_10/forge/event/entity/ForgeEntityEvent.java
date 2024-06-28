@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_7_10.forge.event.entity;
 
 import dev.neuralnexus.taterlib.entity.Entity;
@@ -9,19 +15,19 @@ import net.minecraft.entity.player.EntityPlayer;
 
 /** Forge implementation of {@link EntityEvent}. */
 public class ForgeEntityEvent implements EntityEvent {
-  private final net.minecraftforge.event.entity.EntityEvent event;
+    private final net.minecraftforge.event.entity.EntityEvent event;
 
-  public ForgeEntityEvent(net.minecraftforge.event.entity.EntityEvent event) {
-    this.event = event;
-  }
-
-  /** {@inheritDoc} */
-  @Override
-  public Entity entity() {
-    if (event.entity instanceof EntityPlayer) {
-      return new ForgePlayer((EntityPlayer) event.entity);
-    } else {
-      return new ForgeEntity(event.entity);
+    public ForgeEntityEvent(net.minecraftforge.event.entity.EntityEvent event) {
+        this.event = event;
     }
-  }
+
+    /** {@inheritDoc} */
+    @Override
+    public Entity entity() {
+        if (event.entity instanceof EntityPlayer) {
+            return new ForgePlayer((EntityPlayer) event.entity);
+        } else {
+            return new ForgeEntity(event.entity);
+        }
+    }
 }

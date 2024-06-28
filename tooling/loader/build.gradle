@@ -1,39 +1,9 @@
-plugins {
-    alias(libs.plugins.spotless)
-}
-
 dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
     compileOnly(project(':api'))
     compileOnly(project(':tooling:entrypoint-spoof'))
 }
-
-spotless {
-    format 'misc', {
-        target '*.gradle', '.gitattributes', '.gitignore'
-
-        trimTrailingWhitespace()
-        indentWithSpaces()
-        endWithNewline()
-    }
-    java {
-        importOrder()
-        removeUnusedImports()
-        cleanthat()
-        googleJavaFormat('1.17.0').aosp().formatJavadoc(true).reorderImports(true)
-        formatAnnotations()
-        licenseHeader """/**
- * Copyright (c) \$YEAR Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
- */
-
-"""
-    }
-}
-
-tasks.build.dependsOn(spotlessApply)
 
 tasks.withType(ProcessResources).configureEach {
     filesMatching([

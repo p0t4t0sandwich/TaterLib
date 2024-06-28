@@ -1,11 +1,19 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_9_4.forge.inventory;
 
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+
+import net.minecraft.entity.player.InventoryPlayer;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.minecraft.entity.player.InventoryPlayer;
 
 /** Forge implementation of {@link PlayerInventory}. */
 public class ForgePlayerInventory extends ForgeInventory implements PlayerInventory {

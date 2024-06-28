@@ -1,11 +1,19 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_9_4.forge.event.player;
 
 import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_9_4.forge.player.ForgePlayer;
+
+import net.minecraftforge.event.entity.player.AchievementEvent;
+
 import java.util.Collection;
 import java.util.Collections;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 
 /** Forge implementation of {@link PlayerAdvancementEvent}. */
 public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {

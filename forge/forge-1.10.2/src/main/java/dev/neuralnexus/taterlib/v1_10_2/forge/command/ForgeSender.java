@@ -1,10 +1,18 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.v1_10_2.forge.command;
 
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.command.CommandSender;
-import java.util.UUID;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.text.TextComponentString;
+
+import java.util.UUID;
 
 /** Bukkit implementation of {@link CommandSender} */
 public class ForgeSender implements CommandSender {

@@ -1,5 +1,6 @@
 plugins {
     id('maven-publish')
+    alias(libs.plugins.spotless) apply(false)
 }
 
 jar {
