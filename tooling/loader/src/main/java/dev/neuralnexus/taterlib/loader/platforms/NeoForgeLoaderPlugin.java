@@ -9,6 +9,8 @@ package dev.neuralnexus.taterlib.loader.platforms;
 import com.mojang.logging.LogUtils;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
@@ -25,6 +27,7 @@ public class NeoForgeLoaderPlugin {
     private static Loader loader;
 
     public NeoForgeLoaderPlugin() {
+        TaterAPIProvider.setPrimaryPlatform(Platform.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
         loader = new LoaderImpl(this, null, LogUtils.getLogger());
         loader.registerPlugin(plugin());

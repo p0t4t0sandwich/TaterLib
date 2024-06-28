@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
@@ -28,6 +29,7 @@ public class Sponge8LoaderPlugin {
 
     @Inject
     public Sponge8LoaderPlugin(PluginContainer container, Logger logger) {
+        TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
         loader = new LoaderImpl(container, null, logger);
         loader.registerPlugin(plugin());
         if (loader.platform().is(Platform.SPONGE_FORGE)) {

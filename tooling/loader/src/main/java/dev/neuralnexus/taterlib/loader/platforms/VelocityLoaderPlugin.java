@@ -13,6 +13,8 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
@@ -31,6 +33,7 @@ public class VelocityLoaderPlugin {
 
     @Inject
     public VelocityLoaderPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
+        TaterAPIProvider.setPrimaryPlatform(Platform.VELOCITY);
         loader = new LoaderImpl(plugin, server, logger);
         loader.registerPlugin(plugin());
         loader.onInit();

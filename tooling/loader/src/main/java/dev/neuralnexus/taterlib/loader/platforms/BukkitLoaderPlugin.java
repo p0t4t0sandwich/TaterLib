@@ -7,6 +7,8 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
@@ -19,6 +21,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     private static Loader loader;
 
     public BukkitLoaderPlugin() {
+        TaterAPIProvider.setPrimaryPlatform(Platform.BUKKIT);
         loader = new LoaderImpl(this, Bukkit.getServer(), Bukkit.getLogger());
         loader.registerPlugin(plugin());
         if (loader.platform().isForgeHybrid()) {

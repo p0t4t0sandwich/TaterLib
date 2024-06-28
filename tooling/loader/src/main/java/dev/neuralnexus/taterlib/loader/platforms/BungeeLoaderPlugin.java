@@ -7,6 +7,8 @@
 package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
@@ -18,6 +20,7 @@ public class BungeeLoaderPlugin extends Plugin {
     private static Loader loader;
 
     public BungeeLoaderPlugin() {
+        TaterAPIProvider.setPrimaryPlatform(Platform.BUNGEECORD);
         loader = new LoaderImpl(this, ProxyServer.getInstance(), getLogger());
         loader.registerPlugin(getPlugin());
         loader.onInit();

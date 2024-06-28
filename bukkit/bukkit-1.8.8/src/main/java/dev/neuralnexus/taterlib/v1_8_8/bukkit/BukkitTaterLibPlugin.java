@@ -2,7 +2,6 @@ package dev.neuralnexus.taterlib.v1_8_8.bukkit;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
@@ -33,12 +32,13 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPIProvider.setPrimaryServerType(Platform.BUKKIT);
+        TaterAPIProvider.api(Platform.BUKKIT)
+                .ifPresent(api -> api.setServer(() -> new BukkitServer(Bukkit.getServer())));
     }
 
     @Override
     public void onEnable() {
-        if (TaterAPIProvider.isPrimaryServerType(Platform.BUKKIT)) {
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.BUKKIT)) {
             // Register listeners
             PluginManager pluginManager = Bukkit.getServer().getPluginManager();
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);

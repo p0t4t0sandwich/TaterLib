@@ -26,7 +26,6 @@ import org.apache.logging.log4j.LogManager;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit(Object plugin, Object server, Object logger) {
-        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
         MinecraftVersion mcv = TaterAPIProvider.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_1)) {
             TaterAPIProvider.addHook(new ForgePermissionsHook());
@@ -37,10 +36,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                 plugin,
                 server,
                 new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
-        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
-        api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
+        TaterAPIProvider.api(Platform.FORGE)
+                .ifPresent(
+                        api ->
+                                api.setServer(
+                                        () ->
+                                                new VanillaServer(
+                                                        ServerLifecycleHooks.getCurrentServer())));
 
-        if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

@@ -22,13 +22,17 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit(Object plugin, Object server, Object logger) {
-        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
-        api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
+        TaterAPIProvider.api(Platform.FORGE)
+                .ifPresent(
+                        api ->
+                                api.setServer(
+                                        () ->
+                                                new VanillaServer(
+                                                        ServerLifecycleHooks.getCurrentServer())));
 
-        if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

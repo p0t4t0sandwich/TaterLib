@@ -39,14 +39,13 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.api(Platform.SPONGE);
-        api.setServer(() -> new SpongeServer(Sponge.getServer()));
-        TaterAPIProvider.setPrimaryServerType(Platform.SPONGE);
+        TaterAPIProvider.api(Platform.SPONGE)
+                .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));
     }
 
     @Override
     public void onEnable() {
-        if (TaterAPIProvider.isPrimaryServerType(Platform.SPONGE)) {
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.SPONGE)) {
             // Register listeners
             EventManager eventManager = Sponge.getEventManager();
             eventManager.registerListeners(container, new SpongeBlockListener());

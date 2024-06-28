@@ -20,8 +20,6 @@ import java.util.function.Supplier;
 /** API Provider */
 public class TaterAPIProvider {
     private static final Platform platform = Platform.get();
-    private static final PlatformData platformData = new PlatformDataImpl();
-    private static final MinecraftVersion minecraftVersion = MinecraftVersion.get();
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
     private static Platform primaryPlatform;
@@ -34,7 +32,7 @@ public class TaterAPIProvider {
      * @return The Minecraft version
      */
     public static MinecraftVersion minecraftVersion() {
-        return minecraftVersion;
+        return MinecraftVersion.get();
     }
 
     /**
@@ -52,7 +50,7 @@ public class TaterAPIProvider {
      * @return The platform data
      */
     public static PlatformData platformData() {
-        return platformData;
+        return api().orElseThrow(() -> new NotLoadedException(platform)).platformData();
     }
 
     /**
@@ -61,7 +59,7 @@ public class TaterAPIProvider {
      * @return If Brigadier is supported
      */
     public static boolean isBrigadierSupported() {
-        return (minecraftVersion.isAtLeast(MinecraftVersion.V1_13)) || platform.isVelocityBased();
+        return (minecraftVersion().isAtLeast(MinecraftVersion.V1_13)) || platform.isVelocityBased();
     }
 
     /**
@@ -159,13 +157,13 @@ public class TaterAPIProvider {
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
-    public static boolean isPrimaryServerType(Platform platform) {
+    public static boolean isPrimaryPlatform(Platform platform) {
         return primaryPlatform == platform;
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
-    public static void setPrimaryServerType(Platform platform) {
+    public static void setPrimaryPlatform(Platform platform) {
         if (primaryPlatform == null) {
             primaryPlatform = platform;
         }

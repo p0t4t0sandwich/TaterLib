@@ -8,15 +8,20 @@ import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.forge.hooks.permissions.ForgePermissionsHook;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit(Object plugin, Object server, Object logger) {
-        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
-        api.setServer(VanillaServer::instance);
+        TaterAPIProvider.api(Platform.FORGE)
+                .ifPresent(
+                        api ->
+                                api.setServer(
+                                        () ->
+                                                new VanillaServer(
+                                                        ServerLifecycleHooks.getCurrentServer())));
     }
 
     @Override

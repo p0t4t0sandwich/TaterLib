@@ -45,11 +45,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit(Object plugin, Object server, Object logger) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
-        api.setServer(() -> new ForgeServer(minecraftServer));
-        TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
+        TaterAPIProvider.api(Platform.FORGE)
+                .ifPresent(api -> api.setServer(() -> new ForgeServer(minecraftServer)));
 
-        if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

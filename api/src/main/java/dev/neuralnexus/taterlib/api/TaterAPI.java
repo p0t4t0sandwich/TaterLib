@@ -6,23 +6,21 @@ import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /** API wrapper class */
 public class TaterAPI {
-    private final Set<PlatformData> platformData;
+    private final PlatformData[] platformData;
 
     private Supplier<SimpleServer> minecraftServer = () -> null;
 
-    public TaterAPI(PlatformData... platformData) {
+    public TaterAPI(PlatformData ...platformData) {
         if (platformData.length > 0) {
-            this.platformData = Arrays.stream(platformData).collect(Collectors.toSet());
+            this.platformData = platformData;
         } else {
-            Set<PlatformData> platform = new HashSet<>();
-            platform.add(new PlatformDataImpl());
-            this.platformData = platform;
+            this.platformData = new PlatformData[] {new PlatformDataImpl()};
         }
     }
 
@@ -32,7 +30,7 @@ public class TaterAPI {
      * @return The platform data
      */
     public PlatformData platformData() {
-        return platformData.stream().findFirst().get();
+        return platformData[0];
     }
 
     /**
@@ -41,7 +39,7 @@ public class TaterAPI {
      * @return The Minecraft version
      */
     public MinecraftVersion minecraftVersion() {
-        return platformData.stream().findFirst().get().minecraftVersion();
+        return platformData[0].minecraftVersion();
     }
 
     /**
@@ -50,7 +48,7 @@ public class TaterAPI {
      * @return The mod loader version
      */
     public String modLoaderVersion() {
-        return platformData.stream().findFirst().get().modLoaderVersion();
+        return platformData[0].modLoaderVersion();
     }
 
     /**
@@ -60,7 +58,9 @@ public class TaterAPI {
      */
     public List<ModInfo> modList() {
         List<ModInfo> mods = new ArrayList<>();
-        platformData.forEach(data -> mods.addAll(data.modList()));
+        for (PlatformData data : platformData) {
+            mods.addAll(data.modList());
+        }
         return mods;
     }
 
@@ -72,7 +72,12 @@ public class TaterAPI {
      * @param nameOrId The name of the plugin or modId of the mod
      */
     public boolean isModLoaded(String nameOrId) {
-        return platformData.stream().anyMatch(data -> data.isModLoaded(nameOrId));
+        for (PlatformData data : platformData) {
+            if (data.isModLoaded(nameOrId)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
@@ -25,6 +26,7 @@ public class ForgeLoaderPlugin {
     private static Loader loader;
 
     public ForgeLoaderPlugin() {
+        TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
         loader = new LoaderImpl(this, null, null);
         loader.registerPlugin(plugin());
         // if (loader.platform().isForgeHybrid()) {
