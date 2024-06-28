@@ -43,7 +43,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         "[" + TaterLib.Constants.PROJECT_NAME + "] ",
                         TaterLib.Constants.PROJECT_ID,
                         LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
-        TaterAPI api = TaterAPIProvider.get(Platform.FABRIC);
+        TaterAPI api = TaterAPIProvider.api(Platform.FABRIC);
         api.setServer(() -> new FabricServer(minecraftServer));
         TaterAPIProvider.setPrimaryServerType(Platform.FABRIC);
 

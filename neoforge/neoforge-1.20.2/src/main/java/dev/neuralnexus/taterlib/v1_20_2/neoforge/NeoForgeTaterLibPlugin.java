@@ -15,7 +15,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.setPrimaryServerType(Platform.NEOFORGE);
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(Platform.NEOFORGE);
+        TaterAPI api = TaterAPIProvider.api(Platform.NEOFORGE);
         api.setServer(VanillaServer::instance);
     }
 

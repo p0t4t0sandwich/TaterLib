@@ -37,7 +37,7 @@ public class MagmaHook implements Hook {
 
     /**
      * Get if a mod is loaded <br>
-     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isModLoaded(String)}</b>
      *
      * @param modid The modid
      * @return If the mod is loaded

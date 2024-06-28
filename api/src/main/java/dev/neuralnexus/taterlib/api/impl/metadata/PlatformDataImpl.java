@@ -6,15 +6,11 @@
 package dev.neuralnexus.taterlib.api.impl.metadata;
 
 import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
-import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForMethod;
 
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.PlatformData;
-import dev.neuralnexus.taterlib.api.impl.metadata.forge.CPWLoaderData;
-import dev.neuralnexus.taterlib.api.impl.metadata.forge.FMLLoaderData;
-import dev.neuralnexus.taterlib.api.impl.metadata.forge.MCFLoaderData;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -33,21 +29,10 @@ public class PlatformDataImpl implements PlatformData {
         } else if (platform.isNeoForgeBased()) {
             INSTANCE = new NeoForgeData();
         } else if (platform.isForgeBased()) {
-            if (checkForClass("net.minecraftforge.fml.loading.FMLLoader")) {
-                INSTANCE = new FMLLoaderData();
-            } else if (checkForClass("net.minecraftforge.fml.common.Loader")) {
-                INSTANCE = new MCFLoaderData();
-            } else if (checkForClass("cpw.mods.fml.common.Loader")) {
-                INSTANCE = new CPWLoaderData();
-            }
+            INSTANCE = new ForgeData();
         } else if (platform.isBukkitBased()) {
             INSTANCE = new BukkitData();
         } else if (platform.isSpongeBased()) {
-            if (checkForMethod("org.spongepowered.api.Sponge", "platform")) {
-                INSTANCE = new SpongeData();
-            } else if (checkForMethod("org.spongepowered.api.Sponge", "getPlatform")) {
-                INSTANCE = new SpongeData();
-            }
             INSTANCE = new SpongeData();
         } else if (platform.isVelocityBased()) {
             INSTANCE = new VelocityData();

@@ -5,7 +5,6 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.api.TaterAPI;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.api.info.PluginInfo;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
@@ -24,8 +23,6 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
-import java.util.stream.Collectors;
-
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     private Plugin plugin;
 
@@ -34,7 +31,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         this.plugin = (Plugin) plugin;
         TaterAPIProvider.addHook(new BungeePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(Platform.BUNGEECORD);
+        TaterAPI api = TaterAPIProvider.api(Platform.BUNGEECORD);
         api.setServer(BungeeProxyServer::instance);
     }
 

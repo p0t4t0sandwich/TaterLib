@@ -1,22 +1,48 @@
 package dev.neuralnexus.taterlib.api;
 
-import dev.neuralnexus.taterlib.api.info.ModInfo;
-import dev.neuralnexus.taterlib.api.info.PluginInfo;
+import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /** API wrapper class */
 public class TaterAPI {
-    private Supplier<String> modLoaderVersion = () -> "Unknown";
-    private Supplier<List<PluginInfo>> pluginList = Collections::emptyList;
-    private Supplier<List<ModInfo>> modList = Collections::emptyList;
+    private final Set<PlatformData> platformData;
+
     private Supplier<SimpleServer> minecraftServer = () -> null;
+
+    public TaterAPI(PlatformData... platformData) {
+        if (platformData.length > 0) {
+            this.platformData = Arrays.stream(platformData).collect(Collectors.toSet());
+        } else {
+            Set<PlatformData> platform = new HashSet<>();
+            platform.add(new PlatformDataImpl());
+            this.platformData = platform;
+        }
+    }
+
+    /**
+     * Get the platform data
+     *
+     * @return The platform data
+     */
+    public PlatformData platformData() {
+        return platformData.stream().findFirst().get();
+    }
+
+    /**
+     * Get the Minecraft version
+     *
+     * @return The Minecraft version
+     */
+    public MinecraftVersion minecraftVersion() {
+        return platformData.stream().findFirst().get().minecraftVersion();
+    }
 
     /**
      * Get the mod loader version
@@ -24,38 +50,7 @@ public class TaterAPI {
      * @return The mod loader version
      */
     public String modLoaderVersion() {
-        return modLoaderVersion.get();
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
-     * Set the modLoaderVersion supplier
-     *
-     * @param modLoaderVersion The modLoaderVersion supplier
-     */
-    @ApiStatus.Internal
-    public void setModLoaderVersion(Supplier<String> modLoaderVersion) {
-        this.modLoaderVersion = modLoaderVersion;
-    }
-
-    /**
-     * Get the plugin list
-     *
-     * @return The plugin list
-     */
-    public List<PluginInfo> pluginList() {
-        return pluginList.get();
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
-     * Set the pluginList supplier
-     *
-     * @param pluginList The pluginList supplier
-     */
-    @ApiStatus.Internal
-    public void setPluginList(Supplier<List<PluginInfo>> pluginList) {
-        this.pluginList = pluginList;
+        return platformData.stream().findFirst().get().modLoaderVersion();
     }
 
     /**
@@ -64,39 +59,9 @@ public class TaterAPI {
      * @return The mod list
      */
     public List<ModInfo> modList() {
-        return modList.get();
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
-     * Set the modList supplier
-     *
-     * @param modList The modList supplier
-     */
-    @ApiStatus.Internal
-    public void setModList(Supplier<List<ModInfo>> modList) {
-        this.modList = modList;
-    }
-
-    /**
-     * Get if a plugin is loaded
-     *
-     * @param pluginName The name of the plugin
-     * @return If the plugin is loaded
-     */
-    public boolean isPluginLoaded(String pluginName) {
-        return pluginList.get().stream()
-                .anyMatch(plugin -> plugin.name().equalsIgnoreCase(pluginName));
-    }
-
-    /**
-     * Get if a mod is loaded
-     *
-     * @param modId The modId of the mod
-     * @return If the mod is loaded
-     */
-    public boolean isModLoaded(String modId) {
-        return modList.get().stream().anyMatch(mod -> mod.id().equalsIgnoreCase(modId));
+        List<ModInfo> mods = new ArrayList<>();
+        platformData.forEach(data -> mods.addAll(data.modList()));
+        return mods;
     }
 
     /**
@@ -104,10 +69,10 @@ public class TaterAPI {
      * Note: Unless you need to check at a specific time, it's best to run this check after the
      * server has started {@link ServerEvents#STARTED}
      *
-     * @param pluginNameOrModId The name of the plugin or modId of the mod
+     * @param nameOrId The name of the plugin or modId of the mod
      */
-    public boolean isPluginModLoaded(String pluginNameOrModId) {
-        return isPluginLoaded(pluginNameOrModId) || isModLoaded(pluginNameOrModId);
+    public boolean isModLoaded(String nameOrId) {
+        return platformData.stream().anyMatch(data -> data.isModLoaded(nameOrId));
     }
 
     /**

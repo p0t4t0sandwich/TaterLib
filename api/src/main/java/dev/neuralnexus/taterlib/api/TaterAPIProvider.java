@@ -1,8 +1,6 @@
 package dev.neuralnexus.taterlib.api;
 
-import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
-import dev.neuralnexus.taterlib.api.info.ModInfo;
-import dev.neuralnexus.taterlib.api.info.PluginInfo;
+import dev.neuralnexus.taterlib.api.impl.metadata.*;
 import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.hooks.Hook;
@@ -63,8 +61,7 @@ public class TaterAPIProvider {
      * @return If Brigadier is supported
      */
     public static boolean isBrigadierSupported() {
-        return (minecraftVersion.isAtLeast(MinecraftVersion.V1_13))
-                || platform.isVelocityBased();
+        return (minecraftVersion.isAtLeast(MinecraftVersion.V1_13)) || platform.isVelocityBased();
     }
 
     /**
@@ -132,11 +129,11 @@ public class TaterAPIProvider {
      *
      * @return The instance of the API
      */
-    public static TaterAPI get() {
+    public static Optional<TaterAPI> api() {
         if (apis.isEmpty()) {
             register();
         }
-        return get(platform);
+        return api(platform);
     }
 
     /**
@@ -145,11 +142,8 @@ public class TaterAPIProvider {
      * @param platform The server type
      * @return The instance of the API
      */
-    public static TaterAPI get(Platform platform) {
-        if (apis.containsKey(platform)) {
-            return apis.get(platform);
-        }
-        throw new NotLoadedException(platform);
+    public static Optional<TaterAPI> api(Platform platform) {
+        return Optional.ofNullable(apis.get(platform));
     }
 
     /**
@@ -160,7 +154,7 @@ public class TaterAPIProvider {
      * @param pluginNameOrModId The name of the plugin or modId of the mod
      */
     public static boolean isPluginModLoaded(String pluginNameOrModId) {
-        return apis.values().stream().anyMatch(api -> api.isPluginModLoaded(pluginNameOrModId));
+        return apis.values().stream().anyMatch(api -> api.isModLoaded(pluginNameOrModId));
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
@@ -175,15 +169,6 @@ public class TaterAPIProvider {
         if (primaryPlatform == null) {
             primaryPlatform = platform;
         }
-    }
-
-    /**
-     * Get the server name
-     *
-     * @return The server name
-     */
-    public static String serverName() {
-        return serverName.get();
     }
 
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
@@ -209,32 +194,30 @@ public class TaterAPIProvider {
     /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void register() {
-        TaterAPI bukkitApi = new TaterAPI();
-        TaterAPI bungeeApi = new TaterAPI();
-        TaterAPI neoForgeApi = new TaterAPI();
-        TaterAPI forgeApi = new TaterAPI();
-        TaterAPI fabricApi = new TaterAPI();
-
         if (platform.isBukkitBased()) {
+            TaterAPI bukkitApi = new TaterAPI(new BukkitData());
             apis.put(platform, bukkitApi);
             apis.put(Platform.BUKKIT, bukkitApi);
         }
 
         if (platform.isBungeeCordBased()) {
-            apis.put(platform, bungeeApi);
-            apis.put(Platform.BUNGEECORD, bungeeApi);
+            TaterAPI bungeeCordApi = new TaterAPI(new BungeeCordData());
+            apis.put(platform, bungeeCordApi);
+            apis.put(Platform.BUNGEECORD, bungeeCordApi);
         }
 
         // Secondary logical check is for Sinytra Connector
         if (platform.isFabricBased() || (platform.isForgeBased() && Platform.isFabric())) {
+            TaterAPI fabricApi = new TaterAPI(new FabricData());
             apis.put(platform, fabricApi);
             apis.put(Platform.FABRIC, fabricApi);
         }
 
         if (platform.isForgeBased()) {
             if (platform.is(Platform.NEOFORGE)) {
-                apis.put(Platform.NEOFORGE, neoForgeApi);
+                apis.put(Platform.NEOFORGE, new TaterAPI(new NeoForgeData()));
             } else {
+                TaterAPI forgeApi = new TaterAPI(new ForgeData());
                 apis.put(platform, forgeApi);
                 apis.put(Platform.FORGE, forgeApi);
             }
@@ -242,78 +225,61 @@ public class TaterAPIProvider {
 
         // Check for SpongeForge, then Sponge
         if (platform.isSpongeBased() && platform.isForgeBased()) {
-            TaterAPI spongeForgeApi = new TaterAPI();
-            spongeForgeApi.setModList(() -> get(Platform.FORGE).modList());
+            TaterAPI spongeForgeApi = new TaterAPI(new SpongeData(), new ForgeData());
             apis.put(platform, spongeForgeApi);
             apis.put(Platform.SPONGE_FORGE, spongeForgeApi);
-            apis.put(Platform.SPONGE, spongeForgeApi);
+            apis.put(Platform.SPONGE, new TaterAPI(new SpongeData()));
         } else if (platform.isSpongeBased()) {
-            apis.put(platform, new TaterAPI());
-            apis.put(Platform.SPONGE_VANILLA, new TaterAPI());
-            apis.put(Platform.SPONGE, new TaterAPI());
+            TaterAPI spongeAPI = new TaterAPI(new SpongeData());
+            apis.put(platform, spongeAPI);
+            apis.put(Platform.SPONGE_VANILLA, spongeAPI);
+            apis.put(Platform.SPONGE, spongeAPI);
         }
 
         if (platform.isVelocityBased()) {
-            apis.put(Platform.VELOCITY, new TaterAPI());
+            apis.put(Platform.VELOCITY, new TaterAPI(new VelocityData()));
         }
 
         if (platform.isHybrid()) {
-            TaterAPI hybridApi = new TaterAPI();
-            Supplier<List<PluginInfo>> bukkitPluginList = () -> get(Platform.BUKKIT).pluginList();
-            Supplier<List<ModInfo>> fabricModList = () -> get(Platform.FABRIC).modList();
-            Supplier<List<ModInfo>> forgeModList = () -> get(Platform.FORGE).modList();
-            Supplier<List<ModInfo>> neoForgeModList = () -> get(Platform.NEOFORGE).modList();
-
-            hybridApi.setPluginList(bukkitPluginList);
-            if (platform.isForgeHybrid()) {
-                bukkitApi.setModList(forgeModList);
-                forgeApi.setPluginList(bukkitPluginList);
-                hybridApi.setModList(forgeModList);
-            } else if (platform.isNeoForgeHybrid()) {
-                bukkitApi.setModList(neoForgeModList);
-                neoForgeApi.setPluginList(bukkitPluginList);
-                hybridApi.setModList(neoForgeModList);
-            } else if (platform.isFabricHybrid()) {
-                bukkitApi.setModList(fabricModList);
-                fabricApi.setPluginList(bukkitPluginList);
-                hybridApi.setModList(fabricModList);
-            }
+            TaterAPI forgeHybrid = new TaterAPI(new BukkitData(), new ForgeData());
+            TaterAPI neoForgeHybrid = new TaterAPI(new BukkitData(), new NeoForgeData());
+            TaterAPI fabricHybrid = new TaterAPI(new BukkitData(), new FabricData());
 
             switch (platform) {
                 case ARCLIGHT:
                     addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT, hybridApi);
+                    apis.put(Platform.ARCLIGHT, forgeHybrid);
                     break;
                 case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT_NEO, hybridApi);
+                    apis.put(Platform.ARCLIGHT_NEO, neoForgeHybrid);
                     break;
                 case ARCLIGHT_FABRIC:
                     addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT_FABRIC, hybridApi);
+                    apis.put(Platform.ARCLIGHT_FABRIC, fabricHybrid);
                     break;
                 case BANNER:
                     // TODO: check for Banner API
-                    apis.put(Platform.BANNER, hybridApi);
+                    apis.put(Platform.BANNER, fabricHybrid);
                     break;
                 case CARDBOARD:
                     // TODO: check for Cardboard API
-                    apis.put(Platform.CARDBOARD, hybridApi);
+                    apis.put(Platform.CARDBOARD, fabricHybrid);
                 case KETTING:
                     addHook(new KettingHook());
-                    apis.put(Platform.KETTING, hybridApi);
+                    apis.put(Platform.KETTING, forgeHybrid);
                     break;
                 case MAGMA:
                     addHook(new MagmaHook());
-                    apis.put(Platform.MAGMA, hybridApi);
+                    apis.put(Platform.MAGMA, forgeHybrid);
                     break;
                 case MOHIST:
                     addHook(new MohistHook());
-                    apis.put(Platform.MOHIST, hybridApi);
+                    apis.put(Platform.MOHIST, forgeHybrid);
                     break;
                 case MOHIST_NEO:
                     addHook(new MohistHook());
-                    apis.put(Platform.MOHIST_NEO, hybridApi);
+                    apis.put(Platform.MOHIST_NEO, neoForgeHybrid);
                     break;
             }
         }
@@ -336,13 +302,22 @@ public class TaterAPIProvider {
     }
 
     /**
+     * Get the server name
+     *
+     * @return The server name
+     */
+    public static String serverName() {
+        return serverName.get();
+    }
+
+    /**
      * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY <br>
      * Set the serverName supplier
      *
      * @param serverName The serverName supplier
      */
     @ApiStatus.Internal
-    public void setModLoaderVersion(Supplier<String> serverName) {
+    public void setServerName(Supplier<String> serverName) {
         TaterAPIProvider.serverName = serverName;
     }
 

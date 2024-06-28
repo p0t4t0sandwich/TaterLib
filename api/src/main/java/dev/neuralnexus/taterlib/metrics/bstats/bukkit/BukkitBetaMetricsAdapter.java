@@ -76,10 +76,7 @@ public class BukkitBetaMetricsAdapter {
             // Get the config file
             // TaterLib Fix - Start
             // File bStatsFolder = new File(plugin.getDataFolder().getParentFile(), "bStats");
-            File bStatsFolder =
-                    new File(
-                            PathUtils.getPluginsFolder().toFile(),
-                            "bStats");
+            File bStatsFolder = new File(PathUtils.getPluginsFolder().toFile(), "bStats");
             // TaterLib Fix - End
             File configFile = new File(bStatsFolder, "config.yml");
 
@@ -220,7 +217,7 @@ public class BukkitBetaMetricsAdapter {
                 return ((Object[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
             } catch (Exception e) {
                 // Fallback to TaterLib's impl
-                return TaterAPIProvider.get().server().onlinePlayers().size();
+                return TaterAPIProvider.api().get().server().onlinePlayers().size();
             }
             // Poseidon Implementation - End
         }

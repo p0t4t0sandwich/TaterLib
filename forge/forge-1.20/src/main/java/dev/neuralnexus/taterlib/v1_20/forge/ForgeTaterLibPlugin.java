@@ -26,7 +26,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.setPrimaryServerType(Platform.FORGE);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
-        TaterAPI api = TaterAPIProvider.get(Platform.FORGE);
+        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
         api.setServer(VanillaServer::instance);
 
         if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {

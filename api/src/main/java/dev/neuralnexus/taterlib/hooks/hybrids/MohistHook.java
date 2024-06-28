@@ -37,7 +37,7 @@ public class MohistHook implements Hook {
 
     /**
      * Get if a mod is loaded <br>
-     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isModLoaded(String)}</b>
      *
      * @param modid The modid
      * @return If the mod is loaded
@@ -48,7 +48,7 @@ public class MohistHook implements Hook {
 
     /**
      * Get if a plugin is loaded <br>
-     * <b>NOTE: You can just use {@link TaterAPI#isPluginModLoaded(String)}</b>
+     * <b>NOTE: You can just use {@link TaterAPI#isModLoaded(String)}</b>
      *
      * @param pluginName The plugin name
      * @return If the plugin is loaded

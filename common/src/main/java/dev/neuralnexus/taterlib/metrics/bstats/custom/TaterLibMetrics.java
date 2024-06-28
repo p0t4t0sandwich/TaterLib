@@ -67,7 +67,7 @@ public class TaterLibMetrics {
         try {
             File serverPropertiesFile = new File("server.properties");
             String serverProperties = new String(Files.readAllBytes(serverPropertiesFile.toPath()));
-            if (!serverProperties.contains("online-mode=true")) {
+            if (serverProperties.contains("online-mode=false")) {
                 onlineMode = "false";
             }
         } catch (IOException ignored) {
@@ -77,13 +77,15 @@ public class TaterLibMetrics {
 
         metrics.addCustomChart(
                 new SingleLineChart(
-                        "players", () -> TaterAPIProvider.get().server().onlinePlayers().size()));
+                        "players",
+                        () -> TaterAPIProvider.api().get().server().onlinePlayers().size()));
         metrics.addCustomChart(new SimplePie("online_mode", () -> finalOnlineMode));
         metrics.addCustomChart(
                 new SimplePie("taterlib_version", () -> TaterLib.Constants.PROJECT_VERSION));
         metrics.addCustomChart(
                 new SimplePie(
-                        "modloader_version", () -> TaterAPIProvider.get().modLoaderVersion()));
+                        "modloader_version",
+                        () -> TaterAPIProvider.api().get().modLoaderVersion()));
         metrics.addCustomChart(
                 new SimplePie(
                         "minecraft_version", () -> TaterAPIProvider.minecraftVersion().toString()));

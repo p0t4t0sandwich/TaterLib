@@ -30,7 +30,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                 plugin,
                 server,
                 new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
-        TaterAPI api = TaterAPIProvider.get(Platform.FORGE);
+        TaterAPI api = TaterAPIProvider.api(Platform.FORGE);
         api.setServer(() -> new VanillaServer(ServerLifecycleHooks.getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryServerType(Platform.FORGE)) {

@@ -93,6 +93,6 @@ public class MixinConfig {
         return enabled()
                 && checkVersions(MinecraftVersion.get())
                 && checkPlatforms(Platform.get())
-                && checkDepends(TaterAPIProvider.get()::isPluginModLoaded);
+                && checkDepends(TaterAPIProvider.api().get()::isModLoaded);
     }
 }
