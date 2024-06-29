@@ -16,6 +16,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import org.slf4j.Logger;
@@ -35,21 +36,8 @@ public class VelocityLoaderPlugin {
     public VelocityLoaderPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
         TaterAPIProvider.setPrimaryPlatform(Platform.VELOCITY);
         loader = new LoaderImpl(plugin, server, logger);
-        loader.registerPlugin(plugin());
+        loader.registerPlugin(TaterPluginResolver.velocity(loader));
         loader.onInit();
-    }
-
-    public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
-        String pluginClassName = "dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin";
-        try {
-            Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
-        } catch (Exception e) {
-            System.err.println("Failed to load plugin class: " + pluginClassName);
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Subscribe

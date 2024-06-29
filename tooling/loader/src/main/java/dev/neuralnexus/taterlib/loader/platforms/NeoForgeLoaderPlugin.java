@@ -8,12 +8,11 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.mojang.logging.LogUtils;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
@@ -30,33 +29,8 @@ public class NeoForgeLoaderPlugin {
         TaterAPIProvider.setPrimaryPlatform(Platform.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
         loader = new LoaderImpl(this, null, LogUtils.getLogger());
-        loader.registerPlugin(plugin());
+        loader.registerPlugin(TaterPluginResolver.neoForge(loader));
         loader.onInit();
-    }
-
-    public static Plugin plugin() {
-        String version;
-        MinecraftVersion mcv = loader.minecraftVersion();
-        if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
-        } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
-        }
-        String pluginClassName =
-                "dev.neuralnexus.taterlib" + version + ".neoforge.NeoForgeTaterLibPlugin";
-        try {
-            Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
-        } catch (Exception e) {
-            System.err.println("Failed to load plugin class: " + pluginClassName);
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @SubscribeEvent

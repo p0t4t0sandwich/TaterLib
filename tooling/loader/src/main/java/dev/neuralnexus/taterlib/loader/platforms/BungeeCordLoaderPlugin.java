@@ -12,22 +12,17 @@ import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.plugin.Plugin;
 
-/** Bukkit entry point. */
-public class BukkitLoaderPlugin extends JavaPlugin {
+/** Bungee entry point. */
+public class BungeeCordLoaderPlugin extends Plugin {
     private static Loader loader;
 
-    public BukkitLoaderPlugin() {
-        TaterAPIProvider.setPrimaryPlatform(Platform.BUKKIT);
-        loader = new LoaderImpl(this, Bukkit.getServer(), Bukkit.getLogger());
-        loader.registerPlugin(TaterPluginResolver.bukkit(loader));
-        if (loader.platform().isForgeHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.forge(loader));
-        } else if (loader.platform().isFabricHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.fabric(loader));
-        }
+    public BungeeCordLoaderPlugin() {
+        TaterAPIProvider.setPrimaryPlatform(Platform.BUNGEECORD);
+        loader = new LoaderImpl(this, ProxyServer.getInstance(), getLogger());
+        loader.registerPlugin(TaterPluginResolver.bungeeCord(loader));
         loader.onInit();
     }
 

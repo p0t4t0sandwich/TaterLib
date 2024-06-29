@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import com.google.inject.Inject;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import org.slf4j.Logger;
@@ -34,42 +34,11 @@ public class Sponge7LoaderPlugin {
     public Sponge7LoaderPlugin(PluginContainer container, Logger logger) {
         TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
         loader = new LoaderImpl(container, null, logger);
-        loader.registerPlugin(plugin());
-        if (loader.platform().is(Platform.SPONGE_FORGE)) {
-            loader.registerPlugin(ForgeLoaderPlugin.plugin());
+        loader.registerPlugin(TaterPluginResolver.sponge7(loader));
+        if (Platform.isForge()) {
+            loader.registerPlugin(TaterPluginResolver.forge(loader));
         }
         loader.onInit();
-    }
-
-    public static dev.neuralnexus.taterlib.plugin.Plugin plugin() {
-        String version;
-        MinecraftVersion mcv = loader.minecraftVersion();
-        if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = "." + MinecraftVersion.V1_8.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_10_2)) {
-            version = "." + MinecraftVersion.V1_9.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = "." + MinecraftVersion.V1_11.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = "." + MinecraftVersion.V1_12.getDelimiterString();
-        } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
-            version = "." + MinecraftVersion.V1_12.getDelimiterString();
-        }
-        String pluginClassName =
-                "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";
-        try {
-            Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
-        } catch (Exception e) {
-            System.err.println("Failed to load plugin class: " + pluginClassName);
-            e.printStackTrace();
-        }
-        return null;
     }
 
     @Listener

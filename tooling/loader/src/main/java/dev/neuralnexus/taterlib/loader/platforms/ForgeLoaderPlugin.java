@@ -6,12 +6,13 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
+
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import net.minecraftforge.fml.common.Mod;
 
@@ -28,65 +29,15 @@ public class ForgeLoaderPlugin {
     public ForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
         loader = new LoaderImpl(this, null, null);
-        loader.registerPlugin(plugin());
-        // if (loader.platform().isForgeHybrid()) {
-        //     loader.registerPlugin(BukkitLoaderPlugin.getPlugin());
-        // }
+        loader.registerPlugin(TaterPluginResolver.forge(loader));
+        if (loader.platform().isForgeHybrid() && checkForClass("org.bukkit.Bukkit")) {
+            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+        }
         // Sinytra Connector support
         if (Platform.isFabric()) {
-            loader.registerPlugin(FabricLoaderPlugin.plugin());
+            loader.registerPlugin(TaterPluginResolver.fabric(loader));
         }
         loader.onInit();
         loader.onEnable();
-    }
-
-    public static Plugin plugin() {
-        String version;
-        MinecraftVersion mcv = loader.minecraftVersion();
-        if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = "." + MinecraftVersion.V1_8_9.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
-            version = "." + MinecraftVersion.V1_9_4.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_10, MinecraftVersion.V1_10_2)) {
-            version = "." + MinecraftVersion.V1_10_2.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = "." + MinecraftVersion.V1_11_2.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = "." + MinecraftVersion.V1_12_2.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_13_2)) {
-            version = "." + MinecraftVersion.V1_13_2.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_14_4)) {
-            version = "." + MinecraftVersion.V1_14_4.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_15, MinecraftVersion.V1_15_2)) {
-            version = "." + MinecraftVersion.V1_15_1.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_16_5)) {
-            version = "." + MinecraftVersion.V1_16_3.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_17_1)) {
-            version = "." + MinecraftVersion.V1_17_1.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_2)) {
-            version = "." + MinecraftVersion.V1_18.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
-            version = "." + MinecraftVersion.V1_19.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4)) {
-            version = "." + MinecraftVersion.V1_20.getDelimiterString();
-        } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_21)) {
-            version = "." + MinecraftVersion.V1_20_6.getDelimiterString();
-        } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
-        }
-        String pluginClassName =
-                "dev.neuralnexus.taterlib" + version + ".forge.ForgeTaterLibPlugin";
-        try {
-            Class<?> pluginClass = Class.forName(pluginClassName);
-            return (Plugin) pluginClass.getConstructor().newInstance();
-        } catch (Exception e) {
-            System.err.println("Failed to load plugin class: " + pluginClassName);
-            e.printStackTrace();
-        }
-        return null;
     }
 }
