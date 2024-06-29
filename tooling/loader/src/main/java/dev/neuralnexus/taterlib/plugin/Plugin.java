@@ -24,6 +24,13 @@ public interface Plugin {
      */
     String id();
 
+    /**
+     * Get the plugin's logger.
+     *
+     * @return The plugin's logger.
+     */
+    Logger logger();
+
     /** Start the plugin. */
     void start(Object plugin, Object server, Logger logger);
 

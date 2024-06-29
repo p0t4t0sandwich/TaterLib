@@ -2,6 +2,7 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
@@ -109,15 +110,9 @@ public class TaterLib {
 
         if (!RELOADED) {
             // Register modules
-            moduleLoader = new TaterLibModuleLoader();
-            moduleLoader.registerModule(new CoreModule());
-            moduleLoader.registerModule(new BungeeCordModule());
+            Loader.instance().registerPluginModule("taterlib", new CoreModule());
+            Loader.instance().registerPluginModule("taterlib", new BungeeCordModule());
         }
-
-        // Start modules
-        logger().info("Starting modules: " + moduleLoader.moduleNames());
-        moduleLoader.startModules();
-
         logger().info(Constants.PROJECT_NAME + " has been started!");
     }
 
@@ -128,10 +123,6 @@ public class TaterLib {
             return;
         }
         STARTED = false;
-
-        // Stop modules
-        logger().info("Stopping modules: " + moduleLoader.moduleNames());
-        moduleLoader.stopModules();
 
         // Remove references to objects
         TaterLibConfigLoader.unload();

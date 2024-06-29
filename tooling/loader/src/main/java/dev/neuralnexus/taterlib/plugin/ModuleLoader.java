@@ -38,12 +38,12 @@ public interface ModuleLoader {
     }
 
     /** Start the modules. */
-    default void startModules() {
+    default void start() {
         modules().forEach(PluginModule::start);
     }
 
     /** Stop the modules. */
-    default void stopModules() {
+    default void stop() {
         modules().forEach(PluginModule::stop);
     }
 }

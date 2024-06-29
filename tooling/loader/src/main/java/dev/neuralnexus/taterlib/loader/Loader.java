@@ -12,12 +12,16 @@ import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
+import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterlib.plugin.impl.ModuleLoaderImpl;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Loader {
-    default Loader instance() {
+    static Loader instance() {
         Loader ret = LoaderImpl.getInstance();
         if (ret == null) {
             throw new IllegalStateException("Loader instance not initialized");
@@ -50,6 +54,9 @@ public interface Loader {
     /** Get the collection of plugins. */
     List<Plugin> plugins();
 
+    /** Get the plugin modules. */
+    Map<String, ModuleLoader> pluginModules();
+
     /** Register a plugin. */
     default void registerPlugin(Plugin plugin) {
         if (plugin == null) {
@@ -72,6 +79,41 @@ public interface Loader {
         unregisterPlugin(plugin.id());
     }
 
+    /** Register a plugin module */
+    default void registerPluginModule(String pluginId, PluginModule module) {
+        if (!pluginModules().containsKey(pluginId)) {
+            pluginModules().put(pluginId, new ModuleLoaderImpl());
+        }
+        pluginModules().get(pluginId).registerModule(module);
+    }
+
+    /** Register a plugin module */
+    default void registerPluginModule(Plugin plugin, PluginModule module) {
+        registerPluginModule(plugin.id(), module);
+    }
+
+    /** Unregister a plugin module */
+    default void unregisterPluginModule(String pluginId, String moduleId) {
+        if (pluginModules().containsKey(pluginId)) {
+            pluginModules().get(pluginId).unregisterModule(moduleId);
+        }
+    }
+
+    /** Unregister a plugin module */
+    default void unregisterPluginModule(Plugin plugin, String moduleId) {
+        unregisterPluginModule(plugin.id(), moduleId);
+    }
+
+    /** Unregister a plugin module */
+    default void unregisterPluginModule(String pluginId, PluginModule module) {
+        unregisterPluginModule(pluginId, module.name());
+    }
+
+    /** Unregister a plugin module */
+    default void unregisterPluginModule(Plugin plugin, PluginModule module) {
+        unregisterPluginModule(plugin.id(), module.name());
+    }
+
     /** Run Init on all plugins. */
     default void onInit() {
         plugins().forEach(p -> p.onInit(plugin(), plugin(), logger()));
@@ -85,6 +127,14 @@ public interface Loader {
                         plugin -> {
                             try {
                                 plugin.onEnable();
+                                if (pluginModules().containsKey(plugin.id())) {
+                                    ModuleLoader moduleLoader = pluginModules().get(plugin.id());
+                                    plugin.logger()
+                                            .info(
+                                                    "Starting modules: "
+                                                            + moduleLoader.moduleNames());
+                                    moduleLoader.start();
+                                }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -93,6 +143,22 @@ public interface Loader {
 
     /** Run Disable on all plugins. */
     default void onDisable() {
-        plugins().forEach(Plugin::onDisable);
+        plugins()
+                .forEach(
+                        plugin -> {
+                            try {
+                                if (pluginModules().containsKey(plugin.id())) {
+                                    ModuleLoader moduleLoader = pluginModules().get(plugin.id());
+                                    plugin.logger()
+                                            .info(
+                                                    "Stopping modules: "
+                                                            + moduleLoader.moduleNames());
+                                    moduleLoader.stop();
+                                }
+                                plugin.onDisable();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
     }
 }

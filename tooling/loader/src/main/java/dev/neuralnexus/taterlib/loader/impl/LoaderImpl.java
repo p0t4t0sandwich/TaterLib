@@ -9,10 +9,13 @@ package dev.neuralnexus.taterlib.loader.impl;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
 import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /** Loader entry point. */
 public class LoaderImpl implements Loader {
@@ -64,5 +67,10 @@ public class LoaderImpl implements Loader {
     @Override
     public List<Plugin> plugins() {
         return plugins;
+    }
+
+    @Override
+    public Map<String, ModuleLoader> pluginModules() {
+        return new HashMap<>();
     }
 }
