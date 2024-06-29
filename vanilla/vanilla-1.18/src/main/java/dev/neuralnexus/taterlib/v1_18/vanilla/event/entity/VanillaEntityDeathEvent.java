@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_18.vanilla.event.entity;
 import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterlib.inventory.ItemStack;
 
+import dev.neuralnexus.taterlib.v1_18.vanilla.mixin.bridge.world.entity.LivingEntityBridge;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Vanilla implementation of {@link EntityDeathEvent}. */
-public class VanillaEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent {
+public class VanillaEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent, LivingEntityBridge {
     private final DamageSource source;
 
     public VanillaEntityDeathEvent(Entity entity, DamageSource source) {
@@ -46,7 +47,7 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
         if (source.getEntity() instanceof LivingEntity entity) {
             if (entity.getLastHurtByMob() != null
                     && entity.getLastHurtByMob() instanceof Player player) {
-                return entity.getExperienceReward(player);
+                return this.bridge$getExperienceReward(entity, player);
             }
         }
         return 0;

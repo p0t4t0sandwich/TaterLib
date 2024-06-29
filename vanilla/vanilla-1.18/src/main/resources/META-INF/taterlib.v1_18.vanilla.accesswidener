@@ -1,4 +1,0 @@
-accessWidener    v1    named
-
-# VanillaEntityDeathEvent 1.18
-accessible method net/minecraft/world/entity/LivingEntity getExperienceReward (Lnet/minecraft/world/entity/player/Player;)I
