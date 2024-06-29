@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterlib.api;
 
 import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
@@ -16,7 +22,7 @@ public class TaterAPI {
 
     private Supplier<SimpleServer> minecraftServer = () -> null;
 
-    public TaterAPI(PlatformData ...platformData) {
+    public TaterAPI(PlatformData... platformData) {
         if (platformData.length > 0) {
             this.platformData = platformData;
         } else {

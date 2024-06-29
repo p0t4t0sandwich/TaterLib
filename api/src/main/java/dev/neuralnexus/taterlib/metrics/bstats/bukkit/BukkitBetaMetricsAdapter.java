@@ -1,17 +1,9 @@
-/*
- * This Metrics class was auto-generated and can be copied into your project if you are
- * not using a build tool like Gradle or Maven for dependency management.
- *
- * IMPORTANT: You are not allowed to modify this class, except changing the package.
- *
- * Disallowed modifications include but are not limited to:
- *  - Remove the option for users to opt-out
- *  - Change the frequency for data submission
- *  - Obfuscate the code (every obfuscator should allow you to make an exception for specific files)
- *  - Reformat the code (if you use a linter, add an exception)
- *
- * Violations will result in a ban of your plugin and account from bStats.
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
+
 package dev.neuralnexus.taterlib.metrics.bstats.bukkit;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;

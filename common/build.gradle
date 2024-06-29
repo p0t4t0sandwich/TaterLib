@@ -20,7 +20,7 @@ dependencies {
     implementation('com.google.guava:guava:33.0.0-jre')
 
     // Mixin
-    compileOnly("org.spongepowered:mixin:0.8.5")
+    compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
 
     // Tooling
@@ -52,19 +52,19 @@ shadowJar {
         include(dependency('gs.mclo:api:3.0.1'))
     }
     // Configurate
-    relocate('org.spongepowered.configurate', "dev.neuralnexus.taterlib.lib.configurate")
-    relocate('com.typesafe.config', "dev.neuralnexus.taterlib.lib.typesafe.config")
-    relocate('io.leangen.geantyref', "dev.neuralnexus.taterlib.lib.geantyref")
+    relocate('org.spongepowered.configurate', 'dev.neuralnexus.taterlib.lib.configurate')
+    relocate('com.typesafe.config', 'dev.neuralnexus.taterlib.lib.typesafe.config')
+    relocate('io.leangen.geantyref', 'dev.neuralnexus.taterlib.lib.geantyref')
 
     // Gson
-    relocate('com.google.gson', "dev.neuralnexus.taterlib.lib.gson")
+    relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')
 
     // Guava
-    relocate('com.google.common', "dev.neuralnexus.taterlib.lib.guava")
-    relocate('com.google.thirdparty', "dev.neuralnexus.taterlib.lib.google.thirdparty")
+    relocate('com.google.common', 'dev.neuralnexus.taterlib.lib.guava')
+    relocate('com.google.thirdparty', 'dev.neuralnexus.taterlib.lib.google.thirdparty')
 
     // MCLogs
-    relocate("gs.mclo", "dev.neuralnexus.taterlib.lib.mclogs")
+    relocate("gs.mclo", 'dev.neuralnexus.taterlib.lib.mclogs')
 
     minimize()
 

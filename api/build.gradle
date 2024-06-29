@@ -27,11 +27,6 @@ dependencies {
     implementation('com.zaxxer:HikariCP:4.0.3')
     implementation('com.mysql:mysql-connector-j:8.3.0')
 
-    // MongoDB
-    implementation('org.mongodb:mongodb-driver-sync:4.9.1')
-    implementation('org.mongodb:mongodb-driver-core:4.9.1')
-    implementation('org.mongodb:bson:4.9.1')
-
     // Brigadier
     compileOnly('com.mojang:brigadier:1.0.18')
 
@@ -82,34 +77,25 @@ shadowJar {
         // MySQL
         include(dependency('com.zaxxer:HikariCP:4.0.3'))
         include(dependency('com.mysql:mysql-connector-j:8.3.0'))
-
-        // MongoDB
-        include(dependency('org.mongodb:mongodb-driver-sync:4.9.1'))
-        include(dependency('org.mongodb:mongodb-driver-core:4.9.1'))
-        include(dependency('org.mongodb:bson:4.9.1'))
     }
     // Configurate
-    relocate('org.spongepowered.configurate', "dev.neuralnexus.taterlib.lib.configurate")
-    relocate('com.typesafe.config', "dev.neuralnexus.taterlib.lib.typesafe.config")
-    relocate('io.leangen.geantyref', "dev.neuralnexus.taterlib.lib.geantyref")
+    relocate('org.spongepowered.configurate', 'dev.neuralnexus.taterlib.lib.configurate')
+    relocate('com.typesafe.config', 'dev.neuralnexus.taterlib.lib.typesafe.config')
+    relocate('io.leangen.geantyref', 'dev.neuralnexus.taterlib.lib.geantyref')
 
     // bStats
-    relocate('org.bstats', "dev.neuralnexus.taterlib.lib.bstats") {
+    relocate('org.bstats', 'dev.neuralnexus.taterlib.lib.bstats') {
         exclude 'org.bstats.sponge.*'
     }
 
     // MySQL
-    relocate('com.zaxxer.hikari', "dev.neuralnexus.taterlib.lib.hikari")
-    relocate('com.mysql', "dev.neuralnexus.taterlib.lib.mysql")
+    relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterlib.lib.hikari')
+    relocate('com.mysql', 'dev.neuralnexus.taterlib.lib.mysql')
 
-    // MongoDB
-    relocate('com.mongodb', "dev.neuralnexus.taterlib.lib.mongodb")
-    relocate('org.bson', "dev.neuralnexus.taterlib.lib.bson")
-
-//    minimize() {
-//        exclude('org.spongepowered.configurate')
-//        exclude('org.bstats.*')
-//    }
+    minimize() {
+        exclude('org.spongepowered.configurate')
+        exclude('org.bstats.*')
+    }
 
     archiveFileName = "${project_id}-api-full-${version}.jar"
 }
