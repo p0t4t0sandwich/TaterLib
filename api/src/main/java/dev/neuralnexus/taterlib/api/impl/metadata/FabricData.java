@@ -9,6 +9,9 @@ package dev.neuralnexus.taterlib.api.impl.metadata;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.api.impl.metadata.fabric.FabricLogger_18_21;
+import dev.neuralnexus.taterlib.api.impl.metadata.fabric.FabricLogger_7_17;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -57,5 +60,14 @@ public class FabricData implements PlatformData {
                                                 .getVersion()
                                                 .getFriendlyString()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        MinecraftVersion version = minecraftVersion();
+        if (version.isOlderThan(MinecraftVersion.V1_18)) {
+            return FabricLogger_7_17.logger(pluginId);
+        }
+        return FabricLogger_18_21.logger(pluginId);
     }
 }

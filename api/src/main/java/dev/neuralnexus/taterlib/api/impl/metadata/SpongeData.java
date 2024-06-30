@@ -11,6 +11,10 @@ import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForMethod;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.logger.impl.GenericSlf4jLogger;
+
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -41,5 +45,10 @@ public class SpongeData implements PlatformData {
     @Override
     public List<ModInfo> modList() {
         return spongePlatformData.modList();
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return new GenericSlf4jLogger(LoggerFactory.getLogger(pluginId));
     }
 }

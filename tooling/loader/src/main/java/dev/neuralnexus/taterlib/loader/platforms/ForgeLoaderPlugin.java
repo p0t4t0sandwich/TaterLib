@@ -6,8 +6,6 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
-
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
@@ -28,9 +26,9 @@ public class ForgeLoaderPlugin {
 
     public ForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
-        loader = new LoaderImpl(this, null, null);
+        loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.forge(loader));
-        if (loader.platform().isForgeHybrid() && checkForClass("org.bukkit.Bukkit")) {
+        if (loader.platform().isForgeHybrid() && Platform.isBukkit()) {
             loader.registerPlugin(TaterPluginResolver.bukkit(loader));
         }
         // Sinytra Connector support

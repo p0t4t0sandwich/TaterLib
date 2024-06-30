@@ -12,6 +12,7 @@ import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -62,6 +63,11 @@ public class PlatformDataImpl implements PlatformData {
     @Override
     public List<ModInfo> modList() {
         return INSTANCE.modList();
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return INSTANCE.logger(pluginId);
     }
 
     @Override

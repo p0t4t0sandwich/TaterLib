@@ -6,8 +6,6 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import com.mojang.logging.LogUtils;
-
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
@@ -28,7 +26,7 @@ public class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
-        loader = new LoaderImpl(this, null, LogUtils.getLogger());
+        loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.neoForge(loader));
         loader.onInit();
     }

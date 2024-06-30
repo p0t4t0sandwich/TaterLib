@@ -13,12 +13,12 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.LogRecord;
 import java.util.logging.SimpleFormatter;
 
-/** A generic implementation of the AbstractLogger interface. */
+/** A generic implementation of the {@link Logger} interface. */
 public class GenericLogger implements Logger {
     private final java.util.logging.Logger logger;
 
-    public GenericLogger(String PROJECT_ID) {
-        logger = java.util.logging.Logger.getLogger(PROJECT_ID);
+    public GenericLogger(String pluginId) {
+        logger = java.util.logging.Logger.getLogger(pluginId);
 
         // Log formatter
         logger.setUseParentHandlers(false);

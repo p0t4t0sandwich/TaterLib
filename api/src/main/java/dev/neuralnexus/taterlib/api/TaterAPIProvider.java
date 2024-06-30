@@ -161,13 +161,11 @@ public class TaterAPIProvider {
         return apis.values().stream().anyMatch(api -> api.isModLoaded(pluginNameOrModId));
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static boolean isPrimaryPlatform(Platform platform) {
         return primaryPlatform == platform;
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void setPrimaryPlatform(Platform platform) {
         if (primaryPlatform == null) {
@@ -175,7 +173,6 @@ public class TaterAPIProvider {
         }
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void setPlayerDataStore(PlayerDataStore playerDataStore) {
         TaterAPIProvider.playerDataStore = playerDataStore;
@@ -195,7 +192,6 @@ public class TaterAPIProvider {
         return playerDataStore;
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void register() {
         if (platform.isBukkitBased()) {
@@ -289,7 +285,6 @@ public class TaterAPIProvider {
         }
     }
 
-    /** DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY */
     @ApiStatus.Internal
     public static void unregister() {
         apis.remove(platform);

@@ -14,6 +14,7 @@ import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.CPWLoaderData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.FMLLoaderData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.MCFLoaderData;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import java.util.List;
 
@@ -46,5 +47,10 @@ public class ForgeData implements PlatformData {
     @Override
     public List<ModInfo> modList() {
         return forgePlatformData.modList();
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return forgePlatformData.logger(pluginId);
     }
 }

@@ -13,17 +13,14 @@ import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
-import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
-    private static ModuleLoader moduleLoader;
     private Object plugin;
     private Object server;
-    private Logger logger;
 
     /**
      * Get if the plugin has reloaded
@@ -76,16 +73,7 @@ public class TaterLib {
      * @return The logger
      */
     public static Logger logger() {
-        return instance.logger;
-    }
-
-    /**
-     * Set the logger
-     *
-     * @param logger The logger
-     */
-    private static void setLogger(Logger logger) {
-        instance.logger = logger;
+        return Loader.instance().platformData().logger(Constants.PROJECT_ID);
     }
 
     /**
@@ -93,14 +81,12 @@ public class TaterLib {
      *
      * @param plugin The plugin
      * @param server The plugin server
-     * @param logger The logger
      */
-    public static void start(Object plugin, Object server, Logger logger) {
+    public static void start(Object plugin, Object server) {
         if (server != null) {
             setPluginServer(server);
         }
         setPlugin(plugin);
-        setLogger(logger);
 
         // Set up bStats
         TaterLibMetrics.initialize();
@@ -149,7 +135,7 @@ public class TaterLib {
         stop();
 
         // Start
-        start(instance.plugin, instance.server, instance.logger);
+        start(instance.plugin, instance.server);
 
         logger().info(Constants.PROJECT_NAME + " has been reloaded!");
     }

@@ -6,14 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_21.fabric;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_21.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaCommandRegisterEvent;
@@ -29,19 +27,11 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
-import org.apache.logging.log4j.LogManager;
-
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server) {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
-        start(
-                plugin,
-                server,
-                new LoggerAdapter(
-                        "[" + TaterLib.Constants.PROJECT_NAME + "] ",
-                        TaterLib.Constants.PROJECT_ID,
-                        LogManager.getLogger(TaterLib.Constants.PROJECT_ID)));
+        start(plugin, server);
         TaterAPIProvider.api(Platform.FABRIC)
                 .ifPresent(api -> api.setServer(VanillaServer::instance));
 

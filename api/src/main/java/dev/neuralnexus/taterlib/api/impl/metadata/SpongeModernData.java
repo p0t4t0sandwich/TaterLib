@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.api.impl.metadata;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import org.spongepowered.api.Sponge;
 
@@ -37,5 +38,10 @@ public class SpongeModernData implements PlatformData {
                                         pluginContainer.metadata().name().orElse(""),
                                         pluginContainer.metadata().version().toString()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return null;
     }
 }

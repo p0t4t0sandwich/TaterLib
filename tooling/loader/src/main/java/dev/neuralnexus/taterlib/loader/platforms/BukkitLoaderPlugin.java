@@ -21,7 +21,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public BukkitLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.BUKKIT);
-        loader = new LoaderImpl(this, Bukkit.getServer(), Bukkit.getLogger());
+        loader = new LoaderImpl(this, Bukkit.getServer());
         loader.registerPlugin(TaterPluginResolver.bukkit(loader));
         if (loader.platform().isForgeHybrid()) {
             loader.registerPlugin(TaterPluginResolver.forge(loader));

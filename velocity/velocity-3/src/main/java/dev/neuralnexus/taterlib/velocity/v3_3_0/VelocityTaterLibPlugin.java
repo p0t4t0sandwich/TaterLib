@@ -19,10 +19,10 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.api.impl.metadata.VelocityData;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
@@ -34,8 +34,6 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.network.VelocityPlugin
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.server.VelocityServerListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityProxyServer;
-
-import org.slf4j.Logger;
 
 import java.time.Duration;
 
@@ -51,8 +49,10 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     public static ProxyServer proxyServer;
 
     @Inject
-    public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server, Logger logger) {
-        onInit(plugin, server, logger);
+    public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server) {
+        TaterAPIProvider.setPrimaryPlatform(Platform.VELOCITY);
+        VelocityData.setProxyServer(server);
+        onInit(plugin, server);
     }
 
     @Subscribe
@@ -67,7 +67,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void onInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server) {
         // TODO: Remove when Velocity loader is implemented
         TaterAPIProvider.register();
 
@@ -75,7 +75,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
 
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
-        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        start(plugin, server);
         TaterAPIProvider.api(Platform.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
     }

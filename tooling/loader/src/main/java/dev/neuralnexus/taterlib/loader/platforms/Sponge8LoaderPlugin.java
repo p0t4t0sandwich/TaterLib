@@ -14,7 +14,6 @@ import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
-import org.apache.logging.log4j.Logger;
 import org.spongepowered.api.Server;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.ConstructPluginEvent;
@@ -28,9 +27,9 @@ public class Sponge8LoaderPlugin {
     private static Loader loader;
 
     @Inject
-    public Sponge8LoaderPlugin(PluginContainer container, Logger logger) {
+    public Sponge8LoaderPlugin(PluginContainer container) {
         TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
-        loader = new LoaderImpl(container, null, logger);
+        loader = new LoaderImpl(container, null);
         loader.registerPlugin(TaterPluginResolver.sponge8(loader));
         if (Platform.isForge()) {
             loader.registerPlugin(TaterPluginResolver.forge(loader));

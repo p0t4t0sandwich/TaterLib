@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.api.impl.metadata.forge;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -62,5 +63,14 @@ public class FMLLoaderData implements PlatformData {
                                         modContainer.getDisplayName(),
                                         modContainer.getVersion().toString()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        MinecraftVersion version = minecraftVersion();
+        if (version.isOlderThan(MinecraftVersion.V1_18_2)) {
+            return ForgeLogger_7_181.logger(pluginId);
+        }
+        return ForgeLogger_182_21.logger(pluginId);
     }
 }

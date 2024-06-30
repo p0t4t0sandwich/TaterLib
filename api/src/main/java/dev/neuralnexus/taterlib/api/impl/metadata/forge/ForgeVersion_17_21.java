@@ -6,8 +6,10 @@
 
 package dev.neuralnexus.taterlib.api.impl.metadata.forge;
 
+import net.minecraftforge.fml.loading.FMLLoader;
+
 public class ForgeVersion_17_21 {
     public static String forgeVersion() {
-        return "";
+        return FMLLoader.versionInfo().forgeVersion();
     }
 }

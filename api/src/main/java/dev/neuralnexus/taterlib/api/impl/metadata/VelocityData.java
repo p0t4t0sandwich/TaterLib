@@ -14,6 +14,11 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.logger.impl.GenericSlf4jLogger;
+
+import org.jetbrains.annotations.ApiStatus;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -23,6 +28,7 @@ import java.util.stream.Collectors;
 public class VelocityData implements PlatformData {
     private static ProxyServer proxyServer;
 
+    @ApiStatus.Internal
     public static void setProxyServer(ProxyServer proxyServer) {
         VelocityData.proxyServer = proxyServer;
     }
@@ -58,6 +64,11 @@ public class VelocityData implements PlatformData {
                                         plugin.getDescription().getName().orElse("Unknown"),
                                         plugin.getDescription().getVersion().orElse("Unknown")))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return new GenericSlf4jLogger(LoggerFactory.getLogger(pluginId));
     }
 
     @Override

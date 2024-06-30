@@ -30,14 +30,12 @@ public class LoaderImpl implements Loader {
     private static Loader instance = null;
     private final Object plugin;
     private final Object pluginServer;
-    private final Object pluginLogger;
     private final List<Plugin> plugins = new ArrayList<>();
 
-    public LoaderImpl(Object plugin, Object pluginServer, Object pluginLogger) {
+    public LoaderImpl(Object plugin, Object pluginServer) {
         instance = this;
         this.plugin = plugin;
         this.pluginServer = pluginServer;
-        this.pluginLogger = pluginLogger;
     }
 
     public static Loader getInstance() {
@@ -57,11 +55,6 @@ public class LoaderImpl implements Loader {
     @Override
     public Object server() {
         return pluginServer;
-    }
-
-    @Override
-    public Object logger() {
-        return pluginLogger;
     }
 
     @Override

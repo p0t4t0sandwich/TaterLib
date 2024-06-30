@@ -6,11 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_17_1.forge;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_17.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_17_1.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_17_1.forge.listeners.block.ForgeBlockListener;
@@ -24,16 +22,11 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 
-import org.apache.logging.log4j.LogManager;
-
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server) {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        start(
-                plugin,
-                server,
-                new LoggerAdapter(TaterLib.Constants.PROJECT_ID, LogManager.getLogger()));
+        start(plugin, server);
         TaterAPIProvider.api(Platform.FORGE)
                 .ifPresent(
                         api ->

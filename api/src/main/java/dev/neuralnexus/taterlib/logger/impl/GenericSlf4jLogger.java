@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.logger.impl;
 
 import dev.neuralnexus.taterlib.logger.Logger;
 
-/** A generic SLF4J implementation of the AbstractLogger interface. */
+/** A generic SLF4J implementation of the {@link Logger} interface. */
 public class GenericSlf4jLogger implements Logger {
     private final org.slf4j.Logger logger;
 

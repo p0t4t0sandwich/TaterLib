@@ -9,17 +9,17 @@ package dev.neuralnexus.taterlib.logger.impl;
 import dev.neuralnexus.taterlib.Utils;
 import dev.neuralnexus.taterlib.logger.Logger;
 
-/** A generic implementation of the AbstractLogger interface. */
+/** A generic implementation of the {@link Logger} interface. */
 public class LoggerAdapter implements Logger {
     private final String prefix;
     private final Logger logger;
 
-    public LoggerAdapter(String PROJECT_ID) {
-        this(PROJECT_ID, new Object());
+    public LoggerAdapter(String pluginId) {
+        this(pluginId, new Object());
     }
 
-    public LoggerAdapter(String PROJECT_ID, Object logger) {
-        this("", PROJECT_ID, logger);
+    public LoggerAdapter(String pluginId, Object logger) {
+        this("[" + pluginId + "]", pluginId, logger);
     }
 
     public LoggerAdapter(String prefix, String PROJECT_ID, Object logger) {

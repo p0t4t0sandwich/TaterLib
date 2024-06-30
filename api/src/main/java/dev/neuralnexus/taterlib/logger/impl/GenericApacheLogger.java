@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.logger.impl;
 
 import dev.neuralnexus.taterlib.logger.Logger;
 
-/** A generic Apache implementation of the AbstractLogger interface. */
+/** A generic Apache implementation of the {@link Logger} interface. */
 public class GenericApacheLogger implements Logger {
     private final org.apache.logging.log4j.Logger logger;
 

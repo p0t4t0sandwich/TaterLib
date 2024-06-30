@@ -48,9 +48,6 @@ public interface Loader {
     /** Get the platform's server. */
     Object server();
 
-    /** Get the platform's logger. */
-    Object logger();
-
     /** Get the collection of plugins. */
     List<Plugin> plugins();
 
@@ -116,7 +113,7 @@ public interface Loader {
 
     /** Run Init on all plugins. */
     default void onInit() {
-        plugins().forEach(p -> p.onInit(plugin(), plugin(), logger()));
+        plugins().forEach(p -> p.onInit(plugin(), plugin()));
     }
 
     /** Run Enable on all plugins. */

@@ -6,8 +6,6 @@
 
 package dev.neuralnexus.taterlib.loader.platforms;
 
-import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
-
 import cpw.mods.fml.common.Mod;
 
 import dev.neuralnexus.taterlib.api.Platform;
@@ -28,9 +26,9 @@ public class LegacyForgeLoaderPlugin {
 
     public LegacyForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
-        loader = new LoaderImpl(this, null, null);
+        loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.legacyForge(loader));
-        if (loader.platform().isForgeHybrid() && checkForClass("org.bukkit.Bukkit")) {
+        if (loader.platform().isForgeHybrid() && Platform.isBukkit()) {
             loader.registerPlugin(TaterPluginResolver.bukkit(loader));
         }
         loader.onInit();

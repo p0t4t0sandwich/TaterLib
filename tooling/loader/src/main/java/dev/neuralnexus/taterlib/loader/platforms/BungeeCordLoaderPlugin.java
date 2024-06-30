@@ -21,7 +21,7 @@ public class BungeeCordLoaderPlugin extends Plugin {
 
     public BungeeCordLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.BUNGEECORD);
-        loader = new LoaderImpl(this, ProxyServer.getInstance(), getLogger());
+        loader = new LoaderImpl(this, ProxyServer.getInstance());
         loader.registerPlugin(TaterPluginResolver.bungeeCord(loader));
         loader.onInit();
     }

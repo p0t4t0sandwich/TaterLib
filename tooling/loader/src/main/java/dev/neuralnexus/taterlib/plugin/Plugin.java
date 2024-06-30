@@ -6,6 +6,7 @@
 
 package dev.neuralnexus.taterlib.plugin;
 
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.logger.Logger;
 
 /** General plugin interface. */
@@ -29,16 +30,18 @@ public interface Plugin {
      *
      * @return The plugin's logger.
      */
-    Logger logger();
+    default Logger logger() {
+        return Loader.instance().platformData().logger(id());
+    }
 
     /** Start the plugin. */
-    void start(Object plugin, Object server, Logger logger);
+    void start(Object plugin, Object server);
 
     /** Stop the plugin. */
     void stop();
 
     /** Initialize platform-specific implementations. */
-    default void onInit(Object plugin, Object server, Object logger) {}
+    default void onInit(Object plugin, Object server) {}
 
     /** Enable platform-specific implementations. */
     default void onEnable() {}

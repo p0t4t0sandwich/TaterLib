@@ -9,7 +9,6 @@ package dev.neuralnexus.taterlib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
-import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 /** General TaterLib plugin interface. */
@@ -25,20 +24,15 @@ public interface TaterLibPlugin extends Plugin {
     }
 
     @Override
-    default void start(Object plugin, Object server, Logger logger) {
-        logger.info(
-                TaterLib.Constants.PROJECT_NAME
-                        + " is running on "
-                        + TaterAPIProvider.platform()
-                        + " "
-                        + TaterAPIProvider.minecraftVersion()
-                        + "!");
-        TaterLib.start(plugin, server, logger);
-    }
-
-    @Override
-    default Logger logger() {
-        return TaterLib.logger();
+    default void start(Object plugin, Object server) {
+        logger().info(
+                        TaterLib.Constants.PROJECT_NAME
+                                + " is running on "
+                                + TaterAPIProvider.platform()
+                                + " "
+                                + TaterAPIProvider.minecraftVersion()
+                                + "!");
+        TaterLib.start(plugin, server);
     }
 
     @Override

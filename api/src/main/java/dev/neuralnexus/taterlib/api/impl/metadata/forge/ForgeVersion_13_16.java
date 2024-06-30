@@ -6,8 +6,18 @@
 
 package dev.neuralnexus.taterlib.api.impl.metadata.forge;
 
+import net.minecraftforge.fml.loading.FMLLoader;
+
+import java.lang.reflect.Field;
+
 public class ForgeVersion_13_16 {
     public static String forgeVersion() {
-        return "";
+        try {
+            Field field = FMLLoader.class.getDeclaredField("forgeVersion");
+            field.setAccessible(true);
+            return (String) field.get(null);
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            return "Unknown";
+        }
     }
 }

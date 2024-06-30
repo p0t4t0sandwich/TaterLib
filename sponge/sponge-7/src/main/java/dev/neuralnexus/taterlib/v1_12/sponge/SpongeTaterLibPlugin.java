@@ -6,12 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_12.sponge;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 import dev.neuralnexus.taterlib.v1_12.sponge.event.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_12.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_12.sponge.listeners.block.SpongeBlockListener;
@@ -39,11 +37,11 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void onInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server) {
         container = (PluginContainer) plugin;
 
         TaterAPIProvider.addHook(new SpongePermissionsHook());
-        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        start(plugin, server);
         TaterAPIProvider.api(Platform.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));
     }

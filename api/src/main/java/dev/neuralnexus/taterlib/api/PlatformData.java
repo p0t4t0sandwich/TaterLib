@@ -10,6 +10,7 @@ import static dev.neuralnexus.taterlib.utils.PathUtils.getConfigFolder;
 import static dev.neuralnexus.taterlib.utils.PathUtils.getModsFolder;
 
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.logger.Logger;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -35,6 +36,13 @@ public interface PlatformData {
      * @return The mod list
      */
     List<ModInfo> modList();
+
+    /**
+     * Get the Logger
+     *
+     * @return The Logger
+     */
+    Logger logger(String pluginId);
 
     /**
      * Get if a plugin/mod is loaded <br>

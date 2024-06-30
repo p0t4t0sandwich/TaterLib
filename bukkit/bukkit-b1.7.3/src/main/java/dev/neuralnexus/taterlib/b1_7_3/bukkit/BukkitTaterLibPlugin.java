@@ -6,7 +6,6 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
@@ -22,7 +21,6 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.player.BukkitPlayerListe
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -33,10 +31,10 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public static JavaPlugin plugin;
 
     @Override
-    public void onInit(Object plugin, Object server, Object logger) {
+    public void onInit(Object plugin, Object server) {
         BukkitTaterLibPlugin.plugin = (JavaPlugin) plugin;
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
-        start(plugin, server, new LoggerAdapter(TaterLib.Constants.PROJECT_ID, logger));
+        start(plugin, server);
         TaterAPIProvider.api(Platform.BUKKIT)
                 .ifPresent(api -> api.setServer(() -> new BukkitServer(Bukkit.getServer())));
     }

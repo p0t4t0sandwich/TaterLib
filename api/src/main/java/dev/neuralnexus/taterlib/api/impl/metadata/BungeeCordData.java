@@ -11,6 +11,8 @@ import static dev.neuralnexus.taterlib.utils.PathUtils.getPluginsFolder;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
 
 import net.md_5.bungee.api.ProxyServer;
 
@@ -40,6 +42,11 @@ public class BungeeCordData implements PlatformData {
                                         plugin.getDescription().getName(),
                                         plugin.getDescription().getVersion()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return new LoggerAdapter(pluginId, ProxyServer.getInstance().getLogger());
     }
 
     @Override

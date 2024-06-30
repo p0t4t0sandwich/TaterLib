@@ -11,6 +11,9 @@ import cpw.mods.fml.common.Loader;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.logger.impl.GenericApacheLogger;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,5 +46,10 @@ public class CPWLoaderData implements PlatformData {
                                         modContainer.getName(),
                                         modContainer.getVersion()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Logger logger(String pluginId) {
+        return new GenericApacheLogger(LogManager.getLogger(pluginId));
     }
 }
