@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.api;
 
+import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -174,7 +176,7 @@ public enum MinecraftVersion {
     V1_21("1.21"),
     UNKNOWN("Unknown");
 
-    private static final MinecraftVersion minecraftVersion = UNKNOWN;
+    private static MinecraftVersion minecraftVersion = UNKNOWN;
     private final String version;
 
     MinecraftVersion(String version) {
@@ -183,6 +185,9 @@ public enum MinecraftVersion {
 
     /** Get the version of Minecraft the server is running. */
     public static MinecraftVersion get() {
+        if (minecraftVersion == UNKNOWN) {
+            minecraftVersion = new PlatformDataImpl().minecraftVersion();
+        }
         return minecraftVersion;
     }
 
