@@ -140,6 +140,7 @@ tasks.register('build_api', Jar) {
     dependsOn('clear_build')
     dependsOn(':api:test')
     dependsOn(':api:jar')
+    dependsOn(':common:jar')
     dependsOn(':tooling:loader:build')
 
     archiveFileName = "${project_id}-api-${version}.jar"
