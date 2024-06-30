@@ -12,9 +12,8 @@ import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.GenericJavaLogger;
-
 import dev.neuralnexus.taterlib.logger.impl.LoggerAdapter;
+
 import org.bukkit.Bukkit;
 
 import java.nio.file.Path;

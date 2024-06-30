@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.logger.impl.GenericApacheLogger;
+
 import org.apache.logging.log4j.LogManager;
 
 import java.util.List;

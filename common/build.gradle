@@ -56,6 +56,9 @@ shadowJar {
     relocate('com.typesafe.config', 'dev.neuralnexus.taterlib.lib.typesafe.config')
     relocate('io.leangen.geantyref', 'dev.neuralnexus.taterlib.lib.geantyref')
 
+    // bStats
+    relocate('org.bstats', 'dev.neuralnexus.taterlib.lib.bstats')
+
     // Gson
     relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')
 

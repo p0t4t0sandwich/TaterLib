@@ -82,6 +82,7 @@ public class ConfigUtil {
         } catch (IOException e) {
             logger.error(
                     "An error occurred while copying the default configuration: " + e.getMessage());
+            e.printStackTrace();
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }

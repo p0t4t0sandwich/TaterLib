@@ -78,6 +78,13 @@ shadowJar {
         include(dependency('com.zaxxer:HikariCP:4.0.3'))
         include(dependency('com.mysql:mysql-connector-j:8.3.0'))
     }
+
+    minimize() {
+        exclude(dependency('org.spongepowered:configurate-core:4.2.0-SNAPSHOT'))
+        exclude(dependency('org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT'))
+        exclude(dependency('org.bstats:bstats-base:3.0.2'))
+    }
+
     // Configurate
     relocate('org.spongepowered.configurate', 'dev.neuralnexus.taterlib.lib.configurate')
     relocate('com.typesafe.config', 'dev.neuralnexus.taterlib.lib.typesafe.config')
@@ -91,11 +98,6 @@ shadowJar {
     // MySQL
     relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterlib.lib.hikari')
     relocate('com.mysql', 'dev.neuralnexus.taterlib.lib.mysql')
-
-    minimize() {
-        exclude('org.spongepowered.configurate')
-        exclude('org.bstats.*')
-    }
 
     archiveFileName = "${project_id}-api-full-${version}.jar"
 }

@@ -31,6 +31,7 @@ public class LoaderImpl implements Loader {
     private final Object plugin;
     private final Object pluginServer;
     private final List<Plugin> plugins = new ArrayList<>();
+    private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
     public LoaderImpl(Object plugin, Object pluginServer) {
         instance = this;
@@ -64,6 +65,6 @@ public class LoaderImpl implements Loader {
 
     @Override
     public Map<String, ModuleLoader> pluginModules() {
-        return new HashMap<>();
+        return pluginModules;
     }
 }

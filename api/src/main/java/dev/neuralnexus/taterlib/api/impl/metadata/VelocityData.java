@@ -35,18 +35,7 @@ public class VelocityData implements PlatformData {
 
     @Override
     public MinecraftVersion minecraftVersion() {
-        // Reflect to get ProtocolVersion.MAXIMUM_VERSION.toString()
-        String version = "Unknown";
-        try {
-            Class<ProtocolVersion> protocolVersionClass = ProtocolVersion.class;
-            Object maximumVersion =
-                    protocolVersionClass.getField("MAXIMUM_VERSION").get(protocolVersionClass);
-            Object maximumVersionString =
-                    maximumVersion.getClass().getMethod("toString").invoke(maximumVersion);
-            version = (String) maximumVersionString;
-        } catch (ReflectiveOperationException ignored) {
-        }
-        return MinecraftVersion.from(version);
+        return MinecraftVersion.from(ProtocolVersion.MAXIMUM_VERSION.toString());
     }
 
     @Override

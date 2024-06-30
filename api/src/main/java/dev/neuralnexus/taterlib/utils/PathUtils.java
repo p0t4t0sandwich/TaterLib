@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 public class PathUtils {
     /** Get current working directory. */
     public static Path getCurrentWorkingDirectory() {
-        return Paths.get(File.separator).toAbsolutePath().normalize();
+        return Paths.get("." + File.separator).toAbsolutePath().normalize();
     }
 
     /** Get the path to the mods folder. */

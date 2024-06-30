@@ -25,7 +25,7 @@ jar {
 //    exclude('mcmod.info')
 //    exclude('pack.mcmeta')
 //    exclude('META-INF/sponge_plugins.json')
-    exclude('velocity-plugin.json')
+//    exclude('velocity-plugin.json')
 
     archiveFileName = "${project_id}-loader-${loader_version}.jar"
 }
