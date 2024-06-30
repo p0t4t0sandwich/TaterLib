@@ -1,4 +1,5 @@
 dependencies {
+    compileOnly('org.jetbrains:annotations:24.1.0')
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
     compileOnly(project(':api'))

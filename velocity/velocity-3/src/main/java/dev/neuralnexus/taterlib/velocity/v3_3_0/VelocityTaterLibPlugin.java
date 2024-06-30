@@ -23,6 +23,7 @@ import dev.neuralnexus.taterlib.api.impl.metadata.VelocityData;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
@@ -45,14 +46,11 @@ import java.time.Duration;
         description = TaterLib.Constants.PROJECT_DESCRIPTION,
         url = TaterLib.Constants.PROJECT_URL)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
-    public static PluginContainer plugin;
-    public static ProxyServer proxyServer;
-
     @Inject
     public VelocityTaterLibPlugin(PluginContainer plugin, ProxyServer server) {
         TaterAPIProvider.setPrimaryPlatform(Platform.VELOCITY);
         VelocityData.setProxyServer(server);
-        onInit(plugin, server);
+        onInit();
     }
 
     @Subscribe
@@ -67,15 +65,10 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         // TODO: Remove when Velocity loader is implemented
-        TaterAPIProvider.register();
-
-        VelocityTaterLibPlugin.plugin = (PluginContainer) plugin;
-        VelocityTaterLibPlugin.proxyServer = (ProxyServer) server;
-
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
     }
@@ -83,6 +76,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         // Register listeners
+        PluginContainer plugin = (PluginContainer) Loader.instance().plugin();
+        ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
         EventManager eventManager = proxyServer.getEventManager();
         eventManager.register(plugin, new VelocityPlayerListener());
         eventManager.register(plugin, new VelocityPluginMessageListener());

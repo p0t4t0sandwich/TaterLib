@@ -16,9 +16,9 @@ import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.NEOFORGE)
                 .ifPresent(
                         api ->

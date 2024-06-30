@@ -36,18 +36,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     }
 
     /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param plugin The plugin.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin) {
-        super(player);
-        this.player = player;
-        this.plugin = plugin;
-    }
-
-    /**
      * Gets the Bukkit player
      *
      * @return The Bukkit player
@@ -97,12 +85,12 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     public void sendPluginMessage(String channel, byte[] data) {
         // TODO: Create some different way to send plugin messages
         throw new VersionFeatureNotSupportedException();
-        //        player.sendPluginMessage(plugin, channel, data);
+        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
     }
 
     public void sendPluginMessage(Plugin plugin, String channel, byte[] data) {
         throw new VersionFeatureNotSupportedException();
-        //        player.sendPluginMessage(plugin, channel, data);
+        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
     }
 
     /** {@inheritDoc} */

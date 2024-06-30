@@ -10,6 +10,7 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_11.sponge.event.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_11.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_11.sponge.listeners.block.SpongeBlockListener;
@@ -25,23 +26,10 @@ import org.spongepowered.api.plugin.PluginContainer;
 import java.util.concurrent.TimeUnit;
 
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    private static PluginContainer container;
-
-    /**
-     * Gets the instance of the plugin
-     *
-     * @return The instance of the plugin
-     */
-    public static PluginContainer getInstance() {
-        return container;
-    }
-
     @Override
-    public void onInit(Object plugin, Object server) {
-        container = (PluginContainer) plugin;
-
+    public void onInit() {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));
     }
@@ -50,6 +38,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     public void onEnable() {
         if (TaterAPIProvider.isPrimaryPlatform(Platform.SPONGE)) {
             // Register listeners
+            PluginContainer container = (PluginContainer) Loader.instance().plugin();
             EventManager eventManager = Sponge.getEventManager();
             eventManager.registerListeners(container, new SpongeBlockListener());
             Sponge.getScheduler()

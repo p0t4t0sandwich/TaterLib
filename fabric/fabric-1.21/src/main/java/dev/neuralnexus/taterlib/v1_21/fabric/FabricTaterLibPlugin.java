@@ -29,9 +29,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.FABRIC)
                 .ifPresent(api -> api.setServer(VanillaServer::instance));
 

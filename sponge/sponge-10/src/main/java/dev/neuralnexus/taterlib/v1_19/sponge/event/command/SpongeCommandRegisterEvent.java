@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge.event.command;
 
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_19.sponge.command.SpongeCommandWrapper;
 
 import net.kyori.adventure.text.Component;
@@ -27,9 +28,9 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
 
     /** {@inheritDoc} */
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
+    public void registerCommand(Command command, String... aliases) {
         event.register(
-                (PluginContainer) plugin,
+                (PluginContainer) Loader.instance().plugin(),
                 org.spongepowered.api.command.Command.builder()
                         .executor(new SpongeCommandWrapper(command::execute, command.name()))
                         .permission(command.permission())

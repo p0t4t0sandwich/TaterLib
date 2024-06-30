@@ -48,7 +48,6 @@ public class FabricBrigadierCommandRegisterEvent
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<ServerCommandSource> node,
-            Object plugin,
             String commandName,
             String... aliases) {
         dispatcher.register(node);

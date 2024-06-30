@@ -16,6 +16,7 @@ dependencies {
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
+    compileOnly(project(':bukkit:bukkit-utils'))
 }
 
 tasks.withType(ProcessResources).configureEach {

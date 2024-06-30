@@ -46,10 +46,7 @@ public class ForgeBrigadierCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSource> node,
-            Object plugin,
-            String commandName,
-            String... aliases) {
+            LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
         event.getDispatcher().register(node);
         for (String alias : aliases) {
             event.getDispatcher().register(literal(alias).redirect(node.build()));

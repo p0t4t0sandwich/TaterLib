@@ -12,12 +12,13 @@ import com.velocitypowered.api.command.BrigadierCommand;
 import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
+import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.taterlib.command.CommandSender;
 import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent
@@ -55,13 +56,15 @@ public class VelocityBrigadierCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSource> node,
-            Object plugin,
-            String commandName,
-            String... aliases) {
-        CommandManager commandManager = VelocityTaterLibPlugin.proxyServer.getCommandManager();
+            LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
+        CommandManager commandManager =
+                ((ProxyServer) Loader.instance().server()).getCommandManager();
         CommandMeta commandMeta =
-                commandManager.metaBuilder(commandName).aliases(aliases).plugin(plugin).build();
+                commandManager
+                        .metaBuilder(commandName)
+                        .aliases(aliases)
+                        .plugin(Loader.instance().plugin())
+                        .build();
         commandManager.register(commandMeta, new BrigadierCommand(node));
     }
 }

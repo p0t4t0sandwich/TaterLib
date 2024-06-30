@@ -24,7 +24,7 @@ public interface TaterLibPlugin extends Plugin {
     }
 
     @Override
-    default void start(Object plugin, Object server) {
+    default void start() {
         logger().info(
                         TaterLib.Constants.PROJECT_NAME
                                 + " is running on "
@@ -32,7 +32,7 @@ public interface TaterLibPlugin extends Plugin {
                                 + " "
                                 + TaterAPIProvider.minecraftVersion()
                                 + "!");
-        TaterLib.start(plugin, server);
+        TaterLib.start();
     }
 
     @Override

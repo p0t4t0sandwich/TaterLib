@@ -26,14 +26,14 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         MinecraftVersion mcv = TaterAPIProvider.minecraftVersion();
         if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_1)) {
             TaterAPIProvider.addHook(new ForgePermissionsHook());
         } else {
             TaterAPIProvider.addHook(new ForgePermissionsHook_1_18_2());
         }
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.FORGE)
                 .ifPresent(
                         api ->

@@ -40,7 +40,7 @@ public class MCLogsModule implements PluginModule {
                         } else if (TaterAPIProvider.platform().isVelocityBased()) {
                             command.setName("vmclogs");
                         }
-                        event.registerCommand(TaterLib.plugin(), command);
+                        event.registerCommand(command);
                     });
         }
     }

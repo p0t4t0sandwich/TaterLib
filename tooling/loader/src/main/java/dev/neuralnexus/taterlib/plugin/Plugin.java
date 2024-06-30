@@ -35,13 +35,13 @@ public interface Plugin {
     }
 
     /** Start the plugin. */
-    void start(Object plugin, Object server);
+    void start();
 
     /** Stop the plugin. */
-    void stop();
+    default void stop() {}
 
     /** Initialize platform-specific implementations. */
-    default void onInit(Object plugin, Object server) {}
+    default void onInit() {}
 
     /** Enable platform-specific implementations. */
     default void onEnable() {}

@@ -52,7 +52,6 @@ public class VanillaCommandRegisterEvent
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSourceStack> node,
-            Object plugin,
             String commandName,
             String... aliases) {
         dispatcher.register(node);
@@ -82,7 +81,7 @@ public class VanillaCommandRegisterEvent
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
+    public void registerCommand(Command command, String... aliases) {
         final LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder =
                 SimpleBrigadierWrapper.wrapCommand(this, command);
         dispatcher.register(literalArgumentBuilder);

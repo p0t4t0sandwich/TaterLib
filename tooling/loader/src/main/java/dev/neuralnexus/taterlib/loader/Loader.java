@@ -17,6 +17,8 @@ import dev.neuralnexus.taterlib.plugin.Plugin;
 import dev.neuralnexus.taterlib.plugin.PluginModule;
 import dev.neuralnexus.taterlib.plugin.impl.ModuleLoaderImpl;
 
+import org.jetbrains.annotations.ApiStatus;
+
 import java.util.List;
 import java.util.Map;
 
@@ -43,18 +45,23 @@ public interface Loader {
     }
 
     /** Get the platform's server/plugin/container. */
+    @ApiStatus.Internal
     Object plugin();
 
     /** Get the platform's server. */
+    @ApiStatus.Internal
     Object server();
 
     /** Get the collection of plugins. */
+    @ApiStatus.Internal
     List<Plugin> plugins();
 
     /** Get the plugin modules. */
+    @ApiStatus.Internal
     Map<String, ModuleLoader> pluginModules();
 
     /** Register a plugin. */
+    @ApiStatus.Internal
     default void registerPlugin(Plugin plugin) {
         if (plugin == null) {
             return;
@@ -63,6 +70,7 @@ public interface Loader {
     }
 
     /** Unregister a plugin. */
+    @ApiStatus.Internal
     default void unregisterPlugin(String pluginId) {
         if (plugins().stream().noneMatch(p -> p.id().equals(pluginId))) {
             throw new IllegalArgumentException(
@@ -72,11 +80,13 @@ public interface Loader {
     }
 
     /** Unregister a plugin. */
+    @ApiStatus.Internal
     default void unregisterPlugin(Plugin plugin) {
         unregisterPlugin(plugin.id());
     }
 
     /** Register a plugin module */
+    @ApiStatus.Internal
     default void registerPluginModule(String pluginId, PluginModule module) {
         if (!pluginModules().containsKey(pluginId)) {
             pluginModules().put(pluginId, new ModuleLoaderImpl());
@@ -85,11 +95,13 @@ public interface Loader {
     }
 
     /** Register a plugin module */
+    @ApiStatus.Internal
     default void registerPluginModule(Plugin plugin, PluginModule module) {
         registerPluginModule(plugin.id(), module);
     }
 
     /** Unregister a plugin module */
+    @ApiStatus.Internal
     default void unregisterPluginModule(String pluginId, String moduleId) {
         if (pluginModules().containsKey(pluginId)) {
             pluginModules().get(pluginId).unregisterModule(moduleId);
@@ -97,26 +109,31 @@ public interface Loader {
     }
 
     /** Unregister a plugin module */
+    @ApiStatus.Internal
     default void unregisterPluginModule(Plugin plugin, String moduleId) {
         unregisterPluginModule(plugin.id(), moduleId);
     }
 
     /** Unregister a plugin module */
+    @ApiStatus.Internal
     default void unregisterPluginModule(String pluginId, PluginModule module) {
         unregisterPluginModule(pluginId, module.name());
     }
 
     /** Unregister a plugin module */
+    @ApiStatus.Internal
     default void unregisterPluginModule(Plugin plugin, PluginModule module) {
         unregisterPluginModule(plugin.id(), module.name());
     }
 
     /** Run Init on all plugins. */
+    @ApiStatus.Internal
     default void onInit() {
-        plugins().forEach(p -> p.onInit(plugin(), plugin()));
+        plugins().forEach(Plugin::onInit);
     }
 
     /** Run Enable on all plugins. */
+    @ApiStatus.Internal
     default void onEnable() {
         PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         plugins()
@@ -139,6 +156,7 @@ public interface Loader {
     }
 
     /** Run Disable on all plugins. */
+    @ApiStatus.Internal
     default void onDisable() {
         plugins()
                 .forEach(

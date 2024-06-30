@@ -26,9 +26,9 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.FORGE)
                 .ifPresent(
                         api ->

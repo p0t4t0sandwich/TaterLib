@@ -6,12 +6,13 @@
 
 package dev.neuralnexus.taterlib.velocity.v3_3_0.player;
 
+import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;
@@ -59,8 +60,9 @@ public class VelocityPlayer implements ProxyPlayer {
      */
     @Override
     public void connect(String serverName) {
-        if (!VelocityTaterLibPlugin.proxyServer.getServer(serverName).isPresent()) return;
-        RegisteredServer server = VelocityTaterLibPlugin.proxyServer.getServer(serverName).get();
+        ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
+        if (!proxyServer.getServer(serverName).isPresent()) return;
+        RegisteredServer server = proxyServer.getServer(serverName).get();
         player.createConnectionRequest(server).fireAndForget();
     }
 

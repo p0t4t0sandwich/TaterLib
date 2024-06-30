@@ -6,23 +6,17 @@
 
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.event.command;
 
+import static dev.neuralnexus.taterlib.bukkit.utils.reflection.Utils.getCommandMap;
+
 import dev.neuralnexus.taterlib.command.Command;
 import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.command.BukkitCommandWrapper;
-
-import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /** Bukkit implementation of {@link CommandRegisterEvent}. */
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
     /** {@inheritDoc} */
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
-        JavaPlugin bukkitPlugin = (JavaPlugin) plugin;
-        PluginCommand bukkitCommand = bukkitPlugin.getCommand(command.name());
-        if (bukkitCommand == null) {
-            throw new IllegalArgumentException("Command not found.");
-        }
-        bukkitCommand.setExecutor(new BukkitCommandWrapper(command::execute));
+    public void registerCommand(Command command, String... aliases) {
+        getCommandMap().register(command.name(), new BukkitCommandWrapper(command));
     }
 }

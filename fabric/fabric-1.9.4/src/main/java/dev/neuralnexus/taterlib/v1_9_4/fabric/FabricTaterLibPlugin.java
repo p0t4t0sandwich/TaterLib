@@ -35,9 +35,9 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     public static MinecraftServer minecraftServer;
 
     @Override
-    public void onInit(Object plugin, Object server) {
+    public void onInit() {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.FABRIC)
                 .ifPresent(api -> api.setServer(() -> new FabricServer(minecraftServer)));
 

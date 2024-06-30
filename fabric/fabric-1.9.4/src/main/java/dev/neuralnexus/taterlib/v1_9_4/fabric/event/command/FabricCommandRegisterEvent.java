@@ -24,7 +24,7 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent {
 
     /** {@inheritDoc} */
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
+    public void registerCommand(Command command, String... aliases) {
         manager.register(new FabricCommandWrapper(command), aliases);
     }
 }

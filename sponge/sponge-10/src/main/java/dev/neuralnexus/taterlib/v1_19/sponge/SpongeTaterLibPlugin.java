@@ -25,11 +25,9 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     private PluginContainer container;
 
     @Override
-    public void onInit(Object plugin, Object server) {
-        container = (PluginContainer) plugin;
-
+    public void onInit() {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
-        start(plugin, server);
+        start();
         TaterAPIProvider.api(Platform.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.server())));
     }

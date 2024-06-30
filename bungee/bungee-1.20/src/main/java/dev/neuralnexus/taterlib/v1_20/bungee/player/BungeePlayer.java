@@ -20,7 +20,6 @@ import java.util.UUID;
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer {
     private final ProxiedPlayer player;
-    private String serverName;
 
     /**
      * Constructor.

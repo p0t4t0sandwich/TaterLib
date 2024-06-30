@@ -14,9 +14,8 @@ public interface CommandRegisterEvent extends Event {
     /**
      * Registers a command.
      *
-     * @param plugin The plugin.
      * @param command The command.
      * @param aliases The aliases of the command.
      */
-    void registerCommand(Object plugin, Command command, String... aliases);
+    void registerCommand(Command command, String... aliases);
 }

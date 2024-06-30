@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.player.SimplePlayer;
 import dev.neuralnexus.taterlib.server.ProxyServer;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link ProxyServer}. */
 public class VelocityProxyServer implements ProxyServer {
-    private static final com.velocitypowered.api.proxy.ProxyServer server =
-            VelocityTaterLibPlugin.proxyServer;
     private static VelocityProxyServer instance;
 
     /**
@@ -42,7 +40,7 @@ public class VelocityProxyServer implements ProxyServer {
      */
     @ApiStatus.Internal
     public static com.velocitypowered.api.proxy.ProxyServer server() {
-        return server;
+        return (com.velocitypowered.api.proxy.ProxyServer) Loader.instance().server();
     }
 
     /** {@inheritDoc} */
@@ -55,7 +53,7 @@ public class VelocityProxyServer implements ProxyServer {
     /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server.getAllPlayers().stream()
+        return server().getAllPlayers().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());
     }
@@ -63,7 +61,7 @@ public class VelocityProxyServer implements ProxyServer {
     /** {@inheritDoc} */
     @Override
     public List<Server> servers() {
-        return server.getAllServers().stream()
+        return server().getAllServers().stream()
                 .map(VelocityServer::new)
                 .collect(Collectors.toList());
     }

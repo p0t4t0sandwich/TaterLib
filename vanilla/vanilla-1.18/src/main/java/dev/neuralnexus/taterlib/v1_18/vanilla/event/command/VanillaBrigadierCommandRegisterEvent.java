@@ -49,7 +49,6 @@ public class VanillaBrigadierCommandRegisterEvent
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSourceStack> node,
-            Object plugin,
             String commandName,
             String... aliases) {
         dispatcher.register(node);

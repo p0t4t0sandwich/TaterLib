@@ -77,7 +77,7 @@ public class CoreModule implements PluginModule {
                         } else if (TaterAPIProvider.platform().isVelocityBased()) {
                             command.setName("v" + command.name());
                         }
-                        event.registerCommand(TaterLib.plugin(), command);
+                        event.registerCommand(command);
                     });
         }
     }

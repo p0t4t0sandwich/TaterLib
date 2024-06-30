@@ -7,10 +7,10 @@
 package dev.neuralnexus.taterlib.v1_8.sponge.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.v1_8.sponge.SpongeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.v1_8.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.v1_8.sponge.server.SpongeServer;
@@ -90,7 +90,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
     public void sendPluginMessage(String channel, byte[] data) {
         ChannelRegistrar channelRegistrar = Sponge.getChannelRegistrar();
         ChannelBinding.RawDataChannel channelBinding =
-                channelRegistrar.getOrCreateRaw(SpongeTaterLibPlugin.getInstance(), channel);
+                channelRegistrar.getOrCreateRaw(Loader.instance().plugin(), channel);
         channelBinding.sendTo(player, (buffer) -> buffer.writeBytes(data));
     }
 

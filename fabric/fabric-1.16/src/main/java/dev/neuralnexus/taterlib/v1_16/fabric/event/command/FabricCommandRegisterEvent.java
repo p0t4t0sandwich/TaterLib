@@ -51,7 +51,6 @@ public class FabricCommandRegisterEvent
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<ServerCommandSource> node,
-            Object plugin,
             String commandName,
             String... aliases) {
         dispatcher.register(node);
@@ -81,7 +80,7 @@ public class FabricCommandRegisterEvent
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
+    public void registerCommand(Command command, String... aliases) {
         final LiteralArgumentBuilder<ServerCommandSource> literalArgumentBuilder =
                 SimpleBrigadierWrapper.wrapCommand(this, command);
         dispatcher.register(literalArgumentBuilder);

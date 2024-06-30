@@ -49,10 +49,7 @@ public class ForgeCommandRegisterEvent
     /** {@inheritDoc} */
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSource> node,
-            Object plugin,
-            String commandName,
-            String... aliases) {
+            LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
         event.getDispatcher().register(node);
         for (String alias : aliases) {
             event.getDispatcher().register(literal(alias).redirect(node.build()));
@@ -80,7 +77,7 @@ public class ForgeCommandRegisterEvent
     /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
-    public void registerCommand(Object plugin, Command command, String... aliases) {
+    public void registerCommand(Command command, String... aliases) {
         final LiteralArgumentBuilder<CommandSource> commandNode =
                 SimpleBrigadierWrapper.wrapCommand(this, command);
         event.getDispatcher().register(commandNode);

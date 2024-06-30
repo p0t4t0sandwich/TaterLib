@@ -19,8 +19,6 @@ public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
-    private Object plugin;
-    private Object server;
 
     /**
      * Get if the plugin has reloaded
@@ -41,33 +39,6 @@ public class TaterLib {
     }
 
     /**
-     * Get the plugin
-     *
-     * @return The plugin
-     */
-    public static Object plugin() {
-        return instance.plugin;
-    }
-
-    /**
-     * Set the plugin
-     *
-     * @param plugin The plugin
-     */
-    private static void setPlugin(Object plugin) {
-        instance.plugin = plugin;
-    }
-
-    /**
-     * Set the plugin server
-     *
-     * @param server The plugin server
-     */
-    private static void setPluginServer(Object server) {
-        instance.server = server;
-    }
-
-    /**
      * Get the logger
      *
      * @return The logger
@@ -78,16 +49,8 @@ public class TaterLib {
 
     /**
      * Start
-     *
-     * @param plugin The plugin
-     * @param server The plugin server
      */
-    public static void start(Object plugin, Object server) {
-        if (server != null) {
-            setPluginServer(server);
-        }
-        setPlugin(plugin);
-
+    public static void start() {
         // Set up bStats
         TaterLibMetrics.initialize();
 
@@ -135,7 +98,7 @@ public class TaterLib {
         stop();
 
         // Start
-        start(instance.plugin, instance.server);
+        start();
 
         logger().info(Constants.PROJECT_NAME + " has been reloaded!");
     }

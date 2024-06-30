@@ -172,6 +172,7 @@ tasks.register('build_api', Jar) {
 tasks.register('build_monojar', Jar) {
     var platformVersions = [:]
     platformVersions.put("bukkit", Arrays.asList(
+            "utils",
             "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
             "1.8.8", "1.13.2", "1.15.2", "1.20"))
     platformVersions.put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))

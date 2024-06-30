@@ -7,10 +7,10 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.player;
 
 import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.player.GameMode;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.server.Server;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.BukkitTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.server.BukkitServer;
@@ -25,7 +25,6 @@ import java.util.UUID;
 /** Bukkit implementation of {@link Player}. */
 public class BukkitPlayer extends BukkitLivingEntity implements Player {
     private final org.bukkit.entity.Player player;
-    private Plugin plugin = BukkitTaterLibPlugin.plugin;
 
     /**
      * Constructor.
@@ -35,18 +34,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     public BukkitPlayer(org.bukkit.entity.Player player) {
         super(player);
         this.player = player;
-    }
-
-    /**
-     * Constructor.
-     *
-     * @param player The Bukkit player.
-     * @param plugin The plugin.
-     */
-    public BukkitPlayer(org.bukkit.entity.Player player, Plugin plugin) {
-        super(player);
-        this.player = player;
-        this.plugin = plugin;
     }
 
     /**
@@ -97,7 +84,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(String channel, byte[] data) {
-        player.sendPluginMessage(plugin, channel, data);
+        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
     }
 
     public void sendPluginMessage(Plugin source, String channel, byte[] data) {

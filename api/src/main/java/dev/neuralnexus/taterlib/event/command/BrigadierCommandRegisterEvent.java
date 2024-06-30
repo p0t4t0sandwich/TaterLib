@@ -34,8 +34,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      *
      * @param node The node.
      */
-    void registerCommand(
-            LiteralArgumentBuilder<S> node, Object plugin, String commandName, String... aliases);
+    void registerCommand(LiteralArgumentBuilder<S> node, String commandName, String... aliases);
 
     /**
      * Get the sender.

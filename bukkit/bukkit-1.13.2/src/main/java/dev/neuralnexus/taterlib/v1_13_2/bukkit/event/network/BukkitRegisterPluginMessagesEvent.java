@@ -7,10 +7,11 @@
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network;
 
 import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
-import dev.neuralnexus.taterlib.v1_13_2.bukkit.BukkitTaterLibPlugin;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.network.BukkitPluginMessageListener;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.Messenger;
 
 import java.util.Set;
@@ -20,10 +21,10 @@ public class BukkitRegisterPluginMessagesEvent implements RegisterPluginMessages
     /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
+        Plugin plugin = (Plugin) Loader.instance().plugin();
         Messenger messenger = Bukkit.getServer().getMessenger();
-        messenger.registerIncomingPluginChannel(
-                BukkitTaterLibPlugin.plugin, channel, new BukkitPluginMessageListener());
-        messenger.registerOutgoingPluginChannel(BukkitTaterLibPlugin.plugin, channel);
+        messenger.registerIncomingPluginChannel(plugin, channel, new BukkitPluginMessageListener());
+        messenger.registerOutgoingPluginChannel(plugin, channel);
     }
 
     /** {@inheritDoc} */

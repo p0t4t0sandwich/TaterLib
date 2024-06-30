@@ -6,10 +6,11 @@
 
 package dev.neuralnexus.taterlib.velocity.v3_3_0.event.network;
 
+import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
 import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin;
+import dev.neuralnexus.taterlib.loader.Loader;
 
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class VelocityRegisterPluginMessagesEvent implements RegisterPluginMessag
     /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
-        VelocityTaterLibPlugin.proxyServer
+        ((ProxyServer) Loader.instance().server())
                 .getChannelRegistrar()
                 .register(MinecraftChannelIdentifier.from(channel));
     }

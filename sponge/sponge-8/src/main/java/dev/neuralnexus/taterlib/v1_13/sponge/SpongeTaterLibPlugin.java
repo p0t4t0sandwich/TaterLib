@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_13.sponge;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_13.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_13.sponge.listeners.block.SpongeBlockListener;
 import dev.neuralnexus.taterlib.v1_13.sponge.listeners.command.SpongeCommandListener;
@@ -22,14 +23,10 @@ import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
 
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    private PluginContainer container;
-
     @Override
-    public void onInit(Object plugin, Object server) {
-        container = (PluginContainer) plugin;
-
+    public void onInit() {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
-        start(container, server);
+        start();
         TaterAPIProvider.api(Platform.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.server())));
     }
@@ -38,6 +35,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     public void onEnable() {
         if (TaterAPIProvider.isPrimaryPlatform(Platform.SPONGE)) {
             // Register listeners
+            PluginContainer container = (PluginContainer) Loader.instance().plugin();
             EventManager eventManager = Sponge.eventManager();
             eventManager.registerListeners(container, new SpongeBlockListener());
             eventManager.registerListeners(container, new SpongeCommandListener());
