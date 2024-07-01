@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
-import dev.neuralnexus.taterlib.depdownloader.DepDownloader;
+import dev.neuralnexus.taterlib.depdownloader.DepClassLoader;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.custom.TaterLibMetrics;
@@ -55,14 +55,16 @@ public class TaterLib {
 
     /** Start */
     public static void start() {
-//        try {
-//            String[] repos = new String[] {"https://maven.neuralnexus.dev/releases"};
-//            Map<String, String> deps = new HashMap<>();
-//            deps.put("dev.neuralnexus:entrypoint-spoof:0.1.10", "da2d84225632f761d49bd1bba75f132d");
-//            new DepDownloader(repos, deps).downloadAll();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        try {
+            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
+            Map<String, String> deps = new HashMap<>();
+            deps.put("gs.mclo:api:3.0.1", "a0f52bb4002f4fe958e9c7af8d2e34fb");
+            DepClassLoader depClassLoader = new DepClassLoader(TaterLib.class.getClassLoader(), repos, deps);
+            depClassLoader.downloadAll();
+            depClassLoader.addDepsToClasspath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // Set up bStats
         TaterLibMetrics.initialize();

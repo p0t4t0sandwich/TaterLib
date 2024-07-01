@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class DepDownloader {
     private final String[] repos;
-    private final Map<String, String> deps;
+    final Map<String, String> deps;
 
     public DepDownloader(String[] repos, Map<String, String> deps) {
         this.repos = repos;
@@ -51,7 +51,7 @@ public class DepDownloader {
                     if (!repo.endsWith("/")) {
                         repo += "/";
                     }
-                    URL url = new URL(String.format("%s/%s", repo, getMavenCoords(dependency)));
+                    URL url = new URL(repo + getMavenCoords(dependency));
                     try {
                         downloadDep(url, jarPath);
                         if (checkMd5(jarPath, deps.get(dependency))) {
@@ -85,8 +85,8 @@ public class DepDownloader {
     public String getMavenCoords(String dependency) {
         String[] parts = dependency.split(":");
         return String.format(
-                "%s/%s/%s/%s/%s-%s.jar",
-                parts[0].replace(".", "/"), parts[1], parts[2], parts[1], parts[2], parts[1]);
+                "%s/%s/%s/%s-%s.jar",
+                parts[0].replace(".", "/"), parts[1], parts[2], parts[1], parts[2]);
     }
 
     /**

@@ -49,7 +49,7 @@ shadowJar {
         include(dependency('com.google.guava:guava:33.0.0-jre'))
 
         // MCLogs
-        include(dependency('gs.mclo:api:3.0.1'))
+//        include(dependency('gs.mclo:api:3.0.1'))
     }
     // Configurate
     relocate('org.spongepowered.configurate', 'dev.neuralnexus.taterlib.lib.configurate')
@@ -67,7 +67,7 @@ shadowJar {
     relocate('com.google.thirdparty', 'dev.neuralnexus.taterlib.lib.google.thirdparty')
 
     // MCLogs
-    relocate("gs.mclo", 'dev.neuralnexus.taterlib.lib.mclogs')
+//    relocate("gs.mclo", 'dev.neuralnexus.taterlib.lib.mclogs')
 
     minimize()
 
