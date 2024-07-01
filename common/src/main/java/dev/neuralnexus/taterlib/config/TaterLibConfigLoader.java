@@ -32,7 +32,7 @@ public class TaterLibConfigLoader {
             Paths.get(
                     TaterAPIProvider.platformData().configFolder()
                             + File.separator
-                            + TaterLib.Constants.PROJECT_NAME
+                            + TaterLib.Constants.PROJECT_ID
                             + File.separator
                             + TaterLib.Constants.PROJECT_ID
                             + ".conf");

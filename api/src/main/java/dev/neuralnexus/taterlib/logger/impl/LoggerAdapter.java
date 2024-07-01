@@ -19,7 +19,7 @@ public class LoggerAdapter implements Logger {
     }
 
     public LoggerAdapter(String pluginId, Object logger) {
-        this("[" + pluginId + "]", pluginId, logger);
+        this("[" + pluginId + "] ", pluginId, logger);
     }
 
     public LoggerAdapter(String prefix, String PROJECT_ID, Object logger) {

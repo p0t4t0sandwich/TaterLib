@@ -8,17 +8,23 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
+import dev.neuralnexus.taterlib.depdownloader.DepDownloader;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.custom.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
+    private static final Logger logger =
+            Loader.instance().platformData().logger(Constants.PROJECT_ID);
 
     /**
      * Get if the plugin has reloaded
@@ -44,13 +50,20 @@ public class TaterLib {
      * @return The logger
      */
     public static Logger logger() {
-        return Loader.instance().platformData().logger(Constants.PROJECT_ID);
+        return logger;
     }
 
-    /**
-     * Start
-     */
+    /** Start */
     public static void start() {
+//        try {
+//            String[] repos = new String[] {"https://maven.neuralnexus.dev/releases"};
+//            Map<String, String> deps = new HashMap<>();
+//            deps.put("dev.neuralnexus:entrypoint-spoof:0.1.10", "da2d84225632f761d49bd1bba75f132d");
+//            new DepDownloader(repos, deps).downloadAll();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
         // Set up bStats
         TaterLibMetrics.initialize();
 
@@ -107,7 +120,7 @@ public class TaterLib {
     public static class Constants {
         public static final String PROJECT_NAME = "TaterLib";
         public static final String PROJECT_ID = "taterlib";
-        public static final String PROJECT_VERSION = "1.1.1-SNAPSHOT";
+        public static final String PROJECT_VERSION = "1.2.0-SNAPSHOT";
         public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
         public static final String PROJECT_DESCRIPTION =
                 "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";

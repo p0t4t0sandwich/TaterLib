@@ -49,7 +49,7 @@ public class CoreModule implements PluginModule {
             TaterAPIProvider.setPlayerDataStore(
                     new PlayerDataStore(
                             new Database.DatabaseConfig(
-                                    TaterLib.Constants.PROJECT_NAME, 0, "playerdata", "", "")));
+                                    TaterLib.Constants.PROJECT_ID, 0, "playerdata", "", "")));
 
             // Register hooks
             ServerEvents.STARTED.register(

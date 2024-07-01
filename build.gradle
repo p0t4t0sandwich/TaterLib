@@ -169,36 +169,36 @@ tasks.register('build_api', Jar) {
     }
 }
 
+var platformVersions = [:]
+platformVersions.put("bukkit", Arrays.asList(
+        "utils",
+        "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
+        "1.8.8", "1.13.2", "1.15.2", "1.20"))
+platformVersions.put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
+platformVersions.put("fabric", Arrays.asList(
+        "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2",
+        "1.14", "1.15", "1.16", "1.17", "1.18",
+        "1.19", "1.19.1", "1.19.3", "1.19.4",
+        "1.20", "1.20.2", "1.20.6", "1.21"))
+platformVersions.put("forge", Arrays.asList(
+        "utils-modern",
+        "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
+        "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
+        "1.18", "1.18.2",
+        "1.19", "1.19.1", "1.19.3", "1.19.4",
+        "1.20", "1.20.2", "1.20.6"))
+platformVersions.put("neoforge", Arrays.asList("1.20.2"))
+platformVersions.put("sponge", Arrays.asList(
+        "4", "5", "6", "7",
+        "8", "9", "10", "11"))
+platformVersions.put("vanilla", Arrays.asList(
+        "1.17", "1.18", "1.18.2",
+        "1.19", "1.19.1", "1.19.3", "1.19.4",
+        "1.20", "1.20.2", "1.20.6", "1.21"))
+platformVersions.put("velocity", Arrays.asList("3"))
+
 // --------------------------- Build MonoJar --------------------------------
 tasks.register('build_monojar', Jar) {
-    var platformVersions = [:]
-    platformVersions.put("bukkit", Arrays.asList(
-            "utils",
-            "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
-            "1.8.8", "1.13.2", "1.15.2", "1.20"))
-    platformVersions.put("bungee", Arrays.asList("1.4.7", "1.8", "1.12", "1.20"))
-    platformVersions.put("fabric", Arrays.asList(
-            "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2",
-            "1.14", "1.15", "1.16", "1.17", "1.18",
-            "1.19", "1.19.1", "1.19.3", "1.19.4",
-            "1.20", "1.20.2", "1.20.6", "1.21"))
-    platformVersions.put("forge", Arrays.asList(
-            "utils-modern",
-            "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
-            "1.12.2", "1.13.2", "1.14.4", "1.15.1", "1.16.3", "1.17.1",
-            "1.18", "1.18.2",
-            "1.19", "1.19.1", "1.19.3", "1.19.4",
-            "1.20", "1.20.2", "1.20.6"))
-    platformVersions.put("neoforge", Arrays.asList("1.20.2"))
-    platformVersions.put("sponge", Arrays.asList(
-            "4", "5", "6", "7",
-            "8", "9", "10", "11"))
-    platformVersions.put("vanilla", Arrays.asList(
-            "1.17", "1.18", "1.18.2",
-            "1.19", "1.19.1", "1.19.3", "1.19.4",
-            "1.20", "1.20.2", "1.20.6", "1.21"))
-    platformVersions.put("velocity", Arrays.asList("3"))
-
     dependsOn(':api:shadowJar')
     dependsOn(':common:shadowJar')
     dependsOn(':tooling:loader:build')
@@ -208,6 +208,46 @@ tasks.register('build_monojar', Jar) {
         }
     }
 
+    String mc_version = 'b1.7.3-1.21'
+    archiveFileName = "${project_id}-${version}.jar"
+    destinationDirectory = file("./build/libs")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Specification-Title': "${project_name} ${mc_version}",
+                'Specification-Version': version,
+                'Specification-Vendor': 'NeuralNexus',
+                'Implementation-Version': version,
+                'Implementation-Vendor': 'NeuralNexus',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'FMLCorePluginContainsFMLMod': 'true',
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': "" +
+                        "taterlib.mixins.v1_17_1.forge.json," +
+                        "taterlib.mixins.v1_18.forge.json," +
+                        "taterlib.mixins.v1_19.forge.json," +
+                        "taterlib.mixins.v1_19_1.forge.patch.json," +
+                        "taterlib.mixins.v1_19_3.forge.patch.json." +
+                        "taterlib.mixins.v1_19_4.forge.patch.json." +
+                        "taterlib.mixins.v1_20.vanilla.json," +
+                        "taterlib.mixins.v1_20.forge.json," +
+                        "taterlib.mixins.v1_20_2.vanilla.patch.json," +
+                        "taterlib.mixins.v1_20_2.vanilla.json," +
+                        "taterlib.mixins.v1_20_2.forge.json," +
+                        "taterlib.mixins.v1_20_6.vanilla.patch.json," +
+                        "taterlib.mixins.v1_20_6.vanilla.json"
+    }
+
+    from(["README.md", "LICENSE", "LICENSE-API"]) {
+        into("META-INF")
+    }
+    from {
+        bundleJars(platformVersions)
+    }
+}
+
+// --------------------------- Build Dev --------------------------------
+tasks.register('build_dev', Jar) {
     String mc_version = 'b1.7.3-1.21'
     archiveFileName = "${project_id}-${version}.jar"
     destinationDirectory = file("./build/libs")
