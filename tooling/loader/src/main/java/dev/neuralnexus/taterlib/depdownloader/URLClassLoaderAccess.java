@@ -13,10 +13,12 @@ import java.net.URLClassLoader;
 import java.util.Collection;
 
 /**
- * The above licencing does not apply, this code inherits the licence from the original source. <br>
  * Provides access to {@link URLClassLoader}#addURL. <br>
+ * The above licencing does not apply, this code inherits the licence from the original source. <br>
+ *
  * @author lucko (Luck) <luck@lucko.me>
- * @link <a href="https://github.com/LuckPerms/LuckPerms/blob/9e7a3d26e4992df88e9eb439fc2760c13ca2785e/common/src/main/java/me/lucko/luckperms/common/plugin/classpath/URLClassLoaderAccess.java#L39">source</a>
+ * @link <a
+ *     href="https://github.com/LuckPerms/LuckPerms/blob/9e7a3d26e4992df88e9eb439fc2760c13ca2785e/common/src/main/java/me/lucko/luckperms/common/plugin/classpath/URLClassLoaderAccess.java#L39">source</a>
  */
 public abstract class URLClassLoaderAccess {
 

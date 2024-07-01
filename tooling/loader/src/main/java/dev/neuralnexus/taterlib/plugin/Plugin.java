@@ -31,7 +31,7 @@ public interface Plugin {
      * @return The plugin's logger.
      */
     default Logger logger() {
-        return Loader.instance().platformData().logger(id());
+        return Loader.instance().logger(id());
     }
 
     /** Start the plugin. */

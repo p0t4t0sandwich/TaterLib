@@ -16,77 +16,64 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 public class DepDownloader {
     private final String[] repos;
-    final Map<String, String> deps;
+    final MavenDependency[] deps;
 
-    public DepDownloader(String[] repos, Map<String, String> deps) {
+    public DepDownloader(String[] repos, Map<String, String> depInfo) {
         this.repos = repos;
-        this.deps = deps;
-    }
-
-    public void downloadAll() {
-        Logger logger = Loader.instance().platformData().logger("taterlib-depdownloader");
-        Path path =
+        this.deps = new MavenDependency[depInfo.size()];
+        int i = 0;
+        Path basePath =
                 TaterAPIProvider.api()
                         .get()
                         .platformData()
-                        .configFolder()
-                        .resolve(LoaderImpl.PROJECT_ID);
-        for (String dependency : deps.keySet()) {
+                        .modFolder()
+                        .resolve(LoaderImpl.PROJECT_ID)
+                        .resolve("libs");
+        for (Map.Entry<String, String> entry : depInfo.entrySet()) {
+            deps[i] = new MavenDependency(entry.getKey(), entry.getValue(), basePath);
+            i++;
+        }
+    }
+
+    /** Downloads all dependencies */
+    public void downloadAll() {
+        Logger logger = Loader.instance().logger("taterlib-depdownloader");
+        for (MavenDependency dep : deps) {
             try {
-                Path jarPath = getJarPath(path, dependency);
-                if (Files.exists(jarPath)) {
-                    if (checkMd5(jarPath, deps.get(dependency))) {
+                if (Files.exists(dep.filePath())) {
+                    if (dep.checkExistingMd5()) {
                         continue;
+                    } else {
+                        logger.warn("MD5 mismatch for " + dep + ", re-downloading");
                     }
-                    Files.delete(jarPath);
-                    logger.warn("MD5 mismatch for " + dependency + ", re-downloading");
                 }
                 for (String repo : repos) {
                     if (!repo.endsWith("/")) {
                         repo += "/";
                     }
-                    URL url = new URL(repo + getMavenCoords(dependency));
+                    URL url = new URL(repo + dep.getMavenUrl());
                     try {
-                        downloadDep(url, jarPath);
-                        if (checkMd5(jarPath, deps.get(dependency))) {
+                        downloadDep(url, dep.filePath());
+                        if (dep.checkMd5()) {
+                            logger.info("Downloaded " + dep + " from " + repo);
                             break;
                         }
-                        Files.delete(jarPath);
-                        logger.warn("MD5 mismatch for " + dependency + ", download aborted");
+                        Files.delete(dep.filePath());
+                        logger.warn("MD5 mismatch for " + dep + ", download aborted");
                     } catch (IOException e) {
-                        Files.deleteIfExists(jarPath);
-                        logger.error("Failed to download " + dependency + " from " + repo);
+                        Files.deleteIfExists(dep.filePath());
+                        logger.error("Failed to download " + dep + " from " + repo);
                     }
                 }
             } catch (IOException | NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
         }
-    }
-
-    public Path getJarPath(Path path, String dependency) {
-        String[] parts = dependency.split(":");
-        String jarName = String.format("%s-%s.jar", parts[1], parts[2]);
-        return path.resolve(jarName);
-    }
-
-    /**
-     * Get the maven coordinates for a dependency
-     *
-     * @param dependency The dependency
-     * @return The maven coordinates
-     */
-    public String getMavenCoords(String dependency) {
-        String[] parts = dependency.split(":");
-        return String.format(
-                "%s/%s/%s/%s-%s.jar",
-                parts[0].replace(".", "/"), parts[1], parts[2], parts[1], parts[2]);
     }
 
     /**
@@ -97,6 +84,9 @@ public class DepDownloader {
      * @throws IOException if an I/O error occurs
      */
     public void downloadDep(URL url, Path path) throws IOException {
+        if (!Files.exists(path.getParent())) {
+            Files.createDirectories(path.getParent());
+        }
         URLConnection uc = url.openConnection();
         int len = uc.getContentLength();
         try (InputStream is = new BufferedInputStream(uc.getInputStream())) {
@@ -120,22 +110,5 @@ public class DepDownloader {
                 throw e;
             }
         }
-    }
-
-    public boolean checkMd5(Path path, String md5) throws NoSuchAlgorithmException, IOException {
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        InputStream is = new BufferedInputStream(Files.newInputStream(path.toFile().toPath()));
-        byte[] dataBytes = new byte[1024];
-        int nread;
-        while ((nread = is.read(dataBytes)) != -1) {
-            md.update(dataBytes, 0, nread);
-        }
-        byte[] mdbytes = md.digest();
-        StringBuffer sb = new StringBuffer();
-        for (byte mdbyte : mdbytes) {
-            sb.append(Integer.toString((mdbyte & 0xff) + 0x100, 16).substring(1));
-        }
-        is.close();
-        return sb.toString().equals(md5);
     }
 }

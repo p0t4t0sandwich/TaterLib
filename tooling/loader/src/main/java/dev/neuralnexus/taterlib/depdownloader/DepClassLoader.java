@@ -6,9 +6,7 @@
 
 package dev.neuralnexus.taterlib.depdownloader;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-
+import java.net.MalformedURLException;
 import java.net.URLClassLoader;
 import java.util.Map;
 
@@ -21,19 +19,10 @@ public class DepClassLoader extends DepDownloader {
     }
 
     public void addDepsToClasspath() {
-        for (String dependency : deps.keySet()) {
+        for (MavenDependency dep : deps) {
             try {
-                access.addURL(
-                        getJarPath(
-                                TaterAPIProvider.api()
-                                        .get()
-                                        .platformData()
-                                        .configFolder()
-                                        .resolve(LoaderImpl.PROJECT_ID),
-                                dependency)
-                                .toUri()
-                                .toURL());
-            } catch (Exception e) {
+                access.addURL(dep.filePath().toUri().toURL());
+            } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
         }

@@ -12,6 +12,7 @@ import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 import dev.neuralnexus.taterlib.plugin.PluginModule;
@@ -42,6 +43,16 @@ public interface Loader {
     /** Get the platform's Minecraft version. */
     default MinecraftVersion minecraftVersion() {
         return platformData().minecraftVersion();
+    }
+
+    /**
+     * Get the platform's logger.
+     *
+     * @param name The name of the logger
+     * @return The logger
+     */
+    default Logger logger(String name) {
+        return platformData().logger(name);
     }
 
     /** Get the platform's server/plugin/container. */
