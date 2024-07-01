@@ -27,7 +27,7 @@ public interface Loader {
     static Loader instance() {
         Loader ret = LoaderImpl.getInstance();
         if (ret == null) {
-            throw new IllegalStateException("Loader instance not initialized");
+            throw new IllegalStateException("TaterLib Loader instance not initialized");
         }
         return ret;
     }

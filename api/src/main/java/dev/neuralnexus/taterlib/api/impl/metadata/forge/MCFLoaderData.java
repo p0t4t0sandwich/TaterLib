@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.GenericApacheLogger;
+import dev.neuralnexus.taterlib.logger.impl.ApacheLogger;
 
 import net.minecraftforge.fml.common.Loader;
 
@@ -51,6 +51,6 @@ public class MCFLoaderData implements PlatformData {
 
     @Override
     public Logger logger(String pluginId) {
-        return new GenericApacheLogger(LogManager.getLogger(pluginId));
+        return new ApacheLogger(LogManager.getLogger(pluginId));
     }
 }

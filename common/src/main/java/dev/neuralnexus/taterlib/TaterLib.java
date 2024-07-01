@@ -23,8 +23,7 @@ public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean STARTED = false;
     private static boolean RELOADED = false;
-    private static final Logger logger =
-            Loader.instance().logger(Constants.PROJECT_ID);
+    private static final Logger logger = Loader.instance().logger(Constants.PROJECT_ID);
 
     /**
      * Get if the plugin has reloaded

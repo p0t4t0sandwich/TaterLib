@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.logger.impl;
 
 import dev.neuralnexus.taterlib.logger.Logger;
 
-public class GenericJavaLogger implements Logger {
+public class JavaLogger implements Logger {
     private final java.util.logging.Logger logger;
 
-    public GenericJavaLogger(Object logger) {
+    public JavaLogger(Object logger) {
         this.logger = (java.util.logging.Logger) logger;
     }
 

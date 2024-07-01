@@ -8,12 +8,12 @@ package dev.neuralnexus.taterlib.logger.impl;
 
 import dev.neuralnexus.taterlib.logger.Logger;
 
-/** A generic SLF4J implementation of the {@link Logger} interface. */
-public class GenericSlf4jLogger implements Logger {
-    private final org.slf4j.Logger logger;
+/** A generic Apache implementation of the {@link Logger} interface. */
+public class ApacheLogger implements Logger {
+    private final org.apache.logging.log4j.Logger logger;
 
-    public GenericSlf4jLogger(Object logger) {
-        this.logger = (org.slf4j.Logger) logger;
+    public ApacheLogger(Object logger) {
+        this.logger = (org.apache.logging.log4j.Logger) logger;
     }
 
     /** {@inheritDoc} */

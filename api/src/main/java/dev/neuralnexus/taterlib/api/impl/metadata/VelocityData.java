@@ -15,7 +15,7 @@ import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.GenericSlf4jLogger;
+import dev.neuralnexus.taterlib.logger.impl.Slf4jLogger;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.slf4j.LoggerFactory;
@@ -57,7 +57,7 @@ public class VelocityData implements PlatformData {
 
     @Override
     public Logger logger(String pluginId) {
-        return new GenericSlf4jLogger(LoggerFactory.getLogger(pluginId));
+        return new Slf4jLogger(LoggerFactory.getLogger(pluginId));
     }
 
     @Override

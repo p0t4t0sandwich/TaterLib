@@ -7,12 +7,11 @@
 package dev.neuralnexus.taterlib.logger.impl;
 
 import dev.neuralnexus.taterlib.Utils;
-import dev.neuralnexus.taterlib.logger.Logger;
 
-/** A generic implementation of the {@link Logger} interface. */
-public class LoggerAdapter implements Logger {
+/** A generic implementation of the {@link dev.neuralnexus.taterlib.logger.Logger} interface. */
+public class LoggerAdapter implements dev.neuralnexus.taterlib.logger.Logger {
     private final String prefix;
-    private final Logger logger;
+    private final dev.neuralnexus.taterlib.logger.Logger logger;
 
     public LoggerAdapter(String pluginId) {
         this(pluginId, new Object());
@@ -47,16 +46,16 @@ public class LoggerAdapter implements Logger {
 
         switch (type) {
             case JAVA:
-                this.logger = new GenericJavaLogger(logger);
+                this.logger = new JavaLogger(logger);
                 break;
             case APACHE:
-                this.logger = new GenericApacheLogger(logger);
+                this.logger = new ApacheLogger(logger);
                 break;
             case SLF4J:
-                this.logger = new GenericSlf4jLogger(logger);
+                this.logger = new Slf4jLogger(logger);
                 break;
             default:
-                this.logger = new GenericLogger(PROJECT_ID);
+                this.logger = new SystemLogger(PROJECT_ID);
                 break;
         }
     }

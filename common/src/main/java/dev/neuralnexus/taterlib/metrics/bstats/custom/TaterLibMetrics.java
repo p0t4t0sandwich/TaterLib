@@ -24,7 +24,7 @@ import java.util.Collections;
 
 /** TaterLib's custom bStats implementation. */
 public class TaterLibMetrics {
-    private static final Logger LOGGER = TaterLib.logger();
+    private static final Logger logger = TaterLib.logger();
     private static final int SERVICE_ID = 21198;
 
     public static void initialize() {
@@ -37,18 +37,18 @@ public class TaterLibMetrics {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), true);
             }
         } catch (IOException e) {
-            LOGGER.error("Failed to create bStats config!", e);
+            logger.error("Failed to create bStats config!", e);
             return;
         }
 
         if (!config.didExistBefore()) {
-            LOGGER.info(
+            logger.info(
                     "TaterLib is collecting metrics and sending them to bStats (https://bstats.org).");
-            LOGGER.info(
+            logger.info(
                     "bStats collects some basic information for plugin authors, like how many people use their plugin and their total player count.");
-            LOGGER.info(
+            logger.info(
                     "It's recommended to keep bStats enabled, but if you're not comfortable with this, you can opt-out by editing the config.txt file in");
-            LOGGER.info(
+            logger.info(
                     "the '/plugins/bStats/' (or '/configs/bstats/' on modded servers) folder and setting enabled to false.");
         }
 
@@ -62,8 +62,8 @@ public class TaterLibMetrics {
                         (appendPlatformData) -> {},
                         null,
                         () -> true,
-                        LOGGER::warn,
-                        LOGGER::info,
+                        logger::warn,
+                        logger::info,
                         config.isLogErrorsEnabled(),
                         config.isLogSentDataEnabled(),
                         config.isLogResponseStatusTextEnabled());

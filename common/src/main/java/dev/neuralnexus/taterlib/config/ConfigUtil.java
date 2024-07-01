@@ -6,7 +6,6 @@
 
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.logger.Logger;
 
 import io.leangen.geantyref.TypeToken;
@@ -23,12 +22,11 @@ import java.util.Objects;
 
 /** Config utilities. */
 public class ConfigUtil {
-    public static CommentedConfigurationNode getRoot(HoconConfigurationLoader loader) {
+    public static CommentedConfigurationNode getRoot(HoconConfigurationLoader loader, Logger logger) {
         try {
             return loader.load();
         } catch (ConfigurateException e) {
-            TaterLib.logger()
-                    .error("An error occurred while loading this configuration: " + e.getMessage());
+            logger.error("An error occurred while loading this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }

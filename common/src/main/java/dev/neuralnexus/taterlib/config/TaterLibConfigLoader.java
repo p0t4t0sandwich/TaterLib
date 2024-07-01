@@ -6,7 +6,6 @@
 
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
@@ -14,6 +13,9 @@ import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterlib.logger.impl.SystemLogger;
 import io.leangen.geantyref.TypeToken;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
@@ -28,16 +30,17 @@ import java.util.List;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
+    private static final Logger logger = new SystemLogger("TaterLibConfigLoader");
     private static final Path configPath =
             Paths.get(
                     TaterAPIProvider.platformData().configFolder()
                             + File.separator
-                            + TaterLib.Constants.PROJECT_ID
+                            + LoaderImpl.PROJECT_ID
                             + File.separator
-                            + TaterLib.Constants.PROJECT_ID
+                            + LoaderImpl.PROJECT_ID
                             + ".conf");
     private static final String defaultConfigPath =
-            "source." + TaterLib.Constants.PROJECT_ID + ".conf";
+            "source." + LoaderImpl.PROJECT_ID + ".conf";
     private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
     private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
     private static final TypeToken<List<ModuleConfig>> moduleType =
@@ -50,21 +53,21 @@ public class TaterLibConfigLoader {
 
     /** Load the configuration from the file. */
     public static void load() {
-        ConfigUtil.copyDefaults(TaterLib.class, configPath, defaultConfigPath, TaterLib.logger());
+        ConfigUtil.copyDefaults(TaterLibConfigLoader.class, configPath, defaultConfigPath, logger);
 
         final HoconConfigurationLoader loader =
                 HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root = ConfigUtil.getRoot(loader);
+        CommentedConfigurationNode root = ConfigUtil.getRoot(loader, logger);
         if (root == null) {
             return;
         }
 
         ConfigurationNode versionNode = root.node("version");
         int version = versionNode.getInt(1);
-        ServerConfig server = ConfigUtil.get(root, serverType, "server", TaterLib.logger());
-        List<ModuleConfig> modules = ConfigUtil.get(root, moduleType, "modules", TaterLib.logger());
-        List<HookConfig> hooks = ConfigUtil.get(root, hookType, "hooks", TaterLib.logger());
-        List<MixinConfig> mixins = ConfigUtil.get(root, mixinType, "mixins", TaterLib.logger());
+        ServerConfig server = ConfigUtil.get(root, serverType, "server", logger);
+        List<ModuleConfig> modules = ConfigUtil.get(root, moduleType, "modules", logger);
+        List<HookConfig> hooks = ConfigUtil.get(root, hookType, "hooks", logger);
+        List<MixinConfig> mixins = ConfigUtil.get(root, mixinType, "mixins", logger);
 
         switch (version) {
             case 1:
@@ -87,21 +90,21 @@ public class TaterLibConfigLoader {
         }
         final HoconConfigurationLoader loader =
                 HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root = ConfigUtil.getRoot(loader);
+        CommentedConfigurationNode root = ConfigUtil.getRoot(loader, logger);
         if (root == null) {
             return;
         }
 
-        ConfigUtil.set(root, versionType, "version", config.version(), TaterLib.logger());
-        ConfigUtil.set(root, serverType, "server", config.server(), TaterLib.logger());
-        ConfigUtil.set(root, moduleType, "modules", config.modules(), TaterLib.logger());
-        ConfigUtil.set(root, hookType, "hooks", config.hooks(), TaterLib.logger());
-        ConfigUtil.set(root, mixinType, "mixins", config.mixins(), TaterLib.logger());
+        ConfigUtil.set(root, versionType, "version", config.version(), logger);
+        ConfigUtil.set(root, serverType, "server", config.server(), logger);
+        ConfigUtil.set(root, moduleType, "modules", config.modules(), logger);
+        ConfigUtil.set(root, hookType, "hooks", config.hooks(), logger);
+        ConfigUtil.set(root, mixinType, "mixins", config.mixins(), logger);
 
         try {
             loader.save(root);
         } catch (ConfigurateException e) {
-            TaterLib.logger()
+            logger
                     .error("An error occurred while saving this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
