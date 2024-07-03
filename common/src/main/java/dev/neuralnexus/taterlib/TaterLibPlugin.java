@@ -25,7 +25,7 @@ public interface TaterLibPlugin extends Plugin {
 
     @Override
     default void start() {
-        logger().info(
+        TaterLib.logger().info(
                         TaterLib.Constants.PROJECT_NAME
                                 + " is running on "
                                 + TaterAPIProvider.platform()
@@ -38,7 +38,7 @@ public interface TaterLibPlugin extends Plugin {
     @Override
     default void stop() {
         TaterLib.stop();
-        logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
+        TaterLib.logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
         PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }

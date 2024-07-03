@@ -18,14 +18,14 @@ public class MCLogsModule implements PluginModule {
     private static boolean STARTED = false;
 
     @Override
-    public String name() {
+    public String id() {
         return "MCLogs";
     }
 
     @Override
-    public void start() {
+    public void onEnable() {
         if (STARTED) {
-            TaterLib.logger().info("Submodule " + name() + " has already started!");
+            TaterLib.logger().info("Submodule " + id() + " has already started!");
             return;
         }
         STARTED = true;
@@ -46,9 +46,9 @@ public class MCLogsModule implements PluginModule {
     }
 
     @Override
-    public void stop() {
+    public void onDisable() {
         if (!STARTED) {
-            TaterLib.logger().info("Submodule " + name() + " has already stopped!");
+            TaterLib.logger().info("Submodule " + id() + " has already stopped!");
             return;
         }
         STARTED = false;

@@ -9,15 +9,15 @@ package dev.neuralnexus.taterlib.plugin;
 /** Module interface. */
 public interface PluginModule {
     /**
-     * Get the name of the module.
+     * Get the module's id.
      *
-     * @return The name of the module
+     * @return The module's id
      */
-    String name();
+    String id();
 
-    /** Start the module. */
-    void start();
+    /** Enable the module. */
+    default void onEnable() {}
 
-    /** Stop the module. */
-    void stop();
+    /** Disable the module. */
+    default void onDisable() {}
 }

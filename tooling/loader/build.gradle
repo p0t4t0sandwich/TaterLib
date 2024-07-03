@@ -11,7 +11,7 @@ tasks.withType(ProcessResources).configureEach {
             'plugin.yml',
             'bungee.yml',
             'fabric.mod.json', "${project.project_id}.mixins.json".toString(),
-            'META-INF/mods.toml', 'mcmod.info', 'pack.mcmeta',
+            'META-INF/mods.toml', 'mcmod.info',
             'META-INF/sponge_plugins.json',
             'velocity-plugin.json'
     ]) {

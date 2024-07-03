@@ -16,7 +16,7 @@ public interface ModuleLoader {
 
     /** Get list of module names. */
     default List<String> moduleNames() {
-        return modules().stream().map(PluginModule::name).collect(Collectors.toList());
+        return modules().stream().map(PluginModule::id).collect(Collectors.toList());
     }
 
     /**
@@ -34,16 +34,16 @@ public interface ModuleLoader {
      * @param moduleName The module.
      */
     default void unregisterModule(String moduleName) {
-        modules().removeIf(module -> module.name().equals(moduleName));
+        modules().removeIf(module -> module.id().equals(moduleName));
     }
 
     /** Start the modules. */
-    default void start() {
-        modules().forEach(PluginModule::start);
+    default void onEnable() {
+        modules().forEach(PluginModule::onEnable);
     }
 
     /** Stop the modules. */
-    default void stop() {
-        modules().forEach(PluginModule::stop);
+    default void onDisable() {
+        modules().forEach(PluginModule::onDisable);
     }
 }
