@@ -31,15 +31,14 @@ public class PlatformDataImpl implements PlatformData {
         } else if (platform.isNeoForgeBased()) {
             INSTANCE = new NeoForgeData();
         } else if (platform.isForgeBased()) {
-            INSTANCE = new ForgeData();
+            INSTANCE = ForgeData.create();
         } else if (platform.isBukkitBased()) {
             INSTANCE = new BukkitData();
         } else if (platform.isSpongeBased()) {
-            INSTANCE = new SpongeData();
+            INSTANCE = SpongeData.create();
         } else if (platform.isVelocityBased()) {
             INSTANCE = new VelocityData();
-        }
-        if (checkForClass("org.spongepowered.asm.service.MixinService")) {
+        } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
             INSTANCE = new VanillaData();
         }
     }

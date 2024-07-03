@@ -217,7 +217,7 @@ public class TaterAPIProvider {
             if (platform.is(Platform.NEOFORGE)) {
                 apis.put(Platform.NEOFORGE, new TaterAPI(new NeoForgeData()));
             } else {
-                TaterAPI forgeApi = new TaterAPI(new ForgeData());
+                TaterAPI forgeApi = new TaterAPI(ForgeData.create());
                 apis.put(platform, forgeApi);
                 apis.put(Platform.FORGE, forgeApi);
             }
@@ -225,12 +225,12 @@ public class TaterAPIProvider {
 
         // Check for SpongeForge, then Sponge
         if (platform.isSpongeBased() && platform.isForgeBased()) {
-            TaterAPI spongeForgeApi = new TaterAPI(new SpongeData(), new ForgeData());
+            TaterAPI spongeForgeApi = new TaterAPI(SpongeData.create(), ForgeData.create());
             apis.put(platform, spongeForgeApi);
             apis.put(Platform.SPONGE_FORGE, spongeForgeApi);
-            apis.put(Platform.SPONGE, new TaterAPI(new SpongeData()));
+            apis.put(Platform.SPONGE, new TaterAPI(SpongeData.create()));
         } else if (platform.isSpongeBased()) {
-            TaterAPI spongeAPI = new TaterAPI(new SpongeData());
+            TaterAPI spongeAPI = new TaterAPI(SpongeData.create());
             apis.put(platform, spongeAPI);
             apis.put(Platform.SPONGE_VANILLA, spongeAPI);
             apis.put(Platform.SPONGE, spongeAPI);
@@ -241,7 +241,7 @@ public class TaterAPIProvider {
         }
 
         if (platform.isHybrid()) {
-            TaterAPI forgeHybrid = new TaterAPI(new BukkitData(), new ForgeData());
+            TaterAPI forgeHybrid = new TaterAPI(new BukkitData(), ForgeData.create());
             TaterAPI neoForgeHybrid = new TaterAPI(new BukkitData(), new NeoForgeData());
             TaterAPI fabricHybrid = new TaterAPI(new BukkitData(), new FabricData());
 

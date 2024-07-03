@@ -19,38 +19,16 @@ import dev.neuralnexus.taterlib.logger.Logger;
 import java.util.List;
 
 /** Stores data about the Fabric platform */
-public class ForgeData implements PlatformData {
-    private final PlatformData forgePlatformData;
-
-    public ForgeData() {
+public class ForgeData {
+    public static PlatformData create() {
         if (checkForClass("net.minecraftforge.fml.loading.FMLLoader")) {
-            forgePlatformData = new FMLLoaderData();
+            return new FMLLoaderData();
         } else if (checkForClass("net.minecraftforge.fml.common.Loader")) {
-            forgePlatformData = new MCFLoaderData();
+            return new MCFLoaderData();
         } else if (checkForClass("cpw.mods.fml.common.Loader")) {
-            forgePlatformData = new CPWLoaderData();
+            return new CPWLoaderData();
         } else {
-            forgePlatformData = null;
+            return null;
         }
-    }
-
-    @Override
-    public MinecraftVersion minecraftVersion() {
-        return forgePlatformData.minecraftVersion();
-    }
-
-    @Override
-    public String modLoaderVersion() {
-        return forgePlatformData.modLoaderVersion();
-    }
-
-    @Override
-    public List<ModInfo> modList() {
-        return forgePlatformData.modList();
-    }
-
-    @Override
-    public Logger logger(String pluginId) {
-        return forgePlatformData.logger(pluginId);
     }
 }

@@ -166,7 +166,7 @@ public class TaterPluginResolver {
                     "Unsupported Minecraft version: "
                             + mcv
                             + ". We'll try to load the latest version.");
-            version = "." + MinecraftVersion.V1_20_2.getDelimiterString();
+            version = "." + MinecraftVersion.V1_20_6.getDelimiterString();
         }
         String pluginClassName =
                 "dev.neuralnexus.taterlib" + version + ".forge.ForgeTaterLibPlugin";

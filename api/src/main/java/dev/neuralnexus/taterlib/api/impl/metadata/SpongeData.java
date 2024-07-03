@@ -19,36 +19,14 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /** Stores data about the Fabric platform */
-public class SpongeData implements PlatformData {
-    private final PlatformData spongePlatformData;
-
-    public SpongeData() {
+public class SpongeData {
+    public static PlatformData create() {
         if (checkForMethod("org.spongepowered.api.Sponge", "platform")) {
-            spongePlatformData = new SpongeModernData();
+            return new SpongeModernData();
         } else if (checkForMethod("org.spongepowered.api.Sponge", "getPlatform")) {
-            spongePlatformData = new SpongeLegacyData();
+            return new SpongeLegacyData();
         } else {
-            spongePlatformData = null;
+            return null;
         }
-    }
-
-    @Override
-    public MinecraftVersion minecraftVersion() {
-        return spongePlatformData.minecraftVersion();
-    }
-
-    @Override
-    public String modLoaderVersion() {
-        return spongePlatformData.modLoaderVersion();
-    }
-
-    @Override
-    public List<ModInfo> modList() {
-        return spongePlatformData.modList();
-    }
-
-    @Override
-    public Logger logger(String pluginId) {
-        return new Slf4jLogger(LoggerFactory.getLogger(pluginId));
     }
 }
