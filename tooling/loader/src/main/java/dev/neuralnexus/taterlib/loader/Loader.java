@@ -22,6 +22,7 @@ import org.jetbrains.annotations.ApiStatus;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface Loader {
     static Loader instance() {
@@ -96,8 +97,17 @@ public interface Loader {
         unregisterPlugin(plugin.id());
     }
 
+    /**
+     * Get plugin module loader by plugin id.
+     *
+     * @param pluginId The plugin id
+     * @return The module loader
+     */
+    default Optional<ModuleLoader> pluginModuleLoader(String pluginId) {
+        return Optional.ofNullable(pluginModules().get(pluginId));
+    }
+
     /** Register a plugin module */
-    @ApiStatus.Internal
     default void registerPluginModule(String pluginId, PluginModule module) {
         if (!pluginModules().containsKey(pluginId)) {
             pluginModules().put(pluginId, new ModuleLoaderImpl());
@@ -106,13 +116,11 @@ public interface Loader {
     }
 
     /** Register a plugin module */
-    @ApiStatus.Internal
     default void registerPluginModule(Plugin plugin, PluginModule module) {
         registerPluginModule(plugin.id(), module);
     }
 
     /** Unregister a plugin module */
-    @ApiStatus.Internal
     default void unregisterPluginModule(String pluginId, String moduleId) {
         if (pluginModules().containsKey(pluginId)) {
             pluginModules().get(pluginId).unregisterModule(moduleId);
@@ -120,21 +128,18 @@ public interface Loader {
     }
 
     /** Unregister a plugin module */
-    @ApiStatus.Internal
     default void unregisterPluginModule(Plugin plugin, String moduleId) {
         unregisterPluginModule(plugin.id(), moduleId);
     }
 
     /** Unregister a plugin module */
-    @ApiStatus.Internal
     default void unregisterPluginModule(String pluginId, PluginModule module) {
-        unregisterPluginModule(pluginId, module.name());
+        unregisterPluginModule(pluginId, module.id());
     }
 
     /** Unregister a plugin module */
-    @ApiStatus.Internal
     default void unregisterPluginModule(Plugin plugin, PluginModule module) {
-        unregisterPluginModule(plugin.id(), module.name());
+        unregisterPluginModule(plugin.id(), module.id());
     }
 
     /** Run Init on all plugins. */
@@ -154,11 +159,12 @@ public interface Loader {
                                 plugin.onEnable();
                                 if (pluginModules().containsKey(plugin.id())) {
                                     ModuleLoader moduleLoader = pluginModules().get(plugin.id());
-                                    plugin.logger()
+                                    Loader.instance()
+                                            .logger(plugin.id())
                                             .info(
                                                     "Starting modules: "
                                                             + moduleLoader.moduleNames());
-                                    moduleLoader.start();
+                                    moduleLoader.onEnable();
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -175,11 +181,12 @@ public interface Loader {
                             try {
                                 if (pluginModules().containsKey(plugin.id())) {
                                     ModuleLoader moduleLoader = pluginModules().get(plugin.id());
-                                    plugin.logger()
+                                    Loader.instance()
+                                            .logger(plugin.id())
                                             .info(
                                                     "Stopping modules: "
                                                             + moduleLoader.moduleNames());
-                                    moduleLoader.stop();
+                                    moduleLoader.onDisable();
                                 }
                                 plugin.onDisable();
                             } catch (Exception e) {

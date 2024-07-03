@@ -9,6 +9,13 @@ package dev.neuralnexus.taterlib.logger;
 /** The abstract logger. */
 public interface Logger {
     /**
+     * Get underlying logger.
+     *
+     * @return The underlying logger
+     */
+    Object getLogger();
+
+    /**
      * Logs an info message.
      *
      * @param message The message to log

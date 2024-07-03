@@ -20,51 +20,48 @@ public class SystemLogger implements Logger {
         return "[" + this.pluginId + "] " + message;
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public Object getLogger() {
+        return null;
+    }
+
     @Override
     public void info(String message) {
         System.out.println(prependPrefix(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message) {
         System.out.println(prependPrefix(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message, Throwable throwable) {
         System.out.println(prependPrefix(message));
         throwable.printStackTrace();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message) {
         System.err.println(prependPrefix(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message, Throwable throwable) {
         System.err.println(prependPrefix(message));
         throwable.printStackTrace();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void debug(String message) {
         System.out.println(prependPrefix(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void trace(String message) {
         System.out.println(prependPrefix(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fatal(String message) {
         System.err.println(prependPrefix(message));

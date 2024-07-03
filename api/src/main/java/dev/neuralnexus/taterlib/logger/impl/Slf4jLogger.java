@@ -16,51 +16,48 @@ public class Slf4jLogger implements Logger {
         this.logger = (org.slf4j.Logger) logger;
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public Object getLogger() {
+        return this.logger;
+    }
+
     @Override
     public void info(String message) {
         this.logger.info(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message) {
         this.logger.warn(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message, Throwable throwable) {
         this.logger.warn(message);
         throwable.printStackTrace();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message) {
         this.logger.error(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message, Throwable throwable) {
         this.logger.error(message);
         throwable.printStackTrace();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void debug(String message) {
         this.logger.debug(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void trace(String message) {
         this.logger.trace(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fatal(String message) {
         this.logger.error(message);

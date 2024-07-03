@@ -60,49 +60,46 @@ public class LoggerAdapter implements dev.neuralnexus.taterlib.logger.Logger {
         }
     }
 
-    /** {@inheritDoc} */
+    @Override
+    public Object getLogger() {
+        return this.logger.getLogger();
+    }
+
     @Override
     public void info(String message) {
         this.logger.info(Utils.ansiParser(this.prefix + message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message) {
         this.logger.warn(Utils.ansiParser(this.prefix + message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void warn(String message, Throwable throwable) {
         this.logger.warn(Utils.ansiParser(this.prefix + message), throwable);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message) {
         this.logger.error(Utils.ansiParser(this.prefix + message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void error(String message, Throwable throwable) {
         this.logger.error(Utils.ansiParser(this.prefix + message), throwable);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void debug(String message) {
         this.logger.debug(Utils.ansiParser(this.prefix + message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void trace(String message) {
         this.logger.trace(Utils.ansiParser(this.prefix + message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void fatal(String message) {
         this.logger.fatal(Utils.ansiParser(this.prefix + message));
