@@ -55,6 +55,14 @@ public abstract class URLClassLoaderAccess {
                     | InvocationTargetException ignored) {
             }
         }
+        if (Platform.isForge()) {
+            return new URLClassLoaderAccess(classLoader) {
+                @Override
+                public void addURL(URL url) {
+                    new BasicClassLoader(classLoader).addJarToClasspath(url);
+                }
+            };
+        }
         if (Reflection.isSupported()) {
             return new Reflection(((URLClassLoader) classLoader));
         }
