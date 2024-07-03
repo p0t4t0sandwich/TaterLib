@@ -35,6 +35,9 @@ public class ModMessages {
     public static void register() {
         for (String c : channelQueue) {
             String[] channelParts = c.split(":");
+            if (channelParts.length != 2) {
+                continue;
+            }
             channels.put(
                     c,
                     NetworkRegistry.ChannelBuilder.named(
