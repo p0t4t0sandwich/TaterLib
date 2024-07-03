@@ -6,7 +6,10 @@
 
 package dev.neuralnexus.taterlib.depdownloader;
 
+import dev.neuralnexus.taterlib.api.Platform;
+
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -28,16 +31,39 @@ public abstract class URLClassLoaderAccess {
      * @param classLoader the class loader
      * @return the access object
      */
-    public static URLClassLoaderAccess create(URLClassLoader classLoader) {
-        if (Reflection.isSupported()) {
-            return new Reflection(classLoader);
+    public static URLClassLoaderAccess create(ClassLoader classLoader) {
+        if (Platform.isFabric()) {
+            try {
+                Class<?> fabricLauncherBase =
+                        Class.forName("net.fabricmc.loader.launch.common.FabricLauncherBase");
+                Method getLauncher = fabricLauncherBase.getDeclaredMethod("getLauncher");
+                Object launcher = getLauncher.invoke(null);
+                Method propose = launcher.getClass().getDeclaredMethod("propose", URL.class);
+                return new URLClassLoaderAccess(classLoader) {
+                    @Override
+                    public void addURL(URL url) {
+                        try {
+                            propose.invoke(launcher, url);
+                        } catch (ReflectiveOperationException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+            } catch (ClassNotFoundException
+                    | IllegalAccessException
+                    | NoSuchMethodException
+                    | InvocationTargetException ignored) {
+            }
         }
-        return new Unsafe(classLoader);
+        if (Reflection.isSupported()) {
+            return new Reflection(((URLClassLoader) classLoader));
+        }
+        return new Unsafe((URLClassLoader) classLoader);
     }
 
-    private final URLClassLoader classLoader;
+    private final ClassLoader classLoader;
 
-    protected URLClassLoaderAccess(URLClassLoader classLoader) {
+    protected URLClassLoaderAccess(ClassLoader classLoader) {
         this.classLoader = classLoader;
     }
 

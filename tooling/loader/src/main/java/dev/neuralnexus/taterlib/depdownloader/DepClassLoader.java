@@ -7,7 +7,6 @@
 package dev.neuralnexus.taterlib.depdownloader;
 
 import java.net.MalformedURLException;
-import java.net.URLClassLoader;
 import java.util.Map;
 
 public class DepClassLoader extends DepDownloader {
@@ -15,7 +14,7 @@ public class DepClassLoader extends DepDownloader {
 
     public DepClassLoader(ClassLoader classLoader, String[] repos, Map<String, String> deps) {
         super(repos, deps);
-        access = URLClassLoaderAccess.create((URLClassLoader) classLoader);
+        access = URLClassLoaderAccess.create(classLoader);
     }
 
     public void addDepsToClasspath() {
