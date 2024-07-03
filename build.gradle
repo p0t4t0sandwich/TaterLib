@@ -267,8 +267,8 @@ tasks.register('build_dev', Jar) {
                         "taterlib.mixins.v1_18.forge.json," +
                         "taterlib.mixins.v1_19.forge.json," +
                         "taterlib.mixins.v1_19_1.forge.patch.json," +
-                        "taterlib.mixins.v1_19_3.forge.patch.json." +
-                        "taterlib.mixins.v1_19_4.forge.patch.json." +
+                        "taterlib.mixins.v1_19_3.forge.patch.json," +
+                        "taterlib.mixins.v1_19_4.forge.patch.json," +
                         "taterlib.mixins.v1_20.vanilla.json," +
                         "taterlib.mixins.v1_20.forge.json," +
                         "taterlib.mixins.v1_20_2.vanilla.patch.json," +

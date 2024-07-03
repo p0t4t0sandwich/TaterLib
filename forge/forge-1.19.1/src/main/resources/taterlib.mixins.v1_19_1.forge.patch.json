@@ -6,8 +6,8 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_19.forge.mixin.listeners",
+  "package": "dev.neuralnexus.taterlib.v1_19_1.forge.mixin.patch",
   "mixins": [
-    "network.CustomPayloadMixin_1_19"
+    "command.VanillaCommandSenderMixin_1_19_1"
   ]
 }
