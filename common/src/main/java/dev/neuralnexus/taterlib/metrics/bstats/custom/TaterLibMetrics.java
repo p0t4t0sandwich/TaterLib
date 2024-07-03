@@ -32,7 +32,7 @@ public class TaterLibMetrics {
         try {
             if (TaterAPIProvider.platform().isFabricBased()
                     || TaterAPIProvider.platform().isForgeBased()) {
-                config = new MetricsConfig(new File("configs/bstats/config.txt"), true);
+                config = new MetricsConfig(new File("config/bstats/config.txt"), true);
             } else {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), true);
             }
@@ -49,7 +49,7 @@ public class TaterLibMetrics {
             logger.info(
                     "It's recommended to keep bStats enabled, but if you're not comfortable with this, you can opt-out by editing the config.txt file in");
             logger.info(
-                    "the '/plugins/bStats/' (or '/configs/bstats/' on modded servers) folder and setting enabled to false.");
+                    "the '/plugins/bStats/' (or '/config/bstats/' on modded servers) folder and setting enabled to false.");
         }
 
         MetricsBase metrics =
