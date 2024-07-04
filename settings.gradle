@@ -115,6 +115,7 @@ include(
         'fabric:fabric-1.21',
 
         // Legacy Forge
+        'forge:forge-1.6.4',
         'forge:forge-1.7.10',
         'forge:forge-1.8.9',
         'forge:forge-1.9.4',
