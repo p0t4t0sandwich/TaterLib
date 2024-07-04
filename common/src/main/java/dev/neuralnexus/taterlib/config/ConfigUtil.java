@@ -22,7 +22,8 @@ import java.util.Objects;
 
 /** Config utilities. */
 public class ConfigUtil {
-    public static CommentedConfigurationNode getRoot(HoconConfigurationLoader loader, Logger logger) {
+    public static CommentedConfigurationNode getRoot(
+            HoconConfigurationLoader loader, Logger logger) {
         try {
             return loader.load();
         } catch (ConfigurateException e) {

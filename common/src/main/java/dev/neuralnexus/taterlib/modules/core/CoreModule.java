@@ -16,6 +16,7 @@ import dev.neuralnexus.taterlib.event.api.GenericEvents;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.hooks.metrics.SparkHook;
 import dev.neuralnexus.taterlib.hooks.permissions.LuckPermsHook;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
 import dev.neuralnexus.taterlib.plugin.PluginModule;
 import dev.neuralnexus.taterlib.storage.databases.Database;
@@ -23,8 +24,6 @@ import dev.neuralnexus.taterlib.storage.datastores.player.PlayerDataStore;
 
 /** TaterLib's core module. */
 public class CoreModule implements PluginModule {
-    private static boolean STARTED = false;
-
     @Override
     public String id() {
         return "Core";
@@ -32,12 +31,6 @@ public class CoreModule implements PluginModule {
 
     @Override
     public void onEnable() {
-        if (STARTED) {
-            TaterLib.logger().info("Submodule " + id() + " has already started!");
-            return;
-        }
-        STARTED = true;
-
         if (!TaterLib.hasReloaded()) {
             // Dump basic debug info
             new DumpInfo().saveDump();
@@ -49,19 +42,19 @@ public class CoreModule implements PluginModule {
             TaterAPIProvider.setPlayerDataStore(
                     new PlayerDataStore(
                             new Database.DatabaseConfig(
-                                    TaterLib.Constants.PROJECT_ID, 0, "playerdata", "", "")));
+                                    LoaderImpl.PROJECT_ID, 0, "playerdata", "", "")));
 
             // Register hooks
             ServerEvents.STARTED.register(
                     event -> {
                         // Register LuckPerms hook
-                        if (TaterAPIProvider.isPluginModLoaded("LuckPerms")
+                        if (TaterAPIProvider.isModLoaded("LuckPerms")
                                 && TaterLibConfigLoader.config().checkHook("LuckPerms")) {
                             TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPIProvider.addHook(new LuckPermsHook());
                         }
                         // Register Spark hook
-                        if (TaterAPIProvider.isPluginModLoaded("Spark")
+                        if (TaterAPIProvider.isModLoaded("Spark")
                                 && TaterLibConfigLoader.config().checkHook("Spark")) {
                             TaterLib.logger().info("Spark detected, enabling Spark hook.");
                             TaterAPIProvider.addHook(new SparkHook());
@@ -80,14 +73,5 @@ public class CoreModule implements PluginModule {
                         event.registerCommand(command);
                     });
         }
-    }
-
-    @Override
-    public void onDisable() {
-        if (!STARTED) {
-            TaterLib.logger().info("Submodule " + id() + " has already stopped!");
-            return;
-        }
-        STARTED = false;
     }
 }

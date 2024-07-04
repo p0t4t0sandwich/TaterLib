@@ -155,10 +155,10 @@ public class TaterAPIProvider {
      * Note: Unless you need to check at a specific time, it's best to run this check after the
      * server has started {@link ServerEvents#STARTED}
      *
-     * @param pluginNameOrModId The name of the plugin or modId of the mod
+     * @param nameOrId The name of the plugin or modId of the mod
      */
-    public static boolean isPluginModLoaded(String pluginNameOrModId) {
-        return apis.values().stream().anyMatch(api -> api.isModLoaded(pluginNameOrModId));
+    public static boolean isModLoaded(String nameOrId) {
+        return apis.values().stream().anyMatch(api -> api.isModLoaded(nameOrId));
     }
 
     @ApiStatus.Internal

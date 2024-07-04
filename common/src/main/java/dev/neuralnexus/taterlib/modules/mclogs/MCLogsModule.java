@@ -15,8 +15,6 @@ import dev.neuralnexus.taterlib.plugin.PluginModule;
 
 /** MCLogs module. */
 public class MCLogsModule implements PluginModule {
-    private static boolean STARTED = false;
-
     @Override
     public String id() {
         return "MCLogs";
@@ -24,12 +22,6 @@ public class MCLogsModule implements PluginModule {
 
     @Override
     public void onEnable() {
-        if (STARTED) {
-            TaterLib.logger().info("Submodule " + id() + " has already started!");
-            return;
-        }
-        STARTED = true;
-
         if (!TaterLib.hasReloaded()) {
             // Register commands
             CommandEvents.REGISTER_COMMAND.register(
@@ -43,14 +35,5 @@ public class MCLogsModule implements PluginModule {
                         event.registerCommand(command);
                     });
         }
-    }
-
-    @Override
-    public void onDisable() {
-        if (!STARTED) {
-            TaterLib.logger().info("Submodule " + id() + " has already stopped!");
-            return;
-        }
-        STARTED = false;
     }
 }

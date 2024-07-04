@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -25,7 +26,7 @@ import java.nio.file.Paths;
 public class DumpInfo {
     public final Platform platform = Platform.get();
     public final MinecraftVersion minecraftVersion = MinecraftVersion.get();
-    public final String taterlibVersion = TaterLib.Constants.PROJECT_VERSION;
+    public final String taterlibVersion = LoaderImpl.PROJECT_VERSION;
     public final boolean isForgeHybrid = platform.isForgeHybrid();
     public final boolean isFabricHybrid = platform.isFabricHybrid();
     public final boolean isSpongeForge = platform.is(Platform.SPONGE_FORGE);

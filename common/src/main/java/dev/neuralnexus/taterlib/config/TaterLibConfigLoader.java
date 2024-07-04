@@ -12,10 +12,10 @@ import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
-
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.logger.impl.SystemLogger;
+
 import io.leangen.geantyref.TypeToken;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
@@ -39,8 +39,7 @@ public class TaterLibConfigLoader {
                             + File.separator
                             + LoaderImpl.PROJECT_ID
                             + ".conf");
-    private static final String defaultConfigPath =
-            "source." + LoaderImpl.PROJECT_ID + ".conf";
+    private static final String defaultConfigPath = "source." + LoaderImpl.PROJECT_ID + ".conf";
     private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
     private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
     private static final TypeToken<List<ModuleConfig>> moduleType =
@@ -104,8 +103,7 @@ public class TaterLibConfigLoader {
         try {
             loader.save(root);
         } catch (ConfigurateException e) {
-            logger
-                    .error("An error occurred while saving this configuration: " + e.getMessage());
+            logger.error("An error occurred while saving this configuration: " + e.getMessage());
             if (e.getCause() != null) {
                 e.getCause().printStackTrace();
             }

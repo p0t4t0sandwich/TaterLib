@@ -9,24 +9,26 @@ package dev.neuralnexus.taterlib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
+import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 /** General TaterLib plugin interface. */
 public interface TaterLibPlugin extends Plugin {
     @Override
     default String name() {
-        return TaterLib.Constants.PROJECT_NAME;
+        return LoaderImpl.PROJECT_NAME;
     }
 
     @Override
     default String id() {
-        return TaterLib.Constants.PROJECT_ID;
+        return LoaderImpl.PROJECT_ID;
     }
 
     @Override
     default void start() {
-        TaterLib.logger().info(
-                        TaterLib.Constants.PROJECT_NAME
+        TaterLib.logger()
+                .info(
+                        LoaderImpl.PROJECT_NAME
                                 + " is running on "
                                 + TaterAPIProvider.platform()
                                 + " "
@@ -38,7 +40,7 @@ public interface TaterLibPlugin extends Plugin {
     @Override
     default void stop() {
         TaterLib.stop();
-        TaterLib.logger().info(TaterLib.Constants.PROJECT_NAME + " has been disabled!");
+        TaterLib.logger().info(LoaderImpl.PROJECT_NAME + " has been disabled!");
         PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }
