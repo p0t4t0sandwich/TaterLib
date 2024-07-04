@@ -4,7 +4,7 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.metrics.bstats.custom;
+package dev.neuralnexus.taterlib.metrics.bstats;
 
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
@@ -96,7 +96,7 @@ public class TaterLibMetrics {
                 new SimplePie(
                         "minecraft_version", () -> TaterAPIProvider.minecraftVersion().toString()));
         metrics.addCustomChart(
-                new SimplePie("server_type", () -> TaterAPIProvider.platform().toString()));
+                new SimplePie("platform", () -> TaterAPIProvider.platform().toString()));
         metrics.addCustomChart(
                 new DrilldownPie(
                         "java_version",
