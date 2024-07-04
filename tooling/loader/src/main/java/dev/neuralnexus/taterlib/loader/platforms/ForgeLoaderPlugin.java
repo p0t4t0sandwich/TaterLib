@@ -28,11 +28,11 @@ public class ForgeLoaderPlugin {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.forge(loader));
-        if (loader.platform().isForgeHybrid() && Platform.isBukkit()) {
+        if (loader.platform().isForgeHybrid()) {
             loader.registerPlugin(TaterPluginResolver.bukkit(loader));
         }
         // Sinytra Connector support
-        if (Platform.isFabric()) {
+        if (loader.platformData().isModLoaded("connectormod")) {
             loader.registerPlugin(TaterPluginResolver.fabric(loader));
         }
         loader.onInit();

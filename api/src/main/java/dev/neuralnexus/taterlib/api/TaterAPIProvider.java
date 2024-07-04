@@ -23,6 +23,8 @@ import org.jetbrains.annotations.ApiStatus;
 import java.util.*;
 import java.util.function.Supplier;
 
+import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
+
 /** API Provider */
 public class TaterAPIProvider {
     private static final Platform platform = Platform.get();
@@ -194,56 +196,63 @@ public class TaterAPIProvider {
 
     @ApiStatus.Internal
     public static void register() {
+        Set<PlatformData> activeDatas = new HashSet<>();
+        PlatformData bukkitData = new BukkitData();
+        PlatformData bungeeCordData = new BungeeCordData();
+        PlatformData fabricData = new FabricData();
+        PlatformData neoForgeData = new NeoForgeData();
+        PlatformData forgeData = ForgeData.create();
+        PlatformData spongeData = SpongeData.create();
+        PlatformData velocityData = new VelocityData();
+
         if (platform.isBukkitBased()) {
-            TaterAPI bukkitApi = new TaterAPI(new BukkitData());
-            apis.put(platform, bukkitApi);
-            apis.put(Platform.BUKKIT, bukkitApi);
+            activeDatas.add(bukkitData);
+            apis.put(Platform.BUKKIT, new TaterAPI(bukkitData));
         }
 
         if (platform.isBungeeCordBased()) {
-            TaterAPI bungeeCordApi = new TaterAPI(new BungeeCordData());
-            apis.put(platform, bungeeCordApi);
-            apis.put(Platform.BUNGEECORD, bungeeCordApi);
+            activeDatas.add(bungeeCordData);
+            apis.put(Platform.BUNGEECORD, new TaterAPI(bungeeCordData));
         }
 
         // Secondary logical check is for Sinytra Connector
-        if (platform.isFabricBased() || (platform.isForgeBased() && Platform.isFabric())) {
-            TaterAPI fabricApi = new TaterAPI(new FabricData());
-            apis.put(platform, fabricApi);
-            apis.put(Platform.FABRIC, fabricApi);
+        if (platform.isFabricBased() || checkForClass("org.sinytra.connector.mod.ConnectorMod")) {
+            activeDatas.add(fabricData);
+            apis.put(Platform.FABRIC, new TaterAPI(fabricData));
+        }
+
+        // Secondary logical check is for Kilt
+        if (platform.isNeoForgeBased() || checkForClass("org.kitteh.kilt.Kilt")) {
+            activeDatas.add(neoForgeData);
+            apis.put(Platform.NEOFORGE, new TaterAPI(neoForgeData));
         }
 
         if (platform.isForgeBased()) {
-            if (platform.is(Platform.NEOFORGE)) {
-                apis.put(Platform.NEOFORGE, new TaterAPI(new NeoForgeData()));
-            } else {
-                TaterAPI forgeApi = new TaterAPI(ForgeData.create());
-                apis.put(platform, forgeApi);
-                apis.put(Platform.FORGE, forgeApi);
-            }
+            activeDatas.add(forgeData);
+            apis.put(Platform.FORGE, new TaterAPI(forgeData));
         }
 
         // Check for SpongeForge, then Sponge
-        if (platform.isSpongeBased() && platform.isForgeBased()) {
-            TaterAPI spongeForgeApi = new TaterAPI(SpongeData.create(), ForgeData.create());
-            apis.put(platform, spongeForgeApi);
-            apis.put(Platform.SPONGE_FORGE, spongeForgeApi);
-            apis.put(Platform.SPONGE, new TaterAPI(SpongeData.create()));
-        } else if (platform.isSpongeBased()) {
-            TaterAPI spongeAPI = new TaterAPI(SpongeData.create());
-            apis.put(platform, spongeAPI);
-            apis.put(Platform.SPONGE_VANILLA, spongeAPI);
+        if (platform.isSpongeBased()) {
+            activeDatas.add(spongeData);
+            TaterAPI spongeAPI = new TaterAPI(spongeData);
             apis.put(Platform.SPONGE, spongeAPI);
+            if (platform.isForgeBased()) {
+                apis.put(Platform.SPONGE_FORGE, new TaterAPI(spongeData, forgeData));
+            } else {
+                apis.put(Platform.SPONGE_VANILLA, spongeAPI);
+            }
         }
 
         if (platform.isVelocityBased()) {
-            apis.put(Platform.VELOCITY, new TaterAPI(new VelocityData()));
+            activeDatas.add(velocityData);
+            apis.put(Platform.VELOCITY, new TaterAPI(velocityData));
         }
 
         if (platform.isHybrid()) {
-            TaterAPI forgeHybrid = new TaterAPI(new BukkitData(), ForgeData.create());
-            TaterAPI neoForgeHybrid = new TaterAPI(new BukkitData(), new NeoForgeData());
-            TaterAPI fabricHybrid = new TaterAPI(new BukkitData(), new FabricData());
+            TaterAPI forgeHybrid = new TaterAPI(bukkitData, forgeData);
+            TaterAPI neoForgeHybrid = new TaterAPI(bukkitData, neoForgeData);
+            TaterAPI fabricHybrid = new TaterAPI(bukkitData, fabricData);
 
             switch (platform) {
                 case ARCLIGHT:

@@ -28,6 +28,13 @@ public class NeoForgeLoaderPlugin {
         NeoForge.EVENT_BUS.register(this);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.neoForge(loader));
+        if (loader.platform().isNeoForgeHybrid()) {
+            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+        }
+        // Sinytra Connector support
+        if (loader.platformData().isModLoaded("connectormod")) {
+            loader.registerPlugin(TaterPluginResolver.fabric(loader));
+        }
         loader.onInit();
     }
 

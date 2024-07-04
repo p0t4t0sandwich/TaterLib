@@ -84,7 +84,10 @@ public class TaterLibCommand implements Command {
                                 + dumpInfo.isSpongeForge
                                 + "\n&6IsSinytraConnector: "
                                 + (dumpInfo.isSinytraConnector ? "&a" : "&c")
-                                + dumpInfo.isSinytraConnector;
+                                + dumpInfo.isSinytraConnector
+                                + "\n&6IsKilt: "
+                                + (dumpInfo.isKilt ? "&a" : "&c")
+                                + dumpInfo.isKilt;
                 break;
             case "fulldump":
                 FullDumpInfo fullDumpInfo = new FullDumpInfo();

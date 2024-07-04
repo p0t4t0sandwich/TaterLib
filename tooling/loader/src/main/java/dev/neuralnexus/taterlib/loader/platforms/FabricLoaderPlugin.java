@@ -25,6 +25,10 @@ public class FabricLoaderPlugin implements ModInitializer {
         if (loader.platform().isFabricHybrid()) {
             loader.registerPlugin(TaterPluginResolver.bukkit(loader));
         }
+        // Kilt support
+        if (loader.platformData().isModLoaded("kilt")) {
+            loader.registerPlugin(TaterPluginResolver.neoForge(loader));
+        }
         loader.onInit();
     }
 
