@@ -29,14 +29,16 @@ public class LoaderImpl implements Loader {
     private static final PlatformData platformData = new PlatformDataImpl();
     private static Loader instance = null;
     private final Object plugin;
-    private final Object pluginServer;
+    private final Object server;
+    private final Object[] other;
     private final List<Plugin> plugins = new ArrayList<>();
     private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
-    public LoaderImpl(Object plugin, Object pluginServer) {
+    public LoaderImpl(Object plugin, Object server, Object... other) {
         instance = this;
         this.plugin = plugin;
-        this.pluginServer = pluginServer;
+        this.server = server;
+        this.other = other;
     }
 
     public static Loader getInstance() {
@@ -55,7 +57,12 @@ public class LoaderImpl implements Loader {
 
     @Override
     public Object server() {
-        return pluginServer;
+        return server;
+    }
+
+    @Override
+    public Object[] other() {
+        return other;
     }
 
     @Override

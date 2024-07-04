@@ -64,6 +64,10 @@ public interface Loader {
     @ApiStatus.Internal
     Object server();
 
+    /** Get the platform's other data. */
+    @ApiStatus.Internal
+    Object[] other();
+
     /** Get the collection of plugins. */
     @ApiStatus.Internal
     List<Plugin> plugins();

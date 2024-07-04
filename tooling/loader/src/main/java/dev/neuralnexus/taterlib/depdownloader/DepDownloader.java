@@ -33,7 +33,7 @@ public class DepDownloader {
                         .platformData()
                         .modFolder()
                         .resolve(LoaderImpl.PROJECT_ID)
-                        .resolve("libs");
+                        .resolve("libraries");
         for (Map.Entry<String, String> entry : depInfo.entrySet()) {
             deps[i] = new MavenDependency(entry.getKey(), entry.getValue(), basePath);
             i++;

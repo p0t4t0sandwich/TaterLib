@@ -63,6 +63,37 @@ public abstract class URLClassLoaderAccess {
                 }
             };
         }
+        //        if (Platform.isVelocity()) {
+        //            return new URLClassLoaderAccess(classLoader) {
+        //                @Override
+        //                public void addURL(URL url) {
+        //                    try {
+        //                        // ((ProxyServer) Loader.instance().server())
+        //                        // .getPluginManager().addToClasspath(Loader.instance().plugin(),
+        // path);
+        //                        Class<?> proxyServerClass =
+        //
+        // Class.forName("com.velocitypowered.api.proxy.ProxyServer");
+        //                        Method getPluginManager =
+        //                                proxyServerClass.getDeclaredMethod("getPluginManager");
+        //                        Object pluginManager =
+        // getPluginManager.invoke(Loader.instance().server());
+        //                        Method addToClasspath =
+        //                                pluginManager
+        //                                        .getClass()
+        //                                        .getDeclaredMethod(
+        //                                                "addToClasspath", Object.class,
+        // Path.class);
+        //                        addToClasspath.invoke(
+        //                                pluginManager,
+        //                                Loader.instance().other()[0],
+        //                                Paths.get(url.toURI()));
+        //                    } catch (Exception e) {
+        //                        e.printStackTrace();
+        //                    }
+        //                }
+        //            };
+        //        }
         if (Reflection.isSupported()) {
             return new Reflection(((URLClassLoader) classLoader));
         }
