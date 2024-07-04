@@ -249,46 +249,29 @@ public class TaterAPIProvider {
             apis.put(Platform.VELOCITY, new TaterAPI(velocityData));
         }
 
-        if (platform.isHybrid()) {
-            TaterAPI forgeHybrid = new TaterAPI(bukkitData, forgeData);
-            TaterAPI neoForgeHybrid = new TaterAPI(bukkitData, neoForgeData);
-            TaterAPI fabricHybrid = new TaterAPI(bukkitData, fabricData);
+        apis.put(platform, new TaterAPI(activeDatas.toArray(new PlatformData[0])));
 
+        if (platform.isHybrid()) {
             switch (platform) {
                 case ARCLIGHT:
-                    addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT, forgeHybrid);
-                    break;
+                case ARCLIGHT_FABRIC:
                 case ARCLIGHT_NEO:
                     addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT_NEO, neoForgeHybrid);
-                    break;
-                case ARCLIGHT_FABRIC:
-                    addHook(new ArclightHook());
-                    apis.put(Platform.ARCLIGHT_FABRIC, fabricHybrid);
                     break;
                 case BANNER:
                     // TODO: check for Banner API
-                    apis.put(Platform.BANNER, fabricHybrid);
                     break;
                 case CARDBOARD:
                     // TODO: check for Cardboard API
-                    apis.put(Platform.CARDBOARD, fabricHybrid);
                 case KETTING:
                     addHook(new KettingHook());
-                    apis.put(Platform.KETTING, forgeHybrid);
                     break;
                 case MAGMA:
                     addHook(new MagmaHook());
-                    apis.put(Platform.MAGMA, forgeHybrid);
                     break;
                 case MOHIST:
-                    addHook(new MohistHook());
-                    apis.put(Platform.MOHIST, forgeHybrid);
-                    break;
                 case MOHIST_NEO:
                     addHook(new MohistHook());
-                    apis.put(Platform.MOHIST_NEO, neoForgeHybrid);
                     break;
             }
         }
