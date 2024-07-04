@@ -7,7 +7,3 @@ main: '${group_id}.${project_id}.loader.platforms.BukkitLoaderPlugin'
 depends: [ ]
 softdepends: [ LuckPerms ]
 folia-supported: true
-commands:
-  taterlib:
-    description: TaterLib command
-    permission: taterlib.command
