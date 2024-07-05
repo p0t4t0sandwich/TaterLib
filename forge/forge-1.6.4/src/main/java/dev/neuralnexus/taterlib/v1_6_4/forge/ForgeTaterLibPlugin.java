@@ -12,7 +12,6 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
@@ -49,7 +48,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Mod.Init
     public void init() {
-        NetworkRegistry.instance().registerConnectionHandler(new ForgePlayerListener());
         GameRegistry.registerPlayerTracker(new ForgePlayerListener());
     }
 

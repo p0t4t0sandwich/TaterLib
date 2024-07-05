@@ -39,7 +39,6 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 
 [![BuiltByBit](https://img.shields.io/badge/BuiltByBit-download-blue?logo=https%3A%2F%2Fbuiltbybit.com%2Ffavicon.ico)](https://builtbybit.com/resources/taterlib.40265/)
 [![PolyMart](https://img.shields.io/badge/PolyMart-download-cyan?logo=https%3A%2F%2Fpolymart.org%2Ffavicon.ico)](https://polymart.org/resource/taterlib.5552)
-[![Craftaro](https://img.shields.io/badge/Craftaro-download-orange?logo=https%3A%2F%2Fcraftaro.com%2Ffavicon.ico)](https://craftaro.com/marketplace/product/taterlib.2771)
 
 [![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)[![Jenkins Dev Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
 
@@ -78,6 +77,7 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 #### Fabric
 
 - Quilt
+- Supports Kilt
 - 1.7.10-1.12.2, 1.14-1.21
 - Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the
   moment
@@ -85,7 +85,7 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 #### Forge
 
 - Supports Sinytra Connector
-- 1.7.10-1.21
+- 1.6.4-1.21
 
 #### NeoForge
 
