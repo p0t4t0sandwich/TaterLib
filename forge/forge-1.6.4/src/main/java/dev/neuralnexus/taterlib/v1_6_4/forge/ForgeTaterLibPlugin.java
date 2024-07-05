@@ -12,6 +12,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
@@ -43,6 +45,12 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {
         CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
+    }
+
+    @Mod.Init
+    public void init() {
+        NetworkRegistry.instance().registerConnectionHandler(new ForgePlayerListener());
+        GameRegistry.registerPlayerTracker(new ForgePlayerListener());
     }
 
     @Override

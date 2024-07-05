@@ -6,10 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player;
 
+import cpw.mods.fml.common.IPlayerTracker;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_6_4.forge.event.player.ForgePlayerDeathEvent;
-import dev.neuralnexus.taterlib.v1_6_4.forge.event.player.ForgePlayerMessageEvent;
+import dev.neuralnexus.taterlib.v1_6_4.forge.event.player.*;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.EventPriority;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -17,7 +18,7 @@ import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 /** Listens for player events. */
-public class ForgePlayerListener {
+public class ForgePlayerListener implements IPlayerTracker {
     /**
      * Called when a player finishes/progresses in an advancement.
      *
@@ -41,25 +42,6 @@ public class ForgePlayerListener {
         }
     }
 
-    /**
-     * Called when a player logs in.
-     *
-     * @param event The player login event
-     */
-    //    @ForgeSubscribe
-    //    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-    //        PlayerEvents.LOGIN.invoke(new ForgePlayerLoginEvent(event));
-    //    }
-
-    /**
-     * Called when a player logs out.
-     *
-     * @param event The player logout event
-     */
-    //    @ForgeSubscribe
-    //    public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-    //        PlayerEvents.LOGOUT.invoke(new ForgePlayerLogoutEvent(event));
-    //    }
 
     /**
      * Called when a player sends a message, and sends it to the message relay.
@@ -72,12 +54,35 @@ public class ForgePlayerListener {
     }
 
     /**
+     * Called when a player logs in.
+     *
+     * @param player The player
+     */
+    @Override
+    public void onPlayerLogin(EntityPlayer player) {
+        PlayerEvents.LOGIN.invoke(new ForgePlayerLoginEvent(player));
+    }
+
+    /**
+     * Called when a player logs out.
+     *
+     * @param player The player
+     */
+    @Override
+    public void onPlayerLogout(EntityPlayer player) {
+        PlayerEvents.LOGOUT.invoke(new ForgePlayerLogoutEvent(player));
+    }
+
+    /**
      * Called when a player respawns.
      *
-     * @param event The player respawn event
+     * @param player The player
      */
-    //    @ForgeSubscribe
-    //    public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-    //        PlayerEvents.RESPAWN.invoke(new ForgePlayerRespawnEvent(event));
-    //    }
+    @Override
+    public void onPlayerRespawn(EntityPlayer player) {
+        PlayerEvents.RESPAWN.invoke(new ForgePlayerRespawnEvent(player));
+    }
+
+    @Override
+    public void onPlayerChangedDimension(EntityPlayer player) {}
 }
