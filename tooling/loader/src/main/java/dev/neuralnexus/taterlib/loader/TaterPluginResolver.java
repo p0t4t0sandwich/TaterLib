@@ -183,7 +183,9 @@ public class TaterPluginResolver {
     public static Plugin legacyForge(Loader loader) {
         String version;
         MinecraftVersion mcv = loader.minecraftVersion();
-        if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
+        if (mcv.isInRange(MinecraftVersion.V1_6_1, MinecraftVersion.V1_6_4)) {
+            version = "." + MinecraftVersion.V1_6_4.getDelimiterString();
+        } else if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
             version = "." + MinecraftVersion.V1_7_10.getDelimiterString();
         } else {
             System.err.println(
