@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player;
 
 import cpw.mods.fml.common.IPlayerTracker;
+
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_6_4.forge.event.player.*;
 
@@ -41,7 +42,6 @@ public class ForgePlayerListener implements IPlayerTracker {
             PlayerEvents.DEATH.invoke(new ForgePlayerDeathEvent(event));
         }
     }
-
 
     /**
      * Called when a player sends a message, and sends it to the message relay.

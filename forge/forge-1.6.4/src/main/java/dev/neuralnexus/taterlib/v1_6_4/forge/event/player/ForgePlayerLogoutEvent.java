@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.event.player;
 import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
 import dev.neuralnexus.taterlib.player.Player;
 import dev.neuralnexus.taterlib.v1_6_4.forge.player.ForgePlayer;
+
 import net.minecraft.entity.player.EntityPlayer;
 
 /** Forge implementation of {@link PlayerLogoutEvent}. */

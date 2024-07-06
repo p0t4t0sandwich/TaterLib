@@ -34,6 +34,10 @@ public class ConditionalMixins {
     private static final PlatformData platformData = new PlatformDataImpl();
     private static final MinecraftVersion minecraftVersion = platformData.minecraftVersion();
 
+    public static boolean shouldApplyMixin(String mixinClassName) {
+        return shouldApplyMixin(mixinClassName, false);
+    }
+
     public static boolean shouldApplyMixin(String mixinClassName, boolean verbose) {
         try {
             ClassNode classNode =
