@@ -24,7 +24,7 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return ConditionalMixins.shouldApplyMixin(targetClassName, mixinClassName);
+        return ConditionalMixins.shouldApplyMixin(false, mixinClassName);
     }
 
     @Override

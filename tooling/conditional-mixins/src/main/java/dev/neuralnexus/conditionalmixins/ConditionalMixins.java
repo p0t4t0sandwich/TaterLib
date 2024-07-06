@@ -34,7 +34,7 @@ public class ConditionalMixins {
     private static final PlatformData platformData = new PlatformDataImpl();
     private static final MinecraftVersion minecraftVersion = platformData.minecraftVersion();
 
-    public static boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
+    public static boolean shouldApplyMixin(String mixinClassName, boolean verbose) {
         try {
             ClassNode classNode =
                     MixinService.getService().getBytecodeProvider().getClassNode(mixinClassName);
@@ -42,49 +42,58 @@ public class ConditionalMixins {
             if (classNode.visibleAnnotations != null) {
                 for (AnnotationNode node : classNode.visibleAnnotations) {
                     if (Type.getDescriptor(ReqDependency.class).equals(node.desc)) {
-                        if (!checkReqDependency(node, mixinClassName)) {
+                        if (!checkReqDependency(mixinClassName, node, verbose)) {
                             return false;
                         }
                     } else if (Type.getDescriptor(ReqPlatform.class).equals(node.desc)) {
-                        if (!checkReqPlatform(node, mixinClassName)) {
+                        if (!checkReqPlatform(mixinClassName, node, verbose)) {
                             return false;
                         }
                     } else if (Type.getDescriptor(ReqMCVersion.class).equals(node.desc)) {
-                        if (!checkReqMCVersion(node, mixinClassName)) {
+                        if (!checkReqMCVersion(mixinClassName, node, verbose)) {
                             return false;
                         }
                     }
                 }
             }
         } catch (ClassNotFoundException | IOException e) {
-            logger.error("Failed to load mixin class: " + mixinClassName, e);
+            if (verbose) {
+                logger.error("Failed to load mixin class: " + mixinClassName, e);
+            }
+        }
+        if (verbose) {
+            logger.info(ansiParser("§2Applying mixin §9" + mixinClassName));
         }
         return true;
     }
 
-    public static boolean checkReqDependency(AnnotationNode annotation, String mixinClassName) {
+    public static boolean checkReqDependency(String mixinClassName, AnnotationNode annotation, boolean verbose) {
         String[] reqDependency = getAnnotationValue(annotation, "value", null);
         if (reqDependency != null) {
             for (String dep : reqDependency) {
                 if (dep.startsWith("!")) {
                     String dependency = dep.substring(1);
                     if (platformData.isModLoaded(dependency)) {
-                        logger.info(
-                                ansiParser(
-                                        "§4Skipping mixin §9"
-                                                + mixinClassName
-                                                + " §4conflicts with dependency: §9"
-                                                + dependency));
+                        if (verbose) {
+                            logger.info(
+                                    ansiParser(
+                                            "§4Skipping mixin §9"
+                                                    + mixinClassName
+                                                    + " §4conflicts with dependency: §9"
+                                                    + dependency));
+                        }
                         return false;
                     }
                 } else {
                     if (!platformData.isModLoaded(dep)) {
-                        logger.info(
-                                ansiParser(
-                                        "§4Skipping mixin §9"
-                                                + mixinClassName
-                                                + " §4missing dependency: §9"
-                                                + dep));
+                        if (verbose) {
+                            logger.info(
+                                    ansiParser(
+                                            "§4Skipping mixin §9"
+                                                    + mixinClassName
+                                                    + " §4missing dependency: §9"
+                                                    + dep));
+                        }
                         return false;
                     }
                 }
@@ -93,16 +102,18 @@ public class ConditionalMixins {
         return true;
     }
 
-    public static boolean checkReqPlatform(AnnotationNode annotation, String mixinClassName) {
+    public static boolean checkReqPlatform(String mixinClassName, AnnotationNode annotation, boolean verbose) {
         Platform[] reqPlatform = getAnnotationValue(annotation, "value", null);
         if (reqPlatform != null) {
             for (Platform plat : reqPlatform) {
                 if (!plat.is(platform)) {
-                    logger.info(
-                            ansiParser(
-                                    "§4Skipping mixin §9"
-                                            + mixinClassName
-                                            + " §no supported platform detected"));
+                    if (verbose) {
+                        logger.info(
+                                ansiParser(
+                                        "§4Skipping mixin §9"
+                                                + mixinClassName
+                                                + " §no supported platform detected"));
+                    }
                     return false;
                 }
             }
@@ -111,11 +122,13 @@ public class ConditionalMixins {
         if (reqNotPlatform != null) {
             for (Platform plat : reqNotPlatform) {
                 if (plat.is(platform)) {
-                    logger.info(
-                            ansiParser(
-                                    "§4Skipping mixin §9"
-                                            + mixinClassName
-                                            + " §4platform not supported"));
+                    if (verbose) {
+                        logger.info(
+                                ansiParser(
+                                        "§4Skipping mixin §9"
+                                                + mixinClassName
+                                                + " §4platform not supported"));
+                    }
                     return false;
                 }
             }
@@ -123,23 +136,27 @@ public class ConditionalMixins {
         return true;
     }
 
-    public static boolean checkReqMCVersion(AnnotationNode annotation, String mixinClassName) {
+    public static boolean checkReqMCVersion(String mixinClassName, AnnotationNode annotation, boolean verbose) {
         MinecraftVersion min = getAnnotationValue(annotation, "min", null);
         MinecraftVersion max = getAnnotationValue(annotation, "max", null);
         if (min != null && !minecraftVersion.isAtLeast(min)) {
-            logger.info(
-                    ansiParser(
-                            "§4Skipping mixin §9"
-                                    + mixinClassName
-                                    + " §4Minecraft version is too old"));
+            if (verbose) {
+                logger.info(
+                        ansiParser(
+                                "§4Skipping mixin §9"
+                                        + mixinClassName
+                                        + " §4Minecraft version is too old"));
+            }
             return false;
         }
         if (max != null && !minecraftVersion.isAtMost(max)) {
-            logger.info(
-                    ansiParser(
-                            "§4Skipping mixin §9"
-                                    + mixinClassName
-                                    + " §4Minecraft version is too recent"));
+            if (verbose) {
+                logger.info(
+                        ansiParser(
+                                "§4Skipping mixin §9"
+                                        + mixinClassName
+                                        + " §4Minecraft version is too recent"));
+            }
             return false;
         }
 
@@ -150,11 +167,13 @@ public class ConditionalMixins {
                     return true;
                 }
             }
-            logger.info(
-                    ansiParser(
-                            "§4Skipping mixin §9"
-                                    + mixinClassName
-                                    + " §4Minecraft version not supported"));
+            if (verbose) {
+                logger.info(
+                        ansiParser(
+                                "§4Skipping mixin §9"
+                                        + mixinClassName
+                                        + " §4Minecraft version not supported"));
+            }
             return false;
         }
         return true;
