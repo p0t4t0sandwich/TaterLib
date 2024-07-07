@@ -25,6 +25,7 @@ dependencies {
 
     // Tooling
     compileOnly(project(':api'))
+    compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:entrypoint-spoof'))
     compileOnly(project(':tooling:loader'))
 }

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_21.vanilla.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.entity.VanillaEntitySpawnEvent;
@@ -19,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the entity spawn listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_21)
 @Mixin(ServerLevel.class)
 class EntitySpawnMixin_1_21 {
     /** Called when an entity is spawned. */

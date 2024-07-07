@@ -26,21 +26,14 @@ config = "${project_id}.mixins.v1_20_2.vanilla.json"
 config = "${project_id}.mixins.v1_20_6.vanilla.patch.json"
 [[mixins]]
 config = "${project_id}.mixins.v1_20_6.vanilla.json"
-
-# Forge Dependency
-[[dependencies.${ project_id }]]
-modId = "forge"
-mandatory = false
-type = "optional"
-versionRange = "${forge_version_range}"
-ordering = "NONE"
-side = "BOTH"
+[[mixins]]
+config = "${project_id}.mixins.v1_21.vanilla.json"
 
 # NeoForge Dependency
 [[dependencies.${ project_id }]]
 modId = "neoforge"
 mandatory = false
-type = "optional"
+type = "required"
 versionRange = "${neo_version_range}"
 ordering = "NONE"
 side = "BOTH"

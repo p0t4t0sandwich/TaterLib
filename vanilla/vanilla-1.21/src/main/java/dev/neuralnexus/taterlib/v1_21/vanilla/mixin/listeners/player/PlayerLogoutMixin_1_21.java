@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_21.vanilla.mixin.listeners.player;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.player.VanillaPlayerLogoutEvent;
 
@@ -18,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player logout listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_21)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerLogoutMixin_1_21 {
     /** Called when a player disconnects. */

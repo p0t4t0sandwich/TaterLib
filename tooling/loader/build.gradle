@@ -11,7 +11,7 @@ tasks.withType(ProcessResources).configureEach {
             'plugin.yml',
             'bungee.yml',
             'fabric.mod.json', "${project.project_id}.mixins.json".toString(),
-            'META-INF/mods.toml', 'mcmod.info',
+            'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', 'mcmod.info',
             'META-INF/sponge_plugins.json',
             'velocity-plugin.json'
     ]) {
@@ -20,12 +20,5 @@ tasks.withType(ProcessResources).configureEach {
 }
 
 jar {
-//    exclude('fabric.mod.json')
-//    exclude('META-INF/mods.toml')
-//    exclude('mcmod.info')
-//    exclude('pack.mcmeta')
-//    exclude('META-INF/sponge_plugins.json')
-//    exclude('velocity-plugin.json')
-
     archiveFileName = "${project_id}-loader-${loader_version}.jar"
 }

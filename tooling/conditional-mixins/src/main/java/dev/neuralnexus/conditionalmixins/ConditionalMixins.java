@@ -8,6 +8,8 @@ package dev.neuralnexus.conditionalmixins;
 
 import static dev.neuralnexus.taterlib.Utils.ansiParser;
 
+import static org.spongepowered.asm.util.Annotations.getValue;
+
 import dev.neuralnexus.conditionalmixins.annotations.ReqDependency;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
@@ -24,6 +26,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.service.MixinService;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Utility class for users that what to use conditional mixins allong with their own mixin plugin
@@ -71,9 +74,10 @@ public class ConditionalMixins {
         return true;
     }
 
-    public static boolean checkReqDependency(String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        String[] reqDependency = getAnnotationValue(annotation, "value", null);
-        if (reqDependency != null) {
+    public static boolean checkReqDependency(
+            String mixinClassName, AnnotationNode annotation, boolean verbose) {
+        List<String> reqDependency = getValue(annotation, "value", true);
+        if (!reqDependency.isEmpty()) {
             for (String dep : reqDependency) {
                 if (dep.startsWith("!")) {
                     String dependency = dep.substring(1);
@@ -106,10 +110,12 @@ public class ConditionalMixins {
         return true;
     }
 
-    public static boolean checkReqPlatform(String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        Platform[] reqPlatform = getAnnotationValue(annotation, "value", null);
-        if (reqPlatform != null) {
-            for (Platform plat : reqPlatform) {
+    public static boolean checkReqPlatform(
+            String mixinClassName, AnnotationNode annotation, boolean verbose) {
+        List<Platform> platforms =
+                getValue(annotation, "value", true, Platform.class);
+        if (!platforms.isEmpty()) {
+            for (Platform plat : platforms) {
                 if (!plat.is(platform)) {
                     if (verbose) {
                         logger.info(
@@ -122,9 +128,10 @@ public class ConditionalMixins {
                 }
             }
         }
-        Platform[] reqNotPlatform = getAnnotationValue(annotation, "not", null);
-        if (reqNotPlatform != null) {
-            for (Platform plat : reqNotPlatform) {
+        List<Platform> notPlatforms =
+                getValue(annotation, "not", true, Platform.class);
+        if (!notPlatforms.isEmpty()) {
+            for (Platform plat : notPlatforms) {
                 if (plat.is(platform)) {
                     if (verbose) {
                         logger.info(
@@ -140,9 +147,14 @@ public class ConditionalMixins {
         return true;
     }
 
-    public static boolean checkReqMCVersion(String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        MinecraftVersion min = getAnnotationValue(annotation, "min", null);
-        MinecraftVersion max = getAnnotationValue(annotation, "max", null);
+    public static boolean checkReqMCVersion(
+            String mixinClassName, AnnotationNode annotation, boolean verbose) {
+        MinecraftVersion min =
+                getValue(
+                        annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
+        MinecraftVersion max =
+                getValue(
+                        annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
         if (min != null && !minecraftVersion.isAtLeast(min)) {
             if (verbose) {
                 logger.info(
@@ -164,8 +176,9 @@ public class ConditionalMixins {
             return false;
         }
 
-        MinecraftVersion[] versions = getAnnotationValue(annotation, "value", null);
-        if (versions != null) {
+        List<MinecraftVersion> versions =
+                getValue(annotation, "value", true, MinecraftVersion.class);
+        if (!versions.isEmpty()) {
             for (MinecraftVersion version : versions) {
                 if (minecraftVersion.is(version)) {
                     return true;
@@ -181,39 +194,5 @@ public class ConditionalMixins {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Borrowed this from <a
-     * href="https://github.com/Moulberry/MixinConstraints/blob/master/src/main/java/com/moulberry/mixinconstraints/checker/AnnotationChecker.java#L86">Moulberry's
-     * MixinConstraints</a>
-     */
-    @SuppressWarnings("unchecked")
-    private static <T> T getAnnotationValue(AnnotationNode annotation, String key, T defaultValue) {
-        boolean getNextValue = false;
-        boolean skipNextValue = false;
-
-        if (annotation == null || annotation.values == null) {
-            return defaultValue;
-        }
-
-        // Keys and value are stored in successive pairs, search for the key and if found return the
-        // following entry
-        for (Object value : annotation.values) {
-            if (skipNextValue) {
-                skipNextValue = false;
-                continue;
-            }
-            if (getNextValue) {
-                return (T) value;
-            }
-            if (value.equals(key)) {
-                getNextValue = true;
-            } else {
-                skipNextValue = true;
-            }
-        }
-
-        return defaultValue;
     }
 }
