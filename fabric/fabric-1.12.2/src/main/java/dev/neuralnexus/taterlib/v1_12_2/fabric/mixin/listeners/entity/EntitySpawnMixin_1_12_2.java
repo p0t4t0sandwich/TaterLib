@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_12_2.fabric.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_12_2.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.Entity;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the entity spawn listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_12, max = MinecraftVersion.V1_12_2)
 @Mixin(ServerWorld.class)
 class EntitySpawnMixin_1_12_2 {
     /**

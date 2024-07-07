@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19_3.fabric.mixin.patch.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
@@ -15,18 +17,15 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
-import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
 
 /** Patch mixin for VanillaEntity 1.19.3. */
+@ReqMCVersion(MinecraftVersion.V1_19_3)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityMixin_1_19_3 {
-    @Shadow @Final private Entity entity;
-
     /**
      * @author Dylan Sperrer (p0t4t0sandwich)
      * @reason Patch for 1.19.3

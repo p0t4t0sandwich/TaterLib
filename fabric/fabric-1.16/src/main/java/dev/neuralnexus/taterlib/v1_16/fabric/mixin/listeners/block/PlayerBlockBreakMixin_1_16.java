@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_16.fabric.mixin.listeners.block;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_16.fabric.event.api.FabricBlockEvents;
 
 import net.minecraft.block.Block;
@@ -20,6 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the block break listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin_1_16 {
     /**

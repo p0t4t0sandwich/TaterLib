@@ -122,7 +122,7 @@ public class ConditionalMixins {
                                 ansiParser(
                                         "§4Skipping mixin §9"
                                                 + mixinClassName
-                                                + " §no supported platform detected"));
+                                                + " §4no supported platform detected"));
                     }
                     return false;
                 }

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.Entity;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the entity spawn listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_7_2, max = MinecraftVersion.V1_7_10)
 @Mixin(ServerWorld.class)
 class EntitySpawnMixin_1_7_10 {
     /**
@@ -25,6 +28,7 @@ class EntitySpawnMixin_1_7_10 {
      * @param entity The entity.
      * @param cir The callback info.
      */
+    // TODO: Add the correct method name
     @Inject(method = "spawnEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         FabricEntityEvents.SPAWN.invoker().onEntitySpawn(entity, cir);

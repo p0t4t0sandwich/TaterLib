@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.mixin.listeners.server;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.server.VanillaServerStartedEvent;
 
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the server started listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_19, max = MinecraftVersion.V1_19_3)
 @Mixin(MinecraftServer.class)
 public class ServerStartedMixin_1_19 {
     /** Called when the server has started. */

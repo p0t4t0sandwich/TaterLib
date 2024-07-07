@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_15.fabric.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_15.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.LivingEntity;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the entity death listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(LivingEntity.class)
 class EntityDeathMixin_1_15 {
     /**

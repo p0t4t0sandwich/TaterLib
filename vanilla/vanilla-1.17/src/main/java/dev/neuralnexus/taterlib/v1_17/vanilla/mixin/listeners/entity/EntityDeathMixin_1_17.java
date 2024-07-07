@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_17.vanilla.event.entity.VanillaEntityDeathEvent;
 
@@ -18,6 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the entity death listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
 @Mixin(LivingEntity.class)
 class EntityDeathMixin_1_17 {
     /** Called when an entity is spawned. */

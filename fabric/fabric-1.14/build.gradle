@@ -29,5 +29,6 @@ dependencies {
 
     compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
 }

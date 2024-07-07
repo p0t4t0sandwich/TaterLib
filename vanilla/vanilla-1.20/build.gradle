@@ -18,5 +18,6 @@ dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
 }

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.patch.player;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload_1_20_6;
 
@@ -16,6 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /** Patch mixin for VanillaPlayer 1.20.6 */
+@ReqMCVersion(min = MinecraftVersion.V1_20_5, max = MinecraftVersion.V1_20_6)
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerMixin_1_20_6 {
     /**

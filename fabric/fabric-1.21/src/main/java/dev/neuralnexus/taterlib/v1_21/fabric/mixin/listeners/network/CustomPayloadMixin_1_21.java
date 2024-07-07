@@ -8,6 +8,8 @@ package dev.neuralnexus.taterlib.v1_21.fabric.mixin.listeners.network;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.CustomPayloadPacketWrapper;
@@ -24,6 +26,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the plugin messages listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_21)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class CustomPayloadMixin_1_21 {
     @Shadow

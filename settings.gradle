@@ -156,7 +156,6 @@ include(
         // Vanilla
         'vanilla:vanilla-1.17',
         'vanilla:vanilla-1.18',
-        'vanilla:vanilla-1.18.2',
         'vanilla:vanilla-1.19',
         'vanilla:vanilla-1.19.1',
         'vanilla:vanilla-1.19.3',

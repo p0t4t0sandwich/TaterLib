@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.fabric.mixin.listeners.block;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.event.api.FabricBlockEvents;
 
 import net.minecraft.block.Block;
@@ -22,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the block break listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_9, max = MinecraftVersion.V1_9_4)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin_1_9_4 {
     /**
@@ -32,7 +35,7 @@ public class PlayerBlockBreakMixin_1_9_4 {
      * @param ci The callback info.
      */
     @Inject(method = "method_8651", at = @At("HEAD"), cancellable = true)
-    private static void onBlockBreak(
+    private void onBlockBreak(
             World world,
             PlayerEntity player,
             BlockPos pos,

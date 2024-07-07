@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.patch.inventory;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_20.vanilla.inventory.VanillaItemStack;
 
 import net.minecraft.core.component.DataComponents;
@@ -15,6 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /** Patch mixin for VanillaItemStack 1.20.6 */
+@ReqMCVersion(min = MinecraftVersion.V1_20_5, max = MinecraftVersion.V1_20_6)
 @Mixin(value = VanillaItemStack.class, remap = false)
 public class VanillaItemStackMixin_1_20_6 {
     /**

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.server;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_17.vanilla.event.server.VanillaServerStoppedEvent;
 
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the server stopped listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
 @Mixin(MinecraftServer.class)
 public class ServerStoppedMixin_1_17 {
     /** Called when the server has stopped. */

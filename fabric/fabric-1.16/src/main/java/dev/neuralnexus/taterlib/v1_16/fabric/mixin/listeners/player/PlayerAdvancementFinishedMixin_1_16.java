@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_16.fabric.mixin.listeners.player;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_16.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.advancement.Advancement;
@@ -21,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player advancement finished listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(PlayerAdvancementTracker.class)
 public abstract class PlayerAdvancementFinishedMixin_1_16 {
     @Shadow private ServerPlayerEntity owner;

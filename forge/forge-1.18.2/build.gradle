@@ -20,7 +20,7 @@ dependencies {
 
 shadowJar {
     dependencies {
-        include(project(":vanilla:vanilla-${minecraft_version}"))
+        include(project(":vanilla:vanilla-1.18"))
     }
     relocate("dev.neuralnexus.taterlib.v1_18.vanilla", "dev.neuralnexus.taterlib.v1_18.vanilla.forge")
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"

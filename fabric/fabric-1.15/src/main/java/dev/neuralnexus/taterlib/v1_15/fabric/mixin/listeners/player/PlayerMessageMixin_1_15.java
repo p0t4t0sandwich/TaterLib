@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_15.fabric.mixin.listeners.player;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_15.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -19,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player message listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class PlayerMessageMixin_1_15 {
     @Shadow public ServerPlayerEntity player;

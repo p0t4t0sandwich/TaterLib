@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.mixin.patch.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
@@ -21,6 +23,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.util.Optional;
 
 /** Patch mixin for VanillaEntity 1.19.3. */
+@ReqMCVersion(MinecraftVersion.V1_19_3)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityMixin_1_19_3 {
     /**

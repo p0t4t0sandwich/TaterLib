@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric.mixin.listeners.entity;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterlib.api.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.damage.DamageSource;
@@ -17,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the entity damage listener. */
+@ReqMCVersion(min = MinecraftVersion.V1_7_2, max = MinecraftVersion.V1_7_10)
 @Mixin(DamageTracker.class)
 class EntityDamageMixin_1_7_10 {
     /**
