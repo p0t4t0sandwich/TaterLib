@@ -46,8 +46,7 @@ public class TaterLibConfigLoader {
             new TypeToken<List<ModuleConfig>>() {};
     private static final TypeToken<List<HookConfig>> hookType =
             new TypeToken<List<HookConfig>>() {};
-    private static final TypeToken<List<MixinConfig>> mixinType =
-            new TypeToken<List<MixinConfig>>() {};
+    private static final TypeToken<MixinConfig> mixinType = new TypeToken<MixinConfig>() {};
     private static TaterLibConfig config;
 
     /** Load the configuration from the file. */
@@ -66,11 +65,11 @@ public class TaterLibConfigLoader {
         ServerConfig server = ConfigUtil.get(root, serverType, "server", logger);
         List<ModuleConfig> modules = ConfigUtil.get(root, moduleType, "modules", logger);
         List<HookConfig> hooks = ConfigUtil.get(root, hookType, "hooks", logger);
-        List<MixinConfig> mixins = ConfigUtil.get(root, mixinType, "mixins", logger);
+        MixinConfig mixin = ConfigUtil.get(root, mixinType, "mixin", logger);
 
         switch (version) {
             case 1:
-                config = new TaterLibConfig_V1(version, server, modules, hooks, mixins);
+                config = new TaterLibConfig_V1(version, server, modules, hooks, mixin);
                 break;
             default:
                 System.err.println("Unknown configuration version: " + version);
@@ -98,7 +97,7 @@ public class TaterLibConfigLoader {
         ConfigUtil.set(root, serverType, "server", config.server(), logger);
         ConfigUtil.set(root, moduleType, "modules", config.modules(), logger);
         ConfigUtil.set(root, hookType, "hooks", config.hooks(), logger);
-        ConfigUtil.set(root, mixinType, "mixins", config.mixins(), logger);
+        ConfigUtil.set(root, mixinType, "mixin", config.mixin(), logger);
 
         try {
             loader.save(root);

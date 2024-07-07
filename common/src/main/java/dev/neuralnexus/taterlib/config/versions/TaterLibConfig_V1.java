@@ -19,7 +19,7 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
     public final int version;
     public final List<ModuleConfig> modules;
     public final List<HookConfig> hooks;
-    public final List<MixinConfig> mixins;
+    public final MixinConfig mixin;
     private final ServerConfig server;
 
     public TaterLibConfig_V1(
@@ -27,12 +27,12 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
             ServerConfig server,
             List<ModuleConfig> modules,
             List<HookConfig> hooks,
-            List<MixinConfig> mixins) {
+            MixinConfig mixin) {
         this.version = version;
         this.server = server;
         this.modules = modules;
         this.hooks = hooks;
-        this.mixins = mixins;
+        this.mixin = mixin;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
     }
 
     @Override
-    public List<MixinConfig> mixins() {
-        return mixins;
+    public MixinConfig mixin() {
+        return mixin;
     }
 }

@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.depdownloader.DepClassLoader;
 import dev.neuralnexus.taterlib.loader.Loader;
@@ -14,7 +15,7 @@ import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
-import dev.neuralnexus.taterlib.modules.core.CoreModule;
+import dev.neuralnexus.taterlib.modules.mclogs.MCLogsModule;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,8 +71,14 @@ public class TaterLib {
         TaterLibConfigLoader.load();
 
         if (!RELOADED) {
-            Loader.instance().registerPluginModule("taterlib", new CoreModule());
-            Loader.instance().registerPluginModule("taterlib", new BungeeCordModule());
+            TaterLibConfig config = TaterLibConfigLoader.config();
+            Loader loader = Loader.instance();
+            if (config.checkModule("BungeeCord")) {
+                loader.registerPluginModule("taterlib", new BungeeCordModule());
+            }
+            if (config.checkModule("MCLogs")) {
+                loader.registerPluginModule("taterlib", new MCLogsModule());
+            }
         }
         logger().info(LoaderImpl.PROJECT_NAME + " has been started!");
     }

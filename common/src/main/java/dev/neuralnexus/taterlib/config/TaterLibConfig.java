@@ -48,7 +48,7 @@ public interface TaterLibConfig {
      *
      * @return The mixins in the configuration.
      */
-    List<MixinConfig> mixins();
+    MixinConfig mixin();
 
     /**
      * Check if a module is enabled in the configuration.
@@ -72,17 +72,5 @@ public interface TaterLibConfig {
     default boolean checkHook(String hookName) {
         return hooks().stream()
                 .anyMatch(hookConfig -> hookConfig.name().equals(hookName) && hookConfig.enabled());
-    }
-
-    /**
-     * Check if a mixin is enabled in the configuration.
-     *
-     * @param mixinClassName The name of the mixin class.
-     * @return Whether the mixin should be applied.
-     */
-    default boolean checkMixin(String mixinClassName) {
-        return mixins().stream()
-                .filter(mixinConfig -> mixinClassName.contains(mixinConfig.name()))
-                .allMatch(MixinConfig::checkMixin);
     }
 }

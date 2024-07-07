@@ -8,6 +8,8 @@ package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.conditionalmixins.ConditionalMixins;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
+import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -32,8 +34,9 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return ConditionalMixins.shouldApplyMixin(mixinClassName, true);
-        // TODO: Add config to disable mixins
+        MixinConfig config = TaterLibConfigLoader.config().mixin();
+        return ConditionalMixins.shouldApplyMixin(
+                mixinClassName, config.disabled(), config.verbose());
     }
 
     @Override
