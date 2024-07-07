@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.fabric.server;
 
-import dev.neuralnexus.taterlib.player.SimplePlayer;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.player.FabricPlayer;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.world.FabricServerWorld;
-import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import net.minecraft.server.MinecraftServer;
 

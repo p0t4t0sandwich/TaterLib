@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
 
 import com.velocitypowered.api.command.CommandSource;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.kyori.adventure.text.Component;
 

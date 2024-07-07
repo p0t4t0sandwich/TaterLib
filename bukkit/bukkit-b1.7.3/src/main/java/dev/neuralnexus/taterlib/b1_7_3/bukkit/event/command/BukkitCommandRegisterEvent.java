@@ -8,9 +8,9 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit.event.command;
 
 import static dev.neuralnexus.taterlib.bukkit.utils.reflection.Utils.getCommandMap;
 
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.command.BukkitCommandWrapper;
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
 
 /** Bukkit implementation of {@link CommandRegisterEvent}. */
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {

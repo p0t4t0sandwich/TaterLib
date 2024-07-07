@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterapi.logger.Logger;
 
 import io.leangen.geantyref.TypeToken;
 

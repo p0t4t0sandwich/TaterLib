@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.forge.event.player;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.inventory.ForgeItemStack;
 import dev.neuralnexus.taterlib.v1_13_2.forge.player.ForgePlayer;

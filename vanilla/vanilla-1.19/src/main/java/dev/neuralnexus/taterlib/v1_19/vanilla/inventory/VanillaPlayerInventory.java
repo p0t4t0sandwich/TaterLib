@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 
 import net.minecraft.world.entity.player.Inventory;
 

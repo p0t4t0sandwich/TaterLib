@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_16_3.forge;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.v1_16_3.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_16_3.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_16_3.forge.listeners.block.ForgeBlockListener;

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.forge.inventory;
 
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import net.minecraft.init.Items;
 import net.minecraft.util.text.TextComponentString;

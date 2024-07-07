@@ -10,7 +10,7 @@ import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.RawCommand;
 import com.velocitypowered.api.proxy.Player;
 
-import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
 
 /** Wraps a command callback into a Velocity Command. */

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import org.bukkit.Material;
 

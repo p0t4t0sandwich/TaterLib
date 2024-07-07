@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

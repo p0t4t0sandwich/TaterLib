@@ -10,7 +10,7 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.server.VelocityServerStartingEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.server.VelocityServerStoppingEvent;
 

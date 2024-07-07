@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_16.fabric.event.entity;
 
-import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;

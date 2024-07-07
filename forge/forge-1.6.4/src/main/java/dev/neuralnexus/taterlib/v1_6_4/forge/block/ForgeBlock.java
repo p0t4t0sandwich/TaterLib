@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.forge.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.world.BlockPos;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.world.BlockPos;
 
 import net.minecraft.util.ChunkCoordinates;
 

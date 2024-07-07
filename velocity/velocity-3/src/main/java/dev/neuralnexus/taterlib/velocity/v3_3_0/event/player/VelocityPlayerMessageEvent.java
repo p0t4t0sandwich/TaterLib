@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.player;
 
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 
-import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.player.ProxyPlayer;
-import dev.neuralnexus.taterlib.player.SimplePlayer;
+import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
 
 import java.util.Set;

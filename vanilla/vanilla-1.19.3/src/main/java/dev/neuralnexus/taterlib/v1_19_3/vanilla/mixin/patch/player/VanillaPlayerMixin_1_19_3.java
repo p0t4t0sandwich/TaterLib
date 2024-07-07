@@ -7,10 +7,10 @@
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.mixin.patch.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

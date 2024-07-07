@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.listeners.entity;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntitySpawnEvent;

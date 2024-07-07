@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_10_2.fabric.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.player.SimplePlayer;
+import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 

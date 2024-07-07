@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_4_7.bungee.hooks.permissions;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
-import dev.neuralnexus.taterlib.entity.Permissible;
-import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterapi.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.command.BungeeCommandSender;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.player.BungeePlayer;
 

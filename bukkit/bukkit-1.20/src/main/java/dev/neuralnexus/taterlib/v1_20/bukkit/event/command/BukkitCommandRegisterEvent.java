@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_20.bukkit.event.command;
 
 import static dev.neuralnexus.taterlib.bukkit.utils.reflection.Utils.getCommandMap;
 
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.bukkit.command.BukkitCommandWrapper;
 
 /** Bukkit implementation of {@link CommandRegisterEvent}. */

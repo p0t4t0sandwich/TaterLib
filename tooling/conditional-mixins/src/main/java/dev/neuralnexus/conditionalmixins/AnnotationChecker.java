@@ -3,17 +3,17 @@ package dev.neuralnexus.conditionalmixins;
 import dev.neuralnexus.conditionalmixins.annotations.ReqDependency;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.PlatformData;
-import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 
 import java.util.List;
 
 import static dev.neuralnexus.conditionalmixins.ConditionalMixins.logger;
-import static dev.neuralnexus.taterlib.Utils.ansiParser;
+import static dev.neuralnexus.taterapi.utils.TextUtil.ansiParser;
 import static org.spongepowered.asm.util.Annotations.getValue;
 
 public class AnnotationChecker {

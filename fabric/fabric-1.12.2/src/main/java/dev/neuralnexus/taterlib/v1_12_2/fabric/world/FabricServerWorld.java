@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_12_2.fabric.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 
 /** Fabric implementation of {@link ServerWorld}. */
 public class FabricServerWorld extends FabricWorld implements ServerWorld {

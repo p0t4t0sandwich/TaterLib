@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.command;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;

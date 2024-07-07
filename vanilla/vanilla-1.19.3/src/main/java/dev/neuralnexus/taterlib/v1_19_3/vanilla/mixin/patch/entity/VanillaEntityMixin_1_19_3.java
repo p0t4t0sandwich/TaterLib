@@ -7,11 +7,11 @@
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.mixin.patch.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

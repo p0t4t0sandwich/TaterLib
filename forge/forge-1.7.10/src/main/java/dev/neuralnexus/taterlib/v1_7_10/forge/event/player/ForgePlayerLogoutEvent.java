@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.event.player;
 
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 
 /** Forge implementation of {@link PlayerLogoutEvent}. */
 public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLogoutEvent {

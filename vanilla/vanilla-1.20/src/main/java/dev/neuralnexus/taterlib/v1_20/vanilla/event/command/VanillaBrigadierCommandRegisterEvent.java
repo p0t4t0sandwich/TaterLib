@@ -11,9 +11,9 @@ import static net.minecraft.commands.Commands.literal;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
-import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_20.vanilla.command.VanillaCommandSender;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
 

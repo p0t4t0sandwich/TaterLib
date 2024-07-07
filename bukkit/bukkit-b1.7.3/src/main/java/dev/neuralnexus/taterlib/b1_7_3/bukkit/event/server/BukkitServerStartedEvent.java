@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.event.server;
 
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.event.server.ServerStartedEvent;
-import dev.neuralnexus.taterlib.server.SimpleServer;
 
 import org.bukkit.Bukkit;
 

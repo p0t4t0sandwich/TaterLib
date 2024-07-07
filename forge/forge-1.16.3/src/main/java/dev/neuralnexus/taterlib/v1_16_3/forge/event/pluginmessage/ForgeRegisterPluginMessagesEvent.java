@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_16_3.forge.event.pluginmessage;
 
-import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
+import dev.neuralnexus.taterapi.event.network.RegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_16_3.forge.networking.ModMessages;
 
 import java.util.Collections;

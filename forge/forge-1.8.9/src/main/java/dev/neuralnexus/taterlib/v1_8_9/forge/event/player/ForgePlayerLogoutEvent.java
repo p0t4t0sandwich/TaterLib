@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_8_9.forge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 

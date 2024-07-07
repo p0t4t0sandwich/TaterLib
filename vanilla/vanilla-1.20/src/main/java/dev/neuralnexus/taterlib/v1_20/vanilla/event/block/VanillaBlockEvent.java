@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20.vanilla.event.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.event.block.BlockEvent;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.block.VanillaBlock;
 
 import net.minecraft.core.BlockPos;

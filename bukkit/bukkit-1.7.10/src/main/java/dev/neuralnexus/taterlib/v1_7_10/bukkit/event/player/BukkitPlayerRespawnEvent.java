@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 /** An implementation of {@link PlayerRespawnEvent} for Bukkit. */
 public class BukkitPlayerRespawnEvent extends BukkitPlayerEvent implements PlayerRespawnEvent {

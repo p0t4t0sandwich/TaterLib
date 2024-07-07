@@ -7,9 +7,9 @@
 package dev.neuralnexus.taterlib.metrics.bstats;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.logger.Logger;
+import dev.neuralnexus.taterapi.logger.Logger;
 
 import org.bstats.MetricsBase;
 import org.bstats.charts.DrilldownPie;

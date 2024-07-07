@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_17.sponge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_17.sponge.player.SpongePlayer;
 import dev.neuralnexus.taterlib.v1_17.sponge.world.SpongeLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
 

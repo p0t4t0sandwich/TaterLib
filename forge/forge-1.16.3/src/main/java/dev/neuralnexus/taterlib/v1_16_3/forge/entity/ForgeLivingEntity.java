@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_16_3.forge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.DamageSource;

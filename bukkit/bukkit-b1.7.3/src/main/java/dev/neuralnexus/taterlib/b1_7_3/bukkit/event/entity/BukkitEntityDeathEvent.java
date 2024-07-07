@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.event.entity;
 
+import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.inventory.BukkitItemStack;
-import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
 
 import java.util.List;
 import java.util.stream.Collectors;

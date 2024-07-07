@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.modules.mclogs.api;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 
 import gs.mclo.api.MclogsClient;

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.command;
 
-import dev.neuralnexus.taterlib.command.Command;
+import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.v1_19.sponge.player.SpongePlayer;
 
 import net.kyori.adventure.text.Component;

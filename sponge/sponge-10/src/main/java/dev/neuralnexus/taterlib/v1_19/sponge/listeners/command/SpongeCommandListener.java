@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.listeners.command;
 
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.v1_19.sponge.event.command.SpongeCommandRegisterEvent;
 
 import org.spongepowered.api.command.Command;

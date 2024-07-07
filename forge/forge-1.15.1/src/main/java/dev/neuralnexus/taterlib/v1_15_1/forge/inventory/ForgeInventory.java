@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_15_1.forge.inventory;
 
-import dev.neuralnexus.taterlib.inventory.Inventory;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.Inventory;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import net.minecraft.inventory.IInventory;
 

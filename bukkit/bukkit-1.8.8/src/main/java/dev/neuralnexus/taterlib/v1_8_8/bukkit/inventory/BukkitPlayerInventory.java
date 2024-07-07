@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 
 import java.util.Arrays;
 import java.util.List;

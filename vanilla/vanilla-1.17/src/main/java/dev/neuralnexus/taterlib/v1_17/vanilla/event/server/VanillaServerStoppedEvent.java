@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.event.server;
 
-import dev.neuralnexus.taterlib.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 
 import net.minecraft.server.MinecraftServer;
 

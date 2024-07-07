@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.mixin.listeners.server;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppingEvent;
 
 import net.minecraft.server.MinecraftServer;

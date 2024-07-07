@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_8.sponge.inventory;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;

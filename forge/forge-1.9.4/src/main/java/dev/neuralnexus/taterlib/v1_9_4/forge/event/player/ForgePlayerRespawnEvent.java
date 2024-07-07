@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.forge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_9_4.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 

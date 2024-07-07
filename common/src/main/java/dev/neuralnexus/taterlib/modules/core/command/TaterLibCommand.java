@@ -6,15 +6,15 @@
 
 package dev.neuralnexus.taterlib.modules.core.command;
 
+import dev.neuralnexus.taterapi.utils.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.Utils;
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.player.Player;
 
 public class TaterLibCommand implements Command {
     private String name = "taterlib";
@@ -110,13 +110,13 @@ public class TaterLibCommand implements Command {
         if (sender instanceof Player) {
             if (!sender.hasPermission(permission())) {
                 sender.sendMessage(
-                        Utils.substituteSectionSign(
+                        TextUtil.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));
             } else {
-                sender.sendMessage(Utils.substituteSectionSign(execute(args)));
+                sender.sendMessage(TextUtil.substituteSectionSign(execute(args)));
             }
         } else {
-            sender.sendMessage(Utils.ansiParser(Utils.substituteSectionSign(execute(args))));
+            sender.sendMessage(TextUtil.ansiParser(TextUtil.substituteSectionSign(execute(args))));
         }
         return true;
     }

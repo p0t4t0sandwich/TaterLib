@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.conditionalmixins.ConditionalMixins;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 

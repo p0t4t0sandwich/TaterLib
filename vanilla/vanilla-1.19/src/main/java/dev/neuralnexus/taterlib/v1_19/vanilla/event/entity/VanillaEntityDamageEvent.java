@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.entity;
 
-import dev.neuralnexus.taterlib.event.Cancellable;
-import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterapi.event.Cancellable;
+import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;

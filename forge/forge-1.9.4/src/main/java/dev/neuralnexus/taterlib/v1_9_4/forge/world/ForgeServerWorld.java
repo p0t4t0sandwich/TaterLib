@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.forge.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 
 import net.minecraft.world.WorldServer;
 

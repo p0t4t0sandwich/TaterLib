@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_9.sponge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_9.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.v1_9.sponge.world.SpongeLocation;
 import dev.neuralnexus.taterlib.v1_9.sponge.world.SpongeServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;

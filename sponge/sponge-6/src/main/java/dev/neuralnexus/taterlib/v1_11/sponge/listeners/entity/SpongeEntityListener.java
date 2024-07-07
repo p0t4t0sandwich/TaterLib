@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_11.sponge.listeners.entity;
 
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_11.sponge.event.entity.SpongeEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_11.sponge.event.entity.SpongeEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_11.sponge.event.entity.SpongeEntitySpawnEvent;

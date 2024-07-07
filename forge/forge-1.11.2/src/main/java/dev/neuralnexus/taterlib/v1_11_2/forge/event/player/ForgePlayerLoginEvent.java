@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.forge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerLoginEvent;
 
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20.bukkit.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {

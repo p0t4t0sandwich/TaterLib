@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_19_4.forge.mixin.patch;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;
 
 import org.spongepowered.asm.mixin.Mixin;

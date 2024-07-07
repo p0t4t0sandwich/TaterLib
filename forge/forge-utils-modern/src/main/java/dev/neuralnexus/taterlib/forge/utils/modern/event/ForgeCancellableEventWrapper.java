@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.forge.utils.modern.event;
 
-import dev.neuralnexus.taterlib.event.Cancellable;
+import dev.neuralnexus.taterapi.event.Cancellable;
 
 import net.minecraftforge.eventbus.api.Event;
 

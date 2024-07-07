@@ -10,9 +10,9 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
+import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.player.ProxyPlayer;
-import dev.neuralnexus.taterlib.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;

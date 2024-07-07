@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_4_7.bungee;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.utils.ScheduleUtil;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.Utils;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStartedEvent;
@@ -41,13 +41,13 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         // Register listeners
         Plugin plugin = (Plugin) Loader.instance().plugin();
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
-        Utils.runTaskLaterAsync(
+        ScheduleUtil.runTaskLaterAsync(
                 () -> CommandEvents.REGISTER_COMMAND.invoke(new BungeeCommandRegisterEvent()),
                 5000L);
         pluginManager.registerListener(plugin, new BungeePlayerListener());
         pluginManager.registerListener(plugin, new BungeePluginMessageListener());
         ServerEvents.STARTING.invoke(new BungeeServerStartingEvent());
-        Utils.runTaskLaterAsync(
+        ScheduleUtil.runTaskLaterAsync(
                 () -> ServerEvents.STARTED.invoke(new BungeeServerStartedEvent()), 5000L);
     }
 

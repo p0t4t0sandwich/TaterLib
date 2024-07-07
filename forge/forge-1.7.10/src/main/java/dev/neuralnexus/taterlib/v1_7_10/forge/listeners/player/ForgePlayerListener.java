@@ -10,7 +10,7 @@ import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.player.*;
 
 import net.minecraft.entity.player.EntityPlayerMP;

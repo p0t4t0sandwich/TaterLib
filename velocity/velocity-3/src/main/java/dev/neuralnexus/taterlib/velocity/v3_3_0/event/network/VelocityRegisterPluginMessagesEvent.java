@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.network;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
-import dev.neuralnexus.taterlib.event.network.RegisterPluginMessagesEvent;
+import dev.neuralnexus.taterapi.event.network.RegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.loader.Loader;
 
 import java.util.Set;

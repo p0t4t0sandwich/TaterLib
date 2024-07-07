@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.fabric.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 
 import net.minecraft.entity.player.PlayerEntity;
 

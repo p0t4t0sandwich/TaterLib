@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentTypes;

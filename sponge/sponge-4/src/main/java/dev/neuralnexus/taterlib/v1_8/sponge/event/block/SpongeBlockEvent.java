@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_8.sponge.event.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.event.block.BlockEvent;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.v1_8.sponge.block.SpongeBlock;
 
 import org.spongepowered.api.event.block.ChangeBlockEvent;

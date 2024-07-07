@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.fabric.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.world.FabricLocation;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.world.FabricServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;

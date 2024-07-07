@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_15_1.forge.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntityEvent;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_15_1.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_15_1.forge.player.ForgePlayer;
 

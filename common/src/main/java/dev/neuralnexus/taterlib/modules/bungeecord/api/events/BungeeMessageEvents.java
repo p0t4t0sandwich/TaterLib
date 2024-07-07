@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.modules.bungeecord.api.events;
 
-import dev.neuralnexus.taterlib.event.api.EventManager;
+import dev.neuralnexus.taterapi.event.api.EventManager;
 
 /** BungeeCord message events. */
 public class BungeeMessageEvents {

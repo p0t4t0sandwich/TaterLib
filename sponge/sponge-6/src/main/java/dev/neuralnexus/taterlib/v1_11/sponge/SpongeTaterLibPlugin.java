@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_11.sponge;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_11.sponge.event.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_11.sponge.hooks.permissions.SpongePermissionsHook;

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.world.BlockPos;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Bukkit implementation of {@link Block}. */
 public class BukkitBlock implements Block {

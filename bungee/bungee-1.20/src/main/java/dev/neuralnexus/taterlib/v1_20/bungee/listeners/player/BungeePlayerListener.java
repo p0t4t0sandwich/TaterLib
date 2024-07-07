@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20.bungee.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerMessageEvent;

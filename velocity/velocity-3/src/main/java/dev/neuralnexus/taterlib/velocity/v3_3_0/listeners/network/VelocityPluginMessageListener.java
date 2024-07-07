@@ -11,7 +11,7 @@ import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
 
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityPluginMessageEvent;
 
 /** Listens for plugin messages. */

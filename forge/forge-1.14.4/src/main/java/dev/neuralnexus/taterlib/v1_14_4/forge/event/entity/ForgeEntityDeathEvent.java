@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_14_4.forge.event.entity;
 
-import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_14_4.forge.inventory.ForgeItemStack;
 
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

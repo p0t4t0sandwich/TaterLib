@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.event.network;
 
-import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.player.BukkitPlayer;
 
 /** Bukkit implementation of {@link PluginMessageEvent}. */

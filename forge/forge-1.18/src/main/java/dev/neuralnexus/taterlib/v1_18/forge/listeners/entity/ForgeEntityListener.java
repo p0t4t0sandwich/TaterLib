@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_18.forge.listeners.entity;
 
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.entity.VanillaEntityDeathEvent;

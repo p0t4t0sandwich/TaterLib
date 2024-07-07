@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerEvent;
 
 import net.minecraft.advancements.AdvancementHolder;

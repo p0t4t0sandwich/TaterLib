@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.event.server;
 
-import dev.neuralnexus.taterlib.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 
 import net.minecraft.server.MinecraftServer;
 

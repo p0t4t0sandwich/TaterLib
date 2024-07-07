@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.forge.listeners.block;
 
-import dev.neuralnexus.taterlib.event.api.BlockEvents;
+import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 

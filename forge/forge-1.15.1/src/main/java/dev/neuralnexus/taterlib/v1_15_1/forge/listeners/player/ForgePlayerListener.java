@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_15_1.forge.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_15_1.forge.event.player.*;
 
 import net.minecraft.advancements.Advancement;

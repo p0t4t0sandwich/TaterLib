@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.forge.world;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_11_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
-import dev.neuralnexus.taterlib.world.Location;
-import dev.neuralnexus.taterlib.world.World;
 
 import net.minecraft.util.math.AxisAlignedBB;
 

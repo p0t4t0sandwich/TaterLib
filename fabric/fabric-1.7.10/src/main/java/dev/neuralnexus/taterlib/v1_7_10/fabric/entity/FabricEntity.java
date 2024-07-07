@@ -6,13 +6,13 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.server.FabricServer;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.world.FabricLocation;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.world.FabricServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.server.world.ServerWorld;
 

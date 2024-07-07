@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_17.vanilla.event.player.VanillaPlayerLogoutEvent;
 
 import net.minecraft.network.chat.Component;

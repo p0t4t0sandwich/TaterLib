@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 
 /** Sponge implementation of {@link ServerWorld}. */
 public class SpongeServerWorld extends SpongeWorld implements ServerWorld {

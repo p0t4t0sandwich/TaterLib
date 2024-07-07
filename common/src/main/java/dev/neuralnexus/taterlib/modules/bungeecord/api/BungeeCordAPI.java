@@ -11,7 +11,7 @@ import static dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType.*;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.player.Player;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

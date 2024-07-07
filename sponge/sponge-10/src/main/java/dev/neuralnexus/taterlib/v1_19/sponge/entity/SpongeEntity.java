@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.v1_19.sponge.world.SpongeLocation;
 import dev.neuralnexus.taterlib.v1_19.sponge.world.SpongeServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 

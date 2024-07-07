@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_21.vanilla.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;

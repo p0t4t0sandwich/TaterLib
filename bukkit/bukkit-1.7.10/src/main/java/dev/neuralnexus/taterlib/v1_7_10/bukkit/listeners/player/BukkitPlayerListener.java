@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.event.player.*;
 
 import org.bukkit.event.EventHandler;

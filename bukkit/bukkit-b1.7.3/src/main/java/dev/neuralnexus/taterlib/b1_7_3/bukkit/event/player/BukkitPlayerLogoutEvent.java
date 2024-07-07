@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 
 import org.bukkit.event.player.PlayerQuitEvent;
 

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_9.sponge.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntityDamageEvent;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_9.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.v1_9.sponge.player.SpongePlayer;
 

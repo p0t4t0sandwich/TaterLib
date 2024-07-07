@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.world.BlockPos;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockType;

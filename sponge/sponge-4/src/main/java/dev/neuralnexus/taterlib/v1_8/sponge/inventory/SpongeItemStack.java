@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_8.sponge.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;

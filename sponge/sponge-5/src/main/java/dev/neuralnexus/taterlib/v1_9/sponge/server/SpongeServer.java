@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_9.sponge.server;
 
-import dev.neuralnexus.taterlib.player.SimplePlayer;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_9.sponge.player.SpongePlayer;
 import dev.neuralnexus.taterlib.v1_9.sponge.world.SpongeServerWorld;
-import dev.neuralnexus.taterlib.world.ServerWorld;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_8.sponge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.entity.LivingEntity;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;

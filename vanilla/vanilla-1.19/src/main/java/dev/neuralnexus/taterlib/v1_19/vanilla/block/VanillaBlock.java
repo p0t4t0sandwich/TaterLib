@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.world.BlockPos;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Vanilla implementation of {@link Block}. */
 public class VanillaBlock implements Block {

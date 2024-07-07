@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player;
 
 import cpw.mods.fml.common.IPlayerTracker;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_6_4.forge.event.player.*;
 
 import net.minecraft.entity.player.EntityPlayer;

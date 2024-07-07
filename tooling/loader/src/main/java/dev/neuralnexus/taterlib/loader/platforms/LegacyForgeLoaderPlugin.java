@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.loader.platforms;
 
 import cpw.mods.fml.common.Mod;
 
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;

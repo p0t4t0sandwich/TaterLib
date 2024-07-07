@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.event.server;
 
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
 
-import dev.neuralnexus.taterlib.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 
 /** Forge implementation of {@link ServerStartedEvent}. */
 public class ForgeServerStartedEvent extends ForgeServerEvent implements ServerStartedEvent {

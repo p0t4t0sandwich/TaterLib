@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.patch.inventory;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_20.vanilla.inventory.VanillaItemStack;
 
 import net.minecraft.core.component.DataComponents;

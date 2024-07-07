@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.depdownloader;
 
-import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterapi.Platform;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

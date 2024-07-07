@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_13.sponge.player.SpongePlayer;
 
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20.vanilla.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
 import net.minecraft.server.level.ServerPlayer;
 

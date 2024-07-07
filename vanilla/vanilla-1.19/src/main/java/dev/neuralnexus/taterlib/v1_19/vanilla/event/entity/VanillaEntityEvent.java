@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntityEvent;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 

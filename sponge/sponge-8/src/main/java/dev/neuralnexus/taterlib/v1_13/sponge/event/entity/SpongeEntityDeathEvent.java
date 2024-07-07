@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_13.sponge.entity.SpongeEntity;
 
 import org.spongepowered.api.event.entity.DestructEntityEvent;

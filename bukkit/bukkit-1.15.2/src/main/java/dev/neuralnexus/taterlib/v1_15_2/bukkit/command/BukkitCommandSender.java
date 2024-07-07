@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.command;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import java.util.UUID;
 

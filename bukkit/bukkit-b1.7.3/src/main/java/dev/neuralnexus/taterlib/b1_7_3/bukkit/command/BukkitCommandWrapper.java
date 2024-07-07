@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.command;
 
+import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.command.Command;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

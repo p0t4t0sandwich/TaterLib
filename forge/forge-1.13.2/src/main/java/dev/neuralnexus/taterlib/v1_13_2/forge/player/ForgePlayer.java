@@ -6,17 +6,17 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.forge.player;
 
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.player.GameMode;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

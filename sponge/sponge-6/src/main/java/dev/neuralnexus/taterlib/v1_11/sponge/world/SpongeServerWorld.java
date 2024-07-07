@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_11.sponge.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 
 import org.spongepowered.api.world.World;
 

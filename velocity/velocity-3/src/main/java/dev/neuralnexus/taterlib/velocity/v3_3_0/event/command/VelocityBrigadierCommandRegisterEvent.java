@@ -14,11 +14,11 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
-import dev.neuralnexus.taterlib.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.player.Player;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent

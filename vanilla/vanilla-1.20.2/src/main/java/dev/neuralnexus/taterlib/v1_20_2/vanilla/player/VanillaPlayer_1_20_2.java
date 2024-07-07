@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.player;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.VanillaCustomPacketPayload_1_20_2;
 

@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_2_5.bukkit.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.entity.LivingEntity;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {

@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_14.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_14.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.server.network.ServerPlayNetworkHandler;

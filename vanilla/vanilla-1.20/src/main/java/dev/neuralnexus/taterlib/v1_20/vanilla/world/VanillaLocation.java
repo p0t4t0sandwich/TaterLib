@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_20.vanilla.world;
 
-import dev.neuralnexus.taterlib.world.BlockPos;
-import dev.neuralnexus.taterlib.world.Location;
-import dev.neuralnexus.taterlib.world.World;
+import dev.neuralnexus.taterapi.world.BlockPos;
+import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.World;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;

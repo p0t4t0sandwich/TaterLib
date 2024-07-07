@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_20.vanilla.inventory.VanillaItemStack;
 
 import net.minecraft.core.component.DataComponents;

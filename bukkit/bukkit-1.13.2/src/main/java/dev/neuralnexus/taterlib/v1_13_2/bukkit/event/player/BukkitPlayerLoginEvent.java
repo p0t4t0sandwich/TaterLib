@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerLoginEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerLoginEvent;
 
 import org.bukkit.event.player.PlayerJoinEvent;
 

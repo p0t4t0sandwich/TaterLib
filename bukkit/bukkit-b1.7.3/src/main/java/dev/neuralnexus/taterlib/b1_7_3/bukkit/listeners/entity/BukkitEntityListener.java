@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.entity;
 
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.entity.BukkitEntityDamageEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.entity.BukkitEntityDeathEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.entity.BukkitEntitySpawnEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.player.BukkitPlayerDeathEvent;
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.*;

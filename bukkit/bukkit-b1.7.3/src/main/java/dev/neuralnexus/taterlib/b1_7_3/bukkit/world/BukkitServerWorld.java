@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
-import dev.neuralnexus.taterlib.world.World;
+import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.World;
 
 /** Bukkit implementation of {@link World}. */
 public class BukkitServerWorld extends BukkitWorld implements ServerWorld {

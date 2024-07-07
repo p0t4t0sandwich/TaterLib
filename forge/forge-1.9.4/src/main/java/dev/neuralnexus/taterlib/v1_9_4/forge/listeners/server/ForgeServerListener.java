@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.forge.listeners.server;
 
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_9_4.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_9_4.forge.event.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.v1_9_4.forge.event.server.ForgeServerStoppedEvent;

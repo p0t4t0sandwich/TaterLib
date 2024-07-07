@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_10_2.fabric.mixin.listeners.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.damage.DamageSource;

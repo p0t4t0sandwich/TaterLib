@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_19.forge;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.v1_19.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_19.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_19.forge.listeners.command.ForgeCommandsListener;

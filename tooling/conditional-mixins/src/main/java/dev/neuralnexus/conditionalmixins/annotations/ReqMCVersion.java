@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.conditionalmixins.annotations;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

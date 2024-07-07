@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_19.vanilla.inventory;
 
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;

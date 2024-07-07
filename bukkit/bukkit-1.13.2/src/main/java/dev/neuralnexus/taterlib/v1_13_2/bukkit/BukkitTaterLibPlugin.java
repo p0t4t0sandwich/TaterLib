@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.bukkit;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPluginMessagesEvent;

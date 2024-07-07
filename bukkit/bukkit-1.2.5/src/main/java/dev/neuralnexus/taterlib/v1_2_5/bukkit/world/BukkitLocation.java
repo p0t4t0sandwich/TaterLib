@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_2_5.bukkit.world;
 
-import dev.neuralnexus.taterlib.world.BlockPos;
-import dev.neuralnexus.taterlib.world.Location;
-import dev.neuralnexus.taterlib.world.World;
+import dev.neuralnexus.taterapi.world.BlockPos;
+import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.World;
 
 /** Bukkit implementation of {@link Location}. */
 public class BukkitLocation implements Location {

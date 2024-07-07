@@ -10,10 +10,10 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.network.VanillaPluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.network.CustomPayloadPacketWrapper_1_20_2;

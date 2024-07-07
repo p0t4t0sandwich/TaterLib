@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_19.forge.hooks.permissions;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
-import dev.neuralnexus.taterlib.entity.Permissible;
-import dev.neuralnexus.taterlib.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_19.vanilla.command.VanillaCommandSender;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 

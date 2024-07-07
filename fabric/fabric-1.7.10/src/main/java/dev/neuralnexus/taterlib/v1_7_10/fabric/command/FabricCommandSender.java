@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric.command;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.FabricTaterLibPlugin;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;

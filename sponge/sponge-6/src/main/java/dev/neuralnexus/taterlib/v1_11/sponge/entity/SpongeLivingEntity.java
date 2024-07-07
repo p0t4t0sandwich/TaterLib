@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_11.sponge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.Living;

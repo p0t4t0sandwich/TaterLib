@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_16_3.forge.event.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.event.block.BlockEvent;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.event.block.BlockEvent;
 import dev.neuralnexus.taterlib.v1_16_3.forge.block.ForgeBlock;
 
 /** Forge implementation of {@link BlockEvent}. */

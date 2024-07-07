@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.fabric.event.command;
 
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.command.FabricCommandWrapper;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandManager;

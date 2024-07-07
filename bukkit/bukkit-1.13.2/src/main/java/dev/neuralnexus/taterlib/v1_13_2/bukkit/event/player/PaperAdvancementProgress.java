@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_13_2.bukkit.event.player;
 
 import com.destroystokyo.paper.event.player.PlayerAdvancementCriterionGrantEvent;
 
-import dev.neuralnexus.taterlib.event.player.PlayerAdvancementEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 
 import java.util.Collection;
 

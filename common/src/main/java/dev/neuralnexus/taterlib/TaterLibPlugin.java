@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginDisableEvent;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.event.plugin.CommonPluginDisableEvent;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 

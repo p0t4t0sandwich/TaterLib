@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.loader.impl;
 
-import dev.neuralnexus.taterlib.api.PlatformData;
-import dev.neuralnexus.taterlib.api.impl.metadata.PlatformDataImpl;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 import dev.neuralnexus.taterlib.plugin.Plugin;

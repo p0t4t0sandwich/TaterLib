@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.forge.command;
 
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;

@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.forge;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStartingEvent;

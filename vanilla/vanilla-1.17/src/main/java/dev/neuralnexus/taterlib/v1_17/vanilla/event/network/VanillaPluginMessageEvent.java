@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.event.network;
 
-import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
-import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_17.vanilla.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -56,7 +56,7 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.player.Player player() {
+        public dev.neuralnexus.taterapi.player.Player player() {
             return new VanillaPlayer(this.player);
         }
     }

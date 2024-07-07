@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity;
 
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitWorld;
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.server.EntityTypes;
 

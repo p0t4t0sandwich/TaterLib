@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.modules.bungeecord.api.events;
 
 import com.google.common.io.ByteArrayDataInput;
 
-import dev.neuralnexus.taterlib.event.Event;
+import dev.neuralnexus.taterapi.event.Event;
 
 /** Response to BungeeCord plugin message GetServer request. */
 public class GetServerRespEvent implements Event {

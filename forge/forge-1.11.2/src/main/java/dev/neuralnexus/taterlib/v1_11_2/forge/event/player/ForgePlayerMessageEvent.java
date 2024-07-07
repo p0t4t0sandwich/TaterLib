@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.forge.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.player.SimplePlayer;
+import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
 
 import net.minecraftforge.event.ServerChatEvent;

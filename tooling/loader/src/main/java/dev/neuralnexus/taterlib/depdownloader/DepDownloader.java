@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.depdownloader;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.logger.Logger;
 
 import java.io.*;
 import java.net.URL;

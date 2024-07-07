@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_9_4.forge.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_9_4.forge.event.player.*;
 
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_14.fabric.event.player;
 
-import dev.neuralnexus.taterlib.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
+import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterlib.v1_14.fabric.event.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14.fabric.player.FabricPlayer;
 

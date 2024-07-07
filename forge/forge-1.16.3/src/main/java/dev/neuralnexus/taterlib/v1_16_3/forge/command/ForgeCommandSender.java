@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_16_3.forge.command;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.text.StringTextComponent;

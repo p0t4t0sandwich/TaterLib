@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_20.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.VanillaPlayerDeathEvent;
 
 import net.minecraft.server.level.ServerPlayer;

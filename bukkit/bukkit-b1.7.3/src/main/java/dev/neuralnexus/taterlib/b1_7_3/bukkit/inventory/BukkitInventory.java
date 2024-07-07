@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.inventory;
 
-import dev.neuralnexus.taterlib.inventory.Inventory;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.Inventory;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import org.bukkit.Material;
 

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_15_1.forge.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 
 import java.util.List;
 import java.util.stream.Collectors;

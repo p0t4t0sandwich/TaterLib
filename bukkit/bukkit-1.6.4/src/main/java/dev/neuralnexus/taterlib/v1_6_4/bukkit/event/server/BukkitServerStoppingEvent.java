@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.event.server;
 
-import dev.neuralnexus.taterlib.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterlib.server.SimpleServer;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.server.BukkitServer;
 
 import org.bukkit.Bukkit;

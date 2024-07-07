@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.*;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
-import dev.neuralnexus.taterlib.event.api.*;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricEntityEvents;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricPlayerEvents;

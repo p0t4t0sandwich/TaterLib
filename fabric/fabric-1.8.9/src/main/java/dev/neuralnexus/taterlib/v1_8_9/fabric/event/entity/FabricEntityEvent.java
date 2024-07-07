@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_8_9.fabric.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntityEvent;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.player.FabricPlayer;
 

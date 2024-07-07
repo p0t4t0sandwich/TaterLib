@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_21.fabric.mixin.listeners.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.api.EntityEvents;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.entity.VanillaEntityDeathEvent;
 
 import net.minecraft.world.damagesource.DamageSource;

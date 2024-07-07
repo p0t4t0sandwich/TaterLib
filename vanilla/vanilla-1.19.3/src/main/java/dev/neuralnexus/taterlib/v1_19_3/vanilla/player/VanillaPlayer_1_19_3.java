@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_19_3.vanilla.player;
 
-import dev.neuralnexus.taterlib.player.Player;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;

@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.event.command;
 
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.command.ForgeCommandWrapper;
 
 /** Forge implementation of {@link CommandRegisterEvent}. */

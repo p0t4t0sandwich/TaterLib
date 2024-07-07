@@ -6,12 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_8_9.forge.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_9.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8_9.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_8_9.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_8_9.forge.world.ForgeServerWorld;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.world.WorldServer;
 

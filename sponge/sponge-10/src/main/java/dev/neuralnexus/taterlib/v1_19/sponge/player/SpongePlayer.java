@@ -6,14 +6,14 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.player;
 
-import dev.neuralnexus.taterlib.inventory.PlayerInventory;
-import dev.neuralnexus.taterlib.player.GameMode;
-import dev.neuralnexus.taterlib.player.Player;
-import dev.neuralnexus.taterlib.server.Server;
+import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.player.GameMode;
+import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.v1_19.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.v1_19.sponge.server.SpongeServer;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;

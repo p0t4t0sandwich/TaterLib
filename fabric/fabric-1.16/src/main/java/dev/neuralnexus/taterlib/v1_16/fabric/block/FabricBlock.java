@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_16.fabric.block;
 
-import dev.neuralnexus.taterlib.block.Block;
-import dev.neuralnexus.taterlib.world.BlockPos;
+import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Fabric implementation of {@link Block}. */
 public class FabricBlock implements Block {

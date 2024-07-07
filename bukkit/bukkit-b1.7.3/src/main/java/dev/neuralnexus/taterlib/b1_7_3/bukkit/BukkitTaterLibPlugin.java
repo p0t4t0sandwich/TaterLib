@@ -6,9 +6,11 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit;
 
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.server.BukkitServerStartedEvent;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.server.BukkitServerStartingEvent;
@@ -19,8 +21,6 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.block.BukkitBlockListene
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.event.api.CommandEvents;
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.loader.Loader;
 
 import org.bukkit.Bukkit;

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_10_2.fabric.command;
 
-import dev.neuralnexus.taterlib.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
 import net.minecraft.text.TranslatableText;

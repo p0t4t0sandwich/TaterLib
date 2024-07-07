@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_21.fabric.mixin.listeners.network;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.CustomPayloadPacketWrapper;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.VanillaPluginMessageEvent;
 import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;

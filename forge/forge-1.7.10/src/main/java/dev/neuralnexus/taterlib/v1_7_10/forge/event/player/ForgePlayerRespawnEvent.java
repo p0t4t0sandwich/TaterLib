@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.event.player;
 
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-import dev.neuralnexus.taterlib.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.forge.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_7_10.forge.world.ForgeLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 /** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {

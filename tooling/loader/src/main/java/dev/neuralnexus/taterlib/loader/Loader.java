@@ -6,13 +6,13 @@
 
 package dev.neuralnexus.taterlib.loader;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.PlatformData;
-import dev.neuralnexus.taterlib.event.api.PluginEvents;
-import dev.neuralnexus.taterlib.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.logger.Logger;
 import dev.neuralnexus.taterlib.plugin.ModuleLoader;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 import dev.neuralnexus.taterlib.plugin.PluginModule;

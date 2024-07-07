@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_10_2.fabric.event.entity;
 
-import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.world.FabricLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraft.entity.Entity;
 

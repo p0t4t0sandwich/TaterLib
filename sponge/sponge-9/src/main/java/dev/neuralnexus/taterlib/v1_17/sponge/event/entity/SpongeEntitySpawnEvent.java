@@ -6,11 +6,11 @@
 
 package dev.neuralnexus.taterlib.v1_17.sponge.event.entity;
 
-import dev.neuralnexus.taterlib.entity.Entity;
-import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_17.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.v1_17.sponge.world.SpongeLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
 

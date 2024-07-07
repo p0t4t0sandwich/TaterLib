@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_20.forge;
 
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.Platform;
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.v1_20.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.command.ForgeCommandsListener;

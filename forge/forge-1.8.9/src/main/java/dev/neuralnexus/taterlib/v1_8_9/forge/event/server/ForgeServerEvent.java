@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_8_9.forge.event.server;
 
-import dev.neuralnexus.taterlib.event.server.ServerEvent;
-import dev.neuralnexus.taterlib.server.SimpleServer;
+import dev.neuralnexus.taterapi.event.server.ServerEvent;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_8_9.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8_9.forge.server.ForgeServer;
 

@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.conditionalmixins;
 
-import static dev.neuralnexus.taterlib.Utils.ansiParser;
+import static dev.neuralnexus.taterapi.utils.TextUtil.ansiParser;
 
-import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.SystemLogger;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.service.MixinService;

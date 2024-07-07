@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_15_1.forge.event.entity;
 
-import dev.neuralnexus.taterlib.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_15_1.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_15_1.forge.world.ForgeLocation;
-import dev.neuralnexus.taterlib.world.Location;
 
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 

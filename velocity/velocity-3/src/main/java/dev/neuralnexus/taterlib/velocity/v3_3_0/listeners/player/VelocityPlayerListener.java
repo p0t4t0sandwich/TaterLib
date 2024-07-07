@@ -12,7 +12,7 @@ import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.player.VelocityPlayerLoginEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.player.VelocityPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.player.VelocityPlayerMessageEvent;

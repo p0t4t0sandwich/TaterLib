@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_17.sponge.event.server;
 
-import dev.neuralnexus.taterlib.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.event.lifecycle.StartedEngineEvent;

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.loader;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.plugin.Plugin;
 
 /** Locates and returns the core TaterLib plugin. */

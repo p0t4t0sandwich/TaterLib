@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.event.command;
 
-import dev.neuralnexus.taterlib.command.Command;
-import dev.neuralnexus.taterlib.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_13.sponge.command.SpongeCommandWrapper;
 

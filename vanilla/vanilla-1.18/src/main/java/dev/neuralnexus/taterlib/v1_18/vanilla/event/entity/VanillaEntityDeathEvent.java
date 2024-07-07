@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_18.vanilla.event.entity;
 
-import dev.neuralnexus.taterlib.event.entity.EntityDeathEvent;
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_18.vanilla.mixin.bridge.world.entity.LivingEntityBridge;
 
 import net.minecraft.world.damagesource.DamageSource;

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.conditionalmixins.annotations;
 
-import dev.neuralnexus.taterlib.api.Platform;
+import dev.neuralnexus.taterapi.Platform;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

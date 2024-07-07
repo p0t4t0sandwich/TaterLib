@@ -12,7 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-import dev.neuralnexus.taterlib.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.server.ForgeServerStartedEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.server.ForgeServerStartingEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.server.ForgeServerStoppedEvent;

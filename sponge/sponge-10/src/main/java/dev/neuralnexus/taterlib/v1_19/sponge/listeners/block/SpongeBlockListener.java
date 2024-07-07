@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.listeners.block;
 
-import dev.neuralnexus.taterlib.event.api.BlockEvents;
+import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterlib.v1_19.sponge.event.block.SpongeBlockBreakEvent;
 
 import org.spongepowered.api.event.Listener;

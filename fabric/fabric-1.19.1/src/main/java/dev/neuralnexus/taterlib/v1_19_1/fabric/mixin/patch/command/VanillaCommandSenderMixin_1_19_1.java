@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_19_1.fabric.mixin.patch.command;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
+import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_19.vanilla.command.VanillaCommandSender;
 
 import net.minecraft.network.chat.Component;

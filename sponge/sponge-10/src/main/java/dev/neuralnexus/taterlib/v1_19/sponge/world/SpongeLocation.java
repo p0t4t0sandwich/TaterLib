@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.world;
 
-import dev.neuralnexus.taterlib.world.BlockPos;
-import dev.neuralnexus.taterlib.world.Location;
-import dev.neuralnexus.taterlib.world.World;
+import dev.neuralnexus.taterapi.world.BlockPos;
+import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.World;
 
 /** Sponge implementation of {@link Location}. */
 public class SpongeLocation implements Location {

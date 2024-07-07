@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_14_4.forge.world;
 
-import dev.neuralnexus.taterlib.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 
 /** Forge implementation of {@link ServerWorld}. */
 public class ForgeServerWorld extends ForgeWorld implements ServerWorld {

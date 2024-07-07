@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_12_2.bungee.event.network;
 
-import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
-import dev.neuralnexus.taterlib.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
 
@@ -62,7 +62,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
         /** {@inheritDoc} */
         @Override
-        public dev.neuralnexus.taterlib.server.Server server() {
+        public dev.neuralnexus.taterapi.server.Server server() {
             return new BungeeServer(
                     ((net.md_5.bungee.api.connection.Server) event.getReceiver()).getInfo());
         }

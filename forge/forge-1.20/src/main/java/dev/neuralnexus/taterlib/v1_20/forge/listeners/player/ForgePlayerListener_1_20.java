@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20.forge.listeners.player;
 
-import dev.neuralnexus.taterlib.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.player.*;
 

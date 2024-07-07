@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.modules.bungeecord.api;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import dev.neuralnexus.taterlib.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.events.*;
 
 /** Enum for BungeeCord plugin message types. */

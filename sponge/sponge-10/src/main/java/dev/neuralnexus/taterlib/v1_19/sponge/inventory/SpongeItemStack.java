@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_19.sponge.inventory;
 
-import dev.neuralnexus.taterlib.inventory.ItemStack;
+import dev.neuralnexus.taterapi.inventory.ItemStack;
 
 import net.kyori.adventure.text.Component;
 

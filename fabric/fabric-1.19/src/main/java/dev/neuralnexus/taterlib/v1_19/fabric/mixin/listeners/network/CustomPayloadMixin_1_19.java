@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_19.fabric.mixin.listeners.network;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.network.CustomPayloadPacketWrapper;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.network.VanillaPluginMessageEvent;
 

@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.event.player;
 
+import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterapi.player.SimplePlayer;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterlib.player.SimplePlayer;
 
 import org.bukkit.event.player.PlayerChatEvent;
 

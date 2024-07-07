@@ -6,15 +6,15 @@
 
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterlib.api.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.SystemLogger;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
 
 import io.leangen.geantyref.TypeToken;
 
