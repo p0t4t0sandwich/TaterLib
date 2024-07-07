@@ -30,7 +30,8 @@ public class DumpInfo {
     public final boolean isForgeHybrid = platform.isForgeHybrid();
     public final boolean isFabricHybrid = platform.isFabricHybrid();
     public final boolean isSpongeForge = platform.is(Platform.SPONGE_FORGE);
-    public final boolean isSinytraConnector = TaterAPIProvider.api().get().isModLoaded("connectormod");
+    public final boolean isSinytraConnector =
+            TaterAPIProvider.api().get().isModLoaded("connectormod");
     public final boolean isKilt = TaterAPIProvider.api().get().isModLoaded("kilt");
 
     /** Save the dump to a file. */

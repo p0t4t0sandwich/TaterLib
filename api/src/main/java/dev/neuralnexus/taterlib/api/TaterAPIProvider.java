@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.api;
 
+import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
+
 import dev.neuralnexus.taterlib.api.impl.metadata.*;
 import dev.neuralnexus.taterlib.entity.Permissible;
 import dev.neuralnexus.taterlib.event.api.ServerEvents;
@@ -22,8 +24,6 @@ import org.jetbrains.annotations.ApiStatus;
 
 import java.util.*;
 import java.util.function.Supplier;
-
-import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
 
 /** API Provider */
 public class TaterAPIProvider {
@@ -226,8 +226,8 @@ public class TaterAPIProvider {
             activeDatas.add(neoForgeData);
             apis.put(Platform.NEOFORGE, new TaterAPI(neoForgeData));
         }
-
-        if (platform.isForgeBased()) {
+        // NeoForge is technically Forge-based, so Forge is in the same logic block
+        else if (platform.isForgeBased()) {
             activeDatas.add(forgeData);
             apis.put(Platform.FORGE, new TaterAPI(forgeData));
         }

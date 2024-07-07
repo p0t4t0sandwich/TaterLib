@@ -8,15 +8,10 @@ package dev.neuralnexus.taterlib.api.impl.metadata;
 
 import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForClass;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.CPWLoaderData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.FMLLoaderData;
 import dev.neuralnexus.taterlib.api.impl.metadata.forge.MCFLoaderData;
-import dev.neuralnexus.taterlib.logger.Logger;
-
-import java.util.List;
 
 /** Stores data about the Fabric platform */
 public class ForgeData {

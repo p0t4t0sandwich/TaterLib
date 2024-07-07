@@ -8,15 +8,7 @@ package dev.neuralnexus.taterlib.api.impl.metadata;
 
 import static dev.neuralnexus.taterlib.utils.ReflectionUtil.checkForMethod;
 
-import dev.neuralnexus.taterlib.api.MinecraftVersion;
-import dev.neuralnexus.taterlib.api.ModInfo;
 import dev.neuralnexus.taterlib.api.PlatformData;
-import dev.neuralnexus.taterlib.logger.Logger;
-import dev.neuralnexus.taterlib.logger.impl.Slf4jLogger;
-
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 /** Stores data about the Fabric platform */
 public class SpongeData {

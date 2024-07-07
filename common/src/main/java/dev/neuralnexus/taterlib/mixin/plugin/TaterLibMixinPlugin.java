@@ -32,28 +32,29 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         return ConditionalMixins.shouldApplyMixin(mixinClassName, true);
-//        // NeoForge is picking up on Forge mixins
-//        if (TaterAPIProvider.platform().is(Platform.NEOFORGE)
-//                && mixinClassName.contains(".forge.mixin")) {
-//            return false;
-//        }
-//        // Forge is picking up on Vanilla mixins
-//        if (TaterAPIProvider.platform().isForgeBased()
-//                // Forge 1.20.6 is Mojmapped, so it's alright
-//                && !TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_5)
-//                && mixinClassName.contains(".vanilla.mixin")) {
-//            return false;
-//        }
-//
-//        // Check if the mixin should be applied
-//        boolean result = TaterLibConfigLoader.config().checkMixin(mixinClassName);
-//        System.out.println(
-//                Utils.ansiParser(
-//                        "§6[TaterLib]: "
-//                                + (result ? "§2Applying" : "§4Skipping")
-//                                + " mixin §9"
-//                                + mixinClassName));
-//        return result;
+        //        // NeoForge is picking up on Forge mixins
+        //        if (TaterAPIProvider.platform().is(Platform.NEOFORGE)
+        //                && mixinClassName.contains(".forge.mixin")) {
+        //            return false;
+        //        }
+        //        // Forge is picking up on Vanilla mixins
+        //        if (TaterAPIProvider.platform().isForgeBased()
+        //                // Forge 1.20.6 is Mojmapped, so it's alright
+        //                &&
+        // !TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_5)
+        //                && mixinClassName.contains(".vanilla.mixin")) {
+        //            return false;
+        //        }
+        //
+        //        // Check if the mixin should be applied
+        //        boolean result = TaterLibConfigLoader.config().checkMixin(mixinClassName);
+        //        System.out.println(
+        //                Utils.ansiParser(
+        //                        "§6[TaterLib]: "
+        //                                + (result ? "§2Applying" : "§4Skipping")
+        //                                + " mixin §9"
+        //                                + mixinClassName));
+        //        return result;
     }
 
     @Override

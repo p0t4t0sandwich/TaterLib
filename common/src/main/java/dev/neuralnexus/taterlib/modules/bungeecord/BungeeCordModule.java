@@ -7,7 +7,6 @@
 package dev.neuralnexus.taterlib.modules.bungeecord;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.api.Platform;
 import dev.neuralnexus.taterlib.api.TaterAPIProvider;
 import dev.neuralnexus.taterlib.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
@@ -23,7 +22,10 @@ public class BungeeCordModule implements PluginModule {
     @Override
     public void onEnable() {
         if (!TaterLib.hasReloaded()) {
-            String channel = TaterAPIProvider.platform().isVelocityBased() ? "bungeecord:main" : "BungeeCord";
+            String channel =
+                    TaterAPIProvider.platform().isVelocityBased()
+                            ? "bungeecord:main"
+                            : "BungeeCord";
             NetworkEvents.REGISTER_PLUGIN_MESSAGES.register(e -> e.registerPluginChannel(channel));
             NetworkEvents.PLUGIN_MESSAGE.register(BungeeMsgType::Listener);
         }
