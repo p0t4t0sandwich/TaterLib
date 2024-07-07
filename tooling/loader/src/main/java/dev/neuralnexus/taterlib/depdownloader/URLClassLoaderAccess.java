@@ -55,7 +55,7 @@ public abstract class URLClassLoaderAccess {
                     | InvocationTargetException ignored) {
             }
         }
-        if (Platform.isForge()) {
+        if (Platform.get().isForgeBased()) {
             return new URLClassLoaderAccess(classLoader) {
                 @Override
                 public void addURL(URL url) {
