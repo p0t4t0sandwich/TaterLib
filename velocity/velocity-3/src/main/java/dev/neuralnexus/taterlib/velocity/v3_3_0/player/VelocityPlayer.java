@@ -12,8 +12,8 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
+import dev.neuralnexus.taterloader.Loader;
 
 import net.kyori.adventure.text.Component;
 

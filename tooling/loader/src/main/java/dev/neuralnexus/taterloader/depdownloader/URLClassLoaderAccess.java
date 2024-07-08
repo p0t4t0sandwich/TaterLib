@@ -4,9 +4,11 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.depdownloader;
+package dev.neuralnexus.taterloader.depdownloader;
 
 import dev.neuralnexus.taterapi.Platform;
+
+import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -23,6 +25,7 @@ import java.util.Collection;
  * @link <a
  *     href="https://github.com/LuckPerms/LuckPerms/blob/9e7a3d26e4992df88e9eb439fc2760c13ca2785e/common/src/main/java/me/lucko/luckperms/common/plugin/classpath/URLClassLoaderAccess.java#L39">source</a>
  */
+@ApiStatus.Experimental
 public abstract class URLClassLoaderAccess {
 
     /**

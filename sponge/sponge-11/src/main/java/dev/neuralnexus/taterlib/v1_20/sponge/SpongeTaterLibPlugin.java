@@ -10,9 +10,9 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.utils.VanillaServerReflect;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_20.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.sponge.listeners.command.SpongeCommandListener;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.plugin.PluginContainer;

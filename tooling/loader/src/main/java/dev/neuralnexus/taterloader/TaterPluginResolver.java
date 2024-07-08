@@ -4,10 +4,10 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.loader;
+package dev.neuralnexus.taterloader;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterlib.plugin.Plugin;
+import dev.neuralnexus.taterloader.plugin.Plugin;
 
 /** Locates and returns the core TaterLib plugin. */
 public class TaterPluginResolver {
@@ -71,8 +71,7 @@ public class TaterPluginResolver {
                 "dev.neuralnexus.taterlib" + version + ".bungee.BungeeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
@@ -222,8 +221,7 @@ public class TaterPluginResolver {
                 "dev.neuralnexus.taterlib" + version + ".neoforge.NeoForgeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
@@ -253,8 +251,7 @@ public class TaterPluginResolver {
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
@@ -284,8 +281,7 @@ public class TaterPluginResolver {
                 "dev.neuralnexus.taterlib" + version + ".sponge.SpongeTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();
@@ -297,8 +293,7 @@ public class TaterPluginResolver {
         String pluginClassName = "dev.neuralnexus.taterlib.velocity.v3_3_0.VelocityTaterLibPlugin";
         try {
             Class<?> pluginClass = Class.forName(pluginClassName);
-            return (dev.neuralnexus.taterlib.plugin.Plugin)
-                    pluginClass.getConstructor().newInstance();
+            return (Plugin) pluginClass.getConstructor().newInstance();
         } catch (Exception e) {
             System.err.println("Failed to load plugin class: " + pluginClassName);
             e.printStackTrace();

@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_9.sponge.event.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_9.sponge.command.SpongeCommandWrapper;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.command.args.GenericArguments;

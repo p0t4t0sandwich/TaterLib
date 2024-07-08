@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_19.sponge.event.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_19.sponge.command.SpongeCommandWrapper;
+import dev.neuralnexus.taterloader.Loader;
 
 import net.kyori.adventure.text.Component;
 

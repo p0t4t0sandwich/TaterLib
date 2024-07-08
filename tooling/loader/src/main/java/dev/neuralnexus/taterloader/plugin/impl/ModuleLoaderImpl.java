@@ -4,10 +4,10 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.plugin.impl;
+package dev.neuralnexus.taterloader.plugin.impl;
 
-import dev.neuralnexus.taterlib.plugin.ModuleLoader;
-import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterloader.plugin.ModuleLoader;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 import dev.neuralnexus.taterapi.player.Player;
 

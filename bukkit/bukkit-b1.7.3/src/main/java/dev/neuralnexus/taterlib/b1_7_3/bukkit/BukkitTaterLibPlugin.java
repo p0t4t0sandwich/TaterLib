@@ -21,7 +21,7 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.block.BukkitBlockListene
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;

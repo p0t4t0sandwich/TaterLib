@@ -11,7 +11,7 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.modules.mclogs.command.MCLogsCommand;
-import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
 
 /** MCLogs module. */
 public class MCLogsModule implements PluginModule {

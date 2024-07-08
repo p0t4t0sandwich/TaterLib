@@ -18,7 +18,7 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterlib.loader.Loader;
+import dev.neuralnexus.taterloader.Loader;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent

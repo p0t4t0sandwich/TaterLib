@@ -11,11 +11,11 @@ import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.world.BukkitWorld;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.bukkit.plugin.Plugin;
 

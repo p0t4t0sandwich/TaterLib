@@ -10,7 +10,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
-import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
 
 /** TaterLib's BungeeCord module. */
 public class BungeeCordModule implements PluginModule {

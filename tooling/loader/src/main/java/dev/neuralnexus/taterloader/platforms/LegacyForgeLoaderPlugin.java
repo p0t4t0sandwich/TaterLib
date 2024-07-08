@@ -4,15 +4,15 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.loader.platforms;
+package dev.neuralnexus.taterloader.platforms;
 
 import cpw.mods.fml.common.Mod;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterlib.loader.Loader;
-import dev.neuralnexus.taterlib.loader.TaterPluginResolver;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 /** Legacy Forge entry point. */
 @Mod(

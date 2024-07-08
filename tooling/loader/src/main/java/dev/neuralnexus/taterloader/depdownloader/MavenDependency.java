@@ -4,7 +4,9 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.depdownloader;
+package dev.neuralnexus.taterloader.depdownloader;
+
+import org.jetbrains.annotations.ApiStatus;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -15,6 +17,7 @@ import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@ApiStatus.Experimental
 public class MavenDependency {
     private final String groupId;
     private final String artifactId;

@@ -11,10 +11,10 @@ import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_12.sponge.entity.SpongeLivingEntity;
 import dev.neuralnexus.taterlib.v1_12.sponge.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.v1_12.sponge.server.SpongeServer;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;

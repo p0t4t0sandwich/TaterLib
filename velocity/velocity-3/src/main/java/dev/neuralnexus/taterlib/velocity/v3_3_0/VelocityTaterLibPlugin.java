@@ -16,7 +16,6 @@ import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
@@ -27,6 +26,7 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.network.VelocityPlugin
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.server.VelocityServerListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityProxyServer;
+import dev.neuralnexus.taterloader.Loader;
 
 import java.time.Duration;
 

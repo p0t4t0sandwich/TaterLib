@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_4_7.bungee.event.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.loader.Loader;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.command.BungeeCommandWrapper;
+import dev.neuralnexus.taterloader.Loader;
 
 import net.md_5.bungee.api.ProxyServer;
 

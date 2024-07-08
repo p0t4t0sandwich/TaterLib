@@ -16,9 +16,9 @@ import dev.neuralnexus.taterapi.event.api.GenericEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.metrics.SparkHook;
 import dev.neuralnexus.taterapi.hooks.permissions.LuckPermsHook;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
-import dev.neuralnexus.taterlib.plugin.PluginModule;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.storage.databases.Database;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
 

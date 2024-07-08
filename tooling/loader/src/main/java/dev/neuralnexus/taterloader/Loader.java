@@ -4,7 +4,7 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.loader;
+package dev.neuralnexus.taterloader;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
@@ -12,11 +12,11 @@ import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.event.plugin.CommonPluginEnableEvent;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.plugin.ModuleLoader;
-import dev.neuralnexus.taterlib.plugin.Plugin;
-import dev.neuralnexus.taterlib.plugin.PluginModule;
-import dev.neuralnexus.taterlib.plugin.impl.ModuleLoaderImpl;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.plugin.ModuleLoader;
+import dev.neuralnexus.taterloader.plugin.Plugin;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
+import dev.neuralnexus.taterloader.plugin.impl.ModuleLoaderImpl;
 
 import org.jetbrains.annotations.ApiStatus;
 

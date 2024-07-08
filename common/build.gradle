@@ -11,7 +11,7 @@ dependencies {
     compileOnly('org.bstats:bstats-base:3.0.2')
 
     // MCLogs
-    implementation('gs.mclo:api:3.0.1')
+    compileOnly('gs.mclo:api:3.0.1')
 
     // Gson
     implementation('com.google.code.gson:gson:2.10.1')
@@ -48,9 +48,6 @@ shadowJar {
 
         // Guava
         include(dependency('com.google.guava:guava:33.0.0-jre'))
-
-        // MCLogs
-//        include(dependency('gs.mclo:api:3.0.1'))
     }
     // Configurate
     relocate('org.spongepowered.configurate', 'dev.neuralnexus.taterlib.lib.configurate')
@@ -66,9 +63,6 @@ shadowJar {
     // Guava
     relocate('com.google.common', 'dev.neuralnexus.taterlib.lib.guava')
     relocate('com.google.thirdparty', 'dev.neuralnexus.taterlib.lib.google.thirdparty')
-
-    // MCLogs
-//    relocate("gs.mclo", 'dev.neuralnexus.taterlib.lib.mclogs')
 
     minimize()
 

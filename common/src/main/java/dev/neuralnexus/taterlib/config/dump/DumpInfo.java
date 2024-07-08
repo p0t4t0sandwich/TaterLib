@@ -13,7 +13,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterlib.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import java.io.File;
 import java.io.FileWriter;
