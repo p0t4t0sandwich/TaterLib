@@ -11,7 +11,10 @@ import static dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType.*;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -40,6 +43,19 @@ public class BungeeCordAPI {
     }
 
     /**
+     * Get the BungeeCord channel
+     *
+     * @return The BungeeCord channel
+     */
+    public ResourceLocation bungeeChannel() {
+        if (MinecraftVersion.get().isAtLeast(MinecraftVersion.V1_13)) {
+            return ResourceLocation.builder().full("bungeecord:main").build();
+        } else {
+            return ResourceLocation.builder().unsafeFull("BungeeCord").build();
+        }
+    }
+
+    /**
      * Connects a player to said subserver
      *
      * @param player The player to connect
@@ -49,7 +65,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(CONNECT.type());
         out.writeUTF(server);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -64,7 +80,7 @@ public class BungeeCordAPI {
         out.writeUTF(CONNECT_OTHER.type());
         out.writeUTF(target);
         out.writeUTF(server);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -75,7 +91,7 @@ public class BungeeCordAPI {
     public void IP(Player player) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(IP.type());
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -88,7 +104,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(IP_OTHER.type());
         out.writeUTF(target);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -102,7 +118,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(PLAYER_COUNT.type());
         out.writeUTF(server);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -116,7 +132,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(PLAYER_LIST.type());
         out.writeUTF(server);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -129,7 +145,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_PLAYER_SERVER.type());
         out.writeUTF(target);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -140,7 +156,7 @@ public class BungeeCordAPI {
     public void GetServers(Player player) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_SERVERS.type());
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -154,7 +170,7 @@ public class BungeeCordAPI {
         out.writeUTF(MESSAGE.type());
         out.writeUTF(target);
         out.writeUTF(message);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -170,7 +186,7 @@ public class BungeeCordAPI {
         out.writeUTF(MESSAGE_RAW.type());
         out.writeUTF(target);
         out.writeUTF(message);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -181,7 +197,7 @@ public class BungeeCordAPI {
     public void GetServer(Player player) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_SERVER.type());
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -212,7 +228,7 @@ public class BungeeCordAPI {
         out.writeShort(msgbytes.toByteArray().length);
         out.write(msgbytes.toByteArray());
 
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -239,7 +255,7 @@ public class BungeeCordAPI {
         out.writeShort(msgbytes.toByteArray().length);
         out.write(msgbytes.toByteArray());
 
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -250,7 +266,7 @@ public class BungeeCordAPI {
     public void UUID(Player player) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("UUID");
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -263,7 +279,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("UUIDOther");
         out.writeUTF(target);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -276,7 +292,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(SERVER_IP.type());
         out.writeUTF(server);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -291,7 +307,7 @@ public class BungeeCordAPI {
         out.writeUTF(KICK_PLAYER.type());
         out.writeUTF(target);
         out.writeUTF(reason);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -307,6 +323,6 @@ public class BungeeCordAPI {
         out.writeUTF(KICK_PLAYER_RAW.type());
         out.writeUTF(target);
         out.writeUTF(reason);
-        player.sendPluginMessage("BungeeCord", out.toByteArray());
+        player.sendPluginMessage(bungeeChannel(), out.toByteArray());
     }
 }

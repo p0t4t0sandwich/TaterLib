@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.metadata.impl;
 
-import static dev.neuralnexus.taterapi.utils.ReflectionUtil.checkForMethod;
+import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForMethod;
 
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 

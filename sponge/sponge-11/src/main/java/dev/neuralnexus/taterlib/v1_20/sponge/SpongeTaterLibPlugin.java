@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.sponge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.utils.VanillaServerReflect;
+import dev.neuralnexus.taterapi.util.VanillaServerReflect;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.sponge.listeners.command.SpongeCommandListener;

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.conditionalmixins;
 
-import static dev.neuralnexus.taterapi.utils.TextUtil.ansiParser;
+import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.SystemLogger;

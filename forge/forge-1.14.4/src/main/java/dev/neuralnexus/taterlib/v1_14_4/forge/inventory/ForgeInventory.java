@@ -78,7 +78,7 @@ public class ForgeInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public void remove(String type) {
+    public void remove(ResourceLocation type) {
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
                 inventory.removeStackFromSlot(i);

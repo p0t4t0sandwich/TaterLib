@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 
 /** Abstract class for plugin message events. */
 public interface PluginMessageEvent extends Event {
@@ -16,7 +17,7 @@ public interface PluginMessageEvent extends Event {
      *
      * @return The channel of the plugin message.
      */
-    String channel();
+    ResourceLocation channel();
 
     /**
      * Gets the data of the plugin message.

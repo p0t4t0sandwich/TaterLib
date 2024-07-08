@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_21.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.v1_21.vanilla.inventory.VanillaPlayerInventory;
@@ -86,7 +87,7 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
+    public void sendPluginMessage(ResourceLocation channel, byte[] data) {
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(

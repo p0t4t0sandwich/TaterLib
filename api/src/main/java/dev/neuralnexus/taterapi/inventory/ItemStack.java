@@ -6,7 +6,10 @@
 
 package dev.neuralnexus.taterapi.inventory;
 
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+
 import java.util.List;
+import java.util.Optional;
 
 /** The interface for an AbstractItemStack */
 public interface ItemStack {
@@ -15,7 +18,7 @@ public interface ItemStack {
      *
      * @return The type of the item
      */
-    String type();
+    ResourceLocation type();
 
     /**
      * Get the amount of the item
@@ -60,7 +63,7 @@ public interface ItemStack {
      *
      * @return The display name of the item
      */
-    String displayName();
+    Optional<String> displayName();
 
     /**
      * Set the display name of the item <br>

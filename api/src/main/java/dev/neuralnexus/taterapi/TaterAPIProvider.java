@@ -6,10 +6,8 @@
 
 package dev.neuralnexus.taterapi;
 
-import static dev.neuralnexus.taterapi.utils.ReflectionUtil.checkForClass;
+import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForClass;
 
-import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterapi.metadata.impl.*;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.Hook;
@@ -18,6 +16,8 @@ import dev.neuralnexus.taterapi.hooks.hybrids.KettingHook;
 import dev.neuralnexus.taterapi.hooks.hybrids.MagmaHook;
 import dev.neuralnexus.taterapi.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterapi.metadata.impl.*;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
 

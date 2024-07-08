@@ -7,8 +7,10 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
+import dev.neuralnexus.taterlib.v1_19.vanilla.util.VanillaResourceLocation;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
 
@@ -63,15 +65,16 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceLocation type() {
+        return new VanillaResourceLocation(
+                entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
-        if (entity.getCustomName() == null) return null;
-        return entity.getCustomName().toString();
+    public Optional<String> customName() {
+        if (entity.getCustomName() == null) return Optional.empty();
+        return Optional.of(entity.getCustomName().toString());
     }
 
     /** {@inheritDoc} */

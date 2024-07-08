@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterapi.inventory;
 
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +69,7 @@ public interface Inventory {
      *
      * @param type The type of the item to remove
      */
-    void remove(String type);
+    void remove(ResourceLocation type);
 
     /** Clear the inventory */
     default void clear() {
@@ -113,7 +115,7 @@ public interface Inventory {
      * @param type The type of the item
      * @return Weather the inventory contains an item
      */
-    default boolean contains(String type) {
+    default boolean contains(ResourceLocation type) {
         return this.containsAtLeast(type, 1);
     }
 
@@ -133,7 +135,7 @@ public interface Inventory {
      * @param amount The amount of the item
      * @return Weather the inventory contains at least a certain amount of an item
      */
-    default boolean containsAtLeast(String type, int amount) {
+    default boolean containsAtLeast(ResourceLocation type, int amount) {
         int count = 0;
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
@@ -159,7 +161,7 @@ public interface Inventory {
      * @param type The type of the item to get the slot of
      * @return The slot of the first occurrence of an item in the inventory
      */
-    default int first(String type) {
+    default int first(ResourceLocation type) {
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
                 return i;
@@ -175,7 +177,7 @@ public interface Inventory {
      */
     default int firstEmpty() {
         for (int i = 0; i < size(); i++) {
-            if (get(i) == null || get(i).type().equals("minecraft:air")) {
+            if (get(i) == null || get(i).type().full().equals("minecraft:air")) {
                 return i;
             }
         }

@@ -68,7 +68,7 @@ public class BukkitItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return itemStack.getItemMeta().getDisplayName();
     }
 

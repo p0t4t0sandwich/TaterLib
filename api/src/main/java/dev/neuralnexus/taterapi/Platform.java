@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi;
 
-import static dev.neuralnexus.taterapi.utils.ReflectionUtil.checkForClass;
+import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForClass;
 
 import java.util.Arrays;
 

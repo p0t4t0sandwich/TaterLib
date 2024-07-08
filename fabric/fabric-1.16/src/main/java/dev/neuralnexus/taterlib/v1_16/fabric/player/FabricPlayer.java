@@ -71,7 +71,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return player.getDisplayName().getString();
     }
 

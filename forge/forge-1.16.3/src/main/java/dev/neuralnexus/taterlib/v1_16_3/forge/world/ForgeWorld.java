@@ -44,8 +44,8 @@ public class ForgeWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return level.dimension().location().toString();
+    public ResourceLocation dimension() {
+        return new VanillaResourceLocation(level.dimension().location());
     }
 
     /** {@inheritDoc} */

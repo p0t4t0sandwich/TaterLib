@@ -69,7 +69,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return player.getDisplayNameData().displayName().get().toPlain();
     }
 

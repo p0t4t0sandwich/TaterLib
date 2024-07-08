@@ -67,7 +67,7 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
+    public Optional<String> customName() {
         return entity.getTranslatedEntityName();
     }
 

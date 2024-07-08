@@ -6,6 +6,9 @@
 
 package dev.neuralnexus.taterapi.world;
 
+import dev.neuralnexus.taterapi.Builders;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+
 /** Abstracts a location. */
 public interface Location {
     /**
@@ -137,7 +140,7 @@ public interface Location {
      *
      * @return The dimension.
      */
-    default String dimension() {
+    default ResourceLocation dimension() {
         return world().dimension();
     }
 
@@ -164,6 +167,15 @@ public interface Location {
         double y1 = y() - y;
         double z1 = z() - z;
         return Math.sqrt(x1 * x1 + y1 * y1 + z1 * z1);
+    }
+
+    /**
+     * Creates a new builder for locations.
+     *
+     * @return The builder
+     */
+    static Builder builder() {
+        return Builders.locationBuilder.get();
     }
 
     /** Builder for the location. */

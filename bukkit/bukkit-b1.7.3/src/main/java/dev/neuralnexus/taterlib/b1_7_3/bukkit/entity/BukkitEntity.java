@@ -66,7 +66,7 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
+    public Optional<String> customName() {
         return "minecraft.entity";
     }
 

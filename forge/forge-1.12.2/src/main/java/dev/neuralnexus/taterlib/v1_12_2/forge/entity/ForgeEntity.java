@@ -69,7 +69,7 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
+    public Optional<String> customName() {
         if (!entity.hasCustomName()) return null;
         return entity.getCustomNameTag();
     }

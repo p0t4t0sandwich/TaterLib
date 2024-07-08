@@ -4,7 +4,7 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterapi.utils;
+package dev.neuralnexus.taterapi.util;
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;

@@ -7,6 +7,8 @@ tasks.named('test', Test) {
     maxHeapSize = '1G'
 }
 
+tasks.build.dependsOn(test)
+
 dependencies {
     // Test
     testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_20_6.vanilla.mixin.patch.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload_1_20_6;
 
@@ -26,7 +27,7 @@ public class VanillaPlayerMixin_1_20_6 {
      * @reason Patch for 1.20.6
      */
     @Overwrite
-    public void sendPluginMessage(String channel, byte[] data) {
+    public void sendPluginMessage(ResourceLocation channel, byte[] data) {
         ((ServerPlayer) ((VanillaPlayer) (Object) this).player())
                 .connection.send(
                         new ClientboundCustomPayloadPacket(

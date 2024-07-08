@@ -7,11 +7,11 @@
 package dev.neuralnexus.taterapi.metadata.impl;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.metadata.impl.fabric.FabricLogger_18_21;
 import dev.neuralnexus.taterapi.metadata.impl.fabric.FabricLogger_7_17;
-import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
 
 import net.fabricmc.loader.api.FabricLoader;
 

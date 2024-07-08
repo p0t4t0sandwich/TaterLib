@@ -67,7 +67,7 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
+    public Optional<String> customName() {
         if (entity.getName() == null) return null;
         return entity.getName().asFormattedString();
     }

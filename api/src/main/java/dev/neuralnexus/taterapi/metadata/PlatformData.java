@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.metadata;
 
-import static dev.neuralnexus.taterapi.utils.PathUtils.getConfigFolder;
-import static dev.neuralnexus.taterapi.utils.PathUtils.getModsFolder;
+import static dev.neuralnexus.taterapi.util.PathUtils.getConfigFolder;
+import static dev.neuralnexus.taterapi.util.PathUtils.getModsFolder;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;

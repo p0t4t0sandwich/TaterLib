@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.event.entity;
 
-import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.event.Event;
 
 /** Abstract class for an entity event. */
 public interface EntityEvent extends Event {

@@ -70,7 +70,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return player.getDisplayName();
     }
 

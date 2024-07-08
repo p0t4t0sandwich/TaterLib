@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.metrics.bstats.sponge;
 
 import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.utils.PathUtils;
+import dev.neuralnexus.taterapi.util.PathUtils;
 
 import org.apache.logging.log4j.Logger;
 import org.bstats.charts.CustomChart;

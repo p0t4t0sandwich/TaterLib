@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.server;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 
 import java.util.List;
@@ -45,7 +46,17 @@ public interface Server extends SimpleServer {
      * @param dimension The dimension.
      * @return The server's world by dimension.
      */
+    default Optional<ServerWorld> world(ResourceLocation dimension) {
+        return worlds().stream().filter(world -> world.dimension().full().equals(dimension.full())).findFirst();
+    }
+
+    /**
+     * Get the server's world by dimension.
+     *
+     * @param dimension The dimension.
+     * @return The server's world by dimension.
+     */
     default Optional<ServerWorld> world(String dimension) {
-        return worlds().stream().filter(world -> world.dimension().equals(dimension)).findFirst();
+        return worlds().stream().filter(world -> world.dimension().full().equals(dimension)).findFirst();
     }
 }

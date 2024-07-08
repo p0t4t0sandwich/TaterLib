@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.logger.impl;
 
 import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.utils.TextUtil;
+import dev.neuralnexus.taterapi.util.TextUtil;
 
 /** A generic implementation of the {@link Logger} interface. */
 public class LoggerAdapter implements Logger {

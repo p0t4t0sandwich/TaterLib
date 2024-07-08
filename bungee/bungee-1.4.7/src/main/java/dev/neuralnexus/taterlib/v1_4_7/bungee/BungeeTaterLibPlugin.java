@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.utils.ScheduleUtil;
+import dev.neuralnexus.taterapi.util.ScheduleUtil;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStartedEvent;

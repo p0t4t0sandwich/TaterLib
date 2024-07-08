@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.event.block;
 
-import dev.neuralnexus.taterapi.event.player.PlayerEvent;
 import dev.neuralnexus.taterapi.event.Cancellable;
+import dev.neuralnexus.taterapi.event.player.PlayerEvent;
 
 /** Abstract representation of a block break event. */
 public interface PlayerBlockBreakEvent extends BlockEvent, PlayerEvent, Cancellable {}

@@ -7,11 +7,11 @@
 package dev.neuralnexus.taterapi.metadata.impl;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
-import dev.neuralnexus.taterapi.utils.MixinServiceUtil;
+import dev.neuralnexus.taterapi.metadata.ModInfo;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterapi.util.MixinServiceUtil;
 
 import java.io.IOException;
 import java.util.Collections;

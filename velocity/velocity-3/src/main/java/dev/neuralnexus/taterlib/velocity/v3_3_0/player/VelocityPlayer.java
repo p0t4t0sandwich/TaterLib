@@ -86,7 +86,7 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return player.getUsername();
     }
 

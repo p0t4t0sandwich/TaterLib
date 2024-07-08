@@ -7,9 +7,9 @@
 package dev.neuralnexus.taterapi.metadata.impl.forge;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.ApacheLogger;
+import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 
 import net.minecraftforge.fml.common.Loader;

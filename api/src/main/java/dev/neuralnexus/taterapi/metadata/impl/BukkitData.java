@@ -6,13 +6,13 @@
 
 package dev.neuralnexus.taterapi.metadata.impl;
 
-import static dev.neuralnexus.taterapi.utils.PathUtils.getPluginsFolder;
+import static dev.neuralnexus.taterapi.util.PathUtils.getPluginsFolder;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.metadata.ModInfo;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.LoggerAdapter;
+import dev.neuralnexus.taterapi.metadata.ModInfo;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
 
 import org.bukkit.Bukkit;
 

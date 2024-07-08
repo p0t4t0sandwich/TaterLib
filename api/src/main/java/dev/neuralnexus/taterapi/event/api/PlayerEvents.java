@@ -8,7 +8,6 @@ package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.event.player.*;
-import dev.neuralnexus.taterapi.event.player.*;
 
 import java.util.Arrays;
 import java.util.HashSet;

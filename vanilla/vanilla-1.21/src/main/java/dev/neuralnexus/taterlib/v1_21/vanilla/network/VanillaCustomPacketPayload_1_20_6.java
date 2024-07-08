@@ -6,12 +6,14 @@
 
 package dev.neuralnexus.taterlib.v1_21.vanilla.network;
 
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterlib.v1_21.vanilla.util.VanillaResourceLocation;
+
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.ResourceLocation;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,15 +25,11 @@ public class VanillaCustomPacketPayload_1_20_6 implements CustomPacketPayload {
                             VanillaCustomPacketPayload_1_20_6::write,
                             VanillaCustomPacketPayload_1_20_6::new);
 
-    private final ResourceLocation id;
+    private final net.minecraft.resources.ResourceLocation id;
     private final FriendlyByteBuf byteBuf;
 
-    public VanillaCustomPacketPayload_1_20_6(String channel, byte[] data) {
-        String[] channelParts = channel.split(":");
-        if (channelParts.length == 1) {
-            channel = "tl-user-forgot:" + channelParts[0];
-        }
-        id = ResourceLocation.bySeparator(channel, ':');
+    public VanillaCustomPacketPayload_1_20_6(ResourceLocation channel, byte[] data) {
+        id = ((VanillaResourceLocation) channel).resourceLocation();
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
     }

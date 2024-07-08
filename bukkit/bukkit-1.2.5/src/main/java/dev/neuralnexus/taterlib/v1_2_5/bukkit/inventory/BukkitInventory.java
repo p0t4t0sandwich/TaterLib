@@ -72,7 +72,7 @@ public class BukkitInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public void remove(String type) {
+    public void remove(ResourceLocation type) {
         if (type.contains(":")) {
             type = type.split(":")[1];
         }

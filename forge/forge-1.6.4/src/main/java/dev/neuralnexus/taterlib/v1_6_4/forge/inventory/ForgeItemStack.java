@@ -38,9 +38,9 @@ public class ForgeItemStack implements ItemStack {
     public String type() {
         String itemName = itemStack.getItem().toString();
         if (!itemName.contains(":")) {
-            return "minecraft:" + itemName;
+            return new VanillaResourceLocation("minecraft", itemName);
         }
-        return itemName;
+        return new VanillaResourceLocation(itemName);
     }
 
     /** {@inheritDoc} */
@@ -69,7 +69,7 @@ public class ForgeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         return itemStack.getDisplayName();
     }
 

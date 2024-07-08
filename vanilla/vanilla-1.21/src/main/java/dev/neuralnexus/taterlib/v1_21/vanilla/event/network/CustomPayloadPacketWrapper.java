@@ -7,6 +7,8 @@
 package dev.neuralnexus.taterlib.v1_21.vanilla.event.network;
 
 import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterlib.v1_21.vanilla.util.VanillaResourceLocation;
 
 import io.netty.buffer.Unpooled;
 
@@ -18,11 +20,11 @@ import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
  * CustomPayloadWrapper}.
  */
 public class CustomPayloadPacketWrapper implements CustomPayloadWrapper {
-    private final String channel;
+    private final ResourceLocation channel;
     private final byte[] data;
 
     public CustomPayloadPacketWrapper(ServerboundCustomPayloadPacket packet) {
-        this.channel = packet.payload().type().id().toString();
+        this.channel = new VanillaResourceLocation(packet.payload().type().id());
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, packet);
         this.data = buf.array();
@@ -30,7 +32,7 @@ public class CustomPayloadPacketWrapper implements CustomPayloadWrapper {
 
     /** {@inheritDoc} */
     @Override
-    public String channel() {
+    public ResourceLocation channel() {
         return channel;
     }
 

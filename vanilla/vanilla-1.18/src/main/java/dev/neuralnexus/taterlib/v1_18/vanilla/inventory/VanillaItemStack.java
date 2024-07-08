@@ -8,11 +8,14 @@ package dev.neuralnexus.taterlib.v1_18.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterlib.v1_18.vanilla.util.VanillaResourceLocation;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
+import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
 public class VanillaItemStack implements ItemStack {
@@ -39,12 +42,12 @@ public class VanillaItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
+    public ResourceLocation type() {
         String itemName = itemStack.getItem().toString();
         if (!itemName.contains(":")) {
-            return "minecraft:" + itemName;
+            return new VanillaResourceLocation("minecraft", itemName);
         }
-        return itemName;
+        return new VanillaResourceLocation(itemName);
     }
 
     /** {@inheritDoc} */
@@ -73,8 +76,9 @@ public class VanillaItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
-        return itemStack.getDisplayName().getString();
+    public Optional<String> displayName() {
+        if (!itemStack.hasCustomHoverName()) return Optional.empty();
+        return Optional.of(itemStack.getDisplayName().getString());
     }
 
     /** {@inheritDoc} */

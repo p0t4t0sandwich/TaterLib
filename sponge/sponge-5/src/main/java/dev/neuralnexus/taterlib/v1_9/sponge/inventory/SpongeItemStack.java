@@ -71,7 +71,7 @@ public class SpongeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
+    public Optional<String> displayName() {
         if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
             return null;
         }

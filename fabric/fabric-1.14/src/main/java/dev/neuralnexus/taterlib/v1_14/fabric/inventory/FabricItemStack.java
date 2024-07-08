@@ -42,9 +42,9 @@ public class FabricItemStack implements ItemStack {
     public String type() {
         String itemName = itemStack.getItem().toString();
         if (!itemName.contains(":")) {
-            return "minecraft:" + itemName;
+            return new VanillaResourceLocation("minecraft", itemName);
         }
-        return itemName;
+        return new VanillaResourceLocation(itemName);
     }
 
     /** {@inheritDoc} */
@@ -73,8 +73,9 @@ public class FabricItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String displayName() {
-        return itemStack.getDisplayName().getString();
+    public Optional<String> displayName() {
+        if (!itemStack.hasCustomHoverName()) return Optional.empty();
+        return Optional.of(itemStack.getDisplayName().getString());
     }
 
     /** {@inheritDoc} */

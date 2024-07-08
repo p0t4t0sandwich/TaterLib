@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.inventory.Inventory;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.util.ResourceLocation;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,7 +68,7 @@ public class VanillaInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public void remove(String type) {
+    public void remove(ResourceLocation type) {
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
                 inventory.removeItem(((VanillaItemStack) get(i)).itemStack());

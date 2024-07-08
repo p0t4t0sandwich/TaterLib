@@ -13,7 +13,7 @@ import org.objectweb.asm.tree.AnnotationNode;
 import java.util.List;
 
 import static dev.neuralnexus.conditionalmixins.ConditionalMixins.logger;
-import static dev.neuralnexus.taterapi.utils.TextUtil.ansiParser;
+import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 import static org.spongepowered.asm.util.Annotations.getValue;
 
 public class AnnotationChecker {

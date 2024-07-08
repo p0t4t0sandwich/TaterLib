@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterapi.player;
 
+import dev.neuralnexus.taterapi.util.ResourceLocation;
+
 /** Represents a connection to a player. */
 public interface Connection {
     /**
@@ -40,5 +42,5 @@ public interface Connection {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    void sendPluginMessage(String channel, byte[] data);
+    void sendPluginMessage(ResourceLocation channel, byte[] data);
 }

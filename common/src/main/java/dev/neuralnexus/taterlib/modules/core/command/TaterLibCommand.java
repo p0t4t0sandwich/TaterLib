@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.modules.core.command;
 
-import dev.neuralnexus.taterapi.utils.TextUtil;
+import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterapi.entity;
 
+import java.util.Optional;
+
 /** Represents a nameable entity */
 public interface Nameable {
     /**
@@ -13,7 +15,7 @@ public interface Nameable {
      *
      * @return The custom name of the entity
      */
-    String customName();
+    Optional<String> customName();
 
     /**
      * Set the custom name of the entity

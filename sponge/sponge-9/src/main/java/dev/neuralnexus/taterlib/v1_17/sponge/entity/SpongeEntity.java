@@ -74,7 +74,7 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String customName() {
+    public Optional<String> customName() {
         if (!entity.get(Keys.CUSTOM_NAME).isPresent()) {
             return null;
         }

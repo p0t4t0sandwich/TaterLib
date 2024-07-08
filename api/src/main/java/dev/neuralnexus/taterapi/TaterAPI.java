@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterapi;
 
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
-import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
