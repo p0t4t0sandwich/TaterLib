@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.v1_21.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
-import dev.neuralnexus.taterlib.v1_21.vanilla.util.VanillaResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
@@ -43,12 +43,8 @@ public class VanillaItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public ResourceLocation type() {
-        String itemName = itemStack.getItem().toString();
-        if (!itemName.contains(":")) {
-            return new VanillaResourceLocation("minecraft", itemName);
-        }
-        return new VanillaResourceLocation(itemName);
+    public ResourceKey type() {
+        return (ResourceKey) (Object) BuiltInRegistries.ITEM.getKey(itemStack.getItem());
     }
 
     /** {@inheritDoc} */

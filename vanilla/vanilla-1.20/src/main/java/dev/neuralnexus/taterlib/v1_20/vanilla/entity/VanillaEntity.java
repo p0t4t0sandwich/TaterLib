@@ -7,15 +7,14 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
-import dev.neuralnexus.taterlib.v1_20.vanilla.util.VanillaResourceLocation;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaServerWorld;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.biome.Biome;
@@ -65,9 +64,8 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public ResourceLocation type() {
-        return new VanillaResourceLocation(
-                entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
+    public ResourceKey type() {
+        return (ResourceKey) (Object) BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
     }
 
     /** {@inheritDoc} */
@@ -91,10 +89,8 @@ public class VanillaEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        Optional<ResourceKey<Biome>> holder =
-                entity.level().getBiome(entity.blockPosition()).unwrap().left();
-        return holder.map(biomeResourceKey -> biomeResourceKey.registry().toString()).orElse(null);
+    public ResourceKey biome() {
+        return (ResourceKey) (Object) entity.level().getBiome(entity.blockPosition()).unwrap().left().get().registry();
     }
 
     /** {@inheritDoc} */

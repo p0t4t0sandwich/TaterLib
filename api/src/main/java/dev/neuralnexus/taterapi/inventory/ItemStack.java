@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.inventory;
 
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public interface ItemStack {
      *
      * @return The type of the item
      */
-    ResourceLocation type();
+    ResourceKey type();
 
     /**
      * Get the amount of the item

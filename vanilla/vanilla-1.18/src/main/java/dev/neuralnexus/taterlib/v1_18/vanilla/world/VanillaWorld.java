@@ -8,12 +8,11 @@ package dev.neuralnexus.taterlib.v1_18.vanilla.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_18.vanilla.entity.VanillaEntity;
 import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
-import dev.neuralnexus.taterlib.v1_18.vanilla.util.VanillaResourceLocation;
 
 import net.minecraft.world.level.Level;
 
@@ -46,8 +45,8 @@ public class VanillaWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public ResourceLocation dimension() {
-        return new VanillaResourceLocation(level.dimension().location());
+    public ResourceKey dimension() {
+        return (ResourceKey) (Object) level.dimension().location();
     }
 
     /** {@inheritDoc} */

@@ -8,17 +8,17 @@ package dev.neuralnexus.taterlib.v1_21.vanilla.event.network;
 
 import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterlib.v1_21.vanilla.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;
 
 /** Vanilla implementation of {@link PluginMessageEvent}. */
 public class VanillaPluginMessageEvent implements PluginMessageEvent {
-    private final ResourceLocation channel;
+    private final ResourceKey channel;
     private final byte[] data;
 
-    public VanillaPluginMessageEvent(ResourceLocation channel, byte[] data) {
+    public VanillaPluginMessageEvent(ResourceKey channel, byte[] data) {
         this.channel = channel;
         this.data = data;
     }
@@ -30,7 +30,7 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public ResourceLocation channel() {
+    public ResourceKey channel() {
         return this.channel;
     }
 
@@ -45,7 +45,7 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
             implements PluginMessageEvent.Player {
         private final ServerPlayer player;
 
-        public Player(ResourceLocation channel, byte[] data, ServerPlayer player) {
+        public Player(ResourceKey channel, byte[] data, ServerPlayer player) {
             super(channel, data);
             this.player = player;
         }

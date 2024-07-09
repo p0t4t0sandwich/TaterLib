@@ -86,7 +86,7 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getUsername();
     }
 
@@ -106,7 +106,7 @@ public class VelocityPlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
         player.getCurrentServer()
                 .ifPresent(
                         serverConnection ->

@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.player;
 
 import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.VanillaCustomPacketPayload_1_20_2;
 
@@ -30,7 +30,7 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(ResourceLocation channel, byte[] data) {
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ((ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(

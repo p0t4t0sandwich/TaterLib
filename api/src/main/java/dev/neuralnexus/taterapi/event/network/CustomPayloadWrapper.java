@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.event.network;
 
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 
 /** Wrapper for custom payload packets (plugin messages) */
 public interface CustomPayloadWrapper {
@@ -15,7 +15,7 @@ public interface CustomPayloadWrapper {
      *
      * @return The channel.
      */
-    ResourceLocation channel();
+    ResourceKey channel();
 
     /**
      * Gets the data.

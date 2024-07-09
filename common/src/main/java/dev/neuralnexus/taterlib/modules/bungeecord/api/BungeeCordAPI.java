@@ -12,9 +12,8 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -47,11 +46,11 @@ public class BungeeCordAPI {
      *
      * @return The BungeeCord channel
      */
-    public ResourceLocation bungeeChannel() {
+    public ResourceKey bungeeChannel() {
         if (MinecraftVersion.get().isAtLeast(MinecraftVersion.V1_13)) {
-            return ResourceLocation.builder().full("bungeecord:main").build();
+            return ResourceKey.of("bungeecord", "main");
         } else {
-            return ResourceLocation.builder().unsafeFull("BungeeCord").build();
+            return ResourceKey.unsafeOf("BungeeCord");
         }
     }
 

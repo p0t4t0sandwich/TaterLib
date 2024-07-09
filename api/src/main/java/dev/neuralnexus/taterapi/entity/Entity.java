@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.entity;
 
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 
@@ -38,7 +38,7 @@ public interface Entity extends Nameable {
      *
      * @return The type of the entity
      */
-    ResourceLocation type();
+    ResourceKey type();
 
     /**
      * Get the location of the entity
@@ -127,7 +127,7 @@ public interface Entity extends Nameable {
      *
      * @return The current dimension of the entity
      */
-    default ResourceLocation dimension() {
+    default ResourceKey dimension() {
         return world().dimension();
     }
 
@@ -136,7 +136,7 @@ public interface Entity extends Nameable {
      *
      * @return The current biome of the entity
      */
-    String biome();
+    ResourceKey biome();
 
     /**
      * Teleport the entity to the given Location

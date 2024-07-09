@@ -10,12 +10,11 @@ import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.util.ResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_17.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.v1_17.vanilla.inventory.VanillaPlayerInventory;
 import dev.neuralnexus.taterlib.v1_17.vanilla.server.VanillaServer;
-import dev.neuralnexus.taterlib.v1_17.vanilla.util.VanillaResourceLocation;
 import dev.neuralnexus.taterlib.v1_17.vanilla.world.VanillaWorld;
 
 import io.netty.buffer.Unpooled;
@@ -24,6 +23,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 
@@ -90,9 +90,8 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(ResourceLocation channel, byte[] data) {
-        net.minecraft.resources.ResourceLocation id =
-                ((VanillaResourceLocation) channel).resourceLocation();
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        ResourceLocation id = (ResourceLocation) (Object) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
         ((ServerPlayer) player).connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));

@@ -6,6 +6,7 @@
   "package": "dev.neuralnexus.taterlib.v1_17.vanilla.mixin",
   "mixins": [
     "accessors.world.entity.LivingEntityAccessor",
+    "api.minecraft.resources.ResourceLocationAPI",
     "listeners.block.PlayerBlockBreakMixin_1_17",
     "listeners.entity.EntityDamageMixin_1_17",
     "listeners.entity.EntityDeathMixin_1_17",

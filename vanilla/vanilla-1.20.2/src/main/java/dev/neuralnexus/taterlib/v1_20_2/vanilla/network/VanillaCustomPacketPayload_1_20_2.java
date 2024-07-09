@@ -6,23 +6,24 @@
 
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.network;
 
-import dev.neuralnexus.taterapi.util.ResourceLocation;
-import dev.neuralnexus.taterlib.v1_20.vanilla.util.VanillaResourceLocation;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
+import net.minecraft.resources.ResourceLocation;
+
 import org.jetbrains.annotations.NotNull;
 
 /** CustomPacketPayload implementation for 1.20.2 */
 public class VanillaCustomPacketPayload_1_20_2 implements CustomPacketPayload {
-    private final net.minecraft.resources.ResourceLocation id;
+    private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf;
 
-    public VanillaCustomPacketPayload_1_20_2(ResourceLocation channel, byte[] data) {
-        id = ((VanillaResourceLocation) channel).resourceLocation();
+    public VanillaCustomPacketPayload_1_20_2(ResourceKey channel, byte[] data) {
+        id = (ResourceLocation) (Object) channel;
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
     }
@@ -33,7 +34,7 @@ public class VanillaCustomPacketPayload_1_20_2 implements CustomPacketPayload {
     }
 
     @Override
-    public @NotNull net.minecraft.resources.ResourceLocation id() {
+    public @NotNull ResourceLocation id() {
         return id;
     }
 }

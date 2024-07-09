@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface ReqPlatform {
-    Platform[] value();
+    Platform[] value() default {};
 
     Platform[] not() default {};
 }

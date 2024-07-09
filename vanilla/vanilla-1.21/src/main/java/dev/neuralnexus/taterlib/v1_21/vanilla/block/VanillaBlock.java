@@ -7,7 +7,10 @@
 package dev.neuralnexus.taterlib.v1_21.vanilla.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.util.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
+
+import net.minecraft.core.registries.BuiltInRegistries;
 
 /** Vanilla implementation of {@link Block}. */
 public class VanillaBlock implements Block {
@@ -22,8 +25,8 @@ public class VanillaBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return block.getDescriptionId().split("block\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return (ResourceKey) (Object) BuiltInRegistries.BLOCK.getKey(block);
     }
 
     /** {@inheritDoc} */
