@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_18.vanilla.resources;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
 

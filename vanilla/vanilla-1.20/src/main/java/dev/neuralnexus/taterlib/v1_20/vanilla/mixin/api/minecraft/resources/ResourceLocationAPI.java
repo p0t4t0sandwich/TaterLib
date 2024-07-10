@@ -10,7 +10,7 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ResourceLocation.class)
 @Implements(
         value = {
-                @Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE)
+            @Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE)
         })
 public abstract class ResourceLocationAPI {
     @Shadow

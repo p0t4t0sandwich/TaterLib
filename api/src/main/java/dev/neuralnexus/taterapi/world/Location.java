@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.world;
 
 import dev.neuralnexus.taterapi.Builders;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Abstracts a location. */
 public interface Location {

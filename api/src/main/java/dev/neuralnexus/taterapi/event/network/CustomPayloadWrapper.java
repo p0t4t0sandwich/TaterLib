@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.event.network;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Wrapper for custom payload packets (plugin messages) */
 public interface CustomPayloadWrapper {

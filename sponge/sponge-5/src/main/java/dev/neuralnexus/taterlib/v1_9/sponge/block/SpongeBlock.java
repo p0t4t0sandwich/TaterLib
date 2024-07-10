@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_9.sponge.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
@@ -25,8 +26,8 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return block.getType().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return ResourceKey.of(block.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */

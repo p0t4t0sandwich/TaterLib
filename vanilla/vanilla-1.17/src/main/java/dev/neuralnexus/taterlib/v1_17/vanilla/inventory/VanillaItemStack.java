@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_17.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;

@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_17.vanilla.block;
 
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import net.minecraft.core.Registry;

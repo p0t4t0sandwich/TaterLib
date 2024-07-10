@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_18.vanilla.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_18.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_18.vanilla.world.VanillaLocation;

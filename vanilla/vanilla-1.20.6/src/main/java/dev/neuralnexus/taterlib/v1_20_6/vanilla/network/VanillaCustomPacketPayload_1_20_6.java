@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.network;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import io.netty.buffer.Unpooled;
 

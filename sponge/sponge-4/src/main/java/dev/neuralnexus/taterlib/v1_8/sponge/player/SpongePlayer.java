@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_8.sponge.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8.sponge.entity.SpongeLivingEntity;
@@ -20,8 +21,6 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
-import org.spongepowered.api.network.ChannelBinding;
-import org.spongepowered.api.network.ChannelRegistrar;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
@@ -69,7 +68,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayNameData().displayName().get().toPlain();
     }
 
@@ -87,11 +86,10 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        ChannelRegistrar channelRegistrar = Sponge.getChannelRegistrar();
-        ChannelBinding.RawDataChannel channelBinding =
-                channelRegistrar.getOrCreateRaw(Loader.instance().plugin(), channel);
-        channelBinding.sendTo(player, (buffer) -> buffer.writeBytes(data));
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        Sponge.getChannelRegistrar()
+                .getOrCreateRaw(Loader.instance().plugin(), channel.asString())
+                .sendTo(player, (buffer) -> buffer.writeBytes(data));
     }
 
     /** {@inheritDoc} */

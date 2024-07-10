@@ -1,4 +1,4 @@
-package dev.neuralnexus.taterapi.util;
+package dev.neuralnexus.taterapi.resource;
 
 import dev.neuralnexus.taterapi.Builders;
 import dev.neuralnexus.taterapi.Factories;

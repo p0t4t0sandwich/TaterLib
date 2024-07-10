@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.inventory;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
 import java.util.Optional;

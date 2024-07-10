@@ -16,14 +16,13 @@ import dev.neuralnexus.taterlib.v1_17.sponge.listeners.entity.SpongeEntityListen
 import dev.neuralnexus.taterlib.v1_17.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.v1_17.sponge.listeners.server.SpongeServerListener;
 import dev.neuralnexus.taterlib.v1_17.sponge.server.SpongeServer;
+import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
 
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
-    private PluginContainer container;
-
     @Override
     public void onInit() {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
@@ -36,6 +35,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     public void onEnable() {
         if (TaterAPIProvider.isPrimaryPlatform(Platform.SPONGE)) {
             // Register listeners
+            PluginContainer container = (PluginContainer) Loader.instance().plugin();
             EventManager eventManager = Sponge.eventManager();
             eventManager.registerListeners(container, new SpongeBlockListener());
             eventManager.registerListeners(container, new SpongeCommandListener());

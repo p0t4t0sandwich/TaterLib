@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_17.vanilla.resources;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
 

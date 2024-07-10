@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -20,7 +20,7 @@ import java.util.Optional;
 /** Vanilla implementation of {@link ItemStack} */
 public class VanillaItemStack implements ItemStack {
     private final net.minecraft.world.item.ItemStack itemStack;
-    
+
     /**
      * Constructor.
      *

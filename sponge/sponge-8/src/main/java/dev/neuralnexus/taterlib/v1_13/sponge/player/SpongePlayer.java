@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_13.sponge.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13.sponge.entity.SpongeLivingEntity;
@@ -18,12 +19,10 @@ import dev.neuralnexus.taterlib.v1_13.sponge.server.SpongeServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
-import org.spongepowered.api.ResourceKey;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
-import org.spongepowered.api.network.channel.ChannelManager;
 import org.spongepowered.api.network.channel.raw.RawDataChannel;
 
 import java.util.UUID;
@@ -71,7 +70,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return PlainTextComponentSerializer.plainText().serialize(player.displayName().get());
     }
 
@@ -89,11 +88,9 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        ChannelManager channelManager = Sponge.channelManager();
-        String[] channelParts = channel.split(":");
-        channelManager
-                .ofType(ResourceKey.of(channelParts[0], channelParts[1]), RawDataChannel.class)
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        Sponge.channelManager()
+                .ofType((org.spongepowered.api.ResourceKey) (Object) channel, RawDataChannel.class)
                 .play()
                 .sendTo((ServerPlayer) player, (buffer) -> buffer.writeBytes(data));
     }

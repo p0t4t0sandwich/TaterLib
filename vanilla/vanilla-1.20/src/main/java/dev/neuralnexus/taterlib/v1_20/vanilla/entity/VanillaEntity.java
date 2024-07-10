@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_20.vanilla.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
@@ -17,7 +17,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.biome.Biome;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -90,7 +89,14 @@ public class VanillaEntity implements Entity {
     /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
-        return (ResourceKey) (Object) entity.level().getBiome(entity.blockPosition()).unwrap().left().get().registry();
+        return (ResourceKey)
+                (Object)
+                        entity.level()
+                                .getBiome(entity.blockPosition())
+                                .unwrap()
+                                .left()
+                                .get()
+                                .registry();
     }
 
     /** {@inheritDoc} */

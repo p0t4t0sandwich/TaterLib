@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.block;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Abstract implementation of a block. */

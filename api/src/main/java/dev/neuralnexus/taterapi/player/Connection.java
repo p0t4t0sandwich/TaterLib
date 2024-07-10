@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.player;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Represents a connection to a player. */
 public interface Connection {

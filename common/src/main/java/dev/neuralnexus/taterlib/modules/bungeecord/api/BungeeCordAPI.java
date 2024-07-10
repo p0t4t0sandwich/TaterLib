@@ -13,7 +13,7 @@ import com.google.common.io.ByteStreams;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;

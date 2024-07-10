@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_19.vanilla.inventory;
 
 import dev.neuralnexus.taterapi.inventory.Inventory;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
 import java.util.stream.Collectors;

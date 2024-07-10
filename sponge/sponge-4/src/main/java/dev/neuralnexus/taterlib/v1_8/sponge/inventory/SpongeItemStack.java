@@ -7,12 +7,14 @@
 package dev.neuralnexus.taterlib.v1_8.sponge.inventory;
 
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /** Sponge implementation of {@link ItemStack}. */
 public class SpongeItemStack implements ItemStack {
@@ -38,8 +40,8 @@ public class SpongeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return itemStack.getItem().getName();
+    public ResourceKey type() {
+        return ResourceKey.of(itemStack.getItem().getType().getName());
     }
 
     /** {@inheritDoc} */
@@ -73,9 +75,9 @@ public class SpongeItemStack implements ItemStack {
     @Override
     public Optional<String> displayName() {
         if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
-            return null;
+            return Optional.empty();
         }
-        return itemStack.get(Keys.DISPLAY_NAME).get().toString();
+        return Optional.of(itemStack.get(Keys.DISPLAY_NAME).get().toString());
     }
 
     /** {@inheritDoc} */

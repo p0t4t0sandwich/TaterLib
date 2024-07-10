@@ -4,7 +4,6 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

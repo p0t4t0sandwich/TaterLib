@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_19.sponge.entity.SpongeEntity;
@@ -47,8 +48,8 @@ public class SpongeWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return ((ServerWorld) level).key().asString();
+    public ResourceKey dimension() {
+        return (ResourceKey) (Object) ((ServerWorld) level).key();
     }
 
     /** {@inheritDoc} */

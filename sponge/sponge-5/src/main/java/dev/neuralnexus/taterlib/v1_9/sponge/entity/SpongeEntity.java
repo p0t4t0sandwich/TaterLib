@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_9.sponge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_9.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.v1_9.sponge.world.SpongeLocation;
@@ -62,8 +63,8 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return ResourceKey.of(entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
@@ -71,9 +72,9 @@ public class SpongeEntity implements Entity {
     public Optional<String> customName() {
         if (!entity.get(Keys.DISPLAY_NAME).isPresent()
                 && entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
-            return null;
+            return Optional.empty();
         }
-        return entity.get(Keys.DISPLAY_NAME).get().toString();
+        return Optional.of(entity.get(Keys.DISPLAY_NAME).get().toString());
     }
 
     /** {@inheritDoc} */
@@ -90,8 +91,9 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId();
+    public ResourceKey biome() {
+        return ResourceKey.of(
+                entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId());
     }
 
     /** {@inheritDoc} */

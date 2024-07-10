@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_21.vanilla.event.network;
 
 import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_21.vanilla.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;

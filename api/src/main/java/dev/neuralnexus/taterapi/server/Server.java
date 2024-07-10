@@ -8,7 +8,7 @@ package dev.neuralnexus.taterapi.server;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 
 import java.util.List;

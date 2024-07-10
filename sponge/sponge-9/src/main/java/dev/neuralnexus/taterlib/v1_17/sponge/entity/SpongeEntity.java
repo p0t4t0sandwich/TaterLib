@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_17.sponge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_17.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.v1_17.sponge.world.SpongeLocation;
@@ -16,6 +17,7 @@ import net.kyori.adventure.text.Component;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
+import org.spongepowered.api.entity.EntityTypes;
 import org.spongepowered.api.registry.Registry;
 import org.spongepowered.api.registry.RegistryTypes;
 import org.spongepowered.api.world.biome.Biome;
@@ -68,17 +70,17 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.type().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return (ResourceKey) (Object) EntityTypes.registry().valueKey(entity.type());
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         if (!entity.get(Keys.CUSTOM_NAME).isPresent()) {
-            return null;
+            return Optional.empty();
         }
-        return entity.get(Keys.CUSTOM_NAME).get().toString();
+        return Optional.of(entity.get(Keys.CUSTOM_NAME).get().toString());
     }
 
     /** {@inheritDoc} */
@@ -95,10 +97,10 @@ public class SpongeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
+    public ResourceKey biome() {
         Biome biome = entity.location().world().biome(entity.location().blockPosition());
         Registry<Biome> registry = entity.location().world().registry(RegistryTypes.BIOME);
-        return registry.findValueKey(biome).get().asString();
+        return (ResourceKey) (Object) registry.findValueKey(biome).get();
     }
 
     /** {@inheritDoc} */

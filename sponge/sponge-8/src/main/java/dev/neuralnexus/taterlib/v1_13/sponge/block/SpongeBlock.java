@@ -7,12 +7,11 @@
 package dev.neuralnexus.taterlib.v1_13.sponge.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
-import org.spongepowered.api.block.BlockType;
-import org.spongepowered.api.registry.Registry;
-import org.spongepowered.api.registry.RegistryTypes;
+import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 
 /** Forge implementation of {@link Block}. */
@@ -27,9 +26,8 @@ public class SpongeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        Registry<BlockType> registry = RegistryTypes.BLOCK_TYPE.get();
-        return registry.findValueKey(block.type()).get().asString();
+    public ResourceKey type() {
+        return (ResourceKey) (Object) BlockTypes.registry().valueKey(block.type());
     }
 
     /** {@inheritDoc} */

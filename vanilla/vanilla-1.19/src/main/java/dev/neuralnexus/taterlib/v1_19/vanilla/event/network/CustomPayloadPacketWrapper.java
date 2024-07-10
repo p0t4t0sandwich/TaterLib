@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_19.vanilla.event.network;
 
 import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import io.netty.buffer.Unpooled;
 

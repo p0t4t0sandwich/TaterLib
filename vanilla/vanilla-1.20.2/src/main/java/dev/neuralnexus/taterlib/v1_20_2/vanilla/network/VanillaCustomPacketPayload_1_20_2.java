@@ -6,13 +6,12 @@
 
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.network;
 
-import dev.neuralnexus.taterapi.util.ResourceKey;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-
 import net.minecraft.resources.ResourceLocation;
 
 import org.jetbrains.annotations.NotNull;
