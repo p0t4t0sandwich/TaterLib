@@ -27,13 +27,13 @@ public class NeoForgeLoaderPlugin {
         TaterAPIProvider.setPrimaryPlatform(Platform.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
         loader = new LoaderImpl(this, null);
-        loader.registerPlugin(TaterPluginResolver.neoForge(loader));
+        loader.registerPlugin(TaterPluginResolver.neoForge());
         if (loader.platform().isNeoForgeHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+            loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Sinytra Connector support
         if (loader.platformData().isModLoaded("connectormod")) {
-            loader.registerPlugin(TaterPluginResolver.fabric(loader));
+            loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();
     }

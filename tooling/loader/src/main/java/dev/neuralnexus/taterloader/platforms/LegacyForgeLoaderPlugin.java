@@ -27,9 +27,9 @@ public class LegacyForgeLoaderPlugin {
     public LegacyForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
         loader = new LoaderImpl(this, null);
-        loader.registerPlugin(TaterPluginResolver.legacyForge(loader));
+        loader.registerPlugin(TaterPluginResolver.forge());
         if (loader.platform().isForgeHybrid() && Platform.isBukkit()) {
-            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+            loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         loader.onInit();
         loader.onEnable();

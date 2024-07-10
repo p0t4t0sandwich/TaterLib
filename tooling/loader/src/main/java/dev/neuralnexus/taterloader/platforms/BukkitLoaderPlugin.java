@@ -22,11 +22,11 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     public BukkitLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.BUKKIT);
         loader = new LoaderImpl(this, Bukkit.getServer());
-        loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+        loader.registerPlugin(TaterPluginResolver.bukkit());
         if (loader.platform().isForgeHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.forge(loader));
+            loader.registerPlugin(TaterPluginResolver.forge());
         } else if (loader.platform().isFabricHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.fabric(loader));
+            loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();
     }

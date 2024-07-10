@@ -33,9 +33,9 @@ public class Sponge7LoaderPlugin {
     public Sponge7LoaderPlugin(PluginContainer container) {
         TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
         loader = new LoaderImpl(container, null);
-        loader.registerPlugin(TaterPluginResolver.sponge7(loader));
-        if (Platform.isForge()) {
-            loader.registerPlugin(TaterPluginResolver.forge(loader));
+        loader.registerPlugin(TaterPluginResolver.sponge());
+        if (loader.platform().isForgeBased()) {
+            loader.registerPlugin(TaterPluginResolver.forge());
         }
         loader.onInit();
     }

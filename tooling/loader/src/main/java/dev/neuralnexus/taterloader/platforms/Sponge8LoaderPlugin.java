@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterReflectUtil;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.spongepowered.api.Server;
@@ -30,10 +31,22 @@ public class Sponge8LoaderPlugin {
     public Sponge8LoaderPlugin(PluginContainer container) {
         TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
         loader = new LoaderImpl(container, null);
-        loader.registerPlugin(TaterPluginResolver.sponge8(loader));
+        loader.registerPlugin(TaterPluginResolver.sponge());
         if (Platform.isForge()) {
-            loader.registerPlugin(TaterPluginResolver.forge(loader));
+            loader.registerPlugin(TaterPluginResolver.forge());
+        } else if (loader.platform().isFabricBased()) {
+            loader.registerPlugin(TaterPluginResolver.fabric());
         }
+
+        // Set up Vanilla bootstrap, covers Vanilla, Forge, and Fabric paths
+        TaterReflectUtil.getRelocatedClass("VanillaBootstrap").ifPresent(className -> {
+            try {
+                Class.forName(className).getMethod("init").invoke(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
         loader.onInit();
     }
 

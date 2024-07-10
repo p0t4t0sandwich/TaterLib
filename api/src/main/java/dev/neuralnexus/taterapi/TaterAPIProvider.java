@@ -165,6 +165,11 @@ public class TaterAPIProvider {
     }
 
     @ApiStatus.Internal
+    public static Platform primaryPlatform() {
+        return primaryPlatform;
+    }
+
+    @ApiStatus.Internal
     public static boolean isPrimaryPlatform(Platform platform) {
         return primaryPlatform == platform;
     }

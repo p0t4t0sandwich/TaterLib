@@ -21,13 +21,13 @@ public class FabricLoaderPlugin implements ModInitializer {
     public FabricLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FABRIC);
         loader = new LoaderImpl(this, null);
-        loader.registerPlugin(TaterPluginResolver.fabric(loader));
+        loader.registerPlugin(TaterPluginResolver.fabric());
         if (loader.platform().isFabricHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+            loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Kilt support
         if (loader.platformData().isModLoaded("kilt")) {
-            loader.registerPlugin(TaterPluginResolver.neoForge(loader));
+            loader.registerPlugin(TaterPluginResolver.neoForge());
         }
         loader.onInit();
     }

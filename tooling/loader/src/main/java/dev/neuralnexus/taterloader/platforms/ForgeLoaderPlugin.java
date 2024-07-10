@@ -27,13 +27,13 @@ public class ForgeLoaderPlugin {
     public ForgeLoaderPlugin() {
         TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
         loader = new LoaderImpl(this, null);
-        loader.registerPlugin(TaterPluginResolver.forge(loader));
+        loader.registerPlugin(TaterPluginResolver.forge());
         if (loader.platform().isForgeHybrid()) {
-            loader.registerPlugin(TaterPluginResolver.bukkit(loader));
+            loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Sinytra Connector support
         if (loader.platformData().isModLoaded("connectormod")) {
-            loader.registerPlugin(TaterPluginResolver.fabric(loader));
+            loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();
         loader.onEnable();

@@ -37,7 +37,7 @@ public class VelocityLoaderPlugin {
         TaterAPIProvider.setPrimaryPlatform(Platform.VELOCITY);
         VelocityData.setProxyServer(server);
         loader = new LoaderImpl(plugin, server, this);
-        loader.registerPlugin(TaterPluginResolver.velocity(loader));
+        loader.registerPlugin(TaterPluginResolver.velocity());
         loader.onInit();
     }
 
