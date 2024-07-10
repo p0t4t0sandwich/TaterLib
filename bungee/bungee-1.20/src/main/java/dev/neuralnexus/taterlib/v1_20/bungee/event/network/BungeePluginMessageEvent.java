@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.bungee.event.network;
 
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_20.bungee.player.BungeePlayer;
 import dev.neuralnexus.taterlib.v1_20.bungee.server.BungeeServer;
 
@@ -23,8 +24,8 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String channel() {
-        return event.getTag();
+    public ResourceKey channel() {
+        return ResourceKey.of(event.getTag());
     }
 
     /** {@inheritDoc} */

@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.player;
 
 import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeProxyServer;
@@ -81,7 +82,7 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
@@ -99,8 +100,8 @@ public class BungeePlayer implements ProxyPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        player.getServer().getInfo().sendData(channel, data);
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        player.getServer().getInfo().sendData(channel.asString(), data);
     }
 
     /** {@inheritDoc} */
