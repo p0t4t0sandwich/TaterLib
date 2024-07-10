@@ -10,6 +10,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
@@ -24,8 +25,8 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
 
     /** {@inheritDoc} */
     @Override
-    public String channel() {
-        return event.getIdentifier().getId();
+    public ResourceKey channel() {
+        return ResourceKey.of(event.getIdentifier().getId());
     }
 
     /** {@inheritDoc} */

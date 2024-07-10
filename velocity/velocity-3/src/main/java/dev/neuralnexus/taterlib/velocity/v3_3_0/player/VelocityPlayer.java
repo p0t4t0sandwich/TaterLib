@@ -11,6 +11,7 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 import dev.neuralnexus.taterloader.Loader;
@@ -111,7 +112,7 @@ public class VelocityPlayer implements ProxyPlayer {
                 .ifPresent(
                         serverConnection ->
                                 serverConnection.sendPluginMessage(
-                                        MinecraftChannelIdentifier.from(channel), data));
+                                        MinecraftChannelIdentifier.from(channel.asString()), data));
     }
 
     /** {@inheritDoc} */
