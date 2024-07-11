@@ -7,21 +7,22 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.event.network;
 
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.player.BukkitPlayer;
 
 /** Bukkit implementation of {@link PluginMessageEvent}. */
 public class BukkitPluginMessageEvent implements PluginMessageEvent {
-    private final String channel;
+    private final ResourceKey channel;
     private final byte[] data;
 
-    public BukkitPluginMessageEvent(String channel, byte[] data) {
+    public BukkitPluginMessageEvent(ResourceKey channel, byte[] data) {
         this.channel = channel;
         this.data = data;
     }
 
     /** {@inheritDoc} */
     @Override
-    public String channel() {
+    public ResourceKey channel() {
         return this.channel;
     }
 
@@ -36,7 +37,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
             implements PluginMessageEvent.Player {
         private final org.bukkit.entity.Player player;
 
-        public Player(String channel, byte[] data, org.bukkit.entity.Player player) {
+        public Player(ResourceKey channel, byte[] data, org.bukkit.entity.Player player) {
             super(channel, data);
             this.player = player;
         }

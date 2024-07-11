@@ -7,11 +7,13 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.inventory;
 
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
+import java.util.Optional;
 
 /** Abstracts a Bukkit item stack to an AbstractItemStack. */
 public class BukkitItemStack implements ItemStack {
@@ -38,8 +40,8 @@ public class BukkitItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return "minecraft:" + itemStack.getType().name().toLowerCase();
+    public ResourceKey type() {
+        return ResourceKey.of("minecraft", itemStack.getType().name().toLowerCase());
     }
 
     /** {@inheritDoc} */
@@ -69,7 +71,7 @@ public class BukkitItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
-        return itemStack.getItemMeta().getDisplayName();
+        return Optional.of(itemStack.getItemMeta().getDisplayName());
     }
 
     /** {@inheritDoc} */

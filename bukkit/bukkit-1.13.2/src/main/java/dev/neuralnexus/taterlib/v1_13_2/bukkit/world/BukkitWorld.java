@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_13_2.bukkit.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.BukkitEntity;
@@ -49,8 +50,8 @@ public class BukkitWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return world.getName();
+    public ResourceKey dimension() {
+        return ResourceKey.of(world.getName());
     }
 
     /** {@inheritDoc} */

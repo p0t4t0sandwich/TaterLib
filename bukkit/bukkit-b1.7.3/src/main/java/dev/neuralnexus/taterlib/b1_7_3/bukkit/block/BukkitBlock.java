@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Bukkit implementation of {@link Block}. */
@@ -19,9 +20,8 @@ public class BukkitBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        String blockType = block.getType().toString();
-        return "minecraft:" + blockType.toLowerCase();
+    public ResourceKey type() {
+        return ResourceKey.of("minecraft", block.getType().toString().toLowerCase());
     }
 
     /** {@inheritDoc} */

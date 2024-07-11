@@ -7,10 +7,12 @@
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitWorld;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
@@ -55,15 +57,14 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        // TODO: Add ModId support
-        return "minecraft:" + entity.getType().toString().toLowerCase();
+    public ResourceKey type() {
+        return ResourceKey.of("minecraft", entity.getType().toString().toLowerCase());
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        return entity.getCustomName();
+        return Optional.ofNullable(entity.getCustomName());
     }
 
     /** {@inheritDoc} */
@@ -80,8 +81,8 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.getLocation().getBlock().getBiome().name();
+    public ResourceKey biome() {
+        return ResourceKey.of(entity.getLocation().getBlock().getBiome().name());
     }
 
     /** {@inheritDoc} */

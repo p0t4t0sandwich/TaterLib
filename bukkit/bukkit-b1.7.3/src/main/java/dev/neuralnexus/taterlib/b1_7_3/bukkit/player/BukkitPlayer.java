@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.BukkitLivingEntity;
@@ -64,7 +65,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
@@ -82,15 +83,17 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
         // TODO: Create some different way to send plugin messages
         throw new VersionFeatureNotSupportedException();
-        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
+        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(),
+        // data);
     }
 
     public void sendPluginMessage(Plugin plugin, String channel, byte[] data) {
         throw new VersionFeatureNotSupportedException();
-        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
+        //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(),
+        // data);
     }
 
     /** {@inheritDoc} */

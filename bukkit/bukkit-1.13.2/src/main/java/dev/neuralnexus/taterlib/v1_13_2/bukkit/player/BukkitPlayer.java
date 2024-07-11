@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_13_2.bukkit.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.BukkitLivingEntity;
@@ -65,7 +66,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
@@ -83,12 +84,8 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel, data);
-    }
-
-    public void sendPluginMessage(Plugin source, String channel, byte[] data) {
-        player.sendPluginMessage(source, channel, data);
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(), data);
     }
 
     /** {@inheritDoc} */

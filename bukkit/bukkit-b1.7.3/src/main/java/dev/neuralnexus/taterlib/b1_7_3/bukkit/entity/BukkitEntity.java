@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitWorld;
@@ -15,6 +16,7 @@ import net.minecraft.server.EntityTypes;
 
 import org.bukkit.craftbukkit.entity.CraftEntity;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
@@ -59,15 +61,15 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        // TODO: Add ModId support ?
-        return "minecraft:" + EntityTypes.b(((CraftEntity) entity).getHandle()).toLowerCase();
+    public ResourceKey type() {
+        return ResourceKey.of(
+                "minecraft", EntityTypes.b(((CraftEntity) entity).getHandle()).toLowerCase());
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        return "minecraft.entity";
+        return Optional.of("minecraft.entity");
     }
 
     /** {@inheritDoc} */
@@ -84,8 +86,8 @@ public class BukkitEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.getLocation().getBlock().getBiome().name();
+    public ResourceKey biome() {
+        return ResourceKey.of(entity.getLocation().getBlock().getBiome().name());
     }
 
     /** {@inheritDoc} */
