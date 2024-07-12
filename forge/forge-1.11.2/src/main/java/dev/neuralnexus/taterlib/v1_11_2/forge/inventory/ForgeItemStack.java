@@ -8,10 +8,14 @@ package dev.neuralnexus.taterlib.v1_11_2.forge.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.List;
+import java.util.Optional;
 
 /** Forge implementation of {@link ItemStack}. */
 public class ForgeItemStack implements ItemStack {
@@ -38,12 +42,9 @@ public class ForgeItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        String itemName = itemStack.getItem().toString();
-        if (!itemName.contains(":")) {
-            return new VanillaResourceLocation("minecraft", itemName);
-        }
-        return new VanillaResourceLocation(itemName);
+    public ResourceKey type() {
+        return (ResourceKey)
+                (Object) GameRegistry.findRegistry(Item.class).getKey(itemStack.getItem());
     }
 
     /** {@inheritDoc} */
@@ -73,7 +74,7 @@ public class ForgeItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
-        return itemStack.getDisplayName();
+        return Optional.of(itemStack.getDisplayName());
     }
 
     /** {@inheritDoc} */

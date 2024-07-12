@@ -8,12 +8,15 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.registry.IRegistry;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -44,8 +47,8 @@ public class ForgeWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return level.dimension.getType().getRegistryName().toString();
+    public ResourceKey dimension() {
+        return new ForgeResourceKey(IRegistry.field_212622_k.getKey(level.dimension.getType()));
     }
 
     /** {@inheritDoc} */

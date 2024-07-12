@@ -12,6 +12,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
+import dev.neuralnexus.taterapi.Builders;
+import dev.neuralnexus.taterapi.Factories;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -26,6 +28,7 @@ import dev.neuralnexus.taterlib.v1_7_10.forge.hooks.permissions.ForgePermissions
 import dev.neuralnexus.taterlib.v1_7_10.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_7_10.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_7_10.forge.listeners.player.ForgePlayerListener;
+import dev.neuralnexus.taterlib.v1_7_10.forge.resources.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_7_10.forge.server.ForgeServer;
 
 import net.minecraft.server.MinecraftServer;
@@ -47,6 +50,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
+        Builders.resourceKeyBuilder = ForgeResourceKey.Builder::new;
+        Factories.resourceKeyFactory = ForgeResourceKey.Factory::new;
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FORGE)

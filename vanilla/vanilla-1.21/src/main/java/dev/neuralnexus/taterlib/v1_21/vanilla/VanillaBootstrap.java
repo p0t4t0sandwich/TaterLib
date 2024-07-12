@@ -8,8 +8,7 @@ package dev.neuralnexus.taterlib.v1_21.vanilla;
 
 import dev.neuralnexus.taterapi.Builders;
 import dev.neuralnexus.taterapi.Factories;
-import dev.neuralnexus.taterlib.v1_21.vanilla.resources.VanillaResourceKeyBuilder;
-import dev.neuralnexus.taterlib.v1_21.vanilla.resources.VanillaResourceKeyFactory;
+import dev.neuralnexus.taterlib.v1_21.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaLocation;
 
 /** The Vanilla bootstrap class. */
@@ -17,7 +16,7 @@ public class VanillaBootstrap {
     /** Initializes the Vanilla bootstrap. */
     public static void init() {
         Builders.locationBuilder = VanillaLocation.Builder::new;
-        Builders.resourceKeyBuilder = VanillaResourceKeyBuilder::new;
-        Factories.resourceKeyFactory = VanillaResourceKeyFactory::new;
+        Builders.resourceKeyBuilder = VanillaResourceKey.Builder::new;
+        Factories.resourceKeyFactory = VanillaResourceKey.Factory::new;
     }
 }

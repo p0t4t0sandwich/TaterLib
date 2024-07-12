@@ -10,6 +10,7 @@ unimined.minecraft(sourceSets.main) {
     version minecraft_version
     minecraftForge {
         loader forge_version
+        mixinConfig("taterlib.mixins.v1_8_9.forge.json")
     }
     mappings {
         searge()
@@ -19,7 +20,9 @@ unimined.minecraft(sourceSets.main) {
 }
 
 dependencies {
+    compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':api'))
     compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
 }

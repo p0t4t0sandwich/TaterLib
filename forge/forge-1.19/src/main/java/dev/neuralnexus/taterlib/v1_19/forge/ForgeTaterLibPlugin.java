@@ -15,6 +15,7 @@ import dev.neuralnexus.taterlib.v1_19.forge.listeners.command.ForgeCommandsListe
 import dev.neuralnexus.taterlib.v1_19.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_19.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_19.forge.listeners.server.ForgeServerListener;
+import dev.neuralnexus.taterlib.v1_19.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ import net.minecraftforge.server.ServerLifecycleHooks;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
+        VanillaBootstrap.init();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FORGE)

@@ -7,12 +7,15 @@
 package dev.neuralnexus.taterlib.v1_16_3.forge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_16_3.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_16_3.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_16_3.forge.world.ForgeServerWorld;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -62,15 +65,15 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return (ResourceKey) (Object) Registry.ENTITY_TYPE.getKey(entity.getType());
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        if (entity.getCustomName() == null) return null;
-        return entity.getCustomName().getString();
+        if (entity.getCustomName() == null) return Optional.empty();
+        return Optional.of(entity.getCustomName().getString());
     }
 
     /** {@inheritDoc} */
@@ -87,8 +90,11 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.level.getBiome(entity.blockPosition()).toString();
+    public ResourceKey biome() {
+        return (ResourceKey)
+                (Object)
+                        WorldGenRegistries.BIOME.getKey(
+                                entity.level.getBiome(entity.blockPosition()));
     }
 
     /** {@inheritDoc} */

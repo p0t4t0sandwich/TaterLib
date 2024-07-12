@@ -7,7 +7,11 @@
 package dev.neuralnexus.taterlib.v1_13_2.forge.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
+import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
+
+import net.minecraft.util.registry.IRegistry;
 
 /** Forge implementation of {@link Block}. */
 public class ForgeBlock implements Block {
@@ -21,8 +25,8 @@ public class ForgeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return block.getTranslationKey().split("block\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return new ForgeResourceKey(IRegistry.field_212618_g.getKey(block));
     }
 
     /** {@inheritDoc} */

@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13_2.forge;
 
+import dev.neuralnexus.taterapi.Builders;
+import dev.neuralnexus.taterapi.Factories;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
@@ -18,6 +20,7 @@ import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.entity.ForgeEntityListen
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
+import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -31,6 +34,8 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
+        Builders.resourceKeyBuilder = ForgeResourceKey.Builder::new;
+        Factories.resourceKeyFactory = ForgeResourceKey.Factory::new;
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FORGE)

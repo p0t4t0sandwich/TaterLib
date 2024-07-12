@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import net.minecraft.util.ChunkCoordinates;
@@ -23,8 +24,9 @@ public class ForgeBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return block.getLocalizedName().split("block\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        // TODO: Find block registry
+        return ResourceKey.of(block.getLocalizedName().split("block\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */

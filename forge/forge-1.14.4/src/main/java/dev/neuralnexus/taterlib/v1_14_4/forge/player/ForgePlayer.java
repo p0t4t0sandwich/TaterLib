@@ -9,17 +9,21 @@ package dev.neuralnexus.taterlib.v1_14_4.forge.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_14_4.forge.inventory.ForgePlayerInventory;
-import dev.neuralnexus.taterlib.v1_14_4.forge.networking.ModMessages;
-import dev.neuralnexus.taterlib.v1_14_4.forge.networking.packet.ForgeMessagePacket;
 import dev.neuralnexus.taterlib.v1_14_4.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_14_4.forge.world.ForgeWorld;
 
+import io.netty.buffer.Unpooled;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.client.CCustomPayloadPacket;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 
@@ -68,7 +72,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
@@ -86,9 +90,11 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        ModMessages.sendPluginMessage(
-                new ForgeMessagePacket(new String(data)), channel, (ServerPlayerEntity) player);
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        ResourceLocation id = (ResourceLocation) (Object) channel;
+        PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((ServerPlayerEntity) player).connection.sendPacket(new CCustomPayloadPacket(id, byteBuf));
     }
 
     /** {@inheritDoc} */

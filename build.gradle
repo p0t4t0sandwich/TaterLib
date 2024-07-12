@@ -225,6 +225,15 @@ tasks.register('build_monojar', Jar) {
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
                 'MixinConfigs': "" +
+                        "taterlib.mixins.v1_7_10.forge.json," +
+                        "taterlib.mixins.v1_8_9.forge.json," +
+                        "taterlib.mixins.v1_9_4.forge.json," +
+                        "taterlib.mixins.v1_10_2.forge.json," +
+                        "taterlib.mixins.v1_11_2.forge.json," +
+                        "taterlib.mixins.v1_12_2.forge.json," +
+                        "taterlib.mixins.v1_14_4.forge.json," +
+                        "taterlib.mixins.v1_15_2.forge.json," +
+                        "taterlib.mixins.v1_16_3.forge.json," +
                         "taterlib.mixins.v1_17_1.forge.json," +
                         "taterlib.mixins.v1_18.forge.json," +
                         "taterlib.mixins.v1_19.forge.json," +
@@ -233,43 +242,7 @@ tasks.register('build_monojar', Jar) {
                         "taterlib.mixins.v1_19_4.forge.patch.json," +
                         "taterlib.mixins.v1_20.forge.json," +
                         "taterlib.mixins.v1_20_2.forge.json," +
-                        "taterlib.mixins.v1_20_6.vanilla.patch.json," +
-                        "taterlib.mixins.v1_20_6.vanilla.json"
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
-// --------------------------- Build Dev --------------------------------
-tasks.register('build_dev', Jar) {
-    String mc_version = 'b1.7.3-1.21'
-    archiveFileName = "${project_id}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                'FMLCorePluginContainsFMLMod': 'true',
-                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "" +
-                        "taterlib.mixins.v1_17_1.forge.json," +
-                        "taterlib.mixins.v1_18.forge.json," +
-                        "taterlib.mixins.v1_19.forge.json," +
-                        "taterlib.mixins.v1_19_1.forge.patch.json," +
-                        "taterlib.mixins.v1_19_3.forge.patch.json," +
-                        "taterlib.mixins.v1_19_4.forge.patch.json," +
-                        "taterlib.mixins.v1_20.forge.json," +
-                        "taterlib.mixins.v1_20_2.forge.json," +
+                        "taterlib.mixins.v1_20_6.forge.json," +
                         "taterlib.mixins.v1_20_6.vanilla.patch.json," +
                         "taterlib.mixins.v1_20_6.vanilla.json"
     }

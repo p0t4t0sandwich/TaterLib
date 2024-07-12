@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_9_4.forge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_9_4.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_9_4.forge.server.ForgeServer;
@@ -14,8 +15,9 @@ import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeServerWorld;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -62,15 +64,16 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getName().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        // TODO: Find entity registry
+        return ResourceKey.of(entity.getName().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        if (!entity.hasCustomName()) return null;
-        return entity.getCustomNameTag();
+        if (!entity.hasCustomName()) return Optional.empty();
+        return Optional.of(entity.getCustomNameTag());
     }
 
     /** {@inheritDoc} */
@@ -87,11 +90,11 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        ResourceLocation biomeRegistry =
-                entity.worldObj.getBiomeForCoordsBody(entity.getPosition()).getRegistryName();
-        if (biomeRegistry == null) return null;
-        return biomeRegistry.toString();
+    public ResourceKey biome() {
+        return (ResourceKey)
+                (Object)
+                        GameRegistry.findRegistry(Biome.class)
+                                .getKey(entity.worldObj.getBiome(entity.getPosition()));
     }
 
     /** {@inheritDoc} */

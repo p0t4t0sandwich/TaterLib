@@ -1,0 +1,26 @@
+plugins {
+    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.mixin)
+}
+
+base {
+    archivesName = "${project_id}-forge-${minecraft_version}"
+}
+
+minecraft {
+    mappings(channel: mapping_channel, version: mapping_version)
+}
+
+mixin {
+    add(sourceSets.main, "taterlib.mixins.v1_15_2.forge.refmap.json")
+    config("taterlib.mixins.v1_15_2.forge.json")
+}
+
+dependencies {
+    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
+    compileOnly(project(':api'))
+    compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':tooling:loader'))
+    compileOnly(project(':forge:forge-utils-modern'))
+}

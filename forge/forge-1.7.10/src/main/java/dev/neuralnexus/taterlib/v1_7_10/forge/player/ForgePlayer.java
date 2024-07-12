@@ -9,6 +9,7 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeTaterLibPlugin;
@@ -17,8 +18,12 @@ import dev.neuralnexus.taterlib.v1_7_10.forge.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_7_10.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_7_10.forge.world.ForgeServerWorld;
 
+import io.netty.buffer.Unpooled;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.S3FPacketCustomPayload;
 import net.minecraft.server.management.ItemInWorldManager;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChunkCoordinates;
@@ -70,7 +75,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName();
     }
 
@@ -88,7 +93,13 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {}
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((EntityPlayerMP) player)
+                .playerNetServerHandler.sendPacket(
+                        new S3FPacketCustomPayload(channel.asString(), byteBuf));
+    }
 
     /** {@inheritDoc} */
     @Override

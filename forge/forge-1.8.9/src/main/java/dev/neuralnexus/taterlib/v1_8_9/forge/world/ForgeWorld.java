@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_8_9.forge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_8_9.forge.entity.ForgeEntity;
@@ -44,8 +45,8 @@ public class ForgeWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return level.provider.getDimensionName().replace(" ", "_").toLowerCase();
+    public ResourceKey dimension() {
+        return ResourceKey.of(level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 
     /** {@inheritDoc} */

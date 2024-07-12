@@ -9,17 +9,22 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.inventory.ForgePlayerInventory;
-import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
-import dev.neuralnexus.taterlib.v1_13_2.forge.networking.packet.ForgeMessagePacket;
+import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeWorld;
 
+import io.netty.buffer.Unpooled;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SPacketCustomPayload;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
@@ -68,7 +73,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
@@ -86,9 +91,11 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        ModMessages.sendPluginMessage(
-                new ForgeMessagePacket(new String(data)), channel, (EntityPlayerMP) player);
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        ResourceLocation id = ((ForgeResourceKey) channel).resourceLocation();
+        PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((EntityPlayerMP) player).connection.sendPacket(new SPacketCustomPayload(id, byteBuf));
     }
 
     /** {@inheritDoc} */

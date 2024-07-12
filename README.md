@@ -103,8 +103,10 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 ## Dependencies
 
 - [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
-- [Legacy Fabric API](https://www.curseforge.com/minecraft/mc-mods/legacy-fabric-api) - Required on Fabric 1.12.2 and
+- [Legacy Fabric API](https://modrinth.com/mod/legacy-fabric-api) - Required on Fabric 1.12.2 and
   below
+- [MixinBootstrap](https://modrinth.com/mod/mixinbootstrap) - Required on Forge 1.14.x
+- [UniMixins](https://modrinth.com/mod/unimixins) - Required on Forge 1.7.10-1.12.2
 
 ### Optional Dependencies
 

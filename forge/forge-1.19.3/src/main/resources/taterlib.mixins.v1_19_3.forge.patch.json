@@ -10,5 +10,6 @@
   "mixins": [
     "entity.VanillaEntityMixin_1_19_3",
     "player.VanillaPlayerMixin_1_19_3"
-  ]
+  ],
+  "refmap": "taterlib.mixins.v1_19_3.forge.refmap.json"
 }

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.forge.server.ForgeServer;
@@ -61,15 +62,17 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getCommandSenderName().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        // TODO: Find entity registry
+        return ResourceKey.of(
+                entity.getCommandSenderName().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        if (entity.getFormattedCommandSenderName() == null) return null;
-        return entity.getFormattedCommandSenderName().getFormattedText();
+        if (entity.getFormattedCommandSenderName() == null) return Optional.empty();
+        return Optional.of(entity.getFormattedCommandSenderName().getFormattedText());
     }
 
     /** {@inheritDoc} */
@@ -87,9 +90,11 @@ public class ForgeEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.worldObj.provider.getBiomeGenForCoords((int) entity.posX, (int) entity.posZ)
-                .biomeName;
+    public ResourceKey biome() {
+        // TODO: Find biome registry
+        return ResourceKey.of(
+                entity.worldObj.provider.getBiomeGenForCoords((int) entity.posX, (int) entity.posZ)
+                        .biomeName);
     }
 
     /** {@inheritDoc} */

@@ -1,14 +1,15 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "dev.neuralnexus.taterlib.v1_20.forge.mixin.listeners",
-  "required": false,
-  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "mixins": [
-    "network.CustomPayloadMixin_1_20"
-  ],
   "injectors": {
     "defaultRequire": 1
   },
+  "required": false,
+  "package": "dev.neuralnexus.taterlib.v1_20.forge.mixin",
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "mixins": [
+    "api.minecraft.resources.ResourceLocationAPI",
+    "listeners.network.CustomPayloadMixin_1_20"
+  ],
   "refmap": "taterlib.mixins.v1_20.forge.refmap.json"
 }
