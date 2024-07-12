@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_8_9.fabric.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.server.FabricServer;
@@ -60,15 +61,15 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getTranslationKey().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return ResourceKey.of(entity.getTranslationKey().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        if (entity.getCustomName() == null) return null;
-        return entity.getCustomName();
+        if (entity.getCustomName() == null) return Optional.empty();
+        return Optional.of(entity.getCustomName());
     }
 
     /** {@inheritDoc} */
@@ -85,8 +86,8 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.world.getBiome(entity.getBlockPos()).name;
+    public ResourceKey biome() {
+        return ResourceKey.of(entity.world.getBiome(entity.getBlockPos()).name);
     }
 
     /** {@inheritDoc} */

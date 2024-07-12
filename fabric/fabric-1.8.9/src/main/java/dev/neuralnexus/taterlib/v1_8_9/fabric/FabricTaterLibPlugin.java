@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_8_9.fabric;
 
+import dev.neuralnexus.taterapi.Builders;
+import dev.neuralnexus.taterapi.Factories;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.*;
@@ -24,6 +26,7 @@ import dev.neuralnexus.taterlib.v1_8_9.fabric.event.server.FabricServerStartingE
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.server.FabricServerStoppedEvent;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.hooks.permissions.FabricPermissionsHook;
+import dev.neuralnexus.taterlib.v1_8_9.fabric.resources.FabricResourceKey;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.server.FabricServer;
 
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
@@ -36,6 +39,8 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
+        Builders.resourceKeyBuilder = FabricResourceKey.Builder::new;
+        Factories.resourceKeyFactory = FabricResourceKey.Factory::new;
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FABRIC)

@@ -8,8 +8,10 @@ package dev.neuralnexus.taterlib.v1_10_2.fabric.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
+import java.util.Optional;
 
 /** Fabric implementation of {@link ItemStack}. */
 public class FabricItemStack implements ItemStack {
@@ -35,12 +37,8 @@ public class FabricItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        String itemName = itemStack.getItem().toString();
-        if (!itemName.contains(":")) {
-            return new VanillaResourceLocation("minecraft", itemName);
-        }
-        return new VanillaResourceLocation(itemName);
+    public ResourceKey type() {
+        return ResourceKey.of(itemStack.getItem().toString());
     }
 
     /** {@inheritDoc} */
@@ -70,7 +68,7 @@ public class FabricItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
-        return itemStack.getCustomName();
+        return Optional.of(itemStack.getCustomName());
     }
 
     /** {@inheritDoc} */

@@ -8,12 +8,14 @@ package dev.neuralnexus.taterlib.v1_15.fabric.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_15.fabric.entity.FabricEntity;
 import dev.neuralnexus.taterlib.v1_15.fabric.player.FabricPlayer;
 
 import net.minecraft.util.math.Box;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -44,8 +46,8 @@ public class FabricWorld implements World {
 
     /** {@inheritDoc} */
     @Override
-    public String dimension() {
-        return level.getDimension().getType().toString();
+    public ResourceKey dimension() {
+        return (ResourceKey) (Object) Registry.DIMENSION.getId(level.dimension.getType());
     }
 
     /** {@inheritDoc} */

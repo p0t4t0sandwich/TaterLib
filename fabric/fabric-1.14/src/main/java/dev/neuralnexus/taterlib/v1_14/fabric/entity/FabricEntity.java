@@ -7,6 +7,7 @@
 package dev.neuralnexus.taterlib.v1_14.fabric.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14.fabric.server.FabricServer;
@@ -16,6 +17,7 @@ import dev.neuralnexus.taterlib.v1_14.fabric.world.FabricServerWorld;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.registry.Registry;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -62,8 +64,8 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getType().toString().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return (ResourceKey) (Object) Registry.ENTITY_TYPE.getId(entity.getType());
     }
 
     /** {@inheritDoc} */
@@ -87,11 +89,9 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.getEntityWorld()
-                .getBiome(entity.getBlockPos())
-                .getTextComponent()
-                .getFormattedText();
+    public ResourceKey biome() {
+        return (ResourceKey)
+                (Object) Registry.BIOME.getId(entity.world.getBiome(entity.getBlockPos()));
     }
 
     /** {@inheritDoc} */

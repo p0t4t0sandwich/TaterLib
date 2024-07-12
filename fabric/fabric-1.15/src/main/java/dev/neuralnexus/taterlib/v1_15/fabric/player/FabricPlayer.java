@@ -9,20 +9,23 @@ package dev.neuralnexus.taterlib.v1_15.fabric.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_15.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.v1_15.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.v1_15.fabric.server.FabricServer;
 
+import io.netty.buffer.Unpooled;
+
 import me.lucko.fabric.api.permissions.v0.Options;
 
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.client.network.packet.CustomPayloadS2CPacket;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -70,7 +73,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getDisplayName().getString();
     }
 
@@ -88,12 +91,12 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        String[] channelParts = channel.split(":");
-        ServerPlayNetworking.send(
-                (ServerPlayerEntity) player,
-                new Identifier(channelParts[0], channelParts[1]),
-                PacketByteBufs.create().writeByteArray(data));
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        Identifier id = (Identifier) (Object) channel;
+        PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((ServerPlayerEntity) player)
+                .networkHandler.sendPacket(new CustomPayloadS2CPacket(id, byteBuf));
     }
 
     /** {@inheritDoc} */

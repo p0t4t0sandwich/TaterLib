@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_19.fabric.hooks.permissions.FabricPermissionsHook;
+import dev.neuralnexus.taterlib.v1_19.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.player.VanillaPlayerLoginEvent;
@@ -30,6 +31,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
+        VanillaBootstrap.init();
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FABRIC)

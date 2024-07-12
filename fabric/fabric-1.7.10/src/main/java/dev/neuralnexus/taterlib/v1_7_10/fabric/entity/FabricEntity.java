@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_7_10.fabric.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.FabricTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.server.FabricServer;
@@ -61,15 +62,15 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return entity.getTranslationKey().split("entity\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return ResourceKey.of(entity.getTranslationKey().split("entity\\.")[1].replace(".", ":"));
     }
 
     /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
-        if (entity.getName() == null) return null;
-        return entity.getName().asFormattedString();
+        if (entity.getName() == null) return Optional.empty();
+        return Optional.of(entity.getName().asFormattedString());
     }
 
     /** {@inheritDoc} */
@@ -89,8 +90,8 @@ public class FabricEntity implements Entity {
 
     /** {@inheritDoc} */
     @Override
-    public String biome() {
-        return entity.world.getBiome((int) entity.x, (int) entity.z).name;
+    public ResourceKey biome() {
+        return ResourceKey.of(entity.world.getBiome((int) entity.x, (int) entity.z).name);
     }
 
     /** {@inheritDoc} */

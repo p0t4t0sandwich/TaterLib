@@ -6,17 +6,17 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_19.fabric.mixin.listeners",
+  "package": "dev.neuralnexus.taterlib.v1_19.fabric.mixin",
   "mixins": [
-    "block.PlayerBlockBreakMixin_1_19",
-    "entity.EntityDamageMixin_1_19",
-    "entity.EntityDeathMixin_1_19",
-    "entity.EntitySpawnMixin_1_19",
-    "network.CustomPayloadMixin_1_19",
-    "player.PlayerAdvancementFinishedMixin_1_19",
-    "player.PlayerAdvancementProgressMixin_1_19",
-    "player.PlayerDeathMixin_1_19",
-    "player.PlayerMessageMixin_1_19",
-    "player.PlayerRespawnMixin_1_19"
+    "listeners.block.PlayerBlockBreakMixin_1_19",
+    "listeners.entity.EntityDamageMixin_1_19",
+    "listeners.entity.EntityDeathMixin_1_19",
+    "listeners.entity.EntitySpawnMixin_1_19",
+    "listeners.network.CustomPayloadMixin_1_19",
+    "listeners.player.PlayerAdvancementFinishedMixin_1_19",
+    "listeners.player.PlayerAdvancementProgressMixin_1_19",
+    "listeners.player.PlayerDeathMixin_1_19",
+    "listeners.player.PlayerMessageMixin_1_19",
+    "listeners.player.PlayerRespawnMixin_1_19"
   ]
 }

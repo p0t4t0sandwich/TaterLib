@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_8_9.fabric.inventory;
 
 import dev.neuralnexus.taterapi.inventory.Inventory;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,7 @@ public class FabricInventory implements Inventory {
 
     /** {@inheritDoc} */
     @Override
-    public void remove(ResourceLocation type) {
+    public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
                 inventory.removeInvStack(i);

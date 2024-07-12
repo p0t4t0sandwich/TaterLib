@@ -6,16 +6,17 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_8_9.fabric.mixin.listeners",
+  "package": "dev.neuralnexus.taterlib.v1_8_9.fabric.mixin",
   "mixins": [
-    "block.PlayerBlockBreakMixin_1_8_9",
-    "entity.EntityDamageMixin_1_8_9",
-    "entity.EntityDeathMixin_1_8_9"
+    "api.minecraft.util.ResourceLocationAPI",
+    "listeners.block.PlayerBlockBreakMixin_1_8_9",
+    "listeners.entity.EntityDamageMixin_1_8_9",
+    "listeners.entity.EntityDeathMixin_1_8_9"
   ],
   "server": [
-    "entity.EntitySpawnMixin_1_8_9",
-    "player.PlayerDeathMixin_1_8_9",
-    "player.PlayerMessageMixin_1_8_9",
-    "player.PlayerRespawnMixin_1_8_9"
+    "listeners.entity.EntitySpawnMixin_1_8_9",
+    "listeners.player.PlayerDeathMixin_1_8_9",
+    "listeners.player.PlayerMessageMixin_1_8_9",
+    "listeners.player.PlayerRespawnMixin_1_8_9"
   ]
 }

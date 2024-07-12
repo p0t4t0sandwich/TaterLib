@@ -8,11 +8,14 @@ package dev.neuralnexus.taterlib.v1_16.fabric.inventory;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.item.Items;
 import net.minecraft.text.LiteralText;
+import net.minecraft.util.registry.Registry;
 
 import java.util.List;
+import java.util.Optional;
 
 /** Fabric implementation of {@link ItemStack}. */
 public class FabricItemStack implements ItemStack {
@@ -39,12 +42,8 @@ public class FabricItemStack implements ItemStack {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        String itemName = itemStack.getItem().toString();
-        if (!itemName.contains(":")) {
-            return new VanillaResourceLocation("minecraft", itemName);
-        }
-        return new VanillaResourceLocation(itemName);
+    public ResourceKey type() {
+        return (ResourceKey) (Object) Registry.ITEM.getKey(itemStack.getItem());
     }
 
     /** {@inheritDoc} */
@@ -74,7 +73,7 @@ public class FabricItemStack implements ItemStack {
     /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
-        return itemStack.getName().getString();
+        return Optional.of(itemStack.getName().getString());
     }
 
     /** {@inheritDoc} */

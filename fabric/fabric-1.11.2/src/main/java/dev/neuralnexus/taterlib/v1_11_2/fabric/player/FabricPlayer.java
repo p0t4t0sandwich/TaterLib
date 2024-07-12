@@ -9,17 +9,20 @@ package dev.neuralnexus.taterlib.v1_11_2.fabric.player;
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.player.GameMode;
 import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.server.FabricServer;
 
-import net.legacyfabric.fabric.api.networking.v1.PacketByteBufs;
-import net.legacyfabric.fabric.api.networking.v1.ServerPlayNetworking;
+import io.netty.buffer.Unpooled;
+
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.text.TranslatableText;
+import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.UUID;
@@ -67,7 +70,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<String> displayName() {
+    public String displayName() {
         return player.getCustomName();
     }
 
@@ -85,9 +88,11 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void sendPluginMessage(String channel, byte[] data) {
-        ServerPlayNetworking.send(
-                (ServerPlayerEntity) player, channel, PacketByteBufs.create().writeByteArray(data));
+    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+        PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        ((ServerPlayerEntity) player)
+                .networkHandler.sendPacket(new CustomPayloadS2CPacket(channel.asString(), byteBuf));
     }
 
     /** {@inheritDoc} */

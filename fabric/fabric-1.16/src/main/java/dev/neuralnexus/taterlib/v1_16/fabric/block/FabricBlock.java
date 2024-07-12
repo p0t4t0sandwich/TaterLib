@@ -7,7 +7,10 @@
 package dev.neuralnexus.taterlib.v1_16.fabric.block;
 
 import dev.neuralnexus.taterapi.block.Block;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
+
+import net.minecraft.util.registry.Registry;
 
 /** Fabric implementation of {@link Block}. */
 public class FabricBlock implements Block {
@@ -21,8 +24,8 @@ public class FabricBlock implements Block {
 
     /** {@inheritDoc} */
     @Override
-    public String type() {
-        return block.getTranslationKey().split("block\\.")[1].replace(".", ":");
+    public ResourceKey type() {
+        return (ResourceKey) (Object) Registry.BLOCK.getKey(block);
     }
 
     /** {@inheritDoc} */

@@ -8,7 +8,7 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.v1_18",
   "mixins": [
-    "fabric.vanilla.accessors.world.entity.LivingEntityAccessor",
+    "vanilla.fabric.mixin.accessors.world.entity.LivingEntityAccessor",
     "fabric.mixin.listeners.block.PlayerBlockBreakMixin_1_18",
     "fabric.mixin.listeners.entity.EntityDamageMixin_1_18",
     "fabric.mixin.listeners.entity.EntityDeathMixin_1_18"
