@@ -17,7 +17,6 @@ public class VanillaServerEvent implements ServerEvent {
         new VanillaServer(server);
     }
 
-    /** {@inheritDoc} */
     @Override
     public SimpleServer server() {
         return VanillaServer.instance();

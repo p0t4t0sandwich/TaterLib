@@ -20,7 +20,6 @@ public class ForgeBlockEvent implements BlockEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Block block() {
         return new ForgeBlock(new ChunkCoordinates(event.x, event.y, event.z), this.event.block);

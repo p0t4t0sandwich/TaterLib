@@ -23,20 +23,17 @@ public class VelocityServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return server.getServerInfo().getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         // TODO: Pass this information up through plugin messages as a way to sync the server brand
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getPlayersConnected().stream()
@@ -44,7 +41,6 @@ public class VelocityServer implements Server {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         throw new VersionFeatureNotSupportedException();

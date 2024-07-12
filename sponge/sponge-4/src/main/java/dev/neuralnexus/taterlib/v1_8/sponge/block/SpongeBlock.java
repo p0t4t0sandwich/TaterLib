@@ -24,13 +24,11 @@ public class SpongeBlock implements Block {
         this.block = location.getBlock();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of(block.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.getBlockX(), pos.getBlockY(), pos.getBlockZ());

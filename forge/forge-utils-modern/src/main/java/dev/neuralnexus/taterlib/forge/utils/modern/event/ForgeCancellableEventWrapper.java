@@ -21,13 +21,11 @@ public class ForgeCancellableEventWrapper implements Cancellable {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return this.event.isCanceled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         this.event.setCanceled(cancelled);

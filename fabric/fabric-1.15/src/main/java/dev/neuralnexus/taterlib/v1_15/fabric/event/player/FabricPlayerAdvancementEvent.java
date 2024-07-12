@@ -23,7 +23,6 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
         this.advancement = advancement;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String advancement() {
         return advancement.getDisplay().getTitle().getString();
@@ -48,8 +47,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
             this.advancement = advancement;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public Collection<String> criterion() {
             return advancement.getCriteria().keySet();
         }

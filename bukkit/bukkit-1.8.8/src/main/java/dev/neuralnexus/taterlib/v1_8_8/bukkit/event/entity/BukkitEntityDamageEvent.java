@@ -22,25 +22,21 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String cause() {
         return event.getCause().name();
     }
 
-    /** {@inheritDoc} */
     @Override
     public double damage() {
         return event.getDamage(org.bukkit.event.entity.EntityDamageEvent.DamageModifier.BASE);
@@ -56,8 +52,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public Entity damager() {
             return new BukkitEntity(event.getDamager());
         }
@@ -73,8 +68,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public String damager() {
             return event.getDamager().getType().name();
         }

@@ -30,19 +30,16 @@ public class ForgeBrigadierCommandRegisterEvent
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return event.getServer().isDedicatedServer();
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<CommandSource> dispatcher() {
         return event.getCommandDispatcher();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
@@ -52,19 +49,16 @@ public class ForgeBrigadierCommandRegisterEvent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandSender getSender(CommandSource source) {
         return new ForgeCommandSender(source);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSource source) {
         return new ForgePlayer((EntityPlayer) source.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSource source) {
         return source.getEntity() instanceof EntityPlayer;

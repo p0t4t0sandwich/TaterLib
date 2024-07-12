@@ -21,25 +21,21 @@ public class BukkitPlayerRespawnEvent extends BukkitPlayerEvent implements Playe
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new BukkitPlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location respawnLocation() {
         return new BukkitLocation(event.getRespawnLocation());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return event.isBedSpawn();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

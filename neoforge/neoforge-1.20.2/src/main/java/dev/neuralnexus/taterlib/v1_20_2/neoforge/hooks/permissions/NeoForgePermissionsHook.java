@@ -19,13 +19,11 @@ import net.neoforged.neoforge.server.permission.nodes.PermissionTypes;
 
 /** A hook for NeoForge permissions */
 public class NeoForgePermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "neoforgepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible.hasPermission(4)) {

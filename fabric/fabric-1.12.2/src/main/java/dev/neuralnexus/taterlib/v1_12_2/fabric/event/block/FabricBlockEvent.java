@@ -46,7 +46,6 @@ public class FabricBlockEvent implements BlockEvent {
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Block block() {
         return new FabricBlock(this.pos, this.state.getBlock());

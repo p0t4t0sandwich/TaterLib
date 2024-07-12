@@ -42,51 +42,43 @@ public class ForgeEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.getUniqueID();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return entity.entityId;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.setDead();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         // TODO: Find entity registry
         return ResourceKey.of(entity.getEntityName().split("entity\\.")[1].replace(".", ":"));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         return Optional.of(entity.getTranslatedEntityName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         // TODO: Implement NAME TAGS SUPPORT
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new ForgeLocation(entity);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         // TODO: Find biome registry
@@ -95,7 +87,6 @@ public class ForgeEntity implements Entity {
                         .biomeName);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {

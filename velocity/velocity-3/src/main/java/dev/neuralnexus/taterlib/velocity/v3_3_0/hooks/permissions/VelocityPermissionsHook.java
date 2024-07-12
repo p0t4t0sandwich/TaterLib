@@ -15,13 +15,11 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
 
 /** A hook for Velocity permissions */
 public class VelocityPermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "spongepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {

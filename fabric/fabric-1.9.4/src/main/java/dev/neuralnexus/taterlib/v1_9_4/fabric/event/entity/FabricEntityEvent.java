@@ -21,7 +21,6 @@ public class FabricEntityEvent implements EntityEvent {
         this.entity = entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         if (this.entity instanceof PlayerEntity) {

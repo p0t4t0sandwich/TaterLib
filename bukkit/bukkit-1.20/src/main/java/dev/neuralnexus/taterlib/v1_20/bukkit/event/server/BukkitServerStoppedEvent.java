@@ -14,7 +14,6 @@ import org.bukkit.Bukkit;
 
 /** Bukkit implementation of {@link ServerStoppedEvent}. */
 public class BukkitServerStoppedEvent implements ServerStoppedEvent {
-    /** {@inheritDoc} */
     @Override
     public SimpleServer server() {
         return new BukkitServer(Bukkit.getServer());

@@ -38,19 +38,16 @@ public class FabricWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Player> players() {
         return level.getPlayers().stream().map(FabricPlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return (ResourceKey) (Object) Registry.DIMENSION.getId(level.dimension.getType());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).entity();
@@ -64,7 +61,6 @@ public class FabricWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {

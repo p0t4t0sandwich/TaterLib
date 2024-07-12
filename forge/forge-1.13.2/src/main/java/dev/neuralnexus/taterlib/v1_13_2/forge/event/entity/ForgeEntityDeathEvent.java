@@ -27,7 +27,6 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         if (!drops.isEmpty()) {
@@ -41,19 +40,16 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         drops.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         if (droppedExp != 0) {
@@ -62,7 +58,6 @@ public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDea
         return 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         droppedExp = exp;

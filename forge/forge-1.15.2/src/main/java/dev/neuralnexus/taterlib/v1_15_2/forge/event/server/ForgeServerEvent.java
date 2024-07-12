@@ -21,7 +21,6 @@ public class ForgeServerEvent implements ServerEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public SimpleServer server() {
         return new ForgeServer(ServerLifecycleHooks.getCurrentServer());

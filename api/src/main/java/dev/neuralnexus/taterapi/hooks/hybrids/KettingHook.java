@@ -40,7 +40,6 @@ public class KettingHook implements Hook {
         return instance;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "ketting";

@@ -20,13 +20,11 @@ public class FabricBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of(block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.getX(), pos.getY(), pos.getZ());

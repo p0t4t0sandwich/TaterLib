@@ -31,7 +31,6 @@ public class VanillaEntity_1_19_3 extends VanillaEntity {
         this.entity = entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {

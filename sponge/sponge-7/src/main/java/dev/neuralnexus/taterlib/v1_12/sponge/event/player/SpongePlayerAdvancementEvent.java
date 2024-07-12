@@ -24,7 +24,6 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String advancement() {
         DisplayInfo display = event.getAdvancement().getDisplayInfo().orElse(null);
@@ -35,7 +34,6 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer(event.getTargetEntity());
@@ -59,8 +57,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public Collection<String> criterion() {
             return new HashSet<>();
         }

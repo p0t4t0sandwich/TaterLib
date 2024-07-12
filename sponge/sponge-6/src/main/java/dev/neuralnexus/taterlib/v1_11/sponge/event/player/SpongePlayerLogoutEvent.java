@@ -21,13 +21,11 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class SpongePlayerLogoutEvent implements PlayerLogoutEvent {
         return event.getMessage().toPlain();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         this.logoutMessage = message;

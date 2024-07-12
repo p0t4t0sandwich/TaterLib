@@ -21,19 +21,16 @@ public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlo
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer(

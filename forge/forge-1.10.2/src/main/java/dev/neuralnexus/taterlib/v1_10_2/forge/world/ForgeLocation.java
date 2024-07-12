@@ -33,97 +33,81 @@ public class ForgeLocation implements Location {
         this.world = world;
     }
 
-    /** {@inheritDoc} */
     @Override
     public double x() {
         return position.xCoord;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setX(double x) {
         position = new Vec3d(x, y(), z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double blockX() {
         return Math.floor(x());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double y() {
         return position.yCoord;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setY(double y) {
         position = new Vec3d(x(), y, z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double blockY() {
         return Math.floor(y());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double z() {
         return position.zCoord;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
         position = new Vec3d(x(), y(), z);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double blockZ() {
         return Math.floor(z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public float yaw() {
         return yaw;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setYaw(float yaw) {
         this.yaw = yaw;
     }
 
-    /** {@inheritDoc} */
     @Override
     public float pitch() {
         return pitch;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setPitch(float pitch) {
         this.pitch = pitch;
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
         return new BlockPos(position.xCoord, position.yCoord, position.zCoord);
     }
 
-    /** {@inheritDoc} */
     @Override
     public World world() {
         return new ForgeWorld(world);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setWorld(World world) {
         this.world = ((ForgeWorld) world).world();

@@ -25,13 +25,11 @@ public class BukkitServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return Arrays.stream(server.getOnlinePlayers())
@@ -39,7 +37,6 @@ public class BukkitServer implements Server {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());

@@ -40,84 +40,71 @@ public class FabricItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) Registry.ITEM.getId(itemStack.getItem());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getAmount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setAmount(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new FabricItemStack(itemStack.copy());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.hasDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         if (!itemStack.hasDisplayName()) return Optional.empty();
         return Optional.of(itemStack.getDisplayName().getString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.setDisplayName(new TranslatableComponent(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return !itemStack.getEnchantmentList().isEmpty();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         // TODO: Implement

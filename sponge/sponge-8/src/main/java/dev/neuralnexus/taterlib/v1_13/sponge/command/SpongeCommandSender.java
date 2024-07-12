@@ -30,19 +30,16 @@ public class SpongeCommandSender implements CommandSender {
         return sender;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return new UUID(0, 0);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "CONSOLE";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         // TODO: Figure out how identity works in Sponge
@@ -50,13 +47,11 @@ public class SpongeCommandSender implements CommandSender {
         TaterLib.logger().info(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(String permission) {
         return sender.hasPermission(permission);

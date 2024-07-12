@@ -31,7 +31,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         EquipmentInventory armor = playerInventory.getEquipment();
@@ -51,7 +50,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         return armorContents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         armor.stream()
@@ -60,19 +58,16 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                 .forEach(itemStack -> playerInventory.getEquipment().offer(itemStack));
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         return new SpongeItemStack(playerInventory.getOffhand().first());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         playerInventory.getOffhand().set(((SpongeItemStack) offhand).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.getHotbar().getSelectedSlotIndex();

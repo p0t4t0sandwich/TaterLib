@@ -121,7 +121,6 @@ public enum GameMode {
         return this.alias;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.name();

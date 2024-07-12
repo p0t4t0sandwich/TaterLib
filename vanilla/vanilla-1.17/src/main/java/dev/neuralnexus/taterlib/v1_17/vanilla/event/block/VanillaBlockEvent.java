@@ -26,7 +26,6 @@ public class VanillaBlockEvent implements BlockEvent {
         this.blockState = blockState;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Block block() {
         return new VanillaBlock(blockPos, blockState.getBlock());

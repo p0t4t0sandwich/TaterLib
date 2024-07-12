@@ -62,61 +62,51 @@ public class BungeePlayer implements ProxyPlayer {
         player.connect(server);
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new BungeeServer(player.getServer().getInfo());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(new ComponentBuilder(message).create());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         player.getServer().getInfo().sendData(channel.asString(), data);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return player.getPing();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         player.disconnect(new ComponentBuilder(message).create());

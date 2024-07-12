@@ -29,13 +29,11 @@ public class BukkitInventory implements Inventory {
         this.inventory = inventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int size() {
         return inventory.getSize();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack get(int slot) {
         return inventory.getItem(slot) == null
@@ -43,19 +41,16 @@ public class BukkitInventory implements Inventory {
                 : new BukkitItemStack(inventory.getItem(slot));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(int slot, ItemStack item) {
         inventory.setItem(slot, ((BukkitItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(ItemStack item) {
         inventory.addItem(((BukkitItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> contents() {
         return Arrays.stream(inventory.getContents())
@@ -63,7 +58,6 @@ public class BukkitInventory implements Inventory {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setContents(List<ItemStack> items) {
         inventory.setContents(
@@ -73,13 +67,11 @@ public class BukkitInventory implements Inventory {
                         .toArray(org.bukkit.inventory.ItemStack[]::new));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove(ResourceKey type) {
         inventory.remove(Material.valueOf(type.value().toUpperCase()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.clear(slot);

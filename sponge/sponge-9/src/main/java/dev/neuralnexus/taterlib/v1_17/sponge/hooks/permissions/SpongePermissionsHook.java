@@ -17,13 +17,11 @@ import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 /** A hook for Sponge permissions */
 public class SpongePermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "spongepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {

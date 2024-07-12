@@ -38,43 +38,36 @@ public class BukkitItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of("minecraft", itemStack.getType().name().toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getAmount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setAmount(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.getItemMeta().hasDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         return Optional.of(itemStack.getItemMeta().getDisplayName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         ItemMeta meta = itemStack.getItemMeta();
@@ -82,19 +75,16 @@ public class BukkitItemStack implements ItemStack {
         itemStack.setItemMeta(meta);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         return itemStack.getItemMeta().hasLore();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         return itemStack.getItemMeta().getLore();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         ItemMeta meta = itemStack.getItemMeta();
@@ -102,19 +92,16 @@ public class BukkitItemStack implements ItemStack {
         itemStack.setItemMeta(meta);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.getItemMeta().hasEnchants();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         return itemStack.getItemMeta().isUnbreakable();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         ItemMeta meta = itemStack.getItemMeta();

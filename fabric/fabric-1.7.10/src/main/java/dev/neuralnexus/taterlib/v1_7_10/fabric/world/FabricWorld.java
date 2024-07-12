@@ -37,7 +37,6 @@ public class FabricWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Player> players() {
@@ -45,13 +44,11 @@ public class FabricWorld implements World {
                 .stream().map(FabricPlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(level.dimension.getName().replace(" ", "_").toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
@@ -64,7 +61,6 @@ public class FabricWorld implements World {
                 .stream().map(FabricEntity::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(

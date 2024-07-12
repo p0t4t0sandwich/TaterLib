@@ -35,7 +35,6 @@ public class MagmaHook implements Hook {
         return instance;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "magma";

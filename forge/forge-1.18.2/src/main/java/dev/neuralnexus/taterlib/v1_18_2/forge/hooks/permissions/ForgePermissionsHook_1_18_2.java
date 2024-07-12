@@ -19,13 +19,11 @@ import net.minecraftforge.server.permission.nodes.PermissionTypes;
 
 /** A hook for Forge permissions */
 public class ForgePermissionsHook_1_18_2 implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "forgepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible.hasPermission(4)) {

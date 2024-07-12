@@ -38,31 +38,26 @@ public class SpongeItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of(itemStack.getItem().getType().getName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getQuantity();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setQuantity(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new SpongeItemStack(itemStack.copy());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         if (!itemStack.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
@@ -71,7 +66,6 @@ public class SpongeItemStack implements ItemStack {
         return itemStack.get(Keys.CUSTOM_NAME_VISIBLE).get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         if (!itemStack.get(Keys.DISPLAY_NAME).isPresent()) {
@@ -80,19 +74,16 @@ public class SpongeItemStack implements ItemStack {
         return Optional.of(itemStack.get(Keys.DISPLAY_NAME).get().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.offer(Keys.DISPLAY_NAME, Text.of(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         return itemStack.get(Keys.ITEM_LORE).isPresent();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         if (!itemStack.get(Keys.ITEM_LORE).isPresent()) {
@@ -106,7 +97,6 @@ public class SpongeItemStack implements ItemStack {
         return lore;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> list) {
         List<Text> lore = new ArrayList<>();
@@ -116,19 +106,16 @@ public class SpongeItemStack implements ItemStack {
         itemStack.offer(Keys.ITEM_LORE, lore);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.get(Keys.STORED_ENCHANTMENTS).isPresent();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         return itemStack.get(Keys.UNBREAKABLE).isPresent();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         itemStack.offer(Keys.UNBREAKABLE, unbreakable);

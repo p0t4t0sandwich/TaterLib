@@ -46,13 +46,11 @@ public class MySQLDatabase implements Database<Connection> {
         ds = new HikariDataSource(hikariConfig);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Database.Type type() {
         return type;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Connection connection() {
         try {
@@ -63,7 +61,6 @@ public class MySQLDatabase implements Database<Connection> {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public String database() {
         return database;

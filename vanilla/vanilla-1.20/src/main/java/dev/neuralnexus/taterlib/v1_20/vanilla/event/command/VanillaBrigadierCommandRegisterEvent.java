@@ -33,19 +33,16 @@ public class VanillaBrigadierCommandRegisterEvent
         this.environment = environment;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return environment == Commands.CommandSelection.DEDICATED;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<CommandSourceStack> dispatcher() {
         return dispatcher;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSourceStack> node,
@@ -57,19 +54,16 @@ public class VanillaBrigadierCommandRegisterEvent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandSender getSender(CommandSourceStack source) {
         return new VanillaCommandSender(source);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
         return new VanillaPlayer(source.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSourceStack source) {
         return source.getEntity() instanceof net.minecraft.world.entity.player.Player;

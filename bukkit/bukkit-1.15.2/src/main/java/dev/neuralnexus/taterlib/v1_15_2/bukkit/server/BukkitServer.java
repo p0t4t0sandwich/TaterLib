@@ -23,7 +23,6 @@ public class BukkitServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         // Reflect to get ((CraftServer) server).getServer().getServerModName
@@ -43,7 +42,6 @@ public class BukkitServer implements Server {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getOnlinePlayers().stream()
@@ -51,7 +49,6 @@ public class BukkitServer implements Server {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());

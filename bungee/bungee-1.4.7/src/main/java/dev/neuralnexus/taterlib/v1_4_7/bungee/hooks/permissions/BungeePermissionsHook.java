@@ -15,13 +15,11 @@ import dev.neuralnexus.taterlib.v1_4_7.bungee.player.BungeePlayer;
 
 /** A hook for Bungee permissions */
 public class BungeePermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "bungeepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof ProxyPlayer) {

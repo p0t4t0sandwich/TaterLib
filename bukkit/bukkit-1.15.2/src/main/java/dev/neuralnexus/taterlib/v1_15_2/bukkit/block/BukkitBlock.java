@@ -18,13 +18,11 @@ public class BukkitBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of("minecraft", block.getType().toString().toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(block.getX(), block.getY(), block.getZ());

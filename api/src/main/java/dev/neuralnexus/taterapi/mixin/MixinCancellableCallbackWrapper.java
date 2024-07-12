@@ -21,13 +21,11 @@ public class MixinCancellableCallbackWrapper implements Cancellable {
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return ci.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {

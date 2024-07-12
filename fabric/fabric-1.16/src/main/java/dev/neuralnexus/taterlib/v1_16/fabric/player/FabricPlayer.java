@@ -54,43 +54,36 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUuid();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return ((ServerPlayerEntity) player).getIp();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new FabricServer(player.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(new LiteralText(message), false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         Identifier id = (Identifier) (Object) channel;
@@ -100,25 +93,21 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
                 .networkHandler.sendPacket(new CustomPayloadS2CPacket(id, byteBuf));
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new FabricPlayerInventory(player.inventory);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((ServerPlayerEntity) player).pingMilliseconds;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         ((ServerPlayerEntity) player).networkHandler.disconnect(new LiteralText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         ((ServerPlayerEntity) player)
@@ -129,57 +118,48 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
                         false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.abilities.allowFlying = allow;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.abilities.allowFlying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.abilities.flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.abilities.flying = flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         ((ServerPlayerEntity) player)
                 .interactionManager.method_30118(net.minecraft.world.GameMode.byId(gameMode.id()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public String prefix() {
         return Options.get(player, "prefix", "");
     }
 
-    /** {@inheritDoc} */
     @Override
     public String suffix() {
         return Options.get(player, "suffix", "");
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return player.hasPermissionLevel(permissionLevel);

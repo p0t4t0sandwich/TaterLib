@@ -26,37 +26,31 @@ public class VanillaInventory implements Inventory {
         this.inventory = inventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int size() {
         return inventory.getContainerSize();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack get(int slot) {
         return new VanillaItemStack(inventory.getItem(slot));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(int slot, ItemStack item) {
         inventory.setItem(slot, ((VanillaItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(ItemStack item) {
         inventory.add(((VanillaItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> contents() {
         return inventory.items.stream().map(VanillaItemStack::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setContents(List<ItemStack> items) {
         inventory.items.clear();
@@ -66,7 +60,6 @@ public class VanillaInventory implements Inventory {
                 .forEach(inventory.items::add);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
@@ -76,7 +69,6 @@ public class VanillaInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.removeItem(((VanillaItemStack) get(slot)).itemStack());

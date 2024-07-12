@@ -25,26 +25,22 @@ public class BungeeServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return server.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         // TODO: Pass this information up through plugin messages as a way to sync the server brand
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         throw new VersionFeatureNotSupportedException();

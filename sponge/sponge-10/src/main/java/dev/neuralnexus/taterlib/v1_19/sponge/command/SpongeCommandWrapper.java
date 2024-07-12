@@ -29,7 +29,6 @@ public class SpongeCommandWrapper implements CommandExecutor {
         this.commandName = commandName;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandResult execute(CommandContext context) throws CommandException {
         try {

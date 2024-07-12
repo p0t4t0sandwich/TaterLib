@@ -43,14 +43,12 @@ public class VelocityProxyServer implements ProxyServer {
         return (com.velocitypowered.api.proxy.ProxyServer) Loader.instance().server();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         // TODO: See if there's a better way to get the server brand
         return "Velocity";
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server().getAllPlayers().stream()
@@ -58,7 +56,6 @@ public class VelocityProxyServer implements ProxyServer {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Server> servers() {
         return server().getAllServers().stream()

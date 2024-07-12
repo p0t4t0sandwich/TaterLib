@@ -22,13 +22,11 @@ public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements Player
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         return handler.player.getName().getString() + " left the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {}
 }

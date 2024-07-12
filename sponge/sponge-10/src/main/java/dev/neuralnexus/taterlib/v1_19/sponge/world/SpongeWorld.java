@@ -38,7 +38,6 @@ public class SpongeWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Player> players() {
@@ -46,13 +45,11 @@ public class SpongeWorld implements World {
                 .stream().map(SpongePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return (ResourceKey) (Object) ((ServerWorld) level).key();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         return level.entities().stream()
@@ -62,7 +59,6 @@ public class SpongeWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {

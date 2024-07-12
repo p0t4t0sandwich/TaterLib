@@ -22,7 +22,6 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String advancement() {
         if (event.getAdvancement().getDisplay() != null) {
@@ -54,8 +53,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public Collection<String> criterion() {
             return this.event.getAdvancement().getCriteria().keySet();
         }

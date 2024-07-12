@@ -28,13 +28,11 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
         this.data = packet.data();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey channel() {
         return this.channel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public byte[] data() {
         return this.data;
@@ -55,8 +53,7 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
             this.player = player;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public dev.neuralnexus.taterapi.player.Player player() {
             return new VanillaPlayer(this.player);
         }

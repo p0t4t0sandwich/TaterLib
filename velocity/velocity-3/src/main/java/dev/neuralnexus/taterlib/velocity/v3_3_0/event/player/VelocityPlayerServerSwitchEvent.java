@@ -22,20 +22,17 @@ public class VelocityPlayerServerSwitchEvent implements PlayerServerSwitchEvent 
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         return new VelocityPlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server toServer() {
         if (!event.getPlayer().getCurrentServer().isPresent()) return null;
         return new VelocityServer(event.getPlayer().getCurrentServer().get().getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server fromServer() {
         if (!event.getPreviousServer().isPresent()) return null;

@@ -15,13 +15,11 @@ import dev.neuralnexus.taterlib.v1_8.sponge.player.SpongePlayer;
 
 /** A hook for Sponge permissions */
 public class SpongePermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "spongepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {

@@ -22,14 +22,12 @@ public class ForgeBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey)
                 (Object) GameRegistry.findRegistry(net.minecraft.block.Block.class).getKey(block);
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.getX(), pos.getY(), pos.getZ());

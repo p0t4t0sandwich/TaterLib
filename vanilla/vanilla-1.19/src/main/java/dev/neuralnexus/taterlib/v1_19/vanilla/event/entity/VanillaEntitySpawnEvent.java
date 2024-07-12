@@ -24,19 +24,16 @@ public class VanillaEntitySpawnEvent extends VanillaEntityEvent implements Entit
         this.cancel = cancel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return cancel.cancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         cancel.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new VanillaLocation(entity);

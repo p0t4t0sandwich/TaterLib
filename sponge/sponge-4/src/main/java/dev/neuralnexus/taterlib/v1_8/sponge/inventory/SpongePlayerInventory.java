@@ -34,7 +34,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         List<ItemStack> armorContents = new ArrayList<>(4);
@@ -59,7 +58,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         return armorContents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         playerInventory.forEach(
@@ -75,7 +73,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                 });
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         if (MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_9)) {
@@ -85,7 +82,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         if (MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_9)) {
@@ -95,7 +91,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         // TODO: Implement

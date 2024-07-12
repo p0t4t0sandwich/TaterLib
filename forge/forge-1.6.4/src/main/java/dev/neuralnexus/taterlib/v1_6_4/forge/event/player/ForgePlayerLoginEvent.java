@@ -21,13 +21,11 @@ public class ForgePlayerLoginEvent implements PlayerLoginEvent {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new ForgePlayer(player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         if (!this.loginMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class ForgePlayerLoginEvent implements PlayerLoginEvent {
         return player.getCommandSenderName() + " joined the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         this.loginMessage = message;

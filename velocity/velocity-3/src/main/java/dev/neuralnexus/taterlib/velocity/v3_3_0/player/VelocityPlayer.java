@@ -67,31 +67,26 @@ public class VelocityPlayer implements ProxyPlayer {
         player.createConnectionRequest(server).fireAndForget();
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return player.getRemoteAddress().getAddress().getHostAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getUsername();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getUsername();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         if (server != null) return new VelocityServer(server);
@@ -99,13 +94,11 @@ public class VelocityPlayer implements ProxyPlayer {
         return new VelocityServer(player.getCurrentServer().get().getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Component.text(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         player.getCurrentServer()
@@ -115,19 +108,16 @@ public class VelocityPlayer implements ProxyPlayer {
                                         MinecraftChannelIdentifier.from(channel.asString()), data));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return (int) player.getPing();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         player.disconnect(Component.text(message));

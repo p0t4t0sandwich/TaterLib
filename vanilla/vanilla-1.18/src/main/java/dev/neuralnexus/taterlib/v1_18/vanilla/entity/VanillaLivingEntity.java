@@ -35,50 +35,42 @@ public class VanillaLivingEntity extends VanillaEntity implements LivingEntity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount) {
         entity.hurt(DamageSource.GENERIC, (float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
         entity.hurt(
                 DamageSource.mobAttack(((VanillaLivingEntity) source).entity()), (float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double health() {
         return entity.getHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setHealth(double health) {
         entity.setHealth((float) health);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         entity.setAbsorptionAmount((float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double maxHealth() {
         return entity.getMaxHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         entity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(health);

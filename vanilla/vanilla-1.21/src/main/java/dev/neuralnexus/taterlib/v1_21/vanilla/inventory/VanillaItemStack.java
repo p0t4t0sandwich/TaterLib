@@ -41,83 +41,70 @@ public class VanillaItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) BuiltInRegistries.ITEM.getKey(itemStack.getItem());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getCount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setCount(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new VanillaItemStack(itemStack.copy());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.get(DataComponents.CUSTOM_NAME) != null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         if (itemStack.get(DataComponents.CUSTOM_NAME) == null) return Optional.empty();
         return Optional.of(itemStack.get(DataComponents.CUSTOM_NAME).getString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.isEnchanted();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         return itemStack.isDamageableItem();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         // TODO: Implement

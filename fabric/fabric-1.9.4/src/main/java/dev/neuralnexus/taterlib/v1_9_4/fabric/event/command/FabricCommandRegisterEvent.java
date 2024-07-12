@@ -22,7 +22,6 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent {
         this.dedicated = dedicated;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         manager.register(new FabricCommandWrapper(command), aliases);

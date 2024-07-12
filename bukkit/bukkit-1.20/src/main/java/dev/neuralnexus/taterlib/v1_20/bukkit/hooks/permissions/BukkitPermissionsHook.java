@@ -15,13 +15,11 @@ import dev.neuralnexus.taterlib.v1_20.bukkit.player.BukkitPlayer;
 
 /** A hook for Bukkit permissions */
 public class BukkitPermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "bukkitpermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {

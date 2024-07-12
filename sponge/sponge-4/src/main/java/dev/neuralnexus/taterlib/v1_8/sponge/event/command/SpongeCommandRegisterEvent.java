@@ -18,7 +18,6 @@ import org.spongepowered.api.text.Text;
 
 /** Sponge implementation of {@link CommandRegisterEvent}. */
 public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         String[] nameAndAliases = new String[aliases.length + 1];

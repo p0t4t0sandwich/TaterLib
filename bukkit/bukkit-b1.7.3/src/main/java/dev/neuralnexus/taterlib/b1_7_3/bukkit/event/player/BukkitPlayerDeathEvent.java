@@ -23,13 +23,11 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new BukkitPlayer((org.bukkit.entity.Player) event.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String deathMessage() {
         if (!deathMessage.isEmpty()) {
@@ -38,19 +36,16 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
         return player().name() + " died";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean keepInventory() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

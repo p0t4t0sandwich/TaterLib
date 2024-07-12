@@ -19,13 +19,11 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         return event.getQuitMessage();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         event.setQuitMessage(message);

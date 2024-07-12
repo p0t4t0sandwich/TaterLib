@@ -24,7 +24,6 @@ public class SpongeBlockEvent implements BlockEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Block block() {
         Cause cause = event.getCause();

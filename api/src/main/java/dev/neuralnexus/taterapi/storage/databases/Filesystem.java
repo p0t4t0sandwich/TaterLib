@@ -27,19 +27,16 @@ public class Filesystem implements Database<String> {
         this.database = config.database;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Database.Type type() {
         return type;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String connection() {
         return connection;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String database() {
         return database;

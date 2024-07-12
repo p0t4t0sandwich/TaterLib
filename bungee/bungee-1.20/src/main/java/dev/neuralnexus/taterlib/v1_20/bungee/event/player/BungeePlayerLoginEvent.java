@@ -21,13 +21,11 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         return new BungeePlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         if (!loginMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class BungeePlayerLoginEvent implements PlayerLoginEvent {
         return event.getPlayer() + " joined the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         loginMessage = message;

@@ -19,19 +19,16 @@ public class ForgeEntityDamageEvent extends ForgeEntityEvent implements EntityDa
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCanceled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String cause() {
         return event.source.damageType;

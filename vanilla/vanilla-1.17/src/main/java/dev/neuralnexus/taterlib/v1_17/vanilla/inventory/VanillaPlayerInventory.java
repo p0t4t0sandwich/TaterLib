@@ -28,7 +28,6 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         return playerInventory.armor.stream()
@@ -36,7 +35,6 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         playerInventory.armor.clear();
@@ -46,20 +44,17 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
                 .forEach(playerInventory.armor::add);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         return new VanillaItemStack(playerInventory.offhand.get(0));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         playerInventory.offhand.clear();
         playerInventory.offhand.add(((VanillaItemStack) offhand).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.selected;

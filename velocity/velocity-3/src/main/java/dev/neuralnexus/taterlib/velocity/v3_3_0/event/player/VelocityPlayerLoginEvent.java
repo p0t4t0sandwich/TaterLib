@@ -21,7 +21,6 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         if (event.getPlayer().getCurrentServer().isPresent()) {
@@ -30,7 +29,6 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
         return new VelocityPlayer(event.getPlayer(), event.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         if (!loginMessage.isEmpty()) {
@@ -39,7 +37,6 @@ public class VelocityPlayerLoginEvent implements PlayerLoginEvent {
         return event.getPlayer() + " joined the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         loginMessage = message;

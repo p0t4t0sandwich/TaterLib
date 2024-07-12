@@ -20,7 +20,6 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         if (!this.loginMessage.isEmpty()) {
@@ -29,7 +28,6 @@ public class ForgePlayerLoginEvent extends ForgePlayerEvent implements PlayerLog
         return event.player.getCommandSenderName() + " joined the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         this.loginMessage = message;

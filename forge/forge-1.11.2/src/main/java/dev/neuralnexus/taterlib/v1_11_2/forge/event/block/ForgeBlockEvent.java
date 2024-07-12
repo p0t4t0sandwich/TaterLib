@@ -18,7 +18,6 @@ public class ForgeBlockEvent implements BlockEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Block block() {
         return new ForgeBlock(this.event.getPos(), this.event.getState().getBlock());

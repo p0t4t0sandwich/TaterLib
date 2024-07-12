@@ -23,7 +23,6 @@ public class VanillaEntityDamageEvent_1_19_4 extends VanillaEntityDamageEvent {
         this.damageSource = damageSource;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String cause() {
         return damageSource.type().msgId();

@@ -29,19 +29,16 @@ public class FabricBlockBreakEvent extends FabricBlockEvent implements PlayerBlo
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return ci.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         ci.cancel();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new FabricPlayer(player);

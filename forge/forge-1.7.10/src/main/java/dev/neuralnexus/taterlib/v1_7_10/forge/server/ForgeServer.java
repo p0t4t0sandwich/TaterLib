@@ -27,13 +27,11 @@ public class ForgeServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         return server.getServerModName();
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<SimplePlayer> onlinePlayers() {
@@ -41,7 +39,6 @@ public class ForgeServer implements Server {
                 .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return Arrays.stream(server.worldServers)

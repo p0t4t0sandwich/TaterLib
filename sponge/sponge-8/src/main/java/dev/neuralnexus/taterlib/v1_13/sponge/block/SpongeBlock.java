@@ -24,13 +24,11 @@ public class SpongeBlock implements Block {
         this.block = location.block();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) BlockTypes.registry().valueKey(block.type());
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.blockX(), pos.blockY(), pos.blockZ());

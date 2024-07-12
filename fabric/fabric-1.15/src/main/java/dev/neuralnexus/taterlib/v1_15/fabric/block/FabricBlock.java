@@ -22,13 +22,11 @@ public class FabricBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) Registry.BLOCK.getId(block);
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.getX(), pos.getY(), pos.getZ());

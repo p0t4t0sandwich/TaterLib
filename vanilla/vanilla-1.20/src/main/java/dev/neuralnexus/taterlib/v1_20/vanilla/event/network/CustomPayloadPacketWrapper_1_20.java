@@ -29,13 +29,11 @@ public class CustomPayloadPacketWrapper_1_20 implements CustomPayloadWrapper {
         this.data = buf.array();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey channel() {
         return channel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public byte[] data() {
         return data;

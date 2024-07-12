@@ -20,13 +20,11 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
         this.data = data;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey channel() {
         return this.channel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public byte[] data() {
         return this.data;
@@ -42,8 +40,7 @@ public class BukkitPluginMessageEvent implements PluginMessageEvent {
             this.player = player;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public BukkitPlayer player() {
             return new BukkitPlayer(this.player);
         }

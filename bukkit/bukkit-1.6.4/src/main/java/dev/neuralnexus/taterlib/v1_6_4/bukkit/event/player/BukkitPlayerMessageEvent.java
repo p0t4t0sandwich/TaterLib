@@ -24,37 +24,31 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String message() {
         return event.getMessage();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         event.setMessage(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
         return event.getRecipients().stream().map(BukkitPlayer::new).collect(Collectors.toSet());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<SimplePlayer> recipients) {
         event.getRecipients().clear();

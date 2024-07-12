@@ -22,13 +22,11 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey channel() {
         return ResourceKey.of(event.getTag());
     }
 
-    /** {@inheritDoc} */
     @Override
     public byte[] data() {
         return event.getData();
@@ -44,8 +42,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public ProxyPlayer player() {
             return new BungeePlayer((ProxiedPlayer) event.getReceiver());
         }
@@ -61,8 +58,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public dev.neuralnexus.taterapi.server.Server server() {
             return new BungeeServer(
                     ((net.md_5.bungee.api.connection.Server) event.getReceiver()).getInfo());

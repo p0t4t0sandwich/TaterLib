@@ -35,83 +35,70 @@ public class ForgeItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         // TODO: Find item registry
         return ResourceKey.of(itemStack.getItem().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.stackSize;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.stackSize = count;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new ForgeItemStack(itemStack.copy());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.hasDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         return Optional.of(itemStack.getDisplayName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.setStackDisplayName(name);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.isItemEnchanted();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         return itemStack.isItemStackDamageable();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         // TODO: Implement

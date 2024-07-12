@@ -27,13 +27,11 @@ public class FabricServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         return server.getServerModName();
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public List<SimplePlayer> onlinePlayers() {
@@ -41,7 +39,6 @@ public class FabricServer implements Server {
                 .stream().map(FabricPlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return Arrays.stream(server.worlds)

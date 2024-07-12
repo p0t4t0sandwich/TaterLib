@@ -37,61 +37,51 @@ public class FabricLocation implements Location {
         this.world = world;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setX(double x) {
         position = new BlockPos(x, y(), z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setY(double y) {
         position = new BlockPos(x(), y, z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setZ(double z) {
         position = new BlockPos(x(), y(), z);
     }
 
-    /** {@inheritDoc} */
     @Override
     public float yaw() {
         return yaw;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setYaw(float yaw) {
         this.yaw = yaw;
     }
 
-    /** {@inheritDoc} */
     @Override
     public float pitch() {
         return pitch;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setPitch(float pitch) {
         this.pitch = pitch;
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPosition() {
         return new BlockPos(position.x(), position.y(), position.z());
     }
 
-    /** {@inheritDoc} */
     @Override
     public World world() {
         return new FabricWorld(world);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setWorld(World world) {
         this.world = ((FabricWorld) world).world();

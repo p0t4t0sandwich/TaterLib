@@ -15,7 +15,6 @@ import java.util.List;
 public class ModuleLoaderImpl implements ModuleLoader {
     private static final List<PluginModule> modules = new ArrayList<>();
 
-    /** {@inheritDoc} */
     @Override
     public List<PluginModule> modules() {
         return modules;

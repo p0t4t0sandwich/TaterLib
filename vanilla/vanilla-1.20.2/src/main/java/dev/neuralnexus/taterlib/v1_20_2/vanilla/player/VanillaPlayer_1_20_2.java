@@ -28,7 +28,6 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ((ServerPlayer) player)
@@ -37,7 +36,6 @@ public class VanillaPlayer_1_20_2 extends VanillaPlayer {
                                 new VanillaCustomPacketPayload_1_20_2(channel, data)));
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((ServerPlayer) player).connection.latency();

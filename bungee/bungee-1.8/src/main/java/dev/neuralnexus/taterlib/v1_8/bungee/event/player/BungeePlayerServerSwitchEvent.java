@@ -22,19 +22,16 @@ public class BungeePlayerServerSwitchEvent implements PlayerServerSwitchEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         return new BungeePlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server toServer() {
         return new BungeeServer(event.getPlayer().getServer().getInfo());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server fromServer() {
         return new BungeeServer(event.getServer().getInfo());

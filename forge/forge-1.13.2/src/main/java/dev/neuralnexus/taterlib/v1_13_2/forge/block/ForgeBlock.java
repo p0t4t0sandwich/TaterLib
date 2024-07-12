@@ -23,13 +23,11 @@ public class ForgeBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return new ForgeResourceKey(IRegistry.field_212618_g.getKey(block));
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.getX(), pos.getY(), pos.getZ());

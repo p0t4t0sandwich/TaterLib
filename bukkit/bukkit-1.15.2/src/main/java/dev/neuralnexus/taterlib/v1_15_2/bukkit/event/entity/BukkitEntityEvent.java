@@ -21,7 +21,6 @@ public class BukkitEntityEvent implements EntityEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         if (event.getEntity() instanceof Player) {

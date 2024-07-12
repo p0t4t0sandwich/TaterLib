@@ -23,37 +23,31 @@ import dev.neuralnexus.taterloader.Loader;
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 public class VelocityBrigadierCommandRegisterEvent
         implements BrigadierCommandRegisterEvent<CommandSource> {
-    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<CommandSource> dispatcher() {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandSender getSender(CommandSource source) {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSource source) {
         return null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSource source) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {

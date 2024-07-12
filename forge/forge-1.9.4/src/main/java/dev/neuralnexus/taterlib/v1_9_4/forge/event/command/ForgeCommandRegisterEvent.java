@@ -20,7 +20,6 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         event.registerServerCommand(new ForgeCommandWrapper(command, aliases));

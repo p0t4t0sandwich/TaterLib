@@ -25,25 +25,21 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCanceled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new ForgePlayer(event.player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String message() {
         if (!this.message.isEmpty()) {
@@ -52,20 +48,17 @@ public class ForgePlayerMessageEvent implements PlayerMessageEvent {
         return event.message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<SimplePlayer> recipients) {
         // TODO: Chat recipients module

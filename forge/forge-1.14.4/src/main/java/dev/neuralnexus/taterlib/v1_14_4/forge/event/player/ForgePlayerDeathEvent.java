@@ -32,7 +32,6 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         if (!drops.isEmpty()) {
@@ -46,19 +45,16 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {
         this.drops = drops;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {
         drops.clear();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         if (droppedExp != 0) {
@@ -67,25 +63,21 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         return 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {
         this.droppedExp = exp;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         return new ForgeEntity(event.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new ForgePlayer((PlayerEntity) event.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String deathMessage() {
         if (!deathMessage.isEmpty()) {
@@ -94,19 +86,16 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         return event.getSource().getDeathMessage(event.getEntityLiving()).getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean keepInventory() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

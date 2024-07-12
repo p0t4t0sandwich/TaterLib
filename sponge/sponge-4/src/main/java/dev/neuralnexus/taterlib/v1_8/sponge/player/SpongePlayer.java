@@ -48,43 +48,36 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return player.getConnection().getAddress().getAddress().getHostAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayNameData().displayName().get().toPlain();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new SpongeServer(Sponge.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Text.of(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         Sponge.getChannelRegistrar()
@@ -92,7 +85,6 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
                 .sendTo(player, (buffer) -> buffer.writeBytes(data));
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public PlayerInventory inventory() {
@@ -101,13 +93,11 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
                         player.getInventory());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return player.getConnection().getLatency();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         player.kick(Text.of(message));
@@ -122,37 +112,31 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
         //        player.setBedSpawnLocation(location.toSponge(), forced);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.offer(Keys.CAN_FLY, allow);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.get(Keys.CAN_FLY).get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.get(Keys.IS_FLYING).get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.offer(Keys.IS_FLYING, flying);
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         switch (gameMode) {
@@ -171,7 +155,6 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;

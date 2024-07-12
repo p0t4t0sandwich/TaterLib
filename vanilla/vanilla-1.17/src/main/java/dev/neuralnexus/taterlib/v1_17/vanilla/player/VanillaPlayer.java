@@ -52,43 +52,36 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUUID();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return ((ServerPlayer) player).getIpAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return VanillaServer.instance();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.displayClientMessage(Component.nullToEmpty(message), false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) (Object) channel;
@@ -97,25 +90,21 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         ((ServerPlayer) player).connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new VanillaPlayerInventory(player.getInventory());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((ServerPlayer) player).latency;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         ((ServerPlayer) player)
@@ -127,43 +116,36 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
                         false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.getAbilities().mayfly = allow;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.getAbilities().mayfly;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.getAbilities().flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.getAbilities().flying = flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(((ServerPlayer) player).gameMode.getGameModeForPlayer().getName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         ((ServerPlayer) player).setGameMode(GameType.byId(gameMode.id()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return player.hasPermissions(permissionLevel);

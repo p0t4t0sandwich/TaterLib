@@ -23,13 +23,11 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return ci.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
@@ -37,7 +35,6 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new FabricLocation(((FabricEntity) entity()).entity());

@@ -26,13 +26,11 @@ public class VanillaItemStack_1_20_6 extends VanillaItemStack {
         this.itemStack = itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.get(DataComponents.CUSTOM_NAME) != null;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));

@@ -15,7 +15,6 @@ import net.md_5.bungee.api.ProxyServer;
 
 /** Bungee implementation of {@link CommandRegisterEvent}. */
 public class BungeeCommandRegisterEvent implements CommandRegisterEvent {
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         ProxyServer.getInstance()

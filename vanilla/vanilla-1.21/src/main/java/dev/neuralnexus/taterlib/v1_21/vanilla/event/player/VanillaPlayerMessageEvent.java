@@ -25,38 +25,32 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
         this.cancel = cancel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return cancel.cancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         cancel.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String message() {
         return message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<SimplePlayer> recipients) {
         // TODO: Chat recipients module

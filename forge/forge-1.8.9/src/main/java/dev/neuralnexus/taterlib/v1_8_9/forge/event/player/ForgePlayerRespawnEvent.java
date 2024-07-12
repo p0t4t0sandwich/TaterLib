@@ -22,19 +22,16 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location respawnLocation() {
         return new ForgeLocation(((ForgePlayer) player()).getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

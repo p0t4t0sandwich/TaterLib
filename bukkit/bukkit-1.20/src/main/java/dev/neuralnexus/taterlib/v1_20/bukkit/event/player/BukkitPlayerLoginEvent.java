@@ -19,13 +19,11 @@ public class BukkitPlayerLoginEvent extends BukkitPlayerEvent implements PlayerL
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         return event.getJoinMessage();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         event.setJoinMessage(message);

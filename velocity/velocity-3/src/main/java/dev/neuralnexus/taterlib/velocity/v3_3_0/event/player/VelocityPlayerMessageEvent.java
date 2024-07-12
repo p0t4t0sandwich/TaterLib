@@ -25,25 +25,21 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.getResult().isAllowed();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setResult(PlayerChatEvent.ChatResult.denied());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         return new VelocityPlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String message() {
         if (!message.isEmpty()) {
@@ -52,20 +48,17 @@ public class VelocityPlayerMessageEvent implements PlayerMessageEvent {
         return event.getMessage();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<SimplePlayer> recipients) {
         // TODO: Chat recipients module

@@ -12,7 +12,6 @@ import dev.neuralnexus.taterlib.v1_8.bungee.server.BungeeProxyServer;
 
 /** Bungee implementation of {@link ServerEvent}. */
 public class BungeeServerEvent implements ServerEvent {
-    /** {@inheritDoc} */
     @Override
     public ProxyServer server() {
         return BungeeProxyServer.instance();

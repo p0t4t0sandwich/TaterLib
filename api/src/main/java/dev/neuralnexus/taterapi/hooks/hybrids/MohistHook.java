@@ -35,7 +35,6 @@ public class MohistHook implements Hook {
         return instance;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "mohist";

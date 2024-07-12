@@ -50,43 +50,36 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUuid();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return ((ServerPlayerEntity) player).getIp();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName().asFormattedString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getCustomName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new FabricServer(player.getMinecraftServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(new TranslatableText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
@@ -95,63 +88,53 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
                 .networkHandler.sendPacket(new CustomPayloadS2CPacket(channel.asString(), byteBuf));
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new FabricPlayerInventory(player.inventory);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((ServerPlayerEntity) player).ping;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         ((ServerPlayerEntity) player).networkHandler.onDisconnected(new TranslatableText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         // TODO: Dimension aware spawn setting
         player.setPlayerSpawn(new BlockPos(location.x(), location.y(), location.z()), forced);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.abilities.allowFlying = allow;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.abilities.allowFlying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.abilities.flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.abilities.flying = flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         ((ServerPlayerEntity) player)
@@ -159,7 +142,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
                         net.minecraft.world.level.LevelInfo.GameMode.byId(gameMode.id()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public String prefix() {
         // TODO: Find a way to get LP prefixes/suffixes
@@ -167,7 +149,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
         return "";
     }
 
-    /** {@inheritDoc} */
     @Override
     public String suffix() {
         // TODO: Find a way to get LP prefixes/suffixes
@@ -175,7 +156,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player {
         return "";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;

@@ -24,51 +24,43 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         this.entity = entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount) {
         entity.damage((int) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
         entity.damage((int) amount, ((BukkitEntity) source).entity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double health() {
         return entity.getHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setHealth(double health) {
         entity.setHealth((int) health);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double absorptionAmount() {
         // TODO: Check if this is supported on 1.2.5
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         // TODO: Check if this is supported on 1.2.5
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public double maxHealth() {
         return entity.getMaxHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         // TODO: Check if this is supported on 1.2.5

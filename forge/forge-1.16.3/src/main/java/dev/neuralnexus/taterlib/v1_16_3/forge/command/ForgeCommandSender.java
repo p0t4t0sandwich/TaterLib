@@ -30,7 +30,6 @@ public class ForgeCommandSender implements CommandSender {
         return source;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         if (source.getEntity() == null) {
@@ -39,19 +38,16 @@ public class ForgeCommandSender implements CommandSender {
         return source.getEntity().getUUID();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return source.getTextName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         source.sendSuccess(new StringTextComponent(message), false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return source.hasPermission(permissionLevel);

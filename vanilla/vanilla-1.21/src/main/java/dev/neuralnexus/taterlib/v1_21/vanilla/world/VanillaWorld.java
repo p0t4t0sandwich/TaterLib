@@ -37,19 +37,16 @@ public class VanillaWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Player> players() {
         return level.players().stream().map(VanillaPlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return (ResourceKey) (Object) level.dimension().location();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.world.entity.Entity mcEntity = ((VanillaEntity) entity).entity();
@@ -63,7 +60,6 @@ public class VanillaWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {

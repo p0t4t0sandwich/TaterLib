@@ -36,19 +36,16 @@ public class VanillaCommandRegisterEvent
         this.environment = environment;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return environment == Commands.CommandSelection.DEDICATED;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<CommandSourceStack> dispatcher() {
         return dispatcher;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<CommandSourceStack> node,
@@ -60,25 +57,21 @@ public class VanillaCommandRegisterEvent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandSender getSender(CommandSourceStack source) {
         return new VanillaCommandSender(source);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player getPlayer(CommandSourceStack source) {
         return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(CommandSourceStack source) {
         return source.getEntity() instanceof net.minecraft.world.entity.player.Player;
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public void registerCommand(Command command, String... aliases) {

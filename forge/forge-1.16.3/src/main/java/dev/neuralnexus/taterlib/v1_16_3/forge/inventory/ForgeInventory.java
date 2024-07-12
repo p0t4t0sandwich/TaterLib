@@ -28,25 +28,21 @@ public class ForgeInventory implements Inventory {
         this.inventory = inventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int size() {
         return inventory.getContainerSize();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack get(int slot) {
         return new ForgeItemStack(inventory.getItem(slot));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(int slot, ItemStack item) {
         inventory.setItem(slot, ((ForgeItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(ItemStack item) {
         int firstEmpty = -1;
@@ -59,7 +55,6 @@ public class ForgeInventory implements Inventory {
         set(firstEmpty, item);
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> contents() {
         List<ItemStack> contents = new ArrayList<>(size());
@@ -69,7 +64,6 @@ public class ForgeInventory implements Inventory {
         return contents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setContents(List<ItemStack> items) {
         for (int i = 0; i < size(); i++) {
@@ -77,7 +71,6 @@ public class ForgeInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
@@ -87,7 +80,6 @@ public class ForgeInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.removeItemNoUpdate(slot);

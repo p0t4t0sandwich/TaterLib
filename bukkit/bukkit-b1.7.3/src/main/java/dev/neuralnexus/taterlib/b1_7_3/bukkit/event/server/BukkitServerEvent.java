@@ -20,7 +20,6 @@ public class BukkitServerEvent implements ServerEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public SimpleServer server() {
         return new BukkitServer(Bukkit.getServer());

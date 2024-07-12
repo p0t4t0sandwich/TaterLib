@@ -29,43 +29,35 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         return 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         return new SpongeEntity(event.entity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer((org.spongepowered.api.entity.living.player.Player) event.entity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String deathMessage() {
         if (!this.deathMessage.isEmpty()) {
@@ -76,19 +68,16 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
                 + PlainTextComponentSerializer.plainText().serialize(event.message());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean keepInventory() {
         return event.keepInventory();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {
         event.setKeepInventory(keepInventory);

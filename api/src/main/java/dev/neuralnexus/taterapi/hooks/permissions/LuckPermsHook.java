@@ -42,7 +42,6 @@ public class LuckPermsHook implements PermissionsHook {
         return instance;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "luckperms";
@@ -128,7 +127,6 @@ public class LuckPermsHook implements PermissionsHook {
         setSuffix(playerUuid, suffix, 0);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (this.luckPerms == null) return false;

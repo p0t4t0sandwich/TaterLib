@@ -23,7 +23,6 @@ public class SpongeServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         // Cast this.server to MinecraftServer, then
@@ -38,13 +37,11 @@ public class SpongeServer implements Server {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.onlinePlayers().stream().map(SpongePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return server.worldManager().worlds().stream()

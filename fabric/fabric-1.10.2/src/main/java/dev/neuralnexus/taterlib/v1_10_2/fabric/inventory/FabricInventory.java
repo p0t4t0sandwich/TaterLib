@@ -26,25 +26,21 @@ public class FabricInventory implements Inventory {
         this.inventory = inventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int size() {
         return inventory.getInvSize();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack get(int slot) {
         return new FabricItemStack(inventory.getInvStack(slot));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(int slot, ItemStack item) {
         inventory.setInvStack(slot, ((FabricItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(ItemStack item) {
         for (int i = 0; i < size(); i++) {
@@ -55,7 +51,6 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> contents() {
         List<ItemStack> contents = new ArrayList<>(size());
@@ -65,7 +60,6 @@ public class FabricInventory implements Inventory {
         return contents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setContents(List<ItemStack> item) {
         for (int i = 0; i < item.size(); i++) {
@@ -73,7 +67,6 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
@@ -83,7 +76,6 @@ public class FabricInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.removeInvStack(slot);

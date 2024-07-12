@@ -26,7 +26,6 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         return playerInventory.field_15083.stream()
@@ -34,7 +33,6 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         playerInventory.field_15083.clear();
@@ -44,19 +42,16 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
                 .forEach(playerInventory.field_15083::add);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         return new FabricItemStack(playerInventory.field_15084.get(0));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         playerInventory.field_15084.set(0, ((FabricItemStack) offhand).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.selectedSlot;

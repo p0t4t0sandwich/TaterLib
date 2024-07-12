@@ -30,7 +30,6 @@ public class FabricCommandSender implements CommandSender {
         return source;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         if (source.getEntity() == null) {
@@ -39,19 +38,16 @@ public class FabricCommandSender implements CommandSender {
         return source.getEntity().getUuid();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return source.getName().asFormattedString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         source.sendMessage(new TranslatableText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;

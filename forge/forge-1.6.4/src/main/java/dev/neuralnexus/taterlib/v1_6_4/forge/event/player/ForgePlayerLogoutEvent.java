@@ -21,13 +21,11 @@ public class ForgePlayerLogoutEvent implements PlayerLogoutEvent {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new ForgePlayer(player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class ForgePlayerLogoutEvent implements PlayerLogoutEvent {
         return player.getCommandSenderName() + " left the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         this.logoutMessage = message;

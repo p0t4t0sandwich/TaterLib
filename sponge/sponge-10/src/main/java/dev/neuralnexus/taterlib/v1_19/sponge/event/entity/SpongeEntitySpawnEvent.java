@@ -22,25 +22,21 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         return new SpongeEntity(event.entities().get(0));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new SpongeLocation(event.entities().get(0).serverLocation());

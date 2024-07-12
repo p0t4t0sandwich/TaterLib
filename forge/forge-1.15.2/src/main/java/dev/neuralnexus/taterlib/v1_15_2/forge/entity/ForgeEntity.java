@@ -44,50 +44,42 @@ public class ForgeEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.getUUID();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return entity.getId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) Registry.ENTITY_TYPE.getKey(entity.getType());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         if (entity.getCustomName() == null) return Optional.empty();
         return Optional.of(entity.getCustomName().getString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.setCustomName(new StringTextComponent(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new ForgeLocation(entity);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         return (ResourceKey)
@@ -96,7 +88,6 @@ public class ForgeEntity implements Entity {
                                 entity.level.getBiome(entity.getCommandSenderBlockPosition()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {

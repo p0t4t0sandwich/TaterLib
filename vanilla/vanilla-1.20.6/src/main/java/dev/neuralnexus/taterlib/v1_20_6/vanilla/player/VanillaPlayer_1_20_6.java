@@ -28,7 +28,6 @@ public class VanillaPlayer_1_20_6 extends VanillaPlayer {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ((ServerPlayer) player)

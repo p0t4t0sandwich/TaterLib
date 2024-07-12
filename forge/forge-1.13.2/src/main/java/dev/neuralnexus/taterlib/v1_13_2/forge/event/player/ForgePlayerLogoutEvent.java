@@ -20,7 +20,6 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         if (!this.logoutMessage.isEmpty()) {
@@ -29,7 +28,6 @@ public class ForgePlayerLogoutEvent extends ForgePlayerEvent implements PlayerLo
         return event.getPlayer().getName().getString() + " left the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         this.logoutMessage = message;

@@ -21,13 +21,11 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         if (!this.loginMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class SpongePlayerLoginEvent implements PlayerLoginEvent {
         return event.getMessage().toPlain();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         this.loginMessage = message;

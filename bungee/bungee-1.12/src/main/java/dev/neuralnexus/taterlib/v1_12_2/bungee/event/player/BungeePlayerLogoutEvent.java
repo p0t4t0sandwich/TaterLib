@@ -21,13 +21,11 @@ public class BungeePlayerLogoutEvent implements PlayerLogoutEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ProxyPlayer player() {
         return new BungeePlayer(event.getPlayer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         if (!logoutMessage.isEmpty()) {
@@ -36,7 +34,6 @@ public class BungeePlayerLogoutEvent implements PlayerLogoutEvent {
         return event.getPlayer() + " left the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         logoutMessage = message;

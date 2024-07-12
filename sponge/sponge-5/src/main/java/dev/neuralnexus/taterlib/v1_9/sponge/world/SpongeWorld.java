@@ -35,7 +35,6 @@ public class SpongeWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Player> players() {
         return level.getEntities().stream()
@@ -45,13 +44,11 @@ public class SpongeWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(level.getName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         return level.getEntities().stream()
@@ -61,7 +58,6 @@ public class SpongeWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {

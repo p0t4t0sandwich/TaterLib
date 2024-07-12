@@ -18,13 +18,11 @@ import net.minecraft.entity.player.EntityPlayer;
 
 /** A hook for Forge permissions */
 public class ForgePermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "forgepermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible sender, String permission) {
         if (sender.hasPermission(4)) {

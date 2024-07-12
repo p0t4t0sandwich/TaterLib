@@ -37,19 +37,16 @@ public class ForgeWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Player> players() {
         return level.playerEntities.stream().map(ForgePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).entity();
@@ -63,7 +60,6 @@ public class ForgeWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {

@@ -41,83 +41,70 @@ public class ForgeItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return new ForgeResourceKey(IRegistry.field_212630_s.getKey(itemStack.getItem()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getCount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setCount(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new ForgeItemStack(itemStack.copy());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         return itemStack.hasDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         if (!itemStack.hasDisplayName()) return Optional.empty();
         return Optional.of(itemStack.getDisplayName().getString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         itemStack.setDisplayName(new TextComponentString(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         // TODO: Implement
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return itemStack.isEnchanted();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         return itemStack.isDamageable();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         // TODO: Implement

@@ -20,7 +20,6 @@ public class FabricPlayerEvent implements PlayerEvent {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new FabricPlayer(this.player);

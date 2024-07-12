@@ -24,31 +24,25 @@ public class SpongeEntityDeathEvent implements EntityDeathEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         return 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         return new SpongeEntity(event.getTargetEntity());

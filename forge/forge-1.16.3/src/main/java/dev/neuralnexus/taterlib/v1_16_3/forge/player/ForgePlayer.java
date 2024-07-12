@@ -52,43 +52,36 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUUID();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return ((ServerPlayerEntity) player).getIpAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName().getString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new ForgeServer(player.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(new StringTextComponent(message), uuid());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) (Object) channel;
@@ -97,25 +90,21 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
         ((ServerPlayerEntity) player).connection.send(new CCustomPayloadPacket(id, byteBuf));
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new ForgePlayerInventory(player.inventory);
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((ServerPlayerEntity) player).latency;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String message) {
         ((ServerPlayerEntity) player).connection.disconnect(new StringTextComponent(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         ((ServerPlayerEntity) player)
@@ -127,44 +116,37 @@ public class ForgePlayer extends ForgeLivingEntity implements Player {
                         false);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.abilities.mayfly = allow;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.abilities.mayfly;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.abilities.flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.abilities.flying = flying;
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
                 ((ServerPlayerEntity) player).gameMode.getGameModeForPlayer().getName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameMode(net.minecraft.world.GameType.byId(gameMode.id()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return player.hasPermissions(permissionLevel);

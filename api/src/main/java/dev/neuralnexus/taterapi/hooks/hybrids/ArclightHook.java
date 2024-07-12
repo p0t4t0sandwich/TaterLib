@@ -39,7 +39,6 @@ public class ArclightHook implements Hook {
         return Arclight.getTickingTracker();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "arclight";

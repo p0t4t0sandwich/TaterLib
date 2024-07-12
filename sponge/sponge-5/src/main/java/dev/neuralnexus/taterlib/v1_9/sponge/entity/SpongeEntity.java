@@ -43,31 +43,26 @@ public class SpongeEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return -1;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of(entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         if (!entity.get(Keys.DISPLAY_NAME).isPresent()
@@ -77,26 +72,22 @@ public class SpongeEntity implements Entity {
         return Optional.of(entity.get(Keys.DISPLAY_NAME).get().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.offer(Keys.DISPLAY_NAME, Text.of(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new SpongeLocation(entity.getLocation());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         return ResourceKey.of(
                 entity.getWorld().getBiome(entity.getLocation().getBlockPosition()).getId());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         Optional<World> serverLevel =

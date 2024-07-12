@@ -16,7 +16,6 @@ import java.util.Set;
 
 /** Velocity implementation of {@link RegisterPluginMessagesEvent}. */
 public class VelocityRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
-    /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
         ((ProxyServer) Loader.instance().server())
@@ -24,7 +23,6 @@ public class VelocityRegisterPluginMessagesEvent implements RegisterPluginMessag
                 .register(MinecraftChannelIdentifier.from(channel));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerPluginChannels(Set<String> channels) {
         channels.forEach(this::registerPluginChannel);

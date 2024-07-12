@@ -31,7 +31,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         EquipmentInventory armor = playerInventory.armor();
@@ -51,7 +50,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         return armorContents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         armor.stream()
@@ -60,7 +58,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                 .forEach(itemStack -> playerInventory.armor().offer(itemStack));
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         Optional<org.spongepowered.api.item.inventory.ItemStack> offhand =
@@ -68,7 +65,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
         return offhand.map(SpongeItemStack::new).orElse(null);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         playerInventory
@@ -76,7 +72,6 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
                 .set(EquipmentTypes.OFF_HAND, ((SpongeItemStack) offhand).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.hotbar().selectedSlotIndex();

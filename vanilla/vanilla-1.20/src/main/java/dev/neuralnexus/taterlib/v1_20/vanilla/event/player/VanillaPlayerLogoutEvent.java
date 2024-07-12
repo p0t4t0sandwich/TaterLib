@@ -20,13 +20,11 @@ public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements Play
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String logoutMessage() {
         return player.getName().getString() + " left the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLogoutMessage(String message) {
         // TODO: Implement

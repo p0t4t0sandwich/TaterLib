@@ -37,55 +37,46 @@ public class BukkitEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return entity.getEntityId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of("minecraft", entity.getType().toString().toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         return Optional.of(entity.getType().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         //        entity.setCustomName(name);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new BukkitLocation(entity.getLocation());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         return ResourceKey.of(entity.getLocation().getBlock().getBiome().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         entity.teleport(

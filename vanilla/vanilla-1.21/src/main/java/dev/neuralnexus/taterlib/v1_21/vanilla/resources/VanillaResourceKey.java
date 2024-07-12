@@ -35,22 +35,19 @@ public class VanillaResourceKey {
         private String namespace;
         private String value;
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public ResourceKey.Builder namespace(String namespace) {
             this.namespace = namespace;
             return this;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public ResourceKey.Builder value(String value) {
             this.value = value;
             return this;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public ResourceKey build() {
             return (ResourceKey)
                     (Object) ResourceLocation.fromNamespaceAndPath(this.namespace, this.value);

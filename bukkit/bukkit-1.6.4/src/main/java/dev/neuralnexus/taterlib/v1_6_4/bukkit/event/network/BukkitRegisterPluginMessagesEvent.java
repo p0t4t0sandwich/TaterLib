@@ -18,7 +18,6 @@ import java.util.Set;
 
 /** Bukkit implementation of {@link RegisterPluginMessagesEvent}. */
 public class BukkitRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
-    /** {@inheritDoc} */
     @Override
     public void registerPluginChannel(String channel) {
         Plugin plugin = (Plugin) Loader.instance().plugin();
@@ -27,7 +26,6 @@ public class BukkitRegisterPluginMessagesEvent implements RegisterPluginMessages
         messenger.registerOutgoingPluginChannel(plugin, channel);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerPluginChannels(Set<String> channels) {
         channels.forEach(this::registerPluginChannel);

@@ -22,14 +22,12 @@ public class ForgeBlock implements Block {
         this.block = block;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         // TODO: Find block registry
         return ResourceKey.of(block.getLocalizedName().split("block\\.")[1].replace(".", ":"));
     }
 
-    /** {@inheritDoc} */
     @Override
     public BlockPos blockPos() {
         return new BlockPos(pos.posX, pos.posY, pos.posZ);

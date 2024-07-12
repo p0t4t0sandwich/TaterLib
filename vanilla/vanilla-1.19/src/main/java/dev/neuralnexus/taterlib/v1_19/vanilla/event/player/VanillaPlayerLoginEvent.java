@@ -17,13 +17,11 @@ public class VanillaPlayerLoginEvent extends VanillaPlayerEvent implements Playe
         super(player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String loginMessage() {
         return player().name() + " joined the game";
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLoginMessage(String message) {
         // TODO: Implement

@@ -44,57 +44,48 @@ public class FabricEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.getUuid();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return entity.getEntityId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) Registry.ENTITY_TYPE.getId(entity.getType());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         if (entity.getCustomName() == null) return Optional.empty();
         return Optional.of(entity.getCustomName().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.setCustomName(new LiteralText(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new FabricLocation(entity);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         return (ResourceKey)
                 (Object) Registry.BIOME.getId(entity.world.getBiome(entity.getBlockPos()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {

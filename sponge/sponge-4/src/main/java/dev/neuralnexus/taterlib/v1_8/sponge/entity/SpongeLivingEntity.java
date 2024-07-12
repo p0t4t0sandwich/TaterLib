@@ -38,13 +38,11 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount) {
         entity.damage(amount, DamageSources.GENERIC);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
         entity.damage(
@@ -55,39 +53,33 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
                         .build());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double health() {
         return entity.health().get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setHealth(double health) {
         entity.health().set(health);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double absorptionAmount() {
         // TODO: Find absorption for Sponge 4
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         // TODO: Find absorption for Sponge 4
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public double maxHealth() {
         return entity.maxHealth().get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         entity.maxHealth().set(health);

@@ -18,7 +18,6 @@ public class VanillaPlayerEvent implements PlayerEvent {
         this.player = player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new VanillaPlayer(this.player);

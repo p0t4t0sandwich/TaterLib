@@ -26,13 +26,11 @@ public class ForgeServer implements Server {
         this.server = server;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String brand() {
         return server.getServerModName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getConfigurationManager().playerEntityList.stream()
@@ -40,7 +38,6 @@ public class ForgeServer implements Server {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ServerWorld> worlds() {
         return Arrays.stream(server.worldServers)

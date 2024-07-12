@@ -18,13 +18,11 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 
 /** A hook for Fabric permissions */
 public class FabricPermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "fabricpermissions";
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings({"deprecation", "UnstableApiUsage"})
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {

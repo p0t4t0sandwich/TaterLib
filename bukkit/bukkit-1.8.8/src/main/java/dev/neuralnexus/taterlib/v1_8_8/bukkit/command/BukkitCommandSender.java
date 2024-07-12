@@ -27,31 +27,26 @@ public class BukkitCommandSender implements CommandSender {
         return commandSender;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return new UUID(0, 0);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return commandSender.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         commandSender.sendMessage(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(String permission) {
         return commandSender.hasPermission(permission);

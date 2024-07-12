@@ -26,13 +26,11 @@ public class SpongeInventory implements Inventory {
         this.inventory = inventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public int size() {
         return inventory.capacity();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack get(int slot) {
         if (!inventory.slot(slot).isPresent()) {
@@ -41,19 +39,16 @@ public class SpongeInventory implements Inventory {
         return new SpongeItemStack(inventory.slot(slot).get().peek());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void set(int slot, ItemStack item) {
         inventory.slot(slot).get().set(((SpongeItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void add(ItemStack item) {
         inventory.offer(((SpongeItemStack) item).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> contents() {
         List<ItemStack> contents = new ArrayList<>(size());
@@ -63,7 +58,6 @@ public class SpongeInventory implements Inventory {
         return contents;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setContents(List<ItemStack> items) {
         for (int i = 0; i < size(); i++) {
@@ -71,7 +65,6 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
@@ -81,7 +74,6 @@ public class SpongeInventory implements Inventory {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void clear(int slot) {
         inventory.slot(slot).get().clear();

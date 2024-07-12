@@ -33,7 +33,6 @@ public class FabricCommandSender implements CommandSender {
         return source;
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public UUID uuid() {
@@ -57,19 +56,16 @@ public class FabricCommandSender implements CommandSender {
         return player.getUuid();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return source.getName().asFormattedString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         source.sendMessage(new TranslatableText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;

@@ -26,13 +26,11 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         return playerInventory.armor.stream().map(ForgeItemStack::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         playerInventory.armor.clear();
@@ -42,20 +40,17 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
                 .forEach(playerInventory.armor::add);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         return new ForgeItemStack(playerInventory.offhand.get(0));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         playerInventory.offhand.clear();
         playerInventory.offhand.add(((ForgeItemStack) offhand).itemStack());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.selected;

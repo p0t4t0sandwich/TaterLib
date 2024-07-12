@@ -22,31 +22,26 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String cause() {
         return event.getCause().toString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public double damage() {
         return event.getFinalDamage();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Entity entity() {
         if (event.getTargetEntity() instanceof Player) {

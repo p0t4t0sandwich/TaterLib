@@ -33,25 +33,21 @@ public class ForgeSender implements CommandSender {
         return sender;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return new UUID(0, 0);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return sender.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         sender.addChatMessage(new ChatComponentText(message));
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return sender.canCommandSenderUseCommand(permissionLevel, command.name());

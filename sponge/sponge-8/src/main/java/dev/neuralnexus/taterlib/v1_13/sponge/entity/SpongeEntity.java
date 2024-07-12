@@ -50,31 +50,26 @@ public class SpongeEntity implements Entity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return entity.uniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int entityId() {
         return -1;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void remove() {
         entity.remove();
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return (ResourceKey) (Object) EntityTypes.registry().valueKey(entity.type());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> customName() {
         if (!entity.get(Keys.CUSTOM_NAME).isPresent()) {
@@ -83,19 +78,16 @@ public class SpongeEntity implements Entity {
         return Optional.of(entity.get(Keys.CUSTOM_NAME).get().toString());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCustomName(String name) {
         entity.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new SpongeLocation(entity.serverLocation());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey biome() {
         Biome biome = entity.location().world().biome(entity.location().blockPosition());
@@ -103,7 +95,6 @@ public class SpongeEntity implements Entity {
         return (ResourceKey) (Object) registry.findValueKey(biome).get();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void teleport(Location location) {
         Optional<ServerWorld> serverLevel =

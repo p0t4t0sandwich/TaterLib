@@ -32,19 +32,16 @@ public class VanillaPlayerBlockBreakEvent extends VanillaBlockEvent
         this.cancel = cancel;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return cancel.cancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         cancel.setCancelled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new VanillaPlayer(player);

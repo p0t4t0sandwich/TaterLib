@@ -35,49 +35,41 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
         return entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount) {
         entity.damage(DamageSource.GENERIC, (float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
         entity.damage(DamageSource.mob(((FabricLivingEntity) source).entity()), (float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double health() {
         return entity.getHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setHealth(double health) {
         entity.setHealth((float) health);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double absorptionAmount() {
         return entity.getAbsorptionAmount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         entity.setAbsorptionAmount((float) amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double maxHealth() {
         return entity.getMaxHealth();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         entity.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(health);

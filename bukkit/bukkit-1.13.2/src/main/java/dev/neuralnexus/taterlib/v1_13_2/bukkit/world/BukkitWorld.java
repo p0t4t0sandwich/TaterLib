@@ -42,19 +42,16 @@ public class BukkitWorld implements World {
         return world;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Player> players() {
         return world.getPlayers().stream().map(BukkitPlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(world.getName());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
@@ -70,7 +67,6 @@ public class BukkitWorld implements World {
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         return world

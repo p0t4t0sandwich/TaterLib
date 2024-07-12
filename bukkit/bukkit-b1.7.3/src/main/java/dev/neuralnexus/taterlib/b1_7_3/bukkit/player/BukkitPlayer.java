@@ -45,43 +45,36 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new BukkitServer(player.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         // TODO: Create some different way to send plugin messages
@@ -96,13 +89,11 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         // data);
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         // TODO: Find the field that stores the ping
@@ -110,13 +101,11 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         return -1;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String reason) {
         player.kickPlayer(reason);
@@ -130,38 +119,32 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         // forced);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         // TODO: Write a module to allow flight
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(player.getGameMode().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));

@@ -27,13 +27,11 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return ci.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
@@ -41,13 +39,11 @@ public class FabricEntityDamageEvent extends FabricEntityEvent implements Entity
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public String cause() {
         return damageSource.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public double damage() {
         return damage;

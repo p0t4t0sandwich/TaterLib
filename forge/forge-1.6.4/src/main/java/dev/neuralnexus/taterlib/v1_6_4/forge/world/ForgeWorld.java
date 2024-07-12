@@ -37,7 +37,6 @@ public class ForgeWorld implements World {
         return level;
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Player> players() {
@@ -45,13 +44,11 @@ public class ForgeWorld implements World {
                 .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
@@ -64,7 +61,6 @@ public class ForgeWorld implements World {
                 .stream().map(ForgeEntity::new).collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(

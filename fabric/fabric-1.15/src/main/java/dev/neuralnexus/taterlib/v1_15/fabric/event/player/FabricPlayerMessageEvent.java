@@ -27,13 +27,11 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
         this.ci = ci;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return ci.isCancelled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
@@ -41,26 +39,22 @@ public class FabricPlayerMessageEvent extends FabricPlayerEvent implements Playe
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public String message() {
         return message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMessage(String message) {
         this.message = message;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Set<SimplePlayer> recipients() {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setRecipients(Set<SimplePlayer> recipients) {
         // TODO: Chat recipients module

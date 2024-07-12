@@ -38,80 +38,67 @@ public class BukkitItemStack implements ItemStack {
         return itemStack;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey type() {
         return ResourceKey.of("minecraft", itemStack.getType().name().toLowerCase());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int count() {
         return itemStack.getAmount();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCount(int count) {
         itemStack.setAmount(count);
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasDisplayName() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Optional<String> displayName() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDisplayName(String name) {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasLore() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<String> lore() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setLore(List<String> lore) {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasEnchants() {
         return !itemStack.getEnchantments().isEmpty();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean unbreakable() {
         // TODO: Planned internal module covering this functionality
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setUnbreakable(boolean unbreakable) {
         // TODO: Planned internal module covering this functionality

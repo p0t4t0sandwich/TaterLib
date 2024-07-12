@@ -23,19 +23,16 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         this.entity = entity;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount) {
         entity.damage(amount);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void damage(double amount, Entity source) {
         entity.damage(amount, ((BukkitEntity) source).entity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public double health() {
         // Reflect to get (double) entity.getHealth();
@@ -47,13 +44,11 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setHealth(double health) {
         entity.setHealth(health);
     }
 
-    /** {@inheritDoc} */
     @Override
     public double absorptionAmount() {
         // Reflect to get ((CraftLivingEntity) entity).getHandle().getAbsorptionHearts();
@@ -68,7 +63,6 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setAbsorptionAmount(double amount) {
         // Reflect to set ((CraftLivingEntity) entity).getHandle().setAbsorptionHearts(amount);
@@ -82,7 +76,6 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public double maxHealth() {
         // Reflect to get (double) entity.getMaxHealth();
@@ -94,7 +87,6 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setMaxHealth(double health) {
         entity.setMaxHealth(health);

@@ -23,13 +23,11 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public ResourceKey channel() {
         return ResourceKey.of(event.getIdentifier().getId());
     }
 
-    /** {@inheritDoc} */
     @Override
     public byte[] data() {
         return event.getData();
@@ -45,8 +43,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public ProxyPlayer player() {
             return new VelocityPlayer((com.velocitypowered.api.proxy.Player) event.getSource());
         }
@@ -62,8 +59,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public dev.neuralnexus.taterapi.server.Server server() {
             return new VelocityServer((RegisteredServer) event.getSource());
         }

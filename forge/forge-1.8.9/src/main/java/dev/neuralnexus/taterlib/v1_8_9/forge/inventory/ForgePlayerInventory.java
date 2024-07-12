@@ -30,7 +30,6 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         return Arrays.stream(playerInventory.armorInventory)
@@ -38,7 +37,6 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         for (int i = 0; i < playerInventory.armorInventory.length; i++) {
@@ -46,19 +44,16 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.currentItem;

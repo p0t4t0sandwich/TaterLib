@@ -24,29 +24,24 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
         this.source = source;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new FabricPlayer(player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public String deathMessage() {
         return source.getDeathMessage(player).asFormattedString();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDeathMessage(String deathMessage) {}
 
-    /** {@inheritDoc} */
     @Override
     public boolean keepInventory() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setKeepInventory(boolean keepInventory) {}
 }

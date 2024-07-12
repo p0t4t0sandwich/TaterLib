@@ -23,19 +23,16 @@ public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements Pla
         this.alive = alive;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location respawnLocation() {
         return new VanillaLocation(player);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

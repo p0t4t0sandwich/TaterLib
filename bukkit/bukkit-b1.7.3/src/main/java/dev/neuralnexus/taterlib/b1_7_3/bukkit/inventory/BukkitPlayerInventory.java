@@ -28,7 +28,6 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
         this.playerInventory = playerInventory;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> armor() {
         return Arrays.stream(playerInventory.getArmorContents())
@@ -36,7 +35,6 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
                 .collect(Collectors.toList());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setArmor(List<ItemStack> armor) {
         playerInventory.setArmorContents(
@@ -46,19 +44,16 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
                         .toArray(org.bukkit.inventory.ItemStack[]::new));
     }
 
-    /** {@inheritDoc} */
     @Override
     public ItemStack offhand() {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setOffhand(ItemStack offhand) {
         throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inheritDoc} */
     @Override
     public int selectedSlot() {
         return playerInventory.getHeldItemSlot();

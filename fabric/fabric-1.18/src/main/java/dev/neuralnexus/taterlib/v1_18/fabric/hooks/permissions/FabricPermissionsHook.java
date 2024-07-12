@@ -17,13 +17,11 @@ import me.lucko.fabric.api.permissions.v0.Permissions;
 
 /** A hook for Fabric permissions */
 public class FabricPermissionsHook implements PermissionsHook {
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return "fabricpermissions";
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {

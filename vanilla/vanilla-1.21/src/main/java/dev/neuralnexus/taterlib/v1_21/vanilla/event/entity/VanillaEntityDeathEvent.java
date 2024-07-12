@@ -28,21 +28,17 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
         this.source = source;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         return source.getEntity() instanceof LivingEntity
@@ -51,7 +47,6 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
                 : 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 }

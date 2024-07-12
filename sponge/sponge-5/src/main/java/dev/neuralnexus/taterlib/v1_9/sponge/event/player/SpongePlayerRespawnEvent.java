@@ -22,25 +22,21 @@ public class SpongePlayerRespawnEvent implements PlayerRespawnEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new SpongePlayer(event.getTargetEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location respawnLocation() {
         return new SpongeLocation(event.getTargetEntity().getLocation());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return event.isBedSpawn();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

@@ -26,7 +26,6 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         event.register(

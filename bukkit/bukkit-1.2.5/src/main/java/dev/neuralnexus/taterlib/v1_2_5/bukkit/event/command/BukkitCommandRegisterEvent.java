@@ -14,7 +14,6 @@ import dev.neuralnexus.taterlib.v1_2_5.bukkit.command.BukkitCommandWrapper;
 
 /** Bukkit implementation of {@link CommandRegisterEvent}. */
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(Command command, String... aliases) {
         getCommandMap().register(command.name(), new BukkitCommandWrapper(command));

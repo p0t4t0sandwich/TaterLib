@@ -24,19 +24,16 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
         this.alive = alive;
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location respawnLocation() {
         return new FabricLocation(((FabricPlayer) player()).player());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isBedSpawn() {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isAnchorSpawn() {
         return false;

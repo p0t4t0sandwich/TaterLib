@@ -22,7 +22,6 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public String advancement() {
         if (event.getAdvancement().getDisplay() != null) {
@@ -36,7 +35,6 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player player() {
         return new ForgePlayer(event.getEntityPlayer());
@@ -60,8 +58,7 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
             this.event = event;
         }
 
-        /** {@inheritDoc} */
-        @Override
+            @Override
         public Collection<String> criterion() {
             return this.event.getAdvancement().getCriteria().keySet();
         }

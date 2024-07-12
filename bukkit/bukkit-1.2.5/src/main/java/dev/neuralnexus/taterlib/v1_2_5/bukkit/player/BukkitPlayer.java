@@ -46,73 +46,61 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
         return player;
     }
 
-    /** {@inheritDoc} */
     @Override
     public UUID uuid() {
         return player.getUniqueId();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String ipAddress() {
         return player.getAddress().getAddress().getHostAddress();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String name() {
         return player.getName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public String displayName() {
         return player.getDisplayName();
     }
 
-    /** {@inheritDoc} */
     @Override
     public Server server() {
         return new BukkitServer(player.getServer());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(message);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(), data);
     }
 
-    /** {@inheritDoc} */
     @Override
     public PlayerInventory inventory() {
         return new BukkitPlayerInventory(player.getInventory());
     }
 
-    /** {@inheritDoc} */
     @Override
     public int ping() {
         return ((CraftPlayer) player).getHandle().ping;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void kick(String reason) {
         player.kickPlayer(reason);
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setSpawn(Location location, boolean forced) {
         player.setBedSpawnLocation(
@@ -123,37 +111,31 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player {
                         location.z()));
     }
 
-    /** {@inheritDoc} */
     @Override
     public void allowFlight(boolean allow) {
         player.setAllowFlight(allow);
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean canFly() {
         return player.getAllowFlight();
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isFlying() {
         return player.isFlying();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setFlying(boolean flying) {
         player.setFlying(flying);
     }
 
-    /** {@inheritDoc} */
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(player.getGameMode().name());
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));

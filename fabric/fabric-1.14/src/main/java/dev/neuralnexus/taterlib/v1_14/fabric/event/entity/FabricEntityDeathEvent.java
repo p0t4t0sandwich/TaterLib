@@ -23,27 +23,22 @@ public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityD
         this.source = source;
     }
 
-    /** {@inheritDoc} */
     @Override
     public List<ItemStack> drops() {
         return new ArrayList<>();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDrops(List<ItemStack> drops) {}
 
-    /** {@inheritDoc} */
     @Override
     public void clearDrops() {}
 
-    /** {@inheritDoc} */
     @Override
     public int droppedExp() {
         return 0;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setDroppedExp(int exp) {}
 }

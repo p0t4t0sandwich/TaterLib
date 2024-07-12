@@ -22,19 +22,16 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
         this.event = event;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean cancelled() {
         return event.isCanceled();
     }
 
-    /** {@inheritDoc} */
     @Override
     public void setCancelled(boolean cancelled) {
         event.setCanceled(cancelled);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Location location() {
         return new ForgeLocation(((ForgeEntity) entity()).entity());

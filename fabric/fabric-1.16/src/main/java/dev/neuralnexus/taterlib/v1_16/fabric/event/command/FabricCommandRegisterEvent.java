@@ -35,19 +35,16 @@ public class FabricCommandRegisterEvent
         this.dedicated = dedicated;
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isDedicated() {
         return dedicated;
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandDispatcher<ServerCommandSource> dispatcher() {
         return dispatcher;
     }
 
-    /** {@inheritDoc} */
     @Override
     public void registerCommand(
             LiteralArgumentBuilder<ServerCommandSource> node,
@@ -59,25 +56,21 @@ public class FabricCommandRegisterEvent
         }
     }
 
-    /** {@inheritDoc} */
     @Override
     public CommandSender getSender(ServerCommandSource source) {
         return new FabricCommandSender(source);
     }
 
-    /** {@inheritDoc} */
     @Override
     public Player getPlayer(ServerCommandSource source) {
         return new FabricPlayer((PlayerEntity) source.getEntity());
     }
 
-    /** {@inheritDoc} */
     @Override
     public boolean isPlayer(ServerCommandSource source) {
         return source.getEntity() instanceof PlayerEntity;
     }
 
-    /** {@inheritDoc} */
     @SuppressWarnings("unchecked")
     @Override
     public void registerCommand(Command command, String... aliases) {
