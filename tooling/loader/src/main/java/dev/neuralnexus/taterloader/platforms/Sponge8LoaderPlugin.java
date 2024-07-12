@@ -39,13 +39,15 @@ public class Sponge8LoaderPlugin {
         }
 
         // Set up Vanilla bootstrap, covers Vanilla, Forge, and Fabric paths
-        TaterReflectUtil.getRelocatedClass("VanillaBootstrap").ifPresent(className -> {
-            try {
-                Class.forName(className).getMethod("init").invoke(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        TaterReflectUtil.getRelocatedClass("VanillaBootstrap")
+                .ifPresent(
+                        className -> {
+                            try {
+                                Class.forName(className).getMethod("init").invoke(null);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        });
 
         loader.onInit();
     }

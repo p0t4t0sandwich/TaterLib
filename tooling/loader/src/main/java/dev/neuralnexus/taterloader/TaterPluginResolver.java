@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterloader;
 
+import static dev.neuralnexus.taterloader.TaterReflectUtil.newInstance;
+
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterloader.plugin.Plugin;
-
-import static dev.neuralnexus.taterloader.TaterReflectUtil.newInstance;
 
 /** Locates and returns the core TaterLib plugin. */
 public class TaterPluginResolver {

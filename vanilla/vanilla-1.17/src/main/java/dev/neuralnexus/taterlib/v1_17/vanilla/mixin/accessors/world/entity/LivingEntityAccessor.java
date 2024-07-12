@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.accessors.world.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 

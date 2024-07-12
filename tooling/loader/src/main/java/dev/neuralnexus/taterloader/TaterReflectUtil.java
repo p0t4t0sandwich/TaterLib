@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterloader;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
@@ -10,9 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Utility class for reflection.
- */
+/** Utility class for reflection. */
 public class TaterReflectUtil {
     public static final String TL_PACKAGE = "dev.neuralnexus.taterlib";
     public static final Map<Platform, String> packageNames = new HashMap<>();
@@ -33,7 +37,8 @@ public class TaterReflectUtil {
         return Optional.of(packageName + "." + clazz);
     }
 
-    public static Optional<String> getClass(String clazz, MinecraftVersion version, Platform platform) {
+    public static Optional<String> getClass(
+            String clazz, MinecraftVersion version, Platform platform) {
         String packageName = packageNames.get(platform);
         if (packageName == null) {
             return Optional.empty();
@@ -47,7 +52,8 @@ public class TaterReflectUtil {
             return Optional.empty();
         }
         String path = "";
-        if (relocatingPlatform == Platform.FORGE && MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_20_6)) {
+        if (relocatingPlatform == Platform.FORGE
+                && MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_20_6)) {
             path = ".forge.";
         } else if (relocatingPlatform == Platform.FABRIC) {
             path = ".fabric.";
@@ -304,21 +310,28 @@ public class TaterReflectUtil {
         try {
             Class<?> objectClass = Class.forName(getClass(clazz, platform).get());
             return (T) objectClass.getConstructor().newInstance(args);
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException |
-                 NoSuchMethodException e) {
+        } catch (ClassNotFoundException
+                | InvocationTargetException
+                | InstantiationException
+                | IllegalAccessException
+                | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;
     }
 
     public static Server newVanillaServer() {
-        return TaterReflectUtil.getRelocatedClass("VanillaServer").map(className -> {
-            try {
-                return (Server) Class.forName(className).getMethod("instance").invoke(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }).get();
+        return TaterReflectUtil.getRelocatedClass("VanillaServer")
+                .map(
+                        className -> {
+                            try {
+                                return (Server)
+                                        Class.forName(className).getMethod("instance").invoke(null);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            return null;
+                        })
+                .get();
     }
 }

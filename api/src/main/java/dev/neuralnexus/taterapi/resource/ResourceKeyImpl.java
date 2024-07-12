@@ -1,8 +1,5 @@
 package dev.neuralnexus.taterapi.resource;
 
-import dev.neuralnexus.taterapi.Builders;
-import dev.neuralnexus.taterapi.Factories;
-
 /**
  * An abstraction for resource locations.
  */
