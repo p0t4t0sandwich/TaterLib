@@ -14,9 +14,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_14.fabric.command.FabricCommandSender;
 import dev.neuralnexus.taterlib.v1_14.fabric.entity.player.FabricPlayer;
 

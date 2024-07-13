@@ -6,8 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_12_2.bungee.event.network;
 
-import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.entity.player.BungeePlayer;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
@@ -23,13 +25,8 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
     }
 
     @Override
-    public ResourceKey channel() {
-        return ResourceKey.of(event.getTag());
-    }
-
-    @Override
-    public byte[] data() {
-        return event.getData();
+    public CustomPayload packet() {
+        return new CustomPayloadImpl(ResourceKey.of(event.getTag()), event.getData());
     }
 
     /** Bungee implementation of {@link PluginMessageEvent.Player}. */
@@ -42,7 +39,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public ProxyPlayer player() {
             return new BungeePlayer((ProxiedPlayer) event.getReceiver());
         }
@@ -58,7 +55,7 @@ public class BungeePluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public dev.neuralnexus.taterapi.server.Server server() {
             return new BungeeServer(
                     ((net.md_5.bungee.api.connection.Server) event.getReceiver()).getInfo());

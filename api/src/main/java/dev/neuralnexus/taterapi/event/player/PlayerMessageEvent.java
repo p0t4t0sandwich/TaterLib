@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.event.player;
 
-import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.event.Cancellable;
 
 import java.util.Set;
 

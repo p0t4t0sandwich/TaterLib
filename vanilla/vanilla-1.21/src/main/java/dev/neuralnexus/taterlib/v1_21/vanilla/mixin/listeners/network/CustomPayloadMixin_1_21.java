@@ -11,8 +11,8 @@ import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.CustomPayloadPacketWrapper;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.VanillaPluginMessageEvent;
+import dev.neuralnexus.taterlib.v1_21.vanilla.network.CustomPayloadPacket;
 import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -39,7 +39,7 @@ public abstract class CustomPayloadMixin_1_21 {
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacketWrapper wrapper = new CustomPayloadPacketWrapper(packet);
+        CustomPayloadPacket wrapper = new CustomPayloadPacket(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new VanillaPluginMessageEvent.Player(

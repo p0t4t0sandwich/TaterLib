@@ -4,12 +4,12 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterapi.event.network;
+package dev.neuralnexus.taterapi.network;
 
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Wrapper for custom payload packets (plugin messages) */
-public interface CustomPayloadWrapper {
+public interface CustomPayload {
     /**
      * Gets the channel.
      *

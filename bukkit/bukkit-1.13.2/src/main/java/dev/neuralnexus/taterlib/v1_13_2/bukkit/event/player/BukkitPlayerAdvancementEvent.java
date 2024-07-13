@@ -33,7 +33,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
             this.event = event;
         }
 
-            @Override
+        @Override
         public String advancement() {
             return event.getAdvancement().getKey().getKey();
         }

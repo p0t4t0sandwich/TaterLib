@@ -6,21 +6,21 @@
 
 package dev.neuralnexus.taterlib.modules.core;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
-import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.GenericEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.metrics.SparkHook;
 import dev.neuralnexus.taterapi.hooks.permissions.LuckPermsHook;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
-import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
-import dev.neuralnexus.taterloader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.storage.databases.Database;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
+import dev.neuralnexus.taterlib.config.dump.DumpInfo;
+import dev.neuralnexus.taterlib.modules.core.command.TaterLibCommand;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.plugin.PluginModule;
 
 /** TaterLib's core module. */
 public class CoreModule implements PluginModule {

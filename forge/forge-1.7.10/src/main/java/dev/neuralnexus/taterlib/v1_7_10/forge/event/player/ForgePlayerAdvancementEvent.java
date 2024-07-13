@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.forge.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.entity.player.ForgePlayer;
 
 import net.minecraftforge.event.entity.player.AchievementEvent;
@@ -51,7 +51,7 @@ public class ForgePlayerAdvancementEvent implements PlayerAdvancementEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public Collection<String> criterion() {
             return Collections.singleton(this.event.achievement.getStatName().getFormattedText());
         }

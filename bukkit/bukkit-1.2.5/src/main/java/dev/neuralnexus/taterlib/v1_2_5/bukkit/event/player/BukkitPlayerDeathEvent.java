@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_2_5.bukkit.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterlib.v1_2_5.bukkit.event.entity.BukkitEntityDeathEvent;
+import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_2_5.bukkit.event.entity.BukkitEntityDeathEvent;
 
 /** Bukkit implementation of {@link PlayerDeathEvent}. */
 public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements PlayerDeathEvent {

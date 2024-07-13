@@ -6,25 +6,18 @@
 
 package dev.neuralnexus.taterapi.event.network;
 
-import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.network.CustomPayload;
 
 /** Abstract class for plugin message events. */
 public interface PluginMessageEvent extends Event {
     /**
-     * Gets the channel of the plugin message.
+     * Gets the plugin message's payload.
      *
-     * @return The channel of the plugin message.
+     * @return The plugin message's payload.
      */
-    ResourceKey channel();
-
-    /**
-     * Gets the data of the plugin message.
-     *
-     * @return The data of the plugin message.
-     */
-    byte[] data();
+    CustomPayload packet();
 
     /** Abstract class for player plugin message events. */
     interface Player extends PluginMessageEvent {

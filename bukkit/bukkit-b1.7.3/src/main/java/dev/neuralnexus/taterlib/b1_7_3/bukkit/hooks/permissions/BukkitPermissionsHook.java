@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit.hooks.permissions;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
-import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.command.BukkitCommandSender;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player.BukkitPlayer;
 

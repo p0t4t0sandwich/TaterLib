@@ -9,10 +9,10 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import java.io.File;

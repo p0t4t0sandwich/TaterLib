@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.player;
 
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
-import dev.neuralnexus.taterapi.event.player.PlayerLoginEvent;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.event.player.PlayerLoginEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 /** Velocity implementation of {@link PlayerLoginEvent}. */

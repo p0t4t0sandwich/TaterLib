@@ -52,7 +52,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-            @Override
+        @Override
         public Entity damager() {
             return new BukkitEntity(event.getDamager());
         }
@@ -68,7 +68,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
             this.event = event;
         }
 
-            @Override
+        @Override
         public String damager() {
             return event.getDamager().getType().name();
         }

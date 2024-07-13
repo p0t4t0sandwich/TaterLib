@@ -6,15 +6,15 @@
 
 package dev.neuralnexus.taterlib.modules.core.command;
 
-import dev.neuralnexus.taterapi.util.TextUtil;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.util.TextUtil;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
-import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 public class TaterLibCommand implements Command {
     private String name = "taterlib";

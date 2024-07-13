@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_12.sponge.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_12.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.event.network.ClientConnectionEvent;

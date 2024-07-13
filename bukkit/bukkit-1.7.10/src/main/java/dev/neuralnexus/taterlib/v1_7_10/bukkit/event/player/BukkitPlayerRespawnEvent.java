@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitLocation;

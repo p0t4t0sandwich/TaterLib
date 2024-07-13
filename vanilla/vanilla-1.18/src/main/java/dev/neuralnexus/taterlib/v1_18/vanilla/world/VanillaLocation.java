@@ -99,7 +99,7 @@ public class VanillaLocation implements Location {
         private float pitch = 0;
         private Level world = null;
 
-            @Override
+        @Override
         public Builder from(Location location) {
             this.position = new Vec3(location.x(), location.y(), location.z());
             this.yaw = location.yaw();
@@ -108,31 +108,31 @@ public class VanillaLocation implements Location {
             return this;
         }
 
-            @Override
+        @Override
         public Builder position(BlockPos position) {
             this.position = new Vec3(position.x(), position.y(), position.z());
             return this;
         }
 
-            @Override
+        @Override
         public Builder yaw(float yaw) {
             this.yaw = yaw;
             return this;
         }
 
-            @Override
+        @Override
         public Builder pitch(float pitch) {
             this.pitch = pitch;
             return this;
         }
 
-            @Override
+        @Override
         public Builder world(World world) {
             this.world = ((VanillaWorld) world).world();
             return this;
         }
 
-            @Override
+        @Override
         public Location build() {
             return new VanillaLocation(position, yaw, pitch, world);
         }

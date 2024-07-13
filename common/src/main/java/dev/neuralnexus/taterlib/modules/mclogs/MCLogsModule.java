@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.modules.mclogs;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.mclogs.command.MCLogsCommand;
 import dev.neuralnexus.taterloader.plugin.PluginModule;
 

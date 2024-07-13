@@ -6,9 +6,9 @@
 
 package dev.neuralnexus.taterlib.modules.bungeecord;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
 import dev.neuralnexus.taterloader.plugin.PluginModule;
 

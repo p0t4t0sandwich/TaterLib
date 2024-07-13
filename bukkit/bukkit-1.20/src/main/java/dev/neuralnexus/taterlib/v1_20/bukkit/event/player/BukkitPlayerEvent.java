@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_20.bukkit.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerEvent;
 import dev.neuralnexus.taterlib.v1_20.bukkit.entity.player.BukkitPlayer;
 
 /** Bukkit implementation of {@link PlayerEvent}. */

@@ -1,11 +1,15 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
+
 package dev.neuralnexus.taterapi.resource;
 
 import dev.neuralnexus.taterapi.Builders;
 import dev.neuralnexus.taterapi.Factories;
 
-/**
- * An abstraction for resource locations.
- */
+/** An abstraction for resource locations. */
 public interface ResourceKey {
     /**
      * Gets the path of the resource.
@@ -51,9 +55,7 @@ public interface ResourceKey {
         return Builders.resourceKeyBuilder.get();
     }
 
-    /**
-     * A factory for resource locations.
-     */
+    /** A factory for resource locations. */
     interface Factory {
         ResourceKey of(String namespace, String value);
 
@@ -62,9 +64,7 @@ public interface ResourceKey {
         ResourceKey unsafeOf(String full);
     }
 
-    /**
-     * A builder for resource locations.
-     */
+    /** A builder for resource locations. */
     interface Builder {
         /**
          * Sets the namespace of the resource.

@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.event.player;
 
-import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.event.Event;
 
 /** Abstract class for proxy player events */
 public interface ProxyPlayerEvent extends Event {

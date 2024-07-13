@@ -12,8 +12,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_15_2.forge.command.ForgeCommandSender;
 import dev.neuralnexus.taterlib.v1_15_2.forge.player.ForgePlayer;
 

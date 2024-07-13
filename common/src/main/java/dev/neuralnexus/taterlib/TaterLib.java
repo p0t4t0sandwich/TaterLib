@@ -7,15 +7,15 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
-import dev.neuralnexus.taterloader.depdownloader.DepClassLoader;
-import dev.neuralnexus.taterloader.Loader;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
-import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.metrics.bstats.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.mclogs.MCLogsModule;
+import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterloader.depdownloader.DepClassLoader;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import java.util.HashMap;
 import java.util.Map;

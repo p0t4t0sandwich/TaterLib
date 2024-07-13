@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.metrics.bstats;
 
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterlib.TaterLib;
+import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.bstats.MetricsBase;
 import org.bstats.charts.DrilldownPie;

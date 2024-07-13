@@ -47,7 +47,7 @@ public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
             this.advancement = advancement;
         }
 
-            @Override
+        @Override
         public Collection<String> criterion() {
             return advancement.value().criteria().keySet();
         }

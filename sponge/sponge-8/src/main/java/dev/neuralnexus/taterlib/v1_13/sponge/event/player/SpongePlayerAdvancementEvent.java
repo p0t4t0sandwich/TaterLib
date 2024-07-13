@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_13.sponge.entity.player.SpongePlayer;
 
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
@@ -54,7 +54,7 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public Collection<String> criterion() {
             return new HashSet<>();
         }

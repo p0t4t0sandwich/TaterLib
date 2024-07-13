@@ -53,7 +53,7 @@ public class ForgePlayerAdvancementEvent extends ForgePlayerEvent
             this.event = event;
         }
 
-            @Override
+        @Override
         public Collection<String> criterion() {
             return this.event.getAdvancement().getCriteria().keySet();
         }

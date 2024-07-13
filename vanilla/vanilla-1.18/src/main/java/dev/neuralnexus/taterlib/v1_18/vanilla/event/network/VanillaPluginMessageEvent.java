@@ -6,36 +6,23 @@
 
 package dev.neuralnexus.taterlib.v1_18.vanilla.event.network;
 
-import dev.neuralnexus.taterapi.event.network.CustomPayloadWrapper;
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterlib.v1_18.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.server.level.ServerPlayer;
 
 /** Vanilla implementation of {@link PluginMessageEvent}. */
 public class VanillaPluginMessageEvent implements PluginMessageEvent {
-    private final ResourceKey channel;
-    private final byte[] data;
+    private final CustomPayload payload;
 
-    public VanillaPluginMessageEvent(ResourceKey channel, byte[] data) {
-        this.channel = channel;
-        this.data = data;
-    }
-
-    public VanillaPluginMessageEvent(CustomPayloadWrapper packet) {
-        this.channel = packet.channel();
-        this.data = packet.data();
+    public VanillaPluginMessageEvent(CustomPayload packet) {
+        this.payload = packet;
     }
 
     @Override
-    public ResourceKey channel() {
-        return this.channel;
-    }
-
-    @Override
-    public byte[] data() {
-        return this.data;
+    public CustomPayload packet() {
+        return this.payload;
     }
 
     /** Vanilla implementation of {@link PluginMessageEvent.Player}. */
@@ -43,17 +30,12 @@ public class VanillaPluginMessageEvent implements PluginMessageEvent {
             implements PluginMessageEvent.Player {
         private final ServerPlayer player;
 
-        public Player(ResourceKey channel, byte[] data, ServerPlayer player) {
-            super(channel, data);
-            this.player = player;
-        }
-
-        public Player(CustomPayloadWrapper packet, ServerPlayer player) {
+        public Player(CustomPayload packet, ServerPlayer player) {
             super(packet);
             this.player = player;
         }
 
-            @Override
+        @Override
         public dev.neuralnexus.taterapi.entity.player.Player player() {
             return new VanillaPlayer(this.player);
         }

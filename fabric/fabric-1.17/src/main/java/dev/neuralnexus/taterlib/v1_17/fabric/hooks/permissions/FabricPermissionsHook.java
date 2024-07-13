@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_17.fabric.hooks.permissions;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
-import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterlib.v1_17.vanilla.command.VanillaCommandSender;
 import dev.neuralnexus.taterlib.v1_17.vanilla.entity.player.VanillaPlayer;
 

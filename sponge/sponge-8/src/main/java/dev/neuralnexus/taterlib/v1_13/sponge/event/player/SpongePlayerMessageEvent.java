@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_13.sponge.event.player;
 
-import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
-import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.v1_13.sponge.entity.player.SpongePlayer;
 
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;

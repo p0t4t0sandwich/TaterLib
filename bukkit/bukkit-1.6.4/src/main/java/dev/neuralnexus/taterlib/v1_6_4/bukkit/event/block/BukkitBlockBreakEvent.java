@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.event.block;
 
-import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
 
 /** Bukkit implementation of {@link PlayerBlockBreakEvent}. */

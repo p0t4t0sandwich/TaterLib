@@ -8,8 +8,10 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.network;
 
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
@@ -24,13 +26,9 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
     }
 
     @Override
-    public ResourceKey channel() {
-        return ResourceKey.of(event.getIdentifier().getId());
-    }
-
-    @Override
-    public byte[] data() {
-        return event.getData();
+    public CustomPayload packet() {
+        return new CustomPayloadImpl(
+                ResourceKey.of(event.getIdentifier().getId()), event.getData());
     }
 
     /** Velocity implementation of {@link PluginMessageEvent.Player}. */
@@ -43,7 +41,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public ProxyPlayer player() {
             return new VelocityPlayer((com.velocitypowered.api.proxy.Player) event.getSource());
         }
@@ -59,7 +57,7 @@ public class VelocityPluginMessageEvent implements PluginMessageEvent {
             this.event = event;
         }
 
-            @Override
+        @Override
         public dev.neuralnexus.taterapi.server.Server server() {
             return new VelocityServer((RegisteredServer) event.getSource());
         }

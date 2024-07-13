@@ -6,8 +6,8 @@
 
 package dev.neuralnexus.taterapi.event.player;
 
-import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 
 /** Abstract class for a player death event. */
 public interface PlayerDeathEvent extends EntityDeathEvent {

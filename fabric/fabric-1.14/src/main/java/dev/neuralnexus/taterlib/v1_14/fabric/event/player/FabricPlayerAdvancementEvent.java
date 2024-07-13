@@ -47,7 +47,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
             this.advancement = advancement;
         }
 
-            @Override
+        @Override
         public Collection<String> criterion() {
             return advancement.getCriteria().keySet();
         }

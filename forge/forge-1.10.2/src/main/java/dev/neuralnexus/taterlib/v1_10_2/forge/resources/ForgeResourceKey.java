@@ -35,19 +35,19 @@ public class ForgeResourceKey {
         private String namespace;
         private String value;
 
-            @Override
+        @Override
         public ResourceKey.Builder namespace(String namespace) {
             this.namespace = namespace;
             return this;
         }
 
-            @Override
+        @Override
         public ResourceKey.Builder value(String value) {
             this.value = value;
             return this;
         }
 
-            @Override
+        @Override
         public ResourceKey build() {
             return (ResourceKey) (Object) new ResourceLocation(this.namespace, this.value);
         }

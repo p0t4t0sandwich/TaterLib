@@ -10,7 +10,6 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.events.*;
 
 /** Enum for BungeeCord plugin message types. */
@@ -42,8 +41,9 @@ public enum BungeeMsgType {
 
     @SuppressWarnings("UnstableApiUsage")
     public static void Listener(PluginMessageEvent event) {
-        if (event.channel().asString().equals("BungeeCord") || event.channel().asString().equals("bungeecord:main")) {
-            ByteArrayDataInput in = ByteStreams.newDataInput(event.data());
+        if (event.packet().channel().asString().equals("BungeeCord")
+                || event.packet().channel().asString().equals("bungeecord:main")) {
+            ByteArrayDataInput in = ByteStreams.newDataInput(event.packet().data());
             String subchannel = in.readUTF();
             switch (BungeeMsgType.valueOf(subchannel)) {
                 case IP:
