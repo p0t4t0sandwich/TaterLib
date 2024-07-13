@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_18.vanilla.server;
 
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_18.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;

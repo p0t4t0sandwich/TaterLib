@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_15_2.forge.server;
 
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_15_2.forge.player.ForgePlayer;

@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.event.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_7_10.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.v1_7_10.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_7_10.forge.entity.player.ForgePlayer;
 
 import net.minecraft.entity.player.EntityPlayer;
 

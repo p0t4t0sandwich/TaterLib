@@ -14,7 +14,7 @@ import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 
 public class TaterLibCommand implements Command {
     private String name = "taterlib";

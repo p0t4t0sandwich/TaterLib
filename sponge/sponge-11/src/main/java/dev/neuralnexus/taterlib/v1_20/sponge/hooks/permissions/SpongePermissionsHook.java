@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_20.sponge.hooks.permissions;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_20.sponge.command.SpongeCommandSender;
-import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_20.vanilla.entity.player.VanillaPlayer;
 
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 

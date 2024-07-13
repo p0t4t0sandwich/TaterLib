@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.server;
 
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.world.BukkitServerWorld;
 
 import java.util.Arrays;

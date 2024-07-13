@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_19.sponge.event.block;
 
 import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterlib.v1_19.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterlib.v1_19.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 

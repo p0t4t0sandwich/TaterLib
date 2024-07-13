@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.v1_19.vanilla.event.player;
 import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 
 import java.util.Set;
 

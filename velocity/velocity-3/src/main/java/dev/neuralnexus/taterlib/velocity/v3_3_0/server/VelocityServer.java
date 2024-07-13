@@ -7,10 +7,10 @@
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import java.util.List;
 import java.util.stream.Collectors;

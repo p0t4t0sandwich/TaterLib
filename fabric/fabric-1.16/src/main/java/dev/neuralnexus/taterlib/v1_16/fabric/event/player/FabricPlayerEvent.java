@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_16.fabric.event.player;
 
 import dev.neuralnexus.taterapi.event.player.PlayerEvent;
-import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterlib.v1_16.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterlib.v1_16.fabric.entity.player.FabricPlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 

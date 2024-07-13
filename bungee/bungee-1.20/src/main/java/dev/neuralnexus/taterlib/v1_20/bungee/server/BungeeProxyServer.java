@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_20.bungee.server;
 
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterlib.v1_20.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.v1_20.bungee.entity.player.BungeePlayer;
 
 import java.util.List;
 import java.util.stream.Collectors;

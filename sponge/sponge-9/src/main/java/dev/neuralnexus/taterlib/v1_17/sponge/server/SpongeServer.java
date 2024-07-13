@@ -6,10 +6,10 @@
 
 package dev.neuralnexus.taterlib.v1_17.sponge.server;
 
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_17.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterlib.v1_17.sponge.entity.player.SpongePlayer;
 import dev.neuralnexus.taterlib.v1_17.sponge.world.SpongeServerWorld;
 
 import java.util.List;

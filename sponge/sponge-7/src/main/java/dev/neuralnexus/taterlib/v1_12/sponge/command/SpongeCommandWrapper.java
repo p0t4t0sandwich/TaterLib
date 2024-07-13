@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_12.sponge.command;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.v1_12.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterlib.v1_12.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;

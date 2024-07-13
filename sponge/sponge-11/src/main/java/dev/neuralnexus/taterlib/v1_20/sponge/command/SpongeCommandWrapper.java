@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.sponge.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.v1_20.sponge.adapters.SpongeAdapters;
-import dev.neuralnexus.taterlib.v1_20.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_20.vanilla.entity.player.VanillaPlayer;
 
 import net.kyori.adventure.text.Component;
 

@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_19.vanilla.event.block;
 
 import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterlib.v1_19.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterlib.v1_19.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;

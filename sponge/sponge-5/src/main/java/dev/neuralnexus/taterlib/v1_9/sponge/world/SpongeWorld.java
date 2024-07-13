@@ -7,12 +7,12 @@
 package dev.neuralnexus.taterlib.v1_9.sponge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_9.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_9.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterlib.v1_9.sponge.entity.player.SpongePlayer;
 
 import java.util.List;
 import java.util.function.Predicate;

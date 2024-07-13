@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;

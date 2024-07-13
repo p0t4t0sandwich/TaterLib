@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_6_4.bukkit.hooks.permissions;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.command.BukkitCommandSender;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
 
 /** A hook for Bukkit permissions */
 public class BukkitPermissionsHook implements PermissionsHook {

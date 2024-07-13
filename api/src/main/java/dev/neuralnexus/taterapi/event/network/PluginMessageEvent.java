@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Abstract class for plugin message events. */

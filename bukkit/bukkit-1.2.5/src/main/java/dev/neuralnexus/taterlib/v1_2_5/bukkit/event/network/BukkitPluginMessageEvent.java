@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_2_5.bukkit.event.network;
 
 import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.v1_2_5.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.player.BukkitPlayer;
 
 /** Bukkit implementation of {@link PluginMessageEvent}. */
 public class BukkitPluginMessageEvent implements PluginMessageEvent {

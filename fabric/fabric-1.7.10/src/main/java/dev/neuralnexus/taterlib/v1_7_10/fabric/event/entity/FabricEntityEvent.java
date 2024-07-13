@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.v1_7_10.fabric.event.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_7_10.fabric.entity.player.FabricPlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 

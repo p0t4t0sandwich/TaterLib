@@ -11,7 +11,7 @@ import com.velocitypowered.api.command.RawCommand;
 import com.velocitypowered.api.proxy.Player;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 /** Wraps a command callback into a Velocity Command. */
 public class VelocityCommandWrapper implements RawCommand {

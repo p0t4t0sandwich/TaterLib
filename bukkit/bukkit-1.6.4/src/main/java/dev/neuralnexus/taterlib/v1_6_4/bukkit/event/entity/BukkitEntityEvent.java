@@ -9,7 +9,7 @@ package dev.neuralnexus.taterlib.v1_6_4.bukkit.event.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.event.entity.EntityEvent;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.BukkitEntity;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
 
 import org.bukkit.entity.Player;
 

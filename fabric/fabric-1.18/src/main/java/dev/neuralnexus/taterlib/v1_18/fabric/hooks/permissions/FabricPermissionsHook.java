@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_18.fabric.hooks.permissions;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_18.vanilla.command.VanillaCommandSender;
-import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.entity.player.VanillaPlayer;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
 

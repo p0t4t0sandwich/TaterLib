@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_9.sponge.hooks.permissions;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_9.sponge.command.SpongeCommandSender;
-import dev.neuralnexus.taterlib.v1_9.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterlib.v1_9.sponge.entity.player.SpongePlayer;
 
 /** A hook for Sponge permissions */
 public class SpongePermissionsHook implements PermissionsHook {

@@ -7,10 +7,10 @@
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.server;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.b1_7_3.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitServerWorld;
 
 import java.util.Arrays;

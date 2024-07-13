@@ -7,12 +7,12 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.BukkitEntity;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.player.BukkitPlayer;
+import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.player.BukkitPlayer;
 
 import org.bukkit.util.BoundingBox;
 

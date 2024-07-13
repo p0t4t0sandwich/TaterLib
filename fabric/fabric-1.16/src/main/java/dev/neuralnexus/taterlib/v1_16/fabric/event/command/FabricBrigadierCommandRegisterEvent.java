@@ -13,9 +13,9 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_16.fabric.command.FabricCommandSender;
-import dev.neuralnexus.taterlib.v1_16.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_16.fabric.entity.player.FabricPlayer;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.command.ServerCommandSource;

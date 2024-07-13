@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterlib.v1_12_2.fabric.command;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.v1_12_2.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_12_2.fabric.entity.player.FabricPlayer;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandCallable;
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandException;

@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.entity;
 
 import dev.neuralnexus.taterapi.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.player.GameMode;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 
 /** The interface for a HumanEntity */
 public interface HumanEntity extends LivingEntity, InventoryHolder, Permissible {

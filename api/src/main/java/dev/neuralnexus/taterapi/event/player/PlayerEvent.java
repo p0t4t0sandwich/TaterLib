@@ -7,7 +7,7 @@
 package dev.neuralnexus.taterapi.event.player;
 
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 
 /** Abstract class for player events */
 public interface PlayerEvent extends Event {

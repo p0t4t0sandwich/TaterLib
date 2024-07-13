@@ -13,7 +13,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_16_3.forge.command.ForgeCommandSender;
 import dev.neuralnexus.taterlib.v1_16_3.forge.player.ForgePlayer;
 

@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.player;
 import com.velocitypowered.api.event.player.ServerConnectedEvent;
 
 import dev.neuralnexus.taterapi.event.player.PlayerServerSwitchEvent;
-import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 /** Velocity implementation of {@link PlayerServerSwitchEvent}. */

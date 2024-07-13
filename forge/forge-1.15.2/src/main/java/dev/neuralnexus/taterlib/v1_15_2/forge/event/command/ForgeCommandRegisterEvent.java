@@ -16,7 +16,7 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_15_2.forge.command.ForgeCommandSender;
 import dev.neuralnexus.taterlib.v1_15_2.forge.player.ForgePlayer;
 

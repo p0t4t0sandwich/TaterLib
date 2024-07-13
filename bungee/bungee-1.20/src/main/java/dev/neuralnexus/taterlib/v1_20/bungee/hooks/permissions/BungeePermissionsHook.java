@@ -9,9 +9,9 @@ package dev.neuralnexus.taterlib.v1_20.bungee.hooks.permissions;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterlib.v1_20.bungee.command.BungeeCommandSender;
-import dev.neuralnexus.taterlib.v1_20.bungee.player.BungeePlayer;
+import dev.neuralnexus.taterlib.v1_20.bungee.entity.player.BungeePlayer;
 
 /** A hook for Bungee permissions */
 public class BungeePermissionsHook implements PermissionsHook {

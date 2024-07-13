@@ -7,8 +7,8 @@
 package dev.neuralnexus.taterlib.v1_9.sponge.event.player;
 
 import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
-import dev.neuralnexus.taterapi.player.Player;
-import dev.neuralnexus.taterlib.v1_9.sponge.player.SpongePlayer;
+import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterlib.v1_9.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.event.achievement.GrantAchievementEvent;
 

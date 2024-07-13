@@ -7,12 +7,12 @@
 package dev.neuralnexus.taterlib.v1_15.fabric.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_15.fabric.entity.FabricEntity;
-import dev.neuralnexus.taterlib.v1_15.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_15.fabric.entity.player.FabricPlayer;
 
 import net.minecraft.util.math.Box;
 import net.minecraft.util.registry.Registry;

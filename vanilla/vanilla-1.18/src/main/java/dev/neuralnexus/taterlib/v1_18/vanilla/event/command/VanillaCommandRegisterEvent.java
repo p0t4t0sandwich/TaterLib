@@ -16,9 +16,9 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_18.vanilla.command.VanillaCommandSender;
-import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;

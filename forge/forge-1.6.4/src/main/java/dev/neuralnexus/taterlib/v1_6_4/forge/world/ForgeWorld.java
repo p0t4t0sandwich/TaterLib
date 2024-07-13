@@ -7,12 +7,12 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.v1_6_4.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_6_4.forge.entity.player.ForgePlayer;
 
 import net.minecraft.entity.player.EntityPlayer;
 

@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_14.fabric.event.player;
 
 import dev.neuralnexus.taterapi.event.player.PlayerRespawnEvent;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_14.fabric.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_14.fabric.entity.player.FabricPlayer;
 import dev.neuralnexus.taterlib.v1_14.fabric.world.FabricLocation;
 
 import net.minecraft.entity.player.PlayerEntity;

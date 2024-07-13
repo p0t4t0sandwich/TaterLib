@@ -8,9 +8,9 @@ package dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions;
 
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.player.Player;
+import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.v1_18.vanilla.command.VanillaCommandSender;
-import dev.neuralnexus.taterlib.v1_18.vanilla.player.VanillaPlayer;
+import dev.neuralnexus.taterlib.v1_18.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraftforge.server.permission.PermissionAPI;

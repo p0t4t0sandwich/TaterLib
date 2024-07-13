@@ -6,7 +6,7 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "mixins": [
     "inventory.VanillaItemStackMixin_1_20_6",
-    "player.VanillaPlayerMixin_1_20_6"
+    "entity.player.VanillaPlayerMixin_1_20_6"
   ],
   "injectors": {
     "defaultRequire": 1

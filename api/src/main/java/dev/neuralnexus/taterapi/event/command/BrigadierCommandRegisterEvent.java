@@ -11,7 +11,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 
 /** Abstract class for a brigadier command register event. */
 public interface BrigadierCommandRegisterEvent<S> extends Event {
