@@ -51,12 +51,12 @@ public class TaterReflectUtil {
         if (packageName == null) {
             return Optional.empty();
         }
-        String path = "";
+        String path = ".";
         if (relocatingPlatform == Platform.FORGE
                 && MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_20_6)) {
-            path = ".forge.";
+            path += "forge.";
         } else if (relocatingPlatform == Platform.FABRIC) {
-            path = ".fabric.";
+            path += "fabric.";
         }
         return Optional.of(packageName + path + clazz);
     }
@@ -287,7 +287,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_18;
         } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
             version = MinecraftVersion.V1_20;
         } else if (mcv.is(MinecraftVersion.V1_21)) {
             version = MinecraftVersion.V1_21;
