@@ -7,7 +7,9 @@
 package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.block;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterlib.v1_17.vanilla.event.block.VanillaPlayerBlockBreakEvent;
@@ -26,6 +28,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player block break listener. */
+@ReqPlatform(not = Platform.FORGE)
 @ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin_1_17 {

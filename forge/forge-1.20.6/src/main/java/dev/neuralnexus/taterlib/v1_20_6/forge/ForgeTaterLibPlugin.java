@@ -12,7 +12,13 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.forge.hooks.permissions.ForgePermissionsHook;
+import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.block.ForgeBlockListener;
+import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.command.ForgeCommandsListener;
+import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.entity.ForgeEntityListener;
+import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.player.ForgePlayerListener;
+import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.server.ForgeServerListener;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
@@ -28,6 +34,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                         () ->
                                                 new VanillaServer(
                                                         ServerLifecycleHooks.getCurrentServer())));
+
+        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
+            MinecraftForge.EVENT_BUS.register(this);
+            MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
+            MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
+            MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
+        }
     }
 
     @Override

@@ -8,7 +8,6 @@
   "package": "dev.neuralnexus.taterlib.v1_20_6.forge.mixin",
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "mixins": [
-    "api.minecraft.resources.ResourceLocationAPI",
-    "listeners.network.CustomPayloadMixin_1_20_6"
+    "api.minecraft.resources.ResourceLocationAPI"
   ]
 }

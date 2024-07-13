@@ -6,6 +6,8 @@
 
 package dev.neuralnexus.taterlib.v1_18.vanilla.mixin.listeners.player;
 
+import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_18.vanilla.event.player.VanillaPlayerLoginEvent;
 
@@ -19,6 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player login listener. */
+@ReqPlatform(not = Platform.FORGE)
 @Mixin(PlayerList.class)
 public class PlayerLoginMixin_1_18 {
     /** Called when a player logs in. */
