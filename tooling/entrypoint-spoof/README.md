@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     compileOnly('dev.neuralnexus:entrypoint-spoof:<version>')
-    // Also included in taterlib-api for ease of use
+    // Also included in taterapi for ease of use
 }
 ```
 

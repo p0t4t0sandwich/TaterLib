@@ -40,9 +40,9 @@ Link to our support: [Discord](https://discord.neuralnexus.dev)
 [![BuiltByBit](https://img.shields.io/badge/BuiltByBit-download-blue?logo=https%3A%2F%2Fbuiltbybit.com%2Ffavicon.ico)](https://builtbybit.com/resources/taterlib.40265/)
 [![PolyMart](https://img.shields.io/badge/PolyMart-download-cyan?logo=https%3A%2F%2Fpolymart.org%2Ffavicon.ico)](https://polymart.org/resource/taterlib.5552)
 
-[![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterlib-api)[![Jenkins Dev Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
+[![Maven Snapshots Repo](https://img.shields.io/maven-metadata/v?label=Snapshot&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Fsnapshots%2Fdev%2Fneuralnexus%2Ftaterapi%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/snapshots/dev/neuralnexus/taterapi)[![Jenkins Dev Build](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLibDev%2F)](https://jenkins.neuralnexus.dev/job/TaterLibDev/)
 
-[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterlib-api%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterlib-api)[![Jenkins Builds](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLib%2F)](https://jenkins.neuralnexus.dev/job/TaterLib/)
+[![Maven Repo](https://img.shields.io/maven-metadata/v?label=Release&metadataUrl=https%3A%2F%2Fmaven.neuralnexus.dev%2Freleases%2Fdev%2Fneuralnexus%2Ftaterapi%2Fmaven-metadata.xml)](https://maven.neuralnexus.dev/#/releases/dev/neuralnexus/taterapi)[![Jenkins Builds](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fjenkins.neuralnexus.dev%2Fjob%2FTaterLib%2F)](https://jenkins.neuralnexus.dev/job/TaterLib/)
 
 ### Adding to your project
 
@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly('dev.neuralnexus:taterlib-api:<version>')
+    compileOnly('dev.neuralnexus:taterapi:<version>')
 }
 ```
 

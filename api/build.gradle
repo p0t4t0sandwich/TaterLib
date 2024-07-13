@@ -53,7 +53,7 @@ dependencies {
 java.disableAutoTargetJvm()
 
 jar {
-    archiveFileName = "${project_id}-api-${version}.jar"
+    archiveFileName = "taterapi-${version}.jar"
 }
 
 shadowJar {
@@ -101,7 +101,7 @@ shadowJar {
     relocate('com.zaxxer.hikari', 'dev.neuralnexus.taterlib.lib.hikari')
     relocate('com.mysql', 'dev.neuralnexus.taterlib.lib.mysql')
 
-    archiveFileName = "${project_id}-api-full-${version}.jar"
+    archiveFileName = "taterapi-full-${version}.jar"
 }
 
 artifacts {
