@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterlib.v1_11_2.forge.player;
 
-import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -14,7 +14,7 @@ import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_11_2.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_11_2.forge.entity.ForgeLivingEntity;
-import dev.neuralnexus.taterlib.v1_11_2.forge.inventory.ForgePlayerInventory;
+import dev.neuralnexus.taterlib.v1_11_2.forge.item.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_11_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.world.ForgeServerWorld;
 

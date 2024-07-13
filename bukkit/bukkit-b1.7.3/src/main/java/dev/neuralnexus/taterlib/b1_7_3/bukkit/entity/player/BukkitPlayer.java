@@ -7,14 +7,14 @@
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.BukkitLivingEntity;
-import dev.neuralnexus.taterlib.b1_7_3.bukkit.inventory.BukkitPlayerInventory;
+import dev.neuralnexus.taterlib.b1_7_3.bukkit.item.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
 
 import org.bukkit.plugin.Plugin;

@@ -6,14 +6,14 @@
 
 package dev.neuralnexus.taterlib.v1_7_10.fabric.entity.player;
 
-import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.entity.FabricLivingEntity;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.inventory.FabricPlayerInventory;
+import dev.neuralnexus.taterlib.v1_7_10.fabric.item.inventory.FabricPlayerInventory;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.server.FabricServer;
 
 import io.netty.buffer.Unpooled;

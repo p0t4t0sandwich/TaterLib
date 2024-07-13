@@ -9,7 +9,7 @@
   "package": "dev.neuralnexus.taterlib.v1_19_3.forge.mixin.patch",
   "mixins": [
     "entity.VanillaEntityMixin_1_19_3",
-    "player.VanillaPlayerMixin_1_19_3"
+    "entity.player.VanillaPlayerMixin_1_19_3"
   ],
   "refmap": "taterlib.mixins.v1_19_3.forge.refmap.json"
 }

@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.event.entity;
 
-import dev.neuralnexus.taterapi.inventory.ItemStack;
+import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 
 import java.util.List;
 

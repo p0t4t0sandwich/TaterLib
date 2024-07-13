@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi.entity;
 
-import dev.neuralnexus.taterapi.inventory.Inventory;
+import dev.neuralnexus.taterapi.item.inventory.Inventory;
 
 /** Represents an entity that can have an inventory */
 public interface InventoryHolder {

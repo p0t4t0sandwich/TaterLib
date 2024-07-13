@@ -6,14 +6,14 @@
 
 package dev.neuralnexus.taterlib.v1_21.vanilla.entity.player;
 
-import dev.neuralnexus.taterapi.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_21.vanilla.entity.VanillaLivingEntity;
-import dev.neuralnexus.taterlib.v1_21.vanilla.inventory.VanillaPlayerInventory;
+import dev.neuralnexus.taterlib.v1_21.vanilla.item.inventory.VanillaPlayerInventory;
 import dev.neuralnexus.taterlib.v1_21.vanilla.network.VanillaCustomPacketPayload_1_20_6;
 import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaWorld;
