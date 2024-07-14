@@ -6,7 +6,7 @@
 
 package dev.neuralnexus.taterapi;
 
-import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
 
 import java.util.Arrays;
 import java.util.List;
@@ -186,7 +186,7 @@ public enum MinecraftVersion {
     /** Get the version of Minecraft the server is running. */
     public static MinecraftVersion get() {
         if (minecraftVersion == UNKNOWN) {
-            minecraftVersion = new PlatformDataImpl().minecraftVersion();
+            minecraftVersion = PlatformData.instance().minecraftVersion();
         }
         return minecraftVersion;
     }

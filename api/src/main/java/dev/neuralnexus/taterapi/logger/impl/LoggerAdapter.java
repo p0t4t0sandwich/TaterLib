@@ -14,10 +14,6 @@ public class LoggerAdapter implements Logger {
     private final String prefix;
     private final Logger logger;
 
-    public LoggerAdapter(String pluginId) {
-        this(pluginId, new Object());
-    }
-
     public LoggerAdapter(String pluginId, Object logger) {
         this("[" + pluginId + "] ", pluginId, logger);
     }

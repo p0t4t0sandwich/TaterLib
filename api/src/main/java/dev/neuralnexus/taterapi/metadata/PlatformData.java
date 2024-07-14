@@ -12,11 +12,16 @@ import static dev.neuralnexus.taterapi.util.PathUtils.getModsFolder;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
 
 import java.nio.file.Path;
 import java.util.List;
 
 public interface PlatformData {
+    static PlatformData instance() {
+        return PlatformDataImpl.getInstance();
+    }
+
     /**
      * Get the running Minecraft version
      *

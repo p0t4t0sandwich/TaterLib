@@ -18,7 +18,7 @@ import static org.spongepowered.asm.util.Annotations.getValue;
 
 public class AnnotationChecker {
     private static final Platform platform = Platform.get();
-    private static final PlatformData platformData = new PlatformDataImpl();
+    private static final PlatformData platformData = PlatformData.instance();
     private static final MinecraftVersion minecraftVersion = platformData.minecraftVersion();
 
     public static boolean checkAnnotations(List<AnnotationNode> annotations, String mixinClassName, boolean verbose) {

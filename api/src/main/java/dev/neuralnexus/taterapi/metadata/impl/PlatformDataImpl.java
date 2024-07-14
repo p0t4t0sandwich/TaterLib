@@ -22,25 +22,28 @@ public class PlatformDataImpl implements PlatformData {
     private static MinecraftVersion MC_VERSION = MinecraftVersion.UNKNOWN;
     private static String MOD_LOADER_VERSION = "Unknown";
 
-    public PlatformDataImpl() {
-        Platform platform = Platform.get();
-        if (platform.isBungeeCordBased()) {
-            INSTANCE = new BungeeCordData();
-        } else if (platform.isFabricBased()) {
-            INSTANCE = new FabricData();
-        } else if (platform.isNeoForgeBased()) {
-            INSTANCE = new NeoForgeData();
-        } else if (platform.isForgeBased()) {
-            INSTANCE = ForgeData.create();
-        } else if (platform.isBukkitBased()) {
-            INSTANCE = new BukkitData();
-        } else if (platform.isSpongeBased()) {
-            INSTANCE = SpongeData.create();
-        } else if (platform.isVelocityBased()) {
-            INSTANCE = new VelocityData();
-        } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
-            INSTANCE = new VanillaData();
+    public static PlatformData getInstance() {
+        if (INSTANCE == null) {
+            Platform platform = Platform.get();
+            if (platform.isBungeeCordBased()) {
+                INSTANCE = new BungeeCordData();
+            } else if (platform.isFabricBased()) {
+                INSTANCE = new FabricData();
+            } else if (platform.isNeoForgeBased()) {
+                INSTANCE = new NeoForgeData();
+            } else if (platform.isForgeBased()) {
+                INSTANCE = ForgeData.create();
+            } else if (platform.isBukkitBased()) {
+                INSTANCE = new BukkitData();
+            } else if (platform.isSpongeBased()) {
+                INSTANCE = SpongeData.create();
+            } else if (platform.isVelocityBased()) {
+                INSTANCE = new VelocityData();
+            } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
+                INSTANCE = new VanillaData();
+            }
         }
+        return INSTANCE;
     }
 
     @Override

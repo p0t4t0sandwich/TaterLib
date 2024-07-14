@@ -26,7 +26,7 @@ public class LoaderImpl implements Loader {
     public static final String PROJECT_DESCRIPTION =
             "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";
     public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
-    private static final PlatformData platformData = new PlatformDataImpl();
+    private static final PlatformData platformData = PlatformData.instance();
     private static Loader instance = null;
     private final Object plugin;
     private final Object server;

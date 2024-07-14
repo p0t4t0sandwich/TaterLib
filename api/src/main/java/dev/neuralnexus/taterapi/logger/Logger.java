@@ -6,8 +6,14 @@
 
 package dev.neuralnexus.taterapi.logger;
 
+import dev.neuralnexus.taterapi.metadata.PlatformData;
+
 /** The abstract logger. */
 public interface Logger {
+    static Logger create(String pluginId) {
+        return PlatformData.instance().logger(pluginId);
+    }
+
     /**
      * Get underlying logger.
      *

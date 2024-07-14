@@ -9,7 +9,6 @@ package dev.neuralnexus.taterapi;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -28,7 +27,7 @@ public class TaterAPI {
         if (platformData.length > 0) {
             this.platformData = platformData;
         } else {
-            this.platformData = new PlatformData[] {new PlatformDataImpl()};
+            this.platformData = new PlatformData[] {PlatformData.instance()};
         }
     }
 
