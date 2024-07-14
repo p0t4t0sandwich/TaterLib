@@ -9,7 +9,6 @@ package dev.neuralnexus.conditionalmixins;
 import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 
 import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.service.MixinService;
@@ -22,7 +21,7 @@ import java.util.Collections;
  * Utility class for users that what to use conditional mixins allong with their own mixin plugin
  */
 public class ConditionalMixins {
-    public static final Logger logger = new SystemLogger("conditionalmixins");
+    public static final Logger logger = Logger.create("conditionalmixins");
 
     public static boolean shouldApplyMixin(String mixinClassName, Collection<String> disabledMixins, boolean verbose) {
         for (String disabledMixin : disabledMixins) {

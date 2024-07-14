@@ -23,7 +23,7 @@ import java.util.Map;
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
-    private static final Logger logger = Loader.instance().logger(LoaderImpl.PROJECT_ID);
+    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
     private static boolean RELOADED = false;
 
     /**

@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
 import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
@@ -30,7 +29,7 @@ import java.util.List;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
-    private static final Logger logger = new SystemLogger("TaterLibConfigLoader");
+    private static final Logger logger = Logger.create("TaterLibConfigLoader");
     private static final Path configPath =
             Paths.get(
                     TaterAPIProvider.platformData().configFolder()

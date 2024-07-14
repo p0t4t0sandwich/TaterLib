@@ -7,7 +7,6 @@
 package dev.neuralnexus.taterloader.impl;
 
 import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.plugin.ModuleLoader;
 import dev.neuralnexus.taterloader.plugin.Plugin;
