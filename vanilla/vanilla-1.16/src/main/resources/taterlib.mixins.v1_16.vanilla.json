@@ -1,0 +1,31 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.v1_16.vanilla.mixin",
+  "mixins": [
+    "accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
+    "accessors.world.entity.LivingEntityAccessor",
+    "api.minecraft.resources.ResourceLocationAPI",
+    "listeners.block.PlayerBlockBreakMixin",
+    "listeners.entity.EntityDamageMixin",
+    "listeners.entity.EntityDeathMixin",
+    "listeners.entity.EntitySpawnMixin",
+    "listeners.network.CustomPayloadMixin",
+    "listeners.player.PlayerAdvancementFinishedMixin",
+    "listeners.player.PlayerAdvancementProgressMixin",
+    "listeners.player.PlayerDeathMixin",
+    "listeners.player.PlayerLoginMixin",
+    "listeners.player.PlayerLogoutMixin",
+    "listeners.player.PlayerMessageMixin",
+    "listeners.player.PlayerRespawnMixin",
+    "listeners.server.ServerStartedMixin",
+    "listeners.server.ServerStartingMixin",
+    "listeners.server.ServerStoppedMixin",
+    "listeners.server.ServerStoppingMixin"
+  ]
+}
