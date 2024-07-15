@@ -4,14 +4,14 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.player;
+package dev.neuralnexus.taterlib.v1_16_5.vanilla.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_17.vanilla.event.player.VanillaPlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_16_5.vanilla.event.player.VanillaPlayerLoginEvent;
 
 import net.minecraft.network.Connection;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,9 +24,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player login listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(PlayerList.class)
-public class PlayerLoginMixin_1_17 {
+public class PlayerLoginMixin {
     /** Called when a player logs in. */
     @Inject(
             method = "placeNewPlayer",

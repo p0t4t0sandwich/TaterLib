@@ -4,14 +4,14 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.v1_17.vanilla.mixin.listeners.player;
+package dev.neuralnexus.taterlib.v1_16_5.vanilla.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_17.vanilla.event.player.VanillaPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.v1_16_5.vanilla.event.player.VanillaPlayerLogoutEvent;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
@@ -23,14 +23,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player logout listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(ServerGamePacketListenerImpl.class)
-public class PlayerLogoutMixin_1_17 {
+public class PlayerLogoutMixin {
     /** Called when a player disconnects. */
     @Inject(method = "onDisconnect", at = @At("HEAD"))
     private void onLogout(Component reason, CallbackInfo ci) {
         PlayerEvents.LOGOUT.invoke(
                 new VanillaPlayerLogoutEvent(
-                        ((ServerGamePacketListenerImpl) (Object) this).getPlayer()));
+                        ((ServerGamePacketListenerImpl) (Object) this).player));
     }
 }
