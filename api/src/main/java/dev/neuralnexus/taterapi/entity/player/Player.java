@@ -12,22 +12,6 @@ import dev.neuralnexus.taterapi.world.Location;
 /** The interface for a Player */
 public interface Player extends SimplePlayer, HumanEntity {
     /**
-     * Set the player's spawn point
-     *
-     * @param location The location to set the spawn point to
-     */
-    void setSpawn(Location location, boolean forced);
-
-    /**
-     * Set the player's spawn point
-     *
-     * @param location The location to set the spawn point to
-     */
-    default void setSpawn(Location location) {
-        setSpawn(location, false);
-    }
-
-    /**
      * Allow the player to fly
      *
      * @param allow Whether the player should be allowed to fly

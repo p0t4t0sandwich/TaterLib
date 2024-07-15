@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge.entity.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -22,13 +23,12 @@ import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
-import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 import org.spongepowered.api.network.channel.raw.RawDataChannel;
 
 import java.util.UUID;
 
 /** Sponge implementation of {@link Player}. */
-public class SpongePlayer extends SpongeLivingEntity implements Player {
+public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPlayer {
     private final org.spongepowered.api.entity.living.player.Player player;
 
     /**
@@ -57,7 +57,11 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     @Override
     public String ipAddress() {
-        return ((ServerPlayer) player).connection().address().getAddress().getHostAddress();
+        return ((org.spongepowered.api.entity.living.player.server.ServerPlayer) player)
+                .connection()
+                .address()
+                .getAddress()
+                .getHostAddress();
     }
 
     @Override
@@ -85,7 +89,9 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
         Sponge.channelManager()
                 .ofType((org.spongepowered.api.ResourceKey) (Object) channel, RawDataChannel.class)
                 .play()
-                .sendTo((ServerPlayer) player, (buffer) -> buffer.writeBytes(data));
+                .sendTo(
+                        (org.spongepowered.api.entity.living.player.server.ServerPlayer) player,
+                        (buffer) -> buffer.writeBytes(data));
     }
 
     @Override
@@ -95,12 +101,15 @@ public class SpongePlayer extends SpongeLivingEntity implements Player {
 
     @Override
     public int ping() {
-        return ((ServerPlayer) player).connection().latency();
+        return ((org.spongepowered.api.entity.living.player.server.ServerPlayer) player)
+                .connection()
+                .latency();
     }
 
     @Override
     public void kick(String message) {
-        ((ServerPlayer) player).kick(Component.text(message));
+        ((org.spongepowered.api.entity.living.player.server.ServerPlayer) player)
+                .kick(Component.text(message));
     }
 
     @Override

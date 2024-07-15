@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -22,7 +23,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
-public class BukkitPlayer extends BukkitLivingEntity implements Player {
+public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPlayer {
     private final org.bukkit.entity.Player player;
     private Plugin plugin = null;
 

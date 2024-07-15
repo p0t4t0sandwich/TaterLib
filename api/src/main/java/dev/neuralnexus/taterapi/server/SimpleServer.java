@@ -74,7 +74,7 @@ public interface SimpleServer {
      * @return The server's version.
      */
     default MinecraftVersion version() {
-        return TaterAPIProvider.minecraftVersion();
+        return MinecraftVersion.get();
     }
 
     /**

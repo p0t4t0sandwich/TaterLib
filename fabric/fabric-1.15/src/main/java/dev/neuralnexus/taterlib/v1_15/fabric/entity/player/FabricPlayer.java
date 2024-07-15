@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_15.fabric.entity.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -31,7 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Player}. */
-public class FabricPlayer extends FabricLivingEntity implements Player {
+public class FabricPlayer extends FabricLivingEntity implements Player, ServerPlayer {
     private final PlayerEntity player;
 
     /**

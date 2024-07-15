@@ -8,6 +8,9 @@ package dev.neuralnexus.taterapi.command;
 
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 
 public interface CommandSender extends Permissible {
     /**

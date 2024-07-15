@@ -19,7 +19,7 @@ import java.util.Optional;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface SimplePlayer extends CommandSender, Connection {
+public interface SimplePlayer extends CommandSender {
     /**
      * Get the display name of the player
      *

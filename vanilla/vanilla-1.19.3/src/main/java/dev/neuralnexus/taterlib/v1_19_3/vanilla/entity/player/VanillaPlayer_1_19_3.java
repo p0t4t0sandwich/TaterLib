@@ -12,7 +12,6 @@ import dev.neuralnexus.taterlib.v1_19.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaWorld;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 
 /** Vanilla implementation of {@link Player}. */
 public class VanillaPlayer_1_19_3 extends VanillaPlayer {
@@ -30,7 +29,7 @@ public class VanillaPlayer_1_19_3 extends VanillaPlayer {
 
     @Override
     public void setSpawn(Location location, boolean forced) {
-        ((ServerPlayer) player)
+        ((net.minecraft.server.level.ServerPlayer) player)
                 .setRespawnPosition(
                         ((VanillaWorld) location.world()).world().dimension(),
                         new BlockPos((int) location.x(), (int) location.y(), (int) location.z()),

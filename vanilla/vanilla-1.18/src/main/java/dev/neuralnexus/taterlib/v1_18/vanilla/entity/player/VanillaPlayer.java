@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_18.vanilla.entity.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -24,13 +25,12 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.GameType;
 
 import java.util.UUID;
 
 /** Vanilla implementation of {@link Player}. */
-public class VanillaPlayer extends VanillaLivingEntity implements Player {
+public class VanillaPlayer extends VanillaLivingEntity implements Player, ServerPlayer {
     private final net.minecraft.world.entity.player.Player player;
 
     /**
@@ -59,7 +59,7 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     @Override
     public String ipAddress() {
-        return ((ServerPlayer) player).getIpAddress();
+        return ((net.minecraft.server.level.ServerPlayer) player).getIpAddress();
     }
 
     @Override
@@ -87,7 +87,8 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
         ResourceLocation id = (ResourceLocation) (Object) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((ServerPlayer) player).connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
+        ((net.minecraft.server.level.ServerPlayer) player)
+                .connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
     @Override
@@ -97,17 +98,18 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     @Override
     public int ping() {
-        return ((ServerPlayer) player).latency;
+        return ((net.minecraft.server.level.ServerPlayer) player).latency;
     }
 
     @Override
     public void kick(String message) {
-        ((ServerPlayer) player).connection.disconnect(Component.nullToEmpty(message));
+        ((net.minecraft.server.level.ServerPlayer) player)
+                .connection.disconnect(Component.nullToEmpty(message));
     }
 
     @Override
     public void setSpawn(Location location, boolean forced) {
-        ((ServerPlayer) player)
+        ((net.minecraft.server.level.ServerPlayer) player)
                 .setRespawnPosition(
                         ((VanillaWorld) location.world()).world().dimension(),
                         new BlockPos(location.x(), location.y(), location.z()),
@@ -138,12 +140,17 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player {
 
     @Override
     public GameMode gameMode() {
-        return GameMode.fromName(((ServerPlayer) player).gameMode.getGameModeForPlayer().getName());
+        return GameMode.fromName(
+                ((net.minecraft.server.level.ServerPlayer) player)
+                        .gameMode
+                        .getGameModeForPlayer()
+                        .getName());
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        ((ServerPlayer) player).setGameMode(GameType.byId(gameMode.id()));
+        ((net.minecraft.server.level.ServerPlayer) player)
+                .setGameMode(GameType.byId(gameMode.id()));
     }
 
     @Override

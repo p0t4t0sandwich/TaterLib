@@ -12,7 +12,6 @@ import dev.neuralnexus.taterlib.v1_20.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload_1_20_6;
 
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
-import net.minecraft.server.level.ServerPlayer;
 
 /** Vanilla implementation of {@link Player}. */
 public class VanillaPlayer_1_20_6 extends VanillaPlayer {
@@ -30,7 +29,7 @@ public class VanillaPlayer_1_20_6 extends VanillaPlayer {
 
     @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
-        ((ServerPlayer) player)
+        ((net.minecraft.server.level.ServerPlayer) player)
                 .connection.send(
                         new ClientboundCustomPayloadPacket(
                                 new VanillaCustomPacketPayload_1_20_6(channel, data)));

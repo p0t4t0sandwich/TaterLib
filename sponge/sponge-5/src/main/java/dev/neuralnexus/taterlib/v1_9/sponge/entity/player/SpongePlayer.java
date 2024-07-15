@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_9.sponge.entity.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -25,7 +26,7 @@ import org.spongepowered.api.text.Text;
 import java.util.UUID;
 
 /** Sponge implementation of {@link Player}. */
-public class SpongePlayer extends SpongeLivingEntity implements Player {
+public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPlayer {
     private final org.spongepowered.api.entity.living.player.Player player;
 
     /**
