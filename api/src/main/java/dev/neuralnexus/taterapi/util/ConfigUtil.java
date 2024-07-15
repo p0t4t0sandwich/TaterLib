@@ -4,7 +4,7 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.config;
+package dev.neuralnexus.taterapi.util;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 

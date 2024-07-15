@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.util.ConfigUtil;
 import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
