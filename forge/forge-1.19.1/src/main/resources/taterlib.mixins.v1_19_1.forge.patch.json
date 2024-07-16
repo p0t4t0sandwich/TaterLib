@@ -9,6 +9,5 @@
   "package": "dev.neuralnexus.taterlib.v1_19_1.forge.mixin.patch",
   "mixins": [
     "command.VanillaCommandSenderMixin_1_19_1"
-  ],
-  "refmap": "taterlib.mixins.v1_19_1.forge.refmap.json"
+  ]
 }

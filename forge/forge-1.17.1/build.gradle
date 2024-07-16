@@ -1,24 +1,30 @@
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.forgegradle)
-    alias(libs.plugins.mixin)
+    alias(libs.plugins.unimined)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
-}
-
-mixin {
-    add(sourceSets.main, "taterlib.mixins.v1_17_1.forge.refmap.json")
-    config("taterlib.mixins.v1_17_1.forge.json")
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    minecraftForge {
+        loader(forge_version)
+        mixinConfig("taterlib.mixins.v1_17_1.forge.json")
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("searge")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
@@ -34,10 +40,3 @@ shadowJar {
     relocate("dev.neuralnexus.taterlib.v1_17.vanilla", "dev.neuralnexus.taterlib.v1_17.vanilla.forge")
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
-
-reobf {
-    shadowJar {}
-}
-
-tasks.shadowJar.finalizedBy('reobfShadowJar')
-tasks.assemble.dependsOn('reobfShadowJar')

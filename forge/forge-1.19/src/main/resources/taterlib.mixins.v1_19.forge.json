@@ -10,6 +10,5 @@
   "mixins": [
     "api.minecraft.resources.ResourceLocationAPI",
     "listeners.network.CustomPayloadMixin_1_19"
-  ],
-  "refmap": "taterlib.mixins.v1_19.forge.refmap.json"
+  ]
 }

@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.unimined)
 }
 
 base {
@@ -9,16 +10,37 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    minecraftForge {
+        loader(forge_version)
+        mixinConfig("taterlib.mixins.v1_19_3.forge.patch.json")
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = true
+    remap(shadowJar) {
+        prodNamespace("searge")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
     compileOnly(project(':forge:forge-utils-modern'))
     compileOnly(project(':vanilla:vanilla-1.19'))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-${minecraft_version}"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.forge")
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

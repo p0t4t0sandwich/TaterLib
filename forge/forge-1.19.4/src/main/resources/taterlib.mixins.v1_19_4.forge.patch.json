@@ -9,6 +9,5 @@
   "package": "dev.neuralnexus.taterlib.v1_19_4.forge.mixin.patch",
   "mixins": [
     "VanillaEntityDamageEventMixin_1_19_4"
-  ],
-  "refmap": "taterlib.mixins.v1_19_4.forge.refmap.json"
+  ]
 }

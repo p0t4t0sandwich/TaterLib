@@ -1,17 +1,26 @@
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.unimined)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    minecraftForge {
+        loader(forge_version)
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("searge")
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
@@ -25,10 +34,3 @@ shadowJar {
     relocate("dev.neuralnexus.taterlib.v1_18.vanilla", "dev.neuralnexus.taterlib.v1_18.vanilla.forge")
     archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }
-
-reobf {
-    shadowJar {}
-}
-
-tasks.shadowJar.finalizedBy('reobfShadowJar')
-tasks.assemble.dependsOn('reobfShadowJar')
