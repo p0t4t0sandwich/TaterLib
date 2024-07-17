@@ -1,19 +1,29 @@
-import net.fabricmc.loom.task.RemapJarTask
-
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.loom)
+    alias(libs.plugins.unimined)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-loom.mixin.useLegacyMixinAp = false
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    fabric {
+        loader(loader_version)
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("intermediary")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
+}
 
 dependencies {
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings loom.officialMojangMappings()
-    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
@@ -30,11 +40,3 @@ shadowJar {
     relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_20_6.vanilla", "dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric")
 }
-
-task remappedShadowJar(type: RemapJarTask) {
-    dependsOn(tasks.shadowJar)
-    input = tasks.shadowJar.archiveFile
-    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
-}
-
-tasks.assemble.dependsOn('remappedShadowJar')

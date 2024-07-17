@@ -1,18 +1,29 @@
 plugins {
-    alias(libs.plugins.loom)
+    alias(libs.plugins.unimined)
 }
 
 base {
     archivesName = "${project_id}-fabric-${minecraft_version}"
 }
 
-loom.mixin.useLegacyMixinAp = false
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    fabric {
+        loader(loader_version)
+    }
+    mappings {
+        yarn(21)
+    }
+    defaultRemapJar = false
+    remap(jar) {
+        prodNamespace("intermediary")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
+}
 
 dependencies {
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings("net.fabricmc:yarn:${project.yarn_mappings}")
-    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-
     Set<String> apiModules = [
             'fabric-api-base',
             'fabric-command-api-v1',
@@ -21,7 +32,7 @@ dependencies {
     ]
 
     apiModules.forEach {
-        modImplementation(fabricApi.module(it, project.fabric_version))
+        modImplementation(fabricApi.fabricModule(it, project.fabric_version))
     }
 
     // Lucko's Permissions API

@@ -1,18 +1,26 @@
 plugins {
-    alias(libs.plugins.loom)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.unimined)
 }
 
-base {
-    archivesName = "${project_id}-fabric-${minecraft_version}"
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    fabric {
+        loader(loader_version)
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("intermediary")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
 }
-
-loom.mixin.useLegacyMixinAp = false
 
 dependencies {
-    minecraft("com.mojang:minecraft:${project.minecraft_version}")
-    mappings("net.fabricmc:yarn:${project.yarn_mappings}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
-
     Set<String> apiModules = [
             'fabric-api-base',
             'fabric-command-api-v1',
@@ -21,7 +29,7 @@ dependencies {
     ]
 
     apiModules.forEach {
-        modImplementation(fabricApi.module(it, project.fabric_version))
+        modImplementation(fabricApi.fabricModule(it, project.fabric_version))
     }
 
     // Lucko's Permissions API
@@ -31,4 +39,13 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
+    implementation(project(":vanilla:vanilla-1.16"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-1.16"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_16.vanilla", "dev.neuralnexus.taterlib.v1_16.vanilla.fabric")
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
