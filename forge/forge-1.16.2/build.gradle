@@ -1,0 +1,40 @@
+plugins {
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.unimined)
+}
+
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    minecraftForge {
+        loader(forge_version)
+        mixinConfig("taterlib.mixins.v1_16_2.forge.json")
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("searge")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
+}
+
+dependencies {
+    compileOnly('org.spongepowered:mixin:0.8.5')
+    compileOnly(project(':api'))
+    compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':tooling:loader'))
+    compileOnly(project(':forge:forge-utils-modern'))
+    implementation(project(":vanilla:vanilla-1.16"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-1.16"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_16.vanilla", "dev.neuralnexus.taterlib.v1_16.vanilla.forge")
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+}
