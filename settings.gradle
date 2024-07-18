@@ -156,6 +156,7 @@ include(
         'sponge:sponge-11',
 
         // Vanilla
+        'vanilla:vanilla-1.15',
         'vanilla:vanilla-1.16',
         'vanilla:vanilla-1.16.2',
         'vanilla:vanilla-1.17',

@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.unimined)
+    alias(libs.plugins.vanillagradle)
 }
 
 base {
@@ -9,12 +9,8 @@ base {
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-unimined.minecraft(sourceSets.main) {
-    version minecraft_version
-    mappings {
-        mojmap()
-    }
-    defaultRemapJar = true
+minecraft {
+    version(minecraft_version)
 }
 
 dependencies {
