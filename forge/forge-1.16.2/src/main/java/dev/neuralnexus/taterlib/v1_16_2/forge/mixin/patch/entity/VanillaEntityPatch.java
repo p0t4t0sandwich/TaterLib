@@ -16,6 +16,7 @@ import dev.neuralnexus.taterlib.v1_16.vanilla.entity.VanillaEntity;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.world.entity.Entity;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +27,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityPatch {
-    @Shadow Entity entity;
+    @Final
+    @Shadow
+    private Entity entity;
 
     /**
      * @author p0t4t0sandwich

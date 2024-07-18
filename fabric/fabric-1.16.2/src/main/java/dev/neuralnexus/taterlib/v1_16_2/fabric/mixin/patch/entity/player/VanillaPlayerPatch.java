@@ -4,7 +4,7 @@
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
 
-package dev.neuralnexus.taterlib.v1_16_2.vanilla.mixin.patch.entity.player;
+package dev.neuralnexus.taterlib.v1_16_2.fabric.mixin.patch.entity.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
@@ -23,13 +23,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 /** Patch mixin for VanillaPlayer */
-@ReqPlatform(not = Platform.FORGE)
+@ReqPlatform(Platform.FORGE)
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerPatch {
-    @Final
-    @Shadow
-    private Player player;
+    @Final @Shadow private Player player;
 
     /**
      * @author p0t4t0sandwich

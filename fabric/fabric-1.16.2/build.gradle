@@ -1,0 +1,51 @@
+plugins {
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.unimined)
+}
+
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    fabric {
+        loader(loader_version)
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("intermediary")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
+}
+
+dependencies {
+    Set<String> apiModules = [
+            'fabric-api-base',
+            'fabric-command-api-v1',
+            'fabric-lifecycle-events-v1',
+            'fabric-networking-api-v1'
+    ]
+
+    apiModules.forEach {
+        modImplementation(fabricApi.fabricModule(it, project.fabric_version))
+    }
+
+    // Lucko's Permissions API
+    include(modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT'))
+
+    compileOnly(project(':api'))
+    compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':tooling:loader'))
+    compileOnly(project(":vanilla:vanilla-1.16"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-1.16"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_16.vanilla", "dev.neuralnexus.taterlib.v1_16.vanilla.fabric")
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
+}

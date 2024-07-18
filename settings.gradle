@@ -103,6 +103,7 @@ include(
         'fabric:fabric-1.14',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
+        'fabric:fabric-1.16.2',
         'fabric:fabric-1.17',
         'fabric:fabric-1.18',
         'fabric:fabric-1.19',
