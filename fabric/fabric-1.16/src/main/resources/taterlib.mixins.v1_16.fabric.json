@@ -17,6 +17,7 @@
   ],
   "server": [
     "fabric.mixin.listeners.entity.EntitySpawnMixin",
+    "fabric.mixin.listeners.network.CustomPayloadMixin",
     "fabric.mixin.listeners.player.PlayerAdvancementFinishedMixin",
     "fabric.mixin.listeners.player.PlayerAdvancementProgressMixin",
     "fabric.mixin.listeners.player.PlayerDeathMixin",
