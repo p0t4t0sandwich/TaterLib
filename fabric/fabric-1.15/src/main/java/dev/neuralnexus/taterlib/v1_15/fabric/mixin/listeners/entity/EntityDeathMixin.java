@@ -8,10 +8,11 @@ package dev.neuralnexus.taterlib.v1_15.fabric.mixin.listeners.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterlib.v1_15.fabric.event.api.FabricEntityEvents;
+import dev.neuralnexus.taterapi.event.api.EntityEvents;
+import dev.neuralnexus.taterlib.v1_15.vanilla.event.entity.VanillaEntityDeathEvent;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,16 +22,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /** Mixin for the entity death listener. */
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(LivingEntity.class)
-class EntityDeathMixin_1_15 {
-    /**
-     * Called when an entity is spawned.
-     *
-     * @param source The source of the damage.
-     * @param ci The callback info.
-     */
-    @Inject(method = "onDeath", at = @At("HEAD"))
+class EntityDeathMixin {
+    /** Called when an entity is spawned. */
+    @Inject(method = "die", at = @At("HEAD"))
     private void onEntityDeath(DamageSource source, CallbackInfo ci) {
-        LivingEntity entity = (LivingEntity) (Object) this;
-        FabricEntityEvents.DEATH.invoker().onEntityDeath(entity, source);
+        EntityEvents.DEATH.invoke(
+                new VanillaEntityDeathEvent((LivingEntity) (Object) this, source));
     }
 }

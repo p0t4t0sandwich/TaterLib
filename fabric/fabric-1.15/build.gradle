@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.shadow)
     alias(libs.plugins.unimined)
 }
 
@@ -12,10 +13,10 @@ unimined.minecraft(sourceSets.main) {
         loader(loader_version)
     }
     mappings {
-        yarn(2)
+        mojmap()
     }
     defaultRemapJar = false
-    remap(jar) {
+    remap(shadowJar) {
         prodNamespace("intermediary")
         mixinRemap {
             disableRefmap()
@@ -42,4 +43,13 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
+    implementation(project(":vanilla:vanilla-1.15"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-1.15"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_15.vanilla", "dev.neuralnexus.taterlib.v1_15.vanilla.fabric")
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }

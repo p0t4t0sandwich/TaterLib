@@ -10,8 +10,8 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.v1_15.fabric.command.FabricCommandSender;
-import dev.neuralnexus.taterlib.v1_15.fabric.entity.player.FabricPlayer;
+import dev.neuralnexus.taterlib.v1_15.vanilla.command.VanillaCommandSender;
+import dev.neuralnexus.taterlib.v1_15.vanilla.entity.player.VanillaPlayer;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
 
@@ -25,9 +25,9 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {
-            return Permissions.check(((FabricPlayer) permissible).player(), permission, 4);
+            return Permissions.check(((VanillaPlayer) permissible).player(), permission, 4);
         } else if (permissible instanceof CommandSender) {
-            return Permissions.check(((FabricCommandSender) permissible).sender(), permission, 4);
+            return Permissions.check(((VanillaCommandSender) permissible).sender(), permission, 4);
         }
         return false;
     }

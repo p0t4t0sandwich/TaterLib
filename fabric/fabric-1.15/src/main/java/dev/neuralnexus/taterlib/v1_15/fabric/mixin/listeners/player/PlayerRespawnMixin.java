@@ -8,11 +8,12 @@ package dev.neuralnexus.taterlib.v1_15.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterlib.v1_15.fabric.event.api.FabricPlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.v1_15.vanilla.event.player.VanillaPlayerRespawnEvent;
 
-import net.minecraft.server.PlayerManager;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.PlayerList;
+import net.minecraft.world.level.dimension.DimensionType;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,21 +22,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player respawn listener. */
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
-@Mixin(PlayerManager.class)
-public class PlayerRespawnMixin_1_15 {
-    /**
-     * Called when a player respawns.
-     *
-     * @param player The player that respawned.
-     * @param alive Whether the player is alive.
-     * @param cir The callback info.
-     */
-    @Inject(method = "respawnPlayer", at = @At("HEAD"))
+@Mixin(PlayerList.class)
+public class PlayerRespawnMixin {
+    /** Called when a player respawns. */
+    @Inject(method = "respawn", at = @At("HEAD"))
     public void onPlayerRespawn(
-            ServerPlayerEntity player,
-            DimensionType dimension,
+            ServerPlayer player,
+            DimensionType dimensionType,
             boolean alive,
-            CallbackInfoReturnable<ServerPlayerEntity> cir) {
-        FabricPlayerEvents.RESPAWN.invoker().onPlayerRespawn(player, alive);
+            CallbackInfoReturnable<ServerPlayer> cir) {
+        PlayerEvents.RESPAWN.invoke(new VanillaPlayerRespawnEvent(player, alive));
     }
 }

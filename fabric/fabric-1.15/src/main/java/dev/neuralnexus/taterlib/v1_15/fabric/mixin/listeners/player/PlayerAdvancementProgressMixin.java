@@ -8,11 +8,12 @@ package dev.neuralnexus.taterlib.v1_15.fabric.mixin.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterlib.v1_15.fabric.event.api.FabricPlayerEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
+import dev.neuralnexus.taterlib.v1_15.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.PlayerAdvancementTracker;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.server.PlayerAdvancements;
+import net.minecraft.server.level.ServerPlayer;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,22 +23,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player advancement progress listener. */
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
-@Mixin(PlayerAdvancementTracker.class)
-public abstract class PlayerAdvancementProgressMixin_1_15 {
-    @Shadow private ServerPlayerEntity owner;
+@Mixin(PlayerAdvancements.class)
+public class PlayerAdvancementProgressMixin {
+    @Shadow private ServerPlayer player;
 
-    /**
-     * Called when a player completes an advancement.
-     *
-     * @param advancement The advancement
-     * @param criterionName The criterion name
-     * @param cir Callback info
-     */
-    @Inject(method = "grantCriterion", at = @At("HEAD"))
+    /** Called when a player progresses an advancement. */
+    @Inject(method = "award", at = @At("HEAD"))
     public void onPlayerAdvancementProgress(
             Advancement advancement, String criterionName, CallbackInfoReturnable<Boolean> cir) {
-        FabricPlayerEvents.ADVANCEMENT_PROGRESS
-                .invoker()
-                .onPlayerAdvancementProgress(this.owner, advancement, criterionName);
+        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
+                new VanillaPlayerAdvancementEvent.AdvancementProgress(
+                        player, advancement, criterionName));
     }
 }
