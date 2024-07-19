@@ -100,7 +100,7 @@ include(
         'fabric:fabric-1.12.2',
 
         // Fabric
-        'fabric:fabric-1.14',
+        'fabric:fabric-1.14.4',
         'fabric:fabric-1.15',
         'fabric:fabric-1.16',
         'fabric:fabric-1.16.2',

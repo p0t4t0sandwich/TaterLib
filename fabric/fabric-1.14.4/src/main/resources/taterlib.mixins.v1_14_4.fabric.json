@@ -1,0 +1,27 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.v1_14_4",
+  "mixins": [
+    "vanilla.fabric.mixin.accessors.world.entity.LivingEntityAccessor",
+    "vanilla.fabric.mixin.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
+    "fabric.mixin.api.minecraft.util.ResourceLocationAPI",
+    "fabric.mixin.listeners.block.PlayerBlockBreakMixin",
+    "fabric.mixin.listeners.entity.EntityDamageMixin",
+    "fabric.mixin.listeners.entity.EntityDeathMixin"
+  ],
+  "server": [
+    "fabric.mixin.listeners.entity.EntitySpawnMixin",
+    "fabric.mixin.listeners.network.CustomPayloadMixin",
+    "fabric.mixin.listeners.player.PlayerAdvancementFinishedMixin",
+    "fabric.mixin.listeners.player.PlayerAdvancementProgressMixin",
+    "fabric.mixin.listeners.player.PlayerDeathMixin",
+    "fabric.mixin.listeners.player.PlayerMessageMixin",
+    "fabric.mixin.listeners.player.PlayerRespawnMixin"
+  ]
+}
