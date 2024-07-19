@@ -6,36 +6,27 @@
 
 package dev.neuralnexus.taterlib.v1_14_4.forge;
 
-import dev.neuralnexus.taterapi.Builders;
-import dev.neuralnexus.taterapi.Factories;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_14_4.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
 import dev.neuralnexus.taterlib.v1_14_4.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_14_4.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_14_4.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_14_4.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_14_4.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_14_4.forge.listeners.server.ForgeServerListener;
-import dev.neuralnexus.taterlib.v1_14_4.forge.networking.ModMessages;
-import dev.neuralnexus.taterlib.v1_14_4.forge.resources.ForgeResourceKey;
-import dev.neuralnexus.taterlib.v1_14_4.forge.server.ForgeServer;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.server.VanillaServer;
 
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        Builders.resourceKeyBuilder = ForgeResourceKey.Builder::new;
-        Factories.resourceKeyFactory = ForgeResourceKey.Factory::new;
+        VanillaBootstrap.init();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FORGE)
@@ -43,7 +34,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         api ->
                                 api.setServer(
                                         () ->
-                                                new ForgeServer(
+                                                new VanillaServer(
                                                         ServerLifecycleHooks.getCurrentServer())));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
@@ -54,22 +45,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
             MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
             MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
-
-            // Register plugin channels
-            IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-            modEventBus.addListener(this::commonSetup);
         }
-    }
-
-    /**
-     * Called when CommonSetupEvent is fired.
-     *
-     * @param event The event.
-     */
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPluginMessagesEvent());
-        ModMessages.register();
-        ModMessages.clearQueue();
     }
 
     /**

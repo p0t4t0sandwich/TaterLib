@@ -1,27 +1,40 @@
 plugins {
-    alias(libs.plugins.forgegradle)
-    alias(libs.plugins.mixin)
+    alias(libs.plugins.shadow)
+    alias(libs.plugins.unimined)
 }
 
-base {
-    archivesName = "${project_id}-forge-${minecraft_version}"
-}
-
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
-}
-
-mixin {
-    add(sourceSets.main, "taterlib.mixins.v1_14_4.forge.refmap.json")
-    config("taterlib.mixins.v1_14_4.forge.json")
+unimined.minecraft(sourceSets.main) {
+    version(minecraft_version)
+    minecraftForge {
+        loader(forge_version)
+        mixinConfig("taterlib.mixins.v1_14_4.forge.json")
+    }
+    mappings {
+        mojmap()
+    }
+    defaultRemapJar = false
+    remap(shadowJar) {
+        prodNamespace("searge")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
     compileOnly(project(':forge:forge-utils-modern'))
+    implementation(project(":vanilla:vanilla-1.14.4"))
+}
+
+shadowJar {
+    dependencies {
+        include(project(":vanilla:vanilla-1.14.4"))
+    }
+    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.forge")
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
 }

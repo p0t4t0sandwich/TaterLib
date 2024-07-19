@@ -7,15 +7,16 @@
 package dev.neuralnexus.taterlib.v1_14_4.forge.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_14_4.forge.event.player.*;
+import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.*;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
-import net.minecraft.advancements.PlayerAdvancements;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.PlayerAdvancements;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
@@ -37,20 +38,23 @@ public class ForgePlayerListener {
 
         // Fire the generic advancement event
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new ForgePlayerAdvancementEvent.AdvancementProgress(event));
+                new VanillaPlayerAdvancementEvent.AdvancementProgress(
+                        event.getPlayer(),
+                        event.getAdvancement(),
+                        event.getAdvancement().getCriteria().keySet().toArray(new String[0])[0]));
 
         // Get the player's advancement progress
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         PlayerAdvancements playerAdvancements =
-                server.getPlayerList()
-                        .getPlayerAdvancements((ServerPlayerEntity) event.getEntity());
-        AdvancementProgress progress = playerAdvancements.getProgress(advancement);
+                server.getPlayerList().getPlayerAdvancements((ServerPlayer) event.getEntity());
+        AdvancementProgress progress = playerAdvancements.getOrStartProgress(advancement);
 
         // Fire the advancement finished event if the advancement is done
         DisplayInfo displayInfo = advancement.getDisplay();
-        if (displayInfo != null && displayInfo.shouldAnnounceToChat() && progress.isDone()) {
+        if (displayInfo != null && displayInfo.shouldAnnounceChat() && progress.isDone()) {
             PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                    new ForgePlayerAdvancementEvent.AdvancementFinished(event));
+                    new VanillaPlayerAdvancementEvent.AdvancementFinished(
+                            event.getPlayer(), event.getAdvancement()));
         }
     }
 
@@ -61,8 +65,9 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
-        if (event.getEntity() instanceof PlayerEntity) {
-            PlayerEvents.DEATH.invoke(new ForgePlayerDeathEvent(event));
+        if (event.getEntity() instanceof Player) {
+            PlayerEvents.DEATH.invoke(
+                    new VanillaPlayerDeathEvent((Player) event.getEntity(), event.getSource()));
         }
     }
 
@@ -73,7 +78,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerEvents.LOGIN.invoke(new ForgePlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent((ServerPlayer) event.getEntity()));
     }
 
     /**
@@ -83,7 +88,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        PlayerEvents.LOGOUT.invoke(new ForgePlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent((ServerPlayer) event.getEntity()));
     }
 
     /**
@@ -93,7 +98,11 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        PlayerEvents.MESSAGE.invoke(new ForgePlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(
+                new VanillaPlayerMessageEvent(
+                        event.getPlayer(),
+                        event.getMessage(),
+                        new ForgeCancellableEventWrapper(event)));
     }
 
     /**
@@ -103,6 +112,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerEvents.RESPAWN.invoke(new ForgePlayerRespawnEvent(event));
+        PlayerEvents.RESPAWN.invoke(
+                new VanillaPlayerRespawnEvent(event.getPlayer(), event.getEntity().isAlive()));
     }
 }
