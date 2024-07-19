@@ -26,8 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class CustomPayloadMixin {
-    @Shadow
-    public ServerPlayer player;
+    @Shadow public ServerPlayer player;
 
     /**
      * Called when a custom payload packet is received. (often used for plugin messages)

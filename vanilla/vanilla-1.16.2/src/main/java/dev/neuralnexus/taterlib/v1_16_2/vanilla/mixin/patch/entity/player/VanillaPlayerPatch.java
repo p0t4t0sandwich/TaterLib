@@ -27,9 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerPatch {
-    @Final
-    @Shadow
-    private Player player;
+    @Final @Shadow private Player player;
 
     /**
      * @author p0t4t0sandwich
