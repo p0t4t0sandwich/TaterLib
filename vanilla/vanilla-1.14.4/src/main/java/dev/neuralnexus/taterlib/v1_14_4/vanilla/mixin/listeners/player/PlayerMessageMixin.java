@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player message listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerMessageMixin {
     @Shadow public ServerPlayer player;

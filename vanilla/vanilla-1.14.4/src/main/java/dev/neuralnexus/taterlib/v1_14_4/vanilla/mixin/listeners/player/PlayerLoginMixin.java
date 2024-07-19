@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player login listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(PlayerList.class)
 public class PlayerLoginMixin {
     /** Called when a player logs in. */

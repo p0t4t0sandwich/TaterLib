@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player advancement progress listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(PlayerAdvancements.class)
 public class PlayerAdvancementProgressMixin {
     @Shadow private ServerPlayer player;

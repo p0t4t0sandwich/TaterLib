@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the entity spawn listener. */
 @ReqPlatform(not = Platform.FORGE)
-@ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ServerLevel.class)
 class EntitySpawnMixin {
     /** Called when an entity is spawned. */
