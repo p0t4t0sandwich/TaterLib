@@ -6,9 +6,6 @@ base {
     archivesName = "${project_id}-vanilla-${minecraft_version}"
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
-sourceCompatibility = targetCompatibility = java_version
-
 minecraft {
     version(minecraft_version)
 }
