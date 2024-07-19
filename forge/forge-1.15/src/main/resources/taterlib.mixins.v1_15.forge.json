@@ -1,0 +1,16 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.v1_15",
+  "mixins": [
+    "vanilla.forge.mixin.accessors.world.entity.LivingEntityAccessor",
+    "vanilla.forge.mixin.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
+    "forge.mixin.api.minecraft.resources.ResourceLocationAPI",
+    "forge.mixin.listeners.network.CustomPayloadMixin"
+  ]
+}

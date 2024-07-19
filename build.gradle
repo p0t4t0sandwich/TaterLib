@@ -185,7 +185,7 @@ platformVersions.put("forge", Arrays.asList(
         "utils-modern",
         "1.6.4",
         "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
-        "1.12.2", "1.13.2", "1.14.4", "1.15.2", "1.16.2",
+        "1.12.2", "1.13.2", "1.14.4", "1.15", "1.16.2",
         "1.17.1", "1.18", "1.18.2",
         "1.19", "1.19.1", "1.19.3", "1.19.4",
         "1.20", "1.20.2", "1.20.6"))
@@ -232,7 +232,7 @@ tasks.register('build_monojar', Jar) {
                         "taterlib.mixins.v1_11_2.forge.json," +
                         "taterlib.mixins.v1_12_2.forge.json," +
                         "taterlib.mixins.v1_14_4.forge.json," +
-                        "taterlib.mixins.v1_15_2.forge.json," +
+                        "taterlib.mixins.v1_15.forge.json," +
                         "taterlib.mixins.v1_16_2.forge.json," +
                         "taterlib.mixins.v1_17_1.forge.json," +
                         "taterlib.mixins.v1_18.forge.json," +
