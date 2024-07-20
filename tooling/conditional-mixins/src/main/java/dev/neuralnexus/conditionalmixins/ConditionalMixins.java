@@ -3,7 +3,6 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-
 package dev.neuralnexus.conditionalmixins;
 
 import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
@@ -23,11 +22,16 @@ import java.util.Collections;
 public class ConditionalMixins {
     public static final Logger logger = Logger.create("conditionalmixins");
 
-    public static boolean shouldApplyMixin(String mixinClassName, Collection<String> disabledMixins, boolean verbose) {
+    public static boolean shouldApplyMixin(
+            String mixinClassName, Collection<String> disabledMixins, boolean verbose) {
         for (String disabledMixin : disabledMixins) {
             if (mixinClassName.endsWith(disabledMixin)) {
                 if (verbose) {
-                    logger.info(ansiParser("§4Skipping mixin §9" + mixinClassName + " §4disabled in config"));
+                    logger.info(
+                            ansiParser(
+                                    "§4Skipping mixin §9"
+                                            + mixinClassName
+                                            + " §4disabled in config"));
                 }
                 return false;
             }
@@ -37,7 +41,8 @@ public class ConditionalMixins {
                     MixinService.getService().getBytecodeProvider().getClassNode(mixinClassName);
 
             if (classNode.visibleAnnotations != null) {
-                return AnnotationChecker.checkAnnotations(classNode.visibleAnnotations, mixinClassName, verbose);
+                return AnnotationChecker.checkAnnotations(
+                        classNode.visibleAnnotations, mixinClassName, verbose);
             }
         } catch (ClassNotFoundException | IOException e) {
             if (verbose) {
@@ -58,7 +63,8 @@ public class ConditionalMixins {
         return shouldApplyMixin(mixinClassName, Collections.emptyList(), verbose);
     }
 
-    public static boolean shouldApplyMixin(String mixinClassName, Collection<String> disabledMixins) {
+    public static boolean shouldApplyMixin(
+            String mixinClassName, Collection<String> disabledMixins) {
         return shouldApplyMixin(mixinClassName, disabledMixins, false);
     }
 }

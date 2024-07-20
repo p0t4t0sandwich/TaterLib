@@ -3,15 +3,11 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-
 package dev.neuralnexus.taterlib.modules.core.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;

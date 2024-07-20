@@ -1,4 +1,14 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.conditionalmixins;
+
+import static dev.neuralnexus.conditionalmixins.ConditionalMixins.logger;
+import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
+
+import static org.spongepowered.asm.util.Annotations.getValue;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqDependency;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
@@ -6,22 +16,19 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterapi.metadata.impl.PlatformDataImpl;
+
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.AnnotationNode;
 
 import java.util.List;
-
-import static dev.neuralnexus.conditionalmixins.ConditionalMixins.logger;
-import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
-import static org.spongepowered.asm.util.Annotations.getValue;
 
 public class AnnotationChecker {
     private static final Platform platform = Platform.get();
     private static final PlatformData platformData = PlatformData.instance();
     private static final MinecraftVersion minecraftVersion = platformData.minecraftVersion();
 
-    public static boolean checkAnnotations(List<AnnotationNode> annotations, String mixinClassName, boolean verbose) {
+    public static boolean checkAnnotations(
+            List<AnnotationNode> annotations, String mixinClassName, boolean verbose) {
         for (AnnotationNode node : annotations) {
             if (Type.getDescriptor(ReqDependency.class).equals(node.desc)) {
                 if (!checkReqDependency(mixinClassName, node, verbose)) {
@@ -78,8 +85,7 @@ public class AnnotationChecker {
 
     public static boolean checkReqPlatform(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        List<Platform> platforms =
-                getValue(annotation, "value", true, Platform.class);
+        List<Platform> platforms = getValue(annotation, "value", true, Platform.class);
         if (!platforms.isEmpty()) {
             for (Platform plat : platforms) {
                 if (!plat.is(platform)) {
@@ -94,8 +100,7 @@ public class AnnotationChecker {
                 }
             }
         }
-        List<Platform> notPlatforms =
-                getValue(annotation, "not", true, Platform.class);
+        List<Platform> notPlatforms = getValue(annotation, "not", true, Platform.class);
         if (!notPlatforms.isEmpty()) {
             for (Platform plat : notPlatforms) {
                 if (plat.is(platform)) {
@@ -116,11 +121,9 @@ public class AnnotationChecker {
     public static boolean checkReqMCVersion(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
         MinecraftVersion min =
-                getValue(
-                        annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
+                getValue(annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
         MinecraftVersion max =
-                getValue(
-                        annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
+                getValue(annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
         if (min != null && !minecraftVersion.isAtLeast(min)) {
             if (verbose) {
                 logger.info(
