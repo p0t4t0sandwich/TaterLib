@@ -8,5 +8,5 @@
     "${authors}"
   ],
   "dependencies": [],
-  "main": "${group_id}.${project_id}.loader.platforms.VelocityLoaderPlugin"
+  "main": "dev.neuralnexus.taterloader.platforms.VelocityLoaderPlugin"
 }

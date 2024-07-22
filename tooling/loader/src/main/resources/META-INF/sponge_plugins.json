@@ -7,7 +7,7 @@
   "plugins": [
     {
       "id": "${project_id}",
-      "entrypoint": "dev.neuralnexus.taterlib.loader.platforms.Sponge8LoaderPlugin",
+      "entrypoint": "dev.neuralnexus.taterloader.platforms.Sponge8LoaderPlugin",
       "name": "${project_name}",
       "description": "${project_description}",
       "version": "${version}",
