@@ -1,23 +1,25 @@
 plugins {
-    alias(libs.plugins.forgegradle)
-    alias(libs.plugins.mixin)
+    alias(libs.plugins.unimined)
 }
 
 base {
     archivesName = "${project_id}-forge-${minecraft_version}"
 }
 
-minecraft {
-    mappings(channel: mapping_channel, version: mapping_version)
-}
-
-mixin {
-    add(sourceSets.main, "taterlib.mixins.v1_12_2.forge.refmap.json")
-    config("taterlib.mixins.v1_12_2.forge.json")
+unimined.minecraft(sourceSets.main) {
+    version minecraft_version
+    minecraftForge {
+        loader forge_version
+        mixinConfig("taterlib.mixins.v1_12_2.forge.json")
+    }
+    mappings {
+        searge()
+        mcp(mapping_channel, mapping_version)
+    }
+    defaultRemapJar = true
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraft_version}-${forge_version}")
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly(project(':api'))
     compileOnly(project(':common'))

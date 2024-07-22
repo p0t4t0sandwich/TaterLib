@@ -11,6 +11,7 @@ unimined.minecraft(sourceSets.main) {
     }
     mappings {
         mojmap()
+        devFallbackNamespace("official")
     }
     defaultRemapJar = false
     remap(shadowJar) {
@@ -18,8 +19,11 @@ unimined.minecraft(sourceSets.main) {
         mixinRemap {
             disableRefmap()
         }
+        archiveFileName = "${project_id}-forge-${minecraft_version}-${project.version}.jar"
     }
 }
+
+tasks.build.dependsOn(remapShadowJar)
 
 dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
@@ -36,5 +40,5 @@ shadowJar {
         include(project(":vanilla:vanilla-1.14.4"))
     }
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.forge")
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}-dev.jar"
 }

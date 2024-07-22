@@ -21,8 +21,11 @@ unimined.minecraft(sourceSets.main) {
         mixinRemap {
             disableRefmap()
         }
+        archiveFileName = "${project_id}-forge-${minecraft_version}-${project.version}.jar"
     }
 }
+
+tasks.build.dependsOn(remapShadowJar)
 
 dependencies {
     compileOnly(project(':api'))
@@ -38,5 +41,5 @@ shadowJar {
         include(project(":vanilla:vanilla-1.17"))
     }
     relocate("dev.neuralnexus.taterlib.v1_17.vanilla", "dev.neuralnexus.taterlib.v1_17.vanilla.forge")
-    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}.jar"
+    archiveFileName = "${project_id}-forge-${minecraft_version}-${version}-dev.jar"
 }
