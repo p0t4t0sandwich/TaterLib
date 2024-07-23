@@ -7,12 +7,6 @@ dependencies {
     compileOnly(project(':bukkit:bukkit-utils'))
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['plugin.yml']) {
-        expand project.properties
-    }
-}
-
 jar {
     archiveFileName = "${project_id}-bukkit-${minecraft_version}-${version}.jar"
 }
