@@ -9,9 +9,3 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
 }
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['bungee.yml']) {
-        expand project.properties
-    }
-}

@@ -5,12 +5,6 @@ dependencies {
     compileOnly(project(':tooling:loader'))
 }
 
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['bungee.yml']) {
-        expand project.properties
-    }
-}
-
 jar {
     archiveFileName = "${project_id}-bungee-${minecraft_version}-${version}.jar"
 }
