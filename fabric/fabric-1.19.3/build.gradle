@@ -1,29 +1,15 @@
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    alias(libs.plugins.loom)
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
-unimined.minecraft(sourceSets.main) {
-    version(minecraft_version)
-    fabric {
-        loader(loader_version)
-    }
-    mappings {
-        mojmap()
-    }
-    defaultRemapJar = false
-    remap(shadowJar) {
-        prodNamespace("intermediary")
-        mixinRemap {
-            disableRefmap()
-        }
-    }
-}
-
 dependencies {
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings(loom.officialMojangMappings())
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
@@ -37,4 +23,7 @@ shadowJar {
         include(project(':vanilla:vanilla-1.19'))
     }
     relocate("dev.neuralnexus.taterlib.v1_19.vanilla", "dev.neuralnexus.taterlib.v1_19.vanilla.fabric")
+    archiveFileName = "${project_id}-fabric-${minecraft_version}-${version}.jar"
 }
+
+tasks.assemble.dependsOn('shadowJar')

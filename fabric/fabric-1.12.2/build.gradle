@@ -1,48 +1,30 @@
 plugins {
-    alias(libs.plugins.unimined)
+    alias(libs.plugins.loom)
 }
 
 base {
     archivesName = "${project_id}-fabric-${minecraft_version}"
 }
 
-unimined.minecraft(sourceSets.main) {
-    version(minecraft_version)
-    fabric {
-        loader(loader_version)
-    }
-    mappings {
-        legacyYarn(541)
-    }
-    defaultRemapJar = false
-    remap(jar) {
-        prodNamespace("legacyIntermediary")
-        mixinRemap {
-            disableRefmap()
-        }
-    }
-}
-
 dependencies {
-    Set<String> apiModules = [
-            'legacy-fabric-api-base',
-            'legacy-fabric-command-api-v2',
-            'legacy-fabric-lifecycle-events-v1',
-            'legacy-fabric-networking-api-v1',
-            'legacy-fabric-permissions-api-v1'
-    ]
-    apiModules.forEach {
-        modImplementation(fabricApi.legacyFabricModule(it, project.fabric_version))
-    }
+    minecraft("com.mojang:minecraft:${project.minecraft_version}")
+    mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
+    modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
+
+//    Set<String> apiModules = [
+//            'legacy-fabric-api-base',
+//            'legacy-fabric-command-api-v2',
+//            'legacy-fabric-lifecycle-events-v1',
+//            'legacy-fabric-networking-api-v1',
+//            'legacy-fabric-permissions-api-v1'
+//    ]
+//    apiModules.forEach {
+//        modImplementation(legacy.apiModule(it, project.fabric_version))
+//    }
+    modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}")
 
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
-}
-
-tasks.withType(ProcessResources).configureEach {
-    filesMatching(['fabric.mod.json', "taterlib.mixins.fabric.v1_12_2.json".toString()]) {
-        expand project.properties
-    }
 }
