@@ -21,6 +21,8 @@ unimined.minecraft(sourceSets.main) {
     }
 }
 
+tasks.build.dependsOn(remapShadowJar)
+
 dependencies {
     compileOnly(project(':api'))
     compileOnly(project(':common'))
