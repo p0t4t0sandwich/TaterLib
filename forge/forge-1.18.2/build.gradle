@@ -17,6 +17,7 @@ unimined.minecraft(sourceSets.main) {
     defaultRemapJar = false
     remap(shadowJar) {
         prodNamespace("searge")
+        archiveFileName = "${project_id}-forge-${minecraft_version}-${project.version}.jar"
     }
 }
 
