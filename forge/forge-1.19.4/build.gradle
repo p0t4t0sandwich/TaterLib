@@ -3,10 +3,6 @@ plugins {
     alias(libs.plugins.unimined)
 }
 
-base {
-    archivesName = "${project_id}-forge-${minecraft_version}"
-}
-
 java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
@@ -14,7 +10,7 @@ unimined.minecraft(sourceSets.main) {
     version(minecraft_version)
     minecraftForge {
         loader(forge_version)
-        mixinConfig("taterlib.mixins.v1_19_3.forge.patch.json")
+        mixinConfig("taterlib.mixins.v1_19_4.forge.patch.json")
     }
     mappings {
         mojmap()
