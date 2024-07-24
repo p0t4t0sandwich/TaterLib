@@ -5,10 +5,9 @@
     "defaultRequire": 1
   },
   "required": false,
-  "package": "dev.neuralnexus.taterlib.v1_20_2.forge.mixin.listeners",
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "network.CustomPayloadMixin_1_20_2"
-  ],
-  "refmap": "taterlib.mixins.v1_20_2.forge.refmap.json"
+    "v1_20_2.forge.mixin.listeners.network.CustomPayloadMixin_1_20_2"
+  ]
 }

@@ -6,18 +6,18 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_21.fabric.mixin",
+  "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "api.minecraft.resources.ResourceLocationAPI",
-    "listeners.block.PlayerBlockBreakMixin_1_21",
-    "listeners.entity.EntityDamageMixin_1_21",
-    "listeners.entity.EntityDeathMixin_1_21",
-    "listeners.entity.EntitySpawnMixin_1_21",
-    "listeners.network.CustomPayloadMixin_1_21",
-    "listeners.player.PlayerAdvancementFinishedMixin_1_21",
-    "listeners.player.PlayerAdvancementProgressMixin_1_21",
-    "listeners.player.PlayerDeathMixin_1_21",
-    "listeners.player.PlayerMessageMixin_1_21",
-    "listeners.player.PlayerRespawnMixin_1_21"
+    "v1_21.fabric.mixin.api.minecraft.resources.ResourceLocationAPI",
+    "v1_21.fabric.mixin.listeners.block.PlayerBlockBreakMixin_1_21",
+    "v1_21.fabric.mixin.listeners.entity.EntityDamageMixin_1_21",
+    "v1_21.fabric.mixin.listeners.entity.EntityDeathMixin_1_21",
+    "v1_21.fabric.mixin.listeners.entity.EntitySpawnMixin_1_21",
+    "v1_21.fabric.mixin.listeners.network.CustomPayloadMixin_1_21",
+    "v1_21.fabric.mixin.listeners.player.PlayerAdvancementFinishedMixin_1_21",
+    "v1_21.fabric.mixin.listeners.player.PlayerAdvancementProgressMixin_1_21",
+    "v1_21.fabric.mixin.listeners.player.PlayerDeathMixin_1_21",
+    "v1_21.fabric.mixin.listeners.player.PlayerMessageMixin_1_21",
+    "v1_21.fabric.mixin.listeners.player.PlayerRespawnMixin_1_21"
   ]
 }

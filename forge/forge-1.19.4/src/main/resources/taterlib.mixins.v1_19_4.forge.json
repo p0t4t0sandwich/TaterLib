@@ -1,13 +1,13 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "dev.neuralnexus.taterlib.v1_20_2.vanilla.mixin.patch",
-  "required": false,
-  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "mixins": [
-    "entity.player.VanillaPlayerMixin_1_20_2"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib",
+  "mixins": [
+    "v1_19_4.forge.mixin.patch.VanillaEntityDamageEventMixin_1_19_4"
+  ]
 }

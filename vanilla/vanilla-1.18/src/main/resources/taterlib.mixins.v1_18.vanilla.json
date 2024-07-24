@@ -1,30 +1,30 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "required": false,
-  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_18.vanilla.mixin",
-  "mixins": [
-    "accessors.world.entity.LivingEntityAccessor",
-    "api.minecraft.resources.ResourceLocationAPI",
-    "listeners.block.PlayerBlockBreakMixin_1_18",
-    "listeners.entity.EntityDamageMixin_1_18",
-    "listeners.entity.EntityDeathMixin_1_18",
-    "listeners.entity.EntitySpawnMixin_1_18",
-    "listeners.network.CustomPayloadMixin_1_18",
-    "listeners.player.PlayerAdvancementFinishedMixin_1_18",
-    "listeners.player.PlayerAdvancementProgressMixin_1_18",
-    "listeners.player.PlayerDeathMixin_1_18",
-    "listeners.player.PlayerLoginMixin_1_18",
-    "listeners.player.PlayerLogoutMixin_1_18",
-    "listeners.player.PlayerMessageMixin_1_18",
-    "listeners.player.PlayerRespawnMixin_1_18",
-    "listeners.server.ServerStartedMixin_1_18",
-    "listeners.server.ServerStartingMixin_1_18",
-    "listeners.server.ServerStoppedMixin_1_18",
-    "listeners.server.ServerStoppingMixin_1_18"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib",
+  "mixins": [
+    "v1_18.vanilla.mixin.accessors.world.entity.LivingEntityAccessor",
+    "v1_18.vanilla.mixin.api.minecraft.resources.ResourceLocationAPI",
+    "v1_18.vanilla.mixin.listeners.block.PlayerBlockBreakMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.entity.EntityDamageMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.entity.EntityDeathMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.entity.EntitySpawnMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.network.CustomPayloadMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerAdvancementFinishedMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerAdvancementProgressMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerDeathMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerLoginMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerLogoutMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerMessageMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.player.PlayerRespawnMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.server.ServerStartedMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.server.ServerStartingMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.server.ServerStoppedMixin_1_18",
+    "v1_18.vanilla.mixin.listeners.server.ServerStoppingMixin_1_18"
+  ]
 }

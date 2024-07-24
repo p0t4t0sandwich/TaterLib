@@ -16,7 +16,13 @@ unimined.minecraft(sourceSets.main) {
         searge()
         mcp(mapping_channel, mapping_version)
     }
-    defaultRemapJar = true
+    defaultRemapJar = false
+    remap(jar) {
+        prodNamespace("searge")
+        mixinRemap {
+            disableRefmap()
+        }
+    }
 }
 
 dependencies {

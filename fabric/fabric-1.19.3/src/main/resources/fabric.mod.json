@@ -3,6 +3,6 @@
   "id": "taterlib",
   "version": "0.1.0",
   "mixins": [
-    "taterlib.mixins.v1_19_3.fabric.patch.json"
+    "taterlib.mixins.v1_19_3.fabric.json"
   ]
 }

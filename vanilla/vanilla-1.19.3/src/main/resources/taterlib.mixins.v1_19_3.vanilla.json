@@ -6,8 +6,9 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_19_1.fabric.mixin.patch",
+  "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "command.VanillaCommandSenderMixin_1_19_1"
+    "v1_19_3.vanilla.mixin.patch.entity.VanillaEntityMixin_1_19_3",
+    "v1_19_3.vanilla.mixin.patch.entity.player.VanillaPlayerMixin_1_19_3"
   ]
 }

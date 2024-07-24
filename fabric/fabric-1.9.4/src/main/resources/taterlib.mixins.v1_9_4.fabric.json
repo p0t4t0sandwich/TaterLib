@@ -6,17 +6,17 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_9_4.fabric.mixin",
+  "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "api.minecraft.util.ResourceLocationAPI",
-    "listeners.block.PlayerBlockBreakMixin_1_9_4",
-    "listeners.entity.EntityDamageMixin_1_9_4",
-    "listeners.entity.EntityDeathMixin_1_9_4"
+    "v1_9_4.fabric.mixin.api.minecraft.util.ResourceLocationAPI",
+    "v1_9_4.fabric.mixin.listeners.block.PlayerBlockBreakMixin_1_9_4",
+    "v1_9_4.fabric.mixin.listeners.entity.EntityDamageMixin_1_9_4",
+    "v1_9_4.fabric.mixin.listeners.entity.EntityDeathMixin_1_9_4"
   ],
   "server": [
-    "listeners.entity.EntitySpawnMixin_1_9_4",
-    "listeners.player.PlayerDeathMixin_1_9_4",
-    "listeners.player.PlayerMessageMixin_1_9_4",
-    "listeners.player.PlayerRespawnMixin_1_9_4"
+    "v1_9_4.fabric.mixin.listeners.entity.EntitySpawnMixin_1_9_4",
+    "v1_9_4.fabric.mixin.listeners.player.PlayerDeathMixin_1_9_4",
+    "v1_9_4.fabric.mixin.listeners.player.PlayerMessageMixin_1_9_4",
+    "v1_9_4.fabric.mixin.listeners.player.PlayerRespawnMixin_1_9_4"
   ]
 }

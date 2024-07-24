@@ -6,8 +6,9 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib.v1_19_4.vanilla.mixin.listeners",
+  "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "server.ServerStartedMixin_1_19_4"
+    "v1_19_4.vanilla.mixin.listeners.server.ServerStartedMixin_1_19_4",
+    "v1_19_4.vanilla.mixin.patch.event.entity.VanillaEntityDamageEventMixin_1_19_4"
   ]
 }

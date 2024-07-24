@@ -1,16 +1,17 @@
 {
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
-  "package": "dev.neuralnexus.taterlib.v1_20_2.vanilla.mixin.listeners",
-  "required": false,
-  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "mixins": [
-    "network.CustomPayloadMixin_1_20_2",
-    "player.PlayerAdvancementFinishedMixin_1_20_2",
-    "player.PlayerAdvancementProgressMixin_1_20_2",
-    "player.PlayerLoginMixin_1_20_2"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib",
+  "mixins": [
+    "v1_20_2.vanilla.mixin.listeners.network.CustomPayloadMixin_1_20_2",
+    "v1_20_2.vanilla.mixin.listeners.player.PlayerAdvancementFinishedMixin_1_20_2",
+    "v1_20_2.vanilla.mixin.listeners.player.PlayerAdvancementProgressMixin_1_20_2",
+    "v1_20_2.vanilla.mixin.listeners.player.PlayerLoginMixin_1_20_2",
+    "v1_20_2.vanilla.mixin.patch.entity.player.VanillaPlayerMixin_1_20_2"
+  ]
 }

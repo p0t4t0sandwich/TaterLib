@@ -15,7 +15,7 @@ unimined.minecraft(sourceSets.main) {
     mappings {
         mojmap()
     }
-    defaultRemapJar = true
+    defaultRemapJar = false
     remap(shadowJar) {
         prodNamespace("searge")
         mixinRemap {
