@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.loom)
 }
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings(loom.officialMojangMappings())

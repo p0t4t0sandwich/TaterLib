@@ -6,6 +6,8 @@ base {
     archivesName = "${project_id}-fabric-${minecraft_version}"
 }
 
+loom.mixin.useLegacyMixinAp = false
+
 dependencies {
     minecraft("com.mojang:minecraft:${project.minecraft_version}")
     mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
