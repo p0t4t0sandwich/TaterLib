@@ -15,6 +15,7 @@ blossom = { id = 'net.kyori.blossom', version.ref = 'blossom' }
 shadow = { id = 'io.github.goooler.shadow', version.ref = 'shadow' }
 spotless = { id = 'com.diffplug.spotless', version.ref = 'spotless' }
 loom = { id = 'fabric-loom', version.ref = 'loom' }
+legacyloom = { id = 'legacy-looming', version.ref = 'loom' }
 forgegradle = { id = 'net.minecraftforge.gradle', version.ref = 'forgegradle' }
 neogradle = { id = 'net.neoforged.gradle.userdev', version.ref = 'neogradle' }
 mixin = { id = 'org.spongepowered.mixin', version.ref = 'mixin' }

@@ -8,8 +8,10 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "v1_20_6.vanilla.mixin.listeners.network.CustomPayloadMixin_1_20_6",
-    "v1_20_6.vanilla.mixin.patch.item.inventory.VanillaItemStackMixin_1_20_6",
-    "v1_20_6.vanilla.mixin.patch.entity.player.VanillaPlayerMixin_1_20_6"
+    "v1_20_6.vanilla.mixin.patch.item.inventory.VanillaItemStackMixin",
+    "v1_20_6.vanilla.mixin.patch.entity.player.VanillaPlayerMixin"
+  ],
+  "server": [
+    "v1_20_6.vanilla.mixin.listeners.network.CustomPayloadMixin"
   ]
 }

@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Patch mixin for VanillaEntity */
-@ReqPlatform(Platform.FORGE)
+@ReqPlatform(Platform.FABRIC)
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityPatch {

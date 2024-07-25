@@ -9,21 +9,23 @@
   "package": "dev.neuralnexus.taterlib",
   "mixins": [
     "v1_19.vanilla.mixin.api.minecraft.resources.ResourceLocationAPI",
-    "v1_19.vanilla.mixin.listeners.block.PlayerBlockBreakMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.entity.EntityDamageMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.entity.EntityDeathMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.entity.EntitySpawnMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.network.CustomPayloadMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerAdvancementFinishedMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerAdvancementProgressMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerDeathMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerLoginMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerLogoutMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerMessageMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.player.PlayerRespawnMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.server.ServerStartedMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.server.ServerStartingMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.server.ServerStoppedMixin_1_19",
-    "v1_19.vanilla.mixin.listeners.server.ServerStoppingMixin_1_19"
+    "v1_19.vanilla.mixin.listeners.block.PlayerBlockBreakMixin",
+    "v1_19.vanilla.mixin.listeners.entity.EntityDamageMixin",
+    "v1_19.vanilla.mixin.listeners.entity.EntityDeathMixin"
+  ],
+  "server": [
+    "v1_19.vanilla.mixin.listeners.entity.EntitySpawnMixin",
+    "v1_19.vanilla.mixin.listeners.network.CustomPayloadMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerAdvancementFinishedMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerAdvancementProgressMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerDeathMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerLoginMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerLogoutMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerMessageMixin",
+    "v1_19.vanilla.mixin.listeners.player.PlayerRespawnMixin",
+    "v1_19.vanilla.mixin.listeners.server.ServerStartedMixin",
+    "v1_19.vanilla.mixin.listeners.server.ServerStartingMixin",
+    "v1_19.vanilla.mixin.listeners.server.ServerStoppedMixin",
+    "v1_19.vanilla.mixin.listeners.server.ServerStoppingMixin"
   ]
 }

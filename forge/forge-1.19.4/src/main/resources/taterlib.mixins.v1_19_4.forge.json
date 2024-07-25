@@ -8,6 +8,6 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "v1_19_4.forge.mixin.patch.VanillaEntityDamageEventMixin_1_19_4"
+    "v1_19_4.forge.mixin.patch.VanillaEntityDamageEventMixin"
   ]
 }

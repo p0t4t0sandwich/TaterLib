@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 /** Patch mixin for VanillaPlayer */
-@ReqPlatform(Platform.FORGE)
+@ReqPlatform(Platform.FABRIC)
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerPatch {

@@ -6,7 +6,9 @@
 package dev.neuralnexus.taterlib.v1_18.fabric.mixin.api.minecraft.resources;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +19,8 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMCVersion(min = MinecraftVersion.V1_21)
+@ReqPlatform(Platform.FABRIC)
+@ReqMCVersion(min = MinecraftVersion.V1_18, max = MinecraftVersion.V1_18_2)
 @Mixin(ResourceLocation.class)
 @Implements(
         value = {

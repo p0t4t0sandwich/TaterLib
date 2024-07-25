@@ -8,7 +8,9 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib",
   "mixins": [
-    "v1_19_1.fabric.mixin.listeners.player.PlayerMessageMixin_1_19_1",
-    "v1_19_1.fabric.mixin.patch.command.VanillaCommandSenderMixin_1_19_1"
+    "v1_19_1.fabric.mixin.patch.command.VanillaCommandSenderMixin"
+  ],
+  "server": [
+    "v1_19_1.fabric.mixin.listeners.player.PlayerMessageMixin"
   ]
 }
