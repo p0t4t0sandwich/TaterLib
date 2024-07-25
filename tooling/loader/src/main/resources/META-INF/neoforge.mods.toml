@@ -17,17 +17,7 @@ displayTest = "IGNORE_SERVER_VERSION"
 description = '''${project_description}'''
 
 [[mixins]]
-config = "${project_id}.mixins.v1_20.vanilla.json"
-[[mixins]]
-config = "${project_id}.mixins.v1_20_2.vanilla.patch.json"
-[[mixins]]
-config = "${project_id}.mixins.v1_20_2.vanilla.json"
-[[mixins]]
-config = "${project_id}.mixins.v1_20_6.vanilla.patch.json"
-[[mixins]]
-config = "${project_id}.mixins.v1_20_6.vanilla.json"
-[[mixins]]
-config = "${project_id}.mixins.v1_21.vanilla.json"
+config = "${project_id}.mixins.json"
 
 # NeoForge Dependency
 [[dependencies.${ project_id }]]

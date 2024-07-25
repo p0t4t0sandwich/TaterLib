@@ -25,26 +25,7 @@
     ]
   },
   "mixins": [
-    "taterlib.mixins.v1_7_10.fabric.json",
-    "taterlib.mixins.v1_8_9.fabric.json",
-    "taterlib.mixins.v1_9_4.fabric.json",
-    "taterlib.mixins.v1_10_2.fabric.json",
-    "taterlib.mixins.v1_11_2.fabric.json",
-    "taterlib.mixins.v1_12_2.fabric.json",
-    "taterlib.mixins.v1_14_4.fabric.json",
-    "taterlib.mixins.v1_15.fabric.json",
-    "taterlib.mixins.v1_16.fabric.json",
-    "taterlib.mixins.v1_17.fabric.json",
-    "taterlib.mixins.v1_18.fabric.json",
-    "taterlib.mixins.v1_19.fabric.json",
-    "taterlib.mixins.v1_19_1.fabric.json",
-    "taterlib.mixins.v1_19_1.fabric.patch.json",
-    "taterlib.mixins.v1_19_3.fabric.patch.json",
-    "taterlib.mixins.v1_19_4.fabric.patch.json",
-    "taterlib.mixins.v1_20.fabric.json",
-    "taterlib.mixins.v1_20_2.fabric.json",
-    "taterlib.mixins.v1_20_2.fabric.patch.json",
-    "taterlib.mixins.v1_20_6.fabric.json"
+    "taterlib.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",
