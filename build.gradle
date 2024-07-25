@@ -135,21 +135,27 @@ ext.mergeMixinConfigs = { List<File> mixinConfigs ->
     mixinConfigJson.put("server", [])
 
     JsonSlurper json = new JsonSlurper()
+    def mixins = []
+    def client = []
+    def server = []
     mixinConfigs.each { mixinConfig ->
         def mixinConfigJsonFile = json.parse(mixinConfig)
-        def mixins = mixinConfigJsonFile.get("mixins")
-        if (mixins != null) {
-            mixinConfigJson.put("mixins", mixinConfigJson.get("mixins") + mixins)
+        if (mixinConfigJsonFile.get("mixins") != null) {
+            mixins += mixinConfigJsonFile.get("mixins")
         }
-        def client = mixinConfigJsonFile.get("client")
-        if (client != null) {
-            mixinConfigJson.put("client", mixinConfigJson.get("client") + client)
+        if (mixinConfigJsonFile.get("client") != null) {
+            client += mixinConfigJsonFile.get("client")
         }
-        def server = mixinConfigJsonFile.get("server")
-        if (server != null) {
-            mixinConfigJson.put("server", mixinConfigJson.get("server") + server)
+        if (mixinConfigJsonFile.get("server") != null) {
+            server += mixinConfigJsonFile.get("server")
         }
     }
+    mixins.sort { a, b -> a.compareTo(b) }
+    client.sort { a, b -> a.compareTo(b) }
+    server.sort { a, b -> a.compareTo(b) }
+    mixinConfigJson.put("mixins", mixins)
+    mixinConfigJson.put("client", client)
+    mixinConfigJson.put("server", server)
     merged.text = JsonOutput.prettyPrint(JsonOutput.toJson(mixinConfigJson))
     return fileTree(merged)
 }
