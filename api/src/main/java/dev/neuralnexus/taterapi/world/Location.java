@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.world;
 
-import dev.neuralnexus.taterapi.Builders;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Abstracts a location. */
@@ -174,7 +174,7 @@ public interface Location {
      * @return The builder
      */
     static Builder builder() {
-        return Builders.locationBuilder.get();
+        return TaterAPIProvider.getBuilder(Builder.class);
     }
 
     /** Builder for the location. */

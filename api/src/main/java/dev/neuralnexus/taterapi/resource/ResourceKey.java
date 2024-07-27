@@ -5,8 +5,7 @@
  */
 package dev.neuralnexus.taterapi.resource;
 
-import dev.neuralnexus.taterapi.Builders;
-import dev.neuralnexus.taterapi.Factories;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 
 /** An abstraction for resource locations. */
 public interface ResourceKey {
@@ -25,15 +24,15 @@ public interface ResourceKey {
     String namespace();
 
     static ResourceKey of(String namespace, String value) {
-        return Factories.resourceKeyFactory.get().of(namespace, value);
+        return TaterAPIProvider.getFactory(Factory.class).of(namespace, value);
     }
 
     static ResourceKey of(String full) {
-        return Factories.resourceKeyFactory.get().of(full);
+        return TaterAPIProvider.getFactory(Factory.class).of(full);
     }
 
     static ResourceKey unsafeOf(String full) {
-        return Factories.resourceKeyFactory.get().unsafeOf(full);
+        return TaterAPIProvider.getFactory(Factory.class).unsafeOf(full);
     }
 
     /**
@@ -51,7 +50,7 @@ public interface ResourceKey {
      * @return The builder
      */
     static Builder builder() {
-        return Builders.resourceKeyBuilder.get();
+        return TaterAPIProvider.getBuilder(Builder.class);
     }
 
     /** A factory for resource locations. */

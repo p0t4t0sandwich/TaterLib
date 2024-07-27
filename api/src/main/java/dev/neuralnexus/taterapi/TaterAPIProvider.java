@@ -17,8 +17,11 @@ import dev.neuralnexus.taterapi.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.metadata.impl.*;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
+import dev.neuralnexus.taterapi.world.Location;
 
 import org.jetbrains.annotations.ApiStatus;
 
@@ -33,6 +36,8 @@ public class TaterAPIProvider {
     private static Platform primaryPlatform;
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
+    private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
+    private static final Map<Class<?>, Supplier<?>> builders = new HashMap<>();
 
     /**
      * Get Minecraft version
@@ -201,6 +206,8 @@ public class TaterAPIProvider {
 
     @ApiStatus.Internal
     public static void register() {
+        registrySetup();
+
         Set<PlatformData> activeDatas = new HashSet<>();
         PlatformData bukkitData = new BukkitData();
         PlatformData bungeeCordData = new BungeeCordData();
@@ -315,6 +322,55 @@ public class TaterAPIProvider {
     @ApiStatus.Internal
     public void setServerName(Supplier<String> serverName) {
         TaterAPIProvider.serverName = serverName;
+    }
+
+    @ApiStatus.Internal
+    public static void registrySetup() {
+        registerBuilder(Location.Builder.class, () -> null);
+        registerBuilder(ResourceKey.Builder.class, ResourceKeyImpl.Builder::new);
+        registerFactory(ResourceKey.Factory.class, ResourceKeyImpl.Factory::new);
+    }
+
+    /**
+     * Register a factory
+     *
+     * @param clazz The class
+     * @param factory The factory
+     */
+    public static <T> void registerFactory(Class<T> clazz, Supplier<T> factory) {
+        factories.put(clazz, factory);
+    }
+
+    /**
+     * Get a factory
+     *
+     * @param clazz The class
+     * @return The factory
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getFactory(Class<T> clazz) {
+        return (T) factories.get(clazz).get();
+    }
+
+    /**
+     * Register a builder
+     *
+     * @param clazz The class
+     * @param builder The builder
+     */
+    public static <T> void registerBuilder(Class<T> clazz, Supplier<T> builder) {
+        builders.put(clazz, builder);
+    }
+
+    /**
+     * Get a builder
+     *
+     * @param clazz The class
+     * @return The builder
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBuilder(Class<T> clazz) {
+        return (T) builders.get(clazz).get();
     }
 
     /**
