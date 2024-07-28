@@ -6,13 +6,13 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib",
+  "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_15.forge.mixin.api.minecraft.resources.ResourceLocationAPI",
-    "v1_15.vanilla.forge.mixin.accessors.world.entity.LivingEntityAccessor"
+    "v1_15.forge.api.minecraft.resources.ResourceLocationAPI",
+    "v1_15.vanilla.forge.accessors.world.entity.LivingEntityAccessor"
   ],
   "server": [
-    "v1_15.forge.mixin.listeners.network.CustomPayloadMixin",
-    "v1_15.vanilla.forge.mixin.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor"
+    "v1_15.forge.listeners.network.CustomPayloadMixin",
+    "v1_15.vanilla.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor"
   ]
 }

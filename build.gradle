@@ -129,7 +129,7 @@ ext.mergeMixinConfigs = { List<File> mixinConfigs ->
     mixinConfigJson.put("injectors", injectors)
     mixinConfigJson.put("required", false)
     mixinConfigJson.put("plugin", "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin")
-    mixinConfigJson.put("package", "dev.neuralnexus.taterlib")
+    mixinConfigJson.put("package", "dev.neuralnexus.taterlib.mixin")
     mixinConfigJson.put("mixins", [])
     mixinConfigJson.put("client", [])
     mixinConfigJson.put("server", [])

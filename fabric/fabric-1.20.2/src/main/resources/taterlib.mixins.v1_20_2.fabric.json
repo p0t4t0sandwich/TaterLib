@@ -6,13 +6,13 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib",
+  "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_20_2.vanilla.fabric.mixin.patch.player.VanillaPlayerMixin"
+    "v1_20_2.vanilla.fabric.patch.entity.player.VanillaPlayerMixin"
   ],
   "server": [
-    "v1_20_2.fabric.mixin.listeners.network.CustomPayloadMixin",
-    "v1_20_2.fabric.mixin.listeners.player.PlayerAdvancementFinishedMixin",
-    "v1_20_2.fabric.mixin.listeners.player.PlayerAdvancementProgressMixin"
+    "v1_20_2.fabric.listeners.network.CustomPayloadMixin",
+    "v1_20_2.fabric.listeners.player.PlayerAdvancementFinishedMixin",
+    "v1_20_2.fabric.listeners.player.PlayerAdvancementProgressMixin"
   ]
 }

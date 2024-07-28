@@ -6,8 +6,8 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib",
+  "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_19_4.fabric.mixin.patch.event.entity.VanillaEntityDamageEventMixin"
+    "v1_19_4.fabric.patch.event.entity.VanillaEntityDamageEventMixin"
   ]
 }

@@ -38,6 +38,7 @@ shadowJar {
         exclude('/mappings/*')
         include(project(":vanilla:vanilla-1.14.4"))
     }
+    relocate("dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla", "dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.fabric")
 }
 

@@ -6,11 +6,11 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
-  "package": "dev.neuralnexus.taterlib",
+  "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_19.forge.mixin.api.minecraft.resources.ResourceLocationAPI"
+    "v1_19.forge.api.minecraft.resources.ResourceLocationAPI"
   ],
   "server": [
-    "v1_19.forge.mixin.listeners.network.CustomPayloadMixin"
+    "v1_19.forge.listeners.network.CustomPayloadMixin"
   ]
 }

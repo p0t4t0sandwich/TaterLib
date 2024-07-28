@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_16.vanilla.network;
 
 import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.v1_16.vanilla.mixin.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
+import dev.neuralnexus.taterlib.mixin.v1_16.vanilla.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
 
 import io.netty.buffer.Unpooled;
 

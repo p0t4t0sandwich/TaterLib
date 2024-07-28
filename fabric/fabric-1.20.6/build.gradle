@@ -28,6 +28,7 @@ shadowJar {
         include(project(':vanilla:vanilla-1.20.6'))
     }
     relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla", "dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_20_6.vanilla", "dev.neuralnexus.taterlib.v1_20_6.vanilla.fabric")
 }
 
