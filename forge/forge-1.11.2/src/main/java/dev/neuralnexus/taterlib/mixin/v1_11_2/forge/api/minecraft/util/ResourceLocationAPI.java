@@ -22,10 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqPlatform(Platform.FORGE)
 @ReqMCVersion(min = MinecraftVersion.V1_11, max = MinecraftVersion.V1_11_2)
 @Mixin(ResourceLocation.class)
-@Implements(
-        value = {
-            @Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE)
-        })
+@Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
 public abstract class ResourceLocationAPI {
     @Shadow
     public abstract String shadow$getResourceDomain();

@@ -22,10 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqPlatform(Platform.FABRIC)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ResourceLocation.class)
-@Implements(
-        value = {
-            @Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE)
-        })
+@Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
 public abstract class ResourceLocationAPI {
     @Shadow
     public abstract String shadow$getNamespace();
