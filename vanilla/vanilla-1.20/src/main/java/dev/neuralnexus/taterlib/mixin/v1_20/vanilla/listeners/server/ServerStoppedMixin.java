@@ -10,7 +10,7 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -27,6 +27,6 @@ public class ServerStoppedMixin {
     /** Called when the server has stopped. */
     @Inject(at = @At("TAIL"), method = "stopServer")
     private void onServerStopped(CallbackInfo info) {
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent((MinecraftServer) (Object) this));
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
     }
 }

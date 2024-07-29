@@ -7,9 +7,8 @@ package dev.neuralnexus.taterlib.v1_10_2.forge.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_10_2.forge.ForgeTaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_10_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_10_2.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_10_2.forge.world.ForgeServerWorld;
 
@@ -92,7 +91,7 @@ public class ForgeEntity implements Entity {
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =
-                    new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                    ((Server) entity.getServer())
                             .world(location.world().dimension())
                             .map(ForgeServerWorld.class::cast)
                             .map(ForgeServerWorld::world);

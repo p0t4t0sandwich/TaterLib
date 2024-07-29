@@ -262,6 +262,7 @@ platformVersions.put("velocity", Arrays.asList("3"))
 tasks.register('build_monojar', Jar) {
     dependsOn(':api:shadowJar')
     dependsOn(':common:shadowJar')
+    dependsOn(':tooling:conditional-mixins:shadowJar')
     dependsOn(':tooling:loader:build')
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->

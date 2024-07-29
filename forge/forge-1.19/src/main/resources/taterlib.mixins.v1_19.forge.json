@@ -11,6 +11,7 @@
     "v1_19.forge.api.minecraft.resources.ResourceLocationAPI"
   ],
   "server": [
+    "v1_19.forge.api.minecraft.server.MinecraftServerAPI",
     "v1_19.forge.listeners.network.CustomPayloadMixin"
   ]
 }

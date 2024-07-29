@@ -5,14 +5,13 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.fabric.command;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.FabricTaterLibPlugin;
+import dev.neuralnexus.taterapi.entity.Permissible;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.TranslatableText;
 
-import java.util.List;
 import java.util.UUID;
 
 /** The Fabric implementation of {@link CommandSender} */
@@ -32,27 +31,14 @@ public class FabricCommandSender implements CommandSender {
         return source;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public UUID uuid() {
-        PlayerEntity player =
-                ((List<PlayerEntity>)
-                                FabricTaterLibPlugin.minecraftServer.getPlayerManager().players)
-                        .stream()
-                                .filter(
-                                        p ->
-                                                p.getName()
-                                                        .asFormattedString()
-                                                        .equals(
-                                                                source.getName()
-                                                                        .asFormattedString()))
-                                .findFirst()
-                                .orElse(null);
-
-        if (player == null) {
-            return new UUID(0, 0);
-        }
-        return player.getUuid();
+        return TaterAPIProvider.api()
+                .get()
+                .server()
+                .getPlayer(source.getName().asFormattedString())
+                .map(Permissible::uuid)
+                .orElseGet(() -> new UUID(0, 0));
     }
 
     @Override

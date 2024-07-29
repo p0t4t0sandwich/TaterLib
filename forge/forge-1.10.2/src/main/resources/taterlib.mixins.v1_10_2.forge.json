@@ -9,5 +9,8 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_10_2.forge.api.minecraft.util.ResourceLocationAPI"
+  ],
+  "server": [
+    "v1_10_2.forge.api.minecraft.server.MinecraftServerAPI"
   ]
 }

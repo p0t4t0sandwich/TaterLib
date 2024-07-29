@@ -8,6 +8,11 @@ package dev.neuralnexus.taterlib.v1_16.fabric;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.*;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_16.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_16.vanilla.VanillaBootstrap;
@@ -15,11 +20,6 @@ import dev.neuralnexus.taterlib.v1_16.vanilla.event.command.VanillaBrigadierComm
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.player.VanillaPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.event.server.VanillaServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.event.server.VanillaServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.event.server.VanillaServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.event.server.VanillaServerStoppingEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.server.VanillaServer;
 
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -28,7 +28,7 @@ import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
-    public static MinecraftServer minecraftServer;
+    private static MinecraftServer server;
 
     @Override
     public void onInit() {
@@ -36,12 +36,11 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FABRIC)
-                .ifPresent(api -> api.setServer(() -> new VanillaServer(minecraftServer)));
+                .ifPresent(api -> api.setServer(() -> (SimpleServer) (Object) server));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FABRIC)) {
             // Initialize plugin data
-            ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> FabricTaterLibPlugin.minecraftServer = s);
+            ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());
 
             // Register Fabric API command events
@@ -68,13 +67,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             // Register Fabric API server events
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(s)));
+                    s -> ServerEvents.STARTING.invoke(new ServerStartingEventImpl()));
             ServerLifecycleEvents.SERVER_STARTED.register(
-                    s -> ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(s)));
+                    s -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()));
             ServerLifecycleEvents.SERVER_STOPPING.register(
-                    s -> ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(s)));
+                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl()));
             ServerLifecycleEvents.SERVER_STOPPED.register(
-                    s -> ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(s)));
+                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl()));
         }
     }
 }

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_21.vanilla.entity.player;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -15,7 +16,6 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_21.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.v1_21.vanilla.item.inventory.VanillaPlayerInventory;
 import dev.neuralnexus.taterlib.v1_21.vanilla.network.VanillaCustomPacketPayload_1_20_6;
-import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaWorld;
 
 import net.minecraft.core.BlockPos;
@@ -70,7 +70,7 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player, Server
 
     @Override
     public Server server() {
-        return VanillaServer.instance();
+        return (Server) TaterAPIProvider.api().get().server();
     }
 
     @Override

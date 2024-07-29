@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.v1_20.forge.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_20.vanilla.event.server.VanillaServerStoppingEvent;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 
 import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -26,7 +26,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        ServerEvents.STARTING.invoke(new VanillaServerStartingEvent(event.getServer()));
+        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
     }
 
     /**
@@ -36,7 +36,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarted(ServerStartedEvent event) {
-        ServerEvents.STARTED.invoke(new VanillaServerStartedEvent(event.getServer()));
+        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
     }
 
     /**
@@ -46,7 +46,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopping(ServerStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new VanillaServerStoppingEvent(event.getServer()));
+        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
     }
 
     /**
@@ -56,6 +56,6 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopped(ServerStoppedEvent event) {
-        ServerEvents.STOPPED.invoke(new VanillaServerStoppedEvent(event.getServer()));
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
     }
 }

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_20.forge;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.block.ForgeBlockListener;
@@ -16,7 +17,6 @@ import dev.neuralnexus.taterlib.v1_20.forge.listeners.entity.ForgeEntityListener
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.player.ForgePlayerListener_1_20;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_2.forge.listeners.player.ForgePlayerListener_1_20_2;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -35,8 +35,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         api ->
                                 api.setServer(
                                         () ->
-                                                new VanillaServer(
-                                                        ServerLifecycleHooks.getCurrentServer())));
+                                                (SimpleServer)
+                                                        (Object)
+                                                                ServerLifecycleHooks
+                                                                        .getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners

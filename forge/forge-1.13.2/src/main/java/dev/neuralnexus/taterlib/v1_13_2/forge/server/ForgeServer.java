@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.server;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_13_2.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 
 import net.minecraft.server.MinecraftServer;

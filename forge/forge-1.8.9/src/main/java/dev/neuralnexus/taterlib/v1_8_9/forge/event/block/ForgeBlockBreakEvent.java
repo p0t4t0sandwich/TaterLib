@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_8_9.forge.event.block;
 
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_8_9.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_8_9.forge.entity.player.ForgePlayer;
 
 /** Forge implementation of {@link PlayerBlockBreakEvent}. */
 public class ForgeBlockBreakEvent extends ForgeBlockEvent implements PlayerBlockBreakEvent {

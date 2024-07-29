@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.v1_20_6.forge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_6.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.command.ForgeCommandsListener;
@@ -40,8 +40,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         api ->
                                 api.setServer(
                                         () ->
-                                                new VanillaServer(
-                                                        ServerLifecycleHooks.getCurrentServer())));
+                                                (SimpleServer)
+                                                        (Object)
+                                                                ServerLifecycleHooks
+                                                                        .getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             MinecraftForge.EVENT_BUS.register(this);

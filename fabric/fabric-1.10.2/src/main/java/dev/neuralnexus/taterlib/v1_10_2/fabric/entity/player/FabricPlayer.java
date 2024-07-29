@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_10_2.fabric.entity.player;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -14,7 +15,6 @@ import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.item.inventory.FabricPlayerInventory;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.server.FabricServer;
 
 import io.netty.buffer.Unpooled;
 
@@ -72,7 +72,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
 
     @Override
     public Server server() {
-        return new FabricServer(player.getMinecraftServer());
+        return (Server) TaterAPIProvider.api().get().server();
     }
 
     @Override

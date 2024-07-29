@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.v1_21.vanilla.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_21.vanilla.world.VanillaServerWorld;
 
@@ -95,7 +95,7 @@ public class VanillaEntity implements Entity {
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
             Optional<ServerLevel> serverLevel =
-                    VanillaServer.instance()
+                    ((Server) entity.getServer())
                             .world(location.world().dimension())
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::world);

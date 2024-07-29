@@ -11,7 +11,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.v1_13_2.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.util.math.AxisAlignedBB;

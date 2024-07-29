@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.player;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -14,7 +15,6 @@ import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.VanillaLivingEntity;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory.VanillaPlayerInventory;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.server.VanillaServer;
 
 import io.netty.buffer.Unpooled;
 
@@ -72,7 +72,7 @@ public class VanillaPlayer extends VanillaLivingEntity implements Player, Server
 
     @Override
     public Server server() {
-        return VanillaServer.instance();
+        return (Server) TaterAPIProvider.api().get().server();
     }
 
     @Override

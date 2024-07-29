@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.v1_11_2.forge.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_11_2.forge.event.server.ForgeServerStoppingEvent;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
@@ -26,7 +26,7 @@ public class ForgeServerListener {
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        ServerEvents.STARTING.invoke(new ForgeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
     }
 
     /**
@@ -36,7 +36,7 @@ public class ForgeServerListener {
      */
     @Mod.EventHandler
     public void onServerStarted(FMLServerStartedEvent event) {
-        ServerEvents.STARTED.invoke(new ForgeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
     }
 
     /**
@@ -46,7 +46,7 @@ public class ForgeServerListener {
      */
     @Mod.EventHandler
     public void onServerStopping(FMLServerStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new ForgeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
     }
 
     /**
@@ -56,6 +56,6 @@ public class ForgeServerListener {
      */
     @Mod.EventHandler
     public void onServerStopped(FMLServerStoppedEvent event) {
-        ServerEvents.STOPPED.invoke(new ForgeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
     }
 }

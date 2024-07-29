@@ -8,7 +8,12 @@ package dev.neuralnexus.taterlib.v1_10_2.fabric;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.*;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.api.FabricEntityEvents;
@@ -19,13 +24,8 @@ import dev.neuralnexus.taterlib.v1_10_2.fabric.event.entity.FabricEntityDamageEv
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.entity.FabricEntitySpawnEvent;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.event.player.*;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.event.server.FabricServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.event.server.FabricServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.event.server.FabricServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.event.server.FabricServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_10_2.fabric.resources.FabricResourceKey;
-import dev.neuralnexus.taterlib.v1_10_2.fabric.server.FabricServer;
 
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
 import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -33,7 +33,7 @@ import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 
 public class FabricTaterLibPlugin implements TaterLibPlugin {
-    public static MinecraftServer minecraftServer;
+    private static MinecraftServer server;
 
     @Override
     public void onInit() {
@@ -42,12 +42,11 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FABRIC)
-                .ifPresent(api -> api.setServer(() -> new FabricServer(minecraftServer)));
+                .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FABRIC)) {
             // Initialize plugin data
-            ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> FabricTaterLibPlugin.minecraftServer = s);
+            ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());
 
             // Register Fabric API command events
@@ -67,13 +66,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             // Register Fabric API server events
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> ServerEvents.STARTING.invoke(new FabricServerStartingEvent(s)));
+                    s -> ServerEvents.STARTING.invoke(new ServerStartingEventImpl()));
             ServerLifecycleEvents.SERVER_STARTED.register(
-                    s -> ServerEvents.STARTED.invoke(new FabricServerStartedEvent(s)));
+                    s -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()));
             ServerLifecycleEvents.SERVER_STOPPING.register(
-                    s -> ServerEvents.STOPPING.invoke(new FabricServerStoppingEvent(s)));
+                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl()));
             ServerLifecycleEvents.SERVER_STOPPED.register(
-                    s -> ServerEvents.STOPPED.invoke(new FabricServerStoppedEvent(s)));
+                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl()));
 
             // Register TaterLib Block events
             FabricBlockEvents.BLOCK_BREAK.register(

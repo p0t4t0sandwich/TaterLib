@@ -11,10 +11,10 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.v1_21.vanilla.event.network.VanillaPluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
 import dev.neuralnexus.taterlib.v1_21.vanilla.network.CustomPayloadPacket;
-import dev.neuralnexus.taterlib.v1_21.vanilla.server.VanillaServer;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the plugin messages listener. */
-@ReqPlatform(not = {Platform.FABRIC, Platform.FORGE})
+@ReqPlatform(not = {Platform.FABRIC})
 @ReqMCVersion(min = MinecraftVersion.V1_21)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class CustomPayloadMixin {
@@ -42,10 +42,14 @@ public abstract class CustomPayloadMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket wrapper = new CustomPayloadPacket(packet);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
-        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new VanillaPluginMessageEvent.Player(
-                        wrapper,
-                        VanillaServer.server().getPlayerList().getPlayer(getOwner().getId())));
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(wrapper));
+        TaterAPIProvider.api()
+                .get()
+                .server()
+                .getPlayer(getOwner().getId())
+                .ifPresent(
+                        player ->
+                                NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+                                        new PluginMessageEventImpl.Player(wrapper, player)));
     }
 }

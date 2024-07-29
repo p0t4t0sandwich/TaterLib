@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /** Patch mixin for VanillaPlayer 1.19.3. */
-@ReqMCVersion(MinecraftVersion.V1_19_3)
+@ReqMCVersion(min = MinecraftVersion.V1_19_3, max = MinecraftVersion.V1_19_4)
 @Mixin(value = VanillaPlayer.class, remap = false)
 public class VanillaPlayerMixin {
     /**

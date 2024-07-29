@@ -14,9 +14,9 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_21.vanilla.event.server.VanillaServerStartingEvent;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -44,8 +44,7 @@ public class ServerStartingMixin {
                             target = "Lnet/minecraft/server/MinecraftServer;initServer()Z"))
     private void onServerStarting(CallbackInfo info) {
         // Fire the server starting event
-        ServerEvents.STARTING.invoke(
-                new VanillaServerStartingEvent((MinecraftServer) (Object) this));
+        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
 
         // Register Brigadier commands
         CommandDispatcher<CommandSourceStack> dispatcher =

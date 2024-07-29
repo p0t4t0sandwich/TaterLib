@@ -14,6 +14,7 @@
     "v1_16.vanilla.forge.accessors.world.entity.LivingEntityAccessor"
   ],
   "server": [
+    "v1_16_2.forge.api.minecraft.server.MinecraftServerAPI",
     "v1_16_2.forge.listeners.network.CustomPayloadMixin",
     "v1_16.vanilla.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor"
   ]

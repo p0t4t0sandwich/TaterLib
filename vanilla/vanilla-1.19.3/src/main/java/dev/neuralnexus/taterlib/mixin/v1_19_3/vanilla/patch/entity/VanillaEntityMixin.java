@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.mixin.v1_19_3.vanilla.patch.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_19.vanilla.entity.VanillaEntity;
-import dev.neuralnexus.taterlib.v1_19.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_19.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.level.ServerLevel;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 import java.util.Optional;
 
 /** Patch mixin for VanillaEntity 1.19.3. */
-@ReqMCVersion(MinecraftVersion.V1_19_3)
+@ReqMCVersion(min = MinecraftVersion.V1_19_3, max = MinecraftVersion.V1_19_4)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityMixin {
     /**
@@ -35,7 +35,7 @@ public class VanillaEntityMixin {
         Entity entity = self.entity();
         if (!location.world().dimension().equals(self.dimension())) {
             Optional<ServerLevel> serverLevel =
-                    VanillaServer.instance()
+                    ((Server) entity.getServer())
                             .world(location.world().dimension())
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::world);

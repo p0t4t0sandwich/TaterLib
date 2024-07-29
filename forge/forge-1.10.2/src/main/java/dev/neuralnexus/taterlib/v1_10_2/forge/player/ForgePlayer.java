@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_10_2.forge.player;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -12,10 +13,8 @@ import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_10_2.forge.ForgeTaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_10_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_10_2.forge.item.inventory.ForgePlayerInventory;
-import dev.neuralnexus.taterlib.v1_10_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_10_2.forge.world.ForgeServerWorld;
 
 import io.netty.buffer.Unpooled;
@@ -76,7 +75,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public Server server() {
-        return new ForgeServer(player.getServer());
+        return (Server) TaterAPIProvider.api().get().server();
     }
 
     @Override
@@ -110,7 +109,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setSpawn(Location location, boolean forced) {
         Optional<WorldServer> serverLevel =
-                new ForgeServer(ForgeTaterLibPlugin.minecraftServer)
+                ((Server) player.getServer())
                         .world(location.world().dimension())
                         .map(ForgeServerWorld.class::cast)
                         .map(ForgeServerWorld::world);

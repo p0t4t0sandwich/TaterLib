@@ -30,12 +30,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FORGE)
-                .ifPresent(
-                        api ->
-                                api.setServer(
-                                        () ->
-                                                new VanillaServer(
-                                                        ServerLifecycleHooks.getCurrentServer())));
+                .ifPresent(api -> api.setServer(() -> (SimpleServer) (Object) ServerLifecycleHooks.getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners

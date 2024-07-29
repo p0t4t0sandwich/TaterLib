@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_20.vanilla.server.VanillaServer;
 import dev.neuralnexus.taterlib.v1_20_2.neoforge.hooks.permissions.NeoForgePermissionsHook;
 
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
@@ -25,8 +25,10 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
                         api ->
                                 api.setServer(
                                         () ->
-                                                new VanillaServer(
-                                                        ServerLifecycleHooks.getCurrentServer())));
+                                                (SimpleServer)
+                                                        (Object)
+                                                                ServerLifecycleHooks
+                                                                        .getCurrentServer()));
     }
 
     @Override
