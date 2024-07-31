@@ -6,9 +6,11 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.listeners.network;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
+import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.v1_20.bukkit.event.network.BukkitPluginMessageEvent;
+import dev.neuralnexus.taterlib.v1_20.bukkit.entity.player.BukkitPlayer;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
@@ -17,10 +19,9 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 public class BukkitPluginMessageListener implements PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] bytes) {
-        ResourceKey key = ResourceKey.of(channel);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(
-                new BukkitPluginMessageEvent(new CustomPayloadImpl(key, bytes)));
+        CustomPayload payload = new CustomPayloadImpl(ResourceKey.of(channel), bytes);
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(payload));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new BukkitPluginMessageEvent.Player(new CustomPayloadImpl(key, bytes), player));
+                new PluginMessageEventImpl.Player(payload, new BukkitPlayer(player)));
     }
 }

@@ -6,7 +6,12 @@
 package dev.neuralnexus.taterlib.v1_8.bungee.listeners.network;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.v1_8.bungee.event.network.BungeePluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
+import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.v1_8.bungee.entity.player.BungeePlayer;
+import dev.neuralnexus.taterlib.v1_8.bungee.server.BungeeServer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.connection.Server;
@@ -23,11 +28,17 @@ public class BungeePluginMessageListener implements Listener {
      */
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent(event));
+        CustomPayload payload =
+                new CustomPayloadImpl(ResourceKey.of(event.getTag()), event.getData());
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(payload));
         if (event.getReceiver() instanceof ProxiedPlayer) {
-            NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.Player(event));
+            NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+                    new PluginMessageEventImpl.Player(
+                            payload, new BungeePlayer((ProxiedPlayer) event.getReceiver())));
         } else if (event.getReceiver() instanceof Server) {
-            NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(new BungeePluginMessageEvent.Server(event));
+            NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(
+                    new PluginMessageEventImpl.Server(
+                            payload, new BungeeServer(((Server) event.getReceiver()).getInfo())));
         }
     }
 }

@@ -18,7 +18,7 @@ public class PluginMessageEventImpl implements PluginMessageEvent {
 
     @Override
     public CustomPayload packet() {
-        return null;
+        return this.packet;
     }
 
     public static class Player extends PluginMessageEventImpl implements PluginMessageEvent.Player {
@@ -33,6 +33,20 @@ public class PluginMessageEventImpl implements PluginMessageEvent {
         @Override
         public dev.neuralnexus.taterapi.entity.player.Player player() {
             return this.player;
+        }
+    }
+
+    public static class Server extends PluginMessageEventImpl implements PluginMessageEvent.Server {
+        private final dev.neuralnexus.taterapi.server.Server server;
+
+        public Server(CustomPayload packet, dev.neuralnexus.taterapi.server.Server server) {
+            super(packet);
+            this.server = server;
+        }
+
+        @Override
+        public dev.neuralnexus.taterapi.server.Server server() {
+            return this.server;
         }
     }
 }

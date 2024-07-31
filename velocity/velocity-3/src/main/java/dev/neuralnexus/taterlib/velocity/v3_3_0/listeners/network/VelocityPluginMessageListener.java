@@ -9,9 +9,15 @@ import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ServerConnection;
+import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityPluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
+import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 /** Listens for plugin messages. */
 public class VelocityPluginMessageListener {
@@ -22,13 +28,20 @@ public class VelocityPluginMessageListener {
      */
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new VelocityPluginMessageEvent(event));
+        CustomPayload packet =
+                new CustomPayloadImpl(
+                        ResourceKey.of(event.getIdentifier().getId()), event.getData());
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(packet));
         if (event.getSource() instanceof Player) {
             NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                    new VelocityPluginMessageEvent.Player(event));
+                    new PluginMessageEventImpl.Player(
+                            packet,
+                            new VelocityPlayer(
+                                    (com.velocitypowered.api.proxy.Player) event.getSource())));
         } else if (event.getSource() instanceof ServerConnection) {
             NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(
-                    new VelocityPluginMessageEvent.Server(event));
+                    new PluginMessageEventImpl.Server(
+                            packet, new VelocityServer((RegisteredServer) event.getSource())));
         }
     }
 }
