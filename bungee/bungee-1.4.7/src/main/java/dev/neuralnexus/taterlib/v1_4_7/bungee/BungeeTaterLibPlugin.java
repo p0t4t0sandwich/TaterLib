@@ -9,13 +9,13 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 import dev.neuralnexus.taterapi.util.ScheduleUtil;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.command.BungeeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.server.BungeeServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.hooks.permissions.BungeePermissionsHook;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.network.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.player.BungeePlayerListener;
@@ -45,16 +45,16 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
                 5000L);
         pluginManager.registerListener(plugin, new BungeePlayerListener());
         pluginManager.registerListener(plugin, new BungeePluginMessageListener());
-        ServerEvents.STARTING.invoke(new BungeeServerStartingEvent());
+        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
         ScheduleUtil.runTaskLaterAsync(
-                () -> ServerEvents.STARTED.invoke(new BungeeServerStartedEvent()), 5000L);
+                () -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()), 5000L);
     }
 
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new BungeeServerStoppingEvent());
-        ServerEvents.STOPPED.invoke(new BungeeServerStoppedEvent());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
         stop();
     }
 }

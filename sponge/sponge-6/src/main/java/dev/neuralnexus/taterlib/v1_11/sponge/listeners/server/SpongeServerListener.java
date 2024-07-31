@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.v1_11.sponge.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterlib.v1_11.sponge.event.server.SpongeServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_11.sponge.event.server.SpongeServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_11.sponge.event.server.SpongeServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_11.sponge.event.server.SpongeServerStoppingEvent;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
@@ -26,7 +26,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarting(GameStartingServerEvent event) {
-        ServerEvents.STARTING.invoke(new SpongeServerStartingEvent(event));
+        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
     }
 
     /**
@@ -36,7 +36,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarted(GameStartedServerEvent event) {
-        ServerEvents.STARTED.invoke(new SpongeServerStartedEvent(event));
+        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
     }
 
     /**
@@ -46,7 +46,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStopping(GameStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new SpongeServerStoppingEvent(event));
+        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
     }
 
     /**
@@ -56,6 +56,6 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStopped(GameStoppedServerEvent event) {
-        ServerEvents.STOPPED.invoke(new SpongeServerStoppedEvent(event));
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
     }
 }

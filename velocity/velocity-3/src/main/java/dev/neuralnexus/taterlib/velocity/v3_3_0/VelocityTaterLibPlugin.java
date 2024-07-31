@@ -14,12 +14,12 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.event.server.VelocityServerStartedEvent;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.event.server.VelocityServerStoppedEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.hooks.permissions.VelocityPermissionsHook;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.network.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.player.VelocityPlayerListener;
@@ -64,7 +64,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                                     new VelocityRegisterPluginMessagesEvent());
 
                             // Fire server started event
-                            ServerEvents.STARTED.invoke(new VelocityServerStartedEvent());
+                            ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
                         })
                 .delay(Duration.ofSeconds(5))
                 .schedule();
@@ -72,7 +72,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onDisable() {
-        ServerEvents.STOPPED.invoke(new VelocityServerStoppedEvent());
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
         stop();
     }
 }

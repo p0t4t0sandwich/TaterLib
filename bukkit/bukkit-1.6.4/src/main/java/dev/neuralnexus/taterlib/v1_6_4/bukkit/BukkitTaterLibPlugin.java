@@ -10,13 +10,13 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
+import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.server.BukkitServerStartedEvent;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.server.BukkitServerStartingEvent;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.server.BukkitServerStoppedEvent;
-import dev.neuralnexus.taterlib.v1_6_4.bukkit.event.server.BukkitServerStoppingEvent;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.listeners.entity.BukkitEntityListener;
@@ -46,12 +46,12 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);
             pluginManager.registerEvents(new BukkitEntityListener(), plugin);
             pluginManager.registerEvents(new BukkitPlayerListener(), plugin);
-            ServerEvents.STARTING.invoke(new BukkitServerStartingEvent());
+            ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
             Bukkit.getServer()
                     .getScheduler()
                     .scheduleSyncDelayedTask(
                             plugin,
-                            () -> ServerEvents.STARTED.invoke(new BukkitServerStartedEvent()),
+                            () -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()),
                             5 * 20L);
 
             Bukkit.getServer()
@@ -74,8 +74,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new BukkitServerStoppingEvent());
-        ServerEvents.STOPPED.invoke(new BukkitServerStoppedEvent());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
+        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
         stop();
     }
 }
