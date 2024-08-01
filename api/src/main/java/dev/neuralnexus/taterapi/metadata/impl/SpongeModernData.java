@@ -5,7 +5,9 @@
  */
 package dev.neuralnexus.taterapi.metadata.impl;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
@@ -25,6 +27,14 @@ public class SpongeModernData implements PlatformData {
     @Override
     public String modLoaderVersion() {
         return Sponge.pluginManager().plugin("sponge").get().metadata().version().toString();
+    }
+
+    @Override
+    public Mappings mappings() {
+        if (Platform.get().isForgeBased() && minecraftVersion().isOlderThan(MinecraftVersion.V1_20_5)) {
+            return Mappings.SEARGE;
+        }
+        return Mappings.MOJMAP;
     }
 
     @Override

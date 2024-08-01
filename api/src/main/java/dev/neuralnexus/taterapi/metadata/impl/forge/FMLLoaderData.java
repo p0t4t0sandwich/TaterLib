@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterapi.metadata.impl.forge;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
@@ -50,6 +51,14 @@ public class FMLLoaderData implements PlatformData {
             return ForgeVersion_13_16.forgeVersion();
         }
         return ForgeVersion_17_21.forgeVersion();
+    }
+
+    @Override
+    public Mappings mappings() {
+        if (minecraftVersion().isOlderThan(MinecraftVersion.V1_20_5)) {
+            return Mappings.SEARGE;
+        }
+        return Mappings.MOJMAP;
     }
 
     @Override

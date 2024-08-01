@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.metadata;
 import static dev.neuralnexus.taterapi.util.PathUtils.getConfigFolder;
 import static dev.neuralnexus.taterapi.util.PathUtils.getModsFolder;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.logger.Logger;
@@ -34,6 +35,13 @@ public interface PlatformData {
      * @return the modloader version
      */
     String modLoaderVersion();
+
+    /**
+     * Get the platform's mappings
+     *
+     * @return The platform's mappings
+     */
+    Mappings mappings();
 
     /**
      * Get the mod list

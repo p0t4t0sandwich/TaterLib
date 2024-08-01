@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterapi.metadata.impl;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.ModInfo;
@@ -44,6 +45,14 @@ public class FabricData implements PlatformData {
                         .getMetadata()
                         .getVersion()
                         .getFriendlyString();
+    }
+
+    @Override
+    public Mappings mappings() {
+        if (minecraftVersion().isOlderThan(MinecraftVersion.V1_14)) {
+            return Mappings.LEGACYINTERMEDIARY;
+        }
+        return Mappings.INTERMEDIARY;
     }
 
     @Override

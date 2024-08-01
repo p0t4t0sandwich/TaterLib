@@ -10,6 +10,7 @@ import static dev.neuralnexus.taterapi.util.PathUtils.getPluginsFolder;
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.Slf4jLogger;
@@ -40,6 +41,11 @@ public class VelocityData implements PlatformData {
     @Override
     public String modLoaderVersion() {
         return proxyServer.getVersion().getVersion();
+    }
+
+    @Override
+    public Mappings mappings() {
+        return Mappings.NONE;
     }
 
     @Override

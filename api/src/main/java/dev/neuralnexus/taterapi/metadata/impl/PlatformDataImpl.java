@@ -7,6 +7,7 @@ package dev.neuralnexus.taterapi.metadata.impl;
 
 import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForClass;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.logger.Logger;
@@ -59,6 +60,11 @@ public class PlatformDataImpl implements PlatformData {
             MOD_LOADER_VERSION = INSTANCE.modLoaderVersion();
         }
         return MOD_LOADER_VERSION;
+    }
+
+    @Override
+    public Mappings mappings() {
+        return INSTANCE.mappings();
     }
 
     @Override

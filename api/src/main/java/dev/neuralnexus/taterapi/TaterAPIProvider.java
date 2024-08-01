@@ -144,6 +144,9 @@ public class TaterAPIProvider {
         if (apis.isEmpty()) {
             register();
         }
+        if (platform != primaryPlatform) {
+            return api(primaryPlatform);
+        }
         return api(platform);
     }
 
@@ -168,7 +171,6 @@ public class TaterAPIProvider {
         return apis.values().stream().anyMatch(api -> api.isModLoaded(nameOrId));
     }
 
-    @ApiStatus.Internal
     public static Platform primaryPlatform() {
         return primaryPlatform;
     }

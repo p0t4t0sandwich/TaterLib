@@ -7,6 +7,7 @@ package dev.neuralnexus.taterapi.metadata.impl.forge;
 
 import cpw.mods.fml.common.Loader;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.ApacheLogger;
@@ -34,6 +35,11 @@ public class CPWLoaderData implements PlatformData {
     @Override
     public String modLoaderVersion() {
         return ForgeVersion_7_12.forgeVersion();
+    }
+
+    @Override
+    public Mappings mappings() {
+        return Mappings.SEARGE;
     }
 
     @Override

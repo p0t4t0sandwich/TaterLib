@@ -7,6 +7,7 @@ package dev.neuralnexus.taterapi.metadata.impl;
 
 import static dev.neuralnexus.taterapi.util.PathUtils.getPluginsFolder;
 
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.LoggerAdapter;
@@ -29,6 +30,11 @@ public class BungeeCordData implements PlatformData {
     @Override
     public String modLoaderVersion() {
         return ProxyServer.getInstance().getVersion();
+    }
+
+    @Override
+    public Mappings mappings() {
+        return Mappings.NONE;
     }
 
     @Override
