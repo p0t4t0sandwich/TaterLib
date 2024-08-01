@@ -24,6 +24,7 @@ public class ConditionalMixins {
 
     public static boolean shouldApplyMixin(
             String mixinClassName, Collection<String> disabledMixins, boolean verbose) {
+        boolean result = true;
         for (String disabledMixin : disabledMixins) {
             if (mixinClassName.endsWith(disabledMixin)) {
                 if (verbose) {
@@ -33,7 +34,7 @@ public class ConditionalMixins {
                                             + mixinClassName
                                             + " §4disabled in config"));
                 }
-                return false;
+                result = false;
             }
         }
         try {
@@ -41,18 +42,19 @@ public class ConditionalMixins {
                     MixinService.getService().getBytecodeProvider().getClassNode(mixinClassName);
 
             if (classNode.visibleAnnotations != null) {
-                return AnnotationChecker.checkAnnotations(
-                        classNode.visibleAnnotations, mixinClassName, verbose);
+                result =
+                        AnnotationChecker.checkAnnotations(
+                                classNode.visibleAnnotations, mixinClassName, verbose);
             }
         } catch (ClassNotFoundException | IOException e) {
             if (verbose) {
                 logger.error("Failed to load mixin class: " + mixinClassName, e);
             }
         }
-        if (verbose) {
+        if (result && verbose) {
             logger.info(ansiParser("§2Applying mixin §9" + mixinClassName));
         }
-        return true;
+        return result;
     }
 
     public static boolean shouldApplyMixin(String mixinClassName) {

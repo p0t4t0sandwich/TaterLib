@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_10_2.fabric.api.minecraft.server;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqPlatform(Platform.FABRIC)
+@ReqMappings(Mappings.LEGACYINTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_10, max = MinecraftVersion.V1_10_2)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))

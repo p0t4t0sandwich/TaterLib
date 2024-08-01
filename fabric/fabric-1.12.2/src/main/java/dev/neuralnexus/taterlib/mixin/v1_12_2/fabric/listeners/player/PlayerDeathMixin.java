@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_12_2.fabric.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterlib.v1_12_2.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.entity.damage.DamageSource;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player death listener. */
-@ReqPlatform(Platform.FABRIC)
+@ReqMappings(Mappings.LEGACYINTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_12, max = MinecraftVersion.V1_12_2)
 @Mixin(ServerPlayerEntity.class)
 public class PlayerDeathMixin {

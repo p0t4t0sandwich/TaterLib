@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_9_4.fabric.listeners.player;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player message listener. */
-@ReqPlatform(Platform.FABRIC)
+@ReqMappings(Mappings.LEGACYINTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_9, max = MinecraftVersion.V1_9_4)
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class PlayerMessageMixin {

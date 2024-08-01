@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ConfigUtil;
 import dev.neuralnexus.taterlib.config.sections.HookConfig;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
@@ -32,7 +32,7 @@ public class TaterLibConfigLoader {
     private static final Logger logger = Logger.create("TaterLibConfigLoader");
     private static final Path configPath =
             Paths.get(
-                    TaterAPIProvider.platformData().configFolder()
+                    PlatformData.instance().configFolder()
                             + File.separator
                             + LoaderImpl.PROJECT_ID
                             + File.separator

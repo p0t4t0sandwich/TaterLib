@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_16_2.forge.patch.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_16.vanilla.entity.VanillaEntity;
 
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Patch mixin for VanillaEntity */
-@ReqPlatform(Platform.FORGE)
+@ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
 @Mixin(value = VanillaEntity.class, remap = false)
 public class VanillaEntityPatch {

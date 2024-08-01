@@ -6,7 +6,6 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.conditionalmixins.ConditionalMixins;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.config.sections.MixinConfig;
 
@@ -19,10 +18,6 @@ import java.util.Set;
 
 /** A mixin plugin for TaterLib. */
 public class TaterLibMixinPlugin implements IMixinConfigPlugin {
-    static {
-        TaterAPIProvider.register();
-    }
-
     @Override
     public void onLoad(String mixinPackage) {}
 
@@ -34,8 +29,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         MixinConfig config = TaterLibConfigLoader.config().mixin();
-        return ConditionalMixins.shouldApplyMixin(
-                mixinClassName, config.disabled(), config.verbose());
+        return ConditionalMixins.shouldApplyMixin(mixinClassName, config.disabled(), config.verbose());
     }
 
     @Override

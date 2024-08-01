@@ -11,8 +11,11 @@ import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 import static org.spongepowered.asm.util.Annotations.getValue;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqDependency;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
@@ -32,6 +35,10 @@ public class AnnotationChecker {
         for (AnnotationNode node : annotations) {
             if (Type.getDescriptor(ReqDependency.class).equals(node.desc)) {
                 if (!checkReqDependency(mixinClassName, node, verbose)) {
+                    return false;
+                }
+            } else if (Type.getDescriptor(ReqMappings.class).equals(node.desc)) {
+                if (!checkReqMappings(mixinClassName, node, verbose)) {
                     return false;
                 }
             } else if (Type.getDescriptor(ReqPlatform.class).equals(node.desc)) {
@@ -79,6 +86,22 @@ public class AnnotationChecker {
                     }
                 }
             }
+        }
+        return true;
+    }
+
+    public static boolean checkReqMappings(
+            String mixinClassName, AnnotationNode annotation, boolean verbose) {
+        Mappings mappings = getValue(annotation, "value", Mappings.class, Mappings.NONE);
+        if (mappings != Mappings.NONE && !mappings.is(platformData.mappings())) {
+            if (verbose) {
+                logger.info(
+                        ansiParser(
+                                "§4Skipping mixin §9"
+                                        + mixinClassName
+                                        + " §4mappings not supported"));
+            }
+            return false;
         }
         return true;
     }

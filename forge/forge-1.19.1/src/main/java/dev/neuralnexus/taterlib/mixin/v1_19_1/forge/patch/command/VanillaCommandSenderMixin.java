@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_19_1.forge.patch.command;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterlib.v1_19.vanilla.command.VanillaCommandSender;
 
 import net.minecraft.network.chat.Component;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /** Patch for VanillaCommandSender 1.19.1. */
-@ReqPlatform(Platform.FORGE)
+@ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(MinecraftVersion.V1_19_1)
 @Mixin(value = VanillaCommandSender.class, remap = false)
 public class VanillaCommandSenderMixin {

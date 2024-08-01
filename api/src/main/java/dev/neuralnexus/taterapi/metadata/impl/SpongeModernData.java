@@ -31,7 +31,8 @@ public class SpongeModernData implements PlatformData {
 
     @Override
     public Mappings mappings() {
-        if (Platform.get().isForgeBased() && minecraftVersion().isOlderThan(MinecraftVersion.V1_20_5)) {
+        if (Platform.get().isForgeBased()
+                && minecraftVersion().isOlderThan(MinecraftVersion.V1_20_5)) {
             return Mappings.SEARGE;
         }
         return Mappings.MOJMAP;
