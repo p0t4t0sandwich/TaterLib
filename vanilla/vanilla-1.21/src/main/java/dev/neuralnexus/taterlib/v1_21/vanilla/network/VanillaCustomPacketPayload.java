@@ -17,23 +17,21 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 /** CustomPacketPayload implementation for 1.20.6 */
-public class VanillaCustomPacketPayload_1_20_6 implements CustomPacketPayload {
-    public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload_1_20_6>
-            STREAM_CODEC =
-                    CustomPacketPayload.codec(
-                            VanillaCustomPacketPayload_1_20_6::write,
-                            VanillaCustomPacketPayload_1_20_6::new);
+public class VanillaCustomPacketPayload implements CustomPacketPayload {
+    public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload> STREAM_CODEC =
+            CustomPacketPayload.codec(
+                    VanillaCustomPacketPayload::write, VanillaCustomPacketPayload::new);
 
     private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf;
 
-    public VanillaCustomPacketPayload_1_20_6(ResourceKey channel, byte[] data) {
+    public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
         id = (ResourceLocation) (Object) channel;
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
     }
 
-    public VanillaCustomPacketPayload_1_20_6(FriendlyByteBuf buf) {
+    public VanillaCustomPacketPayload(FriendlyByteBuf buf) {
         id = buf.readResourceLocation();
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(buf.readBytes(buf.readableBytes()));

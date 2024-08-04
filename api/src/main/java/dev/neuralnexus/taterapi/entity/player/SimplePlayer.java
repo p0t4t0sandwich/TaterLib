@@ -31,7 +31,10 @@ public interface SimplePlayer extends CommandSender {
      *
      * @return The server the player is on
      */
-    SimpleServer server();
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
+    default SimpleServer server() {
+        return TaterAPIProvider.api().get().server();
+    }
 
     /**
      * Get the prefix of the player

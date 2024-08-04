@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_21.vanilla.event.player;
 
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterlib.v1_21.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.entity.VanillaEntityDeathEvent;
 
 import net.minecraft.world.damagesource.DamageSource;
@@ -26,7 +25,7 @@ public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements 
 
     @Override
     public Player player() {
-        return new VanillaPlayer(player);
+        return (Player) player;
     }
 
     @Override

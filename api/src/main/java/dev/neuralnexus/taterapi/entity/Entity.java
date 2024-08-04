@@ -5,22 +5,24 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
-public interface Entity extends Nameable {
+public interface Entity extends CommandSender, Nameable {
     /**
-     * Get the UUID of the entity
+     * Get the name of the entity
      *
-     * @return The UUID of the entity
+     * @return The name of the entity
      */
-    UUID uuid();
+    default String name() {
+        return customName().orElseGet(() -> type().asString());
+    }
 
     /**
      * Get the id of the entity
