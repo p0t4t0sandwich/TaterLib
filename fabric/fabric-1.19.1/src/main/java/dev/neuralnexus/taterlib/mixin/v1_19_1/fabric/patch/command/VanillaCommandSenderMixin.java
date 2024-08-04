@@ -9,7 +9,6 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterlib.v1_19.vanilla.command.VanillaCommandSender;
 
 import net.minecraft.network.chat.Component;
 

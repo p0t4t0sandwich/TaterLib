@@ -21,5 +21,4 @@ dependencies {
     compileOnly(project(':tooling:loader'))
     compileOnly(project(':vanilla:vanilla-1.19'))
     compileOnly(project(':vanilla:vanilla-1.19.1'))
-    compileOnly(project(':vanilla:vanilla-1.19.3'))
 }

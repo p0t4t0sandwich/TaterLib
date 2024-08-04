@@ -9,10 +9,9 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.v1_19.vanilla.command.VanillaCommandSender;
-import dev.neuralnexus.taterlib.v1_19.vanilla.entity.player.VanillaPlayer;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
+import net.minecraft.commands.CommandSourceStack;
 
 /** A hook for Fabric permissions */
 public class FabricPermissionsHook implements PermissionsHook {
@@ -24,9 +23,9 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {
-            return Permissions.check(((VanillaPlayer) permissible).player(), permission, 4);
+            return Permissions.check((net.minecraft.world.entity.player.Player) permissible, permission, 4);
         } else if (permissible instanceof CommandSender) {
-            return Permissions.check(((VanillaCommandSender) permissible).sender(), permission, 4);
+            return Permissions.check((CommandSourceStack) permissible, permission, 4);
         }
         return false;
     }
