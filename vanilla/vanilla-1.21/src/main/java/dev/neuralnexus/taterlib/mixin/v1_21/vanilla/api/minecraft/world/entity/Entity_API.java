@@ -30,6 +30,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.portal.DimensionTransition;
 import net.minecraft.world.phys.Vec3;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -38,8 +39,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
 import java.util.UUID;
-
-import javax.annotation.Nullable;
 
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_21)
@@ -124,7 +123,7 @@ public abstract class Entity_API {
                                 .registry();
     }
 
-    @SuppressWarnings({"resource", "DataFlowIssue"})
+    @SuppressWarnings({"DataFlowIssue", "resource"})
     public void entity$teleport(Location location) {
         if (location.world().dimension().equals(((Entity) this).dimension())) {
             this.shadow$teleportTo(location.x(), location.y(), location.z());

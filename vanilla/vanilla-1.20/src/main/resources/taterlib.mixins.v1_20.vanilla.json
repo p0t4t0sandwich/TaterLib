@@ -8,7 +8,14 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_20.vanilla.api.minecraft.resources.ResourceLocationAPI",
+    "v1_20.vanilla.api.minecraft.commands.CommandSourceStack_API",
+    "v1_20.vanilla.api.minecraft.resources.ResourceLocation_API",
+    "v1_20.vanilla.api.minecraft.server.MinecraftServer_API",
+    "v1_20.vanilla.api.minecraft.server.level.ServerPlayer_API",
+    "v1_20.vanilla.api.minecraft.server.level.ServerPlayer_API_ping_plugin_message",
+    "v1_20.vanilla.api.minecraft.world.entity.Entity_API",
+    "v1_20.vanilla.api.minecraft.world.entity.LivingEntity_API",
+    "v1_20.vanilla.api.minecraft.world.entity.player.Player_API",
     "v1_20.vanilla.listeners.block.PlayerBlockBreakMixin",
     "v1_20.vanilla.listeners.entity.EntityDamageMixin",
     "v1_20.vanilla.listeners.entity.EntityDeathMixin"

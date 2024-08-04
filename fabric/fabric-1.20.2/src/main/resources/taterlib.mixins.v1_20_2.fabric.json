@@ -8,7 +8,8 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_20_2.vanilla.fabric.patch.entity.player.VanillaPlayerMixin"
+    "v1_20_2.fabric.api.minecraft.server.level.ServerPlayer_API_ping",
+    "v1_20_2.fabric.api.minecraft.server.level.ServerPlayer_API_send_plugin_message"
   ],
   "server": [
     "v1_20_2.fabric.listeners.network.CustomPayloadMixin",

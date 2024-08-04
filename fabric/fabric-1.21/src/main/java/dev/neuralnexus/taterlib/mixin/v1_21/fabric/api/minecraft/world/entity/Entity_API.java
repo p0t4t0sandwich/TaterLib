@@ -123,7 +123,7 @@ public abstract class Entity_API {
                                 .registry();
     }
 
-    @SuppressWarnings({"resource", "DataFlowIssue"})
+    @SuppressWarnings({"DataFlowIssue", "resource"})
     public void entity$teleport(Location location) {
         if (location.world().dimension().equals(((Entity) this).dimension())) {
             this.shadow$teleportTo(location.x(), location.y(), location.z());

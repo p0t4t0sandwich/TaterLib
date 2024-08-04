@@ -8,8 +8,8 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_20_6.vanilla.patch.item.inventory.VanillaItemStackMixin",
-    "v1_20_6.vanilla.patch.entity.player.VanillaPlayerMixin"
+    "v1_20_6.vanilla.api.minecraft.server.level.ServerPlayer_API_plugin_message",
+    "v1_20_6.vanilla.patch.item.inventory.VanillaItemStackMixin"
   ],
   "server": [
     "v1_20_6.vanilla.listeners.network.CustomPayloadMixin"

@@ -9,11 +9,11 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayload;
-import dev.neuralnexus.taterlib.v1_20.vanilla.entity.player.VanillaPlayer;
-import dev.neuralnexus.taterlib.v1_20.vanilla.network.CustomPayloadPacket_1_20;
+import dev.neuralnexus.taterlib.v1_20.vanilla.network.CustomPayloadPacket;
 
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -41,10 +41,9 @@ public abstract class CustomPayloadMixin {
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayload wrapper = new CustomPayloadPacket_1_20(packet);
+        CustomPayload wrapper = new CustomPayloadPacket(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(wrapper));
         if (getPlayer() == null) return;
-        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new PluginMessageEventImpl.Player(wrapper, new VanillaPlayer(getPlayer())));
+        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl.Player(wrapper, (SimplePlayer) getPlayer()));
     }
 }

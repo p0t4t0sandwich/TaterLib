@@ -51,9 +51,6 @@ public abstract class LivingEntity_API {
     public abstract void shadow$setAbsorptionAmount(float amount);
 
     @Shadow
-    public abstract float shadow$getMaxHealth();
-
-    @Shadow
     public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> attributeHolder);
 
     @Unique public Level taterapi$level() {

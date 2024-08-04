@@ -7,6 +7,9 @@
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_20_6.fabric.api.minecraft.server.level.ServerPlayer_API_plugin_message"
+  ],
   "server": [
     "v1_20_6.fabric.listeners.network.CustomPayloadMixin"
   ]
