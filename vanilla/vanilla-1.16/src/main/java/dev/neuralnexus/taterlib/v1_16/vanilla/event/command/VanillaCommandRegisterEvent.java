@@ -16,8 +16,6 @@ import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_16.vanilla.command.VanillaCommandSender;
-import dev.neuralnexus.taterlib.v1_16.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -58,12 +56,12 @@ public class VanillaCommandRegisterEvent
 
     @Override
     public CommandSender getSender(CommandSourceStack source) {
-        return new VanillaCommandSender(source);
+        return (CommandSender) source;
     }
 
     @Override
     public Player getPlayer(CommandSourceStack source) {
-        return new VanillaPlayer((net.minecraft.world.entity.player.Player) source.getEntity());
+        return (Player) source.getEntity();
     }
 
     @Override
