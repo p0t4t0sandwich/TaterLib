@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
 /** Vanilla implementation of {@link ResourceKey}. */
+@SuppressWarnings("DataFlowIssue")
 public class VanillaResourceKey {
     public static class Factory implements ResourceKey.Factory {
 

@@ -22,7 +22,6 @@ import java.util.UUID;
 /** Bukkit implementation of {@link Player}. */
 public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPlayer {
     private final org.bukkit.entity.Player player;
-    private Plugin plugin = null;
 
     /**
      * Constructor.

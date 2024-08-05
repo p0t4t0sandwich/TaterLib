@@ -29,6 +29,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 
+@SuppressWarnings("unused")
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     private static MinecraftServer server;
 

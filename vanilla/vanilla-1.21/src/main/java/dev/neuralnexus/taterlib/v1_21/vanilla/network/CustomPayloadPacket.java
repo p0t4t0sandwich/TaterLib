@@ -21,6 +21,7 @@ public class CustomPayloadPacket implements CustomPayload {
     private final ResourceKey channel;
     private final byte[] data;
 
+    @SuppressWarnings("DataFlowIssue")
     public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
         this.channel = (ResourceKey) (Object) packet.payload().type().id();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());

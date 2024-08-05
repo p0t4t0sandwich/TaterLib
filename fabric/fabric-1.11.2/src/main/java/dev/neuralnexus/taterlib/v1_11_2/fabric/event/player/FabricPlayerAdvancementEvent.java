@@ -36,6 +36,7 @@ public class FabricPlayerAdvancementEvent extends FabricPlayerEvent
     }
 
     /** Fabric implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
+    @SuppressWarnings({"FieldCanBeLocal", "unused"})
     public static class AdvancementProgress extends FabricPlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementProgress {
         private final Object advancement;

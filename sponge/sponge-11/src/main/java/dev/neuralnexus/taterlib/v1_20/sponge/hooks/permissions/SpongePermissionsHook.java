@@ -9,8 +9,8 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterlib.v1_20.sponge.command.SpongeCommandSender;
 
+import org.spongepowered.api.command.CommandCause;
 import org.spongepowered.api.entity.living.player.server.ServerPlayer;
 
 /** A hook for Sponge permissions */
@@ -25,7 +25,7 @@ public class SpongePermissionsHook implements PermissionsHook {
         if (permissible instanceof Player) {
             return ((ServerPlayer) permissible).hasPermission(permission);
         } else if (permissible instanceof CommandSender) {
-            return (((SpongeCommandSender) permissible).sender().hasPermission(permission));
+            return (((CommandCause) permissible).hasPermission(permission));
         }
         return false;
     }

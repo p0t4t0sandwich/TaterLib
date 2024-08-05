@@ -42,6 +42,7 @@ public class ServerStartingMixin {
                     @At(
                             value = "INVOKE",
                             target = "Lnet/minecraft/server/MinecraftServer;initServer()Z"))
+    @SuppressWarnings("DataFlowIssue")
     private void onServerStarting(CallbackInfo info) {
         // Fire the server starting event
         ServerEvents.STARTING.invoke(new ServerStartingEventImpl());

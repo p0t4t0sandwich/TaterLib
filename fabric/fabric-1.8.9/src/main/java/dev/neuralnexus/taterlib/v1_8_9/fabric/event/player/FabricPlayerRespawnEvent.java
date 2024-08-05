@@ -14,13 +14,9 @@ import net.minecraft.entity.player.PlayerEntity;
 
 /** Fabric implementation of {@link PlayerRespawnEvent}. */
 public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements PlayerRespawnEvent {
-    private final boolean alive;
-    private final PlayerEntity player;
 
     public FabricPlayerRespawnEvent(PlayerEntity player, int dimension, boolean alive) {
         super(player);
-        this.player = player;
-        this.alive = alive;
     }
 
     @Override

@@ -29,8 +29,10 @@ public class DumpInfo {
     public final boolean isForgeHybrid = platform.isForgeHybrid();
     public final boolean isFabricHybrid = platform.isFabricHybrid();
     public final boolean isSpongeForge = platform.is(Platform.SPONGE_FORGE);
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public final boolean isSinytraConnector =
             TaterAPIProvider.api().get().isModLoaded("connectormod");
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public final boolean isKilt = TaterAPIProvider.api().get().isModLoaded("kilt");
 
     /** Save the dump to a file. */
@@ -43,8 +45,7 @@ public class DumpInfo {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(this, writer);
         } catch (IOException e) {
-            TaterLib.logger().error("An error occurred while saving the dump.");
-            e.printStackTrace();
+            TaterLib.logger().error("An error occurred while saving the dump.", e);
         }
     }
 }

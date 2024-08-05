@@ -14,11 +14,9 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {
-    private final PlayerEvent.PlayerRespawnEvent event;
 
     public ForgePlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
         super(event);
-        this.event = event;
     }
 
     @Override

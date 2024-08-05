@@ -32,6 +32,7 @@ import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.server.MinecraftServer;
 
+@SuppressWarnings("unused")
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     private static MinecraftServer server;
 
@@ -53,13 +54,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
             CommandRegistrar.EVENT.register(
                     (manager, dedicated) ->
                             CommandEvents.REGISTER_COMMAND.invoke(
-                                    new FabricCommandRegisterEvent(manager, dedicated)));
+                                    new FabricCommandRegisterEvent(manager)));
 
             // Register Fabric API player events
             ServerPlayConnectionEvents.JOIN.register(
                     (handler, sender, s) ->
                             PlayerEvents.LOGIN.invoke(
-                                    new FabricPlayerLoginEvent(handler, sender, s)));
+                                    new FabricPlayerLoginEvent(handler)));
             ServerPlayConnectionEvents.DISCONNECT.register(
                     (handler, s) ->
                             PlayerEvents.LOGOUT.invoke(new FabricPlayerLogoutEvent(handler, s)));
@@ -88,7 +89,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                     new FabricEntityDamageEvent(entity, damageSource, damage, ci)));
             FabricEntityEvents.DEATH.register(
                     (entity, source) ->
-                            EntityEvents.DEATH.invoke(new FabricEntityDeathEvent(entity, source)));
+                            EntityEvents.DEATH.invoke(new FabricEntityDeathEvent(entity)));
             FabricEntityEvents.SPAWN.register(
                     (entity, cir) ->
                             EntityEvents.SPAWN.invoke(new FabricEntitySpawnEvent(entity, cir)));

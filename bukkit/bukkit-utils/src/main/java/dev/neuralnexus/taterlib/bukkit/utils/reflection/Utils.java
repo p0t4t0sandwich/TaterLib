@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.bukkit.utils.reflection;
 
+import dev.neuralnexus.taterlib.TaterLib;
 import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;
 
@@ -26,7 +27,7 @@ public class Utils {
             commandMapField.setAccessible(true);
             return (SimpleCommandMap) commandMapField.get(Bukkit.getServer());
         } catch (Exception e) {
-            e.printStackTrace();
+            TaterLib.logger().error("Could not reflect to get SimpleCommandMap", e);
             return null;
         }
     }

@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 /** General implementation of {@link ServerEvent}. */
 public class ServerEventImpl implements ServerEvent {
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public SimpleServer server() {
         return TaterAPIProvider.api().get().server();
     }

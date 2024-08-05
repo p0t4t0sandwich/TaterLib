@@ -14,11 +14,9 @@ import dev.neuralnexus.taterlib.v1_7_10.forge.world.ForgeLocation;
 
 /** Forge implementation of {@link PlayerRespawnEvent}. */
 public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerRespawnEvent {
-    private final PlayerEvent.PlayerRespawnEvent event;
 
     public ForgePlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event) {
         super(event);
-        this.event = event;
     }
 
     @Override

@@ -32,6 +32,7 @@ public class FabricCommandSender implements CommandSender {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public UUID uuid() {
         return TaterAPIProvider.api()
                 .get()

@@ -40,6 +40,7 @@ public class VanillaWorld implements World {
     }
 
     @Override
+    @SuppressWarnings("DataFlowIssue")
     public ResourceKey dimension() {
         return (ResourceKey) (Object) level.dimension().location();
     }

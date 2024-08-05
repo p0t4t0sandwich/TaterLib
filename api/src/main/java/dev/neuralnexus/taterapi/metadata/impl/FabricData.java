@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 /** Stores data about the Fabric platform */
 public class FabricData implements PlatformData {
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public MinecraftVersion minecraftVersion() {
         return MinecraftVersion.from(
                 FabricLoader.getInstance()

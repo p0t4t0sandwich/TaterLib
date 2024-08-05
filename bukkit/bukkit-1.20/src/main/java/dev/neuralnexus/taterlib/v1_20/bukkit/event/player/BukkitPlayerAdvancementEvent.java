@@ -10,6 +10,8 @@ import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.bukkit.event.player.PlayerEvent;
 
+import java.util.Objects;
+
 /** Bukkit implementation of {@link PlayerAdvancementEvent}. */
 public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
         implements PlayerAdvancementEvent {
@@ -34,6 +36,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
 
         @Override
         public String advancement() {
+            Objects.requireNonNull(event.getAdvancement().getDisplay());
             return event.getAdvancement().getDisplay().getTitle();
         }
     }

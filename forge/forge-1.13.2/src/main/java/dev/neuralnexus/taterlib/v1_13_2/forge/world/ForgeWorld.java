@@ -44,6 +44,7 @@ public class ForgeWorld implements World {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceKey dimension() {
         return new ForgeResourceKey(IRegistry.field_212622_k.getKey(level.dimension.getType()));
     }

@@ -100,6 +100,7 @@ public abstract class Entity_API {
         this.shadow$remove(RemovalReason.KILLED);
     }
 
+    @SuppressWarnings("deprecation")
     public ResourceKey entity$type() {
         return (ResourceKey) Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }

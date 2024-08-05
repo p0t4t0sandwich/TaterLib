@@ -17,9 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
-public class VanillaItemStack implements ItemStack {
-    private final net.minecraft.world.item.ItemStack itemStack;
-
+public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) implements ItemStack {
     /**
      * Constructor.
      *
@@ -35,6 +33,7 @@ public class VanillaItemStack implements ItemStack {
      *
      * @return The Vanilla item stack.
      */
+    @Override
     public net.minecraft.world.item.ItemStack itemStack() {
         return itemStack;
     }

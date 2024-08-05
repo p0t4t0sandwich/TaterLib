@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.TaterLib;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -23,7 +24,7 @@ import java.io.IOException;
  * API for the BungeeCord module based on <a
  * href="https://www.spigotmc.org/wiki/bukkit-bungee-plugin-messaging-channel/">This wiki entry</a>
  */
-@SuppressWarnings("UnstableApiUsage")
+@SuppressWarnings("unused")
 public class BungeeCordAPI {
     private static BungeeCordAPI instance;
 
@@ -221,7 +222,7 @@ public class BungeeCordAPI {
         try {
             msgout.write(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            TaterLib.logger().error("Could not encode plugin message", e);
         }
 
         out.writeShort(msgbytes.toByteArray().length);
@@ -248,7 +249,7 @@ public class BungeeCordAPI {
         try {
             msgout.write(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            TaterLib.logger().error("Could not encode plugin message", e);
         }
 
         out.writeShort(msgbytes.toByteArray().length);

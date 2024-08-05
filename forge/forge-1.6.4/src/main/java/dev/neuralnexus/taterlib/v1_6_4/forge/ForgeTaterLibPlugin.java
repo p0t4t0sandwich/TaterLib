@@ -34,6 +34,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
+@SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     private static MinecraftServer server;
 
@@ -43,6 +44,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     }
 
     @Mod.Init
+    @SuppressWarnings("deprecation")
     public void init() {
         GameRegistry.registerPlayerTracker(new ForgePlayerListener());
     }

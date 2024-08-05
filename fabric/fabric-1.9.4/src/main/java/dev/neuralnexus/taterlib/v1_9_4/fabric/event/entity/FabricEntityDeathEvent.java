@@ -9,17 +9,14 @@ import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FabricEntityDeathEvent extends FabricEntityEvent implements EntityDeathEvent {
-    private final DamageSource source;
 
-    public FabricEntityDeathEvent(Entity entity, DamageSource source) {
+    public FabricEntityDeathEvent(Entity entity) {
         super(entity);
-        this.source = source;
     }
 
     @Override

@@ -5,8 +5,12 @@
  */
 package dev.neuralnexus.taterapi.storage.databases;
 
+import dev.neuralnexus.taterapi.logger.Logger;
+
 /** Data source class */
 public class DataSource {
+    private static final Logger logger = Logger.create("DataSource");
+
     /**
      * Get the database
      *
@@ -25,7 +29,7 @@ public class DataSource {
                     return null;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Could not instantiate database connection", e);
             return null;
         }
     }

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.util;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
+@SuppressWarnings({"resource", "unused"})
 public class ScheduleUtil {
     /**
      * Run a task asynchronously.

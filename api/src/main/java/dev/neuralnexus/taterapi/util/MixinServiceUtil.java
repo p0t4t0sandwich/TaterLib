@@ -16,6 +16,7 @@ public class MixinServiceUtil {
      *
      * @return The Minecraft version.
      */
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static String mcVersion() throws ClassNotFoundException, IOException {
         // Fine to do since obfuscated situations are covered by Forge
         // Reflect to get SharedConstants.VERSION_STRING

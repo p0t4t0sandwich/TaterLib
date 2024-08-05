@@ -43,7 +43,7 @@ public class FabricInventory implements Inventory {
     @Override
     public void add(ItemStack item) {
         for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals("minecraft:air")) {
+            if (get(i).type().asString().equals("minecraft:air")) {
                 set(i, item);
                 break;
             }

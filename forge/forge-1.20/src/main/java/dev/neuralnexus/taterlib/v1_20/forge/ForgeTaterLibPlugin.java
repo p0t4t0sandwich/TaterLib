@@ -24,6 +24,7 @@ import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
+@SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

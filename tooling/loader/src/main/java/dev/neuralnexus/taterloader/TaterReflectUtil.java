@@ -8,7 +8,7 @@ package dev.neuralnexus.taterloader;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterapi.logger.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -19,6 +19,7 @@ import java.util.Optional;
 public class TaterReflectUtil {
     public static final String TL_PACKAGE = "dev.neuralnexus.taterlib";
     public static final Map<Platform, String> packageNames = new HashMap<>();
+    private static final Logger logger = Logger.create("TaterReflectUtil");
 
     static {
         resolvePackageNames(Loader.instance());
@@ -208,6 +209,7 @@ public class TaterReflectUtil {
         return TL_PACKAGE + "." + version.getDelimiterString() + ".forge";
     }
 
+    @SuppressWarnings("IfStatementWithIdenticalBranches")
     public static String neoForge(MinecraftVersion mcv) {
         MinecraftVersion version;
         if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
@@ -250,6 +252,7 @@ public class TaterReflectUtil {
         return TL_PACKAGE + "." + version.getDelimiterString() + ".sponge";
     }
 
+    @SuppressWarnings("unused")
     public static String velocity(MinecraftVersion mcv) {
         return TL_PACKAGE + ".velocity.v3_3_0";
     }
@@ -304,7 +307,7 @@ public class TaterReflectUtil {
         return newInstance(clazz, TaterAPIProvider.primaryPlatform());
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"OptionalGetWithoutIsPresent", "unchecked"})
     public static <T> T newInstance(String clazz, Platform platform, Object... args) {
         try {
             Class<?> objectClass = Class.forName(getClass(clazz, platform).get());
@@ -314,23 +317,8 @@ public class TaterReflectUtil {
                 | InstantiationException
                 | IllegalAccessException
                 | NoSuchMethodException e) {
-            e.printStackTrace();
+            logger.warn("Could not instantiate new instance of " + clazz, e);
         }
         return null;
-    }
-
-    public static Server newVanillaServer() {
-        return TaterReflectUtil.getRelocatedClass("VanillaServer")
-                .map(
-                        className -> {
-                            try {
-                                return (Server)
-                                        Class.forName(className).getMethod("instance").invoke(null);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            return null;
-                        })
-                .get();
     }
 }

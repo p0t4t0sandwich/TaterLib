@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge.command;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
+import dev.neuralnexus.taterlib.TaterLib;
 import net.kyori.adventure.text.Component;
 
 import org.spongepowered.api.command.CommandCause;
@@ -28,13 +29,14 @@ public class SpongeCommandWrapper implements CommandExecutor {
     }
 
     @Override
+    @SuppressWarnings("RedundantThrows")
     public CommandResult execute(CommandContext context) throws CommandException {
         try {
             String[] args = context.requireOne(Parameter.string().key("args").build()).split(" ");
             CommandCause sender = context.cause();
             callback.execute((CommandSender) sender, commandName, args);
         } catch (Exception e) {
-            e.printStackTrace();
+            TaterLib.logger().error("An exception occurred while executing a command", e);
             return CommandResult.builder().result(0).error(Component.text(e.getMessage())).build();
         }
         return CommandResult.builder().result(1).build();

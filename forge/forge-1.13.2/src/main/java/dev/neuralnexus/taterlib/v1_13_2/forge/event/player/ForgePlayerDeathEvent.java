@@ -18,6 +18,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link PlayerDeathEvent}. */
@@ -39,7 +40,7 @@ public class ForgePlayerDeathEvent implements PlayerDeathEvent {
         if (event.getEntity().captureDrops() == null) {
             return new ArrayList<>();
         }
-        return event.getEntity().captureDrops().stream()
+        return Objects.requireNonNull(event.getEntity().captureDrops()).stream()
                 .map(itemEntity -> new ForgeItemStack(itemEntity.getItem()))
                 .collect(Collectors.toList());
     }

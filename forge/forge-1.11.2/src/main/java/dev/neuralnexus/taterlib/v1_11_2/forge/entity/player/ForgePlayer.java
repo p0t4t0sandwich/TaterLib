@@ -96,6 +96,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void setSpawn(Location location, boolean forced) {
+        if (player.getServer() != null) return;
         Optional<WorldServer> serverLevel =
                 ((Server) player.getServer())
                         .world(location.world().dimension())

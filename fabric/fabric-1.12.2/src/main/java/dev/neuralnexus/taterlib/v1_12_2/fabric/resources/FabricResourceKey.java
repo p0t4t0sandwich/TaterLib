@@ -11,17 +11,18 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import net.minecraft.util.Identifier;
 
 /** Vanilla implementation of {@link ResourceKey}. */
+@SuppressWarnings("DataFlowIssue")
 public class FabricResourceKey {
     public static class Factory implements ResourceKey.Factory {
 
         @Override
         public ResourceKey of(String namespace, String value) {
-            return (ResourceKey) (Object) new Identifier(namespace, value);
+            return (ResourceKey) new Identifier(namespace, value);
         }
 
         @Override
         public ResourceKey of(String full) {
-            return (ResourceKey) (Object) new Identifier(full);
+            return (ResourceKey) new Identifier(full);
         }
 
         @Override
@@ -48,7 +49,7 @@ public class FabricResourceKey {
 
         @Override
         public ResourceKey build() {
-            return (ResourceKey) (Object) new Identifier(this.namespace, this.value);
+            return (ResourceKey) new Identifier(this.namespace, this.value);
         }
     }
 }

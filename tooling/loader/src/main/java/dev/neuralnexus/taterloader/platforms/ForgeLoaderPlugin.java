@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
         useMetadata = true,
         serverSideOnly = true,
         acceptableRemoteVersions = "*")
+@SuppressWarnings("FieldCanBeLocal")
 public class ForgeLoaderPlugin {
     private static Loader loader;
 

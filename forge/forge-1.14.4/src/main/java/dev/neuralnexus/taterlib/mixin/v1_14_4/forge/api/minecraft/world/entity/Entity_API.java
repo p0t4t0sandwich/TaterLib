@@ -101,6 +101,7 @@ public abstract class Entity_API {
         this.shadow$remove();
     }
 
+    @SuppressWarnings("deprecation")
     public ResourceKey entity$type() {
         return (ResourceKey) Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }
@@ -109,7 +110,7 @@ public abstract class Entity_API {
         return new VanillaLocation((net.minecraft.world.entity.Entity) (Object) this);
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings({"deprecation", "resource"})
     public ResourceKey entity$biome() {
         return (ResourceKey)
                 Registry.BIOME.getKey(

@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_20.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_20.bukkit.item.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitWorld;
@@ -19,6 +20,7 @@ import dev.neuralnexus.taterloader.Loader;
 import org.bukkit.plugin.Plugin;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Objects;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
@@ -51,6 +53,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
 
     @Override
     public String ipAddress() {
+        Objects.requireNonNull(player.getAddress());
         return player.getAddress().getAddress().getHostAddress();
     }
 
@@ -90,7 +93,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
                 | NoSuchMethodException
                 | SecurityException
                 | NoSuchFieldException e) {
-            e.printStackTrace();
+            TaterLib.logger().error("Could not reflect to get the player's ping", e);
             return 0;
         }
     }

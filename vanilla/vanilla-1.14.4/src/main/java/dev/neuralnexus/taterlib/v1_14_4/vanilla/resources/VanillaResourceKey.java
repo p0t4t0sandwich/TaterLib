@@ -11,17 +11,18 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 
 /** Vanilla implementation of {@link ResourceKey}. */
+@SuppressWarnings("DataFlowIssue")
 public class VanillaResourceKey {
     public static class Factory implements ResourceKey.Factory {
 
         @Override
         public ResourceKey of(String namespace, String value) {
-            return (ResourceKey) (Object) new ResourceLocation(namespace, value);
+            return (ResourceKey) new ResourceLocation(namespace, value);
         }
 
         @Override
         public ResourceKey of(String full) {
-            return (ResourceKey) (Object) ResourceLocation.tryParse(full);
+            return (ResourceKey) ResourceLocation.tryParse(full);
         }
 
         @Override
@@ -48,7 +49,7 @@ public class VanillaResourceKey {
 
         @Override
         public ResourceKey build() {
-            return (ResourceKey) (Object) new ResourceLocation(this.namespace, this.value);
+            return (ResourceKey) new ResourceLocation(this.namespace, this.value);
         }
     }
 }

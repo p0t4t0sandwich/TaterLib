@@ -62,6 +62,7 @@ public class ForgeEntity implements Entity {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceKey type() {
         return new ForgeResourceKey(IRegistry.field_212629_r.getKey(entity.getType()));
     }
@@ -83,6 +84,7 @@ public class ForgeEntity implements Entity {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceKey biome() {
         return new ForgeResourceKey(
                 IRegistry.field_212624_m.getKey(entity.world.getBiome(entity.getPosition())));

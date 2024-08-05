@@ -18,7 +18,7 @@ public class FabricPlayerDeathEvent extends FabricEntityDeathEvent implements Pl
     private final DamageSource source;
 
     public FabricPlayerDeathEvent(PlayerEntity player, DamageSource source) {
-        super(player, source);
+        super(player);
         this.player = player;
         this.source = source;
     }

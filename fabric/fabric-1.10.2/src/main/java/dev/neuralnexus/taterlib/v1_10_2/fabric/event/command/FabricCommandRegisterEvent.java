@@ -14,11 +14,9 @@ import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandManager;
 /** Fabric implementation of {@link CommandRegisterEvent}. */
 public class FabricCommandRegisterEvent implements CommandRegisterEvent {
     private final CommandManager manager;
-    private final boolean dedicated;
 
-    public FabricCommandRegisterEvent(CommandManager manager, boolean dedicated) {
+    public FabricCommandRegisterEvent(CommandManager manager) {
         this.manager = manager;
-        this.dedicated = dedicated;
     }
 
     @Override

@@ -23,6 +23,7 @@ public class ForgeBlock implements Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceKey type() {
         return new ForgeResourceKey(IRegistry.field_212618_g.getKey(block));
     }

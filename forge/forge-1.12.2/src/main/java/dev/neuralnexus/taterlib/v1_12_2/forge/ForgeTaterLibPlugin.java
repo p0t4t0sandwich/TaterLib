@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
 /** Forge entry point. */
+@SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     private static MinecraftServer server;
 

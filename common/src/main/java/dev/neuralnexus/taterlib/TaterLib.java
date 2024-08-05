@@ -30,6 +30,7 @@ public class TaterLib {
      *
      * @return If the plugin has reloaded
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean hasReloaded() {
         return RELOADED;
     }
@@ -63,7 +64,7 @@ public class TaterLib {
             depClassLoader.downloadAll();
             depClassLoader.addDepsToClasspath();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger().error("Could not download dependencies", e);
         }
 
         TaterLibMetrics.initialize();

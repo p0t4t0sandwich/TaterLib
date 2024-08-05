@@ -13,13 +13,11 @@ import net.minecraft.world.entity.player.Player;
 
 /** Vanilla implementation of {@link PlayerRespawnEvent}. */
 public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements PlayerRespawnEvent {
-    private final boolean alive;
     private final Player player;
 
     public VanillaPlayerRespawnEvent(Player player, boolean alive) {
         super(player);
         this.player = player;
-        this.alive = alive;
     }
 
     @Override

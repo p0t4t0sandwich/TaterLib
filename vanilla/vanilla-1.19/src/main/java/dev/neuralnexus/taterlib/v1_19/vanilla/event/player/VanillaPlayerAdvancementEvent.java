@@ -11,6 +11,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.world.entity.player.Player;
 
 import java.util.Collection;
+import java.util.Objects;
 
 /** Vanilla implementation of {@link PlayerAdvancementEvent}. */
 public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
@@ -24,7 +25,7 @@ public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
 
     @Override
     public String advancement() {
-        return advancement.getDisplay().getTitle().getString();
+        return Objects.requireNonNull(advancement.getDisplay()).getTitle().getString();
     }
 
     /** Fabric implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */

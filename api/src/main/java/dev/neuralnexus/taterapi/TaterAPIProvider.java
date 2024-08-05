@@ -29,6 +29,7 @@ import java.util.*;
 import java.util.function.Supplier;
 
 /** API Provider */
+@SuppressWarnings("unused")
 public class TaterAPIProvider {
     private static final Platform platform = Platform.get();
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
@@ -89,6 +90,7 @@ public class TaterAPIProvider {
      *
      * @param hookName The name of the hook
      */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean isHooked(String hookName) {
         return hooks.stream().anyMatch(hook -> hook.name().equalsIgnoreCase(hookName));
     }

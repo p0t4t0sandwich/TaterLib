@@ -111,7 +111,7 @@ public abstract class Entity_API {
         return new VanillaLocation((net.minecraft.world.entity.Entity) (Object) this);
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings({"deprecation", "resource"})
     public ResourceKey entity$biome() {
         return (ResourceKey)
                 BuiltinRegistries.BIOME.getKey(

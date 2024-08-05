@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public interface Loader {
     static Loader instance() {
         Loader ret = LoaderImpl.getInstance();
@@ -31,6 +32,8 @@ public interface Loader {
         }
         return ret;
     }
+
+    Logger logger = Logger.create("TaterLoader");
 
     /** Get the platform data. */
     PlatformData platformData();
@@ -170,7 +173,7 @@ public interface Loader {
                                     moduleLoader.onEnable();
                                 }
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                logger.error("Plugin " + plugin.id() + " failed to enable", e);
                             }
                         });
     }
@@ -193,7 +196,7 @@ public interface Loader {
                                 }
                                 plugin.onDisable();
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                logger.error("Plugin " + plugin.id() + " failed to disable", e);
                             }
                         });
     }

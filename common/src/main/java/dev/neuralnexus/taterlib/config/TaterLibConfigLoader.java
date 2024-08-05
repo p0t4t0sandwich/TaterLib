@@ -101,10 +101,7 @@ public class TaterLibConfigLoader {
         try {
             loader.save(root);
         } catch (ConfigurateException e) {
-            logger.error("An error occurred while saving this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+            logger.error("An error occurred while saving this configuration: ", e);
         }
     }
 

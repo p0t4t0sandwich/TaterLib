@@ -46,7 +46,7 @@ public class ForgeInventory implements Inventory {
     public void add(ItemStack item) {
         int firstEmpty = -1;
         for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals("minecraft:air")) {
+            if (get(i).type().asString().equals("minecraft:air")) {
                 firstEmpty = i;
             }
         }

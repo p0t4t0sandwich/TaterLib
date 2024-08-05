@@ -100,6 +100,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void setSpawn(Location location, boolean forced) {
         Optional<WorldServer> serverLevel =
                 ((Server) TaterAPIProvider.api().get().server())
@@ -109,7 +110,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
         player.setSpawnPoint(
                 new BlockPos(location.x(), location.y(), location.z()),
                 forced,
-                ((ForgeWorld) location.world()).world().dimension.getType());
+                serverLevel.get().dimension.getType());
     }
 
     @Override

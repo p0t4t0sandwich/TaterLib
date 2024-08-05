@@ -26,10 +26,7 @@ public class ConfigUtil {
         try {
             return loader.load();
         } catch (ConfigurateException e) {
-            logger.error("An error occurred while loading this configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+            logger.error("An error occurred while loading this configuration: ", e);
             return null;
         }
     }
@@ -39,11 +36,7 @@ public class ConfigUtil {
         try {
             return root.node(path).get(typeToken);
         } catch (SerializationException e) {
-            logger.error(
-                    "An error occurred while loading the modules configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+            logger.error("An error occurred while loading the modules configuration: ", e);
             return null;
         }
     }
@@ -57,11 +50,7 @@ public class ConfigUtil {
         try {
             root.node(path).set(typeToken, value);
         } catch (SerializationException e) {
-            logger.error(
-                    "An error occurred while saving the modules configuration: " + e.getMessage());
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+            logger.error("An error occurred while saving the modules configuration: ", e);
         }
     }
 
@@ -78,12 +67,7 @@ public class ConfigUtil {
                             clazz.getClassLoader().getResourceAsStream(defaultConfigPath)),
                     configPath);
         } catch (IOException e) {
-            logger.error(
-                    "An error occurred while copying the default configuration: " + e.getMessage());
-            e.printStackTrace();
-            if (e.getCause() != null) {
-                e.getCause().printStackTrace();
-            }
+            logger.error("An error occurred while copying the default configuration: ", e);
         }
     }
 }

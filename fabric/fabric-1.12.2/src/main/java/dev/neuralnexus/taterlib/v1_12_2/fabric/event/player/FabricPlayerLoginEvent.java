@@ -14,15 +14,11 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 /** Fabric implementation of {@link PlayerLoginEvent}. */
 public class FabricPlayerLoginEvent extends FabricPlayerEvent implements PlayerLoginEvent {
     private final ServerPlayNetworkHandler handler;
-    private final PacketSender sender;
-    private final MinecraftServer server;
 
     public FabricPlayerLoginEvent(
             ServerPlayNetworkHandler handler, PacketSender sender, MinecraftServer server) {
         super(handler.player);
         this.handler = handler;
-        this.sender = sender;
-        this.server = server;
     }
 
     @Override

@@ -41,6 +41,7 @@ public class ForgeItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceKey type() {
         return new ForgeResourceKey(IRegistry.field_212630_s.getKey(itemStack.getItem()));
     }

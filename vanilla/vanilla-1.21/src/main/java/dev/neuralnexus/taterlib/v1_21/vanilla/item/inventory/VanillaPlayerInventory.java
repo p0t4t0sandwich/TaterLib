@@ -45,7 +45,7 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
 
     @Override
     public ItemStack offhand() {
-        return new VanillaItemStack(playerInventory.offhand.get(0));
+        return new VanillaItemStack(playerInventory.offhand.getFirst());
     }
 
     @Override

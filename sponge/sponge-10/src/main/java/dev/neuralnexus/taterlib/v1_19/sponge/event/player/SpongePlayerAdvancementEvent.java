@@ -45,11 +45,9 @@ public class SpongePlayerAdvancementEvent implements PlayerAdvancementEvent {
     /** Sponge implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
     public static class AdvancementProgress extends SpongePlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementProgress {
-        private final AdvancementEvent.Grant event;
 
         public AdvancementProgress(AdvancementEvent.Grant event) {
             super(event);
-            this.event = event;
         }
 
         @Override

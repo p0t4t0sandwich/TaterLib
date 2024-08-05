@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_15.vanilla.network;
 
 import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.mixin.v1_15.vanilla.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
 
 import io.netty.buffer.Unpooled;
@@ -24,13 +25,14 @@ public class CustomPayloadPacket implements CustomPayload, ServerboundCustomPayl
     private final ResourceKey channel;
     private final byte[] data;
 
+    @SuppressWarnings("VulnerableCodeUsages")
     public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
-        this.channel = (ResourceKey) (Object) bridge$getIdentifier(packet);
+        this.channel = (ResourceKey) bridge$getIdentifier(packet);
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         try {
             packet.write(buf);
         } catch (IOException e) {
-            e.printStackTrace();
+            TaterLib.logger().error("Could not encode custom packet payload", e);
         }
         this.data = buf.array();
     }

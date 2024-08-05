@@ -38,7 +38,6 @@ public enum BungeeMsgType {
         this.type = type;
     }
 
-    @SuppressWarnings("UnstableApiUsage")
     public static void Listener(PluginMessageEvent event) {
         if (event.packet().channel().asString().equals("BungeeCord")
                 || event.packet().channel().asString().equals("bungeecord:main")) {

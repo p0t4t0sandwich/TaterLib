@@ -90,6 +90,7 @@ public class ForgeEntity implements Entity {
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
+            if (entity.getServer() != null) return;
             Optional<WorldServer> serverLevel =
                     ((Server) entity.getServer())
                             .world(location.world().dimension())

@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.storage.databases.Database;
 import dev.neuralnexus.taterapi.storage.databases.Filesystem;
 
@@ -24,10 +25,12 @@ import java.util.Optional;
 import java.util.UUID;
 
 /** Player data store for attaching metadata to players */
+@SuppressWarnings("FieldCanBeLocal")
 public class PlayerDataStore {
     private final Filesystem database;
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     private final Path fileParent;
+    private static final Logger logger = Logger.create("PlayerDataStore");
 
     /**
      * Constructor for the PlayerDataStore class
@@ -41,7 +44,7 @@ public class PlayerDataStore {
             try {
                 Files.createDirectories(fileParent);
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.error("Could not create directories", e);
             }
         }
     }
@@ -85,7 +88,7 @@ public class PlayerDataStore {
                 return Optional.empty();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Could not read data for " + uuid.toString(), e);
             return Optional.empty();
         }
     }
@@ -111,7 +114,7 @@ public class PlayerDataStore {
                 return Optional.empty();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Could not read data for " + uuid.toString(), e);
             return Optional.empty();
         }
     }
@@ -143,7 +146,7 @@ public class PlayerDataStore {
             map.put(key, value);
             Files.write(file, gson.toJson(map).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Could not write data for " + uuid.toString(), e);
         }
     }
 
@@ -162,7 +165,7 @@ public class PlayerDataStore {
             map.remove(key);
             Files.write(file, gson.toJson(map).getBytes());
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Could not delete data for " + uuid.toString(), e);
         }
     }
 

@@ -15,12 +15,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
-public class VanillaItemStack implements ItemStack {
-    private final net.minecraft.world.item.ItemStack itemStack;
-
+public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) implements ItemStack {
     /**
      * Constructor.
      *
@@ -36,11 +35,13 @@ public class VanillaItemStack implements ItemStack {
      *
      * @return The Vanilla item stack.
      */
+    @Override
     public net.minecraft.world.item.ItemStack itemStack() {
         return itemStack;
     }
 
     @Override
+    @SuppressWarnings("DataFlowIssue")
     public ResourceKey type() {
         return (ResourceKey) (Object) BuiltInRegistries.ITEM.getKey(itemStack.getItem());
     }
@@ -56,6 +57,7 @@ public class VanillaItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new VanillaItemStack(itemStack.copy());
     }
@@ -68,7 +70,7 @@ public class VanillaItemStack implements ItemStack {
     @Override
     public Optional<String> displayName() {
         if (itemStack.get(DataComponents.CUSTOM_NAME) == null) return Optional.empty();
-        return Optional.of(itemStack.get(DataComponents.CUSTOM_NAME).getString());
+        return Optional.of(Objects.requireNonNull(itemStack.get(DataComponents.CUSTOM_NAME)).getString());
     }
 
     @Override

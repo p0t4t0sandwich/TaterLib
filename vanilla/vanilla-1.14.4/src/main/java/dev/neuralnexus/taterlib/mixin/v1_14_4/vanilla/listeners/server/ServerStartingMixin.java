@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(MinecraftServer.class)
+@SuppressWarnings({"unused", "UnusedMixin"})
 public class ServerStartingMixin {
     /**
      * Called when the server is starting. <br>
@@ -41,6 +42,7 @@ public class ServerStartingMixin {
                     @At(
                             value = "INVOKE",
                             target = "Lnet/minecraft/server/MinecraftServer;initServer()Z"))
+    @SuppressWarnings("DataFlowIssue")
     private void onServerStarting(CallbackInfo info) {
         // Fire the server starting event
         ServerEvents.STARTING.invoke(new ServerStartingEventImpl());

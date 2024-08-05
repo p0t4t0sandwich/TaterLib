@@ -53,11 +53,13 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public double maxHealth() {
         return entity.getMaxHealth();
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setMaxHealth(double health) {
         entity.setMaxHealth(health);
     }

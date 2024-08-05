@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import net.minecraft.item.Items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Fabric implementation of {@link ItemStack}. */
@@ -53,6 +54,7 @@ public class FabricItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new FabricItemStack(itemStack.copy());
     }
@@ -92,6 +94,7 @@ public class FabricItemStack implements ItemStack {
 
     @Override
     public boolean hasEnchants() {
+        Objects.requireNonNull(itemStack.getEnchantments());
         return !itemStack.getEnchantments().isEmpty();
     }
 

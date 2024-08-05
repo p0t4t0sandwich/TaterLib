@@ -44,7 +44,7 @@ public class Sponge8LoaderPlugin {
                             try {
                                 Class.forName(className).getMethod("init").invoke(null);
                             } catch (Exception e) {
-                                e.printStackTrace();
+                                Loader.logger.error("Failed to boostrap Vanilla builders/factories", e);
                             }
                         });
 

@@ -22,6 +22,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 import net.minecraftforge.fmlserverevents.FMLServerStoppedEvent;
 
+@SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

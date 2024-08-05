@@ -20,6 +20,7 @@ import dev.neuralnexus.taterloader.impl.LoaderImpl;
         useMetadata = true,
         acceptableRemoteVersions = "*",
         bukkitPlugin = LoaderImpl.PROJECT_NAME)
+@SuppressWarnings("FieldCanBeLocal")
 public class LegacyForgeLoaderPlugin {
     private static Loader loader;
 

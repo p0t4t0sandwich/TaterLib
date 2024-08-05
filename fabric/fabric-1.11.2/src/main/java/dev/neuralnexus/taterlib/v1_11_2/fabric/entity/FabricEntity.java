@@ -85,6 +85,7 @@ public class FabricEntity implements Entity {
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
+            if (entity.getMinecraftServer() != null) return;
             Optional<ServerWorld> serverLevel =
                     ((Server) entity.getMinecraftServer())
                             .world(location.world().dimension())

@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Called when a block event occurs. */
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class FabricBlockEvent implements BlockEvent {
     private final World world;
     private final PlayerEntity player;

@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib.v1_9_4.fabric.command;
 
 import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.entity.player.FabricPlayer;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandCallable;
@@ -32,6 +33,7 @@ public class FabricCommandWrapper implements CommandCallable {
     }
 
     @Override
+    @SuppressWarnings("RedundantThrows")
     public CommandResult process(PermissibleCommandSource source, String arguments)
             throws CommandException {
         String[] args = arguments.split(" ");
@@ -41,12 +43,13 @@ public class FabricCommandWrapper implements CommandCallable {
             }
             command.execute(new FabricCommandSender(source), command.name(), args);
         } catch (Exception e) {
-            e.printStackTrace();
+            TaterLib.logger().error("An exception occurred while executing a command", e);
         }
         return CommandResult.builder().successCount(1).build();
     }
 
     @Override
+    @SuppressWarnings("RedundantThrows")
     public List<String> getSuggestions(
             PermissibleCommandSource source,
             String arguments,

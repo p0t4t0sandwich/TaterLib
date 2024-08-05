@@ -13,12 +13,10 @@ import net.minecraft.server.network.ServerPlayNetworkHandler;
 /** Fabric implementation of {@link PlayerLogoutEvent}. */
 public class FabricPlayerLogoutEvent extends FabricPlayerEvent implements PlayerLogoutEvent {
     private final ServerPlayNetworkHandler handler;
-    private final MinecraftServer server;
 
     public FabricPlayerLogoutEvent(ServerPlayNetworkHandler handler, MinecraftServer server) {
         super(handler.player);
         this.handler = handler;
-        this.server = server;
     }
 
     @Override

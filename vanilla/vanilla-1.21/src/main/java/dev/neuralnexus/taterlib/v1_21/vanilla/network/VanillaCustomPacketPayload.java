@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 /** CustomPacketPayload implementation for 1.20.6 */
 public class VanillaCustomPacketPayload implements CustomPacketPayload {
+    @SuppressWarnings("unused")
     public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload> STREAM_CODEC =
             CustomPacketPayload.codec(
                     VanillaCustomPacketPayload::write, VanillaCustomPacketPayload::new);
@@ -25,6 +26,7 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload {
     private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf;
 
+    @SuppressWarnings("DataFlowIssue")
     public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
         id = (ResourceLocation) (Object) channel;
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());

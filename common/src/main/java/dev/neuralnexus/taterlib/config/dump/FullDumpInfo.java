@@ -35,6 +35,7 @@ public class FullDumpInfo extends DumpInfo {
     public List<ModInfo> neoForgeMods;
     public List<ModInfo> fabricMods;
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public FullDumpInfo() {
         if (platform.isBukkitBased()) {
             this.bukkitPlugins = TaterAPIProvider.api(Platform.BUKKIT).get().modList();
@@ -74,8 +75,7 @@ public class FullDumpInfo extends DumpInfo {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(this, writer);
         } catch (IOException e) {
-            TaterLib.logger().error("An error occurred while saving the dump.");
-            e.printStackTrace();
+            TaterLib.logger().error("An error occurred while saving the dump.", e);
         }
     }
 }

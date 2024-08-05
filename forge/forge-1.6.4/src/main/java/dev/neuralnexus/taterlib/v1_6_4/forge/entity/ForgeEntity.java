@@ -87,6 +87,7 @@ public class ForgeEntity implements Entity {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =

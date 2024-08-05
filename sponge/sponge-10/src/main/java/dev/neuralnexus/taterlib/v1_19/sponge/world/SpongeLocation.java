@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 
 /** Sponge implementation of {@link Location}. */
+@SuppressWarnings("FieldCanBeLocal")
 public class SpongeLocation implements Location {
     private final org.spongepowered.api.world.server.ServerLocation location;
     private org.spongepowered.api.world.server.ServerWorld world;
