@@ -11,11 +11,13 @@ import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 /** Abstract class for a player death event. */
 public interface PlayerDeathEvent extends EntityDeathEvent {
     /**
-     * Gets the player. TODO: Adapt getEntity() to return Player
+     * Gets the player.
      *
      * @return The player.
      */
-    Player player();
+    default Player player() {
+        return (Player) this.entity();
+    }
 
     /**
      * Gets the death message.
