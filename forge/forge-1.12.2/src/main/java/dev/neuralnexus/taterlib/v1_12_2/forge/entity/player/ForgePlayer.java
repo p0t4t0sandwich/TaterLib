@@ -3,9 +3,8 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_12_2.forge.player;
+package dev.neuralnexus.taterlib.v1_12_2.forge.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -74,16 +73,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public Server server() {
-        return (Server) TaterAPIProvider.api().get().server();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        player.sendMessage(new TextComponentString(message));
-    }
-
-    @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
@@ -147,10 +136,5 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
     }
 }

@@ -34,17 +34,23 @@ import org.spongepowered.asm.mixin.Unique;
     @Interface(iface = LivingEntity.class, prefix = "livingEntity$", remap = Remap.NONE)
 })
 public abstract class LivingEntity_API {
-    @Shadow public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+    @Shadow
+    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
 
-    @Shadow public abstract float shadow$getHealth();
+    @Shadow
+    public abstract float shadow$getHealth();
 
-    @Shadow public abstract void shadow$setHealth(float health);
+    @Shadow
+    public abstract void shadow$setHealth(float health);
 
-    @Shadow public abstract float shadow$getAbsorptionAmount();
+    @Shadow
+    public abstract float shadow$getAbsorptionAmount();
 
-    @Shadow public abstract void shadow$setAbsorptionAmount(float amount);
+    @Shadow
+    public abstract void shadow$setAbsorptionAmount(float amount);
 
-    @Shadow public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
+    @Shadow
+    public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
 
     @Unique public Level taterapi$level() {
         return ((net.minecraft.world.entity.LivingEntity) (Object) this).level();

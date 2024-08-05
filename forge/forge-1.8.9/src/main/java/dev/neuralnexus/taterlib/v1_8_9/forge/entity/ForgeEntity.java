@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_9.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_8_9.forge.world.ForgeServerWorld;
 
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.WorldServer;
 
 import java.util.Optional;
@@ -95,5 +96,15 @@ public class ForgeEntity implements Entity {
             entity.travelToDimension(serverLevel.get().provider.getDimensionId());
         }
         entity.setPosition(location.x(), location.y(), location.z());
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        entity.addChatMessage(new ChatComponentText(message));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return entity.canCommandSenderUseCommand(permissionLevel, "");
     }
 }

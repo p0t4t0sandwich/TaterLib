@@ -10,8 +10,8 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_11_2.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.v1_11_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_11_2.forge.item.inventory.ForgeItemStack;
-import dev.neuralnexus.taterlib.v1_11_2.forge.player.ForgePlayer;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;

@@ -48,31 +48,45 @@ import java.util.UUID;
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
 public abstract class Entity_API {
-    @Shadow public abstract void shadow$sendSystemMessage(Component message);
+    @Shadow
+    public abstract void shadow$sendSystemMessage(Component message);
 
-    @Shadow public abstract int shadow$getId();
+    @Shadow
+    public abstract int shadow$getId();
 
-    @Shadow public abstract void shadow$remove(RemovalReason removalReason);
+    @Shadow
+    public abstract void shadow$remove(RemovalReason removalReason);
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
-    @Shadow public abstract Level shadow$level();
+    @Shadow
+    public abstract Level shadow$level();
 
-    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow
+    public abstract BlockPos shadow$blockPosition();
 
-    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
-    
-    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow
+    @Nullable public abstract MinecraftServer shadow$getServer();
 
-    @Shadow public abstract net.minecraft.world.entity.Entity shadow$changeDimension(ServerLevel serverLevel);
+    @Shadow
+    public abstract void shadow$teleportTo(double x, double y, double z);
 
-    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow
+    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
+            ServerLevel serverLevel);
 
-    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow
+    @Nullable public abstract Component shadow$getCustomName();
 
-    @Shadow public abstract UUID shadow$getUUID();
+    @Shadow
+    public abstract void shadow$setCustomName(@Nullable Component name);
 
-    @Shadow public abstract boolean shadow$hasPermissions(int permissionLevel);
+    @Shadow
+    public abstract UUID shadow$getUUID();
+
+    @Shadow
+    public abstract boolean shadow$hasPermissions(int permissionLevel);
 
     public void cmdSender$sendMessage(String message) {
         this.shadow$sendSystemMessage(Component.nullToEmpty(message));
@@ -97,7 +111,13 @@ public abstract class Entity_API {
 
     @SuppressWarnings({"OptionalGetWithoutIsPresent", "resource"})
     public ResourceKey entity$biome() {
-        return (ResourceKey) this.shadow$level().getBiome(this.shadow$blockPosition()).unwrap().left().get().registry();
+        return (ResourceKey)
+                this.shadow$level()
+                        .getBiome(this.shadow$blockPosition())
+                        .unwrap()
+                        .left()
+                        .get()
+                        .registry();
     }
 
     @SuppressWarnings({"DataFlowIssue", "resource"})

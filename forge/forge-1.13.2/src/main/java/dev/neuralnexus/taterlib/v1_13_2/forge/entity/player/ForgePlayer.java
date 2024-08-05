@@ -77,16 +77,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public Server server() {
-        return (Server) TaterAPIProvider.api().get().server();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        player.sendMessage(new TextComponentString(message));
-    }
-
-    @Override
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         ResourceLocation id = ((ForgeResourceKey) channel).resourceLocation();
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
@@ -151,10 +141,5 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return player.hasPermissionLevel(permissionLevel);
     }
 }

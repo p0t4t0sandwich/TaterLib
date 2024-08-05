@@ -3,9 +3,8 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_11_2.forge.player;
+package dev.neuralnexus.taterlib.v1_11_2.forge.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -24,7 +23,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketCustomPayload;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 
 import java.util.Optional;
@@ -71,16 +69,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public String displayName() {
         return player.getDisplayName().getFormattedText();
-    }
-
-    @Override
-    public Server server() {
-        return (Server) TaterAPIProvider.api().get().server();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        player.sendMessage(new TextComponentString(message));
     }
 
     @Override
@@ -147,10 +135,5 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
     }
 }

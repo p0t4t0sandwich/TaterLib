@@ -114,4 +114,14 @@ public class ForgeEntity implements Entity {
         }
         ((EntityLiving) entity).attemptTeleport(location.x(), location.y(), location.z());
     }
+
+    @Override
+    public void sendMessage(String message) {
+        entity.sendMessage(new TextComponentString(message));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return entity.hasPermissionLevel(permissionLevel);
+    }
 }

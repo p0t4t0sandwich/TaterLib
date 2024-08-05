@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.v1_12_2.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_12_2.forge.world.ForgeServerWorld;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.biome.Biome;
@@ -90,9 +91,8 @@ public class ForgeEntity implements Entity {
     @Override
     public ResourceKey biome() {
         return (ResourceKey)
-                (Object)
-                        GameRegistry.findRegistry(Biome.class)
-                                .getKey(entity.world.getBiome(entity.getPosition()));
+                GameRegistry.findRegistry(Biome.class)
+                        .getKey(entity.world.getBiome(entity.getPosition()));
     }
 
     @Override
@@ -108,5 +108,15 @@ public class ForgeEntity implements Entity {
                     serverLevel.get().getWorldType().getId(), new Teleporter(serverLevel.get()));
         }
         ((EntityLiving) entity).attemptTeleport(location.x(), location.y(), location.z());
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        entity.sendMessage(new TextComponentString(message));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return entity.canUseCommand(permissionLevel, "");
     }
 }

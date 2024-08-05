@@ -99,4 +99,12 @@ public class ForgeEntity implements Entity {
         }
         entity.setPosition(location.x(), location.y(), location.z());
     }
+
+    @Override
+    public void sendMessage(String message) {}
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
+    }
 }

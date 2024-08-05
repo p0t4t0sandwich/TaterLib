@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_9_4.forge.player.ForgePlayer;
+import dev.neuralnexus.taterlib.v1_9_4.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_9_4.forge.world.ForgeServerWorld;
 
 import net.minecraft.server.MinecraftServer;

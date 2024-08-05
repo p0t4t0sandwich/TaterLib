@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.forge.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -71,16 +70,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public String displayName() {
         return player.getDisplayName().getFormattedText();
-    }
-
-    @Override
-    public Server server() {
-        return (Server) TaterAPIProvider.api().get().server();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        player.addChatMessage(new ChatComponentText(message));
     }
 
     @Override
@@ -151,10 +140,5 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setGameMode(GameMode gameMode) {
         player.setGameType(net.minecraft.world.WorldSettings.GameType.getByID(gameMode.id()));
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
     }
 }
