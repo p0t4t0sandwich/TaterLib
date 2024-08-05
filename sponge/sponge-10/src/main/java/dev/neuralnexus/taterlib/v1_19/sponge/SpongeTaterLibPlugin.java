@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_19.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_19.sponge.listeners.block.SpongeBlockListener;
@@ -14,7 +15,6 @@ import dev.neuralnexus.taterlib.v1_19.sponge.listeners.command.SpongeCommandList
 import dev.neuralnexus.taterlib.v1_19.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.v1_19.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.v1_19.sponge.listeners.server.SpongeServerListener;
-import dev.neuralnexus.taterlib.v1_19.sponge.server.SpongeServer;
 import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
@@ -27,7 +27,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new SpongePermissionsHook());
         start();
         TaterAPIProvider.api(Platform.SPONGE)
-                .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.server())));
+                .ifPresent(api -> api.setServer(() -> (SimpleServer) Sponge.server()));
     }
 
     @Override

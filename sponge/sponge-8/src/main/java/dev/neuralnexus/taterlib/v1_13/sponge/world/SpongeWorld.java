@@ -10,8 +10,6 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
-import dev.neuralnexus.taterlib.v1_13.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_13.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.world.server.ServerWorld;
 
@@ -41,7 +39,7 @@ public class SpongeWorld implements World {
     @SuppressWarnings("unchecked")
     public List<Player> players() {
         return ((Collection<org.spongepowered.api.entity.living.player.Player>) level.players())
-                .stream().map(SpongePlayer::new).collect(Collectors.toList());
+                .stream().map(Player.class::cast).collect(Collectors.toList());
     }
 
     @Override
@@ -52,7 +50,7 @@ public class SpongeWorld implements World {
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         return level.entities().stream()
-                .map(SpongeEntity::new)
+                .map(Entity.class::cast)
                 .filter(e -> e.location().distance(entity.location()) <= radius)
                 .filter(predicate)
                 .collect(Collectors.toList());
@@ -62,7 +60,7 @@ public class SpongeWorld implements World {
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
         return level.entities().stream()
-                .map(SpongeEntity::new)
+                .map(Entity.class::cast)
                 .filter(e -> e.location().x() >= pos1.x() && e.location().x() <= pos2.x())
                 .filter(predicate)
                 .collect(Collectors.toList());

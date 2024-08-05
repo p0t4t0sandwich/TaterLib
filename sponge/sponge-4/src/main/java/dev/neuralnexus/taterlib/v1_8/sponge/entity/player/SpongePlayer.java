@@ -154,9 +154,4 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
                 break;
         }
     }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
 }

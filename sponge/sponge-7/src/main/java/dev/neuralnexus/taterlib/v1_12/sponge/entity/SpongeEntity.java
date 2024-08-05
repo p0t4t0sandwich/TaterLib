@@ -99,4 +99,12 @@ public class SpongeEntity implements Entity {
                 new org.spongepowered.api.world.Location<>(
                         serverLevel.get(), location.x(), location.y(), location.z()));
     }
+
+    @Override
+    public void sendMessage(String message) {}
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
+    }
 }

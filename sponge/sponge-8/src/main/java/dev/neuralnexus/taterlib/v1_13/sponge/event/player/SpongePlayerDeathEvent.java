@@ -9,8 +9,6 @@ import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterlib.v1_13.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_13.sponge.entity.player.SpongePlayer;
 
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 
@@ -49,12 +47,12 @@ public class SpongePlayerDeathEvent implements PlayerDeathEvent {
 
     @Override
     public Entity entity() {
-        return new SpongeEntity(event.entity());
+        return (Entity) event.entity();
     }
 
     @Override
     public Player player() {
-        return new SpongePlayer((org.spongepowered.api.entity.living.player.Player) event.entity());
+        return (Player) event.entity();
     }
 
     @Override

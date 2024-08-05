@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_17.sponge.event.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_17.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.v1_17.sponge.world.SpongeLocation;
 
 import org.spongepowered.api.event.entity.SpawnEntityEvent;
@@ -33,7 +32,7 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
 
     @Override
     public Entity entity() {
-        return new SpongeEntity(event.entities().get(0));
+        return (Entity) event.entities().get(0);
     }
 
     @Override

@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_17.sponge.event.block;
 
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_17.sponge.entity.player.SpongePlayer;
 
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 
@@ -32,7 +31,6 @@ public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlo
 
     @Override
     public Player player() {
-        return new SpongePlayer(
-                (org.spongepowered.api.entity.living.player.Player) event.cause().root());
+        return (Player) event.cause().root();
     }
 }

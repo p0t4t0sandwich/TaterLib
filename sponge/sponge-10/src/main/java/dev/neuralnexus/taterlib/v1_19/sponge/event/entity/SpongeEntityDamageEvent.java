@@ -7,10 +7,7 @@ package dev.neuralnexus.taterlib.v1_19.sponge.event.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
-import dev.neuralnexus.taterlib.v1_19.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_19.sponge.entity.player.SpongePlayer;
 
-import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.entity.DamageEntityEvent;
 
 /** Sponge implementation of {@link EntityDamageEvent}. */
@@ -43,10 +40,6 @@ public class SpongeEntityDamageEvent implements EntityDamageEvent {
 
     @Override
     public Entity entity() {
-        if (event.entity() instanceof Player) {
-            return new SpongePlayer((Player) event.entity());
-        } else {
-            return new SpongeEntity(event.entity());
-        }
+        return (Entity) event.entity();
     }
 }
