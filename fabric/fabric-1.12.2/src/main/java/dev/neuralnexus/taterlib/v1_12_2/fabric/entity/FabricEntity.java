@@ -14,6 +14,7 @@ import dev.neuralnexus.taterlib.v1_12_2.fabric.world.FabricServerWorld;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.TranslatableText;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -93,5 +94,15 @@ public class FabricEntity implements Entity {
             entity.changeDimension(serverLevel.get().dimension.getDimensionType().getId());
         }
         ((LivingEntity) entity).method_13071(location.x(), location.y(), location.z());
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        entity.sendMessage(new TranslatableText(message));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return entity.canUseCommand(permissionLevel, "");
     }
 }

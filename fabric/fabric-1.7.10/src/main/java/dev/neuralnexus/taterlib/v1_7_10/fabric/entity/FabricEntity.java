@@ -97,4 +97,12 @@ public class FabricEntity implements Entity {
         }
         entity.updatePosition(location.x(), location.y(), location.z());
     }
+
+    @Override
+    public void sendMessage(String message) {}
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
+    }
 }

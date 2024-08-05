@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
+
 import net.minecraft.commands.CommandSourceStack;
 
 /** A hook for Fabric permissions */
@@ -23,7 +24,8 @@ public class FabricPermissionsHook implements PermissionsHook {
     @Override
     public boolean hasPermission(Permissible permissible, String permission) {
         if (permissible instanceof Player) {
-            return Permissions.check((net.minecraft.world.entity.player.Player) permissible, permission, 4);
+            return Permissions.check(
+                    (net.minecraft.world.entity.player.Player) permissible, permission, 4);
         } else if (permissible instanceof CommandSender) {
             return Permissions.check((CommandSourceStack) permissible, permission, 4);
         }

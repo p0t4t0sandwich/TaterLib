@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.v1_8_9.fabric.world.FabricLocation;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.world.FabricServerWorld;
 
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.TranslatableText;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -92,5 +93,15 @@ public class FabricEntity implements Entity {
             entity.teleportToDimension(serverLevel.get().dimension.getType());
         }
         entity.updatePosition(location.x(), location.y(), location.z());
+    }
+
+    @Override
+    public void sendMessage(String message) {
+        entity.sendMessage(new TranslatableText(message));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return entity.canUseCommand(permissionLevel, "");
     }
 }

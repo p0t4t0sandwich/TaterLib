@@ -5,13 +5,11 @@
  */
 package dev.neuralnexus.taterlib.v1_11_2.fabric.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.entity.FabricLivingEntity;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.item.inventory.FabricPlayerInventory;
@@ -68,16 +66,6 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
     @Override
     public String displayName() {
         return player.getCustomName();
-    }
-
-    @Override
-    public Server server() {
-        return (Server) TaterAPIProvider.api().get().server();
-    }
-
-    @Override
-    public void sendMessage(String message) {
-        player.sendMessage(new TranslatableText(message));
     }
 
     @Override
@@ -140,24 +128,5 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
         ((ServerPlayerEntity) player)
                 .interactionManager.setGameMode(
                         net.minecraft.world.GameMode.setGameModeWithId(gameMode.id()));
-    }
-
-    @Override
-    public String prefix() {
-        // TODO: Find a way to get LP prefixes/suffixes
-        //        return Options.get(player, "prefix", "");
-        return "";
-    }
-
-    @Override
-    public String suffix() {
-        // TODO: Find a way to get LP prefixes/suffixes
-        //        return Options.get(player, "suffix", "");
-        return "";
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
     }
 }

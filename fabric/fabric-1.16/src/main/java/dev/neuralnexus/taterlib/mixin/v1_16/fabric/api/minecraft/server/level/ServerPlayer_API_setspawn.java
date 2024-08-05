@@ -29,10 +29,18 @@ import org.spongepowered.asm.mixin.Shadow;
 @Implements(@Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE))
 public abstract class ServerPlayer_API_setspawn {
     @Shadow
-    public abstract void shadow$setRespawnPosition(net.minecraft.resources.ResourceKey<Level> dimension, @Nullable BlockPos position, boolean forced, boolean verbose);
+    public abstract void shadow$setRespawnPosition(
+            net.minecraft.resources.ResourceKey<Level> dimension,
+            @Nullable BlockPos position,
+            boolean forced,
+            boolean verbose);
 
     @SuppressWarnings("resource")
     public void serverPlayer$setSpawn(Location location, boolean forced) {
-        this.shadow$setRespawnPosition(((VanillaWorld) location.world()).world().dimension(), new BlockPos(location.x(), location.y(), location.z()), forced, false);
+        this.shadow$setRespawnPosition(
+                ((VanillaWorld) location.world()).world().dimension(),
+                new BlockPos(location.x(), location.y(), location.z()),
+                forced,
+                false);
     }
 }

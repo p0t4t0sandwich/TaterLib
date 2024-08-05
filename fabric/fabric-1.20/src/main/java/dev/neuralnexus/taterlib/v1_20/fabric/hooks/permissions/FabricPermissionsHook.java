@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
+
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.entity.Entity;
 

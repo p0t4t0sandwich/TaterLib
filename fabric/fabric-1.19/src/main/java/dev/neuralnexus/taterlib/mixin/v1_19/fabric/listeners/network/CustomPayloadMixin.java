@@ -44,6 +44,7 @@ public abstract class CustomPayloadMixin {
         CustomPayload wrapper = new CustomPayloadPacket(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(wrapper));
         if (getPlayer() == null) return;
-        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl.Player(wrapper,(SimplePlayer) getPlayer()));
+        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+                new PluginMessageEventImpl.Player(wrapper, (SimplePlayer) getPlayer()));
     }
 }
