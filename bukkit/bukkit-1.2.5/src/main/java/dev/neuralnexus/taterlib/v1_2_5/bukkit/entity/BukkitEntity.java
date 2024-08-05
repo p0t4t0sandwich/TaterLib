@@ -57,6 +57,9 @@ public class BukkitEntity implements Entity {
     }
 
     @Override
+    public void sendMessage(String message) {}
+
+    @Override
     public Optional<String> customName() {
         return Optional.of(entity.getType().getName());
     }
@@ -84,5 +87,10 @@ public class BukkitEntity implements Entity {
                         location.x(),
                         location.y(),
                         location.z()));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 }

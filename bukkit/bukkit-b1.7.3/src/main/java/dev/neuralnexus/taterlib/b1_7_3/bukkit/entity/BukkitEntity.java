@@ -62,6 +62,9 @@ public class BukkitEntity implements Entity {
     }
 
     @Override
+    public void sendMessage(String message) {}
+
+    @Override
     public Optional<String> customName() {
         return Optional.of("minecraft.entity");
     }
@@ -89,5 +92,10 @@ public class BukkitEntity implements Entity {
                         location.x(),
                         location.y(),
                         location.z()));
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return false;
     }
 }

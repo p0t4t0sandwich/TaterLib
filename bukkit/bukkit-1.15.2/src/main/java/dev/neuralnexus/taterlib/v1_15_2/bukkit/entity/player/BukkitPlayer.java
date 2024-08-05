@@ -10,11 +10,9 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.item.inventory.BukkitPlayerInventory;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.world.BukkitWorld;
 import dev.neuralnexus.taterloader.Loader;
 
@@ -67,11 +65,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public Server server() {
-        return new BukkitServer(player.getServer());
-    }
-
-    @Override
     public void sendMessage(String message) {
         player.sendMessage(message);
     }
@@ -100,11 +93,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
             e.printStackTrace();
             return 0;
         }
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
     }
 
     @Override
