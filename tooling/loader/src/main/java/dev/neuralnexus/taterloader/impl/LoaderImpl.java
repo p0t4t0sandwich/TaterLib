@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterloader.impl;
 
 import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterapi.util.ReflectionUtil;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.plugin.ModuleLoader;
 import dev.neuralnexus.taterloader.plugin.Plugin;
@@ -33,6 +34,12 @@ public class LoaderImpl implements Loader {
     private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
     public LoaderImpl(Object plugin, Object server, Object... other) {
+        // TLauncher check
+        if (ReflectionUtil.checkForClass(
+                "org.tlauncher.MixinConnector", "org.tlauncher.tlauncher.rmo.Bootstrapper")) {
+            throw new RuntimeException("TaterLib does not support TLauncher");
+        }
+
         instance = this;
         this.plugin = plugin;
         this.server = server;
