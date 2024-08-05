@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_15.vanilla.event.block;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_15.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
@@ -43,6 +42,6 @@ public class VanillaPlayerBlockBreakEvent extends VanillaBlockEvent
 
     @Override
     public Player player() {
-        return new VanillaPlayer(player);
+        return (Player) player;
     }
 }
