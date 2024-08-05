@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_17.vanilla.event.player;
 
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerEvent;
-import dev.neuralnexus.taterlib.v1_17.vanilla.entity.player.VanillaPlayer;
 
 /** Vanilla implementation of {@link PlayerEvent}. */
 public class VanillaPlayerEvent implements PlayerEvent {
@@ -19,6 +18,6 @@ public class VanillaPlayerEvent implements PlayerEvent {
 
     @Override
     public Player player() {
-        return new VanillaPlayer(this.player);
+        return (Player) player;
     }
 }

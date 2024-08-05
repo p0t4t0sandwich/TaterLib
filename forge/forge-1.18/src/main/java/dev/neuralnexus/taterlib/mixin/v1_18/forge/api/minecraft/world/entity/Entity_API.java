@@ -50,31 +50,45 @@ import java.util.UUID;
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
 public abstract class Entity_API {
-    @Shadow public abstract void shadow$sendMessage(Component message, UUID uuid);
+    @Shadow
+    public abstract void shadow$sendMessage(Component message, UUID uuid);
 
-    @Shadow public abstract int shadow$getId();
+    @Shadow
+    public abstract int shadow$getId();
 
-    @Shadow public abstract void shadow$remove(RemovalReason removalReason);
+    @Shadow
+    public abstract void shadow$remove(RemovalReason removalReason);
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
-    @Shadow public abstract Level shadow$getLevel();
+    @Shadow
+    public abstract Level shadow$getLevel();
 
-    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow
+    public abstract BlockPos shadow$blockPosition();
 
-    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow
+    public abstract void shadow$teleportTo(double x, double y, double z);
 
-    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
+    @Shadow
+    @Nullable public abstract MinecraftServer shadow$getServer();
 
-    @Shadow public abstract net.minecraft.world.entity.Entity shadow$changeDimension(ServerLevel serverLevel);
+    @Shadow
+    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
+            ServerLevel serverLevel);
 
-    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow
+    @Nullable public abstract Component shadow$getCustomName();
 
-    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow
+    public abstract void shadow$setCustomName(@Nullable Component name);
 
-    @Shadow public abstract UUID shadow$getUUID();
+    @Shadow
+    public abstract UUID shadow$getUUID();
 
-    @Shadow public abstract boolean shadow$hasPermissions(int permissionLevel);
+    @Shadow
+    public abstract boolean shadow$hasPermissions(int permissionLevel);
 
     public void cmdSender$sendMessage(String message) {
         this.shadow$sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);
@@ -88,6 +102,7 @@ public abstract class Entity_API {
         this.shadow$remove(RemovalReason.KILLED);
     }
 
+    @SuppressWarnings("deprecation")
     public ResourceKey entity$type() {
         return (ResourceKey) Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }
@@ -96,9 +111,11 @@ public abstract class Entity_API {
         return new VanillaLocation((net.minecraft.world.entity.Entity) (Object) this);
     }
 
-    @SuppressWarnings("resource")
+    @SuppressWarnings({"deprecation", "resource"})
     public ResourceKey entity$biome() {
-        return (ResourceKey) BuiltinRegistries.BIOME.getKey(this.shadow$getLevel().getBiome(this.shadow$blockPosition()));
+        return (ResourceKey)
+                BuiltinRegistries.BIOME.getKey(
+                        this.shadow$getLevel().getBiome(this.shadow$blockPosition()));
     }
 
     @SuppressWarnings({"DataFlowIssue", "resource"})

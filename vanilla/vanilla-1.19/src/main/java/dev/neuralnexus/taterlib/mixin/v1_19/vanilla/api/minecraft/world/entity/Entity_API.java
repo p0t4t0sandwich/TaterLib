@@ -61,9 +61,9 @@ public abstract class Entity_API {
 
     @Shadow public abstract BlockPos shadow$blockPosition();
 
-    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
-
     @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
+    
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
 
     @Shadow public abstract net.minecraft.world.entity.Entity shadow$changeDimension(ServerLevel serverLevel);
 
