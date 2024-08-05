@@ -21,8 +21,9 @@ public class CustomPayloadPacket implements CustomPayload {
     private final ResourceKey channel;
     private final byte[] data;
 
+    @SuppressWarnings("VulnerableCodeUsages")
     public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
-        this.channel = (ResourceKey) (Object) packet.getIdentifier();
+        this.channel = (ResourceKey) packet.getIdentifier();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.write(buf);
         this.data = buf.array();

@@ -23,6 +23,7 @@ public class SpongeServer implements Server {
     }
 
     @Override
+    @SuppressWarnings("JavaReflectionMemberAccess")
     public String brand() {
         // Cast this.server to MinecraftServer, then
         // Reflect to get ((MinecraftServer) server).getServerModName()

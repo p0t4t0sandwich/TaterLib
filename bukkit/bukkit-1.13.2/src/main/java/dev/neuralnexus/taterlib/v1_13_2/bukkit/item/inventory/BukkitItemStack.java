@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Abstracts a Bukkit item stack to an AbstractItemStack. */
@@ -53,12 +54,14 @@ public class BukkitItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }
 
     @Override
     public boolean hasDisplayName() {
+        Objects.requireNonNull(itemStack.getItemMeta());
         return itemStack.getItemMeta().hasDisplayName();
     }
 
@@ -69,6 +72,7 @@ public class BukkitItemStack implements ItemStack {
 
     @Override
     public void setDisplayName(String name) {
+        Objects.requireNonNull(itemStack.getItemMeta());
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(name);
         itemStack.setItemMeta(meta);
@@ -76,16 +80,19 @@ public class BukkitItemStack implements ItemStack {
 
     @Override
     public boolean hasLore() {
+        Objects.requireNonNull(itemStack.getItemMeta());
         return itemStack.getItemMeta().hasLore();
     }
 
     @Override
     public List<String> lore() {
+        Objects.requireNonNull(itemStack.getItemMeta());
         return itemStack.getItemMeta().getLore();
     }
 
     @Override
     public void setLore(List<String> lore) {
+        Objects.requireNonNull(itemStack.getItemMeta());
         ItemMeta meta = itemStack.getItemMeta();
         meta.setLore(lore);
         itemStack.setItemMeta(meta);
@@ -93,16 +100,19 @@ public class BukkitItemStack implements ItemStack {
 
     @Override
     public boolean hasEnchants() {
+        Objects.requireNonNull(itemStack.getItemMeta());
         return itemStack.getItemMeta().hasEnchants();
     }
 
     @Override
     public boolean unbreakable() {
+        Objects.requireNonNull(itemStack.getItemMeta());
         return itemStack.getItemMeta().isUnbreakable();
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
+        Objects.requireNonNull(itemStack.getItemMeta());
         ItemMeta meta = itemStack.getItemMeta();
         meta.setUnbreakable(unbreakable);
         itemStack.setItemMeta(meta);

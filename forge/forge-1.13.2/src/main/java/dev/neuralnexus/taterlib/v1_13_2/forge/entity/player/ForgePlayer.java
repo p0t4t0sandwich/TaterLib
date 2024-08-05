@@ -17,7 +17,6 @@ import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.item.inventory.ForgePlayerInventory;
 import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
-import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeWorld;
 
 import io.netty.buffer.Unpooled;
 

@@ -118,11 +118,13 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public boolean canFly() {
         return player.get(Keys.CAN_FLY).get();
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public boolean isFlying() {
         return player.get(Keys.IS_FLYING).get();
     }
@@ -133,6 +135,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public GameMode gameMode() {
         return GameMode.fromName(player.get(Keys.GAME_MODE).get().toString());
     }

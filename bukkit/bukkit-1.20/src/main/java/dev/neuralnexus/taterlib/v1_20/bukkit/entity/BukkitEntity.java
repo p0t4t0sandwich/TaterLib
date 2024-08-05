@@ -60,11 +60,13 @@ public class BukkitEntity implements Entity {
     public void sendMessage(String message) {}
 
     @Override
+    @SuppressWarnings("deprecation")
     public Optional<String> customName() {
         return Optional.ofNullable(entity.getCustomName());
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setCustomName(String name) {
         entity.setCustomName(name);
     }

@@ -25,6 +25,7 @@ public class SpongeModernData implements PlatformData {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public String modLoaderVersion() {
         return Sponge.pluginManager().plugin("sponge").get().metadata().version().toString();
     }

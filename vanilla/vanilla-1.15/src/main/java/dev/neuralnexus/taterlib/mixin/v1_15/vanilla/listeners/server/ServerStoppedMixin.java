@@ -23,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(MinecraftServer.class)
+@SuppressWarnings("UnusedMixin")
 public class ServerStoppedMixin {
     /** Called when the server has stopped. */
     @Inject(at = @At("TAIL"), method = "stopServer")

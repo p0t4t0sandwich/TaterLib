@@ -122,7 +122,7 @@ public class BungeeCordAPI {
     }
 
     /**
-     * Get a list of players connected on a certain server, or on ALL of the servers
+     * Get a list of players connected on a certain server, or on ALL the servers
      *
      * @param conn The player sending the plugin message
      * @param server The name of the server to get the list of connected players, or ALL for global

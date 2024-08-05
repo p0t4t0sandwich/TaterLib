@@ -61,9 +61,8 @@ public class ForgeEntity implements Entity {
     @Override
     public ResourceKey type() {
         return (ResourceKey)
-                (Object)
-                        GameRegistry.findRegistry(EntityEntry.class)
-                                .getKey(EntityRegistry.getEntry(entity.getClass()));
+                GameRegistry.findRegistry(EntityEntry.class)
+                        .getKey(EntityRegistry.getEntry(entity.getClass()));
     }
 
     @Override

@@ -48,7 +48,7 @@ import java.util.UUID;
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class Entity_API {
     @Shadow
     public abstract void shadow$sendMessage(Component message);

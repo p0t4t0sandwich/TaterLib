@@ -65,6 +65,7 @@ public class BukkitPlayerListener implements Listener {
      *
      * @param event The event.
      */
+    @SuppressWarnings("deprecation")
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerMessage(AsyncPlayerChatEvent event) {
         PlayerEvents.MESSAGE.invoke(new BukkitPlayerMessageEvent(event));

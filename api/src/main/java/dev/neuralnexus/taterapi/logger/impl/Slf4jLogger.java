@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.logger.impl;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 /** A generic SLF4J implementation of the {@link Logger} interface. */
+@SuppressWarnings("CallToPrintStackTrace")
 public class Slf4jLogger implements Logger {
     private final org.slf4j.Logger logger;
 

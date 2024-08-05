@@ -27,6 +27,7 @@ public class TaterLibMetrics {
     private static final Logger logger = TaterLib.logger();
     private static final int SERVICE_ID = 21198;
 
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static void initialize() {
         MetricsConfig config;
         try {

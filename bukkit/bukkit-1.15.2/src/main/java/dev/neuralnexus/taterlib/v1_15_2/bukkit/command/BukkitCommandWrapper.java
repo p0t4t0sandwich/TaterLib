@@ -10,6 +10,7 @@ import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.player.BukkitPlayer;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /** Wraps a command callback into a Bukkit CommandExecutor. */
 public class BukkitCommandWrapper extends org.bukkit.command.Command {
@@ -21,7 +22,8 @@ public class BukkitCommandWrapper extends org.bukkit.command.Command {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args) {
+    public boolean execute(
+            @NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player) {
             return command.execute(new BukkitPlayer((Player) sender), label, args);
         }

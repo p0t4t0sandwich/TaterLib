@@ -116,6 +116,7 @@ public class MCLogsAPI {
      *
      * @return The UploadLogResponse of the upload.
      */
+    @SuppressWarnings("resource")
     public static Optional<UploadLogResponse> uploadLatestCrashReport() {
         try {
             Path dir = Paths.get("." + File.separator + "crash-reports");

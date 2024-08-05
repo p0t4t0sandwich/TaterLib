@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_1)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements(@Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE))
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class Entity_API_biome {
     @Shadow
     public abstract Level shadow$getCommandSenderWorld();

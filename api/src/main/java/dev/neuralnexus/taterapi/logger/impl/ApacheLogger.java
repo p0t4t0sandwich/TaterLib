@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.logger.impl;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 /** A generic Apache implementation of the {@link Logger} interface. */
+@SuppressWarnings("CallToPrintStackTrace")
 public class ApacheLogger implements Logger {
     private final org.apache.logging.log4j.Logger logger;
 

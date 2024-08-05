@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(Block.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerBlockBreakMixin {
     /** Called when a block is broken by a player. */
     @Inject(method = "playerDestroy", at = @At("HEAD"), cancellable = true)

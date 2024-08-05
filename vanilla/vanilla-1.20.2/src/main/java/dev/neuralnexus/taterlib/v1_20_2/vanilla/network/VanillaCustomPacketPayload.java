@@ -21,7 +21,7 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload {
     private final FriendlyByteBuf byteBuf;
 
     public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
-        id = (ResourceLocation) (Object) channel;
+        id = (ResourceLocation) channel;
         byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
     }

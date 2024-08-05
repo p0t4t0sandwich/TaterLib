@@ -59,8 +59,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
             // Register Fabric API player events
             ServerPlayConnectionEvents.JOIN.register(
                     (handler, sender, s) ->
-                            PlayerEvents.LOGIN.invoke(
-                                    new FabricPlayerLoginEvent(handler)));
+                            PlayerEvents.LOGIN.invoke(new FabricPlayerLoginEvent(handler)));
             ServerPlayConnectionEvents.DISCONNECT.register(
                     (handler, s) ->
                             PlayerEvents.LOGOUT.invoke(new FabricPlayerLogoutEvent(handler, s)));

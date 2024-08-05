@@ -9,13 +9,13 @@ import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_9.sponge.entity.player.SpongePlayer;
 
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.api.command.CommandException;
 import org.spongepowered.api.command.CommandResult;
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.util.annotation.NonnullByDefault;
 
 /** Wraps a command callback into a Sponge Command. */
 public class SpongeCommandWrapper implements CommandExecutor {
@@ -29,7 +29,8 @@ public class SpongeCommandWrapper implements CommandExecutor {
 
     @Override
     @SuppressWarnings({"OptionalGetWithoutIsPresent", "RedundantThrows"})
-    public @NonnullByDefault CommandResult execute(CommandSource src, CommandContext commandArgs)
+    public @NotNull CommandResult execute(
+            @NotNull CommandSource src, @NotNull CommandContext commandArgs)
             throws CommandException {
         try {
             String[] args = commandArgs.<String>getOne("args").get().split(" ");

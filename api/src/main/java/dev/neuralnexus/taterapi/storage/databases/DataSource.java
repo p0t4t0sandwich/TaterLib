@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.storage.databases;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 /** Data source class */
+@SuppressWarnings("unused")
 public class DataSource {
     private static final Logger logger = Logger.create("DataSource");
 
@@ -18,6 +19,7 @@ public class DataSource {
      * @param config The config data
      * @return The database
      */
+    @SuppressWarnings("rawtypes")
     public static Database getDatabase(Database.Type type, Database.DatabaseConfig config) {
         try {
             switch (type) {

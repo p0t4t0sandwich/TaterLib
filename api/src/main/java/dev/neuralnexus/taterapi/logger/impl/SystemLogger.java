@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.logger.impl;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 /** A generic implementation of the {@link Logger} interface. */
+@SuppressWarnings("CallToPrintStackTrace")
 public class SystemLogger implements Logger {
     private final String pluginId;
 

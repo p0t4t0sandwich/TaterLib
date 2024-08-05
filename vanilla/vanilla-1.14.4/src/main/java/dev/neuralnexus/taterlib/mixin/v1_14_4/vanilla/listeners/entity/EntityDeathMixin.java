@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(LivingEntity.class)
+@SuppressWarnings("UnusedMixin")
 class EntityDeathMixin {
     /** Called when an entity is spawned. */
     @Inject(method = "die", at = @At("HEAD"))

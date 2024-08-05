@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(MinecraftVersion.V1_19_1)
 @Mixin(ServerGamePacketListenerImpl.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerMessageMixin {
     /** Called when a player sends a message. */
     @Inject(method = "handleChat", at = @At("HEAD"), cancellable = true)

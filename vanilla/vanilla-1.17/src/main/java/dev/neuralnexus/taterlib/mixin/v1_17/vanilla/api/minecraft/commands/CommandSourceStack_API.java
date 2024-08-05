@@ -35,7 +35,7 @@ import java.util.UUID;
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class CommandSourceStack_API {
     @Shadow @Final private CommandSource source;
 

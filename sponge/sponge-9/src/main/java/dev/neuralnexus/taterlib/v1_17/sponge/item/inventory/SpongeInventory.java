@@ -39,6 +39,7 @@ public class SpongeInventory implements Inventory {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void set(int slot, ItemStack item) {
         inventory.slot(slot).get().set(((SpongeItemStack) item).itemStack());
     }
@@ -65,6 +66,7 @@ public class SpongeInventory implements Inventory {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void remove(ResourceKey type) {
         for (int i = 0; i < size(); i++) {
             if (get(i).type().equals(type)) {
@@ -74,6 +76,7 @@ public class SpongeInventory implements Inventory {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void clear(int slot) {
         inventory.slot(slot).get().clear();
     }

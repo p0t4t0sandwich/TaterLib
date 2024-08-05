@@ -26,9 +26,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
                                 api.setServer(
                                         () ->
                                                 (SimpleServer)
-                                                        (Object)
-                                                                ServerLifecycleHooks
-                                                                        .getCurrentServer()));
+                                                        ServerLifecycleHooks.getCurrentServer()));
     }
 
     @Override

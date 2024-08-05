@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(CombatTracker.class)
+@SuppressWarnings("UnusedMixin")
 class EntityDamageMixin {
     /** Called when an entity takes damage. */
     @Inject(method = "recordDamage", at = @At("HEAD"), cancellable = true)

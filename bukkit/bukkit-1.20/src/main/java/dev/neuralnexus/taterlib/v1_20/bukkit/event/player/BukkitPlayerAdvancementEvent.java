@@ -37,7 +37,7 @@ public class BukkitPlayerAdvancementEvent extends BukkitPlayerEvent
         @Override
         public String advancement() {
             Objects.requireNonNull(event.getAdvancement().getDisplay());
-            return event.getAdvancement().getDisplay().getTitle();
+            return event.getAdvancement().getDisplay().displayName().toString();
         }
     }
 }

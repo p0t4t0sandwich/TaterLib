@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_18, max = MinecraftVersion.V1_18_2)
 @Mixin(ServerGamePacketListenerImpl.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerMessageMixin {
     /** Called when a player sends a message. */
     @Inject(

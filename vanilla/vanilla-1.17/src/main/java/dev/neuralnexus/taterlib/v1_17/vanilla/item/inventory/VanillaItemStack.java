@@ -40,7 +40,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) (Object) Registry.ITEM.getKey(itemStack.getItem());
+        return (ResourceKey) Registry.ITEM.getKey(itemStack.getItem());
     }
 
     @Override
@@ -54,6 +54,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new VanillaItemStack(itemStack.copy());
     }

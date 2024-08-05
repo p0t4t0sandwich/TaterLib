@@ -25,7 +25,7 @@ public class SpongeBlock implements Block {
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) (Object) BlockTypes.registry().valueKey(block.type());
+        return (ResourceKey) BlockTypes.registry().valueKey(block.type());
     }
 
     @Override

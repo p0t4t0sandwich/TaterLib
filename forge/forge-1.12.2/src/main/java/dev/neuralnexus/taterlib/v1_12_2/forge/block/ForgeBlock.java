@@ -24,7 +24,7 @@ public class ForgeBlock implements Block {
     @Override
     public ResourceKey type() {
         return (ResourceKey)
-                (Object) GameRegistry.findRegistry(net.minecraft.block.Block.class).getKey(block);
+                GameRegistry.findRegistry(net.minecraft.block.Block.class).getKey(block);
     }
 
     @Override

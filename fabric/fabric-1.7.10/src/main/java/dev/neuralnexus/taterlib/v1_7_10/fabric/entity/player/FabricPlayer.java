@@ -74,6 +74,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
     }
 
     @Override
+    @SuppressWarnings("VulnerableCodeUsages")
     public void sendPluginMessage(ResourceKey channel, byte[] data) {
         PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);

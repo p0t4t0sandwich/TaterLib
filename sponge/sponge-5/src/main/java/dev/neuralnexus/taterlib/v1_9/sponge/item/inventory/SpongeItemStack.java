@@ -53,6 +53,7 @@ public class SpongeItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new SpongeItemStack(itemStack.copy());
     }

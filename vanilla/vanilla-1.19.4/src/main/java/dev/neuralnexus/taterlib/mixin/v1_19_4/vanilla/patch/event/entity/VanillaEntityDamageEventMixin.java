@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 /** Vanilla implementation of {@link EntityDamageEvent}. */
 @ReqMCVersion(MinecraftVersion.V1_19_4)
 @Mixin(value = VanillaEntityDamageEvent.class, remap = false)
+@SuppressWarnings("UnusedMixin")
 public class VanillaEntityDamageEventMixin {
     /**
      * @author Dylan Sperrer (p0t4t0sandwich)

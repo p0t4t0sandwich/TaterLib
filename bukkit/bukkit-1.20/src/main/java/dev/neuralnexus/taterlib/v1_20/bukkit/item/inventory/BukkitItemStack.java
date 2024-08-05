@@ -53,6 +53,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }
@@ -63,11 +64,13 @@ public class BukkitItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public Optional<String> displayName() {
         return Optional.of(itemStack.getItemMeta().getDisplayName());
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setDisplayName(String name) {
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(name);
@@ -80,11 +83,13 @@ public class BukkitItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public List<String> lore() {
         return itemStack.getItemMeta().getLore();
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setLore(List<String> lore) {
         ItemMeta meta = itemStack.getItemMeta();
         meta.setLore(lore);

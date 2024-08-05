@@ -32,7 +32,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                             try {
                                 Class.forName(className).getMethod("init").invoke(null);
                             } catch (Exception e) {
-                                TaterLib.logger().error("Failed to boostrap Vanilla builders/factories", e);
+                                TaterLib.logger()
+                                        .error("Failed to boostrap Vanilla builders/factories", e);
                             }
                         });
         TaterAPIProvider.addHook(new ForgePermissionsHook());
@@ -43,8 +44,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                 api.setServer(
                                         () ->
                                                 (SimpleServer)
-                                                        ServerLifecycleHooks
-                                                                .getCurrentServer()));
+                                                        ServerLifecycleHooks.getCurrentServer()));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             MinecraftForge.EVENT_BUS.register(this);

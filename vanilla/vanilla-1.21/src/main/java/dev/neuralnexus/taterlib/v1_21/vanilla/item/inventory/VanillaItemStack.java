@@ -70,7 +70,8 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
     @Override
     public Optional<String> displayName() {
         if (itemStack.get(DataComponents.CUSTOM_NAME) == null) return Optional.empty();
-        return Optional.of(Objects.requireNonNull(itemStack.get(DataComponents.CUSTOM_NAME)).getString());
+        return Optional.of(
+                Objects.requireNonNull(itemStack.get(DataComponents.CUSTOM_NAME)).getString());
     }
 
     @Override

@@ -12,6 +12,8 @@ import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.BukkitEntity;
 import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
+import java.util.Objects;
+
 /** Bukkit implementation of {@link EntityDamageEvent}. */
 public class BukkitEntityDamageEvent extends BukkitEntityEvent implements EntityDamageEvent {
     private final org.bukkit.event.entity.EntityDamageEvent event;
@@ -69,6 +71,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
         @Override
         public String damager() {
+            Objects.requireNonNull(event.getDamager());
             return event.getDamager().getType().name();
         }
     }

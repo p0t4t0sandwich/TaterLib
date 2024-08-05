@@ -7,6 +7,7 @@ package dev.neuralnexus.taterapi.logger.impl;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 
+@SuppressWarnings("CallToPrintStackTrace")
 public class JavaLogger implements Logger {
     private final java.util.logging.Logger logger;
 

@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 /** Accessor for {@link LivingEntity}. */
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(LivingEntity.class)
+@SuppressWarnings("UnusedMixin")
 public interface LivingEntityAccessor {
     @Invoker("getExperienceReward")
     int invoker$getExperienceReward(final Player player);

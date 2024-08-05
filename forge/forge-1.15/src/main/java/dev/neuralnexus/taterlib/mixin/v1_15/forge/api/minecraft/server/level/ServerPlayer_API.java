@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_15.vanilla.world.VanillaWorld;
 
 import io.netty.buffer.Unpooled;
 
@@ -23,6 +24,7 @@ import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.dimension.DimensionType;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
@@ -47,8 +49,9 @@ public abstract class ServerPlayer_API {
     @Shadow
     public abstract String shadow$getIpAddress();
 
-    @Unique public void taterapi$setRespawnPosition(@Nullable BlockPos position, boolean forced) {
-        ((Player) (Object) this).setRespawnPosition(position, forced, false);
+    @Unique public void taterapi$setSpawnPoint(
+            @Nullable BlockPos position, boolean forced, DimensionType dimensionType) {
+        ((Player) (Object) this).setSpawnPoint(position, forced, false, dimensionType);
     }
 
     public String connection$ipAddress() {
@@ -71,8 +74,11 @@ public abstract class ServerPlayer_API {
         connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
+    @SuppressWarnings("resource")
     public void serverPlayer$setSpawn(Location location, boolean forced) {
-        this.taterapi$setRespawnPosition(
-                new BlockPos(location.x(), location.y(), location.z()), forced);
+        this.taterapi$setSpawnPoint(
+                new BlockPos(location.x(), location.y(), location.z()),
+                forced,
+                ((VanillaWorld) location.world()).world().dimension.getType());
     }
 }

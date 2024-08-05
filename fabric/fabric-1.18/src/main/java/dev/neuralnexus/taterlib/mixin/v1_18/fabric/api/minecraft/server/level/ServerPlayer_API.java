@@ -74,6 +74,7 @@ public abstract class ServerPlayer_API {
         connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
+    @SuppressWarnings("resource")
     public void serverPlayer$setSpawn(Location location, boolean forced) {
         this.shadow$setRespawnPosition(
                 ((VanillaWorld) location.world()).world().dimension(),

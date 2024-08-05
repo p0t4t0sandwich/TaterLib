@@ -63,6 +63,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String displayName() {
         return player.getDisplayName();
     }
@@ -99,6 +100,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void kick(String reason) {
         player.kickPlayer(reason);
     }

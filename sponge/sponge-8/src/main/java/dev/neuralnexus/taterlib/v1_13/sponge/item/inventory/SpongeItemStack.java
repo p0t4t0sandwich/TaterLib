@@ -44,7 +44,7 @@ public class SpongeItemStack implements ItemStack {
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) (Object) ItemTypes.registry().valueKey(itemStack.type());
+        return (ResourceKey) ItemTypes.registry().valueKey(itemStack.type());
     }
 
     @Override
@@ -58,6 +58,7 @@ public class SpongeItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new SpongeItemStack(itemStack.copy());
     }

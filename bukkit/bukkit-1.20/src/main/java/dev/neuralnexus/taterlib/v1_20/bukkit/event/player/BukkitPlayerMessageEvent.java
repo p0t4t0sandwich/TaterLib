@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link PlayerMessageEvent}. */
+@SuppressWarnings("deprecation")
 public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements PlayerMessageEvent {
     private final AsyncPlayerChatEvent event;
 

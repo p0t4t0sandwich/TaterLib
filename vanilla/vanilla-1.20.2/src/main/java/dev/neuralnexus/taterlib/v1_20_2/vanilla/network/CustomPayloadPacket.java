@@ -22,7 +22,7 @@ public class CustomPayloadPacket implements CustomPayload {
     private final byte[] data;
 
     public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
-        this.channel = (ResourceKey) (Object) packet.payload().id();
+        this.channel = (ResourceKey) packet.payload().id();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.payload().write(buf);
         this.data = buf.array();

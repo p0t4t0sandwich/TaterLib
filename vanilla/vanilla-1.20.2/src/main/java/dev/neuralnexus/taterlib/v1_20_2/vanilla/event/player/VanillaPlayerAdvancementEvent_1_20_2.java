@@ -24,6 +24,7 @@ public class VanillaPlayerAdvancementEvent_1_20_2 extends VanillaPlayerEvent
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public String advancement() {
         return advancement.value().display().get().getTitle().getString();
     }

@@ -28,6 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(PlayerAdvancements.class)
+@SuppressWarnings("UnusedMixin")
 public abstract class PlayerAdvancementFinishedMixin {
     @Shadow private ServerPlayer player;
 

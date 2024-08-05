@@ -24,6 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_19, max = MinecraftVersion.V1_19_4)
 @Mixin(ServerGamePacketListenerImpl.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerLogoutMixin {
     /** Called when a player disconnects. */
     @Inject(method = "onDisconnect", at = @At("HEAD"))

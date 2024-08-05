@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,14 +33,13 @@ import java.util.stream.Collectors;
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))
 public abstract class MinecraftServerAPI {
+    @Shadow public WorldServer[] worlds;
+
     @Shadow
     public abstract String shadow$getServerModName();
 
     @Shadow
     public abstract PlayerList shadow$getPlayerList();
-
-    @Shadow
-    public abstract Iterable<WorldServer> shadow$getAllLevels();
 
     public String server$brand() {
         return shadow$getServerModName();
@@ -53,8 +52,6 @@ public abstract class MinecraftServerAPI {
     }
 
     public List<ServerWorld> server$worlds() {
-        List<ServerWorld> worlds = new ArrayList<>();
-        shadow$getAllLevels().forEach(world -> worlds.add(new ForgeServerWorld(world)));
-        return worlds;
+        return Arrays.stream(this.worlds).map(ForgeServerWorld::new).collect(Collectors.toList());
     }
 }

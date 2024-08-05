@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
 @Mixin(ServerLevel.class)
+@SuppressWarnings("UnusedMixin")
 class EntitySpawnMixin {
     /** Called when an entity is spawned. */
     @Inject(method = "addFreshEntity", at = @At("HEAD"), cancellable = true)

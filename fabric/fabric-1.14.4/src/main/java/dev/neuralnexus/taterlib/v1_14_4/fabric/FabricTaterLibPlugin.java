@@ -36,7 +36,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.FABRIC)
-                .ifPresent(api -> api.setServer(() -> (SimpleServer) (Object) server));
+                .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FABRIC)) {
             // Initialize plugin data

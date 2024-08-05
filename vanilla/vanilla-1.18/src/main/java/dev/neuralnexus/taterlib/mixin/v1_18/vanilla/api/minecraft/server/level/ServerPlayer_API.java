@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),
     @Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE)
 })
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class ServerPlayer_API {
     @Shadow public int latency;
 
@@ -75,6 +75,7 @@ public abstract class ServerPlayer_API {
         connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
+    @SuppressWarnings("resource")
     public void serverPlayer$setSpawn(Location location, boolean forced) {
         this.shadow$setRespawnPosition(
                 ((VanillaWorld) location.world()).world().dimension(),

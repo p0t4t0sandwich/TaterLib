@@ -23,6 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_19, max = MinecraftVersion.V1_19_3)
 @Mixin(MinecraftServer.class)
+@SuppressWarnings("UnusedMixin")
 public class ServerStartedMixin {
     /** Called when the server has started. */
     @Inject(

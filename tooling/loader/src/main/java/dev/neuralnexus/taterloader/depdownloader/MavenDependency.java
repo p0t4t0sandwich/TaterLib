@@ -73,6 +73,7 @@ public class MavenDependency {
      * @throws NoSuchAlgorithmException If the MD5 algorithm is not found
      * @throws IOException If an IO error occurs
      */
+    @SuppressWarnings("StringBufferMayBeStringBuilder")
     public boolean checkMd5() throws NoSuchAlgorithmException, IOException {
         MessageDigest md = MessageDigest.getInstance("MD5");
         InputStream is = new BufferedInputStream(Files.newInputStream(this.filePath));

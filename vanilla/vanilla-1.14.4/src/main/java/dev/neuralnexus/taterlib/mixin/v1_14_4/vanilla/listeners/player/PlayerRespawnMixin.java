@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(PlayerList.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerRespawnMixin {
     /** Called when a player respawns. */
     @Inject(method = "respawn", at = @At("HEAD"))

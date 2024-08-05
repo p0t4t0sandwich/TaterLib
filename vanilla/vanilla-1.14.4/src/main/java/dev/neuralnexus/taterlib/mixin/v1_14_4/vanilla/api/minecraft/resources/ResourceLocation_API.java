@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ResourceLocation.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class ResourceLocation_API {
     @Shadow
     public abstract String shadow$getNamespace();

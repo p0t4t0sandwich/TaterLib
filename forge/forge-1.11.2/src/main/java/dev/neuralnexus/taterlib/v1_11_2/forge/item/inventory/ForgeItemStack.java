@@ -41,8 +41,7 @@ public class ForgeItemStack implements ItemStack {
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey)
-                (Object) GameRegistry.findRegistry(Item.class).getKey(itemStack.getItem());
+        return (ResourceKey) GameRegistry.findRegistry(Item.class).getKey(itemStack.getItem());
     }
 
     @Override
@@ -56,6 +55,7 @@ public class ForgeItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new ForgeItemStack(itemStack.copy());
     }

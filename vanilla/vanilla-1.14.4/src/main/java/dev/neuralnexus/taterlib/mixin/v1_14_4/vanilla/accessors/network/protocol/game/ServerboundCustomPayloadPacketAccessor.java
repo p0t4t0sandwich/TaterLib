@@ -17,6 +17,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 /** Accessor for {@link ServerboundCustomPayloadPacket}. */
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ServerboundCustomPayloadPacket.class)
+@SuppressWarnings("UnusedMixin")
 public interface ServerboundCustomPayloadPacketAccessor {
     @Accessor("identifier")
     ResourceLocation invoker$getIdentifier();

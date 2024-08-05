@@ -19,11 +19,13 @@ public class BukkitPlayerLogoutEvent extends BukkitPlayerEvent implements Player
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String logoutMessage() {
         return event.getQuitMessage();
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setLogoutMessage(String message) {
         event.setQuitMessage(message);
     }

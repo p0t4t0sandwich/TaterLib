@@ -19,6 +19,7 @@ import java.util.List;
 
 /** Sponge metrics adapter for BStats to allow for easy multi-platform support. */
 public class SpongeMetricsAdapter {
+    @SuppressWarnings("JavaReflectionInvocation")
     public static Object setupMetrics(
             Object plugin, Object pluginLogger, int pluginId, List<CustomChart> charts) {
         // TODO: look into SpongeForge support

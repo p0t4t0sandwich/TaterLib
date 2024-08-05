@@ -19,6 +19,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link World}. */
+@SuppressWarnings("rawtypes")
 public class SpongeWorld implements World {
     private final org.spongepowered.api.world.World level;
 

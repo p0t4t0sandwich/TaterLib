@@ -19,11 +19,13 @@ public class BukkitPlayerLoginEvent extends BukkitPlayerEvent implements PlayerL
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String loginMessage() {
         return event.getJoinMessage();
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setLoginMessage(String message) {
         event.setJoinMessage(message);
     }

@@ -14,11 +14,13 @@ import dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.player.BukkitPlayer;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.messaging.PluginMessageListener;
+import org.jetbrains.annotations.NotNull;
 
 /** Listens for plugin messages. */
 public class BukkitPluginMessageListener implements PluginMessageListener {
     @Override
-    public void onPluginMessageReceived(String channel, Player player, byte[] bytes) {
+    public void onPluginMessageReceived(
+            @NotNull String channel, @NotNull Player player, byte @NotNull [] bytes) {
         CustomPayload payload = new CustomPayloadImpl(ResourceKey.of(channel), bytes);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(payload));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(

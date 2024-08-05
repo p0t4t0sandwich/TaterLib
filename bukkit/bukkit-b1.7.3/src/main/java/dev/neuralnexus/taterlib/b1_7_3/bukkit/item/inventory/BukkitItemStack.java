@@ -53,6 +53,7 @@ public class BukkitItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new BukkitItemStack(itemStack.clone());
     }

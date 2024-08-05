@@ -36,6 +36,7 @@ public class DumpInfo {
     public final boolean isKilt = TaterAPIProvider.api().get().isModLoaded("kilt");
 
     /** Save the dump to a file. */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void saveDump() {
         Path logs = Paths.get("logs");
         if (!logs.toFile().exists()) {

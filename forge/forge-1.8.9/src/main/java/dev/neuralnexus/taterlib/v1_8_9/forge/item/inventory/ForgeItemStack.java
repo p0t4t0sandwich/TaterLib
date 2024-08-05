@@ -51,6 +51,7 @@ public class ForgeItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new ForgeItemStack(itemStack.copy());
     }

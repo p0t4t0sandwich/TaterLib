@@ -24,6 +24,7 @@ public class SpongeLegacyData implements PlatformData {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public String modLoaderVersion() {
         return Sponge.getPluginManager().getPlugin("sponge").get().getVersion().toString();
     }

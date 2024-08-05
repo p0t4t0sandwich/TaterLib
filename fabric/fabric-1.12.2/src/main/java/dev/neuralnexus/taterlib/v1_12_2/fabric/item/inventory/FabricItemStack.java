@@ -53,6 +53,7 @@ public class FabricItemStack implements ItemStack {
     }
 
     @Override
+    @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
         return new FabricItemStack(itemStack.copy());
     }

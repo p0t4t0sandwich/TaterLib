@@ -11,10 +11,13 @@ import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.command.BukkitCommandWrapper;
 
+import java.util.Objects;
+
 /** Bukkit implementation of {@link CommandRegisterEvent}. */
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
     @Override
     public void registerCommand(Command command, String... aliases) {
+        Objects.requireNonNull(getCommandMap());
         getCommandMap().register(command.name(), new BukkitCommandWrapper(command));
     }
 }

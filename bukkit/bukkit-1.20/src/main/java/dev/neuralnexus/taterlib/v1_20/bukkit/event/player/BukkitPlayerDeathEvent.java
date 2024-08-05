@@ -25,11 +25,13 @@ public class BukkitPlayerDeathEvent extends BukkitEntityDeathEvent implements Pl
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public String deathMessage() {
         return event.getDeathMessage();
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void setDeathMessage(String deathMessage) {
         event.setDeathMessage(deathMessage);
     }

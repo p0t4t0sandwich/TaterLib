@@ -19,6 +19,7 @@ import java.util.List;
 
 /** Velocity metrics adapter for BStats to allow for easy multi-platform support. */
 public class VelocityMetricsAdapter {
+    @SuppressWarnings("JavaReflectionInvocation")
     public static Object setupMetrics(
             Object plugin,
             Object server,

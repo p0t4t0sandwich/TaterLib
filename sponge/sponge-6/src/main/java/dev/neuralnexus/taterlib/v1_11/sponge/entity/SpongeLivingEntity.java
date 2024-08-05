@@ -63,6 +63,7 @@ public class SpongeLivingEntity extends SpongeEntity implements LivingEntity {
     }
 
     @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public double absorptionAmount() {
         return entity.getHealthData().get(Keys.ABSORPTION).get();
     }

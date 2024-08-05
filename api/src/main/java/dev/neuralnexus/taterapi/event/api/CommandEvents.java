@@ -20,6 +20,7 @@ public class CommandEvents {
             new EventManager<>(CommandRegisterEvent.class);
 
     /** Called when the brigadier command register event is fired. */
+    @SuppressWarnings("rawtypes")
     public static final EventManager<BrigadierCommandRegisterEvent> REGISTER_BRIGADIER_COMMAND =
             new EventManager<>(BrigadierCommandRegisterEvent.class);
 

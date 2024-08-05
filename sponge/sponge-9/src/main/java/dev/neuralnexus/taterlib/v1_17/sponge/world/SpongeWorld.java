@@ -19,6 +19,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link World}. */
+@SuppressWarnings("rawtypes")
 public class SpongeWorld implements World {
     private final org.spongepowered.api.world.World level;
 
@@ -44,7 +45,7 @@ public class SpongeWorld implements World {
 
     @Override
     public ResourceKey dimension() {
-        return (ResourceKey) (Object) ((ServerWorld) level).key();
+        return (ResourceKey) ((ServerWorld) level).key();
     }
 
     @Override

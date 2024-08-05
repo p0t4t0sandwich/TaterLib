@@ -62,6 +62,7 @@ public class FullDumpInfo extends DumpInfo {
 
     /** Save the dump to a file. */
     @Override
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public void saveDump() {
         MCLogsAPI.uploadLatestLog().ifPresent(upload -> latestLog = upload.getUrl());
         MCLogsAPI.uploadLatestDebugLog().ifPresent(upload -> debugLog = upload.getUrl());

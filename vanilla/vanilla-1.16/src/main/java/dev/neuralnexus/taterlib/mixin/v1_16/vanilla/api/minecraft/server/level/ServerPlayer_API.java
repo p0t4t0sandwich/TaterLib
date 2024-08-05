@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements(@Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE))
-@SuppressWarnings({"unused", "UnusedMixin"})
+@SuppressWarnings("UnusedMixin")
 public abstract class ServerPlayer_API {
     @Shadow public int latency;
 

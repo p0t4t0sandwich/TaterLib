@@ -25,6 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(PlayerList.class)
+@SuppressWarnings("UnusedMixin")
 public class PlayerLoginMixin {
     /** Called when a player logs in. */
     @Inject(
