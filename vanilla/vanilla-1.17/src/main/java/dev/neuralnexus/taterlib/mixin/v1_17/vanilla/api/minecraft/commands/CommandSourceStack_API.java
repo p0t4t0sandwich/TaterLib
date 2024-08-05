@@ -39,7 +39,8 @@ import java.util.UUID;
 public abstract class CommandSourceStack_API {
     @Shadow @Final private CommandSource source;
 
-    @Shadow public abstract String shadow$getTextName();
+    @Shadow
+    public abstract String shadow$getTextName();
 
     @Shadow
     @Nullable public abstract Entity shadow$getEntity();

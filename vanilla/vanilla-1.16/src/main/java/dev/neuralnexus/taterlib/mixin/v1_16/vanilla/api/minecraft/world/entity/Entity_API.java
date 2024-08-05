@@ -20,13 +20,11 @@ import dev.neuralnexus.taterlib.v1_16.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_16.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.Level;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
@@ -49,27 +47,39 @@ import java.util.UUID;
 })
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class Entity_API {
-    @Shadow public abstract void shadow$sendMessage(Component message, UUID uuid);
+    @Shadow
+    public abstract void shadow$sendMessage(Component message, UUID uuid);
 
-    @Shadow public abstract int shadow$getId();
+    @Shadow
+    public abstract int shadow$getId();
 
-    @Shadow public abstract void shadow$remove();
+    @Shadow
+    public abstract void shadow$remove();
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
-    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
-    
-    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow
+    @Nullable public abstract MinecraftServer shadow$getServer();
 
-    @Shadow public abstract net.minecraft.world.entity.Entity shadow$changeDimension(ServerLevel serverLevel);
+    @Shadow
+    public abstract void shadow$teleportTo(double x, double y, double z);
 
-    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow
+    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
+            ServerLevel serverLevel);
 
-    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow
+    @Nullable public abstract Component shadow$getCustomName();
 
-    @Shadow public abstract UUID shadow$getUUID();
+    @Shadow
+    public abstract void shadow$setCustomName(@Nullable Component name);
 
-    @Shadow public abstract boolean shadow$hasPermissions(int permissionLevel);
+    @Shadow
+    public abstract UUID shadow$getUUID();
+
+    @Shadow
+    public abstract boolean shadow$hasPermissions(int permissionLevel);
 
     public void cmdSender$sendMessage(String message) {
         this.shadow$sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);

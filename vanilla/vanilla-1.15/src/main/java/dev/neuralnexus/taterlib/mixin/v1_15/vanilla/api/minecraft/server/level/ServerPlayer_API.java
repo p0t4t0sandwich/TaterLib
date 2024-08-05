@@ -48,8 +48,7 @@ public abstract class ServerPlayer_API {
     @Shadow
     public abstract String shadow$getIpAddress();
 
-    @Unique
-    public void taterapi$setRespawnPosition(@Nullable BlockPos position, boolean forced) {
+    @Unique public void taterapi$setRespawnPosition(@Nullable BlockPos position, boolean forced) {
         ((Player) (Object) this).setRespawnPosition(position, forced, false);
     }
 
@@ -74,6 +73,7 @@ public abstract class ServerPlayer_API {
     }
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {
-        this.taterapi$setRespawnPosition(new BlockPos(location.x(), location.y(), location.z()), forced);
+        this.taterapi$setRespawnPosition(
+                new BlockPos(location.x(), location.y(), location.z()), forced);
     }
 }

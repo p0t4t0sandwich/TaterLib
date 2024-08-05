@@ -28,12 +28,16 @@ import org.spongepowered.asm.mixin.Shadow;
 @Implements(@Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE))
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class Entity_API_biome {
-    @Shadow public abstract Level shadow$getCommandSenderWorld();
+    @Shadow
+    public abstract Level shadow$getCommandSenderWorld();
 
-    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow
+    public abstract BlockPos shadow$blockPosition();
 
     @SuppressWarnings("resource")
     public ResourceKey entity$biome() {
-        return (ResourceKey) Registry.BIOME.getKey(this.shadow$getCommandSenderWorld().getBiome(this.shadow$blockPosition()));
+        return (ResourceKey)
+                Registry.BIOME.getKey(
+                        this.shadow$getCommandSenderWorld().getBiome(this.shadow$blockPosition()));
     }
 }

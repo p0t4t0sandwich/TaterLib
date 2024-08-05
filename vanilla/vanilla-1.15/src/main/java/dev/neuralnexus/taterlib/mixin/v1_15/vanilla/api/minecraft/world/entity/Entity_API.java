@@ -19,7 +19,6 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_15.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_15.vanilla.world.VanillaServerWorld;
 
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -27,9 +26,9 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
+
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -51,31 +50,45 @@ import java.util.UUID;
 })
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class Entity_API {
-    @Shadow public abstract void shadow$sendMessage(Component message);
+    @Shadow
+    public abstract void shadow$sendMessage(Component message);
 
-    @Shadow public abstract int shadow$getId();
+    @Shadow
+    public abstract int shadow$getId();
 
-    @Shadow public abstract void shadow$remove();
+    @Shadow
+    public abstract void shadow$remove();
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
-    @Shadow public abstract Level shadow$getCommandSenderWorld();
+    @Shadow
+    public abstract Level shadow$getCommandSenderWorld();
 
-    @Shadow public abstract BlockPos shadow$getCommandSenderBlockPosition();
+    @Shadow
+    public abstract BlockPos shadow$getCommandSenderBlockPosition();
 
-    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
+    @Shadow
+    @Nullable public abstract MinecraftServer shadow$getServer();
 
-    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow
+    public abstract void shadow$teleportTo(double x, double y, double z);
 
-    @Shadow public abstract net.minecraft.world.entity.Entity shadow$changeDimension(DimensionType dimensionType);
+    @Shadow
+    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
+            DimensionType dimensionType);
 
-    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow
+    @Nullable public abstract Component shadow$getCustomName();
 
-    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow
+    public abstract void shadow$setCustomName(@Nullable Component name);
 
-    @Shadow public abstract UUID shadow$getUUID();
+    @Shadow
+    public abstract UUID shadow$getUUID();
 
-    @Shadow public abstract boolean shadow$hasPermissions(int permissionLevel);
+    @Shadow
+    public abstract boolean shadow$hasPermissions(int permissionLevel);
 
     public void cmdSender$sendMessage(String message) {
         this.shadow$sendMessage(new TextComponent(message));
@@ -99,7 +112,10 @@ public abstract class Entity_API {
 
     @SuppressWarnings("resource")
     public ResourceKey entity$biome() {
-        return (ResourceKey) Registry.BIOME.getKey(this.shadow$getCommandSenderWorld().getBiome(this.shadow$getCommandSenderBlockPosition()));
+        return (ResourceKey)
+                Registry.BIOME.getKey(
+                        this.shadow$getCommandSenderWorld()
+                                .getBiome(this.shadow$getCommandSenderBlockPosition()));
     }
 
     @SuppressWarnings({"DataFlowIssue", "resource"})

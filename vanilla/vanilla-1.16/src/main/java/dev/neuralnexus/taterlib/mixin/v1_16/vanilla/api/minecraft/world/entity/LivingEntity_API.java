@@ -33,24 +33,32 @@ import org.spongepowered.asm.mixin.Shadow;
 })
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class LivingEntity_API {
-    @Shadow public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+    @Shadow
+    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
 
-    @Shadow public abstract float shadow$getHealth();
+    @Shadow
+    public abstract float shadow$getHealth();
 
-    @Shadow public abstract void shadow$setHealth(float health);
+    @Shadow
+    public abstract void shadow$setHealth(float health);
 
-    @Shadow public abstract float shadow$getAbsorptionAmount();
+    @Shadow
+    public abstract float shadow$getAbsorptionAmount();
 
-    @Shadow public abstract void shadow$setAbsorptionAmount(float amount);
+    @Shadow
+    public abstract void shadow$setAbsorptionAmount(float amount);
 
-    @Shadow public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
+    @Shadow
+    public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
 
     public void damageable$damage(double amount) {
         this.shadow$hurt(DamageSource.GENERIC, (float) amount);
     }
 
     public void damageable$damage(double amount, Entity source) {
-        this.shadow$hurt(DamageSource.mobAttack((net.minecraft.world.entity.LivingEntity) source), (float) amount);
+        this.shadow$hurt(
+                DamageSource.mobAttack((net.minecraft.world.entity.LivingEntity) source),
+                (float) amount);
     }
 
     public double damageable$health() {
