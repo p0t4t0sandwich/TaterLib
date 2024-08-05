@@ -5,16 +5,14 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.listeners.network;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayload;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.network.CustomPayloadPacket;
 
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
@@ -46,6 +44,6 @@ public class CustomPayloadMixin {
         NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(wrapper));
         if (player == null) return;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new PluginMessageEventImpl.Player(wrapper, new VanillaPlayer(player)));
+                new PluginMessageEventImpl.Player(wrapper, (SimplePlayer) player));
     }
 }

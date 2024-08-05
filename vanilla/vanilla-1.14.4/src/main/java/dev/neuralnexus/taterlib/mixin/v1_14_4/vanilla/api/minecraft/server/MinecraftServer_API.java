@@ -5,16 +5,13 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.api.minecraft.server;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.player.VanillaPlayer;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;
@@ -23,6 +20,7 @@ import net.minecraft.server.players.PlayerList;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
+import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -33,8 +31,9 @@ import java.util.stream.Collectors;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(MinecraftServer.class)
-@Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))
-public abstract class MinecraftServerAPI {
+@Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
+@SuppressWarnings({"unused", "UnusedMixin"})
+public abstract class MinecraftServer_API {
     @Shadow
     public abstract String shadow$getServerModName();
 
@@ -45,18 +44,18 @@ public abstract class MinecraftServerAPI {
     public abstract Iterable<ServerLevel> shadow$getAllLevels();
 
     public String server$brand() {
-        return shadow$getServerModName();
+        return this.shadow$getServerModName();
     }
 
     public List<SimplePlayer> server$onlinePlayers() {
-        return shadow$getPlayerList().getPlayers().stream()
-                .map(VanillaPlayer::new)
+        return this.shadow$getPlayerList().getPlayers().stream()
+                .map(SimplePlayer.class::cast)
                 .collect(Collectors.toList());
     }
 
     public List<ServerWorld> server$worlds() {
         List<ServerWorld> worlds = new ArrayList<>();
-        shadow$getAllLevels().forEach(world -> worlds.add(new VanillaServerWorld(world)));
+        this.shadow$getAllLevels().forEach(world -> worlds.add(new VanillaServerWorld(world)));
         return worlds;
     }
 }

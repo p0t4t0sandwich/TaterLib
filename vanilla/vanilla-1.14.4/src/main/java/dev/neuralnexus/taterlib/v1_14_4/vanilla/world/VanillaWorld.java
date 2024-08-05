@@ -10,8 +10,6 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.VanillaEntity;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.entity.player.VanillaPlayer;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
@@ -39,24 +37,24 @@ public class VanillaWorld implements World {
 
     @Override
     public List<Player> players() {
-        return level.players().stream().map(VanillaPlayer::new).collect(Collectors.toList());
+        return level.players().stream().map(Player.class::cast).collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return (ResourceKey) (Object) Registry.DIMENSION_TYPE.getKey(level.dimension.getType());
+        return (ResourceKey) Registry.DIMENSION_TYPE.getKey(level.dimension.getType());
     }
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.world.entity.Entity mcEntity = ((VanillaEntity) entity).entity();
+        net.minecraft.world.entity.Entity mcEntity = (net.minecraft.world.entity.Entity) entity;
         return level
                 .getEntities(
                         mcEntity,
                         mcEntity.getBoundingBox().inflate(radius),
-                        e -> predicate.test(new VanillaEntity(e)))
+                        e -> predicate.test((Entity) e))
                 .stream()
-                .map(VanillaEntity::new)
+                .map(Entity.class::cast)
                 .collect(Collectors.toList());
     }
 
@@ -65,12 +63,12 @@ public class VanillaWorld implements World {
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
         return level
                 .getEntities(
-                        ((VanillaEntity) entity).entity(),
+                        (net.minecraft.world.entity.Entity) entity,
                         new net.minecraft.world.phys.AABB(
                                 pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
-                        e -> predicate.test(new VanillaEntity(e)))
+                        e -> predicate.test((Entity) e))
                 .stream()
-                .map(VanillaEntity::new)
+                .map(Entity.class::cast)
                 .collect(Collectors.toList());
     }
 }

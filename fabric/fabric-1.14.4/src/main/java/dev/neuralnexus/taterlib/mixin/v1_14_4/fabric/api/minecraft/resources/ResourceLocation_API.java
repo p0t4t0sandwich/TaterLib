@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.api.minecraft.resources;
+package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.resources;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -19,11 +19,11 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.SEARGE)
+@ReqMappings(Mappings.INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
 @Mixin(ResourceLocation.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
-public abstract class ResourceLocationAPI {
+public abstract class ResourceLocation_API {
     @Shadow
     public abstract String shadow$getNamespace();
 
