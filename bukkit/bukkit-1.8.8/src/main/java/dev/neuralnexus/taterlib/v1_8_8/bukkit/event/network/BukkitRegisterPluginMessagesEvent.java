@@ -18,15 +18,10 @@ import java.util.Set;
 /** Bukkit implementation of {@link RegisterPluginMessagesEvent}. */
 public class BukkitRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
     @Override
-    public void registerPluginChannel(String channel) {
+    public void registerChannel(String channel) {
         Plugin plugin = (Plugin) Loader.instance().plugin();
         Messenger messenger = Bukkit.getServer().getMessenger();
         messenger.registerIncomingPluginChannel(plugin, channel, new BukkitPluginMessageListener());
         messenger.registerOutgoingPluginChannel(plugin, channel);
-    }
-
-    @Override
-    public void registerPluginChannels(Set<String> channels) {
-        channels.forEach(this::registerPluginChannel);
     }
 }
