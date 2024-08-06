@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 @ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
-@SuppressWarnings("UnusedMixin")
+@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class MinecraftServer_API {
     @Shadow
     public abstract String shadow$getServerModName();

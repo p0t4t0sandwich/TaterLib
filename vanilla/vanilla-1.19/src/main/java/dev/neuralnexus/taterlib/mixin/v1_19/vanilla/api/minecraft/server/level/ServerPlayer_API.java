@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),
     @Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE)
 })
-@SuppressWarnings("UnusedMixin")
+@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class ServerPlayer_API {
     @Shadow public int latency;
 
