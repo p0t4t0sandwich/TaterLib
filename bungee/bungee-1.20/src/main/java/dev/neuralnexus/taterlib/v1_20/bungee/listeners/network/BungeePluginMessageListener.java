@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.v1_20.bungee.listeners.network;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
-import dev.neuralnexus.taterapi.network.CustomPayload;
-import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_20.bungee.entity.player.BungeePlayer;
 import dev.neuralnexus.taterlib.v1_20.bungee.server.BungeeServer;
@@ -28,8 +28,8 @@ public class BungeePluginMessageListener implements Listener {
      */
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
-        CustomPayload payload =
-                new CustomPayloadImpl(ResourceKey.of(event.getTag()), event.getData());
+        CustomPayloadPacket payload =
+                new CustomPayloadPacketImpl(ResourceKey.of(event.getTag()), event.getData());
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(payload));
         if (event.getReceiver() instanceof ProxiedPlayer) {
             NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(

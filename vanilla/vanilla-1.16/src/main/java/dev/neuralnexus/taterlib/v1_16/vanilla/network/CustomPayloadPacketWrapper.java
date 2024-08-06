@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_16.vanilla.network;
 
-import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.mixin.v1_16.vanilla.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
@@ -19,9 +19,9 @@ import java.io.IOException;
 
 /**
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
- * CustomPayload}.
+ * CustomPayloadPacket}.
  */
-public class CustomPayloadPacketWrapper implements CustomPayload, ServerboundCustomPayloadPacketBridge {
+public class CustomPayloadPacketWrapper implements CustomPayloadPacket, ServerboundCustomPayloadPacketBridge {
     private final ResourceKey channel;
     private final byte[] data;
 

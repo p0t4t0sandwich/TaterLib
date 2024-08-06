@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20.vanilla.network;
 
-import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import io.netty.buffer.Unpooled;
@@ -15,9 +15,9 @@ import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 
 /**
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
- * CustomPayload}.
+ * CustomPayloadPacket}.
  */
-public class CustomPayloadPacketWrapper implements CustomPayload {
+public class CustomPayloadPacketWrapper implements CustomPayloadPacket {
     private final ResourceKey channel;
     private final byte[] data;
 
