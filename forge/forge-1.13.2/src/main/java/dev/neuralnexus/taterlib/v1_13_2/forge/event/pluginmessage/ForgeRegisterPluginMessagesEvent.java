@@ -14,12 +14,7 @@ import java.util.Set;
 /** Forge implementation of {@link RegisterPluginMessagesEvent}. */
 public class ForgeRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
     @Override
-    public void registerPluginChannel(String channel) {
+    public void registerChannel(String channel) {
         ModMessages.addChannels(Collections.singleton(channel));
-    }
-
-    @Override
-    public void registerPluginChannels(Set<String> channels) {
-        ModMessages.addChannels(channels);
     }
 }

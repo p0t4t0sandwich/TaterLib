@@ -12,16 +12,18 @@ import java.util.Set;
 /** Event for registering plugin messages */
 public interface RegisterPluginMessagesEvent extends Event {
     /**
-     * Register a plugin message
+     * Register a packet channel
      *
      * @param channel The channel
      */
-    void registerPluginChannel(String channel);
+    void registerChannel(String channel);
 
     /**
-     * Register plugin messages
+     * Register packet channel
      *
      * @param channels The channels
      */
-    void registerPluginChannels(Set<String> channels);
+    default void registerChannels(Set<String> channels) {
+        channels.forEach(this::registerChannel);
+    }
 }
