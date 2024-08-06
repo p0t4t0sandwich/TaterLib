@@ -12,7 +12,7 @@ import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
+import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -31,16 +31,16 @@ public class VelocityPluginMessageListener {
         CustomPayload packet =
                 new CustomPayloadImpl(
                         ResourceKey.of(event.getIdentifier().getId()), event.getData());
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(packet));
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(packet));
         if (event.getSource() instanceof Player) {
             NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                    new PluginMessageEventImpl.Player(
+                    new C2SCustomPacketEventImpl.Player(
                             packet,
                             new VelocityPlayer(
                                     (com.velocitypowered.api.proxy.Player) event.getSource())));
         } else if (event.getSource() instanceof ServerConnection) {
             NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(
-                    new PluginMessageEventImpl.Server(
+                    new C2SCustomPacketEventImpl.Server(
                             packet, new VelocityServer((RegisteredServer) event.getSource())));
         }
     }
