@@ -6,18 +6,18 @@
 package dev.neuralnexus.taterapi.event.network.impl;
 
 import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
-import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 /** General implementation of {@link C2SCustomPacketEvent}. */
 public class C2SCustomPacketEventImpl implements C2SCustomPacketEvent {
-    private final CustomPayload packet;
+    private final CustomPayloadPacket packet;
 
-    public C2SCustomPacketEventImpl(CustomPayload packet) {
+    public C2SCustomPacketEventImpl(CustomPayloadPacket packet) {
         this.packet = packet;
     }
 
     @Override
-    public CustomPayload packet() {
+    public CustomPayloadPacket packet() {
         return this.packet;
     }
 
@@ -25,7 +25,7 @@ public class C2SCustomPacketEventImpl implements C2SCustomPacketEvent {
         private final dev.neuralnexus.taterapi.entity.player.Player player;
 
         public Player(
-                CustomPayload packet, dev.neuralnexus.taterapi.entity.player.SimplePlayer player) {
+                CustomPayloadPacket packet, dev.neuralnexus.taterapi.entity.player.SimplePlayer player) {
             super(packet);
             this.player = (dev.neuralnexus.taterapi.entity.player.Player) player;
         }
@@ -39,7 +39,7 @@ public class C2SCustomPacketEventImpl implements C2SCustomPacketEvent {
     public static class Server extends C2SCustomPacketEventImpl implements C2SCustomPacketEvent.Server {
         private final dev.neuralnexus.taterapi.server.Server server;
 
-        public Server(CustomPayload packet, dev.neuralnexus.taterapi.server.Server server) {
+        public Server(CustomPayloadPacket packet, dev.neuralnexus.taterapi.server.Server server) {
             super(packet);
             this.server = server;
         }

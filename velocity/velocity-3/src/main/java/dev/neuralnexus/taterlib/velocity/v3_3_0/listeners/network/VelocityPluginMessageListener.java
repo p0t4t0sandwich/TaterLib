@@ -13,8 +13,8 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
-import dev.neuralnexus.taterapi.network.CustomPayload;
-import dev.neuralnexus.taterapi.network.impl.CustomPayloadImpl;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
@@ -28,8 +28,8 @@ public class VelocityPluginMessageListener {
      */
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        CustomPayload packet =
-                new CustomPayloadImpl(
+        CustomPayloadPacket packet =
+                new CustomPayloadPacketImpl(
                         ResourceKey.of(event.getIdentifier().getId()), event.getData());
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(packet));
         if (event.getSource() instanceof Player) {

@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.network.CustomPayload;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 /** Abstract class for plugin message events. */
 public interface C2SCustomPacketEvent extends Event {
@@ -16,7 +16,7 @@ public interface C2SCustomPacketEvent extends Event {
      *
      * @return The plugin message's payload.
      */
-    CustomPayload packet();
+    CustomPayloadPacket packet();
 
     /** Abstract class for player plugin message events. */
     interface Player extends C2SCustomPacketEvent {
