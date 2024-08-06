@@ -25,7 +25,7 @@ public class BungeeCordModule implements PluginModule {
                     TaterAPIProvider.platform().isVelocityBased()
                             ? "bungeecord:main"
                             : "BungeeCord";
-            NetworkEvents.REGISTER_PLUGIN_MESSAGES.register(e -> e.registerChannel(channel));
+            NetworkEvents.REGISTER_PLUGIN_MESSAGES.register(e -> e.register(channel));
             NetworkEvents.PLUGIN_MESSAGE.register(BungeeMsgType::Listener);
         }
     }

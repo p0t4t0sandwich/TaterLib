@@ -19,7 +19,7 @@ import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.hooks.permissions.VelocityPermissionsHook;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.network.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.player.VelocityPlayerListener;
@@ -61,7 +61,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
                             // Register plugin messages
                             NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                    new VelocityRegisterPluginMessagesEvent());
+                                    new VelocityRegisterPacketChannelsEvent());
 
                             // Fire server started event
                             ServerEvents.STARTED.invoke(new ServerStartedEventImpl());

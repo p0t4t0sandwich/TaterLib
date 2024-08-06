@@ -16,7 +16,7 @@ import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
 import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.command.BukkitCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.entity.BukkitEntityListener;
@@ -71,7 +71,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
                                 // Register plugin messages
                                 NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
-                                        new BukkitRegisterPluginMessagesEvent());
+                                        new BukkitRegisterPacketChannelsEvent());
                             },
                             200L);
         }
