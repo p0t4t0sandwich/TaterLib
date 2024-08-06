@@ -5,16 +5,15 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage;
 
-import dev.neuralnexus.taterapi.event.network.RegisterPluginMessagesEvent;
+import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
 
 import java.util.Collections;
-import java.util.Set;
 
-/** Forge implementation of {@link RegisterPluginMessagesEvent}. */
-public class ForgeRegisterPluginMessagesEvent implements RegisterPluginMessagesEvent {
+/** Forge implementation of {@link RegisterPacketChannelsEvent}. */
+public class ForgeRegisterPacketChannelsEvent implements RegisterPacketChannelsEvent {
     @Override
-    public void registerChannel(String channel) {
+    public void register(String channel) {
         ModMessages.addChannels(Collections.singleton(channel));
     }
 }

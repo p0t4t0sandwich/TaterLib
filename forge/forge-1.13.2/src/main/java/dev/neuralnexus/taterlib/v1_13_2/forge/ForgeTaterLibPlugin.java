@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage.ForgeRegisterPluginMessagesEvent;
+import dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage.ForgeRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.command.ForgeCommandsListener;
@@ -66,7 +66,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
-        NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPluginMessagesEvent());
+        NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPacketChannelsEvent());
         ModMessages.register();
         ModMessages.clearQueue();
     }

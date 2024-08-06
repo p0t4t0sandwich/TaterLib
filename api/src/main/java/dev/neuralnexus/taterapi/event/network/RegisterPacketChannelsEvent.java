@@ -6,24 +6,34 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.Set;
 
 /** Event for registering plugin messages */
-public interface RegisterPluginMessagesEvent extends Event {
+public interface RegisterPacketChannelsEvent extends Event {
     /**
      * Register a packet channel
      *
      * @param channel The channel
      */
-    void registerChannel(String channel);
+    void register(String channel);
+
+    /**
+     * Register a packet channel
+     *
+     * @param channel The channel
+     */
+    default void register(ResourceKey channel) {
+        this.register(channel.asString());
+    }
 
     /**
      * Register packet channel
      *
      * @param channels The channels
      */
-    default void registerChannels(Set<String> channels) {
-        channels.forEach(this::registerChannel);
+    default void register(Set<String> channels) {
+        channels.forEach(this::register);
     }
 }
