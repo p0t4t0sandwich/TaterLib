@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.modules.bungeecord.api;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.events.*;
 
 /** Enum for BungeeCord plugin message types. */
@@ -38,7 +38,7 @@ public enum BungeeMsgType {
         this.type = type;
     }
 
-    public static void Listener(PluginMessageEvent event) {
+    public static void Listener(C2SCustomPacketEvent event) {
         if (event.packet().channel().asString().equals("BungeeCord")
                 || event.packet().channel().asString().equals("bungeecord:main")) {
             ByteArrayDataInput in = ByteStreams.newDataInput(event.packet().data());

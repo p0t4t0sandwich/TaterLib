@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.event.network.RegisterPluginMessagesEvent;
 
 import java.util.Arrays;
@@ -16,16 +16,16 @@ import java.util.Set;
 /** Plugin message events. */
 public class NetworkEvents {
     /** Called when a plugin message is received. */
-    public static final EventManager<PluginMessageEvent> PLUGIN_MESSAGE =
-            new EventManager<>(PluginMessageEvent.class);
+    public static final EventManager<C2SCustomPacketEvent> PLUGIN_MESSAGE =
+            new EventManager<>(C2SCustomPacketEvent.class);
 
     /** Called when a plugin message is received from a player. */
-    public static final EventManager<PluginMessageEvent.Player> PLAYER_PLUGIN_MESSAGE =
-            new EventManager<>(PluginMessageEvent.Player.class);
+    public static final EventManager<C2SCustomPacketEvent.Player> PLAYER_PLUGIN_MESSAGE =
+            new EventManager<>(C2SCustomPacketEvent.Player.class);
 
     /** Called when a plugin message is received from a server. */
-    public static final EventManager<PluginMessageEvent.Server> SERVER_PLUGIN_MESSAGE =
-            new EventManager<>(PluginMessageEvent.Server.class);
+    public static final EventManager<C2SCustomPacketEvent.Server> SERVER_PLUGIN_MESSAGE =
+            new EventManager<>(C2SCustomPacketEvent.Server.class);
 
     /** Called when plugin messages channels are registered. */
     public static final EventManager<RegisterPluginMessagesEvent> REGISTER_PLUGIN_MESSAGES =

@@ -5,14 +5,14 @@
  */
 package dev.neuralnexus.taterapi.event.network.impl;
 
-import dev.neuralnexus.taterapi.event.network.PluginMessageEvent;
+import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.network.CustomPayload;
 
-/** General implementation of {@link PluginMessageEvent}. */
-public class PluginMessageEventImpl implements PluginMessageEvent {
+/** General implementation of {@link C2SCustomPacketEvent}. */
+public class C2SCustomPacketEventImpl implements C2SCustomPacketEvent {
     private final CustomPayload packet;
 
-    public PluginMessageEventImpl(CustomPayload packet) {
+    public C2SCustomPacketEventImpl(CustomPayload packet) {
         this.packet = packet;
     }
 
@@ -21,7 +21,7 @@ public class PluginMessageEventImpl implements PluginMessageEvent {
         return this.packet;
     }
 
-    public static class Player extends PluginMessageEventImpl implements PluginMessageEvent.Player {
+    public static class Player extends C2SCustomPacketEventImpl implements C2SCustomPacketEvent.Player {
         private final dev.neuralnexus.taterapi.entity.player.Player player;
 
         public Player(
@@ -36,7 +36,7 @@ public class PluginMessageEventImpl implements PluginMessageEvent {
         }
     }
 
-    public static class Server extends PluginMessageEventImpl implements PluginMessageEvent.Server {
+    public static class Server extends C2SCustomPacketEventImpl implements C2SCustomPacketEvent.Server {
         private final dev.neuralnexus.taterapi.server.Server server;
 
         public Server(CustomPayload packet, dev.neuralnexus.taterapi.server.Server server) {

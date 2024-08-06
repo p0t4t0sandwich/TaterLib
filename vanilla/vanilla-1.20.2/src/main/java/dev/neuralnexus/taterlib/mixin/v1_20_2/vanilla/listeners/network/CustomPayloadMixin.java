@@ -13,7 +13,7 @@ import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterapi.event.network.impl.PluginMessageEventImpl;
+import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.CustomPayloadPacket;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -43,7 +43,7 @@ public abstract class CustomPayloadMixin {
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket wrapper = new CustomPayloadPacket(packet);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new PluginMessageEventImpl(wrapper));
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(wrapper));
         TaterAPIProvider.api()
                 .get()
                 .server()
@@ -51,6 +51,6 @@ public abstract class CustomPayloadMixin {
                 .ifPresent(
                         player ->
                                 NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                                        new PluginMessageEventImpl.Player(wrapper, player)));
+                                        new C2SCustomPacketEventImpl.Player(wrapper, player)));
     }
 }
