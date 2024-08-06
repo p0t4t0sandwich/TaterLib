@@ -21,12 +21,12 @@ import java.io.IOException;
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
  * CustomPayload}.
  */
-public class CustomPayloadPacket implements CustomPayload, ServerboundCustomPayloadPacketBridge {
+public class CustomPayloadPacketWrapper implements CustomPayload, ServerboundCustomPayloadPacketBridge {
     private final ResourceKey channel;
     private final byte[] data;
 
     @SuppressWarnings("VulnerableCodeUsages")
-    public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
+    public CustomPayloadPacketWrapper(ServerboundCustomPayloadPacket packet) {
         this.channel = (ResourceKey) bridge$getIdentifier(packet);
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         try {
