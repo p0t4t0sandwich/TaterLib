@@ -14,7 +14,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
-import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.CustomPayloadPacket;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.CustomPayloadPacketWrapper;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
@@ -42,7 +42,7 @@ public abstract class CustomPayloadMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacket wrapper = new CustomPayloadPacket(packet);
+        CustomPayloadPacketWrapper wrapper = new CustomPayloadPacketWrapper(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(wrapper));
         TaterAPIProvider.api()
                 .get()

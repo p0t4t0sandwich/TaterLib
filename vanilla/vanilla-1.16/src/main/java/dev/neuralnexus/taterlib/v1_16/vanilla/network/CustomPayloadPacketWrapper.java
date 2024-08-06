@@ -3,12 +3,12 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_15.vanilla.network;
+package dev.neuralnexus.taterlib.v1_16.vanilla.network;
 
 import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.mixin.v1_15.vanilla.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
+import dev.neuralnexus.taterlib.mixin.v1_16.vanilla.bridge.network.protocol.game.ServerboundCustomPayloadPacketBridge;
 
 import io.netty.buffer.Unpooled;
 
@@ -21,12 +21,12 @@ import java.io.IOException;
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
  * CustomPayload}.
  */
-public class CustomPayloadPacket implements CustomPayload, ServerboundCustomPayloadPacketBridge {
+public class CustomPayloadPacketWrapper implements CustomPayload, ServerboundCustomPayloadPacketBridge {
     private final ResourceKey channel;
     private final byte[] data;
 
     @SuppressWarnings("VulnerableCodeUsages")
-    public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
+    public CustomPayloadPacketWrapper(ServerboundCustomPayloadPacket packet) {
         this.channel = (ResourceKey) bridge$getIdentifier(packet);
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         try {

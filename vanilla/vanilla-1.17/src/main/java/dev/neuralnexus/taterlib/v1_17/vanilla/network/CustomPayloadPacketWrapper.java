@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_18.vanilla.network;
+package dev.neuralnexus.taterlib.v1_17.vanilla.network;
 
 import dev.neuralnexus.taterapi.network.CustomPayload;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -17,11 +17,12 @@ import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
  * CustomPayload}.
  */
-public class CustomPayloadPacket implements CustomPayload {
+public class CustomPayloadPacketWrapper implements CustomPayload {
     private final ResourceKey channel;
     private final byte[] data;
 
-    public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
+    @SuppressWarnings("VulnerableCodeUsages")
+    public CustomPayloadPacketWrapper(ServerboundCustomPayloadPacket packet) {
         this.channel = (ResourceKey) packet.getIdentifier();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.write(buf);

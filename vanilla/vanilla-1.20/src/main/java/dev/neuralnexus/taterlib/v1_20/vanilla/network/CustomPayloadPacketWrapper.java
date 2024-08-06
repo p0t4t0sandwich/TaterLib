@@ -17,11 +17,11 @@ import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
  * A custom wrapper for {@link ServerboundCustomPayloadPacket} that implements {@link
  * CustomPayload}.
  */
-public class CustomPayloadPacket implements CustomPayload {
+public class CustomPayloadPacketWrapper implements CustomPayload {
     private final ResourceKey channel;
     private final byte[] data;
 
-    public CustomPayloadPacket(ServerboundCustomPayloadPacket packet) {
+    public CustomPayloadPacketWrapper(ServerboundCustomPayloadPacket packet) {
         this.channel = (ResourceKey) packet.getIdentifier();
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         packet.write(buf);
