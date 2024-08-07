@@ -19,10 +19,6 @@ public class NetworkEvents {
     public static final EventManager<C2SCustomPacketEvent> C2S_CUSTOM_PACKET =
             new EventManager<>(C2SCustomPacketEvent.class);
 
-    /** Called when a plugin message is received from a player. */
-    public static final EventManager<C2SCustomPacketEvent.Player> PLAYER_PLUGIN_MESSAGE =
-            new EventManager<>(C2SCustomPacketEvent.Player.class);
-
     /** Called when a plugin message is received from a server. */
     public static final EventManager<C2SCustomPacketEvent.Server> SERVER_PLUGIN_MESSAGE =
             new EventManager<>(C2SCustomPacketEvent.Server.class);
@@ -40,7 +36,6 @@ public class NetworkEvents {
         return new HashSet<>(
                 Arrays.asList(
                         C2S_CUSTOM_PACKET,
-                        PLAYER_PLUGIN_MESSAGE,
                         SERVER_PLUGIN_MESSAGE,
                         REGISTER_PLUGIN_MESSAGES));
     }

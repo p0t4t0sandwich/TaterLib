@@ -29,7 +29,8 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ServerboundCustomPayloadPacket.class)
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class ServerboundCustomPayloadPacket_API {
-    @Shadow public abstract CustomPacketPayload shadow$payload();
+    @Shadow
+    public abstract CustomPacketPayload shadow$payload();
 
     public ResourceKey packet$channel() {
         return (ResourceKey) this.shadow$payload().type().id();
@@ -37,7 +38,8 @@ public abstract class ServerboundCustomPayloadPacket_API {
 
     public byte[] packet$data() {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, (ServerboundCustomPayloadPacket) (Object) this);
+        ServerboundCustomPayloadPacket.STREAM_CODEC.encode(
+                buf, (ServerboundCustomPayloadPacket) (Object) this);
         return buf.array();
     }
 }

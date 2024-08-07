@@ -12,8 +12,6 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
-import io.netty.buffer.Unpooled;
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;

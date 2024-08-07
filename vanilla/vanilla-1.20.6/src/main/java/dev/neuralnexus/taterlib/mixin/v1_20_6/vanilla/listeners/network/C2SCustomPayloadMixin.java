@@ -9,29 +9,35 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the plugin messages listener. */
+import java.util.Optional;
+
 @ReqMCVersion(min = MinecraftVersion.V1_20_5, max = MinecraftVersion.V1_20_6)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class C2SCustomPayloadMixin {
+    @Shadow @Final protected MinecraftServer server;
+
     @Shadow
-    public abstract GameProfile getOwner();
+    public abstract GameProfile shadow$getOwner();
 
     /**
-     * Called when a custom payload packet is received. (often used for plugin messages)
+     * Called when a custom payload packet is received from the client.
      *
      * @param packet The packet.
      * @param ci The callback info.
@@ -39,15 +45,11 @@ public abstract class C2SCustomPayloadMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     @SuppressWarnings("DataFlowIssue")
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+        Optional<SimplePlayer> player =
+                ((SimpleServer) this.server).getPlayer(this.shadow$getOwner().getId());
+        if (player.isEmpty()) return;
         CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
-        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket));
-        TaterAPIProvider.api()
-                .get()
-                .server()
-                .getPlayer(getOwner().getId())
-                .ifPresent(
-                        player ->
-                                NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                                        new C2SCustomPacketEventImpl.Player(customPacket, player)));
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(
+                new C2SCustomPacketEventImpl(customPacket, player.get()));
     }
 }

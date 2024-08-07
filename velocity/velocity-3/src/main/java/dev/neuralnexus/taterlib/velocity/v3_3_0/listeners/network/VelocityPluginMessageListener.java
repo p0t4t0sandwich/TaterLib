@@ -28,16 +28,9 @@ public class VelocityPluginMessageListener {
      */
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        CustomPayloadPacket packet =
-                new CustomPayloadPacketImpl(
-                        ResourceKey.of(event.getIdentifier().getId()), event.getData());
-        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(packet));
+        CustomPayloadPacket packet = new CustomPayloadPacketImpl(ResourceKey.of(event.getIdentifier().getId()), event.getData());
         if (event.getSource() instanceof Player) {
-            NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                    new C2SCustomPacketEventImpl.Player(
-                            packet,
-                            new VelocityPlayer(
-                                    (com.velocitypowered.api.proxy.Player) event.getSource())));
+            NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(packet, new VelocityPlayer((com.velocitypowered.api.proxy.Player) event.getSource())));
         } else if (event.getSource() instanceof ServerConnection) {
             NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(
                     new C2SCustomPacketEventImpl.Server(
