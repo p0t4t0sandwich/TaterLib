@@ -31,7 +31,7 @@ public class VelocityPluginMessageListener {
         CustomPayloadPacket packet =
                 new CustomPayloadPacketImpl(
                         ResourceKey.of(event.getIdentifier().getId()), event.getData());
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(packet));
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(packet));
         if (event.getSource() instanceof Player) {
             NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                     new C2SCustomPacketEventImpl.Player(

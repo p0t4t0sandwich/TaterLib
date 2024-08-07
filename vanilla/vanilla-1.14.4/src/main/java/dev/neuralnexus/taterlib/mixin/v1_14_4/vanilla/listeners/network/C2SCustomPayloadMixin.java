@@ -41,7 +41,7 @@ public class C2SCustomPayloadMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket));
         if (this.player == null) return;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new C2SCustomPacketEventImpl.Player(customPacket, (SimplePlayer) this.player));
