@@ -22,7 +22,7 @@ public class BukkitPluginMessageListener implements PluginMessageListener {
     public void onPluginMessageReceived(
             @NotNull String channel, @NotNull Player player, byte @NotNull [] bytes) {
         CustomPayloadPacket payload = new CustomPayloadPacketImpl(ResourceKey.of(channel), bytes);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(payload));
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(payload));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
                 new C2SCustomPacketEventImpl.Player(payload, new BukkitPlayer(player)));
     }

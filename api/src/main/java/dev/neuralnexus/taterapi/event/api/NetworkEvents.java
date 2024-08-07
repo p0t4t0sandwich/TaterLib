@@ -16,7 +16,7 @@ import java.util.Set;
 /** Plugin message events. */
 public class NetworkEvents {
     /** Called when a plugin message is received. */
-    public static final EventManager<C2SCustomPacketEvent> PLUGIN_MESSAGE =
+    public static final EventManager<C2SCustomPacketEvent> C2S_CUSTOM_PACKET =
             new EventManager<>(C2SCustomPacketEvent.class);
 
     /** Called when a plugin message is received from a player. */
@@ -39,7 +39,7 @@ public class NetworkEvents {
     public static Set<EventManager<? extends Event>> events() {
         return new HashSet<>(
                 Arrays.asList(
-                        PLUGIN_MESSAGE,
+                        C2S_CUSTOM_PACKET,
                         PLAYER_PLUGIN_MESSAGE,
                         SERVER_PLUGIN_MESSAGE,
                         REGISTER_PLUGIN_MESSAGES));

@@ -40,7 +40,7 @@ public abstract class C2SCustomPayloadMixin {
     @SuppressWarnings("DataFlowIssue")
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket));
         TaterAPIProvider.api()
                 .get()
                 .server()
