@@ -18,15 +18,12 @@ public interface C2SCustomPacketEvent extends Event {
      */
     CustomPayloadPacket packet();
 
-    /** Abstract class for player plugin message events. */
-    interface Player extends C2SCustomPacketEvent {
-        /**
-         * Gets the player of the plugin message.
-         *
-         * @return The player of the plugin message.
-         */
-        SimplePlayer player();
-    }
+    /**
+     * Gets the player of the plugin message.
+     *
+     * @return The player of the plugin message.
+     */
+    SimplePlayer player();
 
     /** Abstract class for server plugin message events. */
     interface Server extends C2SCustomPacketEvent {

@@ -30,11 +30,8 @@ public class BungeePluginMessageListener implements Listener {
     public void onPluginMessage(PluginMessageEvent event) {
         CustomPayloadPacket payload =
                 new CustomPayloadPacketImpl(ResourceKey.of(event.getTag()), event.getData());
-        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(payload));
         if (event.getReceiver() instanceof ProxiedPlayer) {
-            NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                    new C2SCustomPacketEventImpl.Player(
-                            payload, new BungeePlayer((ProxiedPlayer) event.getReceiver())));
+            NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(payload, new BungeePlayer((ProxiedPlayer) event.getReceiver())));
         } else if (event.getReceiver() instanceof Server) {
             NetworkEvents.SERVER_PLUGIN_MESSAGE.invoke(
                     new C2SCustomPacketEventImpl.Server(

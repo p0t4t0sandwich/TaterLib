@@ -29,9 +29,11 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(ServerboundCustomPayloadPacket.class)
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class ServerboundCustomPayloadPacket_API {
-    @Shadow public abstract ResourceLocation shadow$getIdentifier();
+    @Shadow
+    public abstract ResourceLocation shadow$getIdentifier();
 
-    @Shadow public abstract void shadow$write(FriendlyByteBuf $$0);
+    @Shadow
+    public abstract void shadow$write(FriendlyByteBuf $$0);
 
     public ResourceKey packet$channel() {
         return (ResourceKey) this.shadow$getIdentifier();

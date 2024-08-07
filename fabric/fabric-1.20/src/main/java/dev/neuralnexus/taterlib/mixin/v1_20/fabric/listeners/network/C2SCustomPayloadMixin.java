@@ -24,7 +24,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the plugin messages listener. */
 @ReqMappings(Mappings.INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_20, max = MinecraftVersion.V1_20_1)
 @Mixin(ServerGamePacketListenerImpl.class)
@@ -33,16 +32,16 @@ public abstract class C2SCustomPayloadMixin {
     public abstract ServerPlayer shadow$getPlayer();
 
     /**
-     * Called when a custom payload packet is received. (often used for plugin messages)
+     * Called when a custom payload packet is received from the client.
      *
      * @param packet The packet.
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
-        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket));
         if (this.shadow$getPlayer() == null) return;
-        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl.Player(customPacket, (SimplePlayer) this.shadow$getPlayer()));
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
+        SimplePlayer player = (SimplePlayer) this.shadow$getPlayer();
+        NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket, player));
     }
 }
