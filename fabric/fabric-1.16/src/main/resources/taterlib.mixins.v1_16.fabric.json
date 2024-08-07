@@ -25,11 +25,11 @@
   "server": [
     "v1_16.fabric.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
     "v1_16.fabric.listeners.entity.EntitySpawnMixin",
-    "v1_16.fabric.listeners.network.CustomPayloadMixin",
+    "v1_16.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_16.fabric.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_16.fabric.listeners.player.PlayerAdvancementProgressMixin",
     "v1_16.fabric.listeners.player.PlayerDeathMixin",
     "v1_16.fabric.listeners.player.PlayerMessageMixin",
-    "v1_16.fabric.listeners.player.PlayerRespawnMixin",
+    "v1_16.fabric.listeners.player.PlayerRespawnMixin"
   ]
 }

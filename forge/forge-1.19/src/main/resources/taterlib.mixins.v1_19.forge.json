@@ -18,6 +18,6 @@
   ],
   "server": [
     "v1_19.forge.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
-    "v1_19.forge.listeners.network.CustomPayloadMixin"
+    "v1_19.forge.listeners.network.C2SCustomPayloadMixin"
   ]
 }
