@@ -5,21 +5,20 @@
  */
 package dev.neuralnexus.taterapi.event.network.impl;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
+import dev.neuralnexus.taterapi.event.network.CustomPacketEvent;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 /** General implementation of {@link C2SCustomPacketEvent}. */
-public class C2SCustomPacketEventImpl extends CustomPacketEventImpl implements C2SCustomPacketEvent {
-    private final SimplePlayer player;
+public class CustomPacketEventImpl implements CustomPacketEvent {
+    private final CustomPayloadPacket packet;
 
-    public C2SCustomPacketEventImpl(CustomPayloadPacket packet, SimplePlayer player) {
-        super(packet);
-        this.player = player;
+    public CustomPacketEventImpl(CustomPayloadPacket packet) {
+        this.packet = packet;
     }
 
     @Override
-    public SimplePlayer player() {
-        return this.player;
+    public CustomPayloadPacket packet() {
+        return this.packet;
     }
 }

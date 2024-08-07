@@ -5,16 +5,15 @@
  */
 package dev.neuralnexus.taterapi.event.network;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
-import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 
 /** Abstract class for plugin message events. */
-public interface C2SCustomPacketEvent extends CustomPacketEvent {
+public interface S2CCustomPacketEvent extends CustomPacketEvent {
     /**
-     * Gets the player of the plugin message.
+     * Gets the server that sent the packet.
+     * This can be used within a proxy context to check what server the packet originated from.
      *
-     * @return The player of the plugin message.
+     * @return The server that sent the packet.
      */
-    SimplePlayer player();
+    SimpleServer server();
 }

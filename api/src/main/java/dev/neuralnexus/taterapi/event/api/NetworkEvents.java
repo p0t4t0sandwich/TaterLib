@@ -8,6 +8,7 @@ package dev.neuralnexus.taterapi.event.api;
 import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
+import dev.neuralnexus.taterapi.event.network.S2CCustomPacketEvent;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -20,8 +21,8 @@ public class NetworkEvents {
             new EventManager<>(C2SCustomPacketEvent.class);
 
     /** Called when a plugin message is received from a server. */
-    public static final EventManager<C2SCustomPacketEvent.Server> SERVER_PLUGIN_MESSAGE =
-            new EventManager<>(C2SCustomPacketEvent.Server.class);
+    public static final EventManager<S2CCustomPacketEvent> S2C_CUSTOM_PACKET =
+            new EventManager<>(S2CCustomPacketEvent.class);
 
     /** Called when plugin messages channels are registered. */
     public static final EventManager<RegisterPacketChannelsEvent> REGISTER_PLUGIN_MESSAGES =
@@ -36,7 +37,7 @@ public class NetworkEvents {
         return new HashSet<>(
                 Arrays.asList(
                         C2S_CUSTOM_PACKET,
-                        SERVER_PLUGIN_MESSAGE,
+                        S2C_CUSTOM_PACKET,
                         REGISTER_PLUGIN_MESSAGES));
     }
 }
