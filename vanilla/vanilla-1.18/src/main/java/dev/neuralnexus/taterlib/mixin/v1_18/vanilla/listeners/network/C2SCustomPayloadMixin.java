@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_17.fabric.listeners.network;
+package dev.neuralnexus.taterlib.mixin.v1_18.vanilla.listeners.network;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -25,10 +25,11 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the plugin messages listener. */
-@ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMappings(Mappings.MOJMAP)
+@ReqMCVersion(min = MinecraftVersion.V1_18, max = MinecraftVersion.V1_18_2)
 @Mixin(ServerGamePacketListenerImpl.class)
-public abstract class CustomPayloadMixin {
+@SuppressWarnings({"unused", "UnusedMixin"})
+public abstract class C2SCustomPayloadMixin {
     @Shadow
     public abstract ServerPlayer shadow$getPlayer();
 
@@ -39,10 +40,12 @@ public abstract class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+    public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
         if (this.shadow$getPlayer() == null) return;
-        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl.Player(customPacket, (SimplePlayer) this.shadow$getPlayer()));
+        NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
+                new C2SCustomPacketEventImpl.Player(
+                        customPacket, (SimplePlayer) this.shadow$getPlayer()));
     }
 }

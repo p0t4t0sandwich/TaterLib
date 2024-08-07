@@ -12,6 +12,6 @@
   ],
   "server": [
     "v1_20_6.fabric.api.minecraft.network.protocol.common.ServerboundCustomPayloadPacket_API",
-    "v1_20_6.fabric.listeners.network.CustomPayloadMixin"
+    "v1_20_6.fabric.listeners.network.C2SCustomPayloadMixin"
   ]
 }

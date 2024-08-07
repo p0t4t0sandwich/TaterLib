@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_20_2, max = MinecraftVersion.V1_20_4)
 @Mixin(ServerCommonPacketListenerImpl.class)
-public abstract class CustomPayloadMixin {
+public abstract class C2SCustomPayloadMixin {
     @Shadow
     public abstract GameProfile getOwner();
 
@@ -41,7 +41,7 @@ public abstract class CustomPayloadMixin {
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     @SuppressWarnings("DataFlowIssue")
-    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+    public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
         TaterAPIProvider.api()

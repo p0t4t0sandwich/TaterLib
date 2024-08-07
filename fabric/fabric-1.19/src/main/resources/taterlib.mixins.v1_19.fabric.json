@@ -22,7 +22,7 @@
   "server": [
     "v1_19.fabric.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
     "v1_19.fabric.listeners.entity.EntitySpawnMixin",
-    "v1_19.fabric.listeners.network.CustomPayloadMixin",
+    "v1_19.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_19.fabric.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_19.fabric.listeners.player.PlayerAdvancementProgressMixin",
     "v1_19.fabric.listeners.player.PlayerDeathMixin",

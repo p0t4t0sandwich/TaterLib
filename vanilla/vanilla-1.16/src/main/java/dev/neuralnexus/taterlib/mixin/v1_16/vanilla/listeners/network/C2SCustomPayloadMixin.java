@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_17.vanilla.listeners.network;
+package dev.neuralnexus.taterlib.mixin.v1_16.vanilla.listeners.network;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -26,12 +26,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the plugin messages listener. */
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
 @Mixin(ServerGamePacketListenerImpl.class)
 @SuppressWarnings({"unused", "UnusedMixin"})
-public abstract class CustomPayloadMixin {
-    @Shadow
-    public abstract ServerPlayer shadow$getPlayer();
+public class C2SCustomPayloadMixin {
+    @Shadow public ServerPlayer player;
 
     /**
      * Called when a custom payload packet is received. (often used for plugin messages)
@@ -40,12 +39,11 @@ public abstract class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+    public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
-        if (this.shadow$getPlayer() == null) return;
+        if (this.player == null) return;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new C2SCustomPacketEventImpl.Player(
-                        customPacket, (SimplePlayer) this.shadow$getPlayer()));
+                new C2SCustomPacketEventImpl.Player(customPacket, (SimplePlayer) this.player));
     }
 }

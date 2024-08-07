@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_20, max = MinecraftVersion.V1_20_1)
 @Mixin(ServerGamePacketListenerImpl.class)
-public abstract class CustomPayloadMixin {
+public abstract class C2SCustomPayloadMixin {
     @Shadow
     public abstract ServerPlayer shadow$getPlayer();
 
@@ -39,7 +39,7 @@ public abstract class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+    public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
         NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
         if (this.shadow$getPlayer() == null) return;
