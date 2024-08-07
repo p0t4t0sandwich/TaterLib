@@ -20,6 +20,7 @@
     "v1_19.fabric.listeners.entity.EntityDeathMixin"
   ],
   "server": [
+    "v1_19.fabric.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
     "v1_19.fabric.listeners.entity.EntitySpawnMixin",
     "v1_19.fabric.listeners.network.CustomPayloadMixin",
     "v1_19.fabric.listeners.player.PlayerAdvancementFinishedMixin",

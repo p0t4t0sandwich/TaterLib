@@ -17,12 +17,10 @@
     "v1_16_2.forge.api.minecraft.world.entity.Entity_API",
     "v1_16_2.forge.api.minecraft.world.entity.Entity_API_biome",
     "v1_16_2.forge.api.minecraft.world.entity.LivingEntity_API",
-    "v1_16_2.forge.api.minecraft.world.entity.player.Player_API",
-    "v1_16_2.forge.patch.entity.VanillaEntityPatch",
-    "v1_16_2.forge.patch.entity.player.VanillaPlayerPatch"
+    "v1_16_2.forge.api.minecraft.world.entity.player.Player_API"
   ],
   "server": [
-    "v1_16.vanilla.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
+    "v1_16_2.forge.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
     "v1_16_2.forge.listeners.network.CustomPayloadMixin"
   ]
 }

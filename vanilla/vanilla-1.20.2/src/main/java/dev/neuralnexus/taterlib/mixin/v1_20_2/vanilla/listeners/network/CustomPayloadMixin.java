@@ -14,7 +14,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
-import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.CustomPayloadPacketWrapper;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.network.ServerCommonPacketListenerImpl;
@@ -40,10 +40,10 @@ public abstract class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacketWrapper wrapper = new CustomPayloadPacketWrapper(packet);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(wrapper));
+    @SuppressWarnings("DataFlowIssue")
+    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
         TaterAPIProvider.api()
                 .get()
                 .server()
@@ -51,6 +51,6 @@ public abstract class CustomPayloadMixin {
                 .ifPresent(
                         player ->
                                 NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                                        new C2SCustomPacketEventImpl.Player(wrapper, player)));
+                                        new C2SCustomPacketEventImpl.Player(customPacket, player)));
     }
 }
