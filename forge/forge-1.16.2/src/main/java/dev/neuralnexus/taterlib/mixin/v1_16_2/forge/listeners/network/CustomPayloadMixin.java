@@ -13,7 +13,6 @@ import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterlib.v1_16.vanilla.network.CustomPayloadPacketWrapper;
 
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -39,11 +38,11 @@ public class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacket wrapper = new CustomPayloadPacketWrapper(packet);
-        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(wrapper));
-        if (player == null) return;
+    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
+        NetworkEvents.PLUGIN_MESSAGE.invoke(new C2SCustomPacketEventImpl(customPacket));
+        if (this.player == null) return;
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(
-                new C2SCustomPacketEventImpl.Player(wrapper, (SimplePlayer) player));
+                new C2SCustomPacketEventImpl.Player(customPacket, (SimplePlayer) this.player));
     }
 }

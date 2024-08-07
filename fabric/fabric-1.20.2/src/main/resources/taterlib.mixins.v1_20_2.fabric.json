@@ -12,6 +12,7 @@
     "v1_20_2.fabric.api.minecraft.server.level.ServerPlayer_API_send_plugin_message"
   ],
   "server": [
+    "v1_20_2.fabric.api.minecraft.network.protocol.common.ServerboundCustomPayloadPacket_API",
     "v1_20_2.fabric.listeners.network.CustomPayloadMixin",
     "v1_20_2.fabric.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_20_2.fabric.listeners.player.PlayerAdvancementProgressMixin"

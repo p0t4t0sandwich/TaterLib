@@ -40,7 +40,7 @@ public class CustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    public void onPluginMessage(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
+    public void onC2SPacketReceived(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         CustomPayloadPacket wrapper = new CustomPayloadPacket(packet);
         NetworkEvents.PLUGIN_MESSAGE.invoke(new VanillaPluginMessageEvent(wrapper));
         NetworkEvents.PLAYER_PLUGIN_MESSAGE.invoke(

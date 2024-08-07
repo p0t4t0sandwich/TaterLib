@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.network;
 
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
-/** Wrapper for custom payload packets (plugin messages) */
+/** Abstraction for custom payload packets */
 public interface CustomPayloadPacket {
     /**
      * Gets the channel.
