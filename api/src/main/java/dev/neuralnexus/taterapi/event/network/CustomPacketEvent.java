@@ -22,9 +22,12 @@ public interface CustomPacketEvent extends Event {
      *
      * @return The packet's flow direction
      */
-    Direction direction();
+    default Direction direction() {
+        return Direction.NONE;
+    }
 
     enum Direction {
+        NONE,
         C2S,
         S2C
     }
