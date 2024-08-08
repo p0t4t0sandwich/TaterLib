@@ -30,7 +30,7 @@ public class NetworkEvents {
             new EventManager<>(S2PCustomPacketEvent.class);
 
     /** Called when plugin messages channels are registered. */
-    public static final EventManager<RegisterPacketChannelsEvent> REGISTER_PLUGIN_MESSAGES =
+    public static final EventManager<RegisterPacketChannelsEvent> REGISTER_CHANNELS =
             new EventManager<>(RegisterPacketChannelsEvent.class);
 
     /**
@@ -44,6 +44,6 @@ public class NetworkEvents {
                         C2S_CUSTOM_PACKET,
                         S2C_CUSTOM_PACKET,
                         S2P_CUSTOM_PACKET,
-                        REGISTER_PLUGIN_MESSAGES));
+                        REGISTER_CHANNELS));
     }
 }

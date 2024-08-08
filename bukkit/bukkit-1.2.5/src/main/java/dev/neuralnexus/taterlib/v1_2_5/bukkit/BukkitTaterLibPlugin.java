@@ -64,7 +64,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                         new BukkitCommandRegisterEvent());
 
                                 // Register plugin messages
-                                NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                                NetworkEvents.REGISTER_CHANNELS.invoke(
                                         new BukkitRegisterPacketChannelsEvent());
                             },
                             200L);
