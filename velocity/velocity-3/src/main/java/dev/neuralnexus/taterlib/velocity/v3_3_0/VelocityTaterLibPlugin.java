@@ -60,7 +60,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                                     new VelocityBrigadierCommandRegisterEvent());
 
                             // Register plugin messages
-                            NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(
+                            NetworkEvents.REGISTER_CHANNELS.invoke(
                                     new VelocityRegisterPacketChannelsEvent());
 
                             // Fire server started event

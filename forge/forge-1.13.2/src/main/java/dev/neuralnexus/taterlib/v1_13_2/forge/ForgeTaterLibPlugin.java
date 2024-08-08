@@ -66,7 +66,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      * @param event The event.
      */
     private void commonSetup(final FMLCommonSetupEvent event) {
-        NetworkEvents.REGISTER_PLUGIN_MESSAGES.invoke(new ForgeRegisterPacketChannelsEvent());
+        NetworkEvents.REGISTER_CHANNELS.invoke(new ForgeRegisterPacketChannelsEvent());
         ModMessages.register();
         ModMessages.clearQueue();
     }
