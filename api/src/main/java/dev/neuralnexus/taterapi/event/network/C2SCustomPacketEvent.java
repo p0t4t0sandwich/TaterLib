@@ -17,4 +17,8 @@ public interface C2SCustomPacketEvent extends CustomPacketEvent {
      * @return The player of the plugin message.
      */
     SimplePlayer player();
+
+    default Direction direction() {
+        return Direction.C2S;
+    }
 }
