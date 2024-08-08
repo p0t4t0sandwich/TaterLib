@@ -8,9 +8,10 @@ package dev.neuralnexus.taterapi.event.network;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 /** Abstract class for plugin message events. */
-public interface S2CCustomPacketEvent extends CustomPacketEvent {
+public interface S2PCustomPacketEvent extends CustomPacketEvent {
     /**
      * Gets the server that sent the packet.
+     * This can be used within a proxy context to check what server the packet originated from.
      *
      * @return The server that sent the packet.
      */
