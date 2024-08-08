@@ -43,6 +43,7 @@ public class NetworkEvents {
                 Arrays.asList(
                         C2S_CUSTOM_PACKET,
                         S2C_CUSTOM_PACKET,
-                        S2P_CUSTOM_PACKET));
+                        S2P_CUSTOM_PACKET,
+                        REGISTER_CHANNELS));
     }
 }
