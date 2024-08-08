@@ -15,4 +15,8 @@ public interface S2CCustomPacketEvent extends CustomPacketEvent {
      * @return The server that sent the packet.
      */
     SimpleServer server();
+
+    default Direction direction() {
+        return Direction.S2C;
+    }
 }

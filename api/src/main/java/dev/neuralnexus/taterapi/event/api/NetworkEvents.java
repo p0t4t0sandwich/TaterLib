@@ -29,7 +29,7 @@ public class NetworkEvents {
     public static final EventManager<S2PCustomPacketEvent> S2P_CUSTOM_PACKET =
             new EventManager<>(S2PCustomPacketEvent.class);
 
-    /** Called when plugin messages channels are registered. */
+    /** Called when packet channels are registered. */
     public static final EventManager<RegisterPacketChannelsEvent> REGISTER_CHANNELS =
             new EventManager<>(RegisterPacketChannelsEvent.class);
 
@@ -43,7 +43,6 @@ public class NetworkEvents {
                 Arrays.asList(
                         C2S_CUSTOM_PACKET,
                         S2C_CUSTOM_PACKET,
-                        S2P_CUSTOM_PACKET,
-                        REGISTER_CHANNELS));
+                        S2P_CUSTOM_PACKET));
     }
 }

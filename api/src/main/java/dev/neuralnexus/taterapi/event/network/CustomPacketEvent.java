@@ -16,4 +16,16 @@ public interface CustomPacketEvent extends Event {
      * @return The plugin message's payload.
      */
     CustomPayloadPacket packet();
+
+    /**
+     * Gets the packet direction
+     *
+     * @return The packet's flow direction
+     */
+    Direction direction();
+
+    enum Direction {
+        C2S,
+        S2C
+    }
 }
