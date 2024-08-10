@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class ServerPlayer_API_send_plugin_message {
     @Shadow public ServerGamePacketListenerImpl connection;
 
-    public void connection$sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void connection$sendPacket(ResourceKey channel, byte[] data) {
         this.connection.send(
                 new ClientboundCustomPayloadPacket(new VanillaCustomPacketPayload(channel, data)));
     }

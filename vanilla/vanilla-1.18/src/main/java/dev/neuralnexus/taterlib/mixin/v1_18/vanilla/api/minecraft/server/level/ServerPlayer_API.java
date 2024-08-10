@@ -68,7 +68,7 @@ public abstract class ServerPlayer_API {
         this.connection.disconnect(Component.nullToEmpty(message));
     }
 
-    public void connection$sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void connection$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
