@@ -43,4 +43,13 @@ public interface Connection {
      * @param data The message to send
      */
     void sendPacket(ResourceKey channel, byte[] data);
+
+    /**
+     * Sends a packet
+     *
+     * @param packet the packet
+     */
+    default void sendPacket(CustomPayloadPacket packet) {
+        this.sendPacket(packet.channel(), packet.data());
+    }
 }
