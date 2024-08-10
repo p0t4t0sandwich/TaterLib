@@ -65,7 +65,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(CONNECT.type());
         out.writeUTF(server);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -80,7 +80,7 @@ public class BungeeCordAPI {
         out.writeUTF(CONNECT_OTHER.type());
         out.writeUTF(target);
         out.writeUTF(server);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -91,7 +91,7 @@ public class BungeeCordAPI {
     public void IP(Connection conn) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(IP.type());
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -104,7 +104,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(IP_OTHER.type());
         out.writeUTF(target);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -118,7 +118,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(PLAYER_COUNT.type());
         out.writeUTF(server);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -132,7 +132,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(PLAYER_LIST.type());
         out.writeUTF(server);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -145,7 +145,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_PLAYER_SERVER.type());
         out.writeUTF(target);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -156,7 +156,7 @@ public class BungeeCordAPI {
     public void GetServers(Connection conn) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_SERVERS.type());
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -170,7 +170,7 @@ public class BungeeCordAPI {
         out.writeUTF(MESSAGE.type());
         out.writeUTF(target);
         out.writeUTF(message);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -186,7 +186,7 @@ public class BungeeCordAPI {
         out.writeUTF(MESSAGE_RAW.type());
         out.writeUTF(target);
         out.writeUTF(message);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -197,7 +197,7 @@ public class BungeeCordAPI {
     public void GetServer(Connection conn) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(GET_SERVER.type());
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -228,7 +228,7 @@ public class BungeeCordAPI {
         out.writeShort(msgbytes.toByteArray().length);
         out.write(msgbytes.toByteArray());
 
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -255,7 +255,7 @@ public class BungeeCordAPI {
         out.writeShort(msgbytes.toByteArray().length);
         out.write(msgbytes.toByteArray());
 
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -266,7 +266,7 @@ public class BungeeCordAPI {
     public void UUID(Connection conn) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("UUID");
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -279,7 +279,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF("UUIDOther");
         out.writeUTF(target);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -292,7 +292,7 @@ public class BungeeCordAPI {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(SERVER_IP.type());
         out.writeUTF(server);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -307,7 +307,7 @@ public class BungeeCordAPI {
         out.writeUTF(KICK_PLAYER.type());
         out.writeUTF(target);
         out.writeUTF(reason);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 
     /**
@@ -323,6 +323,6 @@ public class BungeeCordAPI {
         out.writeUTF(KICK_PLAYER_RAW.type());
         out.writeUTF(target);
         out.writeUTF(reason);
-        conn.sendPluginMessage(bungeeChannel(), out.toByteArray());
+        conn.sendPacket(bungeeChannel(), out.toByteArray());
     }
 }

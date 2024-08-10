@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 /** Represents a connection to a player. */
@@ -36,10 +37,10 @@ public interface Connection {
     }
 
     /**
-     * Sends a plugin message using the specified channel
+     * Sends a packet using the specified channel
      *
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    void sendPluginMessage(ResourceKey channel, byte[] data);
+    void sendPacket(ResourceKey channel, byte[] data);
 }

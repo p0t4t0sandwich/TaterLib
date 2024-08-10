@@ -69,7 +69,7 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
         ((ServerPlayerEntity) player)

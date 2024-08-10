@@ -73,7 +73,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(), data);
     }
 
