@@ -16,8 +16,8 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
-
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

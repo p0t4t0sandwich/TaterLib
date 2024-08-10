@@ -15,7 +15,6 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.client.player.LocalPlayer;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
