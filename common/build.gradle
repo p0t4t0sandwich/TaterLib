@@ -23,6 +23,9 @@ dependencies {
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
 
+    // Mojang AuthLib
+    compileOnly('com.mojang:authlib:1.5.25')
+
     // Tooling
     compileOnly(project(':api'))
     compileOnly(project(':tooling:conditional-mixins'))
