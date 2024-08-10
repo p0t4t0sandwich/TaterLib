@@ -10,12 +10,17 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
+import io.netty.buffer.Unpooled;
+
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
+import net.minecraft.resources.ResourceLocation;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
@@ -34,9 +39,6 @@ import java.util.stream.Collectors;
 public abstract class Minecraft_API {
     @Shadow @Nullable public LocalPlayer player;
 
-    @Shadow
-    @Nullable public abstract ClientPacketListener shadow$getConnection();
-
     public String server$brand() {
         if (this.player == null) return "Local";
         String brand = this.player.getServerBrand();
@@ -44,10 +46,17 @@ public abstract class Minecraft_API {
     }
 
     public List<SimplePlayer> server$onlinePlayers() {
-        return this.shadow$getConnection().getOnlinePlayers().stream()
+        return this.player.connection.getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
                 .map(SimplePlayer.class::cast)
                 .collect(Collectors.toList());
+    }
+
+    void server$sendPacket(ResourceKey channel, byte[] data) {
+        ResourceLocation id = (ResourceLocation) channel;
+        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
+        byteBuf.writeBytes(data);
+        this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
     }
 
     void server$broadcastMessage(String message) {
