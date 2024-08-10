@@ -40,8 +40,12 @@ public abstract class CustomPayloadPacket_API {
 
     public byte[] packet$data() {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        ServerboundCustomPayloadPacket.STREAM_CODEC.encode(
-                buf, (ServerboundCustomPayloadPacket) (Object) this);
+        Object self = this;
+        if (self instanceof ClientboundCustomPayloadPacket client) {
+            ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC.encode(buf, client);
+        } else if (self instanceof ServerboundCustomPayloadPacket server) {
+            ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, server);
+        }
         return buf.array();
     }
 }

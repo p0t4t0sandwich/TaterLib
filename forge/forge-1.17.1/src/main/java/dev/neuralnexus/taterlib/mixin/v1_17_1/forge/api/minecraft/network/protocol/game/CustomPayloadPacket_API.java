@@ -28,17 +28,21 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API {
-    @Shadow
-    public abstract ResourceLocation shadow$getIdentifier();
-
-    @Shadow
-    public abstract FriendlyByteBuf shadow$getData();
-
     public ResourceKey packet$channel() {
-        return (ResourceKey) this.shadow$getIdentifier();
+        Object self = this;
+        if (self instanceof ClientboundCustomPayloadPacket client) {
+            return (ResourceKey) client.getIdentifier();
+        } else {
+            return (ResourceKey) ((ServerboundCustomPayloadPacket) self).getIdentifier();
+        }
     }
 
     public byte[] packet$data() {
-        return this.shadow$getData().array();
+        Object self = this;
+        if (self instanceof ClientboundCustomPayloadPacket client) {
+            return client.getData().array();
+        } else {
+            return ((ServerboundCustomPayloadPacket) self).getData().array();
+        }
     }
 }
