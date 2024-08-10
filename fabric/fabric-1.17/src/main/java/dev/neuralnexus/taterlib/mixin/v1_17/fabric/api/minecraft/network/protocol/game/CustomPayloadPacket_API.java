@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
+import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Implements;
@@ -24,9 +25,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_20_1)
-@Mixin(ClientboundCustomPayloadPacket.class)
+@Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
-public abstract class ClientCustomPayloadPacket_API {
+public abstract class CustomPayloadPacket_API {
     @Shadow
     public abstract ResourceLocation shadow$getIdentifier();
 

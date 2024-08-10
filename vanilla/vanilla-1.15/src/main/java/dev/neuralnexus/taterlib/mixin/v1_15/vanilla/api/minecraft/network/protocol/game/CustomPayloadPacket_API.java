@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_15, max = MinecraftVersion.V1_15_2)
-@Mixin(ServerboundCustomPayloadPacket.class)
+@Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 @SuppressWarnings({"unused", "UnusedMixin"})
 public class CustomPayloadPacket_API {

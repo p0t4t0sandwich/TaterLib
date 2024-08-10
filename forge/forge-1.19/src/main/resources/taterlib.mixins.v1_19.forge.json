@@ -9,6 +9,7 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_19.forge.api.minecraft.commands.CommandSourceStack_API",
+    "v1_19.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_19.forge.api.minecraft.resources.ResourceLocation_API",
     "v1_19.forge.api.minecraft.server.MinecraftServer_API",
     "v1_19.forge.api.minecraft.server.level.ServerPlayer_API",
@@ -17,12 +18,10 @@
     "v1_19.forge.api.minecraft.world.entity.player.Player_API"
   ],
   "server": [
-    "v1_19.forge.api.minecraft.network.protocol.game.ServerCustomPayloadPacket_API",
     "v1_19.forge.listeners.network.C2SCustomPayloadMixin"
   ],
   "client": [
     "v1_19.forge.api.minecraft.client.Minecraft_API",
-    "v1_19.forge.api.minecraft.network.protocol.game.ClientCustomPayloadPacket_API",
     "v1_19.forge.listeners.network.S2CCustomPayloadMixin"
   ]
 }
