@@ -12,13 +12,14 @@
     "v1_20_2.fabric.api.minecraft.server.level.ServerPlayer_API_send_plugin_message"
   ],
   "server": [
-    "v1_20_2.fabric.api.minecraft.network.protocol.common.ServerboundCustomPayloadPacket_API",
+    "v1_20_2.fabric.api.minecraft.network.protocol.common.ServerCustomPayloadPacket_API",
     "v1_20_2.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_20_2.fabric.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_20_2.fabric.listeners.player.PlayerAdvancementProgressMixin"
   ],
   "client": [
     "v1_20_2.fabric.api.minecraft.client.Minecraft_API",
+    "v1_20_2.fabric.api.minecraft.network.protocol.common.ClientCustomPayloadPacket_API",
     "v1_20_2.fabric.listeners.network.S2CCustomPayloadMixin"
   ]
 }

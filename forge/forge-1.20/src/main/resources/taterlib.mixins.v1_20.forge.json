@@ -18,11 +18,12 @@
     "v1_20.forge.api.minecraft.world.entity.player.Player_API"
   ],
   "server": [
-    "v1_20.forge.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
+    "v1_20.forge.api.minecraft.network.protocol.game.ServerCustomPayloadPacket_API",
     "v1_20.forge.listeners.network.C2SCustomPayloadMixin"
   ],
   "client": [
     "v1_20.forge.api.minecraft.client.Minecraft_API",
+    "v1_20.forge.api.minecraft.network.protocol.game.ClientCustomPayloadPacket_API",
     "v1_20.forge.listeners.network.S2CCustomPayloadMixin"
   ]
 }
