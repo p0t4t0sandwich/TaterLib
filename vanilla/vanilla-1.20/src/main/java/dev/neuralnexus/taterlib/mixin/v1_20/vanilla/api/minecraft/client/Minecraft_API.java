@@ -15,9 +15,9 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.client.multiplayer.ServerData;
-
 import net.minecraft.client.player.LocalPlayer;
+
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -26,8 +26,6 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import org.jetbrains.annotations.Nullable;
 
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_20, max = MinecraftVersion.V1_20_1)
