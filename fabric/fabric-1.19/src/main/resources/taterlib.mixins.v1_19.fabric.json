@@ -28,5 +28,8 @@
     "v1_19.fabric.listeners.player.PlayerDeathMixin",
     "v1_19.fabric.listeners.player.PlayerMessageMixin",
     "v1_19.fabric.listeners.player.PlayerRespawnMixin"
+  ],
+  "client": [
+    "v1_19.fabric.api.minecraft.client.Minecraft_API"
   ]
 }
