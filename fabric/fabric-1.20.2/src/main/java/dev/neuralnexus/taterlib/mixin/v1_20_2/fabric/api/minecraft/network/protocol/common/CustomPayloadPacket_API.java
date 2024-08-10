@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.INTERMEDIARY)
@@ -31,8 +30,7 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API {
-    @Unique
-    public CustomPacketPayload taterapi$payload() {
+    @Unique public CustomPacketPayload taterapi$payload() {
         Object self = this;
         if (self instanceof ClientboundCustomPayloadPacket client) {
             return client.payload();

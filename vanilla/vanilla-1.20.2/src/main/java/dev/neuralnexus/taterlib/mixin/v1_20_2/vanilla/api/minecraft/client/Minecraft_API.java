@@ -10,12 +10,15 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.VanillaCustomPacketPayload;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -45,6 +48,10 @@ public abstract class Minecraft_API {
                 .map(PlayerInfo::getProfile)
                 .map(SimplePlayer.class::cast)
                 .collect(Collectors.toList());
+    }
+
+    void server$sendPacket(ResourceKey channel, byte[] data) {
+        this.shadow$getConnection().send(new ServerboundCustomPayloadPacket(new VanillaCustomPacketPayload(channel, data)));
     }
 
     void server$broadcastMessage(String message) {

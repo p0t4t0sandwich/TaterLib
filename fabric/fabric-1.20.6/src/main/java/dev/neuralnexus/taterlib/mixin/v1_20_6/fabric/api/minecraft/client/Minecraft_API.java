@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.client;
+package dev.neuralnexus.taterlib.mixin.v1_20_6.fabric.api.minecraft.client;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -12,17 +12,13 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
-import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ServerboundChatPacket;
+import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -33,19 +29,18 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMappings(Mappings.INTERMEDIARY)
+@ReqMCVersion(min = MinecraftVersion.V1_20_2, max = MinecraftVersion.V1_20_4)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API {
-    @Shadow @Nullable public LocalPlayer player;
-
     @Shadow
     @Nullable public abstract ClientPacketListener shadow$getConnection();
 
     public String server$brand() {
-        if (this.player == null) return "Local";
-        return this.player.getServerBrand();
+        if (this.shadow$getConnection() == null) return "Local";
+        String brand = this.shadow$getConnection().serverBrand();
+        return brand == null ? "Local" : brand;
     }
 
     public List<SimplePlayer> server$onlinePlayers() {
@@ -55,15 +50,14 @@ public abstract class Minecraft_API {
                 .collect(Collectors.toList());
     }
 
-    @SuppressWarnings("VulnerableCodeUsages")
     void server$sendPacket(ResourceKey channel, byte[] data) {
-        ResourceLocation id = (ResourceLocation) channel;
-        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
-        this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
+        this.shadow$getConnection()
+                .send(
+                        new ServerboundCustomPayloadPacket(
+                                new VanillaCustomPacketPayload(channel, data)));
     }
 
     void server$broadcastMessage(String message) {
-        this.shadow$getConnection().send(new ServerboundChatPacket(message));
+        this.shadow$getConnection().sendChat(message);
     }
 }

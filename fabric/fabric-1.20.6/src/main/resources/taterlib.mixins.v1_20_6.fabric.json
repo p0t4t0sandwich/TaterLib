@@ -13,5 +13,8 @@
   ],
   "server": [
     "v1_20_6.fabric.listeners.network.C2SCustomPayloadMixin"
+  ],
+  "client": [
+    "v1_20_6.fabric.api.minecraft.client.Minecraft_API"
   ]
 }
