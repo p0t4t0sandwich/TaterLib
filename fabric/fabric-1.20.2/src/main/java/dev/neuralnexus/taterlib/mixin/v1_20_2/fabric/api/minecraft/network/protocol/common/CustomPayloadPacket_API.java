@@ -24,22 +24,30 @@ import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V1_20_2, max = MinecraftVersion.V1_20_4)
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API {
-    @Shadow
-    public abstract CustomPacketPayload shadow$payload();
+    @Unique
+    public CustomPacketPayload taterapi$payload() {
+        Object self = this;
+        if (self instanceof ClientboundCustomPayloadPacket client) {
+            return client.payload();
+        } else {
+            return ((ServerboundCustomPayloadPacket) self).payload();
+        }
+    }
 
     public ResourceKey packet$channel() {
-        return (ResourceKey) this.shadow$payload().id();
+        return (ResourceKey) taterapi$payload().id();
     }
 
     public byte[] packet$data() {
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        this.shadow$payload().write(buf);
+        this.taterapi$payload().write(buf);
         return buf.array();
     }
 }
