@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_19.forge.api.minecraft.network.protocol.game;
+package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.network.protocol.game;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 
@@ -23,21 +24,19 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V1_19, max = MinecraftVersion.V1_19_4)
-@Mixin(ServerboundCustomPayloadPacket.class)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_16_5)
+@Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
-public abstract class ServerCustomPayloadPacket_API {
-    @Shadow
-    public abstract ResourceLocation shadow$getIdentifier();
+public class CustomPayloadPacket_API {
+    @Shadow private ResourceLocation identifier;
 
-    @Shadow
-    public abstract FriendlyByteBuf shadow$getData();
+    @Shadow private FriendlyByteBuf data;
 
     public ResourceKey packet$channel() {
-        return (ResourceKey) this.shadow$getIdentifier();
+        return (ResourceKey) this.identifier;
     }
 
     public byte[] packet$data() {
-        return this.shadow$getData().array();
+        return this.data.array();
     }
 }
