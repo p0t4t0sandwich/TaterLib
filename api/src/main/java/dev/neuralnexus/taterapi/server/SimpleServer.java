@@ -8,7 +8,10 @@ package dev.neuralnexus.taterapi.server;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +40,50 @@ public interface SimpleServer {
      * @return The set of online players.
      */
     List<SimplePlayer> onlinePlayers();
+
+    /**
+     * Sends a packet using the specified channel
+     *
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    default void sendPacket(ResourceKey channel, byte[] data) {
+        this.onlinePlayers().stream()
+                .findFirst()
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(channel, data));
+    }
+
+    /**
+     * Sends a packet
+     *
+     * @param packet the packet
+     */
+    default void sendPacket(CustomPayloadPacket packet) {
+        this.sendPacket(packet.channel(), packet.data());
+    }
+
+    /**
+     * Sends a packet using a player and the specified channel
+     *
+     * @param playerName The player's name
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    default void sendPacket(String playerName, ResourceKey channel, byte[] data) {
+        this.getPlayer(playerName).map(Connection.class::cast).ifPresent(c -> c.sendPacket(channel, data));
+    }
+
+    /**
+     * Sends a packet using a player and the specified channel
+     *
+     * @param playerUUID The player's UUID
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    default void sendPacket(UUID playerUUID, ResourceKey channel, byte[] data) {
+        this.getPlayer(playerUUID).map(Connection.class::cast).ifPresent(c -> c.sendPacket(channel, data));
+    }
 
     /**
      * Get a player by their name.
