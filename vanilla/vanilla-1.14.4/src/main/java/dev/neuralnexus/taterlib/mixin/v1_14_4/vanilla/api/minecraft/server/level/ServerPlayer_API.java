@@ -65,7 +65,7 @@ public abstract class ServerPlayer_API {
     }
 
     @SuppressWarnings("VulnerableCodeUsages")
-    public void connection$sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void connection$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);

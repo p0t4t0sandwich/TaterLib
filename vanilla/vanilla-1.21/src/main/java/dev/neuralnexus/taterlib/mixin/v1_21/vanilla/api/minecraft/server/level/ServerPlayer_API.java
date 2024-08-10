@@ -62,7 +62,7 @@ public abstract class ServerPlayer_API {
         this.connection.disconnect(Component.nullToEmpty(message));
     }
 
-    public void connection$sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void connection$sendPacket(ResourceKey channel, byte[] data) {
         this.connection.send(
                 new ClientboundCustomPayloadPacket(new VanillaCustomPacketPayload(channel, data)));
     }
