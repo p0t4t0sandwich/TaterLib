@@ -80,7 +80,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     @SuppressWarnings("VulnerableCodeUsages")
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
         ((EntityPlayerMP) player)

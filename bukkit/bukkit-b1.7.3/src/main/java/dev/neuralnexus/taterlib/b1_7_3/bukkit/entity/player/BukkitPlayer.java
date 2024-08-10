@@ -68,7 +68,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         // TODO: Create some different way to send plugin messages
         throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(),

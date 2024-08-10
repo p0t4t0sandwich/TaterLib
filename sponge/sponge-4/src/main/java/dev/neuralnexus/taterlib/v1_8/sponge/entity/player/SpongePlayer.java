@@ -79,7 +79,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         Sponge.getChannelRegistrar()
                 .getOrCreateRaw(Loader.instance().plugin(), channel.asString())
                 .sendTo(player, (buffer) -> buffer.writeBytes(data));

@@ -92,7 +92,7 @@ public class BungeePlayer implements ProxyPlayer {
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         player.getServer().getInfo().sendData(channel.asString(), data);
     }
 

@@ -99,7 +99,7 @@ public class VelocityPlayer implements ProxyPlayer {
     }
 
     @Override
-    public void sendPluginMessage(ResourceKey channel, byte[] data) {
+    public void sendPacket(ResourceKey channel, byte[] data) {
         player.getCurrentServer()
                 .ifPresent(
                         serverConnection ->
