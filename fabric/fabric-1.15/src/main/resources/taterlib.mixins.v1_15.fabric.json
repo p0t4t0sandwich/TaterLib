@@ -21,7 +21,6 @@
     "v1_15.vanilla.fabric.accessors.world.entity.LivingEntityAccessor"
   ],
   "server": [
-    "v1_15.fabric.api.minecraft.network.protocol.game.ServerboundCustomPayloadPacket_API",
     "v1_15.fabric.listeners.entity.EntitySpawnMixin",
     "v1_15.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_15.fabric.listeners.player.PlayerAdvancementFinishedMixin",
