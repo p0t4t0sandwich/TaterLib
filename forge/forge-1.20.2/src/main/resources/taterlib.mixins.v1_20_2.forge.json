@@ -14,5 +14,9 @@
   "server": [
     "v1_20_2.forge.api.minecraft.network.protocol.common.ServerboundCustomPayloadPacket_API",
     "v1_20_2.forge.listeners.network.C2SCustomPayloadMixin"
+  ],
+  "client": [
+    "v1_20_2.forge.api.minecraft.client.Minecraft_API",
+    "v1_20_2.forge.listeners.network.S2CCustomPayloadMixin"
   ]
 }

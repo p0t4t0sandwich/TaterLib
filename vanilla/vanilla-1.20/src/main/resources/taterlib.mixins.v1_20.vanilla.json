@@ -35,5 +35,9 @@
     "v1_20.vanilla.listeners.server.ServerStartingMixin",
     "v1_20.vanilla.listeners.server.ServerStoppedMixin",
     "v1_20.vanilla.listeners.server.ServerStoppingMixin"
+  ],
+  "client": [
+    "v1_20.vanilla.api.minecraft.client.Minecraft_API",
+    "v1_20.vanilla.listeners.network.S2CCustomPayloadMixin"
   ]
 }
