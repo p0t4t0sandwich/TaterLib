@@ -173,6 +173,7 @@ public enum MinecraftVersion {
     V1_20_5("1.20.5"),
     V1_20_6("1.20.6"),
     V1_21("1.21"),
+    V1_21_1("1.21.1"),
     UNKNOWN("Unknown");
 
     private static MinecraftVersion minecraftVersion = UNKNOWN;
