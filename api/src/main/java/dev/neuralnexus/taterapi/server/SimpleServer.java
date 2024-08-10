@@ -71,7 +71,9 @@ public interface SimpleServer {
      * @param data The message to send
      */
     default void sendPacket(String playerName, ResourceKey channel, byte[] data) {
-        this.getPlayer(playerName).map(Connection.class::cast).ifPresent(c -> c.sendPacket(channel, data));
+        this.getPlayer(playerName)
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(channel, data));
     }
 
     /**
@@ -82,7 +84,9 @@ public interface SimpleServer {
      * @param data The message to send
      */
     default void sendPacket(UUID playerUUID, ResourceKey channel, byte[] data) {
-        this.getPlayer(playerUUID).map(Connection.class::cast).ifPresent(c -> c.sendPacket(channel, data));
+        this.getPlayer(playerUUID)
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(channel, data));
     }
 
     /**

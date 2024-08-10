@@ -10,7 +10,8 @@ import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 /** General implementation of {@link C2SCustomPacketEvent}. */
-public class C2SCustomPacketEventImpl extends CustomPacketEventImpl implements C2SCustomPacketEvent {
+public class C2SCustomPacketEventImpl extends CustomPacketEventImpl
+        implements C2SCustomPacketEvent {
     private final SimplePlayer player;
 
     public C2SCustomPacketEventImpl(CustomPayloadPacket packet, SimplePlayer player) {

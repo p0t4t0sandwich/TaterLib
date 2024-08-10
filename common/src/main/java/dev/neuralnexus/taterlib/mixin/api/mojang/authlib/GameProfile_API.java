@@ -24,14 +24,16 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V1_14)
 @Mixin(value = GameProfile.class, remap = false)
 @Implements({
-        @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-        @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE),
-        @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
+    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
+    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE),
+    @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
 })
 public abstract class GameProfile_API {
-    @Shadow public abstract String shadow$getName();
+    @Shadow
+    public abstract String shadow$getName();
 
-    @Shadow public abstract UUID shadow$getId();
+    @Shadow
+    public abstract UUID shadow$getId();
 
     public String cmdSender$name() {
         return this.shadow$getName();
@@ -56,4 +58,3 @@ public abstract class GameProfile_API {
         return false;
     }
 }
-

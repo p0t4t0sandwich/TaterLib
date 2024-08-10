@@ -10,7 +10,8 @@ import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 /** General implementation of {@link S2PCustomPacketEvent}. */
-public class S2PCustomPacketEventImpl extends CustomPacketEventImpl implements S2PCustomPacketEvent {
+public class S2PCustomPacketEventImpl extends CustomPacketEventImpl
+        implements S2PCustomPacketEvent {
     private final SimpleServer server;
 
     public S2PCustomPacketEventImpl(CustomPayloadPacket packet, SimpleServer server) {
