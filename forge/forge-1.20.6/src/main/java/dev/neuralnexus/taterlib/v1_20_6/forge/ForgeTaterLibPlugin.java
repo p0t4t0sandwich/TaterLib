@@ -7,18 +7,17 @@ package dev.neuralnexus.taterlib.v1_20_6.forge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.server.SimpleServer;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_20_6.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.server.ForgeServerListener;
-import dev.neuralnexus.taterloader.TaterReflectUtil;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 @SuppressWarnings("unused")
@@ -26,25 +25,16 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     @SuppressWarnings("UnstableApiUsage")
     public void onInit() {
-        TaterReflectUtil.getRelocatedClass("VanillaBootstrap")
-                .ifPresent(
-                        className -> {
-                            try {
-                                Class.forName(className).getMethod("init").invoke(null);
-                            } catch (Exception e) {
-                                TaterLib.logger()
-                                        .error("Failed to boostrap Vanilla builders/factories", e);
-                            }
-                        });
+        VanillaBootstrap.init();
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
+        TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platform.FORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
-                                        () ->
-                                                (SimpleServer)
-                                                        ServerLifecycleHooks.getCurrentServer()));
+                                        VanillaBootstrap.server(
+                                                ServerLifecycleHooks::getCurrentServer)));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             MinecraftForge.EVENT_BUS.register(this);
