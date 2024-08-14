@@ -7,11 +7,11 @@ package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_20_2.neoforge.hooks.permissions.NeoForgePermissionsHook;
 
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
@@ -20,13 +20,13 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         VanillaBootstrap.init();
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
         start();
+        TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platform.NEOFORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
-                                        () ->
-                                                (SimpleServer)
-                                                        ServerLifecycleHooks.getCurrentServer()));
+                                        VanillaBootstrap.server(
+                                                ServerLifecycleHooks::getCurrentServer)));
     }
 
     @Override

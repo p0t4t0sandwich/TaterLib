@@ -35,6 +35,7 @@ public class TaterAPIProvider {
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
     private static Platform primaryPlatform;
+    private static Side side = Side.SERVER;
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
@@ -306,6 +307,23 @@ public class TaterAPIProvider {
     @ApiStatus.Internal
     public static void unregister(Platform platform) {
         apis.remove(platform);
+    }
+
+    /**
+     * Get the "side" the mod is running on
+     */
+    public static Side side() {
+        return TaterAPIProvider.side;
+    }
+
+    /**
+     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
+     *
+     * @param side The side
+     */
+    @ApiStatus.Internal
+    public static void setSide(Side side) {
+        TaterAPIProvider.side = side;
     }
 
     /**

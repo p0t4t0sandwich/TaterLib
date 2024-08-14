@@ -12,7 +12,6 @@ import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
 import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
 import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
 import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -21,9 +20,11 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegi
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.MinecraftServer;
 
 @SuppressWarnings("unused")
@@ -35,8 +36,11 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         VanillaBootstrap.init();
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
+        TaterAPIProvider.setSide(
+                VanillaBootstrap.determineSide(
+                        FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT));
         TaterAPIProvider.api(Platform.FABRIC)
-                .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
+                .ifPresent(api -> api.setServer(VanillaBootstrap.server(() -> server)));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FABRIC)) {
             // Initialize plugin data

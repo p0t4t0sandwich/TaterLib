@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_18.forge;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.block.ForgeBlockListener;
@@ -22,6 +21,7 @@ import dev.neuralnexus.taterlib.v1_18_2.forge.hooks.permissions.ForgePermissions
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 @SuppressWarnings("unused")
@@ -36,13 +36,13 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             TaterAPIProvider.addHook(new ForgePermissionsHook_1_18_2());
         }
         start();
+        TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platform.FORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
-                                        () ->
-                                                (SimpleServer)
-                                                        ServerLifecycleHooks.getCurrentServer()));
+                                        VanillaBootstrap.server(
+                                                ServerLifecycleHooks::getCurrentServer)));
 
         if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners
