@@ -8,7 +8,6 @@ dependencies {
     compileOnly('org.ow2.asm:asm-tree:6.2')
     compileOnly(project(':tooling:entrypoint-spoof'))
     implementation(project(':api'))
-    implementation(project(':tooling:loader'))
 }
 
 jar {
@@ -17,11 +16,12 @@ jar {
 
 shadowJar {
     dependencies {
-        include(project(':tooling:loader'))
+        include(project(':api'))
         exclude('plugin.yml')
         exclude('bungee.yml')
         exclude('fabric.mod.json')
         exclude('META-INF/mods.toml')
+        exclude('META-INF/neoforge.mods.toml')
         exclude('mcmod.info')
         exclude('pack.mcmeta')
         exclude('META-INF/sponge_plugins.json')
@@ -51,22 +51,23 @@ shadowJar {
 
 publishing {
     publications {
-        entryPointSpoof(MavenPublication) {
+        shadow(MavenPublication) {
             groupId = group_id
+            artifactId = "conditional-mixins"
             version = "${conditional_mixins_version}"
 
             artifact(shadowJar) {
-                artifactId = "conditional-mixins"
+                classifier = ''
             }
 
             pom {
                 name = 'conditional-mixins'
                 description = 'A mixin plugin and annotation set that allow you to apply mixins based on the platform, loaded plugins/mods, and minecraft version'
-                url = 'https://github.com/p0t4t0sandwich/TaterLib/tree/main/tooling/entrypoint-spoof/README.md'
+                url = 'https://github.com/p0t4t0sandwich/TaterLib/tree/main/tooling/conditional-mixins/README.md'
                 licenses {
                     license {
-                        name = 'GPL-3'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
+                        name = 'MIT'
+                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
                     }
                 }
                 developers {
