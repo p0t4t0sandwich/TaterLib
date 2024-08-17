@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
@@ -71,6 +72,9 @@ public class TaterLib {
         TaterLibConfigLoader.load();
 
         if (!RELOADED) {
+            ServerEvents.STOPPED.register(
+                    event -> TaterAPIProvider.scheduler().shutdownBackgroundScheduler());
+
             TaterLibConfig config = TaterLibConfigLoader.config();
             Loader loader = Loader.instance();
             if (config.checkModule("BungeeCord")) {

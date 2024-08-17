@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 
+import net.minecraft.Util;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.function.Supplier;
@@ -26,11 +27,10 @@ public class VanillaBootstrap {
                 ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(
                 ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
+        TaterAPIProvider.scheduler().replaceBackgroundScheduler(Util::backgroundExecutor, false);
     }
 
-    /**
-     * Get the instance of the server
-     */
+    /** Get the instance of the server */
     public static Supplier<SimpleServer> server(Supplier<MinecraftServer> serverSupplier) {
         if (TaterAPIProvider.side().is(Side.CLIENT)) {
             return VanillaClientServerWrapper.get();
@@ -38,9 +38,7 @@ public class VanillaBootstrap {
         return () -> (SimpleServer) serverSupplier.get();
     }
 
-    /**
-     * Get the "side" the server is running on
-     */
+    /** Get the "side" the server is running on */
     public static Side determineSide(boolean isClient) {
         Side side = Side.SERVER;
         if (isClient) {

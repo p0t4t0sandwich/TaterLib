@@ -19,6 +19,8 @@ import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.metadata.impl.*;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
+import dev.neuralnexus.taterapi.scheduler.Scheduler;
+import dev.neuralnexus.taterapi.scheduler.SchedulerImpl;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
 import dev.neuralnexus.taterapi.world.Location;
@@ -36,6 +38,7 @@ public class TaterAPIProvider {
     private static final List<Hook> hooks = new ArrayList<>();
     private static Platform primaryPlatform;
     private static Side side = Side.SERVER;
+    private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
@@ -309,9 +312,7 @@ public class TaterAPIProvider {
         apis.remove(platform);
     }
 
-    /**
-     * Get the "side" the mod is running on
-     */
+    /** Get the "side" the mod is running on */
     public static Side side() {
         return TaterAPIProvider.side;
     }
@@ -324,6 +325,11 @@ public class TaterAPIProvider {
     @ApiStatus.Internal
     public static void setSide(Side side) {
         TaterAPIProvider.side = side;
+    }
+
+    /** Get the scheduler */
+    public static Scheduler scheduler() {
+        return scheduler;
     }
 
     /**
