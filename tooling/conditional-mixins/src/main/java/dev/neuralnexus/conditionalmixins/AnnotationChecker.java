@@ -11,10 +11,10 @@ import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 import static org.spongepowered.asm.util.Annotations.getValue;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqDependency;
-import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.Mappings;
+import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.conditionalmixins.annotations.ReqPlatform;
+import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.metadata.PlatformData;

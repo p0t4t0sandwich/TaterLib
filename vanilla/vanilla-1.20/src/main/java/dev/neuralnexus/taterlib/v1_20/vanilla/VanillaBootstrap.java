@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_20.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
 
+import net.minecraft.Util;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.function.Supplier;
@@ -26,6 +27,7 @@ public class VanillaBootstrap {
                 ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(
                 ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
+        TaterAPIProvider.scheduler().replaceBackgroundScheduler(Util::backgroundExecutor, false);
     }
 
     /** Get the instance of the server */
