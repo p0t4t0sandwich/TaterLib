@@ -13,7 +13,10 @@ import dev.neuralnexus.taterlib.v1_20.bungee.entity.player.BungeePlayer;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link Server}. */
@@ -38,6 +41,16 @@ public class BungeeServer implements Server {
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, UUID> whitelist() {
+        return Collections.emptyMap();
+    }
+
+    @Override
+    public Map<String, UUID> playercache() {
+        return Collections.emptyMap();
     }
 
     @Override

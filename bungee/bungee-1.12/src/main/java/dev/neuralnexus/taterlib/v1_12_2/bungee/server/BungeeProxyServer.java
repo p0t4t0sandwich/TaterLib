@@ -10,7 +10,10 @@ import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.entity.player.BungeePlayer;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link ProxyServer}. */
@@ -36,8 +39,6 @@ public class BungeeProxyServer implements ProxyServer {
      *
      * @return The server.
      */
-    // TODO: Add dependency
-    //    @ApiStatus.Internal
     public static net.md_5.bungee.api.ProxyServer server() {
         return server;
     }
@@ -50,6 +51,16 @@ public class BungeeProxyServer implements ProxyServer {
     @Override
     public List<SimplePlayer> onlinePlayers() {
         return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, UUID> whitelist() {
+        return Collections.emptyMap();
+    }
+
+    @Override
+    public Map<String, UUID> playercache() {
+        return Collections.emptyMap();
     }
 
     @Override
