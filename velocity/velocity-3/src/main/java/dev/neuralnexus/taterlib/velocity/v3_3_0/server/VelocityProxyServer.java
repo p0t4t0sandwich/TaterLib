@@ -13,7 +13,10 @@ import dev.neuralnexus.taterloader.Loader;
 
 import org.jetbrains.annotations.ApiStatus;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link ProxyServer}. */
@@ -53,6 +56,16 @@ public class VelocityProxyServer implements ProxyServer {
         return server().getAllPlayers().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, UUID> whitelist() {
+        return Collections.emptyMap();
+    }
+
+    @Override
+    public Map<String, UUID> playercache() {
+        return Collections.emptyMap();
     }
 
     @Override
