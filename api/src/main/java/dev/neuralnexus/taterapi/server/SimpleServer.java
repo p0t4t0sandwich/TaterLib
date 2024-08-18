@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -40,6 +41,20 @@ public interface SimpleServer {
      * @return The set of online players.
      */
     List<SimplePlayer> onlinePlayers();
+
+    /**
+     * Get the server's whitelist
+     *
+     * @return The whitelist
+     */
+    Map<String, UUID> whitelist();
+
+    /**
+     * Get the server's player cache
+     *
+     * @return The player cache
+     */
+    Map<String, UUID> playercache();
 
     /**
      * Sends a packet using the specified channel

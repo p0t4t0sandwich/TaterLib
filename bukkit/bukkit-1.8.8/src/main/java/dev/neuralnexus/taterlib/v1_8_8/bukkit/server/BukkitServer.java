@@ -12,6 +12,7 @@ import dev.neuralnexus.taterlib.v1_8_8.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.world.BukkitServerWorld;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
@@ -67,6 +68,24 @@ public class BukkitServer implements Server {
                 | ClassNotFoundException e) {
             return Collections.emptyList();
         }
+    }
+
+    @Override
+    public Map<String, UUID> whitelist() {
+        Map<String, UUID> whitelist = new HashMap<>();
+        for (OfflinePlayer player : server.getWhitelistedPlayers()) {
+            whitelist.put(player.getName(), player.getPlayer().getUniqueId());
+        }
+        return whitelist;
+    }
+
+    @Override
+    public Map<String, UUID> playercache() {
+        Map<String, UUID> cache = new HashMap<>();
+        for (OfflinePlayer player : server.getOfflinePlayers()) {
+            cache.put(player.getName(), player.getPlayer().getUniqueId());
+        }
+        return cache;
     }
 
     @Override
