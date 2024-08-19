@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib.mixin.v1_17.vanilla.api.minecraft.server;
 
 import com.mojang.authlib.GameProfile;
+
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
@@ -21,8 +22,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.players.GameProfileCache;
 import net.minecraft.server.players.PlayerList;
-
 import net.minecraft.server.players.UserWhiteListEntry;
+
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -75,7 +76,8 @@ public abstract class MinecraftServer_API implements GameProfileCacheBridge, Sto
 
     public Map<String, UUID> server$playercache() {
         Map<String, UUID> cache = new HashMap<>();
-        for (GameProfile profile : this.bridge$getProfilesbyName(this.shadow$getProfileCache()).values()) {
+        for (GameProfile profile :
+                this.bridge$getProfilesbyName(this.shadow$getProfileCache()).values()) {
             cache.put(profile.getName(), profile.getId());
         }
         return cache;
