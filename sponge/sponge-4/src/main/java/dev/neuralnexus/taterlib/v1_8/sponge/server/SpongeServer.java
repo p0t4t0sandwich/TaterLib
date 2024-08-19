@@ -11,7 +11,10 @@ import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_8.sponge.entity.player.SpongePlayer;
 import dev.neuralnexus.taterlib.v1_8.sponge.world.SpongeServerWorld;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Sponge implementation of {@link Server}. */
@@ -42,6 +45,18 @@ public class SpongeServer implements Server {
         return server.getOnlinePlayers().stream()
                 .map(SpongePlayer::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Map<String, UUID> whitelist() {
+        // TODO: Implement via mixin
+        return Collections.emptyMap();
+    }
+
+    @Override
+    public Map<String, UUID> playercache() {
+        // TODO: Implement via mixin
+        return Collections.emptyMap();
     }
 
     @Override
