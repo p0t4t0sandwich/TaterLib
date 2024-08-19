@@ -10,7 +10,6 @@
   "mixins": [
     "v1_20.fabric.api.minecraft.commands.CommandSourceStack_API",
     "v1_20.fabric.api.minecraft.resources.ResourceLocation_API",
-    "v1_20.fabric.api.minecraft.server.MinecraftServer_API",
     "v1_20.fabric.api.minecraft.server.level.ServerPlayer_API",
     "v1_20.fabric.api.minecraft.server.level.ServerPlayer_API_ping_plugin_message",
     "v1_20.fabric.api.minecraft.world.entity.Entity_API",
