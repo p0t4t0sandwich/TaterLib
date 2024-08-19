@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20.vanilla.api.minecraft.server;
 
+import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
@@ -12,12 +13,16 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterlib.mixin.v1_20.vanilla.bridge.server.players.GameProfileCacheBridge;
+import dev.neuralnexus.taterlib.mixin.v1_20.vanilla.bridge.server.players.StoredUserEntryBridge;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.players.GameProfileCache;
 import net.minecraft.server.players.PlayerList;
 
+import net.minecraft.server.players.UserWhiteListEntry;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -25,19 +30,25 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.MOJMAP)
 @ReqMCVersion(min = MinecraftVersion.V1_20, max = MinecraftVersion.V1_20_6)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
-public abstract class MinecraftServer_API {
+public abstract class MinecraftServer_API implements GameProfileCacheBridge, StoredUserEntryBridge {
     @Shadow
     public abstract String shadow$getServerModName();
 
     @Shadow
     public abstract PlayerList shadow$getPlayerList();
+
+    @Shadow
+    public abstract GameProfileCache shadow$getProfileCache();
 
     @Shadow
     public abstract Iterable<ServerLevel> shadow$getAllLevels();
@@ -50,6 +61,23 @@ public abstract class MinecraftServer_API {
         return this.shadow$getPlayerList().getPlayers().stream()
                 .map(SimplePlayer.class::cast)
                 .collect(Collectors.toList());
+    }
+
+    public Map<String, UUID> server$whitelist() {
+        Map<String, UUID> whitelist = new HashMap<>();
+        for (UserWhiteListEntry user : this.shadow$getPlayerList().getWhiteList().getEntries()) {
+            GameProfile profile = this.bridge$getUser(user);
+            whitelist.put(profile.getName(), profile.getId());
+        }
+        return whitelist;
+    }
+
+    public Map<String, UUID> server$playercache() {
+        Map<String, UUID> cache = new HashMap<>();
+        for (GameProfile profile : this.bridge$getProfilesbyName(this.shadow$getProfileCache()).values()) {
+            cache.put(profile.getName(), profile.getId());
+        }
+        return cache;
     }
 
     public List<ServerWorld> server$worlds() {
