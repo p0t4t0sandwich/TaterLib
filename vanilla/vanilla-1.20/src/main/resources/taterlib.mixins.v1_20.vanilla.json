@@ -10,9 +10,9 @@
   "mixins": [
     "v1_14_4.vanilla.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.vanilla.accessors.server.players.StoredUserEntryAccessor",
+    "v1_14_4.vanilla.api.minecraft.server.MinecraftServer_API",
     "v1_20.vanilla.api.minecraft.commands.CommandSourceStack_API",
     "v1_20.vanilla.api.minecraft.resources.ResourceLocation_API",
-    "v1_20.vanilla.api.minecraft.server.MinecraftServer_API",
     "v1_20.vanilla.api.minecraft.server.level.ServerPlayer_API",
     "v1_20.vanilla.api.minecraft.server.level.ServerPlayer_API_ping_plugin_message",
     "v1_20.vanilla.api.minecraft.world.entity.Entity_API",
