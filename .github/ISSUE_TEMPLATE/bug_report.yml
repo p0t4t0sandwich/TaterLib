@@ -1,5 +1,7 @@
 name: Bug report
-description: "Create a report to help TaterLib improve \n **Please Note, Mixin errors containing** `org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Unsupported class file major version` **are not fatal can be ignored.**"
+description: |
+  Create a report to help TaterLib improve
+  **Please Note, Mixin errors containing** `org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: Unsupported class file major version` **are not fatal can be ignored.**
 labels: 'bug'
 body:
   - type: textarea
