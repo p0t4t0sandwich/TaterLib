@@ -12,7 +12,6 @@
     "v1_16_2.forge.api.minecraft.commands.CommandSourceStack_API",
     "v1_16_2.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_16_2.forge.api.minecraft.resources.ResourceLocation_API",
-    "v1_16_2.forge.api.minecraft.server.MinecraftServer_API",
     "v1_16_2.forge.api.minecraft.server.level.ServerPlayer_API",
     "v1_16_2.forge.api.minecraft.server.level.ServerPlayer_API_setspawn",
     "v1_16_2.forge.api.minecraft.world.entity.Entity_API",
