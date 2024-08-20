@@ -19,6 +19,7 @@ import net.minecraft.server.management.PlayerProfileCache;
 import net.minecraft.server.management.UserListWhitelistEntry;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -80,10 +81,11 @@ public class ForgeServer implements Server {
                     .error("Failed to get usernameToProfileEntryMap from PlayerProfileCache", e);
         }
         for (Object i : info.values()) {
-            // Reflect to get GameProfileCache.GameProfileInfo#getProfile() (func_152668_a)
+            // Reflect to get GameProfileCache$GameProfileInfo#getProfile() (func_152668_a)
             try {
-                GameProfile profile =
-                        (GameProfile) i.getClass().getMethod("func_152668_a").invoke(i);
+                Method method = i.getClass().getMethod("func_152668_a");
+                method.setAccessible(true);
+                GameProfile profile = (GameProfile) method.invoke(i);
                 cache.put(profile.getName(), profile.getId());
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 TaterLib.logger().error("Failed to get GameProfile from GameProfileCache", e);
