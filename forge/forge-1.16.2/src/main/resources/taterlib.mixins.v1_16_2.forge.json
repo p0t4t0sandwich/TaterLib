@@ -9,8 +9,6 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_16.vanilla.forge.accessors.world.entity.LivingEntityAccessor",
-    "v1_16_2.forge.accessors.server.players.GameProfileCacheAccessor",
-    "v1_16_2.forge.accessors.server.players.StoredUserEntryAccessor",
     "v1_16_2.forge.api.minecraft.commands.CommandSourceStack_API",
     "v1_16_2.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_16_2.forge.api.minecraft.resources.ResourceLocation_API",
