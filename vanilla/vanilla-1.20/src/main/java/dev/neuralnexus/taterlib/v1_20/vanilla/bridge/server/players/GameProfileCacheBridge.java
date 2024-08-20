@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.mixin.v1_20.vanilla.accessors.server.players.Gam
 import net.minecraft.server.players.GameProfileCache;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +22,11 @@ public interface GameProfileCacheBridge {
         Map<String, GameProfile> result = new HashMap<>();
         Map<String, ?> info = ((GameProfileCacheAccessor) cache).accessor$getProfilesbyName();
         for (Object i : info.values()) {
-            // Reflect to get GameProfileCache.GameProfileInfo#getProfile() method
+            // Reflect to get GameProfileCache$GameProfileInfo#getProfile() method
             try {
-                GameProfile profile = (GameProfile) i.getClass().getMethod("getProfile").invoke(i);
+                Method method = i.getClass().getMethod("getProfile");
+                method.setAccessible(true);
+                GameProfile profile = (GameProfile) method.invoke(i);
                 result.put(profile.getName(), profile);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 TaterLib.logger().error("Failed to get GameProfile from GameProfileCache", e);

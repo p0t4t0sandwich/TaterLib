@@ -14,9 +14,9 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterlib.v1_16.vanilla.world.VanillaServerWorld;
 import dev.neuralnexus.taterlib.v1_16_2.forge.bridge.server.players.GameProfileCacheBridge;
 import dev.neuralnexus.taterlib.v1_16_2.forge.bridge.server.players.StoredUserEntryBridge;
-import dev.neuralnexus.taterlib.v1_16.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
