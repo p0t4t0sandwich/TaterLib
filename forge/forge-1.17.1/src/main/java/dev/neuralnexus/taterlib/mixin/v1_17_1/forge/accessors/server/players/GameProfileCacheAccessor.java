@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 import java.util.Map;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_20_4)
 @Mixin(GameProfileCache.class)
 public interface GameProfileCacheAccessor {
     @Accessor("profilesByName")

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_14_4)
+@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_21_1)
 @Mixin(StoredUserEntry.class)
 public interface StoredUserEntryAccessor<T> {
     @Invoker("getUser")

@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_19.forge.bridge.server.players;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.mixin.v1_19.forge.accessors.server.players.GameProfileCacheAccessor;
 
 import net.minecraft.server.players.GameProfileCache;
 

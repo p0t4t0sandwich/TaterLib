@@ -8,8 +8,6 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_21.vanilla.accessors.server.players.GameProfileCacheAccessor",
-    "v1_21.vanilla.accessors.server.players.StoredUserEntryAccessor",
     "v1_21.vanilla.api.minecraft.commands.CommandSourceStack_API",
     "v1_21.vanilla.api.minecraft.resources.ResourceLocation_API",
     "v1_21.vanilla.api.minecraft.server.MinecraftServer_API",
