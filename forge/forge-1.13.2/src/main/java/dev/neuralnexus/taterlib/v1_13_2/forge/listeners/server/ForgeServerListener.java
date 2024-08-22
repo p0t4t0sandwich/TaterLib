@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.v1_13_2.forge.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
@@ -26,7 +26,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
+        ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
     }
 
     /**
@@ -36,7 +36,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStarted(FMLServerStartedEvent event) {
-        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
+        ServerEvents.STARTED.invoke(new ServerStartedEvent() {});
     }
 
     /**
@@ -46,7 +46,7 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopping(FMLServerStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
     }
 
     /**
@@ -56,6 +56,6 @@ public class ForgeServerListener {
      */
     @SubscribeEvent
     public void onServerStopped(FMLServerStoppedEvent event) {
-        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
+        ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
     }
 }

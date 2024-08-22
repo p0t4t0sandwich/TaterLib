@@ -10,8 +10,8 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 
 /** Listens for server events. */
 public class VelocityServerListener {
@@ -22,7 +22,7 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStarting(ProxyInitializeEvent event) {
-        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
+        ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
     }
 
     /**
@@ -32,6 +32,6 @@ public class VelocityServerListener {
      */
     @Subscribe
     public void onServerStopping(ProxyShutdownEvent event) {
-        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
     }
 }

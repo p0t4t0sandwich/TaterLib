@@ -10,7 +10,7 @@ import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -34,6 +34,6 @@ public class ServerStartedMixin {
                             ordinal = 0),
             method = "runServer")
     private void onServerStarted(CallbackInfo info) {
-        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
+        ServerEvents.STARTED.invoke(new ServerStartedEvent() {});
     }
 }

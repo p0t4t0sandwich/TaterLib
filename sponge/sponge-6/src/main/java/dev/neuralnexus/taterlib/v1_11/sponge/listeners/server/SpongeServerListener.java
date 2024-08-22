@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.v1_11.sponge.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
@@ -26,7 +26,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarting(GameStartingServerEvent event) {
-        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
+        ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
     }
 
     /**
@@ -36,7 +36,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStarted(GameStartedServerEvent event) {
-        ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
+        ServerEvents.STARTED.invoke(new ServerStartedEvent() {});
     }
 
     /**
@@ -46,7 +46,7 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStopping(GameStoppingEvent event) {
-        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
     }
 
     /**
@@ -56,6 +56,6 @@ public class SpongeServerListener {
      */
     @Listener
     public void onServerStopped(GameStoppedServerEvent event) {
-        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
+        ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
     }
 }

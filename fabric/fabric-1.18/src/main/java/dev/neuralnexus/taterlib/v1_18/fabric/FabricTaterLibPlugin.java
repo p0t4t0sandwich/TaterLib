@@ -10,10 +10,10 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_18.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.vanilla.VanillaBootstrap;
@@ -74,13 +74,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                     new VanillaPlayerLogoutEvent(handler.player)));
 
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> ServerEvents.STARTING.invoke(new ServerStartingEventImpl()));
+                    s -> ServerEvents.STARTING.invoke(new ServerStartingEvent() {}));
             ServerLifecycleEvents.SERVER_STARTED.register(
-                    s -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()));
+                    s -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}));
             ServerLifecycleEvents.SERVER_STOPPING.register(
-                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl()));
+                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {}));
             ServerLifecycleEvents.SERVER_STOPPED.register(
-                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl()));
+                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {}));
         }
     }
 }

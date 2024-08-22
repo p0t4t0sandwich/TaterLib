@@ -9,10 +9,10 @@ import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.hooks.permissions.BungeePermissionsHook;
@@ -47,17 +47,17 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
                         5000L);
         pluginManager.registerListener(plugin, new BungeePlayerListener());
         pluginManager.registerListener(plugin, new BungeePluginMessageListener());
-        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
+        ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
         TaterAPIProvider.scheduler()
                 .runLaterAsync(
-                        () -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()), 5000L);
+                        () -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}), 5000L);
     }
 
     @Override
     public void onDisable() {
         // Run server stopping events
-        ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl());
-        ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl());
+        ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
+        ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
         stop();
     }
 }

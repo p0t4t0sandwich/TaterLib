@@ -14,7 +14,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.command.VanillaCommandRegisterEvent;
 
@@ -46,7 +46,7 @@ public class ServerStartingMixin {
     @SuppressWarnings("DataFlowIssue")
     private void onServerStarting(CallbackInfo info) {
         // Fire the server starting event
-        ServerEvents.STARTING.invoke(new ServerStartingEventImpl());
+        ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
 
         // Register Brigadier commands
         CommandDispatcher<CommandSourceStack> dispatcher =
