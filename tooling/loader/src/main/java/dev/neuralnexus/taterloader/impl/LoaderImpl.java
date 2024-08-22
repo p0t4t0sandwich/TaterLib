@@ -8,6 +8,8 @@ package dev.neuralnexus.taterloader.impl;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ReflectionUtil;
 import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterloader.event.api.LoaderEvents;
+import dev.neuralnexus.taterloader.event.loader.LoaderInitializeEvent;
 import dev.neuralnexus.taterloader.plugin.ModuleLoader;
 import dev.neuralnexus.taterloader.plugin.Plugin;
 
@@ -44,6 +46,8 @@ public class LoaderImpl implements Loader {
         this.plugin = plugin;
         this.server = server;
         this.other = other;
+
+        LoaderEvents.INIT.invoke(new LoaderInitializeEvent() {});
     }
 
     public static Loader getInstance() {
