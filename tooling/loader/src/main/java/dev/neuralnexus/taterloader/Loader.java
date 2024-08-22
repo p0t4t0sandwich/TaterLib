@@ -7,9 +7,9 @@ package dev.neuralnexus.taterloader;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterloader.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterloader.event.api.PluginEvents;
 import dev.neuralnexus.taterloader.event.plugin.PluginDisableEvent;
 import dev.neuralnexus.taterloader.event.plugin.PluginEnableEvent;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
