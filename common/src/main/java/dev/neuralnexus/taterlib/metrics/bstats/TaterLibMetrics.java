@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.metrics.bstats;
 
+import dev.neuralnexus.taterapi.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -16,6 +17,7 @@ import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bstats.config.MetricsConfig;
 import org.bstats.json.JsonObjectBuilder;
+import org.spongepowered.asm.mixin.MixinEnvironment;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,16 +28,18 @@ import java.util.Collections;
 public class TaterLibMetrics {
     private static final Logger logger = TaterLib.logger();
     private static final int SERVICE_ID = 21198;
+    private static MetricsBase metrics;
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static void initialize() {
         MetricsConfig config;
         try {
+            boolean defaultEnabled = TaterAPIProvider.side().is(Side.SERVER);
             if (TaterAPIProvider.platform().isFabricBased()
                     || TaterAPIProvider.platform().isForgeBased()) {
-                config = new MetricsConfig(new File("config/bstats/config.txt"), true);
+                config = new MetricsConfig(new File("config/bstats/config.txt"), defaultEnabled);
             } else {
-                config = new MetricsConfig(new File("plugins/bStats/config.txt"), true);
+                config = new MetricsConfig(new File("plugins/bStats/config.txt"), defaultEnabled);
             }
         } catch (IOException e) {
             logger.error("Failed to create bStats config!", e);
@@ -53,21 +57,20 @@ public class TaterLibMetrics {
                     "the '/plugins/bStats/' (or '/config/bstats/' on modded servers) folder and setting enabled to false.");
         }
 
-        MetricsBase metrics =
-                new MetricsBase(
-                        "other",
-                        config.getServerUUID(),
-                        SERVICE_ID,
-                        config.isEnabled(),
-                        TaterLibMetrics::appendPlatformData,
-                        (appendPlatformData) -> {},
-                        null,
-                        () -> true,
-                        logger::warn,
-                        logger::info,
-                        config.isLogErrorsEnabled(),
-                        config.isLogSentDataEnabled(),
-                        config.isLogResponseStatusTextEnabled());
+        metrics = new MetricsBase(
+                "other",
+                config.getServerUUID(),
+                SERVICE_ID,
+                config.isEnabled(),
+                TaterLibMetrics::appendPlatformData,
+                (appendPlatformData) -> {},
+                null,
+                () -> true,
+                logger::warn,
+                logger::info,
+                config.isLogErrorsEnabled(),
+                config.isLogSentDataEnabled(),
+                config.isLogResponseStatusTextEnabled());
 
         // TODO: Abstract this into SimpleServer
         String onlineMode = "true";
@@ -115,6 +118,10 @@ public class TaterLibMetrics {
                             return Collections.singletonMap(
                                     "Java " + version, Collections.singletonMap(javaVersion, 1));
                         }));
+    }
+
+    public static void shutdown() {
+        metrics.shutdown();
     }
 
     private static void appendPlatformData(JsonObjectBuilder builder) {

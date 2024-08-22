@@ -72,8 +72,10 @@ public class TaterLib {
         TaterLibConfigLoader.load();
 
         if (!RELOADED) {
-            ServerEvents.STOPPED.register(
-                    event -> TaterAPIProvider.scheduler().shutdownBackgroundScheduler());
+            ServerEvents.STOPPED.register(event -> {
+                TaterLibMetrics.shutdown();
+                TaterAPIProvider.scheduler().shutdownBackgroundScheduler();
+            });
 
             TaterLibConfig config = TaterLibConfigLoader.config();
             Loader loader = Loader.instance();
@@ -90,8 +92,8 @@ public class TaterLib {
     /** Stop */
     public static void stop() {
         TaterLibConfigLoader.unload();
-        logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
         TaterAPIProvider.unregister();
+        logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
     }
 
     /** Reload */

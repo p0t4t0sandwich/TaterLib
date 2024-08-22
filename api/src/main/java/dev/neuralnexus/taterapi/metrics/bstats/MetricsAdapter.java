@@ -22,7 +22,7 @@ import java.util.Map;
 
 /** Metrics adapter for BStats to allow for easy multi-platform support. */
 public class MetricsAdapter {
-    public static Object setupMetrics(
+    public static BStatsMetrics setupMetrics(
             Object plugin,
             Object pluginServer,
             Object pluginLogger,
@@ -31,25 +31,25 @@ public class MetricsAdapter {
         Platform platform = Platform.get();
         if (platform.isBukkitBased()) {
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
-                return BukkitBetaMetricsAdapter.setupMetrics(
+                return (BStatsMetrics) BukkitBetaMetricsAdapter.setupMetrics(
                         plugin, pluginIds.get(Platform.BUKKIT), Collections.emptyList());
             }
-            return BukkitMetricsAdapter.setupMetrics(
+            return (BStatsMetrics) BukkitMetricsAdapter.setupMetrics(
                     plugin, pluginIds.get(Platform.BUKKIT), charts);
         } else if (platform.isBungeeCordBased()) {
-            return BungeeCordMetricsAdapter.setupMetrics(
+            return (BStatsMetrics) BungeeCordMetricsAdapter.setupMetrics(
                     plugin, pluginIds.get(Platform.BUNGEECORD), charts);
         } else if (platform.isSpongeBased()) {
-            return SpongeMetricsAdapter.setupMetrics(
+            return (BStatsMetrics) SpongeMetricsAdapter.setupMetrics(
                     plugin, pluginLogger, pluginIds.get(Platform.SPONGE), charts);
         } else if (platform.isVelocityBased()) {
-            return VelocityMetricsAdapter.setupMetrics(
+            return (BStatsMetrics) VelocityMetricsAdapter.setupMetrics(
                     plugin, pluginServer, pluginLogger, pluginIds.get(Platform.VELOCITY), charts);
         }
         return null;
     }
 
-    public static Object setupMetrics(
+    public static BStatsMetrics setupMetrics(
             Object plugin,
             Object pluginServer,
             Object pluginLogger,
