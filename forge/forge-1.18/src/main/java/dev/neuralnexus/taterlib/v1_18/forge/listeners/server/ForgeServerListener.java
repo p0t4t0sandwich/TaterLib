@@ -11,10 +11,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 
-import net.minecraftforge.event.server.ServerStartedEvent;
-import net.minecraftforge.event.server.ServerStartingEvent;
-import net.minecraftforge.event.server.ServerStoppedEvent;
-import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 /** Listens for server events. */
@@ -25,7 +21,7 @@ public class ForgeServerListener {
      * @param event The server starting event
      */
     @SubscribeEvent
-    public void onServerStarting(ServerStartingEvent event) {
+    public void onServerStarting(net.minecraftforge.event.server.ServerStartingEvent event) {
         ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
     }
 
@@ -35,7 +31,7 @@ public class ForgeServerListener {
      * @param event The server started event
      */
     @SubscribeEvent
-    public void onServerStarted(ServerStartedEvent event) {
+    public void onServerStarted(net.minecraftforge.event.server.ServerStartedEvent event) {
         ServerEvents.STARTED.invoke(new ServerStartedEvent() {});
     }
 
@@ -45,7 +41,7 @@ public class ForgeServerListener {
      * @param event The server stopping event
      */
     @SubscribeEvent
-    public void onServerStopping(ServerStoppingEvent event) {
+    public void onServerStopping(net.minecraftforge.event.server.ServerStoppingEvent event) {
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
     }
 
@@ -55,7 +51,7 @@ public class ForgeServerListener {
      * @param event The server stopped event
      */
     @SubscribeEvent
-    public void onServerStopped(ServerStoppedEvent event) {
+    public void onServerStopped(net.minecraftforge.event.server.ServerStoppedEvent event) {
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
     }
 }
