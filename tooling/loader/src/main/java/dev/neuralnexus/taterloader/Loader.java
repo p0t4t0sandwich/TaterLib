@@ -7,10 +7,11 @@ package dev.neuralnexus.taterloader;
 
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.event.api.PluginEvents;
-import dev.neuralnexus.taterapi.event.plugin.CommonPluginEnableEvent;
+import dev.neuralnexus.taterloader.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.taterloader.event.plugin.PluginDisableEvent;
+import dev.neuralnexus.taterloader.event.plugin.PluginEnableEvent;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.plugin.ModuleLoader;
 import dev.neuralnexus.taterloader.plugin.Plugin;
@@ -157,7 +158,6 @@ public interface Loader {
     /** Run Enable on all plugins. */
     @ApiStatus.Internal
     default void onEnable() {
-        PluginEvents.ENABLED.invoke(new CommonPluginEnableEvent());
         plugins()
                 .forEach(
                         plugin -> {
@@ -176,11 +176,15 @@ public interface Loader {
                                 logger.error("Plugin " + plugin.id() + " failed to enable", e);
                             }
                         });
+        // Runs last so TaterLib is loaded before any dependant mod tries to hook-in
+        PluginEvents.ENABLED.invoke(new PluginEnableEvent() {});
     }
 
     /** Run Disable on all plugins. */
     @ApiStatus.Internal
     default void onDisable() {
+        // Runs first so dependant mods unload before TaterLib
+        PluginEvents.DISABLED.invoke(new PluginDisableEvent() {});
         plugins()
                 .forEach(
                         plugin -> {

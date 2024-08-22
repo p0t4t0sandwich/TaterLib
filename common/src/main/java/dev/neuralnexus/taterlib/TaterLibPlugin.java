@@ -6,8 +6,8 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.event.api.PluginEvents;
-import dev.neuralnexus.taterapi.event.plugin.CommonPluginDisableEvent;
+import dev.neuralnexus.taterloader.event.api.PluginEvents;
+import dev.neuralnexus.taterloader.event.plugin.PluginDisableEvent;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.plugin.Plugin;
 
@@ -42,6 +42,5 @@ public interface TaterLibPlugin extends Plugin {
     default void stop() {
         TaterLib.stop();
         TaterLib.logger().info(LoaderImpl.PROJECT_NAME + " has been disabled!");
-        PluginEvents.DISABLED.invoke(new CommonPluginDisableEvent());
     }
 }
