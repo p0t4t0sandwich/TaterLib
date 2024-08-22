@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.listeners.server;
 
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +22,7 @@ public class BukkitServerListener implements Listener {
     @EventHandler
     public void onServerStarted(ServerLoadEvent event) {
         if (event.getType() == ServerLoadEvent.LoadType.STARTUP) {
-            ServerEvents.STARTED.invoke(new ServerStartedEventImpl());
+            ServerEvents.STARTED.invoke(new ServerStartedEvent() {});
         }
     }
 }

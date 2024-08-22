@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.v1_11_2.fabric;
 import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.*;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStartingEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppedEventImpl;
-import dev.neuralnexus.taterapi.event.server.impl.ServerStoppingEventImpl;
+import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
@@ -67,13 +67,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             // Register Fabric API server events
             ServerLifecycleEvents.SERVER_STARTING.register(
-                    s -> ServerEvents.STARTING.invoke(new ServerStartingEventImpl()));
+                    s -> ServerEvents.STARTING.invoke(new ServerStartingEvent() {}));
             ServerLifecycleEvents.SERVER_STARTED.register(
-                    s -> ServerEvents.STARTED.invoke(new ServerStartedEventImpl()));
+                    s -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}));
             ServerLifecycleEvents.SERVER_STOPPING.register(
-                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEventImpl()));
+                    s -> ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {}));
             ServerLifecycleEvents.SERVER_STOPPED.register(
-                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEventImpl()));
+                    s -> ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {}));
 
             // Register TaterLib Block events
             FabricBlockEvents.BLOCK_BREAK.register(
