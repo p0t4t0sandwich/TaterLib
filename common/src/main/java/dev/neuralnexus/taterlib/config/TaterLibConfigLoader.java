@@ -5,12 +5,11 @@
  */
 package dev.neuralnexus.taterlib.config;
 
+import dev.neuralnexus.taterapi.config.ToggleableSetting;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ConfigUtil;
-import dev.neuralnexus.taterlib.config.sections.HookConfig;
-import dev.neuralnexus.taterlib.config.sections.MixinConfig;
-import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
+import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
@@ -41,10 +40,10 @@ public class TaterLibConfigLoader {
     private static final String defaultConfigPath = "source." + LoaderImpl.PROJECT_ID + ".conf";
     private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
     private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
-    private static final TypeToken<List<ModuleConfig>> moduleType =
-            new TypeToken<List<ModuleConfig>>() {};
-    private static final TypeToken<List<HookConfig>> hookType =
-            new TypeToken<List<HookConfig>>() {};
+    private static final TypeToken<List<ToggleableSetting>> moduleType =
+            new TypeToken<List<ToggleableSetting>>() {};
+    private static final TypeToken<List<ToggleableSetting>> hookType =
+            new TypeToken<List<ToggleableSetting>>() {};
     private static final TypeToken<MixinConfig> mixinType = new TypeToken<MixinConfig>() {};
     private static TaterLibConfig config;
 
@@ -62,8 +61,8 @@ public class TaterLibConfigLoader {
         ConfigurationNode versionNode = root.node("version");
         int version = versionNode.getInt(1);
         ServerConfig server = ConfigUtil.get(root, serverType, "server", logger);
-        List<ModuleConfig> modules = ConfigUtil.get(root, moduleType, "modules", logger);
-        List<HookConfig> hooks = ConfigUtil.get(root, hookType, "hooks", logger);
+        List<ToggleableSetting> modules = ConfigUtil.get(root, moduleType, "modules", logger);
+        List<ToggleableSetting> hooks = ConfigUtil.get(root, hookType, "hooks", logger);
         MixinConfig mixin = ConfigUtil.get(root, mixinType, "mixin", logger);
 
         switch (version) {

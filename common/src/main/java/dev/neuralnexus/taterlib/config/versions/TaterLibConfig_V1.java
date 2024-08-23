@@ -5,10 +5,9 @@
  */
 package dev.neuralnexus.taterlib.config.versions;
 
+import dev.neuralnexus.taterapi.config.ToggleableSetting;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
-import dev.neuralnexus.taterlib.config.sections.HookConfig;
-import dev.neuralnexus.taterlib.config.sections.MixinConfig;
-import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
+import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
 import java.util.List;
@@ -16,16 +15,16 @@ import java.util.List;
 /** A class for TaterLib configuration. */
 public class TaterLibConfig_V1 implements TaterLibConfig {
     public final int version;
-    public final List<ModuleConfig> modules;
-    public final List<HookConfig> hooks;
+    public final List<ToggleableSetting> modules;
+    public final List<ToggleableSetting> hooks;
     public final MixinConfig mixin;
     private final ServerConfig server;
 
     public TaterLibConfig_V1(
             int version,
             ServerConfig server,
-            List<ModuleConfig> modules,
-            List<HookConfig> hooks,
+            List<ToggleableSetting> modules,
+            List<ToggleableSetting> hooks,
             MixinConfig mixin) {
         this.version = version;
         this.server = server;
@@ -45,12 +44,12 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
     }
 
     @Override
-    public List<ModuleConfig> modules() {
+    public List<ToggleableSetting> modules() {
         return modules;
     }
 
     @Override
-    public List<HookConfig> hooks() {
+    public List<ToggleableSetting> hooks() {
         return hooks;
     }
 

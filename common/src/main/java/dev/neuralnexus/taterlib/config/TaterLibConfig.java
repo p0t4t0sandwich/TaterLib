@@ -5,9 +5,8 @@
  */
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.taterlib.config.sections.HookConfig;
-import dev.neuralnexus.taterlib.config.sections.MixinConfig;
-import dev.neuralnexus.taterlib.config.sections.ModuleConfig;
+import dev.neuralnexus.taterapi.config.ToggleableSetting;
+import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
 import java.util.List;
@@ -33,14 +32,14 @@ public interface TaterLibConfig {
      *
      * @return The modules in the configuration.
      */
-    List<ModuleConfig> modules();
+    List<ToggleableSetting> modules();
 
     /**
      * Get the hooks in the configuration.
      *
      * @return The hooks in the configuration.
      */
-    List<HookConfig> hooks();
+    List<ToggleableSetting> hooks();
 
     /**
      * Get the mixins in the configuration.
