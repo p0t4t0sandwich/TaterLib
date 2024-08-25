@@ -96,10 +96,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_20;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".bukkit";
@@ -116,10 +112,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_20;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".bungee";
@@ -156,10 +148,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_21;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".fabric";
@@ -200,10 +188,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_20_6;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20_6;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".forge";
@@ -215,10 +199,6 @@ public class TaterReflectUtil {
         if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
             version = MinecraftVersion.V1_20_2;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20_2;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".neoforge";
@@ -243,10 +223,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_20;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".sponge";
@@ -294,10 +270,6 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_1)) {
             version = MinecraftVersion.V1_21;
         } else {
-            System.err.println(
-                    "Unsupported Minecraft version: "
-                            + mcv
-                            + ". We'll try to load the latest version.");
             version = MinecraftVersion.V1_21;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".vanilla";

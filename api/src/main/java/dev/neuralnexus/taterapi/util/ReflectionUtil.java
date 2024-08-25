@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.taterapi.util;
 
+import dev.neuralnexus.taterapi.logger.Logger;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 /** Utility class for reflection operations */
@@ -42,5 +45,29 @@ public class ReflectionUtil {
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             return false;
         }
+    }
+
+    /**
+     * Get an instance of a class
+     *
+     * @param clazz The full class name and path
+     * @param args The constructor's parameters
+     * @return A new instance of the object
+     * @param <T> The object's type
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T newInstance(String clazz, Object... args) {
+        try {
+            Class<?> objectClass = Class.forName(clazz);
+            return (T) objectClass.getConstructor().newInstance(args);
+        } catch (ClassNotFoundException
+                | InvocationTargetException
+                | InstantiationException
+                | IllegalAccessException
+                | NoSuchMethodException e) {
+            Logger.create("ReflectionUtil")
+                    .warn("Could not instantiate new instance of " + clazz, e);
+        }
+        return null;
     }
 }
