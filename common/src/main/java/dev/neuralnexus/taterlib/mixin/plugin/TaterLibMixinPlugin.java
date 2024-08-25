@@ -6,8 +6,8 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.conditionalmixins.ConditionalMixins;
-import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterapi.config.MixinConfig;
+import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;

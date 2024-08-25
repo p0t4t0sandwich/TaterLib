@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterlib.config;
 
+import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterapi.config.ToggleableSetting;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ConfigUtil;
-import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;

@@ -17,7 +17,6 @@ import org.bstats.charts.SimplePie;
 import org.bstats.charts.SingleLineChart;
 import org.bstats.config.MetricsConfig;
 import org.bstats.json.JsonObjectBuilder;
-import org.spongepowered.asm.mixin.MixinEnvironment;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,20 +56,21 @@ public class TaterLibMetrics {
                     "the '/plugins/bStats/' (or '/config/bstats/' on modded servers) folder and setting enabled to false.");
         }
 
-        metrics = new MetricsBase(
-                "other",
-                config.getServerUUID(),
-                SERVICE_ID,
-                config.isEnabled(),
-                TaterLibMetrics::appendPlatformData,
-                (appendPlatformData) -> {},
-                null,
-                () -> true,
-                logger::warn,
-                logger::info,
-                config.isLogErrorsEnabled(),
-                config.isLogSentDataEnabled(),
-                config.isLogResponseStatusTextEnabled());
+        metrics =
+                new MetricsBase(
+                        "other",
+                        config.getServerUUID(),
+                        SERVICE_ID,
+                        config.isEnabled(),
+                        TaterLibMetrics::appendPlatformData,
+                        (appendPlatformData) -> {},
+                        null,
+                        () -> true,
+                        logger::warn,
+                        logger::info,
+                        config.isLogErrorsEnabled(),
+                        config.isLogSentDataEnabled(),
+                        config.isLogResponseStatusTextEnabled());
 
         // TODO: Abstract this into SimpleServer
         String onlineMode = "true";

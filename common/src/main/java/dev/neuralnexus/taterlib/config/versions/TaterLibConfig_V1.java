@@ -5,9 +5,9 @@
  */
 package dev.neuralnexus.taterlib.config.versions;
 
+import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterapi.config.ToggleableSetting;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
-import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
 import java.util.List;

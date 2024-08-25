@@ -52,26 +52,27 @@ public class TaterLib {
 
     /** Start */
     public static void start() {
-//        try {
-//            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
-//            Map<String, String> deps = new HashMap<>();
-//            deps.put("gs.mclo:api:3.0.1", "a0f52bb4002f4fe958e9c7af8d2e34fb");
-//            DepClassLoader depClassLoader =
-//                    new DepClassLoader(TaterLib.class.getClassLoader(), repos, deps);
-//            depClassLoader.downloadAll();
-//            depClassLoader.addDepsToClasspath();
-//        } catch (Exception e) {
-//            logger().error("Could not download dependencies", e);
-//        }
+        //        try {
+        //            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
+        //            Map<String, String> deps = new HashMap<>();
+        //            deps.put("gs.mclo:api:3.0.1", "a0f52bb4002f4fe958e9c7af8d2e34fb");
+        //            DepClassLoader depClassLoader =
+        //                    new DepClassLoader(TaterLib.class.getClassLoader(), repos, deps);
+        //            depClassLoader.downloadAll();
+        //            depClassLoader.addDepsToClasspath();
+        //        } catch (Exception e) {
+        //            logger().error("Could not download dependencies", e);
+        //        }
 
         TaterLibMetrics.initialize();
         TaterLibConfigLoader.load();
 
         if (!RELOADED) {
-            ServerEvents.STOPPED.register(event -> {
-                TaterLibMetrics.shutdown();
-                TaterAPIProvider.scheduler().shutdownBackgroundScheduler();
-            });
+            ServerEvents.STOPPED.register(
+                    event -> {
+                        TaterLibMetrics.shutdown();
+                        TaterAPIProvider.scheduler().shutdownBackgroundScheduler();
+                    });
 
             TaterLibConfig config = TaterLibConfigLoader.config();
             Loader loader = Loader.instance();
