@@ -11,7 +11,7 @@ dependencies {
     compileOnly('org.bstats:bstats-base:3.0.2')
 
     // MCLogs
-    compileOnly('gs.mclo:api:3.0.1')
+    implementation('gs.mclo:api:3.0.1')
 
     // Gson
     implementation('com.google.code.gson:gson:2.10.1')
@@ -46,6 +46,9 @@ shadowJar {
         exclude('LICENSE')
         exclude('INFO_BIN', 'INFO_SRC')
 
+        // MCLogs
+        include(dependency('gs.mclo:api:3.0.1'))
+
         // Gson
         include(dependency('com.google.code.gson:gson:2.10.1'))
 
@@ -59,6 +62,9 @@ shadowJar {
 
     // bStats
     relocate('org.bstats', 'dev.neuralnexus.taterlib.lib.bstats')
+
+    // MCLogs
+    relocate('gs.mclo', 'dev.neuralnexus.taterlib.lib.mclogs')
 
     // Gson
     relocate('com.google.gson', 'dev.neuralnexus.taterlib.lib.gson')

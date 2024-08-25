@@ -14,11 +14,7 @@ import dev.neuralnexus.taterlib.metrics.bstats.TaterLibMetrics;
 import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.mclogs.MCLogsModule;
 import dev.neuralnexus.taterloader.Loader;
-import dev.neuralnexus.taterloader.depdownloader.DepClassLoader;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /** Main class for the plugin. */
 public class TaterLib {
@@ -56,17 +52,17 @@ public class TaterLib {
 
     /** Start */
     public static void start() {
-        try {
-            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
-            Map<String, String> deps = new HashMap<>();
-            deps.put("gs.mclo:api:3.0.1", "a0f52bb4002f4fe958e9c7af8d2e34fb");
-            DepClassLoader depClassLoader =
-                    new DepClassLoader(TaterLib.class.getClassLoader(), repos, deps);
-            depClassLoader.downloadAll();
-            depClassLoader.addDepsToClasspath();
-        } catch (Exception e) {
-            logger().error("Could not download dependencies", e);
-        }
+//        try {
+//            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
+//            Map<String, String> deps = new HashMap<>();
+//            deps.put("gs.mclo:api:3.0.1", "a0f52bb4002f4fe958e9c7af8d2e34fb");
+//            DepClassLoader depClassLoader =
+//                    new DepClassLoader(TaterLib.class.getClassLoader(), repos, deps);
+//            depClassLoader.downloadAll();
+//            depClassLoader.addDepsToClasspath();
+//        } catch (Exception e) {
+//            logger().error("Could not download dependencies", e);
+//        }
 
         TaterLibMetrics.initialize();
         TaterLibConfigLoader.load();
