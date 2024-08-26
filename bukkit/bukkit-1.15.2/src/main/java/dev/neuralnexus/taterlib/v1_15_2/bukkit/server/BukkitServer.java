@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.world.BukkitServerWorld;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
 import java.util.HashMap;
@@ -21,10 +22,10 @@ import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link Server}. */
 public class BukkitServer implements Server {
-    private final org.bukkit.Server server;
+    private static final BukkitServer instance = new BukkitServer();
 
-    public BukkitServer(org.bukkit.Server server) {
-        this.server = server;
+    public static BukkitServer instance() {
+        return instance;
     }
 
     @Override
@@ -34,10 +35,10 @@ public class BukkitServer implements Server {
             return (String)
                     Class.forName(
                                     "org.bukkit.craftbukkit."
-                                            + server.getClass().getPackage().getName()
+                                            + Bukkit.getServer().getClass().getPackage().getName()
                                             + ".CraftServer")
                             .getMethod("getServer")
-                            .invoke(server)
+                            .invoke(Bukkit.getServer())
                             .getClass()
                             .getMethod("getServerModName")
                             .invoke(null);
@@ -48,7 +49,7 @@ public class BukkitServer implements Server {
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server.getOnlinePlayers().stream()
+        return Bukkit.getServer().getOnlinePlayers().stream()
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toList());
     }
@@ -56,7 +57,7 @@ public class BukkitServer implements Server {
     @Override
     public Map<String, UUID> whitelist() {
         Map<String, UUID> whitelist = new HashMap<>();
-        for (OfflinePlayer player : server.getWhitelistedPlayers()) {
+        for (OfflinePlayer player : Bukkit.getServer().getWhitelistedPlayers()) {
             whitelist.put(player.getName(), player.getPlayer().getUniqueId());
         }
         return whitelist;
@@ -65,7 +66,7 @@ public class BukkitServer implements Server {
     @Override
     public Map<String, UUID> playercache() {
         Map<String, UUID> cache = new HashMap<>();
-        for (OfflinePlayer player : server.getOfflinePlayers()) {
+        for (OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
             cache.put(player.getName(), player.getPlayer().getUniqueId());
         }
         return cache;
@@ -73,6 +74,8 @@ public class BukkitServer implements Server {
 
     @Override
     public List<ServerWorld> worlds() {
-        return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());
+        return Bukkit.getServer().getWorlds().stream()
+                .map(BukkitServerWorld::new)
+                .collect(Collectors.toList());
     }
 }

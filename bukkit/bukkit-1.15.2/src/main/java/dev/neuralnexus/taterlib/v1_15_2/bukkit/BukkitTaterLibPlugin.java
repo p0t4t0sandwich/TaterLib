@@ -30,13 +30,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
+@SuppressWarnings("unused")
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         TaterAPIProvider.addHook(new BukkitPermissionsHook());
         start();
         TaterAPIProvider.api(Platform.BUKKIT)
-                .ifPresent(api -> api.setServer(() -> new BukkitServer(Bukkit.getServer())));
+                .ifPresent(api -> api.setServer(BukkitServer::instance));
     }
 
     @Override

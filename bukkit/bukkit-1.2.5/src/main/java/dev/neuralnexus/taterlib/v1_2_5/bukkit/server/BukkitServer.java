@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_2_5.bukkit.world.BukkitServerWorld;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.craftbukkit.CraftServer;
 
@@ -23,20 +24,20 @@ import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link Server}. */
 public class BukkitServer implements Server {
-    private final org.bukkit.Server server;
+    private static final BukkitServer instance = new BukkitServer();
 
-    public BukkitServer(org.bukkit.Server server) {
-        this.server = server;
+    public static BukkitServer instance() {
+        return instance;
     }
 
     @Override
     public String brand() {
-        return ((CraftServer) server).getServer().getServerModName();
+        return ((CraftServer) Bukkit.getServer()).getServer().getServerModName();
     }
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return Arrays.stream(server.getOnlinePlayers())
+        return Arrays.stream(Bukkit.getServer().getOnlinePlayers())
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toList());
     }
@@ -44,7 +45,7 @@ public class BukkitServer implements Server {
     @Override
     public Map<String, UUID> whitelist() {
         Map<String, UUID> whitelist = new HashMap<>();
-        for (OfflinePlayer player : server.getWhitelistedPlayers()) {
+        for (OfflinePlayer player : Bukkit.getServer().getWhitelistedPlayers()) {
             whitelist.put(player.getName(), player.getPlayer().getUniqueId());
         }
         return whitelist;
@@ -53,7 +54,7 @@ public class BukkitServer implements Server {
     @Override
     public Map<String, UUID> playercache() {
         Map<String, UUID> cache = new HashMap<>();
-        for (OfflinePlayer player : server.getOfflinePlayers()) {
+        for (OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
             cache.put(player.getName(), player.getPlayer().getUniqueId());
         }
         return cache;
@@ -61,6 +62,8 @@ public class BukkitServer implements Server {
 
     @Override
     public List<ServerWorld> worlds() {
-        return server.getWorlds().stream().map(BukkitServerWorld::new).collect(Collectors.toList());
+        return Bukkit.getServer().getWorlds().stream()
+                .map(BukkitServerWorld::new)
+                .collect(Collectors.toList());
     }
 }
