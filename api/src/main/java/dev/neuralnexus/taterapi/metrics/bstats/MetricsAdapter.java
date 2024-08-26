@@ -29,33 +29,29 @@ public class MetricsAdapter {
             Map<Platform, Integer> pluginIds,
             List<CustomChart> charts) {
         Platform platform = Platform.get();
+        Object metrics = null;
         if (platform.isBukkitBased()) {
             if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
-                return (BStatsMetrics)
-                        BukkitBetaMetricsAdapter.setupMetrics(
+                metrics = BukkitBetaMetricsAdapter.setupMetrics(
                                 plugin, pluginIds.get(Platform.BUKKIT), Collections.emptyList());
+            } else {
+                metrics = BukkitMetricsAdapter.setupMetrics(plugin, pluginIds.get(Platform.BUKKIT), charts);
             }
-            return (BStatsMetrics)
-                    BukkitMetricsAdapter.setupMetrics(
-                            plugin, pluginIds.get(Platform.BUKKIT), charts);
         } else if (platform.isBungeeCordBased()) {
-            return (BStatsMetrics)
-                    BungeeCordMetricsAdapter.setupMetrics(
+            metrics = BungeeCordMetricsAdapter.setupMetrics(
                             plugin, pluginIds.get(Platform.BUNGEECORD), charts);
         } else if (platform.isSpongeBased()) {
-            return (BStatsMetrics)
-                    SpongeMetricsAdapter.setupMetrics(
+            metrics = SpongeMetricsAdapter.setupMetrics(
                             plugin, pluginLogger, pluginIds.get(Platform.SPONGE), charts);
         } else if (platform.isVelocityBased()) {
-            return (BStatsMetrics)
-                    VelocityMetricsAdapter.setupMetrics(
+            metrics = VelocityMetricsAdapter.setupMetrics(
                             plugin,
                             pluginServer,
                             pluginLogger,
                             pluginIds.get(Platform.VELOCITY),
                             charts);
         }
-        return null;
+        return new BStatsMetrics(metrics);
     }
 
     public static BStatsMetrics setupMetrics(
