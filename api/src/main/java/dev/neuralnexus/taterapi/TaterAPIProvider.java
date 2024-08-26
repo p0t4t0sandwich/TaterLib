@@ -147,9 +147,6 @@ public class TaterAPIProvider {
      * @return The instance of the API
      */
     public static Optional<TaterAPI> api() {
-        if (apis.isEmpty()) {
-            register();
-        }
         if (platform != primaryPlatform) {
             return api(primaryPlatform);
         }
@@ -163,6 +160,9 @@ public class TaterAPIProvider {
      * @return The instance of the API
      */
     public static Optional<TaterAPI> api(Platform platform) {
+        if (apis.isEmpty()) {
+            register();
+        }
         return Optional.ofNullable(apis.get(platform));
     }
 
