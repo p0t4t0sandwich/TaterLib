@@ -27,7 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
@@ -51,9 +51,6 @@ import java.util.UUID;
 })
 public abstract class Entity_API {
     @Shadow
-    public abstract void shadow$sendSystemMessage(Component message);
-
-    @Shadow
     public abstract int shadow$getId();
 
     @Shadow
@@ -75,8 +72,8 @@ public abstract class Entity_API {
     @Nullable public abstract MinecraftServer shadow$getServer();
 
     @Shadow
-    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
-            DimensionTransition dimensionTransition);
+    public abstract net.minecraft.world.entity.Entity shadow$teleport(
+            TeleportTransition teleportTransition);
 
     @Shadow
     @Nullable public abstract Component shadow$getCustomName();
@@ -86,13 +83,6 @@ public abstract class Entity_API {
 
     @Shadow
     public abstract UUID shadow$getUUID();
-
-    @Shadow
-    public abstract boolean shadow$hasPermissions(int permissionLevel);
-
-    public void cmdSender$sendMessage(String message) {
-        this.shadow$sendSystemMessage(Component.nullToEmpty(message));
-    }
 
     public int entity$entityId() {
         return this.shadow$getId();
@@ -135,14 +125,14 @@ public abstract class Entity_API {
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::world);
             if (serverLevel.isEmpty()) return;
-            this.shadow$changeDimension(
-                    new DimensionTransition(
+            this.shadow$teleport(
+                    new TeleportTransition(
                             serverLevel.get(),
                             new Vec3(location.x(), location.y(), location.z()),
                             Vec3.ZERO,
                             location.yaw(),
                             location.pitch(),
-                            DimensionTransition.DO_NOTHING));
+                            TeleportTransition.DO_NOTHING));
         }
     }
 
@@ -161,6 +151,6 @@ public abstract class Entity_API {
     }
 
     public boolean permissible$hasPermission(int permissionLevel) {
-        return this.shadow$hasPermissions(permissionLevel);
+        return false;
     }
 }

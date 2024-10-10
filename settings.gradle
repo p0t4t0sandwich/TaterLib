@@ -165,6 +165,7 @@ include(
         'vanilla:vanilla-1.20.2',
         'vanilla:vanilla-1.20.6',
         'vanilla:vanilla-1.21',
+        'vanilla:vanilla-1.21.2',
 
         // Velocity
         'velocity:velocity-3'
