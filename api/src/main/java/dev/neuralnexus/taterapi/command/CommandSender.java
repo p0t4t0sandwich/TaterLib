@@ -21,7 +21,7 @@ public interface CommandSender extends Permissible {
      *
      * @param message The message to send
      */
-    void sendMessage(String message);
+    default void sendMessage(String message) {}
 
     /**
      * Check if the sender is a player
