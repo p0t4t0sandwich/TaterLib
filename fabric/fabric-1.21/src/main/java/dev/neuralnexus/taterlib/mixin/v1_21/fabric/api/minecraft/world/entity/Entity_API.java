@@ -140,9 +140,9 @@ public abstract class Entity_API {
                             serverLevel.get(),
                             new Vec3(location.x(), location.y(), location.z()),
                             Vec3.ZERO,
-                            0.0F,
-                            0.0F,
-                            (entity1) -> {}));
+                            location.yaw(),
+                            location.pitch(),
+                            DimensionTransition.DO_NOTHING));
         }
     }
 
