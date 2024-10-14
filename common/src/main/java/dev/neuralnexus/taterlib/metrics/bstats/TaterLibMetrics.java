@@ -31,6 +31,9 @@ public class TaterLibMetrics {
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static void initialize() {
+        if (TaterAPIProvider.side().is(Side.CLIENT)) {
+            return;
+        }
         MetricsConfig config;
         try {
             boolean defaultEnabled = TaterAPIProvider.side().is(Side.SERVER);
