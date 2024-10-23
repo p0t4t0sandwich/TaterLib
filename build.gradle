@@ -261,6 +261,17 @@ platformVersions.put("vanilla", Arrays.asList(
         "1.20", "1.20.2", "1.20.6", "1.21"))
 platformVersions.put("velocity", Arrays.asList("3"))
 
+// --------------------------- Fun Helper Task --------------------------------
+tasks.register("buildAllTheStuffNowBcGradleIsDumb", Task) {
+    dependsOn(":api:build")
+    dependsOn(":common:build")
+    platformVersions.each { platform, versions ->
+        versions.each { mcVersion ->
+            dependsOn(":${platform}:${platform}-${mcVersion}:build")
+        }
+    }
+}
+
 // --------------------------- Build MonoJar --------------------------------
 tasks.register('build_monojar', Jar) {
     dependsOn(':api:shadowJar')

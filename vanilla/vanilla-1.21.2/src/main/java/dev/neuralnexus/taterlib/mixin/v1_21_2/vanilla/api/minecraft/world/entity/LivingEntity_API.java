@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_20.vanilla.api.minecraft.world.entity;
+package dev.neuralnexus.taterlib.mixin.v1_21_2.vanilla.api.minecraft.world.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -13,11 +13,13 @@ import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
+import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.Level;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -27,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_20, max = MinecraftVersion.V1_20_6)
+@ReqMCVersion(min = MinecraftVersion.V1_21_2)
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),
@@ -35,7 +37,7 @@ import org.spongepowered.asm.mixin.Unique;
 })
 public abstract class LivingEntity_API {
     @Shadow
-    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+    public abstract boolean shadow$hurtServer(ServerLevel level, DamageSource damageSource, float damage);
 
     @Shadow
     public abstract float shadow$getHealth();
@@ -50,7 +52,7 @@ public abstract class LivingEntity_API {
     public abstract void shadow$setAbsorptionAmount(float amount);
 
     @Shadow
-    public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
+    public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> attributeHolder);
 
     @Unique public ServerLevel taterapi$level() {
         return (ServerLevel) ((net.minecraft.world.entity.LivingEntity) (Object) this).level();
@@ -58,12 +60,12 @@ public abstract class LivingEntity_API {
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount) {
-        this.shadow$hurt(this.taterapi$level().damageSources().generic(), (float) amount);
+        this.shadow$hurtServer(this.taterapi$level(), this.taterapi$level().damageSources().generic(), (float) amount);
     }
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount, Entity source) {
-        this.shadow$hurt(
+        this.shadow$hurtServer(this.taterapi$level(),
                 this.taterapi$level()
                         .damageSources()
                         .mobAttack((net.minecraft.world.entity.LivingEntity) source),

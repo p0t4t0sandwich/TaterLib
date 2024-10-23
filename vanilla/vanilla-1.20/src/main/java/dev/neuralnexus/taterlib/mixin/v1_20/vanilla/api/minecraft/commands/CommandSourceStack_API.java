@@ -33,6 +33,7 @@ import java.util.UUID;
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
 public abstract class CommandSourceStack_API {
+    // Note: CommandSourceStatck#hasPermission satisfies the Permissible interface
     @Shadow
     public abstract String shadow$getTextName();
 
@@ -41,9 +42,6 @@ public abstract class CommandSourceStack_API {
 
     @Shadow
     @Nullable public abstract Entity shadow$getEntity();
-
-    @Shadow
-    public abstract boolean shadow$hasPermission(int permissionLevel);
 
     public String cmdSender$name() {
         return this.shadow$getTextName();
@@ -59,9 +57,5 @@ public abstract class CommandSourceStack_API {
             return new UUID(0, 0);
         }
         return this.shadow$getEntity().getUUID();
-    }
-
-    public boolean permissible$hasPermission(int permissionLevel) {
-        return this.shadow$hasPermission(permissionLevel);
     }
 }

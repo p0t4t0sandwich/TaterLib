@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_21)
+@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements({
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),

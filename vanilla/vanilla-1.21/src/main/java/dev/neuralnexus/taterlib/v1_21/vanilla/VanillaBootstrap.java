@@ -21,13 +21,15 @@ import java.util.function.Supplier;
 /** The Vanilla bootstrap class. */
 public class VanillaBootstrap {
     /** Initializes the Vanilla bootstrap. */
+    @SuppressWarnings("Convert2MethodRef")
     public static void init() {
         TaterAPIProvider.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
         TaterAPIProvider.registerBuilder(
                 ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(
                 ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
-        TaterAPIProvider.scheduler().replaceBackgroundScheduler(Util::backgroundExecutor, false);
+        TaterAPIProvider.scheduler()
+                .replaceBackgroundScheduler(() -> Util.backgroundExecutor(), false);
     }
 
     /** Get the instance of the server */
