@@ -59,6 +59,7 @@ public class SchedulerImpl implements Scheduler {
                                 }
                             };
                     worker.setName("taterapi-" + WORKER_COUNT.getAndIncrement());
+                    worker.setDaemon(true);
                     return worker;
                 },
                 (thread, throwable) ->
