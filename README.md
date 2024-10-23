@@ -67,29 +67,29 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 - Spigot/Paper/etc
 - Hybrid support included
-- b1.7.3, 1.2.5, 1.6.4-1.21
+- b1.7.3, 1.2.5, 1.6.4-1.21.2
 
 #### BungeeCord
 
 - Waterfall/Travertine/etc
-- 1.4.7-1.21
+- 1.4.7-1.21.2
 
 #### Fabric
 
 - Quilt
 - Supports Kilt
-- 1.7.10-1.12.2, 1.14-1.21
+- 1.7.10-1.12.2, 1.14-1.21.2
 - Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the
   moment
 
 #### Forge
 
 - Supports Sinytra Connector
-- 1.6.4-1.21
+- 1.6.4-1.21.2
 
 #### NeoForge
 
-- 1.20.2-1.21
+- 1.20.2-1.21.2
 
 #### Sponge
 
@@ -98,14 +98,14 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 #### Velocity
 
-- v3
+- v3.3.0
 
 ## Dependencies
 
 - [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
 - [Legacy Fabric API](https://modrinth.com/mod/legacy-fabric-api) - Required on Fabric 1.12.2 and
   below
-- [MixinBootstrap](https://modrinth.com/mod/mixinbootstrap) - Required on Forge 1.14.x
+- [MixinBootstrap](https://modrinth.com/mod/mixinbootstrap) - Required on Forge 1.14.x - 1.15.1
 - [UniMixins](https://modrinth.com/mod/unimixins) - Required on Forge 1.7.10-1.12.2
 
 ### Optional Dependencies

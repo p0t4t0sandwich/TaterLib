@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_21.fabric.api.minecraft.world.entity;
+package dev.neuralnexus.taterlib.mixin.v1_21_2.fabric.api.minecraft.world.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V1_21_2)
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),
@@ -36,7 +36,8 @@ import org.spongepowered.asm.mixin.Unique;
 })
 public abstract class LivingEntity_API {
     @Shadow
-    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+    public abstract boolean shadow$hurtServer(
+            ServerLevel level, DamageSource damageSource, float damage);
 
     @Shadow
     public abstract float shadow$getHealth();
@@ -59,12 +60,16 @@ public abstract class LivingEntity_API {
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount) {
-        this.shadow$hurt(this.taterapi$level().damageSources().generic(), (float) amount);
+        this.shadow$hurtServer(
+                this.taterapi$level(),
+                this.taterapi$level().damageSources().generic(),
+                (float) amount);
     }
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount, Entity source) {
-        this.shadow$hurt(
+        this.shadow$hurtServer(
+                this.taterapi$level(),
                 this.taterapi$level()
                         .damageSources()
                         .mobAttack((net.minecraft.world.entity.LivingEntity) source),
