@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_21.fabric.api.minecraft.world.entity;
+package dev.neuralnexus.taterlib.mixin.v1_21_2.fabric.api.minecraft.world.entity;
 
 import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
 import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
@@ -27,7 +27,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity.RemovalReason;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.portal.DimensionTransition;
+import net.minecraft.world.level.portal.TeleportTransition;
 import net.minecraft.world.phys.Vec3;
 
 import org.jetbrains.annotations.Nullable;
@@ -41,7 +41,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V1_21_2)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
@@ -50,9 +50,6 @@ import java.util.UUID;
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
 public abstract class Entity_API {
-    @Shadow
-    public abstract void shadow$sendSystemMessage(Component message);
-
     @Shadow
     public abstract int shadow$getId();
 
@@ -75,8 +72,8 @@ public abstract class Entity_API {
     @Nullable public abstract MinecraftServer shadow$getServer();
 
     @Shadow
-    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
-            DimensionTransition dimensionTransition);
+    public abstract net.minecraft.world.entity.Entity shadow$teleport(
+            TeleportTransition teleportTransition);
 
     @Shadow
     @Nullable public abstract Component shadow$getCustomName();
@@ -86,13 +83,6 @@ public abstract class Entity_API {
 
     @Shadow
     public abstract UUID shadow$getUUID();
-
-    @Shadow
-    public abstract boolean shadow$hasPermissions(int permissionLevel);
-
-    public void cmdSender$sendMessage(String message) {
-        this.shadow$sendSystemMessage(Component.nullToEmpty(message));
-    }
 
     public int entity$entityId() {
         return this.shadow$getId();
@@ -135,14 +125,14 @@ public abstract class Entity_API {
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::world);
             if (serverLevel.isEmpty()) return;
-            this.shadow$changeDimension(
-                    new DimensionTransition(
+            this.shadow$teleport(
+                    new TeleportTransition(
                             serverLevel.get(),
                             new Vec3(location.x(), location.y(), location.z()),
                             Vec3.ZERO,
                             location.yaw(),
                             location.pitch(),
-                            DimensionTransition.DO_NOTHING));
+                            TeleportTransition.DO_NOTHING));
         }
     }
 
@@ -161,6 +151,6 @@ public abstract class Entity_API {
     }
 
     public boolean permissible$hasPermission(int permissionLevel) {
-        return this.shadow$hasPermissions(permissionLevel);
+        return false;
     }
 }

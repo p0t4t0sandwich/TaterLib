@@ -16,7 +16,6 @@ import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
 import net.minecraft.Util;
 import net.minecraft.server.MinecraftServer;
 
-import java.util.concurrent.Executor;
 import java.util.function.Supplier;
 
 /** The Vanilla bootstrap class. */

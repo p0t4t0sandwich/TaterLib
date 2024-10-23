@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_21.fabric.api.minecraft.world.entity.player;
+package dev.neuralnexus.taterlib.mixin.v1_21_2.fabric.api.minecraft.world.entity.player;
 
 import com.mojang.authlib.GameProfile;
 
@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
+import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
@@ -33,12 +34,13 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V1_21_2)
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
     @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
     @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
+    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE),
     @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
     @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
 })
@@ -55,8 +57,15 @@ public abstract class Player_API {
     @Shadow
     public abstract Component shadow$getDisplayName();
 
+    @Shadow
+    public abstract boolean shadow$hasPermissions(int permissionLevel);
+
     public String cmdSender$name() {
         return this.shadow$getGameProfile().getName();
+    }
+
+    public void cmdSender$sendMessage(String message) {
+        ((ServerPlayer) (Object) this).sendSystemMessage(Component.nullToEmpty(message));
     }
 
     public PlayerInventory humanEntity$inventory() {
@@ -72,6 +81,10 @@ public abstract class Player_API {
     @SuppressWarnings("DataFlowIssue")
     public void humanEntity$setGameMode(GameMode gameMode) {
         ((ServerPlayer) (Object) this).setGameMode(GameType.byId(gameMode.id()));
+    }
+
+    public boolean permissible$hasPermission(int permissionLevel) {
+        return this.shadow$hasPermissions(permissionLevel);
     }
 
     public void player$allowFlight(boolean allow) {
