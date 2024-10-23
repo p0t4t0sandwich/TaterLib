@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_21.vanilla.api.minecraft.world.entity.player;
+package dev.neuralnexus.taterlib.mixin.v1_21_2.vanilla.api.minecraft.world.entity.player;
 
 import com.mojang.authlib.GameProfile;
 
@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_21)
+@ReqMCVersion(min = MinecraftVersion.V1_21_2)
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),

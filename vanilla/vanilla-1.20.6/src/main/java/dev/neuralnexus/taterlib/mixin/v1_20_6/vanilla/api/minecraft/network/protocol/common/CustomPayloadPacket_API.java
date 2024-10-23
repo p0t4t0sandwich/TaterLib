@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API {
-    @Shadow
+    @Shadow(remap = false)
     public abstract CustomPacketPayload shadow$payload();
 
     public ResourceKey packet$channel() {

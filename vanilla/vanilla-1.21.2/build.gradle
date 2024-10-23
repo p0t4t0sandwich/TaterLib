@@ -10,7 +10,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
 sourceCompatibility = targetCompatibility = java_version
 
 minecraft {
-    latestSnapshot()
+    version(minecraft_version)
 }
 
 dependencies {
@@ -20,4 +20,5 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':tooling:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
+    compileOnly(project(':vanilla:vanilla-1.21'))
 }

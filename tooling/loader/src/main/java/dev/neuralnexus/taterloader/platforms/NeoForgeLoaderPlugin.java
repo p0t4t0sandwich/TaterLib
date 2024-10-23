@@ -14,6 +14,8 @@ import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.server.ServerStartedEvent;
+import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /** NeoForge entry point. */
 @Mod(LoaderImpl.PROJECT_ID)
@@ -36,12 +38,12 @@ public class NeoForgeLoaderPlugin {
     }
 
     @SubscribeEvent
-    public void onServerStarted(net.minecraftforge.event.server.ServerStartedEvent event) {
+    public void onServerStarted(ServerStartedEvent event) {
         loader.onEnable();
     }
 
     @SubscribeEvent
-    public void onServerStopped(net.minecraftforge.event.server.ServerStoppedEvent event) {
+    public void onServerStopped(ServerStoppedEvent event) {
         loader.onDisable();
     }
 }

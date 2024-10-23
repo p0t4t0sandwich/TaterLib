@@ -14,11 +14,11 @@ import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.level.Level;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_21)
+@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),
@@ -53,19 +53,19 @@ public abstract class LivingEntity_API {
     @Shadow
     public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> attributeHolder);
 
-    @Unique public Level taterapi$level() {
-        return ((net.minecraft.world.entity.LivingEntity) (Object) this).level();
+    @Unique public ServerLevel taterapi$level() {
+        return (ServerLevel) ((net.minecraft.world.entity.LivingEntity) (Object) this).level();
     }
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount) {
-        this.shadow$hurt(taterapi$level().damageSources().generic(), (float) amount);
+        this.shadow$hurt(this.taterapi$level().damageSources().generic(), (float) amount);
     }
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount, Entity source) {
         this.shadow$hurt(
-                taterapi$level()
+                this.taterapi$level()
                         .damageSources()
                         .mobAttack((net.minecraft.world.entity.LivingEntity) source),
                 (float) amount);
