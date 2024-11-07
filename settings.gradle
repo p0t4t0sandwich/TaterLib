@@ -113,7 +113,7 @@ include(
         'fabric:fabric-1.20.2',
         'fabric:fabric-1.20.6',
         'fabric:fabric-1.21',
-        'fabric:fabric-1.21.2',
+        'fabric:fabric-1.21.3',
 
         // Legacy Forge
         'forge:forge-1.6.4',
@@ -166,7 +166,7 @@ include(
         'vanilla:vanilla-1.20.2',
         'vanilla:vanilla-1.20.6',
         'vanilla:vanilla-1.21',
-        'vanilla:vanilla-1.21.2',
+        'vanilla:vanilla-1.21.3',
 
         // Velocity
         'velocity:velocity-3'

@@ -93,7 +93,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_13_2;
         } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_15_2)) {
             version = MinecraftVersion.V1_15_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_20;
         } else {
             version = MinecraftVersion.V1_20;
@@ -109,7 +109,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_8;
         } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_15_2)) {
             version = MinecraftVersion.V1_12;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_20;
         } else {
             version = MinecraftVersion.V1_20;
@@ -145,7 +145,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_19;
         } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
             version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_21;
         } else {
             version = MinecraftVersion.V1_20;
@@ -185,7 +185,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_19;
         } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4)) {
             version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_20_6;
         } else {
             version = MinecraftVersion.V1_20_6;
@@ -220,7 +220,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_17;
         } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
             version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_20;
         } else {
             version = MinecraftVersion.V1_20;
@@ -267,7 +267,7 @@ public class TaterReflectUtil {
             version = MinecraftVersion.V1_19;
         } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
             version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_2)) {
+        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_3)) {
             version = MinecraftVersion.V1_21;
         } else {
             version = MinecraftVersion.V1_21;
