@@ -1,0 +1,25 @@
+plugins {
+    alias(libs.plugins.vanillagradle)
+}
+
+base {
+    archivesName = "${project_id}-vanilla-${minecraft_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+sourceCompatibility = targetCompatibility = java_version
+
+minecraft {
+//    version(minecraft_version)
+    latestSnapshot()
+}
+
+dependencies {
+    compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly('org.spongepowered:mixin:0.8.5')
+    compileOnly(project(':api'))
+    compileOnly(project(':common'))
+    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':tooling:loader'))
+    compileOnly(project(':vanilla:vanilla-1.21'))
+}
