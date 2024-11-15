@@ -67,29 +67,29 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/r
 
 - Spigot/Paper/etc
 - Hybrid support included
-- b1.7.3, 1.2.5, 1.6.4-1.21.3
+- b1.7.3, 1.2.5, 1.6.4-1.21.4
 
 #### BungeeCord
 
 - Waterfall/Travertine/etc
-- 1.4.7-1.21.3
+- 1.4.7-1.21.4
 
 #### Fabric
 
 - Quilt
 - Supports Kilt
-- 1.7.10-1.12.2, 1.14-1.21.3
+- 1.7.10-1.12.2, 1.14-1.21.4
 - Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the
   moment
 
 #### Forge
 
 - Supports Sinytra Connector
-- 1.6.4-1.21.3
+- 1.6.4-1.21.4
 
 #### NeoForge
 
-- 1.20.2-1.21.3
+- 1.20.2-1.21.4
 
 #### Sponge
 
