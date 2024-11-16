@@ -65,6 +65,7 @@ include(
         'tooling:entrypoint-spoof',
         'tooling:loader',
         'tooling:conditional-mixins',
+        'tooling:metadata-api',
 
         // API
         'api',
