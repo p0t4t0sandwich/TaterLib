@@ -10,16 +10,15 @@ import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFold
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.Slf4jLogger;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import org.jetbrains.annotations.ApiStatus;
-import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -62,8 +61,8 @@ public class VelocityData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return new Slf4jLogger(LoggerFactory.getLogger(pluginId));
+    public Logger<org.slf4j.Logger> logger(String pluginId) {
+        return new Slf4jLogger(pluginId);
     }
 
     @Override

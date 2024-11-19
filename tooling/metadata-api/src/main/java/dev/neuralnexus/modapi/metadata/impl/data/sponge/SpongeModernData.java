@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.data.sponge;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
@@ -12,7 +13,6 @@ import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
 
 import org.spongepowered.api.Sponge;
 

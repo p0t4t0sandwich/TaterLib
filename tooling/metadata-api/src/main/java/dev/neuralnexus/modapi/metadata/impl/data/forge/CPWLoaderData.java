@@ -7,15 +7,13 @@ package dev.neuralnexus.modapi.metadata.impl.data.forge;
 
 import cpw.mods.fml.common.Loader;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.ApacheLogger;
-
-import org.apache.logging.log4j.LogManager;
+import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,7 +54,7 @@ public class CPWLoaderData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return new ApacheLogger(LogManager.getLogger(pluginId));
+    public Logger<org.apache.logging.log4j.Logger> logger(String pluginId) {
+        return new ApacheLogger(pluginId);
     }
 }

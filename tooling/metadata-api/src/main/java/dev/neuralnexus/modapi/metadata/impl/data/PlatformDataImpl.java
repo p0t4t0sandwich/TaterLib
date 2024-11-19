@@ -7,6 +7,7 @@ package dev.neuralnexus.modapi.metadata.impl.data;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForClass;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
@@ -20,7 +21,6 @@ import dev.neuralnexus.modapi.metadata.impl.data.neoforge.NeoForgeData;
 import dev.neuralnexus.modapi.metadata.impl.data.sponge.SpongeData;
 import dev.neuralnexus.modapi.metadata.impl.data.vanilla.VanillaData;
 import dev.neuralnexus.modapi.metadata.impl.data.velocity.VelocityData;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
 
 import java.nio.file.Path;
 import java.util.List;

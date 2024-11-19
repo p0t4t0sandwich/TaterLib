@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.util;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

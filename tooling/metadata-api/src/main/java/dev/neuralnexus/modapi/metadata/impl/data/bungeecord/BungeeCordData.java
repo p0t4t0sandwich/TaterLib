@@ -7,13 +7,13 @@ package dev.neuralnexus.modapi.metadata.impl.data.bungeecord;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFolder;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.LoggerAdapter;
+import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 
 import net.md_5.bungee.api.ProxyServer;
 
@@ -51,8 +51,8 @@ public class BungeeCordData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return new LoggerAdapter(pluginId, ProxyServer.getInstance().getLogger());
+    public Logger<java.util.logging.Logger> logger(String pluginId) {
+        return new JavaLogger(pluginId, ProxyServer.getInstance().getLogger());
     }
 
     @Override

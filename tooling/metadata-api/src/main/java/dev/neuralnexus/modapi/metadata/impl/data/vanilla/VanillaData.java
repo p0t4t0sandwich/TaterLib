@@ -5,13 +5,13 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.data.vanilla;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.impl.logger.SystemLogger;
 import dev.neuralnexus.modapi.metadata.impl.util.MixinServiceUtil;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.SystemLogger;
 
 import java.io.IOException;
 import java.util.Collections;

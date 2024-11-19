@@ -5,13 +5,11 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.data.fabric;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.ApacheLogger;
-
-import org.apache.logging.log4j.LogManager;
+import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 
 public class FabricLogger_7_17 {
-    public static Logger logger(String pluginId) {
-        return new ApacheLogger(LogManager.getLogger(pluginId));
+    public static Logger<org.apache.logging.log4j.Logger> logger(String pluginId) {
+        return new ApacheLogger(pluginId);
     }
 }

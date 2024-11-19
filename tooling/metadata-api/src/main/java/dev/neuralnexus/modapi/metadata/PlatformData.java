@@ -9,7 +9,6 @@ import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getConfigFolde
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getModsFolder;
 
 import dev.neuralnexus.modapi.metadata.impl.data.PlatformDataImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -52,7 +51,7 @@ public interface PlatformData {
      *
      * @return The Logger
      */
-    Logger logger(String pluginId);
+    Logger<?> logger(String pluginId);
 
     /**
      * Get if a plugin/mod is loaded <br>
@@ -61,7 +60,7 @@ public interface PlatformData {
      *
      * @param nameOrId The name of the plugin or modId of the mod
      */
-    default boolean isModLoaded(String nameOrId) {
+    default boolean isLoaded(String nameOrId) {
         return modList().stream()
                 .anyMatch(
                         modInfo ->
