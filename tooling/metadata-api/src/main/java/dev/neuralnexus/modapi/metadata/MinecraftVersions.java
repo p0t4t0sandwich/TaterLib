@@ -12,7 +12,6 @@ import dev.neuralnexus.modapi.metadata.impl.version.Indev;
 import dev.neuralnexus.modapi.metadata.impl.version.Infdev;
 import dev.neuralnexus.modapi.metadata.impl.version.PreClassic;
 import dev.neuralnexus.modapi.metadata.impl.version.Release;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
 
 import java.lang.reflect.Field;
 

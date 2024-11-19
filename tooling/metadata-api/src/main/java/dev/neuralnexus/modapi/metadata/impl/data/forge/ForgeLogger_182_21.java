@@ -5,13 +5,11 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.data.forge;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.Slf4jLogger;
-
-import org.slf4j.LoggerFactory;
+import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 public class ForgeLogger_182_21 {
-    public static Logger logger(String pluginId) {
-        return new Slf4jLogger(LoggerFactory.getLogger(pluginId));
+    public static Logger<org.slf4j.Logger> logger(String pluginId) {
+        return new Slf4jLogger(pluginId);
     }
 }

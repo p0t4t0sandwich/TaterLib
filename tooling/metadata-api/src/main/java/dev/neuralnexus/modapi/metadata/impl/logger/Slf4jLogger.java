@@ -3,21 +3,24 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.logger.impl;
+package dev.neuralnexus.modapi.metadata.impl.logger;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
+import org.slf4j.LoggerFactory;
+
+/** A generic SLF4J implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public class JavaLogger implements Logger {
-    private final java.util.logging.Logger logger;
+public class Slf4jLogger implements Logger<org.slf4j.Logger> {
+    private final org.slf4j.Logger logger;
 
-    @Override
-    public Object getLogger() {
-        return this.logger;
+    public Slf4jLogger(String pluginId) {
+        this.logger = LoggerFactory.getLogger(pluginId);
     }
 
-    public JavaLogger(Object logger) {
-        this.logger = (java.util.logging.Logger) logger;
+    @Override
+    public org.slf4j.Logger getLogger() {
+        return this.logger;
     }
 
     @Override
@@ -27,38 +30,38 @@ public class JavaLogger implements Logger {
 
     @Override
     public void warn(String message) {
-        this.logger.warning(message);
+        this.logger.warn(message);
     }
 
     @Override
     public void warn(String message, Throwable throwable) {
-        this.logger.warning(message);
+        this.logger.warn(message);
         throwable.printStackTrace();
     }
 
     @Override
     public void error(String message) {
-        this.logger.severe(message);
+        this.logger.error(message);
     }
 
     @Override
     public void error(String message, Throwable throwable) {
-        this.logger.severe(message);
+        this.logger.error(message);
         throwable.printStackTrace();
     }
 
     @Override
     public void debug(String message) {
-        this.logger.fine(message);
+        this.logger.debug(message);
     }
 
     @Override
     public void trace(String message) {
-        this.logger.finest(message);
+        this.logger.trace(message);
     }
 
     @Override
     public void fatal(String message) {
-        this.logger.severe(message);
+        this.logger.error(message);
     }
 }

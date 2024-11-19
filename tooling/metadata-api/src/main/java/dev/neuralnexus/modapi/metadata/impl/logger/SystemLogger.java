@@ -3,63 +3,67 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.logger.impl;
+package dev.neuralnexus.modapi.metadata.impl.logger;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
-/** A generic Apache implementation of the {@link Logger} interface. */
+/** A generic implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public class ApacheLogger implements Logger {
-    private final org.apache.logging.log4j.Logger logger;
+public class SystemLogger implements Logger<Object> {
+    private final String pluginId;
 
-    public ApacheLogger(Object logger) {
-        this.logger = (org.apache.logging.log4j.Logger) logger;
+    public SystemLogger(String pluginId) {
+        this.pluginId = pluginId;
+    }
+
+    public String prependPrefix(String message) {
+        return "[" + this.pluginId + "] " + message;
     }
 
     @Override
     public Object getLogger() {
-        return this.logger;
+        return null;
     }
 
     @Override
     public void info(String message) {
-        this.logger.info(message);
+        System.out.println(prependPrefix(message));
     }
 
     @Override
     public void warn(String message) {
-        this.logger.warn(message);
+        System.out.println(prependPrefix(message));
     }
 
     @Override
     public void warn(String message, Throwable throwable) {
-        this.logger.warn(message);
+        System.out.println(prependPrefix(message));
         throwable.printStackTrace();
     }
 
     @Override
     public void error(String message) {
-        this.logger.error(message);
+        System.err.println(prependPrefix(message));
     }
 
     @Override
     public void error(String message, Throwable throwable) {
-        this.logger.error(message);
+        System.err.println(prependPrefix(message));
         throwable.printStackTrace();
     }
 
     @Override
     public void debug(String message) {
-        this.logger.debug(message);
+        System.out.println(prependPrefix(message));
     }
 
     @Override
     public void trace(String message) {
-        this.logger.trace(message);
+        System.out.println(prependPrefix(message));
     }
 
     @Override
     public void fatal(String message) {
-        this.logger.error(message);
+        System.err.println(prependPrefix(message));
     }
 }

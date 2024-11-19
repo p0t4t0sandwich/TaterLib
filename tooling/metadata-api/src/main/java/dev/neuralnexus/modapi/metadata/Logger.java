@@ -3,13 +3,13 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.logger;
-
-import dev.neuralnexus.modapi.metadata.PlatformData;
+package dev.neuralnexus.modapi.metadata;
 
 /** The abstract logger. */
-public interface Logger {
-    static Logger create(String pluginId) {
+public interface Logger<T> {
+    // TODO: conditionally apply TextUtil.ansiParser based on the platform
+
+    static Logger<?> create(String pluginId) {
         return PlatformData.instance().logger(pluginId);
     }
 

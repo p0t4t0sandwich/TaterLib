@@ -5,19 +5,17 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.data.neoforge;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.Slf4jLogger;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
-
-import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,7 +53,7 @@ public class NeoForgeData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return new Slf4jLogger(LoggerFactory.getLogger(pluginId));
+    public Logger<org.slf4j.Logger> logger(String pluginId) {
+        return new Slf4jLogger(pluginId);
     }
 }

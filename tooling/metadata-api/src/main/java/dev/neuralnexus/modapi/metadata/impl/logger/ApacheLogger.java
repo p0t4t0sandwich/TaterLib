@@ -3,21 +3,23 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.logger.impl;
+package dev.neuralnexus.modapi.metadata.impl.logger;
 
-import dev.neuralnexus.modapi.metadata.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
-/** A generic SLF4J implementation of the {@link Logger} interface. */
+import org.apache.logging.log4j.LogManager;
+
+/** A generic Apache implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public class Slf4jLogger implements Logger {
-    private final org.slf4j.Logger logger;
+public class ApacheLogger implements Logger<org.apache.logging.log4j.Logger> {
+    private final org.apache.logging.log4j.Logger logger;
 
-    public Slf4jLogger(Object logger) {
-        this.logger = (org.slf4j.Logger) logger;
+    public ApacheLogger(String pluginId) {
+        this.logger = LogManager.getLogger(pluginId);
     }
 
     @Override
-    public Object getLogger() {
+    public org.apache.logging.log4j.Logger getLogger() {
         return this.logger;
     }
 

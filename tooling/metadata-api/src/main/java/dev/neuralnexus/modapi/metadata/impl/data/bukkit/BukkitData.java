@@ -7,14 +7,14 @@ package dev.neuralnexus.modapi.metadata.impl.data.bukkit;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFolder;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
-import dev.neuralnexus.modapi.metadata.logger.Logger;
-import dev.neuralnexus.modapi.metadata.logger.impl.LoggerAdapter;
+import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 
 import org.bukkit.Bukkit;
 
@@ -59,8 +59,8 @@ public class BukkitData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return new LoggerAdapter(pluginId, Bukkit.getLogger());
+    public Logger<java.util.logging.Logger> logger(String pluginId) {
+        return new JavaLogger(pluginId, Bukkit.getLogger());
     }
 
     @Override
