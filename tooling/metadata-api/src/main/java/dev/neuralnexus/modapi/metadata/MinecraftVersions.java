@@ -56,7 +56,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
     }
 
     public static class Cache {
-        private static final Logger logger = Logger.create("MinecraftVersionsCache");
+        private static final Logger<?> logger = Logger.create("MinecraftVersionsCache");
 
         private static MinecraftVersion[] VERSIONS = {};
         private static MinecraftVersion[] REVERSED_VERSIONS = {};
