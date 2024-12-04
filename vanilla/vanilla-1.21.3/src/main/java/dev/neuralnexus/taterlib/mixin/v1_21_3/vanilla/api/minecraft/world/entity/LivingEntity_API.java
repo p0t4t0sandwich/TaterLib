@@ -19,7 +19,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.level.Level;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -37,7 +36,8 @@ import org.spongepowered.asm.mixin.Unique;
 })
 public abstract class LivingEntity_API {
     @Shadow
-    public abstract boolean shadow$hurtServer(ServerLevel level, DamageSource damageSource, float damage);
+    public abstract boolean shadow$hurtServer(
+            ServerLevel level, DamageSource damageSource, float damage);
 
     @Shadow
     public abstract float shadow$getHealth();
@@ -60,12 +60,16 @@ public abstract class LivingEntity_API {
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount) {
-        this.shadow$hurtServer(this.taterapi$level(), this.taterapi$level().damageSources().generic(), (float) amount);
+        this.shadow$hurtServer(
+                this.taterapi$level(),
+                this.taterapi$level().damageSources().generic(),
+                (float) amount);
     }
 
     @SuppressWarnings("resource")
     public void damageable$damage(double amount, Entity source) {
-        this.shadow$hurtServer(this.taterapi$level(),
+        this.shadow$hurtServer(
+                this.taterapi$level(),
                 this.taterapi$level()
                         .damageSources()
                         .mobAttack((net.minecraft.world.entity.LivingEntity) source),
