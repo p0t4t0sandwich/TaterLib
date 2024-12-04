@@ -38,7 +38,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V1_14)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
 @SuppressWarnings({"unused", "UnusedMixin"})
