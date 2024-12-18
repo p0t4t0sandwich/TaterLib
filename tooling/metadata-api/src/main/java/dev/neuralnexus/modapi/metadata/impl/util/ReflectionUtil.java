@@ -8,7 +8,6 @@ package dev.neuralnexus.modapi.metadata.impl.util;
 import dev.neuralnexus.modapi.metadata.Logger;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
 
 /** Utility class for reflection operations */
 public class ReflectionUtil {
@@ -19,16 +18,14 @@ public class ReflectionUtil {
      * @return Whether the class exists.
      */
     public static boolean checkForClass(String... className) {
-        return Arrays.stream(className)
-                .anyMatch(
-                        s -> {
-                            try {
-                                Class.forName(s);
-                                return true;
-                            } catch (ClassNotFoundException e) {
-                                return false;
-                            }
-                        });
+        for (String s : className) {
+            try {
+                Class.forName(s);
+                return true;
+            } catch (ClassNotFoundException ignored) {
+            }
+        }
+        return false;
     }
 
     /**

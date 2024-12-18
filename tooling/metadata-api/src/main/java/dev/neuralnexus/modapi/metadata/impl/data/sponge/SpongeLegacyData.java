@@ -11,6 +11,7 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.PlatformData;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import org.spongepowered.api.Sponge;
 
@@ -48,7 +49,7 @@ public class SpongeLegacyData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return null;
+    public Logger<org.slf4j.Logger> logger(String pluginId) {
+        return new Slf4jLogger(pluginId);
     }
 }

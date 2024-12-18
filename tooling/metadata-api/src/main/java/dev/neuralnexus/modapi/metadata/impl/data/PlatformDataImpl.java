@@ -11,8 +11,8 @@ import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.data.bukkit.BukkitData;
 import dev.neuralnexus.modapi.metadata.impl.data.bungeecord.BungeeCordData;
 import dev.neuralnexus.modapi.metadata.impl.data.fabric.FabricData;
@@ -32,20 +32,19 @@ public class PlatformDataImpl implements PlatformData {
 
     public static PlatformData getInstance() {
         if (INSTANCE == null) {
-            Platform platform = Platform.get();
-            if (platform.isBungeeCordBased()) {
+            if (Platforms.isBungeeCord()) {
                 INSTANCE = new BungeeCordData();
-            } else if (platform.isFabricBased()) {
+            } else if (Platforms.isFabric()) {
                 INSTANCE = new FabricData();
-            } else if (platform.isNeoForgeBased()) {
+            } else if (Platforms.isNeoForge()) {
                 INSTANCE = new NeoForgeData();
-            } else if (platform.isForgeBased()) {
+            } else if (Platforms.isForge()) {
                 INSTANCE = ForgeData.create();
-            } else if (platform.isBukkitBased()) {
+            } else if (Platforms.isBukkit()) {
                 INSTANCE = new BukkitData();
-            } else if (platform.isSpongeBased()) {
+            } else if (Platforms.isSponge()) {
                 INSTANCE = SpongeData.create();
-            } else if (platform.isVelocityBased()) {
+            } else if (Platforms.isVelocity()) {
                 INSTANCE = new VelocityData();
             } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
                 INSTANCE = new VanillaData();
@@ -53,6 +52,8 @@ public class PlatformDataImpl implements PlatformData {
         }
         return INSTANCE;
     }
+
+    //    public static PlatformData getInstance() {} // Create overload that specifies the platform
 
     @Override
     public MinecraftVersion minecraftVersion() {
