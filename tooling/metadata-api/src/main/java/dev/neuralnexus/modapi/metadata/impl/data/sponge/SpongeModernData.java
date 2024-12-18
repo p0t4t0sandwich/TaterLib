@@ -10,9 +10,10 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
+import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 
 import org.spongepowered.api.Sponge;
 
@@ -34,8 +35,8 @@ public class SpongeModernData implements PlatformData {
 
     @Override
     public Mappings mappings() {
-        if (!Platform.get().isNeoForgeBased()
-                && Platform.get().isForgeBased()
+        if (!Platforms.isNeoForge()
+                && Platforms.isForge()
                 && minecraftVersion().isOlderThan(MinecraftVersions.V20_5)) {
             return Mappings.SEARGE;
         }
@@ -55,7 +56,7 @@ public class SpongeModernData implements PlatformData {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        return null;
+    public Logger<org.apache.logging.log4j.Logger> logger(String pluginId) {
+        return new ApacheLogger(pluginId);
     }
 }
