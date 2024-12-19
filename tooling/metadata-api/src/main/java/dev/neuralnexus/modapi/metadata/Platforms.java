@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
+import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForClass;
+
 import dev.neuralnexus.modapi.metadata.impl.platform.Bukkit;
 import dev.neuralnexus.modapi.metadata.impl.platform.BungeeCord;
 import dev.neuralnexus.modapi.metadata.impl.platform.Fabric;
@@ -13,9 +15,17 @@ import dev.neuralnexus.modapi.metadata.impl.platform.Hybrid;
 import dev.neuralnexus.modapi.metadata.impl.platform.Sponge;
 import dev.neuralnexus.modapi.metadata.impl.platform.Vanilla;
 import dev.neuralnexus.modapi.metadata.impl.platform.Velocity;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.BukkitMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.NeoForgeMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.VanillaMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public final class Platforms
         implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Sponge, Vanilla, Velocity {
@@ -28,18 +38,59 @@ public final class Platforms
      */
     public static List<Platform> get() {
         if (platforms == null) {
-            platforms = detectPlatforms();
+            platforms = detectPlatforms(true);
         }
         return platforms;
     }
 
     /**
-     * Detects all platforms that are available.
+     * Detects all platforms that are available. Doesn't need to be called manually, unless somehow
+     * it was called before all platforms were loaded.
      *
-     * @return An array of all detected platforms
+     * @return A list of detected platforms
      */
-    static ArrayList<Platform> detectPlatforms() {
-        ArrayList<Platform> platforms = new ArrayList<>();
+    public static List<Platform> detectPlatforms(boolean force) {
+        if (!force && platforms != null && !platforms.isEmpty()) {
+            return platforms;
+        }
+
+        // Forge
+        if (GOLDENFORGE.detect()) {
+            platforms.addAll(List.of(GOLDENFORGE, FORGE));
+            // Forge Hybrids
+        } else if (MCPCPLUSPLUS.detect()) {
+            platforms.addAll(List.of(MCPCPLUSPLUS, FORGE));
+        } else if (CAULDRON.detect()) {
+            platforms.addAll(List.of(CAULDRON, FORGE));
+        } else if (KCAULDRON.detect()) {
+            platforms.addAll(List.of(KCAULDRON, FORGE));
+        } else if (THERMOS.detect()) {
+            platforms.addAll(List.of(THERMOS, FORGE));
+        } else if (CRUCIBLE.detect()) {
+            platforms.addAll(List.of(CRUCIBLE, FORGE));
+        } else if (MAGMA.detect()) {
+            platforms.addAll(List.of(MAGMA, FORGE));
+        } else if (KETTING.detect()) {
+            platforms.addAll(List.of(KETTING, FORGE));
+        } else if (FORGE.detect()) {
+            platforms.add(FORGE);
+        }
+
+        if (NEOFORGE.detect()) {
+            platforms.add(NEOFORGE);
+        }
+
+        // Fabric
+        if (QUILT.detect()) {
+            platforms.addAll(List.of(QUILT, FABRIC));
+            // Fabric Hybrids
+        } else if (CARDBOARD.detect()) {
+            platforms.addAll(List.of(CARDBOARD, FABRIC));
+        } else if (BANNER.detect()) {
+            platforms.addAll(List.of(BANNER, FABRIC));
+        } else if (FABRIC.detect()) {
+            platforms.add(FABRIC);
+        }
 
         // Bukkit
         if (PURPUR.detect()) {
@@ -68,44 +119,6 @@ public final class Platforms
             platforms.addAll(List.of(WATERFALL, BUNGEECORD));
         } else if (BUNGEECORD.detect()) {
             platforms.add(BUNGEECORD);
-        }
-
-        // Fabric
-        if (QUILT.detect()) {
-            platforms.addAll(List.of(QUILT, FABRIC));
-            // Fabric Hybrids
-        } else if (CARDBOARD.detect()) {
-            platforms.addAll(List.of(CARDBOARD, FABRIC));
-        } else if (BANNER.detect()) {
-            platforms.addAll(List.of(BANNER, FABRIC));
-        } else if (FABRIC.detect()) {
-            platforms.add(FABRIC);
-        }
-
-        // Forge
-        if (GOLDENFORGE.detect()) {
-            platforms.addAll(List.of(GOLDENFORGE, FORGE));
-            // Forge Hybrids
-        } else if (MCPCPLUSPLUS.detect()) {
-            platforms.addAll(List.of(MCPCPLUSPLUS, FORGE));
-        } else if (CAULDRON.detect()) {
-            platforms.addAll(List.of(CAULDRON, FORGE));
-        } else if (KCAULDRON.detect()) {
-            platforms.addAll(List.of(KCAULDRON, FORGE));
-        } else if (THERMOS.detect()) {
-            platforms.addAll(List.of(THERMOS, FORGE));
-        } else if (CRUCIBLE.detect()) {
-            platforms.addAll(List.of(CRUCIBLE, FORGE));
-        } else if (MAGMA.detect()) {
-            platforms.addAll(List.of(MAGMA, FORGE));
-        } else if (KETTING.detect()) {
-            platforms.addAll(List.of(KETTING, FORGE));
-        } else if (FORGE.detect()) {
-            platforms.add(FORGE);
-        }
-
-        if (NEOFORGE.detect()) {
-            platforms.add(NEOFORGE);
         }
 
         // Hybrid
@@ -148,14 +161,6 @@ public final class Platforms
         return get().contains(WATERFALL);
     }
 
-    public static boolean isLightFall() {
-        return get().contains(LIGHTFALL);
-    }
-
-    public static boolean isTravertine() {
-        return get().contains(TRAVERTINE);
-    }
-
     public static boolean isFabric() {
         return get().contains(FABRIC);
     }
@@ -165,7 +170,7 @@ public final class Platforms
     }
 
     public static boolean isFabricHybrid() {
-        return get().contains(BUKKIT) || get().contains(FABRIC);
+        return get().contains(BUKKIT) && get().contains(FABRIC);
     }
 
     public static boolean isForge() {
@@ -173,7 +178,7 @@ public final class Platforms
     }
 
     public static boolean isForgeHybrid() {
-        return get().contains(BUKKIT) || get().contains(FORGE);
+        return get().contains(BUKKIT) && get().contains(FORGE);
     }
 
     public static boolean isNeoForge() {
@@ -209,5 +214,28 @@ public final class Platforms
 
     public static boolean isMixedForgeFabric() {
         return get().contains(FORGE) && get().contains(FABRIC);
+    }
+
+    static final class Meta {
+        public static Optional<Platform.Meta> lookup(Platform platform) {
+            if (platform.isNeoForge()) {
+                return Optional.of(new NeoForgeMeta());
+            } else if (platform.isForge()) {
+                return Optional.of(ForgeData.create());
+            } else if (platform.isFabric()) {
+                return Optional.of(new FabricMeta());
+            } else if (platform.isSponge()) {
+                return Optional.of(SpongeData.create());
+            } else if (platform.isBukkit()) {
+                return Optional.of(new BukkitMeta());
+            } else if (platform.isBungeeCord()) {
+                return Optional.of(new BungeeCordMeta());
+            } else if (platform.isVelocity()) {
+                return Optional.of(new VelocityMeta());
+            } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
+                return Optional.of(new VanillaMeta());
+            }
+            return Optional.empty();
+        }
     }
 }

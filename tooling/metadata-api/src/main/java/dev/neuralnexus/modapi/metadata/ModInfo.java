@@ -21,9 +21,16 @@ public interface ModInfo {
     String name();
 
     /**
-     * Get the mod version
+     * Get the mod asString
      *
-     * @return The mod version
+     * @return The mod asString
      */
     String version();
+
+    /**
+     * Get the mod's platform
+     *
+     * @return The mod's platform
+     */
+    Platform platform();
 }

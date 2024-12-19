@@ -9,9 +9,9 @@ import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForC
 
 import dev.neuralnexus.modapi.metadata.Platform;
 
-public class PlatformImpl implements Platform {
+public final class PlatformImpl implements Platform {
     private final String name;
-    private final String classNames[];
+    private final String[] classNames;
     private boolean cached = false;
     private boolean detected = false;
 

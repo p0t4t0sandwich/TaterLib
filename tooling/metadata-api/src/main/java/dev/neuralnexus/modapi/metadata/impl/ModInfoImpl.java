@@ -6,6 +6,8 @@
 package dev.neuralnexus.modapi.metadata.impl;
 
 import dev.neuralnexus.modapi.metadata.ModInfo;
+import dev.neuralnexus.modapi.metadata.Platform;
 
 /** Stores information about a mod */
-public record ModInfoImpl(String id, String name, String version) implements ModInfo {}
+public record ModInfoImpl(String id, String name, String version, Platform platform)
+        implements ModInfo {}

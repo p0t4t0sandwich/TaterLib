@@ -3,15 +3,18 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.impl.data.forge;
+package dev.neuralnexus.modapi.metadata.impl.platform.meta.forge;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
+import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -21,7 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the FMLLoader platform */
-public class FMLLoaderData implements PlatformData {
+public class FMLLoaderMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
         String version = "Unknown";
@@ -47,7 +50,7 @@ public class FMLLoaderData implements PlatformData {
     }
 
     @Override
-    public String modLoaderVersion() {
+    public String loaderVersion() {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V17)) {
             return ForgeVersion_13_16.forgeVersion();
@@ -71,16 +74,17 @@ public class FMLLoaderData implements PlatformData {
                                 new ModInfoImpl(
                                         modContainer.getModId(),
                                         modContainer.getDisplayName(),
-                                        modContainer.getVersion().toString()))
+                                        modContainer.getVersion().toString(),
+                                        Platforms.FORGE))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Logger logger(String pluginId) {
+    public Logger<?> logger(String pluginId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18_2)) {
-            return ForgeLogger_7_181.logger(pluginId);
+            return new ApacheLogger(pluginId);
         }
-        return ForgeLogger_182_21.logger(pluginId);
+        return new Slf4jLogger(pluginId);
     }
 }

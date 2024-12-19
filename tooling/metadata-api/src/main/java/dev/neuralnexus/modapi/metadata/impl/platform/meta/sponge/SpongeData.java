@@ -3,19 +3,19 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.impl.data.sponge;
+package dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForMethod;
 
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
 
 /** Stores data about the Fabric platform */
-public class SpongeData {
-    public static PlatformData create() {
+public final class SpongeData {
+    public static Platform.Meta create() {
         if (checkForMethod("org.spongepowered.api.Sponge", "platform")) {
-            return new SpongeModernData();
+            return new SpongeModernMeta();
         } else if (checkForMethod("org.spongepowered.api.Sponge", "getPlatform")) {
-            return new SpongeLegacyData();
+            return new SpongeLegacyMeta();
         } else {
             return null;
         }

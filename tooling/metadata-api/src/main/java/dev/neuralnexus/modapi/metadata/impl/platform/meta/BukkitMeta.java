@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.impl.data.bukkit;
+package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFolder;
 
@@ -12,7 +12,8 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 
@@ -24,23 +25,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the Bukkit platform */
-public class BukkitData implements PlatformData {
+public final class BukkitMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(Bukkit.getServer().getVersion());
     }
 
     @Override
-    public String modLoaderVersion() {
+    public String loaderVersion() {
         return Bukkit.getServer().getVersion();
     }
 
     @Override
     public Mappings mappings() {
-        if (Bukkit.getServer().getVersion().contains("Paper")
-                || this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
+        if (Platforms.isPaper() && this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
             return Mappings.MOJMAP;
-        } else if (this.minecraftVersion().isAtLeast(MinecraftVersions.V8)) {
+        } else if (Platforms.isSpigot()) {
             return Mappings.SPIGOT;
         }
         return Mappings.OFFICIAL;
@@ -54,7 +54,8 @@ public class BukkitData implements PlatformData {
                                 new ModInfoImpl(
                                         plugin.getName(),
                                         plugin.getName(),
-                                        plugin.getDescription().getVersion()))
+                                        plugin.getDescription().getVersion(),
+                                        Platforms.BUKKIT))
                 .collect(Collectors.toList());
     }
 

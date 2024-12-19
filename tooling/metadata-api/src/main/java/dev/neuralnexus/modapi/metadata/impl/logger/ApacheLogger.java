@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 
 /** A generic Apache implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public class ApacheLogger implements Logger<org.apache.logging.log4j.Logger> {
+public final class ApacheLogger implements Logger<org.apache.logging.log4j.Logger> {
     private final org.apache.logging.log4j.Logger logger;
 
     public ApacheLogger(String pluginId) {

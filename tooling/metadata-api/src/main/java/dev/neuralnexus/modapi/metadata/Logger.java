@@ -10,7 +10,7 @@ public interface Logger<T> {
     // TODO: conditionally apply TextUtil.ansiParser based on the platform
 
     static Logger<?> create(String pluginId) {
-        return PlatformData.instance().logger(pluginId);
+        return MetaAPI.instance().logger(pluginId);
     }
 
     /**
@@ -18,7 +18,7 @@ public interface Logger<T> {
      *
      * @return The underlying logger
      */
-    Object getLogger();
+    T getLogger();
 
     /**
      * Logs an info message.

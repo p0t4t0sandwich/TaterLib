@@ -13,6 +13,7 @@ import java.util.Map;
 public interface MinecraftVersion {
     String Unknown = "unknown";
     int UNKNOWN_PROTOCOL = -1;
+    ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
     MinecraftVersion UNKNOWN =
             MinecraftVersionImpl.of(Unknown, UNKNOWN_PROTOCOL, ProtocolType.UNKNOWN);
     Map<String, Integer> OrdinalCache = new HashMap<>();
@@ -20,7 +21,7 @@ public interface MinecraftVersion {
     /**
      * Create a MinecraftVersion from a string.
      *
-     * @param version The version to create
+     * @param version The asString to create
      * @return The MinecraftVersion
      */
     static MinecraftVersion of(String version) {
@@ -28,40 +29,47 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get the version of Minecraft the server is running.
+     * Get the asString of Minecraft the server is running.
      *
-     * @return The version
+     * @return The asString
      */
-    String version();
+    String asString();
 
     /**
-     * Get the protocol version of the Minecraft server. -1 if unknown
+     * Get the protocol asString of the Minecraft server. -1 if unknown
      *
-     * @return The protocol version
+     * @return The protocol asString
      */
     int protocol();
 
     /**
-     * Get if the version is a snapshot.
+     * Get the protocol type of the Minecraft server. UNKNOWN if unknown
      *
-     * @return If the version is a snapshot
+     * @return The protocol type
+     */
+    ProtocolType protocolType();
+
+    /**
+     * Get if the asString is a snapshot.
+     *
+     * @return If the asString is a snapshot
      */
     boolean snapshot();
 
     /**
-     * Get the ordinal of the version in the list of versions. (Cursed alternative to enums)
+     * Get the ordinal of the asString in the list of versions. (Cursed alternative to enums)
      *
      * @return The ordinal
      */
     default int ord() {
-        String ver = this.version();
+        String ver = this.asString();
         if (OrdinalCache.containsKey(ver)) {
             return OrdinalCache.get(ver);
         }
         int ord = -1;
         for (MinecraftVersion v : MinecraftVersions.Cache.versions()) {
             ord++;
-            if (v.version().equals(ver)) {
+            if (v.asString().equals(ver)) {
                 return ord;
             }
         }
@@ -70,27 +78,27 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to the specified version.
+     * Get if the asString of Minecraft the server is running is equal to the specified asString.
      *
-     * @param version The version to check
-     * @return If the version of Minecraft the server is running is equal to the specified version
+     * @param version The asString to check
+     * @return If the asString of Minecraft the server is running is equal to the specified asString
      */
     default boolean is(String version) {
-        return this.version().equals(version);
+        return this.asString().equals(version);
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to the specified version.
+     * Get if the asString of Minecraft the server is running is equal to the specified asString.
      *
-     * @param version The version to check
-     * @return If the version of Minecraft the server is running is equal to the specified version
+     * @param version The asString to check
+     * @return If the asString of Minecraft the server is running is equal to the specified asString
      */
     default boolean is(MinecraftVersion version) {
         return this == version;
     }
 
     /**
-     * Get if the version of Minecraft the server is running is within the defined range.
+     * Get if the asString of Minecraft the server is running is within the defined range.
      *
      * @param startInclusive The start of the range
      * @param start The start of the range
@@ -114,8 +122,8 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is within the defined range. Assumed to
-     * be an inclusive range.
+     * Get if the asString of Minecraft the server is running is within the defined range. Assumed
+     * to be an inclusive range.
      *
      * @param start The start of the range
      * @param end The end of the range
@@ -125,11 +133,11 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is within the defined range. <br>
+     * Get if the asString of Minecraft the server is running is within the defined range. <br>
      * Strings are read in the format of: <b>(1.17,1.20]</b> or <b>[1.17,)</b> or <b>(,1.20]</b>
      *
      * @param rangeString The range to check
-     * @return If the version of Minecraft the server is running is within the defined range
+     * @return If the asString of Minecraft the server is running is within the defined range
      */
     default boolean parseRange(String rangeString) {
         rangeString = rangeString.trim();
@@ -167,84 +175,84 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get if the version of Minecraft the server is running is older than the specified version.
+     * Get if the asString of Minecraft the server is running is older than the specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is older.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is older.
      */
     default boolean isNewerThan(MinecraftVersion version) {
         return this.ord() > version.ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is older than the specified version.
+     * Get if the asString of Minecraft the server is running is older than the specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is older.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is older.
      */
     default boolean isNewerThan(String version) {
         return this.ord() > MinecraftVersions.of(version).ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or newer than the specified
-     * version.
+     * Get if the asString of Minecraft the server is running is equal to or newer than the
+     * specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or newer.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is equal to or newer.
      */
     default boolean isAtLeast(MinecraftVersion version) {
         return this.ord() >= version.ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or newer than the specified
-     * version.
+     * Get if the asString of Minecraft the server is running is equal to or newer than the
+     * specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or newer.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is equal to or newer.
      */
     default boolean isAtLeast(String version) {
         return this.ord() >= MinecraftVersions.of(version).ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is newer than the specified version.
+     * Get if the asString of Minecraft the server is running is newer than the specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is newer.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is newer.
      */
     default boolean isOlderThan(MinecraftVersion version) {
         return this.ord() < version.ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is newer than the specified version.
+     * Get if the asString of Minecraft the server is running is newer than the specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is newer.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is newer.
      */
     default boolean isOlderThan(String version) {
         return this.ord() < MinecraftVersions.of(version).ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or older than the specified
-     * version.
+     * Get if the asString of Minecraft the server is running is equal to or older than the
+     * specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or older.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is equal to or older.
      */
     default boolean isAtMost(MinecraftVersion version) {
         return this.ord() <= version.ord();
     }
 
     /**
-     * Get if the version of Minecraft the server is running is equal to or older than the specified
-     * version.
+     * Get if the asString of Minecraft the server is running is equal to or older than the
+     * specified asString.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or older.
+     * @param version The asString to check.
+     * @return If the Minecraft asString is equal to or older.
      */
     default boolean isAtMost(String version) {
         return this.ord() <= MinecraftVersions.of(version).ord();
