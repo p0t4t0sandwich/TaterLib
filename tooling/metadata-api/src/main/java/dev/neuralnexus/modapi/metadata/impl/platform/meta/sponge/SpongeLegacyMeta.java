@@ -51,7 +51,7 @@ public final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<org.slf4j.Logger> logger(String pluginId) {
-        return new Slf4jLogger(pluginId);
+    public Logger<org.slf4j.Logger> logger(String modId) {
+        return new Slf4jLogger(modId);
     }
 }

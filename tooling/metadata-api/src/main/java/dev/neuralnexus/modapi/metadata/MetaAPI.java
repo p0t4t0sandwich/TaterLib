@@ -17,6 +17,8 @@ public final class MetaAPI {
 
     private MetaAPI() {}
 
+    // ----------------------------- Platform -----------------------------
+
     private Platform primaryPlatform;
 
     /**
@@ -25,7 +27,7 @@ public final class MetaAPI {
      * @param platform The platform
      * @throws RedefinePrimaryPlatformException if the primary platform is already defined
      */
-    public void setPrimaryPlatform(Platform platform) {
+    public void setPrimaryPlatform(Platform platform) throws RedefinePrimaryPlatformException {
         if (this.primaryPlatform != null) {
             throw new RedefinePrimaryPlatformException();
         }
@@ -38,7 +40,7 @@ public final class MetaAPI {
      * @return The platform
      * @throws NoPrimaryPlatformException if the primary platform is not detected
      */
-    public Platform primaryPlatform() {
+    public Platform primaryPlatform() throws NoPrimaryPlatformException {
         if (this.primaryPlatform == null) {
             throw new NoPrimaryPlatformException();
         }
@@ -52,7 +54,7 @@ public final class MetaAPI {
      * @return True, if they match, false otherwise
      * @throws NoPrimaryPlatformException if the primary platform is not detected
      */
-    public boolean isPrimaryPlatform(Platform platform) {
+    public boolean isPrimaryPlatform(Platform platform) throws NoPrimaryPlatformException {
         return this.primaryPlatform() == platform;
     }
 
@@ -62,9 +64,9 @@ public final class MetaAPI {
      * MetaAPI#primaryPlatform()}
      *
      * @return The platform
-     * @throws NoPlatformException if there is no platform can be detected
+     * @throws NoPlatformException if there is no platform detected
      */
-    public Platform platform() {
+    public Platform platform() throws NoPlatformException {
         if (this.primaryPlatform == null) {
             return Platforms.get().stream().findFirst().orElseThrow(NoPlatformException::new);
         }
@@ -73,38 +75,85 @@ public final class MetaAPI {
 
     /**
      * Get the metadata for the primary platform
+     *
      * @return The Platform's metadata
+     * @throws NoPrimaryPlatformException if the primary platform is not detected
+     * @throws NoPlatformMetaException if there's no metadata for the platform
      */
-    public Platform.Meta meta() {
-        if (this.primaryPlatform == null) {
-            throw new NoPrimaryPlatformException();
-        }
-        return Platforms.Meta.lookup(this.primaryPlatform)
-                .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform));
+    public Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException {
+        return Platforms.Meta.lookup(this.primaryPlatform())
+                .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform()));
     }
 
+    /**
+     * Get the metadata for the specified platform
+     *
+     * @param platform The Platform
+     * @return The Platform's metadata
+     */
     public Optional<Platform.Meta> meta(Platform platform) {
         return Platforms.Meta.lookup(platform);
     }
 
-    /** Get a new logger for the specified pluginId. */
-    public Logger<?> logger(String pluginId) {
-        Platform platform;
-        if (this.primaryPlatform == null) {
-            platform = Platforms.get().stream().findFirst().orElseThrow(NoPlatformException::new);
-        } else {
-            platform = this.primaryPlatform;
-        }
-        return this.meta(platform)
-                .orElseThrow(() -> new NoPlatformMetaException(platform))
-                .logger(pluginId);
-    }
+    // ----------------------------- Platform.Meta Getters -----------------------------
 
-    /** Get the asString of Minecraft the server is running. */
+    /**
+     * Get the version of Minecraft the server is running
+     *
+     * @return The current Minecraft version
+     */
     public MinecraftVersion version() {
-        return this.meta().minecraftVersion();
+        return Platforms.Meta.lookupAll().stream()
+                .map(Platform.Meta::minecraftVersion)
+                .findFirst()
+                .orElse(MinecraftVersion.UNKNOWN);
     }
 
+    /**
+     * Get if a mod is loaded <br>
+     * Note: Unless you need to check at a specific time, it's best to run this check after the
+     * server has started
+     *
+     * @param nameOrId The name of the plugin or modId of the mod
+     * @return True if the mod is loaded, false otherwise
+     */
+    public boolean isLoaded(String nameOrId) {
+        return Platforms.Meta.lookupAll().stream().anyMatch(meta -> meta.isLoaded(nameOrId));
+    }
+
+    /**
+     * Get if a mod is loaded <br>
+     * Note: Unless you need to check at a specific time, it's best to run this check after the
+     * server has started
+     *
+     * @param platform The platform
+     * @param nameOrId The name of the plugin or modId of the mod
+     * @return True if the mod is loaded, false otherwise
+     * @throws NoPlatformMetaException if there's no metadata for the platform
+     */
+    public boolean isLoaded(Platform platform, String nameOrId) throws NoPlatformMetaException {
+        return Platforms.Meta.lookup(platform)
+                .map(meta -> meta.isLoaded(nameOrId))
+                .orElseThrow(() -> new NoPlatformMetaException(platform));
+    }
+
+    /**
+     * Get a new logger for the specified modId
+     *
+     * @param modId The mod id
+     * @return A new Logger
+     * @throws NoPlatformMetaException if there's no metadata for the platform
+     */
+    public Logger<?> logger(String modId) throws NoPlatformMetaException {
+        return Platforms.Meta.lookupAll().stream()
+                .map(meta -> meta.logger(modId))
+                .findFirst()
+                .orElseThrow(NoPlatformMetaException::new);
+    }
+
+    // ----------------------------- Exceptions -----------------------------
+
+    /** Exception for when there's no platform found */
     public static final class NoPlatformException extends IllegalStateException {
         NoPlatformException() {
             super(
@@ -112,6 +161,7 @@ public final class MetaAPI {
         }
     }
 
+    /** Exception for when someone tries to redefine the primary platform */
     public static final class RedefinePrimaryPlatformException extends IllegalStateException {
         RedefinePrimaryPlatformException() {
             super(
@@ -119,6 +169,7 @@ public final class MetaAPI {
         }
     }
 
+    /** Exception for when there's no primary platform specified */
     public static final class NoPrimaryPlatformException extends IllegalStateException {
         NoPrimaryPlatformException() {
             super(
@@ -126,12 +177,18 @@ public final class MetaAPI {
         }
     }
 
+    /** Exception for when there's no platform metadata detected for the specified platform */
     public static final class NoPlatformMetaException extends IllegalStateException {
         NoPlatformMetaException(Platform platform) {
             super(
                     "No metadata found for platform "
                             + platform.name()
                             + ". This shouldn't normally happen, please file a bug report");
+        }
+
+        NoPlatformMetaException() {
+            super(
+                    "No metadata found for the platform. This shouldn't normally happen, please file a bug report");
         }
     }
 }

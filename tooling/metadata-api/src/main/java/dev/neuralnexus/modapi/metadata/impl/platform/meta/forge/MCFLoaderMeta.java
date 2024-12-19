@@ -56,7 +56,7 @@ public class MCFLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<org.apache.logging.log4j.Logger> logger(String pluginId) {
-        return new ApacheLogger(pluginId);
+    public Logger<org.apache.logging.log4j.Logger> logger(String modId) {
+        return new ApacheLogger(modId);
     }
 }

@@ -45,8 +45,8 @@ public final class VanillaMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String pluginId) {
-        // TODO: Do some asString parsing and grab the vanilla logger factory
-        return new SystemLogger(pluginId);
+    public Logger<?> logger(String modId) {
+        // TODO: Do some version parsing and grab the vanilla logger factory
+        return new SystemLogger(modId);
     }
 }

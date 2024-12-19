@@ -9,8 +9,8 @@ package dev.neuralnexus.modapi.metadata;
 public interface Logger<T> {
     // TODO: conditionally apply TextUtil.ansiParser based on the platform
 
-    static Logger<?> create(String pluginId) {
-        return MetaAPI.instance().logger(pluginId);
+    static Logger<?> create(String modId) {
+        return MetaAPI.instance().logger(modId);
     }
 
     /**

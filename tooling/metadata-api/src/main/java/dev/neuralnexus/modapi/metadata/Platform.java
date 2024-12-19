@@ -125,6 +125,7 @@ public interface Platform {
          *
          * @return The platform's mappings
          */
+        // TODO: Cover edge cases with Connector and Kilt
         Mappings mappings();
 
         /**
@@ -147,6 +148,7 @@ public interface Platform {
          * server has started
          *
          * @param nameOrId The name of the plugin or modId of the mod
+         * @return True if the mod is loaded, false otherwise
          */
         default boolean isLoaded(String nameOrId) {
             return modList().stream()
