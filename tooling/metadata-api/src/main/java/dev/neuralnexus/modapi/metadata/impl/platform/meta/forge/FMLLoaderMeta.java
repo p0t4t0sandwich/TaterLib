@@ -80,11 +80,11 @@ public class FMLLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<?> logger(String pluginId) {
+    public Logger<?> logger(String modId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18_2)) {
-            return new ApacheLogger(pluginId);
+            return new ApacheLogger(modId);
         }
-        return new Slf4jLogger(pluginId);
+        return new Slf4jLogger(modId);
     }
 }

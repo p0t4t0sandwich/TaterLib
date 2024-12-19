@@ -217,15 +217,21 @@ public final class Platforms
     }
 
     static final class Meta {
+        /**
+         * Get the metadata for the specified platform
+         *
+         * @param platform The Platform
+         * @return The Platform's metadata
+         */
         public static Optional<Platform.Meta> lookup(Platform platform) {
             if (platform.isNeoForge()) {
                 return Optional.of(new NeoForgeMeta());
             } else if (platform.isForge()) {
-                return Optional.of(ForgeData.create());
+                return Optional.ofNullable(ForgeData.create());
             } else if (platform.isFabric()) {
                 return Optional.of(new FabricMeta());
             } else if (platform.isSponge()) {
-                return Optional.of(SpongeData.create());
+                return Optional.ofNullable(SpongeData.create());
             } else if (platform.isBukkit()) {
                 return Optional.of(new BukkitMeta());
             } else if (platform.isBungeeCord()) {
@@ -236,6 +242,19 @@ public final class Platforms
                 return Optional.of(new VanillaMeta());
             }
             return Optional.empty();
+        }
+
+        /**
+         * Get the metadata for the primary platform
+         *
+         * @return The Platform's metadata
+         */
+        public static List<Platform.Meta> lookupAll() {
+            return get().stream()
+                    .map(Meta::lookup)
+                    .filter(Optional::isPresent)
+                    .map(Optional::get)
+                    .toList();
         }
     }
 }

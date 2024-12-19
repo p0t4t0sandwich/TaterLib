@@ -10,14 +10,14 @@ import dev.neuralnexus.modapi.metadata.Logger;
 /** A generic implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
 public final class SystemLogger implements Logger<Object> {
-    private final String pluginId;
+    private final String modId;
 
-    public SystemLogger(String pluginId) {
-        this.pluginId = pluginId;
+    public SystemLogger(String modId) {
+        this.modId = modId;
     }
 
     public String prependPrefix(String message) {
-        return "[" + this.pluginId + "] " + message;
+        return "[" + this.modId + "] " + message;
     }
 
     @Override

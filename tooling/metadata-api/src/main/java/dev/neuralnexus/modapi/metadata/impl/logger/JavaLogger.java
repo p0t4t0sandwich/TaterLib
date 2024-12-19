@@ -17,9 +17,9 @@ public final class JavaLogger implements Logger<java.util.logging.Logger> {
         return this.logger;
     }
 
-    public JavaLogger(String pluginId, Object logger) {
+    public JavaLogger(String modId, Object logger) {
         this.logger = (java.util.logging.Logger) logger;
-        this.prefix = "[" + pluginId + "] ";
+        this.prefix = "[" + modId + "] ";
     }
 
     @Override

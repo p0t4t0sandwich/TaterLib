@@ -6,7 +6,7 @@
 package dev.neuralnexus.modapi.metadata;
 
 /**
- * Enum to identify what "side" code is running on. Explination borrowed from <a
+ * Enum to identify what "side" code is running on. Explanation borrowed from <a
  * href="https://fabricmc.net/wiki/tutorial:side">Fabric's wiki</a>
  *
  * <table>

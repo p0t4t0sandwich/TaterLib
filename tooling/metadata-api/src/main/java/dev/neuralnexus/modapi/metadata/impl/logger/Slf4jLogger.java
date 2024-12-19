@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 public final class Slf4jLogger implements Logger<org.slf4j.Logger> {
     private final org.slf4j.Logger logger;
 
-    public Slf4jLogger(String pluginId) {
-        this.logger = LoggerFactory.getLogger(pluginId);
+    public Slf4jLogger(String modId) {
+        this.logger = LoggerFactory.getLogger(modId);
     }
 
     @Override
