@@ -15,21 +15,12 @@ import dev.neuralnexus.modapi.metadata.impl.version.Release;
 
 import java.lang.reflect.Field;
 
-public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Alpha, Beta, Release {
-    private static MinecraftVersion version;
-
-    /** Get the version of Minecraft the server is running. */
-    public static MinecraftVersion version() {
-        if (version == MinecraftVersion.UNKNOWN) {
-            version = PlatformData.instance().minecraftVersion();
-        }
-        return version;
-    }
-
+public final class MinecraftVersions
+        implements PreClassic, Classic, Indev, Infdev, Alpha, Beta, Release {
     /**
      * Create a MinecraftVersion from a string.
      *
-     * @param version The version to create
+     * @param version The asString to create
      * @return The MinecraftVersion
      */
     static MinecraftVersion of(String version) {
@@ -39,14 +30,14 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
         MinecraftVersion ver = MinecraftVersion.UNKNOWN;
         if (!version.toLowerCase().contains("a1") && !version.toLowerCase().contains("b1")) {
             for (MinecraftVersion v : Cache.reversedVersions()) {
-                if (version.contains(v.version())) {
+                if (version.contains(v.asString())) {
                     ver = v;
                     break;
                 }
             }
         } else {
             for (MinecraftVersion v : Cache.versions()) {
-                if (version.contains(v.version())) {
+                if (version.contains(v.asString())) {
                     ver = v;
                     break;
                 }
@@ -75,7 +66,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     preClassicVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get PreClassic version", e);
+                    logger.error("Failed to get PreClassic asString", e);
                 }
             }
 
@@ -88,7 +79,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     classicVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Classic version", e);
+                    logger.error("Failed to get Classic asString", e);
                 }
             }
 
@@ -101,7 +92,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     indevVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Indev version", e);
+                    logger.error("Failed to get Indev asString", e);
                 }
             }
 
@@ -114,7 +105,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     infdevVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Infdev version", e);
+                    logger.error("Failed to get Infdev asString", e);
                 }
             }
 
@@ -127,7 +118,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     alphaVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Alpha version", e);
+                    logger.error("Failed to get Alpha asString", e);
                 }
             }
 
@@ -140,7 +131,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     betaVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Beta version", e);
+                    logger.error("Failed to get Beta asString", e);
                 }
             }
 
@@ -156,7 +147,7 @@ public class MinecraftVersions implements PreClassic, Classic, Indev, Infdev, Al
                     count++;
                     releaseVersions[count] = version;
                 } catch (IllegalAccessException e) {
-                    logger.error("Failed to get Release version", e);
+                    logger.error("Failed to get Release asString", e);
                 }
             }
 

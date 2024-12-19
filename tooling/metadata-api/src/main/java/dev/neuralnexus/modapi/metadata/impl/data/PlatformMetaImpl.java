@@ -11,43 +11,43 @@ import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.data.bukkit.BukkitData;
-import dev.neuralnexus.modapi.metadata.impl.data.bungeecord.BungeeCordData;
-import dev.neuralnexus.modapi.metadata.impl.data.fabric.FabricData;
-import dev.neuralnexus.modapi.metadata.impl.data.forge.ForgeData;
-import dev.neuralnexus.modapi.metadata.impl.data.neoforge.NeoForgeData;
-import dev.neuralnexus.modapi.metadata.impl.data.sponge.SpongeData;
-import dev.neuralnexus.modapi.metadata.impl.data.vanilla.VanillaData;
-import dev.neuralnexus.modapi.metadata.impl.data.velocity.VelocityData;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.BukkitMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.NeoForgeMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.VanillaMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
 
 import java.nio.file.Path;
 import java.util.List;
 
-public class PlatformDataImpl implements PlatformData {
-    private static PlatformData INSTANCE;
+public final class PlatformMetaImpl implements Platform.Meta {
+    private static Platform.Meta INSTANCE;
     private static MinecraftVersion MC_VERSION = MinecraftVersion.UNKNOWN;
     private static String MOD_LOADER_VERSION = "Unknown";
 
-    public static PlatformData getInstance() {
+    public static Platform.Meta getInstance() {
         if (INSTANCE == null) {
             if (Platforms.isBungeeCord()) {
-                INSTANCE = new BungeeCordData();
+                INSTANCE = new BungeeCordMeta();
             } else if (Platforms.isFabric()) {
-                INSTANCE = new FabricData();
+                INSTANCE = new FabricMeta();
             } else if (Platforms.isNeoForge()) {
-                INSTANCE = new NeoForgeData();
+                INSTANCE = new NeoForgeMeta();
             } else if (Platforms.isForge()) {
                 INSTANCE = ForgeData.create();
             } else if (Platforms.isBukkit()) {
-                INSTANCE = new BukkitData();
+                INSTANCE = new BukkitMeta();
             } else if (Platforms.isSponge()) {
                 INSTANCE = SpongeData.create();
             } else if (Platforms.isVelocity()) {
-                INSTANCE = new VelocityData();
+                INSTANCE = new VelocityMeta();
             } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
-                INSTANCE = new VanillaData();
+                INSTANCE = new VanillaMeta();
             }
         }
         return INSTANCE;
@@ -64,9 +64,9 @@ public class PlatformDataImpl implements PlatformData {
     }
 
     @Override
-    public String modLoaderVersion() {
+    public String loaderVersion() {
         if (MOD_LOADER_VERSION.equals("Unknown")) {
-            MOD_LOADER_VERSION = INSTANCE.modLoaderVersion();
+            MOD_LOADER_VERSION = INSTANCE.loaderVersion();
         }
         return MOD_LOADER_VERSION;
     }

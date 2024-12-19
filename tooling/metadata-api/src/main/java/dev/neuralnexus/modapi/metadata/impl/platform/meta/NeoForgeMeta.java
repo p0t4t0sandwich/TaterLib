@@ -3,14 +3,15 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.impl.data.neoforge;
+package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
@@ -21,14 +22,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the NeoForge platform */
-public class NeoForgeData implements PlatformData {
+public class NeoForgeMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(FMLLoader.versionInfo().mcVersion());
     }
 
     @Override
-    public String modLoaderVersion() {
+    public String loaderVersion() {
         return FMLLoader.versionInfo().neoForgeVersion();
     }
 
@@ -48,7 +49,8 @@ public class NeoForgeData implements PlatformData {
                                 new ModInfoImpl(
                                         modContainer.getModId(),
                                         modContainer.getDisplayName(),
-                                        modContainer.getVersion().toString()))
+                                        modContainer.getVersion().toString(),
+                                        Platforms.NEOFORGE))
                 .collect(Collectors.toList());
     }
 

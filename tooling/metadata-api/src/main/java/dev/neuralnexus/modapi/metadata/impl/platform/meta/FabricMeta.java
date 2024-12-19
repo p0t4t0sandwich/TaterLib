@@ -3,15 +3,18 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.metadata.impl.data.fabric;
+package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
+import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
+import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -19,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the Fabric platform */
-public class FabricData implements PlatformData {
+public class FabricMeta implements Platform.Meta {
     @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public MinecraftVersion minecraftVersion() {
@@ -33,7 +36,7 @@ public class FabricData implements PlatformData {
     }
 
     @Override
-    public String modLoaderVersion() {
+    public String loaderVersion() {
         return FabricLoader.getInstance()
                         .getModContainer("fabric-api-base")
                         .get()
@@ -64,19 +67,17 @@ public class FabricData implements PlatformData {
                                 new ModInfoImpl(
                                         modContainer.getMetadata().getId(),
                                         modContainer.getMetadata().getName(),
-                                        modContainer
-                                                .getMetadata()
-                                                .getVersion()
-                                                .getFriendlyString()))
+                                        modContainer.getMetadata().getVersion().getFriendlyString(),
+                                        Platforms.FABRIC))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Logger logger(String pluginId) {
+    public Logger<?> logger(String pluginId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18)) {
-            return FabricLogger_7_17.logger(pluginId);
+            return new ApacheLogger(pluginId);
         }
-        return FabricLogger_18_21.logger(pluginId);
+        return new Slf4jLogger(pluginId);
     }
 }

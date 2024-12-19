@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.metadata.impl.version;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 
 // 1
+@SuppressWarnings("unused")
 public interface PreClassic {
     MinecraftVersion RD_132211 = MinecraftVersionImpl.of("rd-132211");
     MinecraftVersion RD_132328 = MinecraftVersionImpl.of("rd-132328");

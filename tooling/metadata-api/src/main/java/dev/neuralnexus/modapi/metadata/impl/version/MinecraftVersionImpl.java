@@ -8,25 +8,14 @@ package dev.neuralnexus.modapi.metadata.impl.version;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ProtocolType;
 
-public class MinecraftVersionImpl implements MinecraftVersion {
+public final class MinecraftVersionImpl implements MinecraftVersion {
     private final String version;
     private int protocol = MinecraftVersion.UNKNOWN_PROTOCOL;
-    private ProtocolType protocolType = ProtocolType.UNKNOWN;
+    private ProtocolType protocolType = MinecraftVersion.UNKNOWN_PROTOCOL_TYPE;
     private boolean snapshot = false;
 
     private MinecraftVersionImpl(String version) {
         this.version = version;
-    }
-
-    private MinecraftVersionImpl(String version, int protocol) {
-        this.version = version;
-        this.protocol = protocol;
-    }
-
-    private MinecraftVersionImpl(String version, int protocol, boolean snapshot) {
-        this.version = version;
-        this.protocol = protocol;
-        this.snapshot = snapshot;
     }
 
     private MinecraftVersionImpl(String version, int protocol, ProtocolType protocolType) {
@@ -56,17 +45,8 @@ public class MinecraftVersionImpl implements MinecraftVersion {
         return new MinecraftVersionImpl(version, protocol, protocolType, snapshot);
     }
 
-    /** Purely for archival purposes, for protocol versions before the version was reset in Alpha */
-    public static MinecraftVersionImpl ignoreProto(
-            String version, int protocol, boolean disregardProtocol) {
-        if (disregardProtocol) {
-            protocol = MinecraftVersion.UNKNOWN_PROTOCOL;
-        }
-        return new MinecraftVersionImpl(version, protocol);
-    }
-
     @Override
-    public String version() {
+    public String asString() {
         return version;
     }
 
@@ -76,14 +56,19 @@ public class MinecraftVersionImpl implements MinecraftVersion {
     }
 
     @Override
+    public ProtocolType protocolType() {
+        return protocolType;
+    }
+
+    @Override
     public boolean snapshot() {
         return snapshot;
     }
 
     /**
-     * Get the version of Minecraft the server is running.
+     * Get the asString of Minecraft the server is running.
      *
-     * @return The version of Minecraft the server is running
+     * @return The asString of Minecraft the server is running
      */
     @Override
     public String toString() {

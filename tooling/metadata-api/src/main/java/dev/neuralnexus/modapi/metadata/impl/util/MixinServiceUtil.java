@@ -12,9 +12,9 @@ import java.io.IOException;
 /** Helper/wrapper class to prevent ClassNotFound errors when Mixin is not present. */
 public class MixinServiceUtil {
     /**
-     * Returns the Minecraft version.
+     * Returns the Minecraft asString.
      *
-     * @return The Minecraft version.
+     * @return The Minecraft asString.
      */
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static String mcVersion() throws ClassNotFoundException, IOException {

@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 /** Enum for platform runtime mappings */
 public enum Mappings {
+    UNKNOWN("unknown"),
     NONE("none"),
     OFFICIAL("official"),
     MOJMAP("mojmap"),
@@ -31,14 +32,14 @@ public enum Mappings {
     }
 
     public boolean is(String name) {
-        return this.name.equals(name);
+        return name.contains(this.name);
     }
 
     public static Mappings from(String name) {
         return Arrays.stream(values())
                 .filter(mappings -> mappings.is(name))
                 .findFirst()
-                .orElse(NONE);
+                .orElse(UNKNOWN);
     }
 
     @Override

@@ -9,7 +9,7 @@ import dev.neuralnexus.modapi.metadata.Logger;
 
 /** A generic implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public class SystemLogger implements Logger<Object> {
+public final class SystemLogger implements Logger<Object> {
     private final String pluginId;
 
     public SystemLogger(String pluginId) {
