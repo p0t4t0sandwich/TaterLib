@@ -12,12 +12,14 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
 import org.spongepowered.api.Sponge;
+import org.spongepowered.plugin.PluginContainer;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /** Stores data about the Sponge platform */
@@ -28,9 +30,23 @@ public final class SpongeModernMeta implements Platform.Meta {
     }
 
     @Override
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public String loaderVersion() {
-        return Sponge.pluginManager().plugin("sponge").get().metadata().version().toString();
+        Optional<PluginContainer> container = Sponge.pluginManager().plugin("sponge");
+        if (container.isPresent()) {
+            return container.get().metadata().version().toString();
+        } else {
+            return "Unknown";
+        }
+    }
+
+    @Override
+    public String apiVersion() {
+        Optional<PluginContainer> container = Sponge.pluginManager().plugin("sponge-api");
+        if (container.isPresent()) {
+            return container.get().metadata().version().toString();
+        } else {
+            return "Unknown";
+        }
     }
 
     @Override

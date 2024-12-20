@@ -118,7 +118,7 @@ public interface Platform {
          *
          * @return the modloader API asString
          */
-        //    String apiVersion();
+        String apiVersion();
 
         /**
          * Get the platform's mappings

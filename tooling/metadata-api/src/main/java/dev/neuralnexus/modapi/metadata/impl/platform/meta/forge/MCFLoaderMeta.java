@@ -11,8 +11,8 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
 import net.minecraftforge.fml.common.Loader;
 
@@ -34,6 +34,11 @@ public class MCFLoaderMeta implements Platform.Meta {
 
     @Override
     public String loaderVersion() {
+        return ForgeVersion_7_12.forgeVersion();
+    }
+
+    @Override
+    public String apiVersion() {
         return ForgeVersion_7_12.forgeVersion();
     }
 

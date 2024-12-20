@@ -12,12 +12,13 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.LauncherVersion;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -51,8 +52,12 @@ public class FMLLoaderMeta implements Platform.Meta {
 
     @Override
     public String loaderVersion() {
-        MinecraftVersion version = minecraftVersion();
-        if (version.isOlderThan(MinecraftVersions.V17)) {
+        return LauncherVersion.getVersion();
+    }
+
+    @Override
+    public String apiVersion() {
+        if (minecraftVersion().isOlderThan(MinecraftVersions.V17)) {
             return ForgeVersion_13_16.forgeVersion();
         }
         return ForgeVersion_17_21.forgeVersion();

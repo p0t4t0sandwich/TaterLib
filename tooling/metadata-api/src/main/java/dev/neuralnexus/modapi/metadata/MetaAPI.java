@@ -129,12 +129,31 @@ public final class MetaAPI {
      * @param platform The platform
      * @param nameOrId The name of the plugin or modId of the mod
      * @return True if the mod is loaded, false otherwise
-     * @throws NoPlatformMetaException if there's no metadata for the platform
      */
-    public boolean isLoaded(Platform platform, String nameOrId) throws NoPlatformMetaException {
-        return Platforms.Meta.lookup(platform)
-                .map(meta -> meta.isLoaded(nameOrId))
-                .orElseThrow(() -> new NoPlatformMetaException(platform));
+    public Optional<Boolean> isLoaded(Platform platform, String nameOrId) {
+        return Platforms.Meta.lookup(platform).map(meta -> meta.isLoaded(nameOrId));
+    }
+
+    /**
+     * Get the platform's mappings
+     *
+     * @return The platform's mappings
+     */
+    public Mappings mappings() {
+        return Platforms.Meta.lookupAll().stream()
+                .map(Platform.Meta::mappings)
+                .findFirst()
+                .orElse(Mappings.UNKNOWN);
+    }
+
+    /**
+     * Get the platform's mappings
+     *
+     * @param platform The platform
+     * @return The platform's mappings
+     */
+    public Optional<Mappings> mappings(Platform platform) {
+        return Platforms.Meta.lookup(platform).map(Platform.Meta::mappings);
     }
 
     /**

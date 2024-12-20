@@ -13,7 +13,6 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 
 import net.md_5.bungee.api.ProxyServer;
@@ -23,14 +22,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the BungeeCord platform */
-public class BungeeCordMeta implements Platform.Meta {
+public final class BungeeCordMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
-        return MinecraftVersion.of(ProxyServer.getInstance().getVersion());
+        return MinecraftVersion.of(ProxyServer.getInstance().getGameVersion());
     }
 
     @Override
     public String loaderVersion() {
+        return ProxyServer.getInstance().getVersion();
+    }
+
+    @Override
+    public String apiVersion() {
         return ProxyServer.getInstance().getVersion();
     }
 
