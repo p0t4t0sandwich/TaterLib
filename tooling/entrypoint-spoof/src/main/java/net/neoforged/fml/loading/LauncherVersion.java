@@ -3,19 +3,10 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package com.velocitypowered.api.util;
+package net.neoforged.fml.loading;
 
-/** Fake Velocity class */
-public class ProxyVersion {
-    public String getName() {
-        return "";
-    }
-
-    public String getVendor() {
-        return "";
-    }
-
-    public String getVersion() {
+public class LauncherVersion {
+    public static String getVersion() {
         return "";
     }
 }

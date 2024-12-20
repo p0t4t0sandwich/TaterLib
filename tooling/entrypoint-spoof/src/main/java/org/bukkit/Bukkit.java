@@ -8,6 +8,7 @@ package org.bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
@@ -37,13 +38,36 @@ public class Bukkit {
         return false;
     }
 
-    public static String getVersion() {
-        return "";
+    /**
+     * Gets the version string of this server implementation.
+     *
+     * @return version of this server implementation
+     */
+    @NotNull public static String getVersion() {
+        return server.getVersion();
     }
 
-    public static String getName() {
-        return "";
+    /**
+     * Gets the Bukkit version that this server is running.
+     *
+     * @return version of Bukkit
+     */
+    @NotNull public static String getBukkitVersion() {
+        return server.getBukkitVersion();
     }
+
+    // Paper start - expose game version
+    // Entrypoint-Spoof Note: Since Paper ~1.15
+    /**
+     * Gets the version of game this server implements
+     *
+     * @return version of game
+     */
+    @NotNull public static String getMinecraftVersion() {
+        return server.getMinecraftVersion();
+    }
+
+    // Paper end
 
     public static Player[] getOnlinePlayers() {
         return server.getOnlinePlayers();
