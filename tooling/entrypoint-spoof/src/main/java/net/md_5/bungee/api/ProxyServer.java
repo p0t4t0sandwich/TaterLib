@@ -17,9 +17,49 @@ public abstract class ProxyServer {
         return instance;
     }
 
+    /**
+     * Gets the name of the currently running proxy software.
+     *
+     * @return the name of this instance
+     */
+    public abstract String getName();
+
+    /**
+     * Gets the version of the currently running proxy software.
+     *
+     * @return the version of this instance
+     */
     public abstract String getVersion();
 
-    public abstract PluginManager getPluginManager();
-
+    /**
+     * Gets the main logger which can be used as a suitable replacement for {@link System#out} and
+     * {@link System#err}.
+     *
+     * @return the {@link Logger} instance
+     */
     public abstract Logger getLogger();
+
+    /**
+     * Get the Minecraft version supported by this proxy.
+     *
+     * @return the supported Minecraft version
+     */
+    @Deprecated
+    public abstract String getGameVersion();
+
+    /**
+     * Get the Minecraft protocol version supported by this proxy.
+     *
+     * @return the Minecraft protocol version
+     */
+    @Deprecated
+    public abstract int getProtocolVersion();
+
+    /**
+     * Get the {@link PluginManager} associated with loading plugins and dispatching events. It is
+     * recommended that implementations use the provided PluginManager class.
+     *
+     * @return the plugin manager
+     */
+    public abstract PluginManager getPluginManager();
 }

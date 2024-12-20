@@ -7,6 +7,7 @@ package org.bukkit;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.logging.Logger;
 
@@ -14,9 +15,36 @@ import java.util.logging.Logger;
 public interface Server {
     Logger getLogger();
 
-    String getName();
+    /**
+     * Gets the name of this server implementation.
+     *
+     * @return name of this server implementation
+     */
+    @NotNull public String getName();
 
-    String getVersion();
+    /**
+     * Gets the version string of this server implementation.
+     *
+     * @return version of this server implementation
+     */
+    @NotNull public String getVersion();
+
+    /**
+     * Gets the Bukkit version that this server is running.
+     *
+     * @return version of Bukkit
+     */
+    @NotNull public String getBukkitVersion();
+
+    // Paper start - expose game version
+    /**
+     * Gets the version of game this server implements
+     *
+     * @return version of game
+     */
+    @NotNull String getMinecraftVersion();
+
+    // Paper end
 
     Player[] getOnlinePlayers();
 

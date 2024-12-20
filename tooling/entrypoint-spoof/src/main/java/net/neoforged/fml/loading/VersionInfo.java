@@ -14,4 +14,8 @@ public class VersionInfo {
     public String mcVersion() {
         return "";
     }
+
+    public String fmlVersion() {
+        return "";
+    }
 }
