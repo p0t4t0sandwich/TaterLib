@@ -16,7 +16,6 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -41,6 +40,11 @@ public final class VelocityMeta implements Platform.Meta {
 
     @Override
     public String loaderVersion() {
+        return proxyServer.getVersion().getVersion();
+    }
+
+    @Override
+    public String apiVersion() {
         return proxyServer.getVersion().getVersion();
     }
 

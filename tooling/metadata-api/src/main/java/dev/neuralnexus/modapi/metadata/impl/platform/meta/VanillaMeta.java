@@ -35,6 +35,11 @@ public final class VanillaMeta implements Platform.Meta {
     }
 
     @Override
+    public String apiVersion() {
+        return minecraftVersion().asString();
+    }
+
+    @Override
     public Mappings mappings() {
         return Mappings.MOJMAP;
     }

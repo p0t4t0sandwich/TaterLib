@@ -12,7 +12,6 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.ModInfoImpl;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.neoforged.fml.ModList;
@@ -22,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the NeoForge platform */
-public class NeoForgeMeta implements Platform.Meta {
+public final class NeoForgeMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(FMLLoader.versionInfo().mcVersion());
@@ -30,6 +29,11 @@ public class NeoForgeMeta implements Platform.Meta {
 
     @Override
     public String loaderVersion() {
+        return FMLLoader.versionInfo().fmlVersion();
+    }
+
+    @Override
+    public String apiVersion() {
         return FMLLoader.versionInfo().neoForgeVersion();
     }
 

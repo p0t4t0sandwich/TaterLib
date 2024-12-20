@@ -15,12 +15,12 @@ import dev.neuralnexus.modapi.metadata.impl.platform.Hybrid;
 import dev.neuralnexus.modapi.metadata.impl.platform.Sponge;
 import dev.neuralnexus.modapi.metadata.impl.platform.Vanilla;
 import dev.neuralnexus.modapi.metadata.impl.platform.Velocity;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.BukkitMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.NeoForgeMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.VanillaMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.bukkit.BukkitMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
 
