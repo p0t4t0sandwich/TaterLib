@@ -14,14 +14,13 @@ public interface MinecraftVersion {
     String Unknown = "unknown";
     int UNKNOWN_PROTOCOL = -1;
     ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
-    MinecraftVersion UNKNOWN =
-            MinecraftVersionImpl.of(Unknown, UNKNOWN_PROTOCOL, ProtocolType.UNKNOWN);
+    MinecraftVersion UNKNOWN = MinecraftVersionImpl.of(Unknown);
     Map<String, Integer> OrdinalCache = new HashMap<>();
 
     /**
      * Create a MinecraftVersion from a string.
      *
-     * @param version The asString to create
+     * @param version The version to create
      * @return The MinecraftVersion
      */
     static MinecraftVersion of(String version) {
@@ -29,14 +28,14 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get the asString of Minecraft the server is running.
+     * Get the version of Minecraft the server is running.
      *
-     * @return The asString
+     * @return The version
      */
     String asString();
 
     /**
-     * Get the protocol asString of the Minecraft server. -1 if unknown
+     * Get the protocol version of the Minecraft server. -1 if unknown
      *
      * @return The protocol asString
      */
@@ -50,9 +49,9 @@ public interface MinecraftVersion {
     ProtocolType protocolType();
 
     /**
-     * Get if the asString is a snapshot.
+     * Get if the version is a snapshot.
      *
-     * @return If the asString is a snapshot
+     * @return If the version is a snapshot
      */
     boolean snapshot();
 
@@ -256,5 +255,31 @@ public interface MinecraftVersion {
      */
     default boolean isAtMost(String version) {
         return this.ord() <= MinecraftVersions.of(version).ord();
+    }
+
+    /**
+     * Represents the metadata for a Minecraft version
+     */
+    interface Meta {
+        /**
+         * Get the protocol version of the Minecraft server. -1 if unknown
+         *
+         * @return The protocol asString
+         */
+        int protocol();
+
+        /**
+         * Get the protocol type of the Minecraft server. UNKNOWN if unknown
+         *
+         * @return The protocol type
+         */
+        ProtocolType protocolType();
+
+        /**
+         * Get if the version is a snapshot.
+         *
+         * @return If the version is a snapshot
+         */
+        boolean snapshot();
     }
 }
