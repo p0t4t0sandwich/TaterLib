@@ -47,7 +47,7 @@ public final class MinecraftVersions
     }
 
     public static class Cache {
-        private static final Logger<?> logger = Logger.create("MinecraftVersionsCache");
+        private static final Logger logger = Logger.create("MinecraftVersionsCache");
 
         private static MinecraftVersion[] VERSIONS = {};
         private static MinecraftVersion[] REVERSED_VERSIONS = {};
@@ -141,7 +141,7 @@ public final class MinecraftVersions
             for (Field field : releaseFields) {
                 try {
                     MinecraftVersion version = (MinecraftVersion) field.get(null);
-                    if (!keepSnapshots && version.snapshot()) {
+                    if (!keepSnapshots && version.meta().snapshot()) {
                         continue;
                     }
                     count++;

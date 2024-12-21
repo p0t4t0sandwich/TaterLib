@@ -57,7 +57,7 @@ public final class BungeeCordMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<java.util.logging.Logger> logger(String modId) {
+    public Logger logger(String modId) {
         return new JavaLogger(modId, ProxyServer.getInstance().getLogger());
     }
 

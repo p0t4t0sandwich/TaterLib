@@ -8,7 +8,7 @@ package dev.neuralnexus.modapi.metadata.impl.logger;
 import dev.neuralnexus.modapi.metadata.Logger;
 
 @SuppressWarnings("CallToPrintStackTrace")
-public final class JavaLogger implements Logger<java.util.logging.Logger> {
+public final class JavaLogger implements Logger {
     private final java.util.logging.Logger logger;
     private final String prefix;
 

@@ -1,31 +1,12 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.metadata.impl.version.meta;
 
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ProtocolType;
 
-public class MinecraftVersionMetaImpl implements MinecraftVersion.Meta {
-    private final int protocol;
-    private final ProtocolType protocolType;
-    private final boolean snapshot;
-
-    public MinecraftVersionMetaImpl(int protocol, ProtocolType protocolType, boolean snapshot) {
-        this.protocol = protocol;
-        this.protocolType = protocolType;
-        this.snapshot = snapshot;
-    }
-
-    @Override
-    public int protocol() {
-        return protocol;
-    }
-
-    @Override
-    public ProtocolType protocolType() {
-        return protocolType;
-    }
-
-    @Override
-    public boolean snapshot() {
-        return snapshot;
-    }
-}
+public record MinecraftVersionMetaImpl(int protocol, ProtocolType protocolType, boolean snapshot)
+        implements MinecraftVersion.Meta {}

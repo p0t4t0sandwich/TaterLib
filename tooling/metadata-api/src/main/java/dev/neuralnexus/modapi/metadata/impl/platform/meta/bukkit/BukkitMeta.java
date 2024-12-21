@@ -70,7 +70,7 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<java.util.logging.Logger> logger(String modId) {
+    public Logger logger(String modId) {
         return new JavaLogger(modId, Bukkit.getLogger());
     }
 

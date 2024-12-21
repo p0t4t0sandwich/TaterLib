@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /** A generic SLF4J implementation of the {@link Logger} interface. */
 @SuppressWarnings("CallToPrintStackTrace")
-public final class Slf4jLogger implements Logger<org.slf4j.Logger> {
+public final class Slf4jLogger implements Logger {
     private final org.slf4j.Logger logger;
 
     public Slf4jLogger(String modId) {

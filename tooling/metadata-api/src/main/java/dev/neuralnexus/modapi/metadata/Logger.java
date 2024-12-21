@@ -6,10 +6,10 @@
 package dev.neuralnexus.modapi.metadata;
 
 /** The abstract logger. */
-public interface Logger<T> {
+public interface Logger {
     // TODO: conditionally apply TextUtil.ansiParser based on the platform
 
-    static Logger<?> create(String modId) {
+    static Logger create(String modId) {
         return MetaAPI.instance().logger(modId);
     }
 
@@ -18,7 +18,7 @@ public interface Logger<T> {
      *
      * @return The underlying logger
      */
-    T getLogger();
+    Object getLogger();
 
     /**
      * Logs an info message.

@@ -140,7 +140,7 @@ public interface Platform {
          *
          * @return The Logger
          */
-        Logger<?> logger(String pluginId);
+        Logger logger(String pluginId);
 
         /**
          * Get if a mod is loaded <br>
