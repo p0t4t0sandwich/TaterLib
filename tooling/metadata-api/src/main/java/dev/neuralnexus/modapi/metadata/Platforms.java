@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
-import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForClass;
-
 import dev.neuralnexus.modapi.metadata.impl.platform.Bukkit;
 import dev.neuralnexus.modapi.metadata.impl.platform.BungeeCord;
 import dev.neuralnexus.modapi.metadata.impl.platform.Fabric;
@@ -15,17 +13,8 @@ import dev.neuralnexus.modapi.metadata.impl.platform.Hybrid;
 import dev.neuralnexus.modapi.metadata.impl.platform.Sponge;
 import dev.neuralnexus.modapi.metadata.impl.platform.Vanilla;
 import dev.neuralnexus.modapi.metadata.impl.platform.Velocity;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.NeoForgeMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.VanillaMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.bukkit.BukkitMeta;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
 
 import java.util.List;
-import java.util.Optional;
 
 public final class Platforms
         implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Sponge, Vanilla, Velocity {
@@ -214,47 +203,5 @@ public final class Platforms
 
     public static boolean isMixedForgeFabric() {
         return get().contains(FORGE) && get().contains(FABRIC);
-    }
-
-    static final class Meta {
-        /**
-         * Get the metadata for the specified platform
-         *
-         * @param platform The Platform
-         * @return The Platform's metadata
-         */
-        public static Optional<Platform.Meta> lookup(Platform platform) {
-            if (platform.isNeoForge()) {
-                return Optional.of(new NeoForgeMeta());
-            } else if (platform.isForge()) {
-                return Optional.ofNullable(ForgeData.create());
-            } else if (platform.isFabric()) {
-                return Optional.of(new FabricMeta());
-            } else if (platform.isSponge()) {
-                return Optional.ofNullable(SpongeData.create());
-            } else if (platform.isBukkit()) {
-                return Optional.of(new BukkitMeta());
-            } else if (platform.isBungeeCord()) {
-                return Optional.of(new BungeeCordMeta());
-            } else if (platform.isVelocity()) {
-                return Optional.of(new VelocityMeta());
-            } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
-                return Optional.of(new VanillaMeta());
-            }
-            return Optional.empty();
-        }
-
-        /**
-         * Get the metadata for the primary platform
-         *
-         * @return The Platform's metadata
-         */
-        public static List<Platform.Meta> lookupAll() {
-            return get().stream()
-                    .map(Meta::lookup)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .toList();
-        }
     }
 }
