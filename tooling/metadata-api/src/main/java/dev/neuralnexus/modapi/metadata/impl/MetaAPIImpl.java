@@ -23,6 +23,7 @@ import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.bukkit.BukkitMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -52,7 +53,8 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException, NullPointerException {
+    public void setPrimaryPlatform(@NotNull Platform platform)
+            throws RedefinePrimaryPlatformException, NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         if (this.primaryPlatform != null) {
             throw new RedefinePrimaryPlatformException();
@@ -61,7 +63,8 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public boolean isPrimaryPlatform(@NotNull Platform platform) throws NoPrimaryPlatformException, NullPointerException {
+    public boolean isPrimaryPlatform(@NotNull Platform platform)
+            throws NoPrimaryPlatformException, NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         return this.primaryPlatform() == platform;
     }
@@ -103,7 +106,8 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)  throws NullPointerException {
+    public Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+            throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
         return Meta.lookup(platform).map(meta -> meta.isLoaded(nameOrId));

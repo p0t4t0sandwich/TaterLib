@@ -34,9 +34,12 @@ public final class Platforms
     }
 
     /**
-     * Detects all platforms that are available. Doesn't need to be called manually, unless somehow it was called before all platforms were loaded. In such a case, call this method with the force parameter set to true.
+     * Detects all platforms that are available. Doesn't need to be called manually, unless somehow
+     * it was called before all platforms were loaded. In such a case, call this method with the
+     * force parameter set to true.
      *
-     * @param force If true, the platforms will be detected again, even if they were already detected.
+     * @param force If true, the platforms will be detected again, even if they were already
+     *     detected.
      */
     public static void detectPlatforms(boolean force) {
         if (!force && !platforms.isEmpty()) {
