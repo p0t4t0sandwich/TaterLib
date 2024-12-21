@@ -98,8 +98,7 @@ public interface Release {
     MinecraftVersion V13W11A = MinecraftVersionImpl.of("13w11a");
     MinecraftVersion V13W12 = MinecraftVersionImpl.of("13w12~");
     MinecraftVersion V5_1 = MinecraftVersionImpl.of("1.5.1");
-    MinecraftVersion V13W14A_V2 =
-            MinecraftVersionImpl.of("13w14a (v2.0) Protocol(Blue: 90, Red: 91, Purple: 92");
+    MinecraftVersion V13W14A_V2 = MinecraftVersionImpl.of("13w14a (v2.0)");
     MinecraftVersion V5_2 = MinecraftVersionImpl.of("1.5.2");
     MinecraftVersion V13W16A = MinecraftVersionImpl.of("13w16a");
     MinecraftVersion V13W16B = MinecraftVersionImpl.of("13w16b");
@@ -616,6 +615,13 @@ public interface Release {
     MinecraftVersion V17_1_RC1 = MinecraftVersionImpl.of("1.17.1 Release Candidate 1");
     MinecraftVersion V17_1_RC2 = MinecraftVersionImpl.of("1.17.1 Release Candidate 2");
     MinecraftVersion V17_1 = MinecraftVersionImpl.of("1.17.1");
+    MinecraftVersion V18_EXP1 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 1");
+    MinecraftVersion V18_EXP2 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 2");
+    MinecraftVersion V18_EXP3 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 3");
+    MinecraftVersion V18_EXP4 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 4");
+    MinecraftVersion V18_EXP5 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 5");
+    MinecraftVersion V18_EXP6 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 6");
+    MinecraftVersion V18_EXP17 = MinecraftVersionImpl.of("1.18 Experimental Snapshot 7");
     MinecraftVersion V21W37A = MinecraftVersionImpl.of("21w37a");
     MinecraftVersion V21W38A = MinecraftVersionImpl.of("21w38a");
     MinecraftVersion V21W39A = MinecraftVersionImpl.of("21w39a");
@@ -816,4 +822,11 @@ public interface Release {
     MinecraftVersion V24W44A = MinecraftVersionImpl.of("24w44a");
     MinecraftVersion V24W45A = MinecraftVersionImpl.of("24w45a");
     MinecraftVersion V24W46A = MinecraftVersionImpl.of("24w46a");
+    MinecraftVersion V21_4_PRE1 = MinecraftVersionImpl.of("1.21.4 Pre-Release 1");
+    MinecraftVersion V21_4_PRE2 = MinecraftVersionImpl.of("1.21.4 Pre-Release 2");
+    MinecraftVersion V21_4_PRE3 = MinecraftVersionImpl.of("1.21.4 Pre-Release 3");
+    MinecraftVersion V21_4_RC1 = MinecraftVersionImpl.of("1.21.4 Release Candidate 1");
+    MinecraftVersion V21_4_RC2 = MinecraftVersionImpl.of("1.21.4 Release Candidate 2");
+    MinecraftVersion V21_4_RC3 = MinecraftVersionImpl.of("1.21.4 Release Candidate 3");
+    MinecraftVersion V21_4 = MinecraftVersionImpl.of("1.21.4");
 }
