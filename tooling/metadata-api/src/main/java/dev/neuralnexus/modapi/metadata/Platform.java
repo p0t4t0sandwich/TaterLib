@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
-import org.jetbrains.annotations.ApiStatus;
-
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getConfigFolder;
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getModsFolder;
+
+import org.jetbrains.annotations.ApiStatus;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -34,6 +34,7 @@ public interface Platform {
     /**
      * Detect if the platform is available. <br>
      * Note: This is all handled internally, and you should not need to call this method.
+     *
      * @param force If true, the platform will be detected again, even if it was already detected
      * @return True if the platform is available, false otherwise
      */

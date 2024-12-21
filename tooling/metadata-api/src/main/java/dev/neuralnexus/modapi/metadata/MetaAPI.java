@@ -6,6 +6,7 @@
 package dev.neuralnexus.modapi.metadata;
 
 import dev.neuralnexus.modapi.metadata.impl.MetaAPIImpl;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -34,7 +35,8 @@ public interface MetaAPI {
      * @throws RedefinePrimaryPlatformException if the primary platform is already defined
      * @throws NullPointerException if the platform is null
      */
-    void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException, NullPointerException;
+    void setPrimaryPlatform(@NotNull Platform platform)
+            throws RedefinePrimaryPlatformException, NullPointerException;
 
     /**
      * Check if a platform is the same as the one identified as the primary platform
@@ -44,7 +46,8 @@ public interface MetaAPI {
      * @throws NoPrimaryPlatformException if the primary platform is not detected
      * @throws NullPointerException if the platform is null
      */
-    boolean isPrimaryPlatform(@NotNull Platform platform) throws NoPrimaryPlatformException, NullPointerException;
+    boolean isPrimaryPlatform(@NotNull Platform platform)
+            throws NoPrimaryPlatformException, NullPointerException;
 
     /**
      * Get the platform the environment is running, returns the primary platform, or the first
@@ -104,7 +107,8 @@ public interface MetaAPI {
      * @return True if the mod is loaded, false otherwise
      * @throws NullPointerException if the platform or nameOrId is null
      */
-    Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId) throws NullPointerException;
+    Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+            throws NullPointerException;
 
     /**
      * Get the platform's mappings

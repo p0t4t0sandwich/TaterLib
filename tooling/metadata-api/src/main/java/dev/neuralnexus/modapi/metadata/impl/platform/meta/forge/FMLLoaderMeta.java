@@ -19,6 +19,7 @@ import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LauncherVersion;
+import net.minecraftforge.fml.loading.LoadingModList;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -73,7 +74,11 @@ public class FMLLoaderMeta implements Platform.Meta {
 
     @Override
     public List<ModInfo> modList() {
-        return ModList.get().getMods().stream()
+        List<net.minecraftforge.fml.loading.moddiscovery.ModInfo> mods = ModList.get().getMods();
+        if (mods == null || mods.isEmpty()) {
+            mods = LoadingModList.get().getMods();
+        }
+        return mods.stream()
                 .map(
                         modContainer ->
                                 new ModInfoImpl(

@@ -17,9 +17,7 @@ public class PlatformTest {
     //        assertEquals(Platform.BUKKIT, Platform.from(PLATFORM_STRING_NAME));
     //    }
 
-    /**
-     * The dev environment should have no platforms.
-     */
+    /** The dev environment should have no platforms. */
     @Test
     public void testToString() {
         assertEquals(0, Platforms.get().size());

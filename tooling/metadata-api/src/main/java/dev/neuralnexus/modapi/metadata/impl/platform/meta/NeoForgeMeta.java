@@ -16,6 +16,7 @@ import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
+import net.neoforged.fml.loading.LoadingModList;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +48,11 @@ public final class NeoForgeMeta implements Platform.Meta {
 
     @Override
     public List<ModInfo> modList() {
-        return ModList.get().getMods().stream()
+        List<net.neoforged.fml.loading.moddiscovery.ModInfo> mods = ModList.get().getMods();
+        if (mods == null || mods.isEmpty()) {
+            mods = LoadingModList.get().getMods();
+        }
+        return mods.stream()
                 .map(
                         modContainer ->
                                 new ModInfoImpl(
