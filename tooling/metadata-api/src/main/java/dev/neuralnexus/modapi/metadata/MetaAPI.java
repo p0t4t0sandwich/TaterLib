@@ -163,7 +163,7 @@ public final class MetaAPI {
      * @return A new Logger
      * @throws NoPlatformMetaException if there's no metadata for the platform
      */
-    public Logger<?> logger(String modId) throws NoPlatformMetaException {
+    public Logger logger(String modId) throws NoPlatformMetaException {
         return Platforms.Meta.lookupAll().stream()
                 .map(meta -> meta.logger(modId))
                 .findFirst()

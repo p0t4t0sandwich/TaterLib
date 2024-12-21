@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.version;
 
-import static dev.neuralnexus.modapi.metadata.ProtocolType.PRE_PRE_NETTY;
-
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 
 // 2
@@ -54,87 +52,65 @@ public interface Classic {
     MinecraftVersion C_SERVER_1_0 = MinecraftVersionImpl.of("server 1.0"); // Server for 0.0.16a
     MinecraftVersion C0_0_16A_01 = MinecraftVersionImpl.of("0.0.16a_01");
     MinecraftVersion C_SERVER_1_1 = MinecraftVersionImpl.of("server 1.1"); // Server for 0.0.16a_01
-    MinecraftVersion C0_0_16A_02 = MinecraftVersionImpl.of("0.0.16a_02", 3, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_2 =
-            MinecraftVersionImpl.of("server 1.2", 3, PRE_PRE_NETTY); // Server for 0.0.16a_02
-    MinecraftVersion C0_0_17A = MinecraftVersionImpl.of("0.0.17a", 4, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_3 =
-            MinecraftVersionImpl.of("server 1.3", 4, PRE_PRE_NETTY); // Server for 0.0.17a
-    MinecraftVersion C0_0_18A = MinecraftVersionImpl.of("0.0.18a", 4, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_4 =
-            MinecraftVersionImpl.of("server 1.4", 4, PRE_PRE_NETTY); // Server for 0.0.18a
-    MinecraftVersion C0_0_18A_01 = MinecraftVersionImpl.of("0.0.18a_01", 4, PRE_PRE_NETTY);
+    MinecraftVersion C0_0_16A_02 = MinecraftVersionImpl.of("0.0.16a_02");
+    MinecraftVersion C_SERVER_1_2 = MinecraftVersionImpl.of("server 1.2"); // Server for 0.0.16a_02
+    MinecraftVersion C0_0_17A = MinecraftVersionImpl.of("0.0.17a");
+    MinecraftVersion C_SERVER_1_3 = MinecraftVersionImpl.of("server 1.3"); // Server for 0.0.17a
+    MinecraftVersion C0_0_18A = MinecraftVersionImpl.of("0.0.18a");
+    MinecraftVersion C_SERVER_1_4 = MinecraftVersionImpl.of("server 1.4"); // Server for 0.0.18a
+    MinecraftVersion C0_0_18A_01 = MinecraftVersionImpl.of("0.0.18a_01");
     MinecraftVersion C_SERVER_1_4_1 =
-            MinecraftVersionImpl.of("server 1.4.1", 4, PRE_PRE_NETTY); // Server for 0.0.18a_01
-    MinecraftVersion C0_0_18A_02 = MinecraftVersionImpl.of("0.0.18a_02", 4, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_19A = MinecraftVersionImpl.of("0.0.19a", 5, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_5 =
-            MinecraftVersionImpl.of("server 1.5", 5, PRE_PRE_NETTY); // Server for 0.0.19a
-    MinecraftVersion C0_0_19A_02 = MinecraftVersionImpl.of("0.0.19a_02", 5, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_19A_01 = MinecraftVersionImpl.of("0.0.19a_01", 5, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_6 =
-            MinecraftVersionImpl.of("server 1.6", 5, PRE_PRE_NETTY); // Server for 0.0.19a_01
-    MinecraftVersion C0_0_19A_03 = MinecraftVersionImpl.of("0.0.19a_03", 5, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_19A_04 = MinecraftVersionImpl.of("0.0.19a_04", 5, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_19A_05 = MinecraftVersionImpl.of("0.0.19a_05", 5, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_19A_06 = MinecraftVersionImpl.of("0.0.19a_06", 5, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_7 =
-            MinecraftVersionImpl.of("server 1.7", 5, PRE_PRE_NETTY); // Server for 0.0.19a_06
-    MinecraftVersion C0_0_20A = MinecraftVersionImpl.of("0.0.20a", 6, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_8 =
-            MinecraftVersionImpl.of("server 1.8", 6, PRE_PRE_NETTY); // Server for 0.0.20a
-    MinecraftVersion C_SERVER_1_8_1 =
-            MinecraftVersionImpl.of("server 1.8.1", 6, PRE_PRE_NETTY); // Server for 0.0.20a
-    MinecraftVersion C0_0_20A_01 = MinecraftVersionImpl.of("0.0.20a_01", 6, PRE_PRE_NETTY);
+            MinecraftVersionImpl.of("server 1.4.1"); // Server for 0.0.18a_01
+    MinecraftVersion C0_0_18A_02 = MinecraftVersionImpl.of("0.0.18a_02");
+    MinecraftVersion C0_0_19A = MinecraftVersionImpl.of("0.0.19a");
+    MinecraftVersion C_SERVER_1_5 = MinecraftVersionImpl.of("server 1.5"); // Server for 0.0.19a
+    MinecraftVersion C0_0_19A_02 = MinecraftVersionImpl.of("0.0.19a_02");
+    MinecraftVersion C0_0_19A_01 = MinecraftVersionImpl.of("0.0.19a_01");
+    MinecraftVersion C_SERVER_1_6 = MinecraftVersionImpl.of("server 1.6"); // Server for 0.0.19a_01
+    MinecraftVersion C0_0_19A_03 = MinecraftVersionImpl.of("0.0.19a_03");
+    MinecraftVersion C0_0_19A_04 = MinecraftVersionImpl.of("0.0.19a_04");
+    MinecraftVersion C0_0_19A_05 = MinecraftVersionImpl.of("0.0.19a_05");
+    MinecraftVersion C0_0_19A_06 = MinecraftVersionImpl.of("0.0.19a_06");
+    MinecraftVersion C_SERVER_1_7 = MinecraftVersionImpl.of("server 1.7"); // Server for 0.0.19a_06
+    MinecraftVersion C0_0_20A = MinecraftVersionImpl.of("0.0.20a");
+    MinecraftVersion C_SERVER_1_8 = MinecraftVersionImpl.of("server 1.8"); // Server for 0.0.20a
+    MinecraftVersion C_SERVER_1_8_1 = MinecraftVersionImpl.of("server 1.8.1"); // Server for 0.0.20a
+    MinecraftVersion C0_0_20A_01 = MinecraftVersionImpl.of("0.0.20a_01");
     MinecraftVersion C_SERVER_1_8_2 =
-            MinecraftVersionImpl.of(
-                    "server 1.8.2", 6, PRE_PRE_NETTY); // Server for 0.0.20a_01 - 0.0.23a_01
-    MinecraftVersion C0_0_20A_02 = MinecraftVersionImpl.of("0.0.20a_02", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_21A = MinecraftVersionImpl.of("0.0.21a", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_21A_01 = MinecraftVersionImpl.of("0.0.21a_01", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A = MinecraftVersionImpl.of("0.0.22a", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A_01 = MinecraftVersionImpl.of("0.0.22a_01", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A_02 = MinecraftVersionImpl.of("0.0.22a_02", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A_03 = MinecraftVersionImpl.of("0.0.22a_03", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A_04 = MinecraftVersionImpl.of("0.0.22a_04", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_22A_05 = MinecraftVersionImpl.of("0.0.22a_05", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_23A = MinecraftVersionImpl.of("0.0.23a", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_23A_01 = MinecraftVersionImpl.of("0.0.23a_01", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_24_D =
-            MinecraftVersionImpl.of("0.24 SURVIVAL TEST/Development", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_24 = MinecraftVersionImpl.of("0.24_SURVIVAL_TEST", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_24_01 =
-            MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_01", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_24_02 =
-            MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_02", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_24_03 =
-            MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_03", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_25 = MinecraftVersionImpl.of("0.25 SURVIVAL_TEST", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_25_01 =
-            MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_01", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_25_02 =
-            MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_02", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_25_03 =
-            MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_03", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_25_05 =
-            MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_05", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_26_D =
-            MinecraftVersionImpl.of("0.26_SURVIVAL_TEST/Development", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_26 = MinecraftVersionImpl.of("0.26_SURVIVAL_TEST", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_27 = MinecraftVersionImpl.of("0.27_SURVIVAL_TEST", 6, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_28_D = MinecraftVersionImpl.of("0.28/Development", 7, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_28 = MinecraftVersionImpl.of("0.28", 7, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_9 =
-            MinecraftVersionImpl.of("server 1.9", 7, PRE_PRE_NETTY); // Server for 0.28
-    MinecraftVersion C0_0_28_01 = MinecraftVersionImpl.of("0.28_01", 7, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_29 = MinecraftVersionImpl.of("0.29", 7, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_9_1 =
-            MinecraftVersionImpl.of("server 1.9.1", 7, PRE_PRE_NETTY); // Server for 0.29
-    MinecraftVersion C0_0_29_01 = MinecraftVersionImpl.of("0.29_01", 7, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_29_02 = MinecraftVersionImpl.of("0.29_02", 7, PRE_PRE_NETTY);
-    MinecraftVersion C0_0_30 = MinecraftVersionImpl.of("0.30", 7, PRE_PRE_NETTY);
-    MinecraftVersion C_SERVER_1_10 =
-            MinecraftVersionImpl.of("server 1.10", 7, PRE_PRE_NETTY); // Server for 0.30
-    MinecraftVersion C_SERVER_1_10_1 =
-            MinecraftVersionImpl.of("server 1.10.1", 7, PRE_PRE_NETTY); // Server for 0.30
+            MinecraftVersionImpl.of("server 1.8.2"); // Server for 0.0.20a_01 - 0.0.23a_01
+    MinecraftVersion C0_0_20A_02 = MinecraftVersionImpl.of("0.0.20a_02");
+    MinecraftVersion C0_0_21A = MinecraftVersionImpl.of("0.0.21a");
+    MinecraftVersion C0_0_21A_01 = MinecraftVersionImpl.of("0.0.21a_01");
+    MinecraftVersion C0_0_22A = MinecraftVersionImpl.of("0.0.22a");
+    MinecraftVersion C0_0_22A_01 = MinecraftVersionImpl.of("0.0.22a_01");
+    MinecraftVersion C0_0_22A_02 = MinecraftVersionImpl.of("0.0.22a_02");
+    MinecraftVersion C0_0_22A_03 = MinecraftVersionImpl.of("0.0.22a_03");
+    MinecraftVersion C0_0_22A_04 = MinecraftVersionImpl.of("0.0.22a_04");
+    MinecraftVersion C0_0_22A_05 = MinecraftVersionImpl.of("0.0.22a_05");
+    MinecraftVersion C0_0_23A = MinecraftVersionImpl.of("0.0.23a");
+    MinecraftVersion C0_0_23A_01 = MinecraftVersionImpl.of("0.0.23a_01");
+    MinecraftVersion C0_0_24_D = MinecraftVersionImpl.of("0.24 SURVIVAL TEST/Development");
+    MinecraftVersion C0_0_24 = MinecraftVersionImpl.of("0.24_SURVIVAL_TEST");
+    MinecraftVersion C0_0_24_01 = MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_01");
+    MinecraftVersion C0_0_24_02 = MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_02");
+    MinecraftVersion C0_0_24_03 = MinecraftVersionImpl.of("0.24_SURVIVAL_TEST_03");
+    MinecraftVersion C0_0_25 = MinecraftVersionImpl.of("0.25 SURVIVAL_TEST");
+    MinecraftVersion C0_0_25_01 = MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_01");
+    MinecraftVersion C0_0_25_02 = MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_02");
+    MinecraftVersion C0_0_25_03 = MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_03");
+    MinecraftVersion C0_0_25_05 = MinecraftVersionImpl.of("0.25_SURVIVAL_TEST_05");
+    MinecraftVersion C0_0_26_D = MinecraftVersionImpl.of("0.26_SURVIVAL_TEST/Development");
+    MinecraftVersion C0_0_26 = MinecraftVersionImpl.of("0.26_SURVIVAL_TEST");
+    MinecraftVersion C0_0_27 = MinecraftVersionImpl.of("0.27_SURVIVAL_TEST");
+    MinecraftVersion C0_0_28_D = MinecraftVersionImpl.of("0.28/Development");
+    MinecraftVersion C0_0_28 = MinecraftVersionImpl.of("0.28");
+    MinecraftVersion C_SERVER_1_9 = MinecraftVersionImpl.of("server 1.9"); // Server for 0.28
+    MinecraftVersion C0_0_28_01 = MinecraftVersionImpl.of("0.28_01");
+    MinecraftVersion C0_0_29 = MinecraftVersionImpl.of("0.29");
+    MinecraftVersion C_SERVER_1_9_1 = MinecraftVersionImpl.of("server 1.9.1"); // Server for 0.29
+    MinecraftVersion C0_0_29_01 = MinecraftVersionImpl.of("0.29_01");
+    MinecraftVersion C0_0_29_02 = MinecraftVersionImpl.of("0.29_02");
+    MinecraftVersion C0_0_30 = MinecraftVersionImpl.of("0.30");
+    MinecraftVersion C_SERVER_1_10 = MinecraftVersionImpl.of("server 1.10"); // Server for 0.30
+    MinecraftVersion C_SERVER_1_10_1 = MinecraftVersionImpl.of("server 1.10.1"); // Server for 0.30
 }

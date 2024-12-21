@@ -6,6 +6,8 @@
 package dev.neuralnexus.modapi.metadata;
 
 import dev.neuralnexus.modapi.metadata.impl.version.MinecraftVersionImpl;
+import dev.neuralnexus.modapi.metadata.impl.version.meta.MetaStore;
+import dev.neuralnexus.modapi.metadata.impl.version.meta.MinecraftVersionMetaImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,25 +37,13 @@ public interface MinecraftVersion {
     String asString();
 
     /**
-     * Get the protocol version of the Minecraft server. -1 if unknown
+     * Get the metadata for the version.
      *
-     * @return The protocol asString
+     * @return The metadata
      */
-    int protocol();
-
-    /**
-     * Get the protocol type of the Minecraft server. UNKNOWN if unknown
-     *
-     * @return The protocol type
-     */
-    ProtocolType protocolType();
-
-    /**
-     * Get if the version is a snapshot.
-     *
-     * @return If the version is a snapshot
-     */
-    boolean snapshot();
+    default Meta meta() {
+        return MetaStore.getMeta(this);
+    }
 
     /**
      * Get the ordinal of the asString in the list of versions. (Cursed alternative to enums)
@@ -257,10 +247,10 @@ public interface MinecraftVersion {
         return this.ord() <= MinecraftVersions.of(version).ord();
     }
 
-    /**
-     * Represents the metadata for a Minecraft version
-     */
+    /** Represents the metadata for a Minecraft version */
     interface Meta {
+        Meta UNKNOWN = new MinecraftVersionMetaImpl(UNKNOWN_PROTOCOL, UNKNOWN_PROTOCOL_TYPE, false);
+
         /**
          * Get the protocol version of the Minecraft server. -1 if unknown
          *

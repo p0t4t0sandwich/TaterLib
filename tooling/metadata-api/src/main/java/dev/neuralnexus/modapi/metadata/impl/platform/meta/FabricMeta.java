@@ -80,7 +80,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<?> logger(String modId) {
+    public Logger logger(String modId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18)) {
             return new ApacheLogger(modId);

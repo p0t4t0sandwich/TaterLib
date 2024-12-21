@@ -73,7 +73,7 @@ public final class SpongeModernMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger<org.apache.logging.log4j.Logger> logger(String modId) {
+    public Logger logger(String modId) {
         return new ApacheLogger(modId);
     }
 }
