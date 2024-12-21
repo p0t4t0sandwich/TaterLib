@@ -6,10 +6,11 @@
 package dev.neuralnexus.modapi.metadata;
 
 import dev.neuralnexus.modapi.metadata.impl.MetaAPIImpl;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
 
-/** Class holding the metadata cache and other useful shortcuts. */
+/** Interface for accessing the metadata cache and other useful shortcuts. */
 public interface MetaAPI {
     /** Get the instance of the MetaAPI */
     static MetaAPI instance() {
@@ -17,14 +18,6 @@ public interface MetaAPI {
     }
 
     // ----------------------------- Platform -----------------------------
-
-    /**
-     * Set the primary platform that the environment is running
-     *
-     * @param platform The platform
-     * @throws RedefinePrimaryPlatformException if the primary platform is already defined
-     */
-    void setPrimaryPlatform(Platform platform) throws RedefinePrimaryPlatformException;
 
     /**
      * Get the primary platform that the environment is running
@@ -35,13 +28,23 @@ public interface MetaAPI {
     Platform primaryPlatform() throws NoPrimaryPlatformException;
 
     /**
+     * Set the primary platform that the environment is running
+     *
+     * @param platform The platform
+     * @throws RedefinePrimaryPlatformException if the primary platform is already defined
+     * @throws NullPointerException if the platform is null
+     */
+    void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException, NullPointerException;
+
+    /**
      * Check if a platform is the same as the one identified as the primary platform
      *
      * @param platform The platform to check
      * @return True, if they match, false otherwise
      * @throws NoPrimaryPlatformException if the primary platform is not detected
+     * @throws NullPointerException if the platform is null
      */
-    boolean isPrimaryPlatform(Platform platform) throws NoPrimaryPlatformException;
+    boolean isPrimaryPlatform(@NotNull Platform platform) throws NoPrimaryPlatformException, NullPointerException;
 
     /**
      * Get the platform the environment is running, returns the primary platform, or the first
@@ -67,8 +70,9 @@ public interface MetaAPI {
      *
      * @param platform The Platform
      * @return The Platform's metadata
+     * @throws NullPointerException if the platform is null
      */
-    Optional<Platform.Meta> meta(Platform platform);
+    Optional<Platform.Meta> meta(@NotNull Platform platform) throws NullPointerException;
 
     // ----------------------------- Platform.Meta Getters -----------------------------
 
@@ -86,8 +90,9 @@ public interface MetaAPI {
      *
      * @param nameOrId The name of the plugin or modId of the mod
      * @return True if the mod is loaded, false otherwise
+     * @throws NullPointerException if the nameOrId is null
      */
-    boolean isLoaded(String nameOrId);
+    boolean isLoaded(@NotNull String nameOrId) throws NullPointerException;
 
     /**
      * Get if a mod is loaded <br>
@@ -97,8 +102,9 @@ public interface MetaAPI {
      * @param platform The platform
      * @param nameOrId The name of the plugin or modId of the mod
      * @return True if the mod is loaded, false otherwise
+     * @throws NullPointerException if the platform or nameOrId is null
      */
-    Optional<Boolean> isLoaded(Platform platform, String nameOrId);
+    Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId) throws NullPointerException;
 
     /**
      * Get the platform's mappings
@@ -108,21 +114,22 @@ public interface MetaAPI {
     Mappings mappings();
 
     /**
-     * Get the platform's mappings
+     * Get a platform's mappings
      *
      * @param platform The platform
      * @return The platform's mappings
+     * @throws NullPointerException if the platform is null
      */
-    Optional<Mappings> mappings(Platform platform);
+    Optional<Mappings> mappings(@NotNull Platform platform) throws NullPointerException;
 
     /**
      * Get a new logger for the specified modId
      *
      * @param modId The mod id
      * @return A new Logger
-     * @throws NoPlatformMetaException if there's no metadata for the platform
+     * @throws NullPointerException if the modId is null
      */
-    Logger logger(String modId) throws NoPlatformMetaException;
+    Logger logger(@NotNull String modId) throws NullPointerException;
 
     // ----------------------------- Exceptions -----------------------------
 
@@ -157,11 +164,6 @@ public interface MetaAPI {
                     "No metadata found for platform "
                             + platform.name()
                             + ". This shouldn't normally happen, please file a bug report");
-        }
-
-        public NoPlatformMetaException() {
-            super(
-                    "No metadata found for the platform. This shouldn't normally happen, please file a bug report");
         }
     }
 }

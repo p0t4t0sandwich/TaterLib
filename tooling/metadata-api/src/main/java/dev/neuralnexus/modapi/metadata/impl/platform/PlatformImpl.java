@@ -22,16 +22,21 @@ public final class PlatformImpl implements Platform {
 
     @Override
     public String name() {
-        return name;
+        return this.name;
     }
 
     @Override
-    public boolean detect() {
-        if (cached) {
-            return detected;
+    public boolean detect(boolean force) {
+        if (this.cached && !force) {
+            return this.detected;
         }
-        detected = checkForClass(classNames);
-        cached = true;
-        return detected;
+        this.detected = checkForClass(this.classNames);
+        this.cached = true;
+        return this.detected;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

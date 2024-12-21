@@ -2,7 +2,18 @@ plugins {
     id('maven-publish')
 }
 
+tasks.named('test', Test) {
+    useJUnitPlatform()
+    maxHeapSize = '1G'
+}
+
+tasks.build.dependsOn(test)
+
 dependencies {
+    // Test
+    testImplementation('org.junit.jupiter:junit-jupiter:5.7.1')
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+
     compileOnly('org.spongepowered:mixin:0.8.5')
     compileOnly('org.ow2.asm:asm-tree:6.2')
     compileOnly(project(':tooling:entrypoint-spoof'))

@@ -11,8 +11,10 @@ import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.impl.logger.SystemLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.NeoForgeMeta;
@@ -21,11 +23,13 @@ import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.bukkit.BukkitMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
-/** Class holding the metadata cache and other useful shortcuts. */
+/** Class implementing the metadata cache and other useful shortcuts. */
 public final class MetaAPIImpl implements MetaAPI {
     private static final MetaAPIImpl INSTANCE = new MetaAPIImpl();
 
@@ -39,25 +43,7 @@ public final class MetaAPIImpl implements MetaAPI {
 
     private Platform primaryPlatform;
 
-    /**
-     * Set the primary platform that the environment is running
-     *
-     * @param platform The platform
-     * @throws RedefinePrimaryPlatformException if the primary platform is already defined
-     */
-    public void setPrimaryPlatform(Platform platform) throws RedefinePrimaryPlatformException {
-        if (this.primaryPlatform != null) {
-            throw new RedefinePrimaryPlatformException();
-        }
-        this.primaryPlatform = platform;
-    }
-
-    /**
-     * Get the primary platform that the environment is running
-     *
-     * @return The platform
-     * @throws NoPrimaryPlatformException if the primary platform is not detected
-     */
+    @Override
     public Platform primaryPlatform() throws NoPrimaryPlatformException {
         if (this.primaryPlatform == null) {
             throw new NoPrimaryPlatformException();
@@ -65,25 +51,22 @@ public final class MetaAPIImpl implements MetaAPI {
         return this.primaryPlatform;
     }
 
-    /**
-     * Check if a platform is the same as the one identified as the primary platform
-     *
-     * @param platform The platform to check
-     * @return True, if they match, false otherwise
-     * @throws NoPrimaryPlatformException if the primary platform is not detected
-     */
-    public boolean isPrimaryPlatform(Platform platform) throws NoPrimaryPlatformException {
+    @Override
+    public void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException, NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
+        if (this.primaryPlatform != null) {
+            throw new RedefinePrimaryPlatformException();
+        }
+        this.primaryPlatform = platform;
+    }
+
+    @Override
+    public boolean isPrimaryPlatform(@NotNull Platform platform) throws NoPrimaryPlatformException, NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
         return this.primaryPlatform() == platform;
     }
 
-    /**
-     * Get the platform the environment is running, returns the primary platform, or the first
-     * platform in the list of detected platforms. Essentially a more lenient alternative to {@link
-     * MetaAPIImpl#primaryPlatform()}
-     *
-     * @return The platform
-     * @throws NoPlatformException if there is no platform detected
-     */
+    @Override
     public Platform platform() throws NoPlatformException {
         if (this.primaryPlatform == null) {
             return Platforms.get().stream().findFirst().orElseThrow(NoPlatformException::new);
@@ -91,72 +74,42 @@ public final class MetaAPIImpl implements MetaAPI {
         return this.primaryPlatform;
     }
 
-    /**
-     * Get the metadata for the primary platform
-     *
-     * @return The Platform's metadata
-     * @throws NoPrimaryPlatformException if the primary platform is not detected
-     * @throws NoPlatformMetaException if there's no metadata for the platform
-     */
+    @Override
     public Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException {
         return Meta.lookup(this.primaryPlatform())
                 .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform()));
     }
 
-    /**
-     * Get the metadata for the specified platform
-     *
-     * @param platform The Platform
-     * @return The Platform's metadata
-     */
-    public Optional<Platform.Meta> meta(Platform platform) {
+    @Override
+    public Optional<Platform.Meta> meta(@NotNull Platform platform) throws NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
         return Meta.lookup(platform);
     }
 
     // ----------------------------- Platform.Meta Getters -----------------------------
 
-    /**
-     * Get the version of Minecraft the server is running
-     *
-     * @return The current Minecraft version
-     */
+    @Override
     public MinecraftVersion version() {
         return Meta.lookupAll().stream()
                 .map(Platform.Meta::minecraftVersion)
                 .findFirst()
-                .orElse(MinecraftVersion.UNKNOWN);
+                .orElse(MinecraftVersions.UNKNOWN);
     }
 
-    /**
-     * Get if a mod is loaded <br>
-     * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started
-     *
-     * @param nameOrId The name of the plugin or modId of the mod
-     * @return True if the mod is loaded, false otherwise
-     */
-    public boolean isLoaded(String nameOrId) {
+    @Override
+    public boolean isLoaded(@NotNull String nameOrId) throws NullPointerException {
+        Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
         return Meta.lookupAll().stream().anyMatch(meta -> meta.isLoaded(nameOrId));
     }
 
-    /**
-     * Get if a mod is loaded <br>
-     * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started
-     *
-     * @param platform The platform
-     * @param nameOrId The name of the plugin or modId of the mod
-     * @return True if the mod is loaded, false otherwise
-     */
-    public Optional<Boolean> isLoaded(Platform platform, String nameOrId) {
+    @Override
+    public Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)  throws NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
+        Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
         return Meta.lookup(platform).map(meta -> meta.isLoaded(nameOrId));
     }
 
-    /**
-     * Get the platform's mappings
-     *
-     * @return The platform's mappings
-     */
+    @Override
     public Mappings mappings() {
         return Meta.lookupAll().stream()
                 .map(Platform.Meta::mappings)
@@ -164,28 +117,19 @@ public final class MetaAPIImpl implements MetaAPI {
                 .orElse(Mappings.UNKNOWN);
     }
 
-    /**
-     * Get the platform's mappings
-     *
-     * @param platform The platform
-     * @return The platform's mappings
-     */
-    public Optional<Mappings> mappings(Platform platform) {
+    @Override
+    public Optional<Mappings> mappings(@NotNull Platform platform) throws NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
         return Meta.lookup(platform).map(Platform.Meta::mappings);
     }
 
-    /**
-     * Get a new logger for the specified modId
-     *
-     * @param modId The mod id
-     * @return A new Logger
-     * @throws NoPlatformMetaException if there's no metadata for the platform
-     */
-    public Logger logger(String modId) throws NoPlatformMetaException {
+    @Override
+    public Logger logger(@NotNull String modId) throws NullPointerException {
+        Objects.requireNonNull(modId, "Mod ID cannot be null");
         return Meta.lookupAll().stream()
                 .map(meta -> meta.logger(modId))
                 .findFirst()
-                .orElseThrow(NoPlatformMetaException::new);
+                .orElse(new SystemLogger(modId));
     }
 
     private static final class Meta {

@@ -10,6 +10,7 @@ import dev.neuralnexus.modapi.metadata.impl.version.Beta;
 import dev.neuralnexus.modapi.metadata.impl.version.Classic;
 import dev.neuralnexus.modapi.metadata.impl.version.Indev;
 import dev.neuralnexus.modapi.metadata.impl.version.Infdev;
+import dev.neuralnexus.modapi.metadata.impl.version.MinecraftVersionImpl;
 import dev.neuralnexus.modapi.metadata.impl.version.PreClassic;
 import dev.neuralnexus.modapi.metadata.impl.version.Release;
 
@@ -17,6 +18,8 @@ import java.lang.reflect.Field;
 
 public final class MinecraftVersions
         implements PreClassic, Classic, Indev, Infdev, Alpha, Beta, Release {
+    public static final MinecraftVersion UNKNOWN = MinecraftVersionImpl.of("unknown");
+
     /**
      * Create a MinecraftVersion from a string.
      *
@@ -27,7 +30,7 @@ public final class MinecraftVersions
         if (version.contains("1.1.8 (MC: 1.7.3)")) {
             return B1_7_3;
         }
-        MinecraftVersion ver = MinecraftVersion.UNKNOWN;
+        MinecraftVersion ver = MinecraftVersions.UNKNOWN;
         if (!version.toLowerCase().contains("a1") && !version.toLowerCase().contains("b1")) {
             for (MinecraftVersion v : Cache.reversedVersions()) {
                 if (version.contains(v.asString())) {
