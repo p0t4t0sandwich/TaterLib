@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
-import dev.neuralnexus.modapi.metadata.impl.version.MinecraftVersionImpl;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MetaStore;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MinecraftVersionMetaImpl;
 
@@ -13,10 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface MinecraftVersion {
-    String Unknown = "unknown";
-    int UNKNOWN_PROTOCOL = -1;
-    ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
-    MinecraftVersion UNKNOWN = MinecraftVersionImpl.of(Unknown);
     Map<String, Integer> OrdinalCache = new HashMap<>();
 
     /**
@@ -249,6 +244,8 @@ public interface MinecraftVersion {
 
     /** Represents the metadata for a Minecraft version */
     interface Meta {
+        int UNKNOWN_PROTOCOL = -1;
+        ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
         Meta UNKNOWN = new MinecraftVersionMetaImpl(UNKNOWN_PROTOCOL, UNKNOWN_PROTOCOL_TYPE, false);
 
         /**

@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
+import org.jetbrains.annotations.ApiStatus;
+
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getConfigFolder;
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getModsFolder;
 
@@ -20,11 +22,23 @@ public interface Platform {
     String name();
 
     /**
-     * Detect if the platform is available.
+     * Detect if the platform is available. <br>
+     * Note: This is all handled internally, and you should not need to call this method.
      *
      * @return True if the platform is available, false otherwise
      */
-    boolean detect();
+    default boolean detect() {
+        return detect(false);
+    }
+
+    /**
+     * Detect if the platform is available. <br>
+     * Note: This is all handled internally, and you should not need to call this method.
+     * @param force If true, the platform will be detected again, even if it was already detected
+     * @return True if the platform is available, false otherwise
+     */
+    @ApiStatus.Internal
+    boolean detect(boolean force);
 
     default boolean isBukkit() {
         return this.equals(Platforms.BUKKIT) || this.isSpigot() || this.isPaper();
