@@ -9,5 +9,14 @@ public enum ProtocolType {
     UNKNOWN,
     OLD_PRE_NETTY,
     PRE_NETTY,
-    NETTY
+    NETTY;
+
+    public static ProtocolType fromInt(int i) {
+        return switch (i) {
+            case 1 -> OLD_PRE_NETTY;
+            case 2 -> PRE_NETTY;
+            case 3 -> NETTY;
+            default -> UNKNOWN;
+        };
+    }
 }

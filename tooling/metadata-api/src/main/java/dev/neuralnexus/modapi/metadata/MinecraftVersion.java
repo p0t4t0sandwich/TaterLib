@@ -305,6 +305,17 @@ public interface MinecraftVersion {
         EXP_SNAPSHOT,
         PRE_RELEASE,
         RELEASE_CANDIDATE,
-        RELEASE
+        RELEASE;
+
+        public static Type fromInt(int i) {
+            return switch (i) {
+                case 1 -> SNAPSHOT;
+                case 2 -> EXP_SNAPSHOT;
+                case 3 -> PRE_RELEASE;
+                case 4 -> RELEASE_CANDIDATE;
+                case 5 -> RELEASE;
+                default -> UNKNOWN;
+            };
+        }
     }
 }
