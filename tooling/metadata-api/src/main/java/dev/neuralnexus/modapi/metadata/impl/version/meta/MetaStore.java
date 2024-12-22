@@ -24,6 +24,7 @@ public final class MetaStore {
     private static final File VERSION_META_CSV = Paths.get("version_meta.csv").toFile();
     private static final Map<String, MinecraftVersion.Meta> metaCache = new ConcurrentHashMap<>();
 
+    // readable,version,protocol_version,protocol_type,release_type,data_version,resource_pack_format,data_pack_format,notes
     /**
      * Get the metadata for a specific version
      *
@@ -43,11 +44,20 @@ public final class MetaStore {
                             .findFirst();
             if (metaStr.isPresent()) {
                 String[] parts = metaStr.get().split(",");
-                int protocol = Integer.parseInt(parts[1]);
-                ProtocolType protocolType = ProtocolType.valueOf(parts[2]);
-                boolean snapshot = Boolean.parseBoolean(parts[3]);
+                int protocol = Integer.parseInt(parts[2]);
+                ProtocolType protocolType = ProtocolType.valueOf(parts[3]);
+                MinecraftVersion.Type type = MinecraftVersion.Type.valueOf(parts[4]);
+                int dataVersion = Integer.parseInt(parts[5]);
+                int resourcePackFormat = Integer.parseInt(parts[6]);
+                int dataPackFormat = Integer.parseInt(parts[7]);
                 MinecraftVersion.Meta meta =
-                        new MinecraftVersionMetaImpl(protocol, protocolType, snapshot);
+                        new MinecraftVersionMetaImpl(
+                                protocol,
+                                protocolType,
+                                type,
+                                dataVersion,
+                                resourcePackFormat,
+                                dataPackFormat);
                 metaCache.put(verStr, meta);
                 return meta;
             }

@@ -7,8 +7,7 @@ package dev.neuralnexus.modapi.metadata;
 
 public enum ProtocolType {
     UNKNOWN,
-    APRIL_FOOLS,
-    PRE_PRE_NETTY,
+    OLD_PRE_NETTY,
     PRE_NETTY,
     NETTY
 }

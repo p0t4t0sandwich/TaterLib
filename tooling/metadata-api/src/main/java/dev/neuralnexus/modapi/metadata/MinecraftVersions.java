@@ -144,7 +144,7 @@ public final class MinecraftVersions
             for (Field field : releaseFields) {
                 try {
                     MinecraftVersion version = (MinecraftVersion) field.get(null);
-                    if (!keepSnapshots && version.meta().snapshot()) {
+                    if (!keepSnapshots && version.meta().type() != MinecraftVersion.Type.RELEASE) {
                         continue;
                     }
                     count++;
