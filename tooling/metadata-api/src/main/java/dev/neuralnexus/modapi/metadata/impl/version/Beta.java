@@ -41,7 +41,7 @@ public interface Beta {
     MinecraftVersion B1_7_2 = MinecraftVersionImpl.of("b1.7.2");
     MinecraftVersion B1_7_3 = MinecraftVersionImpl.of("b1.7.3");
     MinecraftVersion B1_8_PR = MinecraftVersionImpl.of("b1.8 Pre-release");
-    MinecraftVersion B1_8_PR2 = MinecraftVersionImpl.of("b1.8 Pre-release 2 ;)");
+    MinecraftVersion B1_8_PR2 = MinecraftVersionImpl.of("b1.8-pre2 ;)");
     MinecraftVersion B1_8 = MinecraftVersionImpl.of("b1.8");
     MinecraftVersion B1_8_1 = MinecraftVersionImpl.of("b1.8.1");
     MinecraftVersion B1_9_PR = MinecraftVersionImpl.of("b1.9 Prerelease");

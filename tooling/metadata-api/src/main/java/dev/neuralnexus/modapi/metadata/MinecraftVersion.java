@@ -8,6 +8,8 @@ package dev.neuralnexus.modapi.metadata;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MetaStore;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MinecraftVersionMetaImpl;
 
+import org.jetbrains.annotations.ApiStatus;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,8 @@ public interface MinecraftVersion {
      *
      * @return The metadata
      */
+    // Not quite finished yet
+    @ApiStatus.Experimental
     default Meta meta() {
         return MetaStore.getMeta(this);
     }
@@ -243,13 +247,16 @@ public interface MinecraftVersion {
     }
 
     /** Represents the metadata for a Minecraft version */
+    @ApiStatus.Experimental
     interface Meta {
-        int UNKNOWN_PROTOCOL = -1;
+        int UNKNOWN_PROTOCOL = 0;
         ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
-        Meta UNKNOWN = new MinecraftVersionMetaImpl(UNKNOWN_PROTOCOL, UNKNOWN_PROTOCOL_TYPE, false);
+        Meta UNKNOWN =
+                new MinecraftVersionMetaImpl(
+                        UNKNOWN_PROTOCOL, UNKNOWN_PROTOCOL_TYPE, Type.UNKNOWN, 0, 0, 0);
 
         /**
-         * Get the protocol version of the Minecraft server. -1 if unknown
+         * Get the protocol version of the Minecraft server. 0 if unknown
          *
          * @return The protocol asString
          */
@@ -263,10 +270,41 @@ public interface MinecraftVersion {
         ProtocolType protocolType();
 
         /**
-         * Get if the version is a snapshot.
+         * Get the release type of the Minecraft server. UNKNOWN if unknown
          *
-         * @return If the version is a snapshot
+         * @return The release type
          */
-        boolean snapshot();
+        Type type();
+
+        /**
+         * Get the data version of the Minecraft server. 0 if unknown
+         *
+         * @return The data version
+         */
+        int dataVersion();
+
+        /**
+         * Get the resource pack format of the Minecraft server. 0 if unknown
+         *
+         * @return The resource pack format
+         */
+        int resourcePackFormat();
+
+        /**
+         * Get the data pack format of the Minecraft server. 0 if unknown
+         *
+         * @return The data version
+         */
+        int dataPackFormat();
+    }
+
+    /** Represents the release type */
+    enum Type {
+        UNKNOWN,
+        SNAPSHOT,
+        EXP_SNAPSHOT,
+        PRE_RELEASE,
+        RELEASE_CANDIDATE,
+        RELEASE
     }
 }

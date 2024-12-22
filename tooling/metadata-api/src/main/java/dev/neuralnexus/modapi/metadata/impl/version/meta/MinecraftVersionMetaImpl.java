@@ -8,5 +8,11 @@ package dev.neuralnexus.modapi.metadata.impl.version.meta;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ProtocolType;
 
-public record MinecraftVersionMetaImpl(int protocol, ProtocolType protocolType, boolean snapshot)
+public record MinecraftVersionMetaImpl(
+        int protocol,
+        ProtocolType protocolType,
+        MinecraftVersion.Type type,
+        int resourcePackFormat,
+        int dataPackFormat,
+        int dataVersion)
         implements MinecraftVersion.Meta {}
