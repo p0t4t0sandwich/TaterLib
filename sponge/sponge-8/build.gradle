@@ -35,7 +35,7 @@ sponge {
 }
 
 dependencies {
-    compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly(libs.brigadier)
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))

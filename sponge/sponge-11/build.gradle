@@ -14,7 +14,7 @@ minecraft {
 }
 
 dependencies {
-    compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly(libs.brigadier)
     compileOnly("org.spongepowered:spongeapi:${spongeapi_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))

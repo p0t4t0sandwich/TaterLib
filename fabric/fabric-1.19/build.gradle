@@ -30,7 +30,7 @@ dependencies {
 
     compileOnly(project(':api'))
     compileOnly(project(':common'))
-    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':modapi:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
     implementation(project(':vanilla:vanilla-1.19'))
 }

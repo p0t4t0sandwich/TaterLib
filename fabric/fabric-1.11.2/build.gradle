@@ -15,6 +15,6 @@ dependencies {
     modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}")
     compileOnly(project(':api'))
     compileOnly(project(':common'))
-    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':modapi:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
 }

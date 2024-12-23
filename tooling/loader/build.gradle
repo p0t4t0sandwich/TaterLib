@@ -1,8 +1,8 @@
 dependencies {
-    compileOnly('org.spongepowered:mixin:0.8.5')
-    compileOnly('org.ow2.asm:asm-tree:6.2')
+    compileOnly(libs.mixin)
+    compileOnly(libs.asm.tree)
     compileOnly(project(':api'))
-    compileOnly(project(':tooling:entrypoint-spoof'))
+    compileOnly(project(':modapi:entrypoint-spoof'))
 }
 
 tasks.withType(ProcessResources).configureEach {

@@ -30,11 +30,11 @@ dependencies {
     implementation('com.mysql:mysql-connector-j:8.3.0')
 
     // Brigadier
-    compileOnly('com.mojang:brigadier:1.0.18')
+    compileOnly(libs.brigadier)
 
     // Mixin
-    compileOnly('org.spongepowered:mixin:0.8.5')
-    compileOnly('org.ow2.asm:asm-tree:6.2')
+    compileOnly(libs.mixin)
+    compileOnly(libs.asm.tree)
 
     // Cross API dependencies
     compileOnly('net.luckperms:api:5.4')
@@ -47,7 +47,7 @@ dependencies {
     compileOnly('com.mohistmc:mohistdev:1.16.5')
 
     // Tooling
-    compileOnly(project(':tooling:entrypoint-spoof'))
+    compileOnly(project(':modapi:entrypoint-spoof'))
 }
 
 java.disableAutoTargetJvm()

@@ -20,16 +20,16 @@ dependencies {
     implementation('com.google.guava:guava:33.0.0-jre')
 
     // Mixin
-    compileOnly('org.spongepowered:mixin:0.8.5')
-    compileOnly('org.ow2.asm:asm-tree:6.2')
+    compileOnly(libs.mixin)
+    compileOnly(libs.asm.tree)
 
     // Mojang AuthLib
     compileOnly('com.mojang:authlib:1.5.25')
 
     // Tooling
     compileOnly(project(':api'))
-    compileOnly(project(':tooling:conditional-mixins'))
-    compileOnly(project(':tooling:entrypoint-spoof'))
+    compileOnly(project(':modapi:conditional-mixins'))
+    compileOnly(project(':modapi:entrypoint-spoof'))
     compileOnly(project(':tooling:loader'))
 }
 

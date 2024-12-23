@@ -26,9 +26,9 @@ unimined.minecraft(sourceSets.main) {
 }
 
 dependencies {
-    compileOnly('org.spongepowered:mixin:0.8.5')
+    compileOnly(libs.mixin)
     compileOnly(project(':api'))
     compileOnly(project(':common'))
-    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':modapi:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
 }

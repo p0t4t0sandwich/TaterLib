@@ -18,8 +18,7 @@ import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
-    @Deprecated
-    private final PlatformData[] platformData;
+    @Deprecated private final PlatformData[] platformData;
 
     private Supplier<SimpleServer> minecraftServer = () -> null;
 

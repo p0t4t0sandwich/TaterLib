@@ -33,14 +33,11 @@ import java.util.function.Supplier;
 /** API Provider */
 @SuppressWarnings("unused")
 public class TaterAPIProvider {
-    @Deprecated
-    private static final Platform platform = Platform.get();
+    @Deprecated private static final Platform platform = Platform.get();
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
-    @Deprecated
-    private static Platform primaryPlatform;
-    @Deprecated
-    private static Side side = Side.SERVER;
+    @Deprecated private static Platform primaryPlatform;
+    @Deprecated private static Side side = Side.SERVER;
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";

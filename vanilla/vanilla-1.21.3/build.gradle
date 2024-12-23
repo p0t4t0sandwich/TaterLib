@@ -14,11 +14,11 @@ minecraft {
 }
 
 dependencies {
-    compileOnly('com.mojang:brigadier:1.0.18')
-    compileOnly('org.spongepowered:mixin:0.8.5')
+    compileOnly(libs.brigadier)
+    compileOnly(libs.mixin)
     compileOnly(project(':api'))
     compileOnly(project(':common'))
-    compileOnly(project(':tooling:conditional-mixins'))
+    compileOnly(project(':modapi:conditional-mixins'))
     compileOnly(project(':tooling:loader'))
     compileOnly(project(':vanilla:vanilla-1.21'))
 }

@@ -1,28 +1,26 @@
-import java.time.format.DateTimeFormatter
-import java.time.ZonedDateTime
 import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
 
-base {
-    val projectGroup = "dev.neuralnexus.modapi"
-    group = projectGroup
-    version = "0.1.0"
-    description = "An abstract API for querying modloader metadata at runtime"
-    archivesName = "metadata"
-}
+import java.time.Instant
 
 plugins {
     id("maven-publish")
     alias(libs.plugins.jvmdowngrader)
 }
 
+base {
+    group = "dev.neuralnexus.modapi"
+    version = "0.1.0"
+    description = "An abstract API for querying modloader metadata at runtime"
+    archivesName = "metadata"
+}
+
 dependencies {
-    // Test
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    compileOnly("org.spongepowered:mixin:0.8.5")
-    compileOnly("org.ow2.asm:asm-tree:6.2")
-    compileOnly(project(":tooling:entrypoint-spoof"))
+    compileOnly(libs.mixin)
+    compileOnly(libs.asm.tree)
+    compileOnly(project(":modapi:entrypoint-spoof"))
 }
 
 tasks.named<Test>("test") {
@@ -49,8 +47,7 @@ tasks.named<Jar>("jar") {
                 "Specification-Vendor" to "NeualNexus",
                 "Implementation-Version" to version,
                 "Implementation-Vendor" to "NeualNexus",
-                "Implementation-Timestamp" to ZonedDateTime.now()
-                    .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ"))
+                "Implementation-Timestamp" to Instant.now().toString()
             )
         )
     }

@@ -6,5 +6,5 @@ dependencies {
     compileOnly(project(':api'))
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
-    compileOnly(project(':tooling:entrypoint-spoof'))
+    compileOnly(project(':modapi:entrypoint-spoof'))
 }

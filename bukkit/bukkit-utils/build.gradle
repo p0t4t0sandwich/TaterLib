@@ -1,3 +1,7 @@
+base {
+    archivesName = "${project_id}-bukkit-utils"
+}
+
 dependencies {
     compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
     compileOnly("io.papermc.paper:paper-api:${minecraft_version}-${bukkit_version}")
@@ -7,7 +11,3 @@ dependencies {
 }
 
 java.disableAutoTargetJvm()
-
-jar {
-    archiveFileName = "${project_id}-bukkit-utils-${version}.jar"
-}

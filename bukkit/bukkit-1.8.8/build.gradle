@@ -1,3 +1,7 @@
+base {
+    archivesName = "${project_id}-bukkit-${minecraft_version}"
+}
+
 dependencies {
     compileOnly("org.spigotmc:spigot-api:${minecraft_version}-${bukkit_version}")
     compileOnly("org.github.paperspigot:paperspigot-api:${minecraft_version}-${bukkit_version}")
@@ -5,8 +9,4 @@ dependencies {
     compileOnly(project(':common'))
     compileOnly(project(':tooling:loader'))
     compileOnly(project(':bukkit:bukkit-utils'))
-}
-
-jar {
-    archiveFileName = "${project_id}-bukkit-${minecraft_version}-${version}.jar"
 }
