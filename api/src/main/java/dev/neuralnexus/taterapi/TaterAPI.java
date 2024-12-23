@@ -18,6 +18,7 @@ import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
+    @Deprecated
     private final PlatformData[] platformData;
 
     private Supplier<SimpleServer> minecraftServer = () -> null;
@@ -35,6 +36,7 @@ public class TaterAPI {
      *
      * @return The platform data
      */
+    @Deprecated
     public PlatformData platformData() {
         return platformData[0];
     }
@@ -44,6 +46,7 @@ public class TaterAPI {
      *
      * @return The Minecraft version
      */
+    @Deprecated
     public MinecraftVersion minecraftVersion() {
         return platformData[0].minecraftVersion();
     }
@@ -53,6 +56,7 @@ public class TaterAPI {
      *
      * @return The mod loader version
      */
+    @Deprecated
     public String modLoaderVersion() {
         return platformData[0].modLoaderVersion();
     }
@@ -62,6 +66,7 @@ public class TaterAPI {
      *
      * @return The mod list
      */
+    @Deprecated
     public List<ModInfo> modList() {
         List<ModInfo> mods = new ArrayList<>();
         for (PlatformData data : platformData) {
@@ -77,6 +82,7 @@ public class TaterAPI {
      *
      * @param nameOrId The name of the plugin or modId of the mod
      */
+    @Deprecated
     public boolean isModLoaded(String nameOrId) {
         for (PlatformData data : platformData) {
             if (data.isModLoaded(nameOrId)) {

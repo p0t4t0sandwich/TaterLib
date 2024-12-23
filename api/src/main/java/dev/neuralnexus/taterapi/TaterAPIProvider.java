@@ -33,10 +33,13 @@ import java.util.function.Supplier;
 /** API Provider */
 @SuppressWarnings("unused")
 public class TaterAPIProvider {
+    @Deprecated
     private static final Platform platform = Platform.get();
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
+    @Deprecated
     private static Platform primaryPlatform;
+    @Deprecated
     private static Side side = Side.SERVER;
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
@@ -49,6 +52,7 @@ public class TaterAPIProvider {
      *
      * @return The Minecraft version
      */
+    @Deprecated
     public static MinecraftVersion minecraftVersion() {
         return MinecraftVersion.get();
     }
@@ -58,6 +62,7 @@ public class TaterAPIProvider {
      *
      * @return The server type
      */
+    @Deprecated
     public static Platform platform() {
         return platform;
     }
@@ -67,6 +72,7 @@ public class TaterAPIProvider {
      *
      * @return The platform data
      */
+    @Deprecated
     public static PlatformData platformData() {
         return api().orElseThrow(() -> new NotLoadedException(platform)).platformData();
     }
@@ -76,6 +82,7 @@ public class TaterAPIProvider {
      *
      * @return If Brigadier is supported
      */
+    @Deprecated
     public static boolean isBrigadierSupported() {
         return (minecraftVersion().isAtLeast(MinecraftVersion.V1_13)) || platform.isVelocityBased();
     }
@@ -173,20 +180,24 @@ public class TaterAPIProvider {
      *
      * @param nameOrId The name of the plugin or modId of the mod
      */
+    @Deprecated
     public static boolean isModLoaded(String nameOrId) {
         return apis.values().stream().anyMatch(api -> api.isModLoaded(nameOrId));
     }
 
+    @Deprecated
     public static Platform primaryPlatform() {
         return primaryPlatform;
     }
 
     @ApiStatus.Internal
+    @Deprecated
     public static boolean isPrimaryPlatform(Platform platform) {
         return primaryPlatform == platform;
     }
 
     @ApiStatus.Internal
+    @Deprecated
     public static void setPrimaryPlatform(Platform platform) {
         if (primaryPlatform == null) {
             primaryPlatform = platform;
@@ -313,6 +324,7 @@ public class TaterAPIProvider {
     }
 
     /** Get the "side" the mod is running on */
+    @Deprecated
     public static Side side() {
         return TaterAPIProvider.side;
     }
@@ -323,6 +335,7 @@ public class TaterAPIProvider {
      * @param side The side
      */
     @ApiStatus.Internal
+    @Deprecated
     public static void setSide(Side side) {
         TaterAPIProvider.side = side;
     }
