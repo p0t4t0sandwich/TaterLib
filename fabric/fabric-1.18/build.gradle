@@ -26,19 +26,19 @@ dependencies {
     }
 
     // Lucko's Permissions API
-    modImplementation('me.lucko:fabric-permissions-api:0.2-SNAPSHOT')
+    modImplementation("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")
 
-    compileOnly(project(':api'))
-    compileOnly(project(':common'))
-    compileOnly(project(':modapi:conditional-mixins'))
-    compileOnly(project(':tooling:loader'))
-    implementation(project(':vanilla:vanilla-1.18'))
+    compileOnly(project(":api"))
+    compileOnly(project(":common"))
+    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":modapi:conditional-mixins"))
+    implementation(project(":vanilla:vanilla-1.18"))
 }
 
 shadowJar {
     dependencies {
         exclude('/mappings/*')
-        include(project(':vanilla:vanilla-1.18'))
+        include(project(":vanilla:vanilla-1.18"))
     }
     relocate("dev.neuralnexus.taterlib.mixin.v1_18.vanilla", "dev.neuralnexus.taterlib.mixin.v1_18.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_18.vanilla", "dev.neuralnexus.taterlib.v1_18.vanilla.fabric")

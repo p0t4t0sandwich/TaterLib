@@ -28,11 +28,11 @@ unimined.minecraft(sourceSets.main) {
 tasks.build.dependsOn(remapShadowJar)
 
 dependencies {
-    compileOnly(project(':api'))
-    compileOnly(project(':common'))
-    compileOnly(project(':modapi:conditional-mixins'))
-    compileOnly(project(':tooling:loader'))
-    compileOnly(project(':forge:forge-utils-modern'))
+    compileOnly(project(":api"))
+    compileOnly(project(":common"))
+    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":modapi:conditional-mixins"))
+    compileOnly(project(":forge:forge-utils-modern"))
     implementation(project(":vanilla:vanilla-1.17"))
 }
 

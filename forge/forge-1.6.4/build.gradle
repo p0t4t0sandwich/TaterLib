@@ -18,7 +18,7 @@ unimined.minecraft(sourceSets.main) {
 }
 
 dependencies {
-    compileOnly(project(':api'))
-    compileOnly(project(':common'))
-    compileOnly(project(':tooling:loader'))
+    compileOnly(project(":api"))
+    compileOnly(project(":common"))
+    compileOnly(project(":tooling:loader"))
 }

@@ -30,10 +30,10 @@ tasks.named<Test>("test") {
 
 java {
     withSourcesJar()
-    val javaVersion = JavaVersion.toVersion(21)
-    sourceCompatibility = javaVersion
-    targetCompatibility = javaVersion
-    if (JavaVersion.current() < javaVersion) {
+    val jv = JavaVersion.toVersion(21)
+    sourceCompatibility = jv
+    targetCompatibility = jv
+    if (JavaVersion.current() < jv) {
         toolchain.languageVersion = JavaLanguageVersion.of(21)
     }
 }

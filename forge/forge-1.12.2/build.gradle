@@ -27,8 +27,8 @@ unimined.minecraft(sourceSets.main) {
 
 dependencies {
     compileOnly(libs.mixin)
-    compileOnly(project(':api'))
-    compileOnly(project(':common'))
-    compileOnly(project(':modapi:conditional-mixins'))
-    compileOnly(project(':tooling:loader'))
+    compileOnly(project(":api"))
+    compileOnly(project(":common"))
+    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":modapi:conditional-mixins"))
 }

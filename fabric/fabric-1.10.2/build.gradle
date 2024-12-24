@@ -13,8 +13,8 @@ dependencies {
     mappings("net.legacyfabric:yarn:${project.yarn_mappings}:v2")
     modImplementation("net.fabricmc:fabric-loader:${project.loader_version}")
     modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${project.fabric_version}")
-    compileOnly(project(':api'))
-    compileOnly(project(':common'))
-    compileOnly(project(':modapi:conditional-mixins'))
-    compileOnly(project(':tooling:loader'))
+    compileOnly(project(":api"))
+    compileOnly(project(":common"))
+    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":modapi:conditional-mixins"))
 }

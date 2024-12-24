@@ -14,7 +14,7 @@
     }
   ],
   "contact": {
-    "repo": "${repo_url}"
+    "repo": "${source_url}"
   },
   "license": "${license}",
   "icon": "${project_name}.png.gz",

@@ -9,7 +9,7 @@ dependencies {
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
     compileOnly(project(':modapi:entrypoint-spoof'))
-    implementation(project(':api'))
+    implementation(project(":api"))
 }
 
 jar {
@@ -18,7 +18,7 @@ jar {
 
 shadowJar {
     dependencies {
-        include(project(':api'))
+        include(project(":api"))
         exclude('plugin.yml')
         exclude('bungee.yml')
         exclude('fabric.mod.json')

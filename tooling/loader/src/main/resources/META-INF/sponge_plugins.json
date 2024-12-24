@@ -14,8 +14,8 @@
       "branding": {},
       "links": {
         "homepage": "${homepage_url}",
-        "source": "${repo_url}",
-        "issues": "${issue_tracker_url}"
+        "source": "${source_url}",
+        "issues": "${issue_url}"
       },
       "dependencies": [
         {
