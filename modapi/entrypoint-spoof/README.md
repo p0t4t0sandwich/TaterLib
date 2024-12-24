@@ -7,6 +7,10 @@ Credit
 to [kosma](https://github.com/kosmolot-mods/minecraft-mysql-jdbc/blob/main/forge-1.12/src/main/java/net/minecraftforge/fml/common/Mod.java")
 for inspiring the idea.
 
+## Note
+
+This is just a rough idea on what the lib does, it offers quite a bit more than what's outlined below.
+
 ## Usage
 
 In most cases, you can just slap your init code into a constructor, and it'll work as long as you don't

@@ -8,9 +8,6 @@ plugins {
 }
 
 base {
-    group = "dev.neuralnexus.modapi"
-    version = "0.1.0"
-    description = "An abstract API for querying modloader metadata at runtime"
     archivesName = "metadata"
 }
 
@@ -30,12 +27,9 @@ tasks.named<Test>("test") {
 
 java {
     withSourcesJar()
-    val jv = JavaVersion.toVersion(21)
-    sourceCompatibility = jv
-    targetCompatibility = jv
-    if (JavaVersion.current() < jv) {
-        toolchain.languageVersion = JavaLanguageVersion.of(21)
-    }
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
 tasks.named<Jar>("jar") {

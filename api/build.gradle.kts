@@ -76,7 +76,7 @@ tasks.named<ShadowJar>("shadowJar") {
         include(dependency("com.mysql:mysql-connector-j:8.3.0"))
     }
 
-    minimize() {
+    minimize {
         exclude(dependency("org.spongepowered:configurate-core:4.2.0-SNAPSHOT"))
         exclude(dependency("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT"))
         exclude(dependency("org.bstats:bstats-base:3.0.2"))

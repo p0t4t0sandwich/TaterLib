@@ -11,7 +11,7 @@ base {
 
 sponge {
     apiVersion(project.apiVersion)
-    license(projectlicense)
+    license(projectLicense)
     loader {
         name(PluginLoaders.JAVA_PLAIN)
         version("1.0")
