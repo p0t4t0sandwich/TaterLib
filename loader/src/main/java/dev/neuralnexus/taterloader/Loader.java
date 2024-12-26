@@ -34,15 +34,15 @@ public interface Loader {
     Logger logger = Logger.create("TaterLoader");
 
     /** Get the platform's server/plugin/container. */
-    @ApiStatus.Internal
+    @ApiStatus.Experimental
     Object plugin();
 
     /** Get the platform's server. */
-    @ApiStatus.Internal
+    @ApiStatus.Experimental
     Object server();
 
     /** Get the platform's other data. */
-    @ApiStatus.Internal
+    @ApiStatus.Experimental
     Object[] other();
 
     /** Get the collection of plugins. */

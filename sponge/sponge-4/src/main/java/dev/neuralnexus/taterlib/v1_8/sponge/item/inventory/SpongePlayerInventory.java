@@ -5,7 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_8.sponge.item.inventory;
 
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -74,7 +75,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     @Override
     public ItemStack offhand() {
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersion.V9)) {
+        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V9)) {
             throw new VersionFeatureNotSupportedException();
         }
         // TODO: Implement
@@ -83,7 +84,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
 
     @Override
     public void setOffhand(ItemStack offhand) {
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersion.V9)) {
+        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V9)) {
             throw new VersionFeatureNotSupportedException();
         }
         // TODO: Implement

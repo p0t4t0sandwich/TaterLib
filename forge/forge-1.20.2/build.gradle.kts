@@ -35,7 +35,9 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8")
+    })
     compileOnly(libs.modapi.muxins)
     compileOnly(project(":forge:forge-utils-modern"))
     compileOnly(project(":vanilla:vanilla-1.20"))

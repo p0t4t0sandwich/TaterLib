@@ -11,6 +11,8 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -47,10 +49,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
-        TaterAPIProvider.api(Platform.FORGE)
+        TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platform.FORGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

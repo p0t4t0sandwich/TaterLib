@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_19.fabric;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -40,10 +42,10 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.setSide(
                 VanillaBootstrap.determineSide(
                         FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT));
-        TaterAPIProvider.api(Platform.FABRIC)
+        TaterAPIProvider.api(Platforms.FABRIC)
                 .ifPresent(api -> api.setServer(VanillaBootstrap.server(() -> server)));
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platform.FABRIC)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());
 
@@ -52,7 +54,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
                                 new VanillaBrigadierCommandRegisterEvent(dispatcher, environment));
                         // Sponge has its own, nicer simple command system
-                        if (!MetaAPI.instance().isSpongeBased()) {
+                        if (!MetaAPI.instance().isPlatformPresent(Platforms.SPONGE)) {
                             CommandEvents.REGISTER_COMMAND.invoke(
                                     new VanillaCommandRegisterEvent(dispatcher, environment));
                         }

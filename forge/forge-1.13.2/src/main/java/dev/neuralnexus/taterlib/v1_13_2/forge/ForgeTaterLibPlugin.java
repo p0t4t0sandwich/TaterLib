@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -36,7 +38,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
-        TaterAPIProvider.api(Platform.FORGE)
+        TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
@@ -44,7 +46,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                 new ForgeServer(
                                                         ServerLifecycleHooks.getCurrentServer())));
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platform.FORGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

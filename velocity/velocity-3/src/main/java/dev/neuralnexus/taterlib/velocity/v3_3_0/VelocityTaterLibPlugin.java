@@ -9,6 +9,7 @@ import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
@@ -33,7 +34,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.addHook(new VelocityPermissionsHook());
         start();
-        TaterAPIProvider.api(Platform.VELOCITY)
+        TaterAPIProvider.api(Platforms.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
     }
 

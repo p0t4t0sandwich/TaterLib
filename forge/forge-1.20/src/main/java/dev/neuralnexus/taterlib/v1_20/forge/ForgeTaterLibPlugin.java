@@ -5,7 +5,9 @@
  */
 package dev.neuralnexus.taterlib.v1_20.forge;
 
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.forge.hooks.permissions.ForgePermissionsHook;
@@ -31,14 +33,14 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
-        TaterAPIProvider.api(Platform.FORGE)
+        TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
                                         VanillaBootstrap.server(
                                                 ServerLifecycleHooks::getCurrentServer)));
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platform.FORGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
@@ -46,9 +48,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
             if (MetaAPI.instance()
                     .version()
-                    .isInRange(MinecraftVersion.V20, MinecraftVersion.V20_1)) {
+                    .isInRange(MinecraftVersions.V20, MinecraftVersions.V20_1)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
-            } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersion.V20_2)) {
+            } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_2)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());
             }
             MinecraftForge.EVENT_BUS.register(new ForgeServerListener());

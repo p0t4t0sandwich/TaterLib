@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20.vanilla;
 
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;

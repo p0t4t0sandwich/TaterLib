@@ -15,5 +15,8 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8")
+    })
     compileOnly(project(":forge:forge-utils-modern"))
 }

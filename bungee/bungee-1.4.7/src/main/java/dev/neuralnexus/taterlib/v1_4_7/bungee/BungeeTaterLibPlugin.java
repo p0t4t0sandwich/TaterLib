@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee;
 
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -29,7 +30,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.addHook(new BungeePermissionsHook());
         start();
-        TaterAPIProvider.api(Platform.BUNGEECORD)
+        TaterAPIProvider.api(Platforms.BUNGEECORD)
                 .ifPresent(api -> api.setServer(BungeeProxyServer::instance));
     }
 

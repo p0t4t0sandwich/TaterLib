@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.fabric;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.*;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -41,10 +43,10 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
         TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
-        TaterAPIProvider.api(Platform.FABRIC)
+        TaterAPIProvider.api(Platforms.FABRIC)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platform.FABRIC)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());

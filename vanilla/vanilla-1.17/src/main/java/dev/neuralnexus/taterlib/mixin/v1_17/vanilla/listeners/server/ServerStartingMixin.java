@@ -8,6 +8,8 @@ package dev.neuralnexus.taterlib.mixin.v1_17.vanilla.listeners.server;
 import com.mojang.brigadier.CommandDispatcher;
 
 import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
@@ -59,7 +61,7 @@ public class ServerStartingMixin {
                 new VanillaBrigadierCommandRegisterEvent(dispatcher, commandSelection));
 
         // Sponge has its own, nicer simple command system
-        if (!MetaAPI.instance().isSpongeBased()) {
+        if (!MetaAPI.instance().isPlatformPresent(Platforms.SPONGE)) {
             CommandEvents.REGISTER_COMMAND.invoke(
                     new VanillaCommandRegisterEvent(dispatcher, commandSelection));
         }

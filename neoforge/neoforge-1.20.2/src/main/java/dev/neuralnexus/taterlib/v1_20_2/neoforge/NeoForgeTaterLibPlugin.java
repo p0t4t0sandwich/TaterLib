@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
@@ -20,7 +21,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         TaterAPIProvider.addHook(new NeoForgePermissionsHook());
         start();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
-        TaterAPIProvider.api(Platform.NEOFORGE)
+        TaterAPIProvider.api(Platforms.NEOFORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
