@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.mixin.api.mojang.authlib;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;

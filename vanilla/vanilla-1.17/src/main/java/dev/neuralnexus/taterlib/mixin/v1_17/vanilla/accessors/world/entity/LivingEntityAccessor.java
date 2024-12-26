@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_17.vanilla.accessors.world.entity;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 
 import net.minecraft.world.entity.LivingEntity;

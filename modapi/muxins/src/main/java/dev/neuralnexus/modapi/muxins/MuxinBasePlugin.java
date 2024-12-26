@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.conditionalmixins;
+package dev.neuralnexus.modapi.muxins;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public class ConditionalMixinPlugin implements IMixinConfigPlugin {
+public class MuxinBasePlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {}
 
@@ -23,7 +23,7 @@ public class ConditionalMixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        return ConditionalMixins.shouldApplyMixin(mixinClassName);
+        return Muxins.shouldApplyMixin(mixinClassName);
     }
 
     @Override

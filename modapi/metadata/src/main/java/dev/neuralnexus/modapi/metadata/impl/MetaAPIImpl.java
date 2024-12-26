@@ -78,6 +78,12 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
+    public boolean isPlatformPresent(@NotNull Platform platform) throws NullPointerException {
+        Objects.requireNonNull(platform, "Platform cannot be null");
+        return Platforms.get().contains(platform);
+    }
+
+    @Override
     public Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException {
         return Meta.lookup(this.primaryPlatform())
                 .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform()));
@@ -100,17 +106,17 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public boolean isLoaded(@NotNull String nameOrId) throws NullPointerException {
+    public boolean isModLoaded(@NotNull String nameOrId) throws NullPointerException {
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
-        return Meta.lookupAll().stream().anyMatch(meta -> meta.isLoaded(nameOrId));
+        return Meta.lookupAll().stream().anyMatch(meta -> meta.isModLoaded(nameOrId));
     }
 
     @Override
-    public Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+    public Optional<Boolean> isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
             throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
-        return Meta.lookup(platform).map(meta -> meta.isLoaded(nameOrId));
+        return Meta.lookup(platform).map(meta -> meta.isModLoaded(nameOrId));
     }
 
     @Override

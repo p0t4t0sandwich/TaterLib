@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.plugin;
 
-import dev.neuralnexus.conditionalmixins.ConditionalMixins;
+import dev.neuralnexus.modapi.muxins.Muxins;
 import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
@@ -29,7 +29,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         MixinConfig config = TaterLibConfigLoader.config().mixin();
-        return ConditionalMixins.shouldApplyMixin(
+        return Muxins.shouldApplyMixin(
                 mixinClassName, config.disabled(), config.verbose());
     }
 

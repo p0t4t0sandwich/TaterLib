@@ -63,8 +63,8 @@ rootProject.name = 'TaterLib'
 include(
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
-        'modapi:conditional-mixins',
         'modapi:metadata',
+        'modapi:muxins',
 
         // Common
         'api',

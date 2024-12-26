@@ -16,6 +16,6 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(project(":modapi:conditional-mixins"))
+    compileOnly(project(":modapi:muxins"))
     compileOnly(project(":vanilla:vanilla-1.16"))
 }

@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20.vanilla.api.minecraft.server.level;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.Connection;

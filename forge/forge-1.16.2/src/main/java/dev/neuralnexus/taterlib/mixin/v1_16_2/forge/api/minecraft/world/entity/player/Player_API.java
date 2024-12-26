@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.mixin.v1_16_2.forge.api.minecraft.world.entity.
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
-import dev.neuralnexus.conditionalmixins.annotations.ReqMappings;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.Mappings;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;

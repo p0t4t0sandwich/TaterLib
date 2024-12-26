@@ -3,9 +3,9 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.conditionalmixins.annotations;
+package dev.neuralnexus.modapi.muxins.annotations;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.enums.Platform;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

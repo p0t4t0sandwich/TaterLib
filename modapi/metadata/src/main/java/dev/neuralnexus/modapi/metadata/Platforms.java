@@ -10,6 +10,7 @@ import dev.neuralnexus.modapi.metadata.impl.platform.BungeeCord;
 import dev.neuralnexus.modapi.metadata.impl.platform.Fabric;
 import dev.neuralnexus.modapi.metadata.impl.platform.Forge;
 import dev.neuralnexus.modapi.metadata.impl.platform.Hybrid;
+import dev.neuralnexus.modapi.metadata.impl.platform.PlatformImpl;
 import dev.neuralnexus.modapi.metadata.impl.platform.Sponge;
 import dev.neuralnexus.modapi.metadata.impl.platform.Vanilla;
 import dev.neuralnexus.modapi.metadata.impl.platform.Velocity;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public final class Platforms
         implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Sponge, Vanilla, Velocity {
+    public static final Platform UNKNOWN = new PlatformImpl("Unknown");
     private static final List<Platform> platforms = new ArrayList<>();
 
     /**

@@ -60,6 +60,15 @@ public interface MetaAPI {
     Platform platform() throws NoPlatformException;
 
     /**
+     * Check if a platform is present
+     *
+     * @param platform The platform
+     * @return True if the platform is present, false otherwise
+     * @throws NullPointerException if the platform is null
+     */
+    boolean isPlatformPresent(@NotNull Platform platform) throws NullPointerException;
+
+    /**
      * Get the metadata for the primary platform
      *
      * @return The Platform's metadata
@@ -95,7 +104,7 @@ public interface MetaAPI {
      * @return True if the mod is loaded, false otherwise
      * @throws NullPointerException if the nameOrId is null
      */
-    boolean isLoaded(@NotNull String nameOrId) throws NullPointerException;
+    boolean isModLoaded(@NotNull String nameOrId) throws NullPointerException;
 
     /**
      * Get if a mod is loaded <br>
@@ -107,7 +116,7 @@ public interface MetaAPI {
      * @return True if the mod is loaded, false otherwise
      * @throws NullPointerException if the platform or nameOrId is null
      */
-    Optional<Boolean> isLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+    Optional<Boolean> isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
             throws NullPointerException;
 
     /**

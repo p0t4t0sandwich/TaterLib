@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_19_4.vanilla.patch.event.entity;
 
-import dev.neuralnexus.conditionalmixins.annotations.ReqMCVersion;
+import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;

@@ -56,10 +56,10 @@ tasks.named<DowngradeJar>("downgradeJar") {
     archiveClassifier.set("downgraded-8")
 }
 
-tasks.withType<GenerateModuleMetadata> {
-    enabled = false
-}
-
+//tasks.withType<GenerateModuleMetadata> {
+//    enabled = false
+//}
+//
 tasks.build {
     dependsOn(tasks.test)
 }
@@ -95,11 +95,15 @@ publishing {
         register("originalJar", MavenPublication::class) {
             artifact(tasks["jar"])
         }
-        register("downgradedJar", MavenPublication::class) {
-            artifact(tasks["downgradeJar"])
-        }
         register("sourcesJar", MavenPublication::class) {
-            artifact(tasks["sourcesJar"])
+            artifact(tasks["sourcesJar"]) {
+                classifier = "sources"
+            }
+        }
+        register("downgradedJar", MavenPublication::class) {
+            artifact(tasks["downgradeJar"]) {
+                classifier = "downgraded-8"
+            }
         }
     }
 }

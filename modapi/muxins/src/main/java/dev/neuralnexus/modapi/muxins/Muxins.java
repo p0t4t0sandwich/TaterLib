@@ -3,11 +3,9 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.conditionalmixins;
+package dev.neuralnexus.modapi.muxins;
 
-import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
-
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.service.MixinService;
@@ -16,11 +14,13 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 
+import static dev.neuralnexus.modapi.metadata.impl.util.TextUtil.ansiParser;
+
 /**
  * Utility class for users that what to use conditional mixins allong with their own mixin plugin
  */
-public class ConditionalMixins {
-    public static final Logger logger = Logger.create("conditionalmixins");
+public class Muxins {
+    public static final Logger logger = Logger.create("muxins");
 
     public static boolean shouldApplyMixin(
             String mixinClassName, Collection<String> disabledMixins, boolean verbose) {

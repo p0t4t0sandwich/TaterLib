@@ -165,7 +165,7 @@ public interface Platform {
          * @param nameOrId The name of the plugin or modId of the mod
          * @return True if the mod is loaded, false otherwise
          */
-        default boolean isLoaded(String nameOrId) {
+        default boolean isModLoaded(String nameOrId) {
             return modList().stream()
                     .anyMatch(
                             modInfo ->
