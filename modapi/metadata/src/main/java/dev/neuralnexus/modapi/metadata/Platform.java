@@ -22,6 +22,15 @@ public interface Platform {
     String name();
 
     /**
+     * Get the platform as a string.
+     *
+     * @return The platform as a string
+     */
+    default String asString() {
+        return this.name();
+    }
+
+    /**
      * Detect if the platform is available. <br>
      * Note: This is all handled internally, and you should not need to call this method.
      *

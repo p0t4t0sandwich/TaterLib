@@ -8,9 +8,9 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.metadata.ModInfo;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.ModInfo;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 
@@ -27,36 +27,36 @@ public class FullDumpInfo extends DumpInfo {
     public String latestLog;
     public String debugLog;
     public String latestCrashLog;
-    public List<ModInfo> bukkitPlugins;
-    public List<ModInfo> bungeePlugins;
-    public List<ModInfo> spongePlugins;
-    public List<ModInfo> velocityPlugins;
-    public List<ModInfo> forgeMods;
-    public List<ModInfo> neoForgeMods;
-    public List<ModInfo> fabricMods;
+    public List<ModInfo> bukkit;
+    public List<ModInfo> bungeecord;
+    public List<ModInfo> fabric;
+    public List<ModInfo> forge;
+    public List<ModInfo> neoforge;
+    public List<ModInfo> sponge;
+    public List<ModInfo> velocity;
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public FullDumpInfo() {
-        if (platform.isBukkitBased()) {
-            this.bukkitPlugins = TaterAPIProvider.api(Platform.BUKKIT).get().modList();
+        if (Platforms.isBukkit()) {
+            this.bukkit = MetaAPI.instance().meta(Platforms.BUKKIT).get().modList();
         }
-        if (platform.isBungeeCordBased()) {
-            this.bungeePlugins = TaterAPIProvider.api(Platform.BUNGEECORD).get().modList();
+        if (Platforms.isBungeeCord()) {
+            this.bungeecord = MetaAPI.instance().meta(Platforms.BUNGEECORD).get().modList();
         }
-        if (platform.isSpongeBased()) {
-            this.spongePlugins = TaterAPIProvider.api(Platform.SPONGE).get().modList();
+        if (Platforms.isFabric()) {
+            this.fabric = MetaAPI.instance().meta(Platforms.FABRIC).get().modList();
         }
-        if (platform.isVelocityBased()) {
-            this.velocityPlugins = TaterAPIProvider.api(Platform.VELOCITY).get().modList();
+        if (Platforms.isForge()) {
+            this.forge = MetaAPI.instance().meta(Platforms.FORGE).get().modList();
         }
-        if (Platform.isNeoForge()) {
-            this.neoForgeMods = TaterAPIProvider.api(Platform.NEOFORGE).get().modList();
+        if (Platforms.isNeoForge()) {
+            this.neoforge = MetaAPI.instance().meta(Platforms.NEOFORGE).get().modList();
         }
-        if (Platform.isForge()) {
-            this.forgeMods = TaterAPIProvider.api(Platform.FORGE).get().modList();
+        if (Platforms.isSponge()) {
+            this.sponge = MetaAPI.instance().meta(Platforms.SPONGE).get().modList();
         }
-        if (Platform.isFabric()) {
-            this.fabricMods = TaterAPIProvider.api(Platform.FABRIC).get().modList();
+        if (Platforms.isVelocity()) {
+            this.velocity = MetaAPI.instance().meta(Platforms.VELOCITY).get().modList();
         }
     }
 

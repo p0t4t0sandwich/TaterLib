@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_17.vanilla.accessors.world.entity;
 
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 /** Accessor for {@link LivingEntity}. */
-@ReqMCVersion(min = MinecraftVersion.V1_17, max = MinecraftVersion.V1_17_1)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
 @Mixin(LivingEntity.class)
 @SuppressWarnings({"unused", "UnusedMixin"})
 public interface LivingEntityAccessor {

@@ -5,18 +5,12 @@
  */
 package dev.neuralnexus.taterapi;
 
-import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForClass;
-
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.entity.Permissible;
-import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.Hook;
-import dev.neuralnexus.taterapi.hooks.hybrids.ArclightHook;
-import dev.neuralnexus.taterapi.hooks.hybrids.KettingHook;
-import dev.neuralnexus.taterapi.hooks.hybrids.MagmaHook;
-import dev.neuralnexus.taterapi.hooks.hybrids.MohistHook;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
-import dev.neuralnexus.taterapi.metadata.impl.*;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
@@ -33,56 +27,14 @@ import java.util.function.Supplier;
 /** API Provider */
 @SuppressWarnings("unused")
 public class TaterAPIProvider {
-    @Deprecated private static final Platform platform = Platform.get();
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
-    @Deprecated private static Platform primaryPlatform;
     @Deprecated private static Side side = Side.SERVER;
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
     private static final Map<Class<?>, Supplier<?>> builders = new HashMap<>();
-
-    /**
-     * Get Minecraft version
-     *
-     * @return The Minecraft version
-     */
-    @Deprecated
-    public static MinecraftVersion minecraftVersion() {
-        return MinecraftVersion.get();
-    }
-
-    /**
-     * Get server type
-     *
-     * @return The server type
-     */
-    @Deprecated
-    public static Platform platform() {
-        return platform;
-    }
-
-    /**
-     * Get platform data
-     *
-     * @return The platform data
-     */
-    @Deprecated
-    public static PlatformData platformData() {
-        return api().orElseThrow(() -> new NotLoadedException(platform)).platformData();
-    }
-
-    /**
-     * Whether Brigadier is supported
-     *
-     * @return If Brigadier is supported
-     */
-    @Deprecated
-    public static boolean isBrigadierSupported() {
-        return (minecraftVersion().isAtLeast(MinecraftVersion.V1_13)) || platform.isVelocityBased();
-    }
 
     /**
      * Add a hook
@@ -151,10 +103,7 @@ public class TaterAPIProvider {
      * @return The instance of the API
      */
     public static Optional<TaterAPI> api() {
-        if (platform != primaryPlatform) {
-            return api(primaryPlatform);
-        }
-        return api(platform);
+        return api(MetaAPI.instance().primaryPlatform());
     }
 
     /**
@@ -164,41 +113,7 @@ public class TaterAPIProvider {
      * @return The instance of the API
      */
     public static Optional<TaterAPI> api(Platform platform) {
-        if (apis.isEmpty()) {
-            register();
-        }
         return Optional.ofNullable(apis.get(platform));
-    }
-
-    /**
-     * Get if a plugin/mod is loaded <br>
-     * Note: Unless you need to check at a specific time, it's best to run this check after the
-     * server has started {@link ServerEvents#STARTED}
-     *
-     * @param nameOrId The name of the plugin or modId of the mod
-     */
-    @Deprecated
-    public static boolean isModLoaded(String nameOrId) {
-        return apis.values().stream().anyMatch(api -> api.isModLoaded(nameOrId));
-    }
-
-    @Deprecated
-    public static Platform primaryPlatform() {
-        return primaryPlatform;
-    }
-
-    @ApiStatus.Internal
-    @Deprecated
-    public static boolean isPrimaryPlatform(Platform platform) {
-        return primaryPlatform == platform;
-    }
-
-    @ApiStatus.Internal
-    @Deprecated
-    public static void setPrimaryPlatform(Platform platform) {
-        if (primaryPlatform == null) {
-            primaryPlatform = platform;
-        }
     }
 
     @ApiStatus.Internal
@@ -218,106 +133,6 @@ public class TaterAPIProvider {
      */
     public static PlayerDataStore playerDataStore() {
         return playerDataStore;
-    }
-
-    @ApiStatus.Internal
-    public static void register() {
-        registrySetup();
-
-        Set<PlatformData> activeDatas = new HashSet<>();
-        PlatformData bukkitData = new BukkitData();
-        PlatformData bungeeCordData = new BungeeCordData();
-        PlatformData fabricData = new FabricData();
-        PlatformData neoForgeData = new NeoForgeData();
-        PlatformData forgeData = ForgeData.create();
-        PlatformData spongeData = SpongeData.create();
-        PlatformData velocityData = new VelocityData();
-
-        if (platform.isBukkitBased()) {
-            activeDatas.add(bukkitData);
-            apis.put(Platform.BUKKIT, new TaterAPI(bukkitData));
-        }
-
-        if (platform.isBungeeCordBased()) {
-            activeDatas.add(bungeeCordData);
-            apis.put(Platform.BUNGEECORD, new TaterAPI(bungeeCordData));
-        }
-
-        // Secondary logical check is for Sinytra Connector
-        if (platform.isFabricBased() || checkForClass("org.sinytra.connector.mod.ConnectorMod")) {
-            activeDatas.add(fabricData);
-            apis.put(Platform.FABRIC, new TaterAPI(fabricData));
-        }
-
-        // Secondary logical check is for Kilt
-        if (platform.isNeoForgeBased() || checkForClass("org.kitteh.kilt.Kilt")) {
-            activeDatas.add(neoForgeData);
-            apis.put(Platform.NEOFORGE, new TaterAPI(neoForgeData));
-        }
-        // NeoForge is technically Forge-based, so Forge is in the same logic block
-        else if (platform.isForgeBased()) {
-            activeDatas.add(forgeData);
-            apis.put(Platform.FORGE, new TaterAPI(forgeData));
-        }
-
-        // Check for SpongeForge, then Sponge
-        if (platform.isSpongeBased()) {
-            activeDatas.add(spongeData);
-            TaterAPI spongeAPI = new TaterAPI(spongeData);
-            apis.put(Platform.SPONGE, spongeAPI);
-            if (platform.isForgeBased()) {
-                apis.put(Platform.SPONGE_FORGE, new TaterAPI(spongeData, forgeData));
-            } else {
-                apis.put(Platform.SPONGE_VANILLA, spongeAPI);
-            }
-        }
-
-        if (platform.isVelocityBased()) {
-            activeDatas.add(velocityData);
-            apis.put(Platform.VELOCITY, new TaterAPI(velocityData));
-        }
-
-        apis.put(platform, new TaterAPI(activeDatas.toArray(new PlatformData[0])));
-
-        if (platform.isHybrid()) {
-            switch (platform) {
-                case ARCLIGHT:
-                case ARCLIGHT_FABRIC:
-                case ARCLIGHT_NEO:
-                    addHook(new ArclightHook());
-                    break;
-                case BANNER:
-                    // TODO: check for Banner API
-                    break;
-                case CARDBOARD:
-                    // TODO: check for Cardboard API
-                case KETTING:
-                    addHook(new KettingHook());
-                    break;
-                case MAGMA:
-                    addHook(new MagmaHook());
-                    break;
-                case MOHIST:
-                case MOHIST_NEO:
-                    addHook(new MohistHook());
-                    break;
-            }
-        }
-    }
-
-    @ApiStatus.Internal
-    public static void unregister() {
-        apis.remove(platform);
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     *
-     * @param platform The server type
-     */
-    @ApiStatus.Internal
-    public static void unregister(Platform platform) {
-        apis.remove(platform);
     }
 
     /** Get the "side" the mod is running on */

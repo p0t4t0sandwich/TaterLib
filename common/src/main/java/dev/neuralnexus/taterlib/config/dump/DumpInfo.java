@@ -8,9 +8,8 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
@@ -23,19 +22,13 @@ import java.nio.file.Paths;
 
 /** General dump information for debugging. */
 public class DumpInfo {
-    public final Platform platform = Platform.get();
-    public final MinecraftVersion minecraftVersion = MinecraftVersion.get();
+    public final String platform = MetaAPI.instance().primaryPlatform().asString();
+    public final String version = MetaAPI.instance().version().asString();
     public final String taterlibVersion = LoaderImpl.PROJECT_VERSION;
-    public final boolean isForgeHybrid = platform.isForgeHybrid();
-    public final boolean isFabricHybrid = platform.isFabricHybrid();
-    public final boolean isSpongeForge = platform.is(Platform.SPONGE_FORGE);
-
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public final boolean isSinytraConnector =
-            TaterAPIProvider.api().get().isModLoaded("connectormod");
-
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public final boolean isKilt = TaterAPIProvider.api().get().isModLoaded("kilt");
+    public final boolean isForgeHybrid = Platforms.isForgeHybrid();
+    public final boolean isFabricHybrid = Platforms.isFabricHybrid();
+    public final boolean isSpongeForge = Platforms.isSpongeForge();
+    public final boolean isMixedForgeFabric = Platforms.isMixedForgeFabric();
 
     /** Save the dump to a file. */
     @SuppressWarnings("ResultOfMethodCallIgnored")

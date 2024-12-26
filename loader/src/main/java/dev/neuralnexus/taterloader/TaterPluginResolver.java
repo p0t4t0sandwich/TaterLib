@@ -7,36 +7,36 @@ package dev.neuralnexus.taterloader;
 
 import static dev.neuralnexus.taterloader.TaterReflectUtil.newInstance;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterloader.plugin.Plugin;
 
 /** Locates and returns the core TaterLib plugin. */
 public class TaterPluginResolver {
     public static Plugin bukkit() {
-        return newInstance("BukkitTaterLibPlugin", Platform.BUKKIT);
+        return newInstance("BukkitTaterLibPlugin", Platforms.BUKKIT);
     }
 
     public static Plugin bungeeCord() {
-        return newInstance("BungeeTaterLibPlugin", Platform.BUNGEECORD);
+        return newInstance("BungeeTaterLibPlugin", Platforms.BUNGEECORD);
     }
 
     public static Plugin fabric() {
-        return newInstance("FabricTaterLibPlugin", Platform.FABRIC);
+        return newInstance("FabricTaterLibPlugin", Platforms.FABRIC);
     }
 
     public static Plugin forge() {
-        return newInstance("ForgeTaterLibPlugin", Platform.FORGE);
+        return newInstance("ForgeTaterLibPlugin", Platforms.FORGE);
     }
 
     public static Plugin neoForge() {
-        return newInstance("NeoForgeTaterLibPlugin", Platform.NEOFORGE);
+        return newInstance("NeoForgeTaterLibPlugin", Platforms.NEOFORGE);
     }
 
     public static Plugin sponge() {
-        return newInstance("SpongeTaterLibPlugin", Platform.SPONGE);
+        return newInstance("SpongeTaterLibPlugin", Platforms.SPONGE);
     }
 
     public static Plugin velocity() {
-        return newInstance("VelocityTaterLibPlugin", Platform.VELOCITY);
+        return newInstance("VelocityTaterLibPlugin", Platforms.VELOCITY);
     }
 }

@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_19.fabric.listeners.player;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.player.VanillaPlayerDeathEvent;
 
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player death listener. */
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_19, max = MinecraftVersion.V1_19_4)
+@ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
 @Mixin(ServerPlayer.class)
 public class PlayerDeathMixin {
     /** Called when a player dies. */

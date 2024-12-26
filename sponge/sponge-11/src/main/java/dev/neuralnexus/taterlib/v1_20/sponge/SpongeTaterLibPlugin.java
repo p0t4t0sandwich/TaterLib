@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.v1_20.sponge;
 
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
@@ -30,7 +29,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        if (TaterAPIProvider.isPrimaryPlatform(Platform.SPONGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platform.SPONGE)) {
             Sponge.eventManager().registerListeners(container, new SpongeCommandListener());
         }
     }

@@ -34,6 +34,15 @@ public interface MinecraftVersion {
     String asString();
 
     /**
+     * Get the delimiter string version of the string representation
+     *
+     * @return The delimiter string version
+     */
+    default String getDelimiterString() {
+        return this.asString().replace(".", "_");
+    }
+
+    /**
      * Get the metadata for the version.
      *
      * @return The metadata

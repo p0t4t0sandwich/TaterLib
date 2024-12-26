@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_16_2.fabric.api.minecraft.server.level;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_16.vanilla.world.VanillaWorld;
@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_16_2, max = MinecraftVersion.V1_16_5)
+@ReqMCVersion(min = MinecraftVersion.V16_2, max = MinecraftVersion.V16_5)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements(@Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE))
 public abstract class ServerPlayer_API_setspawn {

@@ -5,9 +5,11 @@
  */
 package dev.neuralnexus.taterapi.metrics.bstats;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.Side;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitBetaMetricsAdapter;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitMetricsAdapter;
@@ -33,33 +35,33 @@ public class MetricsAdapter {
         if (TaterAPIProvider.side().is(Side.CLIENT)) {
             return null;
         }
-        Platform platform = Platform.get();
+        Platform platform = MetaAPI.instance().primaryPlatform();
         Object metrics = null;
-        if (platform.isBukkitBased()) {
-            if (TaterAPIProvider.minecraftVersion().isOlderThan(MinecraftVersion.V1_0)) {
+        if (platform.isBukkit()) {
+            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V0)) {
                 metrics =
                         BukkitBetaMetricsAdapter.setupMetrics(
-                                plugin, pluginIds.get(Platform.BUKKIT), Collections.emptyList());
+                                plugin, pluginIds.get(Platforms.BUKKIT), Collections.emptyList());
             } else {
                 metrics =
                         BukkitMetricsAdapter.setupMetrics(
-                                plugin, pluginIds.get(Platform.BUKKIT), charts);
+                                plugin, pluginIds.get(Platforms.BUKKIT), charts);
             }
-        } else if (platform.isBungeeCordBased()) {
+        } else if (platform.isBungeeCord()) {
             metrics =
                     BungeeCordMetricsAdapter.setupMetrics(
-                            plugin, pluginIds.get(Platform.BUNGEECORD), charts);
-        } else if (platform.isSpongeBased()) {
+                            plugin, pluginIds.get(Platforms.BUNGEECORD), charts);
+        } else if (platform.isSponge()) {
             metrics =
                     SpongeMetricsAdapter.setupMetrics(
-                            plugin, pluginLogger, pluginIds.get(Platform.SPONGE), charts);
-        } else if (platform.isVelocityBased()) {
+                            plugin, pluginLogger, pluginIds.get(Platforms.SPONGE), charts);
+        } else if (platform.isVelocity()) {
             metrics =
                     VelocityMetricsAdapter.setupMetrics(
                             plugin,
                             pluginServer,
                             pluginLogger,
-                            pluginIds.get(Platform.VELOCITY),
+                            pluginIds.get(Platforms.VELOCITY),
                             charts);
         }
         return new BStatsMetrics(metrics);

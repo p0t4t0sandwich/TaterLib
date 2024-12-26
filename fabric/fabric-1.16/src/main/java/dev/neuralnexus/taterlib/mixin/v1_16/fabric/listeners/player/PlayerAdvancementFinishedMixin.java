@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_16.fabric.listeners.player;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player advancement finished listener. */
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_16, max = MinecraftVersion.V1_16_5)
+@ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementFinishedMixin {
     @Shadow private ServerPlayer player;

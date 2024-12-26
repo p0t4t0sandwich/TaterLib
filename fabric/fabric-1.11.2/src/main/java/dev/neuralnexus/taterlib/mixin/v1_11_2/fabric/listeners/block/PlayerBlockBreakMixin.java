@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_11_2.fabric.listeners.block;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.event.api.FabricBlockEvents;
 
 import net.minecraft.block.Block;
@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the block break listener. */
 @ReqMappings(Mappings.LEGACYINTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_11, max = MinecraftVersion.V1_11_2)
+@ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V11_2)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {
     /**

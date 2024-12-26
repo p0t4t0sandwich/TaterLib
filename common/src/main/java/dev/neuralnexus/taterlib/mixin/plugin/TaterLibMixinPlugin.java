@@ -29,8 +29,7 @@ public class TaterLibMixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         MixinConfig config = TaterLibConfigLoader.config().mixin();
-        return Muxins.shouldApplyMixin(
-                mixinClassName, config.disabled(), config.verbose());
+        return Muxins.shouldApplyMixin(mixinClassName, config.disabled(), config.verbose());
     }
 
     @Override

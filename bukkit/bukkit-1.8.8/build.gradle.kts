@@ -9,4 +9,5 @@ dependencies {
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
     compileOnly(project(":bukkit:bukkit-utils"))
+    compileOnly(libs.modapi.metadata)
 }

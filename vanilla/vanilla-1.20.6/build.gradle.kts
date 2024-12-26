@@ -19,7 +19,8 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(project(":modapi:muxins"))
+    compileOnly(libs.modapi.metadata)
+    compileOnly(libs.modapi.muxins)
     compileOnly(project(":vanilla:vanilla-1.20"))
     compileOnly(project(":vanilla:vanilla-1.20.2"))
 }

@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
@@ -19,12 +19,12 @@ public class BukkitLoaderPlugin extends JavaPlugin {
     private static Loader loader;
 
     public BukkitLoaderPlugin() {
-        TaterAPIProvider.setPrimaryPlatform(Platform.BUKKIT);
+        MetaAPI.instance().setPrimaryPlatform(Platforms.BUKKIT);
         loader = new LoaderImpl(this, Bukkit.getServer());
         loader.registerPlugin(TaterPluginResolver.bukkit());
-        if (loader.platform().isForgeHybrid()) {
+        if (Platforms.isForgeHybrid()) {
             loader.registerPlugin(TaterPluginResolver.forge());
-        } else if (loader.platform().isFabricHybrid()) {
+        } else if (Platforms.isFabricHybrid()) {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();

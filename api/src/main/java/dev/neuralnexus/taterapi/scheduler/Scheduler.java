@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.scheduler;
 
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import org.jetbrains.annotations.ApiStatus;
 

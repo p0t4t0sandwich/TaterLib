@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_2.vanilla.api.minecraft.server.level;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_20_2, max = MinecraftVersion.V1_20_6)
+@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_6)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements(@Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE))
 public abstract class ServerPlayer_API_ping {

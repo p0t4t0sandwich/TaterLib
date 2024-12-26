@@ -32,7 +32,8 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(project(":modapi:muxins"))
+    compileOnly(libs.modapi.metadata)
+    compileOnly(libs.modapi.muxins)
     compileOnly(project(":forge:forge-utils-modern"))
     implementation(project(":vanilla:vanilla-1.15"))
 }

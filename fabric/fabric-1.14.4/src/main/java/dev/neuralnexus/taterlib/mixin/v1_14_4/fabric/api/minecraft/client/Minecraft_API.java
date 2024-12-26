@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.client;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
@@ -34,7 +34,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_18_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API {

@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.server.players;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 
 import net.minecraft.server.players.StoredUserEntry;
 
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_14, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V21_1)
 @Mixin(StoredUserEntry.class)
 public interface StoredUserEntryAccessor<T> {
     @Invoker("getUser")

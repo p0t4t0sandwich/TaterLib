@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee;
 
-import dev.neuralnexus.taterapi.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;

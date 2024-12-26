@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.modules.bungeecord;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
@@ -21,10 +21,7 @@ public class BungeeCordModule implements PluginModule {
     @Override
     public void onEnable() {
         if (!TaterLib.hasReloaded()) {
-            String channel =
-                    TaterAPIProvider.platform().isVelocityBased()
-                            ? "bungeecord:main"
-                            : "BungeeCord";
+            String channel = Platforms.isVelocity() ? "bungeecord:main" : "BungeeCord";
             NetworkEvents.REGISTER_CHANNELS.register(e -> e.register(channel));
             NetworkEvents.C2S_CUSTOM_PACKET.register(BungeeMsgType::Listener);
         }

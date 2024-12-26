@@ -5,16 +5,15 @@
  */
 package dev.neuralnexus.taterapi.exceptions;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 
 /** Exception thrown when a feature is not supported on the current Minecraft version. */
 public class VersionFeatureNotSupportedException extends RuntimeException {
     private static final String message =
             "This feature is not supported on Minecraft "
-                    + Platform.get().toString()
+                    + MetaAPI.instance().platform().name()
                     + " "
-                    + MinecraftVersion.get().toString()
+                    + MetaAPI.instance().version().asString()
                     + "!"
                     + "\nIf you believe this may be an error, please report it to the plugin/mod developer using TaterLib!"
                     + "\nIf you are the plugin developer and believe this to be a missing implementation, please report this to the TaterLib GitHub repository!";

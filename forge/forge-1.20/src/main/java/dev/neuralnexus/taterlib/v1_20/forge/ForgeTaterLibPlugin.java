@@ -5,8 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20.forge;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.forge.hooks.permissions.ForgePermissionsHook;
@@ -39,16 +38,17 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                         VanillaBootstrap.server(
                                                 ServerLifecycleHooks::getCurrentServer)));
 
-        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platform.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
             MinecraftForge.EVENT_BUS.register(new ForgeCommandsListener());
             MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
-            if (TaterAPIProvider.minecraftVersion()
-                    .isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_1)) {
+            if (MetaAPI.instance()
+                    .version()
+                    .isInRange(MinecraftVersion.V20, MinecraftVersion.V20_1)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20());
-            } else if (TaterAPIProvider.minecraftVersion().isAtLeast(MinecraftVersion.V1_20_2)) {
+            } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersion.V20_2)) {
                 MinecraftForge.EVENT_BUS.register(new ForgePlayerListener_1_20_2());
             }
             MinecraftForge.EVENT_BUS.register(new ForgeServerListener());

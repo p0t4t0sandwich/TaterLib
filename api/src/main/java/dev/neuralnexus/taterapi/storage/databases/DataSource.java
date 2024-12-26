@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.storage.databases;
 
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 /** Data source class */
 @SuppressWarnings("unused")

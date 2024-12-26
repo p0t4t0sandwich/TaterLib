@@ -69,7 +69,7 @@ public class TaterLibCommand implements Command {
                         "&6ServerType: &a"
                                 + dumpInfo.platform.toString()
                                 + "\n&6MinecraftVersion: &a"
-                                + dumpInfo.minecraftVersion.toString()
+                                + dumpInfo.version
                                 + "\n&6TaterLibVersion: &a"
                                 + dumpInfo.taterlibVersion
                                 + "\n&6IsForgeHybrid: "
@@ -81,12 +81,9 @@ public class TaterLibCommand implements Command {
                                 + "\n&6IsSpongeForge: "
                                 + (dumpInfo.isSpongeForge ? "&a" : "&c")
                                 + dumpInfo.isSpongeForge
-                                + "\n&6IsSinytraConnector: "
-                                + (dumpInfo.isSinytraConnector ? "&a" : "&c")
-                                + dumpInfo.isSinytraConnector
-                                + "\n&6IsKilt: "
-                                + (dumpInfo.isKilt ? "&a" : "&c")
-                                + dumpInfo.isKilt;
+                                + "\n&6isMixedForgeFabric: "
+                                + (dumpInfo.isMixedForgeFabric ? "&a" : "&c")
+                                + dumpInfo.isMixedForgeFabric;
                 break;
             case "fulldump":
                 FullDumpInfo fullDumpInfo = new FullDumpInfo();

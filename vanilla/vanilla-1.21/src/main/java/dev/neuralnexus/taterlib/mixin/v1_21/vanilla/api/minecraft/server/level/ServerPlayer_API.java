@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_21.vanilla.api.minecraft.server.level;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
-@ReqMCVersion(min = MinecraftVersion.V1_21, max = MinecraftVersion.V1_21_1)
+@ReqMCVersion(min = MinecraftVersion.V21, max = MinecraftVersion.V21_1)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements({
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),

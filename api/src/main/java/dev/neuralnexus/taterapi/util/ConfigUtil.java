@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.util;
 
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import io.leangen.geantyref.TypeToken;
 

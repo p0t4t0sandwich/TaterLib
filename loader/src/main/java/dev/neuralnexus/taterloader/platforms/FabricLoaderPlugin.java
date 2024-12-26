@@ -5,7 +5,8 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
@@ -18,14 +19,14 @@ public class FabricLoaderPlugin implements ModInitializer {
     private static Loader loader;
 
     public FabricLoaderPlugin() {
-        TaterAPIProvider.setPrimaryPlatform(Platform.FABRIC);
+        MetaAPI.instance().setPrimaryPlatform(Platforms.FABRIC);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.fabric());
-        if (loader.platform().isFabricHybrid()) {
+        if (Platforms.isFabricHybrid()) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Kilt support
-        if (loader.platformData().isModLoaded("kilt")) {
+        if (MetaAPI.instance().meta().isModLoaded("kilt")) {
             loader.registerPlugin(TaterPluginResolver.neoForge());
         }
         loader.onInit();

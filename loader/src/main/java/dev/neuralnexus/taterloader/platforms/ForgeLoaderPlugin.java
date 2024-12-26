@@ -5,7 +5,8 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
@@ -25,14 +26,14 @@ public class ForgeLoaderPlugin {
     private static Loader loader;
 
     public ForgeLoaderPlugin() {
-        TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
+        MetaAPI.instance().setPrimaryPlatform(Platforms.FORGE);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.forge());
-        if (loader.platform().isForgeHybrid()) {
+        if (Platforms.isForgeHybrid()) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Sinytra Connector support
-        if (loader.platformData().isModLoaded("connectormod")) {
+        if (MetaAPI.instance().meta().isModLoaded("connectormod")) {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();

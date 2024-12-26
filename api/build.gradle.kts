@@ -43,6 +43,7 @@ dependencies {
 
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
+    compileOnly(libs.modapi.metadata)
 }
 
 java.disableAutoTargetJvm()

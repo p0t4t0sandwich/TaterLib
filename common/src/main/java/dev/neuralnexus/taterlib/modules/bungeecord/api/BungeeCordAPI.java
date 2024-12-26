@@ -10,7 +10,8 @@ import static dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType.*;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -48,7 +49,7 @@ public class BungeeCordAPI {
      * @return The BungeeCord channel
      */
     public ResourceKey bungeeChannel() {
-        if (MinecraftVersion.get().isAtLeast(MinecraftVersion.V1_13)) {
+        if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V13)) {
             return ResourceKey.of("bungeecord", "main");
         } else {
             return ResourceKey.unsafeOf("BungeeCord");

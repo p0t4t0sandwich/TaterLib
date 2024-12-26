@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_8_9.fabric.listeners.entity;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.event.api.FabricEntityEvents;
 
 import net.minecraft.entity.Entity;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the entity spawn listener. */
 @ReqMappings(Mappings.LEGACYINTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_8, max = MinecraftVersion.V1_8_9)
+@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V8_9)
 @Mixin(ServerWorld.class)
 class EntitySpawnMixin {
     /**

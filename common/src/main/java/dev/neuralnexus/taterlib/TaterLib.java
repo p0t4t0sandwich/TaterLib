@@ -5,9 +5,9 @@
  */
 package dev.neuralnexus.taterlib;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.metrics.bstats.TaterLibMetrics;
@@ -89,7 +89,6 @@ public class TaterLib {
     /** Stop */
     public static void stop() {
         TaterLibConfigLoader.unload();
-        TaterAPIProvider.unregister();
         logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
     }
 

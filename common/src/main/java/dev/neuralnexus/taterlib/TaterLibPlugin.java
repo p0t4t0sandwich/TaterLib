@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.plugin.Plugin;
 
@@ -28,9 +28,9 @@ public interface TaterLibPlugin extends Plugin {
                 .info(
                         LoaderImpl.PROJECT_NAME
                                 + " is running on "
-                                + TaterAPIProvider.platform()
+                                + MetaAPI.instance().platform().asString()
                                 + " "
-                                + TaterAPIProvider.minecraftVersion()
+                                + MetaAPI.instance().version().asString()
                                 + "!");
         TaterLib.start();
     }

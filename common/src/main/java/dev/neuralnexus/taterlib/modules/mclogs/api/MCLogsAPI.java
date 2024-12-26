@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.modules.mclogs.api;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
@@ -29,7 +29,7 @@ public class MCLogsAPI {
             new MclogsClient("TaterLib-MCLogsModule/" + LoaderImpl.PROJECT_VERSION)
                     .setProjectName("TaterLib-MCLogsModule")
                     .setProjectVersion(LoaderImpl.PROJECT_VERSION)
-                    .setMinecraftVersion(TaterAPIProvider.minecraftVersion().toString());
+                    .setMinecraftVersion(MetaAPI.instance().version().asString());
 
     /**
      * Uploads a log to MCLogs.

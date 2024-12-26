@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.mixin.api.mojang.authlib;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMCVersion(min = MinecraftVersion.V1_14)
+@ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(value = GameProfile.class, remap = false)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),

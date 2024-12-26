@@ -5,8 +5,10 @@
  */
 package dev.neuralnexus.taterlib.v1_18.forge;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions.ForgePermissionsHook;
@@ -29,22 +31,22 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        MinecraftVersion mcv = TaterAPIProvider.minecraftVersion();
-        if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_1)) {
+        MinecraftVersion mcv = MetaAPI.instance().version();
+        if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_1)) {
             TaterAPIProvider.addHook(new ForgePermissionsHook());
         } else {
             TaterAPIProvider.addHook(new ForgePermissionsHook_1_18_2());
         }
         start();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
-        TaterAPIProvider.api(Platform.FORGE)
+        TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
                         api ->
                                 api.setServer(
                                         VanillaBootstrap.server(
                                                 ServerLifecycleHooks::getCurrentServer)));
 
-        if (TaterAPIProvider.isPrimaryPlatform(Platform.FORGE)) {
+        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

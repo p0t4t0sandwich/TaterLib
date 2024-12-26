@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterloader.impl;
 
-import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ReflectionUtil;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.event.api.LoaderEvents;
@@ -27,7 +26,6 @@ public class LoaderImpl implements Loader {
     public static final String PROJECT_DESCRIPTION =
             "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";
     public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
-    private static final PlatformData platformData = PlatformData.instance();
     private static Loader instance = null;
     private final Object plugin;
     private final Object server;
@@ -52,11 +50,6 @@ public class LoaderImpl implements Loader {
 
     public static Loader getInstance() {
         return instance;
-    }
-
-    @Override
-    public PlatformData platformData() {
-        return platformData;
     }
 
     @Override

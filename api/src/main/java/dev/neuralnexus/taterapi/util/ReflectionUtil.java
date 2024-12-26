@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.util;
 
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;

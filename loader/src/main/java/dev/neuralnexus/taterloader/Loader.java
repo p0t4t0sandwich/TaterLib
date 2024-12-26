@@ -5,10 +5,7 @@
  */
 package dev.neuralnexus.taterloader;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.taterloader.event.api.PluginEvents;
 import dev.neuralnexus.taterloader.event.plugin.PluginDisableEvent;
 import dev.neuralnexus.taterloader.event.plugin.PluginEnableEvent;
@@ -35,29 +32,6 @@ public interface Loader {
     }
 
     Logger logger = Logger.create("TaterLoader");
-
-    /** Get the platform data. */
-    PlatformData platformData();
-
-    /** Get the platform */
-    default Platform platform() {
-        return Platform.get();
-    }
-
-    /** Get the platform's Minecraft version. */
-    default MinecraftVersion minecraftVersion() {
-        return platformData().minecraftVersion();
-    }
-
-    /**
-     * Get the platform's logger.
-     *
-     * @param name The name of the logger
-     * @return The logger
-     */
-    default Logger logger(String name) {
-        return platformData().logger(name);
-    }
 
     /** Get the platform's server/plugin/container. */
     @ApiStatus.Internal
@@ -165,8 +139,7 @@ public interface Loader {
                                 plugin.onEnable();
                                 if (pluginModules().containsKey(plugin.id())) {
                                     ModuleLoader moduleLoader = pluginModules().get(plugin.id());
-                                    Loader.instance()
-                                            .logger(plugin.id())
+                                    Logger.create(plugin.id())
                                             .info(
                                                     "Starting modules: "
                                                             + moduleLoader.moduleNames());
@@ -191,8 +164,7 @@ public interface Loader {
                             try {
                                 if (pluginModules().containsKey(plugin.id())) {
                                     ModuleLoader moduleLoader = pluginModules().get(plugin.id());
-                                    Loader.instance()
-                                            .logger(plugin.id())
+                                    Logger.create(plugin.id())
                                             .info(
                                                     "Stopping modules: "
                                                             + moduleLoader.moduleNames());

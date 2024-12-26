@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.modules.core;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -47,13 +48,13 @@ public class CoreModule implements PluginModule {
             ServerEvents.STARTED.register(
                     event -> {
                         // Register LuckPerms hook
-                        if (TaterAPIProvider.isModLoaded("LuckPerms")
+                        if (MetaAPI.instance().isModLoaded("LuckPerms")
                                 && TaterLibConfigLoader.config().checkHook("LuckPerms")) {
                             TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPIProvider.addHook(new LuckPermsHook());
                         }
                         // Register Spark hook
-                        if (TaterAPIProvider.isModLoaded("Spark")
+                        if (MetaAPI.instance().isModLoaded("Spark")
                                 && TaterLibConfigLoader.config().checkHook("Spark")) {
                             TaterLib.logger().info("Spark detected, enabling Spark hook.");
                             TaterAPIProvider.addHook(new SparkHook());
@@ -64,9 +65,9 @@ public class CoreModule implements PluginModule {
             CommandEvents.REGISTER_COMMAND.register(
                     event -> {
                         Command command = new TaterLibCommand();
-                        if (TaterAPIProvider.platform().isBungeeCordBased()) {
+                        if (MetaAPI.instance().platform().isBungeeCord()) {
                             command.setName("b" + command.name());
-                        } else if (TaterAPIProvider.platform().isVelocityBased()) {
+                        } else if (MetaAPI.instance().platform().isVelocity()) {
                             command.setName("v" + command.name());
                         }
                         event.registerCommand(command);

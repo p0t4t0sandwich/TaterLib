@@ -7,7 +7,8 @@ package dev.neuralnexus.taterloader.platforms;
 
 import com.google.inject.Inject;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
@@ -28,12 +29,12 @@ public class Sponge8LoaderPlugin {
 
     @Inject
     public Sponge8LoaderPlugin(PluginContainer container) {
-        TaterAPIProvider.setPrimaryPlatform(Platform.SPONGE);
+        MetaAPI.instance().setPrimaryPlatform(Platforms.SPONGE);
         loader = new LoaderImpl(container, null);
         loader.registerPlugin(TaterPluginResolver.sponge());
-        if (Platform.isForge()) {
+        if (Platforms.isForge()) {
             loader.registerPlugin(TaterPluginResolver.forge());
-        } else if (loader.platform().isFabricBased()) {
+        } else if (Platforms.isFabric()) {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
 

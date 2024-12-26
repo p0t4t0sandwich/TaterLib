@@ -7,8 +7,8 @@ package dev.neuralnexus.taterloader.platforms;
 
 import cpw.mods.fml.common.Mod;
 
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
@@ -25,10 +25,10 @@ public class LegacyForgeLoaderPlugin {
     private static Loader loader;
 
     public LegacyForgeLoaderPlugin() {
-        TaterAPIProvider.setPrimaryPlatform(Platform.FORGE);
+        MetaAPI.instance().setPrimaryPlatform(Platforms.FORGE);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.forge());
-        if (loader.platform().isForgeHybrid() && Platform.isBukkit()) {
+        if (Platforms.isForgeHybrid()) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         loader.onInit();

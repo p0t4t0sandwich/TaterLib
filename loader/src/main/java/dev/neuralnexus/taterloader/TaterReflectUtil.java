@@ -5,10 +5,12 @@
  */
 package dev.neuralnexus.taterloader;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -22,11 +24,11 @@ public class TaterReflectUtil {
     private static final Logger logger = Logger.create("TaterReflectUtil");
 
     static {
-        resolvePackageNames(Loader.instance());
+        resolvePackageNames();
     }
 
     public static Optional<String> getClass(String clazz) {
-        return getClass(clazz, TaterAPIProvider.primaryPlatform());
+        return getClass(clazz, MetaAPI.instance().primaryPlatform());
     }
 
     public static Optional<String> getClass(String clazz, Platform platform) {
@@ -47,148 +49,148 @@ public class TaterReflectUtil {
     }
 
     public static Optional<String> getRelocatedClass(String clazz, Platform relocatingPlatform) {
-        String packageName = packageNames.get(Platform.VANILLA);
+        String packageName = packageNames.get(Platforms.VANILLA);
         if (packageName == null) {
             return Optional.empty();
         }
         String path = ".";
-        if (relocatingPlatform == Platform.FORGE
-                && MinecraftVersion.get().isOlderThan(MinecraftVersion.V1_20_6)) {
+        if (relocatingPlatform == Platforms.FORGE
+                && MetaAPI.instance().version().isOlderThan(MinecraftVersions.V20_6)) {
             path += "forge.";
-        } else if (relocatingPlatform == Platform.FABRIC) {
+        } else if (relocatingPlatform == Platforms.FABRIC) {
             path += "fabric.";
         }
         return Optional.of(packageName + path + clazz);
     }
 
     public static Optional<String> getRelocatedClass(String clazz) {
-        return getRelocatedClass(clazz, TaterAPIProvider.primaryPlatform());
+        return getRelocatedClass(clazz, MetaAPI.instance().primaryPlatform());
     }
 
-    public static void resolvePackageNames(Loader loader) {
-        MinecraftVersion mcv = loader.minecraftVersion();
-        packageNames.put(Platform.BUKKIT, bukkit(mcv));
-        packageNames.put(Platform.BUNGEECORD, bungeeCord(mcv));
-        packageNames.put(Platform.FABRIC, fabric(mcv));
-        packageNames.put(Platform.FORGE, forge(mcv));
-        packageNames.put(Platform.NEOFORGE, neoForge(mcv));
-        packageNames.put(Platform.SPONGE, sponge(mcv));
-        packageNames.put(Platform.VELOCITY, velocity(mcv));
-        packageNames.put(Platform.VANILLA, vanilla(mcv));
+    public static void resolvePackageNames() {
+        MinecraftVersion mcv = MetaAPI.instance().version();
+        packageNames.put(Platforms.BUKKIT, bukkit(mcv));
+        packageNames.put(Platforms.BUNGEECORD, bungeeCord(mcv));
+        packageNames.put(Platforms.FABRIC, fabric(mcv));
+        packageNames.put(Platforms.FORGE, forge(mcv));
+        packageNames.put(Platforms.NEOFORGE, neoForge(mcv));
+        packageNames.put(Platforms.SPONGE, sponge(mcv));
+        packageNames.put(Platforms.VELOCITY, velocity(mcv));
+        packageNames.put(Platforms.VANILLA, vanilla(mcv));
     }
 
     public static String bukkit(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.B1_7, MinecraftVersion.B1_7_3)) {
-            version = MinecraftVersion.B1_7_3;
-        } else if (mcv.isInRange(MinecraftVersion.V1_2_1, MinecraftVersion.V1_2_5)) {
-            version = MinecraftVersion.V1_2_5;
-        } else if (mcv.isInRange(MinecraftVersion.V1_6_1, MinecraftVersion.V1_6_4)) {
-            version = MinecraftVersion.V1_6_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
-            version = MinecraftVersion.V1_7_10;
-        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = MinecraftVersion.V1_8_8;
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_13_2)) {
-            version = MinecraftVersion.V1_13_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_15_2)) {
-            version = MinecraftVersion.V1_15_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_20;
+        if (mcv.isInRange(MinecraftVersions.B1_7, MinecraftVersions.B1_7_3)) {
+            version = MinecraftVersions.B1_7_3;
+        } else if (mcv.isInRange(MinecraftVersions.V2_1, MinecraftVersions.V2_5)) {
+            version = MinecraftVersions.V2_5;
+        } else if (mcv.isInRange(MinecraftVersions.V6_1, MinecraftVersions.V6_4)) {
+            version = MinecraftVersions.V6_4;
+        } else if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V7_10)) {
+            version = MinecraftVersions.V7_10;
+        } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
+            version = MinecraftVersions.V8_8;
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V13_2)) {
+            version = MinecraftVersions.V13_2;
+        } else if (mcv.isInRange(MinecraftVersions.V14, MinecraftVersions.V15_2)) {
+            version = MinecraftVersions.V15_2;
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V20;
         } else {
-            version = MinecraftVersion.V1_20;
+            version = MinecraftVersions.V20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".bukkit";
     }
 
     public static String bungeeCord(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.V1_4_2, MinecraftVersion.V1_7_10)) {
-            version = MinecraftVersion.V1_4_7;
-        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_11_2)) {
-            version = MinecraftVersion.V1_8;
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_15_2)) {
-            version = MinecraftVersion.V1_12;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_20;
+        if (mcv.isInRange(MinecraftVersions.V4_2, MinecraftVersions.V7_10)) {
+            version = MinecraftVersions.V4_7;
+        } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V11_2)) {
+            version = MinecraftVersions.V8;
+        } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V15_2)) {
+            version = MinecraftVersions.V12;
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V20;
         } else {
-            version = MinecraftVersion.V1_20;
+            version = MinecraftVersions.V20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".bungee";
     }
 
     public static String fabric(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
-            version = MinecraftVersion.V1_7_10;
-        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = MinecraftVersion.V1_8_9;
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
-            version = MinecraftVersion.V1_9_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_10, MinecraftVersion.V1_10_2)) {
-            version = MinecraftVersion.V1_10_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = MinecraftVersion.V1_11_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = MinecraftVersion.V1_12_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_14_4)) {
-            version = MinecraftVersion.V1_14_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_15, MinecraftVersion.V1_15_2)) {
-            version = MinecraftVersion.V1_15;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_16_5)) {
-            version = MinecraftVersion.V1_16;
-        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_17_1)) {
-            version = MinecraftVersion.V1_17;
-        } else if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_2)) {
-            version = MinecraftVersion.V1_18;
-        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
-            version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
-            version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_21;
+        if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V7_10)) {
+            version = MinecraftVersions.V7_10;
+        } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
+            version = MinecraftVersions.V8_9;
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V9_4)) {
+            version = MinecraftVersions.V9_4;
+        } else if (mcv.isInRange(MinecraftVersions.V10, MinecraftVersions.V10_2)) {
+            version = MinecraftVersions.V10_2;
+        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+            version = MinecraftVersions.V11_2;
+        } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
+            version = MinecraftVersions.V12_2;
+        } else if (mcv.isInRange(MinecraftVersions.V13, MinecraftVersions.V14_4)) {
+            version = MinecraftVersions.V14_4;
+        } else if (mcv.isInRange(MinecraftVersions.V15, MinecraftVersions.V15_2)) {
+            version = MinecraftVersions.V15;
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
+            version = MinecraftVersions.V16;
+        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
+            version = MinecraftVersions.V17;
+        } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
+            version = MinecraftVersions.V18;
+        } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
+            version = MinecraftVersions.V19;
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
+            version = MinecraftVersions.V20;
+        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V21;
         } else {
-            version = MinecraftVersion.V1_20;
+            version = MinecraftVersions.V20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".fabric";
     }
 
     public static String forge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.V1_6_1, MinecraftVersion.V1_6_4)) {
-            version = MinecraftVersion.V1_6_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
-            version = MinecraftVersion.V1_7_10;
-        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = MinecraftVersion.V1_8_9;
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
-            version = MinecraftVersion.V1_9_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_10, MinecraftVersion.V1_10_2)) {
-            version = MinecraftVersion.V1_10_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = MinecraftVersion.V1_11_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = MinecraftVersion.V1_12_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_13_2)) {
-            version = MinecraftVersion.V1_13_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_14, MinecraftVersion.V1_14_4)) {
-            version = MinecraftVersion.V1_14_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_15, MinecraftVersion.V1_15_2)) {
-            version = MinecraftVersion.V1_15;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_16_5)) {
-            version = MinecraftVersion.V1_16_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_17_1)) {
-            version = MinecraftVersion.V1_17_1;
-        } else if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_2)) {
-            version = MinecraftVersion.V1_18;
-        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
-            version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_4)) {
-            version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20_5, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_20_6;
+        if (mcv.isInRange(MinecraftVersions.V6_1, MinecraftVersions.V6_4)) {
+            version = MinecraftVersions.V6_4;
+        } else if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V7_10)) {
+            version = MinecraftVersions.V7_10;
+        } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
+            version = MinecraftVersions.V8_9;
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V9_4)) {
+            version = MinecraftVersions.V9_4;
+        } else if (mcv.isInRange(MinecraftVersions.V10, MinecraftVersions.V10_2)) {
+            version = MinecraftVersions.V10_2;
+        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+            version = MinecraftVersions.V11_2;
+        } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
+            version = MinecraftVersions.V12_2;
+        } else if (mcv.isInRange(MinecraftVersions.V13, MinecraftVersions.V13_2)) {
+            version = MinecraftVersions.V13_2;
+        } else if (mcv.isInRange(MinecraftVersions.V14, MinecraftVersions.V14_4)) {
+            version = MinecraftVersions.V14_4;
+        } else if (mcv.isInRange(MinecraftVersions.V15, MinecraftVersions.V15_2)) {
+            version = MinecraftVersions.V15;
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
+            version = MinecraftVersions.V16_2;
+        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
+            version = MinecraftVersions.V17_1;
+        } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
+            version = MinecraftVersions.V18;
+        } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
+            version = MinecraftVersions.V19;
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
+            version = MinecraftVersions.V20;
+        } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V20_6;
         } else {
-            version = MinecraftVersion.V1_20_6;
+            version = MinecraftVersions.V20_6;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".forge";
     }
@@ -196,34 +198,34 @@ public class TaterReflectUtil {
     @SuppressWarnings("IfStatementWithIdenticalBranches")
     public static String neoForge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21)) {
-            version = MinecraftVersion.V1_20_2;
+        if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V21)) {
+            version = MinecraftVersions.V20_2;
         } else {
-            version = MinecraftVersion.V1_20_2;
+            version = MinecraftVersions.V20_2;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".neoforge";
     }
 
     public static String sponge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = MinecraftVersion.V1_8;
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_10_2)) {
-            version = MinecraftVersion.V1_9;
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = MinecraftVersion.V1_11;
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = MinecraftVersion.V1_12;
-        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_16_5)) {
-            version = MinecraftVersion.V1_13;
-        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_18_2)) {
-            version = MinecraftVersion.V1_17;
-        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
-            version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_20;
+        if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
+            version = MinecraftVersions.V8;
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V10_2)) {
+            version = MinecraftVersions.V9;
+        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+            version = MinecraftVersions.V11;
+        } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
+            version = MinecraftVersions.V12;
+        } else if (mcv.isInRange(MinecraftVersions.V13, MinecraftVersions.V16_5)) {
+            version = MinecraftVersions.V13;
+        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V18_2)) {
+            version = MinecraftVersions.V17;
+        } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
+            version = MinecraftVersions.V19;
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V20;
         } else {
-            version = MinecraftVersion.V1_20;
+            version = MinecraftVersions.V20;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".sponge";
     }
@@ -235,48 +237,48 @@ public class TaterReflectUtil {
 
     public static String vanilla(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersion.B1_7, MinecraftVersion.B1_7_3)) {
-            version = MinecraftVersion.B1_7_3;
-        } else if (mcv.isInRange(MinecraftVersion.V1_2_1, MinecraftVersion.V1_2_5)) {
-            version = MinecraftVersion.V1_2_5;
-        } else if (mcv.isInRange(MinecraftVersion.V1_6_1, MinecraftVersion.V1_6_4)) {
-            version = MinecraftVersion.V1_6_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_7_2, MinecraftVersion.V1_7_10)) {
-            version = MinecraftVersion.V1_7_10;
-        } else if (mcv.isInRange(MinecraftVersion.V1_8, MinecraftVersion.V1_8_9)) {
-            version = MinecraftVersion.V1_8_9;
-        } else if (mcv.isInRange(MinecraftVersion.V1_9, MinecraftVersion.V1_9_4)) {
-            version = MinecraftVersion.V1_9_4;
-        } else if (mcv.isInRange(MinecraftVersion.V1_10, MinecraftVersion.V1_10_2)) {
-            version = MinecraftVersion.V1_10_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_11, MinecraftVersion.V1_11_2)) {
-            version = MinecraftVersion.V1_11_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_12, MinecraftVersion.V1_12_2)) {
-            version = MinecraftVersion.V1_12_2;
-        } else if (mcv.isInRange(MinecraftVersion.V1_13, MinecraftVersion.V1_14_4)) {
-            version = MinecraftVersion.V1_14;
-        } else if (mcv.isInRange(MinecraftVersion.V1_15, MinecraftVersion.V1_15_2)) {
-            version = MinecraftVersion.V1_15;
-        } else if (mcv.isInRange(MinecraftVersion.V1_16, MinecraftVersion.V1_16_5)) {
-            version = MinecraftVersion.V1_16;
-        } else if (mcv.isInRange(MinecraftVersion.V1_17, MinecraftVersion.V1_17_1)) {
-            version = MinecraftVersion.V1_17;
-        } else if (mcv.isInRange(MinecraftVersion.V1_18, MinecraftVersion.V1_18_2)) {
-            version = MinecraftVersion.V1_18;
-        } else if (mcv.isInRange(MinecraftVersion.V1_19, MinecraftVersion.V1_19_4)) {
-            version = MinecraftVersion.V1_19;
-        } else if (mcv.isInRange(MinecraftVersion.V1_20, MinecraftVersion.V1_20_6)) {
-            version = MinecraftVersion.V1_20;
-        } else if (mcv.isInRange(MinecraftVersion.V1_21, MinecraftVersion.V1_21_3)) {
-            version = MinecraftVersion.V1_21;
+        if (mcv.isInRange(MinecraftVersions.B1_7, MinecraftVersions.B1_7_3)) {
+            version = MinecraftVersions.B1_7_3;
+        } else if (mcv.isInRange(MinecraftVersions.V2_1, MinecraftVersions.V2_5)) {
+            version = MinecraftVersions.V2_5;
+        } else if (mcv.isInRange(MinecraftVersions.V6_1, MinecraftVersions.V6_4)) {
+            version = MinecraftVersions.V6_4;
+        } else if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V7_10)) {
+            version = MinecraftVersions.V7_10;
+        } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
+            version = MinecraftVersions.V8_9;
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V9_4)) {
+            version = MinecraftVersions.V9_4;
+        } else if (mcv.isInRange(MinecraftVersions.V10, MinecraftVersions.V10_2)) {
+            version = MinecraftVersions.V10_2;
+        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+            version = MinecraftVersions.V11_2;
+        } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
+            version = MinecraftVersions.V12_2;
+        } else if (mcv.isInRange(MinecraftVersions.V13, MinecraftVersions.V14_4)) {
+            version = MinecraftVersions.V14;
+        } else if (mcv.isInRange(MinecraftVersions.V15, MinecraftVersions.V15_2)) {
+            version = MinecraftVersions.V15;
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
+            version = MinecraftVersions.V16;
+        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
+            version = MinecraftVersions.V17;
+        } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
+            version = MinecraftVersions.V18;
+        } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
+            version = MinecraftVersions.V19;
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
+            version = MinecraftVersions.V20;
+        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_3)) {
+            version = MinecraftVersions.V21;
         } else {
-            version = MinecraftVersion.V1_21;
+            version = MinecraftVersions.V21;
         }
         return TL_PACKAGE + "." + version.getDelimiterString() + ".vanilla";
     }
 
     public static <T> T newInstance(String clazz) {
-        return newInstance(clazz, TaterAPIProvider.primaryPlatform());
+        return newInstance(clazz, MetaAPI.instance().primaryPlatform());
     }
 
     @SuppressWarnings({"OptionalGetWithoutIsPresent", "unchecked"})

@@ -12,7 +12,7 @@ dependencies {
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly("dev.neuralnexus.modapi:metadata:0.1.0:downgraded-8")
+    implementation("dev.neuralnexus.modapi:metadata:0.1.0:downgraded-8")
 }
 
 java {

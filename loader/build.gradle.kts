@@ -7,6 +7,7 @@ dependencies {
     compileOnly(libs.asm.tree)
     compileOnly(project(":api"))
     compileOnly(project(":modapi:entrypoint-spoof"))
+    compileOnly(libs.modapi.metadata)
 }
 
 tasks.withType<ProcessResources>().configureEach {

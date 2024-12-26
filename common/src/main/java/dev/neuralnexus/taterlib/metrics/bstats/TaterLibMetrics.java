@@ -5,9 +5,11 @@
  */
 package dev.neuralnexus.taterlib.metrics.bstats;
 
-import dev.neuralnexus.taterapi.Side;
+import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
@@ -37,8 +39,7 @@ public class TaterLibMetrics {
         MetricsConfig config;
         try {
             boolean defaultEnabled = TaterAPIProvider.side().is(Side.SERVER);
-            if (TaterAPIProvider.platform().isFabricBased()
-                    || TaterAPIProvider.platform().isForgeBased()) {
+            if (Platforms.isFabric() || Platforms.isForge()) {
                 config = new MetricsConfig(new File("config/bstats/config.txt"), defaultEnabled);
             } else {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), defaultEnabled);
@@ -96,13 +97,10 @@ public class TaterLibMetrics {
         metrics.addCustomChart(new SimplePie("taterlib_version", () -> LoaderImpl.PROJECT_VERSION));
         metrics.addCustomChart(
                 new SimplePie(
-                        "modloader_version",
-                        () -> TaterAPIProvider.api().get().modLoaderVersion()));
+                        "modloader_version", () -> MetaAPI.instance().meta().loaderVersion()));
         metrics.addCustomChart(
-                new SimplePie(
-                        "minecraft_version", () -> TaterAPIProvider.minecraftVersion().toString()));
-        metrics.addCustomChart(
-                new SimplePie("platform", () -> TaterAPIProvider.platform().toString()));
+                new SimplePie("minecraft_version", () -> MetaAPI.instance().version().asString()));
+        metrics.addCustomChart(new SimplePie("platform", () -> MetaAPI.instance().toString()));
         metrics.addCustomChart(
                 new DrilldownPie(
                         "java_version",

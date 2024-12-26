@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_19_4.fabric.patch.event.entity;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_19.vanilla.event.entity.VanillaEntityDamageEvent;
 
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 /** Vanilla implementation of {@link EntityDamageEvent}. */
 @ReqMappings(Mappings.INTERMEDIARY)
-@ReqMCVersion(MinecraftVersion.V1_19_4)
+@ReqMCVersion(MinecraftVersion.V19_4)
 @Mixin(value = VanillaEntityDamageEvent.class, remap = false)
 public class VanillaEntityDamageEventMixin {
     /**

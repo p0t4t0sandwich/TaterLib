@@ -34,7 +34,8 @@ dependencies {
 
     // Tooling
     compileOnly(project(":api"))
-    compileOnly(project(":modapi:muxins"))
+    compileOnly(libs.modapi.metadata)
+    compileOnly(libs.modapi.muxins)
     compileOnly(project(":modapi:entrypoint-spoof"))
     compileOnly(project(":loader"))
 }

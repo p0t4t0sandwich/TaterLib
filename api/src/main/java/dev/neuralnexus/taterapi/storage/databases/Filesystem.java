@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.storage.databases;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 
 import java.io.File;
 
@@ -21,8 +21,7 @@ public class Filesystem implements Database<String> {
      * @param config The config data
      */
     public Filesystem(Database.DatabaseConfig config) {
-        this.connection =
-                TaterAPIProvider.platformData().configFolder() + File.separator + config.host;
+        this.connection = MetaAPI.instance().meta().configFolder() + File.separator + config.host;
         this.database = config.database;
     }
 

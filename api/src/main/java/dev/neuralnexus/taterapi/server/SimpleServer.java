@@ -5,8 +5,9 @@
  */
 package dev.neuralnexus.taterapi.server;
 
-import dev.neuralnexus.taterapi.MinecraftVersion;
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
@@ -139,7 +140,7 @@ public interface SimpleServer {
      * @return The server's version.
      */
     default MinecraftVersion version() {
-        return MinecraftVersion.get();
+        return MetaAPI.instance().version();
     }
 
     /**
@@ -148,6 +149,6 @@ public interface SimpleServer {
      * @return The server's type.
      */
     default Platform type() {
-        return TaterAPIProvider.platform();
+        return MetaAPI.instance().platform();
     }
 }

@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.metrics.bstats.sponge;
 
-import dev.neuralnexus.taterapi.Platform;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.util.PathUtils;
 
 import org.apache.logging.log4j.Logger;
@@ -23,7 +23,7 @@ public class SpongeMetricsAdapter {
     public static Object setupMetrics(
             Object plugin, Object pluginLogger, int pluginId, List<CustomChart> charts) {
         // TODO: look into SpongeForge support
-        if (Platform.get().is(Platform.SPONGE_FORGE)) {
+        if (Platforms.isSpongeForge()) {
             return null;
         }
 

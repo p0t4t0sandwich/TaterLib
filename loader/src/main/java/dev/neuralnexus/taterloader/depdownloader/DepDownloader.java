@@ -5,9 +5,8 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -29,13 +28,7 @@ public class DepDownloader {
         this.repos = repos;
         this.deps = new MavenDependency[depInfo.size()];
         int i = 0;
-        Path basePath =
-                TaterAPIProvider.api()
-                        .get()
-                        .platformData()
-                        .modFolder()
-                        .resolve(LoaderImpl.PROJECT_ID)
-                        .resolve("libraries");
+        Path basePath = MetaAPI.instance().meta().modFolder().resolve(LoaderImpl.PROJECT_ID).resolve("libraries");
         for (Map.Entry<String, String> entry : depInfo.entrySet()) {
             deps[i] = new MavenDependency(entry.getKey(), entry.getValue(), basePath);
             i++;
@@ -44,7 +37,7 @@ public class DepDownloader {
 
     /** Downloads all dependencies */
     public void downloadAll() {
-        Logger logger = Loader.instance().logger("taterlib-depdownloader");
+        Logger logger = Logger.create("taterlib-depdownloader");
         for (MavenDependency dep : deps) {
             try {
                 if (Files.exists(dep.filePath())) {

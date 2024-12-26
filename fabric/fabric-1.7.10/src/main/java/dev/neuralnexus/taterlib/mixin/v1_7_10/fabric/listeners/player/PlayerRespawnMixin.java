@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_7_10.fabric.listeners.player;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.Mappings;
-import dev.neuralnexus.taterapi.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.api.FabricPlayerEvents;
 
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player respawn listener. */
 @ReqMappings(Mappings.LEGACYINTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V1_7_2, max = MinecraftVersion.V1_7_10)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10)
 @Mixin(PlayerManager.class)
 public class PlayerRespawnMixin {
     /**

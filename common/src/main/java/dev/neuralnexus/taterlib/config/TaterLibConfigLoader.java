@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.config;
 
+import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.config.MixinConfig;
 import dev.neuralnexus.taterapi.config.ToggleableSetting;
-import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.metadata.PlatformData;
 import dev.neuralnexus.taterapi.util.ConfigUtil;
 import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
@@ -31,7 +31,7 @@ public class TaterLibConfigLoader {
     private static final Logger logger = Logger.create("TaterLibConfigLoader");
     private static final Path configPath =
             Paths.get(
-                    PlatformData.instance().configFolder()
+                    MetaAPI.instance().meta().configFolder()
                             + File.separator
                             + LoaderImpl.PROJECT_ID
                             + File.separator
