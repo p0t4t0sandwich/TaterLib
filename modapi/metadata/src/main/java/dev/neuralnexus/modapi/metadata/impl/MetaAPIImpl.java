@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.modapi.metadata.impl;
 
-import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForClass;
-
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
@@ -23,6 +21,7 @@ import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.bukkit.BukkitMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
+import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -142,6 +141,15 @@ public final class MetaAPIImpl implements MetaAPI {
                 .orElse(new SystemLogger(modId));
     }
 
+    // ----------------------------- Misc -----------------------------
+
+    @Override
+    public boolean isBrigadierSupported() {
+        return this.version().isAtLeast(MinecraftVersions.V13)
+                || this.isPlatformPresent(Platforms.VELOCITY)
+                || ReflectionUtil.checkForClass("com.mojang.brigadier.CommandDispatcher");
+    }
+
     private static final class Meta {
         /**
          * Get the metadata for the specified platform
@@ -164,7 +172,7 @@ public final class MetaAPIImpl implements MetaAPI {
                 return Optional.of(new BungeeCordMeta());
             } else if (platform.isVelocity()) {
                 return Optional.of(new VelocityMeta());
-            } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
+            } else if (ReflectionUtil.checkForClass("org.spongepowered.asm.service.MixinService")) {
                 return Optional.of(new VanillaMeta());
             }
             return Optional.empty();

@@ -8,8 +8,6 @@ package dev.neuralnexus.modapi.metadata.impl.platform;
 import dev.neuralnexus.modapi.metadata.Platform;
 
 public interface Hybrid {
-    Platform MOHIST =
-            new PlatformImpl("Mohist", "com.mohistmc.MohistMC", "com.mohistmc.MohistMCStart");
     Platform ARCLIGHT =
             new PlatformImpl(
                     "Arclight",

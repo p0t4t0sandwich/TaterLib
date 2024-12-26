@@ -1,10 +1,13 @@
+/**
+ * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.metadata.enums;
 
 import dev.neuralnexus.modapi.metadata.Platforms;
 
-/**
- * Enum wrapper for use with annotations
- */
+/** Enum wrapper for use with annotations */
 public enum Platform {
     UNKNOWN(Platforms.UNKNOWN),
 
@@ -34,10 +37,12 @@ public enum Platform {
     KCAULDRON(Platforms.KCAULDRON),
     THERMOS(Platforms.THERMOS),
     CRUCIBLE(Platforms.CRUCIBLE),
+    MOHIST(Platforms.MOHIST),
     MAGMA(Platforms.MAGMA),
     KETTING(Platforms.KETTING),
 
-    MOHIST(Platforms.MOHIST),
+    YOUER(Platforms.YOUER),
+
     ARCLIGHT(Platforms.ARCLIGHT),
 
     SPONGE(Platforms.SPONGE),

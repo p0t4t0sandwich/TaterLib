@@ -25,10 +25,15 @@ public interface Forge {
             new PlatformImpl("KCauldron", "net.minecraftforge.kcauldron.KCauldronConfig");
     Platform THERMOS = new PlatformImpl("Thermos", "thermos.ThermosConfig");
     Platform CRUCIBLE = new PlatformImpl("Crucible", "io.github.crucible.CrucibleConfig");
+    Platform MOHIST =
+            new PlatformImpl("Mohist", "com.mohistmc.MohistMC", "com.mohistmc.MohistMCStart");
     Platform MAGMA =
             new PlatformImpl(
                     "Magma",
                     "org.magmafoundation.magma.Magma",
                     "org.magmafoundation.magma.MagmaStart");
     Platform KETTING = new PlatformImpl("Ketting", "org.kettingpowered.ketting.core.Ketting");
+
+    // Forge+NeoForge Hybrids
+    Platform YOUER = new PlatformImpl("Youer"); // TODO: Update when released
 }

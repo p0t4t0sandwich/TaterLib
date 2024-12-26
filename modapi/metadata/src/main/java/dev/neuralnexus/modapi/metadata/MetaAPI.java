@@ -144,6 +144,15 @@ public interface MetaAPI {
      */
     Logger logger(@NotNull String modId) throws NullPointerException;
 
+    // ----------------------------- Misc -----------------------------
+
+    /**
+     * Check if Brigadier is supported
+     *
+     * @return True if Brigadier is supported, false otherwise
+     */
+    boolean isBrigadierSupported();
+
     // ----------------------------- Exceptions -----------------------------
 
     /** Exception for when there's no platform found */

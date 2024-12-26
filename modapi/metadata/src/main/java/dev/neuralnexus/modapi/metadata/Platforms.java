@@ -62,6 +62,8 @@ public final class Platforms
             platforms.addAll(List.of(THERMOS, FORGE));
         } else if (CRUCIBLE.detect(force)) {
             platforms.addAll(List.of(CRUCIBLE, FORGE));
+        } else if (MOHIST.detect(force)) {
+            platforms.addAll(List.of(MOHIST, FORGE));
         } else if (MAGMA.detect(force)) {
             platforms.addAll(List.of(MAGMA, FORGE));
         } else if (KETTING.detect(force)) {
@@ -70,7 +72,10 @@ public final class Platforms
             platforms.add(FORGE);
         }
 
-        if (NEOFORGE.detect(force)) {
+        // NeoForge
+        if (YOUER.detect(force)) {
+            platforms.addAll(List.of(YOUER, NEOFORGE));
+        } else if (NEOFORGE.detect(force)) {
             platforms.add(NEOFORGE);
         }
 
@@ -116,9 +121,7 @@ public final class Platforms
         }
 
         // Hybrid
-        if (MOHIST.detect(force)) {
-            platforms.add(MOHIST);
-        } else if (ARCLIGHT.detect(force)) {
+        if (ARCLIGHT.detect(force)) {
             platforms.add(ARCLIGHT);
         }
 
@@ -173,14 +176,18 @@ public final class Platforms
         return get().contains(BUKKIT) && get().contains(FORGE);
     }
 
+    public static boolean isNeoForgeHybrid() {
+        return get().contains(BUKKIT) && get().contains(NEOFORGE);
+    }
+
     public static boolean isNeoForge() {
         return get().contains(NEOFORGE);
     }
 
     public static boolean isHybrid() {
-        return get().contains(MOHIST)
-                || get().contains(ARCLIGHT)
+        return get().contains(ARCLIGHT)
                 || isForgeHybrid()
+                || isNeoForgeHybrid()
                 || isFabricHybrid();
     }
 
