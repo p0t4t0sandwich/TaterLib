@@ -34,7 +34,7 @@ unimined.minecraft(sourceSets.main.get()) {
 dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
     compileOnly(project(":modapi:conditional-mixins"))
     compileOnly(project(":forge:forge-utils-modern"))
     compileOnly(project(":vanilla:vanilla-1.20"))

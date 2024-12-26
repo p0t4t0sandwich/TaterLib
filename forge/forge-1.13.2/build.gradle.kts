@@ -14,6 +14,6 @@ dependencies {
     minecraft("net.minecraftforge:forge:${minecraftVersion}-${apiVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
     compileOnly(project(":forge:forge-utils-modern"))
 }

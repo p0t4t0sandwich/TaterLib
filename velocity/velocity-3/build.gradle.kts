@@ -9,5 +9,5 @@ dependencies {
     annotationProcessor("com.velocitypowered:velocity-api:${apiVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
 }

@@ -36,7 +36,7 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":modapi:conditional-mixins"))
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
 }
 
 java.disableAutoTargetJvm()

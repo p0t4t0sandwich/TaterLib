@@ -61,18 +61,14 @@ plugins {
 rootProject.name = 'TaterLib'
 
 include(
-        // Tooling
-        'tooling:loader',
-
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
         'modapi:conditional-mixins',
         'modapi:metadata',
 
-        // API
-        'api',
-
         // Common
+        'api',
+        'loader',
         'common',
 
         // Legacy Bukkit

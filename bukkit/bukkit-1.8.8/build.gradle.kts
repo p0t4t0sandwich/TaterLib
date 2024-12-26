@@ -7,6 +7,6 @@ dependencies {
     compileOnly("org.github.paperspigot:paperspigot-api:${minecraftVersion}-${apiVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
     compileOnly(project(":bukkit:bukkit-utils"))
 }

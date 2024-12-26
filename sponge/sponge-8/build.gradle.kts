@@ -42,5 +42,5 @@ dependencies {
     compileOnly(libs.brigadier)
     compileOnly(project(":api"))
     compileOnly(project(":common"))
-    compileOnly(project(":tooling:loader"))
+    compileOnly(project(":loader"))
 }
