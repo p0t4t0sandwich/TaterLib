@@ -4,9 +4,9 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-//base {
-//    archivesName = "${projectId}-common-${minecraftVersion}"
-//}
+base {
+    archivesName = "${projectId}-common"
+}
 
 dependencies {
     // Configurate
@@ -22,9 +22,6 @@ dependencies {
     // Gson
     implementation("com.google.code.gson:gson:2.10.1")
 
-    // Guava
-    implementation("com.google.guava:guava:33.0.0-jre")
-
     // Mixin
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
@@ -34,19 +31,16 @@ dependencies {
 
     // Tooling
     compileOnly(project(":api"))
-    compileOnly(variantOf(libs.modapi.metadata) {
+    implementation(variantOf(libs.modapi.metadata) {
         classifier("downgraded-8")
     })
-    compileOnly(libs.modapi.muxins)
+    implementation("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api:1.3.0-SNAPSHOT:downgraded-8")
+    implementation(libs.modapi.muxins)
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(project(":loader"))
+    implementation(project(":loader"))
 }
 
 java.disableAutoTargetJvm()
-
-tasks.named<Jar>("jar") {
-    archiveFileName = "${projectId}-common-${version}.jar"
-}
 
 tasks.named<ShadowJar>("shadowJar") {
     dependencies {
@@ -54,6 +48,13 @@ tasks.named<ShadowJar>("shadowJar") {
         exclude("META-INF", "META-INF/**")
         exclude("LICENSE")
         exclude("INFO_BIN", "INFO_SRC")
+
+        // Tooling
+//        include(project(":api"))
+//        include(project(":loader"))
+        include(dependency("dev.neuralnexus.modapi:metadata"))
+        include(dependency("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api"))
+        include(dependency("dev.neuralnexus.modapi:muxins"))
 
         // MCLogs
         include(dependency("gs.mclo:api:3.0.1"))
@@ -78,15 +79,15 @@ tasks.named<ShadowJar>("shadowJar") {
     // Gson
     relocate("com.google.gson", "dev.neuralnexus.taterlib.lib.gson")
 
-    // Guava
-    relocate("com.google.common", "dev.neuralnexus.taterlib.lib.guava")
-    relocate("com.google.thirdparty", "dev.neuralnexus.taterlib.lib.google.thirdparty")
+    minimize {
+        exclude(dependency("dev.neuralnexus.modapi:metadata"))
+        exclude(dependency("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api"))
+        exclude(dependency("dev.neuralnexus.modapi:muxins"))
+    }
 
-    minimize()
-
-    archiveFileName = "${projectId}-common-full-${version}.jar"
+    archiveClassifier.set("full")
 }
 
-artifacts {
-    archives(tasks.shadowJar)
+tasks.assemble {
+    dependsOn(tasks.shadowJar)
 }

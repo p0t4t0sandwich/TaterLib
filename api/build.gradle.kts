@@ -4,9 +4,9 @@ plugins {
     alias(libs.plugins.shadow)
 }
 
-//base {
-//    archivesName = "taterapi-bungee-${minecraftVersion}"
-//}
+base {
+    archivesName = "taterapi"
+}
 
 dependencies {
     // Configurate
@@ -49,10 +49,6 @@ dependencies {
 }
 
 java.disableAutoTargetJvm()
-
-tasks.named<Jar>("jar") {
-    archiveFileName = "taterapi-${version}.jar"
-}
 
 tasks.named<ShadowJar>("shadowJar") {
     dependencies {
@@ -99,9 +95,9 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("com.zaxxer.hikari", "dev.neuralnexus.taterlib.lib.hikari")
     relocate("com.mysql", "dev.neuralnexus.taterlib.lib.mysql")
 
-    archiveFileName = "taterapi-full-${version}.jar"
+    archiveClassifier.set("full")
 }
 
-artifacts {
-    archives(tasks.shadowJar)
+tasks.assemble {
+    dependsOn(tasks.shadowJar)
 }

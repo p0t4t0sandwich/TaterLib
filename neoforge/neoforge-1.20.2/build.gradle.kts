@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.neogradle)
+    alias(libs.plugins.unimined)
 }
 
 base {
@@ -10,8 +10,18 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
 java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
+unimined.minecraft(sourceSets.main.get()) {
+    version(minecraftVersion)
+    neoForged {
+        loader(apiVersion)
+    }
+    mappings {
+        mojmap()
+    }
+}
+
 dependencies {
-    compileOnly("net.neoforged:neoforge:${apiVersion}")
+//    compileOnly("net.neoforged:neoforge:${apiVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
