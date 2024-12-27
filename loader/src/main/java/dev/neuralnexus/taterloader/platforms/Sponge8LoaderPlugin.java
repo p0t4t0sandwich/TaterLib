@@ -9,7 +9,6 @@ import com.google.inject.Inject;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 import dev.neuralnexus.taterloader.TaterReflectUtil;
@@ -32,9 +31,9 @@ public class Sponge8LoaderPlugin {
         MetaAPI.instance().setPrimaryPlatform(Platforms.SPONGE);
         loader = new LoaderImpl(container, null);
         loader.registerPlugin(TaterPluginResolver.sponge());
-        if (Platforms.isForge()) {
+        if (MetaAPI.instance().isSpongeForge()) {
             loader.registerPlugin(TaterPluginResolver.forge());
-        } else if (Platforms.isFabric()) {
+        } else if (MetaAPI.instance().isSpongeFabric()) {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
 

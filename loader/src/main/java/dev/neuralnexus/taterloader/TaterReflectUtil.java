@@ -5,12 +5,12 @@
  */
 package dev.neuralnexus.taterloader;
 
+import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.Logger;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;

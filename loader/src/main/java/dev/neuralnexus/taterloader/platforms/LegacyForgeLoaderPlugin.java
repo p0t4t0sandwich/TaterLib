@@ -28,7 +28,7 @@ public class LegacyForgeLoaderPlugin {
         MetaAPI.instance().setPrimaryPlatform(Platforms.FORGE);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.forge());
-        if (Platforms.isForgeHybrid()) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         loader.onInit();

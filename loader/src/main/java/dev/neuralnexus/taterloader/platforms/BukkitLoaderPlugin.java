@@ -22,9 +22,9 @@ public class BukkitLoaderPlugin extends JavaPlugin {
         MetaAPI.instance().setPrimaryPlatform(Platforms.BUKKIT);
         loader = new LoaderImpl(this, Bukkit.getServer());
         loader.registerPlugin(TaterPluginResolver.bukkit());
-        if (Platforms.isForgeHybrid()) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.FORGE)) {
             loader.registerPlugin(TaterPluginResolver.forge());
-        } else if (Platforms.isFabricHybrid()) {
+        } else if (MetaAPI.instance().isPlatformPresent(Platforms.FABRIC)) {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();

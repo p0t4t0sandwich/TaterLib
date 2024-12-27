@@ -35,10 +35,10 @@ public class MetricsAdapter {
         if (TaterAPIProvider.side().is(Side.CLIENT)) {
             return null;
         }
-        Platform platform = MetaAPI.instance().primaryPlatform();
+        MetaAPI api = MetaAPI.instance();
         Object metrics = null;
-        if (platform.isBukkit()) {
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V0)) {
+        if (api.isPlatformPresent(Platforms.BUKKIT)) {
+            if (api.version().isOlderThan(MinecraftVersions.V0)) {
                 metrics =
                         BukkitBetaMetricsAdapter.setupMetrics(
                                 plugin, pluginIds.get(Platforms.BUKKIT), Collections.emptyList());
@@ -47,15 +47,15 @@ public class MetricsAdapter {
                         BukkitMetricsAdapter.setupMetrics(
                                 plugin, pluginIds.get(Platforms.BUKKIT), charts);
             }
-        } else if (platform.isBungeeCord()) {
+        } else if (api.isPlatformPresent(Platforms.BUNGEECORD)) {
             metrics =
                     BungeeCordMetricsAdapter.setupMetrics(
                             plugin, pluginIds.get(Platforms.BUNGEECORD), charts);
-        } else if (platform.isSponge()) {
+        } else if (api.isPlatformPresent(Platforms.SPONGE)) {
             metrics =
                     SpongeMetricsAdapter.setupMetrics(
                             plugin, pluginLogger, pluginIds.get(Platforms.SPONGE), charts);
-        } else if (platform.isVelocity()) {
+        } else if (api.isPlatformPresent(Platforms.VELOCITY)) {
             metrics =
                     VelocityMetricsAdapter.setupMetrics(
                             plugin,

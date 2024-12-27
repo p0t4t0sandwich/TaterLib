@@ -84,21 +84,21 @@ public final class MetaAPIImpl implements MetaAPI {
 
     @Override
     public Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException {
-        return Meta.lookup(this.primaryPlatform())
+        return lookup(this.primaryPlatform())
                 .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform()));
     }
 
     @Override
     public Optional<Platform.Meta> meta(@NotNull Platform platform) throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
-        return Meta.lookup(platform);
+        return lookup(platform);
     }
 
     // ----------------------------- Platform.Meta Getters -----------------------------
 
     @Override
     public MinecraftVersion version() {
-        return Meta.lookupAll().stream()
+        return lookupAll().stream()
                 .map(Platform.Meta::minecraftVersion)
                 .findFirst()
                 .orElse(MinecraftVersions.UNKNOWN);
@@ -107,7 +107,7 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public boolean isModLoaded(@NotNull String nameOrId) throws NullPointerException {
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
-        return Meta.lookupAll().stream().anyMatch(meta -> meta.isModLoaded(nameOrId));
+        return lookupAll().stream().anyMatch(meta -> meta.isModLoaded(nameOrId));
     }
 
     @Override
@@ -115,12 +115,12 @@ public final class MetaAPIImpl implements MetaAPI {
             throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
-        return Meta.lookup(platform).map(meta -> meta.isModLoaded(nameOrId));
+        return lookup(platform).map(meta -> meta.isModLoaded(nameOrId));
     }
 
     @Override
     public Mappings mappings() {
-        return Meta.lookupAll().stream()
+        return lookupAll().stream()
                 .map(Platform.Meta::mappings)
                 .findFirst()
                 .orElse(Mappings.UNKNOWN);
@@ -129,66 +129,55 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public Optional<Mappings> mappings(@NotNull Platform platform) throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
-        return Meta.lookup(platform).map(Platform.Meta::mappings);
+        return lookup(platform).map(Platform.Meta::mappings);
     }
 
     @Override
     public Logger logger(@NotNull String modId) throws NullPointerException {
         Objects.requireNonNull(modId, "Mod ID cannot be null");
-        return Meta.lookupAll().stream()
+        return lookupAll().stream()
                 .map(meta -> meta.logger(modId))
                 .findFirst()
                 .orElse(new SystemLogger(modId));
     }
 
-    // ----------------------------- Misc -----------------------------
-
-    @Override
-    public boolean isBrigadierSupported() {
-        return this.version().isAtLeast(MinecraftVersions.V13)
-                || this.isPlatformPresent(Platforms.VELOCITY)
-                || ReflectionUtil.checkForClass("com.mojang.brigadier.CommandDispatcher");
+    /**
+     * Get the metadata for the specified platform
+     *
+     * @param platform The Platform
+     * @return The Platform's metadata
+     */
+    public static Optional<Platform.Meta> lookup(Platform platform) {
+        if (MetaAPI.isNeoForgeBased(platform)) {
+            return Optional.of(new NeoForgeMeta());
+        } else if (MetaAPI.isForgeBased(platform)) {
+            return Optional.ofNullable(ForgeData.create());
+        } else if (MetaAPI.isFabricBased(platform)) {
+            return Optional.of(new FabricMeta());
+        } else if (platform == Platforms.SPONGE) {
+            return Optional.ofNullable(SpongeData.create());
+        } else if (MetaAPI.isBukkitBased(platform)) {
+            return Optional.of(new BukkitMeta());
+        } else if (MetaAPI.isBungeeCordBased(platform)) {
+            return Optional.of(new BungeeCordMeta());
+        } else if (platform == Platforms.VELOCITY) {
+            return Optional.of(new VelocityMeta());
+        } else if (ReflectionUtil.checkForClass("org.spongepowered.asm.service.MixinService")) {
+            return Optional.of(new VanillaMeta());
+        }
+        return Optional.empty();
     }
 
-    private static final class Meta {
-        /**
-         * Get the metadata for the specified platform
-         *
-         * @param platform The Platform
-         * @return The Platform's metadata
-         */
-        public static Optional<Platform.Meta> lookup(Platform platform) {
-            if (platform.isNeoForge()) {
-                return Optional.of(new NeoForgeMeta());
-            } else if (platform.isForge()) {
-                return Optional.ofNullable(ForgeData.create());
-            } else if (platform.isFabric()) {
-                return Optional.of(new FabricMeta());
-            } else if (platform.isSponge()) {
-                return Optional.ofNullable(SpongeData.create());
-            } else if (platform.isBukkit()) {
-                return Optional.of(new BukkitMeta());
-            } else if (platform.isBungeeCord()) {
-                return Optional.of(new BungeeCordMeta());
-            } else if (platform.isVelocity()) {
-                return Optional.of(new VelocityMeta());
-            } else if (ReflectionUtil.checkForClass("org.spongepowered.asm.service.MixinService")) {
-                return Optional.of(new VanillaMeta());
-            }
-            return Optional.empty();
-        }
-
-        /**
-         * Get the metadata for the primary platform
-         *
-         * @return The Platform's metadata
-         */
-        public static List<Platform.Meta> lookupAll() {
-            return Platforms.get().stream()
-                    .map(Meta::lookup)
-                    .filter(Optional::isPresent)
-                    .map(Optional::get)
-                    .toList();
-        }
+    /**
+     * Get the metadata for the primary platform
+     *
+     * @return The Platform's metadata
+     */
+    public static List<Platform.Meta> lookupAll() {
+        return Platforms.get().stream()
+                .map(MetaAPIImpl::lookup)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .toList();
     }
 }

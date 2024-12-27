@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -28,7 +28,12 @@ public class DepDownloader {
         this.repos = repos;
         this.deps = new MavenDependency[depInfo.size()];
         int i = 0;
-        Path basePath = MetaAPI.instance().meta().modFolder().resolve(LoaderImpl.PROJECT_ID).resolve("libraries");
+        Path basePath =
+                MetaAPI.instance()
+                        .meta()
+                        .modFolder()
+                        .resolve(LoaderImpl.PROJECT_ID)
+                        .resolve("libraries");
         for (Map.Entry<String, String> entry : depInfo.entrySet()) {
             deps[i] = new MavenDependency(entry.getKey(), entry.getValue(), basePath);
             i++;

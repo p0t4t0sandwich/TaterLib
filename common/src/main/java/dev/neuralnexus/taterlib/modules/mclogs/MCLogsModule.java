@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.modules.mclogs;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -26,9 +27,9 @@ public class MCLogsModule implements PluginModule {
             CommandEvents.REGISTER_COMMAND.register(
                     event -> {
                         Command command = new MCLogsCommand();
-                        if (Platforms.isBungeeCord()) {
+                        if (MetaAPI.instance().isPlatformPresent(Platforms.BUNGEECORD)) {
                             command.setName("bmclogs");
-                        } else if (Platforms.isVelocity()) {
+                        } else if (MetaAPI.instance().isPlatformPresent(Platforms.VELOCITY)) {
                             command.setName("vmclogs");
                         }
                         event.registerCommand(command);

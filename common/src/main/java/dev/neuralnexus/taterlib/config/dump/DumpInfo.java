@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
@@ -25,10 +24,10 @@ public class DumpInfo {
     public final String platform = MetaAPI.instance().primaryPlatform().asString();
     public final String version = MetaAPI.instance().version().asString();
     public final String taterlibVersion = LoaderImpl.PROJECT_VERSION;
-    public final boolean isForgeHybrid = Platforms.isForgeHybrid();
-    public final boolean isFabricHybrid = Platforms.isFabricHybrid();
-    public final boolean isSpongeForge = Platforms.isSpongeForge();
-    public final boolean isMixedForgeFabric = Platforms.isMixedForgeFabric();
+    public final boolean isForgeHybrid = MetaAPI.instance().isForgeHybrid();
+    public final boolean isFabricHybrid = MetaAPI.instance().isFabricHybrid();
+    public final boolean isSpongeForge = MetaAPI.instance().isSpongeForge();
+    public final boolean isMixedForgeFabric = MetaAPI.instance().isMixedForgeFabric();
 
     /** Save the dump to a file. */
     @SuppressWarnings("ResultOfMethodCallIgnored")

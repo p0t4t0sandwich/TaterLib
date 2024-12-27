@@ -7,7 +7,6 @@ package dev.neuralnexus.taterloader.platforms;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
@@ -28,7 +27,7 @@ public class NeoForgeLoaderPlugin {
         NeoForge.EVENT_BUS.register(this);
         loader = new LoaderImpl(this, null);
         loader.registerPlugin(TaterPluginResolver.neoForge());
-        if (Platforms.isNeoForgeHybrid()) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         // Sinytra Connector support

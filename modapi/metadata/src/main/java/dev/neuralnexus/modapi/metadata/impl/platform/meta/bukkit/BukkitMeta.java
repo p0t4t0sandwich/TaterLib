@@ -10,6 +10,7 @@ import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForM
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
@@ -30,7 +31,8 @@ public final class BukkitMeta implements Platform.Meta {
     @Override
     public MinecraftVersion minecraftVersion() {
         String version = Bukkit.getVersion();
-        if (Platforms.isPaper() && checkForMethod("org.bukkit.Bukkit", "getMinecraftVersion")) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.PAPER)
+                && checkForMethod("org.bukkit.Bukkit", "getMinecraftVersion")) {
             version = PaperMeta.getMinecraftVersion();
         }
         return MinecraftVersion.of(version);
@@ -48,9 +50,10 @@ public final class BukkitMeta implements Platform.Meta {
 
     @Override
     public Mappings mappings() {
-        if (Platforms.isPaper() && this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.PAPER)
+                && this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
             return Mappings.MOJMAP;
-        } else if (Platforms.isSpigot()) {
+        } else if (MetaAPI.instance().isPlatformPresent(Platforms.SPIGOT)) {
             return Mappings.SPIGOT;
         }
         return Mappings.OFFICIAL;

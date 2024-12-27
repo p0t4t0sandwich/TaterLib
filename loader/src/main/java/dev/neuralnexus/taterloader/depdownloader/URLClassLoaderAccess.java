@@ -5,7 +5,9 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
+
 import org.jetbrains.annotations.ApiStatus;
 
 import java.lang.reflect.Field;
@@ -33,7 +35,7 @@ public abstract class URLClassLoaderAccess {
      * @return the access object
      */
     public static URLClassLoaderAccess create(ClassLoader classLoader) {
-        if (Platforms.isFabric()) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.FABRIC)) {
             try {
                 Class<?> fabricLauncherBase =
                         Class.forName("net.fabricmc.loader.launch.common.FabricLauncherBase");
@@ -56,7 +58,8 @@ public abstract class URLClassLoaderAccess {
                     | InvocationTargetException ignored) {
             }
         }
-        if (Platforms.isForge()) {
+        if (MetaAPI.instance().isPlatformPresent(Platforms.FORGE)
+                || MetaAPI.instance().isPlatformPresent(Platforms.NEOFORGE)) {
             return new URLClassLoaderAccess(classLoader) {
                 @Override
                 public void addURL(URL url) {

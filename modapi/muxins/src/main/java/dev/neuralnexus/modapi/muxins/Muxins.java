@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.modapi.muxins;
 
+import static dev.neuralnexus.modapi.metadata.impl.util.TextUtil.ansiParser;
+
 import dev.neuralnexus.modapi.metadata.Logger;
 
 import org.objectweb.asm.tree.ClassNode;
@@ -13,8 +15,6 @@ import org.spongepowered.asm.service.MixinService;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
-
-import static dev.neuralnexus.modapi.metadata.impl.util.TextUtil.ansiParser;
 
 /**
  * Utility class for users that what to use conditional mixins allong with their own mixin plugin

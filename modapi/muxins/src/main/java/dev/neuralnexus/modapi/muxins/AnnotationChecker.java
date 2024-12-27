@@ -26,7 +26,8 @@ import org.objectweb.asm.tree.AnnotationNode;
 import java.util.List;
 
 public class AnnotationChecker {
-    private static final dev.neuralnexus.modapi.metadata.Platform.Meta meta = MetaAPI.instance().meta();
+    private static final dev.neuralnexus.modapi.metadata.Platform.Meta meta =
+            MetaAPI.instance().meta();
     private static final MinecraftVersion minecraftVersion = MetaAPI.instance().version();
 
     public static boolean checkAnnotations(
@@ -142,10 +143,8 @@ public class AnnotationChecker {
 
     public static boolean checkReqMCVersion(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        MinecraftVersion min =
-                getValue(annotation, "min", MinecraftVersions.UNKNOWN);
-        MinecraftVersion max =
-                getValue(annotation, "max", MinecraftVersions.UNKNOWN);
+        MinecraftVersion min = getValue(annotation, "min", MinecraftVersions.UNKNOWN);
+        MinecraftVersion max = getValue(annotation, "max", MinecraftVersions.UNKNOWN);
         if (min != null && !minecraftVersion.isAtLeast(min)) {
             if (verbose) {
                 logger.info(

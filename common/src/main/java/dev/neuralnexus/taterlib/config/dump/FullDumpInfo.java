@@ -37,25 +37,26 @@ public class FullDumpInfo extends DumpInfo {
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public FullDumpInfo() {
-        if (Platforms.isBukkit()) {
+        MetaAPI api = MetaAPI.instance();
+        if (api.isPlatformPresent(Platforms.BUKKIT)) {
             this.bukkit = MetaAPI.instance().meta(Platforms.BUKKIT).get().modList();
         }
-        if (Platforms.isBungeeCord()) {
+        if (api.isPlatformPresent(Platforms.BUNGEECORD)) {
             this.bungeecord = MetaAPI.instance().meta(Platforms.BUNGEECORD).get().modList();
         }
-        if (Platforms.isFabric()) {
+        if (api.isPlatformPresent(Platforms.FABRIC)) {
             this.fabric = MetaAPI.instance().meta(Platforms.FABRIC).get().modList();
         }
-        if (Platforms.isForge()) {
+        if (api.isPlatformPresent(Platforms.FORGE)) {
             this.forge = MetaAPI.instance().meta(Platforms.FORGE).get().modList();
         }
-        if (Platforms.isNeoForge()) {
+        if (api.isPlatformPresent(Platforms.NEOFORGE)) {
             this.neoforge = MetaAPI.instance().meta(Platforms.NEOFORGE).get().modList();
         }
-        if (Platforms.isSponge()) {
+        if (api.isPlatformPresent(Platforms.SPONGE)) {
             this.sponge = MetaAPI.instance().meta(Platforms.SPONGE).get().modList();
         }
-        if (Platforms.isVelocity()) {
+        if (api.isPlatformPresent(Platforms.VELOCITY)) {
             this.velocity = MetaAPI.instance().meta(Platforms.VELOCITY).get().modList();
         }
     }

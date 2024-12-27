@@ -43,7 +43,9 @@ dependencies {
 
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8")
+    })
 }
 
 java.disableAutoTargetJvm()

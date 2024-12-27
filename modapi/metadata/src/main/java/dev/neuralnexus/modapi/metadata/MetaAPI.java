@@ -6,6 +6,7 @@
 package dev.neuralnexus.modapi.metadata;
 
 import dev.neuralnexus.modapi.metadata.impl.MetaAPIImpl;
+import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -67,6 +68,38 @@ public interface MetaAPI {
      * @throws NullPointerException if the platform is null
      */
     boolean isPlatformPresent(@NotNull Platform platform) throws NullPointerException;
+
+    /**
+     * Check if any of the given platforms are present
+     *
+     * @param platform The platforms
+     * @return True if any platform is present, false otherwise
+     * @throws NullPointerException if the platform is null
+     */
+    default boolean isPlatformPresent(@NotNull Platform... platform) throws NullPointerException {
+        for (Platform p : platform) {
+            if (this.isPlatformPresent(p)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check if all the given platforms are present
+     *
+     * @param platform The platforms
+     * @return True if all platforms are present, false otherwise
+     * @throws NullPointerException if the platform is null
+     */
+    default boolean allPlatformsPresent(@NotNull Platform... platform) throws NullPointerException {
+        for (Platform p : platform) {
+            if (!this.isPlatformPresent(p)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Get the metadata for the primary platform
@@ -144,6 +177,195 @@ public interface MetaAPI {
      */
     Logger logger(@NotNull String modId) throws NullPointerException;
 
+    // ----------------------------- Platform Checks -----------------------------
+
+    /**
+     * Check if the platform is SpongeForge
+     *
+     * @return True if the platform is SpongeForge, false otherwise
+     */
+    default boolean isSpongeForge() {
+        return this.allPlatformsPresent(Platforms.SPONGE, Platforms.FORGE);
+    }
+
+    /**
+     * Check if the platform is SpongeFabric
+     *
+     * @return True if the platform is SpongeFabric, false otherwise
+     */
+    default boolean isSpongeFabric() {
+        return this.allPlatformsPresent(Platforms.SPONGE, Platforms.FABRIC);
+    }
+
+    /**
+     * Check if the platform is a proxy
+     *
+     * @return True if the platform is a proxy, false otherwise
+     */
+    default boolean isProxy() {
+        return this.isPlatformPresent(Platforms.BUNGEECORD, Platforms.VELOCITY);
+    }
+
+    /**
+     * Check if the platform is a Forge hybrid
+     *
+     * @return True if the platform is a Forge hybrid, false otherwise
+     */
+    default boolean isForgeHybrid() {
+        return this.allPlatformsPresent(Platforms.FORGE, Platforms.BUKKIT);
+    }
+
+    /**
+     * Check if the platform is a Fabric hybrid
+     *
+     * @return True if the platform is a Fabric hybrid, false otherwise
+     */
+    default boolean isFabricHybrid() {
+        return this.allPlatformsPresent(Platforms.FABRIC, Platforms.BUKKIT);
+    }
+
+    /**
+     * Check if the platform is a NeoForge hybrid
+     *
+     * @return True if the platform is a NeoForge hybrid, false otherwise
+     */
+    default boolean isNeoForgeHybrid() {
+        return this.allPlatformsPresent(Platforms.NEOFORGE, Platforms.BUKKIT);
+    }
+
+    /**
+     * Check if the platform is a hybrid
+     *
+     * @return True if the platform is a hybrid, false otherwise
+     */
+    default boolean isHybrid() {
+        return this.isForgeHybrid() || this.isFabricHybrid() || this.isNeoForgeHybrid();
+    }
+
+    /**
+     * Check if the platform is a mixed Forge/Fabric environment
+     *
+     * @return True if the platform is a mixed Forge/Fabric environment, false otherwise
+     */
+    default boolean isMixedForgeFabric() {
+        return this.allPlatformsPresent(Platforms.FORGE, Platforms.FABRIC);
+    }
+
+    // ----------------------------- Static Platform Checks -----------------------------
+
+    /**
+     * Check if the platform is Bukkit based
+     *
+     * @param platform The platform
+     * @return True if the platform is Bukkit based, false otherwise
+     */
+    static boolean isBukkitBased(Platform platform) {
+        return platform == Platforms.BUKKIT
+                || platform == Platforms.SPIGOT
+                || platform == Platforms.PAPER
+                || platform == Platforms.PURPUR
+                || platform == Platforms.PUFFERFISH
+                || platform == Platforms.FOLIA
+                || platform == Platforms.POSEIDON
+                || isHybrid(platform);
+    }
+
+    /**
+     * Check if the platform is BungeeCord based
+     *
+     * @param platform The platform
+     * @return True if the platform is BungeeCord based, false otherwise
+     */
+    static boolean isBungeeCordBased(Platform platform) {
+        return platform == Platforms.BUNGEECORD
+                || platform == Platforms.WATERFALL
+                || platform == Platforms.LIGHTFALL
+                || platform == Platforms.TRAVERTINE;
+    }
+
+    /**
+     * Check if the platform is Fabric based
+     *
+     * @param platform The platform
+     * @return True if the platform is Fabric based, false otherwise
+     */
+    static boolean isFabricBased(Platform platform) {
+        return platform == Platforms.FABRIC
+                || platform == Platforms.QUILT
+                || isFabricHybrid(platform);
+    }
+
+    /**
+     * Check if the platform is Forge based
+     *
+     * @param platform The platform
+     * @return True if the platform is Forge based, false otherwise
+     */
+    static boolean isFabricHybrid(Platform platform) {
+        return platform == Platforms.CARDBOARD || platform == Platforms.BANNER;
+    }
+
+    /**
+     * Check if the platform is Forge based
+     *
+     * @param platform The platform
+     * @return True if the platform is Forge based, false otherwise
+     */
+    static boolean isForgeBased(Platform platform) {
+        return platform == Platforms.FORGE
+                || platform == Platforms.GOLDENFORGE
+                || isForgeHybrid(platform);
+    }
+
+    /**
+     * Check if the platform is Forge based
+     *
+     * @param platform The platform
+     * @return True if the platform is Forge based, false otherwise
+     */
+    static boolean isForgeHybrid(Platform platform) {
+        return platform == Platforms.MCPCPLUSPLUS
+                || platform == Platforms.CAULDRON
+                || platform == Platforms.KCAULDRON
+                || platform == Platforms.THERMOS
+                || platform == Platforms.CRUCIBLE
+                || platform == Platforms.MOHIST
+                || platform == Platforms.MAGMA
+                || platform == Platforms.KETTING;
+    }
+
+    /**
+     * Check if the platform is NeoForge based
+     *
+     * @param platform The platform
+     * @return True if the platform is NeoForge based, false otherwise
+     */
+    static boolean isNeoForgeBased(Platform platform) {
+        return platform == Platforms.NEOFORGE || isNeoForgeHybrid(platform);
+    }
+
+    /**
+     * Check if the platform is NeoForge based
+     *
+     * @param platform The platform
+     * @return True if the platform is NeoForge based, false otherwise
+     */
+    static boolean isNeoForgeHybrid(Platform platform) {
+        return platform == Platforms.YOUER;
+    }
+
+    /**
+     * Check if the platform is a hybrid
+     *
+     * @param platform The platform
+     * @return True if the platform is a hybrid, false otherwise
+     */
+    static boolean isHybrid(Platform platform) {
+        return platform == Platforms.ARCLIGHT
+                || isForgeHybrid(platform)
+                || isFabricHybrid(platform);
+    }
+
     // ----------------------------- Misc -----------------------------
 
     /**
@@ -151,7 +373,11 @@ public interface MetaAPI {
      *
      * @return True if Brigadier is supported, false otherwise
      */
-    boolean isBrigadierSupported();
+    default boolean isBrigadierSupported() {
+        return this.version().isAtLeast(MinecraftVersions.V13)
+                || this.isPlatformPresent(Platforms.VELOCITY)
+                || ReflectionUtil.checkForClass("com.mojang.brigadier.CommandDispatcher");
+    }
 
     // ----------------------------- Exceptions -----------------------------
 

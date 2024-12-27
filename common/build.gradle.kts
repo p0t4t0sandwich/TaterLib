@@ -34,7 +34,9 @@ dependencies {
 
     // Tooling
     compileOnly(project(":api"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8")
+    })
     compileOnly(libs.modapi.muxins)
     compileOnly(project(":modapi:entrypoint-spoof"))
     compileOnly(project(":loader"))

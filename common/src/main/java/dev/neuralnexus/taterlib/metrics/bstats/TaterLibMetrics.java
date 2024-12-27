@@ -39,7 +39,12 @@ public class TaterLibMetrics {
         MetricsConfig config;
         try {
             boolean defaultEnabled = TaterAPIProvider.side().is(Side.SERVER);
-            if (Platforms.isFabric() || Platforms.isForge()) {
+            if (MetaAPI.instance()
+                    .isPlatformPresent(
+                            Platforms.FABRIC,
+                            Platforms.FORGE,
+                            Platforms.NEOFORGE,
+                            Platforms.SPONGE)) {
                 config = new MetricsConfig(new File("config/bstats/config.txt"), defaultEnabled);
             } else {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), defaultEnabled);

@@ -7,7 +7,9 @@ dependencies {
     compileOnly(libs.asm.tree)
     compileOnly(project(":api"))
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8")
+    })
 }
 
 tasks.withType<ProcessResources>().configureEach {

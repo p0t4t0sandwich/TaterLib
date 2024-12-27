@@ -18,6 +18,7 @@ import dev.neuralnexus.modapi.metadata.impl.platform.Velocity;
 import java.util.ArrayList;
 import java.util.List;
 
+/** A class that provides information about the platforms that are available */
 public final class Platforms
         implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Sponge, Vanilla, Velocity {
     public static final Platform UNKNOWN = new PlatformImpl("Unknown");
@@ -134,84 +135,5 @@ public final class Platforms
         if (VELOCITY.detect(force)) {
             platforms.add(VELOCITY);
         }
-    }
-
-    public static boolean isBukkit() {
-        return get().contains(BUKKIT);
-    }
-
-    public static boolean isSpigot() {
-        return get().contains(SPIGOT);
-    }
-
-    public static boolean isPaper() {
-        return get().contains(PAPER);
-    }
-
-    public static boolean isBungeeCord() {
-        return get().contains(BUNGEECORD);
-    }
-
-    public static boolean isWaterfall() {
-        return get().contains(WATERFALL);
-    }
-
-    public static boolean isFabric() {
-        return get().contains(FABRIC);
-    }
-
-    public static boolean isQuilt() {
-        return get().contains(QUILT);
-    }
-
-    public static boolean isFabricHybrid() {
-        return get().contains(BUKKIT) && get().contains(FABRIC);
-    }
-
-    public static boolean isForge() {
-        return get().contains(FORGE);
-    }
-
-    public static boolean isForgeHybrid() {
-        return get().contains(BUKKIT) && get().contains(FORGE);
-    }
-
-    public static boolean isNeoForgeHybrid() {
-        return get().contains(BUKKIT) && get().contains(NEOFORGE);
-    }
-
-    public static boolean isNeoForge() {
-        return get().contains(NEOFORGE);
-    }
-
-    public static boolean isHybrid() {
-        return get().contains(ARCLIGHT)
-                || isForgeHybrid()
-                || isNeoForgeHybrid()
-                || isFabricHybrid();
-    }
-
-    public static boolean isSponge() {
-        return get().contains(SPONGE);
-    }
-
-    public static boolean isSpongeForge() {
-        return get().contains(SPONGE) && get().contains(FORGE);
-    }
-
-    public static boolean isSpongeFabric() {
-        return get().contains(SPONGE) && get().contains(FABRIC);
-    }
-
-    public static boolean isVelocity() {
-        return get().contains(VELOCITY);
-    }
-
-    public static boolean isProxy() {
-        return isBungeeCord() || isVelocity();
-    }
-
-    public static boolean isMixedForgeFabric() {
-        return get().contains(FORGE) && get().contains(FABRIC);
     }
 }
