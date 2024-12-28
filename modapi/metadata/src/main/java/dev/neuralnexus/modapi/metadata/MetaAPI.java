@@ -105,10 +105,10 @@ public interface MetaAPI {
      * Get the metadata for the primary platform
      *
      * @return The Platform's metadata
-     * @throws NoPrimaryPlatformException if the primary platform is not detected
+     * @throws NoPlatformException if the primary platform is not detected
      * @throws NoPlatformMetaException if there's no metadata for the platform
      */
-    Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException;
+    Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException;
 
     /**
      * Get the metadata for the specified platform

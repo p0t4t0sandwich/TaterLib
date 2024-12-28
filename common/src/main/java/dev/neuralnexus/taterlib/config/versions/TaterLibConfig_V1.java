@@ -6,32 +6,38 @@
 package dev.neuralnexus.taterlib.config.versions;
 
 import dev.neuralnexus.taterapi.config.MixinConfig;
-import dev.neuralnexus.taterapi.config.ToggleableSetting;
+import dev.neuralnexus.taterapi.config.VersionedConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
-import dev.neuralnexus.taterlib.config.sections.ServerConfig;
+import org.spongepowered.configurate.objectmapping.ConfigSerializable;
+import org.spongepowered.configurate.objectmapping.meta.Comment;
+import org.spongepowered.configurate.objectmapping.meta.Required;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /** A class for TaterLib configuration. */
+@ConfigSerializable
 public class TaterLibConfig_V1 implements TaterLibConfig {
-    public final int version;
-    public final List<ToggleableSetting> modules;
-    public final List<ToggleableSetting> hooks;
-    public final MixinConfig mixin;
-    private final ServerConfig server;
+    @Comment("Config version, DO NOT CHANGE THIS")
+    @Required
+    private int version = 1;
 
-    public TaterLibConfig_V1(
-            int version,
-            ServerConfig server,
-            List<ToggleableSetting> modules,
-            List<ToggleableSetting> hooks,
-            MixinConfig mixin) {
-        this.version = version;
-        this.server = server;
-        this.modules = modules;
-        this.hooks = hooks;
-        this.mixin = mixin;
+    @Comment("Enable or disable TaterLib's modules")
+    private Map<String, Boolean> modules = new HashMap<>();
+    {
+        modules.put("BungeeCord", false);
+        modules.put("MCLogs", false);
     }
+
+    @Comment("Enable or disable TaterLib's hooks")
+    private Map<String, Boolean> hooks = new HashMap<>();
+    {
+        hooks.put("LuckPerms", true);
+        hooks.put("Spark", true);
+    }
+
+    @Comment("Mixin configuration")
+    private MixinConfig mixin = new MixinConfig();
 
     @Override
     public int version() {
@@ -39,17 +45,12 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
     }
 
     @Override
-    public ServerConfig server() {
-        return server;
-    }
-
-    @Override
-    public List<ToggleableSetting> modules() {
+    public Map<String, Boolean> modules() {
         return modules;
     }
 
     @Override
-    public List<ToggleableSetting> hooks() {
+    public Map<String, Boolean> hooks() {
         return hooks;
     }
 

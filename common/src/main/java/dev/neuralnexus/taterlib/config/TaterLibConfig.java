@@ -6,10 +6,8 @@
 package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterapi.config.MixinConfig;
-import dev.neuralnexus.taterapi.config.ToggleableSetting;
-import dev.neuralnexus.taterlib.config.sections.ServerConfig;
 
-import java.util.List;
+import java.util.Map;
 
 /** A class for TaterLib configuration. */
 public interface TaterLibConfig {
@@ -21,25 +19,18 @@ public interface TaterLibConfig {
     int version();
 
     /**
-     * Get the server configuration.
-     *
-     * @return The server configuration.
-     */
-    ServerConfig server();
-
-    /**
      * Get the modules in the configuration.
      *
      * @return The modules in the configuration.
      */
-    List<ToggleableSetting> modules();
+    Map<String, Boolean> modules();
 
     /**
      * Get the hooks in the configuration.
      *
      * @return The hooks in the configuration.
      */
-    List<ToggleableSetting> hooks();
+    Map<String, Boolean> hooks();
 
     /**
      * Get the mixins in the configuration.
@@ -55,10 +46,7 @@ public interface TaterLibConfig {
      * @return Whether the module should be applied.
      */
     default boolean checkModule(String moduleName) {
-        return modules().stream()
-                .anyMatch(
-                        moduleConfig ->
-                                moduleConfig.name().equals(moduleName) && moduleConfig.enabled());
+        return modules().getOrDefault(moduleName, false);
     }
 
     /**
@@ -68,7 +56,6 @@ public interface TaterLibConfig {
      * @return Whether the hook should be applied.
      */
     default boolean checkHook(String hookName) {
-        return hooks().stream()
-                .anyMatch(hookConfig -> hookConfig.name().equals(hookName) && hookConfig.enabled());
+        return hooks().getOrDefault(hookName, false);
     }
 }

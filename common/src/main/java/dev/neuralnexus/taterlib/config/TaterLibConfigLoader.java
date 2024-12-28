@@ -7,24 +7,18 @@ package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.taterapi.config.MixinConfig;
-import dev.neuralnexus.taterapi.config.ToggleableSetting;
-import dev.neuralnexus.taterapi.util.ConfigUtil;
-import dev.neuralnexus.taterlib.config.sections.ServerConfig;
+import dev.neuralnexus.taterapi.config.VersionedConfig;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
-import io.leangen.geantyref.TypeToken;
-
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;
-import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.hocon.HoconConfigurationLoader;
+import org.spongepowered.configurate.serialize.SerializationException;
 
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
@@ -37,40 +31,59 @@ public class TaterLibConfigLoader {
                             + File.separator
                             + LoaderImpl.PROJECT_ID
                             + ".conf");
-    private static final String defaultConfigPath = "source." + LoaderImpl.PROJECT_ID + ".conf";
-    private static final TypeToken<Integer> versionType = new TypeToken<Integer>() {};
-    private static final TypeToken<ServerConfig> serverType = new TypeToken<ServerConfig>() {};
-    private static final TypeToken<List<ToggleableSetting>> moduleType =
-            new TypeToken<List<ToggleableSetting>>() {};
-    private static final TypeToken<List<ToggleableSetting>> hookType =
-            new TypeToken<List<ToggleableSetting>>() {};
-    private static final TypeToken<MixinConfig> mixinType = new TypeToken<MixinConfig>() {};
+    private static HoconConfigurationLoader loader;
     private static TaterLibConfig config;
 
     /** Load the configuration from the file. */
     public static void load() {
-        ConfigUtil.copyDefaults(TaterLibConfigLoader.class, configPath, defaultConfigPath, logger);
-
-        final HoconConfigurationLoader loader =
-                HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root = ConfigUtil.getRoot(loader, logger);
-        if (root == null) {
+        loader = HoconConfigurationLoader.builder()
+                .path(configPath)
+                .build();
+        CommentedConfigurationNode node = null;
+        try {
+            node = loader.load();
+        } catch (ConfigurateException e) {
+            logger.error("An error occurred while loading the configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                logger.error("Caused by: ", e.getCause());
+            }
+        }
+        if (node == null) {
             return;
         }
 
-        ConfigurationNode versionNode = root.node("version");
-        int version = versionNode.getInt(1);
-        ServerConfig server = ConfigUtil.get(root, serverType, "server", logger);
-        List<ToggleableSetting> modules = ConfigUtil.get(root, moduleType, "modules", logger);
-        List<ToggleableSetting> hooks = ConfigUtil.get(root, hookType, "hooks", logger);
-        MixinConfig mixin = ConfigUtil.get(root, mixinType, "mixin", logger);
-
+        int version = VersionedConfig.tryGetVersion(node, logger);
         switch (version) {
             case 1:
-                config = new TaterLibConfig_V1(version, server, modules, hooks, mixin);
+                try {
+                    config = node.get(TaterLibConfig_V1.class);
+                } catch (SerializationException e) {
+                    logger.error("An error occurred while loading the modules configuration: " + e.getMessage());
+                    if (e.getCause() != null) {
+                        logger.error("Caused by: ", e.getCause());
+                    }
+                }
                 break;
             default:
-                System.err.println("Unknown configuration version: " + version);
+                logger.error("Unknown configuration version: " + version + ", defaulting to version 1");
+                config = new TaterLibConfig_V1();
+                try {
+                    node.set(TaterLibConfig_V1.class, config);
+                } catch (SerializationException e) {
+                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    if (e.getCause() != null) {
+                        logger.error("Caused by: ", e.getCause());
+                    }
+                }
+        }
+
+        try {
+            loader.save(node);
+        } catch (ConfigurateException e) {
+            logger.error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                logger.error("Caused by: ", e.getCause());
+            }
         }
     }
 
@@ -84,23 +97,52 @@ public class TaterLibConfigLoader {
         if (config == null) {
             return;
         }
-        final HoconConfigurationLoader loader =
-                HoconConfigurationLoader.builder().path(configPath).build();
-        CommentedConfigurationNode root = ConfigUtil.getRoot(loader, logger);
-        if (root == null) {
+        if (loader == null) {
+            return;
+        }
+        CommentedConfigurationNode node = null;
+        try {
+            node = loader.load();
+        } catch (ConfigurateException e) {
+            logger.error("An error occurred while loading the configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                logger.error("Caused by: ", e.getCause());
+            }
+        }
+        if (node == null) {
             return;
         }
 
-        ConfigUtil.set(root, versionType, "version", config.version(), logger);
-        ConfigUtil.set(root, serverType, "server", config.server(), logger);
-        ConfigUtil.set(root, moduleType, "modules", config.modules(), logger);
-        ConfigUtil.set(root, hookType, "hooks", config.hooks(), logger);
-        ConfigUtil.set(root, mixinType, "mixin", config.mixin(), logger);
+        switch (config.version()) {
+            case 1:
+                try {
+                    node.set(TaterLibConfig_V1.class, config);
+                } catch (SerializationException e) {
+                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    if (e.getCause() != null) {
+                        logger.error("Caused by: ", e.getCause());
+                    }
+                }
+                break;
+            default:
+                logger.error("Unknown configuration version: " + config.version() + ", defaulting to version 1");
+                try {
+                    node.set(TaterLibConfig_V1.class, config);
+                } catch (SerializationException e) {
+                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    if (e.getCause() != null) {
+                        logger.error("Caused by: ", e.getCause());
+                    }
+                }
+        }
 
         try {
-            loader.save(root);
+            loader.save(node);
         } catch (ConfigurateException e) {
-            logger.error("An error occurred while saving this configuration: ", e);
+            logger.error("An error occurred while saving this configuration: " + e.getMessage());
+            if (e.getCause() != null) {
+                logger.error("Caused by: ", e.getCause());
+            }
         }
     }
 
