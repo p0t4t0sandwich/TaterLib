@@ -62,7 +62,7 @@ public class TaterLibMetrics {
             logger.info(
                     "It's recommended to keep bStats enabled, but if you're not comfortable with this, you can opt-out by editing the config.txt file in");
             logger.info(
-                    "the '/plugins/bStats/' (or '/config/bstats/' on modded servers) folder and setting enabled to false.");
+                    "the '/plugins/bStats/' (or '/config/bStats/' on modded servers) folder and setting enabled to false.");
         }
 
         metrics =

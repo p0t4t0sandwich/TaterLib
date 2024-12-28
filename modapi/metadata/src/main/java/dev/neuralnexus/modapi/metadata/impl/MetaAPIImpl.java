@@ -83,9 +83,9 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Platform.Meta meta() throws NoPrimaryPlatformException, NoPlatformMetaException {
-        return lookup(this.primaryPlatform())
-                .orElseThrow(() -> new NoPlatformMetaException(this.primaryPlatform()));
+    public Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException {
+        return lookup(this.platform())
+                .orElseThrow(() -> new NoPlatformMetaException(this.platform()));
     }
 
     @Override

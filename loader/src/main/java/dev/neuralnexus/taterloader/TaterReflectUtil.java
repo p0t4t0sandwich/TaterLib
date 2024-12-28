@@ -45,7 +45,7 @@ public class TaterReflectUtil {
         if (packageName == null) {
             return Optional.empty();
         }
-        return Optional.of(packageName + "." + version.getDelimiterString() + "." + clazz);
+        return Optional.of(packageName + "." + version.getPathString() + "." + clazz);
     }
 
     public static Optional<String> getRelocatedClass(String clazz, Platform relocatingPlatform) {
@@ -100,7 +100,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".bukkit";
+        return TL_PACKAGE + "." + version.getPathString() + ".bukkit";
     }
 
     public static String bungeeCord(MinecraftVersion mcv) {
@@ -116,7 +116,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".bungee";
+        return TL_PACKAGE + "." + version.getPathString() + ".bungee";
     }
 
     public static String fabric(MinecraftVersion mcv) {
@@ -152,7 +152,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".fabric";
+        return TL_PACKAGE + "." + version.getPathString() + ".fabric";
     }
 
     public static String forge(MinecraftVersion mcv) {
@@ -192,7 +192,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20_6;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".forge";
+        return TL_PACKAGE + "." + version.getPathString() + ".forge";
     }
 
     @SuppressWarnings("IfStatementWithIdenticalBranches")
@@ -203,7 +203,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20_2;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".neoforge";
+        return TL_PACKAGE + "." + version.getPathString() + ".neoforge";
     }
 
     public static String sponge(MinecraftVersion mcv) {
@@ -227,7 +227,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".sponge";
+        return TL_PACKAGE + "." + version.getPathString() + ".sponge";
     }
 
     @SuppressWarnings("unused")
@@ -274,7 +274,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21;
         }
-        return TL_PACKAGE + "." + version.getDelimiterString() + ".vanilla";
+        return TL_PACKAGE + "." + version.getPathString() + ".vanilla";
     }
 
     public static <T> T newInstance(String clazz) {

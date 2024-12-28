@@ -34,12 +34,14 @@ public interface MinecraftVersion {
     String asString();
 
     /**
-     * Get the delimiter string version of the string representation
+     * Get the "path" string version of the string representation <br>
+     * Not that useful in practice, used for TaterLoader's reflection util.
      *
-     * @return The delimiter string version
+     * @return The path string representation of the version
      */
-    default String getDelimiterString() {
-        return this.asString().replace(".", "_");
+    @ApiStatus.Internal
+    default String getPathString() {
+        return "v" + this.asString().replace(".", "_");
     }
 
     /**

@@ -56,6 +56,9 @@ public final class MinecraftVersions
         private static MinecraftVersion[] REVERSED_VERSIONS = {};
 
         public static MinecraftVersion[] versions(boolean keepSnapshots, boolean force) {
+            if (VERSIONS == null) {
+                VERSIONS = new MinecraftVersion[0];
+            }
             if (VERSIONS.length > 0 && !force) {
                 return VERSIONS;
             }
@@ -194,11 +197,14 @@ public final class MinecraftVersions
         }
 
         public static MinecraftVersion[] reversedVersions() {
+            if (REVERSED_VERSIONS == null) {
+                REVERSED_VERSIONS = new MinecraftVersion[0];
+            }
             if (REVERSED_VERSIONS.length > 0) {
                 return REVERSED_VERSIONS;
             }
 
-            if (VERSIONS.length == 0) {
+            if (VERSIONS == null || VERSIONS.length == 0) {
                 versions();
             }
             REVERSED_VERSIONS = new MinecraftVersion[VERSIONS.length];
