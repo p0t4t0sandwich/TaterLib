@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.hooks.Hook;
 
 /** A generic hook for permissions plugins */
+@Deprecated
 public interface PermissionsHook extends Hook {
     /**
      * Get if a sender has a permission

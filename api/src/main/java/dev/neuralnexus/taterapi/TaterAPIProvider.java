@@ -79,6 +79,7 @@ public class TaterAPIProvider {
      * @param permissible The entity to check
      * @param permission The permission
      */
+    @Deprecated
     public static boolean hasPermission(Permissible permissible, String permission) {
         return hooks.stream()
                 .filter(hook -> hook instanceof PermissionsHook)
