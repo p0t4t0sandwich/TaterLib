@@ -27,7 +27,8 @@ import java.util.List;
 public class AnnotationChecker {
     private static final dev.neuralnexus.modapi.metadata.Platform.Meta meta =
             MetaAPI.instance().meta();
-    private static final dev.neuralnexus.modapi.metadata.MinecraftVersion minecraftVersion = MetaAPI.instance().version();
+    private static final dev.neuralnexus.modapi.metadata.MinecraftVersion minecraftVersion =
+            MetaAPI.instance().version();
 
     public static boolean checkAnnotations(
             List<AnnotationNode> annotations, String mixinClassName, boolean verbose) {
@@ -142,8 +143,10 @@ public class AnnotationChecker {
 
     public static boolean checkReqMCVersion(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        MinecraftVersion min = getValue(annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
-        MinecraftVersion max = getValue(annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
+        MinecraftVersion min =
+                getValue(annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
+        MinecraftVersion max =
+                getValue(annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
         if (min != null && !minecraftVersion.isAtLeast(min.ref())) {
             if (verbose) {
                 logger.info(
@@ -165,7 +168,8 @@ public class AnnotationChecker {
             return false;
         }
 
-        List<MinecraftVersion> versions = getValue(annotation, "value", true, MinecraftVersion.class);
+        List<MinecraftVersion> versions =
+                getValue(annotation, "value", true, MinecraftVersion.class);
         if (!versions.isEmpty()) {
             for (MinecraftVersion version : versions) {
                 if (minecraftVersion.is(version.ref())) {

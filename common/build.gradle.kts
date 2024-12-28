@@ -32,9 +32,8 @@ dependencies {
     // Tooling
     compileOnly(project(":api"))
     implementation(variantOf(libs.modapi.metadata) {
-        classifier("downgraded-8")
+        classifier("downgraded-8-shaded")
     })
-    implementation("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api:1.3.0-SNAPSHOT:downgraded-8")
     implementation(libs.modapi.muxins)
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation(project(":loader"))
@@ -53,7 +52,6 @@ tasks.named<ShadowJar>("shadowJar") {
 //        include(project(":api"))
 //        include(project(":loader"))
         include(dependency("dev.neuralnexus.modapi:metadata"))
-        include(dependency("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api"))
         include(dependency("dev.neuralnexus.modapi:muxins"))
 
         // MCLogs
@@ -81,7 +79,6 @@ tasks.named<ShadowJar>("shadowJar") {
 
     minimize {
         exclude(dependency("dev.neuralnexus.modapi:metadata"))
-        exclude(dependency("xyz.wagyourtail.jvmdowngrader:jvmdowngrader-java-api"))
         exclude(dependency("dev.neuralnexus.modapi:muxins"))
     }
 

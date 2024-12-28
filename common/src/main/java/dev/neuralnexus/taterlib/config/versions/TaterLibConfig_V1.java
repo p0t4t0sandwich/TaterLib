@@ -6,8 +6,8 @@
 package dev.neuralnexus.taterlib.config.versions;
 
 import dev.neuralnexus.taterapi.config.MixinConfig;
-import dev.neuralnexus.taterapi.config.VersionedConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
+
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;
 import org.spongepowered.configurate.objectmapping.meta.Comment;
 import org.spongepowered.configurate.objectmapping.meta.Required;
@@ -24,6 +24,7 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
 
     @Comment("Enable or disable TaterLib's modules")
     private Map<String, Boolean> modules = new HashMap<>();
+
     {
         modules.put("BungeeCord", false);
         modules.put("MCLogs", false);
@@ -31,6 +32,7 @@ public class TaterLibConfig_V1 implements TaterLibConfig {
 
     @Comment("Enable or disable TaterLib's hooks")
     private Map<String, Boolean> hooks = new HashMap<>();
+
     {
         hooks.put("LuckPerms", true);
         hooks.put("Spark", true);

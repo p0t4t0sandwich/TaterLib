@@ -1,4 +1,5 @@
 import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
+import xyz.wagyourtail.jvmdg.gradle.task.ShadeJar
 
 import java.time.Instant
 
@@ -56,20 +57,28 @@ tasks.named<DowngradeJar>("downgradeJar") {
     archiveClassifier.set("downgraded-8")
 }
 
-//tasks.withType<GenerateModuleMetadata> {
-//    enabled = false
-//}
-//
+tasks.named<ShadeJar>("shadeDowngradedApi") {
+    downgradeTo = JavaVersion.VERSION_1_8
+    shadePath = {
+        it.substringBefore(".")
+            .substringBeforeLast("-")
+            .replace(Regex("[.;\\[/]"), "-")
+            .replace("metadata", "dev/neuralnexus/modapi/metadata/jvmdg")
+    }
+    archiveClassifier.set("downgraded-8-shaded")
+}
+
 tasks.build {
     dependsOn(tasks.test)
 }
 
-tasks.shadeDowngradedApi {
+tasks.downgradeJar {
     dependsOn(tasks.spotlessApply)
 }
 
 tasks.assemble {
     dependsOn(tasks.downgradeJar)
+    dependsOn(tasks.shadeDowngradedApi)
 }
 
 publishing {
@@ -103,6 +112,11 @@ publishing {
         register("downgradedJar", MavenPublication::class) {
             artifact(tasks["downgradeJar"]) {
                 classifier = "downgraded-8"
+            }
+        }
+        register("shadedDowngradedJar", MavenPublication::class) {
+            artifact(tasks["shadeDowngradedApi"]) {
+                classifier = "downgraded-8-shaded"
             }
         }
     }

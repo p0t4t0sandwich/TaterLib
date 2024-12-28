@@ -36,9 +36,7 @@ public class TaterLibConfigLoader {
 
     /** Load the configuration from the file. */
     public static void load() {
-        loader = HoconConfigurationLoader.builder()
-                .path(configPath)
-                .build();
+        loader = HoconConfigurationLoader.builder().path(configPath).build();
         CommentedConfigurationNode node = null;
         try {
             node = loader.load();
@@ -58,19 +56,24 @@ public class TaterLibConfigLoader {
                 try {
                     config = node.get(TaterLibConfig_V1.class);
                 } catch (SerializationException e) {
-                    logger.error("An error occurred while loading the modules configuration: " + e.getMessage());
+                    logger.error(
+                            "An error occurred while loading the modules configuration: "
+                                    + e.getMessage());
                     if (e.getCause() != null) {
                         logger.error("Caused by: ", e.getCause());
                     }
                 }
                 break;
             default:
-                logger.error("Unknown configuration version: " + version + ", defaulting to version 1");
+                logger.error(
+                        "Unknown configuration version: " + version + ", defaulting to version 1");
                 config = new TaterLibConfig_V1();
                 try {
                     node.set(TaterLibConfig_V1.class, config);
                 } catch (SerializationException e) {
-                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    logger.error(
+                            "An error occurred while updating the configuration: "
+                                    + e.getMessage());
                     if (e.getCause() != null) {
                         logger.error("Caused by: ", e.getCause());
                     }
@@ -118,18 +121,25 @@ public class TaterLibConfigLoader {
                 try {
                     node.set(TaterLibConfig_V1.class, config);
                 } catch (SerializationException e) {
-                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    logger.error(
+                            "An error occurred while updating the configuration: "
+                                    + e.getMessage());
                     if (e.getCause() != null) {
                         logger.error("Caused by: ", e.getCause());
                     }
                 }
                 break;
             default:
-                logger.error("Unknown configuration version: " + config.version() + ", defaulting to version 1");
+                logger.error(
+                        "Unknown configuration version: "
+                                + config.version()
+                                + ", defaulting to version 1");
                 try {
                     node.set(TaterLibConfig_V1.class, config);
                 } catch (SerializationException e) {
-                    logger.error("An error occurred while updating the configuration: " + e.getMessage());
+                    logger.error(
+                            "An error occurred while updating the configuration: "
+                                    + e.getMessage());
                     if (e.getCause() != null) {
                         logger.error("Caused by: ", e.getCause());
                     }
