@@ -18,6 +18,15 @@ public interface PermissionsHook {
      * Get if a subject has a permission
      *
      * @param subject The subject to check
+     * @param permissionLevel The permission level to check
+     * @return If the subject has the permission
+     */
+    boolean hasPermission(Object subject, int permissionLevel);
+
+    /**
+     * Get if a subject has a permission
+     *
+     * @param subject The subject to check
      * @param permission The permission to check
      * @return If the subject has the permission
      */
