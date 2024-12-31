@@ -8,7 +8,7 @@ base {
 }
 
 dependencies {
-    compileOnly("com.mojang:authlib:3.13.56")
+    compileOnly("com.mojang:authlib:1.5.25")
 }
 
 java.withSourcesJar()
