@@ -14,6 +14,7 @@ public enum Mappings {
     OFFICIAL("official"),
     MOJMAP("mojmap"),
     SPIGOT("spigot"),
+    LEGACY_SPIGOT("legacy spigot"),
     SEARGE("searge"),
     INTERMEDIARY("intermediary"),
     LEGACYINTERMEDIARY("legacy intermediary"),

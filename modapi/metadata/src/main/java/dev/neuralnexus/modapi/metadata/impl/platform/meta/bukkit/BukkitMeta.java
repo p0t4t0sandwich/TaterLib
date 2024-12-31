@@ -54,7 +54,10 @@ public final class BukkitMeta implements Platform.Meta {
                 && this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
             return Mappings.MOJMAP;
         } else if (MetaAPI.instance().isPlatformPresent(Platforms.SPIGOT)) {
-            return Mappings.SPIGOT;
+            if (this.minecraftVersion().isAtLeast(MinecraftVersions.V18)) {
+                return Mappings.SPIGOT;
+            }
+            return Mappings.LEGACY_SPIGOT;
         }
         return Mappings.OFFICIAL;
     }
