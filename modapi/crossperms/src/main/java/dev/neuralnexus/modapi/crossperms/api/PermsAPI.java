@@ -7,42 +7,49 @@ package dev.neuralnexus.modapi.crossperms.api;
 
 import dev.neuralnexus.modapi.crossperms.api.impl.PermsAPIImpl;
 
-import java.util.Set;
-
 /** Permissions API */
 public interface PermsAPI {
     default PermsAPI instance() {
         return PermsAPIImpl.getInstance();
     }
 
-    /** Get all hooks */
-    Set<PermissionsHook> hooks();
+    /** Get all providers */
+    Iterable<PermissionsProvider> providers();
 
     /**
-     * Register a hook
+     * Register a provider
      *
-     * @param hook The hook to register
+     * @param provider The provider to register
      */
-    default void registerHook(PermissionsHook hook) {
-        hooks().add(hook);
-    }
+    void registerProvider(PermissionsProvider provider);
 
     /**
-     * Unregister a hook
+     * Unregister a provider
      *
-     * @param name The name of the hook
+     * @param name The name of the provider
      */
-    default void unregisterHook(String name) {
-        hooks().removeIf(hook -> hook.name().equalsIgnoreCase(name));
-    }
+    void unregisterProvider(String name);
 
     /**
-     * Unregister a hook
+     * Unregister a provider
      *
-     * @param hook The hook to unregister
+     * @param provider The provider to unregister
      */
-    default void unregisterHook(PermissionsHook hook) {
-        hooks().remove(hook);
+    void unregisterProvider(PermissionsProvider provider);
+
+    /**
+     * Check a source's permission
+     *
+     * @param source The source to check
+     * @param permissionLevel The permission level
+     */
+    default boolean hasPermission(Object source, int permissionLevel) {
+        for (PermissionsProvider provider : providers()) {
+            if (provider.hasPermission(source, permissionLevel)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -52,6 +59,11 @@ public interface PermsAPI {
      * @param permission The permission
      */
     default boolean hasPermission(Object source, String permission) {
-        return hooks().stream().anyMatch(hook -> hook.hasPermission(source, permission));
+        for (PermissionsProvider provider : providers()) {
+            if (provider.hasPermission(source, permission)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

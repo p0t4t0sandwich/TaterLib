@@ -20,6 +20,8 @@ dependencies {
     compileOnly("org.spongepowered:spongeapi:8.1.0")
     compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 
+    compileOnly("com.mojang:authlib:3.13.56")
+
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation("dev.neuralnexus.modapi:metadata:0.1.0")
 }

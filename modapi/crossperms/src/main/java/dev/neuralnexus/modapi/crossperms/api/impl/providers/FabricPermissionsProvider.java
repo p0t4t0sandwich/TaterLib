@@ -3,19 +3,23 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.crossperms.api.impl.hooks;
+package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
-import dev.neuralnexus.modapi.crossperms.api.PermissionsHook;
+import com.mojang.authlib.GameProfile;
+import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.metadata.Logger;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
+import java.util.concurrent.CancellationException;
+import java.util.concurrent.ExecutionException;
 
-/** A hook for Fabric permissions */
-public class FabricPermissionsHook implements PermissionsHook {
-    private static final Logger logger = Logger.create("FabricPermissionsHook");
+/** Fabric permissions provider */
+public class FabricPermissionsProvider implements PermissionsProvider {
+    private static final Logger logger = Logger.create("FabricPermissionsProvider");
 
     private static final Class<?> ENTITY;
 
@@ -98,7 +102,7 @@ public class FabricPermissionsHook implements PermissionsHook {
     }
 
     @Override
-    public boolean hasPermission(Object subject, int permissionLevel) {
+    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
         try {
             if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
@@ -113,19 +117,29 @@ public class FabricPermissionsHook implements PermissionsHook {
     }
 
     @Override
-    public boolean hasPermission(Object subject, String permission) {
+    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
         Objects.requireNonNull(subject, "Subject cannot be null");
+        Objects.requireNonNull(permission, "Permission cannot be null");
+        boolean result = false;
+        // TODO: Split this into a separate method
+//        if (subject instanceof GameProfile profile) {
+//            try {
+//                return Permissions.check(profile, permission).get();
+//            } catch (CancellationException | ExecutionException | InterruptedException  e) {
+//                logger.error("Failed to check permission", e);
+//            }
+//        }
         try {
             if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
-                return (boolean)
+                result = (boolean)
                         CHECK_SSP.invoke(
                                 null, SHARED_SUGGESTION_PROVIDER.cast(subject), permission);
             } else if (subject.getClass().isAssignableFrom(ENTITY)) {
-                return (boolean) CHECK_ENTITY.invoke(null, ENTITY.cast(subject), permission);
+                result = (boolean) CHECK_ENTITY.invoke(null, ENTITY.cast(subject), permission);
             }
         } catch (Exception e) {
             logger.error("Failed to invoke check method in Permissions class", e);
         }
-        return false;
+        return result | this.hasPermission(subject, 4);
     }
 }

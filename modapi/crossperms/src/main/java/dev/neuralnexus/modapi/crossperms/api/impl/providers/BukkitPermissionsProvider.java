@@ -3,24 +3,26 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.modapi.crossperms.api.impl.hooks;
+package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
-import dev.neuralnexus.modapi.crossperms.api.PermissionsHook;
+import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import org.bukkit.command.CommandSender;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-/** A hook for Bukkit permissions */
-public class BukkitPermissionsHook implements PermissionsHook {
+/** Bukkit permissions provider */
+public class BukkitPermissionsProvider implements PermissionsProvider {
     @Override
     public String name() {
         return "bukkitpermissions";
     }
 
     @Override
-    public boolean hasPermission(Object subject, int permissionLevel) {
+    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
+        // TODO: Reflect to query the player object
         if (subject instanceof CommandSender commandSender) {
             return commandSender.isOp();
         }
@@ -28,11 +30,13 @@ public class BukkitPermissionsHook implements PermissionsHook {
     }
 
     @Override
-    public boolean hasPermission(Object subject, String permission) {
+    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
         Objects.requireNonNull(subject, "Subject cannot be null");
+        Objects.requireNonNull(permission, "Permission cannot be null");
+        boolean result = false;
         if (subject instanceof CommandSender commandSender) {
-            return commandSender.hasPermission(permission);
+            result = commandSender.hasPermission(permission);
         }
-        return false;
+        return result | this.hasPermission(subject, 4);
     }
 }

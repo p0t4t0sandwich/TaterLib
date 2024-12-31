@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterapi.placeholder;
 
 /** The placeholder parser class. */
+@Deprecated
 public class PlaceholderParser {
     private String input;
 

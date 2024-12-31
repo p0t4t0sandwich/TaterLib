@@ -5,12 +5,14 @@
  */
 package dev.neuralnexus.modapi.crossperms.api;
 
-/** A generic hook for permissions plugins */
-public interface PermissionsHook {
+import org.jetbrains.annotations.NotNull;
+
+/** A generic provider for permissions plugins */
+public interface PermissionsProvider {
     /**
-     * Get the name of the hook
+     * Get the name of the provider
      *
-     * @return The name of the hook
+     * @return The name of the provider
      */
     String name();
 
@@ -21,7 +23,7 @@ public interface PermissionsHook {
      * @param permissionLevel The permission level to check
      * @return If the subject has the permission
      */
-    boolean hasPermission(Object subject, int permissionLevel);
+    boolean hasPermission(@NotNull Object subject, int permissionLevel);
 
     /**
      * Get if a subject has a permission
@@ -30,5 +32,5 @@ public interface PermissionsHook {
      * @param permission The permission to check
      * @return If the subject has the permission
      */
-    boolean hasPermission(Object subject, String permission);
+    boolean hasPermission(@NotNull Object subject, @NotNull String permission);
 }

@@ -7,6 +7,10 @@ base {
     archivesName = "entrypoint-spoof"
 }
 
+dependencies {
+    compileOnly("com.mojang:authlib:3.13.56")
+}
+
 java.withSourcesJar()
 
 publishing {

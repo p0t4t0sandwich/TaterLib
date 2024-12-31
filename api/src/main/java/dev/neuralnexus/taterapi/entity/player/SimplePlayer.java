@@ -159,6 +159,7 @@ public interface SimplePlayer extends CommandSender {
      * @param input The string to parse
      * @return The parsed string
      */
+    @Deprecated
     default PlaceholderParser parsePlaceholders(String input) {
         return new PlaceholderParser(input)
                 .parseString("player", this.name())
