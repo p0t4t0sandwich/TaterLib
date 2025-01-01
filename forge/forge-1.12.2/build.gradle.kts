@@ -1,3 +1,5 @@
+import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
+
 plugins {
     alias(libs.plugins.unimined)
 }
@@ -16,12 +18,12 @@ unimined.minecraft(sourceSets.main.get()) {
         searge()
         mcp(mappingsChannel, mappingsVersion)
     }
-    defaultRemapJar = false
-    remap(tasks.jar.get()) {
-        prodNamespace("searge")
-        mixinRemap {
-            disableRefmap()
-        }
+}
+
+tasks.named<RemapJarTask>("remapJar").configure {
+    prodNamespace("searge")
+    mixinRemap {
+        disableRefmap()
     }
 }
 

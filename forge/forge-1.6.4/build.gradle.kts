@@ -14,7 +14,6 @@ unimined.minecraft(sourceSets.main.get()) {
     mappings {
         forgeBuiltinMCP(apiVersion)
     }
-    defaultRemapJar = true
 }
 
 dependencies {
