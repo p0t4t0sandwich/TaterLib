@@ -66,10 +66,7 @@ public class FMLLoaderMeta implements Platform.Meta {
 
     @Override
     public Mappings mappings() {
-        if (minecraftVersion().isOlderThan(MinecraftVersions.V20_5)) {
-            return Mappings.SEARGE;
-        }
-        return Mappings.MOJMAP;
+        return ForgeData.mappings(minecraftVersion());
     }
 
     @Override

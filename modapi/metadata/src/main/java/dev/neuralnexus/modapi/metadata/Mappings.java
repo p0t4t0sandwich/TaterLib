@@ -13,12 +13,15 @@ public enum Mappings {
     NONE("none"),
     OFFICIAL("official"),
     MOJMAP("mojmap"),
-    SPIGOT("spigot"),
-    LEGACY_SPIGOT("legacy spigot"),
-    SEARGE("searge"),
-    INTERMEDIARY("intermediary"),
-    LEGACYINTERMEDIARY("legacy intermediary"),
-    BABRICINTERMEDIARY("babric intermediary"),
+    SPIGOT("spigot"), // Spigot 1.18+
+    LEGACY_SPIGOT("legacy spigot"), // Spigot 1.17-
+    SEARGE("searge"), // Forge 1.17.1+
+    LEGACY_SEARGE("legacy searge"), // Forge 1.16.5-
+    MCP("mcp"),
+    YARN("yarn"),
+    YARN_INTERMEDIARY("yarn intermediary"), // Fabric 1.14+
+    LEGACY_INTERMEDIARY("legacy intermediary"), // Fabric 1.13-
+    BABRIC_INTERMEDIARY("babric intermediary"),
     CALAMUS("calamus"),
     HASHED("hashed");
 
@@ -32,13 +35,9 @@ public enum Mappings {
         return this == mappings;
     }
 
-    public boolean is(String name) {
-        return name.contains(this.name);
-    }
-
     public static Mappings from(String name) {
         return Arrays.stream(values())
-                .filter(mappings -> mappings.is(name))
+                .filter(mappings -> name.contains(mappings.name))
                 .findFirst()
                 .orElse(UNKNOWN);
     }

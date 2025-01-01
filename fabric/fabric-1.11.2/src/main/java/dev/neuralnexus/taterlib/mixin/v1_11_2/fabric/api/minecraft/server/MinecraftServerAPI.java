@@ -27,7 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.LEGACYINTERMEDIARY)
+@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V11_2)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))

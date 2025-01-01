@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMappings(Mappings.INTERMEDIARY)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
 @Mixin(CommandSourceStack.class)
 @Implements({

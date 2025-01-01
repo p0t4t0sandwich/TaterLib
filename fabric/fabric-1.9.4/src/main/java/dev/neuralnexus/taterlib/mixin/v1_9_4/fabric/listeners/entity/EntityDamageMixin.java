@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the entity damage listener. */
-@ReqMappings(Mappings.LEGACYINTERMEDIARY)
+@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V9_4)
 @Mixin(DamageTracker.class)
 class EntityDamageMixin {

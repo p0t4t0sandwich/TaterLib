@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 
 /** Vanilla implementation of {@link EntityDamageEvent}. */
-@ReqMappings(Mappings.INTERMEDIARY)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(MinecraftVersion.V19_4)
 @Mixin(value = VanillaEntityDamageEvent.class, remap = false)
 public class VanillaEntityDamageEventMixin {

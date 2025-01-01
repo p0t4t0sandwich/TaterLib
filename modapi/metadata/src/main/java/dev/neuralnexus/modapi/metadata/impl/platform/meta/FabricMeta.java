@@ -61,9 +61,9 @@ public final class FabricMeta implements Platform.Meta {
     @Override
     public Mappings mappings() {
         if (minecraftVersion().isOlderThan(MinecraftVersions.V14)) {
-            return Mappings.LEGACYINTERMEDIARY;
+            return Mappings.LEGACY_INTERMEDIARY;
         }
-        return Mappings.INTERMEDIARY;
+        return Mappings.YARN_INTERMEDIARY;
     }
 
     @Override

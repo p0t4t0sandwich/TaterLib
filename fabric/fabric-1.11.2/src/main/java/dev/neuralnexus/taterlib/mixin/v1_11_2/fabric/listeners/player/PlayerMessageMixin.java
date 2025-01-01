@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player message listener. */
-@ReqMappings(Mappings.LEGACYINTERMEDIARY)
+@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V11_2)
 @Mixin(ServerPlayNetworkHandler.class)
 public abstract class PlayerMessageMixin {

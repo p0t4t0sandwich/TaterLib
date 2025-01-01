@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.INTERMEDIARY)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V20_5, max = MinecraftVersion.V21_1)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))

@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 import java.util.UUID;
 
-@ReqMappings(Mappings.INTERMEDIARY)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({

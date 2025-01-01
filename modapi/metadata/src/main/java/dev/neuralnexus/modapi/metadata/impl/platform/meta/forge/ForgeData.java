@@ -7,6 +7,9 @@ package dev.neuralnexus.modapi.metadata.impl.platform.meta.forge;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForClass;
 
+import dev.neuralnexus.modapi.metadata.Mappings;
+import dev.neuralnexus.modapi.metadata.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platform;
 
 /** Stores data about the Forge platform */
@@ -21,5 +24,14 @@ public class ForgeData {
         } else {
             return null;
         }
+    }
+
+    static Mappings mappings(MinecraftVersion version) {
+        if (version.isOlderThan(MinecraftVersions.V16_5)) {
+            return Mappings.LEGACY_SEARGE;
+        } else if (version.isOlderThan(MinecraftVersions.V20_5)) {
+            return Mappings.SEARGE;
+        }
+        return Mappings.MOJMAP;
     }
 }

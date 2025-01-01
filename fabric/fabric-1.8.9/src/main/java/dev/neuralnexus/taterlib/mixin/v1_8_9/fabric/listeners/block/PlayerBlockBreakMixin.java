@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the block break listener. */
-@ReqMappings(Mappings.LEGACYINTERMEDIARY)
+@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V8_9)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {

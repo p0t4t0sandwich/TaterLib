@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player respawn listener. */
-@ReqMappings(Mappings.LEGACYINTERMEDIARY)
+@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V9_4)
 @Mixin(PlayerManager.class)
 public class PlayerRespawnMixin {

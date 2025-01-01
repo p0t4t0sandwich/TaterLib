@@ -16,12 +16,14 @@ import java.util.Set;
 public class MixinConfig {
     @Comment("Enable to print verbose mixin information during startup")
     private boolean verbose;
+
     {
         verbose = false;
     }
 
     @Comment("A list of mixins to disable")
     private Set<String> disabled = new HashSet<>();
+
     {
         disabled.add("dev.neuralnexus.taterlib.mixin.MixinExample");
         disabled.add("SomeMixin");

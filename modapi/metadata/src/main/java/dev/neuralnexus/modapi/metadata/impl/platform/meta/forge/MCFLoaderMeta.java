@@ -44,7 +44,7 @@ public class MCFLoaderMeta implements Platform.Meta {
 
     @Override
     public Mappings mappings() {
-        return Mappings.SEARGE;
+        return ForgeData.mappings(minecraftVersion());
     }
 
     @Override

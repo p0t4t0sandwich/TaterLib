@@ -39,7 +39,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 import java.util.UUID;
 
-@ReqMappings(Mappings.SEARGE)
+@ReqMappings(Mappings.LEGACY_SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
