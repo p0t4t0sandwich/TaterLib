@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
-import java.util.Arrays;
-
 /** Enum for platform runtime mappings */
 public enum Mappings {
     UNKNOWN("unknown"),
@@ -33,13 +31,6 @@ public enum Mappings {
 
     public boolean is(Mappings mappings) {
         return this == mappings;
-    }
-
-    public static Mappings from(String name) {
-        return Arrays.stream(values())
-                .filter(mappings -> name.contains(mappings.name))
-                .findFirst()
-                .orElse(UNKNOWN);
     }
 
     @Override

@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.modules.core.command;
 
+import dev.neuralnexus.modapi.metadata.impl.util.TextUtil;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;

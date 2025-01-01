@@ -31,4 +31,27 @@ public class MixinServiceUtil {
                         .get()
                         .value;
     }
+
+    /**
+     * Checks for a class
+     *
+     * @param className The class name
+     */
+    public static void checkForClass(String className) throws IOException, ClassNotFoundException {
+        MixinService.getService().getBytecodeProvider().getClassNode(className);
+    }
+
+    /**
+     * Checks for a method
+     *
+     * @param className The class name
+     * @param methodName The method name
+     */
+    public static void checkForMethod(String className, String methodName)
+            throws IOException, ClassNotFoundException, NoSuchMethodException {
+        MixinService.getService().getBytecodeProvider().getClassNode(className).methods.stream()
+                .filter(method -> method.name.equals(methodName))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchMethodException("Method not found"));
+    }
 }

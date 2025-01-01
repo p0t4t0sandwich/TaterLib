@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterloader.impl;
 
-import dev.neuralnexus.taterapi.util.ReflectionUtil;
+import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 import dev.neuralnexus.taterloader.Loader;
 import dev.neuralnexus.taterloader.event.api.LoaderEvents;
 import dev.neuralnexus.taterloader.event.loader.LoaderInitializeEvent;

@@ -7,22 +7,38 @@ package dev.neuralnexus.modapi.metadata.impl.util;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 /** Utility class for reflection operations */
 public class ReflectionUtil {
+    private static boolean isMixinPresent;
+
+    static {
+        try {
+            Class.forName("org.spongepowered.asm.service.MixinService");
+            isMixinPresent = true;
+        } catch (ClassNotFoundException e) {
+            isMixinPresent = false;
+        }
+    }
+
     /**
-     * Check if a class exists.
+     * Check if a class exists
      *
-     * @param className The class(es) to check.
-     * @return Whether the class exists.
+     * @param className The class(es) to check
+     * @return True if one of the classes exists
      */
     public static boolean checkForClass(String... className) {
         for (String s : className) {
             try {
-                Class.forName(s);
+                if (isMixinPresent) {
+                    MixinServiceUtil.checkForClass(s);
+                } else {
+                    Class.forName(s);
+                }
                 return true;
-            } catch (ClassNotFoundException ignored) {
+            } catch (ClassNotFoundException | IOException ignored) {
             }
         }
         return false;
@@ -37,9 +53,13 @@ public class ReflectionUtil {
      */
     public static boolean checkForMethod(String className, String methodName) {
         try {
-            Class.forName(className).getMethod(methodName);
+            if (isMixinPresent) {
+                MixinServiceUtil.checkForMethod(className, methodName);
+            } else {
+                Class.forName(className).getDeclaredMethod(methodName);
+            }
             return true;
-        } catch (ClassNotFoundException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | IOException e) {
             return false;
         }
     }
