@@ -7,8 +7,10 @@ package dev.neuralnexus.taterlib.mixin.v1_20.vanilla.api.minecraft.resources;
 
 import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+import dev.neuralnexus.modapi.metadata.enums.Platform;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.modapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +22,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJMAP)
+// Sponge's API satisfies the ResourceKey interface, and clashes with our default `asString` method
+@ReqPlatform(not = Platform.SPONGE)
 @ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6)
 @Mixin(ResourceLocation.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))

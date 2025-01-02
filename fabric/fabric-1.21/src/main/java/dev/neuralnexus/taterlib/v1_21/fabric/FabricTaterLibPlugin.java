@@ -16,7 +16,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_21.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_21.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_21.vanilla.event.command.VanillaCommandRegisterEvent;
@@ -37,7 +36,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.setSide(
                 VanillaBootstrap.determineSide(

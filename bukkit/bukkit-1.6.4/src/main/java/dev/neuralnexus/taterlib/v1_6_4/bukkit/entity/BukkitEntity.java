@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.entity;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
@@ -92,5 +93,10 @@ public class BukkitEntity implements Entity {
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

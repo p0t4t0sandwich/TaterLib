@@ -41,7 +41,7 @@ public interface ResourceKey {
      * @return The full resource location
      */
     default String asString() {
-        return namespace() + ":" + value();
+        return this.namespace() + ":" + this.value();
     }
 
     /**

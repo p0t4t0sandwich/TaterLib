@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.forge.entity;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -106,5 +107,10 @@ public class ForgeEntity implements Entity {
     @Override
     public boolean hasPermission(int permissionLevel) {
         return entity.canCommandSenderUseCommand(permissionLevel, "");
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

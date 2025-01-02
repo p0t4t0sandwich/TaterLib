@@ -20,7 +20,6 @@ import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.network.VelocityRegisterPacketChannelsEvent;
-import dev.neuralnexus.taterlib.velocity.v3_3_0.hooks.permissions.VelocityPermissionsHook;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.network.VelocityPluginMessageListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.player.VelocityPlayerListener;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.listeners.server.VelocityServerListener;
@@ -32,7 +31,6 @@ import java.time.Duration;
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.addHook(new VelocityPermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));

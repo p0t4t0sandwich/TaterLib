@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -152,5 +153,9 @@ public abstract class Entity_API {
 
     public boolean permissible$hasPermission(int permissionLevel) {
         return false;
+    }
+
+    public boolean permissible$hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission((Permissible) this, permission);
     }
 }

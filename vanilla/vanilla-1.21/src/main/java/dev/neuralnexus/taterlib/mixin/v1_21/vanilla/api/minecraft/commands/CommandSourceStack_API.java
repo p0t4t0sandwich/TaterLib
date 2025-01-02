@@ -33,7 +33,8 @@ import java.util.UUID;
     @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
 })
 public abstract class CommandSourceStack_API {
-    // Note: CommandSourceStatck#hasPermission satisfies the Permissible interface
+    // Note: CommandSourceStack#hasPermission(int) satisfies the Permissible interface
+    // Anything that implements CommandSender/Permissible already has the hasPermission(str) method
     @Shadow
     public abstract String shadow$getTextName();
 
@@ -51,7 +52,6 @@ public abstract class CommandSourceStack_API {
         this.shadow$sendSystemMessage(Component.nullToEmpty(message));
     }
 
-    @SuppressWarnings("DataFlowIssue")
     public UUID permissible$uuid() {
         if (this.shadow$getEntity() == null) {
             return new UUID(0, 0);

@@ -153,4 +153,9 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
+    }
 }

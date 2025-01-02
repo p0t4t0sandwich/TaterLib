@@ -25,7 +25,6 @@ import dev.neuralnexus.taterlib.v1_12_2.fabric.event.entity.FabricEntityDamageEv
 import dev.neuralnexus.taterlib.v1_12_2.fabric.event.entity.FabricEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_12_2.fabric.event.entity.FabricEntitySpawnEvent;
 import dev.neuralnexus.taterlib.v1_12_2.fabric.event.player.*;
-import dev.neuralnexus.taterlib.v1_12_2.fabric.hooks.permissions.FabricPermissionsHook;
 import dev.neuralnexus.taterlib.v1_12_2.fabric.resources.FabricResourceKey;
 
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
@@ -41,7 +40,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
-        TaterAPIProvider.addHook(new FabricPermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.FABRIC)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));

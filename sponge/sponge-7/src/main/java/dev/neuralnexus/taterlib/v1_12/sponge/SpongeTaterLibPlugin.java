@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_12.sponge.event.command.SpongeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_12.sponge.hooks.permissions.SpongePermissionsHook;
 import dev.neuralnexus.taterlib.v1_12.sponge.listeners.block.SpongeBlockListener;
 import dev.neuralnexus.taterlib.v1_12.sponge.listeners.entity.SpongeEntityListener;
 import dev.neuralnexus.taterlib.v1_12.sponge.listeners.player.SpongePlayerListener;
@@ -28,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.addHook(new SpongePermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.forge.command;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
@@ -13,7 +14,7 @@ import net.minecraft.util.text.TextComponentString;
 
 import java.util.UUID;
 
-/** Bukkit implementation of {@link CommandSender} */
+/** Forge implementation of {@link CommandSender} */
 public class ForgeCommandSender implements CommandSender {
     private final ICommandSender sender;
     private final Command command;
@@ -50,5 +51,10 @@ public class ForgeCommandSender implements CommandSender {
     @Override
     public boolean hasPermission(int permissionLevel) {
         return sender.canUseCommand(permissionLevel, command.name());
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

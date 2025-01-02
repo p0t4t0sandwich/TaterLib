@@ -12,7 +12,6 @@ import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage.ForgeRegisterPacketChannelsEvent;
-import dev.neuralnexus.taterlib.v1_13_2.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_13_2.forge.listeners.entity.ForgeEntityListener;
@@ -36,7 +35,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(

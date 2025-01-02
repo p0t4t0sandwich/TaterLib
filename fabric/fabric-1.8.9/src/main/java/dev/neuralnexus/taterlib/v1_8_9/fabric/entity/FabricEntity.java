@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.fabric.entity;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -103,5 +104,10 @@ public class FabricEntity implements Entity {
     @Override
     public boolean hasPermission(int permissionLevel) {
         return entity.canUseCommand(permissionLevel, "");
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

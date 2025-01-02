@@ -15,7 +15,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.command.BungeeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.hooks.permissions.BungeePermissionsHook;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.network.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.server.BungeeProxyServer;
@@ -28,7 +27,6 @@ import net.md_5.bungee.api.plugin.PluginManager;
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.addHook(new BungeePermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.BUNGEECORD)
                 .ifPresent(api -> api.setServer(BungeeProxyServer::instance));

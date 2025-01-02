@@ -152,21 +152,4 @@ public interface SimplePlayer extends CommandSender {
     default void deleteMeta(String key) {
         TaterAPIProvider.playerDataStore().delete(this, key);
     }
-
-    /**
-     * Parse placeholders in a string
-     *
-     * @param input The string to parse
-     * @return The parsed string
-     */
-    @Deprecated
-    default PlaceholderParser parsePlaceholders(String input) {
-        return new PlaceholderParser(input)
-                .parseString("player", this.name())
-                .parseString("displayname", this.displayName())
-                .parseString("prefix", this.prefix())
-                .parseString("suffix", this.suffix())
-                .parseString("server", this.server() != null ? this.server().name() : "noServer")
-                .parseSectionSign();
-    }
 }

@@ -10,7 +10,6 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_20.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.entity.ForgeEntityListener;
@@ -30,7 +29,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        TaterAPIProvider.addHook(new ForgePermissionsHook());
         start();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platforms.FORGE)

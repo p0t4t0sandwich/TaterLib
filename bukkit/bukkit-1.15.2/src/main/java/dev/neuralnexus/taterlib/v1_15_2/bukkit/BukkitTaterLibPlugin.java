@@ -18,7 +18,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.hooks.permissions.BukkitPermissionsHook;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.player.BukkitPlayerListener;
@@ -35,7 +34,6 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.addHook(new BukkitPermissionsHook());
         start();
         TaterAPIProvider.api(Platforms.BUKKIT)
                 .ifPresent(api -> api.setServer(BukkitServer::instance));

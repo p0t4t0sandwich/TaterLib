@@ -56,4 +56,9 @@ public class FabricCommandSender implements CommandSender {
     public boolean hasPermission(int permissionLevel) {
         return false;
     }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
+    }
 }

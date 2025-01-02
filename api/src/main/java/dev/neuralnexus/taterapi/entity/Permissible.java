@@ -33,7 +33,5 @@ public interface Permissible {
      * @return Whether the player has the permission
      */
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
-    default boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
-    }
+    boolean hasPermission(String permission);
 }

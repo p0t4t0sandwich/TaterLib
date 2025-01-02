@@ -36,7 +36,8 @@ import java.util.UUID;
 })
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class CommandSourceStack_API {
-    // Note: CommandSourceStatck#hasPermission satisfies the Permissible interface
+    // Note: CommandSourceStack#hasPermission(int) satisfies the Permissible interface
+    // Anything that implements CommandSender/Permissible already has the hasPermission(str) method
     @Shadow @Final private CommandSource source;
 
     @Shadow

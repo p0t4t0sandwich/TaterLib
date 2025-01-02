@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_8.sponge.entity;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
@@ -108,5 +109,10 @@ public class SpongeEntity implements Entity {
     @Override
     public boolean hasPermission(int permissionLevel) {
         return false;
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

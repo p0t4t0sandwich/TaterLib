@@ -6,19 +6,15 @@
 package dev.neuralnexus.taterlib.v1_18.forge;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_18.forge.hooks.permissions.ForgePermissionsHook;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.command.ForgeCommandsListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_18.forge.listeners.server.ForgeServerListener;
 import dev.neuralnexus.taterlib.v1_18.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_18_2.forge.hooks.permissions.ForgePermissionsHook_1_18_2;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.server.ServerStoppedEvent;
@@ -31,12 +27,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        MinecraftVersion mcv = MetaAPI.instance().version();
-        if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_1)) {
-            TaterAPIProvider.addHook(new ForgePermissionsHook());
-        } else {
-            TaterAPIProvider.addHook(new ForgePermissionsHook_1_18_2());
-        }
         start();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platforms.FORGE)
