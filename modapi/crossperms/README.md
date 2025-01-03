@@ -4,29 +4,16 @@ An abstract permission query API that supports all major modding platforms.
 
 ## Mappings Shopping List
 
-| Version | Mojang                                            | MCP | SRG | Intermediary               | Yarn                                       | Spigot                                          |
-|---------|---------------------------------------------------|-----|-----|----------------------------|--------------------------------------------|-------------------------------------------------|
-| 1.21.4  | `net/minecraft/world/entity/player/Player`        | --- | --- | `net/minecraft/class_1657` | `net/minecraft/entity/player/PlayerEntity` | `net/minecraft/world/entity/player/EntityHuman` |
-|         | `Player#getGameProfile`                           | --- | --- | `method_7334`              | `getGameProfile`                           | ---                                             |
-|         | `Player#hasPermissions`                           | --- | --- | `method_64475`             | `hasPermissionLevel`                       | ---                                             |
-|         | `net/minecraft/commands/SharedSuggestionProvider` | --- | --- | `net/minecraft/class_2172` | `net/minecraft/command/CommandSource`      | `net/minecraft/commands/ICompletionProvider`    |
-|         | `SharedSuggestionProvider#hasPermission`          | --- | --- | `method_9259`              | `hasPermissionLevel`                       | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
-|         | ``                                                | --- | --- | ``                         | ``                                         | ---                                             |
+Forge 1.18.2-1.20.4:
+- net/minecraft/commands/CommandSourceStack -> net/minecraft/src/C_2969_
+  - getEntity -> m_81373_
+- net/minecraft/server/level/ServerPlayer -> net/minecraft/src/C_13_
+- net/minecraft/world/entity/Entity -> net/minecraft/src/C_507_
+  - getUUID -> m_142081_
 
-| Version  | Mojang                                   | Official                              |
-|----------|------------------------------------------|---------------------------------------|
-| 1.21.2-4 | `Player#hasPermissions`                  | `s(I)Z`                               |
-|          | `SharedSuggestionProvider#hasPermission` | `c(I)Z`                               |
+Forge 1.10.2-1.18:
+- net/minecraft/command/ICommandSender -> net/minecraft/command/ICommandSender
+  - getCommandSenderEntity -> func_174793_f
 
-
-
+- net/minecraft/entity/player/EntityPlayer -> net/minecraft/entity/player/EntityPlayer
+  - getGameProfile -> func_146103_bH

@@ -30,11 +30,11 @@ public class ForgePermissions implements PermissionsProvider {
         boolean result = false;
         GameProfile profile = null;
         // TODO: Split this into a separate method
-//        if (subject instanceof GameProfile gameProfile) {
-//            profile = gameProfile;
-//        }
+        if (subject instanceof GameProfile gameProfile) {
+            profile = gameProfile;
+        }
         // TODO: Reflectively check for instance of player, then reflect to get profile
-        if (profile == null) {
+        if (profile != null) {
             result = PermissionAPI.getPermissionHandler().hasPermission(profile, permission, null);
         }
 

@@ -122,13 +122,13 @@ public class FabricPermissionsProvider implements PermissionsProvider {
         Objects.requireNonNull(permission, "Permission cannot be null");
         boolean result = false;
         // TODO: Split this into a separate method
-//        if (subject instanceof GameProfile profile) {
-//            try {
-//                return Permissions.check(profile, permission).get();
-//            } catch (CancellationException | ExecutionException | InterruptedException  e) {
-//                logger.error("Failed to check permission", e);
-//            }
-//        }
+        if (subject instanceof GameProfile profile) {
+            try {
+                return Permissions.check(profile, permission).get();
+            } catch (CancellationException | ExecutionException | InterruptedException  e) {
+                logger.error("Failed to check permission", e);
+            }
+        }
         try {
             if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
                 result = (boolean)
