@@ -66,6 +66,9 @@ public class FMLLoaderMeta implements Platform.Meta {
 
     @Override
     public Mappings mappings() {
+        if (this.modList().stream().anyMatch(modInfo -> modInfo.id().equalsIgnoreCase("kilt"))) {
+            return Mappings.YARN_INTERMEDIARY;
+        }
         return ForgeData.mappings(minecraftVersion());
     }
 
