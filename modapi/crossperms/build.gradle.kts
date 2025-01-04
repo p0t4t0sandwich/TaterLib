@@ -6,6 +6,7 @@ import java.time.Instant
 plugins {
     id("maven-publish")
     alias(libs.plugins.jvmdowngrader)
+    alias(libs.plugins.shadow)
 }
 
 base {
@@ -28,6 +29,7 @@ dependencies {
 
 java {
     withSourcesJar()
+    withJavadocJar()
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
     sourceCompatibility = JavaVersion.toVersion(javaVersion)
     targetCompatibility = JavaVersion.toVersion(javaVersion)
@@ -52,13 +54,15 @@ tasks.named<Jar>("jar") {
     }
 }
 
-tasks.named<DowngradeJar>("downgradeJar") {
-    downgradeTo = JavaVersion.VERSION_1_8
+tasks.downgradeJar {
+    inputFile.set(tasks.jar.get().archiveFile)
+    downgradeTo.set(JavaVersion.VERSION_1_8)
     archiveClassifier.set("downgraded-8")
 }
 
-tasks.named<ShadeJar>("shadeDowngradedApi") {
-    downgradeTo = JavaVersion.VERSION_1_8
+tasks.shadeDowngradedApi {
+    inputFile.set(tasks.downgradeJar.get().archiveFile)
+    downgradeTo.set(JavaVersion.VERSION_1_8)
     shadePath = {
         it.substringBefore(".")
             .substringBeforeLast("-")
@@ -68,13 +72,37 @@ tasks.named<ShadeJar>("shadeDowngradedApi") {
     archiveClassifier.set("downgraded-8-shaded")
 }
 
-tasks.downgradeJar {
-    dependsOn(tasks.spotlessApply)
+tasks.register<DowngradeJar>("customDowngradeJar") {
+    inputFile.set(tasks.shadowJar.get().archiveFile)
+    downgradeTo.set(JavaVersion.VERSION_1_8)
+    archiveClassifier.set("downgraded-8-custom")
 }
 
+tasks.register<ShadeJar>("customShadeDowngradedApi") {
+    inputFile.set(tasks.named<DowngradeJar>("customDowngradeJar").get().archiveFile)
+    downgradeTo.set(JavaVersion.VERSION_1_8)
+    shadePath = {
+        it.substringBefore(".")
+            .substringBeforeLast("-")
+            .replace(Regex("[.;\\[/]"), "-")
+            .replace("crossperms", "dev/neuralnexus/modapi/crossperms/jvmdg")
+    }
+    archiveClassifier.set("downgraded-8-all")
+}
+
+tasks.withType<GenerateModuleMetadata> {
+    enabled = false
+}
+
+tasks.jar.get().dependsOn(tasks.spotlessApply)
+tasks.downgradeJar.get().dependsOn(tasks.jar)
+tasks.shadeDowngradedApi.get().dependsOn(tasks.downgradeJar)
+tasks["customDowngradeJar"].dependsOn(tasks.shadowJar)
+tasks["customShadeDowngradedApi"].dependsOn(tasks["customDowngradeJar"])
 tasks.assemble {
     dependsOn(tasks.downgradeJar)
     dependsOn(tasks.shadeDowngradedApi)
+    dependsOn(tasks["customShadeDowngradedApi"])
 }
 
 publishing {
@@ -97,23 +125,11 @@ publishing {
     }
 
     publications {
-        register("originalJar", MavenPublication::class) {
-            artifact(tasks["jar"])
-        }
-        register("sourcesJar", MavenPublication::class) {
-            artifact(tasks["sourcesJar"]) {
-                classifier = "sources"
-            }
-        }
-        register("downgradedJar", MavenPublication::class) {
-            artifact(tasks["downgradeJar"]) {
-                classifier = "downgraded-8"
-            }
-        }
-        register("shadedDowngradedJar", MavenPublication::class) {
-            artifact(tasks["shadeDowngradedApi"]) {
-                classifier = "downgraded-8-shaded"
-            }
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(tasks.downgradeJar.get())
+            artifact(tasks.shadeDowngradedApi.get())
+            artifact(tasks["customShadeDowngradedApi"])
         }
     }
 }
