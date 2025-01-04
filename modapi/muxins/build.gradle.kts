@@ -1,3 +1,4 @@
+import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
 import xyz.wagyourtail.jvmdg.gradle.task.ShadeJar
 
 import java.time.Instant
@@ -64,8 +65,14 @@ tasks.shadeDowngradedApi {
     archiveClassifier.set("downgraded-8-shaded")
 }
 
-tasks.register<ShadeJar>("customShadeDowngradedApi") {
+tasks.register<DowngradeJar>("customDowngradeJar") {
     inputFile.set(tasks.shadowJar.get().archiveFile)
+    downgradeTo.set(JavaVersion.VERSION_1_8)
+    archiveClassifier.set("downgraded-8-custom")
+}
+
+tasks.register<ShadeJar>("customShadeDowngradedApi") {
+    inputFile.set(tasks.named<DowngradeJar>("customDowngradeJar").get().archiveFile)
     downgradeTo.set(JavaVersion.VERSION_1_8)
     shadePath = {
         it.substringBefore(".")
@@ -80,12 +87,11 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.downgradeJar {
-    dependsOn(tasks.spotlessApply)
-    dependsOn(tasks.jar)
-}
+tasks.jar.get().dependsOn(tasks.spotlessApply)
+tasks.downgradeJar.get().dependsOn(tasks.jar)
 tasks.shadeDowngradedApi.get().dependsOn(tasks.downgradeJar)
-tasks["customShadeDowngradedApi"].dependsOn(tasks.shadowJar)
+tasks["customDowngradeJar"].dependsOn(tasks.shadowJar)
+tasks["customShadeDowngradedApi"].dependsOn(tasks["customDowngradeJar"])
 tasks.assemble {
     dependsOn(tasks.downgradeJar)
     dependsOn(tasks.shadeDowngradedApi)
