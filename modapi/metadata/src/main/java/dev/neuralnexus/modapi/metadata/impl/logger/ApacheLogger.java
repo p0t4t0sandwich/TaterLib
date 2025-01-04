@@ -14,6 +14,11 @@ import org.apache.logging.log4j.LogManager;
 public final class ApacheLogger implements Logger {
     private final org.apache.logging.log4j.Logger logger;
 
+    /**
+     * Creates a new ApacheLogger.
+     *
+     * @param modId The mod ID
+     */
     public ApacheLogger(String modId) {
         this.logger = LogManager.getLogger(modId);
     }

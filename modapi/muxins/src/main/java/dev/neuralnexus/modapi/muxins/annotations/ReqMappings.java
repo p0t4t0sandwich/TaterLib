@@ -12,8 +12,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/** Requires the chosen runtime mappings to be present for the mixin to be applied */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface ReqMappings {
+    /**
+     * The required mappings
+     *
+     * @return The required mappings
+     */
     Mappings value();
 }

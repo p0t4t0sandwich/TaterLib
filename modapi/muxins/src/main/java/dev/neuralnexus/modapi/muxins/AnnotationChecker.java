@@ -24,12 +24,24 @@ import org.objectweb.asm.tree.AnnotationNode;
 
 import java.util.List;
 
-public class AnnotationChecker {
+/** Checks annotations on mixins */
+public final class AnnotationChecker {
     private static final dev.neuralnexus.modapi.metadata.Platform.Meta meta =
             MetaAPI.instance().meta();
     private static final dev.neuralnexus.modapi.metadata.MinecraftVersion minecraftVersion =
             MetaAPI.instance().version();
+    private static final Mappings mappings = MetaAPI.instance().mappings();
 
+    private AnnotationChecker() {}
+
+    /**
+     * Checks the annotations on a mixin
+     *
+     * @param annotations The annotations to check
+     * @param mixinClassName The name of the mixin class
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean checkAnnotations(
             List<AnnotationNode> annotations, String mixinClassName, boolean verbose) {
         for (AnnotationNode node : annotations) {
@@ -54,6 +66,14 @@ public class AnnotationChecker {
         return true;
     }
 
+    /**
+     * Checks the dependencies required by a mixin
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param annotation The annotation to check
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean checkReqDependency(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
         List<String> reqDependency = getValue(annotation, "value", true);
@@ -90,10 +110,18 @@ public class AnnotationChecker {
         return true;
     }
 
+    /**
+     * Checks the mappings required by a mixin
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param annotation The annotation to check
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean checkReqMappings(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
-        Mappings mappings = getValue(annotation, "value", Mappings.class, Mappings.NONE);
-        if (mappings != Mappings.NONE && !mappings.is(meta.mappings())) {
+        Mappings mixinMappings = getValue(annotation, "value", Mappings.class, Mappings.NONE);
+        if (mixinMappings != Mappings.NONE && !mappings.is(mixinMappings)) {
             if (verbose) {
                 logger.info(
                         ansiParser(
@@ -106,6 +134,14 @@ public class AnnotationChecker {
         return true;
     }
 
+    /**
+     * Checks the platform requirements of a mixin
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param annotation The annotation to check
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean checkReqPlatform(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
         List<Platform> platforms = getValue(annotation, "value", true, Platform.class);
@@ -141,6 +177,14 @@ public class AnnotationChecker {
         return true;
     }
 
+    /**
+     * Checks the Minecraft version requirements of a mixin
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param annotation The annotation to check
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean checkReqMCVersion(
             String mixinClassName, AnnotationNode annotation, boolean verbose) {
         MinecraftVersion min =

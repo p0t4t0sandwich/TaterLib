@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.metadata.impl.version;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 
 // 6
+/** The Beta versions of Minecraft */
 @SuppressWarnings("unused")
 public interface Beta {
     MinecraftVersion B1_0 = MinecraftVersionImpl.of("b1.0");

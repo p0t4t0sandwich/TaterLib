@@ -21,19 +21,20 @@ dependencies {
     compileOnly(project(":modapi:entrypoint-spoof"))
 }
 
-tasks.named<Test>("test") {
+tasks.test {
     useJUnitPlatform()
     maxHeapSize = "1G"
 }
 
 java {
     withSourcesJar()
+    withJavadocJar()
     toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
     sourceCompatibility = JavaVersion.toVersion(javaVersion)
     targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
-tasks.named<Jar>("jar") {
+tasks.jar {
     manifest {
         attributes(
             mapOf(
@@ -52,12 +53,20 @@ tasks.named<Jar>("jar") {
     }
 }
 
-tasks.named<DowngradeJar>("downgradeJar") {
+//tasks.javadoc {
+//    javadocTool = javaToolchains.javadocToolFor {
+//        languageVersion.set(JavaLanguageVersion.of(javaVersion))
+//    }
+//    source = sourceSets.main.get().allJava
+//    classpath += configurations.compileClasspath.get()
+//}
+
+tasks.downgradeJar {
     downgradeTo = JavaVersion.VERSION_1_8
     archiveClassifier.set("downgraded-8")
 }
 
-tasks.named<ShadeJar>("shadeDowngradedApi") {
+tasks.shadeDowngradedApi {
     downgradeTo = JavaVersion.VERSION_1_8
     shadePath = {
         it.substringBefore(".")
@@ -68,14 +77,12 @@ tasks.named<ShadeJar>("shadeDowngradedApi") {
     archiveClassifier.set("downgraded-8-shaded")
 }
 
-tasks.build {
-    dependsOn(tasks.test)
+tasks.withType<GenerateModuleMetadata> {
+    enabled = false
 }
 
-tasks.downgradeJar {
-    dependsOn(tasks.spotlessApply)
-}
-
+tasks.build.get().dependsOn(tasks.test)
+tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)
     dependsOn(tasks.shadeDowngradedApi)
@@ -101,23 +108,10 @@ publishing {
     }
 
     publications {
-        register("originalJar", MavenPublication::class) {
-            artifact(tasks["jar"])
-        }
-        register("sourcesJar", MavenPublication::class) {
-            artifact(tasks["sourcesJar"]) {
-                classifier = "sources"
-            }
-        }
-        register("downgradedJar", MavenPublication::class) {
-            artifact(tasks["downgradeJar"]) {
-                classifier = "downgraded-8"
-            }
-        }
-        register("shadedDowngradedJar", MavenPublication::class) {
-            artifact(tasks["shadeDowngradedApi"]) {
-                classifier = "downgraded-8-shaded"
-            }
+        create<MavenPublication>("maven") {
+            from(components["java"])
+            artifact(tasks.downgradeJar.get())
+            artifact(tasks.shadeDowngradedApi.get())
         }
     }
 }

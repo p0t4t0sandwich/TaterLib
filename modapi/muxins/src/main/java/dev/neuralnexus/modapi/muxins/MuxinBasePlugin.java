@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public class MuxinBasePlugin implements IMixinConfigPlugin {
+/** Base plugin for Muxins */
+public final class MuxinBasePlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {}
 

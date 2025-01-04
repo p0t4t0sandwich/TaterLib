@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-
 import java.util.UUID;
 
 /** Represents an entity that can have permissions. */

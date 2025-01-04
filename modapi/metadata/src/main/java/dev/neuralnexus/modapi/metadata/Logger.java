@@ -38,6 +38,7 @@ public interface Logger {
      * Logs a warning message.
      *
      * @param message The message to log
+     * @param throwable The throwable to log
      */
     void warn(String message, Throwable throwable);
 
@@ -52,6 +53,7 @@ public interface Logger {
      * Logs an error message.
      *
      * @param message The message to log
+     * @param throwable The throwable to log
      */
     void error(String message, Throwable throwable);
 

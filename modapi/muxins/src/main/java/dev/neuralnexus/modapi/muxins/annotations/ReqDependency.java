@@ -10,8 +10,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/** Requires a list of dependencies to be present for the mixin to be applied */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface ReqDependency {
+    /**
+     * The list of dependencies as mod ids or plugin names
+     *
+     * @return The list of dependencies
+     */
     String[] value();
 }

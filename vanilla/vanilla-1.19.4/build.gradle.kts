@@ -19,10 +19,9 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(variantOf(libs.modapi.metadata) {
-        classifier("downgraded-8")
+    compileOnly(variantOf(libs.modapi.muxins) {
+        classifier("downgraded-8-all")
     })
-    compileOnly(libs.modapi.muxins)
     compileOnly(project(":vanilla:vanilla-1.19"))
     compileOnly(project(":vanilla:vanilla-1.19.1"))
 }

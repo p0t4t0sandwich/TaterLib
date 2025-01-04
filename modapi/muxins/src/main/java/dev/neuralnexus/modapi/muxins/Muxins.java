@@ -19,9 +19,19 @@ import java.util.Collections;
 /**
  * Utility class for users that what to use conditional mixins allong with their own mixin plugin
  */
-public class Muxins {
+public final class Muxins {
     public static final Logger logger = Logger.create("muxins");
 
+    private Muxins() {}
+
+    /**
+     * Checks if a mixin should be applied based on its annotations
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param disabledMixins A list of disabled mixins
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean shouldApplyMixin(
             String mixinClassName, Collection<String> disabledMixins, boolean verbose) {
         boolean result = true;
@@ -57,14 +67,34 @@ public class Muxins {
         return result;
     }
 
+    /**
+     * Checks if a mixin should be applied based on its annotations
+     *
+     * @param mixinClassName The name of the mixin class
+     * @return If the mixin should be applied
+     */
     public static boolean shouldApplyMixin(String mixinClassName) {
         return shouldApplyMixin(mixinClassName, Collections.emptyList(), false);
     }
 
+    /**
+     * Checks if a mixin should be applied based on its annotations
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param verbose If the method should log the result
+     * @return If the mixin should be applied
+     */
     public static boolean shouldApplyMixin(String mixinClassName, boolean verbose) {
         return shouldApplyMixin(mixinClassName, Collections.emptyList(), verbose);
     }
 
+    /**
+     * Checks if a mixin should be applied based on its annotations
+     *
+     * @param mixinClassName The name of the mixin class
+     * @param disabledMixins A list of disabled mixins
+     * @return If the mixin should be applied
+     */
     public static boolean shouldApplyMixin(
             String mixinClassName, Collection<String> disabledMixins) {
         return shouldApplyMixin(mixinClassName, disabledMixins, false);

@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.metadata.impl.version;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 
 // 5
+/** The Alpha versions of Minecraft */
 @SuppressWarnings("unused")
 public interface Alpha {
     MinecraftVersion A1_0_0 = MinecraftVersionImpl.of("a1.0.0");

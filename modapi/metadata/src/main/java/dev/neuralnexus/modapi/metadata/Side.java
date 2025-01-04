@@ -10,6 +10,7 @@ package dev.neuralnexus.modapi.metadata;
  * href="https://fabricmc.net/wiki/tutorial:side">Fabric's wiki</a>
  *
  * <table>
+ * <caption>Logical vs Physical Client and Server</caption>
  * <tbody><tr><th>x</th><th>Logical Client</th><th>Logical Server</th></tr>
  * <tr><td>Physical Client</td><td>Singleton Always Exists</td><td>Exists when in local save; new instance for each play</td></tr>
  * <tr><td>Physical Server</td><td>Does Not Exist</td><td>Singleton Always Exists</td></tr></tbody>
