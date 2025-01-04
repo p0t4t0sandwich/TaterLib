@@ -6,7 +6,6 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta.forge;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
@@ -40,11 +39,6 @@ public class MCFLoaderMeta implements Platform.Meta {
     @Override
     public String apiVersion() {
         return ForgeVersion_7_12.forgeVersion();
-    }
-
-    @Override
-    public Mappings mappings() {
-        return ForgeData.mappings(minecraftVersion());
     }
 
     @Override

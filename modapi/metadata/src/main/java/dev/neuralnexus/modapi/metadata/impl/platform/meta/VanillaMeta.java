@@ -6,7 +6,6 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
@@ -37,11 +36,6 @@ public final class VanillaMeta implements Platform.Meta {
     @Override
     public String apiVersion() {
         return minecraftVersion().asString();
-    }
-
-    @Override
-    public Mappings mappings() {
-        return Mappings.MOJMAP;
     }
 
     @Override

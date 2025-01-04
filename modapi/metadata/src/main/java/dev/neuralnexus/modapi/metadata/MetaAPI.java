@@ -149,24 +149,15 @@ public interface MetaAPI {
      * @return True if the mod is loaded, false otherwise
      * @throws NullPointerException if the platform or nameOrId is null
      */
-    Optional<Boolean> isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+    boolean isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
             throws NullPointerException;
 
     /**
-     * Get the platform's mappings
+     * Get the runtime mappings
      *
-     * @return The platform's mappings
+     * @return The runtime mappings
      */
     Mappings mappings();
-
-    /**
-     * Get a platform's mappings
-     *
-     * @param platform The platform
-     * @return The platform's mappings
-     * @throws NullPointerException if the platform is null
-     */
-    Optional<Mappings> mappings(@NotNull Platform platform) throws NullPointerException;
 
     /**
      * Get a new logger for the specified modId
@@ -249,6 +240,15 @@ public interface MetaAPI {
      */
     default boolean isMixedForgeFabric() {
         return this.allPlatformsPresent(Platforms.FORGE, Platforms.FABRIC);
+    }
+
+    /**
+     * Check if the platform is a mixed NeoForge/Fabric environment
+     *
+     * @return True if the platform is a mixed NeoForge/Fabric environment, false otherwise
+     */
+    default boolean isMixedNeoForgeFabric() {
+        return this.allPlatformsPresent(Platforms.NEOFORGE, Platforms.FABRIC);
     }
 
     // ----------------------------- Static Platform Checks -----------------------------

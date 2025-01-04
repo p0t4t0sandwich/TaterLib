@@ -6,7 +6,6 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta.forge;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
@@ -62,14 +61,6 @@ public class FMLLoaderMeta implements Platform.Meta {
             return ForgeVersion_13_16.forgeVersion();
         }
         return ForgeVersion_17_21.forgeVersion();
-    }
-
-    @Override
-    public Mappings mappings() {
-        if (this.modList().stream().anyMatch(modInfo -> modInfo.id().equalsIgnoreCase("kilt"))) {
-            return Mappings.YARN_INTERMEDIARY;
-        }
-        return ForgeData.mappings(minecraftVersion());
     }
 
     @Override

@@ -8,7 +8,6 @@ package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFolder;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
@@ -36,11 +35,6 @@ public final class BungeeCordMeta implements Platform.Meta {
     @Override
     public String apiVersion() {
         return ProxyServer.getInstance().getVersion();
-    }
-
-    @Override
-    public Mappings mappings() {
-        return Mappings.NONE;
     }
 
     @Override

@@ -6,7 +6,6 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
@@ -56,21 +55,6 @@ public final class FabricMeta implements Platform.Meta {
         } else {
             return "Unknown";
         }
-    }
-
-    @Override
-    public Mappings mappings() {
-        if (this.minecraftVersion().isOlderThan(MinecraftVersions.V14)) {
-            return Mappings.LEGACY_INTERMEDIARY;
-        }
-        if (this.modList().stream()
-                .anyMatch(modInfo -> modInfo.id().equalsIgnoreCase("connector"))) {
-            if (this.minecraftVersion().isOlderThan(MinecraftVersions.V21)) {
-                return Mappings.SEARGE;
-            }
-            return Mappings.MOJMAP;
-        }
-        return Mappings.YARN_INTERMEDIARY;
     }
 
     @Override

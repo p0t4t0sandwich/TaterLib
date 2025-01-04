@@ -6,10 +6,7 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
@@ -48,16 +45,6 @@ public final class SpongeModernMeta implements Platform.Meta {
         } else {
             return "Unknown";
         }
-    }
-
-    @Override
-    public Mappings mappings() {
-        if (!MetaAPI.instance().isPlatformPresent(Platforms.NEOFORGE)
-                && MetaAPI.instance().isPlatformPresent(Platforms.FORGE)
-                && minecraftVersion().isOlderThan(MinecraftVersions.V20_5)) {
-            return Mappings.SEARGE;
-        }
-        return Mappings.MOJMAP;
     }
 
     @Override

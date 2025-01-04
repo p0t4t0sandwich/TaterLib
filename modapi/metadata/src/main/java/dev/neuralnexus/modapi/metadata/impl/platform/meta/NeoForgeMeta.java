@@ -6,9 +6,7 @@
 package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
@@ -36,14 +34,6 @@ public final class NeoForgeMeta implements Platform.Meta {
     @Override
     public String apiVersion() {
         return FMLLoader.versionInfo().neoForgeVersion();
-    }
-
-    @Override
-    public Mappings mappings() {
-        if (minecraftVersion().isOlderThan(MinecraftVersions.V20_2)) {
-            return Mappings.SEARGE;
-        }
-        return Mappings.MOJMAP;
     }
 
     @Override

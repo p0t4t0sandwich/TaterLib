@@ -145,14 +145,6 @@ public interface Platform {
         String apiVersion();
 
         /**
-         * Get the platform's mappings
-         *
-         * @return The platform's mappings
-         */
-        // TODO: Cover edge cases with Connector and Kilt
-        Mappings mappings();
-
-        /**
          * Get the mod list
          *
          * @return The mod list

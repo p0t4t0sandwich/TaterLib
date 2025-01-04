@@ -37,6 +37,8 @@ public final class MetaAPIImpl implements MetaAPI {
         return INSTANCE;
     }
 
+    private static Mappings mappings;
+
     private MetaAPIImpl() {}
 
     // ----------------------------- Platform -----------------------------
@@ -111,25 +113,83 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Optional<Boolean> isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
+    public boolean isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
             throws NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
         Objects.requireNonNull(nameOrId, "Name or ID cannot be null");
-        return lookup(platform).map(meta -> meta.isModLoaded(nameOrId));
+        return lookup(platform).map(meta -> meta.isModLoaded(nameOrId)).orElse(false);
     }
 
+    // TODO: At some point, it would be nice to have a guaranteed set of version-specific mappings
+    // Would allow for more accurate mappings detection, rather than assumptions inflexible to
+    // future changes
     @Override
     public Mappings mappings() {
-        return lookupAll().stream()
-                .map(Platform.Meta::mappings)
-                .findFirst()
-                .orElse(Mappings.UNKNOWN);
-    }
-
-    @Override
-    public Optional<Mappings> mappings(@NotNull Platform platform) throws NullPointerException {
-        Objects.requireNonNull(platform, "Platform cannot be null");
-        return lookup(platform).map(Platform.Meta::mappings);
+        if (mappings == null) {
+            MetaAPI api = MetaAPI.instance();
+            // Check for proxy
+            if (api.isProxy()) {
+                mappings = Mappings.NONE;
+                // Check for connector and kilt
+            } else if (api.isMixedForgeFabric() || api.isMixedNeoForgeFabric()) {
+                if (api.isModLoaded(Platforms.FABRIC, "kilt")) {
+                    mappings = Mappings.YARN_INTERMEDIARY;
+                } else if (api.isModLoaded(Platforms.FORGE, "connector")) {
+                    mappings = Mappings.SEARGE;
+                } else if (api.isModLoaded(Platforms.NEOFORGE, "connector")) {
+                    mappings = Mappings.MOJMAP;
+                }
+                // Check NeoForge
+            } else if (api.isPlatformPresent(Platforms.NEOFORGE)) {
+                if (this.version().is(MinecraftVersions.V20_1)) {
+                    mappings = Mappings.SEARGE;
+                } else {
+                    mappings = Mappings.MOJMAP;
+                }
+                // Check Forge
+            } else if (api.isPlatformPresent(Platforms.FORGE)) {
+                if (this.version().isOlderThan(MinecraftVersions.V16_5)) {
+                    mappings = Mappings.LEGACY_SEARGE;
+                } else if (this.version()
+                        .isInRange(MinecraftVersions.V17, MinecraftVersions.V20_5)) {
+                    mappings = Mappings.SEARGE;
+                } else {
+                    mappings = Mappings.MOJMAP;
+                }
+                // Check Fabric
+            } else if (api.isPlatformPresent(Platforms.FABRIC)) {
+                // TODO: Add Babric and CursedFabric checks
+                if (this.version().isOlderThan(MinecraftVersions.V14)) {
+                    mappings = Mappings.LEGACY_INTERMEDIARY;
+                } else {
+                    mappings = Mappings.YARN_INTERMEDIARY;
+                }
+                // Check SpongeVanilla
+            } else if (api.isPlatformPresent(Platforms.SPONGE)) {
+                if (this.version().isOlderThan(MinecraftVersions.V14)) {
+                    mappings = Mappings.SEARGE;
+                } else {
+                    mappings = Mappings.MOJMAP;
+                }
+                // Check Paper
+            } else if (api.isPlatformPresent(Platforms.PAPER)
+                    && this.version().isOlderThan(MinecraftVersions.V20_6)) {
+                mappings = Mappings.MOJMAP;
+                // Check Spigot
+            } else if (api.isPlatformPresent(Platforms.SPIGOT)) {
+                if (this.version().isOlderThan(MinecraftVersions.V18)) {
+                    mappings = Mappings.LEGACY_SPIGOT;
+                } else {
+                    mappings = Mappings.SPIGOT;
+                }
+                // Check Bukkit
+            } else if (api.isPlatformPresent(Platforms.BUKKIT)) {
+                mappings = Mappings.OFFICIAL;
+            } else {
+                mappings = Mappings.OFFICIAL;
+            }
+        }
+        return mappings;
     }
 
     @Override

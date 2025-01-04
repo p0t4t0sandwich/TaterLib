@@ -9,10 +9,8 @@ import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFold
 import static dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil.checkForMethod;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
@@ -46,20 +44,6 @@ public final class BukkitMeta implements Platform.Meta {
     @Override
     public String apiVersion() {
         return Bukkit.getBukkitVersion();
-    }
-
-    @Override
-    public Mappings mappings() {
-        if (MetaAPI.instance().isPlatformPresent(Platforms.PAPER)
-                && this.minecraftVersion().isAtLeast(MinecraftVersions.V20_6)) {
-            return Mappings.MOJMAP;
-        } else if (MetaAPI.instance().isPlatformPresent(Platforms.SPIGOT)) {
-            if (this.minecraftVersion().isAtLeast(MinecraftVersions.V18)) {
-                return Mappings.SPIGOT;
-            }
-            return Mappings.LEGACY_SPIGOT;
-        }
-        return Mappings.OFFICIAL;
     }
 
     @Override
