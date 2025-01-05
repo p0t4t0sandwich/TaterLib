@@ -35,6 +35,6 @@ public enum Mappings {
 
     @Override
     public String toString() {
-        return name;
+        return this.name;
     }
 }

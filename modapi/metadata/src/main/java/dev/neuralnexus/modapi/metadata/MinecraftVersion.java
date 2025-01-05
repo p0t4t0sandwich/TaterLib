@@ -9,9 +9,11 @@ import dev.neuralnexus.modapi.metadata.impl.version.meta.MetaStore;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MinecraftVersionMetaImpl;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public interface MinecraftVersion {
     Map<String, Integer> OrdinalCache = new HashMap<>();
@@ -82,7 +84,8 @@ public interface MinecraftVersion {
      * @param version The version to check
      * @return If The version of Minecraft the server is running is equal to the specified version
      */
-    default boolean is(String version) {
+    default boolean is(String version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
         return this.asString().equals(version);
     }
 
@@ -92,8 +95,9 @@ public interface MinecraftVersion {
      * @param version The version to check
      * @return If The version of Minecraft the server is running is equal to the specified version
      */
-    default boolean is(MinecraftVersion version) {
-        return this == version;
+    default boolean is(@NotNull MinecraftVersion version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return this.asString().equals(version.asString());
     }
 
     /**
