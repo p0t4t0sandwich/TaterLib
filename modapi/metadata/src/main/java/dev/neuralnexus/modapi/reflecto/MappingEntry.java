@@ -11,20 +11,31 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @ApiStatus.Experimental
-public record ClassEntry(String name, MinecraftVersion version, String mappings) {
+public record MappingEntry(
+        String name,
+        Optional<String> parentEntry,
+        MinecraftVersion version,
+        MinecraftVersion minVersion,
+        MinecraftVersion maxVersion,
+        String mappings) {
     private static final Mappings ENVIRONMENT = MetaAPI.instance().mappings();
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(@NotNull String name) {
+        return new Builder(name);
     }
 
     public static final class Builder {
-        private String name = null;
+        private final String name;
+        private String parentEntry;
         private MinecraftVersion version = MinecraftVersions.UNKNOWN;
+        private MinecraftVersion minVersion = null;
+        private MinecraftVersion maxVersion = null;
         private String official = null;
         private String mojmap = null;
         private String spigot = null;
@@ -39,15 +50,32 @@ public record ClassEntry(String name, MinecraftVersion version, String mappings)
         private String calamus = null;
         private String hashed = null;
 
-        private Builder() {}
+        private Builder(@NotNull String name) {
+            this.name = Objects.requireNonNull(name, "name cannot be null");
+        }
 
-        public Builder name(String name) {
-            this.name = name;
+        public Builder parentEntry(@NotNull String parent) {
+            this.parentEntry = Objects.requireNonNull(parent, "parentEntry cannot be null");
             return this;
         }
 
-        public Builder version(MinecraftVersion version) {
-            this.version = version;
+        public Builder version(@NotNull MinecraftVersion version) {
+            this.version = Objects.requireNonNull(version, "version cannot be null");
+            return this;
+        }
+
+        public Builder versionRange(
+                @NotNull MinecraftVersion minVersion, @NotNull MinecraftVersion maxVersion) {
+            this.minVersion =
+                    Objects.requireNonNull(
+                            minVersion,
+                            "minVersion cannot be null, use MinecraftVersions.UNKNOWN to indicate no minimum version");
+            ;
+            this.maxVersion =
+                    Objects.requireNonNull(
+                            maxVersion,
+                            "maxVersion cannot be null, use MinecraftVersions.UNKNOWN to indicate no maximum version");
+            ;
             return this;
         }
 
@@ -116,8 +144,7 @@ public record ClassEntry(String name, MinecraftVersion version, String mappings)
             return this;
         }
 
-        public ClassEntry build() {
-            Objects.requireNonNull(this.name, "name");
+        public MappingEntry build() throws NullPointerException {
             String mappings =
                     switch (ENVIRONMENT) {
                         case OFFICIAL -> this.official;
@@ -135,7 +162,16 @@ public record ClassEntry(String name, MinecraftVersion version, String mappings)
                         case HASHED -> this.hashed;
                         default -> null;
                     };
-            return new ClassEntry(this.name, this.version, mappings);
+            Objects.requireNonNull(
+                    mappings,
+                    "mappings are null for MappingEntry " + this.name + " in " + ENVIRONMENT);
+            return new MappingEntry(
+                    this.name,
+                    Optional.ofNullable(this.parentEntry),
+                    this.version,
+                    this.minVersion,
+                    this.maxVersion,
+                    mappings);
         }
     }
 }
