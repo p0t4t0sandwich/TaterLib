@@ -33,22 +33,10 @@ public record MappingEntry(
     public static final class Builder {
         private final String name;
         private String parentEntry;
+        private String mappings;
         private MinecraftVersion version = MinecraftVersions.UNKNOWN;
         private MinecraftVersion minVersion = null;
         private MinecraftVersion maxVersion = null;
-        private String official = null;
-        private String mojmap = null;
-        private String spigot = null;
-        private String legacySpigot = null;
-        private String searge = null;
-        private String legacySearge = null;
-        private String mcp = null;
-        private String yarn = null;
-        private String yarnIntermediary = null;
-        private String legacyIntermediary = null;
-        private String babricIntermediary = null;
-        private String calamus = null;
-        private String hashed = null;
 
         private Builder(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name cannot be null");
@@ -70,98 +58,105 @@ public record MappingEntry(
                     Objects.requireNonNull(
                             minVersion,
                             "minVersion cannot be null, use MinecraftVersions.UNKNOWN to indicate no minimum version");
-            ;
             this.maxVersion =
                     Objects.requireNonNull(
                             maxVersion,
                             "maxVersion cannot be null, use MinecraftVersions.UNKNOWN to indicate no maximum version");
-            ;
             return this;
         }
 
-        public Builder official(String official) {
-            this.official = official;
+        public Builder official(String mappings) {
+            if (ENVIRONMENT == Mappings.OFFICIAL) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder mojmap(String mojmap) {
-            this.mojmap = mojmap;
+        public Builder mojmap(String mappings) {
+            if (ENVIRONMENT == Mappings.MOJMAP) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder spigot(String spigot) {
-            this.spigot = spigot;
+        public Builder spigot(String mappings) {
+            if (ENVIRONMENT == Mappings.SPIGOT) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder legacySpigot(String legacySpigot) {
-            this.legacySpigot = legacySpigot;
+        public Builder legacySpigot(String mappings) {
+            if (ENVIRONMENT == Mappings.LEGACY_SPIGOT) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder searge(String searge) {
-            this.searge = searge;
+        public Builder searge(String mappings) {
+            if (ENVIRONMENT == Mappings.SEARGE) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder legacySearge(String legacySearge) {
-            this.legacySearge = legacySearge;
+        public Builder legacySearge(String mappings) {
+            if (ENVIRONMENT == Mappings.LEGACY_SEARGE) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder mcp(String mcp) {
-            this.mcp = mcp;
+        public Builder mcp(String mappings) {
+            if (ENVIRONMENT == Mappings.MCP) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder yarn(String yarn) {
-            this.yarn = yarn;
+        public Builder yarn(String mappings) {
+            if (ENVIRONMENT == Mappings.YARN) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder yarnIntermediary(String yarnIntermediary) {
-            this.yarnIntermediary = yarnIntermediary;
+        public Builder yarnIntermediary(String mappings) {
+            if (ENVIRONMENT == Mappings.YARN_INTERMEDIARY) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder legacyIntermediary(String legacyIntermediary) {
-            this.legacyIntermediary = legacyIntermediary;
+        public Builder legacyIntermediary(String mappings) {
+            if (ENVIRONMENT == Mappings.LEGACY_INTERMEDIARY) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder babricIntermediary(String babricIntermediary) {
-            this.babricIntermediary = babricIntermediary;
+        public Builder babricIntermediary(String mappings) {
+            if (ENVIRONMENT == Mappings.BABRIC_INTERMEDIARY) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder calamus(String calamus) {
-            this.calamus = calamus;
+        public Builder calamus(String mappings) {
+            if (ENVIRONMENT == Mappings.CALAMUS) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
-        public Builder hashed(String hashed) {
-            this.hashed = hashed;
+        public Builder hashed(String mappings) {
+            if (ENVIRONMENT == Mappings.HASHED) {
+                this.mappings = mappings;
+            }
             return this;
         }
 
         public MappingEntry build() throws NullPointerException {
-            String mappings =
-                    switch (ENVIRONMENT) {
-                        case OFFICIAL -> this.official;
-                        case MOJMAP -> this.mojmap;
-                        case SPIGOT -> this.spigot;
-                        case LEGACY_SPIGOT -> this.legacySpigot;
-                        case SEARGE -> this.searge;
-                        case LEGACY_SEARGE -> this.legacySearge;
-                        case MCP -> this.mcp;
-                        case YARN -> this.yarn;
-                        case YARN_INTERMEDIARY -> this.yarnIntermediary;
-                        case LEGACY_INTERMEDIARY -> this.legacyIntermediary;
-                        case BABRIC_INTERMEDIARY -> this.babricIntermediary;
-                        case CALAMUS -> this.calamus;
-                        case HASHED -> this.hashed;
-                        default -> null;
-                    };
             Objects.requireNonNull(
                     mappings,
                     "mappings are null for MappingEntry " + this.name + " in " + ENVIRONMENT);
@@ -171,7 +166,7 @@ public record MappingEntry(
                     this.version,
                     this.minVersion,
                     this.maxVersion,
-                    mappings);
+                    this.mappings);
         }
     }
 }
