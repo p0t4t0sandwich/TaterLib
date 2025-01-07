@@ -1,13 +1,22 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
+
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
 import net.legacyfabric.fabric.api.permission.v1.PermissionsApiHolder;
 import net.legacyfabric.fabric.api.permission.v1.PlayerPermissionsApi;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
 import java.util.Objects;
+
+import static dev.neuralnexus.modapi.crossperms.CrossPerms.SERVER_PLAYER;
 
 /** Legacy Fabric permissions provider */
 public class LegacyFabricPermissionsProvider implements PermissionsProvider {
@@ -16,22 +25,14 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
         return "fabricpermissions";
     }
 
-    private static final Class<?> SERVER_PLAYER;
-    static {
-        Class<?> clazz = null;
-        try {
-            clazz = Class.forName("net.minecraft.class_798");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        SERVER_PLAYER = clazz;
-    }
-
     private static final Method HAS_PERMISSION;
+
     static {
         Method method = null;
         try {
-            method = PlayerPermissionsApi.class.getDeclaredMethod("hasPermission", SERVER_PLAYER, String.class);
+            method =
+                    PlayerPermissionsApi.class.getDeclaredMethod(
+                            "hasPermission", SERVER_PLAYER, String.class);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -52,12 +53,16 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
         boolean result = false;
         if (SERVER_PLAYER != null && SERVER_PLAYER.isInstance(subject)) {
             try {
-                return (boolean) HAS_PERMISSION.invoke(PermissionsApiHolder.getPlayerPermissionsApi(), subject, permission);
+                return (boolean)
+                        HAS_PERMISSION.invoke(
+                                PermissionsApiHolder.getPlayerPermissionsApi(),
+                                subject,
+                                permission);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (subject instanceof PermissibleCommandSource commandSource) {
-            return commandSource.hasPermission(permission);
+                return commandSource.hasPermission(permission); // TODO need to reflect
         }
         return result | this.hasPermission(subject, 4);
     }

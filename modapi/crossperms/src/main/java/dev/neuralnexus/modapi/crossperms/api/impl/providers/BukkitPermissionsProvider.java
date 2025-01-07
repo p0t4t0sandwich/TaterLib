@@ -23,6 +23,7 @@ public class BukkitPermissionsProvider implements PermissionsProvider {
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
         // TODO: Reflect to query the player object
+        // It's gonna suck to get all those obsf mappings
         if (subject instanceof CommandSender commandSender) {
             return commandSender.isOp();
         }

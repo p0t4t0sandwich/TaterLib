@@ -20,11 +20,17 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Reflecto is a general, cross runtime mappings reflection framework for Minecraft mods.
+ * Specifically, Reflecto is designed to only be used for obfuscated/arbitrary minecraft mappings,
+ * and not necessarily for general reflection. <br>
+ * I'm keeping it as such to avoid using it as a crutch myself.
+ */
 @ApiStatus.Experimental
 public final class Reflecto {
     private static final Logger logger = Logger.create("Reflecto");
     private static final Reflecto INSTANCE = new Reflecto();
-    private final Map<Class<?>, MappingStore> mappingStores = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, MappingStore> mappingStores = new ConcurrentHashMap<>();
 
     private Reflecto() {}
 
@@ -125,6 +131,19 @@ public final class Reflecto {
         }
 
         /**
+         * Register a class mapping
+         *
+         * @param entry The class mapping entry builder
+         * @return The mapping store
+         * @throws ClassRegistrationFailedException If the class registration fails
+         * @throws NullPointerException If the entry is null
+         */
+        public MappingStore registerClass(@NotNull MappingEntry.Builder entry)
+                throws ClassRegistrationFailedException, NullPointerException {
+            return this.registerClass(entry.build());
+        }
+
+        /**
          * Register a field mapping
          *
          * @param entry The field mapping entry
@@ -186,6 +205,19 @@ public final class Reflecto {
             }
 
             return this;
+        }
+
+        /**
+         * Register a field mapping
+         *
+         * @param entry The field mapping entry builder
+         * @return The mapping store
+         * @throws FieldRegistrationFailedException If the field registration fails
+         * @throws NullPointerException If the entry is null
+         */
+        public MappingStore registerField(@NotNull MappingEntry.Builder entry)
+                throws FieldRegistrationFailedException, NullPointerException {
+            return this.registerField(entry.build());
         }
 
         /**
@@ -262,6 +294,21 @@ public final class Reflecto {
         }
 
         /**
+         * Register a method mapping
+         *
+         * @param entry The method mapping entry builder
+         * @param parameterTypes The parameter types of the method
+         * @return The mapping store
+         * @throws MethodRegistrationFailedException If the method registration fails
+         * @throws NullPointerException If the entry is null
+         */
+        public MappingStore registerMethod(
+                @NotNull MappingEntry.Builder entry, @Nullable Class<?>... parameterTypes)
+                throws MethodRegistrationFailedException, NullPointerException {
+            return this.registerMethod(entry.build(), parameterTypes);
+        }
+
+        /**
          * Get a class by its entry name
          *
          * @param entryName The entry name of the class
@@ -269,13 +316,13 @@ public final class Reflecto {
          * @throws ClassNotRegisteredException If the class is not registered
          * @throws NullPointerException If the entry name is null
          */
-        public Class<?> getClass(@NotNull String entryName)
+        public <T> Class<T> getClass(@NotNull String entryName)
                 throws ClassNotRegisteredException, NullPointerException {
             Objects.requireNonNull(entryName, "Entry name cannot be null");
             if (!classMappings.containsKey(entryName)) {
                 throw new ClassNotRegisteredException(entryName);
             }
-            return classCache.get(classMappings.get(entryName));
+            return (Class<T>) classCache.get(classMappings.get(entryName));
         }
 
         /**
@@ -338,25 +385,23 @@ public final class Reflecto {
          * @param parentEntry The parent entry of the method
          * @param entryName The entry name of the method
          * @param instance The instance to invoke the method on
-         * @param returnType The return type of the method
          * @param args The arguments to pass to the method
          * @return The return value of the method
          * @throws MethodNotRegisteredException If the method is not registered
          * @throws MethodNotAccessableException If the method is not accessible
          * @throws NullPointerException If the parent entry, entry name, or return type is null
          */
+        @SuppressWarnings("unchecked")
         public <T> T invokeMethod(
                 @NotNull String parentEntry,
                 @NotNull String entryName,
                 @Nullable Object instance,
-                @NotNull Class<T> returnType,
                 @Nullable Object... args)
                 throws NullPointerException,
                         MethodNotAccessableException,
                         MethodNotRegisteredException {
             Objects.requireNonNull(parentEntry, "Parent class cannot be null");
             Objects.requireNonNull(entryName, "Method name cannot be null");
-            Objects.requireNonNull(returnType, "Return type cannot be null");
 
             if (!methodMappings.containsKey(parentEntry)
                     || !methodMappings.get(parentEntry).containsKey(entryName)) {
@@ -365,7 +410,7 @@ public final class Reflecto {
             Tuple<String, Class<?>[]> methodTuple = methodMappings.get(parentEntry).get(entryName);
             Method method = methodCache.get(classCache.get(parentEntry)).get(methodTuple.left());
             try {
-                return returnType.cast(method.invoke(instance, args));
+                return (T) method.invoke(instance, args);
             } catch (IllegalAccessException | InvocationTargetException e) {
                 throw new MethodNotAccessableException(entryName);
             }
@@ -376,7 +421,6 @@ public final class Reflecto {
          *
          * @param parentEntry The parent entry of the method
          * @param entryName The entry name of the method
-         * @param returnType The return type of the method
          * @param args The arguments to pass to the method
          * @return The return value of the method
          * @throws MethodNotRegisteredException If the method is not registered
@@ -384,14 +428,11 @@ public final class Reflecto {
          * @throws NullPointerException If the parent entry, entry name, or return type is null
          */
         public <T> T invokeStaticMethod(
-                @NotNull String parentEntry,
-                @NotNull String entryName,
-                @NotNull Class<T> returnType,
-                @Nullable Object... args)
+                @NotNull String parentEntry, @NotNull String entryName, @Nullable Object... args)
                 throws NullPointerException,
                         MethodNotAccessableException,
                         MethodNotRegisteredException {
-            return this.invokeMethod(parentEntry, entryName, null, returnType, args);
+            return this.invokeMethod(parentEntry, entryName, null, args);
         }
     }
 

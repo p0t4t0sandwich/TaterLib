@@ -1,11 +1,18 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+
 import net.minecraftforge.server.permission.PermissionAPI;
 import net.minecraftforge.server.permission.nodes.PermissionTypes;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
@@ -22,6 +29,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     }
 
     private static final Class<?> COMMAND_SOURCE_STACK;
+
     static {
         Class<?> clazz = null;
         try {
@@ -37,6 +45,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     }
 
     private static final Method CSS_GET_ENTITY;
+
     static {
         Method method = null;
         try {
@@ -52,6 +61,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     }
 
     private static final Class<?> SERVER_PLAYER;
+
     static {
         Class<?> clazz = null;
         try {
@@ -67,6 +77,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     }
 
     private static final Method SP_GET_UUID;
+
     static {
         Method method = null;
         try {
@@ -121,14 +132,15 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
 
         Object finalPlayer = player;
         UUID finalUuid = uuid;
-        result = PermissionAPI.getRegisteredNodes().stream()
-                .filter(node -> node.getType() == PermissionTypes.BOOLEAN)
-                .filter(node -> node.getNodeName().equals(permission))
-                .anyMatch(
-                        node ->
-                                (boolean)
-                                        node.getDefaultResolver()
-                                                .resolve(finalPlayer, finalUuid));
+        result =
+                PermissionAPI.getRegisteredNodes().stream()
+                        .filter(node -> node.getType() == PermissionTypes.BOOLEAN)
+                        .filter(node -> node.getNodeName().equals(permission))
+                        .anyMatch(
+                                node ->
+                                        (boolean)
+                                                node.getDefaultResolver()
+                                                        .resolve(finalPlayer, finalUuid));
         return result | this.hasPermission(subject, 4);
     }
 }

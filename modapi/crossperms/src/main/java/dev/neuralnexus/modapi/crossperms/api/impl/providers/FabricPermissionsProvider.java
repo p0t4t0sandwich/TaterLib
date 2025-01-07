@@ -5,69 +5,35 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
-import com.mojang.authlib.GameProfile;
-import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
-import dev.neuralnexus.modapi.metadata.Logger;
+import static dev.neuralnexus.modapi.crossperms.CrossPerms.ENTITY;
+import static dev.neuralnexus.modapi.crossperms.CrossPerms.SHARED_SUGGESTION_PROVIDER;
 
-import me.lucko.fabric.api.permissions.v0.Permissions;
+import com.mojang.authlib.GameProfile;
+
+import dev.neuralnexus.modapi.crossperms.CrossPerms;
+import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
+
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Objects;
 import java.util.concurrent.CancellationException;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 /** Fabric permissions provider */
 public class FabricPermissionsProvider implements PermissionsProvider {
-    private static final Logger logger = Logger.create("FabricPermissionsProvider");
-
-    private static final Class<?> ENTITY;
+    private static final Class<?> PERMISSIONS;
 
     static {
-        Class<?> entity = null;
+        Class<?> clazz = null;
         try {
-            entity = Class.forName("net.minecraft.class_1297");
+            clazz = Class.forName("me.lucko.fabric.api.permissions.v0.Permissions");
         } catch (ClassNotFoundException e) {
-            logger.error("Failed to find Entity class", e);
+            CrossPerms.instance().logger().error("Failed to find Permissions class", e);
         }
-        ENTITY = entity;
-    }
-
-    private static final Class<?> SHARED_SUGGESTION_PROVIDER;
-
-    static {
-        Class<?> ssp = null;
-        try {
-            ssp = Class.forName("net.minecraft.class_2172");
-        } catch (ClassNotFoundException e) {
-            logger.error("Failed to find SharedSuggestionProvider class", e);
-        }
-        SHARED_SUGGESTION_PROVIDER = ssp;
-    }
-
-    private static final Method ENTITY_HAS_PERMISSIONS;
-
-    static {
-        Method entityHasPermissions = null;
-        try {
-            entityHasPermissions = ENTITY.getDeclaredMethod("method_5687", int.class);
-        } catch (NoSuchMethodException e) {
-            logger.error("Failed to find method_5687 method in Entity class", e);
-        }
-        ENTITY_HAS_PERMISSIONS = entityHasPermissions;
-    }
-
-    private static final Method SSP_HAS_PERMISSIONS;
-
-    static {
-        Method sspHasPermissions = null;
-        try {
-            sspHasPermissions =
-                    SHARED_SUGGESTION_PROVIDER.getDeclaredMethod("method_9259", int.class);
-        } catch (NoSuchMethodException e) {
-            logger.error("Failed to find method_9260 method in SharedSuggestionProvider class", e);
-        }
-        SSP_HAS_PERMISSIONS = sspHasPermissions;
+        PERMISSIONS = clazz;
     }
 
     private static final Method CHECK_ENTITY;
@@ -75,11 +41,24 @@ public class FabricPermissionsProvider implements PermissionsProvider {
     static {
         Method checkEntity = null;
         try {
-            checkEntity = Permissions.class.getDeclaredMethod("check", ENTITY, String.class);
+            checkEntity = PERMISSIONS.getDeclaredMethod("check", ENTITY, String.class);
         } catch (NoSuchMethodException e) {
-            logger.error("Failed to find check method in Permissions class", e);
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to find check method in Permissions class", e);
         }
         CHECK_ENTITY = checkEntity;
+    }
+
+    private static boolean invokeCheck_ENTITY(Object subject, String permission) {
+        try {
+            return (boolean) CHECK_ENTITY.invoke(null, ENTITY.cast(subject), permission);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to invoke check method in Permissions class", e);
+        }
+        return false;
     }
 
     private static final Method CHECK_SSP;
@@ -88,12 +67,56 @@ public class FabricPermissionsProvider implements PermissionsProvider {
         Method checkSsp = null;
         try {
             checkSsp =
-                    Permissions.class.getDeclaredMethod(
+                    PERMISSIONS.getDeclaredMethod(
                             "check", SHARED_SUGGESTION_PROVIDER, String.class);
         } catch (NoSuchMethodException e) {
-            logger.error("Failed to find check method in Permissions class", e);
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to find check method in Permissions class", e);
         }
         CHECK_SSP = checkSsp;
+    }
+
+    private static boolean invokeCheck_SSP(Object subject, String permission) {
+        try {
+            return (boolean)
+                    CHECK_SSP.invoke(null, SHARED_SUGGESTION_PROVIDER.cast(subject), permission);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to invoke check method in Permissions class", e);
+        }
+        return false;
+    }
+
+    private static final Method CHECK_PROFILE;
+
+    static {
+        Method checkProfile = null;
+        try {
+            checkProfile = PERMISSIONS.getDeclaredMethod("check", GameProfile.class, String.class);
+        } catch (NoSuchMethodException e) {
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to find check method in Permissions class", e);
+        }
+        CHECK_PROFILE = checkProfile;
+    }
+
+    private static boolean invokeCheck_PROFILE(GameProfile subject, String permission) {
+        try {
+            return ((CompletableFuture<Boolean>) CHECK_PROFILE.invoke(null, subject, permission))
+                    .get();
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to invoke check method in Permissions class", e);
+        } catch (CancellationException | ExecutionException | InterruptedException e) {
+            CrossPerms.instance()
+                    .logger()
+                    .error("Failed to get result from check method in Permissions class", e);
+        }
+        return false;
     }
 
     @Override
@@ -104,14 +127,15 @@ public class FabricPermissionsProvider implements PermissionsProvider {
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
-        try {
-            if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
-                return (boolean) SSP_HAS_PERMISSIONS.invoke(subject, permissionLevel);
-            } else if (subject.getClass().isAssignableFrom(ENTITY)) {
-                return (boolean) ENTITY_HAS_PERMISSIONS.invoke(subject, permissionLevel);
-            }
-        } catch (Exception e) {
-            logger.error("Failed to invoke check method in Permissions class", e);
+        if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
+            return CrossPerms.instance()
+                    .store()
+                    .invokeMethod(
+                            "SharedSuggestionProvider", "hasPermissions", subject, permissionLevel);
+        } else if (subject.getClass().isAssignableFrom(ENTITY)) {
+            return CrossPerms.instance()
+                    .store()
+                    .invokeMethod("Entity", "hasPermissions", subject, permissionLevel);
         }
         return false;
     }
@@ -121,24 +145,15 @@ public class FabricPermissionsProvider implements PermissionsProvider {
         Objects.requireNonNull(subject, "Subject cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
         boolean result = false;
+
         // TODO: Split this into a separate method
         if (subject instanceof GameProfile profile) {
-            try {
-                return Permissions.check(profile, permission).get();
-            } catch (CancellationException | ExecutionException | InterruptedException  e) {
-                logger.error("Failed to check permission", e);
-            }
+            result = invokeCheck_PROFILE(profile, permission);
         }
-        try {
-            if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
-                result = (boolean)
-                        CHECK_SSP.invoke(
-                                null, SHARED_SUGGESTION_PROVIDER.cast(subject), permission);
-            } else if (subject.getClass().isAssignableFrom(ENTITY)) {
-                result = (boolean) CHECK_ENTITY.invoke(null, ENTITY.cast(subject), permission);
-            }
-        } catch (Exception e) {
-            logger.error("Failed to invoke check method in Permissions class", e);
+        if (subject.getClass().isAssignableFrom(SHARED_SUGGESTION_PROVIDER)) {
+            result = invokeCheck_SSP(subject, permission);
+        } else if (subject.getClass().isAssignableFrom(ENTITY)) {
+            result = invokeCheck_ENTITY(subject, permission);
         }
         return result | this.hasPermission(subject, 4);
     }

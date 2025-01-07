@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import com.mojang.authlib.GameProfile;
@@ -5,6 +10,7 @@ import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import net.minecraftforge.server.permission.PermissionAPI;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;

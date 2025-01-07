@@ -20,6 +20,7 @@ public class PermsAPIImpl implements PermsAPI {
         }
         return INSTANCE;
     }
+
     private PermsAPIImpl() {}
 
     private final List<PermissionsProvider> providers = List.of();
