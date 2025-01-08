@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
+import static dev.neuralnexus.modapi.crossperms.CrossPerms.SERVER_PLAYER;
+
+import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
@@ -16,9 +19,8 @@ import org.jetbrains.annotations.NotNull;
 import java.lang.reflect.Method;
 import java.util.Objects;
 
-import static dev.neuralnexus.modapi.crossperms.CrossPerms.SERVER_PLAYER;
-
 /** Legacy Fabric permissions provider */
+@SuppressWarnings({"deprecation", "UnstableApiUsage"})
 public class LegacyFabricPermissionsProvider implements PermissionsProvider {
     @Override
     public String name() {
@@ -34,7 +36,7 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
                     PlayerPermissionsApi.class.getDeclaredMethod(
                             "hasPermission", SERVER_PLAYER, String.class);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            CrossPerms.instance().logger().error("Failed to get method", e);
         }
         HAS_PERMISSION = method;
     }
@@ -53,16 +55,17 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
         boolean result = false;
         if (SERVER_PLAYER != null && SERVER_PLAYER.isInstance(subject)) {
             try {
-                return (boolean)
-                        HAS_PERMISSION.invoke(
-                                PermissionsApiHolder.getPlayerPermissionsApi(),
-                                subject,
-                                permission);
+                result =
+                        (boolean)
+                                HAS_PERMISSION.invoke(
+                                        PermissionsApiHolder.getPlayerPermissionsApi(),
+                                        subject,
+                                        permission);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else if (subject instanceof PermissibleCommandSource commandSource) {
-                return commandSource.hasPermission(permission); // TODO need to reflect
+            result = commandSource.hasPermission(permission);
         }
         return result | this.hasPermission(subject, 4);
     }
