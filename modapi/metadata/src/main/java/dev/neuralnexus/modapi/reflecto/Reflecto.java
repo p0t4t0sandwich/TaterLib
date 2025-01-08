@@ -336,16 +336,12 @@ public final class Reflecto {
          * @throws NullPointerException If the parent entry or entry name is null
          */
         public <T> T getField(
-                @NotNull String parentEntry,
-                @NotNull String entryName,
-                @Nullable Object instance,
-                @NotNull Class<T> fieldType)
+                @NotNull String parentEntry, @NotNull String entryName, @Nullable Object instance)
                 throws FieldNotAccessableException,
                         FieldNotRegisteredException,
                         NullPointerException {
             Objects.requireNonNull(parentEntry, "Parent class cannot be null");
             Objects.requireNonNull(entryName, "Field name cannot be null");
-            Objects.requireNonNull(fieldType, "Field type cannot be null");
             if (!fieldMappings.containsKey(parentEntry)
                     || !fieldMappings.get(parentEntry).containsKey(entryName)) {
                 throw new FieldNotRegisteredException(entryName);
@@ -355,7 +351,7 @@ public final class Reflecto {
                             .get(classCache.get(parentEntry))
                             .get(fieldMappings.get(parentEntry).get(entryName));
             try {
-                return fieldType.cast(field.get(instance));
+                return (T) field.get(instance);
             } catch (IllegalAccessException e) {
                 throw new FieldNotAccessableException(entryName);
             }
@@ -371,12 +367,11 @@ public final class Reflecto {
          * @throws FieldNotAccessableException If the field is not accessible
          * @throws NullPointerException If the parent entry or entry name is null
          */
-        public <T> T getStaticField(
-                @NotNull String parentEntry, @NotNull String entryName, @NotNull Class<T> fieldType)
+        public <T> T getStaticField(@NotNull String parentEntry, @NotNull String entryName)
                 throws FieldNotAccessableException,
                         FieldNotRegisteredException,
                         NullPointerException {
-            return this.getField(parentEntry, entryName, null, fieldType);
+            return this.getField(parentEntry, entryName, null);
         }
 
         /**
