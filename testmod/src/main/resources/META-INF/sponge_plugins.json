@@ -1,0 +1,30 @@
+{
+  "loader": {
+    "name": "java_plain",
+    "version": "1.0"
+  },
+  "license": "${license}",
+  "plugins": [
+    {
+      "id": "${project_id}",
+      "entrypoint": "${group}.platforms.Sponge8Plugin",
+      "name": "${project_name}",
+      "description": "${project_description}",
+      "version": "${version}",
+      "branding": {},
+      "links": {
+        "homepage": "${homepage_url}",
+        "source": "${source_url}",
+        "issues": "${issue_url}"
+      },
+      "dependencies": [
+        {
+          "id": "taterlib",
+          "version": "${taterlib_version}",
+          "load-order": "after",
+          "optional": false
+        }
+      ]
+    }
+  ]
+}
