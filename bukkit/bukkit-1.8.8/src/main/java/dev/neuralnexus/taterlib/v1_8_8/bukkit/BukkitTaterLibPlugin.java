@@ -15,6 +15,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
@@ -22,7 +23,6 @@ import dev.neuralnexus.taterlib.v1_8_8.bukkit.listeners.block.BukkitBlockListene
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterloader.Loader;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

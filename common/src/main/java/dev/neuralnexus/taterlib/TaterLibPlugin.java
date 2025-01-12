@@ -6,8 +6,8 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
-import dev.neuralnexus.taterloader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 /** General TaterLib plugin interface. */
 public interface TaterLibPlugin extends Plugin {

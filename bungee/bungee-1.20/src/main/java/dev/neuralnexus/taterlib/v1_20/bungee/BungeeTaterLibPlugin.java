@@ -13,12 +13,12 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.bungee.listeners.network.BungeePluginMessageListener;
 import dev.neuralnexus.taterlib.v1_20.bungee.listeners.player.BungeePlayerListener;
 import dev.neuralnexus.taterlib.v1_20.bungee.server.BungeeProxyServer;
-import dev.neuralnexus.taterloader.Loader;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;

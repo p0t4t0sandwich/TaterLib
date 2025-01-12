@@ -9,7 +9,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
 import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
-import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterapi.loader.Loader;
 
 /** Velocity implementation of {@link RegisterPacketChannelsEvent}. */
 public class VelocityRegisterPacketChannelsEvent implements RegisterPacketChannelsEvent {

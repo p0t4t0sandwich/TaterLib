@@ -9,8 +9,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import java.io.File;
 import java.io.FileWriter;

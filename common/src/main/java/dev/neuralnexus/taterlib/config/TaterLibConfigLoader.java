@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.config;
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.config.VersionedConfig;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;
 import org.spongepowered.configurate.ConfigurateException;

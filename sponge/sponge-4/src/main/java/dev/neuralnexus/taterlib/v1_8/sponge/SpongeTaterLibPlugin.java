@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_8.sponge.event.command.SpongeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_8.sponge.listeners.block.SpongeBlockListener;
@@ -16,7 +17,6 @@ import dev.neuralnexus.taterlib.v1_8.sponge.listeners.entity.SpongeEntityListene
 import dev.neuralnexus.taterlib.v1_8.sponge.listeners.player.SpongePlayerListener;
 import dev.neuralnexus.taterlib.v1_8.sponge.listeners.server.SpongeServerListener;
 import dev.neuralnexus.taterlib.v1_8.sponge.server.SpongeServer;
-import dev.neuralnexus.taterloader.Loader;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;

@@ -9,9 +9,9 @@ import com.google.inject.Inject;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;

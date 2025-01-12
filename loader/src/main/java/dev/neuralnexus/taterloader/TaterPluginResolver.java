@@ -8,7 +8,7 @@ package dev.neuralnexus.taterloader;
 import static dev.neuralnexus.taterloader.TaterReflectUtil.newInstance;
 
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.taterloader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 /** Locates and returns the core TaterLib plugin. */
 public class TaterPluginResolver {

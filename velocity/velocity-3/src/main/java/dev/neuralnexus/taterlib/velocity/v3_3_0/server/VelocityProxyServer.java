@@ -6,10 +6,10 @@
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
-import dev.neuralnexus.taterloader.Loader;
 
 import org.jetbrains.annotations.ApiStatus;
 

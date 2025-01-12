@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.testmod.commands.TestModCommand;
-import dev.neuralnexus.taterloader.Loader;
+import dev.neuralnexus.taterapi.loader.Loader;
 
 /** The command listener. */
 public class CommandListener {

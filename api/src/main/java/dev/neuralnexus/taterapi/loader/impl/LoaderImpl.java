@@ -3,14 +3,14 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterloader.impl;
+package dev.neuralnexus.taterapi.loader.impl;
 
 import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
-import dev.neuralnexus.taterloader.Loader;
-import dev.neuralnexus.taterloader.event.api.LoaderEvents;
-import dev.neuralnexus.taterloader.event.loader.LoaderInitializeEvent;
-import dev.neuralnexus.taterloader.plugin.ModuleLoader;
-import dev.neuralnexus.taterloader.plugin.Plugin;
+import dev.neuralnexus.taterapi.event.api.LoaderEvents;
+import dev.neuralnexus.taterapi.event.loader.LoaderInitializeEvent;
+import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 import java.util.ArrayList;
 import java.util.HashMap;

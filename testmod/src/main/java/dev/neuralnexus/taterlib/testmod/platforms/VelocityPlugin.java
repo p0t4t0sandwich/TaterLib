@@ -9,7 +9,7 @@ import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 
 import dev.neuralnexus.taterlib.testmod.TestMod;
-import dev.neuralnexus.taterloader.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.event.api.PluginEvents;
 
 /** Velocity entry point. */
 @Plugin(

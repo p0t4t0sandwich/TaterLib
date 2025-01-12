@@ -3,17 +3,17 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterloader;
+package dev.neuralnexus.taterapi.loader;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.taterloader.event.api.PluginEvents;
-import dev.neuralnexus.taterloader.event.plugin.PluginDisableEvent;
-import dev.neuralnexus.taterloader.event.plugin.PluginEnableEvent;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
-import dev.neuralnexus.taterloader.plugin.ModuleLoader;
-import dev.neuralnexus.taterloader.plugin.Plugin;
-import dev.neuralnexus.taterloader.plugin.PluginModule;
-import dev.neuralnexus.taterloader.plugin.impl.ModuleLoaderImpl;
+import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.event.plugin.PluginDisableEvent;
+import dev.neuralnexus.taterapi.event.plugin.PluginEnableEvent;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
+import dev.neuralnexus.taterapi.loader.plugin.impl.ModuleLoaderImpl;
 
 import org.jetbrains.annotations.ApiStatus;
 

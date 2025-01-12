@@ -10,8 +10,8 @@ import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
 
 import org.bstats.MetricsBase;
 import org.bstats.charts.DrilldownPie;

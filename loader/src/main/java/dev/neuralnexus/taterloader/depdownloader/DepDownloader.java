@@ -7,7 +7,7 @@ package dev.neuralnexus.taterloader.depdownloader;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.taterloader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 
 import org.jetbrains.annotations.ApiStatus;
 
