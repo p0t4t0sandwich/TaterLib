@@ -8,11 +8,11 @@ package dev.neuralnexus.taterlib.testmod;
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.listeners.CommandListener;
-import dev.neuralnexus.taterapi.event.api.PluginEvents;
-import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 /** Main class for the plugin. */
 public class TestMod implements Plugin {

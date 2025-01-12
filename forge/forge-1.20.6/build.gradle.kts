@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.unimined)
 }
 
 base {
@@ -10,17 +10,17 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
 java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
-minecraft {
-    mappings(mappingsChannel, mappingsVersion)
-    reobf = false
+unimined.minecraft(sourceSets.main.get()) {
+    version(minecraftVersion)
+    minecraftForge {
+        loader(apiVersion)
+    }
+    mappings {
+        mojmap()
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraftVersion}-${apiVersion}")
-
-    // Hack fix for now, force jopt-simple to be exactly 5.0.4 because Mojang ships that version, but some transtive dependencies request 6.0+
-    implementation("net.sf.jopt-simple:jopt-simple:5.0.4") { version { strictly("5.0.4") } }
-
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))

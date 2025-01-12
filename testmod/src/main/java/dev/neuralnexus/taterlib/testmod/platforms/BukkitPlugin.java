@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.testmod.platforms;
 
-import dev.neuralnexus.taterlib.testmod.TestMod;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterlib.testmod.TestMod;
 
 import org.bukkit.plugin.java.JavaPlugin;
 

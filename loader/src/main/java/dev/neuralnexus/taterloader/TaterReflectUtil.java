@@ -18,6 +18,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /** Utility class for reflection. */
+@SuppressWarnings("UnstableApiUsage")
 public class TaterReflectUtil {
     public static final String TL_PACKAGE = "dev.neuralnexus.taterlib";
     public static final Map<Platform, String> packageNames = new HashMap<>();
@@ -33,7 +34,7 @@ public class TaterReflectUtil {
 
     public static Optional<String> getClass(String clazz, Platform platform) {
         String packageName = packageNames.get(platform);
-        if (packageName == null) {
+        if (null == packageName) {
             return Optional.empty();
         }
         return Optional.of(packageName + "." + clazz);
@@ -42,7 +43,7 @@ public class TaterReflectUtil {
     public static Optional<String> getClass(
             String clazz, MinecraftVersion version, Platform platform) {
         String packageName = packageNames.get(platform);
-        if (packageName == null) {
+        if (null == packageName) {
             return Optional.empty();
         }
         return Optional.of(packageName + "." + version.getPathString() + "." + clazz);
@@ -50,7 +51,7 @@ public class TaterReflectUtil {
 
     public static Optional<String> getRelocatedClass(String clazz, Platform relocatingPlatform) {
         String packageName = packageNames.get(Platforms.VANILLA);
-        if (packageName == null) {
+        if (null == packageName) {
             return Optional.empty();
         }
         String path = ".";

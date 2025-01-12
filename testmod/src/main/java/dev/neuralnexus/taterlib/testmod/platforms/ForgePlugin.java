@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.testmod.platforms;
 
-import dev.neuralnexus.taterlib.testmod.TestMod;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterlib.testmod.TestMod;
 
 import net.minecraftforge.fml.common.Mod;
 

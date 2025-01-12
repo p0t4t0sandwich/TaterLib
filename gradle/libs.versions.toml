@@ -1,9 +1,6 @@
 [versions]
 blossom = "1.3.1"
-forgegradle = "6.0.29"
 jvmdowngrader = "1.2.1"
-loom = "1.9-SNAPSHOT"
-neogradle = "7.0.171"
 spongegradle = "2.2.0"
 spotless = "6.25.0"
 shadow = "8.1.8"
@@ -19,11 +16,7 @@ modapi-muxins = { group = "dev.neuralnexus.modapi", name = "muxins", version = "
 
 [plugins]
 blossom = { id = "net.kyori.blossom", version.ref = "blossom" }
-forgegradle = { id = "net.minecraftforge.gradle", version.ref = "forgegradle" }
 jvmdowngrader = { id = "xyz.wagyourtail.jvmdowngrader", version.ref = "jvmdowngrader" }
-loom = { id = "fabric-loom", version.ref = "loom" }
-legacyloom = { id = "legacy-looming", version.ref = "loom" }
-neogradle = { id = "net.neoforged.gradle.userdev", version.ref = "neogradle" }
 shadow = { id = "io.github.goooler.shadow", version.ref = "shadow" }
 spongegradle = { id = "org.spongepowered.gradle.plugin", version.ref = "spongegradle" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

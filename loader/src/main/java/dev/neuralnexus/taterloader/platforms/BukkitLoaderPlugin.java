@@ -8,8 +8,8 @@ package dev.neuralnexus.taterloader.platforms;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterloader.TaterPluginResolver;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

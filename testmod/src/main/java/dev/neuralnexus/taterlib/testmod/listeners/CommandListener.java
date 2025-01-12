@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.testmod.listeners;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.testmod.commands.TestModCommand;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.testmod.commands.TestModCommand;
 
 /** The command listener. */
 public class CommandListener {

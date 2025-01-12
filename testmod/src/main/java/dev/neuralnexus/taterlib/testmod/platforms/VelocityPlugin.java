@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.testmod.platforms;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 
-import dev.neuralnexus.taterlib.testmod.TestMod;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterlib.testmod.TestMod;
 
 /** Velocity entry point. */
 @Plugin(

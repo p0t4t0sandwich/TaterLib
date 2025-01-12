@@ -23,7 +23,6 @@ subprojects {
 
     repositories {
         mavenLocal()
-        mavenCentral()
 
         // NeuralNexus
         maven {
@@ -41,60 +40,6 @@ subprojects {
         maven {
             name = 'NeuralNexus Mirror'
             url = 'https://maven.neuralnexus.dev/mirror'
-        }
-
-        // Minecraft
-        maven {
-            name = "minecraft-repo"
-            url = "https://libraries.minecraft.net/"
-        }
-
-        // Bukkit/Bungee
-        maven {
-            name = "spigotmc-repo"
-            url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
-        }
-
-        // Paper/Velocity
-        maven {
-            name = "papermc-repo"
-            url = "https://repo.papermc.io/repository/maven-public/"
-        }
-
-        // Sponge
-        maven {
-            name = 'SpongePowered'
-            url = 'https://repo.spongepowered.org/repository/maven-public/'
-        }
-
-        // Parchment Mappings
-        maven {
-            name = 'ParchmentMC'
-            url = 'https://maven.parchmentmc.org'
-        }
-
-        // Arclight
-        maven {
-            name = 'Arclight Maven'
-            url = 'https://maven.izzel.io/releases'
-        }
-
-        // Mohist
-        maven {
-            name = 'Mohist Maven'
-            url = 'https://maven.mohistmc.com/'
-        }
-
-        // Ketting
-        maven {
-            name = "Ketting"
-            url = "https://reposilite.c0d3m4513r.com/repository/Ketting/"
-        }
-
-        // Legacy Fabric
-        maven {
-            name = "legacy-fabric"
-            url = "https://repo.legacyfabric.net/repository/legacyfabric/"
         }
     }
 

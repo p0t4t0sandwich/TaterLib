@@ -1,30 +1,44 @@
+import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
+
 plugins {
-    alias(libs.plugins.loom)
+    alias(libs.plugins.unimined)
 }
 
 base {
     archivesName = "${projectId}-fabric-${minecraftVersion}"
 }
 
-loom.mixin.useLegacyMixinAp = false
+unimined.minecraft(sourceSets.main.get()) {
+    version(minecraftVersion)
+    fabric {
+        loader(loaderVersion)
+    }
+    mappings {
+        legacyIntermediary()
+        legacyYarn(541)
+    }
+}
+
+tasks.named<RemapJarTask>("remapJar").configure {
+    mixinRemap {
+        disableRefmap()
+    }
+}
 
 dependencies {
-    minecraft("com.mojang:minecraft:${minecraftVersion}")
-    mappings("net.legacyfabric:yarn:${mappingsVersion}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${loaderVersion}")
+    val apiModules = listOf(
+        "legacy-fabric-api-base",
+        "legacy-fabric-command-api-v2",
+        "legacy-fabric-lifecycle-events-v1",
+        "legacy-fabric-networking-api-v1",
+        "legacy-fabric-permissions-api-v1"
+    )
 
-//    Set<String> apiModules = [
-//            'legacy-fabric-api-base',
-//            'legacy-fabric-command-api-v2',
-//            'legacy-fabric-lifecycle-events-v1',
-//            'legacy-fabric-networking-api-v1',
-//            'legacy-fabric-permissions-api-v1'
-//    ]
-//    apiModules.forEach {
-//        modImplementation(legacy.apiModule(it, apiVersion))
-//    }
-    modImplementation("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:${apiVersion}")
+    apiModules.forEach {
+        "modImplementation"(fabricApi.legacyFabricModule(it, apiVersion))
+    }
 
+    compileOnly(libs.mixin)
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))

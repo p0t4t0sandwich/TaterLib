@@ -8,6 +8,10 @@ base {
     archivesName = "${projectId}-forge-${minecraftVersion}"
 }
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+java.targetCompatibility = JavaVersion.toVersion(javaVersion)
+
 unimined.minecraft(sourceSets.main.get()) {
     version(minecraftVersion)
     minecraftForge {

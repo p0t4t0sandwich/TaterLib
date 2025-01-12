@@ -1,17 +1,27 @@
 plugins {
-    alias(libs.plugins.forgegradle)
+    alias(libs.plugins.unimined)
 }
 
 base {
     archivesName = "${projectId}-forge-${minecraftVersion}"
 }
 
-minecraft {
-    mappings(mappingsChannel, mappingsVersion)
+java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+java.targetCompatibility = JavaVersion.toVersion(javaVersion)
+
+unimined.minecraft(sourceSets.main.get()) {
+    version(minecraftVersion)
+    minecraftForge {
+        loader(apiVersion)
+    }
+    mappings {
+        searge()
+        mcp(mappingsChannel, mappingsVersion)
+    }
 }
 
 dependencies {
-    minecraft("net.minecraftforge:forge:${minecraftVersion}-${apiVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
