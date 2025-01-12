@@ -27,7 +27,7 @@ import net.md_5.bungee.api.plugin.PluginManager;
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        start();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.BUNGEECORD)
                 .ifPresent(api -> api.setServer(BungeeProxyServer::instance));
     }
@@ -56,6 +56,6 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        stop();
+        this.onDisable();
     }
 }

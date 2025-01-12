@@ -27,7 +27,7 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        start();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.SPONGE)
                 .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));
     }
@@ -55,6 +55,6 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onDisable() {
-        stop();
+        this.onDisable();
     }
 }

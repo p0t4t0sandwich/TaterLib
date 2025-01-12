@@ -22,8 +22,7 @@ public interface TaterLibPlugin extends Plugin {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    default void start() {
+    default void onEnable() {
         TaterLib.logger()
                 .info(
                         LoaderImpl.PROJECT_NAME
@@ -36,8 +35,7 @@ public interface TaterLibPlugin extends Plugin {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    default void stop() {
+    default void onDisable() {
         TaterLib.stop();
         TaterLib.logger().info(LoaderImpl.PROJECT_NAME + " has been disabled!");
     }

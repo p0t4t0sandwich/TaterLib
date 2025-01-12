@@ -26,7 +26,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @SuppressWarnings("UnstableApiUsage")
     public void onInit() {
         VanillaBootstrap.init();
-        start();
+        onEnable();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
@@ -47,6 +47,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onDisable() {
-        stop();
+        this.onDisable();
     }
 }

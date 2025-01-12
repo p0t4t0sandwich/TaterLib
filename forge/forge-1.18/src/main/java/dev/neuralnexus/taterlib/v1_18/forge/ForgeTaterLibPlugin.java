@@ -27,7 +27,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        start();
+        onEnable();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
@@ -54,6 +54,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @SubscribeEvent
     public void onServerStopped(ServerStoppedEvent event) {
-        stop();
+        onDisable();
     }
 }

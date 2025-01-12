@@ -34,7 +34,7 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        start();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.BUKKIT)
                 .ifPresent(api -> api.setServer(BukkitServer::instance));
     }
@@ -82,6 +82,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        stop();
+        this.onDisable();
     }
 }

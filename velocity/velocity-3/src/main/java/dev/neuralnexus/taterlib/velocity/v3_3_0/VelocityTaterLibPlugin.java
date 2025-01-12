@@ -31,7 +31,7 @@ import java.time.Duration;
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        start();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
     }
@@ -71,6 +71,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onDisable() {
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        stop();
+        this.onDisable();
     }
 }

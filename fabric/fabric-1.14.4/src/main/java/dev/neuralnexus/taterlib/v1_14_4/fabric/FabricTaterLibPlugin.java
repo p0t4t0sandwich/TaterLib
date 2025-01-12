@@ -34,7 +34,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        start();
+        onEnable();
         TaterAPIProvider.setSide(
                 VanillaBootstrap.determineSide(
                         FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT));
@@ -44,7 +44,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
-            ServerLifecycleEvents.SERVER_STOPPED.register(s -> stop());
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> onDisable());
 
             // Register Fabric API command events
             CommandRegistrationCallback.EVENT.register(

@@ -21,14 +21,6 @@ public interface Plugin {
      */
     String id();
 
-    /** Start (alias for onEnable). */
-    @Deprecated
-    default void start() {}
-
-    /** Stop (alias for onDisable). */
-    @Deprecated
-    default void stop() {}
-
     /** Fires when the platform first initializes, doesn't have a common use case */
     default void onInit() {}
 

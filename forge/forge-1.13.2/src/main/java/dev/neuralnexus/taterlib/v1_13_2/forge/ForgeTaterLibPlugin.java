@@ -35,7 +35,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        start();
+        onEnable();
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(
                         api ->
@@ -77,6 +77,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @SubscribeEvent
     public void onServerStopped(FMLServerStoppedEvent event) {
-        stop();
+        onDisable();
     }
 }
