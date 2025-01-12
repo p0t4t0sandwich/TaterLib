@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the entity spawn listener. */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
 @Mixin(ServerLevel.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

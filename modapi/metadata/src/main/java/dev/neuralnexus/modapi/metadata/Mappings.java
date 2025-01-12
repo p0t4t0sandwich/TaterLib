@@ -10,7 +10,7 @@ public enum Mappings {
     UNKNOWN("unknown"),
     NONE("none"),
     OFFICIAL("official"),
-    MOJMAP("mojmap"),
+    MOJANG("mojang"),
     SPIGOT("spigot"), // Spigot 1.18+
     LEGACY_SPIGOT("legacy spigot"), // Spigot 1.17-
     SEARGE("searge"), // Forge 1.17.1+

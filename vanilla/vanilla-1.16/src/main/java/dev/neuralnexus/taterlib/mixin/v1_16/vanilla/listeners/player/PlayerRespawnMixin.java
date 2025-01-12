@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player respawn listener. */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(PlayerList.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V21)
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))

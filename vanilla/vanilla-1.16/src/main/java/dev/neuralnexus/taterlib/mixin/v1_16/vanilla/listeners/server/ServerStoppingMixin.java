@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the server stopping listener. */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(MinecraftServer.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

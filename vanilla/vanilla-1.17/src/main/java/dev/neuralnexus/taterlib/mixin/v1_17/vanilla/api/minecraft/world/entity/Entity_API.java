@@ -41,7 +41,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 import java.util.UUID;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({

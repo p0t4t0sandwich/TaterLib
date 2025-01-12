@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V21_1)
 @Mixin(StoredUserEntry.class)
 public interface StoredUserEntryAccessor<T> {

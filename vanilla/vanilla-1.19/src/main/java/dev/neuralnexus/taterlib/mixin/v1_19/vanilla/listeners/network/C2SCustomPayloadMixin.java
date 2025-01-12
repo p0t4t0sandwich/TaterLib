@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
 @Mixin(ServerGamePacketListenerImpl.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

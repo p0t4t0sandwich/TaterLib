@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({

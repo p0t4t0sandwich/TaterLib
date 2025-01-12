@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V21)
 @Mixin(CommandSourceStack.class)
 @Implements({

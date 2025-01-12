@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the player advancement finished listener. */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementFinishedMixin {

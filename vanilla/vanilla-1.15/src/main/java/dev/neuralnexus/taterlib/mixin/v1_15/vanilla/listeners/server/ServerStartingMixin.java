@@ -28,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /** Mixin for the server starting listener */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(MinecraftServer.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

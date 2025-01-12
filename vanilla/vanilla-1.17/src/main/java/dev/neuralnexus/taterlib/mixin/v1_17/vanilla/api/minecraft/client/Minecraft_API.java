@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))

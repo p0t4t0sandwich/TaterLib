@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements({

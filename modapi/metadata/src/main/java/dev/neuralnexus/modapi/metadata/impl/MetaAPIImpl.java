@@ -137,14 +137,14 @@ public final class MetaAPIImpl implements MetaAPI {
                 } else if (api.isModLoaded(Platforms.FORGE, "connector")) {
                     mappings = Mappings.SEARGE;
                 } else if (api.isModLoaded(Platforms.NEOFORGE, "connector")) {
-                    mappings = Mappings.MOJMAP;
+                    mappings = Mappings.MOJANG;
                 }
                 // Check NeoForge
             } else if (api.isPlatformPresent(Platforms.NEOFORGE)) {
                 if (this.version().is(MinecraftVersions.V20_1)) {
                     mappings = Mappings.SEARGE;
                 } else {
-                    mappings = Mappings.MOJMAP;
+                    mappings = Mappings.MOJANG;
                 }
                 // Check Forge
             } else if (api.isPlatformPresent(Platforms.FORGE)) {
@@ -154,7 +154,7 @@ public final class MetaAPIImpl implements MetaAPI {
                         .isInRange(MinecraftVersions.V17, MinecraftVersions.V20_5)) {
                     mappings = Mappings.SEARGE;
                 } else {
-                    mappings = Mappings.MOJMAP;
+                    mappings = Mappings.MOJANG;
                 }
                 // Check Fabric
             } else if (api.isPlatformPresent(Platforms.FABRIC)) {
@@ -169,12 +169,12 @@ public final class MetaAPIImpl implements MetaAPI {
                 if (this.version().isOlderThan(MinecraftVersions.V14)) {
                     mappings = Mappings.SEARGE;
                 } else {
-                    mappings = Mappings.MOJMAP;
+                    mappings = Mappings.MOJANG;
                 }
                 // Check Paper
             } else if (api.isPlatformPresent(Platforms.PAPER)
                     && this.version().isOlderThan(MinecraftVersions.V20_6)) {
-                mappings = Mappings.MOJMAP;
+                mappings = Mappings.MOJANG;
                 // Check Spigot
             } else if (api.isPlatformPresent(Platforms.SPIGOT)) {
                 if (this.version().isOlderThan(MinecraftVersions.V18)) {

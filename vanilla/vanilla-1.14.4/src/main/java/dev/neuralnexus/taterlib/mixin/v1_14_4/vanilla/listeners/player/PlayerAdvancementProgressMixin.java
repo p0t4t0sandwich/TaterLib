@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Mixin for the player advancement progress listener. */
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
 @Mixin(PlayerAdvancements.class)
 @SuppressWarnings({"unused", "UnusedMixin"})

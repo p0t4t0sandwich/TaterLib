@@ -37,7 +37,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))

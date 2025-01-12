@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 import java.util.Map;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V21_1)
 @Mixin(GameProfileCache.class)
 public interface GameProfileCacheAccessor {

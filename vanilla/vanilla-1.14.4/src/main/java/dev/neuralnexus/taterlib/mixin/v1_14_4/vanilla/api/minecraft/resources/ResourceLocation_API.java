@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.MOJMAP)
+@ReqMappings(Mappings.MOJANG)
 // Sponge's API satisfies the ResourceKey interface, and clashes with our default `asString` method
 @ReqPlatform(not = Platform.SPONGE)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)

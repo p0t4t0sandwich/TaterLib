@@ -113,14 +113,14 @@ public record MappingEntry(
         }
 
         public Builder mojang(String mappings) {
-            if (ENVIRONMENT == Mappings.MOJMAP) {
+            if (ENVIRONMENT == Mappings.MOJANG) {
                 this.mappings = mappings;
             }
             return this;
         }
 
         public Builder mojang(String mappings, @NotNull MinecraftVersion version) {
-            if (ENVIRONMENT == Mappings.MOJMAP && VERSION.is(version)) {
+            if (ENVIRONMENT == Mappings.MOJANG && VERSION.is(version)) {
                 this.mappings = mappings;
             }
             return this;
@@ -130,7 +130,7 @@ public record MappingEntry(
                 String mappings,
                 @NotNull MinecraftVersion minVersion,
                 @NotNull MinecraftVersion maxVersion) {
-            if (ENVIRONMENT == Mappings.MOJMAP && VERSION.isInRange(minVersion, maxVersion)) {
+            if (ENVIRONMENT == Mappings.MOJANG && VERSION.isInRange(minVersion, maxVersion)) {
                 this.mappings = mappings;
             }
             return this;
