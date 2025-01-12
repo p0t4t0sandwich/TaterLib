@@ -40,7 +40,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
-        onEnable();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.FABRIC)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 

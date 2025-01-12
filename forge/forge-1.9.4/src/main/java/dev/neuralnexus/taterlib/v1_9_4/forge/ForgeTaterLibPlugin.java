@@ -45,7 +45,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        onEnable();
+        this.onEnable();
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
@@ -66,7 +66,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStopped(FMLServerStoppedEvent event) {
-        onDisable();
+        this.onDisable();
     }
 
     // ----------------------------- Relocated Server listeners -----------------------------

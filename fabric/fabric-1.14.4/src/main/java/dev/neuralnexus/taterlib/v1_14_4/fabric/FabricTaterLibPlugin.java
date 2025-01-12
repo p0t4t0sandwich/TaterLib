@@ -34,7 +34,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        onEnable();
+        this.onEnable();
         TaterAPIProvider.setSide(
                 VanillaBootstrap.determineSide(
                         FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT));

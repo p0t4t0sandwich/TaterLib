@@ -25,7 +25,7 @@ import java.util.Optional;
 public interface Loader {
     static Loader instance() {
         Loader ret = LoaderImpl.getInstance();
-        if (ret == null) {
+        if (null == ret) {
             throw new IllegalStateException("TaterLib Loader instance not initialized");
         }
         return ret;
@@ -56,7 +56,7 @@ public interface Loader {
     /** Register a plugin. */
     @ApiStatus.Internal
     default void registerPlugin(Plugin plugin) {
-        if (plugin == null) {
+        if (null == plugin) {
             return;
         }
         plugins().add(plugin);

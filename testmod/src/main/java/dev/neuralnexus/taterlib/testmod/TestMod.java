@@ -106,8 +106,8 @@ public class TestMod implements Plugin {
     /** Reload */
     public void reload() {
         RELOADED = true;
-        onDisable();
-        onEnable();
+        this.onDisable();
+        this.onEnable();
         logger.info(PROJECT_NAME + " has been reloaded!");
     }
 }
