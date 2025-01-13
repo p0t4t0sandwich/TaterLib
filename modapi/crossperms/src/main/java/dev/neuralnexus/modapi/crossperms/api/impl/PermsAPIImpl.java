@@ -12,10 +12,10 @@ import java.util.List;
 
 /** Permissions API implementation */
 public class PermsAPIImpl implements PermsAPI {
-    private static PermsAPIImpl INSTANCE = null;
+    private static PermsAPIImpl INSTANCE;
 
     public static PermsAPIImpl getInstance() {
-        if (INSTANCE == null) {
+        if (null == INSTANCE) {
             INSTANCE = new PermsAPIImpl();
         }
         return INSTANCE;

@@ -33,6 +33,6 @@ public interface Permissible {
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     default boolean hasPermission(String permission) {
         return false;
-        //        return TaterAPIProvider.hasPermission(this, permission);
+        //        return TaterAPIProvider.profileHasPermission(this, permission);
     }
 }

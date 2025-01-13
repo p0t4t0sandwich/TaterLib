@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;

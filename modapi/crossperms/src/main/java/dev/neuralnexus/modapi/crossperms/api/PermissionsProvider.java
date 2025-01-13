@@ -5,7 +5,12 @@
  */
 package dev.neuralnexus.modapi.crossperms.api;
 
+import com.mojang.authlib.GameProfile;
+import dev.neuralnexus.modapi.crossperms.api.mc.WPlayerList;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+import java.util.UUID;
 
 /** A generic provider for permissions plugins */
 public interface PermissionsProvider {
@@ -17,7 +22,8 @@ public interface PermissionsProvider {
     String name();
 
     /**
-     * Get if a subject has a permission
+     * Get if a subject has a permission <br>
+     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player, or any platform implementation of those objects
      *
      * @param subject The subject to check
      * @param permissionLevel The permission level to check
@@ -25,8 +31,24 @@ public interface PermissionsProvider {
      */
     boolean hasPermission(@NotNull Object subject, int permissionLevel);
 
+    default boolean hasPermission(@NotNull GameProfile subject, int permissionLevel) {
+        Objects.requireNonNull(subject, "Subject cannot be null");
+        return WPlayerList.hasPermissionLevel(subject, permissionLevel);
+    }
+
+    default boolean hasPermission(@NotNull UUID subject, int permissionLevel) {
+        Objects.requireNonNull(subject, "Subject cannot be null");
+        return WPlayerList.hasPermissionLevel(subject, permissionLevel);
+    }
+
+    default boolean hasPermission(@NotNull String subject, int permissionLevel) {
+        Objects.requireNonNull(subject, "Subject cannot be null");
+        return WPlayerList.hasPermissionLevel(subject, permissionLevel);
+    }
+
     /**
-     * Get if a subject has a permission
+     * Get if a subject has a permission <br>
+     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player, or any platform implementation of those objects
      *
      * @param subject The subject to check
      * @param permission The permission to check
