@@ -3,7 +3,7 @@ blossom = "1.3.1"
 jvmdowngrader = "1.2.1"
 spongegradle = "2.2.0"
 spotless = "6.25.0"
-shadow = "8.1.8"
+shadow = "8.3.4"
 unimined = "1.3.12"
 vanillagradle = "0.2.1-SNAPSHOT"
 
@@ -17,7 +17,7 @@ modapi-muxins = { group = "dev.neuralnexus.modapi", name = "muxins", version = "
 [plugins]
 blossom = { id = "net.kyori.blossom", version.ref = "blossom" }
 jvmdowngrader = { id = "xyz.wagyourtail.jvmdowngrader", version.ref = "jvmdowngrader" }
-shadow = { id = "io.github.goooler.shadow", version.ref = "shadow" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 spongegradle = { id = "org.spongepowered.gradle.plugin", version.ref = "spongegradle" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 unimined = { id = "xyz.wagyourtail.unimined", version.ref = "unimined" }
