@@ -16,7 +16,7 @@ import java.util.Objects;
 /** Velocity permissions provider */
 public class VelocityPermissionsProvider implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "velocitypermissions";
     }
 

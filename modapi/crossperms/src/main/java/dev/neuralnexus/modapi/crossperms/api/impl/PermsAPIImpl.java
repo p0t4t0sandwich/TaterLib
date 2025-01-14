@@ -37,7 +37,7 @@ public class PermsAPIImpl implements PermsAPI {
 
     @Override
     public void unregisterProvider(String name) {
-        this.providers.removeIf(provider -> provider.name().equalsIgnoreCase(name));
+        this.providers.removeIf(provider -> provider.id().equalsIgnoreCase(name));
     }
 
     @Override

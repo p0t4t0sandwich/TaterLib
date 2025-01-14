@@ -15,7 +15,7 @@ import java.util.Objects;
 /** Bukkit permissions provider */
 public class BukkitPermissionsProvider implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "bukkitpermissions";
     }
 

@@ -10,14 +10,22 @@ import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.annotations.UseWithVersion;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 public class WPlayerList {
     private static final boolean is7_10 =
             MetaAPI.instance().version().isInRange(MinecraftVersions.V7, MinecraftVersions.V7_10);
-    private static final boolean is13_up =
-            MetaAPI.instance().version().isInRange(MinecraftVersions.V13, MinecraftVersions.UNKNOWN);
+    public static final boolean is13_up =
+            MetaAPI.instance()
+                    .version()
+                    .isInRange(MinecraftVersions.V13, MinecraftVersions.UNKNOWN);
     private final Object playerList;
 
     private WPlayerList(Object playerList) {
@@ -46,6 +54,7 @@ public class WPlayerList {
         return Collections.unmodifiableList(players);
     }
 
+//    @UseWithVersion(MinecraftVersion.V7_10)
     public Optional<WServerPlayer> getPlayer(UUID uuid) {
         Object playerObject = null;
         if (is7_10) {
@@ -111,7 +120,8 @@ public class WPlayerList {
             return player.map(p -> p.hasPermission(permissionLevel)).orElse(false);
         }
         return player.map(WServerPlayer::getGameProfile)
-                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel)).orElse(false);
+                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel))
+                .orElse(false);
     }
 
     public static boolean hasPermissionLevel(String name, int permissionLevel) {
@@ -120,6 +130,7 @@ public class WPlayerList {
             return player.map(p -> p.hasPermission(permissionLevel)).orElse(false);
         }
         return player.map(WServerPlayer::getGameProfile)
-                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel)).orElse(false);
+                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel))
+                .orElse(false);
     }
 }

@@ -35,6 +35,16 @@ public class WServerPlayer {
     }
 
     public boolean hasPermission(int permissionLevel) {
-        return CrossPerms.instance().store().invokeMethod("CommandSource", "hasPermission", player, permissionLevel);
+        return CrossPerms.instance()
+                .store()
+                .invokeMethod("CommandSource", "hasPermission", player, permissionLevel);
+    }
+
+    public static Class<?> getClazz() {
+        return CrossPerms.instance().store().getClass("ServerPlayer");
+    }
+
+    public static boolean instanceOf(Object obj) {
+        return getClazz().isInstance(obj);
     }
 }

@@ -65,13 +65,10 @@ public class CrossPerms {
                         .yarnIntermediary(mcString)
                         .legacyIntermediary(mcString);
 
-        store.registerClass(mcServer);
-        logger.info("Registered MinecraftServer");
-
         // MinecraftServer#getPlayerList() -> PlayerList
         var minecraftServer_getPlayerList =
                 MappingEntry.builder("getPlayerList")
-                        .parentEntry("MinecraftServer")
+                        .parentEntry(mcServer)
                         .mojang("getPlayerList")
                         .searge("m_6846_")
                         .legacySearge(
@@ -85,7 +82,8 @@ public class CrossPerms {
                         .yarnIntermediary("method_3760")
                         .legacyIntermediary("method_3004");
 
-        store.registerMethod(minecraftServer_getPlayerList);
+        store.registerClass(mcServer).registerMethod(minecraftServer_getPlayerList);
+        logger.info("Registered MinecraftServer");
         logger.info("|-> getPlayerList");
 
         // PlayerList
@@ -109,7 +107,7 @@ public class CrossPerms {
         // PlayerList#getPlayers() -> List<ServerPlayer>
         var playerList_getPlayers =
                 MappingEntry.builder("getPlayers")
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .versionRange(MinecraftVersions.V8, MinecraftVersions.UNKNOWN)
                         .mojang("getPlayers")
                         .searge("m_11314_")
@@ -122,7 +120,7 @@ public class CrossPerms {
         // PlayerList#playerEntityList -> List<ServerPlayer>
         var playerList_playerEntityList =
                 MappingEntry.builder("players")
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .versionRange(MinecraftVersions.V7, MinecraftVersions.V7_10)
                         .legacySearge("field_72404_b")
                         .mcp("playerEntityList")
@@ -132,7 +130,7 @@ public class CrossPerms {
         var playerList_getPlayerByUUID =
                 MappingEntry.builder("getPlayerByUUID")
                         .versionRange(MinecraftVersions.V8, MinecraftVersions.UNKNOWN)
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .mojang("getPlayer")
                         .searge("m_11259_")
                         .legacySearge("func_177451_a")
@@ -143,7 +141,7 @@ public class CrossPerms {
         // PlayerList#getPlayerByName(String) -> ServerPlayer
         var playerList_getPlayerByName =
                 MappingEntry.builder("getPlayerByName")
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .mojang("getPlayerByName")
                         .searge("m_11255_")
                         .legacySearge("func_152612_a")
@@ -154,7 +152,7 @@ public class CrossPerms {
         // PlayerList#isOp(GameProfile) -> boolean
         var playerList_isOp =
                 MappingEntry.builder("isOp")
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .mojang("isOp")
                         .searge("m_11303_")
                         .legacySearge("func_152596_g")
@@ -165,7 +163,7 @@ public class CrossPerms {
         // PlayerList#getOps() -> List<ServerOpListEntry>
         var playerList_getOps =
                 MappingEntry.builder("getOps")
-                        .parentEntry("PlayerList")
+                        .parentEntry(playerList)
                         .mojang("getOps")
                         .searge("m_11307_")
                         .legacySearge("func_152603_m")
@@ -201,7 +199,7 @@ public class CrossPerms {
         // ServerOpListEntry#getLevel -> int
         var serverOpListEntry_getLevel =
                 MappingEntry.builder("getLevel")
-                        .parentEntry("ServerOpListEntry")
+                        .parentEntry(serverOpListEntry)
                         .mojang("getLevel")
                         .searge("m_11363_")
                         .legacySearge("func_152644_a")
@@ -213,7 +211,7 @@ public class CrossPerms {
         // StoredUserEntry#getUser -> GameProfile
         var storedUserEntry_getUser =
                 MappingEntry.builder("getUser")
-                        .parentEntry("ServerOpListEntry")
+                        .parentEntry(serverOpListEntry)
                         .mojang("getUser")
                         .searge("m_11373_")
                         .legacySearge("func_152640_f")
@@ -229,27 +227,14 @@ public class CrossPerms {
         logger.info("|-> getUser");
 
         // Entity
-        var entity = MappingEntry.builder("Entity")
-                .mojang("net.minecraft.world.entity.Entity")
-                .searge("net.minecraft.src.C_507_")
-                .legacySearge("net.minecraft.entity.Entity")
-                .mcp("net.minecraft.entity.Entity")
-                .yarnIntermediary("net.minecraft.class_1297")
-                .legacyIntermediary("net.minecraft.class_864");
-
-        // Entity#hasPermissions(int) -> boolean
-        var entity_hasPermissions =
-                MappingEntry.builder("hasPermissions")
-                        .versionRange(MinecraftVersions.V13, MinecraftVersions.UNKNOWN)
-                        .parentEntry("Entity")
-                        .mojang("hasPermissions")
-                        .searge("m_20310_")
-                        .searge("m_352356_", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
-                        .legacySearge("func_211513_k")
-                        .mcp("hasPermissionLevel")
-                        .yarnIntermediary("method_5687")
-                        .yarnIntermediary("method_64475", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
-                        .legacyIntermediary("method_15592");
+        var entity =
+                MappingEntry.builder("Entity")
+                        .mojang("net.minecraft.world.entity.Entity")
+                        .searge("net.minecraft.src.C_507_")
+                        .legacySearge("net.minecraft.entity.Entity")
+                        .mcp("net.minecraft.entity.Entity")
+                        .yarnIntermediary("net.minecraft.class_1297")
+                        .legacyIntermediary("net.minecraft.class_864");
 
         // Player
         var player =
@@ -260,17 +245,6 @@ public class CrossPerms {
                         .mcp("net.minecraft.entity.player.PlayerEntity")
                         .yarnIntermediary("net.minecraft.class_1657")
                         .legacyIntermediary("net.minecraft.class_988");
-
-        // Player#getGameProfile() -> GameProfile
-        var player_getGameProfile =
-                MappingEntry.builder("getGameProfile")
-                        .parentEntry("Player")
-                        .mojang("getGameProfile")
-                        .searge("m_36316_")
-                        .legacySearge("func_146103_bH")
-                        .mcp("getGameProfile")
-                        .yarnIntermediary("method_7334")
-                        .legacyIntermediary("method_8429");
 
         // ServerPlayer
         var serverPlayer =
@@ -289,6 +263,32 @@ public class CrossPerms {
                                 MinecraftVersions.V13_2)
                         .yarnIntermediary("net.minecraft.class_3222")
                         .legacyIntermediary("net.minecraft.class_798");
+
+        // Entity#hasPermissions(int) -> boolean
+        var entity_hasPermissions =
+                MappingEntry.builder("hasPermissions")
+                        .versionRange(MinecraftVersions.V13, MinecraftVersions.UNKNOWN)
+                        .parentEntry(serverPlayer)
+                        .mojang("hasPermissions")
+                        .searge("m_20310_")
+                        .searge("m_352356_", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
+                        .legacySearge("func_211513_k")
+                        .mcp("hasPermissionLevel")
+                        .yarnIntermediary("method_5687")
+                        .yarnIntermediary(
+                                "method_64475", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
+                        .legacyIntermediary("method_15592");
+
+        // Player#getGameProfile() -> GameProfile
+        var player_getGameProfile =
+                MappingEntry.builder("getGameProfile")
+                        .parentEntry(serverPlayer)
+                        .mojang("getGameProfile")
+                        .searge("m_36316_")
+                        .legacySearge("func_146103_bH")
+                        .mcp("getGameProfile")
+                        .yarnIntermediary("method_7334")
+                        .legacyIntermediary("method_8429");
 
         store.registerClass(serverPlayer)
                 .registerMethod(player_getGameProfile) // Inherited from Player
@@ -309,11 +309,52 @@ public class CrossPerms {
                         .legacyIntermediary("net.minecraft.class_3965")
                         .yarn("net.minecraft.command.CommandSource");
 
+        // CommandSourceStack
+        var commandSender =
+                MappingEntry.builder("CommandSender")
+                        .mojang(
+                                "net.minecraft.commands.CommandSourceStack",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        .searge(
+                                "net.minecraft.src.C_2969_",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        .legacySearge(
+                                "net.minecraft.command.CommandSource",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        .mcp(
+                                "net.minecraft.command.CommandSource",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        .yarnIntermediary(
+                                "net.minecraft.class_2168",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        .legacyIntermediary(
+                                "net.minecraft.class_3915",
+                                MinecraftVersions.V13,
+                                MinecraftVersions.UNKNOWN)
+                        // Old CommandSender implementations
+                        .legacySearge(
+                                "net.minecraft.command.ICommandSender",
+                                MinecraftVersions.V7,
+                                MinecraftVersions.V12_2)
+                        .mcp(
+                                "net.minecraft.command.ICommandSender",
+                                MinecraftVersions.V7,
+                                MinecraftVersions.V12_2)
+                        .yarnIntermediary(
+                                "net.minecraft.class_2172",
+                                MinecraftVersions.V7,
+                                MinecraftVersions.V12_2);
+
         // SharedSuggestionProvider#hasPermissions(int) -> boolean
         var commandSource_hasPermissions =
                 MappingEntry.builder("hasPermissions")
                         .versionRange(MinecraftVersions.V13, MinecraftVersions.UNKNOWN)
-                        .parentEntry("SharedSuggestionProvider")
+                        .parentEntry(commandSender)
                         .mojang("hasPermission")
                         .searge("m_6761_")
                         .legacySearge("func_197034_c")
@@ -321,28 +362,19 @@ public class CrossPerms {
                         .yarnIntermediary("method_9259")
                         .legacyIntermediary("method_17575");
 
-        store.registerClass(commandSource)
-                .registerMethod(commandSource_hasPermissions);
-        logger.info("Registered SharedSuggestionProvider");
-        logger.info("|-> hasPermissions");
-
-        // CommandSender stuff -- Really old
-        // -----------------------------------------------------------------------------------------------
-        var commandSender =
-                MappingEntry.builder("CommandSender")
-                        .legacySearge("net.minecraft.command.ICommandSender")
-                        .mcp("net.minecraft.command.ICommandSender")
-                        .yarnIntermediary("net.minecraft.class_2172");
-
         // CommandSender#getCommandSenderEntity() -> Entity
         var commandSender_getCommandSenderEntity =
                 MappingEntry.builder("getCommandSenderEntity")
-                        .parentEntry("CommandSender")
+                        .versionRange(MinecraftVersions.V7, MinecraftVersions.V12_2)
+                        .parentEntry(commandSender)
                         .legacySearge("func_174793_f")
                         .yarnIntermediary("method_9259");
 
-        store.registerClass(commandSender).registerMethod(commandSender_getCommandSenderEntity);
-        logger.info("Registered CommandSender");
+        store.registerClass(commandSender)
+                .registerMethod(commandSource_hasPermissions)
+                .registerMethod(commandSender_getCommandSenderEntity);
+        logger.info("Registered CommandSourceStack");
+        logger.info("|-> hasPermissions"); // Inherited from SharedSuggestionProvider
         logger.info("|-> getCommandSenderEntity");
     }
 }

@@ -26,7 +26,7 @@ public interface PermsAPI {
     /**
      * Unregister a provider
      *
-     * @param name The name of the provider
+     * @param name The id of the provider
      */
     void unregisterProvider(String name);
 

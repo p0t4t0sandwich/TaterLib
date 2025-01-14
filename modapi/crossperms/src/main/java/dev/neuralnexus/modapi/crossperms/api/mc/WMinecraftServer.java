@@ -18,6 +18,9 @@ public class WMinecraftServer {
     }
 
     public static WPlayerList getPlayerList() {
-        return WPlayerList.wrap(CrossPerms.instance().store().invokeMethod("MinecraftServer", "getPlayerList", server));
+        return WPlayerList.wrap(
+                CrossPerms.instance()
+                        .store()
+                        .invokeMethod("MinecraftServer", "getPlayerList", server));
     }
 }

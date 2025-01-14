@@ -36,8 +36,8 @@ public record MappingEntry(
         private String parentEntry;
         private String mappings;
         private MinecraftVersion version = MinecraftVersions.UNKNOWN;
-        private MinecraftVersion minVersion = null;
-        private MinecraftVersion maxVersion = null;
+        private MinecraftVersion minVersion;
+        private MinecraftVersion maxVersion;
 
         private Builder(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name cannot be null");
@@ -52,6 +52,31 @@ public record MappingEntry(
          */
         public Builder parentEntry(@NotNull String parent) {
             this.parentEntry = Objects.requireNonNull(parent, "parentEntry cannot be null");
+            return this;
+        }
+
+        /**
+         * Set the parent entry of this mapping entry <br>
+         * This is used to tie Method and Field mappings to their parent class
+         *
+         * @param parent The parent entry
+         * @return The builder
+         */
+        public Builder parentEntry(@NotNull MappingEntry parent) {
+            this.parentEntry = Objects.requireNonNull(parent.name(), "parentEntry cannot be null");
+            return this;
+        }
+
+        /**
+         * Set the parent entry of this mapping entry <br>
+         * This is used to tie Method and Field mappings to their parent class
+         *
+         * @param parent The parent entry
+         * @return The builder
+         */
+        public Builder parentEntry(@NotNull Builder parent) {
+            this.parentEntry =
+                    Objects.requireNonNull(parent.build().name(), "parentEntry cannot be null");
             return this;
         }
 

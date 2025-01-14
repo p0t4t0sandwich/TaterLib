@@ -18,15 +18,14 @@ import java.util.Objects;
 /** Forge permissions provider */
 public class ForgePermissions implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "forgepermissions";
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
-        // TODO: Reflect to query the player object
-        return false;
+        return this.hasPermission(subject, permissionLevel, null);
     }
 
     @Override
@@ -34,13 +33,9 @@ public class ForgePermissions implements PermissionsProvider {
         Objects.requireNonNull(subject, "Subject cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
         boolean result = false;
-        GameProfile profile = null;
-        // TODO: Split this into a separate method
-        if (subject instanceof GameProfile gameProfile) {
-            profile = gameProfile;
-        }
-        // TODO: Reflectively check for instance of player, then reflect to get profile
-        if (profile != null) {
+
+        GameProfile profile = this.getGameProfile(subject).orElse(null);
+        if (null != profile) {
             result = PermissionAPI.getPermissionHandler().hasPermission(profile, permission, null);
         }
 

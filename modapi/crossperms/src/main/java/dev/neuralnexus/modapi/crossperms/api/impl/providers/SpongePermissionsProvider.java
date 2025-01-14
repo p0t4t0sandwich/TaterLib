@@ -15,7 +15,7 @@ import java.util.Objects;
 /** Sponge permissions provider */
 public class SpongePermissionsProvider implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "spongepermissions";
     }
 

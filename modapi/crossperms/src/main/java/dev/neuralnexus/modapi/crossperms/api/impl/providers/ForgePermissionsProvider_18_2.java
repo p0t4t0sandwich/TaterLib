@@ -24,7 +24,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     private static final Logger logger = Logger.create("ForgePermissionsProvider_18_2");
 
     @Override
-    public String name() {
+    public String id() {
         return "forgepermissions";
     }
 
@@ -76,27 +76,10 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
         SERVER_PLAYER = clazz;
     }
 
-    private static final Method SP_GET_UUID;
-
-    static {
-        Method method = null;
-        try {
-            if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_5)) {
-                method = SERVER_PLAYER.getDeclaredMethod("getUUID");
-            } else {
-                method = SERVER_PLAYER.getDeclaredMethod("m_142081");
-            }
-        } catch (NoSuchMethodException e) {
-            logger.error("Failed to find getUUID method in ServerPlayer class", e);
-        }
-        SP_GET_UUID = method;
-    }
-
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
         Objects.requireNonNull(subject, "Subject cannot be null");
-        // TODO: Reflect to query the player object
-        return false;
+        return this.hasPermission(subject, permissionLevel, null);
     }
 
     @Override
@@ -118,14 +101,14 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
         } else if (SERVER_PLAYER.isInstance(subject)) {
             player = subject;
         }
-        if (player != null) {
+        if (null != player) {
             try {
-                uuid = (UUID) SP_GET_UUID.invoke(player);
+                //                uuid = (UUID) SP_GET_UUID.invoke(player);
             } catch (Exception e) {
                 logger.error("Failed to invoke getUUID method in ServerPlayer class", e);
             }
         }
-        if (player == null || uuid == null) {
+        if (null == player || null == uuid) {
             logger.error("Failed to get player object or UUID for " + subject);
             return false;
         }

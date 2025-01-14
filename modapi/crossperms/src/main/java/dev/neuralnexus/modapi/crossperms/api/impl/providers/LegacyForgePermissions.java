@@ -14,7 +14,7 @@ import java.util.Objects;
 /** Forge permissions provider */
 public class LegacyForgePermissions implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "forgepermissions";
     }
 

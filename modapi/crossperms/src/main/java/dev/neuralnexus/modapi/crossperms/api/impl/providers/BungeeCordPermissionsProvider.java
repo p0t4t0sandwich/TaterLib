@@ -16,7 +16,7 @@ import java.util.Objects;
 /** BungeeCord permissions provider */
 public class BungeeCordPermissionsProvider implements PermissionsProvider {
     @Override
-    public String name() {
+    public String id() {
         return "bungeecordpermissions";
     }
 
