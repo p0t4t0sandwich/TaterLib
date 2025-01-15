@@ -53,14 +53,6 @@ tasks.jar {
     }
 }
 
-//tasks.javadoc {
-//    javadocTool = javaToolchains.javadocToolFor {
-//        languageVersion.set(JavaLanguageVersion.of(javaVersion))
-//    }
-//    source = sourceSets.main.get().allJava
-//    classpath += configurations.compileClasspath.get()
-//}
-
 tasks.downgradeJar {
     downgradeTo = JavaVersion.VERSION_1_8
     archiveClassifier.set("downgraded-8")
@@ -94,15 +86,15 @@ publishing {
         maven("https://maven.neuralnexus.dev/releases") {
             name = "NeuralNexusReleases"
             credentials {
-                username = (project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")).toString()
-                password = (project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")).toString()
+                username = project.findProperty("neuralNexusUsername") as? String ?: System.getenv("NEURALNEXUS_USERNAME") ?: ""
+                password = project.findProperty("neuralNexusPassword") as? String ?: System.getenv("NEURALNEXUS_PASSWORD") ?: ""
             }
         }
         maven("https://maven.neuralnexus.dev/snapshots") {
             name = "NeuralNexusSnapshots"
             credentials {
-                username = (project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")).toString()
-                password = (project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")).toString()
+                username = project.findProperty("neuralNexusUsername") as? String ?: System.getenv("NEURALNEXUS_USERNAME") ?: ""
+                password = project.findProperty("neuralNexusPassword") as? String ?: System.getenv("NEURALNEXUS_PASSWORD") ?: ""
             }
         }
     }
