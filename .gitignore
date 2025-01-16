@@ -34,3 +34,4 @@ run
 
 # IntelliJ
 .idea
+*.iml
