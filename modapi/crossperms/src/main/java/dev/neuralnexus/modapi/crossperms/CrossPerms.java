@@ -363,16 +363,20 @@ public class CrossPerms {
                         .legacyIntermediary("method_17575");
 
         // CommandSender#getCommandSenderEntity() -> Entity
-        var commandSender_getCommandSenderEntity =
-                MappingEntry.builder("getCommandSenderEntity")
-                        .versionRange(MinecraftVersions.V7, MinecraftVersions.V12_2)
+        var commandSender_getEntity =
+                MappingEntry.builder("getEntity")
                         .parentEntry(commandSender)
-                        .legacySearge("func_174793_f")
-                        .yarnIntermediary("method_9259");
+                        .mojang("getEntity")
+                        .searge("m_81373_")
+                        .legacySearge("func_197022_f")
+                        .mcp("getEntity")
+                        .yarnIntermediary("method_9228")
+                        .legacySearge("func_174793_f", MinecraftVersions.V7, MinecraftVersions.V12_2)
+                        .legacyIntermediary("method_10788", MinecraftVersions.V7, MinecraftVersions.V12_2);
 
         store.registerClass(commandSender)
                 .registerMethod(commandSource_hasPermissions)
-                .registerMethod(commandSender_getCommandSenderEntity);
+                .registerMethod(commandSender_getEntity);
         logger.info("Registered CommandSourceStack");
         logger.info("|-> hasPermissions"); // Inherited from SharedSuggestionProvider
         logger.info("|-> getCommandSenderEntity");

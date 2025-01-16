@@ -7,6 +7,8 @@ package dev.neuralnexus.modapi.crossperms.api.mc;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 
+import java.util.Optional;
+
 public class WCommandSender {
     private final Object commandSender;
 
@@ -31,5 +33,13 @@ public class WCommandSender {
                 .store()
                 .invokeMethod(
                         "CommandSender", "hasPermission", this.commandSender, permissionLevel);
+    }
+
+    public Optional<WEntity> getEntity() {
+        Object entity = CrossPerms.instance()
+                .store()
+                .invokeMethod("CommandSender", "getEntity", this.commandSender);
+        return Optional.ofNullable(entity)
+                .map(WEntity::wrap);
     }
 }

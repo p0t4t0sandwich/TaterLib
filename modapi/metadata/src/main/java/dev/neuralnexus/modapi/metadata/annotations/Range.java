@@ -12,17 +12,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/** An annotation to specify the required Minecraft version(s) for a field, method, or class. */
+/** An annotation to specify a range of Minecraft versions for an annotation */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.LOCAL_VARIABLE, ElementType.METHOD, ElementType.TYPE})
-public @interface UseWithVersion {
-    /**
-     * The list of required Minecraft versions
-     *
-     * @return The list of required Minecraft versions
-     */
-    MinecraftVersion[] value() default {};
-
+@Target(ElementType.ANNOTATION_TYPE)
+public @interface Range {
     /**
      * The minimum required Minecraft version (inclusive)
      *

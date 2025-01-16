@@ -10,7 +10,8 @@ import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
-import dev.neuralnexus.modapi.metadata.annotations.UseWithVersion;
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 
 import java.util.ArrayList;
@@ -36,16 +37,24 @@ public class WPlayerList {
         return new WPlayerList(playerList);
     }
 
+    @VersionFeature(
+            name = "PlayerList.getPlayers",
+            compatible = @Range(min = MinecraftVersion.V7, max = MinecraftVersion.V7_10))
+    public List<?> getPlayersOld() {
+        return CrossPerms.instance().store().getField("PlayerList", "players", playerList);
+    }
+
+    @VersionFeature(name = "PlayerList.getPlayers", compatible = @Range(min = MinecraftVersion.V8))
+    public List<?> getPlayersNew() {
+        return CrossPerms.instance().store().invokeMethod("PlayerList", "getPlayers", playerList);
+    }
+
     public List<WServerPlayer> players() {
         List<?> playerObjects;
         if (is7_10) {
-            playerObjects =
-                    CrossPerms.instance().store().getField("PlayerList", "players", playerList);
+            playerObjects = this.getPlayersOld();
         } else {
-            playerObjects =
-                    CrossPerms.instance()
-                            .store()
-                            .invokeMethod("PlayerList", "getPlayers", playerList);
+            playerObjects = this.getPlayersNew();
         }
         List<WServerPlayer> players = new ArrayList<>();
         for (Object player : playerObjects) {
@@ -54,25 +63,32 @@ public class WPlayerList {
         return Collections.unmodifiableList(players);
     }
 
-//    @UseWithVersion(MinecraftVersion.V7_10)
-    public Optional<WServerPlayer> getPlayer(UUID uuid) {
-        Object playerObject = null;
-        if (is7_10) {
-            List<WServerPlayer> players = this.players();
-            for (WServerPlayer player : players) {
-                if (player.getUUID().equals(uuid)) {
-                    playerObject = player;
-                }
+    @VersionFeature(
+            name = "PlayerList.getPlayer",
+            compatible = @Range(min = MinecraftVersion.V7, max = MinecraftVersion.V7_10))
+    public Optional<WServerPlayer> getPlayerOld(UUID uuid) {
+        List<WServerPlayer> players = this.players();
+        for (WServerPlayer player : players) {
+            if (player.getUUID().equals(uuid)) {
+                return Optional.of(WServerPlayer.wrap(player));
             }
-        } else {
-            playerObject =
-                    CrossPerms.instance()
-                            .store()
-                            .invokeMethod("PlayerList", "getPlayerByUUID", playerList, uuid);
         }
-        return null == playerObject
-                ? Optional.empty()
-                : Optional.of(WServerPlayer.wrap(playerObject));
+        return Optional.empty();
+    }
+
+    @VersionFeature(name = "PlayerList.getPlayer", compatible = @Range(min = MinecraftVersion.V8))
+    public Optional<WServerPlayer> getPlayerNew(UUID uuid) {
+        return Optional.ofNullable(CrossPerms.instance()
+                .store()
+                .invokeMethod("PlayerList", "getPlayerByUUID", playerList, uuid))
+                .map(WServerPlayer::wrap);
+    }
+
+    public Optional<WServerPlayer> getPlayer(UUID uuid) {
+        if (is7_10) {
+            return this.getPlayerOld(uuid);
+        }
+        return this.getPlayerNew(uuid);
     }
 
     public Optional<WServerPlayer> getPlayer(String name) {

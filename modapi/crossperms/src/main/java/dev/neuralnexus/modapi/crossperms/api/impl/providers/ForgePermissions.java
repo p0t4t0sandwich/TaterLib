@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
-import com.mojang.authlib.GameProfile;
-
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import net.minecraftforge.server.permission.PermissionAPI;
@@ -32,13 +30,12 @@ public class ForgePermissions implements PermissionsProvider {
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
         Objects.requireNonNull(subject, "Subject cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
-        boolean result = false;
-
-        GameProfile profile = this.getGameProfile(subject).orElse(null);
-        if (null != profile) {
-            result = PermissionAPI.getPermissionHandler().hasPermission(profile, permission, null);
-        }
-
-        return result | this.hasPermission(subject, 4);
+        return this.getGameProfile(subject)
+                        .map(
+                                profile ->
+                                        PermissionAPI.getPermissionHandler()
+                                                .hasPermission(profile, permission, null))
+                        .orElse(false)
+                | this.hasPermission(subject, 4);
     }
 }
