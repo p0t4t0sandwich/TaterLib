@@ -10,8 +10,6 @@ import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 /** Bukkit permissions provider */
 public class BukkitPermissionsProvider implements PermissionsProvider {
     @Override
@@ -21,23 +19,11 @@ public class BukkitPermissionsProvider implements PermissionsProvider {
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        // TODO: Reflect to query the player object
-        // It's gonna suck to get all those obsf mappings
-        if (subject instanceof CommandSender commandSender) {
-            return commandSender.isOp();
-        }
-        return false;
+        return subject instanceof CommandSender sender && sender.isOp();
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        boolean result = false;
-        if (subject instanceof CommandSender commandSender) {
-            result = commandSender.hasPermission(permission);
-        }
-        return result | this.hasPermission(subject, 4);
+        return subject instanceof CommandSender sender && sender.hasPermission(permission);
     }
 }

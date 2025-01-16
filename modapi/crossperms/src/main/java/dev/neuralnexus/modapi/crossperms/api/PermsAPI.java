@@ -5,12 +5,43 @@
  */
 package dev.neuralnexus.modapi.crossperms.api;
 
+import com.mojang.authlib.GameProfile;
+
 import dev.neuralnexus.modapi.crossperms.api.impl.PermsAPIImpl;
+import dev.neuralnexus.modapi.crossperms.api.mc.WCommandSender;
+import dev.neuralnexus.modapi.crossperms.api.mc.WMinecraftServer;
+import dev.neuralnexus.modapi.crossperms.api.mc.WServerPlayer;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 /** Permissions API */
 public interface PermsAPI {
-    default PermsAPI instance() {
+    /** Get the instance of the API */
+    static PermsAPI instance() {
         return PermsAPIImpl.getInstance();
+    }
+
+    /**
+     * Check if a source has a permission level
+     *
+     * @param permissionLevel The permission level
+     */
+    static Predicate<Object> hasPermission(int permissionLevel) {
+        return source -> PermsAPIImpl.getInstance().hasPermission(source, permissionLevel);
+    }
+
+    /**
+     * Check if a source has a permission
+     *
+     * @param permission The permission
+     */
+    static Predicate<Object> hasPermission(String permission) {
+        return source -> PermsAPIImpl.getInstance().hasPermission(source, permission);
     }
 
     /** Get all providers */
@@ -38,14 +69,19 @@ public interface PermsAPI {
     void unregisterProvider(PermissionsProvider provider);
 
     /**
-     * Check a source's permission
+     * Get if a subject has a permission <br>
+     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
+     * or any platform implementation of those objects
      *
-     * @param source The source to check
-     * @param permissionLevel The permission level
+     * @param subject The subject to check
+     * @param permissionLevel The permission level to check
+     * @throws NullPointerException If the subject is null
+     * @return If the subject has the permission
      */
-    default boolean hasPermission(Object source, int permissionLevel) {
-        for (PermissionsProvider provider : providers()) {
-            if (provider.hasPermission(source, permissionLevel)) {
+    default boolean hasPermission(@NotNull Object subject, int permissionLevel) throws NullPointerException {
+        Objects.requireNonNull(subject, "Source cannot be null");
+        for (PermissionsProvider provider : this.providers()) {
+            if (provider.hasPermission(subject, permissionLevel)) {
                 return true;
             }
         }
@@ -53,17 +89,91 @@ public interface PermsAPI {
     }
 
     /**
-     * Check a source's permission
+     * Get if a subject has a permission <br>
+     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
+     * or any platform implementation of those objects
      *
-     * @param source The source to check
-     * @param permission The permission
+     * @param subject The subject to check
+     * @param permission The permission to check
+     * @throws NullPointerException If the subject or permission is null
+     * @return If the subject has the permission
      */
-    default boolean hasPermission(Object source, String permission) {
-        for (PermissionsProvider provider : providers()) {
-            if (provider.hasPermission(source, permission)) {
+    default boolean hasPermission(@NotNull Object subject, @NotNull String permission)
+            throws NullPointerException {
+        Objects.requireNonNull(subject, "Source cannot be null");
+        Objects.requireNonNull(permission, "Permission cannot be null");
+        for (PermissionsProvider provider : this.providers()) {
+            if (provider.hasPermission(subject, permission)) {
                 return true;
             }
         }
         return false;
+    }
+
+    /**
+     * Get if a subject has a permission <br>
+     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
+     * or any platform implementation of those objects
+     *
+     * @param subject The subject to check
+     * @param permission The permission to check
+     * @param defaultPermissionLevel The default permission level
+     * @throws NullPointerException If the subject or permission is null
+     * @return If the subject has the permission
+     */
+    default boolean hasPermission(
+            @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
+            throws NullPointerException {
+        Objects.requireNonNull(subject, "Source cannot be null");
+        Objects.requireNonNull(permission, "Permission cannot be null");
+        for (PermissionsProvider provider : this.providers()) {
+            if (provider.hasPermission(subject, permission)) {
+                return true;
+            }
+        }
+        return this.hasPermission(subject, defaultPermissionLevel);
+    }
+
+    /**
+     * Get a player from a subject
+     *
+     * @param subject The subject to get the player from
+     * @throws NullPointerException If the subject is null
+     * @return The player from the subject
+     */
+    default Optional<WServerPlayer> getPlayer(@NotNull Object subject) throws NullPointerException  {
+        Objects.requireNonNull(subject, "Subject cannot be null");
+        return switch (subject) {
+            case UUID uuid -> WMinecraftServer.getPlayerList().getPlayer(uuid);
+            case String name -> WMinecraftServer.getPlayerList().getPlayer(name);
+            case GameProfile profile -> WMinecraftServer.getPlayerList().getPlayer(profile);
+            default -> {
+                WServerPlayer player = null;
+                if (WCommandSender.instanceOf(subject)) {
+                    Object entity = WCommandSender.wrap(subject).getEntity();
+                    if (WServerPlayer.instanceOf(entity)) {
+                        player = WServerPlayer.wrap(entity);
+                    }
+                } else if (WServerPlayer.instanceOf(subject)) {
+                    player = WServerPlayer.wrap(subject);
+                }
+                yield Optional.ofNullable(player);
+            }
+        };
+    }
+
+    /**
+     * Get the GameProfile of a subject
+     *
+     * @param subject The subject to get the GameProfile of
+     * @throws NullPointerException If the subject is null
+     * @return The GameProfile of the subject
+     */
+    default Optional<GameProfile> getGameProfile(@NotNull Object subject) throws NullPointerException {
+        Objects.requireNonNull(subject, "Subject cannot be null");
+        if (subject instanceof GameProfile profile) {
+            return Optional.of(profile);
+        }
+        return this.getPlayer(subject).map(WServerPlayer::getGameProfile);
     }
 }

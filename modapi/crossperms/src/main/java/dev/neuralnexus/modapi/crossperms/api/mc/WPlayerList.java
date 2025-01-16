@@ -20,7 +20,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class WPlayerList {
+/**
+ * Represents a PlayerList
+ */
+public class WPlayerList implements Wrapped {
     private static final boolean is7_10 =
             MetaAPI.instance().version().isInRange(MinecraftVersions.V7, MinecraftVersions.V7_10);
     public static final boolean is13_up =
@@ -33,10 +36,26 @@ public class WPlayerList {
         this.playerList = playerList;
     }
 
+    /**
+     * Wrap a PlayerList object
+     *
+     * @param playerList The PlayerList object to wrap
+     * @return The wrapped PlayerList object
+     */
     public static WPlayerList wrap(Object playerList) {
         return new WPlayerList(playerList);
     }
 
+    @Override
+    public Object unwrap() {
+        return this.playerList;
+    }
+
+    /**
+     * Get the list of players in the PlayerList
+     *
+     * @return The list of players in the PlayerList
+     */
     @VersionFeature(
             name = "PlayerList.getPlayers",
             compatible = @Range(min = MinecraftVersion.V7, max = MinecraftVersion.V7_10))
@@ -44,11 +63,21 @@ public class WPlayerList {
         return CrossPerms.instance().store().getField("PlayerList", "players", playerList);
     }
 
+    /**
+     * Get the list of players in the PlayerList
+     *
+     * @return The list of players in the PlayerList
+     */
     @VersionFeature(name = "PlayerList.getPlayers", compatible = @Range(min = MinecraftVersion.V8))
     public List<?> getPlayersNew() {
         return CrossPerms.instance().store().invokeMethod("PlayerList", "getPlayers", playerList);
     }
 
+    /**
+     * Get the players in the PlayerList
+     *
+     * @return The players in the PlayerList
+     */
     public List<WServerPlayer> players() {
         List<?> playerObjects;
         if (is7_10) {
@@ -63,6 +92,12 @@ public class WPlayerList {
         return Collections.unmodifiableList(players);
     }
 
+    /**
+     * Get the player with the specified UUID
+     *
+     * @param uuid The UUID of the player
+     * @return The player with the specified UUID
+     */
     @VersionFeature(
             name = "PlayerList.getPlayer",
             compatible = @Range(min = MinecraftVersion.V7, max = MinecraftVersion.V7_10))
@@ -76,14 +111,27 @@ public class WPlayerList {
         return Optional.empty();
     }
 
+    /**
+     * Get the player with the specified UUID
+     *
+     * @param uuid The UUID of the player
+     * @return The player with the specified UUID
+     */
     @VersionFeature(name = "PlayerList.getPlayer", compatible = @Range(min = MinecraftVersion.V8))
     public Optional<WServerPlayer> getPlayerNew(UUID uuid) {
-        return Optional.ofNullable(CrossPerms.instance()
-                .store()
-                .invokeMethod("PlayerList", "getPlayerByUUID", playerList, uuid))
+        return Optional.ofNullable(
+                        CrossPerms.instance()
+                                .store()
+                                .invokeMethod("PlayerList", "getPlayerByUUID", playerList, uuid))
                 .map(WServerPlayer::wrap);
     }
 
+    /**
+     * Get the player with the specified UUID
+     *
+     * @param uuid The UUID of the player
+     * @return The player with the specified UUID
+     */
     public Optional<WServerPlayer> getPlayer(UUID uuid) {
         if (is7_10) {
             return this.getPlayerOld(uuid);
@@ -91,6 +139,12 @@ public class WPlayerList {
         return this.getPlayerNew(uuid);
     }
 
+    /**
+     * Get the player with the specified name
+     *
+     * @param name The name of the player
+     * @return The player with the specified name
+     */
     public Optional<WServerPlayer> getPlayer(String name) {
         Object player =
                 CrossPerms.instance()
@@ -99,16 +153,33 @@ public class WPlayerList {
         return null == player ? Optional.empty() : Optional.of(WServerPlayer.wrap(player));
     }
 
+    /**
+     * Get the player with the specified GameProfile
+     *
+     * @param profile The GameProfile of the player
+     * @return The player with the specified GameProfile
+     */
     public Optional<WServerPlayer> getPlayer(GameProfile profile) {
         return this.getPlayer(profile.getId());
     }
 
+    /**
+     * Check if a player is an operator
+     *
+     * @param profile The GameProfile of the player
+     * @return True if the player is an operator
+     */
     public boolean isOp(GameProfile profile) {
         return CrossPerms.instance()
                 .store()
                 .invokeMethod("PlayerList", "isOp", playerList, profile);
     }
 
+    /**
+     * Get the list of operators in the PlayerList
+     *
+     * @return The list of operators in the PlayerList
+     */
     public List<WServerOpListEntry> getOps() {
         List<?> opListEntries =
                 CrossPerms.instance().store().invokeMethod("PlayerList", "getOps", playerList);
@@ -120,6 +191,13 @@ public class WPlayerList {
         return Collections.unmodifiableList(ops);
     }
 
+    /**
+     * Check if a player has a permission level
+     *
+     * @param profile         The GameProfile of the player
+     * @param permissionLevel The permission level to check
+     * @return True if the player has the permission level
+     */
     public static boolean hasPermissionLevel(GameProfile profile, int permissionLevel) {
         List<WServerOpListEntry> ops = WMinecraftServer.getPlayerList().getOps();
         for (WServerOpListEntry entry : ops) {
@@ -128,25 +206,5 @@ public class WPlayerList {
             }
         }
         return false;
-    }
-
-    public static boolean hasPermissionLevel(UUID uuid, int permissionLevel) {
-        Optional<WServerPlayer> player = WMinecraftServer.getPlayerList().getPlayer(uuid);
-        if (is13_up) {
-            return player.map(p -> p.hasPermission(permissionLevel)).orElse(false);
-        }
-        return player.map(WServerPlayer::getGameProfile)
-                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel))
-                .orElse(false);
-    }
-
-    public static boolean hasPermissionLevel(String name, int permissionLevel) {
-        Optional<WServerPlayer> player = WMinecraftServer.getPlayerList().getPlayer(name);
-        if (is13_up) {
-            return player.map(p -> p.hasPermission(permissionLevel)).orElse(false);
-        }
-        return player.map(WServerPlayer::getGameProfile)
-                .map(gameProfile -> hasPermissionLevel(gameProfile, permissionLevel))
-                .orElse(false);
     }
 }

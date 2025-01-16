@@ -9,21 +9,42 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 
-public class WServerOpListEntry {
+public class WServerOpListEntry implements Wrapped {
     private final Object entry;
 
     private WServerOpListEntry(Object entry) {
         this.entry = entry;
     }
 
+    /**
+     * Wrap a ServerOpListEntry object
+     *
+     * @param entry The ServerOpListEntry object to wrap
+     * @return The wrapped ServerOpListEntry object
+     */
     public static WServerOpListEntry wrap(Object entry) {
         return new WServerOpListEntry(entry);
     }
 
+    @Override
+    public Object unwrap() {
+        return this.entry;
+    }
+
+    /**
+     * Get the level of the ServerOpListEntry
+     *
+     * @return The level of the ServerOpListEntry
+     */
     public int getLevel() {
         return CrossPerms.instance().store().invokeMethod("ServerOpListEntry", "getLevel", entry);
     }
 
+    /**
+     * Get the user of the ServerOpListEntry
+     *
+     * @return The user of the ServerOpListEntry
+     */
     public GameProfile getUser() {
         return CrossPerms.instance().store().invokeMethod("ServerOpListEntry", "getUser", entry);
     }

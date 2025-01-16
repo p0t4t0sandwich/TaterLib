@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public final class PermissionNode<T> {
     public String getNodeName() {
-        return null;
+        return "";
     }
 
     public PermissionType<T> getType() {
@@ -19,7 +19,7 @@ public final class PermissionNode<T> {
     }
 
     public PermissionResolver<T> getDefaultResolver() {
-        return null;
+        return (PermissionResolver) new Object();
     }
 
     @FunctionalInterface

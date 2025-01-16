@@ -6,13 +6,14 @@
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
+
+import net.minecraftforge.server.permission.PermissionAPI;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 /** Forge permissions provider */
-public class LegacyForgePermissions implements PermissionsProvider {
+public class ForgePermissionsProvider implements PermissionsProvider {
     @Override
     public String id() {
         return "forgepermissions";
@@ -20,16 +21,17 @@ public class LegacyForgePermissions implements PermissionsProvider {
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        // TODO: Reflect to query the player object
         return false;
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        boolean result = false;
-        return result | this.hasPermission(subject, 4);
+        return PermsAPI.instance()
+                .getGameProfile(subject)
+                .filter(
+                        profile ->
+                                PermissionAPI.getPermissionHandler()
+                                        .hasPermission(profile, permission, null))
+                .isPresent();
     }
 }

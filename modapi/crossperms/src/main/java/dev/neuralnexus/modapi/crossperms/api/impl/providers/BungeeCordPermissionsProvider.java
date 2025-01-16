@@ -11,8 +11,6 @@ import net.md_5.bungee.api.CommandSender;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 /** BungeeCord permissions provider */
 public class BungeeCordPermissionsProvider implements PermissionsProvider {
     @Override
@@ -22,17 +20,11 @@ public class BungeeCordPermissionsProvider implements PermissionsProvider {
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
         return false;
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        if (subject instanceof CommandSender bungeeSender) {
-            return bungeeSender.hasPermission(permission);
-        }
-        return false;
+        return subject instanceof CommandSender sender && sender.hasPermission(permission);
     }
 }

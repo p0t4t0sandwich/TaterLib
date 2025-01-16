@@ -7,6 +7,7 @@ package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.mc.WServerPlayer;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
@@ -16,7 +17,6 @@ import net.legacyfabric.fabric.api.permission.v1.PlayerPermissionsApi;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
-import java.util.Objects;
 
 /** Legacy Fabric permissions provider */
 @SuppressWarnings({"deprecation", "UnstableApiUsage"})
@@ -28,21 +28,18 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        return this.hasPermission(subject, permissionLevel, null);
+        return false;
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        boolean result = false;
-        if (WServerPlayer.instanceOf(subject)) {
-            result = this.playerHasPermission(subject, permission);
-        } else if (subject instanceof PermissibleCommandSource commandSource) {
-            result = commandSource.hasPermission(permission);
-        }
-        return result | this.hasPermission(subject, 4);
+        return (subject instanceof PermissibleCommandSource source
+                        && source.hasPermission(permission))
+                || PermsAPI.instance()
+                        .getPlayer(subject)
+                        .map(WServerPlayer::unwrap)
+                        .filter(player -> this.playerHasPermission(player, permission))
+                        .isPresent();
     }
 
     private static final Method HAS_PERMISSION;

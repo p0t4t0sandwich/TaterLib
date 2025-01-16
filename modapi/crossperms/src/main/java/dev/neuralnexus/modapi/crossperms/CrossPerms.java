@@ -7,13 +7,24 @@ package dev.neuralnexus.modapi.crossperms;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.BukkitPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.BungeeCordPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.FabricPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.ForgePermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.ForgePermissionsProvider_18_2;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.LegacyFabricPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.SpongePermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.VanillaPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.providers.VelocityPermissionsProvider;
 import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.reflecto.MappingEntry;
 import dev.neuralnexus.modapi.reflecto.Reflecto;
 
 import org.jetbrains.annotations.ApiStatus;
-import org.slf4j.LoggerFactory;
 
 import java.util.UUID;
 
@@ -21,7 +32,6 @@ import java.util.UUID;
 public class CrossPerms {
     private static final Logger logger = Logger.create("CrossPerms");
     private static final CrossPerms INSTANCE = new CrossPerms();
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(CrossPerms.class);
     private static Reflecto.MappingStore store;
     public static Object MINECRAFT_SERVER;
 
@@ -40,10 +50,56 @@ public class CrossPerms {
         return store;
     }
 
+    /**
+     * Initialize CrossPerms
+     *
+     * @param minecraftServer The Minecraft server instance
+     */
     public void init(Object minecraftServer) {
         if (null != store) {
             return;
         }
+        register(minecraftServer);
+
+        MetaAPI meta = MetaAPI.instance();
+        PermsAPI api = PermsAPI.instance();
+        if (meta.isProxy()) {
+            if (meta.isPlatformPresent(Platforms.BUNGEECORD)) {
+                 api.registerProvider(new BungeeCordPermissionsProvider());
+            } else if (meta.isPlatformPresent(Platforms.VELOCITY)) {
+                 api.registerProvider(new VelocityPermissionsProvider());
+            }
+            return;
+        }
+        api.registerProvider(new VanillaPermissionsProvider());
+        if (meta.isPlatformPresent(Platforms.BUKKIT)) {
+            api.registerProvider(new BukkitPermissionsProvider());
+        }
+        if (meta.isPlatformPresent(Platforms.FABRIC)) {
+            if (meta.version().isAtLeast(MinecraftVersions.V14)) {
+                api.registerProvider(new FabricPermissionsProvider());
+            } else {
+                api.registerProvider(new LegacyFabricPermissionsProvider());
+            }
+        }
+        if (meta.isPlatformPresent(Platforms.FORGE)) {
+            if (meta.version().isAtLeast(MinecraftVersions.V18_2)) {
+                api.registerProvider(new ForgePermissionsProvider_18_2());
+            } else {
+                api.registerProvider(new ForgePermissionsProvider());
+            }
+        }
+        if (meta.isPlatformPresent(Platforms.SPONGE)) {
+            api.registerProvider(new SpongePermissionsProvider());
+        }
+    }
+
+    /**
+     * Register mappings
+     *
+     * @param minecraftServer The Minecraft server instance
+     */
+    private void register(Object minecraftServer) {
         logger.info("Initializing CrossPerms mappings");
 
         MINECRAFT_SERVER = minecraftServer;
@@ -371,8 +427,10 @@ public class CrossPerms {
                         .legacySearge("func_197022_f")
                         .mcp("getEntity")
                         .yarnIntermediary("method_9228")
-                        .legacySearge("func_174793_f", MinecraftVersions.V7, MinecraftVersions.V12_2)
-                        .legacyIntermediary("method_10788", MinecraftVersions.V7, MinecraftVersions.V12_2);
+                        .legacySearge(
+                                "func_174793_f", MinecraftVersions.V7, MinecraftVersions.V12_2)
+                        .legacyIntermediary(
+                                "method_10788", MinecraftVersions.V7, MinecraftVersions.V12_2);
 
         store.registerClass(commandSender)
                 .registerMethod(commandSource_hasPermissions)

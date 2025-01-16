@@ -9,6 +9,7 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.mc.*;
 
 import me.lucko.fabric.api.permissions.v0.Permissions;
@@ -17,7 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 /** Fabric permissions provider */
@@ -29,25 +29,18 @@ public class FabricPermissionsProvider implements PermissionsProvider {
 
     @Override
     public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        return this.hasPermission(subject, permissionLevel, null);
+        return false;
     }
 
     @Override
     public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        boolean result = false;
-
-        GameProfile profile = this.getGameProfile(subject).orElse(null);
-        if (null != profile) {
-            result = this.profileHasPermission(profile, permission);
-        } else if (WCommandSender.instanceOf(subject)) {
-            result = this.commandSourceHasPermission(subject, permission);
-        } else if (WEntity.instanceOf(subject)) {
-            result = this.entityHasPermission(subject, permission);
-        }
-        return result | this.hasPermission(subject, 4);
+        return PermsAPI.instance()
+                        .getGameProfile(subject)
+                        .filter(profile -> profileHasPermission(profile, permission))
+                        .isPresent()
+                || (WCommandSender.instanceOf(subject)
+                        && commandSourceHasPermission(subject, permission))
+                || (WEntity.instanceOf(subject) && entityHasPermission(subject, permission));
     }
 
     /**
@@ -87,7 +80,7 @@ public class FabricPermissionsProvider implements PermissionsProvider {
      * @param permission The permission to check
      * @return If the entity has the permission
      */
-    private boolean entityHasPermission(Object subject, String permission) {
+    private static boolean entityHasPermission(Object subject, String permission) {
         try {
             return (boolean) CHECK_ENTITY.invoke(null, subject, permission);
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -121,7 +114,7 @@ public class FabricPermissionsProvider implements PermissionsProvider {
      * @param permission The permission to check
      * @return If the CommandSource has the permission
      */
-    private boolean commandSourceHasPermission(Object subject, String permission) {
+    private static boolean commandSourceHasPermission(Object subject, String permission) {
         try {
             return (boolean) CHECK_COMMAND_SOURCE.invoke(null, subject, permission);
         } catch (IllegalAccessException | InvocationTargetException e) {

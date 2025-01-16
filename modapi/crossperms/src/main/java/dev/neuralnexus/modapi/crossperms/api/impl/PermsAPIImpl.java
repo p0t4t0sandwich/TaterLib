@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.crossperms.api.impl;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /** Permissions API implementation */
@@ -23,7 +24,7 @@ public class PermsAPIImpl implements PermsAPI {
 
     private PermsAPIImpl() {}
 
-    private final List<PermissionsProvider> providers = List.of();
+    private final List<PermissionsProvider> providers = new ArrayList<>();
 
     @Override
     public List<PermissionsProvider> providers() {
