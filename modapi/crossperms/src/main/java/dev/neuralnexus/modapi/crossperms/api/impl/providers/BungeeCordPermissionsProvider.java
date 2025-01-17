@@ -5,26 +5,30 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import net.md_5.bungee.api.CommandSender;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
 /** BungeeCord permissions provider */
+@SuppressWarnings("Convert2Lambda")
 public class BungeeCordPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "bungeecordpermissions";
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return subject instanceof CommandSender sender && sender.hasPermission(permission);
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                CommandSender.class,
+                List.of(
+                        new HasPermission<String, CommandSender>() {
+                            @Override
+                            public boolean hasPermission(CommandSender subject, String permission) {
+                                return subject instanceof CommandSender sender
+                                        && sender.hasPermission(permission);
+                            }
+                        }));
     }
 }

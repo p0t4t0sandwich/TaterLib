@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-/**
- * Represents a PlayerList
- */
+/** Represents a PlayerList */
 public class WPlayerList implements Wrapped {
     private static final boolean is7_10 =
             MetaAPI.instance().version().isInRange(MinecraftVersions.V7, MinecraftVersions.V7_10);
@@ -194,7 +192,7 @@ public class WPlayerList implements Wrapped {
     /**
      * Check if a player has a permission level
      *
-     * @param profile         The GameProfile of the player
+     * @param profile The GameProfile of the player
      * @param permissionLevel The permission level to check
      * @return True if the player has the permission level
      */

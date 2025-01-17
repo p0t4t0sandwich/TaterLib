@@ -7,34 +7,15 @@ package dev.neuralnexus.modapi.crossperms.api;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
 /** A generic provider for permissions plugins */
 public interface PermissionsProvider {
     /**
-     * Get the id of the provider
+     * Get the providers for the provider
      *
-     * @return The id of the provider
+     * @return The providers for the provider
      */
-    String id();
-
-    /**
-     * Get if a subject has a permission <br>
-     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
-     * or any platform implementation of those objects
-     *
-     * @param subject The subject to check
-     * @param permissionLevel The permission level to check
-     * @return If the subject has the permission
-     */
-    boolean hasPermission(@NotNull Object subject, int permissionLevel);
-
-    /**
-     * Get if a subject has a permission <br>
-     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
-     * or any platform implementation of those objects
-     *
-     * @param subject The subject to check
-     * @param permission The permission to check
-     * @return If the subject has the permission
-     */
-    boolean hasPermission(@NotNull Object subject, @NotNull String permission);
+    @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders();
 }

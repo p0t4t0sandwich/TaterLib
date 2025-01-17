@@ -7,9 +7,7 @@ package dev.neuralnexus.modapi.crossperms.api.mc;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 
-/**
- * Represents an Entity
- */
+/** Represents an Entity */
 public class WEntity implements Wrapped {
     private final Object entity;
 

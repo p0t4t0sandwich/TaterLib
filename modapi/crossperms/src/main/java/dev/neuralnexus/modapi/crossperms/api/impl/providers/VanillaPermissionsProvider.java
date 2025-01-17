@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.mc.WCommandSender;
@@ -14,14 +15,26 @@ import dev.neuralnexus.modapi.crossperms.api.mc.WServerPlayer;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
+/** Vanilla permissions provider */
+@SuppressWarnings({"Anonymous2MethodRef", "Convert2Lambda"})
 public class VanillaPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "vanillapermissions";
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                Object.class,
+                List.of(
+                        new HasPermission<Integer, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, Integer permission) {
+                                return playerHasPermission(subject, permission);
+                            }
+                        }));
     }
 
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
+    private boolean playerHasPermission(@NotNull Object subject, int permissionLevel) {
         // TODO: Query Bukkit vanilla objects. It's gonna suck to get all those obsfed mappings
         if (WPlayerList.is13_up) {
             if (WCommandSender.instanceOf(subject)) {
@@ -31,13 +44,8 @@ public class VanillaPermissionsProvider implements PermissionsProvider {
             }
         }
         return PermsAPI.instance()
-                        .getGameProfile(subject)
-                        .filter(profile -> WPlayerList.hasPermissionLevel(profile, permissionLevel))
-                        .isPresent();
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return false;
+                .getGameProfile(subject)
+                .filter(profile -> WPlayerList.hasPermissionLevel(profile, permissionLevel))
+                .isPresent();
     }
 }

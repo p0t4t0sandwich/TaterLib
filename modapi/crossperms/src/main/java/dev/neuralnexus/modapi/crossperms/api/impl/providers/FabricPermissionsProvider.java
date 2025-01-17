@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.mc.*;
@@ -18,29 +19,49 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
 /** Fabric permissions provider */
+@SuppressWarnings({"Anonymous2MethodRef", "Convert2Lambda"})
 public class FabricPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "fabricpermissions";
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return PermsAPI.instance()
-                        .getGameProfile(subject)
-                        .filter(profile -> profileHasPermission(profile, permission))
-                        .isPresent()
-                || (WCommandSender.instanceOf(subject)
-                        && commandSourceHasPermission(subject, permission))
-                || (WEntity.instanceOf(subject) && entityHasPermission(subject, permission));
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                Object.class,
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return profileHasPermission(subject, permission);
+                            }
+                        }),
+                WCommandSender.getClazz(),
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return commandSourceHasPermission(subject, permission);
+                            }
+                        }),
+                WEntity.getClazz(),
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return entityHasPermission(subject, permission);
+                            }
+                        }),
+                WServerPlayer.getClazz(),
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return entityHasPermission(subject, permission);
+                            }
+                        }));
     }
 
     /**
@@ -50,9 +71,13 @@ public class FabricPermissionsProvider implements PermissionsProvider {
      * @param permission The permission to check
      * @return If the GameProfile has the permission
      */
-    private boolean profileHasPermission(GameProfile subject, String permission) {
+    private boolean profileHasPermission(Object subject, String permission) {
         try {
-            return Permissions.check(subject, permission).get();
+            Optional<GameProfile> profile = PermsAPI.instance().getGameProfile(subject);
+            if (profile.isEmpty()) {
+                return false;
+            }
+            return Permissions.check(profile.get(), permission).get();
         } catch (ExecutionException | InterruptedException e) {
             return false;
         }

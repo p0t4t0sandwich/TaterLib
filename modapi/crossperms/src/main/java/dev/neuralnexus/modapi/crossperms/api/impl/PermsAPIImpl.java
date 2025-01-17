@@ -5,11 +5,17 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 /** Permissions API implementation */
 public class PermsAPIImpl implements PermsAPI {
@@ -24,25 +30,27 @@ public class PermsAPIImpl implements PermsAPI {
 
     private PermsAPIImpl() {}
 
-    private final List<PermissionsProvider> providers = new ArrayList<>();
+    private final Map<Class<?>, List<HasPermission<?, ?>>> providers = new ConcurrentHashMap<>();
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<PermissionsProvider> providers() {
-        return this.providers;
+    public <P, S> List<HasPermission<P, S>> providers(
+            @NotNull Class<P> providerType, @NotNull Class<S> subjectType) {
+        Objects.requireNonNull(providerType, "Provider type cannot be null");
+        Objects.requireNonNull(subjectType, "Subject type cannot be null");
+        return this.providers.getOrDefault(subjectType, new ArrayList<>()).stream()
+                .filter(provider -> provider.type().isAssignableFrom(providerType))
+                .map(provider -> (HasPermission<P, S>) provider)
+                .toList();
     }
 
     @Override
-    public void registerProvider(PermissionsProvider provider) {
-        this.providers.addFirst(provider);
-    }
-
-    @Override
-    public void unregisterProvider(String name) {
-        this.providers.removeIf(provider -> provider.id().equalsIgnoreCase(name));
-    }
-
-    @Override
-    public void unregisterProvider(PermissionsProvider provider) {
-        this.providers.remove(provider);
+    public void registerProvider(@NotNull PermissionsProvider provider) {
+        Objects.requireNonNull(provider, "Provider cannot be null");
+        Map<Class<?>, List<HasPermission<?, ?>>> map = provider.getProviders();
+        Objects.requireNonNull(map, "Provider returned no providers");
+        map.forEach(
+                (key, value) ->
+                        this.providers.computeIfAbsent(key, k -> new ArrayList<>()).addAll(value));
     }
 }

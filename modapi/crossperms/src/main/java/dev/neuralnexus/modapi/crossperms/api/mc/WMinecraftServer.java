@@ -9,9 +9,7 @@ import dev.neuralnexus.modapi.crossperms.CrossPerms;
 
 import org.jetbrains.annotations.ApiStatus;
 
-/**
- * Represents a Minecraft server
- */
+/** Represents a Minecraft server */
 public class WMinecraftServer {
     private static Object server;
 

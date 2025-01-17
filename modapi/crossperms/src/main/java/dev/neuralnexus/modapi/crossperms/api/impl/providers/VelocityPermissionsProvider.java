@@ -7,25 +7,28 @@ package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import com.velocitypowered.api.permission.PermissionSubject;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
 /** Velocity permissions provider */
+@SuppressWarnings({"Anonymous2MethodRef", "Convert2Lambda"})
 public class VelocityPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "velocitypermissions";
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return subject instanceof PermissionSubject velocitySubject
-                && velocitySubject.hasPermission(permission);
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                PermissionSubject.class,
+                List.of(
+                        new HasPermission<String, PermissionSubject>() {
+                            @Override
+                            public boolean hasPermission(
+                                    PermissionSubject subject, String permission) {
+                                return subject.hasPermission(permission);
+                            }
+                        }));
     }
 }

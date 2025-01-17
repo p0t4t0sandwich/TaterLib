@@ -9,10 +9,8 @@ import dev.neuralnexus.modapi.crossperms.CrossPerms;
 
 import java.util.Optional;
 
-/**
- * Represents a CommandSender
- */
-public class WCommandSender implements Wrapped{
+/** Represents a CommandSender */
+public class WCommandSender implements Wrapped {
     private final Object commandSender;
 
     private WCommandSender(Object commandSender) {

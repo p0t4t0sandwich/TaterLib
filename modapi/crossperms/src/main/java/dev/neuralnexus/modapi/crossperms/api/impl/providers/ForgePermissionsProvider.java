@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 
@@ -12,20 +13,26 @@ import net.minecraftforge.server.permission.PermissionAPI;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
 /** Forge permissions provider */
+@SuppressWarnings({"Anonymous2MethodRef", "Convert2Lambda"})
 public class ForgePermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "forgepermissions";
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                Object.class,
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return profileHasPermission(subject, permission);
+                            }
+                        }));
     }
 
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
+    private boolean profileHasPermission(Object subject, String permission) {
         return PermsAPI.instance()
                 .getGameProfile(subject)
                 .filter(

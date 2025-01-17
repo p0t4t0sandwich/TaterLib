@@ -65,9 +65,9 @@ public class CrossPerms {
         PermsAPI api = PermsAPI.instance();
         if (meta.isProxy()) {
             if (meta.isPlatformPresent(Platforms.BUNGEECORD)) {
-                 api.registerProvider(new BungeeCordPermissionsProvider());
+                api.registerProvider(new BungeeCordPermissionsProvider());
             } else if (meta.isPlatformPresent(Platforms.VELOCITY)) {
-                 api.registerProvider(new VelocityPermissionsProvider());
+                api.registerProvider(new VelocityPermissionsProvider());
             }
             return;
         }

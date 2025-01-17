@@ -14,6 +14,7 @@ import dev.neuralnexus.modapi.crossperms.api.mc.WServerPlayer;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,25 +28,21 @@ public interface PermsAPI {
     }
 
     /**
-     * Check if a source has a permission level
-     *
-     * @param permissionLevel The permission level
-     */
-    static Predicate<Object> hasPermission(int permissionLevel) {
-        return source -> PermsAPIImpl.getInstance().hasPermission(source, permissionLevel);
-    }
-
-    /**
      * Check if a source has a permission
      *
-     * @param permission The permission
+     * @param permission The permission object
      */
-    static Predicate<Object> hasPermission(String permission) {
+    static <P, S> Predicate<S> hasPermission(P permission) {
         return source -> PermsAPIImpl.getInstance().hasPermission(source, permission);
     }
 
-    /** Get all providers */
-    Iterable<PermissionsProvider> providers();
+    /**
+     * Get the providers for a class and a specified permission type
+     *
+     * @param providerType The provider type
+     * @param subjectType The subject type
+     */
+    <P, S> List<HasPermission<P, S>> providers(Class<P> providerType, Class<S> subjectType);
 
     /**
      * Register a provider
@@ -53,40 +50,6 @@ public interface PermsAPI {
      * @param provider The provider to register
      */
     void registerProvider(PermissionsProvider provider);
-
-    /**
-     * Unregister a provider
-     *
-     * @param name The id of the provider
-     */
-    void unregisterProvider(String name);
-
-    /**
-     * Unregister a provider
-     *
-     * @param provider The provider to unregister
-     */
-    void unregisterProvider(PermissionsProvider provider);
-
-    /**
-     * Get if a subject has a permission <br>
-     * Can be a CommandSender, CommandSourceStack, Entity, GameProfile, String (name), UUID, Player,
-     * or any platform implementation of those objects
-     *
-     * @param subject The subject to check
-     * @param permissionLevel The permission level to check
-     * @throws NullPointerException If the subject is null
-     * @return If the subject has the permission
-     */
-    default boolean hasPermission(@NotNull Object subject, int permissionLevel) throws NullPointerException {
-        Objects.requireNonNull(subject, "Source cannot be null");
-        for (PermissionsProvider provider : this.providers()) {
-            if (provider.hasPermission(subject, permissionLevel)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * Get if a subject has a permission <br>
@@ -98,12 +61,25 @@ public interface PermsAPI {
      * @throws NullPointerException If the subject or permission is null
      * @return If the subject has the permission
      */
-    default boolean hasPermission(@NotNull Object subject, @NotNull String permission)
-            throws NullPointerException {
+    @SuppressWarnings("unchecked")
+    default <P, S> boolean hasPermission(@NotNull S subject, @NotNull P permission) {
         Objects.requireNonNull(subject, "Source cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
-        for (PermissionsProvider provider : this.providers()) {
-            if (provider.hasPermission(subject, permission)) {
+        if (permission instanceof String permissionString) {
+            return this.hasPermission(subject, permissionString);
+        }
+        List<HasPermission<P, S>> checks =
+                this.providers((Class<P>) permission.getClass(), (Class<S>) subject.getClass());
+        for (HasPermission<P, S> check : checks) {
+            if (check.hasPermission(subject, permission)) {
+                return true;
+            }
+        }
+        // Check Object.class to see if there is a generic provider
+        List<HasPermission<P, Object>> objChecks =
+                this.providers((Class<P>) permission.getClass(), Object.class);
+        for (HasPermission<P, Object> check : objChecks) {
+            if (check.hasPermission(subject, permission)) {
                 return true;
             }
         }
@@ -124,14 +100,8 @@ public interface PermsAPI {
     default boolean hasPermission(
             @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
             throws NullPointerException {
-        Objects.requireNonNull(subject, "Source cannot be null");
-        Objects.requireNonNull(permission, "Permission cannot be null");
-        for (PermissionsProvider provider : this.providers()) {
-            if (provider.hasPermission(subject, permission)) {
-                return true;
-            }
-        }
-        return this.hasPermission(subject, defaultPermissionLevel);
+        return this.hasPermission(subject, permission)
+                || this.hasPermission(subject, defaultPermissionLevel);
     }
 
     /**
@@ -141,7 +111,7 @@ public interface PermsAPI {
      * @throws NullPointerException If the subject is null
      * @return The player from the subject
      */
-    default Optional<WServerPlayer> getPlayer(@NotNull Object subject) throws NullPointerException  {
+    default Optional<WServerPlayer> getPlayer(@NotNull Object subject) throws NullPointerException {
         Objects.requireNonNull(subject, "Subject cannot be null");
         return switch (subject) {
             case UUID uuid -> WMinecraftServer.getPlayerList().getPlayer(uuid);
@@ -169,7 +139,8 @@ public interface PermsAPI {
      * @throws NullPointerException If the subject is null
      * @return The GameProfile of the subject
      */
-    default Optional<GameProfile> getGameProfile(@NotNull Object subject) throws NullPointerException {
+    default Optional<GameProfile> getGameProfile(@NotNull Object subject)
+            throws NullPointerException {
         Objects.requireNonNull(subject, "Subject cannot be null");
         if (subject instanceof GameProfile profile) {
             return Optional.of(profile);

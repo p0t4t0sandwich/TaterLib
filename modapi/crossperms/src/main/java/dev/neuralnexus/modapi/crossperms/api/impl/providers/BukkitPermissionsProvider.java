@@ -5,25 +5,36 @@
  */
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Map;
+
 /** Bukkit permissions provider */
+@SuppressWarnings("Convert2Lambda")
 public class BukkitPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "bukkitpermissions";
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return subject instanceof CommandSender sender && sender.isOp();
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return subject instanceof CommandSender sender && sender.hasPermission(permission);
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                CommandSender.class,
+                List.of(
+                        new HasPermission<Integer, CommandSender>() {
+                            @Override
+                            public boolean hasPermission(
+                                    CommandSender subject, Integer permission) {
+                                return subject instanceof CommandSender sender && sender.isOp();
+                            }
+                        },
+                        new HasPermission<String, CommandSender>() {
+                            @Override
+                            public boolean hasPermission(CommandSender subject, String permission) {
+                                return subject instanceof CommandSender sender
+                                        && sender.hasPermission(permission);
+                            }
+                        }));
     }
 }

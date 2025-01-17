@@ -6,6 +6,7 @@
 package dev.neuralnexus.modapi.crossperms.api.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
+import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.mc.WServerPlayer;
@@ -17,29 +18,40 @@ import net.legacyfabric.fabric.api.permission.v1.PlayerPermissionsApi;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Method;
+import java.util.List;
+import java.util.Map;
 
 /** Legacy Fabric permissions provider */
-@SuppressWarnings({"deprecation", "UnstableApiUsage"})
+@SuppressWarnings({"Anonymous2MethodRef", "Convert2Lambda", "deprecation", "UnstableApiUsage"})
 public class LegacyFabricPermissionsProvider implements PermissionsProvider {
     @Override
-    public String id() {
-        return "fabricpermissions";
+    public @NotNull Map<Class<?>, List<HasPermission<?, ?>>> getProviders() {
+        return Map.of(
+                PermissibleCommandSource.class,
+                List.of(
+                        new HasPermission<String, PermissibleCommandSource>() {
+                            @Override
+                            public boolean hasPermission(
+                                    PermissibleCommandSource subject, String permission) {
+                                return subject.hasPermission(permission);
+                            }
+                        }),
+                Object.class,
+                List.of(
+                        new HasPermission<String, Object>() {
+                            @Override
+                            public boolean hasPermission(Object subject, String permission) {
+                                return playerObjHasPermission(subject, permission);
+                            }
+                        }));
     }
 
-    @Override
-    public boolean hasPermission(@NotNull Object subject, int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(@NotNull Object subject, @NotNull String permission) {
-        return (subject instanceof PermissibleCommandSource source
-                        && source.hasPermission(permission))
-                || PermsAPI.instance()
-                        .getPlayer(subject)
-                        .map(WServerPlayer::unwrap)
-                        .filter(player -> this.playerHasPermission(player, permission))
-                        .isPresent();
+    public boolean playerObjHasPermission(Object subject, String permission) {
+        return PermsAPI.instance()
+                .getPlayer(subject)
+                .map(WServerPlayer::unwrap)
+                .filter(player -> this.playerHasPermission(player, permission))
+                .isPresent();
     }
 
     private static final Method HAS_PERMISSION;
