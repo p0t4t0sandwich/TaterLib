@@ -17,8 +17,9 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 /**
  * Reflecto is a general, cross runtime mappings reflection framework for Minecraft mods.
@@ -30,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class Reflecto {
     private static final Logger logger = Logger.create("Reflecto");
     private static final Reflecto INSTANCE = new Reflecto();
-    private static final Map<Class<?>, MappingStore> mappingStores = new ConcurrentHashMap<>();
+    private static final Map<Class<?>, MappingStore> mappingStores = new HashMap<>();
 
     private Reflecto() {}
 
@@ -38,9 +39,9 @@ public final class Reflecto {
         return INSTANCE;
     }
 
-    private static final Map<String, Class<?>> classCache = new ConcurrentHashMap<>();
-    private static final Map<Class<?>, Map<String, Field>> fieldCache = new ConcurrentHashMap<>();
-    private static final Map<Class<?>, Map<String, Method>> methodCache = new ConcurrentHashMap<>();
+    private static final Map<String, Class<?>> classCache = new HashMap<>();
+    private static final Map<Class<?>, Map<String, Field>> fieldCache = new HashMap<>();
+    private static final Map<Class<?>, Map<String, Method>> methodCache = new HashMap<>();
 
     /**
      * Register a mapping store using a unique class <br>
@@ -71,10 +72,10 @@ public final class Reflecto {
 
     /** Mapping store for class, field, and method mappings */
     public static class MappingStore {
-        private final Map<String, String> classMappings = new ConcurrentHashMap<>();
-        private final Map<String, Map<String, String>> fieldMappings = new ConcurrentHashMap<>();
+        private final Map<String, String> classMappings = new HashMap<>();
+        private final Map<String, Map<String, String>> fieldMappings = new HashMap<>();
         private final Map<String, Map<String, Tuple<String, Class<?>[]>>> methodMappings =
-                new ConcurrentHashMap<>();
+                new HashMap<>();
 
         /**
          * Register a class mapping
@@ -103,8 +104,7 @@ public final class Reflecto {
             if (entry.version() != MinecraftVersions.UNKNOWN && !version.is(entry.version())) {
                 return this;
             }
-            if (entry.minVersion() != null
-                    && !version.isInRange(entry.minVersion(), entry.maxVersion())) {
+            if (!version.isInRange(entry.minVersion(), entry.maxVersion())) {
                 return this;
             }
 
@@ -180,7 +180,7 @@ public final class Reflecto {
             String parentEntry = entry.parentEntry().get();
 
             if (!fieldMappings.containsKey(parentEntry)) {
-                fieldMappings.put(parentEntry, new ConcurrentHashMap<>());
+                fieldMappings.put(parentEntry, new HashMap<>());
             }
             if (fieldMappings.get(parentEntry).containsKey(fieldName)) {
                 throw new FieldRegistrationFailedException(
@@ -190,13 +190,14 @@ public final class Reflecto {
             }
             fieldMappings.get(parentEntry).put(fieldName, fieldMapping);
 
-            Class<?> parentEntryType = classCache.get(parentEntry);
+            String parentMapping = classMappings.get(parentEntry);
+            Class<?> parentEntryType = classCache.get(parentMapping);
             if (!fieldCache.containsKey(parentEntryType)) {
-                fieldCache.put(parentEntryType, new ConcurrentHashMap<>());
+                fieldCache.put(parentEntryType, new HashMap<>());
             }
             if (!fieldCache.get(parentEntryType).containsKey(fieldMapping)) {
                 try {
-                    Field field = parentEntryType.getDeclaredField(fieldMapping);
+                    Field field = parentEntryType.getField(fieldMapping);
                     field.setAccessible(true);
                     fieldCache.get(parentEntryType).put(fieldMapping, field);
                 } catch (NoSuchFieldException e) {
@@ -262,7 +263,7 @@ public final class Reflecto {
             String parentEntry = entry.parentEntry().get();
 
             if (!methodMappings.containsKey(parentEntry)) {
-                methodMappings.put(parentEntry, new ConcurrentHashMap<>());
+                methodMappings.put(parentEntry, new HashMap<>());
             }
             if (methodMappings.get(parentEntry).containsKey(methodName)) {
                 throw new MethodRegistrationFailedException(
@@ -275,14 +276,14 @@ public final class Reflecto {
                     .get(parentEntry)
                     .put(methodName, new Tuple<>(methodMapping, parameterTypes));
 
-            Class<?> parentEntryType = classCache.get(parentEntry);
+            String parentMapping = classMappings.get(parentEntry);
+            Class<?> parentEntryType = classCache.get(parentMapping);
             if (!methodCache.containsKey(parentEntryType)) {
-                methodCache.put(parentEntryType, new ConcurrentHashMap<>());
+                methodCache.put(parentEntryType, new HashMap<>());
             }
             if (!methodCache.get(parentEntryType).containsKey(methodMapping)) {
                 try {
-                    Method method =
-                            parentEntryType.getDeclaredMethod(methodMapping, parameterTypes);
+                    Method method = parentEntryType.getMethod(methodMapping, parameterTypes);
                     method.setAccessible(true);
                     methodCache.get(parentEntryType).put(methodMapping, method);
                 } catch (NoSuchMethodException e) {

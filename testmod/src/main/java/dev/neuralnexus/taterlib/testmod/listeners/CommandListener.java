@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.testmod.listeners;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.testmod.commands.TestModCommand;
 
 /** The command listener. */
@@ -19,8 +18,7 @@ public class CommandListener {
      * @param event The event.
      */
     public static void onRegisterCommand(CommandRegisterEvent event) {
-        //        event.registerCommand(Example.plugin(), new ExampleCommand(), "alias1",
-        // "alias2");
+        event.registerCommand(new TestModCommand(), "alias1", "alias2");
     }
 
     /**
@@ -31,6 +29,6 @@ public class CommandListener {
     public static void onRegisterBrigadierCommand(BrigadierCommandRegisterEvent event) {
         Command command = new TestModCommand();
         BrigadierHelperClass.onRegisterBrigadierCommand(
-                event, command, Loader.instance().plugin(), command.name(), "ex", "alias2");
+                event, command, command.name(), "ex", "alias2");
     }
 }

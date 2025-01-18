@@ -12,7 +12,6 @@ import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
@@ -23,7 +22,6 @@ public class BrigadierHelperClass {
     public static void onRegisterBrigadierCommand(
             BrigadierCommandRegisterEvent event,
             Command command,
-            Object plugin,
             String commandName,
             String... aliases) {
 
@@ -33,13 +31,17 @@ public class BrigadierHelperClass {
         // Add permission check and any other required logic (e.g. player check or dimension check)
         brigCommand.requires(
                 source -> {
-                    CommandSender sender = event.getSender(source);
-                    return sender.hasPermission(
-                            // Checks if not dedicated, or if LuckPerms is installed
-                            // then sets the permission level to 0, otherwise 4
-                            event.isDedicated()
-                                    ? (TaterAPIProvider.isHooked("luckperms") ? 0 : 4)
-                                    : 0);
+                    return true; // PermsAPI.hasPermission(1).test(source);
+                    //                    CommandSender sender = event.getSender(source);
+                    //                    return sender.hasPermission(
+                    //                            // Checks if not dedicated, or if LuckPerms is
+                    // installed
+                    //                            // then sets the permission level to 0, otherwise
+                    // 4
+                    //                            event.isDedicated()
+                    //                                    ? (TaterAPIProvider.isHooked("luckperms")
+                    // ? 0 : 4)
+                    //                                    : 0);
                 });
 
         // Create an argument for the command, for this example we will use

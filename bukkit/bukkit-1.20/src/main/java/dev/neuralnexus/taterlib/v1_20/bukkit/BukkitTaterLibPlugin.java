@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
@@ -34,7 +33,6 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        this.onEnable();
         TaterAPIProvider.api(Platforms.BUKKIT)
                 .ifPresent(api -> api.setServer(BukkitServer::instance));
     }
@@ -52,28 +50,38 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                 pluginManager.registerEvents(new PaperPlayerListener(), plugin);
             }
             ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
-            Bukkit.getServer()
-                    .getScheduler()
-                    .scheduleSyncDelayedTask(
-                            plugin,
-                            () -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}),
-                            5 * 20L);
+            //            Bukkit.getServer()
+            //                    .getScheduler()
+            //                    .scheduleSyncDelayedTask(
+            //                            plugin,
+            //                            () -> ServerEvents.STARTED.invoke(new ServerStartedEvent()
+            // {}),
+            //                            5 * 20L);
             pluginManager.registerEvents(new BukkitServerListener(), plugin);
+            ServerEvents.STARTED.register(
+                    event -> {
+                        // Register commands
+                        CommandEvents.REGISTER_COMMAND.invoke(new BukkitCommandRegisterEvent());
 
-            Bukkit.getServer()
-                    .getScheduler()
-                    .runTaskLater(
-                            plugin,
-                            () -> {
-                                // Register commands
-                                CommandEvents.REGISTER_COMMAND.invoke(
-                                        new BukkitCommandRegisterEvent());
+                        // Register plugin messages
+                        NetworkEvents.REGISTER_CHANNELS.invoke(
+                                new BukkitRegisterPacketChannelsEvent());
+                    });
 
-                                // Register plugin messages
-                                NetworkEvents.REGISTER_CHANNELS.invoke(
-                                        new BukkitRegisterPacketChannelsEvent());
-                            },
-                            200L);
+            //            Bukkit.getServer()
+            //                    .getScheduler()
+            //                    .runTaskLater(
+            //                            plugin,
+            //                            () -> {
+            //                                // Register commands
+            //                                CommandEvents.REGISTER_COMMAND.invoke(
+            //                                        new BukkitCommandRegisterEvent());
+            //
+            //                                // Register plugin messages
+            //                                NetworkEvents.REGISTER_CHANNELS.invoke(
+            //                                        new BukkitRegisterPacketChannelsEvent());
+            //                            },
+            //                            20 * 20L);
         }
     }
 

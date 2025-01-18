@@ -31,6 +31,9 @@ dependencies {
 
     // Tooling
     compileOnly(project(":api"))
+    implementation(variantOf(libs.modapi.crossperms) {
+        classifier("downgraded-8-shaded")
+    })
     implementation(variantOf(libs.modapi.metadata) {
         classifier("downgraded-8-shaded")
     })
@@ -51,6 +54,7 @@ tasks.named<ShadowJar>("shadowJar") {
         // Tooling
 //        include(project(":api"))
 //        include(project(":loader"))
+        include(dependency("dev.neuralnexus.modapi:crossperms"))
         include(dependency("dev.neuralnexus.modapi:metadata"))
         include(dependency("dev.neuralnexus.modapi:muxins"))
 
@@ -78,6 +82,7 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("com.google.gson", "dev.neuralnexus.taterlib.lib.gson")
 
     minimize {
+        exclude(dependency("dev.neuralnexus.modapi:crossperms"))
         exclude(dependency("dev.neuralnexus.modapi:metadata"))
         exclude(dependency("dev.neuralnexus.modapi:muxins"))
     }

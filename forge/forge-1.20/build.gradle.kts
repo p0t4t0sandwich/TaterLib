@@ -49,6 +49,7 @@ tasks.named<ShadowJar>("shadowJar") {
     relocate("dev.neuralnexus.taterlib.v1_20.vanilla", "dev.neuralnexus.taterlib.v1_20.vanilla.forge")
 }
 
+//tasks.compileJava.get().dependsOn(project(":forge:forge-1.20.2").tasks.named("remapShadowJar"))
 tasks.build {
     dependsOn(tasks.named("remapShadowJar"))
 }

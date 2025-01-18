@@ -31,7 +31,6 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        this.onEnable();
         TaterAPIProvider.api(Platforms.BUKKIT)
                 .ifPresent(api -> api.setServer(BukkitServer::instance));
     }

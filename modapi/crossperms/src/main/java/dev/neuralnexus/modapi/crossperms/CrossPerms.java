@@ -71,7 +71,13 @@ public class CrossPerms {
             }
             return;
         }
-        api.registerProvider(new VanillaPermissionsProvider());
+        // Register vanilla permissions provider
+        // Only if the server isn't Bukkit/Spigot, or Paper older than 1.20.5
+        if (!meta.isPlatformPresent(Platforms.BUKKIT, Platforms.SPIGOT)
+                && !(meta.isPlatformPresent(Platforms.PAPER)
+                        && meta.version().isOlderThan(MinecraftVersions.V20_5))) {
+            api.registerProvider(new VanillaPermissionsProvider());
+        }
         if (meta.isPlatformPresent(Platforms.BUKKIT)) {
             api.registerProvider(new BukkitPermissionsProvider());
         }
@@ -178,8 +184,13 @@ public class CrossPerms {
                 MappingEntry.builder("players")
                         .parentEntry(playerList)
                         .versionRange(MinecraftVersions.V7, MinecraftVersions.V7_10)
+                        .mojang("")
+                        .spigot("")
+                        .legacySpigot("")
+                        .searge("")
                         .legacySearge("field_72404_b")
                         .mcp("playerEntityList")
+                        .yarnIntermediary("")
                         .legacyIntermediary("field_2708");
 
         // PlayerList#getPlayer(UUID) -> ServerPlayer
@@ -348,7 +359,9 @@ public class CrossPerms {
 
         store.registerClass(serverPlayer)
                 .registerMethod(player_getGameProfile) // Inherited from Player
-                .registerMethod(entity_hasPermissions); // Inherited from Entity (Only until 1.21.1)
+                .registerMethod(
+                        entity_hasPermissions,
+                        int.class); // Inherited from Entity (Only until 1.21.1)
         logger.info("Registered ServerPlayer");
         logger.info("|-> getGameProfile");
         logger.info("|-> hasPermissions");
@@ -433,7 +446,7 @@ public class CrossPerms {
                                 "method_10788", MinecraftVersions.V7, MinecraftVersions.V12_2);
 
         store.registerClass(commandSender)
-                .registerMethod(commandSource_hasPermissions)
+                .registerMethod(commandSource_hasPermissions, int.class)
                 .registerMethod(commandSender_getEntity);
         logger.info("Registered CommandSourceStack");
         logger.info("|-> hasPermissions"); // Inherited from SharedSuggestionProvider

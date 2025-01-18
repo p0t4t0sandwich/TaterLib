@@ -173,7 +173,7 @@ public final class MetaAPIImpl implements MetaAPI {
                 }
                 // Check Paper
             } else if (api.isPlatformPresent(Platforms.PAPER)
-                    && this.version().isOlderThan(MinecraftVersions.V20_6)) {
+                    && this.version().isAtLeast(MinecraftVersions.V20_5)) {
                 mappings = Mappings.MOJANG;
                 // Check Spigot
             } else if (api.isPlatformPresent(Platforms.SPIGOT)) {

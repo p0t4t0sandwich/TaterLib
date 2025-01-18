@@ -38,10 +38,20 @@ public class PermsAPIImpl implements PermsAPI {
             @NotNull Class<P> providerType, @NotNull Class<S> subjectType) {
         Objects.requireNonNull(providerType, "Provider type cannot be null");
         Objects.requireNonNull(subjectType, "Subject type cannot be null");
-        return this.providers.getOrDefault(subjectType, new ArrayList<>()).stream()
-                .filter(provider -> provider.type().isAssignableFrom(providerType))
-                .map(provider -> (HasPermission<P, S>) provider)
-                .toList();
+
+        // Get providers that extend from subjectType, and then line up with providerType
+        List<Class<?>> instanceOf =
+                new ArrayList<>(providers.keySet())
+                        .stream().filter(subjectType::isAssignableFrom).toList();
+        List<HasPermission<P, S>> list = new ArrayList<>();
+        for (Class<?> clazz : instanceOf) {
+            for (HasPermission<?, ?> hasPermission : providers.get(clazz)) {
+                if (providerType.isAssignableFrom(hasPermission.type())) {
+                    list.add((HasPermission<P, S>) hasPermission);
+                }
+            }
+        }
+        return list;
     }
 
     @Override
