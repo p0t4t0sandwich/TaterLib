@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
@@ -53,6 +54,17 @@ public class TaterLib {
 
     /** Start */
     public static void start() {
+        MetaAPI api = MetaAPI.instance();
+        logger.info(
+                LoaderImpl.PROJECT_NAME
+                        + " is running on "
+                        + api.platform().asString()
+                        + " "
+                        + api.version().asString()
+                        + ", with "
+                        + api.mappings().toString()
+                        + " mappings!");
+
         //        try {
         //            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};
         //            Map<String, String> deps = new HashMap<>();

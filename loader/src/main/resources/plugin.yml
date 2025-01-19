@@ -4,6 +4,8 @@ author: '${authors}'
 description: '${project_description}'
 website: '${homepage_url}'
 main: 'dev.neuralnexus.taterloader.platforms.BukkitLoaderPlugin'
+depend: [ ]
 depends: [ ]
+softdepend: [ LuckPerms ]
 softdepends: [ LuckPerms ]
 folia-supported: true

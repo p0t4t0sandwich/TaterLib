@@ -11,6 +11,7 @@ import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
@@ -18,12 +19,13 @@ import dev.neuralnexus.taterlib.testmod.listeners.CommandListener;
 
 /** Main class for the plugin. */
 public class TestMod implements Plugin {
-    public static final String PROJECT_NAME = "Example";
-    public static final String PROJECT_ID = "example";
+    public static final String PROJECT_NAME = "TestMod";
+    public static final String PROJECT_ID = "testmod";
     public static final String PROJECT_VERSION = "0.1.0-R0.1-SNAPSHOT";
-    public static final String PROJECT_AUTHORS = "yournamehere";
+    public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
     public static final String PROJECT_DESCRIPTION = "A cross-API plugin that uses TaterLib!";
-    public static final String PROJECT_URL = "https://github.com/yournamehere/Example";
+    public static final String PROJECT_URL =
+            "https://github.com/p0t4t0sandwich/TaterLib/tree/main/testmod";
 
     private static final TestMod instance = new TestMod();
     private static final Logger logger = Logger.create(TestMod.PROJECT_ID);
@@ -72,14 +74,8 @@ public class TestMod implements Plugin {
     public void onEnable() {
         MetaAPI api = MetaAPI.instance();
 
-        logger.info(
-                TestMod.PROJECT_NAME
-                        + " is running on "
-                        + api.platform()
-                        + " "
-                        + api.version()
-                        + "!");
-        PluginEvents.DISABLED.register(event -> onDisable());
+        logger.info(LoaderImpl.PROJECT_NAME + " is running on " + api.platform().asString() + " " + api.version().asString() + ", with " + api.mappings().toString() + " mappings!");
+        PluginEvents.DISABLED.register(event -> this.onDisable());
 
         // Config
 

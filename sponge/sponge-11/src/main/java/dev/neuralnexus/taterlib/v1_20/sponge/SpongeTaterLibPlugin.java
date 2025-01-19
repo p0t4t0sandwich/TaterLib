@@ -10,6 +10,7 @@ import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.sponge.listeners.command.SpongeCommandListener;
 
@@ -29,6 +30,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        TaterLib.start();
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
             Sponge.eventManager().registerListeners(container, new SpongeCommandListener());
         }
@@ -36,6 +38,6 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onDisable() {
-        this.onDisable();
+        TaterLib.stop();
     }
 }

@@ -15,12 +15,14 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.b1_7_3.bukkit.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.b1_7_3.bukkit.command.BukkitCommandWrapper;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
+import dev.neuralnexus.taterlib.bukkit.utils.event.command.BukkitCommandRegisterEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -37,6 +39,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        TaterLib.start();
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.BUKKIT)) {
             // Register listeners
             Plugin plugin = (Plugin) Loader.instance().plugin();
@@ -46,14 +49,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                     new BukkitBlockListener(),
                     Event.Priority.Normal,
                     plugin);
-            Bukkit.getServer()
-                    .getScheduler()
-                    .scheduleSyncDelayedTask(
-                            plugin,
-                            () ->
-                                    CommandEvents.REGISTER_COMMAND.invoke(
-                                            new BukkitCommandRegisterEvent()),
-                            200L);
             pluginManager.registerEvent(
                     Event.Type.ENTITY_DAMAGE,
                     new BukkitEntityListener(),
@@ -96,6 +91,15 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                             plugin,
                             () -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}),
                             5 * 20L);
+            Bukkit.getServer()
+                    .getScheduler()
+                    .scheduleSyncDelayedTask(
+                            plugin,
+                            () ->
+                                    CommandEvents.REGISTER_COMMAND.invoke(
+                                            new BukkitCommandRegisterEvent(
+                                                    BukkitCommandWrapper::new)),
+                            10 * 20L);
         }
     }
 
@@ -104,6 +108,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        this.onDisable();
+        TaterLib.stop();
     }
 }

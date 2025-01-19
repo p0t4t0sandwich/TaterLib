@@ -18,6 +18,7 @@ import dev.neuralnexus.modapi.crossperms.api.impl.providers.SpongePermissionsPro
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.VanillaPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.VelocityPermissionsProvider;
 import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platforms;
@@ -59,7 +60,6 @@ public class CrossPerms {
         if (null != store) {
             return;
         }
-        register(minecraftServer);
 
         MetaAPI meta = MetaAPI.instance();
         PermsAPI api = PermsAPI.instance();
@@ -71,6 +71,8 @@ public class CrossPerms {
             }
             return;
         }
+        this.register(minecraftServer);
+
         // Register vanilla permissions provider
         // Only if the server isn't Bukkit/Spigot, or Paper older than 1.20.5
         if (!meta.isPlatformPresent(Platforms.BUKKIT, Platforms.SPIGOT)
@@ -111,12 +113,20 @@ public class CrossPerms {
         MINECRAFT_SERVER = minecraftServer;
         store = Reflecto.instance().getStore(this);
 
+        // Check if the mappings are Spigot or LegacySpigot, and return early
+        if (MetaAPI.instance().mappings().is(Mappings.SPIGOT)
+                || MetaAPI.instance().mappings().is(Mappings.LEGACY_SPIGOT)) {
+            return;
+        }
+
         // MinecraftServer
         var mcString = "net.minecraft.server.MinecraftServer";
         var mcServer =
                 MappingEntry.builder("MinecraftServer")
                         .official(mcString)
                         .mojang(mcString)
+                        .spigot(mcString)
+                        .legacySpigot(mcString)
                         .searge(mcString)
                         .searge(
                                 "net.minecraft.src.C_4977_",
@@ -185,8 +195,6 @@ public class CrossPerms {
                         .parentEntry(playerList)
                         .versionRange(MinecraftVersions.V7, MinecraftVersions.V7_10)
                         .mojang("")
-                        .spigot("")
-                        .legacySpigot("")
                         .searge("")
                         .legacySearge("field_72404_b")
                         .mcp("playerEntityList")

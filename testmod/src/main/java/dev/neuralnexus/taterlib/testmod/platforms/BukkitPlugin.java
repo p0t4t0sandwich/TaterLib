@@ -12,12 +12,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /** Bukkit entry point. */
 public class BukkitPlugin extends JavaPlugin {
-    public BukkitPlugin() {}
-
-    @Override
-    public void onEnable() {
+    public BukkitPlugin() {
         PluginEvents.ENABLED.register(event -> TestMod.instance().onEnable());
     }
+
+    @Override
+    public void onEnable() {}
 
     @Override
     public void onDisable() {}

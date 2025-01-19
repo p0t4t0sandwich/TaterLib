@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.command.BungeeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.bungee.listeners.network.BungeePluginMessageListener;
@@ -36,6 +37,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        TaterLib.start();
         // Register listeners
         Plugin plugin = (Plugin) Loader.instance().plugin();
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
@@ -65,6 +67,6 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        this.onDisable();
+        TaterLib.stop();
     }
 }

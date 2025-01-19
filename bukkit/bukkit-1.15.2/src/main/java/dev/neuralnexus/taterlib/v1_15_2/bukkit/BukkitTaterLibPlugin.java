@@ -11,13 +11,14 @@ import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.bukkit.utils.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_15_2.bukkit.command.BukkitCommandWrapper;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.listeners.entity.BukkitEntityListener;
@@ -40,6 +41,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        TaterLib.start();
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.BUKKIT)) {
             // Register listeners
             Plugin plugin = (Plugin) Loader.instance().plugin();
@@ -51,28 +53,17 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                 pluginManager.registerEvents(new PaperPlayerListener(), plugin);
             }
             ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
-            Bukkit.getServer()
-                    .getScheduler()
-                    .scheduleSyncDelayedTask(
-                            plugin,
-                            () -> ServerEvents.STARTED.invoke(new ServerStartedEvent() {}),
-                            5 * 20L);
             pluginManager.registerEvents(new BukkitServerListener(), plugin);
+            ServerEvents.STARTED.register(
+                    event -> {
+                        // Register commands
+                        CommandEvents.REGISTER_COMMAND.invoke(
+                                new BukkitCommandRegisterEvent(BukkitCommandWrapper::new));
 
-            Bukkit.getServer()
-                    .getScheduler()
-                    .runTaskLater(
-                            plugin,
-                            () -> {
-                                // Register commands
-                                CommandEvents.REGISTER_COMMAND.invoke(
-                                        new BukkitCommandRegisterEvent());
-
-                                // Register plugin messages
-                                NetworkEvents.REGISTER_CHANNELS.invoke(
-                                        new BukkitRegisterPacketChannelsEvent());
-                            },
-                            200L);
+                        // Register plugin messages
+                        NetworkEvents.REGISTER_CHANNELS.invoke(
+                                new BukkitRegisterPacketChannelsEvent());
+                    });
         }
     }
 
@@ -81,6 +72,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        this.onDisable();
+        TaterLib.stop();
     }
 }

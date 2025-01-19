@@ -21,7 +21,7 @@ import java.util.Map;
 public class LoaderImpl implements Loader {
     public static final String PROJECT_NAME = "TaterLib";
     public static final String PROJECT_ID = "taterlib";
-    public static final String PROJECT_VERSION = "1.2.0-SNAPSHOT";
+    public static final String PROJECT_VERSION = "2.0.0-SNAPSHOT";
     public static final String PROJECT_AUTHORS = "p0t4t0sandwich";
     public static final String PROJECT_DESCRIPTION =
             "A cross API code library that allows developers to write code that works across multiple modding platforms, and across a wide range of Minecraft versions, all with one JAR file. If TaterLib runs on it, so can your plugin/mod.";

@@ -15,8 +15,8 @@ import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import java.lang.reflect.InvocationTargetException;
 
 /** Example Command. */
-public class TestModCommand implements Command {
-    private String name = "example";
+public class PermsTestCommand implements Command {
+    private String name = "permstest";
 
     @Override
     public String name() {
@@ -30,17 +30,17 @@ public class TestModCommand implements Command {
 
     @Override
     public String description() {
-        return "Example command";
+        return "Permissions Test command";
     }
 
     @Override
     public String usage() {
-        return "/example";
+        return "/permstest";
     }
 
     @Override
     public String permission() {
-        return "example.command.example";
+        return "testmod.command.permstest";
     }
 
     @Override
@@ -71,7 +71,7 @@ public class TestModCommand implements Command {
         } else {
             sender.sendMessage("INT PERMISSIONS DO NOT WORK");
         }
-        if (PermsAPI.instance().hasPermission(senderObj, "example.command.example")) {
+        if (PermsAPI.instance().hasPermission(senderObj, this.permission())) {
             sender.sendMessage("STRING PERMISSIONS WORK");
         } else {
             sender.sendMessage("STRING PERMISSIONS DO NOT WORK");

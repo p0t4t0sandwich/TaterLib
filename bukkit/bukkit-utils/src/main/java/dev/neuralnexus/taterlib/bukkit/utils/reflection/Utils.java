@@ -32,4 +32,14 @@ public class Utils {
             return null;
         }
     }
+
+    public static void syncCommands() {
+        // public CraftServer.syncCommands()
+        try {
+            Class<?> serverClass = Class.forName(cbClass("CraftServer"));
+            serverClass.getDeclaredMethod("syncCommands").invoke(Bukkit.getServer());
+        } catch (Exception e) {
+            TaterLib.logger().error("Could not reflect to get syncCommands", e);
+        }
+    }
 }

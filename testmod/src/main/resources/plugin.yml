@@ -4,6 +4,8 @@ author: '${authors}'
 description: '${project_description}'
 website: '${homepage_url}'
 main: '${group}.platforms.BukkitPlugin'
-depends: [TaterLib ]
-softdepends: [ LuckPerms ]
+depend: [ TaterLib ]
+depends: [ TaterLib ]
+softdepend: [ ]
+softdepends: [ ]
 folia-supported: true

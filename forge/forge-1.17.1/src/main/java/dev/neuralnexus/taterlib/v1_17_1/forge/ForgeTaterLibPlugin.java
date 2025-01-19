@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_17_1.forge;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_17.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_17_1.forge.listeners.block.ForgeBlockListener;
@@ -54,6 +55,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @SubscribeEvent
     public void onServerStopped(FMLServerStoppedEvent event) {
-        this.onDisable();
+        TaterLib.stop();
     }
 }

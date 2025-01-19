@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_20.forge.listeners.command.ForgeCommandsListener;
@@ -62,6 +63,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @SubscribeEvent
     public void onServerStopped(ServerStoppedEvent event) {
-        this.onDisable();
+        TaterLib.stop();
     }
 }

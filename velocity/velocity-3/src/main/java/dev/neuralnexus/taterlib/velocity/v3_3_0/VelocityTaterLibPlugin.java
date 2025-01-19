@@ -17,6 +17,7 @@ import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.event.command.VelocityCommandRegisterEvent;
@@ -38,6 +39,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
+        TaterLib.start();
         // Register listeners
         PluginContainer plugin = (PluginContainer) Loader.instance().plugin();
         ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
@@ -71,6 +73,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onDisable() {
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        this.onDisable();
+        TaterLib.stop();
     }
 }

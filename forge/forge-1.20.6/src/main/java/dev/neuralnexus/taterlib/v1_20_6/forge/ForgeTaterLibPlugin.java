@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.v1_20_6.forge;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_20_6.forge.listeners.block.ForgeBlockListener;
@@ -47,6 +48,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onDisable() {
-        this.onDisable();
+        TaterLib.stop();
     }
 }

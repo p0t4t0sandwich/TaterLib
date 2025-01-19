@@ -22,6 +22,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_6_4.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.block.ForgeBlockListener;
@@ -74,7 +75,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStopped(FMLServerStoppedEvent event) {
-        this.onDisable();
+        TaterLib.stop();
     }
 
     // ----------------------------- Relocated Server listeners -----------------------------

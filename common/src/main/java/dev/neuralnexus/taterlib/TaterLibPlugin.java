@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
@@ -23,20 +22,11 @@ public interface TaterLibPlugin extends Plugin {
 
     @Override
     default void onEnable() {
-        TaterLib.logger()
-                .info(
-                        LoaderImpl.PROJECT_NAME
-                                + " is running on "
-                                + MetaAPI.instance().platform().asString()
-                                + " "
-                                + MetaAPI.instance().version().asString()
-                                + "!");
         TaterLib.start();
     }
 
     @Override
     default void onDisable() {
         TaterLib.stop();
-        TaterLib.logger().info(LoaderImpl.PROJECT_NAME + " has been disabled!");
     }
 }
