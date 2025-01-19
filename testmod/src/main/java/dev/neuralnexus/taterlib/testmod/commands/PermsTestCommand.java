@@ -6,10 +6,13 @@
 package dev.neuralnexus.taterlib.testmod.commands;
 
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.util.TextUtil;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterlib.testmod.TestMod;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 
 import java.lang.reflect.InvocationTargetException;
@@ -59,22 +62,29 @@ public class PermsTestCommand implements Command {
         }
 
         // Reflect to get `CommandSender#sender` Object
-        Object senderObj = null;
-        try {
-            senderObj = sender.getClass().getDeclaredMethod("player").invoke(sender);
-        } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-            e.printStackTrace();
+        Object senderObj = sender;
+        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
+            try {
+                senderObj = sender.getClass().getDeclaredMethod("player").invoke(sender);
+            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
         }
 
-        if (PermsAPI.instance().hasPermission(senderObj, 4)) {
-            sender.sendMessage("INT PERMISSIONS WORK");
-        } else {
-            sender.sendMessage("INT PERMISSIONS DO NOT WORK");
-        }
-        if (PermsAPI.instance().hasPermission(senderObj, this.permission())) {
-            sender.sendMessage("STRING PERMISSIONS WORK");
-        } else {
-            sender.sendMessage("STRING PERMISSIONS DO NOT WORK");
+        try {
+            if (PermsAPI.instance().hasPermission(senderObj, 4)) {
+                sender.sendMessage("INT PERMISSIONS WORK");
+            } else {
+                sender.sendMessage("INT PERMISSIONS DO NOT WORK");
+            }
+            if (PermsAPI.instance().hasPermission(senderObj, this.permission())) {
+                sender.sendMessage("STRING PERMISSIONS WORK");
+            } else {
+                sender.sendMessage("STRING PERMISSIONS DO NOT WORK");
+            }
+        } catch (Exception e) {
+            TestMod.logger().info("Error: ");
+            e.printStackTrace();
         }
 
         sender.sendMessage(TextUtil.substituteSectionSign(TestModAPIProvider.get().getSomeData()));

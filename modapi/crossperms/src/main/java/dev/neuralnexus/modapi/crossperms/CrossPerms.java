@@ -77,7 +77,7 @@ public class CrossPerms {
         // Only if the server isn't Bukkit/Spigot, or Paper older than 1.20.5
         if (!meta.isPlatformPresent(Platforms.BUKKIT, Platforms.SPIGOT)
                 && !(meta.isPlatformPresent(Platforms.PAPER)
-                        && meta.version().isOlderThan(MinecraftVersions.V20_5))) {
+                        && meta.version().isAtMost(MinecraftVersions.V20_5))) {
             api.registerProvider(new VanillaPermissionsProvider());
         }
         if (meta.isPlatformPresent(Platforms.BUKKIT)) {
@@ -300,7 +300,7 @@ public class CrossPerms {
                 .registerMethod(storedUserEntry_getUser);
         logger.info("Registered ServerOpListEntry");
         logger.info("|-> getLevel");
-        logger.info("|-> getUser");
+        logger.info("|-> getUser"); // Inherited from StoredUserEntry
 
         // Entity
         var entity =
@@ -366,11 +366,13 @@ public class CrossPerms {
                         .yarnIntermediary("method_7334")
                         .legacyIntermediary("method_8429");
 
-        store.registerClass(serverPlayer)
+        store.registerClass(entity)
+                .registerClass(serverPlayer)
                 .registerMethod(player_getGameProfile) // Inherited from Player
                 .registerMethod(
                         entity_hasPermissions,
                         int.class); // Inherited from Entity (Only until 1.21.1)
+        logger.info("Registered Entity");
         logger.info("Registered ServerPlayer");
         logger.info("|-> getGameProfile");
         logger.info("|-> hasPermissions");

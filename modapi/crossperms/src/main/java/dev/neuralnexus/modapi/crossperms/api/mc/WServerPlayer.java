@@ -69,7 +69,7 @@ public class WServerPlayer implements Wrapped {
     public boolean hasPermission(int permissionLevel) {
         return CrossPerms.instance()
                 .store()
-                .invokeMethod("CommandSource", "hasPermission", player, permissionLevel);
+                .invokeMethod("ServerPlayer", "hasPermissions", player, permissionLevel);
     }
 
     /**

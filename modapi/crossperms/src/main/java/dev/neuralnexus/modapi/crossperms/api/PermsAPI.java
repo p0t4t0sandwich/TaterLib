@@ -7,7 +7,6 @@ package dev.neuralnexus.modapi.crossperms.api;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.crossperms.api.impl.PermsAPIImpl;
 import dev.neuralnexus.modapi.crossperms.api.mc.WCommandSender;
 import dev.neuralnexus.modapi.crossperms.api.mc.WMinecraftServer;
@@ -66,11 +65,6 @@ public interface PermsAPI {
     default <P, S> boolean hasPermission(@NotNull S subject, @NotNull P permission) {
         Objects.requireNonNull(subject, "Source cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
-
-        //
-        CrossPerms.instance().logger().info("Checking permission: " + permission);
-        CrossPerms.instance().logger().info("Checking subject: " + subject);
-        //
 
         List<HasPermission<P, S>> checks =
                 this.providers((Class<P>) permission.getClass(), (Class<S>) subject.getClass());

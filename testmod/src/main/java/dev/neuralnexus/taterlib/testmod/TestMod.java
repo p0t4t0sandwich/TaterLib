@@ -11,7 +11,6 @@ import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
@@ -74,7 +73,15 @@ public class TestMod implements Plugin {
     public void onEnable() {
         MetaAPI api = MetaAPI.instance();
 
-        logger.info(LoaderImpl.PROJECT_NAME + " is running on " + api.platform().asString() + " " + api.version().asString() + ", with " + api.mappings().toString() + " mappings!");
+        logger.info(
+                TestMod.PROJECT_NAME
+                        + " is running on "
+                        + api.platform().asString()
+                        + " "
+                        + api.version().asString()
+                        + ", with "
+                        + api.mappings().toString()
+                        + " mappings!");
         PluginEvents.DISABLED.register(event -> this.onDisable());
 
         // Config

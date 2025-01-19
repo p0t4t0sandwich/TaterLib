@@ -61,7 +61,7 @@ public class WCommandSender implements Wrapped {
         return CrossPerms.instance()
                 .store()
                 .invokeMethod(
-                        "CommandSender", "hasPermission", this.commandSender, permissionLevel);
+                        "CommandSender", "hasPermissions", this.commandSender, permissionLevel);
     }
 
     /**

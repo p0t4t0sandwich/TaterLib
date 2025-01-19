@@ -282,16 +282,20 @@ public final class Reflecto {
                 methodCache.put(parentEntryType, new HashMap<>());
             }
             if (!methodCache.get(parentEntryType).containsKey(methodMapping)) {
-                try {
-                    Method method = parentEntryType.getMethod(methodMapping, parameterTypes);
-                    method.setAccessible(true);
-                    methodCache.get(parentEntryType).put(methodMapping, method);
-                } catch (NoSuchMethodException e) {
-                    throw new MethodRegistrationFailedException(methodName, methodMapping, e);
+                Class<?> clazz = parentEntryType;
+                while (clazz != null) {
+                    for (Method method : clazz.getDeclaredMethods()) {
+                        if (method.getName().equals(methodMapping)) {
+                            method.setAccessible(true);
+                            methodCache.get(parentEntryType).put(methodMapping, method);
+                            return this;
+                        }
+                    }
+                    clazz = clazz.getSuperclass();
                 }
             }
-
-            return this;
+            throw new MethodRegistrationFailedException(
+                    methodName, methodMapping, new IllegalStateException("No method found"));
         }
 
         /**
@@ -317,6 +321,7 @@ public final class Reflecto {
          * @throws ClassNotRegisteredException If the class is not registered
          * @throws NullPointerException If the entry name is null
          */
+        @SuppressWarnings("unchecked")
         public <T> Class<T> getClass(@NotNull String entryName)
                 throws ClassNotRegisteredException, NullPointerException {
             Objects.requireNonNull(entryName, "Entry name cannot be null");
@@ -345,16 +350,17 @@ public final class Reflecto {
             Objects.requireNonNull(entryName, "Field name cannot be null");
             if (!fieldMappings.containsKey(parentEntry)
                     || !fieldMappings.get(parentEntry).containsKey(entryName)) {
-                throw new FieldNotRegisteredException(entryName);
+                throw new FieldNotRegisteredException(parentEntry, entryName);
             }
+            String parentMapping = classMappings.get(parentEntry);
             Field field =
                     fieldCache
-                            .get(classCache.get(parentEntry))
+                            .get(classCache.get(parentMapping))
                             .get(fieldMappings.get(parentEntry).get(entryName));
             try {
                 return (T) field.get(instance);
             } catch (IllegalAccessException e) {
-                throw new FieldNotAccessableException(entryName);
+                throw new FieldNotAccessableException(parentEntry, entryName);
             }
         }
 
@@ -401,14 +407,15 @@ public final class Reflecto {
 
             if (!methodMappings.containsKey(parentEntry)
                     || !methodMappings.get(parentEntry).containsKey(entryName)) {
-                throw new MethodNotRegisteredException(entryName);
+                throw new MethodNotRegisteredException(parentEntry, entryName);
             }
             Tuple<String, Class<?>[]> methodTuple = methodMappings.get(parentEntry).get(entryName);
-            Method method = methodCache.get(classCache.get(parentEntry)).get(methodTuple.left());
+            String parentMapping = classMappings.get(parentEntry);
+            Method method = methodCache.get(classCache.get(parentMapping)).get(methodTuple.left());
             try {
                 return (T) method.invoke(instance, args);
             } catch (IllegalAccessException | InvocationTargetException e) {
-                throw new MethodNotAccessableException(entryName);
+                throw new MethodNotAccessableException(parentEntry, entryName);
             }
         }
 
@@ -464,26 +471,26 @@ public final class Reflecto {
     }
 
     public static class FieldNotRegisteredException extends RuntimeException {
-        public FieldNotRegisteredException(String fieldName) {
-            super("Field " + fieldName + " is not registered");
+        public FieldNotRegisteredException(String className, String fieldName) {
+            super("Field " + fieldName + " is not registered in class " + className);
         }
     }
 
     public static class MethodNotRegisteredException extends RuntimeException {
-        public MethodNotRegisteredException(String methodName) {
-            super("Method " + methodName + " is not registered");
+        public MethodNotRegisteredException(String className, String methodName) {
+            super("Method " + methodName + " is not registered in class " + className);
         }
     }
 
     public static class FieldNotAccessableException extends RuntimeException {
-        public FieldNotAccessableException(String fieldName) {
-            super("Field " + fieldName + " is not accessible");
+        public FieldNotAccessableException(String className, String fieldName) {
+            super("Field " + fieldName + " is not accessible in class " + className);
         }
     }
 
     public static class MethodNotAccessableException extends RuntimeException {
-        public MethodNotAccessableException(String methodName) {
-            super("Method " + methodName + " is not accessible");
+        public MethodNotAccessableException(String className, String methodName) {
+            super("Method " + methodName + " is not accessible in class " + className);
         }
     }
 }
