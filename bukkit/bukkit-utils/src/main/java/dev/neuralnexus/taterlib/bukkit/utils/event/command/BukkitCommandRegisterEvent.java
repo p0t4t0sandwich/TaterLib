@@ -8,6 +8,8 @@ package dev.neuralnexus.taterlib.bukkit.utils.event.command;
 import static dev.neuralnexus.taterlib.bukkit.utils.reflection.Utils.getCommandMap;
 import static dev.neuralnexus.taterlib.bukkit.utils.reflection.Utils.syncCommands;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 
@@ -28,6 +30,9 @@ public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
         Objects.requireNonNull(getCommandMap());
         // TODO: register(String fallbackPrefix (plugin name), Command command)
         getCommandMap().register(command.name(), commandWrapper.apply(command));
+        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V7)) {
+            return;
+        }
         syncCommands();
     }
 }

@@ -83,7 +83,7 @@ public class TaterReflectUtil {
     public static String bukkit(MinecraftVersion mcv) {
         MinecraftVersion version;
         if (mcv.isInRange(MinecraftVersions.B1_7, MinecraftVersions.B1_7_3)) {
-            version = MinecraftVersions.B1_7_3;
+            return TL_PACKAGE + ".b1_7_3.bukkit";
         } else if (mcv.isInRange(MinecraftVersions.V2_1, MinecraftVersions.V2_5)) {
             version = MinecraftVersions.V2_5;
         } else if (mcv.isInRange(MinecraftVersions.V6_1, MinecraftVersions.V6_4)) {
@@ -96,7 +96,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V13_2;
         } else if (mcv.isInRange(MinecraftVersions.V14, MinecraftVersions.V15_2)) {
             version = MinecraftVersions.V15_2;
-        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V20;
         } else {
             version = MinecraftVersions.V20;

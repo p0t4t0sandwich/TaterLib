@@ -113,8 +113,9 @@ public class CrossPerms {
         MINECRAFT_SERVER = minecraftServer;
         store = Reflecto.instance().getStore(this);
 
-        // Check if the mappings are Spigot or LegacySpigot, and return early
-        if (MetaAPI.instance().mappings().is(Mappings.SPIGOT)
+        // Check if the mappings are Official, Spigot or LegacySpigot, and return early
+        if (MetaAPI.instance().mappings().is(Mappings.OFFICIAL)
+                || MetaAPI.instance().mappings().is(Mappings.SPIGOT)
                 || MetaAPI.instance().mappings().is(Mappings.LEGACY_SPIGOT)) {
             return;
         }

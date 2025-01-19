@@ -27,7 +27,7 @@ public final class MinecraftVersions
      * @return The MinecraftVersion
      */
     static MinecraftVersion of(String version) {
-        if (version.contains("1.1.8 (MC: 1.7.3)")) {
+        if (version.contains("(MC: 1.7.3)")) {
             return B1_7_3;
         }
         MinecraftVersion ver = MinecraftVersions.UNKNOWN;

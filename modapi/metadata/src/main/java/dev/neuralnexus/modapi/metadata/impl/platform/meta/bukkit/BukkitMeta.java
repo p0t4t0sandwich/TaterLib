@@ -52,8 +52,8 @@ public final class BukkitMeta implements Platform.Meta {
                 .map(
                         plugin ->
                                 new ModInfoImpl(
-                                        plugin.getName(),
-                                        plugin.getName(),
+                                        plugin.getDescription().getName(),
+                                        plugin.getDescription().getName(),
                                         plugin.getDescription().getVersion(),
                                         Platforms.BUKKIT))
                 .collect(Collectors.toList());
