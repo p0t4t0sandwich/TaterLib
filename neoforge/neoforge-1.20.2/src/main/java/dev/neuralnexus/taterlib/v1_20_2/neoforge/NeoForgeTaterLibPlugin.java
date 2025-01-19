@@ -17,7 +17,6 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        this.onEnable();
         TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
         TaterAPIProvider.api(Platforms.NEOFORGE)
                 .ifPresent(

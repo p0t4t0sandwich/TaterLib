@@ -36,6 +36,8 @@ public class ForgeLoaderPlugin {
             loader.registerPlugin(TaterPluginResolver.fabric());
         }
         loader.onInit();
+        // TODO: Switch to server-starting? Or switch to common init event?
         loader.onEnable();
+        // TODO: Add disable event via the Forge API (will need cross-version abstraction)
     }
 }

@@ -112,7 +112,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V8;
         } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V15_2)) {
             version = MinecraftVersions.V12;
-        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V20;
         } else {
             version = MinecraftVersions.V20;
@@ -148,10 +148,10 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
             version = MinecraftVersions.V20;
-        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V21;
         } else {
-            version = MinecraftVersions.V20;
+            version = MinecraftVersions.V21;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".fabric";
     }
@@ -188,7 +188,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
             version = MinecraftVersions.V20;
-        } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V20_6;
         } else {
             version = MinecraftVersions.V20_6;
@@ -223,7 +223,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V17;
         } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
             version = MinecraftVersions.V19;
-        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V20;
         } else {
             version = MinecraftVersions.V20;
@@ -270,7 +270,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
             version = MinecraftVersions.V20;
-        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_3)) {
+        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V21;
         } else {
             version = MinecraftVersions.V21;

@@ -13,7 +13,6 @@ import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterlib.testmod.TestMod;
-import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -23,7 +22,7 @@ public class PermsTestCommand implements Command {
 
     @Override
     public String name() {
-        return name;
+        return this.name;
     }
 
     @Override
@@ -87,7 +86,6 @@ public class PermsTestCommand implements Command {
             e.printStackTrace();
         }
 
-        sender.sendMessage(TextUtil.substituteSectionSign(TestModAPIProvider.get().getSomeData()));
         return true;
     }
 }

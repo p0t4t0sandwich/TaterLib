@@ -32,7 +32,6 @@ import java.time.Duration;
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        this.onEnable();
         TaterAPIProvider.api(Platforms.VELOCITY)
                 .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
     }

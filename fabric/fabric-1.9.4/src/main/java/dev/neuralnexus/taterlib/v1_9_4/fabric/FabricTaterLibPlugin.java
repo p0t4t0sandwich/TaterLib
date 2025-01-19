@@ -15,6 +15,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.event.api.FabricBlockEvents;
 import dev.neuralnexus.taterlib.v1_9_4.fabric.event.api.FabricEntityEvents;
@@ -40,14 +41,13 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
-        this.onEnable();
         TaterAPIProvider.api(Platforms.FABRIC)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
-            ServerLifecycleEvents.SERVER_STOPPED.register(s -> onDisable());
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
 
             // Register Fabric API command events
             CommandRegistrar.EVENT.register(

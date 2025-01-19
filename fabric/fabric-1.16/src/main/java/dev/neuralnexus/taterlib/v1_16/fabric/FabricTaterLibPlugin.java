@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_16.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_16.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
@@ -35,7 +36,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        this.onEnable();
         TaterAPIProvider.setSide(
                 VanillaBootstrap.determineSide(
                         FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT));
@@ -45,7 +45,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
-            ServerLifecycleEvents.SERVER_STOPPED.register(s -> onDisable());
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
 
             // Register Fabric API command events
             CommandRegistrationCallback.EVENT.register(

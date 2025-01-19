@@ -14,7 +14,7 @@ import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
-import dev.neuralnexus.taterlib.testmod.listeners.CommandListener;
+import dev.neuralnexus.taterlib.testmod.commands.PermsTestCommand;
 
 /** Main class for the plugin. */
 public class TestMod implements Plugin {
@@ -88,9 +88,15 @@ public class TestMod implements Plugin {
 
         if (!RELOADED) {
             // Register listeners
-            CommandEvents.REGISTER_COMMAND.register(CommandListener::onRegisterCommand);
-            //            CommandEvents.REGISTER_BRIGADIER_COMMAND.register(
-            //                    CommandListener::onRegisterBrigadierCommand);
+            CommandEvents.REGISTER_COMMAND.register(
+                    event -> {
+                        event.registerCommand(new PermsTestCommand());
+                    });
+            // CommandEvents.REGISTER_BRIGADIER_COMMAND.register(event -> {
+            //     Command command = new PermsTestCommand();
+            //     BrigadierHelperClass.onRegisterBrigadierCommand(
+            //             event, command, command.name(), "ex", "alias2");
+            // });
         }
 
         // Init CrossPerms

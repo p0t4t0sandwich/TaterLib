@@ -23,7 +23,6 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         container = (PluginContainer) Loader.instance().plugin();
-        this.onEnable();
         TaterAPIProvider.api(Platforms.SPONGE)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) Sponge.server()));
     }

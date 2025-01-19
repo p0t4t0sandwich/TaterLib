@@ -39,6 +39,7 @@ public class Sponge7LoaderPlugin {
         loader.onInit();
     }
 
+    // TODO: Switch to server-starting? Or switch to common init event?
     @Listener
     public void onServerStarted(GameStartedServerEvent event) {
         loader.onEnable();

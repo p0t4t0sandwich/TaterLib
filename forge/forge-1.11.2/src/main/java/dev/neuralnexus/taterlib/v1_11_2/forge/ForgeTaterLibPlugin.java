@@ -46,7 +46,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        this.onEnable();
         TaterAPIProvider.api(Platforms.FORGE)
                 .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 

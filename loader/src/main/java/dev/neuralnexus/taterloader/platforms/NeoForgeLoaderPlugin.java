@@ -37,6 +37,7 @@ public class NeoForgeLoaderPlugin {
         loader.onInit();
     }
 
+    // TODO: Switch to server-starting? Or switch to common init event?
     @SubscribeEvent
     public void onServerStarted(ServerStartedEvent event) {
         loader.onEnable();

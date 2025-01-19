@@ -29,6 +29,7 @@ public class FabricLoaderPlugin implements ModInitializer {
             loader.registerPlugin(TaterPluginResolver.neoForge());
         }
         loader.onInit();
+        // TODO: Add disable event via FAPI (might need cross-version abstraction)
     }
 
     @Override
