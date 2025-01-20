@@ -39,7 +39,6 @@ dependencies {
         classifier("downgraded-8-all")
     })
     compileOnly(project(":forge:forge-utils-modern"))
-    compileOnly(project(":forge:forge-1.18.2"))
     implementation(project(":vanilla:vanilla-1.18"))
 }
 
