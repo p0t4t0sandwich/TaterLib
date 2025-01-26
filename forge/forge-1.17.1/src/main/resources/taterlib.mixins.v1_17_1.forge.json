@@ -15,6 +15,7 @@
     "v1_17_1.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_17_1.forge.api.minecraft.resources.ResourceLocation_API",
     "v1_17_1.forge.api.minecraft.server.MinecraftServer_API",
+    "v1_17_1.forge.api.minecraft.server.MinecraftServer_API_getServerModName",
     "v1_17_1.forge.api.minecraft.server.level.ServerPlayer_API",
     "v1_17_1.forge.api.minecraft.world.entity.Entity_API",
     "v1_17_1.forge.api.minecraft.world.entity.LivingEntity_API",

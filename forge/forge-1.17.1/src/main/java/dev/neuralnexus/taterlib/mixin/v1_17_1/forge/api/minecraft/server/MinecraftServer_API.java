@@ -43,9 +43,6 @@ import java.util.stream.Collectors;
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
 public abstract class MinecraftServer_API implements GameProfileCacheBridge, StoredUserEntryBridge {
     @Shadow
-    public abstract String shadow$getServerModName();
-
-    @Shadow
     public abstract PlayerList shadow$getPlayerList();
 
     @Shadow
@@ -53,10 +50,6 @@ public abstract class MinecraftServer_API implements GameProfileCacheBridge, Sto
 
     @Shadow
     public abstract Iterable<ServerLevel> shadow$getAllLevels();
-
-    public String server$brand() {
-        return this.shadow$getServerModName();
-    }
 
     public List<SimplePlayer> server$onlinePlayers() {
         return this.shadow$getPlayerList().getPlayers().stream()
