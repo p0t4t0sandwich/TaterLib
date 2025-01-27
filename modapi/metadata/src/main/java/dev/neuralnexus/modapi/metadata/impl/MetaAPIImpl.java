@@ -148,7 +148,7 @@ public final class MetaAPIImpl implements MetaAPI {
                 }
                 // Check Forge
             } else if (api.isPlatformPresent(Platforms.FORGE)) {
-                if (this.version().isOlderThan(MinecraftVersions.V16_5)) {
+                if (this.version().isAtMost(MinecraftVersions.V16_5)) {
                     mappings = Mappings.LEGACY_SEARGE;
                 } else if (this.version()
                         .isInRange(MinecraftVersions.V17, MinecraftVersions.V20_5)) {
