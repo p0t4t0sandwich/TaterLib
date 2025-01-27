@@ -37,7 +37,9 @@ dependencies {
     implementation(variantOf(libs.modapi.metadata) {
         classifier("downgraded-8-shaded")
     })
-    implementation(libs.modapi.muxins)
+    implementation(variantOf(libs.modapi.muxins) {
+        classifier("downgraded-8-shaded")
+    })
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation(project(":loader"))
 }

@@ -129,10 +129,7 @@ public class CrossPerms {
                         .spigot(mcString)
                         .legacySpigot(mcString)
                         .searge(mcString)
-                        .searge(
-                                "net.minecraft.src.C_4977_",
-                                MinecraftVersions.V17,
-                                MinecraftVersions.V19_4)
+                        .searge(mcString)
                         .legacySearge(mcString)
                         .mcp(mcString)
                         .yarnIntermediary(mcString)
@@ -163,7 +160,7 @@ public class CrossPerms {
         var playerList =
                 MappingEntry.builder("PlayerList")
                         .mojang("net.minecraft.server.players.PlayerList")
-                        .searge("net.minecraft.src.C_102_")
+                        .searge("net.minecraft.server.players.PlayerList")
                         .legacySearge("net.minecraft.server.management.PlayerList")
                         .mcp("net.minecraft.server.management.PlayerList")
                         .legacySearge(
@@ -266,7 +263,7 @@ public class CrossPerms {
         var serverOpListEntry =
                 MappingEntry.builder("ServerOpListEntry")
                         .mojang("net.minecraft.server.players.ServerOpListEntry")
-                        .searge("net.minecraft.src.C_105_")
+                        .searge("net.minecraft.server.players.ServerOpListEntry")
                         .legacySearge("net.minecraft.server.management.OpEntry")
                         .mcp("net.minecraft.server.management.OpEntry")
                         .yarnIntermediary("net.minecraft.class_3327")
@@ -306,7 +303,7 @@ public class CrossPerms {
         var entity =
                 MappingEntry.builder("Entity")
                         .mojang("net.minecraft.world.entity.Entity")
-                        .searge("net.minecraft.src.C_507_")
+                        .searge("net.minecraft.world.entity.Entity")
                         .legacySearge("net.minecraft.entity.Entity")
                         .mcp("net.minecraft.entity.Entity")
                         .yarnIntermediary("net.minecraft.class_1297")
@@ -326,7 +323,7 @@ public class CrossPerms {
         var serverPlayer =
                 MappingEntry.builder("ServerPlayer")
                         .mojang("net.minecraft.server.level.ServerPlayer")
-                        .searge("net.minecraft.src.C_13_")
+                        .searge("net.minecraft.server.level.ServerPlayer")
                         .legacySearge("net.minecraft.entity.player.ServerPlayerEntity")
                         .mcp("net.minecraft.entity.player.ServerPlayerEntity")
                         .legacySearge(
@@ -397,7 +394,7 @@ public class CrossPerms {
                                 MinecraftVersions.V13,
                                 MinecraftVersions.UNKNOWN)
                         .searge(
-                                "net.minecraft.src.C_2969_",
+                                "net.minecraft.commands.CommandSourceStack",
                                 MinecraftVersions.V13,
                                 MinecraftVersions.UNKNOWN)
                         .legacySearge(
