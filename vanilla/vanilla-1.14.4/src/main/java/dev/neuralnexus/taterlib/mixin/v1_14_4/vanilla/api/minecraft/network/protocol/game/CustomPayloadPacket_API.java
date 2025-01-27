@@ -11,33 +11,27 @@ import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 @SuppressWarnings({"unused", "UnusedMixin"})
-public class CustomPayloadPacket_API {
-    @Shadow private ResourceLocation identifier;
-
-    @Shadow private FriendlyByteBuf data;
-
+public class CustomPayloadPacket_API implements CustomPayloadPacketBridge {
     public ResourceKey packet$channel() {
-        return (ResourceKey) this.identifier;
+        return (ResourceKey) this.bridge$identifier(this);
     }
 
     public byte[] packet$data() {
-        return this.data.array();
+        return this.bridge$data(this).array();
     }
 }

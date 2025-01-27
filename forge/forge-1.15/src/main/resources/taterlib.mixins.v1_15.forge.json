@@ -9,7 +9,6 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_15.forge.api.minecraft.commands.CommandSourceStack_API",
-    "v1_15.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_15.forge.api.minecraft.resources.ResourceLocation_API",
     "v1_15.forge.api.minecraft.server.level.ServerPlayer_API",
     "v1_15.forge.api.minecraft.world.entity.Entity_API",
