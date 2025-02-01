@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib;
 
+import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
@@ -81,6 +82,9 @@ public class TaterLib {
 
         TaterLibMetrics.initialize();
         TaterLibConfigLoader.load();
+
+        // Init CrossPerms
+        CrossPerms.instance().init(Loader.instance().server());
 
         if (!RELOADED) {
             ServerEvents.STOPPED.register(

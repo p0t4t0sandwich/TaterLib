@@ -103,14 +103,4 @@ public class ForgeEntity implements Entity {
 
     @Override
     public void sendMessage(String message) {}
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
-    }
 }

@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterapi.command;
 
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.player.Player;
 
-public interface CommandSender extends Permissible {
+public interface CommandSender extends Identifiable {
     /**
      * Get the name of the player
      *

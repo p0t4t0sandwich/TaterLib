@@ -10,7 +10,7 @@ import com.mojang.authlib.GameProfile;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 
 import org.spongepowered.asm.mixin.Implements;
@@ -25,7 +25,7 @@ import java.util.UUID;
 @Mixin(value = GameProfile.class, remap = false)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
     @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
 })
 public abstract class GameProfile_API {
@@ -50,11 +50,7 @@ public abstract class GameProfile_API {
         return this.cmdSender$name();
     }
 
-    public UUID permissible$uuid() {
+    public UUID identifiable$uuid() {
         return this.shadow$getId();
-    }
-
-    public boolean permissible$hasPermission(int permissionLevel) {
-        return false;
     }
 }

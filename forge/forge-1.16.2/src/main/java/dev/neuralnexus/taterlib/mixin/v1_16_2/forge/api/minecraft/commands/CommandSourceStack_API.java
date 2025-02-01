@@ -10,7 +10,7 @@ import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 
 import net.minecraft.Util;
 import net.minecraft.commands.CommandSource;
@@ -33,7 +33,7 @@ import java.util.UUID;
 @Mixin(CommandSourceStack.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
 })
 public abstract class CommandSourceStack_API {
     @Shadow @Final private CommandSource source;
@@ -44,9 +44,6 @@ public abstract class CommandSourceStack_API {
     @Shadow
     @Nullable public abstract Entity shadow$getEntity();
 
-    @Shadow
-    public abstract boolean shadow$hasPermission(int permissionLevel);
-
     public String cmdSender$name() {
         return this.shadow$getTextName();
     }
@@ -56,14 +53,10 @@ public abstract class CommandSourceStack_API {
     }
 
     @SuppressWarnings("DataFlowIssue")
-    public UUID permissible$uuid() {
+    public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
             return new UUID(0, 0);
         }
         return this.shadow$getEntity().getUUID();
-    }
-
-    public boolean permissible$hasPermission(int permissionLevel) {
-        return this.shadow$hasPermission(permissionLevel);
     }
 }

@@ -10,7 +10,7 @@ import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.network.chat.Component;
@@ -30,7 +30,7 @@ import java.util.UUID;
 @Mixin(CommandSourceStack.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
 })
 public abstract class CommandSourceStack_API {
     // Note: CommandSourceStack#hasPermission(int) satisfies the Permissible interface
@@ -52,7 +52,7 @@ public abstract class CommandSourceStack_API {
         this.shadow$sendSystemMessage(Component.nullToEmpty(message));
     }
 
-    public UUID permissible$uuid() {
+    public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
             return new UUID(0, 0);
         }

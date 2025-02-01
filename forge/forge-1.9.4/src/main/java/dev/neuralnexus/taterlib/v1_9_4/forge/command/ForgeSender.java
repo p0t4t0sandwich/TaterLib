@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.v1_9_4.forge.command;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
@@ -46,15 +45,5 @@ public class ForgeSender implements CommandSender {
     @Override
     public void sendMessage(String message) {
         sender.addChatMessage(new TextComponentString(message));
-    }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return sender.canCommandSenderUseCommand(permissionLevel, command.name());
-    }
-
-    @Override
-    public boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
     }
 }

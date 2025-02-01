@@ -15,9 +15,4 @@ public interface ProxyPlayer extends SimplePlayer, Connection {
      * @param serverName The name of the server to connect to.
      */
     void connect(String serverName);
-
-    @Override
-    default boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
-    }
 }

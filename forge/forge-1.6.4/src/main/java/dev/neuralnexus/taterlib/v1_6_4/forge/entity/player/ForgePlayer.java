@@ -148,14 +148,4 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public void setGameMode(GameMode gameMode) {
         player.setGameType(EnumGameType.getByID(gameMode.id()));
     }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission(this, permission);
-    }
 }

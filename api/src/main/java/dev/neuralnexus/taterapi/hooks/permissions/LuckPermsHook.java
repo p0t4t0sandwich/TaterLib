@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.hooks.permissions;
 
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -127,7 +127,7 @@ public class LuckPermsHook implements PermissionsHook {
     }
 
     @Override
-    public boolean hasPermission(Permissible permissible, String permission) {
+    public boolean hasPermission(Identifiable permissible, String permission) {
         if (this.luckPerms == null) return false;
         User user = luckPerms.getUserManager().getUser(permissible.uuid());
         return user != null

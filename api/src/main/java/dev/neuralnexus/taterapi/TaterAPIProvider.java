@@ -5,10 +5,11 @@
  */
 package dev.neuralnexus.taterapi;
 
+import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Side;
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
 import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -76,14 +77,69 @@ public class TaterAPIProvider {
     /**
      * Check Sender permissions
      *
-     * @param permissible The entity to check
-     * @param permission The permission
+     * @param permissible The object to check
+     * @param permissionLevel The permission
+     * @return If the object has the permission
      */
-    @Deprecated
-    public static boolean hasPermission(Permissible permissible, String permission) {
-        return hooks.stream()
-                .filter(hook -> hook instanceof PermissionsHook)
-                .anyMatch(hook -> ((PermissionsHook) hook).hasPermission(permissible, permission));
+    public static boolean hasPermission(Identifiable permissible, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(permissible.uuid(), permissionLevel);
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param permissible The object to check
+     * @param permission The permission
+     * @return If the object has the permission
+     */
+    public static boolean hasPermission(Identifiable permissible, String permission) {
+        return PermsAPI.instance().hasPermission(permissible.uuid(), permission);
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param permissible The object to check
+     * @param permission The permission
+     * @param defaultPermissionLevel The default permission level
+     * @return If the object has the permission
+     */
+    public static boolean hasPermission(Identifiable permissible, String permission, int defaultPermissionLevel) {
+        return PermsAPI.instance().hasPermission(permissible.uuid(), permission, defaultPermissionLevel);
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param subject The object to check
+     * @param permissionLevel The permission
+     * @return If the object has the permission
+     */
+    public static boolean hasPermission(Object subject, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(subject, permissionLevel);
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param subject The object to check
+     * @param permission The permission
+     * @return If the object has the permission
+     */
+    public static boolean hasPermission(Object subject, String permission) {
+        return PermsAPI.instance().hasPermission(subject, permission);
+    }
+
+    /**
+     * Check Sender permissions
+     *
+     * @param subject The object to check
+     * @param permission The permission
+     * @param defaultPermissionLevel The default permission level
+     * @return If the object has the permission
+     */
+    public static boolean hasPermission(Object subject, String permission, int defaultPermissionLevel) {
+        return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
     }
 
     /**

@@ -108,11 +108,6 @@ public class VelocityPlayer implements ProxyPlayer {
     }
 
     @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
     public int ping() {
         return (int) player.getPing();
     }

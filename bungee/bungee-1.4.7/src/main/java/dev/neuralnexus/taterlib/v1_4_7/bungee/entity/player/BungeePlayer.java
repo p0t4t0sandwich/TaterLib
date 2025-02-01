@@ -87,11 +87,6 @@ public class BungeePlayer implements ProxyPlayer {
     }
 
     @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
     public int ping() {
         return player.getPing();
     }

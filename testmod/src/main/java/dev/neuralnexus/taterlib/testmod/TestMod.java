@@ -5,12 +5,10 @@
  */
 package dev.neuralnexus.taterlib.testmod;
 
-import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.metadata.Logger;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
@@ -98,9 +96,6 @@ public class TestMod implements Plugin {
             //             event, command, command.name(), "ex", "alias2");
             // });
         }
-
-        // Init CrossPerms
-        CrossPerms.instance().init(Loader.instance().server());
 
         TestModAPIProvider.register(new TestModAPI("someData"));
 

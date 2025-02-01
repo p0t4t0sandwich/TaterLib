@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib.modules.core.command;
 
 import dev.neuralnexus.modapi.metadata.impl.util.TextUtil;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
@@ -104,15 +105,15 @@ public class TaterLibCommand implements Command {
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
         if (sender instanceof Player) {
-            if (!sender.hasPermission(permission())) {
+            if (!TaterAPIProvider.hasPermission(sender, this.permission())) {
                 sender.sendMessage(
                         TextUtil.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));
             } else {
-                sender.sendMessage(TextUtil.substituteSectionSign(execute(args)));
+                sender.sendMessage(TextUtil.substituteSectionSign(this.execute(args)));
             }
         } else {
-            sender.sendMessage(TextUtil.ansiParser(TextUtil.substituteSectionSign(execute(args))));
+            sender.sendMessage(TextUtil.ansiParser(TextUtil.substituteSectionSign(this.execute(args))));
         }
         return true;
     }

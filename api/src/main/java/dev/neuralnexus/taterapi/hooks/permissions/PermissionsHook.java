@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.hooks.permissions;
 
-import dev.neuralnexus.taterapi.entity.Permissible;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
 
 /** A generic hook for permissions plugins */
@@ -18,5 +18,5 @@ public interface PermissionsHook extends Hook {
      * @param permission The permission to check
      * @return If the entity has the permission
      */
-    boolean hasPermission(Permissible permissible, String permission);
+    boolean hasPermission(Identifiable permissible, String permission);
 }

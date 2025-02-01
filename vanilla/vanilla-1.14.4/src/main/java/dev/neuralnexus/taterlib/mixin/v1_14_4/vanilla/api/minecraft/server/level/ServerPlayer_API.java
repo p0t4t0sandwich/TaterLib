@@ -64,7 +64,6 @@ public abstract class ServerPlayer_API {
         this.connection.disconnect(new TextComponent(message));
     }
 
-    @SuppressWarnings("VulnerableCodeUsages")
     public void connection$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());

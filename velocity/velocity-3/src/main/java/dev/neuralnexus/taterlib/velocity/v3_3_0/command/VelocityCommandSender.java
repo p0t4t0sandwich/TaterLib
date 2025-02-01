@@ -44,14 +44,4 @@ public class VelocityCommandSender implements CommandSender {
     public void sendMessage(String message) {
         sender.sendMessage(Component.text(message));
     }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(String permission) {
-        return sender.hasPermission(permission);
-    }
 }

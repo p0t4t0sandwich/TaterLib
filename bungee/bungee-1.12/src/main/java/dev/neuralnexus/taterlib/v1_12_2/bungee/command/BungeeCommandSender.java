@@ -41,14 +41,4 @@ public class BungeeCommandSender implements CommandSender {
     public void sendMessage(String message) {
         commandSender.sendMessage(message);
     }
-
-    @Override
-    public boolean hasPermission(int permissionLevel) {
-        return false;
-    }
-
-    @Override
-    public boolean hasPermission(String permission) {
-        return commandSender.hasPermission(permission);
-    }
 }

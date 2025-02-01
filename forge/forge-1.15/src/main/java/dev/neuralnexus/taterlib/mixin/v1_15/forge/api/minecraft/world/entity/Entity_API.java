@@ -9,11 +9,10 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
-import dev.neuralnexus.taterapi.entity.Permissible;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -47,7 +46,7 @@ import java.util.UUID;
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-    @Interface(iface = Permissible.class, prefix = "permissible$", remap = Remap.NONE)
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
 })
 public abstract class Entity_API {
     @Shadow
@@ -86,9 +85,6 @@ public abstract class Entity_API {
 
     @Shadow
     public abstract UUID shadow$getUUID();
-
-    @Shadow
-    public abstract boolean shadow$hasPermissions(int permissionLevel);
 
     public void cmdSender$sendMessage(String message) {
         this.shadow$sendMessage(new TextComponent(message));
@@ -144,15 +140,7 @@ public abstract class Entity_API {
         this.shadow$setCustomName(new TextComponent(name));
     }
 
-    public UUID permissible$uuid() {
+    public UUID identifiable$uuid() {
         return this.shadow$getUUID();
-    }
-
-    public boolean permissible$hasPermission(int permissionLevel) {
-        return this.shadow$hasPermissions(permissionLevel);
-    }
-
-    public boolean permissible$hasPermission(String permission) {
-        return TaterAPIProvider.hasPermission((Permissible) this, permission);
     }
 }
