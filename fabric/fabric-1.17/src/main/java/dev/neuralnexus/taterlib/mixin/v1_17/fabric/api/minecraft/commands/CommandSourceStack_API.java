@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 
@@ -52,10 +53,10 @@ public abstract class CommandSourceStack_API {
         this.source.sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);
     }
 
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"DataFlowIssue", "OptionalGetWithoutIsPresent"})
     public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
-            return new UUID(0, 0);
+            return TaterAPIProvider.uuidFromName(this.shadow$getTextName()).orElse(new UUID(0, 0));
         }
         return this.shadow$getEntity().getUUID();
     }

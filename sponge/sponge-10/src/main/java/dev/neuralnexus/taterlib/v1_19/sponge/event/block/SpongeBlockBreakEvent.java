@@ -21,7 +21,7 @@ public class SpongeBlockBreakEvent extends SpongeBlockEvent implements PlayerBlo
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

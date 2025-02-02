@@ -26,7 +26,7 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override
@@ -41,12 +41,12 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     @Override
     public String message() {
-        return event.getMessage();
+        return this.event.getMessage();
     }
 
     @Override
     public void setMessage(String message) {
-        event.setMessage(message);
+        this.event.setMessage(message);
     }
 
     @Override

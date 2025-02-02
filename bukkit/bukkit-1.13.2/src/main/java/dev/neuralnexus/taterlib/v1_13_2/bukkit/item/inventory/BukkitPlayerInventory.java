@@ -27,33 +27,38 @@ public class BukkitPlayerInventory extends BukkitInventory implements PlayerInve
     }
 
     @Override
+    public org.bukkit.inventory.PlayerInventory unwrap() {
+        return this.playerInventory;
+    }
+
+    @Override
     public List<ItemStack> armor() {
-        return Arrays.stream(playerInventory.getArmorContents())
+        return Arrays.stream(this.playerInventory.getArmorContents())
                 .map(BukkitItemStack::new)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void setArmor(List<ItemStack> armor) {
-        playerInventory.setArmorContents(
+        this.playerInventory.setArmorContents(
                 armor.stream()
                         .map(BukkitItemStack.class::cast)
-                        .map(BukkitItemStack::itemStack)
+                        .map(BukkitItemStack::unwrap)
                         .toArray(org.bukkit.inventory.ItemStack[]::new));
     }
 
     @Override
     public ItemStack offhand() {
-        return new BukkitItemStack(playerInventory.getItemInOffHand());
+        return new BukkitItemStack(this.playerInventory.getItemInOffHand());
     }
 
     @Override
     public void setOffhand(ItemStack offhand) {
-        playerInventory.setItemInOffHand(((BukkitItemStack) offhand).itemStack());
+        this.playerInventory.setItemInOffHand(((BukkitItemStack) offhand).unwrap());
     }
 
     @Override
     public int selectedSlot() {
-        return playerInventory.getHeldItemSlot();
+        return this.playerInventory.getHeldItemSlot();
     }
 }

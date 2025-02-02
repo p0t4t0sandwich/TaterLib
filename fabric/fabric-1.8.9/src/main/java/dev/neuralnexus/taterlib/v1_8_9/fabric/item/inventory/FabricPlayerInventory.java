@@ -28,16 +28,21 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
     }
 
     @Override
+    public net.minecraft.entity.player.PlayerInventory unwrap() {
+        return this.playerInventory;
+    }
+
+    @Override
     public List<ItemStack> armor() {
-        return Arrays.stream(playerInventory.armor)
+        return Arrays.stream(this.playerInventory.armor)
                 .map(FabricItemStack::new)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void setArmor(List<ItemStack> armor) {
-        for (int i = 0; i < playerInventory.armor.length; i++) {
-            playerInventory.armor[i] = ((FabricItemStack) armor.get(i)).itemStack();
+        for (int i = 0; i < this.playerInventory.armor.length; i++) {
+            this.playerInventory.armor[i] = ((FabricItemStack) armor.get(i)).unwrap();
         }
     }
 
@@ -53,6 +58,6 @@ public class FabricPlayerInventory extends FabricInventory implements PlayerInve
 
     @Override
     public int selectedSlot() {
-        return playerInventory.selectedSlot;
+        return this.playerInventory.selectedSlot;
     }
 }

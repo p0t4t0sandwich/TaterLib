@@ -22,22 +22,4 @@ public interface CommandSender extends Identifiable {
      * @param message The message to send
      */
     default void sendMessage(String message) {}
-
-    /**
-     * Check if the sender is a player
-     *
-     * @return Whether the sender is a player
-     */
-    default boolean isPlayer() {
-        return this instanceof Player;
-    }
-
-    /**
-     * Get the player if the sender is a player
-     *
-     * @return The player if the sender is a player
-     */
-    default Player asPlayer() {
-        return (Player) this;
-    }
 }

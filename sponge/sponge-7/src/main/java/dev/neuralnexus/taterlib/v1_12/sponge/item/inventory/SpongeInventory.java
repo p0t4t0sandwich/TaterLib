@@ -57,9 +57,9 @@ public class SpongeInventory implements Inventory {
 
     @Override
     public List<ItemStack> contents() {
-        List<ItemStack> contents = new ArrayList<>(size());
-        for (int i = 0; i < size(); i++) {
-            contents.add(get(i));
+        List<ItemStack> contents = new ArrayList<>(this.size());
+        for (int i = 0; i < this.size(); i++) {
+            contents.add(this.get(i));
         }
         return contents;
     }

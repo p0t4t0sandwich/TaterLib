@@ -10,9 +10,9 @@ import java.util.UUID;
 /** Represents an object identifiable via a UUID */
 public interface Identifiable {
     /**
-     * Get the UUID of the entity
+     * Get the UUID of the object
      *
-     * @return The UUID of the entity
+     * @return The UUID of the object
      */
     UUID uuid();
 }

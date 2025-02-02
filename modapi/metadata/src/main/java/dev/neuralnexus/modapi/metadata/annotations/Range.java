@@ -17,6 +17,20 @@ import java.lang.annotation.Target;
 @Target(ElementType.ANNOTATION_TYPE)
 public @interface Range {
     /**
+     * The required Minecraft version
+     *
+     * @return The required Minecraft version
+     */
+    MinecraftVersion value() default MinecraftVersion.UNKNOWN;
+
+    /**
+     * The required Minecraft versions
+     *
+     * @return The required Minecraft versions
+     */
+    MinecraftVersion[] values() default {};
+
+    /**
      * The minimum required Minecraft version (inclusive)
      *
      * @return The minimum required Minecraft version

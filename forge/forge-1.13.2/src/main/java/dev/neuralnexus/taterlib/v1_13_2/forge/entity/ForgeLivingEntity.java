@@ -48,12 +48,12 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     @Override
     public double health() {
-        return entity.getHealth();
+        return this.entity.getHealth();
     }
 
     @Override
     public void setHealth(double health) {
-        entity.setHealth((float) health);
+        this.entity.setHealth((float) health);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     @Override
     public double maxHealth() {
-        return entity.getMaxHealth();
+        return this.entity.getMaxHealth();
     }
 
     @Override

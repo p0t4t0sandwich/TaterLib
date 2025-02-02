@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
@@ -15,8 +16,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/** Abstracts a Bukkit item stack to an AbstractItemStack. */
-public class BukkitItemStack implements ItemStack {
+/** Bukkit implementation of {@link ItemStack}. */
+public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.ItemStack> {
     private final org.bukkit.inventory.ItemStack itemStack;
 
     /**
@@ -29,92 +30,89 @@ public class BukkitItemStack implements ItemStack {
                 itemStack == null ? new org.bukkit.inventory.ItemStack(Material.AIR) : itemStack;
     }
 
-    /**
-     * Getter for the Bukkit item stack.
-     *
-     * @return The Bukkit item stack.
-     */
-    public org.bukkit.inventory.ItemStack itemStack() {
-        return itemStack;
+    @Override
+    public org.bukkit.inventory.ItemStack unwrap() {
+        return this.itemStack;
     }
 
     @Override
     public ResourceKey type() {
-        return ResourceKey.of("minecraft", itemStack.getType().name().toLowerCase());
+        return ResourceKey.of("minecraft", this.itemStack.getType().name().toLowerCase());
     }
 
     @Override
     public int count() {
-        return itemStack.getAmount();
+        return this.itemStack.getAmount();
     }
 
     @Override
     public void setCount(int count) {
-        itemStack.setAmount(count);
+        this.itemStack.setAmount(count);
     }
 
     @Override
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
-        return new BukkitItemStack(itemStack.clone());
+        return new BukkitItemStack(this.itemStack.clone());
     }
 
     @Override
     public boolean hasDisplayName() {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        return itemStack.getItemMeta().hasDisplayName();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return this.itemStack.getItemMeta().hasDisplayName();
     }
 
     @Override
     public Optional<String> displayName() {
-        return Optional.of(itemStack.getItemMeta().getDisplayName());
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return Optional.of(this.itemStack.getItemMeta().getDisplayName());
     }
 
     @Override
     public void setDisplayName(String name) {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        ItemMeta meta = itemStack.getItemMeta();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        ItemMeta meta = this.itemStack.getItemMeta();
         meta.setDisplayName(name);
-        itemStack.setItemMeta(meta);
+        this.itemStack.setItemMeta(meta);
     }
 
     @Override
     public boolean hasLore() {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        return itemStack.getItemMeta().hasLore();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return this.itemStack.getItemMeta().hasLore();
     }
 
     @Override
     public List<String> lore() {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        return itemStack.getItemMeta().getLore();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return this.itemStack.getItemMeta().getLore();
     }
 
     @Override
     public void setLore(List<String> lore) {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        ItemMeta meta = itemStack.getItemMeta();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        ItemMeta meta = this.itemStack.getItemMeta();
         meta.setLore(lore);
-        itemStack.setItemMeta(meta);
+        this.itemStack.setItemMeta(meta);
     }
 
     @Override
     public boolean hasEnchants() {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        return itemStack.getItemMeta().hasEnchants();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return this.itemStack.getItemMeta().hasEnchants();
     }
 
     @Override
     public boolean unbreakable() {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        return itemStack.getItemMeta().isUnbreakable();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        return this.itemStack.getItemMeta().isUnbreakable();
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        Objects.requireNonNull(itemStack.getItemMeta());
-        ItemMeta meta = itemStack.getItemMeta();
+        Objects.requireNonNull(this.itemStack.getItemMeta());
+        ItemMeta meta = this.itemStack.getItemMeta();
         meta.setUnbreakable(unbreakable);
-        itemStack.setItemMeta(meta);
+        this.itemStack.setItemMeta(meta);
     }
 }

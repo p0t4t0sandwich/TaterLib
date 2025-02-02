@@ -145,6 +145,9 @@ public class TaterAPIProvider {
      */
     public static boolean hasPermission(@NotNull Object subject, int permissionLevel)
             throws NullPointerException {
+        if (subject instanceof Wrapped) {
+            subject = ((Wrapped<?>) subject).unwrap();
+        }
         return PermsAPI.instance().hasPermission(subject, permissionLevel);
     }
 
@@ -158,6 +161,9 @@ public class TaterAPIProvider {
      */
     public static boolean hasPermission(@NotNull Object subject, @NotNull String permission)
             throws NullPointerException {
+        if (subject instanceof Wrapped) {
+            subject = ((Wrapped<?>) subject).unwrap();
+        }
         return PermsAPI.instance().hasPermission(subject, permission);
     }
 
@@ -173,6 +179,9 @@ public class TaterAPIProvider {
     public static boolean hasPermission(
             @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
             throws NullPointerException {
+        if (subject instanceof Wrapped) {
+            subject = ((Wrapped<?>) subject).unwrap();
+        }
         return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
     }
 
@@ -246,6 +255,17 @@ public class TaterAPIProvider {
     /** Get the scheduler */
     public static Scheduler scheduler() {
         return scheduler;
+    }
+
+    /**
+     * Get the UUID from a name
+     *
+     * @param name The name
+     * @return The UUID
+     */
+    @ApiStatus.Experimental
+    public static Optional<UUID> uuidFromName(String name) {
+        return api().flatMap(api -> api.server().getPlayer(name).map(Identifiable::uuid));
     }
 
     /**

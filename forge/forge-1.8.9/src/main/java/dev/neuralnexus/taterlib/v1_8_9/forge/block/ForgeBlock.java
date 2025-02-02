@@ -27,6 +27,6 @@ public class ForgeBlock implements Block {
 
     @Override
     public BlockPos blockPos() {
-        return new BlockPos(pos.getX(), pos.getY(), pos.getZ());
+        return new BlockPos(this.pos.getX(), this.pos.getY(), this.pos.getZ());
     }
 }

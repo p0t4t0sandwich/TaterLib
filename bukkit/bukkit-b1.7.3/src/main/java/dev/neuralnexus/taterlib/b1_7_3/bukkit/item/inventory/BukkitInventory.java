@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link Inventory}. */
-public class BukkitInventory implements Inventory {
+public class BukkitInventory implements Inventory, Wrapped<org.bukkit.inventory.Inventory> {
     private final org.bukkit.inventory.Inventory inventory;
 
     /**
@@ -29,49 +30,54 @@ public class BukkitInventory implements Inventory {
     }
 
     @Override
+    public org.bukkit.inventory.Inventory unwrap() {
+        return this.inventory;
+    }
+
+    @Override
     public int size() {
-        return inventory.getSize();
+        return this.inventory.getSize();
     }
 
     @Override
     public ItemStack get(int slot) {
-        return inventory.getItem(slot) == null
+        return this.inventory.getItem(slot) == null
                 ? null
-                : new BukkitItemStack(inventory.getItem(slot));
+                : new BukkitItemStack(this.inventory.getItem(slot));
     }
 
     @Override
     public void set(int slot, ItemStack item) {
-        inventory.setItem(slot, ((BukkitItemStack) item).itemStack());
+        this.inventory.setItem(slot, ((BukkitItemStack) item).unwrap());
     }
 
     @Override
     public void add(ItemStack item) {
-        inventory.addItem(((BukkitItemStack) item).itemStack());
+        this.inventory.addItem(((BukkitItemStack) item).unwrap());
     }
 
     @Override
     public List<ItemStack> contents() {
-        return Arrays.stream(inventory.getContents())
+        return Arrays.stream(this.inventory.getContents())
                 .map(item -> item == null ? null : new BukkitItemStack(item))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void setContents(List<ItemStack> items) {
-        inventory.setContents(
+        this.inventory.setContents(
                 items.stream()
-                        .map(item -> item == null ? null : ((BukkitItemStack) item).itemStack())
+                        .map(item -> item == null ? null : ((BukkitItemStack) item).unwrap())
                         .toArray(org.bukkit.inventory.ItemStack[]::new));
     }
 
     @Override
     public void remove(ResourceKey type) {
-        inventory.remove(Material.valueOf(type.value().toUpperCase()));
+        this.inventory.remove(Material.valueOf(type.value().toUpperCase()));
     }
 
     @Override
     public void clear(int slot) {
-        inventory.clear(slot);
+        this.inventory.clear(slot);
     }
 }

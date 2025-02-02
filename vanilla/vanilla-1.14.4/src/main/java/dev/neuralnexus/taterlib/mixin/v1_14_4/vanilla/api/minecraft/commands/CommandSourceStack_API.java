@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 
@@ -36,8 +37,6 @@ import java.util.UUID;
 })
 @SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class CommandSourceStack_API {
-    // Note: CommandSourceStack#hasPermission(int) satisfies the Permissible interface
-    // Anything that implements CommandSender/Permissible already has the hasPermission(str) method
     @Shadow @Final private CommandSource source;
 
     @Shadow
@@ -54,10 +53,10 @@ public abstract class CommandSourceStack_API {
         this.source.sendMessage(new TextComponent(message));
     }
 
-    @SuppressWarnings("DataFlowIssue")
+    @SuppressWarnings({"DataFlowIssue", "OptionalGetWithoutIsPresent"})
     public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
-            return new UUID(0, 0);
+            return TaterAPIProvider.uuidFromName(this.shadow$getTextName()).orElse(new UUID(0, 0));
         }
         return this.shadow$getEntity().getUUID();
     }

@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.fabric.command;
 
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
@@ -13,37 +15,34 @@ import net.minecraft.text.TranslatableText;
 import java.util.UUID;
 
 /** The Fabric implementation of {@link CommandSender} */
-public class FabricCommandSender implements CommandSender {
-    private final PermissibleCommandSource source;
+public class FabricCommandSender implements CommandSender, Wrapped<PermissibleCommandSource> {
+    private final PermissibleCommandSource sender;
 
-    public FabricCommandSender(PermissibleCommandSource source) {
-        this.source = source;
+    public FabricCommandSender(PermissibleCommandSource sender) {
+        this.sender = sender;
     }
 
-    /**
-     * Get the sender
-     *
-     * @return The sender
-     */
-    public PermissibleCommandSource sender() {
-        return source;
+    @Override
+    public PermissibleCommandSource unwrap() {
+        return this.sender;
     }
 
     @Override
     public UUID uuid() {
-        if (source.getEntity() == null) {
-            return new UUID(0, 0);
+        if (sender.getEntity() == null) {
+            return TaterAPIProvider.uuidFromName(this.sender.getName().asFormattedString())
+                    .orElse(new UUID(0, 0));
         }
-        return source.getEntity().getUuid();
+        return sender.getEntity().getUuid();
     }
 
     @Override
     public String name() {
-        return source.getName().asFormattedString();
+        return this.sender.getName().asFormattedString();
     }
 
     @Override
     public void sendMessage(String message) {
-        source.sendMessage(new TranslatableText(message));
+        this.sender.sendMessage(new TranslatableText(message));
     }
 }

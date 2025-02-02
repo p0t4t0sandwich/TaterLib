@@ -51,7 +51,7 @@ public class FabricWorld implements World {
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).entity();
+        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
                         level.getEntitiesIn(
                                 mcEntity,
@@ -64,7 +64,7 @@ public class FabricWorld implements World {
     @SuppressWarnings("unchecked")
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).entity();
+        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
                         level.getEntitiesIn(
                                 mcEntity,

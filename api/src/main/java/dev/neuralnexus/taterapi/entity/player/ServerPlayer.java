@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.world.Location;
 
 /** The interface for a ServerPlayer */
@@ -14,6 +17,7 @@ public interface ServerPlayer extends Player, Connection {
      *
      * @param location The location to set the spawn point to
      */
+    @VersionFeature(name = "ServerPlayer#setSpawn(Location,boolean)", incompatible = @Range(MinecraftVersion.B1_7_3))
     void setSpawn(Location location, boolean forced);
 
     /**

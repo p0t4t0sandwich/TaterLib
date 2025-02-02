@@ -25,52 +25,49 @@ public class FabricLivingEntity extends FabricEntity implements LivingEntity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the entity.
-     *
-     * @return The entity.
-     */
-    public net.minecraft.entity.LivingEntity entity() {
-        return entity;
+    @Override
+    public net.minecraft.entity.LivingEntity unwrap() {
+        return this.entity;
     }
 
     @Override
     public void damage(double amount) {
-        entity.damage(DamageSource.GENERIC, (float) amount);
+        this.entity.damage(DamageSource.GENERIC, (float) amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(DamageSource.mob(((FabricLivingEntity) source).entity()), (float) amount);
+        this.entity.damage(
+                DamageSource.mob(((FabricLivingEntity) source).unwrap()), (float) amount);
     }
 
     @Override
     public double health() {
-        return entity.getHealth();
+        return this.entity.getHealth();
     }
 
     @Override
     public void setHealth(double health) {
-        entity.setHealth((float) health);
+        this.entity.setHealth((float) health);
     }
 
     @Override
     public double absorptionAmount() {
-        return entity.getAbsorption();
+        return this.entity.getAbsorption();
     }
 
     @Override
     public void setAbsorptionAmount(double amount) {
-        entity.setAbsorption((float) amount);
+        this.entity.setAbsorption((float) amount);
     }
 
     @Override
     public double maxHealth() {
-        return entity.getMaxHealth();
+        return this.entity.getMaxHealth();
     }
 
     @Override
     public void setMaxHealth(double health) {
-        entity.initializeAttribute(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(health);
+        this.entity.initializeAttribute(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(health);
     }
 }

@@ -21,7 +21,7 @@ public class FabricPlayerRespawnEvent extends FabricPlayerEvent implements Playe
 
     @Override
     public Location respawnLocation() {
-        return new FabricLocation(((FabricPlayer) player()).player());
+        return new FabricLocation(((FabricPlayer) this.player()).unwrap());
     }
 
     @Override

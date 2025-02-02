@@ -23,7 +23,7 @@ public class BukkitEntityDamageEvent extends BukkitEntityEvent implements Entity
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

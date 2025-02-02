@@ -32,7 +32,7 @@ public class ForgeCommandSender implements CommandSender {
     @Override
     public UUID uuid() {
         if (source.getEntity() == null) {
-            return new UUID(0, 0);
+            return TaterAPIProvider.uuidFromName(this.sender.getName().asFormattedString()).orElse(new UUID(0, 0));
         }
         return source.getEntity().getUniqueID();
     }

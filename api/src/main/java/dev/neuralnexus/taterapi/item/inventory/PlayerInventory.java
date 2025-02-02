@@ -5,6 +5,10 @@
  */
 package dev.neuralnexus.taterapi.item.inventory;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+
 import java.util.List;
 
 /** The interface for an AbstractPlayerInventory */
@@ -115,6 +119,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The player's offhand
      */
+    @VersionFeature(name = "PlayerInventory#offhand()", compatible = @Range(min = MinecraftVersion.V9))
     ItemStack offhand();
 
     /**
@@ -122,6 +127,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param offhand The offhand to set
      */
+    @VersionFeature(name = "PlayerInventory#setOffhand(ItemStack)", compatible = @Range(min = MinecraftVersion.V9))
     void setOffhand(ItemStack offhand);
 
     /**

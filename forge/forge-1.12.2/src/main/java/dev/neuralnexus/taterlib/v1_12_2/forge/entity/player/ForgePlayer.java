@@ -64,7 +64,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public String name() {
-        return player.getName();
+        return this.player.getName();
     }
 
     @Override

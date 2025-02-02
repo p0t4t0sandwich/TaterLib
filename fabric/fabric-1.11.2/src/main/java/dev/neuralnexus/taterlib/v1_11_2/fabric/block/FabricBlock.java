@@ -5,12 +5,13 @@
  */
 package dev.neuralnexus.taterlib.v1_11_2.fabric.block;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Fabric implementation of {@link Block}. */
-public class FabricBlock implements Block {
+public class FabricBlock implements Block, Wrapped<net.minecraft.block.Block> {
     private final net.minecraft.util.math.BlockPos pos;
     private final net.minecraft.block.Block block;
 
@@ -20,12 +21,18 @@ public class FabricBlock implements Block {
     }
 
     @Override
+    public net.minecraft.block.Block unwrap() {
+        return this.block;
+    }
+
+    @Override
     public ResourceKey type() {
-        return ResourceKey.of(block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
+        return ResourceKey.of(
+                this.block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
     }
 
     @Override
     public BlockPos blockPos() {
-        return new BlockPos(pos.getX(), pos.getY(), pos.getZ());
+        return new BlockPos(this.pos.getX(), this.pos.getY(), this.pos.getZ());
     }
 }

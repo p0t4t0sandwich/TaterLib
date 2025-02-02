@@ -24,18 +24,18 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
 
     @Override
     public boolean cancelled() {
-        return cir.isCancelled();
+        return this.cir.isCancelled();
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
         if (cancelled) {
-            cir.cancel();
+            this.cir.cancel();
         }
     }
 
     @Override
     public Location location() {
-        return new FabricLocation(((FabricEntity) entity()).entity());
+        return new FabricLocation(((FabricEntity) this.entity()).unwrap());
     }
 }

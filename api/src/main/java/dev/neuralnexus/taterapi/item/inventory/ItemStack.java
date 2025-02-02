@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.taterapi.item.inventory;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.List;
@@ -54,54 +57,55 @@ public interface ItemStack {
      *
      * @return If the item has a display name
      */
+    @VersionFeature(name = "ItemStack#hasDisplayName()", compatible = @Range(min = MinecraftVersion.V4_2))
     boolean hasDisplayName();
 
     /**
-     * Get the display name of the item <br>
-     * Unavailable prior to 1.4.2
+     * Get the display name of the item
      *
      * @return The display name of the item
      */
+    @VersionFeature(name = "ItemStack#displayName()", compatible = @Range(min = MinecraftVersion.V4_2))
     Optional<String> displayName();
 
     /**
-     * Set the display name of the item <br>
-     * Unavailable prior to 1.4.2
+     * Set the display name of the item
      *
      * @param name The display name of the item
      */
+    @VersionFeature(name = "ItemStack#setDisplayName()", compatible = @Range(min = MinecraftVersion.V4_2))
     void setDisplayName(String name);
 
     /**
-     * Check if the item has lore<br>
-     * Unavailable prior to 1.4.2
+     * Check if the item has lore
      *
      * @return If the item has lore
      */
+    @VersionFeature(name = "ItemStack#hasLore()", compatible = @Range(min = MinecraftVersion.V4_2))
     boolean hasLore();
 
     /**
-     * Get the lore of the item<br>
-     * Unavailable prior to 1.4.2
+     * Get the lore of the item
      *
      * @return The lore of the item
      */
+    @VersionFeature(name = "ItemStack#lore()", compatible = @Range(min = MinecraftVersion.V4_2))
     List<String> lore();
 
     /**
-     * Set the lore of the item<br>
-     * Unavailable prior to 1.4.2
+     * Set the lore of the item
      *
      * @param lore The lore of the item
      */
+    @VersionFeature(name = "ItemStack#setLore(List<String>)", compatible = @Range(min = MinecraftVersion.V4_2))
     void setLore(List<String> lore);
 
     /**
-     * Check if the item has any enchantments <br>
-     * Unavailable prior to 1.0.0
+     * Check if the item has any enchantments
      *
      * @return If the item has any enchantments
      */
+    @VersionFeature(name = "ItemStack#hasEnchants()", compatible = @Range(min = MinecraftVersion.V1))
     boolean hasEnchants();
 
     // hasEnchant(Enchantment ench)
@@ -111,18 +115,18 @@ public interface ItemStack {
     // removeEnchant(Enchantment ench)
 
     /**
-     * Check if the item is unbreakable<br>
-     * Unavailable prior to 1.9
+     * Check if the item is unbreakable
      *
      * @return If the item is unbreakable
      */
+    @VersionFeature(name = "ItemStack#hasEnchants()", compatible = @Range(min = MinecraftVersion.V8))
     boolean unbreakable();
 
     /**
-     * Set if the item is unbreakable<br>
-     * Unavailable on Bukkit prior to 1.9, unavailable everywhere unless implemented
+     * Set if the item is unbreakable
      *
      * @param unbreakable If the item is unbreakable
      */
+    @VersionFeature(name = "ItemStack#setUnbreakable(boolean)", compatible = @Range(min = MinecraftVersion.V8))
     void setUnbreakable(boolean unbreakable);
 }

@@ -53,7 +53,7 @@ public class ForgeEntity implements Entity {
 
     @Override
     public int entityId() {
-        return entity.getEntityId();
+        return this.entity.getEntityId();
     }
 
     @Override

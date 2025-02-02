@@ -20,7 +20,7 @@ public class BukkitEntitySpawnEvent extends BukkitEntityEvent implements EntityS
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

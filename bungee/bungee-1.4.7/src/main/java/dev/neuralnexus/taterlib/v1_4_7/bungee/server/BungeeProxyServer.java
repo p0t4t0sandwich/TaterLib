@@ -5,20 +5,21 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee.server;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.entity.player.BungeePlayer;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link ProxyServer}. */
-public class BungeeProxyServer implements ProxyServer {
-    private static final net.md_5.bungee.api.ProxyServer server =
+public class BungeeProxyServer implements ProxyServer, Wrapped<net.md_5.bungee.api.ProxyServer> {
+    private final net.md_5.bungee.api.ProxyServer server =
             net.md_5.bungee.api.ProxyServer.getInstance();
     private static BungeeProxyServer instance;
 
@@ -34,39 +35,36 @@ public class BungeeProxyServer implements ProxyServer {
         return instance;
     }
 
-    /**
-     * Gets the server.
-     *
-     * @return The server.
-     */
-    public static net.md_5.bungee.api.ProxyServer server() {
-        return server;
+    @Override
+    public net.md_5.bungee.api.ProxyServer unwrap() {
+        return this.server;
     }
 
     @Override
     public String brand() {
-        return server.getName();
+        return this.server.getName();
     }
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
+        return this.server.getPlayers().stream()
+                .map(BungeePlayer::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Map<String, UUID> whitelist() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public Map<String, UUID> playercache() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
-    /** {@inhersitDoc} */
     @Override
     public List<Server> servers() {
-        return server.getServers().values().stream()
+        return this.server.getServers().values().stream()
                 .map(BungeeServer::new)
                 .collect(Collectors.toList());
     }

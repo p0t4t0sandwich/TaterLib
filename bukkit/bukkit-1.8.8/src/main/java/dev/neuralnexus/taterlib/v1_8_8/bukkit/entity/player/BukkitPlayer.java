@@ -36,38 +36,34 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
         this.player = player;
     }
 
-    /**
-     * Gets the Bukkit player
-     *
-     * @return The Bukkit player
-     */
-    public org.bukkit.entity.Player player() {
-        return player;
+    @Override
+    public org.bukkit.entity.Player unwrap() {
+        return this.player;
     }
 
     @Override
     public UUID uuid() {
-        return player.getUniqueId();
+        return this.player.getUniqueId();
     }
 
     @Override
     public String ipAddress() {
-        return player.getAddress().getAddress().getHostAddress();
+        return this.player.getAddress().getAddress().getHostAddress();
     }
 
     @Override
     public String name() {
-        return player.getName();
+        return this.player.getName();
     }
 
     @Override
     public String displayName() {
-        return player.getDisplayName();
+        return this.player.getDisplayName();
     }
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(message);
+        this.player.sendMessage(message);
     }
 
     @Override
@@ -77,7 +73,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
 
     @Override
     public PlayerInventory inventory() {
-        return new BukkitPlayerInventory(player.getInventory());
+        return new BukkitPlayerInventory(this.player.getInventory());
     }
 
     @Override
@@ -98,7 +94,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
 
     @Override
     public void kick(String reason) {
-        player.kickPlayer(reason);
+        this.player.kickPlayer(reason);
     }
 
     @Override
@@ -134,11 +130,11 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
 
     @Override
     public GameMode gameMode() {
-        return GameMode.fromName(player.getGameMode().name());
+        return GameMode.fromName(this.player.getGameMode().name());
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));
+        this.player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));
     }
 }

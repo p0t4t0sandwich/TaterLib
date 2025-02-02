@@ -36,6 +36,6 @@ public class FabricEntitySpawnEvent extends FabricEntityEvent implements EntityS
 
     @Override
     public Location location() {
-        return new FabricLocation(((FabricEntity) entity()).entity());
+        return new FabricLocation(((FabricEntity) this.entity()).unwrap());
     }
 }

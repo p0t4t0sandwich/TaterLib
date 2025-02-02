@@ -10,6 +10,8 @@ import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.TaterLib;
 
+import java.lang.reflect.InvocationTargetException;
+
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     private final org.bukkit.entity.LivingEntity entity;
@@ -25,21 +27,26 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     }
 
     @Override
+    public org.bukkit.entity.LivingEntity unwrap() {
+        return this.entity;
+    }
+
+    @Override
     public void damage(double amount) {
-        entity.damage(amount);
+        this.entity.damage(amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(amount, ((BukkitEntity) source).entity());
+        this.entity.damage(amount, ((BukkitEntity) source).unwrap());
     }
 
     @Override
     public double health() {
         // Reflect to get (double) entity.getHealth();
         try {
-            return (double) entity.getClass().getMethod("getHealth").invoke(entity);
-        } catch (Exception e) {
+            return (double) entity.getClass().getMethod("getHealth").invoke(this.entity);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's health", e);
             return 0;
         }
@@ -47,7 +54,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
 
     @Override
     public void setHealth(double health) {
-        entity.setHealth(health);
+        this.entity.setHealth(health);
     }
 
     @Override
@@ -66,8 +73,8 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     public double maxHealth() {
         // Reflect to get (double) entity.getMaxHealth();
         try {
-            return (double) entity.getClass().getMethod("getMaxHealth").invoke(entity);
-        } catch (Exception e) {
+            return (double) entity.getClass().getMethod("getMaxHealth").invoke(this.entity);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's max health", e);
             return 0;
         }
@@ -75,6 +82,6 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
 
     @Override
     public void setMaxHealth(double health) {
-        entity.setMaxHealth(health);
+        this.entity.setMaxHealth(health);
     }
 }

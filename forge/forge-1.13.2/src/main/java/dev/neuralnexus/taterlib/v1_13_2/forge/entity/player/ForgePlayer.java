@@ -114,12 +114,12 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void allowFlight(boolean allow) {
-        player.abilities.allowFlying = allow;
+        this.player.abilities.allowFlying = allow;
     }
 
     @Override
     public boolean canFly() {
-        return player.abilities.allowFlying;
+        return this.player.abilities.allowFlying;
     }
 
     @Override

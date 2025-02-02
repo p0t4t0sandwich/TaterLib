@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.bungee.server;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.Server;
@@ -13,14 +14,13 @@ import dev.neuralnexus.taterlib.v1_12_2.bungee.entity.player.BungeePlayer;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link Server}. */
-public class BungeeServer implements Server {
+public class BungeeServer implements Server, Wrapped<ServerInfo> {
     private final ServerInfo server;
 
     public BungeeServer(ServerInfo server) {
@@ -28,8 +28,13 @@ public class BungeeServer implements Server {
     }
 
     @Override
+    public ServerInfo unwrap() {
+        return this.server;
+    }
+
+    @Override
     public String name() {
-        return server.getName();
+        return this.server.getName();
     }
 
     @Override
@@ -40,17 +45,19 @@ public class BungeeServer implements Server {
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server.getPlayers().stream().map(BungeePlayer::new).collect(Collectors.toList());
+        return this.server.getPlayers().stream()
+                .map(BungeePlayer::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public Map<String, UUID> whitelist() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public Map<String, UUID> playercache() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override

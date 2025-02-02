@@ -60,12 +60,12 @@ public class VelocityProxyServer implements ProxyServer {
 
     @Override
     public Map<String, UUID> whitelist() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public Map<String, UUID> playercache() {
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override

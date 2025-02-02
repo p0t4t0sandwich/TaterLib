@@ -6,39 +6,37 @@
 package dev.neuralnexus.taterlib.v1_12_2.bungee.command;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.Wrapped;
 
 import java.util.UUID;
 
 /** Bungee implementation of {@link CommandSender} */
-public class BungeeCommandSender implements CommandSender {
-    private final net.md_5.bungee.api.CommandSender commandSender;
+public class BungeeCommandSender
+        implements CommandSender, Wrapped<net.md_5.bungee.api.CommandSender> {
+    private final net.md_5.bungee.api.CommandSender sender;
 
-    public BungeeCommandSender(net.md_5.bungee.api.CommandSender commandSender) {
-        this.commandSender = commandSender;
+    public BungeeCommandSender(net.md_5.bungee.api.CommandSender sender) {
+        this.sender = sender;
     }
 
-    /**
-     * Get the sender
-     *
-     * @return The sender
-     */
-    public net.md_5.bungee.api.CommandSender sender() {
-        return commandSender;
+    @Override
+    public net.md_5.bungee.api.CommandSender unwrap() {
+        return this.sender;
     }
 
     @Override
     public UUID uuid() {
-        return new UUID(0, 0);
+        return TaterAPIProvider.uuidFromName(this.sender.getName().asFormattedString()).orElse(new UUID(0, 0));
     }
 
     @Override
     public String name() {
-        return commandSender.getName();
+        return this.sender.getName();
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void sendMessage(String message) {
-        commandSender.sendMessage(message);
+        this.sender.sendMessage(message);
     }
 }

@@ -39,28 +39,24 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
         this.player = player;
     }
 
-    /**
-     * Gets the Fabric player
-     *
-     * @return The Fabric player
-     */
-    public PlayerEntity player() {
-        return player;
+    @Override
+    public PlayerEntity unwrap() {
+        return this.player;
     }
 
     @Override
     public UUID uuid() {
-        return player.getUuid();
+        return this.player.getUuid();
     }
 
     @Override
     public String ipAddress() {
-        return ((ServerPlayerEntity) player).getIp();
+        return ((ServerPlayerEntity) this.player).getIp();
     }
 
     @Override
     public String name() {
-        return player.getName().asFormattedString();
+        return this.player.getName().asFormattedString();
     }
 
     @Override
@@ -72,23 +68,24 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
     public void sendPacket(ResourceKey channel, byte[] data) {
         PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((ServerPlayerEntity) player)
+        ((ServerPlayerEntity) this.player)
                 .networkHandler.sendPacket(new CustomPayloadS2CPacket(channel.asString(), byteBuf));
     }
 
     @Override
     public PlayerInventory inventory() {
-        return new FabricPlayerInventory(player.inventory);
+        return new FabricPlayerInventory(this.player.inventory);
     }
 
     @Override
     public int ping() {
-        return ((ServerPlayerEntity) player).ping;
+        return ((ServerPlayerEntity) this.player).ping;
     }
 
     @Override
     public void kick(String message) {
-        ((ServerPlayerEntity) player).networkHandler.onDisconnected(new TranslatableText(message));
+        ((ServerPlayerEntity) this.player)
+                .networkHandler.onDisconnected(new TranslatableText(message));
     }
 
     @Override
@@ -99,33 +96,33 @@ public class FabricPlayer extends FabricLivingEntity implements Player, ServerPl
 
     @Override
     public void allowFlight(boolean allow) {
-        player.abilities.allowFlying = allow;
+        this.player.abilities.allowFlying = allow;
     }
 
     @Override
     public boolean canFly() {
-        return player.abilities.allowFlying;
+        return this.player.abilities.allowFlying;
     }
 
     @Override
     public boolean isFlying() {
-        return player.abilities.flying;
+        return this.player.abilities.flying;
     }
 
     @Override
     public void setFlying(boolean flying) {
-        player.abilities.flying = flying;
+        this.player.abilities.flying = flying;
     }
 
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
-                ((ServerPlayerEntity) player).interactionManager.getGameMode().name());
+                ((ServerPlayerEntity) this.player).interactionManager.getGameMode().name());
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        ((ServerPlayerEntity) player)
+        ((ServerPlayerEntity) this.player)
                 .interactionManager.setGameMode(
                         net.minecraft.world.GameMode.setGameModeWithId(gameMode.id()));
     }

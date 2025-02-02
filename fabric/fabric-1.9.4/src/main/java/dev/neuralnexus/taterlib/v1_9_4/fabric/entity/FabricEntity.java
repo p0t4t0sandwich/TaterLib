@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_9_4.fabric.entity;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -20,7 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /** Fabric implementation of {@link Entity}. */
-public class FabricEntity implements Entity {
+public class FabricEntity implements Entity, Wrapped<net.minecraft.entity.Entity> {
     private final net.minecraft.entity.Entity entity;
 
     /**
@@ -32,73 +33,68 @@ public class FabricEntity implements Entity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the Fabric entity.
-     *
-     * @return The Fabric entity.
-     */
-    public net.minecraft.entity.Entity entity() {
-        return entity;
+    @Override
+    public net.minecraft.entity.Entity unwrap() {
+        return this.entity;
     }
 
     @Override
     public UUID uuid() {
-        return entity.getUuid();
+        return this.entity.getUuid();
     }
 
     @Override
     public int entityId() {
-        return entity.getEntityId();
+        return this.entity.getEntityId();
     }
 
     @Override
     public void remove() {
-        entity.remove();
+        this.entity.remove();
     }
 
     @Override
     public ResourceKey type() {
-        return ResourceKey.of(entity.getEntityName().split("entity\\.")[1].replace(".", ":"));
+        return ResourceKey.of(this.entity.getEntityName().split("entity\\.")[1].replace(".", ":"));
     }
 
     @Override
     public Optional<String> customName() {
-        if (entity.getCustomName() == null) return Optional.empty();
-        return Optional.of(entity.getCustomName());
+        return Optional.ofNullable(this.entity.getCustomName());
     }
 
     @Override
     public void setCustomName(String name) {
-        entity.setCustomName(name);
+        this.entity.setCustomName(name);
     }
 
     @Override
     public Location location() {
-        return new FabricLocation(entity);
+        return new FabricLocation(this.entity);
     }
 
     @Override
     public ResourceKey biome() {
-        return ResourceKey.of(entity.world.getBiome(entity.getBlockPos()).getName());
+        return ResourceKey.of(this.entity.world.getBiome(entity.getBlockPos()).getName());
     }
 
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
-            if (entity.getMinecraftServer() != null) return;
+            if (this.entity.getMinecraftServer() != null) return;
             Optional<ServerWorld> serverLevel =
-                    ((Server) entity.getMinecraftServer())
+                    ((Server) this.entity.getMinecraftServer())
                             .world(location.world().dimension())
                             .map(FabricServerWorld.class::cast)
                             .map(FabricServerWorld::world);
             if (!serverLevel.isPresent()) return;
-            entity.changeDimension(serverLevel.get().dimension.getDimensionType().getId());
+            this.entity.changeDimension(serverLevel.get().dimension.getDimensionType().getId());
         }
-        ((LivingEntity) entity).method_13071(location.x(), location.y(), location.z());
+        ((LivingEntity) this.entity).method_13071(location.x(), location.y(), location.z());
     }
 
     @Override
     public void sendMessage(String message) {
-        entity.sendMessage(new TranslatableText(message));
+        this.entity.sendMessage(new TranslatableText(message));
     }
 }

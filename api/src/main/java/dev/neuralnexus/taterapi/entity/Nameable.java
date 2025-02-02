@@ -5,9 +5,14 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+
 import java.util.Optional;
 
 /** Represents a nameable entity */
+@VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
 public interface Nameable {
     /**
      * Get the custom name of the entity

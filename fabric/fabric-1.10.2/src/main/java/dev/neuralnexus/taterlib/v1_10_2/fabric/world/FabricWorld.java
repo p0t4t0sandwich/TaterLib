@@ -48,7 +48,7 @@ public class FabricWorld implements World {
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).entity();
+        net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
         return level
                 .getEntitiesIn(
                         mcEntity,
@@ -64,7 +64,7 @@ public class FabricWorld implements World {
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
         return level
                 .getEntitiesIn(
-                        ((FabricEntity) entity).entity(),
+                        ((FabricEntity) entity).unwrap(),
                         new Box(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
                         e -> predicate.test(new FabricEntity(e)))
                 .stream()

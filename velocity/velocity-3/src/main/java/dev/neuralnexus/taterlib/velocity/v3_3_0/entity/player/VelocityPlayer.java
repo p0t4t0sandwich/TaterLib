@@ -68,7 +68,7 @@ public class VelocityPlayer implements ProxyPlayer {
 
     @Override
     public UUID uuid() {
-        return player.getUniqueId();
+        return this.player.getUniqueId();
     }
 
     @Override

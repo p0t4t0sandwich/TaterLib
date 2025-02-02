@@ -5,11 +5,10 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.bungee.entity.player;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeServer;
 
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -19,7 +18,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import java.util.UUID;
 
 /** BungeeCord implementation of {@link ProxyPlayer}. */
-public class BungeePlayer implements ProxyPlayer {
+public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     private final ProxiedPlayer player;
 
     /**
@@ -31,22 +30,9 @@ public class BungeePlayer implements ProxyPlayer {
         this.player = player;
     }
 
-    /**
-     * Gets the BungeeCord player
-     *
-     * @return The BungeeCord player
-     */
-    public ProxiedPlayer player() {
-        return player;
-    }
-
-    /**
-     * Gets the proxy server the player is connected to.
-     *
-     * @return The server the player is connected to.
-     */
-    public ProxyServer proxyServer() {
-        return BungeeProxyServer.instance();
+    @Override
+    public ProxiedPlayer unwrap() {
+        return this.player;
     }
 
     /**
@@ -58,51 +44,51 @@ public class BungeePlayer implements ProxyPlayer {
     public void connect(String serverName) {
         if (net.md_5.bungee.api.ProxyServer.getInstance().getServerInfo(serverName) == null) return;
         ServerInfo server = net.md_5.bungee.api.ProxyServer.getInstance().getServerInfo(serverName);
-        player.connect(server);
+        this.player.connect(server);
     }
 
     @Override
     public UUID uuid() {
-        return player.getUniqueId();
+        return this.player.getUniqueId();
     }
 
     @Override
     public String ipAddress() {
-        return player.getAddress().getAddress().getHostAddress();
+        return this.player.getAddress().getAddress().getHostAddress();
     }
 
     @Override
     public String name() {
-        return player.getName();
+        return this.player.getName();
     }
 
     @Override
     public String displayName() {
-        return player.getDisplayName();
+        return this.player.getDisplayName();
     }
 
     @Override
     public Server server() {
-        return new BungeeServer(player.getServer().getInfo());
+        return new BungeeServer(this.player.getServer().getInfo());
     }
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(new ComponentBuilder(message).create());
+        this.player.sendMessage(new ComponentBuilder(message).create());
     }
 
     @Override
     public void sendPacket(ResourceKey channel, byte[] data) {
-        player.getServer().getInfo().sendData(channel.asString(), data);
+        this.player.getServer().getInfo().sendData(channel.asString(), data);
     }
 
     @Override
     public int ping() {
-        return player.getPing();
+        return this.player.getPing();
     }
 
     @Override
     public void kick(String message) {
-        player.disconnect(new ComponentBuilder(message).create());
+        this.player.disconnect(new ComponentBuilder(message).create());
     }
 }

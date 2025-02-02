@@ -6,6 +6,8 @@
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity;
 
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitLocation;
@@ -19,7 +21,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
-public class BukkitEntity implements Entity {
+public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     private final org.bukkit.entity.Entity entity;
 
     /**
@@ -31,62 +33,55 @@ public class BukkitEntity implements Entity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the Bukkit entity.
-     *
-     * @return The Bukkit entity.
-     */
-    public org.bukkit.entity.Entity entity() {
-        return entity;
+    @Override
+    public org.bukkit.entity.Entity unwrap() {
+        return this.entity;
     }
 
     @Override
     public UUID uuid() {
-        return entity.getUniqueId();
+        return this.entity.getUniqueId();
     }
 
     @Override
     public int entityId() {
-        return entity.getEntityId();
+        return this.entity.getEntityId();
     }
 
     @Override
     public void remove() {
-        entity.remove();
+        this.entity.remove();
     }
 
     @Override
     public ResourceKey type() {
         return ResourceKey.of(
-                "minecraft", EntityTypes.b(((CraftEntity) entity).getHandle()).toLowerCase());
+                "minecraft", EntityTypes.b(((CraftEntity) this.entity).getHandle()).toLowerCase());
     }
 
     @Override
-    public void sendMessage(String message) {}
-
-    @Override
     public Optional<String> customName() {
-        return Optional.of("minecraft.entity");
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public void setCustomName(String name) {
-        //        entity.setCustomName(name);
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public Location location() {
-        return new BukkitLocation(entity.getLocation());
+        return new BukkitLocation(this.entity.getLocation());
     }
 
     @Override
     public ResourceKey biome() {
-        return ResourceKey.of(entity.getLocation().getBlock().getBiome().name());
+        return ResourceKey.of(this.entity.getLocation().getBlock().getBiome().name());
     }
 
     @Override
     public void teleport(Location location) {
-        entity.teleport(
+        this.entity.teleport(
                 new org.bukkit.Location(
                         ((BukkitWorld) location.world()).world(),
                         location.x(),

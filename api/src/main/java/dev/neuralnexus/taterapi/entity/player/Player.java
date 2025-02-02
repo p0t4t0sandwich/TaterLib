@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 
 /** The interface for a Player */
@@ -14,6 +17,7 @@ public interface Player extends SimplePlayer, HumanEntity {
      *
      * @param allow Whether the player should be allowed to fly
      */
+    @VersionFeature(name = "Player#allowFlight(boolean)", incompatible = @Range(MinecraftVersion.B1_7_3))
     void allowFlight(boolean allow);
 
     /**
@@ -21,6 +25,7 @@ public interface Player extends SimplePlayer, HumanEntity {
      *
      * @return Whether the player is allowed to fly
      */
+    @VersionFeature(name = "Player#canFly()", incompatible = @Range(MinecraftVersion.B1_7_3))
     boolean canFly();
 
     /**
@@ -28,6 +33,7 @@ public interface Player extends SimplePlayer, HumanEntity {
      *
      * @return Whether the player is flying
      */
+    @VersionFeature(name = "Player#isFlying()", incompatible = @Range(MinecraftVersion.B1_7_3))
     boolean isFlying();
 
     /**
@@ -35,6 +41,7 @@ public interface Player extends SimplePlayer, HumanEntity {
      *
      * @param flying Whether the player should be flying
      */
+    @VersionFeature(name = "Player#setFlying()", incompatible = @Range(MinecraftVersion.B1_7_3))
     void setFlying(boolean flying);
 
     /**

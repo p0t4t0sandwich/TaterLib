@@ -20,7 +20,7 @@ public class BukkitBlockBreakEvent extends BukkitBlockEvent implements PlayerBlo
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

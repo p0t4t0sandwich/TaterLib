@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterapi.entity;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
@@ -21,7 +22,11 @@ public interface Entity extends CommandSender, Nameable {
      * @return The name of the entity
      */
     default String name() {
-        return customName().orElseGet(() -> type().asString());
+        try {
+            return this.customName().orElseGet(() -> this.type().asString());
+        } catch (VersionFeatureNotSupportedException e) {
+            return this.type().asString();
+        }
     }
 
     /**

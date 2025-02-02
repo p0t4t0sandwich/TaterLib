@@ -46,12 +46,12 @@ public class ForgeItemStack implements ItemStack {
 
     @Override
     public int count() {
-        return itemStack.getCount();
+        return this.itemStack.getCount();
     }
 
     @Override
     public void setCount(int count) {
-        itemStack.setCount(count);
+        this.itemStack.setCount(count);
     }
 
     @Override

@@ -23,23 +23,28 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     }
 
     @Override
+    public org.bukkit.entity.LivingEntity unwrap() {
+        return this.entity;
+    }
+
+    @Override
     public void damage(double amount) {
-        entity.damage(amount);
+        this.entity.damage(amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(amount, ((BukkitEntity) source).entity());
+        this.entity.damage(amount, ((BukkitEntity) source).unwrap());
     }
 
     @Override
     public double health() {
-        return entity.getHealth();
+        return this.entity.getHealth();
     }
 
     @Override
     public void setHealth(double health) {
-        entity.setHealth(health);
+        this.entity.setHealth(health);
     }
 
     @Override
@@ -55,12 +60,12 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     @Override
     @SuppressWarnings("deprecation")
     public double maxHealth() {
-        return entity.getMaxHealth();
+        return this.entity.getMaxHealth();
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public void setMaxHealth(double health) {
-        entity.setMaxHealth(health);
+        this.entity.setMaxHealth(health);
     }
 }

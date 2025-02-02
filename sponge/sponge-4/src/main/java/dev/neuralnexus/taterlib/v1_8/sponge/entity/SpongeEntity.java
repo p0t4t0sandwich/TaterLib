@@ -54,7 +54,7 @@ public class SpongeEntity implements Entity {
 
     @Override
     public void remove() {
-        entity.remove();
+        this.entity.remove();
     }
 
     @Override
@@ -101,7 +101,4 @@ public class SpongeEntity implements Entity {
                 new org.spongepowered.api.world.Location<>(
                         serverLevel.get(), location.x(), location.y(), location.z()));
     }
-
-    @Override
-    public void sendMessage(String message) {}
 }

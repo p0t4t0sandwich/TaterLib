@@ -10,6 +10,7 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 /** Enum wrapper for use with annotations */
 public enum MinecraftVersion {
     UNKNOWN(MinecraftVersions.UNKNOWN),
+    B1_7_3(MinecraftVersions.B1_7_3),
     V0(MinecraftVersions.V0),
     V0_1(MinecraftVersions.V0_1),
     V1(MinecraftVersions.V1),

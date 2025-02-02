@@ -68,10 +68,10 @@ public class BukkitWorld implements World {
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        return world
+        return this.world
                 .getNearbyEntities(
                         BoundingBox.of(
-                                ((BukkitEntity) entity).entity().getLocation(),
+                                ((BukkitEntity) entity).unwrap().getLocation(),
                                 radius,
                                 radius,
                                 radius),

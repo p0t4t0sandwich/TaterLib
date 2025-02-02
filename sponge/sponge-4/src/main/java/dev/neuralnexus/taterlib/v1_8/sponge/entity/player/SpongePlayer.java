@@ -50,7 +50,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
 
     @Override
     public UUID uuid() {
-        return player.getUniqueId();
+        return this.player.getUniqueId();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
 
     @Override
     public String name() {
-        return player.getName();
+        return this.player.getName();
     }
 
     @Override

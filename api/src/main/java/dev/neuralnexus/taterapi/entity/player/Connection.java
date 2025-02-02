@@ -5,6 +5,9 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.modapi.metadata.annotations.Range;
+import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
+import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
@@ -22,6 +25,7 @@ public interface Connection {
      *
      * @return The player's ping
      */
+    @VersionFeature(name = "Connection#ping()", incompatible = @Range(MinecraftVersion.B1_7_3))
     int ping();
 
     /**
@@ -42,6 +46,7 @@ public interface Connection {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
+    @VersionFeature(name = "Connection#sendPacket()", incompatible = @Range(MinecraftVersion.B1_7_3))
     void sendPacket(ResourceKey channel, byte[] data);
 
     /**

@@ -23,7 +23,7 @@ public class SpongeEntitySpawnEvent implements EntitySpawnEvent {
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

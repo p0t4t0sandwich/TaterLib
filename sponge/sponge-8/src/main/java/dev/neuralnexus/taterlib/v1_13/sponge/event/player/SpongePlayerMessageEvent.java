@@ -30,7 +30,7 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
 
     @Override
     public boolean cancelled() {
-        return event.isCancelled();
+        return this.event.isCancelled();
     }
 
     @Override

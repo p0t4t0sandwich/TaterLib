@@ -9,6 +9,8 @@ import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterlib.TaterLib;
 
+import java.lang.reflect.InvocationTargetException;
+
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     private final org.bukkit.entity.LivingEntity entity;
@@ -24,21 +26,26 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     }
 
     @Override
+    public org.bukkit.entity.LivingEntity unwrap() {
+        return this.entity;
+    }
+
+    @Override
     public void damage(double amount) {
-        entity.damage(amount);
+        this.entity.damage(amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        entity.damage(amount, ((BukkitEntity) source).entity());
+        this.entity.damage(amount, ((BukkitEntity) source).unwrap());
     }
 
     @Override
     public double health() {
         // Reflect to get (double) entity.getHealth();
         try {
-            return (double) entity.getClass().getMethod("getHealth").invoke(entity);
-        } catch (Exception e) {
+            return (double) entity.getClass().getMethod("getHealth").invoke(this.entity);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's health", e);
             return 0;
         }
@@ -46,7 +53,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
 
     @Override
     public void setHealth(double health) {
-        entity.setHealth(health);
+        this.entity.setHealth(health);
     }
 
     @Override
@@ -55,9 +62,12 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             Class<?> craftLivingEntity =
                     Class.forName("org.bukkit.craftbukkit.v1_13_R2.entity.CraftLivingEntity");
-            Object handle = craftLivingEntity.getMethod("getHandle").invoke(entity);
+            Object handle = craftLivingEntity.getMethod("getHandle").invoke(this.entity);
             return (double) handle.getClass().getMethod("getAbsorptionHearts").invoke(handle);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InvocationTargetException
+                | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's absorption", e);
             return 0;
         }
@@ -69,9 +79,12 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             Class<?> craftLivingEntity =
                     Class.forName("org.bukkit.craftbukkit.v1_13_R2.entity.CraftLivingEntity");
-            Object handle = craftLivingEntity.getMethod("getHandle").invoke(entity);
+            Object handle = craftLivingEntity.getMethod("getHandle").invoke(this.entity);
             handle.getClass().getMethod("setAbsorptionHearts", double.class).invoke(handle, amount);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | InvocationTargetException
+                | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's absorption", e);
         }
     }
@@ -80,8 +93,8 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     public double maxHealth() {
         // Reflect to get (double) entity.getMaxHealth();
         try {
-            return (double) entity.getClass().getMethod("getMaxHealth").invoke(entity);
-        } catch (Exception e) {
+            return (double) entity.getClass().getMethod("getMaxHealth").invoke(this.entity);
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             TaterLib.logger().error("Could not reflect to get entity's absorption", e);
             return 0;
         }
@@ -90,6 +103,6 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
     @Override
     @SuppressWarnings("deprecation")
     public void setMaxHealth(double health) {
-        entity.setMaxHealth(health);
+        this.entity.setMaxHealth(health);
     }
 }

@@ -70,7 +70,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public String displayName() {
-        return player.getDisplayName();
+        return this.player.getDisplayName();
     }
 
     @Override
