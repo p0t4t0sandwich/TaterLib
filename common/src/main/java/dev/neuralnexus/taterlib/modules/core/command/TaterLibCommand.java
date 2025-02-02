@@ -113,7 +113,8 @@ public class TaterLibCommand implements Command {
                 sender.sendMessage(TextUtil.substituteSectionSign(this.execute(args)));
             }
         } else {
-            sender.sendMessage(TextUtil.ansiParser(TextUtil.substituteSectionSign(this.execute(args))));
+            sender.sendMessage(
+                    TextUtil.ansiParser(TextUtil.substituteSectionSign(this.execute(args))));
         }
         return true;
     }

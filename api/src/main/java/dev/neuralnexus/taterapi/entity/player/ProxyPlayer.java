@@ -5,8 +5,6 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-
 /** Abstracts a proxy player. */
 public interface ProxyPlayer extends SimplePlayer, Connection {
     /**

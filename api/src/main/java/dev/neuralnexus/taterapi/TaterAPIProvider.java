@@ -11,7 +11,6 @@ import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
-import dev.neuralnexus.taterapi.hooks.permissions.PermissionsHook;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
@@ -21,8 +20,10 @@ import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
 import dev.neuralnexus.taterapi.world.Location;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 /** API Provider */
@@ -75,70 +76,103 @@ public class TaterAPIProvider {
     }
 
     /**
-     * Check Sender permissions
+     * Check if a source has a permission
      *
-     * @param permissible The object to check
+     * @param permission The permission object
+     * @return The predicate
+     * @param <P> The permission type
+     * @param <S> The subject type
+     */
+    public static <P, S> Predicate<S> hasPermission(P permission) {
+        return PermsAPI.hasPermission(permission);
+    }
+
+    /**
+     * Check Identifiable permissions
+     *
+     * @param identifiable The object to check
      * @param permissionLevel The permission
      * @return If the object has the permission
+     * @throws NullPointerException If the object is null
      */
-    public static boolean hasPermission(Identifiable permissible, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(permissible.uuid(), permissionLevel);
+    public static boolean hasPermission(@NotNull Identifiable identifiable, int permissionLevel)
+            throws NullPointerException {
+        Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
+        return PermsAPI.instance().hasPermission(identifiable.uuid(), permissionLevel);
     }
 
     /**
-     * Check Sender permissions
+     * Check Identifiable permissions
      *
-     * @param permissible The object to check
+     * @param identifiable The object to check
      * @param permission The permission
      * @return If the object has the permission
+     * @throws NullPointerException If the object is null
      */
-    public static boolean hasPermission(Identifiable permissible, String permission) {
-        return PermsAPI.instance().hasPermission(permissible.uuid(), permission);
+    public static boolean hasPermission(
+            @NotNull Identifiable identifiable, @NotNull String permission)
+            throws NullPointerException {
+        Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
+        return PermsAPI.instance().hasPermission(identifiable.uuid(), permission);
     }
 
     /**
-     * Check Sender permissions
+     * Check Identifiable permissions
      *
-     * @param permissible The object to check
+     * @param identifiable The object to check
      * @param permission The permission
      * @param defaultPermissionLevel The default permission level
      * @return If the object has the permission
+     * @throws NullPointerException If the object or permission is null
      */
-    public static boolean hasPermission(Identifiable permissible, String permission, int defaultPermissionLevel) {
-        return PermsAPI.instance().hasPermission(permissible.uuid(), permission, defaultPermissionLevel);
+    public static boolean hasPermission(
+            @NotNull Identifiable identifiable,
+            @NotNull String permission,
+            int defaultPermissionLevel)
+            throws NullPointerException {
+        Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
+        return PermsAPI.instance()
+                .hasPermission(identifiable.uuid(), permission, defaultPermissionLevel);
     }
 
     /**
-     * Check Sender permissions
+     * Check the subject's permissions
      *
      * @param subject The object to check
      * @param permissionLevel The permission
      * @return If the object has the permission
+     * @throws NullPointerException If the object is null
      */
-    public static boolean hasPermission(Object subject, int permissionLevel) {
+    public static boolean hasPermission(@NotNull Object subject, int permissionLevel)
+            throws NullPointerException {
         return PermsAPI.instance().hasPermission(subject, permissionLevel);
     }
 
     /**
-     * Check Sender permissions
+     * Check the subject's permissions
      *
      * @param subject The object to check
      * @param permission The permission
      * @return If the object has the permission
+     * @throws NullPointerException If the object or permission is null
      */
-    public static boolean hasPermission(Object subject, String permission) {
+    public static boolean hasPermission(@NotNull Object subject, @NotNull String permission)
+            throws NullPointerException {
         return PermsAPI.instance().hasPermission(subject, permission);
     }
 
     /**
-     * Check Sender permissions
+     * Check the subject's permissions
      *
      * @param subject The object to check
      * @param permission The permission
      * @param defaultPermissionLevel The default permission level
      * @return If the object has the permission
+     * @throws NullPointerException If the object or permission is null
      */
-    public static boolean hasPermission(Object subject, String permission, int defaultPermissionLevel) {
+    public static boolean hasPermission(
+            @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
+            throws NullPointerException {
         return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
     }
 
