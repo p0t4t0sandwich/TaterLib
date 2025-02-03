@@ -14,6 +14,7 @@ import dev.neuralnexus.taterlib.TaterLib;
 import net.minecraft.item.Items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Fabric implementation of {@link ItemStack}. */
@@ -96,20 +97,12 @@ public class FabricItemStack implements ItemStack, Wrapped<net.minecraft.item.It
 
     @Override
     public boolean unbreakable() {
-        return this.itemStack.getItem().isUnbreakable();
+        Objects.requireNonNull(this.itemStack.getNbt());
+        return this.itemStack.hasNbt() && this.itemStack.getNbt().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // Reflect to get protected Item#setUnbreakable(boolean)
-        try {
-            this.itemStack
-                    .getItem()
-                    .getClass()
-                    .getDeclaredMethod("method_3361", boolean.class)
-                    .invoke(this.itemStack.getItem(), unbreakable);
-        } catch (Exception e) {
-            TaterLib.logger().error("Failed to set unbreakable item", e);
-        }
+        this.itemStack.getOrCreateNbtCompound("Unbreakable").putBoolean("Unbreakable", unbreakable);
     }
 }

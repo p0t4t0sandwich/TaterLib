@@ -98,20 +98,12 @@ public class FabricItemStack implements ItemStack, Wrapped<net.minecraft.item.It
 
     @Override
     public boolean unbreakable() {
-        return this.itemStack.isUnbreakable();
+        Objects.requireNonNull(this.itemStack.getNbt());
+        return this.itemStack.hasNbt() && this.itemStack.getNbt().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // Reflect to get protected Item#setUnbreakable(boolean)
-        try {
-            this.itemStack
-                    .getItem()
-                    .getClass()
-                    .getDeclaredMethod("method_3361", boolean.class)
-                    .invoke(this.itemStack.getItem(), unbreakable);
-        } catch (Exception e) {
-            TaterLib.logger().error("Failed to set unbreakable item", e);
-        }
+        this.itemStack.getOrCreateNbtCompound("Unbreakable").putBoolean("Unbreakable", unbreakable);
     }
 }

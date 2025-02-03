@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLib;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Forge implementation of {@link ItemStack}. */
@@ -94,20 +95,13 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
 
     @Override
     public boolean unbreakable() {
-        return this.itemStack.getItem().getHasSubtypes();
+        Objects.requireNonNull(this.itemStack.getTagCompound());
+        return this.itemStack.hasTagCompound() && this.itemStack.getTagCompound().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // Reflect to get protected Item#setHasSubtypes(boolean)
-        try {
-            this.itemStack
-                    .getItem()
-                    .getClass()
-                    .getDeclaredMethod("func_77627_a", boolean.class)
-                    .invoke(this.itemStack.getItem(), unbreakable);
-        } catch (Exception e) {
-            TaterLib.logger().error("Failed to set unbreakable item", e);
-        }
+        Objects.requireNonNull(this.itemStack.getTagCompound());
+        this.itemStack.getTagCompound().getCompoundTag("Unbreakable").setBoolean("Unbreakable", unbreakable);
     }
 }

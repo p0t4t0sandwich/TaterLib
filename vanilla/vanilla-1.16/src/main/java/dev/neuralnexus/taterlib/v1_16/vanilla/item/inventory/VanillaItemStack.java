@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
-public class VanillaItemStack implements ItemStack {
+public class VanillaItemStack implements ItemStack, Wrapped<net.minecraft.world.item.ItemStack> {
     private final net.minecraft.world.item.ItemStack itemStack;
 
     /**
@@ -30,13 +30,9 @@ public class VanillaItemStack implements ItemStack {
                 itemStack == null ? new net.minecraft.world.item.ItemStack(Items.AIR) : itemStack;
     }
 
-    /**
-     * Getter for the Vanilla item stack.
-     *
-     * @return The Vanilla item stack.
-     */
-    public net.minecraft.world.item.ItemStack itemStack() {
-        return itemStack;
+    @Override
+    public net.minecraft.world.item.ItemStack unwrap() {
+        return this.itemStack;
     }
 
     @Override
@@ -62,18 +58,18 @@ public class VanillaItemStack implements ItemStack {
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomHoverName();
+        return this.itemStack.hasCustomHoverName();
     }
 
     @Override
     public Optional<String> displayName() {
-        if (!itemStack.hasCustomHoverName()) return Optional.empty();
+        if (!this.itemStack.hasCustomHoverName()) return Optional.empty();
         return Optional.of(this.itemStack.getDisplayName().getString());
     }
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.setHoverName(Component.nullToEmpty(name));
+        this.itemStack.setHoverName(Component.nullToEmpty(name));
     }
 
     @Override
@@ -96,12 +92,12 @@ public class VanillaItemStack implements ItemStack {
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.isEnchanted();
+        return this.itemStack.isEnchanted();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.isDamageableItem();
+        return this.itemStack.isDamageableItem();
     }
 
     @Override

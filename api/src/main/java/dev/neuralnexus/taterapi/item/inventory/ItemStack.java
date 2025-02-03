@@ -130,8 +130,8 @@ public interface ItemStack {
      * @return If the item is unbreakable
      */
     @VersionFeature(
-            name = "ItemStack#hasEnchants()",
-            compatible = @Range(min = MinecraftVersion.V8))
+            name = "ItemStack#unbreakable()",
+            compatible = @Range(min = MinecraftVersion.V7_2))
     boolean unbreakable();
 
     /**
@@ -141,6 +141,6 @@ public interface ItemStack {
      */
     @VersionFeature(
             name = "ItemStack#setUnbreakable(boolean)",
-            compatible = @Range(min = MinecraftVersion.V8))
+            compatible = @Range(min = MinecraftVersion.V7_2))
     void setUnbreakable(boolean unbreakable);
 }

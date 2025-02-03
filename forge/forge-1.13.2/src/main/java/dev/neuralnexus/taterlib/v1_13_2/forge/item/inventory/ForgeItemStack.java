@@ -17,6 +17,7 @@ import net.minecraft.util.registry.IRegistry;
 import net.minecraft.util.text.TextComponentString;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Forge implementation of {@link ItemStack}. */
@@ -73,7 +74,7 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.setDisplayName(new TextComponentString(name));
+        this.itemStack.setDisplayName(new TextComponentString(name));
     }
 
     @Override
@@ -96,25 +97,17 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.isEnchanted();
+        return this.itemStack.isEnchanted();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.isDamageable();
+        Objects.requireNonNull(this.itemStack.getTag());
+        return this.itemStack.hasTag() && this.itemStack.getTag().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // Reflect to get protected Item#setHasSubtypes(boolean)
-        try {
-            this.itemStack
-                    .getItem()
-                    .getClass()
-                    .getDeclaredMethod("func_77627_a", boolean.class)
-                    .invoke(this.itemStack.getItem(), unbreakable);
-        } catch (Exception e) {
-            TaterLib.logger().error("Failed to set unbreakable item", e);
-        }
+        this.itemStack.getOrCreateChildTag("Unbreakable").setBoolean("Unbreakable", unbreakable);
     }
 }

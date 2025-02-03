@@ -94,20 +94,11 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
 
     @Override
     public boolean unbreakable() {
-        return this.itemStack.getItem().getHasSubtypes();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // Reflect to get protected Item#setHasSubtypes(boolean)
-        try {
-            this.itemStack
-                    .getItem()
-                    .getClass()
-                    .getDeclaredMethod("setHasSubtypes", boolean.class)
-                    .invoke(this.itemStack.getItem(), unbreakable);
-        } catch (Exception e) {
-            TaterLib.logger().error("Failed to set unbreakable item", e);
-        }
+        throw new VersionFeatureNotSupportedException();
     }
 }

@@ -64,7 +64,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.get(DataComponents.CUSTOM_NAME) != null;
+        return this.itemStack.get(DataComponents.CUSTOM_NAME) != null;
     }
 
     @Override
@@ -76,7 +76,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
+        this.itemStack.set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
     }
 
     @Override
@@ -99,12 +99,12 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.isEnchanted();
+        return this.itemStack.isEnchanted();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.isDamageableItem();
+        return this.itemStack.isDamageableItem();
     }
 
     @Override

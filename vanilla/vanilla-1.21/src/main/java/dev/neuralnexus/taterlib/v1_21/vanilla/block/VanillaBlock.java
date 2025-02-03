@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.world.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 
 /** Vanilla implementation of {@link Block}. */
-public class VanillaBlock implements Block {
+public class VanillaBlock implements Block, Wrapped<net.minecraft.world.level.block.Block> {
     private final net.minecraft.core.BlockPos pos;
     private final net.minecraft.world.level.block.Block block;
 
@@ -20,6 +20,11 @@ public class VanillaBlock implements Block {
             net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.Block block) {
         this.pos = pos;
         this.block = block;
+    }
+
+    @Override
+    public net.minecraft.world.level.block.Block unwrap() {
+        return this.block;
     }
 
     @Override

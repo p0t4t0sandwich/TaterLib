@@ -5,19 +5,23 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.core.Registry;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
-public class VanillaItemStack implements ItemStack {
+public class VanillaItemStack implements ItemStack, Wrapped<net.minecraft.world.item.ItemStack> {
     private final net.minecraft.world.item.ItemStack itemStack;
 
     /**
@@ -30,13 +34,9 @@ public class VanillaItemStack implements ItemStack {
                 itemStack == null ? new net.minecraft.world.item.ItemStack(Items.AIR) : itemStack;
     }
 
-    /**
-     * Getter for the Vanilla item stack.
-     *
-     * @return The Vanilla item stack.
-     */
-    public net.minecraft.world.item.ItemStack itemStack() {
-        return itemStack;
+    @Override
+    public net.minecraft.world.item.ItemStack unwrap() {
+        return this.itemStack;
     }
 
     @Override
@@ -62,18 +62,18 @@ public class VanillaItemStack implements ItemStack {
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomHoverName();
+        return this.itemStack.hasCustomHoverName();
     }
 
     @Override
     public Optional<String> displayName() {
-        if (!itemStack.hasCustomHoverName()) return Optional.empty();
+        if (!this.itemStack.hasCustomHoverName()) return Optional.empty();
         return Optional.of(this.itemStack.getDisplayName().getString());
     }
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.setHoverName(new TextComponent(name));
+        this.itemStack.setHoverName(new TextComponent(name));
     }
 
     @Override
@@ -96,17 +96,17 @@ public class VanillaItemStack implements ItemStack {
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.isEnchanted();
+        return this.itemStack.isEnchanted();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.isDamageableItem();
+        Objects.requireNonNull(this.itemStack.getTag());
+        return this.itemStack.hasTag() && this.itemStack.getTag().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
+        this.itemStack.getOrCreateTagElement("Unbreakable").putBoolean("Unbreakable", unbreakable);
     }
 }

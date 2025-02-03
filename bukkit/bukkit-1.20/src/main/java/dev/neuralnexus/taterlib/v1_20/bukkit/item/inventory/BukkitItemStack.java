@@ -88,7 +88,7 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
     @SuppressWarnings("deprecation")
     public List<String> lore() {
         Objects.requireNonNull(this.itemStack.getItemMeta());
-        return itemStack.getItemMeta().getLore();
+        return this.itemStack.getItemMeta().getLore();
     }
 
     @Override
@@ -109,7 +109,7 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
     @Override
     public boolean unbreakable() {
         Objects.requireNonNull(this.itemStack.getItemMeta());
-        return itemStack.getItemMeta().isUnbreakable();
+        return this.itemStack.getItemMeta().isUnbreakable();
     }
 
     @Override

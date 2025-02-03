@@ -61,18 +61,18 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasCustomHoverName();
+        return this.itemStack.hasCustomHoverName();
     }
 
     @Override
     public Optional<String> displayName() {
-        if (!itemStack.hasCustomHoverName()) return Optional.empty();
+        if (!this.itemStack.hasCustomHoverName()) return Optional.empty();
         return Optional.of(this.itemStack.getDisplayName().getString());
     }
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.setHoverName(Component.nullToEmpty(name));
+        this.itemStack.setHoverName(Component.nullToEmpty(name));
     }
 
     @Override
@@ -95,12 +95,12 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.isEnchanted();
+        return this.itemStack.isEnchanted();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.isDamageableItem();
+        return this.itemStack.isDamageableItem();
     }
 
     @Override
