@@ -20,21 +20,21 @@ public interface Server {
      *
      * @return name of this server implementation
      */
-    @NotNull public String getName();
+    @NotNull String getName();
 
     /**
      * Gets the version string of this server implementation.
      *
      * @return version of this server implementation
      */
-    @NotNull public String getVersion();
+    @NotNull String getVersion();
 
     /**
      * Gets the Bukkit version that this server is running.
      *
      * @return version of Bukkit
      */
-    @NotNull public String getBukkitVersion();
+    @NotNull String getBukkitVersion();
 
     // Paper start - expose game version
     /**
