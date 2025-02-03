@@ -79,6 +79,6 @@ public abstract class ServerPlayer_API {
         this.taterapi$setSpawnPoint(
                 new BlockPos(location.x(), location.y(), location.z()),
                 forced,
-                ((VanillaWorld) location.world()).world().dimension.getType());
+                ((VanillaWorld) location.world()).unwrap().dimension.getType());
     }
 }

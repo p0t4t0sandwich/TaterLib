@@ -54,7 +54,7 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     @Override
     public void setOffhand(ItemStack offhand) {
-        playerInventory.offHandInventory[0] = ((ForgeItemStack) offhand).unwrap();
+        this.playerInventory.offHandInventory[0] = ((ForgeItemStack) offhand).unwrap();
     }
 
     @Override

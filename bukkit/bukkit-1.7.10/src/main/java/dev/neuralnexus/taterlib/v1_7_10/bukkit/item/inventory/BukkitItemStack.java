@@ -6,13 +6,11 @@
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.item.inventory;
 
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-
 import dev.neuralnexus.taterlib.TaterLib;
+
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.lang.reflect.Field;
@@ -111,7 +109,8 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
         try {
             Field handle = this.itemStack.getClass().getField("handle");
             handle.setAccessible(true);
-            net.minecraft.server.v1_7_R4.ItemStack item = (net.minecraft.server.v1_7_R4.ItemStack) handle.get(this.itemStack);
+            net.minecraft.server.v1_7_R4.ItemStack item =
+                    (net.minecraft.server.v1_7_R4.ItemStack) handle.get(this.itemStack);
             Objects.requireNonNull(item.getTag());
             return item.getTag().getBoolean("Unbreakable");
         } catch (IllegalAccessException | NoSuchFieldException e) {
@@ -125,7 +124,8 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
         try {
             Field handle = this.itemStack.getClass().getField("handle");
             handle.setAccessible(true);
-            net.minecraft.server.v1_7_R4.ItemStack item = (net.minecraft.server.v1_7_R4.ItemStack) handle.get(this.itemStack);
+            net.minecraft.server.v1_7_R4.ItemStack item =
+                    (net.minecraft.server.v1_7_R4.ItemStack) handle.get(this.itemStack);
             Objects.requireNonNull(item.getTag());
             item.getTag().setBoolean("Unbreakable", unbreakable);
         } catch (IllegalAccessException | NoSuchFieldException e) {

@@ -46,7 +46,7 @@ public class SpongeWorld implements ServerWorld, World, Wrapped<org.spongepowere
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        return level.entities().stream()
+        return this.level.entities().stream()
                 .map(Entity.class::cast)
                 .filter(e -> e.location().distance(entity.location()) <= radius)
                 .filter(predicate)
@@ -56,7 +56,7 @@ public class SpongeWorld implements ServerWorld, World, Wrapped<org.spongepowere
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return level.entities().stream()
+        return this.level.entities().stream()
                 .map(Entity.class::cast)
                 .filter(e -> e.location().x() >= pos1.x() && e.location().x() <= pos2.x())
                 .filter(predicate)

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_18.vanilla.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -18,30 +19,26 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link World}. */
-public class VanillaWorld implements World {
+public class VanillaWorld implements World, Wrapped<Level> {
     private final Level level;
 
     public VanillaWorld(Level level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public Level world() {
-        return level;
+    @Override
+    public Level unwrap() {
+        return this.level;
     }
 
     @Override
     public List<Player> players() {
-        return level.players().stream().map(Player.class::cast).collect(Collectors.toList());
+        return this.level.players().stream().map(Player.class::cast).collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return (ResourceKey) level.dimension().location();
+        return (ResourceKey) this.level.dimension().location();
     }
 
     @Override

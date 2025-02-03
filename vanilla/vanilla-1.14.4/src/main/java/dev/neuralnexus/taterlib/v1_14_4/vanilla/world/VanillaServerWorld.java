@@ -18,12 +18,8 @@ public class VanillaServerWorld extends VanillaWorld implements ServerWorld {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public ServerLevel world() {
-        return level;
+    @Override
+    public ServerLevel unwrap() {
+        return this.level;
     }
 }

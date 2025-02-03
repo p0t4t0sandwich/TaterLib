@@ -76,7 +76,7 @@ public abstract class ServerPlayer_API {
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {
         this.shadow$setRespawnPosition(
-                ((VanillaWorld) location.world()).world().dimension(),
+                ((VanillaWorld) location.world()).unwrap().dimension(),
                 new BlockPos(location.x(), location.y(), location.z()),
                 0.0F,
                 forced,

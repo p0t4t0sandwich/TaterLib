@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_18.vanilla.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -13,7 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** The Vanilla implementation of {@link Inventory} */
-public class VanillaInventory implements Inventory {
+public class VanillaInventory
+        implements Inventory, Wrapped<net.minecraft.world.entity.player.Inventory> {
     private final net.minecraft.world.entity.player.Inventory inventory;
 
     /**
@@ -26,50 +28,57 @@ public class VanillaInventory implements Inventory {
     }
 
     @Override
+    public net.minecraft.world.entity.player.Inventory unwrap() {
+        return this.inventory;
+    }
+
+    @Override
     public int size() {
-        return inventory.getContainerSize();
+        return this.inventory.getContainerSize();
     }
 
     @Override
     public ItemStack get(int slot) {
-        return new VanillaItemStack(inventory.getItem(slot));
+        return new VanillaItemStack(this.inventory.getItem(slot));
     }
 
     @Override
     public void set(int slot, ItemStack item) {
-        inventory.setItem(slot, ((VanillaItemStack) item).itemStack());
+        this.inventory.setItem(slot, ((VanillaItemStack) item).unwrap());
     }
 
     @Override
     public void add(ItemStack item) {
-        inventory.add(((VanillaItemStack) item).itemStack());
+        this.inventory.add(((VanillaItemStack) item).unwrap());
     }
 
     @Override
     public List<ItemStack> contents() {
-        return inventory.items.stream().map(VanillaItemStack::new).collect(Collectors.toList());
+        return this.inventory.items.stream()
+                .map(VanillaItemStack::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void setContents(List<ItemStack> items) {
-        inventory.items.clear();
+        this.inventory.items.clear();
         items.stream()
                 .map(VanillaItemStack.class::cast)
-                .map(VanillaItemStack::itemStack)
-                .forEach(inventory.items::add);
+                .map(VanillaItemStack::unwrap)
+                .forEach(this.inventory.items::add);
     }
 
     @Override
     public void remove(ResourceKey type) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
-                this.inventory.removeItem(((VanillaItemStack) get(i)).itemStack());
+                this.inventory.removeItem(((VanillaItemStack) get(i)).unwrap());
             }
         }
     }
 
     @Override
     public void clear(int slot) {
-        this.inventory.removeItem(((VanillaItemStack) get(slot)).itemStack());
+        this.inventory.removeItem(((VanillaItemStack) get(slot)).unwrap());
     }
 }

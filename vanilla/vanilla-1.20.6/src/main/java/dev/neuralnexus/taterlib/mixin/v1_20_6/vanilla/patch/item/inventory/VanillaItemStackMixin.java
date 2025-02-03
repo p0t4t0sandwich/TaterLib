@@ -25,8 +25,7 @@ public class VanillaItemStackMixin {
      */
     @Overwrite
     public boolean hasDisplayName() {
-        return ((VanillaItemStack) (Object) this).itemStack().get(DataComponents.CUSTOM_NAME)
-                != null;
+        return ((VanillaItemStack) (Object) this).unwrap().get(DataComponents.CUSTOM_NAME) != null;
     }
 
     /**
@@ -36,7 +35,28 @@ public class VanillaItemStackMixin {
     @Overwrite
     public void setDisplayName(String name) {
         ((VanillaItemStack) (Object) this)
-                .itemStack()
+                .unwrap()
                 .set(DataComponents.CUSTOM_NAME, Component.nullToEmpty(name));
+    }
+
+    /**
+     * @author Dylan Sperrer (p0t4t0sandwich)
+     * @reason Patch for 1.20.6
+     */
+    @Overwrite
+    public boolean unbreakable() {
+        return ((VanillaItemStack) (Object) this).unwrap().has(DataComponents.UNBREAKABLE);
+    }
+
+    /**
+     * @author Dylan Sperrer (p0t4t0sandwich)
+     * @reason Patch for 1.20.6
+     */
+    @Overwrite
+    @SuppressWarnings("DataFlowIssue")
+    public void setUnbreakable(boolean unbreakable) {
+        if (((VanillaItemStack) (Object) this).unwrap().has(DataComponents.UNBREAKABLE)) {
+            ((VanillaItemStack) (Object) this).unwrap().remove(DataComponents.UNBREAKABLE);
+        }
     }
 }

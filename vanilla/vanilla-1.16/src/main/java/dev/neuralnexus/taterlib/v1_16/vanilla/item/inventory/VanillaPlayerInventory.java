@@ -28,6 +28,11 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
     }
 
     @Override
+    public net.minecraft.world.entity.player.Inventory unwrap() {
+        return this.playerInventory;
+    }
+
+    @Override
     public List<ItemStack> armor() {
         return this.playerInventory.armor.stream()
                 .map(VanillaItemStack::new)
@@ -36,22 +41,22 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
 
     @Override
     public void setArmor(List<ItemStack> armor) {
-        playerInventory.armor.clear();
+        this.playerInventory.armor.clear();
         armor.stream()
                 .map(VanillaItemStack.class::cast)
-                .map(VanillaItemStack::itemStack)
-                .forEach(playerInventory.armor::add);
+                .map(VanillaItemStack::unwrap)
+                .forEach(this.playerInventory.armor::add);
     }
 
     @Override
     public ItemStack offhand() {
-        return new VanillaItemStack(playerInventory.offhand.get(0));
+        return new VanillaItemStack(this.playerInventory.offhand.get(0));
     }
 
     @Override
     public void setOffhand(ItemStack offhand) {
-        playerInventory.offhand.clear();
-        playerInventory.offhand.add(((VanillaItemStack) offhand).itemStack());
+        this.playerInventory.offhand.clear();
+        this.playerInventory.offhand.add(((VanillaItemStack) offhand).unwrap());
     }
 
     @Override

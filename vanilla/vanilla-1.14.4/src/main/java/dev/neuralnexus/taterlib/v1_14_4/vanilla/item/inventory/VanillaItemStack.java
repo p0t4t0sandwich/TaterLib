@@ -11,9 +11,7 @@ import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.core.Registry;
-import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Items;
 
 import java.util.List;

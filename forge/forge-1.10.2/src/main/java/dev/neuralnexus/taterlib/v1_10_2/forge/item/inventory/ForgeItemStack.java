@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -98,12 +97,16 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
     @Override
     public boolean unbreakable() {
         Objects.requireNonNull(this.itemStack.getTagCompound());
-        return this.itemStack.hasTagCompound() && this.itemStack.getTagCompound().getBoolean("Unbreakable");
+        return this.itemStack.hasTagCompound()
+                && this.itemStack.getTagCompound().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
         Objects.requireNonNull(this.itemStack.getTagCompound());
-        this.itemStack.getTagCompound().getCompoundTag("Unbreakable").setBoolean("Unbreakable", unbreakable);
+        this.itemStack
+                .getTagCompound()
+                .getCompoundTag("Unbreakable")
+                .setBoolean("Unbreakable", unbreakable);
     }
 }

@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import net.minecraft.item.Items;
 

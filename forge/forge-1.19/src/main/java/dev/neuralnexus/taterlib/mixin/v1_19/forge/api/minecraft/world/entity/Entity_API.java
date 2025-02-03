@@ -125,7 +125,7 @@ public abstract class Entity_API {
                     ((Server) this.shadow$getServer())
                             .world(location.world().dimension())
                             .map(VanillaServerWorld.class::cast)
-                            .map(VanillaServerWorld::world);
+                            .map(VanillaServerWorld::unwrap);
             if (serverLevel.isEmpty()) return;
             this.shadow$changeDimension(serverLevel.get());
         }

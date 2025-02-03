@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_16.vanilla.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -14,6 +15,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /** Vanilla implementation of {@link ItemStack} */
@@ -97,12 +99,12 @@ public class VanillaItemStack implements ItemStack, Wrapped<net.minecraft.world.
 
     @Override
     public boolean unbreakable() {
-        return this.itemStack.isDamageableItem();
+        Objects.requireNonNull(this.itemStack.getTag());
+        return this.itemStack.hasTag() && this.itemStack.getTag().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
+        this.itemStack.getOrCreateTagElement("Unbreakable").putBoolean("Unbreakable", unbreakable);
     }
 }

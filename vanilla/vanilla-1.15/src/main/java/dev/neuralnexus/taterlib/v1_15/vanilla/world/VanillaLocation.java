@@ -93,7 +93,7 @@ public class VanillaLocation implements Location {
 
     @Override
     public void setWorld(World world) {
-        this.world = ((VanillaWorld) world).world();
+        this.world = ((VanillaWorld) world).unwrap();
     }
 
     public static class Builder implements Location.Builder {
@@ -107,7 +107,7 @@ public class VanillaLocation implements Location {
             this.position = new Vec3(location.x(), location.y(), location.z());
             this.yaw = location.yaw();
             this.pitch = location.pitch();
-            this.world = ((VanillaWorld) location.world()).world();
+            this.world = ((VanillaWorld) location.world()).unwrap();
             return this;
         }
 
@@ -131,7 +131,7 @@ public class VanillaLocation implements Location {
 
         @Override
         public Builder world(World world) {
-            this.world = ((VanillaWorld) world).world();
+            this.world = ((VanillaWorld) world).unwrap();
             return this;
         }
 
