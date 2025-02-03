@@ -26,24 +26,20 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the entity.
-     *
-     * @return The entity.
-     */
-    public EntityLivingBase entity() {
-        return entity;
+    @Override
+    public EntityLivingBase unwrap() {
+        return this.entity;
     }
 
     @Override
     public void damage(double amount) {
-        entity.attackEntityFrom(DamageSource.GENERIC, (float) amount);
+        this.entity.attackEntityFrom(DamageSource.GENERIC, (float) amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        entity.attackEntityFrom(
-                DamageSource.causeMobDamage(((ForgeLivingEntity) source).entity()), (float) amount);
+        this.entity.attackEntityFrom(
+                DamageSource.causeMobDamage(((ForgeLivingEntity) source).unwrap()), (float) amount);
     }
 
     @Override
@@ -58,12 +54,12 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     @Override
     public double absorptionAmount() {
-        return entity.getAbsorptionAmount();
+        return this.entity.getAbsorptionAmount();
     }
 
     @Override
     public void setAbsorptionAmount(double amount) {
-        entity.setAbsorptionAmount((float) amount);
+        this.entity.setAbsorptionAmount((float) amount);
     }
 
     @Override
@@ -73,6 +69,6 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity {
 
     @Override
     public void setMaxHealth(double health) {
-        entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(health);
+        this.entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(health);
     }
 }

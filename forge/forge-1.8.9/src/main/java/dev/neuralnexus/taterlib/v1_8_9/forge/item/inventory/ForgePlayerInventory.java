@@ -30,16 +30,21 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
     }
 
     @Override
+    public InventoryPlayer unwrap() {
+        return this.playerInventory;
+    }
+
+    @Override
     public List<ItemStack> armor() {
-        return Arrays.stream(playerInventory.armorInventory)
+        return Arrays.stream(this.playerInventory.armorInventory)
                 .map(ForgeItemStack::new)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void setArmor(List<ItemStack> armor) {
-        for (int i = 0; i < playerInventory.armorInventory.length; i++) {
-            playerInventory.armorInventory[i] = ((ForgeItemStack) armor.get(i)).itemStack();
+        for (int i = 0; i < this.playerInventory.armorInventory.length; i++) {
+            this.playerInventory.armorInventory[i] = ((ForgeItemStack) armor.get(i)).unwrap();
         }
     }
 
@@ -55,6 +60,6 @@ public class ForgePlayerInventory extends ForgeInventory implements PlayerInvent
 
     @Override
     public int selectedSlot() {
-        return playerInventory.currentItem;
+        return this.playerInventory.currentItem;
     }
 }

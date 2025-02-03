@@ -92,7 +92,7 @@ public class FabricItemStack implements ItemStack, Wrapped<net.minecraft.item.It
 
     @Override
     public boolean hasEnchants() {
-        Objects.requireNonNull(itemStack.getEnchantments());
+        Objects.requireNonNull(this.itemStack.getEnchantments());
         return !itemStack.getEnchantments().isEmpty();
     }
 

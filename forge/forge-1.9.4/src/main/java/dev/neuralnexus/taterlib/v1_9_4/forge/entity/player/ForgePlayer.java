@@ -43,23 +43,19 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
         this.player = player;
     }
 
-    /**
-     * Gets the Forge player
-     *
-     * @return The Forge player
-     */
-    public EntityPlayer getPlayer() {
-        return player;
+    @Override
+    public EntityPlayer unwrap() {
+        return this.player;
     }
 
     @Override
     public UUID uuid() {
-        return player.getUniqueID();
+        return this.player.getUniqueID();
     }
 
     @Override
     public String ipAddress() {
-        return ((EntityPlayerMP) player).getPlayerIP();
+        return ((EntityPlayerMP) this.player).getPlayerIP();
     }
 
     @Override
@@ -76,23 +72,23 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public void sendPacket(ResourceKey channel, byte[] data) {
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((EntityPlayerMP) player)
+        ((EntityPlayerMP) this.player)
                 .connection.sendPacket(new SPacketCustomPayload(channel.asString(), byteBuf));
     }
 
     @Override
     public PlayerInventory inventory() {
-        return new ForgePlayerInventory(player.inventory);
+        return new ForgePlayerInventory(this.player.inventory);
     }
 
     @Override
     public int ping() {
-        return ((EntityPlayerMP) player).ping;
+        return ((EntityPlayerMP) this.player).ping;
     }
 
     @Override
     public void kick(String message) {
-        ((EntityPlayerMP) player).connection.onDisconnect(new TextComponentString(message));
+        ((EntityPlayerMP) this.player).connection.onDisconnect(new TextComponentString(message));
     }
 
     @Override
@@ -102,9 +98,9 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
                 ((Server) player.getServer())
                         .world(location.world().dimension())
                         .map(ForgeServerWorld.class::cast)
-                        .map(ForgeServerWorld::world);
+                        .map(ForgeServerWorld::unwrap);
         if (!serverLevel.isPresent()) return;
-        player.setSpawnChunk(
+        this.player.setSpawnChunk(
                 new BlockPos(location.x(), location.y(), location.z()),
                 forced,
                 serverLevel.get().provider.getDimensionType().getId());
@@ -112,32 +108,32 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void allowFlight(boolean allow) {
-        player.capabilities.allowFlying = allow;
+        this.player.capabilities.allowFlying = allow;
     }
 
     @Override
     public boolean canFly() {
-        return player.capabilities.allowFlying;
+        return this.player.capabilities.allowFlying;
     }
 
     @Override
     public boolean isFlying() {
-        return player.capabilities.isFlying;
+        return this.player.capabilities.isFlying;
     }
 
     @Override
     public void setFlying(boolean flying) {
-        player.capabilities.isFlying = flying;
+        this.player.capabilities.isFlying = flying;
     }
 
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
-                ((EntityPlayerMP) player).interactionManager.getGameType().getName());
+                ((EntityPlayerMP) this.player).interactionManager.getGameType().getName());
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType(net.minecraft.world.WorldSettings.GameType.getByID(gameMode.id()));
+        this.player.setGameType(net.minecraft.world.WorldSettings.GameType.getByID(gameMode.id()));
     }
 }

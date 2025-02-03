@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.forge.block;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
@@ -12,7 +13,7 @@ import dev.neuralnexus.taterapi.world.BlockPos;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /** Forge implementation of {@link Block}. */
-public class ForgeBlock implements Block {
+public class ForgeBlock implements Block, Wrapped<net.minecraft.block.Block> {
     private final net.minecraft.util.math.BlockPos pos;
     private final net.minecraft.block.Block block;
 
@@ -22,9 +23,14 @@ public class ForgeBlock implements Block {
     }
 
     @Override
+    public net.minecraft.block.Block unwrap() {
+        return this.block;
+    }
+
+    @Override
     public ResourceKey type() {
         return (ResourceKey)
-                GameRegistry.findRegistry(net.minecraft.block.Block.class).getKey(block);
+                GameRegistry.findRegistry(net.minecraft.block.Block.class).getKey(this.block);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class VanillaBlock implements Block {
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) Registry.BLOCK.getKey(block);
+        return (ResourceKey) Registry.BLOCK.getKey(this.block);
     }
 
     @Override

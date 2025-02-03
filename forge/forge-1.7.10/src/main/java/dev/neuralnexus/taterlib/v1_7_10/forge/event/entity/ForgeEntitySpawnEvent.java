@@ -33,6 +33,6 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
 
     @Override
     public Location location() {
-        return new ForgeLocation(((ForgeEntity) entity()).entity());
+        return new ForgeLocation(((ForgeEntity) entity()).unwrap());
     }
 }

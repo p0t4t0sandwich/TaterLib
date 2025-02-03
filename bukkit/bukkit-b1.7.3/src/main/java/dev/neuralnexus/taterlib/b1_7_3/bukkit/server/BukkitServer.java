@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player.BukkitPlayer;
-import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitServerWorld;
+import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitWorld;
 
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -61,7 +61,7 @@ public class BukkitServer implements Server {
     @Override
     public List<ServerWorld> worlds() {
         return Bukkit.getServer().getWorlds().stream()
-                .map(BukkitServerWorld::new)
+                .map(BukkitWorld::new)
                 .collect(Collectors.toList());
     }
 }

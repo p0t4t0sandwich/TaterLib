@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_13.sponge.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -13,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Sponge implementation of {@link Inventory}. */
-public class SpongeInventory implements Inventory {
+public class SpongeInventory
+        implements Inventory, Wrapped<org.spongepowered.api.item.inventory.Inventory> {
     private final org.spongepowered.api.item.inventory.Inventory inventory;
 
     /**
@@ -26,27 +28,32 @@ public class SpongeInventory implements Inventory {
     }
 
     @Override
+    public org.spongepowered.api.item.inventory.Inventory unwrap() {
+        return this.inventory;
+    }
+
+    @Override
     public int size() {
-        return inventory.capacity();
+        return this.inventory.capacity();
     }
 
     @Override
     public ItemStack get(int slot) {
-        if (!inventory.slot(slot).isPresent()) {
+        if (!this.inventory.slot(slot).isPresent()) {
             return null;
         }
-        return new SpongeItemStack(inventory.slot(slot).get().peek());
+        return new SpongeItemStack(this.inventory.slot(slot).get().peek());
     }
 
     @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void set(int slot, ItemStack item) {
-        inventory.slot(slot).get().set(((SpongeItemStack) item).itemStack());
+        this.inventory.slot(slot).get().set(((SpongeItemStack) item).unwrap());
     }
 
     @Override
     public void add(ItemStack item) {
-        inventory.offer(((SpongeItemStack) item).itemStack());
+        this.inventory.offer(((SpongeItemStack) item).unwrap());
     }
 
     @Override
@@ -60,17 +67,17 @@ public class SpongeInventory implements Inventory {
 
     @Override
     public void setContents(List<ItemStack> items) {
-        for (int i = 0; i < size(); i++) {
-            set(i, items.get(i));
+        for (int i = 0; i < this.size(); i++) {
+            this.set(i, items.get(i));
         }
     }
 
     @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void remove(ResourceKey type) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals(type)) {
-                inventory.slot(i).get().clear();
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().equals(type)) {
+                this.inventory.slot(i).get().clear();
             }
         }
     }
@@ -78,6 +85,6 @@ public class SpongeInventory implements Inventory {
     @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void clear(int slot) {
-        inventory.slot(slot).get().clear();
+        this.inventory.slot(slot).get().clear();
     }
 }

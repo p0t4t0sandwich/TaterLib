@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_9_4.fabric.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -20,36 +21,34 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Fabric implementation of {@link World}. */
-public class FabricWorld implements World {
+public class FabricWorld implements World, Wrapped<net.minecraft.world.World> {
     private final net.minecraft.world.World level;
 
     public FabricWorld(net.minecraft.world.World level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public net.minecraft.world.World world() {
-        return level;
+    @Override
+    public net.minecraft.world.World unwrap() {
+        return this.level;
     }
 
     @Override
     public List<Player> players() {
-        return level.playerEntities.stream().map(FabricPlayer::new).collect(Collectors.toList());
+        return this.level.playerEntities.stream()
+                .map(FabricPlayer::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(level.dimension.getDimensionType().toString());
+        return ResourceKey.of(this.level.dimension.getDimensionType().toString());
     }
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
-        return level
+        return this.level
                 .getEntitiesIn(
                         mcEntity,
                         mcEntity.getBoundingBox().expand(radius),
@@ -62,7 +61,7 @@ public class FabricWorld implements World {
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return level
+        return this.level
                 .getEntitiesIn(
                         ((FabricEntity) entity).unwrap(),
                         new Box(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),

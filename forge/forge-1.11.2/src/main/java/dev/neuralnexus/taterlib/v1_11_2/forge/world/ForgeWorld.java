@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_11_2.forge.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -20,37 +21,35 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link World}. */
-public class ForgeWorld implements World {
+public class ForgeWorld implements World, Wrapped<net.minecraft.world.World> {
     private final net.minecraft.world.World level;
 
     public ForgeWorld(net.minecraft.world.World level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public net.minecraft.world.World world() {
-        return level;
+    @Override
+    public net.minecraft.world.World unwrap() {
+        return this.level;
     }
 
     @Override
     public List<Player> players() {
-        return level.playerEntities.stream().map(ForgePlayer::new).collect(Collectors.toList());
+        return this.level.playerEntities.stream()
+                .map(ForgePlayer::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
         return ResourceKey.of(
-                level.provider.getDimensionType().getName().replace(" ", "_").toLowerCase());
+                this.level.provider.getDimensionType().getName().replace(" ", "_").toLowerCase());
     }
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).entity();
-        return level
+        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).unwrap();
+        return this.level
                 .getEntitiesInAABBexcluding(
                         mcEntity,
                         mcEntity.getEntityBoundingBox().expand(radius, radius, radius),
@@ -63,9 +62,9 @@ public class ForgeWorld implements World {
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return level
+        return this.level
                 .getEntitiesInAABBexcluding(
-                        ((ForgeEntity) entity).entity(),
+                        ((ForgeEntity) entity).unwrap(),
                         new AxisAlignedBB(
                                 pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
                         e -> predicate.test(new ForgeEntity(e)))

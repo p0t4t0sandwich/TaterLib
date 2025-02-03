@@ -49,12 +49,12 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
 
     @Override
     public double absorptionAmount() {
-        return entity.getAbsorptionAmount();
+        return this.entity.getAbsorptionAmount();
     }
 
     @Override
     public void setAbsorptionAmount(double amount) {
-        entity.setAbsorptionAmount(amount);
+        this.entity.setAbsorptionAmount(amount);
     }
 
     @Override

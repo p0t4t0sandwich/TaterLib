@@ -43,7 +43,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
     @Override
     @SuppressWarnings("DataFlowIssue")
     public ResourceKey type() {
-        return (ResourceKey) (Object) BuiltInRegistries.ITEM.getKey(itemStack.getItem());
+        return (ResourceKey) (Object) BuiltInRegistries.ITEM.getKey(this.itemStack.getItem());
     }
 
     @Override
@@ -59,7 +59,7 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
     @Override
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
-        return new VanillaItemStack(itemStack.copy());
+        return new VanillaItemStack(this.itemStack.copy());
     }
 
     @Override
@@ -69,9 +69,9 @@ public record VanillaItemStack(net.minecraft.world.item.ItemStack itemStack) imp
 
     @Override
     public Optional<String> displayName() {
-        if (itemStack.get(DataComponents.CUSTOM_NAME) == null) return Optional.empty();
+        if (this.itemStack.get(DataComponents.CUSTOM_NAME) == null) return Optional.empty();
         return Optional.of(
-                Objects.requireNonNull(itemStack.get(DataComponents.CUSTOM_NAME)).getString());
+                Objects.requireNonNull(this.itemStack.get(DataComponents.CUSTOM_NAME)).getString());
     }
 
     @Override

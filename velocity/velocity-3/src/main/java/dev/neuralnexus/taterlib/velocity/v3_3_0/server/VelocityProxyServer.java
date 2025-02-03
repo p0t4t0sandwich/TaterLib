@@ -5,22 +5,22 @@
  */
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
-import org.jetbrains.annotations.ApiStatus;
-
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link ProxyServer}. */
-public class VelocityProxyServer implements ProxyServer {
+public class VelocityProxyServer
+        implements ProxyServer, Wrapped<com.velocitypowered.api.proxy.ProxyServer> {
     private static VelocityProxyServer instance;
 
     /**
@@ -35,13 +35,8 @@ public class VelocityProxyServer implements ProxyServer {
         return instance;
     }
 
-    /**
-     * Gets the server.
-     *
-     * @return The server.
-     */
-    @ApiStatus.Internal
-    public static com.velocitypowered.api.proxy.ProxyServer server() {
+    @Override
+    public com.velocitypowered.api.proxy.ProxyServer unwrap() {
         return (com.velocitypowered.api.proxy.ProxyServer) Loader.instance().server();
     }
 
@@ -53,7 +48,7 @@ public class VelocityProxyServer implements ProxyServer {
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server().getAllPlayers().stream()
+        return this.unwrap().getAllPlayers().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());
     }
@@ -70,7 +65,7 @@ public class VelocityProxyServer implements ProxyServer {
 
     @Override
     public List<Server> servers() {
-        return server().getAllServers().stream()
+        return this.unwrap().getAllServers().stream()
                 .map(VelocityServer::new)
                 .collect(Collectors.toList());
     }

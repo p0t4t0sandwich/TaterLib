@@ -7,5 +7,6 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
+    compileOnly(project(":bungee:bungee-utils"))
     compileOnly(libs.modapi.metadata)
 }

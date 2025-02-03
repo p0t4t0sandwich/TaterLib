@@ -18,12 +18,8 @@ public class ForgeServerWorld extends ForgeWorld implements ServerWorld {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public WorldServer world() {
-        return level;
+    @Override
+    public WorldServer unwrap() {
+        return this.level;
     }
 }

@@ -5,10 +5,12 @@
  */
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.entity.player.BukkitPlayer;
@@ -18,7 +20,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link World}. */
-public class BukkitWorld implements World {
+public class BukkitWorld implements ServerWorld, World, Wrapped<org.bukkit.World> {
     private final org.bukkit.World world;
 
     /**
@@ -30,29 +32,25 @@ public class BukkitWorld implements World {
         this.world = world;
     }
 
-    /**
-     * Gets the Bukkit world.
-     *
-     * @return The Bukkit world.
-     */
-    public org.bukkit.World world() {
-        return world;
+    @Override
+    public org.bukkit.World unwrap() {
+        return this.world;
     }
 
     @Override
     public List<Player> players() {
-        return world.getPlayers().stream().map(BukkitPlayer::new).collect(Collectors.toList());
+        return this.world.getPlayers().stream().map(BukkitPlayer::new).collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(world.getName());
+        return ResourceKey.of(this.world.getName());
     }
 
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return world.getEntities().stream()
+        return this.world.getEntities().stream()
                 .map(BukkitEntity::new)
                 .filter(e -> e.location().x() >= pos1.x() && e.location().x() <= pos2.x())
                 .filter(predicate)
@@ -61,7 +59,7 @@ public class BukkitWorld implements World {
 
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        return world.getEntities().stream()
+        return this.world.getEntities().stream()
                 .map(BukkitEntity::new)
                 .filter(e -> e.location().distance(entity.location()) <= radius)
                 .filter(predicate)

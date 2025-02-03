@@ -9,6 +9,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -20,7 +21,7 @@ import net.kyori.adventure.text.Component;
 import java.util.UUID;
 
 /** Velocity implementation of {@link ProxyPlayer}. */
-public class VelocityPlayer implements ProxyPlayer {
+public class VelocityPlayer implements ProxyPlayer, Wrapped<com.velocitypowered.api.proxy.Player> {
     private final com.velocitypowered.api.proxy.Player player;
     private RegisteredServer server = null;
 
@@ -44,13 +45,9 @@ public class VelocityPlayer implements ProxyPlayer {
         this.server = server;
     }
 
-    /**
-     * Gets the Velocity player
-     *
-     * @return The Velocity player
-     */
-    public com.velocitypowered.api.proxy.Player player() {
-        return player;
+    @Override
+    public com.velocitypowered.api.proxy.Player unwrap() {
+        return this.player;
     }
 
     /**
@@ -63,7 +60,7 @@ public class VelocityPlayer implements ProxyPlayer {
         ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
         if (!proxyServer.getServer(serverName).isPresent()) return;
         RegisteredServer server = proxyServer.getServer(serverName).get();
-        player.createConnectionRequest(server).fireAndForget();
+        this.player.createConnectionRequest(server).fireAndForget();
     }
 
     @Override
@@ -73,34 +70,35 @@ public class VelocityPlayer implements ProxyPlayer {
 
     @Override
     public String ipAddress() {
-        return player.getRemoteAddress().getAddress().getHostAddress();
+        return this.player.getRemoteAddress().getAddress().getHostAddress();
     }
 
     @Override
     public String name() {
-        return player.getUsername();
+        return this.player.getUsername();
     }
 
     @Override
     public String displayName() {
-        return player.getUsername();
+        return this.player.getUsername();
     }
 
     @Override
     public Server server() {
         if (server != null) return new VelocityServer(server);
-        if (!player.getCurrentServer().isPresent()) return null;
-        return new VelocityServer(player.getCurrentServer().get().getServer());
+        if (!this.player.getCurrentServer().isPresent()) return null;
+        return new VelocityServer(this.player.getCurrentServer().get().getServer());
     }
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(Component.text(message));
+        this.player.sendMessage(Component.text(message));
     }
 
     @Override
     public void sendPacket(ResourceKey channel, byte[] data) {
-        player.getCurrentServer()
+        this.player
+                .getCurrentServer()
                 .ifPresent(
                         serverConnection ->
                                 serverConnection.sendPluginMessage(
@@ -109,11 +107,11 @@ public class VelocityPlayer implements ProxyPlayer {
 
     @Override
     public int ping() {
-        return (int) player.getPing();
+        return (int) this.player.getPing();
     }
 
     @Override
     public void kick(String message) {
-        player.disconnect(Component.text(message));
+        this.player.disconnect(Component.text(message));
     }
 }

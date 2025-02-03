@@ -2,7 +2,9 @@ base {
     archivesName = "${projectId}-velocity-3"
 }
 
-java.disableAutoTargetJvm()
+java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 dependencies {
     compileOnly("com.velocitypowered:velocity-api:${apiVersion}")
@@ -10,5 +12,7 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8-shaded")
+    })
 }

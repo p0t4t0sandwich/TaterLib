@@ -6,14 +6,15 @@
 package dev.neuralnexus.taterlib.v1_20.bungee.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerMessageEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLoginEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLogoutEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_20.bungee.event.player.BungeePlayerServerSwitchEvent;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.event.ServerSwitchEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -27,9 +28,7 @@ public class BungeePlayerListener implements Listener {
      * @param event The event.
      */
     @EventHandler
-    public void onPlayerLogin(ServerSwitchEvent event) {
-        // If player is switching servers, don't run this function
-        if (event.getFrom() != null) return;
+    public void onPlayerLogin(ServerConnectedEvent event) {
         PlayerEvents.LOGIN.invoke(new BungeePlayerLoginEvent(event));
     }
 

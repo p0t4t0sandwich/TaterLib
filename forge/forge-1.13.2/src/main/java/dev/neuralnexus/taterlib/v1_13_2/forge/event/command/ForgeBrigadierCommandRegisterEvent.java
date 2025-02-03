@@ -13,7 +13,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_13_2.forge.command.ForgeCommandSender;
+import dev.neuralnexus.taterlib.v1_13_2.forge.command.ForgeSender;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 
 import net.minecraft.command.CommandSource;
@@ -50,7 +50,7 @@ public class ForgeBrigadierCommandRegisterEvent
 
     @Override
     public CommandSender getSender(CommandSource source) {
-        return new ForgeCommandSender(source);
+        return new ForgeSender(source);
     }
 
     @Override

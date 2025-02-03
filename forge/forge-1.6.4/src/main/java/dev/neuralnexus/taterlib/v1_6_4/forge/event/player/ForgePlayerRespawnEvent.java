@@ -28,7 +28,7 @@ public class ForgePlayerRespawnEvent implements PlayerRespawnEvent {
 
     @Override
     public Location respawnLocation() {
-        return new ForgeLocation(((ForgePlayer) player()).getPlayer());
+        return new ForgeLocation(((ForgePlayer) player()).unwrap());
     }
 
     @Override

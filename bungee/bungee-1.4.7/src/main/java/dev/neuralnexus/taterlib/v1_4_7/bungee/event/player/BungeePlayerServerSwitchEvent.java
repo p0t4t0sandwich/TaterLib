@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_4_7.bungee.event.player;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.event.player.PlayerServerSwitchEvent;
 import dev.neuralnexus.taterapi.server.Server;
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.entity.player.BungeePlayer;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.server.BungeeServer;
 
 import net.md_5.bungee.api.event.ServerConnectedEvent;
 

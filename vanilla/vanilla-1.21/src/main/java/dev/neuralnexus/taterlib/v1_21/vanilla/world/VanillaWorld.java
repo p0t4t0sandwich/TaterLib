@@ -48,7 +48,7 @@ public class VanillaWorld implements World {
     @Override
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.world.entity.Entity mcEntity = (net.minecraft.world.entity.Entity) entity;
-        return level
+        return this.level
                 .getEntities(
                         mcEntity,
                         mcEntity.getBoundingBox().inflate(radius),
@@ -61,7 +61,7 @@ public class VanillaWorld implements World {
     @Override
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return level
+        return this.level
                 .getEntities(
                         (net.minecraft.world.entity.Entity) entity,
                         new net.minecraft.world.phys.AABB(

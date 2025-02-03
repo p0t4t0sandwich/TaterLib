@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_8_8.bukkit.block;
 
-import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 

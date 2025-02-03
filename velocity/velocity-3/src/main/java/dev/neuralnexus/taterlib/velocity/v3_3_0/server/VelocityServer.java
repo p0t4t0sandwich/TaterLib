@@ -5,29 +5,36 @@
  */
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
+import com.velocitypowered.api.proxy.server.RegisteredServer;
+
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link Server}. */
-public class VelocityServer implements Server {
-    private final com.velocitypowered.api.proxy.server.RegisteredServer server;
+public class VelocityServer implements Server, Wrapped<RegisteredServer> {
+    private final RegisteredServer server;
 
-    public VelocityServer(com.velocitypowered.api.proxy.server.RegisteredServer server) {
+    public VelocityServer(RegisteredServer server) {
         this.server = server;
     }
 
     @Override
+    public RegisteredServer unwrap() {
+        return this.server;
+    }
+
+    @Override
     public String name() {
-        return server.getServerInfo().getName();
+        return this.server.getServerInfo().getName();
     }
 
     @Override
@@ -38,7 +45,7 @@ public class VelocityServer implements Server {
 
     @Override
     public List<SimplePlayer> onlinePlayers() {
-        return server.getPlayersConnected().stream()
+        return this.server.getPlayersConnected().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());
     }

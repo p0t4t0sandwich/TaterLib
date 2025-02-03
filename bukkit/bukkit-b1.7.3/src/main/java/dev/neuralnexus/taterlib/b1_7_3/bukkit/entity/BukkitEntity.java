@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.entity;
 
-import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
@@ -83,7 +83,7 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     public void teleport(Location location) {
         this.entity.teleport(
                 new org.bukkit.Location(
-                        ((BukkitWorld) location.world()).world(),
+                        ((BukkitWorld) location.world()).unwrap(),
                         location.x(),
                         location.y(),
                         location.z()));

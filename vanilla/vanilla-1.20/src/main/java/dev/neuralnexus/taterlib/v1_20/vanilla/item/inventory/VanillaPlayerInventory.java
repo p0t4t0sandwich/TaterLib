@@ -29,7 +29,7 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
 
     @Override
     public List<ItemStack> armor() {
-        return playerInventory.armor.stream()
+        return this.playerInventory.armor.stream()
                 .map(VanillaItemStack::new)
                 .collect(Collectors.toList());
     }
@@ -56,6 +56,6 @@ public class VanillaPlayerInventory extends VanillaInventory implements PlayerIn
 
     @Override
     public int selectedSlot() {
-        return playerInventory.selected;
+        return this.playerInventory.selected;
     }
 }

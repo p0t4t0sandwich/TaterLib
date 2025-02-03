@@ -9,8 +9,8 @@ import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterlib.v1_12.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_12.sponge.entity.player.SpongePlayer;
+import dev.neuralnexus.taterlib.sponge.legacy.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.sponge.legacy.entity.player.SpongePlayer;
 
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 

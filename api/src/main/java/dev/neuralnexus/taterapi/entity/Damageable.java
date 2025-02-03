@@ -45,7 +45,9 @@ public interface Damageable extends Entity {
      *
      * @return The absorption amount of the entity
      */
-    @VersionFeature(name = "Damageable#absorptionAmount()", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Damageable#absorptionAmount()",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     double absorptionAmount();
 
     /**
@@ -53,7 +55,9 @@ public interface Damageable extends Entity {
      *
      * @param amount New absorption amount of the entity
      */
-    @VersionFeature(name = "Damageable#setAbsorptionAmount(double)", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Damageable#setAbsorptionAmount(double)",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     void setAbsorptionAmount(double amount);
 
     /**
@@ -61,7 +65,9 @@ public interface Damageable extends Entity {
      *
      * @return The maximum health of this entity
      */
-    @VersionFeature(name = "Damageable#absorptionAmount()", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Damageable#absorptionAmount()",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     double maxHealth();
 
     /**
@@ -69,6 +75,8 @@ public interface Damageable extends Entity {
      *
      * @param health New maximum health of this entity
      */
-    @VersionFeature(name = "Damageable#setMaxHealth(double)", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Damageable#setMaxHealth(double)",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     void setMaxHealth(double health);
 }

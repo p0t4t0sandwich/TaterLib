@@ -72,7 +72,7 @@ public interface Inventory {
 
     /** Clear the inventory */
     default void clear() {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < this.size(); i++) {
             this.clear(i);
         }
     }
@@ -136,8 +136,8 @@ public interface Inventory {
      */
     default boolean containsAtLeast(ResourceKey type, int amount) {
         int count = 0;
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals(type)) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().equals(type)) {
                 count += get(i).count();
             }
         }
@@ -161,8 +161,8 @@ public interface Inventory {
      * @return The slot of the first occurrence of an item in the inventory
      */
     default int first(ResourceKey type) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals(type)) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().equals(type)) {
                 return i;
             }
         }
@@ -175,7 +175,7 @@ public interface Inventory {
      * @return The slot of the first empty slot in the inventory
      */
     default int firstEmpty() {
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < this.size(); i++) {
             if (get(i) == null || get(i).type().asString().equals("minecraft:air")) {
                 return i;
             }

@@ -42,5 +42,6 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
+    compileOnly(project(":sponge:sponge-utils-legacy"))
     compileOnly(libs.modapi.metadata)
 }

@@ -119,7 +119,9 @@ public interface PlayerInventory extends Inventory {
      *
      * @return The player's offhand
      */
-    @VersionFeature(name = "PlayerInventory#offhand()", compatible = @Range(min = MinecraftVersion.V9))
+    @VersionFeature(
+            name = "PlayerInventory#offhand()",
+            compatible = @Range(min = MinecraftVersion.V9))
     ItemStack offhand();
 
     /**
@@ -127,7 +129,9 @@ public interface PlayerInventory extends Inventory {
      *
      * @param offhand The offhand to set
      */
-    @VersionFeature(name = "PlayerInventory#setOffhand(ItemStack)", compatible = @Range(min = MinecraftVersion.V9))
+    @VersionFeature(
+            name = "PlayerInventory#setOffhand(ItemStack)",
+            compatible = @Range(min = MinecraftVersion.V9))
     void setOffhand(ItemStack offhand);
 
     /**

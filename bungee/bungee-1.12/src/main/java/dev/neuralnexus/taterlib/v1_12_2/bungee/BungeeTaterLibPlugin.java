@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_12_2.bungee;
 
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -16,12 +17,14 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_12_2.bungee.event.command.BungeeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_12_2.bungee.listeners.network.BungeePluginMessageListener;
+import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
+import dev.neuralnexus.taterlib.bungee.event.command.BungeeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.bungee.listeners.network.BungeePluginMessageListener;
+import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.v1_12_2.bungee.listeners.player.BungeePlayerListener;
-import dev.neuralnexus.taterlib.v1_12_2.bungee.server.BungeeProxyServer;
 
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
@@ -32,6 +35,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.api(Platforms.BUNGEECORD)
                 .ifPresent(api -> api.setServer(BungeeProxyServer::instance));
+        WrapperRegistry.register(ProxiedPlayer.class, BungeePlayer::new);
     }
 
     @Override

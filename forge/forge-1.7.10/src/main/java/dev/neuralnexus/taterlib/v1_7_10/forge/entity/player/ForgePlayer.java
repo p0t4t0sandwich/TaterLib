@@ -44,28 +44,24 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
         this.player = player;
     }
 
-    /**
-     * Gets the Forge player
-     *
-     * @return The Forge player
-     */
-    public EntityPlayer getPlayer() {
-        return player;
+    @Override
+    public EntityPlayer unwrap() {
+        return this.player;
     }
 
     @Override
     public UUID uuid() {
-        return player.getUniqueID();
+        return this.player.getUniqueID();
     }
 
     @Override
     public String ipAddress() {
-        return ((EntityPlayerMP) player).getPlayerIP();
+        return ((EntityPlayerMP) this.player).getPlayerIP();
     }
 
     @Override
     public String name() {
-        return player.getCommandSenderName();
+        return this.player.getCommandSenderName();
     }
 
     @Override
@@ -83,24 +79,24 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public void sendPacket(ResourceKey channel, byte[] data) {
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((EntityPlayerMP) player)
+        ((EntityPlayerMP) this.player)
                 .playerNetServerHandler.sendPacket(
                         new S3FPacketCustomPayload(channel.asString(), byteBuf));
     }
 
     @Override
     public PlayerInventory inventory() {
-        return new ForgePlayerInventory(player.inventory);
+        return new ForgePlayerInventory(this.player.inventory);
     }
 
     @Override
     public int ping() {
-        return ((EntityPlayerMP) player).ping;
+        return ((EntityPlayerMP) this.player).ping;
     }
 
     @Override
     public void kick(String message) {
-        ((EntityPlayerMP) player)
+        ((EntityPlayerMP) this.player)
                 .playerNetServerHandler.onDisconnect(new ChatComponentText(message));
     }
 
@@ -110,9 +106,9 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
                 ((Server) ((WorldServer) player.worldObj).func_73046_m())
                         .world(location.world().dimension())
                         .map(ForgeServerWorld.class::cast)
-                        .map(ForgeServerWorld::world);
+                        .map(ForgeServerWorld::unwrap);
         if (!serverLevel.isPresent()) return;
-        player.setSpawnChunk(
+        this.player.setSpawnChunk(
                 new ChunkCoordinates((int) location.x(), (int) location.y(), (int) location.z()),
                 forced,
                 serverLevel.get().provider.dimensionId);
@@ -120,22 +116,22 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void allowFlight(boolean allow) {
-        player.capabilities.allowFlying = allow;
+        this.player.capabilities.allowFlying = allow;
     }
 
     @Override
     public boolean canFly() {
-        return player.capabilities.allowFlying;
+        return this.player.capabilities.allowFlying;
     }
 
     @Override
     public boolean isFlying() {
-        return player.capabilities.isFlying;
+        return this.player.capabilities.isFlying;
     }
 
     @Override
     public void setFlying(boolean flying) {
-        player.capabilities.isFlying = flying;
+        this.player.capabilities.isFlying = flying;
     }
 
     @Override
@@ -144,7 +140,8 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
         //  EntityPlayer.itemInWorldManager.getGameType().getName() is
         //  EntityPlayer.field_71134_c.func_73081_b().func_77149_b()
         try {
-            ItemInWorldManager itemInWorldManager = ((EntityPlayerMP) player).theItemInWorldManager;
+            ItemInWorldManager itemInWorldManager =
+                    ((EntityPlayerMP) this.player).theItemInWorldManager;
             Object gameType =
                     itemInWorldManager
                             .getClass()
@@ -159,6 +156,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType((net.minecraft.world.WorldSettings.getGameTypeById(gameMode.id())));
+        this.player.setGameType((net.minecraft.world.WorldSettings.getGameTypeById(gameMode.id())));
     }
 }

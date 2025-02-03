@@ -61,15 +61,15 @@ public class VanillaInventory implements Inventory {
 
     @Override
     public void remove(ResourceKey type) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals(type)) {
-                inventory.removeItem(((VanillaItemStack) get(i)).itemStack());
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().equals(type)) {
+                this.inventory.removeItem(((VanillaItemStack) get(i)).itemStack());
             }
         }
     }
 
     @Override
     public void clear(int slot) {
-        inventory.removeItem(((VanillaItemStack) get(slot)).itemStack());
+        this.inventory.removeItem(((VanillaItemStack) get(slot)).itemStack());
     }
 }

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_19.sponge.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
@@ -18,7 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 /** Sponge implementation of {@link ItemStack}. */
-public class SpongeItemStack implements ItemStack {
+public class SpongeItemStack
+        implements ItemStack, Wrapped<org.spongepowered.api.item.inventory.ItemStack> {
     private final org.spongepowered.api.item.inventory.ItemStack itemStack;
 
     /**
@@ -33,65 +35,61 @@ public class SpongeItemStack implements ItemStack {
                         : itemStack;
     }
 
-    /**
-     * Getter for the Sponge item stack.
-     *
-     * @return The Sponge item stack.
-     */
-    public org.spongepowered.api.item.inventory.ItemStack itemStack() {
-        return itemStack;
+    @Override
+    public org.spongepowered.api.item.inventory.ItemStack unwrap() {
+        return this.itemStack;
     }
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) ItemTypes.registry().valueKey(itemStack.type());
+        return (ResourceKey) ItemTypes.registry().valueKey(this.itemStack.type());
     }
 
     @Override
     public int count() {
-        return itemStack.quantity();
+        return this.itemStack.quantity();
     }
 
     @Override
     public void setCount(int count) {
-        itemStack.setQuantity(count);
+        this.itemStack.setQuantity(count);
     }
 
     @Override
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
-        return new SpongeItemStack(itemStack.copy());
+        return new SpongeItemStack(this.itemStack.copy());
     }
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.get(Keys.CUSTOM_NAME).isPresent();
+        return this.itemStack.get(Keys.CUSTOM_NAME).isPresent();
     }
 
     @Override
     public Optional<String> displayName() {
-        if (!itemStack.get(Keys.CUSTOM_NAME).isPresent()) {
+        if (!this.itemStack.get(Keys.CUSTOM_NAME).isPresent()) {
             return Optional.empty();
         }
-        return Optional.of(itemStack.get(Keys.CUSTOM_NAME).get().toString());
+        return Optional.of(this.itemStack.get(Keys.CUSTOM_NAME).get().toString());
     }
 
     @Override
     public void setDisplayName(String name) {
-        itemStack.offer(Keys.CUSTOM_NAME, Component.text(name));
+        this.itemStack.offer(Keys.CUSTOM_NAME, Component.text(name));
     }
 
     @Override
     public boolean hasLore() {
-        return itemStack.get(Keys.LORE).isPresent();
+        return this.itemStack.get(Keys.LORE).isPresent();
     }
 
     @Override
     public List<String> lore() {
-        if (!itemStack.get(Keys.LORE).isPresent()) {
+        if (!this.itemStack.get(Keys.LORE).isPresent()) {
             return null;
         }
-        List<Component> componentLore = itemStack.get(Keys.LORE).get();
+        List<Component> componentLore = this.itemStack.get(Keys.LORE).get();
         List<String> lore = new ArrayList<>();
         for (Component component : componentLore) {
             lore.add(component.toString());
@@ -105,21 +103,21 @@ public class SpongeItemStack implements ItemStack {
         for (String string : list) {
             lore.add(Component.text(string));
         }
-        itemStack.offer(Keys.LORE, lore);
+        this.itemStack.offer(Keys.LORE, lore);
     }
 
     @Override
     public boolean hasEnchants() {
-        return itemStack.get(Keys.STORED_ENCHANTMENTS).isPresent();
+        return this.itemStack.get(Keys.STORED_ENCHANTMENTS).isPresent();
     }
 
     @Override
     public boolean unbreakable() {
-        return itemStack.get(Keys.IS_UNBREAKABLE).isPresent();
+        return this.itemStack.get(Keys.IS_UNBREAKABLE).isPresent();
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        itemStack.offer(Keys.IS_UNBREAKABLE, unbreakable);
+        this.itemStack.offer(Keys.IS_UNBREAKABLE, unbreakable);
     }
 }

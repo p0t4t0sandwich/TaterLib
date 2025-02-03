@@ -16,12 +16,8 @@ public class FabricServerWorld extends FabricWorld implements ServerWorld {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public net.minecraft.server.world.ServerWorld world() {
-        return level;
+    @Override
+    public net.minecraft.server.world.ServerWorld unwrap() {
+        return this.level;
     }
 }

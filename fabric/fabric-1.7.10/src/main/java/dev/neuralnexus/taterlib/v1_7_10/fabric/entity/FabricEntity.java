@@ -89,7 +89,7 @@ public class FabricEntity implements Entity, Wrapped<net.minecraft.entity.Entity
                     ((Server) ((ServerWorld) this.entity.world).getServer())
                             .world(location.world().dimension())
                             .map(FabricServerWorld.class::cast)
-                            .map(FabricServerWorld::world);
+                            .map(FabricServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
             this.entity.teleportToDimension(serverLevel.get().dimension.dimensionType);
         }

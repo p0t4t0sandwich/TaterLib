@@ -57,7 +57,9 @@ public interface ItemStack {
      *
      * @return If the item has a display name
      */
-    @VersionFeature(name = "ItemStack#hasDisplayName()", compatible = @Range(min = MinecraftVersion.V4_2))
+    @VersionFeature(
+            name = "ItemStack#hasDisplayName()",
+            compatible = @Range(min = MinecraftVersion.V4_2))
     boolean hasDisplayName();
 
     /**
@@ -65,7 +67,9 @@ public interface ItemStack {
      *
      * @return The display name of the item
      */
-    @VersionFeature(name = "ItemStack#displayName()", compatible = @Range(min = MinecraftVersion.V4_2))
+    @VersionFeature(
+            name = "ItemStack#displayName()",
+            compatible = @Range(min = MinecraftVersion.V4_2))
     Optional<String> displayName();
 
     /**
@@ -73,7 +77,9 @@ public interface ItemStack {
      *
      * @param name The display name of the item
      */
-    @VersionFeature(name = "ItemStack#setDisplayName()", compatible = @Range(min = MinecraftVersion.V4_2))
+    @VersionFeature(
+            name = "ItemStack#setDisplayName()",
+            compatible = @Range(min = MinecraftVersion.V4_2))
     void setDisplayName(String name);
 
     /**
@@ -97,7 +103,9 @@ public interface ItemStack {
      *
      * @param lore The lore of the item
      */
-    @VersionFeature(name = "ItemStack#setLore(List<String>)", compatible = @Range(min = MinecraftVersion.V4_2))
+    @VersionFeature(
+            name = "ItemStack#setLore(List<String>)",
+            compatible = @Range(min = MinecraftVersion.V4_2))
     void setLore(List<String> lore);
 
     /**
@@ -105,7 +113,9 @@ public interface ItemStack {
      *
      * @return If the item has any enchantments
      */
-    @VersionFeature(name = "ItemStack#hasEnchants()", compatible = @Range(min = MinecraftVersion.V1))
+    @VersionFeature(
+            name = "ItemStack#hasEnchants()",
+            compatible = @Range(min = MinecraftVersion.V1))
     boolean hasEnchants();
 
     // hasEnchant(Enchantment ench)
@@ -119,7 +129,9 @@ public interface ItemStack {
      *
      * @return If the item is unbreakable
      */
-    @VersionFeature(name = "ItemStack#hasEnchants()", compatible = @Range(min = MinecraftVersion.V8))
+    @VersionFeature(
+            name = "ItemStack#hasEnchants()",
+            compatible = @Range(min = MinecraftVersion.V8))
     boolean unbreakable();
 
     /**
@@ -127,6 +139,8 @@ public interface ItemStack {
      *
      * @param unbreakable If the item is unbreakable
      */
-    @VersionFeature(name = "ItemStack#setUnbreakable(boolean)", compatible = @Range(min = MinecraftVersion.V8))
+    @VersionFeature(
+            name = "ItemStack#setUnbreakable(boolean)",
+            compatible = @Range(min = MinecraftVersion.V8))
     void setUnbreakable(boolean unbreakable);
 }

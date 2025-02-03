@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.fabric.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -20,20 +21,16 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Fabric implementation of {@link World}. */
-public class FabricWorld implements World {
+public class FabricWorld implements World, Wrapped<net.minecraft.world.World> {
     private final net.minecraft.world.World level;
 
     public FabricWorld(net.minecraft.world.World level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public net.minecraft.world.World world() {
-        return level;
+    @Override
+    public net.minecraft.world.World unwrap() {
+        return this.level;
     }
 
     @Override
@@ -45,7 +42,7 @@ public class FabricWorld implements World {
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(level.dimension.getName().replace(" ", "_").toLowerCase());
+        return ResourceKey.of(this.level.dimension.getName().replace(" ", "_").toLowerCase());
     }
 
     @Override
@@ -53,7 +50,7 @@ public class FabricWorld implements World {
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
         net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
-                        level.getEntitiesIn(
+                        this.level.getEntitiesIn(
                                 mcEntity,
                                 mcEntity.getBox().expand(radius, radius, radius),
                                 e -> predicate.test(new FabricEntity(e))))
@@ -66,7 +63,7 @@ public class FabricWorld implements World {
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
         net.minecraft.entity.Entity mcEntity = ((FabricEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
-                        level.getEntitiesIn(
+                        this.level.getEntitiesIn(
                                 mcEntity,
                                 mcEntity.getBox()
                                         .set(

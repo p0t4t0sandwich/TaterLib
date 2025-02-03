@@ -25,7 +25,7 @@ public class VanillaBlock implements Block {
     @Override
     @SuppressWarnings("DataFlowIssue")
     public ResourceKey type() {
-        return (ResourceKey) (Object) BuiltInRegistries.BLOCK.getKey(block);
+        return (ResourceKey) (Object) BuiltInRegistries.BLOCK.getKey(this.block);
     }
 
     @Override

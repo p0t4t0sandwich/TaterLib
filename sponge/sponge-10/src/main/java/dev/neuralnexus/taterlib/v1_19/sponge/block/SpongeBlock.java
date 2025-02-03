@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_19.sponge.block;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
@@ -14,7 +15,7 @@ import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 
 /** Sponge implementation of {@link Block}. */
-public class SpongeBlock implements Block {
+public class SpongeBlock implements Block, Wrapped<BlockState> {
     private final ServerLocation pos;
     private final BlockState block;
 
@@ -24,12 +25,17 @@ public class SpongeBlock implements Block {
     }
 
     @Override
+    public BlockState unwrap() {
+        return this.block;
+    }
+
+    @Override
     public ResourceKey type() {
-        return (ResourceKey) BlockTypes.registry().valueKey(block.type());
+        return (ResourceKey) BlockTypes.registry().valueKey(this.block.type());
     }
 
     @Override
     public BlockPos blockPos() {
-        return new BlockPos(pos.blockX(), pos.blockY(), pos.blockZ());
+        return new BlockPos(this.pos.blockX(), this.pos.blockY(), this.pos.blockZ());
     }
 }

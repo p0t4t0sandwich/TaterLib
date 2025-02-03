@@ -5,7 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.command;
 
-import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
 import net.minecraft.command.ICommandSender;
@@ -14,36 +15,31 @@ import net.minecraft.util.ChatMessageComponent;
 import java.util.UUID;
 
 /** Forge implementation of {@link CommandSender} */
-public class ForgeSender implements CommandSender {
+public class ForgeSender implements CommandSender, Wrapped<ICommandSender> {
     private final ICommandSender sender;
-    private final Command command;
 
-    public ForgeSender(ICommandSender sender, Command command) {
+    public ForgeSender(ICommandSender sender) {
         this.sender = sender;
-        this.command = command;
     }
 
-    /**
-     * Get the sender
-     *
-     * @return The sender
-     */
-    public ICommandSender sender() {
-        return sender;
+    @Override
+    public ICommandSender unwrap() {
+        return this.sender;
     }
 
     @Override
     public UUID uuid() {
-        return TaterAPIProvider.uuidFromName(this.sender.getName().asFormattedString()).orElse(new UUID(0, 0));
+        return TaterAPIProvider.uuidFromName(this.sender.getCommandSenderName())
+                .orElse(new UUID(0, 0));
     }
 
     @Override
     public String name() {
-        return sender.getCommandSenderName();
+        return this.sender.getCommandSenderName();
     }
 
     @Override
     public void sendMessage(String message) {
-        sender.sendChatToPlayer(ChatMessageComponent.createFromText(message));
+        this.sender.sendChatToPlayer(ChatMessageComponent.createFromText(message));
     }
 }

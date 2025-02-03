@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -20,40 +21,37 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link World}. */
-public class ForgeWorld implements World {
+public class ForgeWorld implements World, Wrapped<net.minecraft.world.World> {
     private final net.minecraft.world.World level;
 
     public ForgeWorld(net.minecraft.world.World level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public net.minecraft.world.World world() {
-        return level;
+    @Override
+    public net.minecraft.world.World unwrap() {
+        return this.level;
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Player> players() {
-        return ((List<EntityPlayer>) level.playerEntities)
+        return ((List<EntityPlayer>) this.level.playerEntities)
                 .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(level.provider.getDimensionName().replace(" ", "_").toLowerCase());
+        return ResourceKey.of(
+                this.level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).entity();
+        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
-                        level.getEntitiesWithinAABBExcludingEntity(
+                        this.level.getEntitiesWithinAABBExcludingEntity(
                                 mcEntity,
                                 mcEntity.getBoundingBox().expand(radius, radius, radius),
                                 e -> predicate.test(new ForgeEntity(e))))
@@ -64,9 +62,9 @@ public class ForgeWorld implements World {
     @SuppressWarnings("unchecked")
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).entity();
+        net.minecraft.entity.Entity mcEntity = ((ForgeEntity) entity).unwrap();
         return ((List<net.minecraft.entity.Entity>)
-                        level.getEntitiesWithinAABBExcludingEntity(
+                        this.level.getEntitiesWithinAABBExcludingEntity(
                                 mcEntity,
                                 mcEntity.boundingBox.setBounds(
                                         pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),

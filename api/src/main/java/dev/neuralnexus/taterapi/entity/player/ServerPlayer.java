@@ -17,7 +17,9 @@ public interface ServerPlayer extends Player, Connection {
      *
      * @param location The location to set the spawn point to
      */
-    @VersionFeature(name = "ServerPlayer#setSpawn(Location,boolean)", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "ServerPlayer#setSpawn(Location,boolean)",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     void setSpawn(Location location, boolean forced);
 
     /**

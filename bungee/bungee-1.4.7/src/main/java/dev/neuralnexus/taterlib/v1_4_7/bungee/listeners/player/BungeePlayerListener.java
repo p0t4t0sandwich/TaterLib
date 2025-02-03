@@ -6,9 +6,9 @@
 package dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.player.BungeePlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.player.BungeePlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.event.player.BungeePlayerMessageEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLoginEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerLogoutEvent;
+import dev.neuralnexus.taterlib.bungee.event.player.BungeePlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.event.player.BungeePlayerServerSwitchEvent;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;

@@ -65,6 +65,6 @@ public class BukkitLocation implements Location {
 
     @Override
     public void setWorld(World world) {
-        location.setWorld(((BukkitWorld) world).world());
+        location.setWorld(((BukkitWorld) world).unwrap());
     }
 }

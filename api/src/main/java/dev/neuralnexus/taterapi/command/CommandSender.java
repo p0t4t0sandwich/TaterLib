@@ -6,7 +6,6 @@
 package dev.neuralnexus.taterapi.command;
 
 import dev.neuralnexus.taterapi.entity.Identifiable;
-import dev.neuralnexus.taterapi.entity.player.Player;
 
 public interface CommandSender extends Identifiable {
     /**

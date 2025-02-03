@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.forge.entity;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
@@ -25,7 +26,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
-public class ForgeEntity implements Entity {
+public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity> {
     private final net.minecraft.entity.Entity entity;
 
     /**
@@ -37,18 +38,14 @@ public class ForgeEntity implements Entity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the Forge entity.
-     *
-     * @return The Forge entity.
-     */
-    public net.minecraft.entity.Entity entity() {
-        return entity;
+    @Override
+    public net.minecraft.entity.Entity unwrap() {
+        return this.entity;
     }
 
     @Override
     public UUID uuid() {
-        return entity.getUniqueID();
+        return this.entity.getUniqueID();
     }
 
     @Override
@@ -58,57 +55,57 @@ public class ForgeEntity implements Entity {
 
     @Override
     public void remove() {
-        entity.setDead();
+        this.entity.setDead();
     }
 
     @Override
     public ResourceKey type() {
         return (ResourceKey)
                 GameRegistry.findRegistry(EntityEntry.class)
-                        .getKey(EntityEntryBuilder.create().entity(entity.getClass()).build());
+                        .getKey(EntityEntryBuilder.create().entity(this.entity.getClass()).build());
     }
 
     @Override
     public Optional<String> customName() {
-        if (!entity.hasCustomName()) return Optional.empty();
-        return Optional.of(entity.getCustomNameTag());
+        if (!this.entity.hasCustomName()) return Optional.empty();
+        return Optional.of(this.entity.getCustomNameTag());
     }
 
     @Override
     public void setCustomName(String name) {
-        entity.setCustomNameTag(name);
+        this.entity.setCustomNameTag(name);
     }
 
     @Override
     public Location location() {
-        return new ForgeLocation(entity);
+        return new ForgeLocation(this.entity);
     }
 
     @Override
     public ResourceKey biome() {
         return (ResourceKey)
                 GameRegistry.findRegistry(Biome.class)
-                        .getKey(entity.world.getBiome(entity.getPosition()));
+                        .getKey(this.entity.world.getBiome(this.entity.getPosition()));
     }
 
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
-            if (entity.getServer() != null) return;
+            if (this.entity.getServer() != null) return;
             Optional<WorldServer> serverLevel =
-                    ((Server) entity.getServer())
+                    ((Server) this.entity.getServer())
                             .world(location.world().dimension())
                             .map(ForgeServerWorld.class::cast)
-                            .map(ForgeServerWorld::world);
+                            .map(ForgeServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
-            entity.changeDimension(
+            this.entity.changeDimension(
                     serverLevel.get().getWorldType().getId(), new Teleporter(serverLevel.get()));
         }
-        ((EntityLiving) entity).attemptTeleport(location.x(), location.y(), location.z());
+        ((EntityLiving) this.entity).attemptTeleport(location.x(), location.y(), location.z());
     }
 
     @Override
     public void sendMessage(String message) {
-        entity.sendMessage(new TextComponentString(message));
+        this.entity.sendMessage(new TextComponentString(message));
     }
 }

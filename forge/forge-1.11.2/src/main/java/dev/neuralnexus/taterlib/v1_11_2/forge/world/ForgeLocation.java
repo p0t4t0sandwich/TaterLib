@@ -109,6 +109,6 @@ public class ForgeLocation implements Location {
 
     @Override
     public void setWorld(World world) {
-        this.world = ((ForgeWorld) world).world();
+        this.world = ((ForgeWorld) world).unwrap();
     }
 }

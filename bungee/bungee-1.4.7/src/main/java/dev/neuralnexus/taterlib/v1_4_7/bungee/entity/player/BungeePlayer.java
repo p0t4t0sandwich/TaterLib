@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterlib.v1_4_7.bungee.server.BungeeServer;
+import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.config.ServerInfo;

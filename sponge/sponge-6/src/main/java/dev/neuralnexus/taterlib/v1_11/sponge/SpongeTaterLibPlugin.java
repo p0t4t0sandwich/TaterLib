@@ -12,12 +12,12 @@ import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_11.sponge.event.command.SpongeCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_11.sponge.listeners.block.SpongeBlockListener;
-import dev.neuralnexus.taterlib.v1_11.sponge.listeners.entity.SpongeEntityListener;
-import dev.neuralnexus.taterlib.v1_11.sponge.listeners.player.SpongePlayerListener;
-import dev.neuralnexus.taterlib.v1_11.sponge.listeners.server.SpongeServerListener;
-import dev.neuralnexus.taterlib.v1_11.sponge.server.SpongeServer;
+import dev.neuralnexus.taterlib.sponge.legacy.event.command.SpongeCommandRegisterEvent;
+import dev.neuralnexus.taterlib.sponge.legacy.listeners.SpongeBlockListener;
+import dev.neuralnexus.taterlib.sponge.legacy.listeners.SpongeEntityListener;
+import dev.neuralnexus.taterlib.sponge.legacy.listeners.SpongeServerListener;
+import dev.neuralnexus.taterlib.sponge.legacy.server.SpongeServer;
+import dev.neuralnexus.taterlib.v1_11.sponge.listeners.SpongePlayerListener;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;

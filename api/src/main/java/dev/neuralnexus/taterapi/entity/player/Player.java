@@ -17,7 +17,9 @@ public interface Player extends SimplePlayer, HumanEntity {
      *
      * @param allow Whether the player should be allowed to fly
      */
-    @VersionFeature(name = "Player#allowFlight(boolean)", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Player#allowFlight(boolean)",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     void allowFlight(boolean allow);
 
     /**

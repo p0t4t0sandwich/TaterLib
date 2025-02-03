@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -17,14 +18,15 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.b1_7_3.bukkit.command.BukkitCommandWrapper;
+import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.block.BukkitBlockListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.entity.BukkitEntityListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.listeners.player.BukkitPlayerListener;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
-import dev.neuralnexus.taterlib.bukkit.utils.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -35,6 +37,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.api(Platforms.BUKKIT)
                 .ifPresent(api -> api.setServer(BukkitServer::instance));
+        WrapperRegistry.register(Player.class, BukkitPlayer::new);
     }
 
     @Override
@@ -97,8 +100,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                             plugin,
                             () ->
                                     CommandEvents.REGISTER_COMMAND.invoke(
-                                            new BukkitCommandRegisterEvent(
-                                                    BukkitCommandWrapper::new)),
+                                            new BukkitCommandRegisterEvent()),
                             10 * 20L);
         }
     }

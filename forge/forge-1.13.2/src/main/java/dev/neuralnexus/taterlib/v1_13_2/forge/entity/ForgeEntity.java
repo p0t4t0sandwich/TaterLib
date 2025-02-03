@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.entity;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
@@ -25,7 +26,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 /** Forge implementation of {@link Entity}. */
-public class ForgeEntity implements Entity {
+public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity> {
     private final net.minecraft.entity.Entity entity;
 
     /**
@@ -37,18 +38,14 @@ public class ForgeEntity implements Entity {
         this.entity = entity;
     }
 
-    /**
-     * Gets the Forge entity.
-     *
-     * @return The Forge entity.
-     */
-    public net.minecraft.entity.Entity entity() {
-        return entity;
+    @Override
+    public net.minecraft.entity.Entity unwrap() {
+        return this.entity;
     }
 
     @Override
     public UUID uuid() {
-        return entity.getUniqueID();
+        return this.entity.getUniqueID();
     }
 
     @Override
@@ -64,30 +61,31 @@ public class ForgeEntity implements Entity {
     @Override
     @SuppressWarnings("deprecation")
     public ResourceKey type() {
-        return new ForgeResourceKey(IRegistry.field_212629_r.getKey(entity.getType()));
+        return new ForgeResourceKey(IRegistry.field_212629_r.getKey(this.entity.getType()));
     }
 
     @Override
     public Optional<String> customName() {
-        if (entity.getCustomName() == null) return Optional.empty();
-        return Optional.of(entity.getCustomName().getString());
+        if (this.entity.getCustomName() == null) return Optional.empty();
+        return Optional.of(this.entity.getCustomName().getString());
     }
 
     @Override
     public void setCustomName(String name) {
-        entity.setCustomName(new TextComponentString(name));
+        this.entity.setCustomName(new TextComponentString(name));
     }
 
     @Override
     public Location location() {
-        return new ForgeLocation(entity);
+        return new ForgeLocation(this.entity);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public ResourceKey biome() {
         return new ForgeResourceKey(
-                IRegistry.field_212624_m.getKey(entity.world.getBiome(entity.getPosition())));
+                IRegistry.field_212624_m.getKey(
+                        this.entity.world.getBiome(this.entity.getPosition())));
     }
 
     @Override
@@ -97,28 +95,28 @@ public class ForgeEntity implements Entity {
                     new ForgeServer(ServerLifecycleHooks.getCurrentServer())
                             .world(location.world().dimension())
                             .map(ForgeServerWorld.class::cast)
-                            .map(ForgeServerWorld::world);
+                            .map(ForgeServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
-            if (entity instanceof EntityPlayerMP) {
-                ((EntityPlayerMP) entity)
+            if (this.entity instanceof EntityPlayerMP) {
+                ((EntityPlayerMP) this.entity)
                         .teleport(
                                 serverLevel.get(),
                                 location.x(),
                                 location.y(),
                                 location.z(),
-                                entity.rotationYaw,
-                                entity.rotationPitch);
+                                this.entity.rotationYaw,
+                                this.entity.rotationPitch);
                 return;
             } else {
-                entity.changeDimension(
+                this.entity.changeDimension(
                         serverLevel.get().dimension.getType(), new Teleporter(serverLevel.get()));
             }
         }
-        ((EntityLiving) entity).attemptTeleport(location.x(), location.y(), location.z());
+        ((EntityLiving) this.entity).attemptTeleport(location.x(), location.y(), location.z());
     }
 
     @Override
     public void sendMessage(String message) {
-        entity.sendMessage(new TextComponentString(message));
+        this.entity.sendMessage(new TextComponentString(message));
     }
 }

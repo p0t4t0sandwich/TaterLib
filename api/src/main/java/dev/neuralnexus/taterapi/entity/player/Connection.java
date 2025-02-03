@@ -46,7 +46,9 @@ public interface Connection {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    @VersionFeature(name = "Connection#sendPacket()", incompatible = @Range(MinecraftVersion.B1_7_3))
+    @VersionFeature(
+            name = "Connection#sendPacket()",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
     void sendPacket(ResourceKey channel, byte[] data);
 
     /**

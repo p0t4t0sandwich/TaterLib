@@ -75,7 +75,7 @@ public class FabricEntity implements Entity, Wrapped<net.minecraft.entity.Entity
 
     @Override
     public ResourceKey biome() {
-        return ResourceKey.of(this.entity.world.getBiome(entity.getBlockPos()).name);
+        return ResourceKey.of(this.entity.world.getBiome(this.entity.getBlockPos()).name);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class FabricEntity implements Entity, Wrapped<net.minecraft.entity.Entity
                     ((Server) ((ServerWorld) this.entity.world).getServer())
                             .world(location.world().dimension())
                             .map(FabricServerWorld.class::cast)
-                            .map(FabricServerWorld::world);
+                            .map(FabricServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
             this.entity.teleportToDimension(serverLevel.get().dimension.getType());
         }

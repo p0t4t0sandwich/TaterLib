@@ -57,12 +57,12 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public UUID uuid() {
-        return player.getUniqueID();
+        return this.player.getUniqueID();
     }
 
     @Override
     public String ipAddress() {
-        return ((EntityPlayerMP) player).getPlayerIP();
+        return ((EntityPlayerMP) this.player).getPlayerIP();
     }
 
     @Override
@@ -80,22 +80,22 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
         ResourceLocation id = ((ForgeResourceKey) channel).resourceLocation();
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((EntityPlayerMP) player).connection.sendPacket(new SPacketCustomPayload(id, byteBuf));
+        ((EntityPlayerMP) this.player).connection.sendPacket(new SPacketCustomPayload(id, byteBuf));
     }
 
     @Override
     public PlayerInventory inventory() {
-        return new ForgePlayerInventory(player.inventory);
+        return new ForgePlayerInventory(this.player.inventory);
     }
 
     @Override
     public int ping() {
-        return ((EntityPlayerMP) player).ping;
+        return ((EntityPlayerMP) this.player).ping;
     }
 
     @Override
     public void kick(String message) {
-        ((EntityPlayerMP) player).connection.disconnect(new TextComponentString(message));
+        ((EntityPlayerMP) this.player).connection.disconnect(new TextComponentString(message));
     }
 
     @Override
@@ -105,7 +105,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
                 ((Server) TaterAPIProvider.api().get().server())
                         .world(location.world().dimension())
                         .map(ForgeServerWorld.class::cast)
-                        .map(ForgeServerWorld::world);
+                        .map(ForgeServerWorld::unwrap);
         player.setSpawnPoint(
                 new BlockPos(location.x(), location.y(), location.z()),
                 forced,
@@ -135,11 +135,11 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public GameMode gameMode() {
         return GameMode.fromName(
-                ((EntityPlayerMP) player).interactionManager.getGameType().getName());
+                ((EntityPlayerMP) this.player).interactionManager.getGameType().getName());
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
+        this.player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
     }
 }

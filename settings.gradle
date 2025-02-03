@@ -48,6 +48,7 @@ include(
         'bungee:bungee-1.8',
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
+        'bungee:bungee-utils',
 
         // Legacy Fabric
         'fabric:fabric-1.7.10',
@@ -108,6 +109,7 @@ include(
         'sponge:sponge-9',
         'sponge:sponge-10',
         'sponge:sponge-11',
+        'sponge:sponge-utils-legacy',
 
         // Vanilla
         'vanilla:vanilla-1.14.4',

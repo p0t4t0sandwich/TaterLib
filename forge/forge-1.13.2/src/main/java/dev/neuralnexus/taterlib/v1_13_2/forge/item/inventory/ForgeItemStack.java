@@ -5,9 +5,11 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.init.Items;
@@ -18,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /** Forge implementation of {@link ItemStack}. */
-public class ForgeItemStack implements ItemStack {
+public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.ItemStack> {
     private final net.minecraft.item.ItemStack itemStack;
 
     /**
@@ -31,19 +33,15 @@ public class ForgeItemStack implements ItemStack {
                 itemStack == null ? new net.minecraft.item.ItemStack(Items.AIR) : itemStack;
     }
 
-    /**
-     * Getter for the Forge item stack.
-     *
-     * @return The Forge item stack.
-     */
-    public net.minecraft.item.ItemStack itemStack() {
-        return itemStack;
+    @Override
+    public net.minecraft.item.ItemStack unwrap() {
+        return this.itemStack;
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public ResourceKey type() {
-        return new ForgeResourceKey(IRegistry.field_212630_s.getKey(itemStack.getItem()));
+        return new ForgeResourceKey(IRegistry.field_212630_s.getKey(this.itemStack.getItem()));
     }
 
     @Override
@@ -59,18 +57,18 @@ public class ForgeItemStack implements ItemStack {
     @Override
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
-        return new ForgeItemStack(itemStack.copy());
+        return new ForgeItemStack(this.itemStack.copy());
     }
 
     @Override
     public boolean hasDisplayName() {
-        return itemStack.hasDisplayName();
+        return this.itemStack.hasDisplayName();
     }
 
     @Override
     public Optional<String> displayName() {
         if (!itemStack.hasDisplayName()) return Optional.empty();
-        return Optional.of(itemStack.getDisplayName().getString());
+        return Optional.of(this.itemStack.getDisplayName().getString());
     }
 
     @Override
@@ -108,7 +106,15 @@ public class ForgeItemStack implements ItemStack {
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        // TODO: Implement
-        throw new VersionFeatureNotSupportedException();
+        // Reflect to get protected Item#setHasSubtypes(boolean)
+        try {
+            this.itemStack
+                    .getItem()
+                    .getClass()
+                    .getDeclaredMethod("func_77627_a", boolean.class)
+                    .invoke(this.itemStack.getItem(), unbreakable);
+        } catch (Exception e) {
+            TaterLib.logger().error("Failed to set unbreakable item", e);
+        }
     }
 }

@@ -5,13 +5,13 @@
  */
 package dev.neuralnexus.taterlib.v1_17.sponge.world;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterapi.world.World;
-
-import org.spongepowered.api.world.server.ServerWorld;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,20 +20,16 @@ import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link World}. */
 @SuppressWarnings("rawtypes")
-public class SpongeWorld implements World {
+public class SpongeWorld implements ServerWorld, World, Wrapped<org.spongepowered.api.world.World> {
     private final org.spongepowered.api.world.World level;
 
     public SpongeWorld(org.spongepowered.api.world.World level) {
         this.level = level;
     }
 
-    /**
-     * Gets the level.
-     *
-     * @return The level.
-     */
-    public org.spongepowered.api.world.World world() {
-        return level;
+    @Override
+    public org.spongepowered.api.world.World unwrap() {
+        return this.level;
     }
 
     @Override
@@ -45,7 +41,7 @@ public class SpongeWorld implements World {
 
     @Override
     public ResourceKey dimension() {
-        return (ResourceKey) ((ServerWorld) level).key();
+        return (ResourceKey) ((org.spongepowered.api.world.server.ServerWorld) level).key();
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.item.inventory;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Forge implementation of {@link Inventory}. */
-public class ForgeInventory implements Inventory {
+public class ForgeInventory implements Inventory, Wrapped<IInventory> {
     private final IInventory inventory;
 
     /**
@@ -28,59 +29,64 @@ public class ForgeInventory implements Inventory {
     }
 
     @Override
+    public IInventory unwrap() {
+        return this.inventory;
+    }
+
+    @Override
     public int size() {
-        return inventory.getSizeInventory();
+        return this.inventory.getSizeInventory();
     }
 
     @Override
     public ItemStack get(int slot) {
-        return new ForgeItemStack(inventory.getStackInSlot(slot));
+        return new ForgeItemStack(this.inventory.getStackInSlot(slot));
     }
 
     @Override
     public void set(int slot, ItemStack item) {
-        inventory.setInventorySlotContents(slot, ((ForgeItemStack) item).itemStack());
+        this.inventory.setInventorySlotContents(slot, ((ForgeItemStack) item).unwrap());
     }
 
     @Override
     public void add(ItemStack item) {
         int firstEmpty = -1;
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().asString().equals("minecraft:air")) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().asString().equals("minecraft:air")) {
                 firstEmpty = i;
             }
         }
         if (firstEmpty == -1) return;
-        set(firstEmpty, item);
+        this.set(firstEmpty, item);
     }
 
     @Override
     public List<ItemStack> contents() {
-        List<ItemStack> contents = new ArrayList<>(size());
-        for (int i = 0; i < size(); i++) {
-            contents.set(i, get(i));
+        List<ItemStack> contents = new ArrayList<>(this.size());
+        for (int i = 0; i < this.size(); i++) {
+            contents.set(i, this.get(i));
         }
         return contents;
     }
 
     @Override
     public void setContents(List<ItemStack> items) {
-        for (int i = 0; i < size(); i++) {
-            set(i, items.get(i));
+        for (int i = 0; i < this.size(); i++) {
+            this.set(i, items.get(i));
         }
     }
 
     @Override
     public void remove(ResourceKey type) {
-        for (int i = 0; i < size(); i++) {
-            if (get(i).type().equals(type)) {
-                inventory.decrStackSize(i, get(i).count());
+        for (int i = 0; i < this.size(); i++) {
+            if (this.get(i).type().equals(type)) {
+                this.inventory.decrStackSize(i, this.get(i).count());
             }
         }
     }
 
     @Override
     public void clear(int slot) {
-        inventory.decrStackSize(slot, get(slot).count());
+        this.inventory.decrStackSize(slot, this.get(slot).count());
     }
 }

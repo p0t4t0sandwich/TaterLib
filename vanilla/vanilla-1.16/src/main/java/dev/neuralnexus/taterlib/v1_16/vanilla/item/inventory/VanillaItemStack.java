@@ -41,7 +41,7 @@ public class VanillaItemStack implements ItemStack {
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) Registry.ITEM.getKey(itemStack.getItem());
+        return (ResourceKey) Registry.ITEM.getKey(this.itemStack.getItem());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class VanillaItemStack implements ItemStack {
     @Override
     @SuppressWarnings("MethodDoesntCallSuperMethod")
     public ItemStack clone() {
-        return new VanillaItemStack(itemStack.copy());
+        return new VanillaItemStack(this.itemStack.copy());
     }
 
     @Override
@@ -68,7 +68,7 @@ public class VanillaItemStack implements ItemStack {
     @Override
     public Optional<String> displayName() {
         if (!itemStack.hasCustomHoverName()) return Optional.empty();
-        return Optional.of(itemStack.getDisplayName().getString());
+        return Optional.of(this.itemStack.getDisplayName().getString());
     }
 
     @Override

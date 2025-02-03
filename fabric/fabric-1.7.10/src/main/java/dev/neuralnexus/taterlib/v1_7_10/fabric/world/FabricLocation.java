@@ -83,6 +83,6 @@ public class FabricLocation implements Location {
 
     @Override
     public void setWorld(World world) {
-        this.world = ((FabricWorld) world).world();
+        this.world = ((FabricWorld) world).unwrap();
     }
 }

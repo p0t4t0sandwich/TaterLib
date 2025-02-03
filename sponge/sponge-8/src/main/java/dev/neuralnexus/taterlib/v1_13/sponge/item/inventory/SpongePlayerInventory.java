@@ -31,6 +31,11 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     }
 
     @Override
+    public org.spongepowered.api.item.inventory.entity.PlayerInventory unwrap() {
+        return this.playerInventory;
+    }
+
+    @Override
     public List<ItemStack> armor() {
         EquipmentInventory armor = playerInventory.armor();
         List<ItemStack> armorContents = new ArrayList<>(4);
@@ -53,7 +58,7 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     public void setArmor(List<ItemStack> armor) {
         armor.stream()
                 .map(SpongeItemStack.class::cast)
-                .map(SpongeItemStack::itemStack)
+                .map(SpongeItemStack::unwrap)
                 .forEach(itemStack -> playerInventory.armor().offer(itemStack));
     }
 
@@ -68,11 +73,11 @@ public class SpongePlayerInventory extends SpongeInventory implements PlayerInve
     public void setOffhand(ItemStack offhand) {
         playerInventory
                 .equipment()
-                .set(EquipmentTypes.OFF_HAND, ((SpongeItemStack) offhand).itemStack());
+                .set(EquipmentTypes.OFF_HAND, ((SpongeItemStack) offhand).unwrap());
     }
 
     @Override
     public int selectedSlot() {
-        return playerInventory.hotbar().selectedSlotIndex();
+        return this.playerInventory.hotbar().selectedSlotIndex();
     }
 }
