@@ -14,7 +14,7 @@ public interface PluginManager {
 
     Optional<org.spongepowered.api.plugin.PluginContainer> getPlugin(String id);
 
-    Collection<PluginContainer> plugins();
+    Collection<org.spongepowered.plugin.PluginContainer> plugins();
 
-    Collection<PluginContainer> getPlugins();
+    Collection<org.spongepowered.api.plugin.PluginContainer> getPlugins();
 }
