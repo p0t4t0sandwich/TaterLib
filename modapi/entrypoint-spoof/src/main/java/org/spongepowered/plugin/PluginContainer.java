@@ -18,4 +18,6 @@ public interface PluginContainer {
     String getId();
 
     Optional<String> getVersion();
+
+    Object instance();
 }

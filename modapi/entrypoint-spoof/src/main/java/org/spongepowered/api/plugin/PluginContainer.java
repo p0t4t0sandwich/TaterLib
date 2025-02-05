@@ -5,5 +5,9 @@
  */
 package org.spongepowered.api.plugin;
 
+import java.util.Optional;
+
 /** Fake Sponge PluginContainer class to simplify the creation of entrypoints. */
-public interface PluginContainer {}
+public interface PluginContainer {
+    Optional<?> getInstance();
+}
