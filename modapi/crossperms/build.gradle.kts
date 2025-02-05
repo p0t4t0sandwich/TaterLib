@@ -23,6 +23,9 @@ dependencies {
 
     compileOnly("com.mojang:authlib:3.13.56")
 
+    // Integrations
+    compileOnly("net.luckperms:api:5.4")
+
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation("dev.neuralnexus.modapi:metadata:0.1.0")
 }

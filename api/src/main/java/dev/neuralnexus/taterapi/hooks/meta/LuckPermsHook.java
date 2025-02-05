@@ -3,10 +3,9 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterapi.hooks.permissions;
+package dev.neuralnexus.taterapi.hooks.meta;
 
-import dev.neuralnexus.taterapi.entity.Identifiable;
-
+import dev.neuralnexus.taterapi.hooks.Hook;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -22,7 +21,7 @@ import java.util.UUID;
  *
  * @see <a href="https://luckperms.net/">LuckPerms</a>
  */
-public class LuckPermsHook implements PermissionsHook {
+public class LuckPermsHook implements Hook {
     private static LuckPermsHook instance;
     private final LuckPerms luckPerms;
 
@@ -124,14 +123,6 @@ public class LuckPermsHook implements PermissionsHook {
      */
     public void setSuffix(UUID playerUuid, String suffix) {
         setSuffix(playerUuid, suffix, 0);
-    }
-
-    @Override
-    public boolean hasPermission(Identifiable permissible, String permission) {
-        if (this.luckPerms == null) return false;
-        User user = luckPerms.getUserManager().getUser(permissible.uuid());
-        return user != null
-                && user.getCachedData().getPermissionData().checkPermission(permission).asBoolean();
     }
 
     /**

@@ -1,5 +1,5 @@
 base {
-    archivesName = "${projectId}-bungee-${minecraftVersion}"
+    archivesName = "${projectId}-bungee-utils"
 }
 
 dependencies {

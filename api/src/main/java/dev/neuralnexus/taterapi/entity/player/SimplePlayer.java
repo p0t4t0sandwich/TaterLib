@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.hooks.permissions.LuckPermsHook;
+import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import java.lang.reflect.Type;

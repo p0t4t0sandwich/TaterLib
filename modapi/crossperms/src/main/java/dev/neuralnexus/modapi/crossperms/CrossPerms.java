@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.crossperms;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.api.impl.integrations.LuckPermsPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.BukkitPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.BungeeCordPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.FabricPermissionsProvider;
@@ -99,6 +100,10 @@ public class CrossPerms {
         }
         if (meta.isPlatformPresent(Platforms.SPONGE)) {
             api.registerProvider(new SpongePermissionsProvider());
+        }
+
+        if (meta.isModLoaded("luckperms")) {
+            api.registerProvider(new LuckPermsPermissionsProvider());
         }
     }
 
