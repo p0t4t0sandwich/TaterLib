@@ -45,6 +45,11 @@ subprojects {
             name = 'NeuralNexus Mirror'
             url = 'https://maven.neuralnexus.dev/mirror'
         }
+
+        // Local Libs
+        flatDir {
+            dirs("libs")
+        }
     }
 
     dependencies {

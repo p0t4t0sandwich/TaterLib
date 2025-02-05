@@ -25,6 +25,7 @@ dependencies {
 
     // Integrations
     compileOnly("net.luckperms:api:5.4")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
 
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation("dev.neuralnexus.modapi:metadata:0.1.0")

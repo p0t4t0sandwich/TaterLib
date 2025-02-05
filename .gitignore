@@ -28,6 +28,7 @@ build
 bin
 target
 run
+libs
 
 # Gradle
 .gradle
