@@ -13,11 +13,5 @@ import java.util.Optional;
 public interface PluginContainer {
     PluginMetadata metadata();
 
-    String getName();
-
-    String getId();
-
-    Optional<String> getVersion();
-
     Object instance();
 }

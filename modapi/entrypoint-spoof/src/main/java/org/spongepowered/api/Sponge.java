@@ -6,7 +6,6 @@
 package org.spongepowered.api;
 
 import org.spongepowered.api.plugin.PluginManager;
-import org.spongepowered.plugin.PluginContainer;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,22 +24,22 @@ public final class Sponge {
     public static PluginManager pluginManager() {
         return new PluginManager() {
             @Override
-            public Optional<PluginContainer> plugin(String id) {
+            public Optional<org.spongepowered.plugin.PluginContainer> plugin(String id) {
                 return Optional.empty();
             }
 
             @Override
-            public Optional<PluginContainer> getPlugin(String id) {
+            public Optional<org.spongepowered.api.plugin.PluginContainer> getPlugin(String id) {
                 return Optional.empty();
             }
 
             @Override
-            public Collection<PluginContainer> plugins() {
+            public Collection<org.spongepowered.plugin.PluginContainer> plugins() {
                 return Collections.emptyList();
             }
 
             @Override
-            public Collection<PluginContainer> getPlugins() {
+            public Collection<org.spongepowered.api.plugin.PluginContainer> getPlugins() {
                 return Collections.emptyList();
             }
         };

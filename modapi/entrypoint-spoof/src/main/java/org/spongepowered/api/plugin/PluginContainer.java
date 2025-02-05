@@ -9,5 +9,11 @@ import java.util.Optional;
 
 /** Fake Sponge PluginContainer class to simplify the creation of entrypoints. */
 public interface PluginContainer {
+    String getName();
+
+    String getId();
+
+    Optional<String> getVersion();
+
     Optional<?> getInstance();
 }
