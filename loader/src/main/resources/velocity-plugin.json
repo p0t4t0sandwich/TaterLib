@@ -7,6 +7,15 @@
   "authors": [
     "${authors}"
   ],
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id":"luckperms",
+      "optional": true
+    },
+    {
+      "id":"permissionsex",
+      "optional": true
+    }
+  ],
   "main": "dev.neuralnexus.taterloader.platforms.VelocityLoaderPlugin"
 }

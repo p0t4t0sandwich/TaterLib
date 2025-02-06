@@ -6,6 +6,7 @@
 package dev.neuralnexus.modapi.crossperms;
 
 import com.mojang.authlib.GameProfile;
+import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.impl.integrations.LuckPermsPermissionsProvider;
@@ -25,6 +26,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.modapi.reflecto.MappingEntry;
 import dev.neuralnexus.modapi.reflecto.Reflecto;
 
@@ -59,7 +61,7 @@ public class CrossPerms {
      *
      * @param minecraftServer The Minecraft server instance
      */
-    public void init(Object minecraftServer) {
+    public void onInit(Object minecraftServer) {
         if (null != store) {
             return;
         }
@@ -71,6 +73,7 @@ public class CrossPerms {
                 api.registerProvider(new BungeeCordPermissionsProvider());
             } else if (meta.isPlatformPresent(Platforms.VELOCITY)) {
                 api.registerProvider(new VelocityPermissionsProvider());
+                VelocityMeta.setProxyServer((ProxyServer) minecraftServer);
             }
             return;
         }
@@ -103,15 +106,22 @@ public class CrossPerms {
         if (meta.isPlatformPresent(Platforms.SPONGE)) {
             api.registerProvider(new SpongePermissionsProvider());
         }
+    }
 
-        // Register Integrations
+    public void onEnable() {
+        MetaAPI meta = MetaAPI.instance();
+        PermsAPI api = PermsAPI.instance();
+
         if (meta.isModLoaded("luckperms")) {
             api.registerProvider(new LuckPermsPermissionsProvider());
         }
         if (meta.isModLoaded("Vault")) {
             api.registerProvider(new VaultPermissionsProvider());
         }
-        if (meta.isModLoaded("PermissionsEx")) {
+        // TODO: Disabled on Bukkit and BungeeCord due to classloader issues, needs further
+        // investigation
+        if (meta.isModLoaded("PermissionsEx")
+                && !meta.isPlatformPresent(Platforms.BUKKIT, Platforms.BUNGEECORD)) {
             api.registerProvider(new PermissionsExPermissionsProvider());
         }
     }

@@ -31,7 +31,7 @@ sponge {
             optional(false)
         }
         dependency("luckperms") {
-            version("5.3.0")
+            version("5.4")
             loadOrder(PluginDependency.LoadOrder.AFTER)
             optional(true)
         }

@@ -22,7 +22,6 @@ config = "${project_id}.mixins.json"
 # NeoForge Dependency
 [[dependencies.${ project_id }]]
 modId = "neoforge"
-mandatory = false
 type = "required"
 versionRange = "${neo_version_range}"
 ordering = "NONE"
@@ -31,8 +30,15 @@ side = "BOTH"
 # Minecraft Dependency
 [[dependencies.${ project_id }]]
 modId = "minecraft"
-mandatory = true
 type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+# LuckPerms
+[[dependencies.${ project_id }]]
+modId = "luckperms"
+type = "optional"
+versionRange = "[${luckperms_version},)"
+ordering = "NONE"
+side = "SERVER"

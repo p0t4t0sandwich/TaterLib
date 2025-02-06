@@ -6,6 +6,6 @@ website: '${homepage_url}'
 main: 'dev.neuralnexus.taterloader.platforms.BukkitLoaderPlugin'
 depend: [ ]
 depends: [ ]
-softdepend: [ LuckPerms ]
-softdepends: [ LuckPerms ]
+softdepend: [ LuckPerms, PermissionsEx, Vault ]
+softdepends: [ LuckPerms, PermissionsEx, Vault ]
 folia-supported: true

@@ -1,4 +1,3 @@
-# https://neoforged.net
 modLoader = "javafml"
 loaderVersion = "${loader_version_range}"
 license = "${license}"
@@ -45,3 +44,12 @@ type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+# LuckPerms
+[[dependencies.${ project_id }]]
+modId = "luckperms"
+mandatory = false
+type = "optional"
+versionRange = "[${luckperms_version},)"
+ordering = "NONE"
+side = "SERVER"

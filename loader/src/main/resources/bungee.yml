@@ -5,4 +5,4 @@ description: '${project_description}'
 website: '${homepage_url}'
 main: 'dev.neuralnexus.taterloader.platforms.BungeeCordLoaderPlugin'
 depends: [ ]
-softdepends: [ LuckPerms ]
+softdepends: [ LuckPerms, PermissionsEx ]

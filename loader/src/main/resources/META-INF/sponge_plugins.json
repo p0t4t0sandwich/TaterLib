@@ -23,6 +23,18 @@
           "version": "${spongeapi_version}",
           "load-order": "after",
           "optional": false
+        },
+        {
+          "id": "luckperms",
+          "version": "${luckperms_version}",
+          "load-order": "after",
+          "optional": true
+        },
+        {
+          "id": "permissionsex",
+          "version": "${permissionsex_version}",
+          "load-order": "after",
+          "optional": true
         }
       ]
     }

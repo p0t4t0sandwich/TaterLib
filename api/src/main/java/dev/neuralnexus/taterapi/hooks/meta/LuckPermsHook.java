@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterapi.hooks.meta;
 
 import dev.neuralnexus.taterapi.hooks.Hook;
+
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;

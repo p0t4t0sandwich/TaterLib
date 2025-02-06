@@ -37,51 +37,73 @@ public class PermissionsExPermissionsProvider implements PermissionsProvider {
     @SuppressWarnings("UnstableApiUsage")
     public PermissionsExPermissionsProvider() {
         MetaAPI meta = MetaAPI.instance();
+        PermissionsEx<?> pex = null;
         if (meta.isPlatformPresent(Platforms.BUKKIT)) {
-            pex = ((ca.stellardrift.permissionsex.bukkit.PermissionsExPlugin)
-                    Bukkit.getServer()
-                            .getPluginManager()
-                            .getPlugin(PERMISSIONSEX_NAME))
-                    .getManager();
+            pex =
+                    ((ca.stellardrift.permissionsex.bukkit.PermissionsExPlugin)
+                                    Bukkit.getServer()
+                                            .getPluginManager()
+                                            .getPlugin(PERMISSIONSEX_NAME))
+                            .getManager();
         } else if (meta.isPlatformPresent(Platforms.BUNGEECORD)) {
-            pex = ((ca.stellardrift.permissionsex.bungee.PermissionsExPlugin)
-                    ProxyServer.getInstance()
-                            .getPluginManager()
-                            .getPlugin(PERMISSIONSEX_NAME))
-                    .getManager();
+            pex =
+                    ((ca.stellardrift.permissionsex.bungee.PermissionsExPlugin)
+                                    ProxyServer.getInstance()
+                                            .getPluginManager()
+                                            .getPlugin(PERMISSIONSEX_NAME))
+                            .getManager();
         } else if (meta.isPlatformPresent(Platforms.FABRIC)) {
-            pex = ((ca.stellardrift.permissionsex.fabric.PermissionsExMod)
-                    FabricLoader.getInstance()
-                            .getEntrypointContainers(PERMISSIONSEX_ID, ModInitializer.class)
-                            .getFirst()
-                            .getEntrypoint())
-                    .getManager();
+            pex =
+                    ((ca.stellardrift.permissionsex.fabric.PermissionsExMod)
+                                    FabricLoader.getInstance()
+                                            .getEntrypointContainers(
+                                                    PERMISSIONSEX_ID, ModInitializer.class)
+                                            .getFirst()
+                                            .getEntrypoint())
+                            .getManager();
         } else if (meta.isPlatformPresent(Platforms.SPONGE)) {
             if (meta.version().isAtLeast(MinecraftVersions.V13)) {
-                pex = Sponge.pluginManager()
-                        .plugin(PERMISSIONSEX_ID)
-                        .map(org.spongepowered.plugin.PluginContainer::instance)
-                        .map(ca.stellardrift.permissionsex.sponge.PermissionsExPlugin.class::cast).map(ca.stellardrift.permissionsex.sponge.PermissionsExPlugin::getManager)
-                        .orElse(null);
+                pex =
+                        Sponge.pluginManager()
+                                .plugin(PERMISSIONSEX_ID)
+                                .map(org.spongepowered.plugin.PluginContainer::instance)
+                                .map(
+                                        ca.stellardrift.permissionsex.sponge.PermissionsExPlugin
+                                                        .class
+                                                ::cast)
+                                .map(
+                                        ca.stellardrift.permissionsex.sponge.PermissionsExPlugin
+                                                ::getManager)
+                                .orElse(null);
             } else {
-                pex = Sponge.getPluginManager()
-                        .getPlugin(PERMISSIONSEX_ID)
-                        .flatMap(org.spongepowered.api.plugin.PluginContainer::getInstance)
-                        .map(ca.stellardrift.permissionsex.sponge.PermissionsExPlugin.class::cast)
-                        .map(ca.stellardrift.permissionsex.sponge.PermissionsExPlugin::getManager)
-                        .orElse(null);
+                pex =
+                        Sponge.getPluginManager()
+                                .getPlugin(PERMISSIONSEX_ID)
+                                .flatMap(org.spongepowered.api.plugin.PluginContainer::getInstance)
+                                .map(
+                                        ca.stellardrift.permissionsex.sponge.PermissionsExPlugin
+                                                        .class
+                                                ::cast)
+                                .map(
+                                        ca.stellardrift.permissionsex.sponge.PermissionsExPlugin
+                                                ::getManager)
+                                .orElse(null);
             }
         } else if (meta.isPlatformPresent(Platforms.VELOCITY)) {
-            pex = VelocityMeta.proxyServer()
-                    .getPluginManager()
-                    .getPlugin(PERMISSIONSEX_ID)
-                    .flatMap(com.velocitypowered.api.plugin.PluginContainer::getInstance)
-                    .map(ca.stellardrift.permissionsex.velocity.PermissionsExPlugin.class::cast)
-                    .map(ca.stellardrift.permissionsex.velocity.PermissionsExPlugin::getManager)
-                    .orElse(null);
-        } else {
-            pex = null;
+            pex =
+                    VelocityMeta.proxyServer()
+                            .getPluginManager()
+                            .getPlugin(PERMISSIONSEX_ID)
+                            .flatMap(com.velocitypowered.api.plugin.PluginContainer::getInstance)
+                            .map(
+                                    ca.stellardrift.permissionsex.velocity.PermissionsExPlugin.class
+                                            ::cast)
+                            .map(
+                                    ca.stellardrift.permissionsex.velocity.PermissionsExPlugin
+                                            ::getManager)
+                            .orElse(null);
         }
+        this.pex = pex;
     }
 
     // spotless:on
