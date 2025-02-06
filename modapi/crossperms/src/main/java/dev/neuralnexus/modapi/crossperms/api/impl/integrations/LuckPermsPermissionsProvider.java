@@ -1,9 +1,14 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.crossperms.api.impl.integrations;
 
 import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
-
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
+
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 
@@ -37,7 +42,12 @@ public class LuckPermsPermissionsProvider implements PermissionsProvider {
         return PermsAPI.instance()
                 .getGameProfile(subject)
                 .map(profile -> this.luckPerms.getUserManager().getUser(profile.getId()))
-                .map(user -> user.getCachedData().getPermissionData().checkPermission(permission).asBoolean())
+                .map(
+                        user ->
+                                user.getCachedData()
+                                        .getPermissionData()
+                                        .checkPermission(permission)
+                                        .asBoolean())
                 .orElse(false);
     }
 }

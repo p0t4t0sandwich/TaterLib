@@ -32,6 +32,11 @@ public final class VelocityMeta implements Platform.Meta {
         VelocityMeta.proxyServer = proxyServer;
     }
 
+    @ApiStatus.Internal
+    public static ProxyServer proxyServer() {
+        return proxyServer;
+    }
+
     @Override
     public MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(ProtocolVersion.MAXIMUM_VERSION.toString());

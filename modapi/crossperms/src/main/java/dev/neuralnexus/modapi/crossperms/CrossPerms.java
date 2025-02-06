@@ -9,6 +9,7 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.crossperms.api.impl.integrations.LuckPermsPermissionsProvider;
+import dev.neuralnexus.modapi.crossperms.api.impl.integrations.PermissionsExPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.integrations.VaultPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.BukkitPermissionsProvider;
 import dev.neuralnexus.modapi.crossperms.api.impl.providers.BungeeCordPermissionsProvider;
@@ -109,6 +110,9 @@ public class CrossPerms {
         }
         if (meta.isModLoaded("Vault")) {
             api.registerProvider(new VaultPermissionsProvider());
+        }
+        if (meta.isModLoaded("PermissionsEx")) {
+            api.registerProvider(new PermissionsExPermissionsProvider());
         }
     }
 

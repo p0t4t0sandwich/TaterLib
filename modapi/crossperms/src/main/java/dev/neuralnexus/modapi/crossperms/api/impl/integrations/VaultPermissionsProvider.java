@@ -1,9 +1,15 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.modapi.crossperms.api.impl.integrations;
 
 import dev.neuralnexus.modapi.crossperms.api.HasPermission;
 import dev.neuralnexus.modapi.crossperms.api.PermissionsProvider;
 
 import net.milkbowl.vault.permission.Permission;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +23,11 @@ public class VaultPermissionsProvider implements PermissionsProvider {
 
     @SuppressWarnings("DataFlowIssue")
     public VaultPermissionsProvider() {
-        vault = Bukkit.getServer().getServicesManager().getRegistration(Permission.class).getProvider();
+        vault =
+                Bukkit.getServer()
+                        .getServicesManager()
+                        .getRegistration(Permission.class)
+                        .getProvider();
     }
 
     @Override

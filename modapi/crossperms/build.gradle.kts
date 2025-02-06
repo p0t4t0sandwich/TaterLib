@@ -14,11 +14,12 @@ base {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("com.destroystokyo.paper:paper-api:1.13.1-R0.1-SNAPSHOT")
     compileOnly("net.md-5:bungeecord-api:1.21-R0.1-SNAPSHOT")
-    compileOnly("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:1.9.0+1.12.2")
+    compileOnly("net.fabricmc:fabric-loader:0.16.9")
     compileOnly("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")
-    compileOnly("org.spongepowered:spongeapi:8.1.0")
+    compileOnly("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:1.9.0+1.12.2")
+//    compileOnly("org.spongepowered:spongeapi:8.1.0")
     compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 
     compileOnly("com.mojang:authlib:3.13.56")
@@ -26,6 +27,12 @@ dependencies {
     // Integrations
     compileOnly("net.luckperms:api:5.4")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-core:2.0-SNAPSHOT")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-bukkit:2.0-SNAPSHOT")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-bungee:2.0-SNAPSHOT")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-fabric:2.0-SNAPSHOT")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-sponge:2.0-SNAPSHOT")
+    compileOnly("ca.stellardrift.permissionsex:permissionsex-velocity:2.0-SNAPSHOT")
 
     compileOnly(project(":modapi:entrypoint-spoof"))
     implementation("dev.neuralnexus.modapi:metadata:0.1.0")

@@ -14,7 +14,7 @@ import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
 import org.spongepowered.api.Sponge;
-import org.spongepowered.plugin.PluginContainer;
+import org.spongepowered.api.plugin.PluginContainer;
 
 import java.util.List;
 import java.util.Optional;
