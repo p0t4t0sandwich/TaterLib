@@ -129,9 +129,7 @@ ext.mergeMixinConfigs = { List<File> mixinConfigs ->
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
     def jarFiles = [
-            file("./api/build/libs/taterapi-${version}-full.jar"),
-            file("./common/build/libs/${project_id}-common-${version}-full.jar"),
-            file("./loader/build/libs/${project_id}-loader-${version}.jar")
+            file("./common/build/libs/${project_id}-common-${version}-full.jar")
     ]
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
@@ -158,40 +156,6 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
 // --------------------------- Clear build/libs --------------------------------
 tasks.register('clear_build') {
     delete fileTree('build/libs')
-}
-
-// --------------------------- Build api --------------------------------
-tasks.register('build_api', Jar) {
-    dependsOn('clear_build')
-    dependsOn(':api:test')
-    dependsOn(':api:jar')
-    dependsOn(':common:jar')
-    dependsOn(':loader:build')
-
-    archiveFileName = "taterapi-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} API",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': Instant.now().toString()
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    ArrayList<File> jarFiles = [
-            file("./api/build/libs/taterapi-${version}.jar"),
-            file("./common/build/libs/${project_id}-common-${version}.jar"),
-            file("./loader/build/libs/${project_id}-loader-${version}.jar")
-    ]
-    from {
-        jarFiles.collect { zipTree(it) }
-    }
 }
 
 var platformVersions = [:]
@@ -236,7 +200,7 @@ tasks.register("buildAllTheStuffNowBcGradleIsDumb", Task) {
 
 // --------------------------- Build MonoJar --------------------------------
 tasks.register('build_monojar', Jar) {
-    dependsOn(':api:shadowJar')
+    dependsOn(':api:build')
     dependsOn(':common:shadowJar')
     dependsOn(':loader:build')
     platformVersions.each { platform, versions ->
@@ -272,7 +236,7 @@ tasks.register('build_monojar', Jar) {
 
 // --------------------------- Build Dev --------------------------------
 tasks.register('build_dev', Jar) {
-    dependsOn(':api:shadowJar')
+    dependsOn(':api:build')
     dependsOn(':common:shadowJar')
     dependsOn(':loader:build')
 
@@ -298,64 +262,5 @@ tasks.register('build_dev', Jar) {
     }
     from {
         bundleJars(platformVersions)
-    }
-}
-
-publishing {
-    publications {
-        uploadAPI(MavenPublication) {
-            groupId = group_id
-            version = version
-
-            artifact(build_api) {
-                artifactId = "taterapi"
-            }
-
-            pom {
-                name = project_name
-                description = project_description
-                url = homepage_url
-                licenses {
-                    license {
-                        name = 'GPL-3'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE'
-                    }
-                    license {
-                        name = 'MIT License'
-                        url = 'https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE-API'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'p0t4t0sandwich'
-                        name = 'Dylan Sperrer'
-                        email = 'dylan@neuralnexus.dev'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:https://github.com/p0t4t0sandwich/TaterLib.git'
-                    url = 'https://github.com/p0t4t0sandwich/TaterLib'
-                }
-            }
-        }
-    }
-    repositories {
-        mavenLocal()
-        maven {
-            name = "NeuralNexusReleases"
-            url = "https://maven.neuralnexus.dev/releases"
-            credentials {
-                username = project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")
-                password = project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")
-            }
-        }
-        maven {
-            name = "NeuralNexusSnapshots"
-            url = "https://maven.neuralnexus.dev/snapshots"
-            credentials {
-                username = project.findProperty("neuralNexusUsername") ?: System.getenv("NEURALNEXUS_USERNAME")
-                password = project.findProperty("neuralNexusPassword") ?: System.getenv("NEURALNEXUS_PASSWORD")
-            }
-        }
     }
 }
