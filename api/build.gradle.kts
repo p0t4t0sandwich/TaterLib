@@ -35,12 +35,6 @@ dependencies {
     compileOnly("net.luckperms:api:5.4")
     compileOnly("me.lucko:spark-api:0.1-SNAPSHOT")
 
-    // Hybrid APIs
-    compileOnly("io.izzel.arclight:arclight-api:1.6.3")
-    compileOnly("org.kettingpowered:kettingcore:1.2")
-    compileOnly("org.magmafoundation:Magma-1.12.2:e586889b")
-    compileOnly("com.mohistmc:mohistdev:1.16.5")
-
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
     compileOnly(variantOf(libs.modapi.crossperms) {
