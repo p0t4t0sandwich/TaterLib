@@ -38,6 +38,10 @@ public class Bukkit {
         return false;
     }
 
+    public static String getName() {
+        return server.getName();
+    }
+
     /**
      * Gets the version string of this server implementation.
      *
