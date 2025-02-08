@@ -29,9 +29,10 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
     CommandDispatcher<S> dispatcher();
 
     /**
-     * Registers a LiteralCommandNode<S>.
-     *
-     * @param node The node.
+     * Registers a LiteralCommandNode
+     * @param node The node to register
+     * @param commandName The name of the command
+     * @param aliases The aliases of the command
      */
     void registerCommand(LiteralArgumentBuilder<S> node, String commandName, String... aliases);
 

@@ -1,3 +1,7 @@
+plugins {
+    id("maven-publish")
+}
+
 base {
     archivesName = "taterapi"
 }
@@ -43,3 +47,36 @@ dependencies {
 }
 
 java.disableAutoTargetJvm()
+java {
+    withSourcesJar()
+    withJavadocJar()
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    targetCompatibility = JavaVersion.toVersion(javaVersion)
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+        maven("https://maven.neuralnexus.dev/releases") {
+            name = "NeuralNexusReleases"
+            credentials {
+                username = project.findProperty("neuralNexusUsername") as? String ?: System.getenv("NEURALNEXUS_USERNAME") ?: ""
+                password = project.findProperty("neuralNexusPassword") as? String ?: System.getenv("NEURALNEXUS_PASSWORD") ?: ""
+            }
+        }
+        maven("https://maven.neuralnexus.dev/snapshots") {
+            name = "NeuralNexusSnapshots"
+            credentials {
+                username = project.findProperty("neuralNexusUsername") as? String ?: System.getenv("NEURALNEXUS_USERNAME") ?: ""
+                password = project.findProperty("neuralNexusPassword") as? String ?: System.getenv("NEURALNEXUS_PASSWORD") ?: ""
+            }
+        }
+    }
+
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["java"])
+        }
+    }
+}
