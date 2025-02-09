@@ -9,7 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_9_4.forge.entity.player.ForgePlayer;
@@ -45,7 +45,7 @@ public abstract class MinecraftServerAPI {
         return shadow$getServerModName();
     }
 
-    public List<SimplePlayer> server$onlinePlayers() {
+    public List<User> server$onlinePlayers() {
         return shadow$getPlayerList().getPlayerList().stream()
                 .map(ForgePlayer::new)
                 .collect(Collectors.toList());

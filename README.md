@@ -59,7 +59,7 @@ dependencies {
 }
 ```
 
-There's also a snapshot repository available at `https://maven.neuralnexus.dev/repository/snapshots`
+There's also a snapshot repository available at `https://maven.neuralnexus.dev/snapshots`
 
 ### Supported Platforms and Versions
 

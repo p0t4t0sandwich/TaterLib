@@ -8,7 +8,7 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
@@ -44,7 +44,7 @@ public class VelocityServer implements Server, Wrapped<RegisteredServer> {
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return this.server.getPlayersConnected().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());

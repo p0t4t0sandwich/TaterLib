@@ -10,7 +10,7 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.entity.player.Connection;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
@@ -41,7 +41,7 @@ public interface SimpleServer {
      *
      * @return The set of online players.
      */
-    List<SimplePlayer> onlinePlayers();
+    List<User> onlinePlayers();
 
     /**
      * Get the server's whitelist
@@ -111,7 +111,7 @@ public interface SimpleServer {
      * @param name The name of the player.
      * @return The player, if found.
      */
-    default Optional<SimplePlayer> getPlayer(String name) {
+    default Optional<User> getPlayer(String name) {
         return onlinePlayers().stream().filter(player -> player.name().equals(name)).findFirst();
     }
 
@@ -121,7 +121,7 @@ public interface SimpleServer {
      * @param uuid The UUID of the player.
      * @return The player, if found.
      */
-    default Optional<SimplePlayer> getPlayer(UUID uuid) {
+    default Optional<User> getPlayer(UUID uuid) {
         return onlinePlayers().stream().filter(player -> player.uuid().equals(uuid)).findFirst();
     }
 

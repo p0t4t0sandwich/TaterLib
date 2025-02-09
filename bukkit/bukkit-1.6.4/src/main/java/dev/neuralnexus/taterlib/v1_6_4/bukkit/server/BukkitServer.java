@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.server;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
@@ -49,7 +49,7 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return Arrays.stream(Bukkit.getServer().getOnlinePlayers())
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toList());

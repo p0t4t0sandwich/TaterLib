@@ -9,7 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
@@ -41,7 +41,7 @@ public abstract class C2SCustomPayloadMixin {
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         if (this.shadow$getPlayer() == null) return;
         CustomPayloadPacket customPacket = (CustomPayloadPacket) packet;
-        SimplePlayer player = (SimplePlayer) this.shadow$getPlayer();
+        User player = (User) this.shadow$getPlayer();
         NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket, player));
     }
 }

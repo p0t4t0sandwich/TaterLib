@@ -9,7 +9,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.Event;
 
 /** Abstract class for a brigadier command register event. */
@@ -50,7 +50,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The player.
      */
-    SimplePlayer getPlayer(S source);
+    User getPlayer(S source);
 
     /**
      * Check if the source is a player.

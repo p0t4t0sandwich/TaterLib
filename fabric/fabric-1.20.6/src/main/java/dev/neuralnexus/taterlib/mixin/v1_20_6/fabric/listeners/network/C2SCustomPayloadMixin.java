@@ -11,7 +11,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
@@ -48,7 +48,7 @@ public abstract class C2SCustomPayloadMixin {
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     @SuppressWarnings("DataFlowIssue")
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        Optional<SimplePlayer> player =
+        Optional<User> player =
                 ((SimpleServer) this.server).getPlayer(this.shadow$getOwner().getId());
         if (player.isEmpty()) return;
         CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;

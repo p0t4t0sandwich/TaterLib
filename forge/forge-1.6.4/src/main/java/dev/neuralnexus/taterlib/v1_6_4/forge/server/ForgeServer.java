@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.server;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.player.ForgePlayer;
@@ -36,7 +36,7 @@ public class ForgeServer implements Server {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return ((List<EntityPlayer>) server.getConfigurationManager().playerEntityList)
                 .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }

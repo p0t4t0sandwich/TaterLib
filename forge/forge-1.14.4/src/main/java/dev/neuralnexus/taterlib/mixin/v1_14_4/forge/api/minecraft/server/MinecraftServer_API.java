@@ -11,7 +11,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_14_4.forge.bridge.server.players.GameProfileCacheBridge;
@@ -58,9 +58,9 @@ public abstract class MinecraftServer_API implements GameProfileCacheBridge, Sto
         return this.shadow$getServerModName();
     }
 
-    public List<SimplePlayer> server$onlinePlayers() {
+    public List<User> server$onlinePlayers() {
         return this.shadow$getPlayerList().getPlayers().stream()
-                .map(SimplePlayer.class::cast)
+                .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 

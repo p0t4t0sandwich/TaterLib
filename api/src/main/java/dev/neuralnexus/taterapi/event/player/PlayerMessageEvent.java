@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.event.player;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.Cancellable;
 
 import java.util.Set;
@@ -31,12 +31,12 @@ public interface PlayerMessageEvent extends PlayerEvent, Cancellable {
      *
      * @return The recipients
      */
-    Set<SimplePlayer> recipients();
+    Set<User> recipients();
 
     /**
      * Setter for the recipients
      *
      * @param recipients The recipients
      */
-    void setRecipients(Set<SimplePlayer> recipients);
+    void setRecipients(Set<User> recipients);
 }

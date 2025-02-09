@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
@@ -47,7 +47,7 @@ public class VelocityProxyServer
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return this.unwrap().getAllPlayers().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());

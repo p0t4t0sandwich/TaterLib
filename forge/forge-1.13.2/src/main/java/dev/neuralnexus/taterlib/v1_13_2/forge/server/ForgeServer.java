@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.server;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -41,7 +41,7 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return server.getPlayerList().getPlayers().stream()
                 .map(ForgePlayer::new)
                 .collect(Collectors.toList());

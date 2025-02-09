@@ -9,7 +9,7 @@ import dev.neuralnexus.modapi.metadata.Mappings;
 import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.VanillaCustomPacketPayload;
@@ -46,10 +46,10 @@ public abstract class Minecraft_API {
         return brand == null ? "Local" : brand;
     }
 
-    public List<SimplePlayer> server$onlinePlayers() {
+    public List<User> server$onlinePlayers() {
         return this.shadow$getConnection().getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
-                .map(SimplePlayer.class::cast)
+                .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 

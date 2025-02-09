@@ -11,7 +11,7 @@ import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -26,7 +26,7 @@ import java.util.UUID;
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
     @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
-    @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
+    @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
 public abstract class GameProfile_API {
     @Shadow
@@ -46,7 +46,7 @@ public abstract class GameProfile_API {
         //   That way TaterAPIProvider can be used to dispatch the message.
     }
 
-    public String simplePlayer$displayName() {
+    public String user$displayName() {
         return this.cmdSender$name();
     }
 

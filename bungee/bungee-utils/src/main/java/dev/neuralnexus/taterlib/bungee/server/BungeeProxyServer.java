@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.bungee.server;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
@@ -45,10 +45,10 @@ public class BungeeProxyServer implements ProxyServer, Wrapped<net.md_5.bungee.a
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return this.unwrap().getPlayers().stream()
                 .map(WrapperRegistry::wrap)
-                .map(SimplePlayer.class::cast)
+                .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 

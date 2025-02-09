@@ -11,7 +11,7 @@ import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 
 /** The interface for a Player */
-public interface Player extends SimplePlayer, HumanEntity {
+public interface Player extends User, HumanEntity {
     /**
      * Allow the player to fly
      *

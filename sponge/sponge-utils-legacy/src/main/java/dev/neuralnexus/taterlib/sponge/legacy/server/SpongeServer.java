@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.sponge.legacy.server;
 
 import dev.neuralnexus.taterapi.WrapperRegistry;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.sponge.legacy.world.SpongeWorld;
@@ -41,10 +41,10 @@ public class SpongeServer implements Server {
     }
 
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         return server.getOnlinePlayers().stream()
                 .map(WrapperRegistry::wrap)
-                .map(SimplePlayer.class::cast)
+                .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 

@@ -13,7 +13,7 @@ import com.google.common.io.ByteStreams;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.entity.player.Connection;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLib;
 
@@ -242,7 +242,7 @@ public class BungeeCordAPI {
     public void ForwardToPlayer(Connection conn, String subchannel, byte[] message) {
         ByteArrayDataOutput out = ByteStreams.newDataOutput();
         out.writeUTF(FORWARD_TO_PLAYER.type());
-        out.writeUTF(((SimplePlayer) conn).name());
+        out.writeUTF(((User) conn).name());
         out.writeUTF(subchannel);
 
         ByteArrayOutputStream msgbytes = new ByteArrayOutputStream();

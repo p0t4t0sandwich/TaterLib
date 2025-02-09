@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.server;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.player.BukkitPlayer;
@@ -50,7 +50,7 @@ public class BukkitServer implements Server {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<SimplePlayer> onlinePlayers() {
+    public List<User> onlinePlayers() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method onlinePlayersMethod =

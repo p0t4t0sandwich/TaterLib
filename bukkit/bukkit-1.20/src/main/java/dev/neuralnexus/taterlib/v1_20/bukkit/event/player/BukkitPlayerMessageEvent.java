@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20.bukkit.event.player;
 
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_20.bukkit.entity.player.BukkitPlayer;
 
@@ -45,14 +45,14 @@ public class BukkitPlayerMessageEvent extends BukkitPlayerEvent implements Playe
     }
 
     @Override
-    public Set<SimplePlayer> recipients() {
+    public Set<User> recipients() {
         return this.event.getRecipients().stream()
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {
+    public void setRecipients(Set<User> recipients) {
         this.event.getRecipients().clear();
         this.event
                 .getRecipients()

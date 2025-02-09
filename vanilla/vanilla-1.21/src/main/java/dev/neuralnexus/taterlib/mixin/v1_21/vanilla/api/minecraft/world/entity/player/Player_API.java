@@ -16,7 +16,7 @@ import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterlib.v1_21.vanilla.item.inventory.VanillaPlayerInventory;
 
@@ -40,7 +40,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
     @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
     @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
-    @Interface(iface = SimplePlayer.class, prefix = "simplePlayer$", remap = Remap.NONE)
+    @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
 public abstract class Player_API {
     @Shadow
@@ -90,7 +90,7 @@ public abstract class Player_API {
         this.shadow$getAbilities().flying = flying;
     }
 
-    public String simplePlayer$displayName() {
+    public String user$displayName() {
         return this.shadow$getDisplayName().getString();
     }
 }

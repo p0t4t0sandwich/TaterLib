@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.sponge.legacy.event.player;
 
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.sponge.legacy.entity.player.SpongePlayer;
@@ -56,13 +56,13 @@ public class SpongePlayerMessageEvent implements PlayerMessageEvent {
     }
 
     @Override
-    public Set<SimplePlayer> recipients() {
+    public Set<User> recipients() {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }
 
     @Override
-    public void setRecipients(Set<SimplePlayer> recipients) {
+    public void setRecipients(Set<User> recipients) {
         // TODO: Chat recipients module
         throw new VersionFeatureNotSupportedException();
     }

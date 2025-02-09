@@ -10,7 +10,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.taterapi.entity.player.SimplePlayer;
+import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.storage.databases.Database;
 import dev.neuralnexus.taterapi.storage.databases.Filesystem;
 
@@ -175,7 +175,7 @@ public class PlayerDataStore {
      * @param key The key to get.
      * @return The value.
      */
-    public Optional<Object> get(SimplePlayer player, String key) {
+    public Optional<Object> get(User player, String key) {
         return read(player.uuid(), key);
     }
 
@@ -186,7 +186,7 @@ public class PlayerDataStore {
      * @param clazz The class of the object to get.
      * @return The value.
      */
-    public <T> Optional<T> get(SimplePlayer player, String key, Class<T> clazz) {
+    public <T> Optional<T> get(User player, String key, Class<T> clazz) {
         return read(player.uuid(), key, clazz);
     }
 
@@ -197,7 +197,7 @@ public class PlayerDataStore {
      * @param type The type of the object to get.
      * @return The value.
      */
-    public <T> Optional<T> get(SimplePlayer player, String key, Type type) {
+    public <T> Optional<T> get(User player, String key, Type type) {
         return read(player.uuid(), key, type);
     }
 
@@ -207,7 +207,7 @@ public class PlayerDataStore {
      * @param key The key to set.
      * @param value The value to set.
      */
-    public void set(SimplePlayer player, String key, Object value) {
+    public void set(User player, String key, Object value) {
         write(player.uuid(), key, value);
     }
 
@@ -216,7 +216,7 @@ public class PlayerDataStore {
      *
      * @param key The key to delete.
      */
-    public void delete(SimplePlayer player, String key) {
+    public void delete(User player, String key) {
         delete(player.uuid(), key);
     }
 }
