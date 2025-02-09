@@ -7,6 +7,7 @@ package dev.neuralnexus.taterapi.hooks.meta;
 
 import dev.neuralnexus.taterapi.hooks.Hook;
 
+import dev.neuralnexus.taterapi.hooks.PrefixManager;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.cacheddata.CachedMetaData;
@@ -15,6 +16,7 @@ import net.luckperms.api.node.types.MetaNode;
 import net.luckperms.api.node.types.PrefixNode;
 import net.luckperms.api.node.types.SuffixNode;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -22,7 +24,7 @@ import java.util.UUID;
  *
  * @see <a href="https://luckperms.net/">LuckPerms</a>
  */
-public class LuckPermsHook implements Hook {
+public class LuckPermsHook implements Hook, PrefixManager {
     private static LuckPermsHook instance;
     private final LuckPerms luckPerms;
 
@@ -49,58 +51,30 @@ public class LuckPermsHook implements Hook {
     /**
      * Get the CachedMetaData for a player
      *
-     * @param playerUuid The UUID of the player to get the CachedMetaData for
+     * @param id The UUID of the player to get the CachedMetaData for
      * @return The CachedMetaData for the player
      */
-    private CachedMetaData metaData(UUID playerUuid) {
-        if (this.luckPerms == null) return null;
-        User user = luckPerms.getUserManager().getUser(playerUuid);
-        return user != null ? user.getCachedData().getMetaData() : null;
+    private Optional<CachedMetaData> metaData(UUID id) {
+        if (this.luckPerms == null) return Optional.empty();
+        User user = this.luckPerms.getUserManager().getUser(id);
+        return user != null ? Optional.of(user.getCachedData().getMetaData()) : Optional.empty();
     }
 
-    /**
-     * Get the prefix for a player
-     *
-     * @param playerUuid The UUID of the player to get the prefix for
-     * @return The prefix for the player
-     */
-    public String prefix(UUID playerUuid) {
-        CachedMetaData metaData = metaData(playerUuid);
-        return metaData != null ? metaData.getPrefix() : "";
+    @Override
+    public String prefix(UUID id) {
+        return this.metaData(id).map(CachedMetaData::getPrefix).orElse("");
     }
 
-    /**
-     * Set the prefix for a player
-     *
-     * @param playerUuid The UUID of the player to set the prefix for
-     * @param prefix The prefix to set
-     * @param priority The priority of the prefix
-     */
-    public void setPrefix(UUID playerUuid, String prefix, int priority) {
+    @Override
+    public void setPrefix(UUID id, String prefix, int priority) {
         if (this.luckPerms == null) return;
         PrefixNode node = PrefixNode.builder(prefix, priority).build();
-        luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
+        this.luckPerms.getUserManager().modifyUser(id, user -> user.data().add(node));
     }
 
-    /**
-     * Set the prefix for a player
-     *
-     * @param playerUuid The UUID of the player to set the prefix for
-     * @param prefix The prefix to set
-     */
-    public void setPrefix(UUID playerUuid, String prefix) {
-        setPrefix(playerUuid, prefix, 0);
-    }
-
-    /**
-     * Get the suffix for a player
-     *
-     * @param playerUuid The UUID of the player to get the suffix for
-     * @return The suffix for the player
-     */
-    public String suffix(UUID playerUuid) {
-        CachedMetaData metaData = metaData(playerUuid);
-        return metaData != null ? metaData.getSuffix() : "";
+    @Override
+    public String suffix(UUID id) {
+        return this.metaData(id).map(CachedMetaData::getSuffix).orElse("");
     }
 
     /**
@@ -113,17 +87,7 @@ public class LuckPermsHook implements Hook {
     public void setSuffix(UUID playerUuid, String suffix, int priority) {
         if (this.luckPerms == null) return;
         SuffixNode node = SuffixNode.builder(suffix, priority).build();
-        luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
-    }
-
-    /**
-     * Set the suffix for a player
-     *
-     * @param playerUuid The UUID of the player to set the suffix for
-     * @param suffix The suffix to set
-     */
-    public void setSuffix(UUID playerUuid, String suffix) {
-        setSuffix(playerUuid, suffix, 0);
+        this.luckPerms.getUserManager().modifyUser(playerUuid, user -> user.data().add(node));
     }
 
     /**
@@ -133,9 +97,8 @@ public class LuckPermsHook implements Hook {
      * @param key The key of the meta value to get
      * @return The meta value for the player
      */
-    public String meta(UUID playerUuid, String key) {
-        CachedMetaData metaData = metaData(playerUuid);
-        return metaData != null ? metaData.getMetaValue(key) : null;
+    public Optional<String> meta(UUID playerUuid, String key) {
+        return this.metaData(playerUuid).map(metaData -> metaData.getMetaValue(key));
     }
 
     /**
@@ -147,9 +110,9 @@ public class LuckPermsHook implements Hook {
      */
     public void setMeta(UUID playerUuid, String key, String value) {
         if (this.luckPerms == null) return;
-        User user = luckPerms.getUserManager().getUser(playerUuid);
+        User user = this.luckPerms.getUserManager().getUser(playerUuid);
         if (user == null) return;
         user.data().add(MetaNode.builder(key, value).build());
-        luckPerms.getUserManager().saveUser(user);
+        this.luckPerms.getUserManager().saveUser(user);
     }
 }

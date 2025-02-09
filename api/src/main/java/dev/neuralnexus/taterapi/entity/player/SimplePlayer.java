@@ -41,10 +41,10 @@ public interface SimplePlayer extends CommandSender {
      * @return The prefix of the player
      */
     default String prefix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        String prefix = luckPermsHook.prefix(uuid());
-        return prefix != null ? prefix : "";
+        return TaterAPIProvider
+                .getHook("luckperms", LuckPermsHook.class)
+                .map(hook -> hook.prefix(this.uuid()))
+                .orElse("");
     }
 
     /**
@@ -53,7 +53,7 @@ public interface SimplePlayer extends CommandSender {
      * @param prefix The prefix to set
      */
     default void setPrefix(String prefix) {
-        setPrefix(prefix, 0);
+        this.setPrefix(prefix, 0);
     }
 
     /**
@@ -63,9 +63,9 @@ public interface SimplePlayer extends CommandSender {
      * @param priority The priority of the prefix
      */
     default void setPrefix(String prefix, int priority) {
-        if (!TaterAPIProvider.isHooked("luckperms")) return;
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        luckPermsHook.setPrefix(uuid(), prefix, priority);
+        TaterAPIProvider
+                .getHook("luckperms", LuckPermsHook.class)
+                .ifPresent(hook -> hook.setPrefix(this.uuid(), prefix, priority));
     }
 
     /**
@@ -74,10 +74,10 @@ public interface SimplePlayer extends CommandSender {
      * @return The suffix of the player
      */
     default String suffix() {
-        if (!TaterAPIProvider.isHooked("luckperms")) return "";
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        String suffix = luckPermsHook.suffix(uuid());
-        return suffix != null ? suffix : "";
+        return TaterAPIProvider
+                .getHook("luckperms", LuckPermsHook.class)
+                .map(hook -> hook.suffix(this.uuid()))
+                .orElse("");
     }
 
     /**
@@ -86,7 +86,7 @@ public interface SimplePlayer extends CommandSender {
      * @param suffix The suffix to set
      */
     default void setSuffix(String suffix) {
-        setSuffix(suffix, 0);
+        this.setSuffix(suffix, 0);
     }
 
     /**
@@ -96,9 +96,9 @@ public interface SimplePlayer extends CommandSender {
      * @param priority The priority of the suffix
      */
     default void setSuffix(String suffix, int priority) {
-        if (!TaterAPIProvider.isHooked("luckperms")) return;
-        LuckPermsHook luckPermsHook = LuckPermsHook.get();
-        luckPermsHook.setSuffix(uuid(), suffix, priority);
+        TaterAPIProvider
+                .getHook("luckperms", LuckPermsHook.class)
+                .ifPresent(hook -> hook.setSuffix(this.uuid(), suffix, priority));
     }
 
     /**

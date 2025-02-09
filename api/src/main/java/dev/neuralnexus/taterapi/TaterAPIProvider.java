@@ -67,6 +67,20 @@ public class TaterAPIProvider {
     }
 
     /**
+     * Get a hook
+     * @param hookName The name of the hook
+     * @param hookClass The class of the hook
+     * @return The hook
+     * @param <T> The hook type
+     */
+    public static <T> Optional<T> getHook(String hookName, Class<T> hookClass) {
+        return hooks.stream()
+                .filter(hook -> hook.name().equalsIgnoreCase(hookName))
+                .map(hookClass::cast)
+                .findFirst();
+    }
+
+    /**
      * Remove a hook
      *
      * @param hookName The name of the hook

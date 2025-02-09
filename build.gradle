@@ -61,7 +61,7 @@ subprojects {
             target '*.gradle', '.gitattributes', '.gitignore'
 
             trimTrailingWhitespace()
-            indentWithSpaces()
+            leadingTabsToSpaces()
             endWithNewline()
         }
         java {
