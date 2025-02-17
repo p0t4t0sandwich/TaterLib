@@ -44,7 +44,7 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      */
     default boolean is(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
-        return compare(this.version(), version.version()) == 0;
+        return this.compareTo(version) == 0;
     }
 
     /**
@@ -147,7 +147,7 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      */
     default boolean isNewerThan(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
-        return compare(this.version(), version.version()) > 0;
+        return this.compareTo(version) > 0;
     }
 
     /**
@@ -169,7 +169,7 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      */
     default boolean isAtLeast(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
-        return compare(this.version(), version.version()) >= 0;
+        return this.compareTo(version) >= 0;
     }
 
     /**
@@ -191,7 +191,7 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      */
     default boolean isOlderThan(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
-        return compare(this.version(), version.version()) < 0;
+        return this.compareTo(version) < 0;
     }
 
     /**
@@ -213,6 +213,6 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      */
     default boolean isAtMost(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
-        return compare(this.version(), version.version()) <= 0;
+        return this.compareTo(version) <= 0;
     }
 }
