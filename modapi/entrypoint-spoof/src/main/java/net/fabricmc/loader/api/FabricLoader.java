@@ -5,27 +5,25 @@
  */
 package net.fabricmc.loader.api;
 
+import net.fabricmc.api.EnvType;
+
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 
 /** Fake Fabric interface. */
 public interface FabricLoader {
-    static FabricLoader getInstance() {
-        return new FabricLoader() {
-            @Override
-            public Collection<ModContainer> getAllMods() {
-                return Collections.emptyList();
-            }
+    FabricLoader fabricLoader = getInstance();
 
-            @Override
-            public Optional<ModContainer> getModContainer(String id) {
-                return Optional.empty();
-            }
-        };
+    static FabricLoader getInstance() {
+        return fabricLoader;
     }
 
     Collection<ModContainer> getAllMods();
 
     Optional<ModContainer> getModContainer(String id);
+
+    EnvType getEnvironmentType();
+
+    @Deprecated
+    Object getGameInstance();
 }
