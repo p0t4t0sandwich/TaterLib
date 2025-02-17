@@ -34,10 +34,8 @@ public interface MetaAPI {
      *
      * @param platform The platform
      * @throws RedefinePrimaryPlatformException if the primary platform is already defined
-     * @throws NullPointerException if the platform is null
      */
-    void setPrimaryPlatform(@NotNull Platform platform)
-            throws RedefinePrimaryPlatformException, NullPointerException;
+    void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException;
 
     /**
      * Check if a platform is the same as the one identified as the primary platform
@@ -45,10 +43,8 @@ public interface MetaAPI {
      * @param platform The platform to check
      * @return True, if they match, false otherwise
      * @throws NoPrimaryPlatformException if the primary platform is not detected
-     * @throws NullPointerException if the platform is null
      */
-    boolean isPrimaryPlatform(@NotNull Platform platform)
-            throws NoPrimaryPlatformException, NullPointerException;
+    boolean isPrimaryPlatform(@NotNull Platform platform) throws NoPrimaryPlatformException;
 
     /**
      * Get the platform the environment is running, returns the primary platform, or the first
@@ -65,18 +61,16 @@ public interface MetaAPI {
      *
      * @param platform The platform
      * @return True if the platform is present, false otherwise
-     * @throws NullPointerException if the platform is null
      */
-    boolean isPlatformPresent(@NotNull Platform platform) throws NullPointerException;
+    boolean isPlatformPresent(@NotNull Platform platform);
 
     /**
      * Check if any of the given platforms are present
      *
      * @param platform The platforms
      * @return True if any platform is present, false otherwise
-     * @throws NullPointerException if the platform is null
      */
-    default boolean isPlatformPresent(@NotNull Platform... platform) throws NullPointerException {
+    default boolean isPlatformPresent(@NotNull Platform... platform) {
         for (Platform p : platform) {
             if (this.isPlatformPresent(p)) {
                 return true;
@@ -90,9 +84,8 @@ public interface MetaAPI {
      *
      * @param platform The platforms
      * @return True if all platforms are present, false otherwise
-     * @throws NullPointerException if the platform is null
      */
-    default boolean allPlatformsPresent(@NotNull Platform... platform) throws NullPointerException {
+    default boolean allPlatformsPresent(@NotNull Platform... platform) {
         for (Platform p : platform) {
             if (!this.isPlatformPresent(p)) {
                 return false;
@@ -115,9 +108,8 @@ public interface MetaAPI {
      *
      * @param platform The Platform
      * @return The Platform's metadata
-     * @throws NullPointerException if the platform is null
      */
-    Optional<Platform.Meta> meta(@NotNull Platform platform) throws NullPointerException;
+    Optional<Platform.Meta> meta(@NotNull Platform platform);
 
     // ----------------------------- Platform.Meta Getters -----------------------------
 
@@ -135,9 +127,8 @@ public interface MetaAPI {
      *
      * @param nameOrId The name of the plugin or modId of the mod
      * @return True if the mod is loaded, false otherwise
-     * @throws NullPointerException if the nameOrId is null
      */
-    boolean isModLoaded(@NotNull String nameOrId) throws NullPointerException;
+    boolean isModLoaded(@NotNull String nameOrId);
 
     /**
      * Get if a mod is loaded <br>
@@ -147,10 +138,8 @@ public interface MetaAPI {
      * @param platform The platform
      * @param nameOrId The name of the plugin or modId of the mod
      * @return True if the mod is loaded, false otherwise
-     * @throws NullPointerException if the platform or nameOrId is null
      */
-    boolean isModLoaded(@NotNull Platform platform, @NotNull String nameOrId)
-            throws NullPointerException;
+    boolean isModLoaded(@NotNull Platform platform, @NotNull String nameOrId);
 
     /**
      * Get the runtime mappings
@@ -164,9 +153,8 @@ public interface MetaAPI {
      *
      * @param modId The mod id
      * @return A new Logger
-     * @throws NullPointerException if the modId is null
      */
-    Logger logger(@NotNull String modId) throws NullPointerException;
+    Logger logger(@NotNull String modId);
 
     // ----------------------------- Platform Checks -----------------------------
 

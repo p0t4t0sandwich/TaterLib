@@ -25,7 +25,7 @@ import java.util.Objects;
 public record ModInfoImpl(String id, String name, String version, Platform platform)
         implements ModInfo {
     @Override
-    public boolean parseRange(@NotNull String rangeString) throws NullPointerException {
+    public boolean parseRange(@NotNull String rangeString) {
         Objects.requireNonNull(rangeString, "Range string cannot be null");
         @Nullable VersionUtil.Range range = VersionUtil.Range.parse(rangeString);
         if (range == null) {

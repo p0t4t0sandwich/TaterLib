@@ -58,7 +58,8 @@ public class CrossPerms {
 
     /**
      * Initialize CrossPerms
-     *
+     * <br>
+     * TODO: Abstract server getters into MetaAPI
      * @param minecraftServer The Minecraft server instance
      */
     public void onInit(Object minecraftServer) {
@@ -73,6 +74,7 @@ public class CrossPerms {
                 api.registerProvider(new BungeeCordPermissionsProvider());
             } else if (meta.isPlatformPresent(Platforms.VELOCITY)) {
                 api.registerProvider(new VelocityPermissionsProvider());
+                // TODO: Alter wrapper class to have a @Inject (or add it as part of MetaAPI)
                 VelocityMeta.setProxyServer((ProxyServer) minecraftServer);
             }
             return;

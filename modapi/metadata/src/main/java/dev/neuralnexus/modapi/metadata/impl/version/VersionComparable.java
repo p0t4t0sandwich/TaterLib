@@ -30,9 +30,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the versions are equal
-     * @throws NullPointerException if version is null
      */
-    default boolean is(@NotNull String version) throws NullPointerException {
+    default boolean is(@NotNull String version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version) == 0;
     }
@@ -42,9 +41,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the versions are equal
-     * @throws NullPointerException if version is null
      */
-    default boolean is(@NotNull T version) throws NullPointerException {
+    default boolean is(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version.version()) == 0;
     }
@@ -57,14 +55,12 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      * @param endInclusive Whether the end version is inclusive
      * @param end The end version
      * @return True if the version is in the range
-     * @throws NullPointerException if start or end is null
      */
     default boolean isInRange(
             boolean startInclusive,
             @NotNull String start,
             boolean endInclusive,
-            @NotNull String end)
-            throws NullPointerException {
+            @NotNull String end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
         return (startInclusive
@@ -83,11 +79,9 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      * @param endInclusive Whether the end version is inclusive
      * @param end The end version
      * @return True if the version is in the range
-     * @throws NullPointerException if start or end is null
      */
     default boolean isInRange(
-            boolean startInclusive, @NotNull T start, boolean endInclusive, @NotNull T end)
-            throws NullPointerException {
+            boolean startInclusive, @NotNull T start, boolean endInclusive, @NotNull T end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
         return (startInclusive
@@ -104,10 +98,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      * @param start The start version
      * @param end The end version
      * @return True if the version is in the range
-     * @throws NullPointerException if start or end is null
      */
-    default boolean isInRange(@NotNull String start, @NotNull String end)
-            throws NullPointerException {
+    default boolean isInRange(@NotNull String start, @NotNull String end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
         return compare(this.version(), start) >= 0 && compare(this.version(), end) <= 0;
@@ -119,9 +111,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      * @param start The start version
      * @param end The end version
      * @return True if the version is in the range
-     * @throws NullPointerException if start or end is null
      */
-    default boolean isInRange(@NotNull T start, @NotNull T end) throws NullPointerException {
+    default boolean isInRange(@NotNull T start, @NotNull T end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
         return compare(this.version(), start.version()) >= 0
@@ -134,18 +125,16 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param rangeString The range to check
      * @return If The version of Minecraft the server is running is within the defined range
-     * @throws NullPointerException If the range string is null
      */
-    boolean parseRange(@NotNull String rangeString) throws NullPointerException;
+    boolean parseRange(@NotNull String rangeString);
 
     /**
      * Check if the version is newer than another version
      *
      * @param version The version to compare
      * @return True if the version is newer
-     * @throws NullPointerException if version is null
      */
-    default boolean isNewerThan(@NotNull String version) throws NullPointerException {
+    default boolean isNewerThan(@NotNull String version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version) > 0;
     }
@@ -155,9 +144,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is newer
-     * @throws NullPointerException if version is null
      */
-    default boolean isNewerThan(@NotNull T version) throws NullPointerException {
+    default boolean isNewerThan(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version.version()) > 0;
     }
@@ -167,9 +155,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is at least
-     * @throws NullPointerException if version is null
      */
-    default boolean isAtLeast(@NotNull String version) throws NullPointerException {
+    default boolean isAtLeast(@NotNull String version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version) >= 0;
     }
@@ -179,9 +166,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is at least
-     * @throws NullPointerException if version is null
      */
-    default boolean isAtLeast(@NotNull T version) throws NullPointerException {
+    default boolean isAtLeast(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version.version()) >= 0;
     }
@@ -191,9 +177,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is older
-     * @throws NullPointerException if version is null
      */
-    default boolean isOlderThan(@NotNull String version) throws NullPointerException {
+    default boolean isOlderThan(@NotNull String version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version) < 0;
     }
@@ -203,9 +188,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is older
-     * @throws NullPointerException if version is null
      */
-    default boolean isOlderThan(@NotNull T version) throws NullPointerException {
+    default boolean isOlderThan(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version.version()) < 0;
     }
@@ -215,9 +199,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is at most
-     * @throws NullPointerException if version is null
      */
-    default boolean isAtMost(@NotNull String version) throws NullPointerException {
+    default boolean isAtMost(@NotNull String version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version) <= 0;
     }
@@ -227,9 +210,8 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
      *
      * @param version The version to compare
      * @return True if the version is at most
-     * @throws NullPointerException if version is null
      */
-    default boolean isAtMost(@NotNull T version) throws NullPointerException {
+    default boolean isAtMost(@NotNull T version) {
         Objects.requireNonNull(version, "version cannot be null");
         return compare(this.version(), version.version()) <= 0;
     }

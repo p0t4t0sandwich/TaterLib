@@ -32,10 +32,8 @@ public class VersionUtil {
          *
          * @param rangeString The range string
          * @return The parsed range
-         * @throws NullPointerException if rangeString is null
          */
-        public static @Nullable VersionUtil.Range parse(@NotNull String rangeString)
-                throws NullPointerException {
+        public static @Nullable VersionUtil.Range parse(@NotNull String rangeString) {
             Objects.requireNonNull(rangeString, "Range string cannot be null");
             rangeString = rangeString.trim();
             boolean startInclusive;
@@ -79,9 +77,8 @@ public class VersionUtil {
          *
          * @param version The version to check
          * @return True if the version is in the range
-         * @throws NullPointerException if version is null
          */
-        public boolean resolve(@NotNull String version) throws NullPointerException {
+        public boolean resolve(@NotNull String version) {
             Objects.requireNonNull(version, "version cannot be null");
             Objects.requireNonNull(start, "start cannot be null");
             Objects.requireNonNull(end, "end cannot be null");

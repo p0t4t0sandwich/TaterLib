@@ -5,18 +5,9 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
-import static dev.neuralnexus.modapi.metadata.impl.util.FlexVerComparator.compare;
-
 import dev.neuralnexus.modapi.metadata.impl.version.VersionComparable;
 
-import org.jetbrains.annotations.NotNull;
-
 public interface ModInfo extends VersionComparable<ModInfo> {
-    @Override
-    default int compareTo(@NotNull ModInfo o) {
-        return compare(this.version(), o.version());
-    }
-
     /**
      * Get the mod id
      *

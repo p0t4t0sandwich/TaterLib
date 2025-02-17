@@ -7,13 +7,8 @@ package dev.neuralnexus.modapi.metadata.impl.version;
 
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 
-public final class MinecraftVersionImpl implements MinecraftVersion {
-    private final String version;
-
-    private MinecraftVersionImpl(String version) {
-        this.version = version;
-    }
-
+/** Implementation of {@link MinecraftVersion} */
+public record MinecraftVersionImpl(String version) implements MinecraftVersion {
     public static MinecraftVersionImpl of(String version) {
         return new MinecraftVersionImpl(version);
     }

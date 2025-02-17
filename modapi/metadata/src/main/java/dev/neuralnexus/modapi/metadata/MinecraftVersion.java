@@ -17,11 +17,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 public interface MinecraftVersion extends VersionComparable<MinecraftVersion> {
-    @Override
-    default String version() {
-        return this.toString();
-    }
-
     /**
      * Create a MinecraftVersion from a string.
      *
@@ -55,7 +50,7 @@ public interface MinecraftVersion extends VersionComparable<MinecraftVersion> {
     }
 
     @Override
-    default boolean parseRange(@NotNull String rangeString) throws NullPointerException {
+    default boolean parseRange(@NotNull String rangeString) {
         Objects.requireNonNull(rangeString, "Range string cannot be null");
         @Nullable VersionUtil.Range range = VersionUtil.Range.parse(rangeString);
         if (range == null) {
