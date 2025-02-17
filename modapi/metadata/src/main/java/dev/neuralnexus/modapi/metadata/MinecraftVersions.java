@@ -33,14 +33,14 @@ public final class MinecraftVersions
         MinecraftVersion ver = MinecraftVersions.UNKNOWN;
         if (!version.toLowerCase().contains("a1") && !version.toLowerCase().contains("b1")) {
             for (MinecraftVersion v : Cache.reversedVersions()) {
-                if (version.contains(v.asString())) {
+                if (version.contains(v.toString())) {
                     ver = v;
                     break;
                 }
             }
         } else {
             for (MinecraftVersion v : Cache.versions()) {
-                if (version.contains(v.asString())) {
+                if (version.contains(v.toString())) {
                     ver = v;
                     break;
                 }

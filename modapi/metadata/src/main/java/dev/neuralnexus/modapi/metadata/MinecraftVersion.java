@@ -5,19 +5,17 @@
  */
 package dev.neuralnexus.modapi.metadata;
 
+import static dev.neuralnexus.modapi.metadata.impl.version.FlexVerComparator.compare;
+
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MetaStore;
 import dev.neuralnexus.modapi.metadata.impl.version.meta.MinecraftVersionMetaImpl;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 public interface MinecraftVersion {
-    Map<String, Integer> OrdinalCache = new HashMap<>();
-
     /**
      * Create a MinecraftVersion from a string.
      *
@@ -29,13 +27,6 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get the version of Minecraft the server is running.
-     *
-     * @return The version
-     */
-    String asString();
-
-    /**
      * Get the "path" string version of the string representation <br>
      * Not that useful in practice, used for TaterLoader's reflection util.
      *
@@ -43,7 +34,7 @@ public interface MinecraftVersion {
      */
     @ApiStatus.Internal
     default String getPathString() {
-        return "v" + this.asString().replace(".", "_");
+        return "v" + this.toString().replace(".", "_");
     }
 
     /**
@@ -58,35 +49,14 @@ public interface MinecraftVersion {
     }
 
     /**
-     * Get the ordinal of The version in the list of versions. (Cursed alternative to enums)
-     *
-     * @return The ordinal
-     */
-    default int ord() {
-        String ver = this.asString();
-        if (OrdinalCache.containsKey(ver)) {
-            return OrdinalCache.get(ver);
-        }
-        int ord = -1;
-        for (MinecraftVersion v : MinecraftVersions.Cache.versions()) {
-            ord++;
-            if (v.asString().equals(ver)) {
-                return ord;
-            }
-        }
-        OrdinalCache.put(ver, ord);
-        return ord;
-    }
-
-    /**
      * Get if The version of Minecraft the server is running is equal to the specified version.
      *
      * @param version The version to check
      * @return If The version of Minecraft the server is running is equal to the specified version
      */
-    default boolean is(String version) throws NullPointerException {
+    default boolean is(@NotNull String version) throws NullPointerException {
         Objects.requireNonNull(version, "Version cannot be null");
-        return this.asString().equals(version);
+        return compare(this.toString(), version) == 0;
     }
 
     /**
@@ -97,7 +67,7 @@ public interface MinecraftVersion {
      */
     default boolean is(@NotNull MinecraftVersion version) throws NullPointerException {
         Objects.requireNonNull(version, "Version cannot be null");
-        return this.asString().equals(version.asString());
+        return this.is(version.toString());
     }
 
     /**
@@ -107,21 +77,28 @@ public interface MinecraftVersion {
      * @param start The start of the range
      * @param endInclusive The end of the range
      * @param end The end of the range
+     * @return If The version of Minecraft the server is running is within the defined range
+     * @throws NullPointerException If the start or end version is null
      */
     default boolean isInRange(
             boolean startInclusive,
-            MinecraftVersion start,
+            @NotNull MinecraftVersion start,
             boolean endInclusive,
-            MinecraftVersion end) {
+            @NotNull MinecraftVersion end)
+            throws NullPointerException {
+        Objects.requireNonNull(start, "Start version cannot be null");
+        Objects.requireNonNull(end, "End version cannot be null");
         MinecraftVersion[] VERSIONS = MinecraftVersions.Cache.versions();
-        if (start == null) {
+        if (start == MinecraftVersions.UNKNOWN) {
             start = VERSIONS[0];
         }
-        if (end == null) {
+        if (end == MinecraftVersions.UNKNOWN) {
             end = VERSIONS[VERSIONS.length - 1];
         }
-        return (startInclusive ? this.ord() >= start.ord() : this.ord() > start.ord())
-                && (endInclusive ? this.ord() <= end.ord() : this.ord() < end.ord());
+        int compStart = compare(this.toString(), start.toString());
+        int compEnd = compare(this.toString(), end.toString());
+        return (startInclusive ? compStart >= 0 : compStart > 0)
+                && (endInclusive ? compEnd <= 0 : compEnd < 0);
     }
 
     /**
@@ -130,8 +107,11 @@ public interface MinecraftVersion {
      *
      * @param start The start of the range
      * @param end The end of the range
+     * @return If The version of Minecraft the server is running is within the defined range
+     * @throws NullPointerException If the start or end version is null
      */
-    default boolean isInRange(MinecraftVersion start, MinecraftVersion end) {
+    default boolean isInRange(@NotNull MinecraftVersion start, @NotNull MinecraftVersion end)
+            throws NullPointerException {
         return this.isInRange(true, start, true, end);
     }
 
@@ -141,8 +121,10 @@ public interface MinecraftVersion {
      *
      * @param rangeString The range to check
      * @return If The version of Minecraft the server is running is within the defined range
+     * @throws NullPointerException If the range string is null
      */
-    default boolean parseRange(String rangeString) {
+    default boolean parseRange(@NotNull String rangeString) throws NullPointerException {
+        Objects.requireNonNull(rangeString, "Range string cannot be null");
         rangeString = rangeString.trim();
         boolean startInclusive;
         boolean endInclusive;
@@ -163,12 +145,12 @@ public interface MinecraftVersion {
         rangeString = rangeString.substring(1, rangeString.length() - 1);
         MinecraftVersion start;
         MinecraftVersion end;
-        if (rangeString.charAt(0) == ',') {
-            start = null;
+        if (rangeString.startsWith(",")) {
+            start = MinecraftVersions.UNKNOWN;
             end = MinecraftVersions.of(rangeString.substring(1));
-        } else if (rangeString.charAt(rangeString.length() - 1) == ',') {
+        } else if (rangeString.endsWith(",")) {
             start = MinecraftVersions.of(rangeString.substring(0, rangeString.length() - 1));
-            end = null;
+            end = MinecraftVersions.UNKNOWN;
         } else {
             String[] range = rangeString.split(",");
             start = MinecraftVersions.of(range[0]);
@@ -180,95 +162,108 @@ public interface MinecraftVersion {
     /**
      * Get if The version of Minecraft the server is running is older than the specified version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is older.
+     * @param version The version to check
+     * @return If the Minecraft version is older
+     * @throws NullPointerException If the version is null
      */
-    default boolean isNewerThan(MinecraftVersion version) {
-        return this.ord() > version.ord();
+    default boolean isNewerThan(@NotNull String version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return compare(this.toString(), version) > 0;
     }
 
     /**
      * Get if The version of Minecraft the server is running is older than the specified version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is older.
+     * @param version The version to check
+     * @return If the Minecraft version is older
+     * @throws NullPointerException If the version is null
      */
-    default boolean isNewerThan(String version) {
-        return this.ord() > MinecraftVersions.of(version).ord();
+    default boolean isNewerThan(@NotNull MinecraftVersion version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return this.isNewerThan(version.toString());
     }
 
     /**
      * Get if The version of Minecraft the server is running is equal to or newer than the specified
      * version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or newer.
+     * @param version The version to check
+     * @return If the Minecraft version is equal to or newer
+     * @throws NullPointerException If the version is null
      */
-    default boolean isAtLeast(MinecraftVersion version) {
-        return this.ord() >= version.ord();
+    default boolean isAtLeast(@NotNull String version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return compare(this.toString(), version) >= 0;
     }
 
     /**
      * Get if The version of Minecraft the server is running is equal to or newer than the specified
      * version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or newer.
+     * @param version The version to check
+     * @return If the Minecraft version is equal to or newer
+     * @throws NullPointerException If the version is null
      */
-    default boolean isAtLeast(String version) {
-        return this.ord() >= MinecraftVersions.of(version).ord();
+    default boolean isAtLeast(@NotNull MinecraftVersion version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return this.isAtLeast(version.toString());
     }
 
     /**
      * Get if The version of Minecraft the server is running is older than the specified version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is newer.
+     * @param version The version to check
+     * @return If the Minecraft version is newer
+     * @throws NullPointerException If the version is null
      */
-    default boolean isOlderThan(MinecraftVersion version) {
-        return this.ord() < version.ord();
+    default boolean isOlderThan(@NotNull String version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return compare(this.toString(), version) < 0;
     }
 
     /**
      * Get if The version of Minecraft the server is running is older than the specified version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is newer.
+     * @param version The version to check
+     * @return If the Minecraft version is newer
+     * @throws NullPointerException If the version is null
      */
-    default boolean isOlderThan(String version) {
-        return this.ord() < MinecraftVersions.of(version).ord();
+    default boolean isOlderThan(@NotNull MinecraftVersion version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return this.isOlderThan(version.toString());
     }
 
     /**
      * Get if The version of Minecraft the server is running is equal to or older than the specified
      * version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or older.
+     * @param version The version to check
+     * @return If the Minecraft version is equal to or older
+     * @throws NullPointerException If the version is null
      */
-    default boolean isAtMost(MinecraftVersion version) {
-        return this.ord() <= version.ord();
+    default boolean isAtMost(@NotNull String version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return compare(this.toString(), version) <= 0;
     }
 
     /**
      * Get if The version of Minecraft the server is running is equal to or older than the specified
      * version.
      *
-     * @param version The version to check.
-     * @return If the Minecraft version is equal to or older.
+     * @param version The version to check
+     * @return If the Minecraft version is equal to or older
+     * @throws NullPointerException If the version is null
      */
-    default boolean isAtMost(String version) {
-        return this.ord() <= MinecraftVersions.of(version).ord();
+    default boolean isAtMost(@NotNull MinecraftVersion version) throws NullPointerException {
+        Objects.requireNonNull(version, "Version cannot be null");
+        return this.isAtMost(version.toString());
     }
 
     /** Represents the metadata for a Minecraft version */
     @ApiStatus.Experimental
     interface Meta {
-        int UNKNOWN_PROTOCOL = 0;
-        ProtocolType UNKNOWN_PROTOCOL_TYPE = ProtocolType.UNKNOWN;
         Meta UNKNOWN =
-                new MinecraftVersionMetaImpl(
-                        UNKNOWN_PROTOCOL, UNKNOWN_PROTOCOL_TYPE, Type.UNKNOWN, 0, 0, 0);
+                new MinecraftVersionMetaImpl(new Integer[] {0x0, 0b00, 0b000, 0x0, 0x0, 0x0});
 
         /**
          * Get the protocol version of the Minecraft server. 0 if unknown

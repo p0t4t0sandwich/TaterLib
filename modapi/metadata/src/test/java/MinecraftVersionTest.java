@@ -36,10 +36,12 @@ public class MinecraftVersionTest {
                         false, MinecraftVersions.V17, true, MinecraftVersions.V20),
                 MinecraftVersions.V18.parseRange(REGULAR_RANGE_STRING));
         assertEquals(
-                MinecraftVersions.V18.isInRange(false, null, true, MinecraftVersions.V20),
+                MinecraftVersions.V18.isInRange(
+                        false, MinecraftVersions.UNKNOWN, true, MinecraftVersions.V20),
                 MinecraftVersions.V18.parseRange(OPEN_START_RANGE_STRING));
         assertEquals(
-                MinecraftVersions.V18.isInRange(true, MinecraftVersions.V17, false, null),
+                MinecraftVersions.V18.isInRange(
+                        true, MinecraftVersions.V17, false, MinecraftVersions.UNKNOWN),
                 MinecraftVersions.V18.parseRange(OPEN_END_RANGE_STRING));
         assertTrue(MinecraftVersions.V16_5.parseRange(REGULAR_VERSION_STRING));
     }

@@ -6,7 +6,6 @@
 package dev.neuralnexus.modapi.metadata.impl.version.meta;
 
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.ProtocolType;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -16,7 +15,6 @@ public final class MetaStore {
     // readable,version,protocol_version,protocol_type,release_type,
     // data_version,resource_pack_format,data_pack_format,notes
 
-    private static final Integer[] UNKNOWN_META = new Integer[] {0x0, 0b00, 0b000, 0x0, 0x0, 0x0};
     private static final Map<String, Integer[]> dataCache = new ConcurrentHashMap<>();
 
     static {
@@ -1034,16 +1032,9 @@ public final class MetaStore {
      * @return The meta
      */
     public static MinecraftVersion.Meta getMeta(MinecraftVersion version) {
-        Integer[] data = dataCache.get(version.asString());
+        Integer[] data = dataCache.get(version.toString());
         if (data != null) {
-            int protocol = data[0];
-            ProtocolType protocolType = ProtocolType.fromInt(data[1]);
-            MinecraftVersion.Type type = MinecraftVersion.Type.fromInt(data[2]);
-            int resourcePackFormat = data[3];
-            int dataPackFormat = data[4];
-            int dataVersion = data[5];
-            return new MinecraftVersionMetaImpl(
-                    protocol, protocolType, type, resourcePackFormat, dataPackFormat, dataVersion);
+            return new MinecraftVersionMetaImpl(data);
         }
         return MinecraftVersion.Meta.UNKNOWN;
     }

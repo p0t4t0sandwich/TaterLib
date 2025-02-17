@@ -30,12 +30,12 @@ public final class VanillaMeta implements Platform.Meta {
 
     @Override
     public String loaderVersion() {
-        return minecraftVersion().asString();
+        return minecraftVersion().toString();
     }
 
     @Override
     public String apiVersion() {
-        return minecraftVersion().asString();
+        return minecraftVersion().toString();
     }
 
     @Override

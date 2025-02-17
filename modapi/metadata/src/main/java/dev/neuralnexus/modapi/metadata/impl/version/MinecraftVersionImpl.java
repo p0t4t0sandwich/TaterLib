@@ -19,11 +19,6 @@ public final class MinecraftVersionImpl implements MinecraftVersion {
     }
 
     @Override
-    public String asString() {
-        return this.version;
-    }
-
-    @Override
     public String toString() {
         return this.version;
     }

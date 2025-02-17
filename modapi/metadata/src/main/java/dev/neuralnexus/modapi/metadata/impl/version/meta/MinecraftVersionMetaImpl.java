@@ -8,11 +8,40 @@ package dev.neuralnexus.modapi.metadata.impl.version.meta;
 import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ProtocolType;
 
-public record MinecraftVersionMetaImpl(
-        int protocol,
-        ProtocolType protocolType,
-        MinecraftVersion.Type type,
-        int resourcePackFormat,
-        int dataPackFormat,
-        int dataVersion)
-        implements MinecraftVersion.Meta {}
+public final class MinecraftVersionMetaImpl implements MinecraftVersion.Meta {
+    private final Integer[] data;
+
+    public MinecraftVersionMetaImpl(Integer[] data) {
+        this.data = data;
+    }
+
+    @Override
+    public int protocol() {
+        return data[0];
+    }
+
+    @Override
+    public ProtocolType protocolType() {
+        return ProtocolType.fromInt(data[1]);
+    }
+
+    @Override
+    public MinecraftVersion.Type type() {
+        return MinecraftVersion.Type.fromInt(data[2]);
+    }
+
+    @Override
+    public int dataVersion() {
+        return data[3];
+    }
+
+    @Override
+    public int resourcePackFormat() {
+        return data[4];
+    }
+
+    @Override
+    public int dataPackFormat() {
+        return data[5];
+    }
+}
