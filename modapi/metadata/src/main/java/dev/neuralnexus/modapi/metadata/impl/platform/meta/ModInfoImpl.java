@@ -7,6 +7,12 @@ package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
+import dev.neuralnexus.modapi.metadata.impl.util.VersionUtil;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.Objects;
 
 /**
  * Stores information about a mod
@@ -17,4 +23,16 @@ import dev.neuralnexus.modapi.metadata.Platform;
  * @param platform The platform the mod is running on
  */
 public record ModInfoImpl(String id, String name, String version, Platform platform)
-        implements ModInfo {}
+        implements ModInfo {
+    @Override
+    public boolean parseRange(@NotNull String rangeString) throws NullPointerException {
+        Objects.requireNonNull(rangeString, "Range string cannot be null");
+        @Nullable VersionUtil.Range range = VersionUtil.Range.parse(rangeString);
+        if (range == null) {
+            return this.is(rangeString);
+        }
+        String start = range.start() == null ? "0.0.0" : range.start();
+        String end = range.end() == null ? "9999.9999.9999" : range.end();
+        return this.isInRange(range.startInclusive(), start, range.endInclusive(), end);
+    }
+}
