@@ -1,4 +1,5 @@
 plugins {
+    id("java-library")
     id("maven-publish")
 }
 
@@ -8,8 +9,8 @@ base {
 
 dependencies {
     // Configurate
-    implementation("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT")
-    implementation("io.leangen.geantyref:geantyref:1.3.16")
+    api("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT")
+    api("io.leangen.geantyref:geantyref:1.3.16")
 
     // bStats
     implementation("org.bstats:bstats-base:3.0.2")
@@ -19,14 +20,14 @@ dependencies {
     implementation("org.bstats:bstats-velocity:3.0.2")
 
     // Gson
-    implementation("com.google.code.gson:gson:2.10.1")
+    api("com.google.code.gson:gson:2.10.1")
 
     // MySQL
     implementation("com.zaxxer:HikariCP:4.0.3")
     implementation("com.mysql:mysql-connector-j:8.3.0")
 
     // Brigadier
-    implementation(libs.brigadier)
+    api(libs.brigadier)
 
     // Mixin
     implementation(libs.mixin)
@@ -38,10 +39,10 @@ dependencies {
 
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
-    implementation(variantOf(libs.modapi.crossperms) {
+    api(variantOf(libs.modapi.crossperms) {
         classifier("downgraded-8")
     })
-    implementation(variantOf(libs.modapi.metadata) {
+    api(variantOf(libs.modapi.metadata) {
         classifier("downgraded-8")
     })
 }
@@ -76,6 +77,7 @@ publishing {
 
     publications {
         create<MavenPublication>("maven") {
+            artifactId = "taterapi"
             from(components["java"])
         }
     }
