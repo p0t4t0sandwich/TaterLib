@@ -41,8 +41,7 @@ public interface User extends CommandSender {
      * @return The prefix of the player
      */
     default String prefix() {
-        return TaterAPIProvider
-                .getHook("luckperms", LuckPermsHook.class)
+        return TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
                 .map(hook -> hook.prefix(this.uuid()))
                 .orElse("");
     }
@@ -63,8 +62,7 @@ public interface User extends CommandSender {
      * @param priority The priority of the prefix
      */
     default void setPrefix(String prefix, int priority) {
-        TaterAPIProvider
-                .getHook("luckperms", LuckPermsHook.class)
+        TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
                 .ifPresent(hook -> hook.setPrefix(this.uuid(), prefix, priority));
     }
 
@@ -74,8 +72,7 @@ public interface User extends CommandSender {
      * @return The suffix of the player
      */
     default String suffix() {
-        return TaterAPIProvider
-                .getHook("luckperms", LuckPermsHook.class)
+        return TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
                 .map(hook -> hook.suffix(this.uuid()))
                 .orElse("");
     }
@@ -96,8 +93,7 @@ public interface User extends CommandSender {
      * @param priority The priority of the suffix
      */
     default void setSuffix(String suffix, int priority) {
-        TaterAPIProvider
-                .getHook("luckperms", LuckPermsHook.class)
+        TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
                 .ifPresent(hook -> hook.setSuffix(this.uuid(), suffix, priority));
     }
 

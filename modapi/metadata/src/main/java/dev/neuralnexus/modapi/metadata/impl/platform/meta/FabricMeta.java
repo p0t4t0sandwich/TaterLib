@@ -16,6 +16,8 @@ import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.server.MinecraftServer;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,8 +26,19 @@ import java.util.stream.Collectors;
 /** Stores data about the Fabric platform */
 public final class FabricMeta implements Platform.Meta {
     @Override
+    public @NotNull Object server() {
+        return this.minecraftServer();
+    }
+
+    @Override
+    public @NotNull MinecraftServer minecraftServer() {
+        // TODO: Client-only check
+        return (MinecraftServer) FabricLoader.getInstance().getGameInstance();
+    }
+
+    @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(
                 FabricLoader.getInstance()
                         .getModContainer("minecraft")
@@ -36,7 +49,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         Optional<ModContainer> container =
                 FabricLoader.getInstance().getModContainer("fabric-loader");
         if (container.isPresent()) {
@@ -47,7 +60,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         Optional<ModContainer> container =
                 FabricLoader.getInstance().getModContainer("fabric-api-base");
         if (container.isPresent()) {
@@ -58,7 +71,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return FabricLoader.getInstance().getAllMods().stream()
                 .map(
                         modContainer ->
@@ -71,7 +84,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18)) {
             return new ApacheLogger(modId);

@@ -12,16 +12,42 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
+import net.minecraft.server.MinecraftServer;
+import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the CPW Loader platform */
 public class CPWLoaderMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object server() {
+        return this.minecraft();
+    }
+
+    @Override
+    public @NotNull Object client() {
+        return null;
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        // TODO: Research to find a more friendly way to get the server
+        // TODO: Client-only check
+        return MinecraftServer.getServer();
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return null;
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {
             // Reflect to get cpw.mods.fml.common.Loader.MC_VERSION
@@ -32,17 +58,17 @@ public class CPWLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return ForgeVersion_7_12.forgeVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return ForgeVersion_7_12.forgeVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return Loader.instance().getModList().stream()
                 .map(
                         modContainer ->
@@ -55,7 +81,7 @@ public class CPWLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new ApacheLogger(modId);
     }
 }

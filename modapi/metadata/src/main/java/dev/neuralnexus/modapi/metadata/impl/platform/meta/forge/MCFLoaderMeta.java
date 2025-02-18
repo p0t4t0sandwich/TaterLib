@@ -13,7 +13,9 @@ import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.Loader;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +23,17 @@ import java.util.stream.Collectors;
 /** Stores data about the MCF Loader platform */
 public class MCFLoaderMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object server() {
+        return this.minecraftServer();
+    }
+
+    @Override
+    public @NotNull MinecraftServer minecraftServer() {
+        return ;
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {
             // Reflect to get net.minecraftforge.fml.common.Loader.MC_VERSION
@@ -32,17 +44,17 @@ public class MCFLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return ForgeVersion_7_12.forgeVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return ForgeVersion_7_12.forgeVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return Loader.instance().getModList().stream()
                 .map(
                         modContainer ->
@@ -55,7 +67,7 @@ public class MCFLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new ApacheLogger(modId);
     }
 }

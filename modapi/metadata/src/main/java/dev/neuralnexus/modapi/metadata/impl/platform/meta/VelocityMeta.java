@@ -7,6 +7,7 @@ package dev.neuralnexus.modapi.metadata.impl.platform.meta;
 
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getPluginsFolder;
 
+import com.google.inject.Inject;
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.api.proxy.ProxyServer;
 
@@ -15,9 +16,11 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -25,35 +28,45 @@ import java.util.stream.Collectors;
 
 /** Stores data about the Velocity platform. */
 public final class VelocityMeta implements Platform.Meta {
-    private static ProxyServer proxyServer;
+    @Inject private ProxyServer proxyServer;
 
-    @ApiStatus.Internal
-    public static void setProxyServer(ProxyServer proxyServer) {
-        VelocityMeta.proxyServer = proxyServer;
-    }
-
-    @ApiStatus.Internal
-    public static ProxyServer proxyServer() {
+    @Override
+    public @NotNull Object server() {
         return proxyServer;
     }
 
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object client() {
+        throw new UnsupportedOperationException("Velocity does not run on the client");
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        throw new UnsupportedOperationException("Velocity does not have a MinecraftServer");
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return Side.PROXY;
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(ProtocolVersion.MAXIMUM_VERSION.toString());
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return proxyServer.getVersion().getVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return proxyServer.getVersion().getVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return proxyServer.getPluginManager().getPlugins().stream()
                 .map(
                         plugin ->
@@ -66,17 +79,17 @@ public final class VelocityMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new Slf4jLogger(modId);
     }
 
     @Override
-    public Path modFolder() {
+    public @NotNull Path modFolder() {
         return getPluginsFolder();
     }
 
     @Override
-    public Path configFolder() {
+    public @NotNull Path configFolder() {
         return getPluginsFolder();
     }
 }

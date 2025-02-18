@@ -13,6 +13,7 @@ import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.plugin.PluginContainer;
 
@@ -23,12 +24,12 @@ import java.util.stream.Collectors;
 /** Stores data about the Sponge platform */
 public final class SpongeLegacyMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(Sponge.getPlatform().getMinecraftVersion().getName());
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         Optional<PluginContainer> container = Sponge.getPluginManager().getPlugin("sponge");
         if (container.isPresent()) {
             return container.get().getVersion().toString();
@@ -38,7 +39,7 @@ public final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         Optional<PluginContainer> container = Sponge.getPluginManager().getPlugin("sponge-api");
         if (container.isPresent()) {
             return container.get().getVersion().toString();
@@ -48,7 +49,7 @@ public final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return Sponge.getPluginManager().getPlugins().stream()
                 .map(
                         pluginContainer ->
@@ -61,7 +62,7 @@ public final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new Slf4jLogger(modId);
     }
 }

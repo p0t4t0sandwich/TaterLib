@@ -14,11 +14,14 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
 import org.bukkit.Bukkit;
+import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +30,33 @@ import java.util.stream.Collectors;
 /** Stores data about the Bukkit platform */
 public final class BukkitMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object server() {
+        return Bukkit.getServer();
+    }
+
+    @Override
+    public @NotNull Object client() {
+        throw new UnsupportedOperationException("Bukkit does not run on the client");
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        try {
+            String clazz = Bukkit.getServer().getClass().getPackage().getName() + ".CraftServer";
+            Class<?> craftServer = Class.forName(clazz);
+            return craftServer.getDeclaredMethod("getServer").invoke(Bukkit.getServer());
+        } catch (ClassNotFoundException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return Side.SERVER;
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         String version = Bukkit.getVersion();
         if (MetaAPI.instance().isPlatformPresent(Platforms.PAPER)
                 && checkForMethod("org.bukkit.Bukkit", "getMinecraftVersion")) {
@@ -37,17 +66,17 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return Bukkit.getBukkitVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return Bukkit.getBukkitVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return Arrays.stream(Bukkit.getServer().getPluginManager().getPlugins())
                 .map(
                         plugin ->
@@ -60,17 +89,17 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new JavaLogger(modId, Bukkit.getLogger());
     }
 
     @Override
-    public Path modFolder() {
+    public @NotNull Path modFolder() {
         return getPluginsFolder();
     }
 
     @Override
-    public Path configFolder() {
+    public @NotNull Path configFolder() {
         return getPluginsFolder();
     }
 }

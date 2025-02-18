@@ -8,10 +8,13 @@ package dev.neuralnexus.modapi.metadata;
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getConfigFolder;
 import static dev.neuralnexus.modapi.metadata.impl.util.PathUtils.getModsFolder;
 
+import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Objects;
 
 public interface Platform {
     /**
@@ -124,39 +127,71 @@ public interface Platform {
     /** The platform's metadata */
     interface Meta {
         /**
+         * Get an instance of the platform's server. <br>
+         * In abstracted environments, this will return the platform's server object. <br>
+         * In client-only environments, this will return the client instance.
+         *
+         * @return The server instance
+         */
+        @NotNull Object server();
+
+        /**
+         * Get the client instance. Not available in server-only environments. <br>
+         * It's safe to cast to {@link net.minecraft.client.Minecraft}. <br>
+         * The only reason it isn't returned, is because the class is remapped in some environments (notably Fabric).
+         *
+         * @return The client instance
+         */
+        @NotNull Object client();
+
+        /**
+         * Get an instance of the {@link MinecraftServer}. Not available on proxies or in client-only environments.
+         *
+         * @return The MinecraftServer instance
+         */
+        @NotNull Object minecraft();
+
+        /**
+         * Get the platform's side
+         *
+         * @return The platform's side
+         */
+        @NotNull Side side();
+
+        /**
          * Get the running Minecraft asString
          *
          * @return The running Minecraft asString
          */
-        MinecraftVersion minecraftVersion();
+        @NotNull MinecraftVersion minecraftVersion();
 
         /**
          * Get the modloader asString
          *
          * @return the modloader asString
          */
-        String loaderVersion();
+        @NotNull String loaderVersion();
 
         /**
          * Get the modloader API asString
          *
          * @return the modloader API asString
          */
-        String apiVersion();
+        @NotNull String apiVersion();
 
         /**
          * Get the mod list
          *
          * @return The mod list
          */
-        List<ModInfo> modList();
+        @NotNull List<ModInfo> modList();
 
         /**
          * Get the Logger
          *
          * @return The Logger
          */
-        Logger logger(String pluginId);
+        @NotNull Logger logger(@NotNull String pluginId);
 
         /**
          * Get if a mod is loaded <br>
@@ -166,7 +201,8 @@ public interface Platform {
          * @param nameOrId The name of the plugin or modId of the mod
          * @return True if the mod is loaded, false otherwise
          */
-        default boolean isModLoaded(String nameOrId) {
+        default boolean isModLoaded(@NotNull String nameOrId) {
+            Objects.requireNonNull(nameOrId, "Mod name or ID cannot be null");
             return modList().stream()
                     .anyMatch(
                             modInfo ->
@@ -179,7 +215,7 @@ public interface Platform {
          *
          * @return The path to the mod/plugin folder
          */
-        default Path modFolder() {
+        default @NotNull Path modFolder() {
             return getModsFolder();
         }
 
@@ -188,7 +224,7 @@ public interface Platform {
          *
          * @return The path to the config folder
          */
-        default Path configFolder() {
+        default @NotNull Path configFolder() {
             return getConfigFolder();
         }
     }

@@ -15,19 +15,34 @@ import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LauncherVersion;
 import net.minecraftforge.fml.loading.LoadingModList;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /** Stores data about the FMLLoader platform */
 public class FMLLoaderMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object server() {
+        return this.minecraftServer();
+    }
+
+    @Override
+    public @NotNull MinecraftServer minecraftServer() {
+        // TODO: Research to find a more friendly way to get the server
+        // TODO: Client-only check
+        return MinecraftServer.getServer();
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {
             try {
@@ -51,12 +66,12 @@ public class FMLLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return LauncherVersion.getVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         if (minecraftVersion().isOlderThan(MinecraftVersions.V17)) {
             return ForgeVersion_13_16.forgeVersion();
         }
@@ -64,7 +79,7 @@ public class FMLLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         List<net.minecraftforge.fml.loading.moddiscovery.ModInfo> mods = ModList.get().getMods();
         if (mods == null || mods.isEmpty()) {
             mods = LoadingModList.get().getMods();
@@ -81,7 +96,7 @@ public class FMLLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         MinecraftVersion version = minecraftVersion();
         if (version.isOlderThan(MinecraftVersions.V18_2)) {
             return new ApacheLogger(modId);

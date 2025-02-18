@@ -30,6 +30,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
 
     /**
      * Registers a LiteralCommandNode
+     *
      * @param node The node to register
      * @param commandName The name of the command
      * @param aliases The aliases of the command

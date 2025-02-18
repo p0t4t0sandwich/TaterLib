@@ -12,9 +12,12 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.JavaLogger;
 
 import net.md_5.bungee.api.ProxyServer;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -23,22 +26,42 @@ import java.util.stream.Collectors;
 /** Stores data about the BungeeCord platform */
 public final class BungeeCordMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull Object server() {
+        return ProxyServer.getInstance();
+    }
+
+    @Override
+    public @NotNull Object client() {
+        throw new UnsupportedOperationException("BungeeCord does not run on the client");
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        throw new UnsupportedOperationException("BungeeCord does not have a MinecraftServer");
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return Side.PROXY;
+    }
+
+    @Override
+    public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(ProxyServer.getInstance().getGameVersion());
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return ProxyServer.getInstance().getVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return ProxyServer.getInstance().getVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return ProxyServer.getInstance().getPluginManager().getPlugins().stream()
                 .map(
                         plugin ->
@@ -51,17 +74,17 @@ public final class BungeeCordMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new JavaLogger(modId, ProxyServer.getInstance().getLogger());
     }
 
     @Override
-    public Path modFolder() {
+    public @NotNull Path modFolder() {
         return getPluginsFolder();
     }
 
     @Override
-    public Path configFolder() {
+    public @NotNull Path configFolder() {
         return getPluginsFolder();
     }
 }

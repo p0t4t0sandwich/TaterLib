@@ -11,6 +11,7 @@ import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.impl.logger.SystemLogger;
 import dev.neuralnexus.modapi.metadata.impl.util.MixinServiceUtil;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -19,7 +20,7 @@ import java.util.List;
 /** Stores information about the vanilla platform */
 public final class VanillaMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {
             version = MixinServiceUtil.mcVersion();
@@ -29,22 +30,22 @@ public final class VanillaMeta implements Platform.Meta {
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return minecraftVersion().toString();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return minecraftVersion().toString();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         return Collections.emptyList();
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         // TODO: Do some version parsing and grab the vanilla logger factory
         return new SystemLogger(modId);
     }

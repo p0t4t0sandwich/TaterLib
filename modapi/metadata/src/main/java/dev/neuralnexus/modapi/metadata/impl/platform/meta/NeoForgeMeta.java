@@ -15,6 +15,7 @@ import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.LoadingModList;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,22 +23,22 @@ import java.util.stream.Collectors;
 /** Stores data about the NeoForge platform */
 public final class NeoForgeMeta implements Platform.Meta {
     @Override
-    public MinecraftVersion minecraftVersion() {
+    public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(FMLLoader.versionInfo().mcVersion());
     }
 
     @Override
-    public String loaderVersion() {
+    public @NotNull String loaderVersion() {
         return FMLLoader.versionInfo().fmlVersion();
     }
 
     @Override
-    public String apiVersion() {
+    public @NotNull String apiVersion() {
         return FMLLoader.versionInfo().neoForgeVersion();
     }
 
     @Override
-    public List<ModInfo> modList() {
+    public @NotNull List<ModInfo> modList() {
         List<net.neoforged.fml.loading.moddiscovery.ModInfo> mods = ModList.get().getMods();
         if (mods == null || mods.isEmpty()) {
             mods = LoadingModList.get().getMods();
@@ -54,7 +55,7 @@ public final class NeoForgeMeta implements Platform.Meta {
     }
 
     @Override
-    public Logger logger(String modId) {
+    public @NotNull Logger logger(@NotNull String modId) {
         return new Slf4jLogger(modId);
     }
 }

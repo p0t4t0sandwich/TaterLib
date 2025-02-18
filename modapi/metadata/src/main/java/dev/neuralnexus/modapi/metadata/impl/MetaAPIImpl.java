@@ -12,6 +12,7 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.SystemLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.BungeeCordMeta;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.FabricMeta;
@@ -23,6 +24,8 @@ import dev.neuralnexus.modapi.metadata.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.sponge.SpongeData;
 import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 
+import dev.neuralnexus.modapi.reflecto.MappingEntry;
+import dev.neuralnexus.modapi.reflecto.Reflecto;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -39,14 +42,63 @@ public final class MetaAPIImpl implements MetaAPI {
 
     private static Mappings mappings;
 
-    private MetaAPIImpl() {}
+    private static Reflecto.MappingStore store;
+
+    private MetaAPIImpl() {
+        // Don't reflect on proxies or in server-only environments
+        if (!this.isProxy() && !this.isPlatformPresent(Platforms.BUKKIT)) {
+            store = Reflecto.instance().getStore(this);
+            var minecraft = MappingEntry.builder("Minecraft")
+                    .official("net.minecraft.client.Minecraft")
+                    .mojang("net.minecraft.client.Minecraft")
+                    .searge("net.minecraft.client.Minecraft")
+                    .legacySearge("net.minecraft.client.Minecraft")
+                    .mcp("net.minecraft.client.Minecraft")
+                    .yarnIntermediary("net.minecraft.class_310")
+                    .legacyIntermediary("net.minecraft.class_1600");
+
+            var minecraft_getInstance = MappingEntry.builder("getInstance")
+                    .parentEntry(minecraft)
+                    .mojang("getInstance")
+                    .searge("m_91087_")
+                    .legacySearge("func_71410_x")
+                    .mcp("getInstance")
+                    .mcp("getMinecraft", MinecraftVersions.UNKNOWN, MinecraftVersions.V12_2)
+                    .yarnIntermediary("method_1551")
+                    .legacyIntermediary("method_2965");
+
+            var minecraft_hasSingleplayerServer = MappingEntry.builder("hasSingleplayerServer")
+                    .parentEntry(minecraft)
+                    .mojang("hasSingleplayerServer")
+                    .searge("m_91091_")
+                    .legacySearge("func_71356_B")
+                    .mcp("isSingleplayer")
+                    .yarnIntermediary("method_1496")
+                    .legacyIntermediary("method_2908");
+
+            var minecraft_getServer = MappingEntry.builder("getServer")
+                    .parentEntry(minecraft)
+                    .official("getSinglePlayerServer")
+                    .mojang("getSinglePlayerServer")
+                    .searge("m_91092_")
+                    .legacySearge("func_71401_C")
+                    .mcp("getIntegratedServer")
+                    .yarnIntermediary("method_1576")
+                    .legacyIntermediary("method_2909");
+
+            store.registerClass(minecraft)
+                    .registerMethod(minecraft_getInstance)
+                    .registerMethod(minecraft_hasSingleplayerServer)
+                    .registerMethod(minecraft_getServer);
+        }
+    }
 
     // ----------------------------- Platform -----------------------------
 
     private Platform primaryPlatform;
 
     @Override
-    public Platform primaryPlatform() throws NoPrimaryPlatformException {
+    public @NotNull Platform primaryPlatform() throws NoPrimaryPlatformException {
         if (this.primaryPlatform == null) {
             throw new NoPrimaryPlatformException();
         }
@@ -71,7 +123,7 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Platform platform() throws NoPlatformException {
+    public @NotNull Platform platform() throws NoPlatformException {
         if (this.primaryPlatform == null) {
             return Platforms.get().stream().findFirst().orElseThrow(NoPlatformException::new);
         }
@@ -85,7 +137,7 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException {
+    public @NotNull Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException {
         return lookup(this.platform())
                 .orElseThrow(() -> new NoPlatformMetaException(this.platform()));
     }
@@ -99,7 +151,39 @@ public final class MetaAPIImpl implements MetaAPI {
     // ----------------------------- Platform.Meta Getters -----------------------------
 
     @Override
-    public MinecraftVersion version() {
+    public @NotNull Object server() {
+        return lookupAll().stream()
+                .map(Platform.Meta::server)
+                .findFirst()
+                .orElseThrow(NullPointerException::new);
+    }
+
+    @Override
+    public @NotNull Object client() {
+        return lookupAll().stream()
+                .map(Platform.Meta::client)
+                .findFirst()
+                .orElseThrow(NullPointerException::new);
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        return lookupAll().stream()
+                .map(Platform.Meta::minecraft)
+                .findFirst()
+                .orElseThrow(NullPointerException::new);
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return lookupAll().stream()
+                .map(Platform.Meta::side)
+                .findFirst()
+                .orElseThrow(IllegalStateException::new);
+    }
+
+    @Override
+    public @NotNull MinecraftVersion version() {
         return lookupAll().stream()
                 .map(Platform.Meta::minecraftVersion)
                 .findFirst()
@@ -124,7 +208,7 @@ public final class MetaAPIImpl implements MetaAPI {
     // Would allow for more accurate mappings detection, rather than assumptions inflexible to
     // future changes
     @Override
-    public Mappings mappings() {
+    public @NotNull Mappings mappings() {
         if (mappings == null) {
             MetaAPI api = MetaAPI.instance();
             // Check for proxy
@@ -193,7 +277,7 @@ public final class MetaAPIImpl implements MetaAPI {
     }
 
     @Override
-    public Logger logger(@NotNull String modId) throws NullPointerException {
+    public @NotNull Logger logger(@NotNull String modId) throws NullPointerException {
         Objects.requireNonNull(modId, "Mod ID cannot be null");
         return lookupAll().stream()
                 .map(meta -> meta.logger(modId))

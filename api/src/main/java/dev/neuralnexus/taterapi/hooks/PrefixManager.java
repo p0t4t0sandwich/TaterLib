@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.taterapi.hooks;
 
 import java.util.UUID;
@@ -5,6 +10,7 @@ import java.util.UUID;
 public interface PrefixManager {
     /**
      * Get the prefix for a user
+     *
      * @param id The UUID of the user
      * @return The prefix for the user
      */
@@ -12,6 +18,7 @@ public interface PrefixManager {
 
     /**
      * Set the prefix for a user
+     *
      * @param id The UUID of the user
      * @param prefix The prefix to set
      */
@@ -21,6 +28,7 @@ public interface PrefixManager {
 
     /**
      * Set the prefix for a user
+     *
      * @param id The UUID of the user
      * @param prefix The prefix to set
      * @param priority The priority of the prefix
@@ -29,6 +37,7 @@ public interface PrefixManager {
 
     /**
      * Get the suffix for a user
+     *
      * @param id The UUID of the user
      * @return The suffix for the user
      */
@@ -36,6 +45,7 @@ public interface PrefixManager {
 
     /**
      * Set the suffix for a user
+     *
      * @param id The UUID of the user
      * @param suffix The suffix to set
      */
@@ -45,6 +55,7 @@ public interface PrefixManager {
 
     /**
      * Set the suffix for a user
+     *
      * @param id The UUID of the user
      * @param suffix The suffix to set
      * @param priority The priority of the suffix

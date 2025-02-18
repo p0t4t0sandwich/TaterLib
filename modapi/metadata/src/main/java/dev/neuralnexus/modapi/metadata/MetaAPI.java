@@ -8,6 +8,7 @@ package dev.neuralnexus.modapi.metadata;
 import dev.neuralnexus.modapi.metadata.impl.MetaAPIImpl;
 import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 
+import net.minecraft.server.MinecraftServer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -27,7 +28,7 @@ public interface MetaAPI {
      * @return The platform
      * @throws NoPrimaryPlatformException if the primary platform is not detected
      */
-    Platform primaryPlatform() throws NoPrimaryPlatformException;
+    @NotNull Platform primaryPlatform() throws NoPrimaryPlatformException;
 
     /**
      * Set the primary platform that the environment is running
@@ -54,7 +55,7 @@ public interface MetaAPI {
      * @return The platform
      * @throws NoPlatformException if there is no platform detected
      */
-    Platform platform() throws NoPlatformException;
+    @NotNull Platform platform() throws NoPlatformException;
 
     /**
      * Check if a platform is present
@@ -101,7 +102,7 @@ public interface MetaAPI {
      * @throws NoPlatformException if the primary platform is not detected
      * @throws NoPlatformMetaException if there's no metadata for the platform
      */
-    Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException;
+    @NotNull Platform.Meta meta() throws NoPlatformException, NoPlatformMetaException;
 
     /**
      * Get the metadata for the specified platform
@@ -114,11 +115,43 @@ public interface MetaAPI {
     // ----------------------------- Platform.Meta Getters -----------------------------
 
     /**
+     * Get an instance of the platform's server. <br>
+     * In abstracted environments, this will return the platform's server object. <br>
+     * In client-only environments, this will return the client instance.
+     *
+     * @return The server instance
+     */
+    @NotNull Object server();
+
+    /**
+     * Get the client instance. Not available in server-only environments. <br>
+     * It's safe to cast to {@link net.minecraft.client.Minecraft}. <br>
+     * The only reason it isn't returned, is because the class is remapped in some environments (notably Fabric).
+     *
+     * @return The client instance
+     */
+    @NotNull Object client();
+
+    /**
+     * Get an instance of the {@link MinecraftServer}. Not available on proxies or in client-only environments.
+     *
+     * @return The MinecraftServer instance
+     */
+    @NotNull Object minecraft();
+
+    /**
+     * Get the platform's side
+     *
+     * @return The platform's side
+     */
+    @NotNull Side side();
+
+    /**
      * Get the version of Minecraft the server is running
      *
      * @return The current Minecraft version
      */
-    MinecraftVersion version();
+    @NotNull MinecraftVersion version();
 
     /**
      * Get if a mod is loaded <br>
@@ -146,7 +179,7 @@ public interface MetaAPI {
      *
      * @return The runtime mappings
      */
-    Mappings mappings();
+    @NotNull Mappings mappings();
 
     /**
      * Get a new logger for the specified modId
@@ -154,7 +187,7 @@ public interface MetaAPI {
      * @param modId The mod id
      * @return A new Logger
      */
-    Logger logger(@NotNull String modId);
+    @NotNull Logger logger(@NotNull String modId);
 
     // ----------------------------- Platform Checks -----------------------------
 

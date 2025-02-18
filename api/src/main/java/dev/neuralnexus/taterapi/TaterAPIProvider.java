@@ -68,6 +68,7 @@ public class TaterAPIProvider {
 
     /**
      * Get a hook
+     *
      * @param hookName The name of the hook
      * @param hookClass The class of the hook
      * @return The hook

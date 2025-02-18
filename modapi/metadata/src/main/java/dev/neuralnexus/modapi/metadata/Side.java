@@ -15,8 +15,11 @@ package dev.neuralnexus.modapi.metadata;
  * <tr><td>Physical Client</td><td>Singleton Always Exists</td><td>Exists when in local save; new instance for each play</td></tr>
  * <tr><td>Physical Server</td><td>Does Not Exist</td><td>Singleton Always Exists</td></tr></tbody>
  * </table>
+ *
+ * The proxy "side" is used for platforms that do not have a client or server side.
  */
 public enum Side {
+    PROXY(false, false),
     CLIENT(true, false),
     SERVER(false, true),
     INTEGRATED(true, true);

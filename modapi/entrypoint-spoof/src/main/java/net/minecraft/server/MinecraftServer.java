@@ -6,4 +6,10 @@
 package net.minecraft.server;
 
 /** Fake Minecraft server class. */
-public class MinecraftServer {}
+public class MinecraftServer {
+    private static MinecraftServer mcServer;
+
+    public static MinecraftServer getServer() {
+        return mcServer;
+    }
+}
