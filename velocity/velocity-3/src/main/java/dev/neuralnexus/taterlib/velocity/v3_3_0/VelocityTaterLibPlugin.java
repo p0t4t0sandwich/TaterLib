@@ -9,6 +9,7 @@ import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -41,7 +42,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterLib.start();
         // Register listeners
         PluginContainer plugin = (PluginContainer) Loader.instance().plugin();
-        ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
+        ProxyServer proxyServer = (ProxyServer) MetaAPI.instance().server();
         EventManager eventManager = proxyServer.getEventManager();
         eventManager.register(plugin, new VelocityPlayerListener());
         eventManager.register(plugin, new VelocityPluginMessageListener());

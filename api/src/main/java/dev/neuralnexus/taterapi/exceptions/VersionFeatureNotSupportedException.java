@@ -13,7 +13,7 @@ public class VersionFeatureNotSupportedException extends RuntimeException {
             "This feature is not supported on Minecraft "
                     + MetaAPI.instance().platform().name()
                     + " "
-                    + MetaAPI.instance().version().asString()
+                    + MetaAPI.instance().version()
                     + "!"
                     + "\nIf you believe this may be an error, please report it to the plugin/mod developer using TaterLib!"
                     + "\nIf you are the plugin developer and believe this to be a missing implementation, please report this to the TaterLib GitHub repository!";

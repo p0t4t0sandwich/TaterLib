@@ -21,8 +21,8 @@ import java.nio.file.Paths;
 
 /** General dump information for debugging. */
 public class DumpInfo {
-    public final String platform = MetaAPI.instance().primaryPlatform().asString();
-    public final String version = MetaAPI.instance().version().asString();
+    public final String platform = MetaAPI.instance().primaryPlatform().toString();
+    public final String version = MetaAPI.instance().version().toString();
     public final String taterlibVersion = LoaderImpl.PROJECT_VERSION;
     public final boolean isForgeHybrid = MetaAPI.instance().isForgeHybrid();
     public final boolean isFabricHybrid = MetaAPI.instance().isFabricHybrid();

@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterapi;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;
@@ -13,7 +14,8 @@ import java.util.function.Supplier;
 
 /** API wrapper class */
 public class TaterAPI {
-    private Supplier<SimpleServer> minecraftServer = () -> null;
+    private Supplier<SimpleServer> minecraftServer =
+            () -> (SimpleServer) MetaAPI.instance().minecraft();
 
     /**
      * Get the minecraft server

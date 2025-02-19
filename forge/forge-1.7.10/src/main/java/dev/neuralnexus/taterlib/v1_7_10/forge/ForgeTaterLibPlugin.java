@@ -21,7 +21,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.command.ForgeCommandRegisterEvent;
@@ -30,14 +29,11 @@ import dev.neuralnexus.taterlib.v1_7_10.forge.listeners.entity.ForgeEntityListen
 import dev.neuralnexus.taterlib.v1_7_10.forge.listeners.player.ForgePlayerListener;
 import dev.neuralnexus.taterlib.v1_7_10.forge.resources.ForgeResourceKey;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
 @SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
-    private static MinecraftServer server;
-
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {
         CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
@@ -47,8 +43,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        TaterAPIProvider.api(Platforms.FORGE)
-                .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
@@ -79,7 +73,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
      */
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        server = event.getServer();
         ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
     }
 

@@ -8,14 +8,14 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.event.network;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 
 /** Velocity implementation of {@link RegisterPacketChannelsEvent}. */
 public class VelocityRegisterPacketChannelsEvent implements RegisterPacketChannelsEvent {
     @Override
     public void register(String channel) {
-        ((ProxyServer) Loader.instance().server())
+        ((ProxyServer) MetaAPI.instance().server())
                 .getChannelRegistrar()
                 .register(MinecraftChannelIdentifier.from(channel));
     }

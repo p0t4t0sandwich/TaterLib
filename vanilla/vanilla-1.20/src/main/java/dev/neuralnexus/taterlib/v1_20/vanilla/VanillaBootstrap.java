@@ -5,18 +5,13 @@
  */
 package dev.neuralnexus.taterlib.v1_20.vanilla;
 
-import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_20.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_20.vanilla.world.VanillaLocation;
 
 import net.minecraft.Util;
-import net.minecraft.server.MinecraftServer;
-
-import java.util.function.Supplier;
 
 /** The Vanilla bootstrap class. */
 public class VanillaBootstrap {
@@ -30,26 +25,5 @@ public class VanillaBootstrap {
                 ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
         TaterAPIProvider.scheduler()
                 .replaceBackgroundScheduler(() -> Util.backgroundExecutor(), false);
-    }
-
-    /** Get the instance of the server */
-    public static Supplier<SimpleServer> server(Supplier<MinecraftServer> serverSupplier) {
-        if (TaterAPIProvider.side().is(Side.CLIENT)) {
-            return VanillaClientServerWrapper.get();
-        }
-        return () -> (SimpleServer) serverSupplier.get();
-    }
-
-    /** Get the "side" the server is running on */
-    public static Side determineSide(boolean isClient) {
-        Side side = Side.SERVER;
-        if (isClient) {
-            if (VanillaClientServerWrapper.hasIntegratedServer()) {
-                side = Side.INTEGRATED;
-            } else {
-                side = Side.CLIENT;
-            }
-        }
-        return side;
     }
 }

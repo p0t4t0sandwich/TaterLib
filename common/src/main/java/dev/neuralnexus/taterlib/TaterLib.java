@@ -61,11 +61,11 @@ public class TaterLib {
         logger.info(
                 LoaderImpl.PROJECT_NAME
                         + " is running on "
-                        + api.platform().asString()
+                        + api.platform()
                         + " "
-                        + api.version().asString()
+                        + api.version()
                         + ", with "
-                        + api.mappings().toString()
+                        + api.mappings()
                         + " mappings!");
 
         //        try {
@@ -84,7 +84,7 @@ public class TaterLib {
         TaterLibConfigLoader.load();
 
         // Init CrossPerms
-        CrossPerms.instance().onInit(Loader.instance().server());
+        CrossPerms.instance().onInit(MetaAPI.instance().server());
 
         if (!RELOADED) {
             ServerEvents.STARTED.register(event -> CrossPerms.instance().onEnable());

@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 
 /** Bungee entry point. */
@@ -20,7 +19,7 @@ public class BungeeCordLoaderPlugin extends Plugin {
 
     public BungeeCordLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.BUNGEECORD);
-        loader = new LoaderImpl(this, ProxyServer.getInstance());
+        loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.bungeeCord());
         loader.onInit();
     }

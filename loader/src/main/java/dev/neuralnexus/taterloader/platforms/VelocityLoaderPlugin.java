@@ -11,11 +11,9 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
-import com.velocitypowered.api.proxy.ProxyServer;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
@@ -32,10 +30,9 @@ public class VelocityLoaderPlugin {
     private static Loader loader;
 
     @Inject
-    public VelocityLoaderPlugin(PluginContainer plugin, ProxyServer server) {
+    public VelocityLoaderPlugin(PluginContainer plugin) {
         MetaAPI.instance().setPrimaryPlatform(Platforms.VELOCITY);
-        VelocityMeta.setProxyServer(server);
-        loader = new LoaderImpl(plugin, server, this);
+        loader = new LoaderImpl(plugin);
         loader.registerPlugin(TaterPluginResolver.velocity());
         loader.onInit();
     }

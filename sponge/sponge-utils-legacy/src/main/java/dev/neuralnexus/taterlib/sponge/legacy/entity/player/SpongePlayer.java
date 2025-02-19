@@ -65,7 +65,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
 
     @Override
     public Server server() {
-        return new SpongeServer(Sponge.getServer());
+        return SpongeServer.instance();
     }
 
     @Override

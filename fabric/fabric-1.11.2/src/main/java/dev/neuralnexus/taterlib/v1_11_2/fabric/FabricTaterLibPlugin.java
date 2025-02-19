@@ -14,7 +14,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_11_2.fabric.event.api.FabricBlockEvents;
@@ -31,22 +30,16 @@ import dev.neuralnexus.taterlib.v1_11_2.fabric.resources.FabricResourceKey;
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
 import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.server.MinecraftServer;
 
 @SuppressWarnings("unused")
 public class FabricTaterLibPlugin implements TaterLibPlugin {
-    private static MinecraftServer server;
-
     @Override
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
-        TaterAPIProvider.api(Platforms.FABRIC)
-                .ifPresent(api -> api.setServer(() -> (SimpleServer) server));
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data
-            ServerLifecycleEvents.SERVER_STARTING.register(s -> server = s);
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
 
             // Register Fabric API command events

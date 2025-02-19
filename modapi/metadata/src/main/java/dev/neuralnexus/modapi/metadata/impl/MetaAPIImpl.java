@@ -117,17 +117,17 @@ public final class MetaAPIImpl implements MetaAPI {
                             .yarnIntermediary(mcString)
                             .legacyIntermediary(mcString);
 
-            var mcServer_isDedicatedServer = MappingEntry.builder("isDedicatedServer")
-                    .parentEntry(mcServer)
-                    .mojang("isDedicatedServer")
-                    .searge("m_6982_")
-                    .legacySearge("func_71262_S")
-                    .mcp("isDedicatedServer")
-                    .yarnIntermediary("method_3816")
-                    .legacyIntermediary("method_2983");
+            var mcServer_isDedicatedServer =
+                    MappingEntry.builder("isDedicatedServer")
+                            .parentEntry(mcServer)
+                            .mojang("isDedicatedServer")
+                            .searge("m_6982_")
+                            .legacySearge("func_71262_S")
+                            .mcp("isDedicatedServer")
+                            .yarnIntermediary("method_3816")
+                            .legacyIntermediary("method_2983");
 
-            store.registerClass(mcServer)
-                    .registerMethod(mcServer_isDedicatedServer);
+            store.registerClass(mcServer).registerMethod(mcServer_isDedicatedServer);
 
             logger.info("Registered MinecraftServer reflection mappings");
             logger.info("|-> isDedicatedServer");

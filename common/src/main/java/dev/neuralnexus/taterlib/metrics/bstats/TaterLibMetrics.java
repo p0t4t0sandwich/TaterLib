@@ -33,12 +33,12 @@ public class TaterLibMetrics {
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static void initialize() {
-        if (TaterAPIProvider.side().is(Side.CLIENT)) {
+        if (MetaAPI.instance().side().is(Side.CLIENT)) {
             return;
         }
         MetricsConfig config;
         try {
-            boolean defaultEnabled = TaterAPIProvider.side().is(Side.SERVER);
+            boolean defaultEnabled = MetaAPI.instance().side().is(Side.SERVER);
             if (MetaAPI.instance()
                     .isPlatformPresent(
                             Platforms.FABRIC,
@@ -104,8 +104,8 @@ public class TaterLibMetrics {
                 new SimplePie(
                         "modloader_version", () -> MetaAPI.instance().meta().loaderVersion()));
         metrics.addCustomChart(
-                new SimplePie("minecraft_version", () -> MetaAPI.instance().version().asString()));
-        metrics.addCustomChart(new SimplePie("platform", () -> MetaAPI.instance().toString()));
+                new SimplePie("minecraft_version", () -> MetaAPI.instance().version().toString()));
+        metrics.addCustomChart(new SimplePie("platform", () -> MetaAPI.instance().platform().toString()));
         metrics.addCustomChart(
                 new DrilldownPie(
                         "java_version",

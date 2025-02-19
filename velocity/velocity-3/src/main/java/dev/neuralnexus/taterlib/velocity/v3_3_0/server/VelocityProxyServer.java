@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
@@ -37,7 +37,7 @@ public class VelocityProxyServer
 
     @Override
     public com.velocitypowered.api.proxy.ProxyServer unwrap() {
-        return (com.velocitypowered.api.proxy.ProxyServer) Loader.instance().server();
+        return (com.velocitypowered.api.proxy.ProxyServer) MetaAPI.instance().server();
     }
 
     @Override

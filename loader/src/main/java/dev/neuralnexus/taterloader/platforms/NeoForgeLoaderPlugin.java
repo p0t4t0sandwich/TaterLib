@@ -25,7 +25,7 @@ public class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
-        loader = new LoaderImpl(this, null);
+        loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.neoForge());
         if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());

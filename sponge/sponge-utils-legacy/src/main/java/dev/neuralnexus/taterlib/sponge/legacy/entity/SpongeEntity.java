@@ -14,7 +14,6 @@ import dev.neuralnexus.taterlib.sponge.legacy.server.SpongeServer;
 import dev.neuralnexus.taterlib.sponge.legacy.world.SpongeLocation;
 import dev.neuralnexus.taterlib.sponge.legacy.world.SpongeWorld;
 
-import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
@@ -92,7 +91,7 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     @Override
     public void teleport(Location location) {
         Optional<World> serverLevel =
-                new SpongeServer(Sponge.getServer())
+                SpongeServer.instance()
                         .world(location.world().dimension())
                         .map(SpongeWorld.class::cast)
                         .map(SpongeWorld::unwrap);

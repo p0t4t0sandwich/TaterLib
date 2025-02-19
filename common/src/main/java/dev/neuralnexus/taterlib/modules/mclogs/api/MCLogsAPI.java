@@ -29,7 +29,7 @@ public class MCLogsAPI {
             new MclogsClient("TaterLib-MCLogsModule/" + LoaderImpl.PROJECT_VERSION)
                     .setProjectName("TaterLib-MCLogsModule")
                     .setProjectVersion(LoaderImpl.PROJECT_VERSION)
-                    .setMinecraftVersion(MetaAPI.instance().version().asString());
+                    .setMinecraftVersion(MetaAPI.instance().version().toString());
 
     /**
      * Uploads a log to MCLogs.

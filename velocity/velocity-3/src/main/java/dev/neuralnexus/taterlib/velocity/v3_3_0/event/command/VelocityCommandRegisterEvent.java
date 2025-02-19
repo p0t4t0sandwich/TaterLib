@@ -9,6 +9,7 @@ import com.velocitypowered.api.command.CommandManager;
 import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
@@ -19,7 +20,7 @@ public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
     @Override
     public void registerCommand(Command command, String... aliases) {
         CommandManager commandManager =
-                ((ProxyServer) Loader.instance().server()).getCommandManager();
+                ((ProxyServer) MetaAPI.instance().server()).getCommandManager();
         CommandMeta commandMeta =
                 commandManager
                         .metaBuilder(command.name())

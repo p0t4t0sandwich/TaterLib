@@ -49,7 +49,9 @@ public final class SpongeLegacyMeta implements Platform.Meta {
         if (Sponge.getServer() == null) {
             return Side.CLIENT;
         }
-        return WMinecraftServer.isDedicatedServer(Sponge.getServer()) ? Side.INTEGRATED : Side.SERVER;
+        return WMinecraftServer.isDedicatedServer(Sponge.getServer())
+                ? Side.INTEGRATED
+                : Side.SERVER;
     }
 
     @Override

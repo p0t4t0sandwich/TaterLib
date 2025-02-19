@@ -10,7 +10,6 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitBetaMetricsAdapter;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitMetricsAdapter;
 import dev.neuralnexus.taterapi.metrics.bstats.bungeecord.BungeeCordMetricsAdapter;
@@ -32,10 +31,10 @@ public class MetricsAdapter {
             Object pluginLogger,
             Map<Platform, Integer> pluginIds,
             List<CustomChart> charts) {
-        if (TaterAPIProvider.side().is(Side.CLIENT)) {
+        MetaAPI api = MetaAPI.instance();
+        if (api.side().is(Side.CLIENT)) {
             return null;
         }
-        MetaAPI api = MetaAPI.instance();
         Object metrics = null;
         if (api.isPlatformPresent(Platforms.BUKKIT)) {
             if (api.version().isOlderThan(MinecraftVersions.V0)) {

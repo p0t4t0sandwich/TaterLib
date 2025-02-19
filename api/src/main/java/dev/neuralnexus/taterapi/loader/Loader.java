@@ -37,14 +37,6 @@ public interface Loader {
     @ApiStatus.Experimental
     Object plugin();
 
-    /** Get the platform's server. */
-    @ApiStatus.Experimental
-    Object server();
-
-    /** Get the platform's other data. */
-    @ApiStatus.Experimental
-    Object[] other();
-
     /** Get the collection of plugins. */
     @ApiStatus.Internal
     List<Plugin> plugins();

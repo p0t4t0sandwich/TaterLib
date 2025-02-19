@@ -19,7 +19,7 @@ public class FabricLoaderPlugin implements ModInitializer {
 
     public FabricLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.FABRIC);
-        loader = new LoaderImpl(this, null);
+        loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.fabric());
         if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());

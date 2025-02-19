@@ -26,7 +26,7 @@ public class ForgeLoaderPlugin {
 
     public ForgeLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.FORGE);
-        loader = new LoaderImpl(this, null);
+        loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.forge());
         if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());

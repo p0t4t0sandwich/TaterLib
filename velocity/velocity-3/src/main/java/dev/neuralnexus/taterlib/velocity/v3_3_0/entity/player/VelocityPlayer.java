@@ -9,9 +9,9 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
@@ -57,8 +57,8 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<com.velocitypowered.
      */
     @Override
     public void connect(String serverName) {
-        ProxyServer proxyServer = (ProxyServer) Loader.instance().server();
-        if (!proxyServer.getServer(serverName).isPresent()) return;
+        ProxyServer proxyServer = (ProxyServer) MetaAPI.instance().server();
+        if (proxyServer.getServer(serverName).isEmpty()) return;
         RegisteredServer server = proxyServer.getServer(serverName).get();
         this.player.createConnectionRequest(server).fireAndForget();
     }

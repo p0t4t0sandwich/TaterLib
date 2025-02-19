@@ -29,7 +29,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         TaterAPIProvider.api(Platforms.SPONGE)
-                .ifPresent(api -> api.setServer(() -> new SpongeServer(Sponge.getServer())));
+                .ifPresent(api -> api.setServer(SpongeServer::instance));
     }
 
     @Override

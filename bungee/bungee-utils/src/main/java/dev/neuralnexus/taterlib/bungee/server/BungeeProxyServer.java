@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterlib.bungee.server;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 
@@ -36,7 +36,7 @@ public class BungeeProxyServer implements ProxyServer, Wrapped<net.md_5.bungee.a
 
     @Override
     public net.md_5.bungee.api.ProxyServer unwrap() {
-        return (net.md_5.bungee.api.ProxyServer) Loader.instance().server();
+        return (net.md_5.bungee.api.ProxyServer) MetaAPI.instance().server();
     }
 
     @Override

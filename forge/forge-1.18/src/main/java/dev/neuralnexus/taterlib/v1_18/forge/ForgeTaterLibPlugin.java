@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_18.forge;
 
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -50,7 +49,6 @@ import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 @SuppressWarnings("unused")
@@ -58,13 +56,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         VanillaBootstrap.init();
-        TaterAPIProvider.setSide(VanillaBootstrap.determineSide(FMLEnvironment.dist.isClient()));
-        TaterAPIProvider.api(Platforms.FORGE)
-                .ifPresent(
-                        api ->
-                                api.setServer(
-                                        VanillaBootstrap.server(
-                                                ServerLifecycleHooks::getCurrentServer)));
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(

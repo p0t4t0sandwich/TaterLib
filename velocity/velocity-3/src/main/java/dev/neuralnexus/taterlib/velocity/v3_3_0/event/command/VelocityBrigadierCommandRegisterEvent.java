@@ -13,6 +13,7 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
@@ -51,7 +52,7 @@ public class VelocityBrigadierCommandRegisterEvent
     public void registerCommand(
             LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
         CommandManager commandManager =
-                ((ProxyServer) Loader.instance().server()).getCommandManager();
+                ((ProxyServer) MetaAPI.instance().server()).getCommandManager();
         CommandMeta commandMeta =
                 commandManager
                         .metaBuilder(commandName)

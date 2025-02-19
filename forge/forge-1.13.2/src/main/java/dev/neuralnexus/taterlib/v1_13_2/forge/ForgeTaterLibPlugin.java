@@ -35,7 +35,6 @@ import dev.neuralnexus.taterlib.v1_13_2.forge.event.player.ForgePlayerRespawnEve
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage.ForgeRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
 import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
-import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -67,13 +66,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
         TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
-        TaterAPIProvider.api(Platforms.FORGE)
-                .ifPresent(
-                        api ->
-                                api.setServer(
-                                        () ->
-                                                new ForgeServer(
-                                                        ServerLifecycleHooks.getCurrentServer())));
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners

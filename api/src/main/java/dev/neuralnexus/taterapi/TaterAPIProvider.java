@@ -8,7 +8,6 @@ package dev.neuralnexus.taterapi;
 import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
 import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.modapi.metadata.Platform;
-import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -31,7 +30,6 @@ import java.util.function.Supplier;
 public class TaterAPIProvider {
     private static final HashMap<Platform, TaterAPI> apis = new HashMap<>();
     private static final List<Hook> hooks = new ArrayList<>();
-    @Deprecated private static Side side = Side.SERVER;
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
@@ -248,23 +246,6 @@ public class TaterAPIProvider {
      */
     public static PlayerDataStore playerDataStore() {
         return playerDataStore;
-    }
-
-    /** Get the "side" the mod is running on */
-    @Deprecated
-    public static Side side() {
-        return TaterAPIProvider.side;
-    }
-
-    /**
-     * DO NOT USE THIS METHOD, IT IS FOR INTERNAL USE ONLY
-     *
-     * @param side The side
-     */
-    @ApiStatus.Internal
-    @Deprecated
-    public static void setSide(Side side) {
-        TaterAPIProvider.side = side;
     }
 
     /** Get the scheduler */

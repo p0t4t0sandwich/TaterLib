@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterapi;
 
 /** Indicates if a platform object is wrapped */
+// TODO: Move to MetaAPI/standalone impl
 public interface Wrapped<T> {
     /**
      * Unwrap the object.

@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /** Bukkit entry point. */
@@ -20,7 +19,7 @@ public class BukkitLoaderPlugin extends JavaPlugin {
 
     public BukkitLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.BUKKIT);
-        loader = new LoaderImpl(this, Bukkit.getServer());
+        loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.bukkit());
         if (MetaAPI.instance().isPlatformPresent(Platforms.FORGE)) {
             loader.registerPlugin(TaterPluginResolver.forge());

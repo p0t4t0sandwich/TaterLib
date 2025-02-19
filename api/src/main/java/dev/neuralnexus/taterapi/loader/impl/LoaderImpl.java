@@ -28,12 +28,10 @@ public class LoaderImpl implements Loader {
     public static final String PROJECT_URL = "https://github.com/p0t4t0sandwich/TaterLib";
     private static Loader instance;
     private final Object plugin;
-    private final Object server;
-    private final Object[] other;
     private final List<Plugin> plugins = new ArrayList<>();
     private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
-    public LoaderImpl(Object plugin, Object server, Object... other) {
+    public LoaderImpl(Object plugin) {
         // TLauncher check
         if (ReflectionUtil.checkForClass(
                 "org.tlauncher.MixinConnector", "org.tlauncher.tlauncher.rmo.Bootstrapper")) {
@@ -42,8 +40,6 @@ public class LoaderImpl implements Loader {
 
         instance = this;
         this.plugin = plugin;
-        this.server = server;
-        this.other = other;
 
         LoaderEvents.INIT.invoke(new LoaderInitializeEvent() {});
     }
@@ -55,16 +51,6 @@ public class LoaderImpl implements Loader {
     @Override
     public Object plugin() {
         return plugin;
-    }
-
-    @Override
-    public Object server() {
-        return server;
-    }
-
-    @Override
-    public Object[] other() {
-        return other;
     }
 
     @Override
