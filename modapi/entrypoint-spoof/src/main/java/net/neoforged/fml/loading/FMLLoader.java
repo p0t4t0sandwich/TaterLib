@@ -5,9 +5,17 @@
  */
 package net.neoforged.fml.loading;
 
+import net.neoforged.api.distmarker.Dist;
+
 /** Fake NeoForge class */
 public class FMLLoader {
+    private static Dist dist;
+
     public static VersionInfo versionInfo() {
         return new VersionInfo();
+    }
+
+    public static Dist getDist() {
+        return dist;
     }
 }
