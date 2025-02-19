@@ -102,6 +102,35 @@ public final class MetaAPIImpl implements MetaAPI {
             logger.info("|-> getInstance");
             logger.info("|-> hasServer");
             logger.info("|-> getServer");
+
+            var mcString = "net.minecraft.server.MinecraftServer";
+            var mcServer =
+                    MappingEntry.builder("MinecraftServer")
+                            .official(mcString)
+                            .mojang(mcString)
+                            .spigot(mcString)
+                            .legacySpigot(mcString)
+                            .searge(mcString)
+                            .searge(mcString)
+                            .legacySearge(mcString)
+                            .mcp(mcString)
+                            .yarnIntermediary(mcString)
+                            .legacyIntermediary(mcString);
+
+            var mcServer_isDedicatedServer = MappingEntry.builder("isDedicatedServer")
+                    .parentEntry(mcServer)
+                    .mojang("isDedicatedServer")
+                    .searge("m_6982_")
+                    .legacySearge("func_71262_S")
+                    .mcp("isDedicatedServer")
+                    .yarnIntermediary("method_3816")
+                    .legacyIntermediary("method_2983");
+
+            store.registerClass(mcServer)
+                    .registerMethod(mcServer_isDedicatedServer);
+
+            logger.info("Registered MinecraftServer reflection mappings");
+            logger.info("|-> isDedicatedServer");
         }
     }
 

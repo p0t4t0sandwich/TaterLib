@@ -11,6 +11,7 @@ import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraftServer;
 import dev.neuralnexus.modapi.metadata.impl.logger.SystemLogger;
 import dev.neuralnexus.modapi.metadata.impl.util.MixinServiceUtil;
 
@@ -58,8 +59,10 @@ public final class VanillaMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        // TODO: Look into parsing the MinecraftServer#isDedicatedServer() to determine the side
-        throw new UnsupportedOperationException("This needs to be implemented");
+        if (server == null) {
+            return Side.CLIENT;
+        }
+        return WMinecraftServer.isDedicatedServer(server) ? Side.INTEGRATED : Side.SERVER;
     }
 
     @Override

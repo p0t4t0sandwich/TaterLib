@@ -12,6 +12,7 @@ import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraftServer;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
@@ -45,8 +46,10 @@ public final class SpongeModernMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        // TODO: Look into parsing the MinecraftServer#isDedicatedServer() to determine the side
-        throw new UnsupportedOperationException("This needs to be implemented");
+        if (Sponge.server() == null) {
+            return Side.CLIENT;
+        }
+        return WMinecraftServer.isDedicatedServer(Sponge.server()) ? Side.INTEGRATED : Side.SERVER;
     }
 
     @Override

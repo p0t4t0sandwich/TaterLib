@@ -7,8 +7,6 @@ package dev.neuralnexus.modapi.metadata.impl;
 
 import dev.neuralnexus.modapi.metadata.Side;
 
-import net.minecraft.server.MinecraftServer;
-
 /** Wraps the MC client instance */
 public class WMinecraft {
     public static Object getInstance() {
@@ -19,7 +17,7 @@ public class WMinecraft {
         return MetaAPIImpl.store.invokeMethod("Minecraft", "hasServer", getInstance());
     }
 
-    public static MinecraftServer getServer() {
+    public static Object getServer() {
         return MetaAPIImpl.store.invokeMethod("Minecraft", "getServer", getInstance());
     }
 

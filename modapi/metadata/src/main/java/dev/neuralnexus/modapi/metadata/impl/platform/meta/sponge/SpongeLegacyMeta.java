@@ -12,6 +12,7 @@ import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraftServer;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
@@ -45,8 +46,10 @@ public final class SpongeLegacyMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        // TODO: Look into parsing the MinecraftServer#isDedicatedServer() to determine the side
-        throw new UnsupportedOperationException("This needs to be implemented");
+        if (Sponge.getServer() == null) {
+            return Side.CLIENT;
+        }
+        return WMinecraftServer.isDedicatedServer(Sponge.getServer()) ? Side.INTEGRATED : Side.SERVER;
     }
 
     @Override
