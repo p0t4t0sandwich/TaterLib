@@ -19,7 +19,6 @@ import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.file.Path;

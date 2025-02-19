@@ -45,7 +45,10 @@ public final class BukkitMeta implements Platform.Meta {
             String clazz = Bukkit.getServer().getClass().getPackage().getName() + ".CraftServer";
             Class<?> craftServer = Class.forName(clazz);
             return craftServer.getDeclaredMethod("getServer").invoke(Bukkit.getServer());
-        } catch (ClassNotFoundException | InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+        } catch (ClassNotFoundException
+                | InvocationTargetException
+                | IllegalAccessException
+                | NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }

@@ -10,11 +10,14 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
-import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -24,12 +27,25 @@ import java.util.stream.Collectors;
 public class MCFLoaderMeta implements Platform.Meta {
     @Override
     public @NotNull Object server() {
-        return this.minecraftServer();
+        return this.minecraft();
     }
 
     @Override
-    public @NotNull MinecraftServer minecraftServer() {
-        return ;
+    public @NotNull Object client() {
+        return WMinecraft.getInstance();
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        if (this.side().isClient() && WMinecraft.hasServer()) {
+            return WMinecraft.getServer();
+        }
+        return FMLCommonHandler.instance().getMinecraftServerInstance();
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return WMinecraft.determineSide(FMLCommonHandler.instance().getSide().isClient());
     }
 
     @Override

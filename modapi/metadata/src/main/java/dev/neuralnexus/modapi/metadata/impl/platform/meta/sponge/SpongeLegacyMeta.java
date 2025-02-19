@@ -10,6 +10,8 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
@@ -23,6 +25,30 @@ import java.util.stream.Collectors;
 
 /** Stores data about the Sponge platform */
 public final class SpongeLegacyMeta implements Platform.Meta {
+    @Override
+    public @NotNull Object server() {
+        return Sponge.getServer();
+    }
+
+    @Override
+    public @NotNull Object client() {
+        return WMinecraft.getInstance();
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        if (this.side().isClient() && WMinecraft.hasServer()) {
+            return WMinecraft.getServer();
+        }
+        return this.server();
+    }
+
+    @Override
+    public @NotNull Side side() {
+        // TODO: Look into parsing the MinecraftServer#isDedicatedServer() to determine the side
+        throw new UnsupportedOperationException("This needs to be implemented");
+    }
+
     @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(Sponge.getPlatform().getMinecraftVersion().getName());

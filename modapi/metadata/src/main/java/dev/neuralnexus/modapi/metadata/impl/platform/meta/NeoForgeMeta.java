@@ -10,11 +10,15 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersion;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 import net.neoforged.fml.loading.LoadingModList;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -22,6 +26,29 @@ import java.util.stream.Collectors;
 
 /** Stores data about the NeoForge platform */
 public final class NeoForgeMeta implements Platform.Meta {
+    @Override
+    public @NotNull Object server() {
+        return this.minecraft();
+    }
+
+    @Override
+    public @NotNull Object client() {
+        return WMinecraft.getInstance();
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        if (this.side().isClient() && WMinecraft.hasServer()) {
+            return WMinecraft.getServer();
+        }
+        return ServerLifecycleHooks.getCurrentServer();
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return WMinecraft.determineSide(FMLLoader.getDist().isClient());
+    }
+
     @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(FMLLoader.versionInfo().mcVersion());

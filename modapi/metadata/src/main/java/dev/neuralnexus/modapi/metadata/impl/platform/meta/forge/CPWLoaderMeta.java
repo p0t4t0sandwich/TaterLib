@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.modapi.metadata.impl.platform.meta.forge;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 
 import dev.neuralnexus.modapi.metadata.Logger;
@@ -13,12 +14,12 @@ import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
-import net.minecraft.server.MinecraftServer;
+
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,19 +32,20 @@ public class CPWLoaderMeta implements Platform.Meta {
 
     @Override
     public @NotNull Object client() {
-        return null;
+        return WMinecraft.getInstance();
     }
 
     @Override
     public @NotNull Object minecraft() {
-        // TODO: Research to find a more friendly way to get the server
-        // TODO: Client-only check
-        return MinecraftServer.getServer();
+        if (this.side().isClient() && WMinecraft.hasServer()) {
+            return WMinecraft.getServer();
+        }
+        return FMLCommonHandler.instance().getMinecraftServerInstance();
     }
 
     @Override
     public @NotNull Side side() {
-        return null;
+        return WMinecraft.determineSide(FMLCommonHandler.instance().getSide().isClient());
     }
 
     @Override

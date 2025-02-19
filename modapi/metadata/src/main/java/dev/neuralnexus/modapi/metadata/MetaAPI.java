@@ -9,6 +9,7 @@ import dev.neuralnexus.modapi.metadata.impl.MetaAPIImpl;
 import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 
 import net.minecraft.server.MinecraftServer;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -126,14 +127,16 @@ public interface MetaAPI {
     /**
      * Get the client instance. Not available in server-only environments. <br>
      * It's safe to cast to {@link net.minecraft.client.Minecraft}. <br>
-     * The only reason it isn't returned, is because the class is remapped in some environments (notably Fabric).
+     * The only reason it isn't returned, is because the class is remapped in some environments
+     * (notably Fabric).
      *
      * @return The client instance
      */
     @NotNull Object client();
 
     /**
-     * Get an instance of the {@link MinecraftServer}. Not available on proxies or in client-only environments.
+     * Get an instance of the {@link MinecraftServer}. Not available on proxies or in client-only
+     * environments.
      *
      * @return The MinecraftServer instance
      */

@@ -11,19 +11,21 @@ import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.modapi.metadata.ModInfo;
 import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.modapi.metadata.impl.WMinecraft;
 import dev.neuralnexus.modapi.metadata.impl.logger.ApacheLogger;
 import dev.neuralnexus.modapi.metadata.impl.logger.Slf4jLogger;
 import dev.neuralnexus.modapi.metadata.impl.platform.meta.ModInfoImpl;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LauncherVersion;
 import net.minecraftforge.fml.loading.LoadingModList;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,14 +33,25 @@ import java.util.stream.Collectors;
 public class FMLLoaderMeta implements Platform.Meta {
     @Override
     public @NotNull Object server() {
-        return this.minecraftServer();
+        return this.minecraft();
     }
 
     @Override
-    public @NotNull MinecraftServer minecraftServer() {
-        // TODO: Research to find a more friendly way to get the server
-        // TODO: Client-only check
-        return MinecraftServer.getServer();
+    public @NotNull Object client() {
+        return WMinecraft.getInstance();
+    }
+
+    @Override
+    public @NotNull Object minecraft() {
+        if (this.side().isClient() && WMinecraft.hasServer()) {
+            return WMinecraft.getServer();
+        }
+        return ServerLifecycleHooks.getCurrentServer();
+    }
+
+    @Override
+    public @NotNull Side side() {
+        return WMinecraft.determineSide(FMLLoader.getDist().isClient());
     }
 
     @Override
