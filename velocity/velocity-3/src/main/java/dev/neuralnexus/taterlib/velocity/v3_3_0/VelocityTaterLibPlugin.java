@@ -15,9 +15,9 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.PluginContainer;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
-
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
+
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
@@ -67,47 +67,67 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
         // Player listeners
         // Note: Player login
-        eventManager.register(plugin, ServerConnectedEvent.class, event -> {
-            // If player is switching servers, don't run this function
-            if (event.getPreviousServer().isPresent()) return;
-            PlayerEvents.LOGIN.invoke(new VelocityPlayerLoginEvent(event));
-        });
-        eventManager.register(plugin, DisconnectEvent.class, event ->
-                PlayerEvents.LOGOUT.invoke(new VelocityPlayerLogoutEvent(event)));
-        eventManager.register(plugin, PlayerChatEvent.class, event -> {
-            if (event.getMessage().startsWith("/")) return;
-            PlayerEvents.MESSAGE.invoke(new VelocityPlayerMessageEvent(event));
-        });
+        eventManager.register(
+                plugin,
+                ServerConnectedEvent.class,
+                event -> {
+                    // If player is switching servers, don't run this function
+                    if (event.getPreviousServer().isPresent()) return;
+                    PlayerEvents.LOGIN.invoke(new VelocityPlayerLoginEvent(event));
+                });
+        eventManager.register(
+                plugin,
+                DisconnectEvent.class,
+                event -> PlayerEvents.LOGOUT.invoke(new VelocityPlayerLogoutEvent(event)));
+        eventManager.register(
+                plugin,
+                PlayerChatEvent.class,
+                event -> {
+                    if (event.getMessage().startsWith("/")) return;
+                    PlayerEvents.MESSAGE.invoke(new VelocityPlayerMessageEvent(event));
+                });
         // Note: Player server switch
-        eventManager.register(plugin, ServerConnectedEvent.class, event -> {
-            // If player is just joining, don't run this function
-            if (event.getPreviousServer().isEmpty()) return;
-            PlayerEvents.SERVER_SWITCH.invoke(new VelocityPlayerServerSwitchEvent(event));
-        });
+        eventManager.register(
+                plugin,
+                ServerConnectedEvent.class,
+                event -> {
+                    // If player is just joining, don't run this function
+                    if (event.getPreviousServer().isEmpty()) return;
+                    PlayerEvents.SERVER_SWITCH.invoke(new VelocityPlayerServerSwitchEvent(event));
+                });
 
         // Network listeners
-        eventManager.register(plugin, PluginMessageEvent.class, event -> {
-            CustomPayloadPacket packet =
-                    new CustomPayloadPacketImpl(
-                            ResourceKey.of(event.getIdentifier().getId()), event.getData());
-            if (event.getSource() instanceof Player) {
-                NetworkEvents.C2S_CUSTOM_PACKET.invoke(
-                        new C2SCustomPacketEventImpl(
-                                packet,
-                                new VelocityPlayer(
-                                        (com.velocitypowered.api.proxy.Player) event.getSource())));
-            } else if (event.getSource() instanceof ServerConnection) {
-                NetworkEvents.S2P_CUSTOM_PACKET.invoke(
-                        new S2PCustomPacketEventImpl(
-                                packet, new VelocityServer((RegisteredServer) event.getSource())));
-            }
-        });
+        eventManager.register(
+                plugin,
+                PluginMessageEvent.class,
+                event -> {
+                    CustomPayloadPacket packet =
+                            new CustomPayloadPacketImpl(
+                                    ResourceKey.of(event.getIdentifier().getId()), event.getData());
+                    if (event.getSource() instanceof Player) {
+                        NetworkEvents.C2S_CUSTOM_PACKET.invoke(
+                                new C2SCustomPacketEventImpl(
+                                        packet,
+                                        new VelocityPlayer(
+                                                (com.velocitypowered.api.proxy.Player)
+                                                        event.getSource())));
+                    } else if (event.getSource() instanceof ServerConnection) {
+                        NetworkEvents.S2P_CUSTOM_PACKET.invoke(
+                                new S2PCustomPacketEventImpl(
+                                        packet,
+                                        new VelocityServer((RegisteredServer) event.getSource())));
+                    }
+                });
 
         // Server listeners
-        eventManager.register(plugin, ProxyInitializeEvent.class, event ->
-                ServerEvents.STARTING.invoke(new ServerStartingEvent() {}));
-        eventManager.register(plugin, ProxyShutdownEvent.class, event ->
-                ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {}));
+        eventManager.register(
+                plugin,
+                ProxyInitializeEvent.class,
+                event -> ServerEvents.STARTING.invoke(new ServerStartingEvent() {}));
+        eventManager.register(
+                plugin,
+                ProxyShutdownEvent.class,
+                event -> ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {}));
 
         proxyServer
                 .getScheduler()

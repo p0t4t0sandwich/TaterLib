@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.event.loader.LoaderInitializeEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
-import dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /** Loader entry point. */
-public class LoaderImpl implements Loader {
+public final class LoaderImpl implements Loader {
     public static final String PROJECT_NAME = "TaterLib";
     public static final String PROJECT_ID = "taterlib";
     public static final String PROJECT_VERSION = "2.0.0-SNAPSHOT";
@@ -32,10 +32,12 @@ public class LoaderImpl implements Loader {
     private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
     public LoaderImpl(Object plugin) {
-        // TLauncher check
-        if (ReflectionUtil.checkForClass(
-                "org.tlauncher.MixinConnector", "org.tlauncher.tlauncher.rmo.Bootstrapper")) {
+        if (CheckForBad.checkForTLauncher()) {
             throw new RuntimeException("TaterLib does not support TLauncher");
+        }
+        if (!MetaAPI.instance().isModLoaded("handsoffmydata") && CheckForBad.checkForBrightSDK()) {
+            throw new RuntimeException(
+                    "TaterLib does not support environments containing BrightSDK, please install HandsOffMyData to ensure that your data is safe.");
         }
 
         instance = this;
