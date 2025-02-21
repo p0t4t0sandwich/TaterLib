@@ -45,8 +45,8 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(variantOf(libs.modapi.muxins) {
-        classifier("downgraded-8-all")
+    compileOnly(variantOf(libs.modapi) {
+        classifier("downgraded-8")
     })
     implementation(project(":vanilla:vanilla-1.16"))
 }

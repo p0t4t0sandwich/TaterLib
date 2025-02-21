@@ -5,12 +5,12 @@
  */
 package dev.neuralnexus.taterlib.metrics.bstats;
 
-import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.Side;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.Side;
 import dev.neuralnexus.taterlib.TaterLib;
 
 import org.bstats.MetricsBase;
@@ -105,7 +105,8 @@ public class TaterLibMetrics {
                         "modloader_version", () -> MetaAPI.instance().meta().loaderVersion()));
         metrics.addCustomChart(
                 new SimplePie("minecraft_version", () -> MetaAPI.instance().version().toString()));
-        metrics.addCustomChart(new SimplePie("platform", () -> MetaAPI.instance().platform().toString()));
+        metrics.addCustomChart(
+                new SimplePie("platform", () -> MetaAPI.instance().platform().toString()));
         metrics.addCustomChart(
                 new DrilldownPie(
                         "java_version",

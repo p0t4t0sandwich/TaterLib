@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.storage.databases;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import java.io.File;
 

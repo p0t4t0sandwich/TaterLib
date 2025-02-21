@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.modules.bungeecord;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
 

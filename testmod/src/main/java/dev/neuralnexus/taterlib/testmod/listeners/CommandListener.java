@@ -5,8 +5,11 @@
  */
 package dev.neuralnexus.taterlib.testmod.listeners;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.testmod.commands.PermsTestCommand;
 

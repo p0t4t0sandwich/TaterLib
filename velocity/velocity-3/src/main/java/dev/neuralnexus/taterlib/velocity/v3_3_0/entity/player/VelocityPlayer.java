@@ -5,13 +5,14 @@
  */
 package dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player;
 
+import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
@@ -21,7 +22,7 @@ import net.kyori.adventure.text.Component;
 import java.util.UUID;
 
 /** Velocity implementation of {@link ProxyPlayer}. */
-public class VelocityPlayer implements ProxyPlayer, Wrapped<com.velocitypowered.api.proxy.Player> {
+public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     private final com.velocitypowered.api.proxy.Player player;
     private RegisteredServer server = null;
 

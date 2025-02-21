@@ -5,9 +5,9 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
-import dev.neuralnexus.modapi.metadata.annotations.Range;
-import dev.neuralnexus.modapi.metadata.annotations.VersionFeature;
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.annotations.Range;
+import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 

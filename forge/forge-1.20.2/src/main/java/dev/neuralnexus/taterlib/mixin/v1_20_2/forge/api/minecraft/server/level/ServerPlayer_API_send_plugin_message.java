@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_2.forge.api.minecraft.server.level;
 
-import dev.neuralnexus.modapi.metadata.Mappings;
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.entity.player.Connection;
+import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.network.VanillaCustomPacketPayload;
 

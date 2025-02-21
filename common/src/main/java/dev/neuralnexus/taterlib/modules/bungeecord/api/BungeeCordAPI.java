@@ -10,10 +10,10 @@ import static dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType.*;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLib;
 

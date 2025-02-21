@@ -12,8 +12,11 @@ import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 
 /** Helper class for brigadier commands (prevents ClassNotFound exceptions). */

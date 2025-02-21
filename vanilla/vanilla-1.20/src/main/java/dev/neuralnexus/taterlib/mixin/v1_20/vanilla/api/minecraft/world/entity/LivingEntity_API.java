@@ -5,13 +5,13 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20.vanilla.api.minecraft.world.entity;
 
-import dev.neuralnexus.modapi.metadata.Mappings;
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;

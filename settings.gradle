@@ -18,11 +18,8 @@ rootProject.name = 'TaterLib'
 
 include(
 	    // ModAPI libraries
-        'modapi:brigadier-general',
-        'modapi:crossperms',
 	    'modapi:entrypoint-spoof',
-        'modapi:metadata',
-        'modapi:muxins',
+        'modapi',
 
         // Common
         'api',

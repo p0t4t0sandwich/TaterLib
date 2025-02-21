@@ -12,10 +12,14 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 
 /** Velocity entry point. */

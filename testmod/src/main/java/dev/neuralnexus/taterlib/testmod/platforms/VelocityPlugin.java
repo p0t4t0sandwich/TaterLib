@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.testmod.platforms;
 import com.velocitypowered.api.plugin.Dependency;
 import com.velocitypowered.api.plugin.Plugin;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.testmod.TestMod;
 

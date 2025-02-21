@@ -20,6 +20,6 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(libs.modapi)
     compileOnly(project(":vanilla:vanilla-1.20"))
 }

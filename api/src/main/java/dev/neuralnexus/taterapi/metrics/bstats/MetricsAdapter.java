@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterapi.metrics.bstats;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
-import dev.neuralnexus.modapi.metadata.Platform;
-import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.Side;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MinecraftVersions;
+import dev.neuralnexus.taterapi.meta.Platform;
+import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.Side;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitBetaMetricsAdapter;
 import dev.neuralnexus.taterapi.metrics.bstats.bukkit.BukkitMetricsAdapter;
 import dev.neuralnexus.taterapi.metrics.bstats.bungeecord.BungeeCordMetricsAdapter;

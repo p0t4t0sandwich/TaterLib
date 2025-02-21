@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.testmod.platforms;
 
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterlib.testmod.TestMod;
 

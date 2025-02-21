@@ -7,13 +7,13 @@ package dev.neuralnexus.taterlib.mixin.v1_21.fabric.listeners.network;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.modapi.metadata.Mappings;
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
+import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 

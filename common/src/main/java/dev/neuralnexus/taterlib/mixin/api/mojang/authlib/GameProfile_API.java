@@ -7,11 +7,11 @@ package dev.neuralnexus.taterlib.mixin.api.mojang.authlib;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;

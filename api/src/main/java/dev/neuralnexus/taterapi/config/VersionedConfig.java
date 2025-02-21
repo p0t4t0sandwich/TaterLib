@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.config;
 
-import dev.neuralnexus.modapi.metadata.Logger;
+import dev.neuralnexus.taterapi.logger.Logger;
 
 import org.spongepowered.configurate.ConfigurationNode;
 import org.spongepowered.configurate.objectmapping.ConfigSerializable;

@@ -8,9 +8,9 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.ModInfo;
-import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.ModInfo;
+import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 

@@ -5,12 +5,12 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_21.vanilla.listeners.server;
 
-import dev.neuralnexus.modapi.metadata.Mappings;
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
+import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.server.MinecraftServer;
 

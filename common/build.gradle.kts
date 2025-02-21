@@ -40,13 +40,7 @@ dependencies {
     // Tooling
     implementation(project(":api"))
     implementation(project(":loader"))
-    implementation(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8-shaded")
-    })
-    implementation(variantOf(libs.modapi.metadata) {
-        classifier("downgraded-8-shaded")
-    })
-    implementation(variantOf(libs.modapi.muxins) {
+    implementation(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
     compileOnly(project(":modapi:entrypoint-spoof"))

@@ -5,12 +5,18 @@
  */
 package dev.neuralnexus.taterloader;
 
-import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.MinecraftVersion;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
-import dev.neuralnexus.modapi.metadata.Platform;
-import dev.neuralnexus.modapi.metadata.Platforms;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MinecraftVersion;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MinecraftVersions;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.Platform;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.Platforms;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
@@ -18,7 +24,6 @@ import java.util.Map;
 import java.util.Optional;
 
 /** Utility class for reflection. */
-@SuppressWarnings("UnstableApiUsage")
 public class TaterReflectUtil {
     public static final String TL_PACKAGE = "dev.neuralnexus.taterlib";
     public static final Map<Platform, String> packageNames = new HashMap<>();

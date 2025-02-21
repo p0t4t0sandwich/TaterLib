@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.modules.core;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.TaterAPIProvider;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -15,6 +14,7 @@ import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.hooks.metrics.SparkHook;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.storage.databases.Database;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
 import dev.neuralnexus.taterlib.TaterLib;

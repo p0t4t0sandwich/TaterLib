@@ -8,10 +8,10 @@ package dev.neuralnexus.taterlib.bukkit.event.command;
 import static dev.neuralnexus.taterlib.bukkit.reflection.Utils.getCommandMap;
 import static dev.neuralnexus.taterlib.bukkit.reflection.Utils.syncCommands;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.MinecraftVersions;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterlib.bukkit.command.BukkitCommandWrapper;
 
 import java.util.Objects;

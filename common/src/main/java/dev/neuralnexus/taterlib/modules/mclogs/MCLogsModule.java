@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterlib.modules.mclogs;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.mclogs.command.MCLogsCommand;
 

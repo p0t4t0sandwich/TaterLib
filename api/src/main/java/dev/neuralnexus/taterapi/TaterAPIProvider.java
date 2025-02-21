@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterapi;
 
-import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platform;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.Platform;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
@@ -21,7 +21,13 @@ import dev.neuralnexus.taterapi.world.Location;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 

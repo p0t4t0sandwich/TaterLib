@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.exceptions;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 /** Exception thrown when a feature is not supported on the current Minecraft version. */
 public class VersionFeatureNotSupportedException extends RuntimeException {

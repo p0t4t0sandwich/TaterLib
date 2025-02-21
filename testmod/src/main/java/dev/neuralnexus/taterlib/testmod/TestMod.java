@@ -5,11 +5,16 @@
  */
 package dev.neuralnexus.taterlib.testmod;
 
-import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PermsTestCommand;
@@ -74,11 +79,11 @@ public class TestMod implements Plugin {
         logger.info(
                 TestMod.PROJECT_NAME
                         + " is running on "
-                        + api.platform().asString()
+                        + api.platform()
                         + " "
-                        + api.version().asString()
+                        + api.version()
                         + ", with "
-                        + api.mappings().toString()
+                        + api.mappings()
                         + " mappings!");
         PluginEvents.DISABLED.register(event -> this.onDisable());
 

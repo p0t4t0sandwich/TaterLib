@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib.config;
 
-import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.config.VersionedConfig;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
 
 import org.spongepowered.configurate.CommentedConfigurationNode;

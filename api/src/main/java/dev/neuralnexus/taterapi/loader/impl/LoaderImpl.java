@@ -5,12 +5,12 @@
  */
 package dev.neuralnexus.taterapi.loader.impl;
 
-import dev.neuralnexus.modapi.metadata.impl.util.ReflectionUtil;
 import dev.neuralnexus.taterapi.event.api.LoaderEvents;
 import dev.neuralnexus.taterapi.event.loader.LoaderInitializeEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;

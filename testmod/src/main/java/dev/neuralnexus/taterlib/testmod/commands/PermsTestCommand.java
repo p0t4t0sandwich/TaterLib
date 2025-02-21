@@ -5,13 +5,20 @@
  */
 package dev.neuralnexus.taterlib.testmod.commands;
 
-import dev.neuralnexus.modapi.crossperms.api.PermsAPI;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.Platforms;
-import dev.neuralnexus.modapi.metadata.impl.util.TextUtil;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.Command;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterlib.testmod.TestMod;
 
 import java.lang.reflect.InvocationTargetException;

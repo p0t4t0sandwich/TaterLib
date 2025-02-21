@@ -8,7 +8,7 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
-    compileOnly(libs.modapi.metadata)
+    compileOnly(libs.modapi)
 }
 
 java.disableAutoTargetJvm()

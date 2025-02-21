@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.mixin.plugin;
 
-import dev.neuralnexus.modapi.muxins.Muxins;
 import dev.neuralnexus.taterapi.config.MixinConfig;
+import dev.neuralnexus.taterapi.muxins.Muxins;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
 import org.objectweb.asm.tree.ClassNode;

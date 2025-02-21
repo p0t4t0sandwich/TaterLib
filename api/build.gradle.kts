@@ -39,10 +39,7 @@ dependencies {
 
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
-    api(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8")
-    })
-    api(variantOf(libs.modapi.metadata) {
+    api(variantOf(libs.modapi) {
         classifier("downgraded-8")
     })
 }

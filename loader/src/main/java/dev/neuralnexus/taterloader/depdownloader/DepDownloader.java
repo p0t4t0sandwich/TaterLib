@@ -5,9 +5,12 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
-import dev.neuralnexus.modapi.metadata.Logger;
-import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.logger.Logger;
+import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import org.jetbrains.annotations.ApiStatus;
 

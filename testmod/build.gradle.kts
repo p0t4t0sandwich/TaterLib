@@ -15,10 +15,7 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":loader"))
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8")
-    })
-    compileOnly(variantOf(libs.modapi.metadata) {
+    compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8")
     })
 }

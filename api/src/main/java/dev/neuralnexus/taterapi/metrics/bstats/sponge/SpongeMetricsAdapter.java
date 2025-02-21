@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterapi.metrics.bstats.sponge;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
-import dev.neuralnexus.modapi.metadata.impl.util.PathUtils;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.impl.util.PathUtils;
 
 import org.apache.logging.log4j.Logger;
 import org.bstats.charts.CustomChart;

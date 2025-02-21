@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
 import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.TaterLib;
 
 import java.io.File;

@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi;
 
-import dev.neuralnexus.modapi.metadata.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import org.jetbrains.annotations.ApiStatus;

@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.patch.item.inventory;
 
-import dev.neuralnexus.modapi.metadata.enums.MinecraftVersion;
-import dev.neuralnexus.modapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterlib.v1_20.vanilla.item.inventory.VanillaItemStack;
 
 import net.minecraft.core.component.DataComponents;
