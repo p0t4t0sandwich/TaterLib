@@ -12,8 +12,8 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-
 import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
+
 import net.minecraft.server.MinecraftServer;
 
 import org.spongepowered.asm.mixin.Mixin;

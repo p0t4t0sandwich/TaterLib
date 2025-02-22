@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.world.entity;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 

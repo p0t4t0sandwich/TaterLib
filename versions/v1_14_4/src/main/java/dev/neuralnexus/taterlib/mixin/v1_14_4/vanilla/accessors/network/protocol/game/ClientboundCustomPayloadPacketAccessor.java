@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protoco
 
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;

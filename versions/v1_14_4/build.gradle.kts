@@ -27,11 +27,6 @@ sourceSets {
 
 @Suppress("UnstableApiUsage")
 configurations {
-    val mainImplementation by creating
-    named("implementation") {
-        extendsFrom(configurations.getByName("fabricImplementation"))
-        extendsFrom(configurations.getByName("forgeImplementation"))
-    }
     val mainCompileOnly by creating
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
@@ -40,17 +35,6 @@ configurations {
     val modImplementation by creating
     named("modImplementation") {
         extendsFrom(configurations.getByName("fabricImplementation"))
-        extendsFrom(configurations.getByName("forgeImplementation"))
-    }
-}
-
-sourceSets {
-    named("main") {
-        compileClasspath += configurations.getByName("mainImplementation")
-        runtimeClasspath += configurations.getByName("mainImplementation")
-
-        compileClasspath += configurations.getByName("mainCompileOnly")
-        runtimeClasspath += configurations.getByName("mainCompileOnly")
     }
 }
 
@@ -123,29 +107,18 @@ tasks.create<ShadowJar>("relocateForgeJar") {
 
 // ------------------------------------------- Common -------------------------------------------
 dependencies {
-    "mainCompileOnly"(libs.mixin)
-    "mainCompileOnly"(project(":api"))
-    "mainCompileOnly"(project(":common"))
-    "mainCompileOnly"(project(":loader"))
-    "mainCompileOnly"(variantOf(libs.modapi) {
-        classifier("downgraded-8")
-    })
-
-    "fabricCompileOnly"(libs.mixin)
-    "fabricCompileOnly"(project(":api"))
-    "fabricCompileOnly"(project(":common"))
-    "fabricCompileOnly"(project(":loader"))
-    "fabricCompileOnly"(variantOf(libs.modapi) {
-        classifier("downgraded-8")
-    })
-
-    "forgeCompileOnly"(libs.mixin)
-    "forgeCompileOnly"(project(":api"))
-    "forgeCompileOnly"(project(":common"))
-    "forgeCompileOnly"(project(":loader"))
-    "forgeCompileOnly"(variantOf(libs.modapi) {
-        classifier("downgraded-8")
-    })
+    listOf(
+        libs.mixin,
+        project(":api"),
+        project(":common"),
+        variantOf(libs.modapi) {
+            classifier("downgraded-8")
+        }
+    ).forEach {
+        "mainCompileOnly"(it)
+        "fabricCompileOnly"(it)
+        "forgeCompileOnly"(it)
+    }
 
     listOf(
         "fabric-api-base",
@@ -159,6 +132,4 @@ dependencies {
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))
 }
 
-tasks.build {
-    dependsOn(tasks.shadowJar)
-}
+tasks.build.get().dependsOn(tasks.shadowJar)
