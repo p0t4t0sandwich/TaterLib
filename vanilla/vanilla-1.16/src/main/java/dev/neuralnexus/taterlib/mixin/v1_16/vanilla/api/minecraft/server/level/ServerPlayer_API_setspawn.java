@@ -27,7 +27,6 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_1)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements(@Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE))
-@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class ServerPlayer_API_setspawn {
     @Shadow
     public abstract void shadow$setRespawnPosition(

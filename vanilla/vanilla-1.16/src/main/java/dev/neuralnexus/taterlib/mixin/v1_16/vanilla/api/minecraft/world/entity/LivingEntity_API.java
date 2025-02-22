@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),
     @Interface(iface = LivingEntity.class, prefix = "livingEntity$", remap = Remap.NONE)
 })
-@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class LivingEntity_API {
     @Shadow
     public abstract boolean shadow$hurt(DamageSource damageSource, float damage);

@@ -20,13 +20,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player death listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(ServerPlayer.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class PlayerDeathMixin {
-    /** Called when a player dies. */
     @Inject(method = "die", at = @At("HEAD"))
     public void onPlayerDeath(DamageSource source, CallbackInfo ci) {
         PlayerEvents.DEATH.invoke(

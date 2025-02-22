@@ -26,13 +26,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player block break listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(Block.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class PlayerBlockBreakMixin {
-    /** Called when a block is broken by a player. */
     @Inject(method = "playerDestroy", at = @At("HEAD"), cancellable = true)
     private void onBreak(
             Level level,

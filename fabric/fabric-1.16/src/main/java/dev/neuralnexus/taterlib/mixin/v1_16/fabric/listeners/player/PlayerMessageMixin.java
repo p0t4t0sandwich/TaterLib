@@ -23,14 +23,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player message listener. */
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerMessageMixin {
     @Shadow public ServerPlayer player;
 
-    /** Called when a player sends a message. */
     @Inject(
             method = "handleChat(Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)V",
             at = @At("HEAD"),

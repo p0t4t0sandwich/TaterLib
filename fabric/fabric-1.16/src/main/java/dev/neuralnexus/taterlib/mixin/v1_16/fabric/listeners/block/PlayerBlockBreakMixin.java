@@ -31,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {
-    /** Called when a block is broken by a player. */
     @Inject(method = "playerDestroy", at = @At("HEAD"), cancellable = true)
     private void onBreak(
             Level level,

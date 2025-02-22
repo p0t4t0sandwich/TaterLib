@@ -24,18 +24,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player advancement finished listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(PlayerAdvancements.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class PlayerAdvancementFinishedMixin {
     @Shadow private ServerPlayer player;
 
     @Shadow
     public abstract AdvancementProgress getOrStartProgress(Advancement advancement);
 
-    /** Called when a player completes an advancement. */
     @Inject(method = "unregisterListeners", at = @At("HEAD"))
     public void onPlayerAdvancementFinished(Advancement advancement, CallbackInfo ci) {
         if (advancement.getDisplay() != null) {

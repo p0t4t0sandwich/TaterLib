@@ -19,7 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the entity death listener. */
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V8_9)
 @Mixin(LivingEntity.class)

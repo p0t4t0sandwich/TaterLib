@@ -19,13 +19,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the server stopped listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(MinecraftServer.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class ServerStoppedMixin {
-    /** Called when the server has stopped. */
     @Inject(at = @At("TAIL"), method = "stopServer")
     private void onServerStopped(CallbackInfo info) {
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});

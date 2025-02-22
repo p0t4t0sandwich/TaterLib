@@ -16,7 +16,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 /** Contains additional entity events. */
 public final class FabricEntityEvents {
-    /** Called when an entity takes damage. */
     public static final Event<EntityDamage> DAMAGE =
             EventFactory.createArrayBacked(
                     EntityDamage.class,

@@ -20,13 +20,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the entity death listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
 @Mixin(LivingEntity.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 class EntityDeathMixin {
-    /** Called when an entity is spawned. */
     @Inject(method = "die", at = @At("HEAD"))
     private void onEntityDeath(DamageSource source, CallbackInfo ci) {
         EntityEvents.DEATH.invoke(

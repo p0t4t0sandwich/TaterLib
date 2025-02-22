@@ -21,13 +21,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player login listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(PlayerList.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class PlayerLoginMixin {
-    /** Called when a player logs in. */
     @Inject(
             method = "placeNewPlayer",
             at =

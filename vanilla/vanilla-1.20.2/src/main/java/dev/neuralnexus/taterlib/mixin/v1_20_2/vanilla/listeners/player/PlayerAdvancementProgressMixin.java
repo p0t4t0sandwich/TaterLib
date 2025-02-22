@@ -22,14 +22,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/** Mixin for the player advancement progress listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_6)
 @Mixin(PlayerAdvancements.class)
 public class PlayerAdvancementProgressMixin {
     @Shadow private ServerPlayer player;
 
-    /** Called when a player progresses an advancement. */
     @Inject(method = "award", at = @At("HEAD"))
     public void onPlayerAdvancementProgress(
             AdvancementHolder advancementHolder,

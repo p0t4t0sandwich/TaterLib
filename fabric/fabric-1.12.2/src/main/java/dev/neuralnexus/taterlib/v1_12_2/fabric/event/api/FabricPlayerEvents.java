@@ -36,7 +36,6 @@ public final class FabricPlayerEvents {
                                 }
                             });
 
-    /** Called when a player dies. */
     public static final Event<PlayerDeath> DEATH =
             EventFactory.createArrayBacked(
                     PlayerDeath.class,
@@ -47,7 +46,6 @@ public final class FabricPlayerEvents {
                                 }
                             });
 
-    /** Called when a player sends a message. */
     public static final Event<PlayerMessage> MESSAGE =
             EventFactory.createArrayBacked(
                     PlayerMessage.class,
@@ -58,7 +56,6 @@ public final class FabricPlayerEvents {
                                 }
                             });
 
-    /** Called when a player respawns. */
     public static final Event<PlayerRespawn> RESPAWN =
             EventFactory.createArrayBacked(
                     PlayerRespawn.class,

@@ -42,7 +42,6 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
     @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
-@SuppressWarnings({"unused", "UnusedMixin"})
 public abstract class Player_API {
     @Shadow
     public abstract GameProfile shadow$getGameProfile();

@@ -27,7 +27,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5)
 @Mixin(ServerGamePacketListenerImpl.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class C2SCustomPayloadMixin {
     @Shadow public ServerPlayer player;
 

@@ -20,13 +20,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/** Mixin for the player respawn listener. */
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V18, max = MinecraftVersion.V18_2)
 @Mixin(PlayerList.class)
-@SuppressWarnings({"unused", "UnusedMixin"})
 public class PlayerRespawnMixin {
-    /** Called when a player respawns. */
     @Inject(method = "respawn", at = @At("HEAD"))
     public void onPlayerRespawn(
             ServerPlayer player, boolean alive, CallbackInfoReturnable<ServerPlayer> cir) {

@@ -21,12 +21,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/** Mixin for the entity spawn listener. */
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V18, max = MinecraftVersion.V18_2)
 @Mixin(ServerLevel.class)
 class EntitySpawnMixin {
-    /** Called when an entity is spawned. */
     @Inject(method = "addFreshEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityEvents.SPAWN.invoke(

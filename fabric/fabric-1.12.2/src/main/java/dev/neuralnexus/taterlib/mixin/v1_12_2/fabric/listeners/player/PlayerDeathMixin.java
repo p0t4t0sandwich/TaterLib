@@ -20,7 +20,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the player death listener. */
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V12, max = MinecraftVersion.V12_2)
 @Mixin(ServerPlayerEntity.class)

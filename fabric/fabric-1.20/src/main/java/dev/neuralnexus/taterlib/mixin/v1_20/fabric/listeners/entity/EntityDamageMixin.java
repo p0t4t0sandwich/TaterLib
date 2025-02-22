@@ -21,12 +21,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/** Mixin for the entity damage listener. */
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6)
 @Mixin(CombatTracker.class)
 class EntityDamageMixin {
-    /** Called when an entity takes damage. */
     @Inject(method = "recordDamage", at = @At("HEAD"), cancellable = true)
     private void onEntityDamage(DamageSource damageSource, float damage, CallbackInfo ci) {
         EntityEvents.DAMAGE.invoke(
