@@ -16,6 +16,7 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,19 +41,23 @@ import java.util.stream.Collectors;
 public abstract class Minecraft_API {
     @Shadow @Nullable public LocalPlayer player;
 
+    @Shadow
+    @Nullable public abstract ClientPacketListener shadow$getConnection();
+
     public String server$brand() {
         if (this.player == null) return "Local";
         return this.player.getServerBrand();
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public List<User> server$onlinePlayers() {
-        return this.player.connection.getOnlinePlayers().stream()
+        return this.shadow$getConnection().getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
                 .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 
-    @SuppressWarnings("VulnerableCodeUsages")
+    @SuppressWarnings("DataFlowIssue")
     void server$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
@@ -60,7 +65,8 @@ public abstract class Minecraft_API {
         this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     void server$broadcastMessage(String message) {
-        this.player.connection.send(new ServerboundChatPacket(message));
+        this.shadow$getConnection().send(new ServerboundChatPacket(message));
     }
 }

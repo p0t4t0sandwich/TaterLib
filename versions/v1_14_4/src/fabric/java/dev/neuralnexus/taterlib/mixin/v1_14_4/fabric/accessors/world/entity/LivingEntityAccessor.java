@@ -17,9 +17,10 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
 @Mixin(LivingEntity.class)
 public interface LivingEntityAccessor {
     @Invoker("getExperienceReward")
+    @SuppressWarnings("unused")
     int invoker$getExperienceReward(final Player player);
 }

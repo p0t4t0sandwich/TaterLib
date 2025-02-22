@@ -12,6 +12,7 @@
     "v1_14_4.fabric.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
     "v1_14_4.fabric.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.fabric.accessors.server.players.StoredUserEntryAccessor",
+    "v1_14_4.fabric.accessors.world.entity.LivingEntityAccessor",
     "v1_14_4.fabric.api.minecraft.commands.CommandSourceStack_API",
     "v1_14_4.fabric.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_14_4.fabric.api.minecraft.resources.ResourceLocation_API",
@@ -20,10 +21,10 @@
     "v1_14_4.fabric.api.minecraft.world.entity.Entity_API",
     "v1_14_4.fabric.api.minecraft.world.entity.LivingEntity_API",
     "v1_14_4.fabric.api.minecraft.world.entity.player.Player_API",
+    "v1_14_4.fabric.core.world.entity.player.PlayerMixin",
     "v1_14_4.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.fabric.listeners.entity.EntityDamageMixin",
-    "v1_14_4.fabric.listeners.entity.EntityDeathMixin",
-    "v1_14_4.fabric.accessors.world.entity.LivingEntityAccessor"
+    "v1_14_4.fabric.listeners.entity.EntityDeathMixin"
   ],
   "server": [
     "v1_14_4.fabric.listeners.entity.EntitySpawnMixin",

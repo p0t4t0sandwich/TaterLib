@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API {

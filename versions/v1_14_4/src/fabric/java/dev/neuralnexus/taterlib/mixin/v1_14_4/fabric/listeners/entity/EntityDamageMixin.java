@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
+@ReqMCVersion(min = MinecraftVersion.V14_4, max = MinecraftVersion.V15_2)
 @Mixin(CombatTracker.class)
 class EntityDamageMixin {
     @Inject(method = "recordDamage", at = @At("HEAD"), cancellable = true)

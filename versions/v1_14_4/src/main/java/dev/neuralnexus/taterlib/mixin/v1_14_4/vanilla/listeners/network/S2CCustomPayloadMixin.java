@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
 @Mixin(ClientPacketListener.class)
 public abstract class S2CCustomPayloadMixin {
     /**

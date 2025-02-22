@@ -18,13 +18,14 @@ import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
+import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 // Sponge's API satisfies the ResourceKey interface, and clashes with our default `asString` method
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
 @Mixin(ResourceLocation.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
 public abstract class ResourceLocation_API {
@@ -34,10 +35,12 @@ public abstract class ResourceLocation_API {
     @Shadow
     public abstract String shadow$getPath();
 
+    @Intrinsic
     public String resourceKey$namespace() {
         return this.shadow$getNamespace();
     }
 
+    @Intrinsic
     public String resourceKey$value() {
         return this.shadow$getPath();
     }

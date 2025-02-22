@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API {
@@ -49,6 +49,7 @@ public abstract class Minecraft_API {
         return this.player.getServerBrand();
     }
 
+    @SuppressWarnings("DataFlowIssue")
     public List<User> server$onlinePlayers() {
         return this.shadow$getConnection().getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
@@ -56,7 +57,7 @@ public abstract class Minecraft_API {
                 .collect(Collectors.toList());
     }
 
-    @SuppressWarnings("VulnerableCodeUsages")
+    @SuppressWarnings("DataFlowIssue")
     void server$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
@@ -64,6 +65,7 @@ public abstract class Minecraft_API {
         this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
     }
 
+    @SuppressWarnings("DataFlowIssue")
     void server$broadcastMessage(String message) {
         this.shadow$getConnection().send(new ServerboundChatPacket(message));
     }

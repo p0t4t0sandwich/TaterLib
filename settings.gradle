@@ -19,6 +19,7 @@ rootProject.name = 'TaterLib'
 include(
         // Combined
         'versions:v1_14_4',
+        'versions:v1_15_2',
 
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
@@ -59,7 +60,6 @@ include(
         'fabric:fabric-1.12.2',
 
         // Fabric
-        'fabric:fabric-1.15',
         'fabric:fabric-1.16',
         'fabric:fabric-1.16.2',
         'fabric:fabric-1.17',
@@ -85,7 +85,6 @@ include(
         // Forge
         'forge:forge-utils-modern',
         'forge:forge-1.13.2',
-        'forge:forge-1.15',
         'forge:forge-1.16.2',
         'forge:forge-1.17.1',
         'forge:forge-1.18',
@@ -110,8 +109,6 @@ include(
         'sponge:sponge-utils-legacy',
 
         // Vanilla
-        'vanilla:vanilla-1.14.4',
-        'vanilla:vanilla-1.15',
         'vanilla:vanilla-1.16',
         'vanilla:vanilla-1.16.2',
         'vanilla:vanilla-1.17',

@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.core.BlockPos;
@@ -22,15 +23,12 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
-import net.minecraft.world.entity.player.Player;
 
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V14_4)
@@ -46,10 +44,6 @@ public abstract class ServerPlayer_API {
 
     @Shadow
     public abstract String shadow$getIpAddress();
-
-    @Unique public void taterapi$setRespawnPosition(@Nullable BlockPos position, boolean forced) {
-        ((Player) (Object) this).setRespawnPosition(position, forced);
-    }
 
     public String connection$ipAddress() {
         return this.shadow$getIpAddress();
@@ -71,7 +65,6 @@ public abstract class ServerPlayer_API {
     }
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {
-        this.taterapi$setRespawnPosition(
-                new BlockPos(location.x(), location.y(), location.z()), forced);
+        ((PlayerBridge) this).bridge$setRespawnPosition(location, forced);
     }
 }

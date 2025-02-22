@@ -21,6 +21,7 @@
     "v1_14_4.vanilla.api.minecraft.world.entity.Entity_API",
     "v1_14_4.vanilla.api.minecraft.world.entity.LivingEntity_API",
     "v1_14_4.vanilla.api.minecraft.world.entity.player.Player_API",
+    "v1_14_4.vanilla.core.world.entity.player.PlayerMixin",
     "v1_14_4.vanilla.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.vanilla.listeners.entity.EntityDamageMixin",
     "v1_14_4.vanilla.listeners.entity.EntityDeathMixin",

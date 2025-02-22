@@ -12,6 +12,7 @@
     "v1_14_4.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
     "v1_14_4.forge.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.forge.accessors.server.players.StoredUserEntryAccessor",
+    "v1_14_4.forge.accessors.world.entity.LivingEntityAccessor",
     "v1_14_4.forge.api.minecraft.commands.CommandSourceStack_API",
     "v1_14_4.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_14_4.forge.api.minecraft.resources.ResourceLocation_API",
@@ -20,7 +21,7 @@
     "v1_14_4.forge.api.minecraft.world.entity.Entity_API",
     "v1_14_4.forge.api.minecraft.world.entity.LivingEntity_API",
     "v1_14_4.forge.api.minecraft.world.entity.player.Player_API",
-    "v1_14_4.forge.accessors.world.entity.LivingEntityAccessor"
+    "v1_14_4.forge.core.world.entity.player.PlayerMixin"
   ],
   "server": [
     "v1_14_4.forge.listeners.network.C2SCustomPayloadMixin"
