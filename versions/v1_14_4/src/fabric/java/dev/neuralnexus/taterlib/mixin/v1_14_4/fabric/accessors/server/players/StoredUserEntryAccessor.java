@@ -20,7 +20,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(StoredUserEntry.class)
 public interface StoredUserEntryAccessor<T> {
-    @SuppressWarnings("unused")
     @Invoker("getUser")
     @Nullable T invoker$getUser();
 }

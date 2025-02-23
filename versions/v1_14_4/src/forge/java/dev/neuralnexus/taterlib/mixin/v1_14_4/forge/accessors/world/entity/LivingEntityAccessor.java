@@ -21,6 +21,5 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 @Mixin(LivingEntity.class)
 public interface LivingEntityAccessor {
     @Invoker("getExperienceReward")
-    @SuppressWarnings("unused")
     int invoker$getExperienceReward(final Player player);
 }

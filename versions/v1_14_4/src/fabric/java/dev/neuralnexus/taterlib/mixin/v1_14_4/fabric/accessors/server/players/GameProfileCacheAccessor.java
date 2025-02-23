@@ -21,7 +21,6 @@ import java.util.Map;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(GameProfileCache.class)
 public interface GameProfileCacheAccessor {
-    @SuppressWarnings("unused")
     @Accessor("profilesByName")
     Map<String, ?> accessor$getProfilesbyName();
 }

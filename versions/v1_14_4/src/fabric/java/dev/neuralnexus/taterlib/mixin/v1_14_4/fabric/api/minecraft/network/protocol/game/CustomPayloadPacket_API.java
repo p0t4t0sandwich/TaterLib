@@ -21,16 +21,16 @@ import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 
-@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
+@ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
-public class CustomPayloadPacket_API implements CustomPayloadPacketBridge {
+public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBridge {
     public ResourceKey packet$channel() {
-        return (ResourceKey) this.bridge$identifier(this);
+        return (ResourceKey) this.bridge$identifier();
     }
 
     public byte[] packet$data() {
-        return this.bridge$data(this).array();
+        return this.bridge$data().array();
     }
 }

@@ -5,30 +5,11 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game;
 
-import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ClientboundCustomPayloadPacketAccessor;
-import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor;
-
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 
-/** Bridge for CustomPayloadPacket */
 public interface CustomPayloadPacketBridge {
-    default ResourceLocation bridge$identifier(Object packet) {
-        if (packet instanceof ClientboundCustomPayloadPacket) {
-            return ((ClientboundCustomPayloadPacketAccessor) packet).accessor$identifier();
-        } else {
-            return ((ServerboundCustomPayloadPacketAccessor) packet).accessor$identifier();
-        }
-    }
+    ResourceLocation bridge$identifier();
 
-    default FriendlyByteBuf bridge$data(Object packet) {
-        if (packet instanceof ClientboundCustomPayloadPacket) {
-            return new FriendlyByteBuf(
-                    ((ClientboundCustomPayloadPacketAccessor) packet).accessor$data().copy());
-        } else {
-            return new FriendlyByteBuf(
-                    ((ServerboundCustomPayloadPacketAccessor) packet).accessor$data().copy());
-        }
-    }
+    FriendlyByteBuf bridge$data();
 }
