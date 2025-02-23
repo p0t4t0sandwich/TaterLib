@@ -18,8 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** Vanilla implementation of {@link EntityDeathEvent}. */
-public class VanillaEntityDeathEvent extends VanillaEntityEvent
-        implements EntityDeathEvent, LivingEntityBridge {
+public class VanillaEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent {
     private final DamageSource source;
 
     public VanillaEntityDeathEvent(Entity entity, DamageSource source) {
@@ -43,7 +42,7 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent
         if (source.getEntity() instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) source.getEntity();
             if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() instanceof Player) {
-                return this.bridge$getExperienceReward(entity, (Player) entity.getLastHurtByMob());
+                return ((LivingEntityBridge) entity).bridge$getExperienceReward((Player) entity.getLastHurtByMob());
             }
         }
         return 0;

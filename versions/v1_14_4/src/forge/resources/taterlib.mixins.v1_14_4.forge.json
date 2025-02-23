@@ -24,6 +24,7 @@
     "v1_14_4.forge.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_14_4.forge.core.server.MinecraftServerMixin",
     "v1_14_4.forge.core.server.player.UserWhiteListEntryMixin",
+    "v1_14_4.forge.core.world.entity.LivingEntityMixin",
     "v1_14_4.forge.core.world.entity.player.PlayerMixin"
   ],
   "server": [

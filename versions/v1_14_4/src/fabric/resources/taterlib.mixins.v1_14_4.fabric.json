@@ -24,6 +24,7 @@
     "v1_14_4.fabric.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_14_4.fabric.core.server.MinecraftServerMixin",
     "v1_14_4.fabric.core.server.players.UserWhiteListEntryMixin",
+    "v1_14_4.fabric.core.world.entity.LivingEntityMixin",
     "v1_14_4.fabric.core.world.entity.player.PlayerMixin",
     "v1_14_4.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.fabric.listeners.entity.EntityDamageMixin",
