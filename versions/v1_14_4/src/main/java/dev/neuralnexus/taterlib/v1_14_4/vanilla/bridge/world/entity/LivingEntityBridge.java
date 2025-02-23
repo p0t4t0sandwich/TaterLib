@@ -10,4 +10,8 @@ import net.minecraft.world.entity.player.Player;
 /** LivingEntity bridge interface */
 public interface LivingEntityBridge {
     int bridge$getExperienceReward(Player attackingPlayer);
+
+    double bridge$maxHealth();
+
+    void bridge$setMaxHealth(double health);
 }

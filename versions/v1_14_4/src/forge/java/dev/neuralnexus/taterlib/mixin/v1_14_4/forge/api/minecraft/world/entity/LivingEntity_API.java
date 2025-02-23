@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntityBridge;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -31,7 +32,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),
     @Interface(iface = LivingEntity.class, prefix = "livingEntity$", remap = Remap.NONE)
 })
-public abstract class LivingEntity_API {
+public abstract class LivingEntity_API implements LivingEntityBridge {
     @Shadow
     public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
 
@@ -46,9 +47,6 @@ public abstract class LivingEntity_API {
 
     @Shadow
     public abstract void shadow$setAbsorptionAmount(float amount);
-
-    @Shadow
-    public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
 
     public void damageable$damage(double amount) {
         this.shadow$hurt(DamageSource.GENERIC, (float) amount);
@@ -77,10 +75,10 @@ public abstract class LivingEntity_API {
     }
 
     public double damageable$maxHealth() {
-        return this.shadow$getAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
+        return this.bridge$maxHealth();
     }
 
     public void damageable$setMaxHealth(double health) {
-        this.shadow$getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(health);
+        this.bridge$setMaxHealth(health);
     }
 }

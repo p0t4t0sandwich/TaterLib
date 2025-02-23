@@ -73,7 +73,7 @@ tasks.create<ShadowJar>("relocateFabricJar") {
     archiveClassifier.set("fabric")
     relocate("dev.neuralnexus.taterlib.mixin.v1_15_2.vanilla", "dev.neuralnexus.taterlib.mixin.v1_15_2.vanilla.fabric")
     relocate("dev.neuralnexus.taterlib.v1_15_2.vanilla", "dev.neuralnexus.taterlib.v1_15_2.vanilla.fabric")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.fabric", "dev.neuralnexus.taterlib.v1_14_4.vanilla.fabric")
+    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.fabric")
 }
 
 // ------------------------------------------- Forge -------------------------------------------

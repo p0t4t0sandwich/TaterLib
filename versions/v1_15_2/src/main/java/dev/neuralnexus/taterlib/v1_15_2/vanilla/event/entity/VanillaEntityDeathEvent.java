@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.v1_15_2.vanilla.event.entity;
 
 import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntityBridge;
+
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -42,7 +42,8 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
         if (source.getEntity() instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) source.getEntity();
             if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() instanceof Player) {
-                return ((LivingEntityBridge) entity).bridge$getExperienceReward((Player) entity.getLastHurtByMob());
+                return ((LivingEntityBridge) entity)
+                        .bridge$getExperienceReward((Player) entity.getLastHurtByMob());
             }
         }
         return 0;

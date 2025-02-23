@@ -21,9 +21,11 @@
     "v1_14_4.forge.api.minecraft.world.entity.Entity_API",
     "v1_14_4.forge.api.minecraft.world.entity.LivingEntity_API",
     "v1_14_4.forge.api.minecraft.world.entity.player.Player_API",
+    "v1_14_4.forge.core.commands.CommandSourceMixin",
     "v1_14_4.forge.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_14_4.forge.core.server.MinecraftServerMixin",
     "v1_14_4.forge.core.server.player.UserWhiteListEntryMixin",
+    "v1_14_4.forge.core.world.entity.EntityMixin",
     "v1_14_4.forge.core.world.entity.LivingEntityMixin",
     "v1_14_4.forge.core.world.entity.player.PlayerMixin"
   ],

@@ -15,21 +15,27 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaWorld;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.dimension.DimensionType;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(Player.class)
-public class PlayerMixin implements PlayerBridge {
+public abstract class PlayerMixin implements PlayerBridge {
+    @Shadow
+    public abstract void shadow$setSpawnPoint(
+            @Nullable BlockPos blockPos, boolean forced, boolean verbose, DimensionType dim);
+
     @Override
     @SuppressWarnings("resource")
     public void bridge$setRespawnPosition(Location location, boolean forced) {
-        ((Player) (Object) this)
-                .setSpawnPoint(
-                        new BlockPos(location.x(), location.y(), location.z()),
-                        forced,
-                        false,
-                        ((VanillaWorld) location.world()).unwrap().dimension.getType());
+        this.shadow$setSpawnPoint(
+                new BlockPos(location.x(), location.y(), location.z()),
+                forced,
+                false,
+                ((VanillaWorld) location.world()).unwrap().dimension.getType());
     }
 }

@@ -138,7 +138,7 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V15, MinecraftVersions.V15_2)) {
             version = MinecraftVersions.V15_2;
         } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
-            version = MinecraftVersions.V16;
+            version = MinecraftVersions.V16_1;
         } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
             version = MinecraftVersions.V17;
         } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
@@ -178,7 +178,7 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V15, MinecraftVersions.V15_2)) {
             version = MinecraftVersions.V15_2;
         } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
-            version = MinecraftVersions.V16_2;
+            version = MinecraftVersions.V16_1;
         } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
             version = MinecraftVersions.V17_1;
         } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {

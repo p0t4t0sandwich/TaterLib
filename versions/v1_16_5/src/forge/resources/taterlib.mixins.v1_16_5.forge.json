@@ -1,0 +1,16 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_16_5.forge.core.server.level.ServerPlayerMixin",
+    "v1_16_5.forge.core.world.entity.EntityMixin"
+  ],
+  "server": [],
+  "client": []
+}

@@ -42,7 +42,8 @@ public class VanillaEntityDeathEvent extends VanillaEntityEvent implements Entit
         if (source.getEntity() instanceof LivingEntity) {
             LivingEntity entity = (LivingEntity) source.getEntity();
             if (entity.getLastHurtByMob() != null && entity.getLastHurtByMob() instanceof Player) {
-                return ((LivingEntityBridge) entity).bridge$getExperienceReward((Player) entity.getLastHurtByMob());
+                return ((LivingEntityBridge) entity)
+                        .bridge$getExperienceReward((Player) entity.getLastHurtByMob());
             }
         }
         return 0;

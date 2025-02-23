@@ -12,10 +12,10 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.commands.CommandSourceBridge;
 
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.Entity;
 
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.UUID;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
 @Mixin(CommandSourceStack.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
@@ -49,7 +49,7 @@ public abstract class CommandSourceStack_API {
     }
 
     public void cmdSender$sendMessage(String message) {
-        this.source.sendMessage(new TextComponent(message));
+        ((CommandSourceBridge) this.source).bridge$sendMessage(message);
     }
 
     @SuppressWarnings("DataFlowIssue")

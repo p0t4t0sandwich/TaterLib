@@ -16,18 +16,16 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.dimension.DimensionType;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
@@ -48,10 +46,7 @@ import java.util.UUID;
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
     @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
 })
-public abstract class Entity_API {
-    @Shadow
-    public abstract void shadow$sendMessage(Component message);
-
+public abstract class Entity_API implements EntityBridge {
     @Shadow
     public abstract int shadow$getId();
 
@@ -62,20 +57,10 @@ public abstract class Entity_API {
     public abstract EntityType<?> shadow$getType();
 
     @Shadow
-    public abstract Level shadow$getCommandSenderWorld();
-
-    @Shadow
-    public abstract BlockPos shadow$getCommandSenderBlockPosition();
-
-    @Shadow
     @Nullable public abstract MinecraftServer shadow$getServer();
 
     @Shadow
     public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    public abstract net.minecraft.world.entity.Entity shadow$changeDimension(
-            DimensionType dimensionType);
 
     @Shadow
     @Nullable public abstract Component shadow$getCustomName();
@@ -87,7 +72,7 @@ public abstract class Entity_API {
     public abstract UUID shadow$getUUID();
 
     public void cmdSender$sendMessage(String message) {
-        this.shadow$sendMessage(new TextComponent(message));
+        this.bridge$sendMessage(message);
     }
 
     public int entity$entityId() {
@@ -98,7 +83,6 @@ public abstract class Entity_API {
         this.shadow$remove();
     }
 
-    @SuppressWarnings("deprecation")
     public ResourceKey entity$type() {
         return (ResourceKey) Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }
@@ -107,12 +91,8 @@ public abstract class Entity_API {
         return new VanillaLocation((net.minecraft.world.entity.Entity) (Object) this);
     }
 
-    @SuppressWarnings({"deprecation", "resource"})
     public ResourceKey entity$biome() {
-        return (ResourceKey)
-                Registry.BIOME.getKey(
-                        this.shadow$getCommandSenderWorld()
-                                .getBiome(this.shadow$getCommandSenderBlockPosition()));
+        return (ResourceKey) this.bridge$biome();
     }
 
     @SuppressWarnings({"DataFlowIssue", "resource"})
@@ -125,7 +105,7 @@ public abstract class Entity_API {
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
-            this.shadow$changeDimension(serverLevel.get().dimension.getType());
+            this.bridge$changeDimension(serverLevel.get());
         }
         this.shadow$teleportTo(location.x(), location.y(), location.z());
     }

@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMappings(Mappings.LEGACY_SEARGE)
 // Sponge's API satisfies the ResourceKey interface, and clashes with our default `asString` method
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
 @Mixin(ResourceLocation.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
 public abstract class ResourceLocation_API {

@@ -65,6 +65,7 @@ subprojects {
             endWithNewline()
         }
         java {
+            toggleOffOn()
             importOrder()
             removeUnusedImports()
             cleanthat()
@@ -131,7 +132,9 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     def jarFiles = [
             file("./common/build/libs/${project_id}-common-${version}-full.jar"),
             file("./versions/v1_14_4/build/libs/${project_id}-1.14.4-${version}.jar"),
-            file("./versions/v1_15_2/build/libs/${project_id}-1.15.2-${version}.jar")
+            file("./versions/v1_15_2/build/libs/${project_id}-1.15.2-${version}.jar"),
+            file("./versions/v1_16_1/build/libs/${project_id}-1.16.1-${version}.jar"),
+            file("./versions/v1_16_5/build/libs/${project_id}-1.16.5-${version}.jar"),
     ]
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
@@ -168,14 +171,14 @@ platformVersions.put("bukkit", Arrays.asList(
 platformVersions.put("bungee", Arrays.asList("utils", "1.4.7", "1.8", "1.12", "1.20"))
 platformVersions.put("fabric", Arrays.asList(
         "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2",
-        "1.16", "1.16.2", "1.17", "1.18",
+        "1.17", "1.18",
         "1.19", "1.19.1", "1.19.4",
         "1.20", "1.20.2", "1.20.6", "1.21", "1.21.3"))
 platformVersions.put("forge", Arrays.asList(
         "utils-modern",
         "1.6.4",
         "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2",
-        "1.12.2", "1.13.2", "1.16.2",
+        "1.12.2", "1.13.2",
         "1.17.1", "1.18", "1.19", "1.19.4",
         "1.20", "1.20.2", "1.20.6"))
 platformVersions.put("neoforge", Arrays.asList("1.20.2"))
@@ -184,7 +187,7 @@ platformVersions.put("sponge", Arrays.asList(
         "4", "5", "6", "7",
         "8", "9", "10", "11"))
 platformVersions.put("vanilla", Arrays.asList(
-        "1.16", "1.16.2", "1.17", "1.18",
+        "1.17", "1.18",
         "1.19", "1.19.1", "1.19.4",
         "1.20", "1.20.2", "1.20.6", "1.21", "1.21.3"))
 platformVersions.put("velocity", Arrays.asList("3"))
