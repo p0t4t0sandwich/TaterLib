@@ -32,8 +32,8 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
 @Mixin(CommandSourceStack.class)
 @Implements({
-        @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
+    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
 })
 public abstract class CommandSourceStack_API {
     @Shadow @Final private CommandSource source;

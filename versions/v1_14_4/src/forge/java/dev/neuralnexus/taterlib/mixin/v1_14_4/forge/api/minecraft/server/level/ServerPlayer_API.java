@@ -17,7 +17,6 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.Playe
 
 import io.netty.buffer.Unpooled;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;

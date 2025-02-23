@@ -15,14 +15,12 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.GameProfileCacheBridge;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.StoredUserEntryBridge;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.UserWhitelistEntryBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.players.GameProfileCache;
 import net.minecraft.server.players.PlayerList;
-import net.minecraft.server.players.UserWhiteListEntry;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -31,7 +29,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -41,15 +38,12 @@ import java.util.stream.Collectors;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
-public abstract class MinecraftServer_API implements GameProfileCacheBridge, StoredUserEntryBridge {
+public abstract class MinecraftServer_API implements GameProfileCacheBridge {
     @Shadow
     public abstract String shadow$getServerModName();
 
     @Shadow
     public abstract PlayerList shadow$getPlayerList();
-
-    @Shadow
-    public abstract GameProfileCache shadow$getProfileCache();
 
     @Shadow
     public abstract Iterable<ServerLevel> shadow$getAllLevels();
@@ -65,21 +59,15 @@ public abstract class MinecraftServer_API implements GameProfileCacheBridge, Sto
     }
 
     public Map<String, UUID> server$whitelist() {
-        Map<String, UUID> whitelist = new HashMap<>();
-        for (UserWhiteListEntry user : this.shadow$getPlayerList().getWhiteList().getEntries()) {
-            GameProfile profile = this.bridge$getUser(user);
-            whitelist.put(profile.getName(), profile.getId());
-        }
-        return whitelist;
+        return this.shadow$getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhitelistEntryBridge.class::cast)
+                .map(UserWhitelistEntryBridge::bridge$getUser)
+                .collect(Collectors.toMap(GameProfile::getName, GameProfile::getId));
     }
 
     public Map<String, UUID> server$playercache() {
-        Map<String, UUID> cache = new HashMap<>();
-        for (GameProfile profile :
-                this.bridge$getProfilesbyName(this.shadow$getProfileCache()).values()) {
-            cache.put(profile.getName(), profile.getId());
-        }
-        return cache;
+        return this.bridge$getProfilesbyName().values().stream()
+                .collect(Collectors.toMap(GameProfile::getName, GameProfile::getId));
     }
 
     public List<ServerWorld> server$worlds() {

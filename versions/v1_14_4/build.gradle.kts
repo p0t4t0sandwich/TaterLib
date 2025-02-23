@@ -52,12 +52,6 @@ tasks.jar {
     archiveClassifier.set("vanilla")
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("relocateForgeJar").outputs)
-    archiveClassifier.set("")
-}
-
 // ------------------------------------------- Fabric -------------------------------------------
 unimined.minecraft(sourceSets.getByName("fabric")) {
     combineWith(sourceSets.main.get())
@@ -130,6 +124,12 @@ dependencies {
     }
 
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))
+}
+
+tasks.named<ShadowJar>("shadowJar") {
+    from(tasks.getByName("relocateFabricJar").outputs)
+    from(tasks.getByName("relocateForgeJar").outputs)
+    archiveClassifier.set("")
 }
 
 tasks.build.get().dependsOn(tasks.shadowJar)

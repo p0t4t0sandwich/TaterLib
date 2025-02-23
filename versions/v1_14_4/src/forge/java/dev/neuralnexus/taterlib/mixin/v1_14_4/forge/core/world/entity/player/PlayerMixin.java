@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.core.world.entity.player;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
@@ -20,6 +25,10 @@ public class PlayerMixin implements PlayerBridge {
     @Override
     @SuppressWarnings("resource")
     public void bridge$setRespawnPosition(Location location, boolean forced) {
-        ((Player) (Object) this).setSpawnPoint(new BlockPos(location.x(), location.y(), location.z()), forced, ((VanillaWorld) location.world()).unwrap().dimension.getType());
+        ((Player) (Object) this)
+                .setSpawnPoint(
+                        new BlockPos(location.x(), location.y(), location.z()),
+                        forced,
+                        ((VanillaWorld) location.world()).unwrap().dimension.getType());
     }
 }

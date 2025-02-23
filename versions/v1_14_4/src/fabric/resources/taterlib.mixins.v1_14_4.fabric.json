@@ -21,6 +21,8 @@
     "v1_14_4.fabric.api.minecraft.world.entity.Entity_API",
     "v1_14_4.fabric.api.minecraft.world.entity.LivingEntity_API",
     "v1_14_4.fabric.api.minecraft.world.entity.player.Player_API",
+    "v1_14_4.fabric.core.server.MinecraftServerMixin",
+    "v1_14_4.fabric.core.server.players.UserWhiteListEntryMixin",
     "v1_14_4.fabric.core.world.entity.player.PlayerMixin",
     "v1_14_4.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.fabric.listeners.entity.EntityDamageMixin",

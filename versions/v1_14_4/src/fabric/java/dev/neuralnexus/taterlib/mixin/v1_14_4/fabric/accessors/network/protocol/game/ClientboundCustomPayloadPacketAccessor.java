@@ -5,6 +5,11 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.accessors.network.protocol.game;
 
+import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
+import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +17,8 @@ import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
+@ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(ClientboundCustomPayloadPacket.class)
 public interface ClientboundCustomPayloadPacketAccessor {
     @Accessor("identifier")
