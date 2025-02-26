@@ -38,7 +38,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V17_1)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
@@ -49,9 +49,6 @@ import java.util.UUID;
 public abstract class Entity_API implements EntityBridge {
     @Shadow
     public abstract int shadow$getId();
-
-    @Shadow
-    public abstract void shadow$remove();
 
     @Shadow
     public abstract EntityType<?> shadow$getType();
@@ -80,7 +77,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public void entity$remove() {
-        this.shadow$remove();
+        this.bridge$remove();
     }
 
     public ResourceKey entity$type() {

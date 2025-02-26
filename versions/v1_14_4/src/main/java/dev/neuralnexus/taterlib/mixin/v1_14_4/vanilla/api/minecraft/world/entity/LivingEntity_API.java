@@ -12,12 +12,9 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntityBridge;
+
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.ai.attributes.Attribute;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
-import net.minecraft.world.entity.monster.SharedMonsterAttributes;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -26,7 +23,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V17_1)
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),

@@ -12,6 +12,7 @@
     "v1_16_1.vanilla.core.server.level.ServerPlayerMixin",
     "v1_16_1.vanilla.core.world.entity.EntityMixin",
     "v1_16_1.vanilla.core.world.entity.LivingEntityMixin",
+    "v1_16_1.vanilla.core.world.level.LevelMixin",
     "v1_16_1.vanilla.listeners.server.ServerStartingMixin"
   ],
   "server": [

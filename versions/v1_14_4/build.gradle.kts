@@ -71,8 +71,10 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 tasks.create<ShadowJar>("relocateFabricJar") {
     from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
     archiveClassifier.set("fabric")
-    relocate("dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla", "dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.fabric")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.fabric")
+    dependencies {
+        exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
+    }
+    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
 }
 
 // ------------------------------------------- Forge -------------------------------------------
@@ -95,8 +97,10 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 tasks.create<ShadowJar>("relocateForgeJar") {
     from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
     archiveClassifier.set("forge")
-    relocate("dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla", "dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.forge")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.vanilla.forge")
+    dependencies {
+        exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
+    }
+    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.l_searge")
 }
 
 // ------------------------------------------- Common -------------------------------------------

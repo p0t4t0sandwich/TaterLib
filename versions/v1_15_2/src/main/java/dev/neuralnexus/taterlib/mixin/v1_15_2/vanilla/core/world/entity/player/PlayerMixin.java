@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V15, max = MinecraftVersion.V15_2)
 @Mixin(Player.class)
-public abstract class PlayerMixin implements PlayerBridge {
+public abstract class PlayerMixin implements ServerPlayerBridge {
     @Shadow
     public abstract void shadow$setRespawnPosition(
             @Nullable BlockPos blockPos, boolean forced, boolean verbose);

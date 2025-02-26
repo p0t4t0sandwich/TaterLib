@@ -15,22 +15,24 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V17_1)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerLogoutMixin {
+    @Shadow public ServerPlayer player;
+
     @Inject(method = "onDisconnect", at = @At("HEAD"))
     private void onLogout(Component reason, CallbackInfo ci) {
-        PlayerEvents.LOGOUT.invoke(
-                new VanillaPlayerLogoutEvent(
-                        ((ServerGamePacketListenerImpl) (Object) this).player));
+        PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(this.player));
     }
 }

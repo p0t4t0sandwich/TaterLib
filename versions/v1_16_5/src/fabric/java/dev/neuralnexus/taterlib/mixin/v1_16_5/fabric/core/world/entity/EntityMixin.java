@@ -33,6 +33,9 @@ public abstract class EntityMixin implements EntityBridge {
     public abstract void shadow$sendMessage(Component message, UUID uuid);
 
     @Shadow
+    public abstract void shadow$remove();
+
+    @Shadow
     public abstract Level shadow$getCommandSenderWorld();
 
     @Shadow
@@ -44,6 +47,11 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$sendMessage(String message) {
         this.shadow$sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);
+    }
+
+    @Override
+    public void bridge$remove() {
+        this.shadow$remove();
     }
 
     @Override

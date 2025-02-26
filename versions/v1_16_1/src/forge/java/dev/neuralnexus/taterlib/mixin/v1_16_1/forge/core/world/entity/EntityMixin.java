@@ -33,6 +33,9 @@ public abstract class EntityMixin implements EntityBridge {
     public abstract void shadow$sendMessage(Component message, UUID uuid);
 
     @Shadow
+    public abstract void shadow$remove();
+
+    @Shadow
     public abstract Level shadow$getCommandSenderWorld();
 
     @Shadow
@@ -47,7 +50,12 @@ public abstract class EntityMixin implements EntityBridge {
     }
 
     @Override
-    @SuppressWarnings("resource")
+    public void bridge$remove() {
+        this.shadow$remove();
+    }
+
+    @Override
+    @SuppressWarnings({"deprecation", "resource"})
     public ResourceLocation bridge$biome() {
         return Registry.BIOME.getKey(
                 this.shadow$getCommandSenderWorld().getBiome(this.shadow$blockPosition()));

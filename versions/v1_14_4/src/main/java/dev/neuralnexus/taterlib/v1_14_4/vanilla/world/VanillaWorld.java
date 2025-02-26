@@ -11,8 +11,8 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.LevelBridge;
 
-import net.minecraft.core.Registry;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class VanillaWorld implements World, Wrapped<Level> {
 
     @Override
     public ResourceKey dimension() {
-        return (ResourceKey) Registry.DIMENSION_TYPE.getKey(this.level.dimension.getType());
+        return (ResourceKey) ((LevelBridge) this.level).bridge$dimension();
     }
 
     @Override

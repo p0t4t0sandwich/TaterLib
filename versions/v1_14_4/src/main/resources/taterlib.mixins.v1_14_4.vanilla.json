@@ -28,6 +28,7 @@
     "v1_14_4.vanilla.core.world.entity.EntityMixin",
     "v1_14_4.vanilla.core.world.entity.LivingEntityMixin",
     "v1_14_4.vanilla.core.world.entity.player.PlayerMixin",
+    "v1_14_4.vanilla.core.world.level.LevelMixin",
     "v1_14_4.vanilla.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.vanilla.listeners.entity.EntityDamageMixin",
     "v1_14_4.vanilla.listeners.entity.EntityDeathMixin",

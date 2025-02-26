@@ -11,7 +11,8 @@
     "v1_16_1.fabric.core.commands.CommandSourceMixin",
     "v1_16_1.fabric.core.server.level.ServerPlayerMixin",
     "v1_16_1.fabric.core.world.entity.EntityMixin",
-    "v1_16_1.fabric.core.world.entity.LivingEntityMixin"
+    "v1_16_1.fabric.core.world.entity.LivingEntityMixin",
+    "v1_16_1.fabric.core.world.level.LevelMixin"
   ],
   "server": [
     "v1_16_1.fabric.listeners.player.PlayerRespawnMixin"

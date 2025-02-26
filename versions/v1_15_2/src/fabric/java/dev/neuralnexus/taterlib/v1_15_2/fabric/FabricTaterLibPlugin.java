@@ -5,7 +5,9 @@
  */
 package dev.neuralnexus.taterlib.v1_15_2.fabric;
 
-import dev.neuralnexus.taterapi.event.api.*;
+import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
@@ -14,11 +16,11 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_15_2.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_15_2.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_15_2.vanilla.event.command.VanillaCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_15_2.vanilla.event.player.VanillaPlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_15_2.vanilla.event.player.VanillaPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;

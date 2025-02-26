@@ -13,7 +13,7 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 
 import io.netty.buffer.Unpooled;
 
@@ -36,7 +36,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),
     @Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE)
 })
-public abstract class ServerPlayer_API {
+public abstract class ServerPlayer_API implements ServerPlayerBridge {
     @Shadow public int latency;
 
     @Shadow public ServerGamePacketListenerImpl connection;
@@ -64,6 +64,6 @@ public abstract class ServerPlayer_API {
     }
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {
-        ((PlayerBridge) this).bridge$setRespawnPosition(location, forced);
+        this.bridge$setRespawnPosition(location, forced);
     }
 }
