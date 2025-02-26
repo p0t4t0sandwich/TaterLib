@@ -22,7 +22,6 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
@@ -38,7 +37,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
@@ -61,9 +60,6 @@ public abstract class Entity_API implements EntityBridge {
 
     @Shadow
     @Nullable public abstract Component shadow$getCustomName();
-
-    @Shadow
-    public abstract void shadow$setCustomName(@Nullable Component name);
 
     @Shadow
     public abstract UUID shadow$getUUID();
@@ -114,7 +110,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public void nameable$setCustomName(String name) {
-        this.shadow$setCustomName(new TextComponent(name));
+        this.bridge$setCustomName(name);
     }
 
     public UUID identifiable$uuid() {

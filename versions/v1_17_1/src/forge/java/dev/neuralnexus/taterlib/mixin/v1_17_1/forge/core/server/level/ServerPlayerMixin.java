@@ -14,8 +14,10 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayer
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaWorld;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.level.Level;
 
 import org.jetbrains.annotations.Nullable;
@@ -23,9 +25,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V19_4)
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin implements ServerPlayerBridge {
+    @Shadow public ServerGamePacketListenerImpl connection;
+
     @Shadow
     public abstract void shadow$setRespawnPosition(
             ResourceKey<Level> dimension,
@@ -33,6 +37,11 @@ public abstract class ServerPlayerMixin implements ServerPlayerBridge {
             float angle,
             boolean forced,
             boolean verbose);
+
+    @Override
+    public void bridge$kick(String message) {
+        this.connection.disconnect(Component.nullToEmpty(message));
+    }
 
     @Override
     @SuppressWarnings("resource")

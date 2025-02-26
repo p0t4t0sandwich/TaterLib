@@ -39,7 +39,7 @@ dependencies {
         classifier("downgraded-8")
     })
     compileOnly(project(":forge:forge-utils-modern"))
-    compileOnly(project(":vanilla:vanilla-1.19"))
+//    compileOnly(project(":vanilla:vanilla-1.19"))
 }
 
 tasks.named<ShadowJar>("shadowJar") {

@@ -101,7 +101,6 @@ tasks.create<ShadowJar>("relocateForgeJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_18_2/vanilla/**")
     }
-    relocate("dev.neuralnexus.taterlib.v1_17_1.vanilla", "dev.neuralnexus.taterlib.v1_17_1.searge")
     relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
 }
@@ -116,8 +115,7 @@ dependencies {
             classifier("downgraded-8")
         },
         project(":versions:v1_14_4"),
-        project(":versions:v1_16_1"),
-        project(":versions:v1_17_1")
+        project(":versions:v1_16_1")
     ).forEach {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)

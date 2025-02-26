@@ -27,7 +27,7 @@
     "v1_14_4.vanilla.core.server.player.UserWhiteListEntryMixin",
     "v1_14_4.vanilla.core.world.entity.EntityMixin",
     "v1_14_4.vanilla.core.world.entity.LivingEntityMixin",
-    "v1_14_4.vanilla.core.world.entity.player.PlayerMixin",
+    "v1_14_4.vanilla.core.server.level.ServerPlayerMixin",
     "v1_14_4.vanilla.core.world.level.LevelMixin",
     "v1_14_4.vanilla.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.vanilla.listeners.entity.EntityDamageMixin",
@@ -50,6 +50,7 @@
   ],
   "client": [
     "v1_14_4.vanilla.api.minecraft.client.Minecraft_API",
+    "v1_14_4.vanilla.core.client.MinecraftMixin",
     "v1_14_4.vanilla.listeners.network.S2CCustomPayloadMixin"
   ]
 }

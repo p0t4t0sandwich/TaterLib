@@ -21,6 +21,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -43,6 +44,9 @@ public abstract class EntityMixin implements EntityBridge {
     @Shadow
     public abstract Entity shadow$changeDimension(DimensionType dimensionType);
 
+    @Shadow
+    public abstract void shadow$setCustomName(@Nullable Component name);
+
     @Override
     public void bridge$sendMessage(String message) {
         this.shadow$sendMessage(new TextComponent(message));
@@ -64,5 +68,10 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$changeDimension(ServerLevel level) {
         this.shadow$changeDimension(level.getDimension().getType());
+    }
+
+    @Override
+    public void bridge$setCustomName(String name) {
+        this.shadow$setCustomName(new TextComponent(name));
     }
 }

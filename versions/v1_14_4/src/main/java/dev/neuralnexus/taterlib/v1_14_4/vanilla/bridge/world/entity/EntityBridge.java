@@ -16,4 +16,6 @@ public interface EntityBridge {
     ResourceLocation bridge$biome();
 
     void bridge$changeDimension(ServerLevel level);
+
+    void bridge$setCustomName(String name);
 }

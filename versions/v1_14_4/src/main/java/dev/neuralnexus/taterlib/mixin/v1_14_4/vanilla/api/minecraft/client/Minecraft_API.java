@@ -12,19 +12,17 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
 
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ServerboundChatPacket;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -35,29 +33,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
-public abstract class Minecraft_API {
-    @Shadow @Nullable public LocalPlayer player;
-
-    @Shadow
-    @Nullable public abstract ClientPacketListener shadow$getConnection();
+public abstract class Minecraft_API implements MinecraftBridge {
+    @Shadow public LocalPlayer player;
 
     public String server$brand() {
         if (this.player == null) return "Local";
-        return this.player.getServerBrand();
+        String brand = this.player.getServerBrand();
+        return brand == null ? "Local" : brand;
     }
 
-    @SuppressWarnings("DataFlowIssue")
     public List<User> server$onlinePlayers() {
-        return this.shadow$getConnection().getOnlinePlayers().stream()
+        return this.player.connection.getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
                 .map(User.class::cast)
                 .collect(Collectors.toList());
     }
 
-    @SuppressWarnings("DataFlowIssue")
     void server$sendPacket(ResourceKey channel, byte[] data) {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
@@ -65,8 +59,7 @@ public abstract class Minecraft_API {
         this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
     }
 
-    @SuppressWarnings("DataFlowIssue")
     void server$broadcastMessage(String message) {
-        this.shadow$getConnection().send(new ServerboundChatPacket(message));
+        this.bridge$broadcastMessage(message);
     }
 }

@@ -27,7 +27,7 @@
     "v1_14_4.forge.core.server.player.UserWhiteListEntryMixin",
     "v1_14_4.forge.core.world.entity.EntityMixin",
     "v1_14_4.forge.core.world.entity.LivingEntityMixin",
-    "v1_14_4.forge.core.world.entity.player.PlayerMixin",
+    "v1_14_4.forge.core.server.level.ServerPlayerMixin",
     "v1_14_4.forge.core.world.level.LevelMixin"
   ],
   "server": [
@@ -35,6 +35,7 @@
   ],
   "client": [
     "v1_14_4.forge.api.minecraft.client.Minecraft_API",
+    "v1_14_4.forge.core.client.MinecraftMixin",
     "v1_14_4.forge.listeners.network.S2CCustomPayloadMixin"
   ]
 }

@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V18_2)
+@ReqMCVersion(min = MinecraftVersion.V16, max = MinecraftVersion.V19_4)
 @Mixin(MinecraftServer.class)
 public class ServerStartingMixin {
     /**

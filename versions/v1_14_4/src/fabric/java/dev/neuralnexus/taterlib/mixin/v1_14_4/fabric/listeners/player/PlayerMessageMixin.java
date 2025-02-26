@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19)
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerMessageMixin {
     @Shadow public ServerPlayer player;
@@ -37,7 +37,7 @@ public class PlayerMessageMixin {
         if (serverboundChatPacket.getMessage().startsWith("/")) return;
         PlayerEvents.MESSAGE.invoke(
                 new VanillaPlayerMessageEvent(
-                        player,
+                        this.player,
                         serverboundChatPacket.getMessage(),
                         new MixinCancellableCallbackWrapper(ci)));
     }

@@ -35,6 +35,7 @@
   ],
   "client": [
     "v1_17_1.forge.api.minecraft.client.Minecraft_API",
+    "v1_17_1.forge.core.client.MinecraftMixin",
     "v1_17_1.forge.listeners.network.S2CCustomPayloadMixin"
   ]
 }

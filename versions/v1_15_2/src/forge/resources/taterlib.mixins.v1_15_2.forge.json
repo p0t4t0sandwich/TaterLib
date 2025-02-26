@@ -8,7 +8,7 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_15_2.forge.core.world.entity.player.PlayerMixin"
+    "v1_15_2.forge.core.world.entity.player.ServerPlayerMixin"
   ],
   "server": [],
   "client": []

@@ -22,6 +22,6 @@ dependencies {
     compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8")
     })
-    compileOnly(project(":vanilla:vanilla-1.19"))
-    compileOnly(project(":vanilla:vanilla-1.19.1"))
+//    compileOnly(project(":vanilla:vanilla-1.19"))
+//    compileOnly(project(":vanilla:vanilla-1.19.1"))
 }

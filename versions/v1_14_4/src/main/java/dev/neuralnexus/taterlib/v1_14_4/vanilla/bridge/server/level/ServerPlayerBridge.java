@@ -8,5 +8,7 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level;
 import dev.neuralnexus.taterapi.world.Location;
 
 public interface ServerPlayerBridge {
+    void bridge$kick(String message);
+
     void bridge$setRespawnPosition(Location location, boolean forced);
 }

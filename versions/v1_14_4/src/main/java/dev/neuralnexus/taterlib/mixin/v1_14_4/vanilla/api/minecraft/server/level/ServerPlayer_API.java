@@ -18,7 +18,6 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayer
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
@@ -53,7 +52,7 @@ public abstract class ServerPlayer_API implements ServerPlayerBridge {
     }
 
     public void connection$kick(String message) {
-        this.connection.disconnect(new TextComponent(message));
+        this.bridge$kick(message);
     }
 
     public void connection$sendPacket(ResourceKey channel, byte[] data) {
