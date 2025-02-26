@@ -38,7 +38,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V17_1)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),

@@ -74,7 +74,6 @@ tasks.create<ShadowJar>("relocateFabricJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_17_1/vanilla/**")
     }
-    relocate("dev.neuralnexus.taterlib.v1_17_1.vanilla", "dev.neuralnexus.taterlib.v1_17_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
 }

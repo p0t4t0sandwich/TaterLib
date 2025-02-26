@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
 @Mixin(ClientboundCustomPayloadPacket.class)
 public interface ClientboundCustomPayloadPacketAccessor {
     @Accessor("identifier")

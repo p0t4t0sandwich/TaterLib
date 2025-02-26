@@ -139,10 +139,8 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V15_2;
         } else if (mcv.isInRange(MinecraftVersions.V16, MinecraftVersions.V16_5)) {
             version = MinecraftVersions.V16_1;
-        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
+        } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V18_2)) {
             version = MinecraftVersions.V17_1;
-        } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
-            version = MinecraftVersions.V18;
         } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
@@ -182,7 +180,7 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
             version = MinecraftVersions.V17_1;
         } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
-            version = MinecraftVersions.V18;
+            version = MinecraftVersions.V18_2;
         } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
@@ -266,7 +264,7 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V17_1)) {
             version = MinecraftVersions.V17_1;
         } else if (mcv.isInRange(MinecraftVersions.V18, MinecraftVersions.V18_2)) {
-            version = MinecraftVersions.V18;
+            version = MinecraftVersions.V18_2;
         } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
             version = MinecraftVersions.V19;
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {

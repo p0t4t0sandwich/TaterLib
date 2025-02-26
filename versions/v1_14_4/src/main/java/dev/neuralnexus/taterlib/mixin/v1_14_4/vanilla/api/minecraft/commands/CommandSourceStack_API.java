@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.UUID;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(CommandSourceStack.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),

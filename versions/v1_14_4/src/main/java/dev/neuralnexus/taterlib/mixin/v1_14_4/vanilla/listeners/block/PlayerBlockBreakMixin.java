@@ -30,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V17_1)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {
     @Inject(method = "playerDestroy", at = @At("HEAD"), cancellable = true)
