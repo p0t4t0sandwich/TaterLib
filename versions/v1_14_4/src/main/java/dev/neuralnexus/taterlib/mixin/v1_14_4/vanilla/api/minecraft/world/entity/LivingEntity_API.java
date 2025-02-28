@@ -31,9 +31,6 @@ import org.spongepowered.asm.mixin.Shadow;
 })
 public abstract class LivingEntity_API implements LivingEntityBridge {
     @Shadow
-    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
-
-    @Shadow
     public abstract float shadow$getHealth();
 
     @Shadow
@@ -46,13 +43,11 @@ public abstract class LivingEntity_API implements LivingEntityBridge {
     public abstract void shadow$setAbsorptionAmount(float amount);
 
     public void damageable$damage(double amount) {
-        this.shadow$hurt(DamageSource.GENERIC, (float) amount);
+        this.bridge$damage(amount);
     }
 
     public void damageable$damage(double amount, Entity source) {
-        this.shadow$hurt(
-                DamageSource.mobAttack((net.minecraft.world.entity.LivingEntity) source),
-                (float) amount);
+        this.bridge$damage(amount, (net.minecraft.world.entity.LivingEntity) source);
     }
 
     public double damageable$health() {

@@ -38,7 +38,7 @@ dependencies {
     compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8")
     })
-    compileOnly(project(":vanilla:vanilla-1.20"))
+//    compileOnly(project(":vanilla:vanilla-1.20"))
     implementation(project(":vanilla:vanilla-1.20.6"))
 }
 

@@ -18,7 +18,6 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
-import dev.neuralnexus.taterlib.v1_20.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20.vanilla.event.command.VanillaCommandRegisterEvent;

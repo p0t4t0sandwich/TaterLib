@@ -13,11 +13,13 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
 import org.jetbrains.annotations.Nullable;
@@ -27,7 +29,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.UUID;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V17_1)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V18_2)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
     @Shadow
@@ -35,6 +37,8 @@ public abstract class EntityMixin implements EntityBridge {
 
     @Shadow
     public abstract void shadow$remove(Entity.RemovalReason removalReason);
+
+    @Shadow public abstract EntityType<?> shadow$getType();
 
     @Shadow
     public abstract Level shadow$getCommandSenderWorld();
@@ -56,6 +60,12 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$remove() {
         this.shadow$remove(Entity.RemovalReason.KILLED);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public ResourceLocation bridge$type() {
+        return Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }
 
     @Override

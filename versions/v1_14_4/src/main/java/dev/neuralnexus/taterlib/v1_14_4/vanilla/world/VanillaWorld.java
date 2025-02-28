@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.LevelBridge;
 
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -61,8 +62,7 @@ public class VanillaWorld implements World, Wrapped<Level> {
         return this.level
                 .getEntities(
                         (net.minecraft.world.entity.Entity) entity,
-                        new net.minecraft.world.phys.AABB(
-                                pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
+                        new AABB(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
                         e -> predicate.test((Entity) e))
                 .stream()
                 .map(Entity.class::cast)

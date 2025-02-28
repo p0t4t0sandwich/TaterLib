@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_6)
 @Mixin(LivingEntity.class)
 class EntityDeathMixin {
     @Inject(method = "die", at = @At("HEAD"))

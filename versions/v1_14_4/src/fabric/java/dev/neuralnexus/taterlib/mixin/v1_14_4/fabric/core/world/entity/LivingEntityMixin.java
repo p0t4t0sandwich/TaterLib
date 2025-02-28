@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.world.entity.LivingEntityAccessor;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntityBridge;
 
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -26,11 +27,24 @@ import org.spongepowered.asm.mixin.Shadow;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {
     @Shadow
+    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+
+    @Shadow
     public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
 
     @Override
     public int bridge$getExperienceReward(Player attackingPlayer) {
         return ((LivingEntityAccessor) this).invoker$getExperienceReward(attackingPlayer);
+    }
+
+    @Override
+    public void bridge$damage(double amount) {
+        this.shadow$hurt(DamageSource.GENERIC, (float) amount);
+    }
+
+    @Override
+    public void bridge$damage(double amount, LivingEntity source) {
+        this.shadow$hurt(DamageSource.mobAttack(source), (float) amount);
     }
 
     @Override

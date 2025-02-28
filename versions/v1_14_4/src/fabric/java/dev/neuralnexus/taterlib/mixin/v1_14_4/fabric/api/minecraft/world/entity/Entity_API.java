@@ -50,9 +50,6 @@ public abstract class Entity_API implements EntityBridge {
     public abstract int shadow$getId();
 
     @Shadow
-    public abstract EntityType<?> shadow$getType();
-
-    @Shadow
     @Nullable public abstract MinecraftServer shadow$getServer();
 
     @Shadow
@@ -77,7 +74,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public ResourceKey entity$type() {
-        return (ResourceKey) Registry.ENTITY_TYPE.getKey(this.shadow$getType());
+        return (ResourceKey) this.bridge$type();
     }
 
     public Location entity$location() {

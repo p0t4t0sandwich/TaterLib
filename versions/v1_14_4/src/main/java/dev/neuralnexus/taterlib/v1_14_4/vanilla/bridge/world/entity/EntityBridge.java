@@ -13,6 +13,8 @@ public interface EntityBridge {
 
     void bridge$remove();
 
+    ResourceLocation bridge$type();
+
     ResourceLocation bridge$biome();
 
     void bridge$changeDimension(ServerLevel level);

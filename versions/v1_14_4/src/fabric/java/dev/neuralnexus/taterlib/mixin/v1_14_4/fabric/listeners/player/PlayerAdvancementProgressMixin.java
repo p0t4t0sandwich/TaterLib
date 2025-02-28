@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
 @Mixin(PlayerAdvancements.class)
 public class PlayerAdvancementProgressMixin {
     @Shadow private ServerPlayer player;

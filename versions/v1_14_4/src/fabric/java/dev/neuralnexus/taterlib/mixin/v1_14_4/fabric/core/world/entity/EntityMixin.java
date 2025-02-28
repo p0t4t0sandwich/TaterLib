@@ -18,6 +18,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.dimension.DimensionType;
 
@@ -34,6 +35,8 @@ public abstract class EntityMixin implements EntityBridge {
 
     @Shadow
     public abstract void shadow$remove();
+
+    @Shadow public abstract EntityType<?> shadow$getType();
 
     @Shadow
     public abstract Level shadow$getCommandSenderWorld();
@@ -55,6 +58,11 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$remove() {
         this.shadow$remove();
+    }
+
+    @Override
+    public ResourceLocation bridge$type() {
+        return Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }
 
     @Override

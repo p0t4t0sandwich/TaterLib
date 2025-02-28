@@ -12,10 +12,12 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
 import org.jetbrains.annotations.Nullable;
@@ -32,8 +34,9 @@ public abstract class EntityMixin implements EntityBridge {
     @Shadow
     public abstract void shadow$remove(Entity.RemovalReason removalReason);
 
-    @Shadow
-    public abstract Level shadow$getLevel();
+    @Shadow public abstract EntityType<?> shadow$getType();
+
+    @Shadow public Level level;
 
     @Shadow
     public abstract BlockPos shadow$blockPosition();
@@ -55,9 +58,14 @@ public abstract class EntityMixin implements EntityBridge {
     }
 
     @Override
-    @SuppressWarnings({"OptionalGetWithoutIsPresent", "resource"})
+    public ResourceLocation bridge$type() {
+        return Registry.ENTITY_TYPE.getKey(this.shadow$getType());
+    }
+
+    @Override
+    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public ResourceLocation bridge$biome() {
-        return this.shadow$getLevel()
+        return this.level
                 .getBiome(this.shadow$blockPosition())
                 .unwrap()
                 .left()

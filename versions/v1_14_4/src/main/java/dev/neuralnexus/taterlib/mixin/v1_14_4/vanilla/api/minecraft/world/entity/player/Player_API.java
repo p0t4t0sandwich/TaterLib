@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_6)
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),

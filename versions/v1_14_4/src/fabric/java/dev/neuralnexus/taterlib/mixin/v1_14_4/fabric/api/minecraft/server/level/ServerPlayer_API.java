@@ -59,7 +59,7 @@ public abstract class ServerPlayer_API implements ServerPlayerBridge {
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
+        this.connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
     }
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {

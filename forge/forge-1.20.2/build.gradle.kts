@@ -39,7 +39,7 @@ dependencies {
         classifier("downgraded-8")
     })
     compileOnly(project(":forge:forge-utils-modern"))
-    compileOnly(project(":vanilla:vanilla-1.20"))
+//    compileOnly(project(":vanilla:vanilla-1.20"))
     implementation(project(":vanilla:vanilla-1.20.2"))
 }
 

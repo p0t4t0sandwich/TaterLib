@@ -23,21 +23,23 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
 import net.minecraft.resources.ResourceLocation;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V19_4)
+@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API implements MinecraftBridge {
-    @Shadow public LocalPlayer player;
+    @Shadow @Nullable public LocalPlayer player;
 
     public String server$brand() {
         if (this.player == null) return "Local";
@@ -46,6 +48,7 @@ public abstract class Minecraft_API implements MinecraftBridge {
     }
 
     public List<User> server$onlinePlayers() {
+        if (this.player == null) return new ArrayList<>();
         return this.player.connection.getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)
                 .map(User.class::cast)
@@ -53,6 +56,7 @@ public abstract class Minecraft_API implements MinecraftBridge {
     }
 
     void server$sendPacket(ResourceKey channel, byte[] data) {
+        if (this.player == null) return;
         ResourceLocation id = (ResourceLocation) channel;
         FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
