@@ -14,14 +14,9 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
 
-import io.netty.buffer.Unpooled;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
@@ -56,11 +51,7 @@ public abstract class Minecraft_API implements MinecraftBridge {
     }
 
     void server$sendPacket(ResourceKey channel, byte[] data) {
-        if (this.player == null) return;
-        ResourceLocation id = (ResourceLocation) channel;
-        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
-        this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
+        this.bridge$sendPacket(channel, data);
     }
 
     void server$broadcastMessage(String message) {

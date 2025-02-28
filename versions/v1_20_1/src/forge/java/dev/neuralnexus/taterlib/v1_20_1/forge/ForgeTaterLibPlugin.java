@@ -31,6 +31,7 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessag
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespawnEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_20_2.forge.ForgeAdvancementListener_1_20_2;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -95,9 +96,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                     .version()
                     .isInRange(MinecraftVersions.V20, MinecraftVersions.V20_1)) {
                 MinecraftForge.EVENT_BUS.addListener(
-                        ForgeAdvancementListener_1_20::onPlayerAdvancementFinished);
+                        ForgeAdvancementListener_1_20_1::onPlayerAdvancementFinished);
                 MinecraftForge.EVENT_BUS.addListener(
-                        ForgeAdvancementListener_1_20::onPlayerAdvancementProgress);
+                        ForgeAdvancementListener_1_20_1::onPlayerAdvancementProgress);
             } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_2)) {
                 MinecraftForge.EVENT_BUS.addListener(
                         ForgeAdvancementListener_1_20_2::onPlayerAdvancementFinished);

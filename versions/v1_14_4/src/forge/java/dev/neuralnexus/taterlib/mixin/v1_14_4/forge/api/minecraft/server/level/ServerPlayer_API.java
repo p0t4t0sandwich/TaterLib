@@ -15,13 +15,6 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 
-import io.netty.buffer.Unpooled;
-
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ClientboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.network.ServerGamePacketListenerImpl;
-
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -36,10 +29,6 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = ServerPlayer.class, prefix = "serverPlayer$", remap = Remap.NONE)
 })
 public abstract class ServerPlayer_API implements ServerPlayerBridge {
-    @Shadow public int latency;
-
-    @Shadow public ServerGamePacketListenerImpl connection;
-
     @Shadow
     public abstract String shadow$getIpAddress();
 
@@ -48,7 +37,7 @@ public abstract class ServerPlayer_API implements ServerPlayerBridge {
     }
 
     public int connection$ping() {
-        return this.latency;
+        return this.bridge$ping();
     }
 
     public void connection$kick(String message) {
@@ -56,10 +45,7 @@ public abstract class ServerPlayer_API implements ServerPlayerBridge {
     }
 
     public void connection$sendPacket(ResourceKey channel, byte[] data) {
-        ResourceLocation id = (ResourceLocation) channel;
-        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
-        this.connection.send(new ClientboundCustomPayloadPacket(id, byteBuf));
+        this.bridge$sendPacket(channel, data);
     }
 
     public void serverPlayer$setSpawn(Location location, boolean forced) {

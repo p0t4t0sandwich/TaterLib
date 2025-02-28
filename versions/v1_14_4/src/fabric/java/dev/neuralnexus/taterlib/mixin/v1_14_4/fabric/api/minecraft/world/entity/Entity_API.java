@@ -20,11 +20,9 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
-import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
 
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;

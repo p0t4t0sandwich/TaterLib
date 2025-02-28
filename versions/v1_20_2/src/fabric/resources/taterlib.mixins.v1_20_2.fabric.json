@@ -1,0 +1,23 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_20_2.fabric.api.minecraft.network.protocol.common.CustomPayloadPacket_API",
+    "v1_20_2.fabric.core.network.protocol.common.CustomPayloadPacketMixin",
+    "v1_20_2.fabric.core.server.level.ServerPlayerMixin_sendPacket",
+    "v1_20_2.fabric.listeners.network.C2SCustomPayloadMixin",
+    "v1_20_2.fabric.listeners.player.PlayerAdvancementFinishedMixin",
+    "v1_20_2.fabric.listeners.player.PlayerAdvancementProgressMixin"
+  ],
+  "server": [],
+  "client": [
+    "v1_20_2.fabric.core.client.MinecraftMixin_sendPacket",
+    "v1_20_2.fabric.listeners.network.S2CCustomPayloadMixin"
+  ]
+}

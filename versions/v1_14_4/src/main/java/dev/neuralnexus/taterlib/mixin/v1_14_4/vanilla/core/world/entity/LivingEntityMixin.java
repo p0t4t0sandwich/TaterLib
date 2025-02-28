@@ -26,7 +26,8 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2)
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {
-    @Shadow public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
+    @Shadow
+    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
 
     @Shadow
     public abstract AttributeInstance shadow$getAttribute(Attribute attribute);

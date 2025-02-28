@@ -24,10 +24,11 @@
     "v1_14_4.fabric.core.commands.CommandSourceMixin",
     "v1_14_4.fabric.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_14_4.fabric.core.server.MinecraftServerMixin",
+    "v1_14_4.fabric.core.server.level.ServerPlayerMixin",
+    "v1_14_4.fabric.core.server.level.ServerPlayerMixin_sendPacket",
     "v1_14_4.fabric.core.server.players.UserWhiteListEntryMixin",
     "v1_14_4.fabric.core.world.entity.EntityMixin",
     "v1_14_4.fabric.core.world.entity.LivingEntityMixin",
-    "v1_14_4.fabric.core.server.level.ServerPlayerMixin",
     "v1_14_4.fabric.core.world.level.LevelMixin",
     "v1_14_4.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.fabric.listeners.entity.EntityDamageMixin",
@@ -44,7 +45,8 @@
   ],
   "client": [
     "v1_14_4.fabric.api.minecraft.client.Minecraft_API",
-    "v1_14_4.fabric.core.client.MinecraftMixin",
+    "v1_14_4.fabric.core.client.MinecraftMixin_broadcastMessage",
+    "v1_14_4.fabric.core.client.MinecraftMixin_sendPacket",
     "v1_14_4.fabric.listeners.network.S2CCustomPayloadMixin"
   ]
 }

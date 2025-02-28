@@ -39,7 +39,8 @@ public abstract class EntityMixin implements EntityBridge {
     @Shadow
     public abstract void shadow$remove(RemovalReason removalReason);
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
     @Shadow
     public abstract Level shadow$getCommandSenderWorld();

@@ -34,7 +34,8 @@ public abstract class EntityMixin implements EntityBridge {
     @Shadow
     public abstract void shadow$remove(Entity.RemovalReason removalReason);
 
-    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow
+    public abstract EntityType<?> shadow$getType();
 
     @Shadow public Level level;
 
@@ -66,12 +67,7 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public ResourceLocation bridge$biome() {
-        return this.level
-                .getBiome(this.shadow$blockPosition())
-                .unwrap()
-                .left()
-                .get()
-                .registry();
+        return this.level.getBiome(this.shadow$blockPosition()).unwrap().left().get().registry();
     }
 
     @Override

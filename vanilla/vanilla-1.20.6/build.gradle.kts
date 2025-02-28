@@ -23,5 +23,5 @@ dependencies {
         classifier("downgraded-8")
     })
 //    compileOnly(project(":vanilla:vanilla-1.20"))
-    compileOnly(project(":vanilla:vanilla-1.20.2"))
+//    compileOnly(project(":vanilla:vanilla-1.20.2"))
 }

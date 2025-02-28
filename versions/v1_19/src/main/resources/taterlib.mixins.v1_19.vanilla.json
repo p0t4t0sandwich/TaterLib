@@ -12,6 +12,6 @@
   ],
   "server": [],
   "client": [
-    "v1_19.vanilla.core.client.MinecraftMixin"
+    "v1_19.vanilla.core.client.MinecraftMixin_broadcastMessage"
   ]
 }

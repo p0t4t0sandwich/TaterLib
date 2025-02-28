@@ -15,6 +15,6 @@
   ],
   "server": [],
   "client": [
-    "v1_20_1.fabric.core.client.MinecraftMixin"
+    "v1_20_1.fabric.core.client.MinecraftMixin_broadcastMessage"
   ]
 }
