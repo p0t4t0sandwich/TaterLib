@@ -57,9 +57,8 @@ Please note: You will not receive support if you are running Minecraft with offl
 6. What happened instead?
 7. Include the full client/server/proxy logs e.g. `logs/latest.log`, `logs/debug.log`, and `crash-reports/*.txt` (upload
    them all if applicable). Use a paste site like https://mclo.gs (use (GitHub Gists)[https://gist.github.com] if the
-   logs are too long). Do not paste them directly into the issue. If you
-   trim the logs, you will not receive support.
-8. Include your `taterlib.toml` file (omit sensitive information)
+   logs are too long). Do not paste them directly into the issue. If you trim the logs, you will not receive support.
+8. Include your `taterlib.conf` file (omit sensitive information)
 9. Include any other relevant information
 
 ## How to submit a contribution
@@ -82,12 +81,23 @@ new issue to discuss the changes you’d like to make.
 
 ### Code style
 
+#### Useful Links
+
+- [Fabric Versions](https://fabricmc.net/develop/)
+- [Ornithe Versions](https://ornithemc.net/develop/)
+- [Forge Versions](https://files.minecraftforge.net/net/minecraftforge/forge/)
+- [NeoForge Versions](https://projects.neoforged.net/neoforged/neoforge)
+
 #### Simplifying the Codebase
 
 Whenever possible, it's preferred to abstract as much as you can to the `common` subprojects as `default` methods on the
 interfaces. For example, using `Entity#location()` to get `x()/y()/z()` rather than implementing `x()/y()/z()` on every
 platform `Entity` implementation. Yes it does add a little bit of extra abstraction, but that's sorta the game we're
 playing here. (Makes it so we don't need to re-implement the same thing 40 times over.)
+
+On platforms that support Mixin, we can use version/platform-specific mixins to implement the API interfaces onto the
+game's classes, and to abstract things further we can use the [Bridge pattern](https://github.com/SpongePowered/Sponge/wiki/Implementation-Policy:-Bridges-and-Mixins)
+in a cross-version manner. In a pinch we can also "patch" our own code until a better implementation can be developed.
 
 #### Getter/Setter Methods
 
