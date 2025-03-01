@@ -6,6 +6,7 @@
 package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
 import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override

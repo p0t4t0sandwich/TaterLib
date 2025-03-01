@@ -23,6 +23,10 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
+    create("neoforge") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -31,6 +35,7 @@ configurations {
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
+        extendsFrom(configurations.getByName("neoforgeCompileOnly"))
     }
     val modImplementation by creating
     named("modImplementation") {
@@ -105,6 +110,23 @@ tasks.create<ShadowJar>("relocateForgeJar") {
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
 }
 
+// ------------------------------------------- NeoForge -------------------------------------------
+unimined.minecraft(sourceSets.getByName("neoforge")) {
+    combineWith(sourceSets.main.get())
+    neoForge {
+        loader(neoForgeVersion)
+    }
+    defaultRemapJar = false
+}
+
+tasks.create<ShadowJar>("relocateNeoForgeJar") {
+    from(sourceSets.getByName("neoforge").output)
+    archiveClassifier.set("neoforge")
+    dependencies {
+        exclude("dev/neuralnexus/taterlib/mixin/v1_20_2/vanilla/**")
+    }
+}
+
 // ------------------------------------------- Common -------------------------------------------
 dependencies {
     listOf(
@@ -120,6 +142,7 @@ dependencies {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
+        "neoforgeCompileOnly"(it)
     }
 
     listOf(
@@ -138,6 +161,7 @@ dependencies {
 tasks.named<ShadowJar>("shadowJar") {
     from(tasks.getByName("relocateFabricJar").outputs)
     from(tasks.getByName("relocateForgeJar").outputs)
+    from(tasks.getByName("relocateNeoForgeJar").outputs)
     archiveClassifier.set("")
 }
 
