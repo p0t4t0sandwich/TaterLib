@@ -32,7 +32,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class PlayerMessageMixin {
     @Shadow public ServerPlayer player;
 
-    @Inject(method = "handleChat", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = "handleChat(Lnet/minecraft/network/protocol/game/ServerboundChatPacket;)V",
+            at = @At("HEAD"),
+            cancellable = true)
     public void onPlayerMessage(ServerboundChatPacket serverboundChatPacket, CallbackInfo ci) {
         if (serverboundChatPacket.message().startsWith("/")) return;
         PlayerEvents.MESSAGE.invoke(

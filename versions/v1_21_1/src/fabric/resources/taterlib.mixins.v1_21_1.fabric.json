@@ -1,0 +1,17 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_21_1.fabric.core.world.entity.EntityMixin",
+    "v1_21_1.fabric.core.world.level.block.BlockMixin",
+    "v1_21_1.fabric.listeners.player.PlayerRespawnMixin"
+  ],
+  "server": [],
+  "client": []
+}

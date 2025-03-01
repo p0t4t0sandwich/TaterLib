@@ -143,12 +143,12 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V17_1;
         } else if (mcv.isInRange(MinecraftVersions.V19, MinecraftVersions.V19_4)) {
             version = MinecraftVersions.V19;
-        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_6)) {
+        } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
             version = MinecraftVersions.V20_2;
-        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_4)) {
-            version = MinecraftVersions.V21;
+        } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_4)) {
+            version = MinecraftVersions.V21_1;
         } else {
-            version = MinecraftVersions.V21;
+            version = MinecraftVersions.V21_1;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".fabric";
     }
@@ -186,9 +186,9 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
             version = MinecraftVersions.V20_2;
         } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_4)) {
-            version = MinecraftVersions.V20_6;
+            version = MinecraftVersions.V21_1;
         } else {
-            version = MinecraftVersions.V20_6;
+            version = MinecraftVersions.V21_1;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".forge";
     }

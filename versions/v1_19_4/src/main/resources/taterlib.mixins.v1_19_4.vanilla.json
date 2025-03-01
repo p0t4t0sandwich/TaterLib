@@ -9,5 +9,8 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "server": [
     "v1_19_4.vanilla.listeners.player.PlayerMessageMixin"
+  ],
+  "mixins": [
+    "v1_19_4.vanilla.listeners.server.ServerStartedMixin"
   ]
 }

@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6)
+@ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V21_1)
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {
     @Shadow
@@ -39,9 +39,7 @@ public abstract class LivingEntityMixin implements LivingEntityBridge {
 
     @Override
     public int bridge$getExperienceReward(Player attackingPlayer) {
-        return ((Object) this) instanceof LivingEntity
-                ? ((LivingEntity) (Object) this).getExperienceReward()
-                : 0;
+        return ((Object) this) instanceof LivingEntity living ? living.getExperienceReward() : 0;
     }
 
     @Override

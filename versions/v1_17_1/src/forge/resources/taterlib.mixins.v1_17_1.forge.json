@@ -29,7 +29,8 @@
     "v1_17_1.forge.core.server.player.UserWhiteListEntryMixin",
     "v1_17_1.forge.core.world.entity.EntityMixin",
     "v1_17_1.forge.core.world.entity.LivingEntityMixin",
-    "v1_17_1.forge.core.world.level.LevelMixin"
+    "v1_17_1.forge.core.world.level.LevelMixin",
+    "v1_17_1.forge.core.world.level.block.BlockMixin"
   ],
   "server": [
     "v1_17_1.forge.listeners.network.C2SCustomPayloadMixin"

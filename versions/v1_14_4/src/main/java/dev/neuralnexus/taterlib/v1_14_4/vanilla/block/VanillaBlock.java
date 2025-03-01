@@ -9,8 +9,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
-
-import net.minecraft.core.Registry;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.block.BlockBridge;
 
 /** Vanilla implementation of {@link Block}. */
 public class VanillaBlock implements Block, Wrapped<net.minecraft.world.level.block.Block> {
@@ -30,7 +29,7 @@ public class VanillaBlock implements Block, Wrapped<net.minecraft.world.level.bl
 
     @Override
     public ResourceKey type() {
-        return (ResourceKey) Registry.BLOCK.getKey(this.block);
+        return (ResourceKey) ((BlockBridge) this.block).bridge$type();
     }
 
     @Override

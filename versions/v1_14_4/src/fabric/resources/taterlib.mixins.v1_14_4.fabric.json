@@ -30,6 +30,7 @@
     "v1_14_4.fabric.core.world.entity.EntityMixin",
     "v1_14_4.fabric.core.world.entity.LivingEntityMixin",
     "v1_14_4.fabric.core.world.level.LevelMixin",
+    "v1_14_4.fabric.core.world.level.block.BlockMixin",
     "v1_14_4.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_14_4.fabric.listeners.entity.EntityDamageMixin",
     "v1_14_4.fabric.listeners.entity.EntityDeathMixin"

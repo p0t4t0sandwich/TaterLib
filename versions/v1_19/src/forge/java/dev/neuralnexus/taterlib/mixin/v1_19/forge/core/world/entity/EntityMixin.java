@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 
 import net.minecraft.core.BlockPos;
@@ -46,6 +47,9 @@ public abstract class EntityMixin implements EntityBridge {
     public abstract Entity shadow$changeDimension(ServerLevel level);
 
     @Shadow
+    public abstract void shadow$teleportTo(double x, double y, double z);
+
+    @Shadow
     public abstract void shadow$setCustomName(@Nullable Component name);
 
     @Override
@@ -71,8 +75,9 @@ public abstract class EntityMixin implements EntityBridge {
     }
 
     @Override
-    public void bridge$changeDimension(ServerLevel level) {
+    public void bridge$changeDimension(ServerLevel level, Location location) {
         this.shadow$changeDimension(level);
+        this.shadow$teleportTo(location.x(), location.y(), location.z());
     }
 
     @Override

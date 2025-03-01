@@ -85,18 +85,11 @@ unimined.minecraft(sourceSets.getByName("forge")) {
         loader(forgeVersion)
         mixinConfig("taterlib.mixins.v1_20_6.forge.json")
     }
-    defaultRemapJar = true
-}
-
-tasks.named<RemapJarTask>("remapForgeJar") {
-    asJar.archiveClassifier.set("forge-remap")
-    mixinRemap {
-        disableRefmap()
-    }
+    defaultRemapJar = false
 }
 
 tasks.create<ShadowJar>("relocateForgeJar") {
-    from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
+    from(sourceSets.getByName("forge").output)
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_20_6/vanilla/**")
@@ -119,15 +112,6 @@ dependencies {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
-    }
-
-    listOf(
-        "fabric-api-base",
-        "fabric-command-api-v2",
-        "fabric-lifecycle-events-v1",
-        "fabric-networking-api-v1"
-    ).forEach {
-        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))

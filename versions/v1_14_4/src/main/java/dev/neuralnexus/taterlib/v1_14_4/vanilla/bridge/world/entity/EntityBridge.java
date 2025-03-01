@@ -5,6 +5,8 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity;
 
+import dev.neuralnexus.taterapi.world.Location;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 
@@ -17,7 +19,7 @@ public interface EntityBridge {
 
     ResourceLocation bridge$biome();
 
-    void bridge$changeDimension(ServerLevel level);
+    void bridge$changeDimension(ServerLevel level, Location location);
 
     void bridge$setCustomName(String name);
 }

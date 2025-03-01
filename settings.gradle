@@ -29,6 +29,8 @@ include(
         'versions:v1_20_1',
         'versions:v1_20_2',
         'versions:v1_20_6',
+        'versions:v1_21_1',
+        'versions:v1_21_4',
 
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
@@ -40,46 +42,42 @@ include(
         'loader',
         'testmod',
 
-//        // Legacy Bukkit
-//        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
-//
-//        // Bukkit
-//        'bukkit:bukkit-1.8.8',
-//        'bukkit:bukkit-1.13.2',
-//        'bukkit:bukkit-1.15.2',
-//        'bukkit:bukkit-1.20',
-//        'bukkit:bukkit-utils',
-//
-//        // Bungee
-//        'bungee:bungee-1.4.7',
-//        'bungee:bungee-1.8',
-//        'bungee:bungee-1.12',
-//        'bungee:bungee-1.20',
-//        'bungee:bungee-utils',
-//
-//        // Legacy Fabric
-//        'fabric:fabric-1.7.10',
-//        'fabric:fabric-1.8.9',
-//        'fabric:fabric-1.9.4',
-//        'fabric:fabric-1.10.2',
-//        'fabric:fabric-1.11.2',
-//        'fabric:fabric-1.12.2',
+        // Legacy Bukkit
+        'bukkit:bukkit-b1.7.3', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.2.5', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.6.4', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
+        'bukkit:bukkit-1.7.10', // Needs the CraftBukkit Jar in mavenLocal() or access to the private NN repo
 
-        // Fabric
-        'fabric:fabric-1.21',
-        'fabric:fabric-1.21.3',
+        // Bukkit
+        'bukkit:bukkit-1.8.8',
+        'bukkit:bukkit-1.13.2',
+        'bukkit:bukkit-1.15.2',
+        'bukkit:bukkit-1.20',
+        'bukkit:bukkit-utils',
+
+        // Bungee
+        'bungee:bungee-1.4.7',
+        'bungee:bungee-1.8',
+        'bungee:bungee-1.12',
+        'bungee:bungee-1.20',
+        'bungee:bungee-utils',
+
+        // Legacy Fabric
+        'fabric:fabric-1.7.10',
+        'fabric:fabric-1.8.9',
+        'fabric:fabric-1.9.4',
+        'fabric:fabric-1.10.2',
+        'fabric:fabric-1.11.2',
+        'fabric:fabric-1.12.2',
 
         // Legacy Forge
-//        'forge:forge-1.6.4',
-//        'forge:forge-1.7.10',
-//        'forge:forge-1.8.9',
-//        'forge:forge-1.9.4',
-//        'forge:forge-1.10.2',
-//        'forge:forge-1.11.2',
-//        'forge:forge-1.12.2',
+        'forge:forge-1.6.4',
+        'forge:forge-1.7.10',
+        'forge:forge-1.8.9',
+        'forge:forge-1.9.4',
+        'forge:forge-1.10.2',
+        'forge:forge-1.11.2',
+        'forge:forge-1.12.2',
 
         // Forge
         'forge:forge-utils-modern',
@@ -89,20 +87,16 @@ include(
         'neoforge:neoforge-1.20.2',
 
         // Sponge
-//        'sponge:sponge-4',
-//        'sponge:sponge-5',
-//        'sponge:sponge-6',
-//        'sponge:sponge-7',
-//        'sponge:sponge-8',
-//        'sponge:sponge-9',
-//        'sponge:sponge-10',
-//        'sponge:sponge-11',
-//        'sponge:sponge-utils-legacy',
-
-        // Vanilla
-        'vanilla:vanilla-1.21',
-        'vanilla:vanilla-1.21.3',
+        'sponge:sponge-4',
+        'sponge:sponge-5',
+        'sponge:sponge-6',
+        'sponge:sponge-7',
+        'sponge:sponge-8',
+        'sponge:sponge-9',
+        'sponge:sponge-10',
+        'sponge:sponge-11',
+        'sponge:sponge-utils-legacy',
 
         // Velocity
-//        'velocity:velocity-3'
+        'velocity:velocity-3'
 )

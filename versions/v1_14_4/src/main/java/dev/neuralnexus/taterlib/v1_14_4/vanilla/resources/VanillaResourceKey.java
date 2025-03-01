@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.resources;
 
-import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +26,7 @@ public class VanillaResourceKey {
 
         @Override
         public ResourceKey unsafeOf(String full) {
-            throw new VersionFeatureNotSupportedException();
+            return (ResourceKey) ResourceLocation.of(full, ':');
         }
     }
 
