@@ -131,6 +131,7 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
+    "forgeCompileOnly"(files(rootProject.project(":versions:v1_20_1").sourceSets.getByName("forge").java.srcDirs))
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))
 }
 

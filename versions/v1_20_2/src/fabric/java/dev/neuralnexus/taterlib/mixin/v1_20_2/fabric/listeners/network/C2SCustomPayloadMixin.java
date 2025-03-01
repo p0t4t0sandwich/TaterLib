@@ -31,7 +31,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Optional;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class C2SCustomPayloadMixin {
     @Shadow @Final protected MinecraftServer server;

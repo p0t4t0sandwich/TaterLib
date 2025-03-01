@@ -64,6 +64,7 @@ public abstract class EntityMixin implements EntityBridge {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ResourceLocation bridge$type() {
         return Registry.ENTITY_TYPE.getKey(this.shadow$getType());
     }

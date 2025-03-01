@@ -28,6 +28,7 @@ include(
         'versions:v1_19_4',
         'versions:v1_20_1',
         'versions:v1_20_2',
+        'versions:v1_20_6',
 
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
@@ -68,7 +69,6 @@ include(
 //        'fabric:fabric-1.12.2',
 
         // Fabric
-        'fabric:fabric-1.20.6',
         'fabric:fabric-1.21',
         'fabric:fabric-1.21.3',
 
@@ -84,7 +84,6 @@ include(
         // Forge
         'forge:forge-utils-modern',
         'forge:forge-1.13.2',
-        'forge:forge-1.20.6',
 
         // NeoForge
         'neoforge:neoforge-1.20.2',
@@ -101,7 +100,6 @@ include(
 //        'sponge:sponge-utils-legacy',
 
         // Vanilla
-        'vanilla:vanilla-1.20.6',
         'vanilla:vanilla-1.21',
         'vanilla:vanilla-1.21.3',
 

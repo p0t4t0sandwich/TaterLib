@@ -116,7 +116,6 @@ dependencies {
         },
         project(":versions:v1_14_4"),
         project(":versions:v1_16_1"),
-        project(":versions:v1_20_2"),
     ).forEach {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)

@@ -6,17 +6,22 @@
 package dev.neuralnexus.taterlib.v1_20_1.forge;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
+import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
 import net.minecraftforge.event.entity.player.AdvancementEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 /** Listens for player events. */
+@Mod.EventBusSubscriber(modid = LoaderImpl.PROJECT_ID)
 public class ForgeAdvancementListener_1_20_1 {
     /**
      * Called when a player finishes an advancement.
      *
      * @param event The advancement event
      */
+    @SubscribeEvent
     public static void onPlayerAdvancementFinished(AdvancementEvent.AdvancementEarnEvent event) {
         PlayerEvents.ADVANCEMENT_FINISHED.invoke(
                 new VanillaPlayerAdvancementEvent.AdvancementFinished(
@@ -28,6 +33,7 @@ public class ForgeAdvancementListener_1_20_1 {
      *
      * @param event The advancement progress event
      */
+    @SubscribeEvent
     public static void onPlayerAdvancementProgress(
             AdvancementEvent.AdvancementProgressEvent event) {
         PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
