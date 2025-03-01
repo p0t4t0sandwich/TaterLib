@@ -9,7 +9,7 @@ base {
 
 dependencies {
     // Configurate
-    api("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT")
+    api("org.spongepowered:configurate-hocon:4.2.0")
     api("io.leangen.geantyref:geantyref:1.3.16")
 
     // bStats

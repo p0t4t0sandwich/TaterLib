@@ -10,7 +10,7 @@ base {
 
 dependencies {
     // Configurate
-    implementation("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT")
+    implementation("org.spongepowered:configurate-hocon:4.2.0")
     implementation("io.leangen.geantyref:geantyref:1.3.15")
 
     // bStats
@@ -63,8 +63,8 @@ tasks.named<ShadowJar>("shadowJar") {
         include(dependency("dev.neuralnexus.modapi:muxins"))
 
         // Config
-        include(dependency("org.spongepowered:configurate-core:4.2.0-SNAPSHOT"))
-        include(dependency("org.spongepowered:configurate-hocon:4.2.0-SNAPSHOT"))
+        include(dependency("org.spongepowered:configurate-core:4.2.0"))
+        include(dependency("org.spongepowered:configurate-hocon:4.2.0"))
         include(dependency("com.typesafe:config:1.4.1"))
         include(dependency("io.leangen.geantyref:geantyref:1.3.16"))
 
