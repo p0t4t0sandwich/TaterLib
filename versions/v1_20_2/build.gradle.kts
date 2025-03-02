@@ -156,7 +156,7 @@ dependencies {
     }
 
     "forgeCompileOnly"(files(rootProject.project(":versions:v1_20_1").sourceSets.getByName("forge").output))
-    "forgeCompileOnly"(project(":forge:forge-utils-modern"))
+    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
 }
 
 tasks.named<ShadowJar>("shadowJar") {

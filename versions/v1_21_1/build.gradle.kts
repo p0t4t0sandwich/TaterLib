@@ -124,7 +124,7 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(project(":forge:forge-utils-modern"))
+    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
 }
 
 tasks.named<ShadowJar>("shadowJar") {

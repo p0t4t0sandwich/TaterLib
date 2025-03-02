@@ -15,10 +15,6 @@ java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 sourceSets {
-    create("fabric") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
     create("forge") {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
@@ -29,12 +25,7 @@ sourceSets {
 configurations {
     val mainCompileOnly by creating
     named("compileOnly") {
-        extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
-    }
-    val modImplementation by creating
-    named("modImplementation") {
-        extendsFrom(configurations.getByName("fabricImplementation"))
     }
 }
 
@@ -42,8 +33,8 @@ configurations {
 unimined.minecraft {
     version(minecraftVersion)
     mappings {
-        mojmap()
-        devFallbackNamespace("official")
+        searge()
+        mcp(mappingsChannel, mappingsVersion)
     }
     defaultRemapJar = false
 }
@@ -52,57 +43,30 @@ tasks.jar {
     archiveClassifier.set("vanilla")
 }
 
-// ------------------------------------------- Fabric -------------------------------------------
-unimined.minecraft(sourceSets.getByName("fabric")) {
-    combineWith(sourceSets.main.get())
-    fabric {
-        loader(fabricLoaderVersion)
-    }
-    defaultRemapJar = true
-}
-
-tasks.named<RemapJarTask>("remapFabricJar") {
-    asJar.archiveClassifier.set("fabric-remap")
-    mixinRemap {
-        disableRefmap()
-    }
-}
-
-tasks.create<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
-    archiveClassifier.set("fabric")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_20/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
-}
-
 // ------------------------------------------- Forge -------------------------------------------
 unimined.minecraft(sourceSets.getByName("forge")) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
-        mixinConfig("taterlib.mixins.v1_20.forge.json")
+//        mixinConfig("taterlib.mixins.v1_13_2.forge.json")
     }
     defaultRemapJar = true
 }
 
 tasks.named<RemapJarTask>("remapForgeJar") {
     asJar.archiveClassifier.set("forge-remap")
-    mixinRemap {
-        disableRefmap()
-    }
+//    mixinRemap {
+//        disableRefmap()
+//    }
 }
 
 tasks.create<ShadowJar>("relocateForgeJar") {
     from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
     archiveClassifier.set("forge")
     dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_20/vanilla/**")
+//        exclude("dev/neuralnexus/taterlib/mixin/v1_13_2/vanilla/**")
     }
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
+    relocate("dev.neuralnexus.taterlib.v1_13_2.vanilla", "dev.neuralnexus.taterlib.v1_13_2.l_searge")
 }
 
 // ------------------------------------------- Common -------------------------------------------
@@ -113,29 +77,16 @@ dependencies {
         project(":common"),
         variantOf(libs.modapi) {
             classifier("downgraded-8")
-        },
-        project(":versions:v1_14_4"),
-        project(":versions:v1_16_1"),
+        }
     ).forEach {
         "mainCompileOnly"(it)
-        "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
-    }
-
-    listOf(
-        "fabric-api-base",
-        "fabric-command-api-v2",
-        "fabric-lifecycle-events-v1",
-        "fabric-networking-api-v1"
-    ).forEach {
-        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
     "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
 }
 
 tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
     from(tasks.getByName("relocateForgeJar").outputs)
     archiveClassifier.set("")
 }

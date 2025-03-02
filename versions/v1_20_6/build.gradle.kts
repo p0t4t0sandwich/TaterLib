@@ -147,7 +147,7 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(project(":forge:forge-utils-modern"))
+    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
     "neoforgeCompileOnly"(files(rootProject.project(":versions:v1_20_2").sourceSets.getByName("neoforge").output))
 }
 

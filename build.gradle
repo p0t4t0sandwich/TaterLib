@@ -132,6 +132,8 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     def jarFiles = [
             file("./common/build/libs/${project_id}-common-${version}-full.jar"),
             file("./versions/v1_6_4/build/libs/${project_id}-1.6.4-${version}.jar"),
+            file("./versions/modern-utils/build/libs/${project_id}-modern-utils-${version}.jar"),
+            file("./versions/v1_13_2/build/libs/${project_id}-1.13.2-${version}.jar"),
             file("./versions/v1_14_4/build/libs/${project_id}-1.14.4-${version}.jar"),
             file("./versions/v1_15_2/build/libs/${project_id}-1.15.2-${version}.jar"),
             file("./versions/v1_16_1/build/libs/${project_id}-1.16.1-${version}.jar"),
@@ -168,30 +170,20 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
     return zipped
 }
 
-// --------------------------- Clear build/libs --------------------------------
-tasks.register('clear_build') {
-    delete fileTree('build/libs')
-}
-
 var platformVersions = [:]
 platformVersions.put("bukkit", Arrays.asList(
         "utils",
         "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
         "1.8.8", "1.13.2", "1.15.2", "1.20"))
 platformVersions.put("bungee", Arrays.asList("utils", "1.4.7", "1.8", "1.12", "1.20"))
-platformVersions.put("fabric", Arrays.asList(
-        "1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2"))
-platformVersions.put("forge", Arrays.asList(
-        "utils-modern", "1.7.10", "1.8.9",
-        "1.9.4", "1.10.2", "1.11.2", "1.12.2", "1.13.2"))
-//platformVersions.put("neoforge", Arrays.asList("1.20.2"))
+platformVersions.put("fabric", Arrays.asList("1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2"))
+platformVersions.put("forge", Arrays.asList("1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2"))
 platformVersions.put("sponge", Arrays.asList(
         "utils-legacy",
         "4", "5", "6", "7",
         "8", "9", "10",
 //        "11"
 ))
-platformVersions.put("vanilla", Arrays.asList())
 platformVersions.put("velocity", Arrays.asList("3"))
 
 // --------------------------- Fun Helper Task --------------------------------
@@ -216,38 +208,7 @@ tasks.register('build_monojar', Jar) {
         }
     }
 
-    String mc_version = 'b1.7.3-1.21'
-    archiveFileName = "${project_id}-${version}.jar"
-    destinationDirectory = file("./build/libs")
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
-                'Specification-Version': version,
-                'Specification-Vendor': 'NeuralNexus',
-                'Implementation-Version': version,
-                'Implementation-Vendor': 'NeuralNexus',
-                'Implementation-Timestamp': Instant.now().toString(),
-                'FMLCorePluginContainsFMLMod': 'true',
-                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "taterlib.mixins.json"
-    }
-
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
-        into("META-INF")
-    }
-    from {
-        bundleJars(platformVersions)
-    }
-}
-
-// --------------------------- Build Dev --------------------------------
-tasks.register('build_dev', Jar) {
-    dependsOn(':api:build')
-    dependsOn(':common:shadowJar')
-    dependsOn(':loader:build')
-
-    String mc_version = 'b1.7.3-1.21'
+    String mc_version = 'b1.7.3-1.21.4'
     archiveFileName = "${project_id}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
