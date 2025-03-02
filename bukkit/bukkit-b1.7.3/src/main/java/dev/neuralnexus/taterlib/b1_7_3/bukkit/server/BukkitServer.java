@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.b1_7_3.bukkit.server;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.server.Server;
@@ -47,7 +48,7 @@ public class BukkitServer implements Server {
     public Map<String, UUID> whitelist() {
         Map<String, UUID> whitelist = new HashMap<>();
         for (OfflinePlayer player : Bukkit.getServer().getWhitelistedPlayers()) {
-            whitelist.put(player.getName(), new UUID(0, 0));
+            whitelist.put(player.getName(), TaterAPI.NIL_UUID);
         }
         return whitelist;
     }

@@ -37,6 +37,7 @@ import java.util.function.Supplier;
 /** API Provider */
 public class TaterAPI {
     private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
+    public static final UUID NIL_UUID = new UUID(0, 0);
     private static final List<Hook> hooks = new ArrayList<>();
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;

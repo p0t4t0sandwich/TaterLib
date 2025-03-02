@@ -29,7 +29,7 @@ public class ForgeSender implements CommandSender, Wrapped<CommandSource> {
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(new UUID(0, 0));
+        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
     }
 
     @Override

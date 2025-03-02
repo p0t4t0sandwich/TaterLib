@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee.entity.player;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -45,7 +46,7 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     @Override
     public UUID uuid() {
         // TODO: Find some implementation that provides the real UUID.
-        return new UUID(0, 0);
+        return TaterAPI.NIL_UUID;
     }
 
     @Override

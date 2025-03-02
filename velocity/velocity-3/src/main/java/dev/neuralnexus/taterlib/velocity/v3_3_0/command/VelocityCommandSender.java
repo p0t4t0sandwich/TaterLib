@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.Player;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
@@ -33,7 +34,7 @@ public class VelocityCommandSender implements CommandSender, Wrapped<CommandSour
         if (this.sender instanceof Player player) {
             return player.getUniqueId();
         }
-        return new UUID(0, 0);
+        return TaterAPI.NIL_UUID;
     }
 
     @Override

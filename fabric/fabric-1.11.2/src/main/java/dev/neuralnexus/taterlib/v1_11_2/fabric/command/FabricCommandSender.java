@@ -31,7 +31,7 @@ public class FabricCommandSender implements CommandSender, Wrapped<PermissibleCo
     @Override
     public UUID uuid() {
         if (this.sender.getEntity() == null) {
-            return TaterAPI.uuidFromName(this.sender.getName().asFormattedString()).orElse(new UUID(0, 0));
+            return TaterAPI.uuidFromName(this.sender.getName().asFormattedString()).orElse(TaterAPI.NIL_UUID);
         }
         return this.sender.getEntity().getUuid();
     }

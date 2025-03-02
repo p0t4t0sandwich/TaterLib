@@ -55,7 +55,7 @@ public abstract class CommandSourceStack_API {
     @SuppressWarnings("DataFlowIssue")
     public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
-            return TaterAPI.uuidFromName(this.shadow$getTextName()).orElse(new UUID(0, 0));
+            return TaterAPI.uuidFromName(this.shadow$getTextName()).orElse(TaterAPI.NIL_UUID);
         }
         return this.shadow$getEntity().getUUID();
     }
