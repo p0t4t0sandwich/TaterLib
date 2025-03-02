@@ -85,7 +85,6 @@ include(
         'sponge:sponge-5',
         'sponge:sponge-6',
         'sponge:sponge-7',
-        'sponge:sponge-9',
         'sponge:sponge-10',
 //        'sponge:sponge-11',
         'sponge:sponge-utils-legacy',

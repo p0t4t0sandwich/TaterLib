@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import net.minecraft.command.CommandSource;
 import net.minecraft.util.text.TextComponentString;
 

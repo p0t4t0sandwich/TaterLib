@@ -20,17 +20,17 @@ public class SpongeLocation implements Location {
 
     @Override
     public void setX(double x) {
-        location.add(x - location.x(), 0, 0);
+        location.add(x - location.getX(), 0, 0);
     }
 
     @Override
     public void setY(double y) {
-        location.add(0, y - location.y(), 0);
+        location.add(0, y - location.getY(), 0);
     }
 
     @Override
     public void setZ(double z) {
-        location.add(0, 0, z - location.z());
+        location.add(0, 0, z - location.getZ());
     }
 
     @Override

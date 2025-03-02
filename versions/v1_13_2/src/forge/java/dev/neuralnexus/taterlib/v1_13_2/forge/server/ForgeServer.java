@@ -10,7 +10,6 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 

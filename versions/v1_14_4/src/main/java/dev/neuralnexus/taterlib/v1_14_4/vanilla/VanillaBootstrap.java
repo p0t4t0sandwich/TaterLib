@@ -18,11 +18,8 @@ public class VanillaBootstrap {
     @SuppressWarnings("Convert2MethodRef")
     public static void init() {
         TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
-        TaterAPI.registerBuilder(
-                ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
-        TaterAPI.registerFactory(
-                ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
-        TaterAPI.scheduler()
-                .replaceBackgroundScheduler(() -> Util.backgroundExecutor(), false);
+        TaterAPI.registerBuilder(ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
+        TaterAPI.registerFactory(ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
+        TaterAPI.scheduler().replaceBackgroundScheduler(() -> Util.backgroundExecutor(), false);
     }
 }

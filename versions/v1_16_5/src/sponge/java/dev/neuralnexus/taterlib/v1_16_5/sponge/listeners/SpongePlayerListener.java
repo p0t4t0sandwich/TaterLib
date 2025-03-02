@@ -2,10 +2,15 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_17.sponge.listeners.player;
+package dev.neuralnexus.taterlib.v1_16_5.sponge.listeners;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_17.sponge.event.player.*;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerDeathEvent;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerLogoutEvent;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerMessageEvent;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerRespawnEvent;
 
 import org.spongepowered.api.advancement.DisplayInfo;
 import org.spongepowered.api.entity.living.player.Player;

@@ -23,6 +23,10 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
+    create("sponge") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -31,6 +35,7 @@ configurations {
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
+        extendsFrom(configurations.getByName("spongeCompileOnly"))
     }
     val modImplementation by creating
     named("modImplementation") {
@@ -105,6 +110,12 @@ tasks.register<ShadowJar>("relocateForgeJar") {
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
 }
 
+// ------------------------------------------- Sponge -------------------------------------------
+tasks.register<Jar>("spongeJar") {
+    archiveClassifier.set("sponge")
+    from(sourceSets.getByName("sponge").output)
+}
+
 // ------------------------------------------- Common -------------------------------------------
 dependencies {
     listOf(
@@ -120,6 +131,7 @@ dependencies {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
+        "spongeCompileOnly"(it)
     }
 
     listOf(
@@ -132,11 +144,14 @@ dependencies {
     }
 
     "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
+    "spongeCompileOnly"(files(rootProject.project(":versions:v1_16_5").sourceSets.getByName("sponge").output))
 }
 
 tasks.named<ShadowJar>("shadowJar") {
     from(tasks.getByName("relocateFabricJar").outputs)
     from(tasks.getByName("relocateForgeJar").outputs)
+    from(tasks.getByName("spongeJar").outputs)
     archiveClassifier.set("")
 }
 

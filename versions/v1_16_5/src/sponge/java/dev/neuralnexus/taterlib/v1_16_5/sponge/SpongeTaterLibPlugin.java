@@ -9,11 +9,11 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.block.SpongeBlockListener;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.command.SpongeCommandListener;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.entity.SpongeEntityListener;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.player.SpongePlayerListener;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.server.SpongeServerListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeBlockListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeCommandListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeEntityListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongePlayerListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeServerListener;
 
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
