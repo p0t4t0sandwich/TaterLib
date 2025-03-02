@@ -73,8 +73,7 @@ subprojects {
             formatAnnotations()
             licenseHeader """/**
  * Copyright (c) \$YEAR Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
 """
         }
@@ -225,7 +224,7 @@ tasks.register('build_monojar', Jar) {
                 'MixinConfigs': "taterlib.mixins.json"
     }
 
-    from(["README.md", "LICENSE", "LICENSE-API"]) {
+    from(["README.md", "LICENSE"]) {
         into("META-INF")
     }
     from {
