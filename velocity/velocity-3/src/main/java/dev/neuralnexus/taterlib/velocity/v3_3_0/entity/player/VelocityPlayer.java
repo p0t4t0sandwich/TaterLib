@@ -13,6 +13,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
@@ -114,5 +115,20 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     @Override
     public void kick(String message) {
         this.player.disconnect(Component.text(message));
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

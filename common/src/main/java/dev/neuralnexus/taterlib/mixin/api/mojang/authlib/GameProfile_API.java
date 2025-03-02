@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -52,5 +53,17 @@ public abstract class GameProfile_API {
 
     public UUID identifiable$uuid() {
         return this.shadow$getId();
+    }
+
+    public boolean identifiable$hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    public boolean identifiable$hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    public boolean identifiable$hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.bukkit.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 
 import java.util.UUID;
 
@@ -38,5 +39,20 @@ public class BukkitCommandSender
     @Override
     public void sendMessage(String message) {
         this.sender.sendMessage(message);
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

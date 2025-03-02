@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_8_8.bukkit.entity;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_8.bukkit.world.BukkitLocation;
@@ -81,5 +82,20 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
                         location.x(),
                         location.y(),
                         location.z()));
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

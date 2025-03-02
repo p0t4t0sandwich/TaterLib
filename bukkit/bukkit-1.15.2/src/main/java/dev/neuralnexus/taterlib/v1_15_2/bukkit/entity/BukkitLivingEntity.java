@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_15_2.bukkit.entity;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import java.lang.reflect.InvocationTargetException;
 

@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -28,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
+import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -111,5 +113,20 @@ public abstract class Entity_API implements EntityBridge {
 
     public UUID identifiable$uuid() {
         return this.shadow$getUUID();
+    }
+
+    @Intrinsic
+    public boolean identifiable$hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Intrinsic
+    public boolean identifiable$hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Intrinsic
+    public boolean identifiable$hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

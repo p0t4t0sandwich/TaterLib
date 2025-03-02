@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.sponge.legacy.entity;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.sponge.legacy.server.SpongeServer;
@@ -99,5 +100,20 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
         this.entity.setLocation(
                 new org.spongepowered.api.world.Location<>(
                         serverLevel.get(), location.x(), location.y(), location.z()));
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -85,7 +86,6 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =
@@ -97,5 +97,20 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
             this.entity.travelToDimension(serverLevel.get().provider.dimensionId);
         }
         this.entity.setPosition(location.x(), location.y(), location.z());
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

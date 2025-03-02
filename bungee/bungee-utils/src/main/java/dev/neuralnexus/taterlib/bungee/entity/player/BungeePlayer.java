@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.bungee.entity.player;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
@@ -87,5 +88,20 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     @Override
     public void kick(String message) {
         this.player.disconnect(new ComponentBuilder(message).create());
+    }
+
+    @Override
+    public boolean hasPermission(String permission) {
+        return PermsAPI.instance().hasPermission(this, permission);
+    }
+
+    @Override
+    public boolean hasPermission(int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permissionLevel);
+    }
+
+    @Override
+    public boolean hasPermission(String permission, int permissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

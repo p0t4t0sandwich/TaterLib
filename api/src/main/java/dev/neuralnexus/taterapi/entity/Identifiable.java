@@ -15,4 +15,29 @@ public interface Identifiable {
      * @return The UUID of the object
      */
     UUID uuid();
+
+    /**
+     * Check the object's permissions
+     *
+     * @param permission The permission to check
+     * @return Whether the object has the permission
+     */
+    boolean hasPermission(String permission);
+
+    /**
+     * Check the object's permission
+     *
+     * @param permissionLevel The permission level to check
+     * @return Whether the object has the permission level
+     */
+    boolean hasPermission(int permissionLevel);
+
+    /**
+     * Check the object's permission
+     *
+     * @param permission The permission to check
+     * @param permissionLevel The permission level to default to
+     * @return Whether the object has the permission
+     */
+    boolean hasPermission(String permission, int permissionLevel);
 }
