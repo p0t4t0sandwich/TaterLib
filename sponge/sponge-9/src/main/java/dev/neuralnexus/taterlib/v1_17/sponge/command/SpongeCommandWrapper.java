@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_17.sponge.command;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -36,7 +37,7 @@ public class SpongeCommandWrapper implements CommandExecutor {
             CommandCause sender = context.cause();
             callback.execute((CommandSender) sender, commandName, args);
         } catch (Exception e) {
-            TaterLib.logger().error("An exception occurred while executing a command", e);
+            TaterAPI.logger().error("An exception occurred while executing a command", e);
             return CommandResult.builder().result(0).error(Component.text(e.getMessage())).build();
         }
         return CommandResult.builder().result(1).build();

@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.core.server;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
@@ -46,7 +47,7 @@ public abstract class MinecraftServerMixin implements GameProfileCacheBridge {
                 GameProfile profile = (GameProfile) method.invoke(i);
                 result.put(profile.getName(), profile);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                TaterLib.logger().error("Failed to get GameProfile from GameProfileCache", e);
+                TaterAPI.logger().error("Failed to get GameProfile from GameProfileCache", e);
             }
         }
         return result;

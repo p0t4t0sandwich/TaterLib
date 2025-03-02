@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.bukkit.reflection;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterlib.TaterLib;
 
 import org.bukkit.Bukkit;
@@ -28,7 +29,7 @@ public class Utils {
             commandMapField.setAccessible(true);
             return (SimpleCommandMap) commandMapField.get(Bukkit.getServer());
         } catch (Exception e) {
-            TaterLib.logger().error("Could not reflect to get SimpleCommandMap", e);
+            TaterAPI.logger().error("Could not reflect to get SimpleCommandMap", e);
             return null;
         }
     }
@@ -39,7 +40,7 @@ public class Utils {
             Class<?> serverClass = Class.forName(cbClass("CraftServer"));
             serverClass.getDeclaredMethod("syncCommands").invoke(Bukkit.getServer());
         } catch (Exception e) {
-            TaterLib.logger().error("Could not reflect to get syncCommands", e);
+            TaterAPI.logger().error("Could not reflect to get syncCommands", e);
         }
     }
 }

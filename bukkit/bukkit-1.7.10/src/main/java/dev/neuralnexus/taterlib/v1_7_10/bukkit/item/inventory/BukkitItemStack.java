@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.item.inventory;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -114,7 +115,7 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
             Objects.requireNonNull(item.getTag());
             return item.getTag().getBoolean("Unbreakable");
         } catch (IllegalAccessException | NoSuchFieldException e) {
-            TaterLib.logger().error("Failed to get unbreakable status of item stack", e);
+            TaterAPI.logger().error("Failed to get unbreakable status of item stack", e);
             return false;
         }
     }
@@ -129,7 +130,7 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
             Objects.requireNonNull(item.getTag());
             item.getTag().setBoolean("Unbreakable", unbreakable);
         } catch (IllegalAccessException | NoSuchFieldException e) {
-            TaterLib.logger().error("Failed to set unbreakable status of item stack", e);
+            TaterAPI.logger().error("Failed to set unbreakable status of item stack", e);
         }
     }
 }

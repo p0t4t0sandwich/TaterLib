@@ -7,6 +7,8 @@ package dev.neuralnexus.taterapi;
 
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platform;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
@@ -34,6 +36,7 @@ import java.util.function.Supplier;
 
 /** API Provider */
 public class TaterAPI {
+    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
     private static final List<Hook> hooks = new ArrayList<>();
     private static final Scheduler scheduler = new SchedulerImpl();
     private static PlayerDataStore playerDataStore;
@@ -41,15 +44,28 @@ public class TaterAPI {
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
     private static final Map<Class<?>, Supplier<?>> builders = new HashMap<>();
     private static final Map<Platform, Supplier<SimpleServer>> servers = new HashMap<>();
-
     private static final TaterAPI instance = new TaterAPI();
 
     private TaterAPI() {
         registrySetup();
     }
 
+    /**
+     * Get the instance
+     *
+     * @return The instance
+     */
     public static TaterAPI instance() {
         return instance;
+    }
+
+    /**
+     * Get the logger
+     *
+     * @return The logger
+     */
+    public static Logger logger() {
+        return logger;
     }
 
     /**

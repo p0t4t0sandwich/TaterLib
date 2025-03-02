@@ -1,14 +1,14 @@
 /**
  * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterAPI/blob/dev/LICENSE">GPL-3</a>
+ * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterAPI/blob/dev/LICENSE-API">MIT</a>
  */
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.entity;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -47,7 +47,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             return (double) entity.getClass().getMethod("getHealth").invoke(this.entity);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's health", e);
+            TaterAPI.logger().error("Could not reflect to get entity's health", e);
             return 0;
         }
     }
@@ -75,7 +75,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             return (double) entity.getClass().getMethod("getMaxHealth").invoke(this.entity);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's max health", e);
+            TaterAPI.logger().error("Could not reflect to get entity's max health", e);
             return 0;
         }
     }

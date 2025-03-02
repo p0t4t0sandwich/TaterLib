@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.fabric.command;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_8_9.fabric.entity.player.FabricPlayer;
@@ -43,7 +44,7 @@ public class FabricCommandWrapper implements CommandCallable {
             }
             command.execute(new FabricCommandSender(source), command.name(), args);
         } catch (Exception e) {
-            TaterLib.logger().error("An exception occurred while executing a command", e);
+            TaterAPI.logger().error("An exception occurred while executing a command", e);
         }
         return CommandResult.builder().successCount(1).build();
     }

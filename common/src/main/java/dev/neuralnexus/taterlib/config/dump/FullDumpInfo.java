@@ -8,6 +8,7 @@ package dev.neuralnexus.taterlib.config.dump;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.ModInfo;
 import dev.neuralnexus.taterapi.meta.Platforms;
@@ -77,7 +78,7 @@ public class FullDumpInfo extends DumpInfo {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(this, writer);
         } catch (IOException e) {
-            TaterLib.logger().error("An error occurred while saving the dump.", e);
+            TaterAPI.logger().error("An error occurred while saving the dump.", e);
         }
     }
 }

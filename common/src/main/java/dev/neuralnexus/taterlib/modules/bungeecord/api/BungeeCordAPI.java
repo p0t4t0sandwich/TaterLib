@@ -10,6 +10,7 @@ import static dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType.*;
 import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
@@ -223,7 +224,7 @@ public class BungeeCordAPI {
         try {
             msgout.write(message);
         } catch (IOException e) {
-            TaterLib.logger().error("Could not encode plugin message", e);
+            TaterAPI.logger().error("Could not encode plugin message", e);
         }
 
         out.writeShort(msgbytes.toByteArray().length);
@@ -250,7 +251,7 @@ public class BungeeCordAPI {
         try {
             msgout.write(message);
         } catch (IOException e) {
-            TaterLib.logger().error("Could not encode plugin message", e);
+            TaterAPI.logger().error("Could not encode plugin message", e);
         }
 
         out.writeShort(msgbytes.toByteArray().length);

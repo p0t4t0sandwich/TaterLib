@@ -57,7 +57,7 @@ public class TaterLibCommand implements Command {
                     text = "&aReloaded " + LoaderImpl.PROJECT_NAME + "!";
                 } catch (Exception e) {
                     text = "&cAn error occurred while reloading the plugin.";
-                    TaterLib.logger().error("An error occurred while reloading the plugin", e);
+                    TaterAPI.logger().error("An error occurred while reloading the plugin", e);
                 }
                 break;
             case "version":

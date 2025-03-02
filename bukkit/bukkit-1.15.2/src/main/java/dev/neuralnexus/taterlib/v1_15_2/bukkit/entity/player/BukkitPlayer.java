@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.entity.player;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -89,7 +90,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
                 | NoSuchMethodException
                 | SecurityException
                 | NoSuchFieldException e) {
-            TaterLib.logger().error("Could not reflect to get the player's ping", e);
+            TaterAPI.logger().error("Could not reflect to get the player's ping", e);
             return 0;
         }
     }

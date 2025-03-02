@@ -27,11 +27,10 @@ import java.util.Collections;
 
 /** TaterLib's custom bStats implementation. */
 public class TaterLibMetrics {
-    private static final Logger logger = TaterLib.logger();
+    private static final Logger logger = TaterAPI.logger();
     private static final int SERVICE_ID = 21198;
     private static MetricsBase metrics;
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public static void initialize() {
         if (MetaAPI.instance().side().is(Side.CLIENT)) {
             return;

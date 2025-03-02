@@ -5,6 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.entity;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -46,7 +47,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             return (double) entity.getClass().getMethod("getHealth").invoke(this.entity);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's health", e);
+            TaterAPI.logger().error("Could not reflect to get entity's health", e);
             return 0;
         }
     }
@@ -68,7 +69,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
                 | IllegalAccessException
                 | InvocationTargetException
                 | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's absorption", e);
+            TaterAPI.logger().error("Could not reflect to get entity's absorption", e);
             return 0;
         }
     }
@@ -85,7 +86,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
                 | IllegalAccessException
                 | InvocationTargetException
                 | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's absorption", e);
+            TaterAPI.logger().error("Could not reflect to get entity's absorption", e);
         }
     }
 
@@ -95,7 +96,7 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
         try {
             return (double) entity.getClass().getMethod("getMaxHealth").invoke(this.entity);
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            TaterLib.logger().error("Could not reflect to get entity's absorption", e);
+            TaterAPI.logger().error("Could not reflect to get entity's absorption", e);
             return 0;
         }
     }

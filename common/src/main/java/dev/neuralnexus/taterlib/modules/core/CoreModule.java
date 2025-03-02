@@ -50,13 +50,13 @@ public class CoreModule implements PluginModule {
                         // Register LuckPerms hook
                         if (MetaAPI.instance().isModLoaded("LuckPerms")
                                 && TaterLibConfigLoader.config().checkHook("LuckPerms")) {
-                            TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
+                            TaterAPI.logger().info("LuckPerms detected, enabling LuckPerms hook.");
                             TaterAPI.addHook(new LuckPermsHook());
                         }
                         // Register Spark hook
                         if (MetaAPI.instance().isModLoaded("Spark")
                                 && TaterLibConfigLoader.config().checkHook("Spark")) {
-                            TaterLib.logger().info("Spark detected, enabling Spark hook.");
+                            TaterAPI.logger().info("Spark detected, enabling Spark hook.");
                             TaterAPI.addHook(new SparkHook());
                         }
                     });

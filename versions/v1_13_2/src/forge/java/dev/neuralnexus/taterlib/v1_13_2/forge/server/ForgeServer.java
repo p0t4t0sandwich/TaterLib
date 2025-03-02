@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.server;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
@@ -58,7 +59,7 @@ public class ForgeServer implements Server {
                         (GameProfile) user.getClass().getMethod("func_152640_f").invoke(user);
                 whitelist.put(profile.getName(), profile.getId());
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                TaterLib.logger().error("Failed to get GameProfile from UserListWhitelistEntry", e);
+                TaterAPI.logger().error("Failed to get GameProfile from UserListWhitelistEntry", e);
             }
         }
         return whitelist;
@@ -77,7 +78,7 @@ public class ForgeServer implements Server {
                     (Map<String, ?>)
                             playerCache.getClass().getField("field_152661_c").get(playerCache);
         } catch (NoSuchFieldException | IllegalAccessException e) {
-            TaterLib.logger()
+            TaterAPI.logger()
                     .error("Failed to get usernameToProfileEntryMap from PlayerProfileCache", e);
         }
         for (Object i : info.values()) {
@@ -88,7 +89,7 @@ public class ForgeServer implements Server {
                 GameProfile profile = (GameProfile) method.invoke(i);
                 cache.put(profile.getName(), profile.getId());
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                TaterLib.logger().error("Failed to get GameProfile from GameProfileCache", e);
+                TaterAPI.logger().error("Failed to get GameProfile from GameProfileCache", e);
             }
         }
         return cache;

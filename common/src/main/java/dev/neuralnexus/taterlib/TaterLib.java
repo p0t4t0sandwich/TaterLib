@@ -46,15 +46,6 @@ public class TaterLib {
         return instance;
     }
 
-    /**
-     * Get the logger
-     *
-     * @return The logger
-     */
-    public static Logger logger() {
-        return logger;
-    }
-
     /** Start */
     public static void start() {
         MetaAPI api = MetaAPI.instance();
@@ -104,13 +95,13 @@ public class TaterLib {
                 loader.registerPluginModule("taterlib", new MCLogsModule());
             }
         }
-        logger().info(LoaderImpl.PROJECT_NAME + " has been started!");
+        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been started!");
     }
 
     /** Stop */
     public static void stop() {
         TaterLibConfigLoader.unload();
-        logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
+        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
     }
 
     /** Reload */
@@ -118,6 +109,6 @@ public class TaterLib {
         RELOADED = true;
         stop();
         start();
-        logger().info(LoaderImpl.PROJECT_NAME + " has been reloaded!");
+        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been reloaded!");
     }
 }
