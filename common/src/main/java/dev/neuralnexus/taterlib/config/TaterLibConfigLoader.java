@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterapi.config.VersionedConfig;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;

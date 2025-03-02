@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -103,7 +103,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public void setSpawn(Location location, boolean forced) {
         Optional<WorldServer> serverLevel =
-                ((Server) TaterAPIProvider.api().get().server())
+                ((Server) TaterAPI.instance().server())
                         .world(location.world().dimension())
                         .map(ForgeServerWorld.class::cast)
                         .map(ForgeServerWorld::unwrap);

@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.commands;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
@@ -55,7 +55,7 @@ public abstract class CommandSourceStack_API {
     @SuppressWarnings("DataFlowIssue")
     public UUID identifiable$uuid() {
         if (this.shadow$getEntity() == null) {
-            return TaterAPIProvider.uuidFromName(this.shadow$getTextName()).orElse(new UUID(0, 0));
+            return TaterAPI.uuidFromName(this.shadow$getTextName()).orElse(new UUID(0, 0));
         }
         return this.shadow$getEntity().getUUID();
     }

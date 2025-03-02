@@ -36,7 +36,7 @@ public class ForgeServer implements Server {
 
     @Override
     @SuppressWarnings("unchecked")
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return ((List<EntityPlayer>) server.getConfigurationManager().playerEntityList)
                 .stream().map(ForgePlayer::new).collect(Collectors.toList());
     }

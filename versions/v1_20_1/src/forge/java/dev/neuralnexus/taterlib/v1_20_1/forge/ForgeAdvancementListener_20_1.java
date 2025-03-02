@@ -6,7 +6,7 @@
 package dev.neuralnexus.taterlib.v1_20_1.forge;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
 import net.minecraftforge.event.entity.player.AdvancementEvent;

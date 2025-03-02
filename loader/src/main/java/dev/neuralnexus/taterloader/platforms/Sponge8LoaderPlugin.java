@@ -8,7 +8,7 @@ package dev.neuralnexus.taterloader.platforms;
 import com.google.inject.Inject;
 
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterloader.TaterPluginResolver;

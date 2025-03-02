@@ -45,7 +45,7 @@ public class BungeeProxyServer implements ProxyServer, Wrapped<net.md_5.bungee.a
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return this.unwrap().getPlayers().stream()
                 .map(WrapperRegistry::wrap)
                 .map(User.class::cast)

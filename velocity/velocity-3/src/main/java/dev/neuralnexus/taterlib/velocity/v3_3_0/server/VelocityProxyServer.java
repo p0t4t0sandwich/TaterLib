@@ -47,7 +47,7 @@ public class VelocityProxyServer
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return this.unwrap().getAllPlayers().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());

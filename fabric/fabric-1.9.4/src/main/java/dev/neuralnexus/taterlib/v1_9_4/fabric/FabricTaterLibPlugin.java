@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_9_4.fabric;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.*;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
@@ -35,8 +35,8 @@ import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
-        TaterAPIProvider.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
+        TaterAPI.registerBuilder(ResourceKey.Builder.class, FabricResourceKey.Builder::new);
+        TaterAPI.registerFactory(ResourceKey.Factory.class, FabricResourceKey.Factory::new);
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             // Initialize plugin data

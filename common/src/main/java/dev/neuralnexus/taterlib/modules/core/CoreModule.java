@@ -5,14 +5,14 @@
  */
 package dev.neuralnexus.taterlib.modules.core;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.GenericEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.hooks.metrics.SparkHook;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.storage.databases.Database;
@@ -39,7 +39,7 @@ public class CoreModule implements PluginModule {
             GenericEvents.setup();
 
             // Setup local player metadata store
-            TaterAPIProvider.setPlayerDataStore(
+            TaterAPI.setPlayerDataStore(
                     new PlayerDataStore(
                             new Database.DatabaseConfig(
                                     LoaderImpl.PROJECT_ID, 0, "playerdata", "", "")));
@@ -51,13 +51,13 @@ public class CoreModule implements PluginModule {
                         if (MetaAPI.instance().isModLoaded("LuckPerms")
                                 && TaterLibConfigLoader.config().checkHook("LuckPerms")) {
                             TaterLib.logger().info("LuckPerms detected, enabling LuckPerms hook.");
-                            TaterAPIProvider.addHook(new LuckPermsHook());
+                            TaterAPI.addHook(new LuckPermsHook());
                         }
                         // Register Spark hook
                         if (MetaAPI.instance().isModLoaded("Spark")
                                 && TaterLibConfigLoader.config().checkHook("Spark")) {
                             TaterLib.logger().info("Spark detected, enabling Spark hook.");
-                            TaterAPIProvider.addHook(new SparkHook());
+                            TaterAPI.addHook(new SparkHook());
                         }
                     });
 

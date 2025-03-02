@@ -44,7 +44,7 @@ public class VelocityServer implements Server, Wrapped<RegisteredServer> {
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return this.server.getPlayersConnected().stream()
                 .map(VelocityPlayer::new)
                 .collect(Collectors.toList());

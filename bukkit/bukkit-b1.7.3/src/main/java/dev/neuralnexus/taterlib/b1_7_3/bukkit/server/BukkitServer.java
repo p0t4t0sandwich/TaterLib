@@ -37,7 +37,7 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return Arrays.stream(Bukkit.getServer().getOnlinePlayers())
                 .map(BukkitPlayer::new)
                 .collect(Collectors.toList());

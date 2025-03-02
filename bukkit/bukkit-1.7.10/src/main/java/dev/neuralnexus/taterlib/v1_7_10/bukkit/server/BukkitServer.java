@@ -50,7 +50,7 @@ public class BukkitServer implements Server {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         // Server.getOnlinePlayers is ambiguous, time to reflect
         try {
             Method onlinePlayersMethod =

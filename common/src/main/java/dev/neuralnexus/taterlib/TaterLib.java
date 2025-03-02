@@ -5,10 +5,10 @@
  */
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.perms.CrossPerms;
@@ -91,7 +91,7 @@ public class TaterLib {
             ServerEvents.STOPPED.register(
                     event -> {
                         TaterLibMetrics.shutdown();
-                        TaterAPIProvider.scheduler().shutdownBackgroundScheduler();
+                        TaterAPI.scheduler().shutdownBackgroundScheduler();
                     });
 
             TaterLibConfig config = TaterLibConfigLoader.config();

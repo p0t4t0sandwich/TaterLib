@@ -8,11 +8,11 @@ package dev.neuralnexus.taterapi.loader;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.event.plugin.PluginDisableEvent;
 import dev.neuralnexus.taterapi.event.plugin.PluginEnableEvent;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
-import dev.neuralnexus.taterapi.loader.plugin.impl.ModuleLoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.plugin.ModuleLoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 import org.jetbrains.annotations.ApiStatus;

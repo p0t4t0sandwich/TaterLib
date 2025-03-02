@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.resources.VanillaResourceKey;
@@ -18,12 +18,12 @@ public class VanillaBootstrap {
     /** Initializes the Vanilla bootstrap. */
     @SuppressWarnings("Convert2MethodRef")
     public static void init() {
-        TaterAPIProvider.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
-        TaterAPIProvider.registerBuilder(
+        TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
+        TaterAPI.registerBuilder(
                 ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
-        TaterAPIProvider.registerFactory(
+        TaterAPI.registerFactory(
                 ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
-        TaterAPIProvider.scheduler()
+        TaterAPI.scheduler()
                 .replaceBackgroundScheduler(() -> Util.backgroundExecutor(), false);
     }
 }

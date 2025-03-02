@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.fabric.command;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 
@@ -29,7 +29,7 @@ public class FabricCommandSender implements CommandSender, Wrapped<PermissibleCo
 
     @Override
     public UUID uuid() {
-        return TaterAPIProvider.uuidFromName(this.sender.getName().asFormattedString())
+        return TaterAPI.uuidFromName(this.sender.getName().asFormattedString())
                 .orElse(new UUID(0, 0));
     }
 

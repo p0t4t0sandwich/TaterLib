@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_11.sponge;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
@@ -28,8 +28,7 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.api(Platforms.SPONGE)
-                .ifPresent(api -> api.setServer(SpongeServer::instance));
+        TaterAPI.instance().setServer(Platforms.SPONGE, SpongeServer::instance);
     }
 
     @Override

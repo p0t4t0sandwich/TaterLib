@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.server.SimpleServer;
@@ -30,9 +30,8 @@ public interface User extends CommandSender {
      *
      * @return The server the player is on
      */
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     default SimpleServer server() {
-        return TaterAPIProvider.api().get().server();
+        return TaterAPI.instance().server();
     }
 
     /**
@@ -41,7 +40,7 @@ public interface User extends CommandSender {
      * @return The prefix of the player
      */
     default String prefix() {
-        return TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
+        return TaterAPI.getHook("luckperms", LuckPermsHook.class)
                 .map(hook -> hook.prefix(this.uuid()))
                 .orElse("");
     }
@@ -62,7 +61,7 @@ public interface User extends CommandSender {
      * @param priority The priority of the prefix
      */
     default void setPrefix(String prefix, int priority) {
-        TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
+        TaterAPI.getHook("luckperms", LuckPermsHook.class)
                 .ifPresent(hook -> hook.setPrefix(this.uuid(), prefix, priority));
     }
 
@@ -72,7 +71,7 @@ public interface User extends CommandSender {
      * @return The suffix of the player
      */
     default String suffix() {
-        return TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
+        return TaterAPI.getHook("luckperms", LuckPermsHook.class)
                 .map(hook -> hook.suffix(this.uuid()))
                 .orElse("");
     }
@@ -93,7 +92,7 @@ public interface User extends CommandSender {
      * @param priority The priority of the suffix
      */
     default void setSuffix(String suffix, int priority) {
-        TaterAPIProvider.getHook("luckperms", LuckPermsHook.class)
+        TaterAPI.getHook("luckperms", LuckPermsHook.class)
                 .ifPresent(hook -> hook.setSuffix(this.uuid(), suffix, priority));
     }
 
@@ -104,7 +103,7 @@ public interface User extends CommandSender {
      * @return The value
      */
     default Optional<Object> getMeta(String key) {
-        return TaterAPIProvider.playerDataStore().get(this, key);
+        return TaterAPI.playerDataStore().get(this, key);
     }
 
     /**
@@ -115,7 +114,7 @@ public interface User extends CommandSender {
      * @return The value
      */
     default <T> Optional<T> getMeta(String key, Class<T> clazz) {
-        return TaterAPIProvider.playerDataStore().get(this, key, clazz);
+        return TaterAPI.playerDataStore().get(this, key, clazz);
     }
 
     /**
@@ -126,7 +125,7 @@ public interface User extends CommandSender {
      * @return The value
      */
     default <T> Optional<T> getMeta(String key, Type type) {
-        return TaterAPIProvider.playerDataStore().get(this, key, type);
+        return TaterAPI.playerDataStore().get(this, key, type);
     }
 
     /**
@@ -136,7 +135,7 @@ public interface User extends CommandSender {
      * @param value The value to set
      */
     default void setMeta(String key, Object value) {
-        TaterAPIProvider.playerDataStore().set(this, key, value);
+        TaterAPI.playerDataStore().set(this, key, value);
     }
 
     /**
@@ -145,6 +144,6 @@ public interface User extends CommandSender {
      * @param key The key to delete
      */
     default void deleteMeta(String key) {
-        TaterAPIProvider.playerDataStore().delete(this, key);
+        TaterAPI.playerDataStore().delete(this, key);
     }
 }

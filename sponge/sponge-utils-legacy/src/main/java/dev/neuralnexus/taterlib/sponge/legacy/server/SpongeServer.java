@@ -46,7 +46,7 @@ public class SpongeServer implements Server {
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return Sponge.getServer().getOnlinePlayers().stream()
                 .map(WrapperRegistry::wrap)
                 .map(User.class::cast)

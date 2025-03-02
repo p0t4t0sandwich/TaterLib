@@ -44,7 +44,7 @@ public class BungeeServer implements Server, Wrapped<ServerInfo> {
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return this.server.getPlayers().stream()
                 .map(WrapperRegistry::wrap)
                 .map(User.class::cast)

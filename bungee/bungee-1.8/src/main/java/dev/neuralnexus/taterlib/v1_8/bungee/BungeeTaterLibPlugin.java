@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_8.bungee;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -33,8 +33,7 @@ import java.util.concurrent.TimeUnit;
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.api(Platforms.BUNGEECORD)
-                .ifPresent(api -> api.setServer(BungeeProxyServer::instance));
+        TaterAPI.instance().setServer(Platforms.BUNGEECORD, BungeeProxyServer::instance);
         WrapperRegistry.register(ProxiedPlayer.class, BungeePlayer::new);
     }
 

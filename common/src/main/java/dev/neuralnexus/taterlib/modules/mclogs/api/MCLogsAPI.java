@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.modules.mclogs.api;
 
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.TaterLib;
 

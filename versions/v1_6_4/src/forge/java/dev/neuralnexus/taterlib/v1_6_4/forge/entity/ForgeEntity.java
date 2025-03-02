@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.entity;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
@@ -89,7 +89,7 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =
-                    ((Server) TaterAPIProvider.api().get().server())
+                    ((Server) TaterAPI.instance().server())
                             .world(location.world().dimension())
                             .map(ForgeServerWorld.class::cast)
                             .map(ForgeServerWorld::unwrap);

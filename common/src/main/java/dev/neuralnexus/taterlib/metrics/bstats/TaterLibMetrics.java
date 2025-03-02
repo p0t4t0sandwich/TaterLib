@@ -5,8 +5,8 @@
  */
 package dev.neuralnexus.taterlib.metrics.bstats;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
@@ -97,7 +97,7 @@ public class TaterLibMetrics {
         metrics.addCustomChart(
                 new SingleLineChart(
                         "players",
-                        () -> TaterAPIProvider.api().get().server().onlinePlayers().size()));
+                        () -> TaterAPI.instance().server().players().size()));
         metrics.addCustomChart(new SimplePie("online_mode", () -> finalOnlineMode));
         metrics.addCustomChart(new SimplePie("taterlib_version", () -> LoaderImpl.PROJECT_VERSION));
         metrics.addCustomChart(

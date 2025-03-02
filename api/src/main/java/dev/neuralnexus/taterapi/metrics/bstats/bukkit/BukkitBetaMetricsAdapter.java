@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.metrics.bstats.bukkit;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.impl.util.PathUtils;
 
 import org.bukkit.Bukkit;
@@ -208,7 +208,7 @@ public class BukkitBetaMetricsAdapter {
                 return ((Object[]) onlinePlayersMethod.invoke(Bukkit.getServer())).length;
             } catch (Exception e) {
                 // Fallback to TaterLib's impl
-                return TaterAPIProvider.api().get().server().onlinePlayers().size();
+                return TaterAPI.instance().server().players().size();
             }
             // Poseidon Implementation - End
         }

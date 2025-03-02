@@ -11,7 +11,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -41,8 +41,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
-        TaterAPIProvider.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
-        TaterAPIProvider.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
+        TaterAPI.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
+        TaterAPI.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners

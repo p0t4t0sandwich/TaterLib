@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.server;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.Connection;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
@@ -30,7 +30,7 @@ public interface SimpleServer {
      * @return The name of the server.
      */
     default String name() {
-        return TaterAPIProvider.serverName();
+        return TaterAPI.serverName();
     }
 
     /** Get the server's brand. */
@@ -41,7 +41,7 @@ public interface SimpleServer {
      *
      * @return The set of online players.
      */
-    List<User> onlinePlayers();
+    List<User> players();
 
     /**
      * Get the server's whitelist
@@ -64,7 +64,7 @@ public interface SimpleServer {
      * @param data The message to send
      */
     default void sendPacket(ResourceKey channel, byte[] data) {
-        this.onlinePlayers().stream()
+        this.players().stream()
                 .findFirst()
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(channel, data));
@@ -112,7 +112,7 @@ public interface SimpleServer {
      * @return The player, if found.
      */
     default Optional<User> getPlayer(String name) {
-        return onlinePlayers().stream().filter(player -> player.name().equals(name)).findFirst();
+        return players().stream().filter(player -> player.name().equals(name)).findFirst();
     }
 
     /**
@@ -122,7 +122,7 @@ public interface SimpleServer {
      * @return The player, if found.
      */
     default Optional<User> getPlayer(UUID uuid) {
-        return onlinePlayers().stream().filter(player -> player.uuid().equals(uuid)).findFirst();
+        return players().stream().filter(player -> player.uuid().equals(uuid)).findFirst();
     }
 
     /**
@@ -131,7 +131,7 @@ public interface SimpleServer {
      * @param message The message to broadcast.
      */
     default void broadcastMessage(String message) {
-        onlinePlayers().forEach(player -> player.sendMessage(message));
+        players().forEach(player -> player.sendMessage(message));
     }
 
     /**

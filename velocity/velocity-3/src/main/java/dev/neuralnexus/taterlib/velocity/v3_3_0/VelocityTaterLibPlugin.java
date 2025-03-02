@@ -18,7 +18,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -53,8 +53,7 @@ import java.time.Duration;
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.api(Platforms.VELOCITY)
-                .ifPresent(api -> api.setServer(VelocityProxyServer::instance));
+        TaterAPI.instance().setServer(Platforms.VELOCITY, VelocityProxyServer::instance);
     }
 
     @Override

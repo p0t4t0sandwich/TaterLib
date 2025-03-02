@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_15_2.bukkit;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
@@ -37,8 +37,7 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPIProvider.api(Platforms.BUKKIT)
-                .ifPresent(api -> api.setServer(BukkitServer::instance));
+        TaterAPI.instance().setServer(Platforms.BUKKIT, BukkitServer::instance);
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
     }
 

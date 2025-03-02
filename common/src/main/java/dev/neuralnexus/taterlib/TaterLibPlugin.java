@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 /** General TaterLib plugin interface. */

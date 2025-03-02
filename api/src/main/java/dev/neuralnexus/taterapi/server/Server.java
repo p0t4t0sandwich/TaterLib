@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterapi.server;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
 import dev.neuralnexus.taterapi.world.ServerWorld;
@@ -21,7 +21,7 @@ public interface Server extends SimpleServer {
      * @return The server's current TPS.
      */
     default double currentTPS() {
-        Optional<TPSProvider> provider = TaterAPIProvider.getTPSProvider();
+        Optional<TPSProvider> provider = TaterAPI.getTPSProvider();
         return provider.map(TPSProvider::currentTPS).orElse(-1.0);
     }
 

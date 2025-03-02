@@ -5,7 +5,7 @@
  */
 package dev.neuralnexus.taterlib.v1_10_2.fabric.command;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
@@ -29,15 +29,9 @@ public class FabricCommandSender implements CommandSender, Wrapped<PermissibleCo
     }
 
     @Override
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
     public UUID uuid() {
         if (this.sender.getEntity() == null) {
-            return TaterAPIProvider.api()
-                    .get()
-                    .server()
-                    .getPlayer(this.sender.getName().asFormattedString())
-                    .map(Identifiable::uuid)
-                    .orElseGet(() -> new UUID(0, 0));
+            return TaterAPI.uuidFromName(this.sender.getName().asFormattedString()).orElse(new UUID(0, 0));
         }
         return this.sender.getEntity().getUuid();
     }

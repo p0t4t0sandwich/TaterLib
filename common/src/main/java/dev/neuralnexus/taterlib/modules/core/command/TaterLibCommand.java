@@ -5,11 +5,11 @@
  */
 package dev.neuralnexus.taterlib.modules.core.command;
 
-import dev.neuralnexus.taterapi.TaterAPIProvider;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.loader.impl.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
@@ -105,7 +105,7 @@ public class TaterLibCommand implements Command {
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
         if (sender instanceof Player) {
-            if (!TaterAPIProvider.hasPermission(sender, this.permission())) {
+            if (!TaterAPI.hasPermission(sender, this.permission())) {
                 sender.sendMessage(
                         TextUtil.substituteSectionSign(
                                 "&cYou do not have permission to use this command."));

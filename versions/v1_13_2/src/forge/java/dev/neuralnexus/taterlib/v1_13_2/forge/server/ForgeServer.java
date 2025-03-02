@@ -41,7 +41,7 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public List<User> onlinePlayers() {
+    public List<User> players() {
         return server.getPlayerList().getPlayers().stream()
                 .map(ForgePlayer::new)
                 .collect(Collectors.toList());
