@@ -171,18 +171,11 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
 
 var platformVersions = [:]
 platformVersions.put("bukkit", Arrays.asList(
-        "utils",
-        "b1.7.3", "1.2.5", "1.6.4", "1.7.10",
-        "1.8.8", "1.13.2", "1.15.2", "1.20"))
+        "utils", "b1.7.3", "1.2.5", "1.6.4", "1.7.10", "1.8.8", "1.13.2", "1.15.2", "1.20"))
 platformVersions.put("bungee", Arrays.asList("utils", "1.4.7", "1.8", "1.12", "1.20"))
 platformVersions.put("fabric", Arrays.asList("1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2"))
 platformVersions.put("forge", Arrays.asList("1.7.10", "1.8.9", "1.9.4", "1.10.2", "1.11.2", "1.12.2"))
-platformVersions.put("sponge", Arrays.asList(
-        "utils-legacy",
-        "4", "5", "6", "7",
-        "8", "9", "10",
-//        "11"
-))
+platformVersions.put("sponge", Arrays.asList("utils-legacy", "4", "5", "6", "7", "9", "10"))//, "11"))
 platformVersions.put("velocity", Arrays.asList("3"))
 
 // --------------------------- Fun Helper Task --------------------------------

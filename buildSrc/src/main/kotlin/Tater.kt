@@ -16,6 +16,7 @@ val Project.fabricVersion: String get() = properties["fabric_version"].toString(
 val Project.fabricLoaderVersion: String get() = properties["fabric_loader_version"].toString()
 val Project.forgeVersion: String get() = properties["forge_version"].toString()
 val Project.neoForgeVersion: String get() = properties["neoforge_version"].toString()
+val Project.spongeVersion: String get() = properties["sponge_version"].toString()
 val Project.loaderVersion: String get() = properties["loader_version"].toString()
 val Project.minecraftVersion: String get() = properties["minecraft_version"].toString()
 

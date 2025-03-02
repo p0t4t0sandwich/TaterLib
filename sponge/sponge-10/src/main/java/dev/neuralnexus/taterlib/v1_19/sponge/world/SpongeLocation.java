@@ -21,17 +21,17 @@ public class SpongeLocation implements Location {
 
     @Override
     public void setX(double x) {
-        // TODO: Check to see of Location.position() is mutable
+        location.add(x - location.x(), 0, 0);
     }
 
     @Override
     public void setY(double y) {
-        // TODO: Check to see of Location.position() is mutable
+        location.add(0, y - location.y(), 0);
     }
 
     @Override
     public void setZ(double z) {
-        // TODO: Check to see of Location.position() is mutable
+        location.add(0, 0, z - location.z());
     }
 
     @Override
@@ -63,8 +63,10 @@ public class SpongeLocation implements Location {
 
     @Override
     public World world() {
-        // TODO: Find a way to get the world
-        return new SpongeWorld(location.world());
+        if (world == null) {
+            world = location.world();
+        }
+        return new SpongeWorld(world);
     }
 
     @Override
