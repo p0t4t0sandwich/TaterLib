@@ -12,8 +12,8 @@ import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;

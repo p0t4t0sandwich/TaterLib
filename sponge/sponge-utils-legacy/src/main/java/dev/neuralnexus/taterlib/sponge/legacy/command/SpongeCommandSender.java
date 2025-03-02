@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.sponge.legacy.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.text.Text;
 

@@ -12,7 +12,6 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.ModInfo;
 import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 
 import java.io.File;

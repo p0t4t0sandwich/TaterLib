@@ -11,7 +11,6 @@ import com.google.gson.GsonBuilder;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import java.io.File;
 import java.io.FileWriter;

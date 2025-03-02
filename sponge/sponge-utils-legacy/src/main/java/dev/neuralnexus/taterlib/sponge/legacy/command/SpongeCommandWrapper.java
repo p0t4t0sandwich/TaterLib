@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.sponge.legacy.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.sponge.legacy.entity.player.SpongePlayer;
 
 import org.jetbrains.annotations.NotNull;

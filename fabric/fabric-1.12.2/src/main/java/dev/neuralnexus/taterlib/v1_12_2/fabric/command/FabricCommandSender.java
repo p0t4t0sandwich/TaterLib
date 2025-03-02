@@ -8,9 +8,8 @@ package dev.neuralnexus.taterlib.v1_12_2.fabric.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.Identifiable;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
 import net.minecraft.text.TranslatableText;
 
@@ -32,7 +31,8 @@ public class FabricCommandSender implements CommandSender, Wrapped<PermissibleCo
     @Override
     public UUID uuid() {
         if (this.sender.getEntity() == null) {
-            return TaterAPI.uuidFromName(this.sender.getName().asFormattedString()).orElse(TaterAPI.NIL_UUID);
+            return TaterAPI.uuidFromName(this.sender.getName().asFormattedString())
+                    .orElse(TaterAPI.NIL_UUID);
         }
         return this.sender.getEntity().getUuid();
     }

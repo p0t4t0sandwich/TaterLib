@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.meta.ItemMeta;

@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.perms.CrossPerms;

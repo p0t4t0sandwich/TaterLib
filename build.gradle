@@ -48,7 +48,7 @@ subprojects {
 
         // Local Libs
         flatDir {
-            dirs("libs")
+            dirs("${rootProject.projectDir}/libs")
         }
     }
 

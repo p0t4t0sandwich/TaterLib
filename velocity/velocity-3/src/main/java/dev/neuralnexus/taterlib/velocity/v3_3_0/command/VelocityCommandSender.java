@@ -11,8 +11,8 @@ import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import net.kyori.adventure.text.Component;
 
 import java.util.UUID;

@@ -8,7 +8,6 @@ package dev.neuralnexus.taterlib.v1_17.sponge.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import net.kyori.adventure.text.Component;
 

@@ -6,7 +6,6 @@
 package dev.neuralnexus.taterlib.bukkit.reflection;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;

@@ -8,8 +8,8 @@ package dev.neuralnexus.taterlib.v1_8_9.forge.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
 

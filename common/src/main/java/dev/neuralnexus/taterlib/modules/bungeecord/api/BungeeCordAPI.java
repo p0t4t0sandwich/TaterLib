@@ -16,7 +16,6 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.TaterLib;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
