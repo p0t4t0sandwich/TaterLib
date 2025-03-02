@@ -59,7 +59,7 @@ tasks.named<RemapJarTask>("remapFabricJar") {
     }
 }
 
-tasks.create<ShadowJar>("relocateFabricJar") {
+tasks.register<ShadowJar>("relocateFabricJar") {
     from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
     archiveClassifier.set("fabric")
     dependencies {

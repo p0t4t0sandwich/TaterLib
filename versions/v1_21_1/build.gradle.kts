@@ -68,7 +68,7 @@ tasks.named<RemapJarTask>("remapFabricJar") {
     }
 }
 
-tasks.create<ShadowJar>("relocateFabricJar") {
+tasks.register<ShadowJar>("relocateFabricJar") {
     from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
     archiveClassifier.set("fabric")
     dependencies {
@@ -88,7 +88,7 @@ unimined.minecraft(sourceSets.getByName("forge")) {
     defaultRemapJar = false
 }
 
-tasks.create<ShadowJar>("relocateForgeJar") {
+tasks.register<ShadowJar>("relocateForgeJar") {
     from(sourceSets.getByName("forge").output)
     archiveClassifier.set("forge")
     dependencies {

@@ -68,7 +68,7 @@ tasks.named<RemapJarTask>("remapFabricJar") {
     }
 }
 
-tasks.create<ShadowJar>("relocateFabricJar") {
+tasks.register<ShadowJar>("relocateFabricJar") {
     from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
     archiveClassifier.set("fabric")
     dependencies {
@@ -79,7 +79,7 @@ tasks.create<ShadowJar>("relocateFabricJar") {
 }
 
 // ------------------------------------------- Forge -------------------------------------------
-tasks.create<ShadowJar>("shadeForgeJar") {
+tasks.register<ShadowJar>("shadeForgeJar") {
     from(sourceSets.main.get().output)
     from(sourceSets.getByName("forge").output)
     from(project(":versions:v1_14_4").sourceSets.main.get().output)

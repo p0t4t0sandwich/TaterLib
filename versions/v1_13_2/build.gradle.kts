@@ -60,7 +60,7 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 //    }
 }
 
-tasks.create<ShadowJar>("relocateForgeJar") {
+tasks.register<ShadowJar>("relocateForgeJar") {
     from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
     archiveClassifier.set("forge")
     dependencies {
