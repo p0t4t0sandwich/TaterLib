@@ -5,9 +5,7 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.version.meta;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.ProtocolType;
 
 public final class MinecraftVersionMetaImpl implements MinecraftVersion.Meta {

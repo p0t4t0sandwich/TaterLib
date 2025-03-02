@@ -7,7 +7,6 @@ package dev.neuralnexus.taterapi.meta.impl.platform;
 
 import static dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil.checkForClass;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platform;
 
 public final class PlatformImpl implements Platform {

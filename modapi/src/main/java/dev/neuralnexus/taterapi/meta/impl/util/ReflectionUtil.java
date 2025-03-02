@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.util;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 import java.io.IOException;

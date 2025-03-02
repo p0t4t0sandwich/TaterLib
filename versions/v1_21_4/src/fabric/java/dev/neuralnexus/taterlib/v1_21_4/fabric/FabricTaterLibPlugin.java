@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_21_1.fabric;
+package dev.neuralnexus.taterlib.v1_21_4.fabric;
 
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -22,7 +22,7 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginE
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_21_1.vanilla.VanillaBootstrap_1_21_1;
+import dev.neuralnexus.taterlib.v1_21_1.vanilla.VanillaBootstrap_21_1;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -35,7 +35,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
             VanillaBootstrap.init();
         } else {
-            VanillaBootstrap_1_21_1.init();
+            VanillaBootstrap_21_1.init();
         }
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {

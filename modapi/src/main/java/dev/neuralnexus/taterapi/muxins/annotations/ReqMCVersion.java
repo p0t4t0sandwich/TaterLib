@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.muxins.annotations;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
 import java.lang.annotation.ElementType;

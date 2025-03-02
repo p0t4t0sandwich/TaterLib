@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.logger;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 /** The abstract logger. */

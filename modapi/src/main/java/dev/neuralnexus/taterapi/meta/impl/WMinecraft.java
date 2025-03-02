@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.impl;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Side;
 
 /** Wraps the MC client instance */

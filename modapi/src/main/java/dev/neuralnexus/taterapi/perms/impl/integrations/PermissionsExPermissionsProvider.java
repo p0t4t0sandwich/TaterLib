@@ -7,17 +7,11 @@ package dev.neuralnexus.taterapi.perms.impl.integrations;
 
 import ca.stellardrift.permissionsex.PermissionsEx;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.CrossPerms;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.HasPermission;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
 
 import net.fabricmc.api.ModInitializer;

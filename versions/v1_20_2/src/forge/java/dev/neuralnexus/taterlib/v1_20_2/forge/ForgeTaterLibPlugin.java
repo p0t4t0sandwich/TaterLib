@@ -17,7 +17,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -32,6 +31,7 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessag
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespawnEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_20_1.forge.ForgeAdvancementListener_20_1;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -44,8 +44,6 @@ import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
-
-import java.lang.reflect.InvocationTargetException;
 
 @SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
@@ -97,29 +95,15 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             if (MetaAPI.instance()
                     .version()
                     .isInRange(MinecraftVersions.V20, MinecraftVersions.V20_1)) {
-                // MinecraftForge.EVENT_BUS.addListener(
-                //         ForgeAdvancementListener_1_20_1::onPlayerAdvancementFinished);
-                // MinecraftForge.EVENT_BUS.addListener(
-                //         ForgeAdvancementListener_1_20_1::onPlayerAdvancementProgress);
-                // TODO: Not working at compile time, reflection needed
-                try {
-                    Class<?> listener =
-                            Class.forName(
-                                    "dev.neuralnexus.taterlib.v1_20_1.forge.ForgeAdvancementListener_1_20_1");
-                    MinecraftForge.EVENT_BUS.register(
-                            listener.getDeclaredConstructor().newInstance());
-                } catch (ClassNotFoundException
-                        | IllegalAccessException
-                        | InstantiationException
-                        | InvocationTargetException
-                        | NoSuchMethodException e) {
-                    TaterLib.logger().warn("Failed to register ForgeAdvancementListener_1_20_1", e);
-                }
+                MinecraftForge.EVENT_BUS.addListener(
+                        ForgeAdvancementListener_20_1::onPlayerAdvancementFinished);
+                MinecraftForge.EVENT_BUS.addListener(
+                        ForgeAdvancementListener_20_1::onPlayerAdvancementProgress);
             } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_2)) {
                 MinecraftForge.EVENT_BUS.addListener(
-                        ForgeAdvancementListener_1_20_2::onPlayerAdvancementFinished);
+                        ForgeAdvancementListener_20_2::onPlayerAdvancementFinished);
                 MinecraftForge.EVENT_BUS.addListener(
-                        ForgeAdvancementListener_1_20_2::onPlayerAdvancementProgress);
+                        ForgeAdvancementListener_20_2::onPlayerAdvancementProgress);
             }
 
             MinecraftForge.EVENT_BUS.<LivingDeathEvent>addListener(

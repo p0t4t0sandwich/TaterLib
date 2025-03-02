@@ -5,9 +5,7 @@
  */
 package dev.neuralnexus.taterapi.perms.impl.providers;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.HasPermission;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
 
 import net.md_5.bungee.api.CommandSender;

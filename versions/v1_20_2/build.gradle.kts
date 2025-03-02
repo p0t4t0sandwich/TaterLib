@@ -124,6 +124,7 @@ tasks.create<ShadowJar>("relocateNeoForgeJar") {
     archiveClassifier.set("neoforge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_20_2/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/v1_20_2/vanilla/**")
     }
 }
 
@@ -154,7 +155,7 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:v1_20_1").sourceSets.getByName("forge").java.srcDirs))
+    "forgeCompileOnly"(files(rootProject.project(":versions:v1_20_1").sourceSets.getByName("forge").output))
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))
 }
 

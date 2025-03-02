@@ -5,11 +5,8 @@
  */
 package dev.neuralnexus.taterapi.meta;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.logger.Logger;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.impl.MetaAPIImpl;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil;
 
 import net.minecraft.server.MinecraftServer;

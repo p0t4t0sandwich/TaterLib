@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.logger.impl;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 import org.apache.logging.log4j.LogManager;

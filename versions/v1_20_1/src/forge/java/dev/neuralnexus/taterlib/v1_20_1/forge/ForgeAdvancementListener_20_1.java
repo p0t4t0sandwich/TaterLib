@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 
 /** Listens for player events. */
 @Mod.EventBusSubscriber(modid = LoaderImpl.PROJECT_ID)
-public class ForgeAdvancementListener_1_20_1 {
+public class ForgeAdvancementListener_20_1 {
     /**
      * Called when a player finishes an advancement.
      *

@@ -7,13 +7,9 @@ package dev.neuralnexus.taterapi.perms;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.impl.PermsAPIImpl;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.mc.WCommandSender;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.mc.WMinecraftServer;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.mc.WServerPlayer;
 
 import org.jetbrains.annotations.NotNull;

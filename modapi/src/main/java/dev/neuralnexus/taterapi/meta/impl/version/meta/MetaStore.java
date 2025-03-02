@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.version.meta;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 
 import java.util.Map;

@@ -93,6 +93,7 @@ tasks.create<ShadowJar>("relocateForgeJar") {
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_21_1/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/v1_21_1/vanilla/**")
     }
 }
 

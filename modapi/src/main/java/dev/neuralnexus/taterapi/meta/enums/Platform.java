@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.enums;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platforms;
 
 /** Enum wrapper for use with annotations */

@@ -7,7 +7,6 @@ package dev.neuralnexus.taterapi.meta.impl.platform.meta.sponge;
 
 import static dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil.checkForMethod;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platform;
 
 /** Stores data about the Fabric platform */

@@ -6,8 +6,6 @@
 package dev.neuralnexus.taterapi.perms.mc;
 
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.CrossPerms;
 
 import java.util.Optional;

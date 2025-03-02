@@ -23,6 +23,10 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
+    create("neoforge") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -31,6 +35,7 @@ configurations {
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
+        extendsFrom(configurations.getByName("neoforgeCompileOnly"))
     }
     val modImplementation by creating
     named("modImplementation") {
@@ -83,7 +88,6 @@ unimined.minecraft(sourceSets.getByName("forge")) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
-        mixinConfig("taterlib.mixins.v1_20_6.forge.json")
     }
     defaultRemapJar = false
 }
@@ -93,6 +97,25 @@ tasks.create<ShadowJar>("relocateForgeJar") {
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_20_6/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/v1_20_6/vanilla/**")
+    }
+}
+
+// ------------------------------------------- NeoForge -------------------------------------------
+unimined.minecraft(sourceSets.getByName("neoforge")) {
+    combineWith(sourceSets.main.get())
+    neoForge {
+        loader(neoForgeVersion)
+    }
+    defaultRemapJar = false
+}
+
+tasks.create<ShadowJar>("relocateNeoForgeJar") {
+    from(sourceSets.getByName("neoforge").output)
+    archiveClassifier.set("neoforge")
+    dependencies {
+        exclude("dev/neuralnexus/taterlib/mixin/v1_20_6/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/v1_20_6/vanilla/**")
     }
 }
 
@@ -112,14 +135,26 @@ dependencies {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
+        "neoforgeCompileOnly"(it)
+    }
+
+    listOf(
+        "fabric-api-base",
+        "fabric-command-api-v2",
+        "fabric-lifecycle-events-v1",
+        "fabric-networking-api-v1"
+    ).forEach {
+        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
     "forgeCompileOnly"(project(":forge:forge-utils-modern"))
+    "neoforgeCompileOnly"(files(rootProject.project(":versions:v1_20_2").sourceSets.getByName("neoforge").output))
 }
 
 tasks.named<ShadowJar>("shadowJar") {
     from(tasks.getByName("relocateFabricJar").outputs)
     from(tasks.getByName("relocateForgeJar").outputs)
+    from(tasks.getByName("relocateNeoForgeJar").outputs)
     archiveClassifier.set("")
 }
 

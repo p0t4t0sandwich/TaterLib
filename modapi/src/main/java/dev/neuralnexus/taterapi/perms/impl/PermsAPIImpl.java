@@ -5,11 +5,8 @@
  */
 package dev.neuralnexus.taterapi.perms.impl;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.HasPermission;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 
 import org.jetbrains.annotations.NotNull;

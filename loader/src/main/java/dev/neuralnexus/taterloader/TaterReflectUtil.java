@@ -146,9 +146,9 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
             version = MinecraftVersions.V20_2;
         } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_4)) {
-            version = MinecraftVersions.V21_1;
+            version = MinecraftVersions.V21_4;
         } else {
-            version = MinecraftVersions.V21_1;
+            version = MinecraftVersions.V21_4;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".fabric";
     }
@@ -186,9 +186,9 @@ public class TaterReflectUtil {
         } else if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V20_4)) {
             version = MinecraftVersions.V20_2;
         } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V21_4)) {
-            version = MinecraftVersions.V21_1;
+            version = MinecraftVersions.V21_4;
         } else {
-            version = MinecraftVersions.V21_1;
+            version = MinecraftVersions.V21_4;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".forge";
     }
@@ -196,10 +196,14 @@ public class TaterReflectUtil {
     @SuppressWarnings("IfStatementWithIdenticalBranches")
     public static String neoForge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersions.V20, MinecraftVersions.V21)) {
+        if (mcv.is(MinecraftVersions.V20_2)) {
             version = MinecraftVersions.V20_2;
+        } else if (mcv.isInRange(MinecraftVersions.V20_3, MinecraftVersions.V20_6)) {
+            version = MinecraftVersions.V20_6;
+        } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_4)) {
+            version = MinecraftVersions.V21_4;
         } else {
-            version = MinecraftVersions.V20_2;
+            version = MinecraftVersions.V21_4;
         }
         return TL_PACKAGE + "." + version.getPathString() + ".neoforge";
     }

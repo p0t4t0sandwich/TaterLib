@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = Platform.SPONGE)
+@ReqPlatform(not = {Platform.NEOFORGE, Platform.SPONGE})
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(ServerLevel.class)
 class EntitySpawnMixin {

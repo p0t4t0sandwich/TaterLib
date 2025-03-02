@@ -7,7 +7,6 @@ package dev.neuralnexus.taterapi.muxins;
 
 import static dev.neuralnexus.taterapi.meta.impl.util.TextUtil.ansiParser;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.logger.Logger;
 
 import org.objectweb.asm.tree.ClassNode;

@@ -14,7 +14,7 @@ import dev.neuralnexus.taterlib.v1_21_1.vanilla.resources.VanillaResourceKey;
 import net.minecraft.Util;
 
 /** The Vanilla bootstrap class. */
-public class VanillaBootstrap_1_21_1 {
+public class VanillaBootstrap_21_1 {
     /** Initializes the Vanilla bootstrap. */
     @SuppressWarnings("Convert2MethodRef")
     public static void init() {

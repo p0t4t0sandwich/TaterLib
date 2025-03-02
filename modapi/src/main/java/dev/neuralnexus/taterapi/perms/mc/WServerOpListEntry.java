@@ -8,8 +8,6 @@ package dev.neuralnexus.taterapi.perms.mc;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.CrossPerms;
 
 public class WServerOpListEntry implements Wrapped<Object> {

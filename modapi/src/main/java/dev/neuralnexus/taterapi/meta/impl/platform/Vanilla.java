@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.platform;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platform;
 
 public interface Vanilla {

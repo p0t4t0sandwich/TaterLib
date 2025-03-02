@@ -11,7 +11,7 @@ import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvanc
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 
 /** Listens for player events. */
-public class ForgeAdvancementListener_1_20_2 {
+public class ForgeAdvancementListener_20_2 {
     /**
      * Called when a player finishes an advancement.
      *

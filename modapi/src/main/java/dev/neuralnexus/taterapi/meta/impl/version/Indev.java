@@ -5,7 +5,6 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.version;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 
 // 3

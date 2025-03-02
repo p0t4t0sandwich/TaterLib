@@ -3,7 +3,7 @@
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
  * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_20_6.forge;
+package dev.neuralnexus.taterlib.v1_21_1.forge;
 
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
@@ -15,6 +15,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.forge.utils.modern.event.ForgeCancellableEventWrapper;
@@ -31,6 +32,7 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespaw
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.v1_21_1.vanilla.VanillaBootstrap_21_1;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -49,7 +51,11 @@ import net.minecraftforge.eventbus.api.EventPriority;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        VanillaBootstrap.init();
+        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
+            VanillaBootstrap.init();
+        } else {
+            VanillaBootstrap_21_1.init();
+        }
 
         if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(

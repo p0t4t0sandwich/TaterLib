@@ -7,9 +7,7 @@ package dev.neuralnexus.taterapi.perms.impl.providers;
 
 import com.velocitypowered.api.permission.PermissionSubject;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.HasPermission;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
 
 import org.jetbrains.annotations.NotNull;

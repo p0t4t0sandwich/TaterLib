@@ -5,7 +5,6 @@
  */
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.Platforms;
 
 import org.junit.jupiter.api.Test;
