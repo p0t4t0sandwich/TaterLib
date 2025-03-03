@@ -13,6 +13,8 @@ import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeBlockListener;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeCommandListener;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeEntityListener;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongePlayerListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongePlayerLogoutListener;
+import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongePlayerMessageListener;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeServerListener;
 
 import org.spongepowered.api.Sponge;
@@ -31,6 +33,8 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
             eventManager.registerListeners(container, new SpongeCommandListener());
             eventManager.registerListeners(container, new SpongeEntityListener());
             eventManager.registerListeners(container, new SpongePlayerListener());
+            eventManager.registerListeners(container, new SpongePlayerLogoutListener());
+            eventManager.registerListeners(container, new SpongePlayerMessageListener());
             eventManager.registerListeners(container, new SpongeServerListener());
         }
     }

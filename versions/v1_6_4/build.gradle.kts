@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -66,8 +66,9 @@ dependencies {
     }
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("remapForgeJar").outputs)
+tasks.shadowJar {
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("")
 }
 

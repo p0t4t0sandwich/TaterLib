@@ -32,6 +32,7 @@ include(
         'versions:v1_20_2',
         'versions:v1_20_6',
         'versions:v1_21_1',
+        'versions:v1_21_3',
         'versions:v1_21_4',
 
 	    // ModAPI libraries
@@ -85,8 +86,6 @@ include(
         'sponge:sponge-5',
         'sponge:sponge-6',
         'sponge:sponge-7',
-        'sponge:sponge-10',
-//        'sponge:sponge-11',
         'sponge:sponge-utils-legacy',
 
         // Velocity

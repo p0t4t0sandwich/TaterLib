@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -19,6 +19,14 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
+//    create("forge") {
+//        compileClasspath += sourceSets.main.get().output
+//        runtimeClasspath += sourceSets.main.get().output
+//    }
+    create("sponge") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -26,6 +34,12 @@ configurations {
     val mainCompileOnly by creating
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
+//        extendsFrom(configurations.getByName("forgeCompileOnly"))
+        extendsFrom(configurations.getByName("spongeCompileOnly"))
+    }
+    val modImplementation by creating
+    named("modImplementation") {
+        extendsFrom(configurations.getByName("fabricImplementation"))
     }
 }
 
@@ -60,12 +74,48 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 }
 
 tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_19_1/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/mixin/v1_19_4/vanilla/**")
     }
+    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
+}
+
+// ------------------------------------------- Forge -------------------------------------------
+//unimined.minecraft(sourceSets.getByName("forge")) {
+//    combineWith(sourceSets.main.get())
+//    minecraftForge {
+//        loader(forgeVersion)
+//        mixinConfig("taterlib.mixins.v1_19_4.forge.json")
+//    }
+//    defaultRemapJar = true
+//}
+//
+//tasks.named<RemapJarTask>("remapForgeJar") {
+//    asJar.archiveClassifier.set("forge-remap")
+//    mixinRemap {
+//        disableRefmap()
+//    }
+//}
+//
+//tasks.register<ShadowJar>("relocateForgeJar") {
+//    dependsOn("remapForgeJar")
+//    from(jarToFiles("remapForgeJar"))
+//    archiveClassifier.set("forge")
+//    dependencies {
+//        exclude("dev/neuralnexus/taterlib/mixin/v1_19_4/vanilla/**")
+//    }
+//    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
+//    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
+//}
+
+// ------------------------------------------- Sponge -------------------------------------------
+tasks.register<Jar>("spongeJar") {
+    archiveClassifier.set("sponge")
+    from(sourceSets.getByName("sponge").output)
 }
 
 // ------------------------------------------- Common -------------------------------------------
@@ -78,14 +128,37 @@ dependencies {
             classifier("downgraded-8")
         },
         project(":versions:v1_14_4"),
+        project(":versions:v1_16_1")
     ).forEach {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
+//        "forgeCompileOnly"(it)
+        "spongeCompileOnly"(it)
     }
+
+//    listOf(
+//        "fabric-api-base",
+//        "fabric-command-api-v2",
+//        "fabric-lifecycle-events-v1",
+//        "fabric-networking-api-v1"
+//    ).forEach {
+//        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
+//    }
+
+//    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
+    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
+    "spongeCompileOnly"(srcSetAsDep(":versions:v1_16_5", "sponge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
+tasks.shadowJar {
+    listOf(
+        "relocateFabricJar",
+//        "relocateForgeJar",
+        "spongeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

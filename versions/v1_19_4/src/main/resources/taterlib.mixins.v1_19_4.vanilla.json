@@ -7,10 +7,11 @@
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_19_4.vanilla.listeners.server.ServerStartedMixin"
+  ],
   "server": [
     "v1_19_4.vanilla.listeners.player.PlayerMessageMixin"
   ],
-  "mixins": [
-    "v1_19_4.vanilla.listeners.server.ServerStartedMixin"
-  ]
+  "client": []
 }

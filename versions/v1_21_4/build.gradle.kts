@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -27,6 +27,10 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
+    create("sponge") {
+        compileClasspath += sourceSets.main.get().output
+        runtimeClasspath += sourceSets.main.get().output
+    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -36,6 +40,7 @@ configurations {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
         extendsFrom(configurations.getByName("neoforgeCompileOnly"))
+        extendsFrom(configurations.getByName("spongeCompileOnly"))
     }
     val modImplementation by creating
     named("modImplementation") {
@@ -74,7 +79,8 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 }
 
 tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_21_4/vanilla/**")
@@ -119,6 +125,12 @@ tasks.register<ShadowJar>("relocateNeoForgeJar") {
     }
 }
 
+// ------------------------------------------- Sponge -------------------------------------------
+tasks.register<Jar>("spongeJar") {
+    archiveClassifier.set("sponge")
+    from(sourceSets.getByName("sponge").output)
+}
+
 // ------------------------------------------- Common -------------------------------------------
 dependencies {
     listOf(
@@ -137,6 +149,7 @@ dependencies {
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
         "neoforgeCompileOnly"(it)
+        "spongeCompileOnly"(it)
     }
 
     listOf(
@@ -148,14 +161,24 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
-    "neoforgeCompileOnly"(files(rootProject.project(":versions:v1_20_2").sourceSets.getByName("neoforge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
+    "neoforgeCompileOnly"(srcSetAsDep(":versions:v1_20_2", "neoforge"))
+    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
+    "spongeCompileOnly"(srcSetAsDep(":versions:v1_16_5", "sponge"))
+    "spongeCompileOnly"(srcSetAsDep(":versions:v1_19_4", "sponge"))
+    "spongeCompileOnly"(srcSetAsDep(":versions:v1_20_6", "sponge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("relocateForgeJar").outputs)
-    from(tasks.getByName("relocateNeoForgeJar").outputs)
+tasks.shadowJar {
+    listOf(
+        "relocateFabricJar",
+        "relocateForgeJar",
+        "relocateNeoForgeJar",
+        "spongeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

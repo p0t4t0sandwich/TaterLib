@@ -1,7 +1,7 @@
 import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {

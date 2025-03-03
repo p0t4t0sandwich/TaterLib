@@ -13,7 +13,7 @@ import org.spongepowered.api.block.BlockState;
 import org.spongepowered.api.block.BlockTypes;
 import org.spongepowered.api.world.server.ServerLocation;
 
-/** Forge implementation of {@link Block}. */
+/** Sponge implementation of {@link Block}. */
 public class SpongeBlock implements Block, Wrapped<BlockState> {
     private final ServerLocation pos;
     private final BlockState block;

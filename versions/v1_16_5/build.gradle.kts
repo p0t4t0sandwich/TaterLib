@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -74,7 +74,8 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 }
 
 tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_16_5/vanilla/**")
@@ -100,7 +101,8 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 }
 
 tasks.register<ShadowJar>("relocateForgeJar") {
-    from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_16_5/vanilla/**")
@@ -131,23 +133,28 @@ dependencies {
         "spongeCompileOnly"(it)
     }
 
-    listOf(
-        "fabric-api-base",
-        "fabric-command-api-v1",
-        "fabric-lifecycle-events-v1",
-        "fabric-networking-api-v1"
-    ).forEach {
-        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
-    }
+//    listOf(
+//        "fabric-api-base",
+//        "fabric-command-api-v1",
+//        "fabric-lifecycle-events-v1",
+//        "fabric-networking-api-v1"
+//    ).forEach {
+//        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
+//    }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
     "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("relocateForgeJar").outputs)
-    from(tasks.getByName("spongeJar").outputs)
+tasks.shadowJar {
+    listOf(
+        "relocateFabricJar",
+        "relocateForgeJar",
+        "spongeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

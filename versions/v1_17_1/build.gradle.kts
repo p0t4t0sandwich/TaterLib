@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -69,7 +69,8 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 }
 
 tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_17_1/vanilla/**")
@@ -134,12 +135,17 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("remapForgeJar").outputs)
+tasks.shadowJar {
+    listOf(
+        "relocateFabricJar",
+        "remapForgeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

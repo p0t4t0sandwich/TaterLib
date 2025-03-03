@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -69,7 +69,8 @@ tasks.named<RemapJarTask>("remapFabricJar") {
 }
 
 tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
@@ -95,7 +96,8 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 }
 
 tasks.register<ShadowJar>("relocateForgeJar") {
-    from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
@@ -127,12 +129,17 @@ dependencies {
         "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
     }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("relocateForgeJar").outputs)
+tasks.shadowJar {
+    listOf(
+        "relocateFabricJar",
+        "relocateForgeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

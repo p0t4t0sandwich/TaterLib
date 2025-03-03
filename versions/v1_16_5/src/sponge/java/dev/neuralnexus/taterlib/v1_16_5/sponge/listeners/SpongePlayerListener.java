@@ -8,8 +8,6 @@ import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerDeathEvent;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.event.player.SpongePlayerRespawnEvent;
 
 import org.spongepowered.api.advancement.DisplayInfo;
@@ -18,8 +16,6 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.advancement.AdvancementEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.living.player.RespawnPlayerEvent;
-import org.spongepowered.api.event.filter.cause.All;
-import org.spongepowered.api.event.message.PlayerChatEvent;
 import org.spongepowered.api.event.network.ServerSideConnectionEvent;
 
 /** Listens to player events. */
@@ -61,27 +57,6 @@ public class SpongePlayerListener {
     @Listener
     public void onPlayerLogin(ServerSideConnectionEvent.Join event) {
         PlayerEvents.LOGIN.invoke(new SpongePlayerLoginEvent(event));
-    }
-
-    /**
-     * Called when a player logs out.
-     *
-     * @param event The event.
-     */
-    @Listener
-    public void onPlayerLogout(ServerSideConnectionEvent.Disconnect event) {
-        PlayerEvents.LOGOUT.invoke(new SpongePlayerLogoutEvent(event));
-    }
-
-    /**
-     * Called when a player sends a message.
-     *
-     * @param event The event.
-     */
-    @Listener
-    public void onPlayerMessage(PlayerChatEvent event, @All(ignoreEmpty = false) Player[] players) {
-        if (players.length != 1) return;
-        PlayerEvents.MESSAGE.invoke(new SpongePlayerMessageEvent(event, players));
     }
 
     /**

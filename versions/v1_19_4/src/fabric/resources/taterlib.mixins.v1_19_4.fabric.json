@@ -7,7 +7,9 @@
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [],
   "server": [
     "v1_19_4.fabric.listeners.player.PlayerMessageMixin"
-  ]
+  ],
+  "client": []
 }

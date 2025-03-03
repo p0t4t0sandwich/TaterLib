@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -15,10 +15,10 @@ java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 sourceSets {
-    create("fabric") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
+//    create("fabric") {
+//        compileClasspath += sourceSets.main.get().output
+//        runtimeClasspath += sourceSets.main.get().output
+//    }
     create("forge") {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
@@ -29,12 +29,8 @@ sourceSets {
 configurations {
     val mainCompileOnly by creating
     named("compileOnly") {
-        extendsFrom(configurations.getByName("fabricCompileOnly"))
+//        extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
-    }
-    val modImplementation by creating
-    named("modImplementation") {
-        extendsFrom(configurations.getByName("fabricImplementation"))
     }
 }
 
@@ -53,13 +49,13 @@ tasks.jar {
 }
 
 // ------------------------------------------- Fabric -------------------------------------------
-unimined.minecraft(sourceSets.getByName("fabric")) {
-    combineWith(sourceSets.main.get())
-    fabric {
-        loader(fabricLoaderVersion)
-    }
-    defaultRemapJar = true
-}
+//unimined.minecraft(sourceSets.getByName("fabric")) {
+//    combineWith(sourceSets.main.get())
+//    fabric {
+//        loader(fabricLoaderVersion)
+//    }
+//    defaultRemapJar = true
+//}
 
 // ------------------------------------------- Forge -------------------------------------------
 unimined.minecraft(sourceSets.getByName("forge")) {
@@ -81,14 +77,19 @@ dependencies {
         }
     ).forEach {
         "mainCompileOnly"(it)
-        "fabricCompileOnly"(it)
+//        "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
     }
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("remapFabricJar").outputs)
-    from(tasks.getByName("remapForgeJar").outputs)
+tasks.shadowJar {
+    listOf(
+//        "remapFabricJar",
+        "remapForgeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -15,10 +15,10 @@ java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 sourceSets {
-    create("fabric") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
+//    create("fabric") {
+//        compileClasspath += sourceSets.main.get().output
+//        runtimeClasspath += sourceSets.main.get().output
+//    }
     create("forge") {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
@@ -33,14 +33,14 @@ sourceSets {
 configurations {
     val mainCompileOnly by creating
     named("compileOnly") {
-        extendsFrom(configurations.getByName("fabricCompileOnly"))
+//        extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
         extendsFrom(configurations.getByName("spongeCompileOnly"))
     }
-    val modImplementation by creating
-    named("modImplementation") {
-        extendsFrom(configurations.getByName("fabricImplementation"))
-    }
+//    val modImplementation by creating
+//    named("modImplementation") {
+//        extendsFrom(configurations.getByName("fabricImplementation"))
+//    }
 }
 
 // ------------------------------------------- Vanilla -------------------------------------------
@@ -58,30 +58,31 @@ tasks.jar {
 }
 
 // ------------------------------------------- Fabric -------------------------------------------
-unimined.minecraft(sourceSets.getByName("fabric")) {
-    combineWith(sourceSets.main.get())
-    fabric {
-        loader(fabricLoaderVersion)
-    }
-    defaultRemapJar = true
-}
-
-tasks.named<RemapJarTask>("remapFabricJar") {
-    asJar.archiveClassifier.set("fabric-remap")
-    mixinRemap {
-        disableRefmap()
-    }
-}
-
-tasks.register<ShadowJar>("relocateFabricJar") {
-    from(tasks.getByName<RemapJarTask>("remapFabricJar").outputs)
-    archiveClassifier.set("fabric")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_18_2/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
-}
+//unimined.minecraft(sourceSets.getByName("fabric")) {
+//    combineWith(sourceSets.main.get())
+//    fabric {
+//        loader(fabricLoaderVersion)
+//    }
+//    defaultRemapJar = true
+//}
+//
+//tasks.named<RemapJarTask>("remapFabricJar") {
+//    asJar.archiveClassifier.set("fabric-remap")
+//    mixinRemap {
+//        disableRefmap()
+//    }
+//}
+//
+//tasks.register<ShadowJar>("relocateFabricJar") {
+//    dependsOn("remapFabricJar")
+//    from(jarToFiles("remapFabricJar"))
+//    archiveClassifier.set("fabric")
+//    dependencies {
+//        exclude("dev/neuralnexus/taterlib/mixin/v1_18_2/vanilla/**")
+//    }
+//    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
+//    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
+//}
 
 // ------------------------------------------- Forge -------------------------------------------
 unimined.minecraft(sourceSets.getByName("forge")) {
@@ -101,7 +102,8 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 }
 
 tasks.register<ShadowJar>("relocateForgeJar") {
-    from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge")
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_18_2/vanilla/**")
@@ -129,29 +131,34 @@ dependencies {
         project(":versions:v1_16_1")
     ).forEach {
         "mainCompileOnly"(it)
-        "fabricCompileOnly"(it)
+//        "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
         "spongeCompileOnly"(it)
     }
 
-    listOf(
-        "fabric-api-base",
-        "fabric-command-api-v1",
-        "fabric-lifecycle-events-v1",
-        "fabric-networking-api-v1"
-    ).forEach {
-        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
-    }
+//    listOf(
+//        "fabric-api-base",
+//        "fabric-command-api-v1",
+//        "fabric-lifecycle-events-v1",
+//        "fabric-networking-api-v1"
+//    ).forEach {
+//        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
+//    }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
     "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
-    "spongeCompileOnly"(files(rootProject.project(":versions:v1_16_5").sourceSets.getByName("sponge").output))
+    "spongeCompileOnly"(srcSetAsDep(":versions:v1_16_5", "sponge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateFabricJar").outputs)
-    from(tasks.getByName("relocateForgeJar").outputs)
-    from(tasks.getByName("spongeJar").outputs)
+tasks.shadowJar {
+    listOf(
+//        "relocateFabricJar",
+        "relocateForgeJar",
+        "spongeJar"
+    ).forEach {
+        dependsOn(it)
+        from(jarToFiles(it))
+    }
     archiveClassifier.set("")
 }
 

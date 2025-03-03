@@ -3,7 +3,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 plugins {
     alias(libs.plugins.shadow)
-    alias(libs.plugins.unimined)
+    id(libs.plugins.unimined.get().pluginId)
 }
 
 base {
@@ -61,7 +61,8 @@ tasks.named<RemapJarTask>("remapForgeJar") {
 }
 
 tasks.register<ShadowJar>("relocateForgeJar") {
-    from(tasks.getByName<RemapJarTask>("remapForgeJar").outputs)
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge")
     dependencies {
 //        exclude("dev/neuralnexus/taterlib/mixin/v1_13_2/vanilla/**")
@@ -83,11 +84,12 @@ dependencies {
         "forgeCompileOnly"(it)
     }
 
-    "forgeCompileOnly"(files(rootProject.project(":versions:modern-utils").sourceSets.getByName("forge").output))
+    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
-tasks.named<ShadowJar>("shadowJar") {
-    from(tasks.getByName("relocateForgeJar").outputs)
+tasks.shadowJar {
+    dependsOn("relocateForgeJar")
+    from(jarToFiles("relocateForgeJar"))
     archiveClassifier.set("")
 }
 

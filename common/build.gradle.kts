@@ -48,7 +48,7 @@ dependencies {
 
 java.disableAutoTargetJvm()
 
-tasks.named<ShadowJar>("shadowJar") {
+tasks.shadowJar {
     dependencies {
         include(dependency("${group}:${projectId}:${version}"))
         exclude("META-INF", "META-INF/**")
