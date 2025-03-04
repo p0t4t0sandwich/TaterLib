@@ -51,7 +51,7 @@ public abstract class MinecraftServer_API implements GameProfileCacheBridge {
         return this.shadow$getServerModName();
     }
 
-    public List<User> server$onlinePlayers() {
+    public List<User> server$players() {
         return this.shadow$getPlayerList().getPlayers().stream()
                 .map(User.class::cast)
                 .collect(Collectors.toList());

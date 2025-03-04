@@ -44,7 +44,7 @@ public abstract class MinecraftServerAPI {
         return shadow$getServerModName();
     }
 
-    public List<User> server$onlinePlayers() {
+    public List<User> server$players() {
         return shadow$getPlayerList().getPlayers().stream()
                 .map(ForgePlayer::new)
                 .collect(Collectors.toList());

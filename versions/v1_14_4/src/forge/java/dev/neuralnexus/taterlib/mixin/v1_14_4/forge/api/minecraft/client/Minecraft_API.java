@@ -41,7 +41,7 @@ public abstract class Minecraft_API implements MinecraftBridge {
         return brand == null ? "Local" : brand;
     }
 
-    public List<User> server$onlinePlayers() {
+    public List<User> server$players() {
         if (this.player == null) return new ArrayList<>();
         return this.player.connection.getOnlinePlayers().stream()
                 .map(PlayerInfo::getProfile)

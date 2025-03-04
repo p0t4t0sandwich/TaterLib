@@ -1,7 +1,6 @@
 /**
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
- * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">GPL-3</a>
- * The API is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE-API">MIT</a>
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
 package dev.neuralnexus.taterlib.testmod.listeners;
 
@@ -12,11 +11,8 @@ import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 
 /** Helper class for brigadier commands (prevents ClassNotFound exceptions). */

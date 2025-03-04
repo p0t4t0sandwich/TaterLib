@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 /** Fake NeoForge lifecycle hooks. */
 public class ServerLifecycleHooks {
     private static MinecraftServer server;
+
     public static MinecraftServer getCurrentServer() {
         return server;
     }

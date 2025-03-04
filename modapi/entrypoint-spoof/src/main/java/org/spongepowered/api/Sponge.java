@@ -13,6 +13,7 @@ import java.util.Optional;
 /** Fake Sponge API class. */
 public final class Sponge {
     private static Server server;
+
     public static Server getServer() {
         return server;
     }

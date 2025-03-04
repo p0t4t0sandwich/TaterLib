@@ -44,13 +44,15 @@ public abstract class MinecraftServerAPI {
         return shadow$getServerModName();
     }
 
-    public List<User> server$onlinePlayers() {
+    public List<User> server$players() {
         return shadow$getPlayerList().getPlayerList().stream()
                 .map(ForgePlayer::new)
                 .collect(Collectors.toList());
     }
 
     public List<ServerWorld> server$worlds() {
-        return Arrays.stream(worldServers).map(ForgeServerWorld::new).collect(Collectors.toList());
+        return Arrays.stream(this.worldServers)
+                .map(ForgeServerWorld::new)
+                .collect(Collectors.toList());
     }
 }

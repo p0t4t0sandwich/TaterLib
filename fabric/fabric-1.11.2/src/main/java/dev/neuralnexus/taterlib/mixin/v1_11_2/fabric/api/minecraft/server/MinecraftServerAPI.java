@@ -43,7 +43,7 @@ public abstract class MinecraftServerAPI {
         return shadow$getServerModName();
     }
 
-    public List<User> server$onlinePlayers() {
+    public List<User> server$players() {
         return shadow$getPlayerManager().getPlayers().stream()
                 .map(FabricPlayer::new)
                 .collect(Collectors.toList());
