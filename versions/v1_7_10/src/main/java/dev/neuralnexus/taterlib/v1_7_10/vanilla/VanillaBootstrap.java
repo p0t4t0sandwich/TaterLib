@@ -11,6 +11,7 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 
 /** The Vanilla bootstrap class. */
+// TODO: Need networking listeners
 public class VanillaBootstrap {
     public static void init() {
         TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);

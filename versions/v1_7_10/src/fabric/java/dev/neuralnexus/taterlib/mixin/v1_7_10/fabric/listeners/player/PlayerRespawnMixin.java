@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.event.player.FabricPlayerRespawnEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerRespawnEvent;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.management.ServerConfigurationManager;
@@ -36,6 +36,6 @@ public class PlayerRespawnMixin {
             int dimension,
             boolean alive,
             CallbackInfoReturnable<EntityPlayerMP> cir) {
-        PlayerEvents.RESPAWN.invoke(new FabricPlayerRespawnEvent(player, dimension, alive));
+        PlayerEvents.RESPAWN.invoke(new VanillaPlayerRespawnEvent(player, dimension, alive));
     }
 }

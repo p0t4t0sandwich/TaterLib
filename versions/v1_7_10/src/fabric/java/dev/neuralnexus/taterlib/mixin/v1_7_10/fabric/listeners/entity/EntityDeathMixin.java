@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.event.entity.FabricEntityDeathEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntityDeathEvent;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
@@ -25,6 +25,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 class EntityDeathMixin {
     @Inject(method = "onDeath", at = @At("HEAD"))
     private void onEntityDeath(DamageSource source, CallbackInfo ci) {
-        EntityEvents.DEATH.invoke(new FabricEntityDeathEvent((EntityLivingBase) (Object) this));
+        EntityEvents.DEATH.invoke(new VanillaEntityDeathEvent((EntityLivingBase) (Object) this, source));
     }
 }

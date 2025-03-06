@@ -7,7 +7,8 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.listeners.block;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
-import dev.neuralnexus.taterlib.v1_7_10.forge.event.block.ForgeBlockBreakEvent;
+import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import net.minecraftforge.event.world.BlockEvent;
 
@@ -20,6 +21,15 @@ public class ForgeBlockListener {
      */
     @SubscribeEvent
     public void onBlockBreak(BlockEvent.BreakEvent event) {
-        BlockEvents.PLAYER_BLOCK_BREAK.invoke(new ForgeBlockBreakEvent(event));
+        BlockEvents.PLAYER_BLOCK_BREAK.invoke(
+                new VanillaPlayerBlockBreakEvent(
+                        event.x,
+                        event.y,
+                        event.z,
+                        event.world,
+                        event.block,
+                        event.blockMetadata,
+                        event.getPlayer(),
+                        new ForgeCancellableEventWrapper(event)));
     }
 }

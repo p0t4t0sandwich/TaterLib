@@ -9,15 +9,17 @@ import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
-import net.minecraft.util.ChunkCoordinates;
-
 /** Forge implementation of {@link Block}. */
 public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
-    private final ChunkCoordinates pos;
+    private final int x;
+    private final int y;
+    private final int z;
     private final net.minecraft.block.Block block;
 
-    public WrappedBlock(ChunkCoordinates pos, net.minecraft.block.Block block) {
-        this.pos = pos;
+    public WrappedBlock(int x, int y, int z, net.minecraft.block.Block block) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
         this.block = block;
     }
 
@@ -34,6 +36,6 @@ public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
 
     @Override
     public BlockPos blockPos() {
-        return new BlockPos(this.pos.posX, this.pos.posY, this.pos.posZ);
+        return new BlockPos(this.x, this.y, this.z);
     }
 }

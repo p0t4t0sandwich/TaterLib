@@ -11,7 +11,8 @@
     "v1_7_10.fabric.api.minecraft.util.ResourceLocationAPI",
     "v1_7_10.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_7_10.fabric.listeners.entity.EntityDamageMixin",
-    "v1_7_10.fabric.listeners.entity.EntityDeathMixin"
+    "v1_7_10.fabric.listeners.entity.EntityDeathMixin",
+    "v1_7_10.fabric.listeners.player.PlayerAdvancementFinishedMixin"
   ],
   "server": [
     "v1_7_10.fabric.api.minecraft.server.MinecraftServerAPI",

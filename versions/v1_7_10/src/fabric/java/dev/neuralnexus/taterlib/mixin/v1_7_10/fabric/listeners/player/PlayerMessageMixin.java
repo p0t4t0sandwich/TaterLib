@@ -7,10 +7,11 @@ package dev.neuralnexus.taterlib.mixin.v1_7_10.fabric.listeners.player;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.event.player.FabricPlayerMessageEvent;
 
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerMessageEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.play.client.C01PacketChatMessage;
@@ -37,6 +38,6 @@ public abstract class PlayerMessageMixin {
     public void onPlayerMessage(C01PacketChatMessage packet, CallbackInfo ci) {
         if (packet.getMessage().startsWith("/")) return;
         PlayerEvents.MESSAGE.invoke(
-                new FabricPlayerMessageEvent(this.playerEntity, packet.getMessage(), ci));
+                new VanillaPlayerMessageEvent(this.playerEntity, packet.getMessage(), new MixinCancellableCallbackWrapper(ci)));
     }
 }

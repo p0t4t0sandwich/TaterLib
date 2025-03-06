@@ -18,6 +18,6 @@ public class ForgePlayerEvent implements PlayerEvent {
 
     @Override
     public Player player() {
-        return new WrappedPlayer(event.player);
+        return new WrappedPlayer(this.event.player);
     }
 }

@@ -7,93 +7,52 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.event.player;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterapi.item.inventory.ItemStack;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedItemStack;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /** Forge implementation of {@link PlayerDeathEvent}. */
-public class ForgePlayerDeathEvent implements PlayerDeathEvent {
+public class ForgePlayerDeathEvent extends ForgeEntityDeathEvent implements PlayerDeathEvent {
     private final LivingDeathEvent event;
-    private List<ItemStack> drops = new ArrayList<>();
-    private int droppedExp = 0;
-    private String deathMessage = "";
 
     public ForgePlayerDeathEvent(LivingDeathEvent event) {
+        super(event);
         this.event = event;
     }
 
     @Override
-    public List<ItemStack> drops() {
-        if (!drops.isEmpty()) {
-            return drops;
-        }
-        if (event.entity.capturedDrops == null) {
-            return new ArrayList<>();
-        }
-        return event.entity.capturedDrops.stream()
-                .map(itemEntity -> new WrappedItemStack(itemEntity.getEntityItem()))
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public void setDrops(List<ItemStack> drops) {
-        this.drops = drops;
-    }
-
-    @Override
-    public void clearDrops() {
-        drops.clear();
-    }
-
-    @Override
-    public int droppedExp() {
-        if (droppedExp != 0) {
-            return droppedExp;
-        }
-        return 0;
-    }
-
-    @Override
-    public void setDroppedExp(int exp) {
-        this.droppedExp = exp;
-    }
-
-    @Override
     public Entity entity() {
-        return new WrappedEntity(event.entity);
+        return new WrappedEntity(this.event.entity);
     }
 
     @Override
     public Player player() {
-        return new WrappedPlayer((EntityPlayer) event.entity);
+        return new WrappedPlayer((EntityPlayer) this.event.entity);
     }
 
     @Override
     public String deathMessage() {
-        if (!deathMessage.isEmpty()) {
-            return deathMessage;
-        }
-        return event.source.getDeathMessage(event.entityLiving).getFormattedText();
+        return this.event.source.getDeathMessage(this.event.entityLiving).getFormattedText();
     }
 
+    // TODO: Hook into Forge's event system somehow (probs mixin)
     @Override
     public void setDeathMessage(String deathMessage) {
-        this.deathMessage = deathMessage;
+        throw new VersionFeatureNotSupportedException();
     }
 
+    // TODO: Set up per-player keepInventory module
     @Override
     public boolean keepInventory() {
-        return false;
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
-    public void setKeepInventory(boolean keepInventory) {}
+    public void setKeepInventory(boolean keepInventory) {
+        throw new VersionFeatureNotSupportedException();
+    }
 }

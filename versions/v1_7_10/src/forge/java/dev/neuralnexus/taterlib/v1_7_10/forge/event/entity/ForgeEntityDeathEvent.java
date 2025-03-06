@@ -5,9 +5,14 @@
 package dev.neuralnexus.taterlib.v1_7_10.forge.event.entity;
 
 import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntityEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedItemStack;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
@@ -15,49 +20,59 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link EntityDeathEvent}. */
-public class ForgeEntityDeathEvent extends ForgeEntityEvent implements EntityDeathEvent {
+public class ForgeEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent {
     private final LivingDeathEvent event;
-    private List<ItemStack> drops = new ArrayList<>();
-    private int droppedExp = 0;
 
     public ForgeEntityDeathEvent(LivingDeathEvent event) {
-        super(event);
+        super(event.entity);
         this.event = event;
     }
 
+    // TODO: Test to see if these work with Forge's event order
     @Override
     public List<ItemStack> drops() {
-        if (!drops.isEmpty()) {
-            return drops;
-        }
-        if (event.entity.capturedDrops == null) {
+        if (this.event.entity.capturedDrops == null) {
             return new ArrayList<>();
         }
-        return event.entity.capturedDrops.stream()
+        return this.event.entity.capturedDrops.stream()
                 .map(itemEntity -> new WrappedItemStack(itemEntity.getEntityItem()))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void setDrops(List<ItemStack> drops) {
-        this.drops = drops;
+        this.event.entity.capturedDrops.clear();
+        this.event.entity.capturedDrops.addAll(
+                drops.stream()
+                        .map(WrappedItemStack.class::cast)
+                        .map(WrappedItemStack::unwrap)
+                        .map(
+                                itemStack ->
+                                        new EntityItem(
+                                                this.event.entity.worldObj,
+                                                this.event.entity.posX,
+                                                this.event.entity.posY,
+                                                this.event.entity.posZ,
+                                                itemStack))
+                        .collect(Collectors.toList()));
     }
 
     @Override
     public void clearDrops() {
-        drops.clear();
+        this.event.entity.capturedDrops.clear();
     }
 
+    // TODO: either use reflection or set up an accessor
     @Override
     public int droppedExp() {
-        if (droppedExp != 0) {
-            return droppedExp;
-        }
-        return 0;
+        // protected
+        // this.event.entityLiving.getExperiencePoints(
+        //     (EntityPlayer) this.event.source.getEntity());
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public void setDroppedExp(int exp) {
-        droppedExp = exp;
+        throw new VersionFeatureNotSupportedException();
     }
 }

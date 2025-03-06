@@ -9,8 +9,14 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_7_10.forge.event.player.*;
 
+import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeCancellableEventWrapper;
+import dev.neuralnexus.taterlib.v1_7_10.forge.event.player.ForgePlayerDeathEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerAdvancementEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLogoutEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerMessageEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerRespawnEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -26,7 +32,7 @@ public class ForgePlayerListener {
     @SubscribeEvent
     public void onPlayerAdvancement(AchievementEvent event) {
         PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                new ForgePlayerAdvancementEvent.AdvancementFinished(event));
+                new VanillaPlayerAdvancementEvent.AdvancementFinished(event.entityPlayer, event.achievement));
     }
 
     /**
@@ -48,7 +54,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
-        PlayerEvents.LOGIN.invoke(new ForgePlayerLoginEvent(event));
+        PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(event.player));
     }
 
     /**
@@ -58,7 +64,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        PlayerEvents.LOGOUT.invoke(new ForgePlayerLogoutEvent(event));
+        PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(event.player));
     }
 
     /**
@@ -68,7 +74,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     void onPlayerMessage(ServerChatEvent event) {
-        PlayerEvents.MESSAGE.invoke(new ForgePlayerMessageEvent(event));
+        PlayerEvents.MESSAGE.invoke(new VanillaPlayerMessageEvent(event.player, event.message, new ForgeCancellableEventWrapper(event)));
     }
 
     /**
@@ -78,6 +84,6 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        PlayerEvents.RESPAWN.invoke(new ForgePlayerRespawnEvent(event));
+        PlayerEvents.RESPAWN.invoke(new VanillaPlayerRespawnEvent(event.player, event.player.dimension, event.player.isEntityAlive()));
     }
 }

@@ -7,9 +7,10 @@ package dev.neuralnexus.taterlib.v1_7_10.forge.listeners.entity;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
-import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDamageEvent;
+import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDeathEvent;
-import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntitySpawnEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntityDamageEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntitySpawnEvent;
 
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -24,7 +25,13 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntityDamage(LivingAttackEvent event) {
-        EntityEvents.DAMAGE.invoke(new ForgeEntityDamageEvent(event));
+        EntityEvents.DAMAGE.invoke(
+                new VanillaEntityDamageEvent(
+                        event.entityLiving,
+                        event.source,
+                        event.entityLiving.prevHealth,
+                        event.ammount,
+                        new ForgeCancellableEventWrapper(event)));
     }
 
     /**
@@ -44,6 +51,6 @@ public class ForgeEntityListener {
      */
     @SubscribeEvent
     public void onEntitySpawn(LivingSpawnEvent.SpecialSpawn event) {
-        EntityEvents.SPAWN.invoke(new ForgeEntitySpawnEvent(event));
+        EntityEvents.SPAWN.invoke(new VanillaEntitySpawnEvent(event.entity, new ForgeCancellableEventWrapper(event)));
     }
 }

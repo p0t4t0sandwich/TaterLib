@@ -13,10 +13,10 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.command.FabricCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.event.player.FabricPlayerLoginEvent;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.event.player.FabricPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaBootstrap;
 
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLoginEvent;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLogoutEvent;
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
 import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.legacyfabric.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -35,11 +35,10 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             ServerPlayConnectionEvents.JOIN.register(
                     (handler, sender, s) ->
-                            PlayerEvents.LOGIN.invoke(
-                                    new FabricPlayerLoginEvent(handler, sender, s)));
+                            PlayerEvents.LOGIN.invoke(new VanillaPlayerLoginEvent(handler.playerEntity)));
             ServerPlayConnectionEvents.DISCONNECT.register(
                     (handler, s) ->
-                            PlayerEvents.LOGOUT.invoke(new FabricPlayerLogoutEvent(handler, s)));
+                            PlayerEvents.LOGOUT.invoke(new VanillaPlayerLogoutEvent(handler.playerEntity)));
 
             ServerLifecycleEvents.SERVER_STARTING.register(
                     s -> ServerEvents.STARTING.invoke(new ServerStartingEvent() {}));
