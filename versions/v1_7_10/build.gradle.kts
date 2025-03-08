@@ -23,10 +23,6 @@ sourceSets {
         compileClasspath += sourceSets.main.get().output
         runtimeClasspath += sourceSets.main.get().output
     }
-//    create("sponge") {
-//        compileClasspath += sourceSets.main.get().output
-//        runtimeClasspath += sourceSets.main.get().output
-//    }
 }
 
 @Suppress("UnstableApiUsage")
@@ -35,7 +31,6 @@ configurations {
     named("compileOnly") {
         extendsFrom(configurations.getByName("fabricCompileOnly"))
         extendsFrom(configurations.getByName("forgeCompileOnly"))
-//        extendsFrom(configurations.getByName("spongeCompileOnly"))
     }
     val modImplementation by creating
     named("modImplementation") {
@@ -80,8 +75,7 @@ tasks.register<ShadowJar>("relocateFabricJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_7_10/vanilla/**")
     }
-//    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
-//    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
+    relocate("dev.neuralnexus.taterlib.v1_7_10.vanilla", "dev.neuralnexus.taterlib.v1_7_10.l_intmdry")
 }
 
 // ------------------------------------------- Forge -------------------------------------------
@@ -108,15 +102,8 @@ tasks.register<ShadowJar>("relocateForgeJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_7_10/vanilla/**")
     }
-//    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
-//    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
+    relocate("dev.neuralnexus.taterlib.v1_7_10.vanilla", "dev.neuralnexus.taterlib.v1_7_10.l_searge")
 }
-
-// ------------------------------------------- Sponge -------------------------------------------
-//tasks.register<Jar>("spongeJar") {
-//    archiveClassifier.set("sponge")
-//    from(sourceSets.getByName("sponge").output)
-//}
 
 // ------------------------------------------- Common -------------------------------------------
 dependencies {
@@ -131,7 +118,6 @@ dependencies {
         "mainCompileOnly"(it)
         "fabricCompileOnly"(it)
         "forgeCompileOnly"(it)
-//        "spongeCompileOnly"(it)
     }
 
     listOf(
@@ -143,16 +129,12 @@ dependencies {
     ).forEach {
         "fabricModImplementation"(fabricApi.legacyFabricModule(it, fabricVersion))
     }
-
-//    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
-//    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
 }
 
 tasks.register<ShadowJar>("mergeJars") {
     listOf(
         "relocateFabricJar",
         "relocateForgeJar",
-//        "spongeJar"
     ).forEach {
         dependsOn(it)
         from(jarToFiles(it))

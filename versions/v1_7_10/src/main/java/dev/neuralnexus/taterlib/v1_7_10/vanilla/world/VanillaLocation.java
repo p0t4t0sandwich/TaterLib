@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaFactories;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Vec3;
 
@@ -20,7 +21,7 @@ public class VanillaLocation implements Location {
 
     public VanillaLocation(Entity entity) {
         this(
-                Vec3.createVectorHelper(entity.posX, entity.posY, entity.posZ),
+                VanillaFactories.vec3.create(entity.posX, entity.posY, entity.posZ),
                 entity.rotationYaw,
                 entity.rotationPitch,
                 entity.worldObj);
@@ -40,7 +41,7 @@ public class VanillaLocation implements Location {
 
     @Override
     public void setX(double x) {
-        position = Vec3.createVectorHelper(x, y(), z());
+        position = VanillaFactories.vec3.create(x, y(), z());
     }
 
     @Override
@@ -55,7 +56,7 @@ public class VanillaLocation implements Location {
 
     @Override
     public void setY(double y) {
-        position = Vec3.createVectorHelper(x(), y, z());
+        position = VanillaFactories.vec3.create(x(), y, z());
     }
 
     @Override
@@ -70,7 +71,7 @@ public class VanillaLocation implements Location {
 
     @Override
     public void setZ(double z) {
-        position = Vec3.createVectorHelper(x(), y(), z);
+        position = VanillaFactories.vec3.create(x(), y(), z);
     }
 
     @Override
@@ -114,14 +115,14 @@ public class VanillaLocation implements Location {
     }
 
     public static class Builder implements Location.Builder {
-        private Vec3 position = Vec3.createVectorHelper(0, 0, 0);
+        private Vec3 position = VanillaFactories.vec3.create(0, 0, 0);
         private float yaw = 0;
         private float pitch = 0;
         private net.minecraft.world.World world = null;
 
         @Override
         public Builder from(Location location) {
-            this.position = Vec3.createVectorHelper(location.x(), location.y(), location.z());
+            this.position = VanillaFactories.vec3.create(location.x(), location.y(), location.z());
             this.yaw = location.yaw();
             this.pitch = location.pitch();
             this.world = ((WrappedWorld) location.world()).unwrap();
@@ -130,7 +131,7 @@ public class VanillaLocation implements Location {
 
         @Override
         public Builder position(BlockPos position) {
-            this.position = Vec3.createVectorHelper(position.x(), position.y(), position.z());
+            this.position = VanillaFactories.vec3.create(position.x(), position.y(), position.z());
             return this;
         }
 

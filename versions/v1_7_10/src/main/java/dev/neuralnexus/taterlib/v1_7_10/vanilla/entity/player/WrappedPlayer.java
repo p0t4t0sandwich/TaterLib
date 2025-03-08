@@ -9,11 +9,10 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.player.EntityPlayerBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedLivingEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedPlayerInventory;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
 import io.netty.buffer.Unpooled;
 
@@ -22,11 +21,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.S3FPacketCustomPayload;
 import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldSettings$GameType;
+import net.minecraft.world.WorldSettings;
 
-import java.util.Optional;
 import java.util.UUID;
 
 /** Vanilla implementation of {@link Player}. */
@@ -55,14 +51,12 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
 
     @Override
     public String name() {
-        return this.player.getCommandSenderName();
+        return ((EntityPlayerBridge) this.player).bridge$name();
     }
 
     @Override
     public String displayName() {
-        // TODO: Forge-specific override
-        // return this.player.getDisplayName();
-        return this.player.getFormattedCommandSenderName().getFormattedText();
+        return ((EntityPlayerBridge) this.player).bridge$displayName();
     }
 
     @Override
@@ -97,20 +91,7 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
 
     @Override
     public void setSpawn(Location location, boolean forced) {
-        Optional<WorldServer> serverLevel =
-                ((Server) ((WorldServer) player.worldObj).func_73046_m())
-                        .world(location.world().dimension())
-                        .map(WrappedServerWorld.class::cast)
-                        .map(WrappedServerWorld::unwrap);
-        if (!serverLevel.isPresent()) return;
-        // TODO: Forge-specific override
-        // this.player.setSpawnChunk(
-        //     new ChunkCoordinates((int) location.x(), (int) location.y(), (int) location.z()),
-        //     forced,
-        //     serverLevel.get().provider.dimensionId);
-        this.player.setSpawnChunk(
-                new ChunkCoordinates((int) location.x(), (int) location.y(), (int) location.z()),
-                forced);
+        ((EntityPlayerBridge) this.player).bridge$setSpawn(location, forced);
     }
 
     @Override
@@ -135,16 +116,11 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
 
     @Override
     public GameMode gameMode() {
-        // TODO: Fix once mapping issue is resolved
-        // Maybe switch to using an accessor or duck interface of sorts
-        WorldSettings$GameType gameType =
-                (WorldSettings$GameType)
-                        (Object) ((EntityPlayerMP) this.player).theItemInWorldManager.getGameType();
-        return GameMode.fromName(gameType.getName());
+        return ((EntityPlayerBridge) this.player).bridge$gameMode();
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        this.player.setGameType((net.minecraft.world.WorldSettings.getGameTypeById(gameMode.id())));
+        this.player.setGameType((WorldSettings.getGameTypeById(gameMode.id())));
     }
 }
