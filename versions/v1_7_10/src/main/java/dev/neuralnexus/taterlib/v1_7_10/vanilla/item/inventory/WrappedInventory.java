@@ -9,37 +9,35 @@ import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
-import net.minecraft.inventory.IInventory;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /** Vanilla implementation of {@link Inventory}. */
-public class WrappedInventory implements Inventory, Wrapped<IInventory> {
-    private final IInventory inventory;
+public class WrappedInventory implements Inventory, Wrapped<net.minecraft.inventory.Inventory> {
+    private final net.minecraft.inventory.Inventory inventory;
 
-    public WrappedInventory(IInventory inventory) {
+    public WrappedInventory(net.minecraft.inventory.Inventory inventory) {
         this.inventory = inventory;
     }
 
     @Override
-    public IInventory unwrap() {
+    public net.minecraft.inventory.Inventory unwrap() {
         return this.inventory;
     }
 
     @Override
     public int size() {
-        return this.inventory.getSizeInventory();
+        return this.inventory.getSize();
     }
 
     @Override
     public ItemStack get(int slot) {
-        return new WrappedItemStack(this.inventory.getStackInSlot(slot));
+        return new WrappedItemStack(this.inventory.getStack(slot));
     }
 
     @Override
     public void set(int slot, ItemStack item) {
-        this.inventory.setInventorySlotContents(slot, ((WrappedItemStack) item).unwrap());
+        this.inventory.setStack(slot, ((WrappedItemStack) item).unwrap());
     }
 
     @Override
@@ -74,13 +72,13 @@ public class WrappedInventory implements Inventory, Wrapped<IInventory> {
     public void remove(ResourceKey type) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
-                this.inventory.decrStackSize(i, this.get(i).count());
+                this.inventory.removeStack(i, this.get(i).count());
             }
         }
     }
 
     @Override
     public void clear(int slot) {
-        this.inventory.decrStackSize(slot, this.get(slot).count());
+        this.inventory.removeStack(slot, this.get(slot).count());
     }
 }

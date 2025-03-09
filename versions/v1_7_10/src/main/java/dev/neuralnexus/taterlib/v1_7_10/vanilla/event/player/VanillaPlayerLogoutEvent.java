@@ -7,13 +7,13 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player;
 import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 
 /** Vanilla implementation of {@link PlayerLogoutEvent}. */
 public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements PlayerLogoutEvent {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
 
-    public VanillaPlayerLogoutEvent(EntityPlayer player) {
+    public VanillaPlayerLogoutEvent(PlayerEntity player) {
         super(player);
         this.player = player;
     }

@@ -17,7 +17,7 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLogout
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerRespawnEvent;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AchievementEvent;
@@ -43,7 +43,7 @@ public class ForgePlayerListener {
      */
     @SubscribeEvent
     public void onPlayerDeath(LivingDeathEvent event) {
-        if (event.entity instanceof EntityPlayerMP) {
+        if (event.entity instanceof ServerPlayerEntity) {
             PlayerEvents.DEATH.invoke(new ForgePlayerDeathEvent(event));
         }
     }
@@ -89,6 +89,6 @@ public class ForgePlayerListener {
     public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         PlayerEvents.RESPAWN.invoke(
                 new VanillaPlayerRespawnEvent(
-                        event.player, event.player.dimension, event.player.isEntityAlive()));
+                        event.player, event.player.dimensionId, event.player.isAlive()));
     }
 }

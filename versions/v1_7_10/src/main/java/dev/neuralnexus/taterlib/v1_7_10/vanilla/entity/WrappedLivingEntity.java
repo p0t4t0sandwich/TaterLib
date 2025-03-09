@@ -7,34 +7,32 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.living.attribute.EntityAttributes;
 
 /** Vanilla implementation of {@link LivingEntity}. */
 public class WrappedLivingEntity extends WrappedEntity implements LivingEntity {
-    private final EntityLivingBase entity;
+    private final net.minecraft.entity.living.LivingEntity entity;
 
-    public WrappedLivingEntity(EntityLivingBase entity) {
+    public WrappedLivingEntity(net.minecraft.entity.living.LivingEntity entity) {
         super(entity);
         this.entity = entity;
     }
 
     @Override
-    public EntityLivingBase unwrap() {
+    public net.minecraft.entity.living.LivingEntity unwrap() {
         return this.entity;
     }
 
     @Override
     public void damage(double amount) {
-        this.entity.attackEntityFrom(DamageSource.generic, (float) amount);
+        this.entity.damage(DamageSource.GENERIC, (float) amount);
     }
 
     @Override
     public void damage(double amount, Entity source) {
-        this.entity.attackEntityFrom(
-                DamageSource.causeMobDamage(((WrappedLivingEntity) source).unwrap()),
-                (float) amount);
+        this.entity.damage(
+                DamageSource.mob(((WrappedLivingEntity) source).unwrap()), (float) amount);
     }
 
     @Override
@@ -49,12 +47,12 @@ public class WrappedLivingEntity extends WrappedEntity implements LivingEntity {
 
     @Override
     public double absorptionAmount() {
-        return this.entity.getAbsorptionAmount();
+        return this.entity.getAbsorption();
     }
 
     @Override
     public void setAbsorptionAmount(double amount) {
-        this.entity.setAbsorptionAmount((float) amount);
+        this.entity.setAbsorption((float) amount);
     }
 
     @Override
@@ -64,6 +62,6 @@ public class WrappedLivingEntity extends WrappedEntity implements LivingEntity {
 
     @Override
     public void setMaxHealth(double health) {
-        this.entity.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(health);
+        this.entity.getAttribute(EntityAttributes.MAX_HEALTH).setBase(health);
     }
 }

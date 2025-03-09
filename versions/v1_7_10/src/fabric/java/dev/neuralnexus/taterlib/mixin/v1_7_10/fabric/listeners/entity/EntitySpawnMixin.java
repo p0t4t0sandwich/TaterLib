@@ -21,10 +21,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9)
 @Mixin(World.class)
 class EntitySpawnMixin {
-    @Inject(method = "spawnEntityInWorld", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "addEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityEvents.SPAWN.invoke(
                 new VanillaEntitySpawnEvent(entity, new MixinCancellableCallbackWrapper(cir)));

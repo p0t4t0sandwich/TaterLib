@@ -11,15 +11,11 @@ import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Forge implementation of {@link Block}. */
 public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
-    private final int x;
-    private final int y;
-    private final int z;
+    private final net.minecraft.util.math.BlockPos pos;
     private final net.minecraft.block.Block block;
 
-    public WrappedBlock(int x, int y, int z, net.minecraft.block.Block block) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public WrappedBlock(net.minecraft.util.math.BlockPos pos, net.minecraft.block.Block block) {
+        this.pos = pos;
         this.block = block;
     }
 
@@ -31,11 +27,12 @@ public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
     @Override
     public ResourceKey type() {
         // TODO: Find block registry
-        return ResourceKey.of(this.block.getLocalizedName().split("block\\.")[1].replace(".", ":"));
+        return ResourceKey.of(
+                this.block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
     }
 
     @Override
     public BlockPos blockPos() {
-        return new BlockPos(this.x, this.y, this.z);
+        return new BlockPos(this.pos.x, this.pos.y, this.pos.z);
     }
 }

@@ -9,15 +9,15 @@ import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntityDeathEvent;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.living.player.PlayerEntity;
 
 /** Vanilla implementation of {@link PlayerDeathEvent}. */
 public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements PlayerDeathEvent {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
     private final DamageSource source;
 
-    public VanillaPlayerDeathEvent(EntityPlayer player, DamageSource source) {
+    public VanillaPlayerDeathEvent(PlayerEntity player, DamageSource source) {
         super(player, source);
         this.player = player;
         this.source = source;
@@ -30,7 +30,7 @@ public class VanillaPlayerDeathEvent extends VanillaEntityDeathEvent implements 
 
     @Override
     public String deathMessage() {
-        return this.source.getDeathMessage(this.player).getFormattedText();
+        return this.source.getDeathMessage(this.player).getFormattedString();
     }
 
     // TODO: Hook into Vanilla's message somehow (probs mixin)

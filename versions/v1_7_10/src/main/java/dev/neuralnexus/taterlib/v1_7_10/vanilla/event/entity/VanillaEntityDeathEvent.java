@@ -9,21 +9,21 @@ import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.living.LivingEntity;
 
 import java.util.List;
 
 /** Vanilla implementation of {@link EntityDeathEvent}. */
 public class VanillaEntityDeathEvent extends VanillaEntityEvent implements EntityDeathEvent {
-    private final EntityLivingBase living;
+    private final LivingEntity living;
     private final DamageSource source;
 
     // TODO: implement some mixins to handle these features, somehow all in one event
     // Maybe handle with functional interfaces so Forge's impl can be stitched in
     public VanillaEntityDeathEvent(Entity entity, DamageSource source) {
         super(entity);
-        this.living = (EntityLivingBase) entity;
+        this.living = (LivingEntity) entity;
         this.source = source;
     }
 

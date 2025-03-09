@@ -14,10 +14,9 @@ import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.management.ServerConfigurationManager;
-import net.minecraft.world.WorldServer;
+import net.minecraft.server.PlayerManager;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -36,10 +35,9 @@ public abstract class MinecraftServerAPI {
     @Shadow
     public abstract String shadow$getServerModName();
 
-    @Shadow
-    public abstract ServerConfigurationManager shadow$getConfigurationManager();
+    @Shadow private PlayerManager playerManager;
 
-    @Shadow public WorldServer[] worldServers;
+    @Shadow public net.minecraft.server.world.ServerWorld[] worlds;
 
     public String server$brand() {
         return this.shadow$getServerModName();
@@ -47,13 +45,11 @@ public abstract class MinecraftServerAPI {
 
     @SuppressWarnings("unchecked")
     public List<User> server$players() {
-        return ((List<EntityPlayer>) this.shadow$getConfigurationManager().playerEntityList)
+        return ((List<PlayerEntity>) this.playerManager.players)
                 .stream().map(WrappedPlayer::new).collect(Collectors.toList());
     }
 
     public List<ServerWorld> server$worlds() {
-        return Arrays.stream(this.worldServers)
-                .map(WrappedServerWorld::new)
-                .collect(Collectors.toList());
+        return Arrays.stream(this.worlds).map(WrappedServerWorld::new).collect(Collectors.toList());
     }
 }

@@ -4,12 +4,12 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.vanilla;
 
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 
 public class VanillaFactories {
     @FunctionalInterface
     public interface Vec3Factory {
-        Vec3 create(double x, double y, double z);
+        Vec3d create(double x, double y, double z);
     }
 
     public static Vec3Factory vec3;

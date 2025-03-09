@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.resources;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resource.Identifier;
 
 /** Vanilla implementation of {@link ResourceKey}. */
 public class VanillaResourceKey {
@@ -16,13 +16,13 @@ public class VanillaResourceKey {
         @Override
         @SuppressWarnings("DataFlowIssue")
         public ResourceKey of(String namespace, String value) {
-            return (ResourceKey) new ResourceLocation(namespace, value);
+            return (ResourceKey) new Identifier(namespace, value);
         }
 
         @SuppressWarnings("DataFlowIssue")
         @Override
         public ResourceKey of(String full) {
-            return (ResourceKey) new ResourceLocation(full);
+            return (ResourceKey) new Identifier(full);
         }
 
         @Override
@@ -50,7 +50,7 @@ public class VanillaResourceKey {
         @Override
         @SuppressWarnings("DataFlowIssue")
         public ResourceKey build() {
-            return (ResourceKey) new ResourceLocation(this.namespace, this.value);
+            return (ResourceKey) new Identifier(this.namespace, this.value);
         }
     }
 }

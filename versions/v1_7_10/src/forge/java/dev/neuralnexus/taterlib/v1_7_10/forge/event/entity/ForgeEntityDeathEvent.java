@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.entity.VanillaEntityEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedItemStack;
 
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.ItemEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class ForgeEntityDeathEvent extends VanillaEntityEvent implements EntityD
             return new ArrayList<>();
         }
         return this.event.entity.capturedDrops.stream()
-                .map(itemEntity -> new WrappedItemStack(itemEntity.getEntityItem()))
+                .map(itemEntity -> new WrappedItemStack(itemEntity.getItemStack()))
                 .collect(Collectors.toList());
     }
 
@@ -46,11 +46,11 @@ public class ForgeEntityDeathEvent extends VanillaEntityEvent implements EntityD
                         .map(WrappedItemStack::unwrap)
                         .map(
                                 itemStack ->
-                                        new EntityItem(
-                                                this.event.entity.worldObj,
-                                                this.event.entity.posX,
-                                                this.event.entity.posY,
-                                                this.event.entity.posZ,
+                                        new ItemEntity(
+                                                this.event.entity.world,
+                                                this.event.entity.x,
+                                                this.event.entity.y,
+                                                this.event.entity.z,
                                                 itemStack))
                         .collect(Collectors.toList()));
     }

@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.v1_7_10.fabric.event.command;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_7_10.fabric.command.FabricCommandWrapper;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandManager;
 
@@ -20,6 +19,6 @@ public class FabricCommandRegisterEvent implements CommandRegisterEvent {
 
     @Override
     public void registerCommand(Command command, String... aliases) {
-        manager.register(new FabricCommandWrapper(command), aliases);
+        //        manager.register(new FabricCommandWrapper(command), aliases);
     }
 }

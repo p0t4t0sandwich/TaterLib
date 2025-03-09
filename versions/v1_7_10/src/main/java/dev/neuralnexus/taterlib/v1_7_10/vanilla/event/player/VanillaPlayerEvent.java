@@ -8,13 +8,13 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 
 /** Vanilla implementation of {@link PlayerEvent}. */
 public class VanillaPlayerEvent implements PlayerEvent {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
 
-    public VanillaPlayerEvent(EntityPlayer player) {
+    public VanillaPlayerEvent(PlayerEntity player) {
         this.player = player;
     }
 

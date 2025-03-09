@@ -7,30 +7,30 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player;
 import dev.neuralnexus.taterapi.event.player.PlayerAdvancementEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.stats.Achievement;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.stat.achievement.AchievementStat;
 
 import java.util.Collection;
 
 /** Vanilla implementation of {@link PlayerAdvancementEvent}. */
 public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
         implements PlayerAdvancementEvent {
-    private final Achievement advancement;
+    private final AchievementStat advancement;
 
-    public VanillaPlayerAdvancementEvent(EntityPlayer player, Achievement advancement) {
+    public VanillaPlayerAdvancementEvent(PlayerEntity player, AchievementStat advancement) {
         super(player);
         this.advancement = advancement;
     }
 
     @Override
     public String advancement() {
-        return advancement.getStatName().getFormattedText();
+        return advancement.getDecoratedName().getFormattedString();
     }
 
     /** Vanilla implementation of {@link PlayerAdvancementEvent.AdvancementFinished}. */
     public static class AdvancementFinished extends VanillaPlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementFinished {
-        public AdvancementFinished(EntityPlayer player, Achievement advancement) {
+        public AdvancementFinished(PlayerEntity player, AchievementStat advancement) {
             super(player, advancement);
         }
     }
@@ -38,10 +38,10 @@ public class VanillaPlayerAdvancementEvent extends VanillaPlayerEvent
     /** Vanilla implementation of {@link PlayerAdvancementEvent.AdvancementProgress}. */
     public static class AdvancementProgress extends VanillaPlayerAdvancementEvent
             implements PlayerAdvancementEvent.AdvancementProgress {
-        private final Achievement advancement;
+        private final AchievementStat advancement;
 
         public AdvancementProgress(
-                EntityPlayer player, Achievement advancement, String criterionName) {
+                PlayerEntity player, AchievementStat advancement, String criterionName) {
             super(player, advancement);
             this.advancement = advancement;
         }

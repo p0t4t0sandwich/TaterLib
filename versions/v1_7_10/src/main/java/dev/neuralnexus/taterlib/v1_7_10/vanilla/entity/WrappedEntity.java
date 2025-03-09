@@ -11,10 +11,11 @@ import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.EntityBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
-import net.minecraft.world.WorldServer;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -34,30 +35,29 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
 
     @Override
     public UUID uuid() {
-        return this.entity.getUniqueID();
+        return this.entity.getUuid();
     }
 
     @Override
     public int entityId() {
-        return this.entity.getEntityId();
+        return this.entity.getNetworkId();
     }
 
     @Override
     public void remove() {
-        this.entity.setDead();
+        this.entity.remove();
     }
 
     @Override
     public ResourceKey type() {
         // TODO: Find entity registry
-        return ResourceKey.of(
-                this.entity.getCommandSenderName().split("entity\\.")[1].replace(".", ":"));
+        return ResourceKey.of(this.entity.getName().split("entity\\.")[1].replace(".", ":"));
     }
 
     @Override
     public Optional<String> customName() {
-        if (this.entity.getFormattedCommandSenderName() == null) return Optional.empty();
-        return Optional.of(this.entity.getFormattedCommandSenderName().getFormattedText());
+        if (this.entity.getDisplayName() == null) return Optional.empty();
+        return Optional.of(this.entity.getDisplayName().getFormattedString());
     }
 
     @Override
@@ -74,22 +74,19 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
     @Override
     public ResourceKey biome() {
         // TODO: Find biome registry
-        return ResourceKey.of(
-                this.entity.worldObj.getBiomeGenForCoords(
-                                (int) this.entity.posX, (int) this.entity.posZ)
-                        .biomeName);
+        return ((EntityBridge) this.entity).bridge$biome();
     }
 
     @Override
     public void teleport(Location location) {
         if (!location.world().dimension().equals(dimension())) {
-            Optional<WorldServer> serverLevel =
-                    ((Server) ((WorldServer) this.entity.worldObj).func_73046_m())
+            Optional<ServerWorld> serverLevel =
+                    ((Server) ((ServerWorld) this.entity.world).getServer())
                             .world(location.world().dimension())
                             .map(WrappedServerWorld.class::cast)
                             .map(WrappedServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;
-            this.entity.travelToDimension(serverLevel.get().provider.dimensionId);
+            ((EntityBridge) this.entity).bridge$teleportToDimension(serverLevel.get());
         }
         this.entity.setPosition(location.x(), location.y(), location.z());
     }

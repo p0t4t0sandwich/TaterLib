@@ -42,9 +42,25 @@ configurations {
 unimined.minecraft {
     version(minecraftVersion)
     mappings {
-        searge()
-        mcp(mappingsChannel, mappingsVersion)
+        calamus()
+        feather(28)
+
+        stub.withMappings("searge", "intermediary") {
+            // METHODs cpw/mods/fml/common/registry/FMLControlledNamespacedRegistry/[net/minecraft/unmapped/C_7135514/m_1782140, get](Ljava/lang/String;)Ljava/lang/Object; -> get
+            c(
+                "cpw/mods/fml/common/registry/FMLControlledNamespacedRegistry", listOf()
+            ) {
+                m("get", "(Ljava/lang/String;)Ljava/lang/Object;", "net/minecraft/unmapped/C_7135514/m_1782140", "getObjectFromString")
+            }
+            // METHODs cpw/mods/fml/common/registry/FMLControlledNamespacedRegistry/[net/minecraft/unmapped/C_7135514/m_9381448, get](I)Ljava/lang/Object; -> get
+            c(
+                "cpw/mods/fml/common/registry/FMLControlledNamespacedRegistry", listOf()
+            ) {
+                m("get", "(I)Ljava/lang/Object;", "net/minecraft/unmapped/C_7135514/m_9381448", "getObjectFromInteger")
+            }
+        }
     }
+
     defaultRemapJar = false
 }
 

@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 
 import java.util.Set;
 
@@ -18,7 +18,7 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
     private final Cancellable cancel;
     private final String message;
 
-    public VanillaPlayerMessageEvent(EntityPlayer player, String message, Cancellable cancel) {
+    public VanillaPlayerMessageEvent(PlayerEntity player, String message, Cancellable cancel) {
         super(player);
         this.message = message;
         this.cancel = cancel;
@@ -26,12 +26,12 @@ public class VanillaPlayerMessageEvent extends VanillaPlayerEvent implements Pla
 
     @Override
     public boolean cancelled() {
-        return cancel.cancelled();
+        return this.cancel.cancelled();
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
-        cancel.setCancelled(cancelled);
+        this.cancel.setCancelled(cancelled);
     }
 
     @Override

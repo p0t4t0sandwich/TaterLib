@@ -13,7 +13,8 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,10 +26,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10)
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {
-    @Inject(method = "harvestBlock", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "afterMinedByPlayer", at = @At("HEAD"), cancellable = true)
     private void onBlockBreak(
             World world,
-            EntityPlayer player,
+            PlayerEntity player,
             int x,
             int y,
             int z,
@@ -36,12 +37,9 @@ public class PlayerBlockBreakMixin {
             CallbackInfo ci) {
         BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
-                        x,
-                        y,
-                        z,
+                        new BlockPos(x, y, z),
                         world,
                         (Block) (Object) this,
-                        blockMetadata,
                         player,
                         new MixinCancellableCallbackWrapper(ci)));
     }

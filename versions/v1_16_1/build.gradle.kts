@@ -48,8 +48,7 @@ unimined.minecraft {
 
         // Fix from https://github.com/CDAGaming/CraftPresence-Mirror/blob/0388d7bdc99440a3c2c317ab59cf728c9033b5da/build.gradle.kts#L253
         stub.withMappings("searge", "mojmap") {
-            c("ModLoader", "net/minecraft/src/ModLoader", "net/minecraft/src/ModLoader")
-            c("BaseMod", "net/minecraft/src/BaseMod", "net/minecraft/src/BaseMod")
+            // METHODs dng/[getHeight, e]()I -> getHeight
             c(
                 "dng",
                 listOf(

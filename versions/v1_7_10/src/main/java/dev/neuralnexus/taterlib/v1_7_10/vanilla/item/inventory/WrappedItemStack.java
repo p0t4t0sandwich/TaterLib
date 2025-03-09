@@ -34,12 +34,12 @@ public class WrappedItemStack implements ItemStack, Wrapped<net.minecraft.item.I
 
     @Override
     public int count() {
-        return this.itemStack.stackSize;
+        return this.itemStack.size;
     }
 
     @Override
     public void setCount(int count) {
-        this.itemStack.stackSize = count;
+        this.itemStack.size = count;
     }
 
     @Override
@@ -50,17 +50,17 @@ public class WrappedItemStack implements ItemStack, Wrapped<net.minecraft.item.I
 
     @Override
     public boolean hasDisplayName() {
-        return this.itemStack.hasDisplayName();
+        return this.itemStack.hasCustomHoverName();
     }
 
     @Override
     public Optional<String> displayName() {
-        return Optional.of(this.itemStack.getDisplayName());
+        return Optional.of(this.itemStack.getHoverName());
     }
 
     @Override
     public void setDisplayName(String name) {
-        this.itemStack.setStackDisplayName(name);
+        this.itemStack.setHoverName(name);
     }
 
     @Override
@@ -83,22 +83,18 @@ public class WrappedItemStack implements ItemStack, Wrapped<net.minecraft.item.I
 
     @Override
     public boolean hasEnchants() {
-        return this.itemStack.isItemEnchanted();
+        return this.itemStack.hasEnchantments();
     }
 
     @Override
     public boolean unbreakable() {
-        Objects.requireNonNull(this.itemStack.getTagCompound());
-        return this.itemStack.hasTagCompound()
-                && this.itemStack.getTagCompound().getBoolean("Unbreakable");
+        Objects.requireNonNull(this.itemStack.getNbt());
+        return this.itemStack.hasNbt() && this.itemStack.getNbt().getBoolean("Unbreakable");
     }
 
     @Override
     public void setUnbreakable(boolean unbreakable) {
-        Objects.requireNonNull(this.itemStack.getTagCompound());
-        this.itemStack
-                .getTagCompound()
-                .getCompoundTag("Unbreakable")
-                .setBoolean("Unbreakable", unbreakable);
+        Objects.requireNonNull(this.itemStack.getNbt());
+        this.itemStack.getNbt().getCompound("Unbreakable").putBoolean("Unbreakable", unbreakable);
     }
 }

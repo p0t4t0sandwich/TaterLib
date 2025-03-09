@@ -9,20 +9,20 @@ import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 
 /** Vanilla implementation of {@link PlayerRespawnEvent}. */
 public class VanillaPlayerRespawnEvent extends VanillaPlayerEvent implements PlayerRespawnEvent {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
 
-    public VanillaPlayerRespawnEvent(EntityPlayer player, int dimension, boolean alive) {
+    public VanillaPlayerRespawnEvent(PlayerEntity player, int dimension, boolean alive) {
         super(player);
         this.player = player;
     }
 
     @Override
     public Location respawnLocation() {
-        return new VanillaLocation(player);
+        return new VanillaLocation(this.player);
     }
 
     // TODO: Implement more hooks

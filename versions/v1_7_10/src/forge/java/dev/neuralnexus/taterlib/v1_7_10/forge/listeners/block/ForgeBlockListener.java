@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterlib.v1_7_10.forge.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.world.BlockEvent;
 
 /** Listens for entity events. */
@@ -23,12 +24,9 @@ public class ForgeBlockListener {
     public void onBlockBreak(BlockEvent.BreakEvent event) {
         BlockEvents.PLAYER_BLOCK_BREAK.invoke(
                 new VanillaPlayerBlockBreakEvent(
-                        event.x,
-                        event.y,
-                        event.z,
+                        new BlockPos(event.x, event.y, event.z),
                         event.world,
                         event.block,
-                        event.blockMetadata,
                         event.getPlayer(),
                         new ForgeCancellableEventWrapper(event)));
     }

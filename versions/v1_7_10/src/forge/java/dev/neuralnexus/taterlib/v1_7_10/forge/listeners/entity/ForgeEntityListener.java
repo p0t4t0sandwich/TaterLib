@@ -29,7 +29,7 @@ public class ForgeEntityListener {
                 new VanillaEntityDamageEvent(
                         event.entityLiving,
                         event.source,
-                        event.entityLiving.prevHealth,
+                        event.entityLiving.lastHealth,
                         event.ammount,
                         new ForgeCancellableEventWrapper(event)));
     }

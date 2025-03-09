@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.DamageSource;
+import net.minecraft.entity.damage.DamageSource;
 
 /** Vanilla implementation of {@link EntityDamageEvent}. */
 public class VanillaEntityDamageEvent extends VanillaEntityEvent implements EntityDamageEvent {
@@ -34,26 +34,26 @@ public class VanillaEntityDamageEvent extends VanillaEntityEvent implements Enti
      * @return The source of the damage
      */
     public DamageSource source() {
-        return damageSource;
+        return this.damageSource;
     }
 
     @Override
     public boolean cancelled() {
-        return cancel.cancelled();
+        return this.cancel.cancelled();
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
-        cancel.setCancelled(cancelled);
+        this.cancel.setCancelled(cancelled);
     }
 
     @Override
     public String cause() {
-        return damageSource.getDamageType();
+        return this.damageSource.getName();
     }
 
     @Override
     public double damage() {
-        return damage;
+        return this.damage;
     }
 }

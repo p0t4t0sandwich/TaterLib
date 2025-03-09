@@ -7,27 +7,28 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.world;
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
-
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaFactories;
+
 import net.minecraft.entity.Entity;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.Vec3d;
 
 /** Vanilla implementation of {@link Location}. */
 public class VanillaLocation implements Location {
-    private Vec3 position;
+    private Vec3d position;
     private float yaw;
     private float pitch;
     private net.minecraft.world.World world;
 
     public VanillaLocation(Entity entity) {
         this(
-                VanillaFactories.vec3.create(entity.posX, entity.posY, entity.posZ),
-                entity.rotationYaw,
-                entity.rotationPitch,
-                entity.worldObj);
+                VanillaFactories.vec3.create(entity.x, entity.y, entity.z),
+                entity.yaw,
+                entity.pitch,
+                entity.world);
     }
 
-    public VanillaLocation(Vec3 position, float yaw, float pitch, net.minecraft.world.World world) {
+    public VanillaLocation(
+            Vec3d position, float yaw, float pitch, net.minecraft.world.World world) {
         this.position = position;
         this.yaw = yaw;
         this.pitch = pitch;
@@ -36,52 +37,52 @@ public class VanillaLocation implements Location {
 
     @Override
     public double x() {
-        return position.xCoord;
+        return this.position.x;
     }
 
     @Override
     public void setX(double x) {
-        position = VanillaFactories.vec3.create(x, y(), z());
+        position = VanillaFactories.vec3.create(x, this.y(), this.z());
     }
 
     @Override
     public double blockX() {
-        return Math.floor(x());
+        return Math.floor(this.x());
     }
 
     @Override
     public double y() {
-        return position.yCoord;
+        return this.position.y;
     }
 
     @Override
     public void setY(double y) {
-        position = VanillaFactories.vec3.create(x(), y, z());
+        this.position = VanillaFactories.vec3.create(this.x(), y, this.z());
     }
 
     @Override
     public double blockY() {
-        return Math.floor(y());
+        return Math.floor(this.y());
     }
 
     @Override
     public double z() {
-        return position.zCoord;
+        return this.position.z;
     }
 
     @Override
     public void setZ(double z) {
-        position = VanillaFactories.vec3.create(x(), y(), z);
+        this.position = VanillaFactories.vec3.create(this.x(), this.y(), z);
     }
 
     @Override
     public double blockZ() {
-        return Math.floor(z());
+        return Math.floor(this.z());
     }
 
     @Override
     public float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     @Override
@@ -91,7 +92,7 @@ public class VanillaLocation implements Location {
 
     @Override
     public float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     @Override
@@ -101,12 +102,12 @@ public class VanillaLocation implements Location {
 
     @Override
     public BlockPos blockPosition() {
-        return new BlockPos(position.xCoord, position.yCoord, position.zCoord);
+        return new BlockPos(this.position.x, this.position.y, this.position.z);
     }
 
     @Override
     public World world() {
-        return new WrappedWorld(world);
+        return new WrappedWorld(this.world);
     }
 
     @Override
@@ -115,7 +116,7 @@ public class VanillaLocation implements Location {
     }
 
     public static class Builder implements Location.Builder {
-        private Vec3 position = VanillaFactories.vec3.create(0, 0, 0);
+        private Vec3d position = VanillaFactories.vec3.create(0, 0, 0);
         private float yaw = 0;
         private float pitch = 0;
         private net.minecraft.world.World world = null;

@@ -10,25 +10,19 @@ import dev.neuralnexus.taterapi.event.block.PlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 /** Vanilla implementation of {@link PlayerBlockBreakEvent}. */
 public class VanillaPlayerBlockBreakEvent extends VanillaBlockEvent
         implements PlayerBlockBreakEvent {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
     private final Cancellable cancel;
 
     public VanillaPlayerBlockBreakEvent(
-            int x,
-            int y,
-            int z,
-            World world,
-            Block block,
-            int blockMetadata,
-            EntityPlayer player,
-            Cancellable cancel) {
-        super(x, y, z, world, block, blockMetadata);
+            BlockPos pos, World world, Block block, PlayerEntity player, Cancellable cancel) {
+        super(pos, world, block);
         this.player = player;
         this.cancel = cancel;
     }

@@ -6,19 +6,17 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.world;
 
 import dev.neuralnexus.taterapi.world.ServerWorld;
 
-import net.minecraft.world.WorldServer;
-
 /** Vanilla implementation of {@link ServerWorld}. */
 public class WrappedServerWorld extends WrappedWorld implements ServerWorld {
-    private final WorldServer level;
+    private final net.minecraft.server.world.ServerWorld level;
 
-    public WrappedServerWorld(WorldServer level) {
+    public WrappedServerWorld(net.minecraft.server.world.ServerWorld level) {
         super(level);
         this.level = level;
     }
 
     @Override
-    public WorldServer unwrap() {
+    public net.minecraft.server.world.ServerWorld unwrap() {
         return this.level;
     }
 }

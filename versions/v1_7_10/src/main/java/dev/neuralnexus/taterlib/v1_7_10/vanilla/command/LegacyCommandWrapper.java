@@ -7,11 +7,9 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
-import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
-import net.minecraft.command.ICommand;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.server.command.AbstractCommand;
+import net.minecraft.server.command.source.CommandSource;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Wraps a command callback into a Vanilla CommandBase. */
-public class LegacyCommandWrapper extends CommandBase {
+public class LegacyCommandWrapper extends AbstractCommand {
     private final Command command;
     private final List<String> aliases;
 
@@ -30,31 +28,27 @@ public class LegacyCommandWrapper extends CommandBase {
     }
 
     @Override
-    public String getCommandName() {
-        return command.name();
+    public String getName() {
+        return this.command.name();
     }
 
     @Override
-    public List<String> getCommandAliases() {
-        return aliases;
+    public String getUsage(CommandSource source) {
+        return this.command.usage();
     }
 
     @Override
-    public String getCommandUsage(ICommandSender iCommandSender) {
-        return command.usage();
-    }
-
-    @Override
-    public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        if (sender instanceof EntityPlayer) {
-            command.execute(new WrappedPlayer((EntityPlayer) sender), command.name(), args);
+    public void run(CommandSource source, String[] args)
+            throws net.minecraft.server.command.exception.CommandException {
+        if (source instanceof PlayerEntity) {
+            command.execute(new WrappedPlayer((PlayerEntity) source), command.name(), args);
         } else {
-            command.execute(new WrappedSender(sender), command.name(), args);
+            command.execute(new WrappedSender(source), command.name(), args);
         }
     }
 
     @Override
     public int compareTo(@NotNull Object o) {
-        return this.compareTo((ICommand) o);
+        return this.compareTo((net.minecraft.server.command.Command) o);
     }
 }

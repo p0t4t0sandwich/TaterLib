@@ -22,13 +22,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V11_2)
 @Mixin(PlayerManager.class)
 public class PlayerRespawnMixin {
-    /**
-     * Called when a player respawns.
-     *
-     * @param player The player that respawned.
-     * @param alive Whether the player is alive.
-     * @param cir The callback info.
-     */
     @Inject(method = "respawnPlayer", at = @At("HEAD"))
     public void onPlayerRespawn(
             ServerPlayerEntity player,

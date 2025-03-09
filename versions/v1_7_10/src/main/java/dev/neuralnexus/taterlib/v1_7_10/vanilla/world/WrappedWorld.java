@@ -10,10 +10,15 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
+
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.util.math.Box;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link World}. */
 public class WrappedWorld implements World, Wrapped<net.minecraft.world.World> {
@@ -29,24 +34,38 @@ public class WrappedWorld implements World, Wrapped<net.minecraft.world.World> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Player> players() {
-        return ((WorldBridge) this.level).bridge$players();
+        return ((List<PlayerEntity>) this.level.players)
+                .stream().map(WrappedPlayer::new).collect(Collectors.toList());
     }
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(
-                this.level.provider.getDimensionName().replace(" ", "_").toLowerCase());
+        return ResourceKey.of(this.level.dimension.getName().replace(" ", "_").toLowerCase());
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        return ((WorldBridge) this.level).bridge$entities(entity, radius, predicate);
+        net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
+        return ((List<net.minecraft.entity.Entity>)
+                        this.level.getEntities(
+                                mcEntity,
+                                mcEntity.getCollisionShape().expand(radius, radius, radius),
+                                e -> predicate.test(new WrappedEntity(e))))
+                .stream().map(WrappedEntity::new).collect(Collectors.toList());
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return ((WorldBridge) this.level).bridge$entities(entity, pos1, pos2, predicate);
+        return ((List<net.minecraft.entity.Entity>)
+                        this.level.getEntities(
+                                ((WrappedEntity) entity).unwrap(),
+                                Box.of(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
+                                e -> predicate.test(new WrappedEntity(e))))
+                .stream().map(WrappedEntity::new).collect(Collectors.toList());
     }
 }

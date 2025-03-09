@@ -12,9 +12,9 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerMessageEvent;
 
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.network.play.client.C01PacketChatMessage;
+import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
+import net.minecraft.server.entity.living.player.ServerPlayerEntity;
+import net.minecraft.server.network.handler.ServerPlayNetworkHandler;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -23,24 +23,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10)
-@Mixin(NetHandlerPlayServer.class)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9)
+@Mixin(ServerPlayNetworkHandler.class)
 public abstract class PlayerMessageMixin {
-    @Shadow public EntityPlayerMP playerEntity;
+    @Shadow public ServerPlayerEntity player;
 
-    /**
-     * Called when a player sends a message.
-     *
-     * @param packet The packet.
-     * @param ci The callback info.
-     */
-    @Inject(method = "processChatMessage", at = @At("HEAD"), cancellable = true)
-    public void onPlayerMessage(C01PacketChatMessage packet, CallbackInfo ci) {
+    @Inject(method = "handleChatMessage", at = @At("HEAD"), cancellable = true)
+    public void onPlayerMessage(ChatMessageC2SPacket packet, CallbackInfo ci) {
         if (packet.getMessage().startsWith("/")) return;
         PlayerEvents.MESSAGE.invoke(
                 new VanillaPlayerMessageEvent(
-                        this.playerEntity,
-                        packet.getMessage(),
-                        new MixinCancellableCallbackWrapper(ci)));
+                        this.player, packet.getMessage(), new MixinCancellableCallbackWrapper(ci)));
     }
 }

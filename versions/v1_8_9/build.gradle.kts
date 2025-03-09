@@ -47,8 +47,23 @@ configurations {
 unimined.minecraft {
     version(minecraftVersion)
     mappings {
-        searge()
-        mcp(mappingsChannel, mappingsVersion)
+//        searge()
+//        mcp(mappingsChannel, mappingsVersion)
+        calamus()
+        feather(28)
+
+        stub.withMappings("searge", "intermediary") {
+            // METHODs net/minecraft/unmapped/C_9482745/[m_9076954, getMaxSpeed]()D -> getMaxSpeed
+            c(
+                "va",
+                listOf(
+                    "net/minecraft/entity/item/EntityMinecart",
+                    "net/minecraft/entity/vehicle/MinecartEntity"
+                )
+            ) {
+                m("getMaxSpeed", "()D", "m_9076954", "getMaxSpeedForge")
+            }
+        }
     }
     defaultRemapJar = false
 }
@@ -145,7 +160,8 @@ dependencies {
         "fabricModImplementation"(fabricApi.legacyFabricModule(it, fabricVersion))
     }
 
-//    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
+    "fabricCompileOnly"(srcSetAsDep(":versions:v1_7_10", "fabric"))
+    "forgeCompileOnly"(srcSetAsDep(":versions:v1_7_10", "forge"))
     "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
 }
 

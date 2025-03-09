@@ -12,7 +12,7 @@ import dev.neuralnexus.taterlib.v1_7_10.forge.event.entity.ForgeEntityDeathEvent
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 /** Forge implementation of {@link PlayerDeathEvent}. */
@@ -31,12 +31,12 @@ public class ForgePlayerDeathEvent extends ForgeEntityDeathEvent implements Play
 
     @Override
     public Player player() {
-        return new WrappedPlayer((EntityPlayer) this.event.entity);
+        return new WrappedPlayer((PlayerEntity) this.event.entity);
     }
 
     @Override
     public String deathMessage() {
-        return this.event.source.getDeathMessage(this.event.entityLiving).getFormattedText();
+        return this.event.source.getDeathMessage(this.event.entityLiving).getFormattedString();
     }
 
     // TODO: Hook into Forge's event system somehow (probs mixin)

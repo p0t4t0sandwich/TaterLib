@@ -10,67 +10,66 @@ import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.player.EntityPlayerBridge;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedLivingEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedPlayerInventory;
 
 import io.netty.buffer.Unpooled;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.S3FPacketCustomPayload;
-import net.minecraft.util.ChatComponentText;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
+import net.minecraft.server.entity.living.player.ServerPlayerEntity;
+import net.minecraft.text.LiteralText;
 import net.minecraft.world.WorldSettings;
 
 import java.util.UUID;
 
 /** Vanilla implementation of {@link Player}. */
 public class WrappedPlayer extends WrappedLivingEntity implements Player, ServerPlayer {
-    private final EntityPlayer player;
+    private final PlayerEntity player;
 
-    public WrappedPlayer(EntityPlayer player) {
+    public WrappedPlayer(PlayerEntity player) {
         super(player);
         this.player = player;
     }
 
     @Override
-    public EntityPlayer unwrap() {
+    public PlayerEntity unwrap() {
         return this.player;
     }
 
     @Override
     public UUID uuid() {
-        return this.player.getUniqueID();
+        return this.player.getUuid();
     }
 
     @Override
     public String ipAddress() {
-        return ((EntityPlayerMP) this.player).getPlayerIP();
+        return ((ServerPlayerEntity) this.player).getIp();
     }
 
     @Override
     public String name() {
-        return ((EntityPlayerBridge) this.player).bridge$name();
+        return this.player.getName();
     }
 
     @Override
     public String displayName() {
-        return ((EntityPlayerBridge) this.player).bridge$displayName();
+        return this.player.getDisplayName().getFormattedString();
     }
 
     @Override
     public void sendMessage(String message) {
-        player.addChatMessage(new ChatComponentText(message));
+        player.sendMessage(new LiteralText(message));
     }
 
     @Override
     public void sendPacket(ResourceKey channel, byte[] data) {
-        PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
+        PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
         byteBuf.writeBytes(data);
-        ((EntityPlayerMP) this.player)
-                .playerNetServerHandler.sendPacket(
-                        new S3FPacketCustomPayload(channel.asString(), byteBuf));
+        ((ServerPlayerEntity) this.player)
+                .networkHandler.sendPacket(new CustomPayloadS2CPacket(channel.asString(), byteBuf));
     }
 
     @Override
@@ -80,47 +79,46 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
 
     @Override
     public int ping() {
-        return ((EntityPlayerMP) this.player).ping;
+        return ((ServerPlayerEntity) this.player).ping;
     }
 
     @Override
     public void kick(String message) {
-        ((EntityPlayerMP) this.player)
-                .playerNetServerHandler.onDisconnect(new ChatComponentText(message));
+        ((ServerPlayerEntity) this.player).networkHandler.onDisconnect(new LiteralText(message));
     }
 
     @Override
     public void setSpawn(Location location, boolean forced) {
-        ((EntityPlayerBridge) this.player).bridge$setSpawn(location, forced);
+        ((PlayerEntityBridge) this.player).bridge$setSpawn(location, forced);
     }
 
     @Override
     public void allowFlight(boolean allow) {
-        this.player.capabilities.allowFlying = allow;
+        this.player.abilities.canFly = allow;
     }
 
     @Override
     public boolean canFly() {
-        return this.player.capabilities.allowFlying;
+        return this.player.abilities.canFly;
     }
 
     @Override
     public boolean isFlying() {
-        return this.player.capabilities.isFlying;
+        return this.player.abilities.flying;
     }
 
     @Override
     public void setFlying(boolean flying) {
-        this.player.capabilities.isFlying = flying;
+        this.player.abilities.flying = flying;
     }
 
     @Override
     public GameMode gameMode() {
-        return ((EntityPlayerBridge) this.player).bridge$gameMode();
+        return ((PlayerEntityBridge) this.player).bridge$gameMode();
     }
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        this.player.setGameType((WorldSettings.getGameTypeById(gameMode.id())));
+        this.player.setGameMode((WorldSettings.getGameModeById(gameMode.id())));
     }
 }
