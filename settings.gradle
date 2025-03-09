@@ -76,14 +76,12 @@ include(
 //        'fabric:fabric-1.12.2',
 
         // Legacy Forge
-        'forge:forge-1.8.9',
         'forge:forge-1.9.4',
         'forge:forge-1.10.2',
         'forge:forge-1.11.2',
         'forge:forge-1.12.2',
 
         // Sponge
-        'sponge:sponge-4',
         'sponge:sponge-5',
         'sponge:sponge-6',
         'sponge:sponge-7',
