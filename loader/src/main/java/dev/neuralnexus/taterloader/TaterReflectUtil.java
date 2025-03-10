@@ -207,14 +207,12 @@ public class TaterReflectUtil {
 
     public static String sponge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
-            version = MinecraftVersions.V8_9;
-        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V10_2)) {
-            version = MinecraftVersions.V9;
+        if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V10_2)) {
+            version = MinecraftVersions.V10_2;
         } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
-            version = MinecraftVersions.V11;
+            version = MinecraftVersions.V11_2;
         } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
-            version = MinecraftVersions.V12;
+            version = MinecraftVersions.V12_2;
         } else if (mcv.isInRange(MinecraftVersions.V13, MinecraftVersions.V16_5)) {
             version = MinecraftVersions.V16_5;
         } else if (mcv.isInRange(MinecraftVersions.V17, MinecraftVersions.V18_2)) {

@@ -1,0 +1,31 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
+ */
+package dev.neuralnexus.taterlib.v1_10_2.vanilla.event.player;
+
+import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+
+import net.minecraft.entity.living.player.PlayerEntity;
+
+/** Vanilla implementation of {@link PlayerLogoutEvent}. */
+public class VanillaPlayerLogoutEvent extends VanillaPlayerEvent implements PlayerLogoutEvent {
+    private final PlayerEntity player;
+
+    public VanillaPlayerLogoutEvent(PlayerEntity player) {
+        super(player);
+        this.player = player;
+    }
+
+    // TODO: Set up logout message replacement system
+    @Override
+    public String logoutMessage() {
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    @Override
+    public void setLogoutMessage(String message) {
+        throw new VersionFeatureNotSupportedException();
+    }
+}

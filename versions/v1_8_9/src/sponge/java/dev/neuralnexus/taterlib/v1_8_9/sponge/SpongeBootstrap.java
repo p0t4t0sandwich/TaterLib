@@ -73,11 +73,11 @@ public class SpongeBootstrap {
                                         .getId());
 
         SpongeFactories.absorptionAmount =
-                event -> {
+                entity -> {
                     throw new VersionFeatureNotSupportedException();
                 };
         SpongeFactories.setAbsorptionAmount =
-                (event, amount) -> {
+                (entity, amount) -> {
                     throw new VersionFeatureNotSupportedException();
                 };
     }

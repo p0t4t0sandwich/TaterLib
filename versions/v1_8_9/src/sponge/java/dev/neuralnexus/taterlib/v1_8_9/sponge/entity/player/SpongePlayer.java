@@ -13,7 +13,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeLivingEntity;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.inventory.SpongePlayerInventory;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.item.inventory.SpongePlayerInventory;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.server.SpongeServer;
 
 import org.spongepowered.api.Sponge;

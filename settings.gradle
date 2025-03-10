@@ -17,26 +17,27 @@ plugins {
 rootProject.name = 'taterlib'
 
 include(
-        'versions:modern-utils',
-        'versions:v1_6_4',
-        'versions:v1_7_10',
-        'versions:v1_8_9',
-        'versions:v1_9_4',
-        'versions:v1_13_2',
-        'versions:v1_14_4',
-        'versions:v1_15_2',
-        'versions:v1_16_1',
-        'versions:v1_16_5',
-        'versions:v1_17_1',
-        'versions:v1_18_2',
-        'versions:v1_19',
-        'versions:v1_19_4',
-        'versions:v1_20_1',
-        'versions:v1_20_2',
-        'versions:v1_20_6',
-        'versions:v1_21_1',
-        'versions:v1_21_3',
-        'versions:v1_21_4',
+        ':versions:modern-utils',
+        ':versions:v1_6_4',
+        ':versions:v1_7_10',
+        ':versions:v1_8_9',
+        ':versions:v1_9_4',
+        ':versions:v1_10_2',
+        ':versions:v1_13_2',
+        ':versions:v1_14_4',
+        ':versions:v1_15_2',
+        ':versions:v1_16_1',
+        ':versions:v1_16_5',
+        ':versions:v1_17_1',
+        ':versions:v1_18_2',
+        ':versions:v1_19',
+        ':versions:v1_19_4',
+        ':versions:v1_20_1',
+        ':versions:v1_20_2',
+        ':versions:v1_20_6',
+        ':versions:v1_21_1',
+        ':versions:v1_21_3',
+        ':versions:v1_21_4',
 
 	    // ModAPI libraries
 	    'modapi:entrypoint-spoof',
@@ -69,17 +70,14 @@ include(
         'bungee:bungee-utils',
 
         // Legacy Fabric
-        'fabric:fabric-1.10.2',
         'fabric:fabric-1.11.2',
         'fabric:fabric-1.12.2',
 
         // Legacy Forge
-        'forge:forge-1.10.2',
         'forge:forge-1.11.2',
         'forge:forge-1.12.2',
 
         // Sponge
-        'sponge:sponge-5',
         'sponge:sponge-6',
         'sponge:sponge-7',
         'sponge:sponge-utils-legacy',
