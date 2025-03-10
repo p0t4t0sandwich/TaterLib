@@ -21,7 +21,7 @@ TaterLib and save yourself a lot of time. (which is why I started this project i
 
 There's two ways to use TaterLib, you can depend on the general API, then implement any missing features yourself on
 each platform, or if something's missing, you can start a PR with either a basic or full implementation, and we can
-improve TaterLib and save you a lot of time in the future. (a bit of a win-win)
+improve TaterLib and save you a lot of time in the future. (sounds like a win-win, right? ~~~it's not a trick I swear~~)
 
 Link to our support: [Discord](https://discord.neuralnexus.dev)
 
@@ -65,36 +65,38 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/s
 
 #### Bukkit
 
-- Spigot/Paper/etc
-- Hybrid support included
 - b1.7.3, 1.2.5, 1.6.4-1.21.4
+- Spigot/Paper/other forks
+- Fabric/Forge/NeoForge+Bukkit Hybrids
 
 #### BungeeCord
 
-- Waterfall/Travertine/etc
 - 1.4.7-1.21.4
+- Waterfall/Travertine/other forks
 
 #### Fabric
 
-- Quilt
-- Supports Kilt
 - 1.7.10-1.12.2, 1.14-1.21.4
+- Quilt
+- Kilt mod support
 - Legacy Fabric API currently doesn't support 1.13, and I don't feel like writing *that* many mixins by hand at the
   moment
 
 #### Forge
 
-- Supports Sinytra Connector
 - 1.6.4-1.21.4
+- Sinytra Connector mod
 
 #### NeoForge
 
 - 1.20.2-1.21.4
+- Sinytra Connector mod
 
 #### Sponge
 
-- SpongeForge/SpongeVanilla
-- APIs 4-11
+- APIs 4-14
+- 1.8.9-1.21.4
+- Forge/NeoForge/Vanilla (Loofah to be tested)
 
 #### Velocity
 

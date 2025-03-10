@@ -10,11 +10,10 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
 import net.minecraft.entity.living.player.PlayerEntity;
-import net.minecraft.util.math.Box;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -42,30 +41,17 @@ public class WrappedWorld implements World, Wrapped<net.minecraft.world.World> {
 
     @Override
     public ResourceKey dimension() {
-        return ResourceKey.of(this.level.dimension.getName().replace(" ", "_").toLowerCase());
+        return ((WorldBridge) this.level).bridge$dimension();
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
-        return ((List<net.minecraft.entity.Entity>)
-                        this.level.getEntities(
-                                mcEntity,
-                                mcEntity.getCollisionShape().expand(radius, radius, radius),
-                                e -> predicate.test(new WrappedEntity(e))))
-                .stream().map(WrappedEntity::new).collect(Collectors.toList());
+        return ((WorldBridge) this.level).bridge$entities(entity, radius, predicate);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Entity> entities(
             Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
-        return ((List<net.minecraft.entity.Entity>)
-                        this.level.getEntities(
-                                ((WrappedEntity) entity).unwrap(),
-                                Box.of(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),
-                                e -> predicate.test(new WrappedEntity(e))))
-                .stream().map(WrappedEntity::new).collect(Collectors.toList());
+        return ((WorldBridge) this.level).bridge$entities(entity, pos1, pos2, predicate);
     }
 }

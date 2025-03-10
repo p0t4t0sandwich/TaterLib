@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V9_4)
 @Mixin(World.class)
 class EntitySpawnMixin {
     @Inject(method = "addEntity", at = @At("HEAD"), cancellable = true)

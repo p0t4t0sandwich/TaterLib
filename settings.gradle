@@ -21,6 +21,7 @@ include(
         'versions:v1_6_4',
         'versions:v1_7_10',
         'versions:v1_8_9',
+        'versions:v1_9_4',
         'versions:v1_13_2',
         'versions:v1_14_4',
         'versions:v1_15_2',
@@ -68,15 +69,11 @@ include(
         'bungee:bungee-utils',
 
         // Legacy Fabric
-//        'fabric:fabric-1.7.10',
-//        'fabric:fabric-1.8.9',
-//        'fabric:fabric-1.9.4',
-//        'fabric:fabric-1.10.2',
-//        'fabric:fabric-1.11.2',
-//        'fabric:fabric-1.12.2',
+        'fabric:fabric-1.10.2',
+        'fabric:fabric-1.11.2',
+        'fabric:fabric-1.12.2',
 
         // Legacy Forge
-        'forge:forge-1.9.4',
         'forge:forge-1.10.2',
         'forge:forge-1.11.2',
         'forge:forge-1.12.2',

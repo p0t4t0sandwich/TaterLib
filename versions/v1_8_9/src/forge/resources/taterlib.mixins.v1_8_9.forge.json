@@ -11,7 +11,8 @@
     "v1_7_10.forge.api.minecraft.resource.ResourceLocationAPI",
     "v1_8_9.forge.api.minecraft.server.MinecraftServerAPI",
     "v1_8_9.forge.core.entity.EntityMixin",
-    "v1_8_9.forge.core.entity.living.player.PlayerEntityMixin"
+    "v1_8_9.forge.core.entity.living.player.PlayerEntityMixin",
+    "v1_8_9.forge.core.world.WorldMixin"
   ],
   "server": [],
   "client": []

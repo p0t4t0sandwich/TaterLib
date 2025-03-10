@@ -8,7 +8,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.command.LegacyCommandWrapper;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.command.CommandWrapper;
 
 /** Forge implementation of {@link CommandRegisterEvent}. */
 public class ForgeCommandRegisterEvent implements CommandRegisterEvent {
@@ -20,6 +20,6 @@ public class ForgeCommandRegisterEvent implements CommandRegisterEvent {
 
     @Override
     public void registerCommand(Command command, String... aliases) {
-        event.registerServerCommand(new LegacyCommandWrapper(command, aliases));
+        event.registerServerCommand(new CommandWrapper(command, aliases));
     }
 }

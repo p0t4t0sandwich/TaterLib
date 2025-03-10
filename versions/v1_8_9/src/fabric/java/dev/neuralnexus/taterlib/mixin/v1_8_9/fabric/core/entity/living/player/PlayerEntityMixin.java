@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V8_9)
+@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V9_4)
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Shadow

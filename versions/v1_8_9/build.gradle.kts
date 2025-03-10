@@ -47,8 +47,6 @@ configurations {
 unimined.minecraft {
     version(minecraftVersion)
     mappings {
-//        searge()
-//        mcp(mappingsChannel, mappingsVersion)
         calamus()
         feather(28)
 

@@ -11,6 +11,7 @@
     "v1_8_9.fabric.api.minecraft.server.MinecraftServerAPI",
     "v1_8_9.fabric.core.entity.EntityMixin",
     "v1_8_9.fabric.core.entity.living.player.PlayerEntityMixin",
+    "v1_8_9.fabric.core.world.WorldMixin",
     "v1_8_9.fabric.listeners.block.PlayerBlockBreakMixin"
   ],
   "server": [],

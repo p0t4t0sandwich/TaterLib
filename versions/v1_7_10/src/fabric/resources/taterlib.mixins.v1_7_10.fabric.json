@@ -8,10 +8,11 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_7_10.fabric.api.minecraft.server.MinecraftServerAPI",
     "v1_7_10.fabric.api.minecraft.resource.ResourceLocationAPI",
+    "v1_7_10.fabric.api.minecraft.server.MinecraftServerAPI",
     "v1_7_10.fabric.core.entity.EntityMixin",
     "v1_7_10.fabric.core.entity.living.player.PlayerEntityMixin",
+    "v1_7_10.fabric.core.world.WorldMixin",
     "v1_7_10.fabric.listeners.block.PlayerBlockBreakMixin",
     "v1_7_10.fabric.listeners.entity.EntityDamageMixin",
     "v1_7_10.fabric.listeners.entity.EntityDeathMixin",
