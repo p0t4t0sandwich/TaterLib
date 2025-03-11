@@ -136,6 +136,7 @@ ext.bundleJars = { Map<String, List<String>> platformVersions ->
             file("./versions/v1_9_4/build/libs/${project_id}-1.9.4-${version}.jar"),
             file("./versions/v1_10_2/build/libs/${project_id}-1.10.2-${version}.jar"),
             file("./versions/v1_11_2/build/libs/${project_id}-1.11.2-${version}.jar"),
+            file("./versions/v1_12_2/build/libs/${project_id}-1.12.2-${version}.jar"),
             file("./versions/modern-utils/build/libs/${project_id}-modern-utils-${version}.jar"),
             file("./versions/v1_13_2/build/libs/${project_id}-1.13.2-${version}.jar"),
             file("./versions/v1_14_4/build/libs/${project_id}-1.14.4-${version}.jar"),
@@ -179,9 +180,6 @@ var platformVersions = [:]
 platformVersions.put("bukkit", Arrays.asList(
         "utils", "b1.7.3", "1.2.5", "1.6.4", "1.7.10", "1.8.8", "1.13.2", "1.15.2", "1.20"))
 platformVersions.put("bungee", Arrays.asList("utils", "1.4.7", "1.8", "1.12", "1.20"))
-platformVersions.put("fabric", Arrays.asList("1.12.2"))
-platformVersions.put("forge", Arrays.asList("1.12.2"))
-platformVersions.put("sponge", Arrays.asList("utils-legacy", "7"))
 platformVersions.put("velocity", Arrays.asList("3"))
 
 // --------------------------- Fun Helper Task --------------------------------

@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
+import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
@@ -30,6 +31,9 @@ public class SpongeFactories {
     // Living
     public static AbsorptionAmount absorptionAmount = event -> 0;
     public static SetAbsorptionAmount setAbsorptionAmount = (event, amount) -> {};
+    //  DestructEntityEvent.Death
+    public static KeepInventory keepInventory = event -> false;
+    public static SetKeepInventory setKeepInventory = (event, keepInventory) -> {};
 
     @FunctionalInterface
     public interface BlockFromEvent {
@@ -81,5 +85,15 @@ public class SpongeFactories {
     @FunctionalInterface
     public interface SetAbsorptionAmount {
         void set(Living entity, double amount);
+    }
+
+    @FunctionalInterface
+    public interface KeepInventory {
+        boolean get(DestructEntityEvent.Death event);
+    }
+
+    @FunctionalInterface
+    public interface SetKeepInventory {
+        void set(DestructEntityEvent.Death event, boolean keepInventory);
     }
 }

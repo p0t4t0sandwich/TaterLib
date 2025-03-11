@@ -24,6 +24,7 @@ include(
         ':versions:v1_9_4',
         ':versions:v1_10_2',
         ':versions:v1_11_2',
+        ':versions:v1_12_2',
         ':versions:v1_13_2',
         ':versions:v1_14_4',
         ':versions:v1_15_2',
@@ -69,16 +70,6 @@ include(
         'bungee:bungee-1.12',
         'bungee:bungee-1.20',
         'bungee:bungee-utils',
-
-        // Legacy Fabric
-        'fabric:fabric-1.12.2',
-
-        // Legacy Forge
-        'forge:forge-1.12.2',
-
-        // Sponge
-        'sponge:sponge-7',
-        'sponge:sponge-utils-legacy',
 
         // Velocity
         'velocity:velocity-3'

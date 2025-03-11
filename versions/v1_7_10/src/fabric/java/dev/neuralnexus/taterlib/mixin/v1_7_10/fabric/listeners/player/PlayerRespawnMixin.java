@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V11_2)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2)
 @Mixin(PlayerManager.class)
 public class PlayerRespawnMixin {
     @Inject(method = "respawn", at = @At("HEAD"))

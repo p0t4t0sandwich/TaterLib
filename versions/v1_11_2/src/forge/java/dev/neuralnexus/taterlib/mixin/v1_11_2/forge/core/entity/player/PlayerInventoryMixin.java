@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V11_2)
+@ReqMCVersion(min = MinecraftVersion.V11, max = MinecraftVersion.V12_2)
 @Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin implements PlayerInventoryBridge {
     @Final @Shadow public DefaultedList<net.minecraft.item.ItemStack> armorSlots;

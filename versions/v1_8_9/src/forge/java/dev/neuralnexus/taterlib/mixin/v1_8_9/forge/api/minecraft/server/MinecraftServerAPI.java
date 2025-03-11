@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V11_2)
+@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V12_2)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))
 public abstract class MinecraftServerAPI {

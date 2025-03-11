@@ -80,5 +80,14 @@ public class SpongeBootstrap {
                 (entity, amount) -> {
                     throw new VersionFeatureNotSupportedException();
                 };
+
+        SpongeFactories.keepInventory =
+                event -> {
+                    throw new VersionFeatureNotSupportedException();
+                };
+        SpongeFactories.setKeepInventory =
+                (event, keepInventory) -> {
+                    throw new VersionFeatureNotSupportedException();
+                };
     }
 }

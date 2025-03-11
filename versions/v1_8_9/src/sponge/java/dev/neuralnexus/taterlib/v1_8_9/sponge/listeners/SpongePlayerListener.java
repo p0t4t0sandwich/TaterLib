@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_8_9.sponge.listeners;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.event.player.SpongePlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.event.player.SpongePlayerDeathEvent;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.event.player.SpongePlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.event.player.SpongePlayerLogoutEvent;
@@ -14,7 +13,6 @@ import dev.neuralnexus.taterlib.v1_8_9.sponge.event.player.SpongePlayerRespawnEv
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
-import org.spongepowered.api.event.achievement.GrantAchievementEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.entity.living.humanoid.player.RespawnPlayerEvent;
 import org.spongepowered.api.event.filter.cause.All;
@@ -23,19 +21,6 @@ import org.spongepowered.api.event.network.ClientConnectionEvent;
 
 /** Listens to player events. */
 public class SpongePlayerListener {
-    /**
-     * Called when a player progresses in an advancement.
-     *
-     * @param event The event.
-     */
-    @Listener
-    public void onPlayerAdvancement(GrantAchievementEvent.TargetPlayer event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                new SpongePlayerAdvancementEvent.AdvancementFinished(event));
-        PlayerEvents.ADVANCEMENT_PROGRESS.invoke(
-                new SpongePlayerAdvancementEvent.AdvancementProgress(event));
-    }
-
     /**
      * Called when a player dies.
      *

@@ -57,7 +57,6 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppedEvent;
 import net.minecraftforge.fml.event.server.FMLServerStoppingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 @SuppressWarnings("unused")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
@@ -95,7 +94,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                 new ForgePlayerAdvancementEvent.AdvancementProgress(event));
 
                         // Get the player's advancement progress
-                        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+                        MinecraftServer server = (MinecraftServer) MetaAPI.instance().server();
                         PlayerAdvancements playerAdvancements =
                                 server.getPlayerList()
                                         .getPlayerAdvancements((EntityPlayerMP) event.getEntity());

@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_9_4.forge.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerMessageEvent;
@@ -16,25 +15,12 @@ import dev.neuralnexus.taterlib.v1_9_4.forge.event.player.ForgePlayerDeathEvent;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.player.AchievementEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 
 /** Listens for player events. */
 public class ForgePlayerListener {
-    /**
-     * Called when a player finishes/progresses in an advancement.
-     *
-     * @param event The advancement event
-     */
-    @SubscribeEvent
-    public void onPlayerAdvancement(AchievementEvent event) {
-        PlayerEvents.ADVANCEMENT_FINISHED.invoke(
-                new VanillaPlayerAdvancementEvent.AdvancementFinished(
-                        event.getEntityPlayer(), event.getAchievement()));
-    }
-
     /**
      * Called when a player dies.
      *

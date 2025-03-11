@@ -4,75 +4,48 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.sponge.event.player;
 
-import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.player.PlayerDeathEvent;
-import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.event.entity.SpongeEntityDeathEvent;
 
 import org.spongepowered.api.event.entity.DestructEntityEvent;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.spongepowered.api.text.Text;
 
 /** Sponge implementation of {@link PlayerDeathEvent}. */
-public class SpongePlayerDeathEvent implements PlayerDeathEvent {
+public class SpongePlayerDeathEvent extends SpongeEntityDeathEvent implements PlayerDeathEvent {
     private final DestructEntityEvent.Death event;
-    private String deathMessage = "";
 
     public SpongePlayerDeathEvent(DestructEntityEvent.Death event) {
+        super(event);
         this.event = event;
-    }
-
-    @Override
-    public List<ItemStack> drops() {
-        return new ArrayList<>();
-    }
-
-    @Override
-    public void setDrops(List<ItemStack> drops) {}
-
-    @Override
-    public void clearDrops() {}
-
-    @Override
-    public int droppedExp() {
-        return 0;
-    }
-
-    @Override
-    public void setDroppedExp(int exp) {}
-
-    @Override
-    public Entity entity() {
-        return new SpongeEntity(event.getTargetEntity());
     }
 
     @Override
     public Player player() {
         return new SpongePlayer(
-                (org.spongepowered.api.entity.living.player.Player) event.getTargetEntity());
+                (org.spongepowered.api.entity.living.player.Player) this.event.getTargetEntity());
     }
 
     @Override
     public String deathMessage() {
-        if (!this.deathMessage.isEmpty()) {
-            return this.deathMessage;
-        }
-        return event.getMessage().toPlain();
+        return this.event.getMessage().toPlain();
     }
 
     @Override
     public void setDeathMessage(String deathMessage) {
-        this.deathMessage = deathMessage;
+        this.event.setMessage(Text.of(deathMessage));
     }
 
+    // TODO: Prefer Sponge's Death Event when possible
     @Override
     public boolean keepInventory() {
-        return false;
+        return SpongeFactories.keepInventory.get(this.event);
     }
 
     @Override
-    public void setKeepInventory(boolean keepInventory) {}
+    public void setKeepInventory(boolean keepInventory) {
+        SpongeFactories.setKeepInventory.set(this.event, keepInventory);
+    }
 }
