@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.item.ItemTypes;
 import org.spongepowered.api.text.Text;
 
 import java.util.ArrayList;
@@ -21,16 +21,8 @@ public class SpongeItemStack
         implements ItemStack, Wrapped<org.spongepowered.api.item.inventory.ItemStack> {
     private final org.spongepowered.api.item.inventory.ItemStack itemStack;
 
-    /**
-     * Constructor.
-     *
-     * @param itemStack The Sponge item stack.
-     */
     public SpongeItemStack(org.spongepowered.api.item.inventory.ItemStack itemStack) {
-        this.itemStack =
-                itemStack == null
-                        ? org.spongepowered.api.item.inventory.ItemStack.of(ItemTypes.STONE, 0)
-                        : itemStack;
+        this.itemStack = itemStack == null ? SpongeFactories.nilItemStack.get() : itemStack;
     }
 
     @Override

@@ -4,13 +4,11 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory;
 
-import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.player.PlayerInventoryBridge;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /** Vanilla implementation of {@link PlayerInventory}. */
 public class WrappedPlayerInventory extends WrappedInventory implements PlayerInventory {
@@ -28,26 +26,22 @@ public class WrappedPlayerInventory extends WrappedInventory implements PlayerIn
 
     @Override
     public List<ItemStack> armor() {
-        return Arrays.stream(this.playerInventory.armorSlots)
-                .map(WrappedItemStack::new)
-                .collect(Collectors.toList());
+        return ((PlayerInventoryBridge) this.playerInventory).bridge$armor();
     }
 
     @Override
     public void setArmor(List<ItemStack> armor) {
-        for (int i = 0; i < this.playerInventory.armorSlots.length; i++) {
-            this.playerInventory.armorSlots[i] = ((WrappedItemStack) armor.get(i)).unwrap();
-        }
+        ((PlayerInventoryBridge) this.playerInventory).bridge$setArmor(armor);
     }
 
     @Override
     public ItemStack offhand() {
-        throw new VersionFeatureNotSupportedException();
+        return ((PlayerInventoryBridge) this.playerInventory).bridge$offhand();
     }
 
     @Override
     public void setOffhand(ItemStack offhand) {
-        throw new VersionFeatureNotSupportedException();
+        ((PlayerInventoryBridge) this.playerInventory).bridge$setOffhand(offhand);
     }
 
     @Override

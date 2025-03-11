@@ -21,7 +21,6 @@ import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
-import net.minecraft.world.WorldSettings;
 
 import java.util.UUID;
 
@@ -119,6 +118,6 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
 
     @Override
     public void setGameMode(GameMode gameMode) {
-        this.player.setGameMode((WorldSettings.getGameModeById(gameMode.id())));
+        ((PlayerEntityBridge) this.player).bridge$setGameMode(gameMode);
     }
 }

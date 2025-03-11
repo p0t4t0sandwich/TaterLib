@@ -16,13 +16,16 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.Play
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
 import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.server.ServerPlayerInteractionManager;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldSettings;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.lang.reflect.Method;
 import java.util.Optional;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
@@ -70,5 +73,24 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
                     .error("Failed to get game mode for player " + this.shadow$getName(), e);
         }
         return GameMode.SURVIVAL;
+    }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public void bridge$setGameMode(GameMode gameMode) {
+        // Reflect to access ItemInWorldManager#setGameType because GameType is private
+        // TODO: Seems fine on Fabric for some odd reason
+        try {
+            Class<?> GameType = Class.forName("net.minecraft.world.WorldSettings$GameType");
+            Object gameType = WorldSettings.getGameModeById(gameMode.id());
+            ServerPlayerInteractionManager interactionManager =
+                    ((ServerPlayerEntity) (Object) this).interactionManager;
+            Method setGameMode =
+                    interactionManager.getClass().getDeclaredMethod("func_73076_a", GameType);
+            setGameMode.invoke(interactionManager, gameType);
+        } catch (Exception e) {
+            TaterAPI.logger()
+                    .error("Failed to set game mode for player " + this.shadow$getName(), e);
+        }
     }
 }

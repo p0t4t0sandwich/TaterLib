@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.item.ItemStackBridge;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,13 +34,15 @@ public class WrappedItemStack implements ItemStack, Wrapped<net.minecraft.item.I
     }
 
     @Override
+    @SuppressWarnings("DataFlowIssue")
     public int count() {
-        return this.itemStack.size;
+        return ((ItemStackBridge) (Object) this.itemStack).bridge$size();
     }
 
     @Override
+    @SuppressWarnings("DataFlowIssue")
     public void setCount(int count) {
-        this.itemStack.size = count;
+        ((ItemStackBridge) (Object) this.itemStack).bridge$setSize(count);
     }
 
     @Override

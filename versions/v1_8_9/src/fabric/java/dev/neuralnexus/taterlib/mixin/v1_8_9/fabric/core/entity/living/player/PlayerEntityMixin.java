@@ -40,4 +40,11 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
                 ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
         return GameMode.fromName(gameType.getId());
     }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public void bridge$setGameMode(GameMode gameMode) {
+        ((ServerPlayerEntity) (Object) this)
+                .interactionManager.setGameMode(WorldSettings.getGameModeById(gameMode.id()));
+    }
 }

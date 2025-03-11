@@ -9,6 +9,7 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_9_4.fabric.core.entity.EntityMixin",
+    "v1_9_4.fabric.core.entity.player.PlayerInventoryMixin",
     "v1_9_4.fabric.core.world.WorldMixin",
     "v1_9_4.fabric.listeners.block.PlayerBlockBreakMixin"
   ],

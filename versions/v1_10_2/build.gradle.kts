@@ -95,6 +95,8 @@ tasks.register<ShadowJar>("relocateFabricJar") {
         exclude("dev/neuralnexus/taterlib/mixin/v1_10_2/vanilla/**")
     }
     relocate("dev.neuralnexus.taterlib.v1_7_10.vanilla", "dev.neuralnexus.taterlib.v1_7_10.l_intmdry")
+    relocate("dev.neuralnexus.taterlib.v1_8_9.vanilla", "dev.neuralnexus.taterlib.v1_8_9.l_intmdry")
+    relocate("dev.neuralnexus.taterlib.v1_9_4.vanilla", "dev.neuralnexus.taterlib.v1_9_4.l_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_10_2.vanilla", "dev.neuralnexus.taterlib.v1_10_2.l_intmdry")
 }
 
@@ -123,6 +125,8 @@ tasks.register<ShadowJar>("relocateForgeJar") {
         exclude("dev/neuralnexus/taterlib/mixin/v1_10_2/vanilla/**")
     }
     relocate("dev.neuralnexus.taterlib.v1_7_10.vanilla", "dev.neuralnexus.taterlib.v1_7_10.l_searge")
+    relocate("dev.neuralnexus.taterlib.v1_8_9.vanilla", "dev.neuralnexus.taterlib.v1_8_9.l_searge")
+    relocate("dev.neuralnexus.taterlib.v1_9_4.vanilla", "dev.neuralnexus.taterlib.v1_9_4.l_searge")
     relocate("dev.neuralnexus.taterlib.v1_10_2.vanilla", "dev.neuralnexus.taterlib.v1_10_2.l_searge")
 }
 
@@ -163,9 +167,11 @@ dependencies {
     // Because gradle does things alphabetically. I hate this
     evaluationDependsOn(":versions:v1_7_10")
     evaluationDependsOn(":versions:v1_8_9")
+    evaluationDependsOn(":versions:v1_9_4")
 
     "fabricCompileOnly"(srcSetAsDep(":versions:v1_7_10", "fabric"))
     "forgeCompileOnly"(srcSetAsDep(":versions:v1_8_9", "forge"))
+    "forgeCompileOnly"(srcSetAsDep(":versions:v1_9_4", "forge"))
     "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
     "spongeCompileOnly"(srcSetAsDep(":versions:v1_8_9", "sponge"))
 }

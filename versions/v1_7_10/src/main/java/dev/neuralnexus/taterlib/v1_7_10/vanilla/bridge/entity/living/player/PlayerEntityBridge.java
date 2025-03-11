@@ -11,4 +11,6 @@ public interface PlayerEntityBridge {
     void bridge$setSpawn(Location location, boolean forced);
 
     GameMode bridge$gameMode();
+
+    void bridge$setGameMode(GameMode gameMode);
 }

@@ -120,13 +120,7 @@ public class TaterReflectUtil {
 
     public static String fabric(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V8_9)) {
-            version = MinecraftVersions.V8_9;
-        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V9_4)) {
-            version = MinecraftVersions.V9_4;
-        } else if (mcv.isInRange(MinecraftVersions.V10, MinecraftVersions.V10_2)) {
-            version = MinecraftVersions.V10_2;
-        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+        if (mcv.isInRange(MinecraftVersions.V7_2, MinecraftVersions.V11_2)) {
             version = MinecraftVersions.V11_2;
         } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
             version = MinecraftVersions.V12_2;
@@ -158,11 +152,7 @@ public class TaterReflectUtil {
             version = MinecraftVersions.V7_10;
         } else if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V8_9)) {
             version = MinecraftVersions.V8_9;
-        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V9_4)) {
-            version = MinecraftVersions.V9_4;
-        } else if (mcv.isInRange(MinecraftVersions.V10, MinecraftVersions.V10_2)) {
-            version = MinecraftVersions.V10_2;
-        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+        } else if (mcv.isInRange(MinecraftVersions.V9, MinecraftVersions.V11_2)) {
             version = MinecraftVersions.V11_2;
         } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
             version = MinecraftVersions.V12_2;
@@ -207,9 +197,7 @@ public class TaterReflectUtil {
 
     public static String sponge(MinecraftVersion mcv) {
         MinecraftVersion version;
-        if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V10_2)) {
-            version = MinecraftVersions.V10_2;
-        } else if (mcv.isInRange(MinecraftVersions.V11, MinecraftVersions.V11_2)) {
+        if (mcv.isInRange(MinecraftVersions.V8, MinecraftVersions.V11_2)) {
             version = MinecraftVersions.V11_2;
         } else if (mcv.isInRange(MinecraftVersions.V12, MinecraftVersions.V12_2)) {
             version = MinecraftVersions.V12_2;

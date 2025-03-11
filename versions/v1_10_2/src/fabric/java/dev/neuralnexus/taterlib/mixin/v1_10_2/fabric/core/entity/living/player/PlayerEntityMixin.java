@@ -15,12 +15,13 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.Play
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldSettings;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V9_4)
+@ReqMCVersion(min = MinecraftVersion.V10, max = MinecraftVersion.V11_2)
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Shadow
@@ -35,11 +36,15 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Override
     @SuppressWarnings("DataFlowIssue")
     public GameMode bridge$gameMode() {
-        //        WorldSettings.GameMode gameType =
-        //                ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
-        //        return GameMode.fromName(gameType.getId());
         net.minecraft.world.GameMode gameType =
                 ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
         return GameMode.fromName(gameType.getKey());
+    }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public void bridge$setGameMode(GameMode gameMode) {
+        ((ServerPlayerEntity) (Object) this)
+                .interactionManager.setGameMode(WorldSettings.getGameMode(gameMode.id()));
     }
 }

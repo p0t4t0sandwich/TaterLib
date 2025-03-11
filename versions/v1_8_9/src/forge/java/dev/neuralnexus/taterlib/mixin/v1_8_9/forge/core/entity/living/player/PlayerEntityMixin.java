@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V8_9)
+@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V9_4)
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Shadow
@@ -54,5 +54,12 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
         WorldSettings.GameMode gameType =
                 ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
         return GameMode.fromName(gameType.getId());
+    }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public void bridge$setGameMode(GameMode gameMode) {
+        ((ServerPlayerEntity) (Object) this)
+                .interactionManager.setGameMode(WorldSettings.getGameModeById(gameMode.id()));
     }
 }

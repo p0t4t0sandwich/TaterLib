@@ -11,13 +11,14 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_10_2.vanilla.world.WrappedServerWorld;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
 import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldSettings;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -25,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V9_4)
+@ReqMCVersion(min = MinecraftVersion.V10, max = MinecraftVersion.V11_2)
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Shadow
@@ -50,11 +51,15 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Override
     @SuppressWarnings("DataFlowIssue")
     public GameMode bridge$gameMode() {
-        //        WorldSettings.GameMode gameType =
-        //                ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
-        //        return GameMode.fromName(gameType.getId());
         net.minecraft.world.GameMode gameType =
                 ((ServerPlayerEntity) (Object) this).interactionManager.getGameMode();
         return GameMode.fromName(gameType.getKey());
+    }
+
+    @Override
+    @SuppressWarnings("DataFlowIssue")
+    public void bridge$setGameMode(GameMode gameMode) {
+        ((ServerPlayerEntity) (Object) this)
+                .interactionManager.setGameMode(WorldSettings.getGameMode(gameMode.id()));
     }
 }

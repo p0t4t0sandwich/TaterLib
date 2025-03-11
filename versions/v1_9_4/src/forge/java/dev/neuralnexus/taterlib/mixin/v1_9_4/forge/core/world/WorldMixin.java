@@ -27,7 +27,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V9_4)
+@ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V11_2)
 @Mixin(World.class)
 public abstract class WorldMixin implements WorldBridge {
     @Shadow @Final public Dimension dimension;

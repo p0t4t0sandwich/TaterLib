@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V9_4)
+@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V11_2)
 @Mixin(LivingEntity.class)
 class EntityDeathMixin {
     @Inject(method = "onKilled", at = @At("HEAD"))
