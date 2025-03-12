@@ -1022,6 +1022,17 @@ public final class MetaStore {
         dataCache.put("1.21.4-rc2", new Integer[] {0x400000e3, 0b11, 0b100, 0x105a, 0x2e, 0x3d});
         dataCache.put("1.21.4-rc3", new Integer[] {0x400000e4, 0b11, 0b100, 0x105c, 0x2e, 0x3d});
         dataCache.put("1.21.4", new Integer[] {0x301, 0b11, 0b101, 0x105d, 0x2e, 0x3d});
+        dataCache.put("25w02a", new Integer[] {0x400000e5, 0b11, 0b001, 0x10ca, 0x2f, 0x3e});
+        dataCache.put("25w03a", new Integer[] {0x400000e6, 0b11, 0b001, 0x10d0, 0x30, 0x3f});
+        dataCache.put("25w04a", new Integer[] {0x400000e7, 0b11, 0b001, 0x10d4, 0x31, 0x40});
+        dataCache.put("25w05a", new Integer[] {0x400000e8, 0b11, 0b001, 0x10d6, 0x32, 0x41});
+        dataCache.put("25w06a", new Integer[] {0x400000e9, 0b11, 0b001, 0x10d9, 0x33, 0x42});
+        dataCache.put("25w07a", new Integer[] {0x400000ea, 0b11, 0b001, 0x10db, 0x34, 0x43});
+        dataCache.put("25w08a", new Integer[] {0x400000eb, 0b11, 0b001, 0x10dc, 0x35, 0x44});
+        dataCache.put("25w09a", new Integer[] {0x400000ec, 0b11, 0b001, 0x10dd, 0x35, 0x45});
+        dataCache.put("25w09b", new Integer[] {0x400000ed, 0b11, 0b001, 0x10de, 0x35, 0x45});
+        dataCache.put("25w10a", new Integer[] {0x400000ee, 0b11, 0b001, 0x10df, 0x36, 0x46});
+        dataCache.put("1.21.5-pre1", new Integer[] {0x400000ef, 0b11, 0b011, 0x10e0, 0x37, 0x46});
     }
 
     /**

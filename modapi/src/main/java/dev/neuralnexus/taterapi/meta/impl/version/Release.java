@@ -6,6 +6,9 @@ package dev.neuralnexus.taterapi.meta.impl.version;
 
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 
+/**
+ * Data scraped from <a href="https://github.com/NeuralNexusDev/Snowman/commits/dev/src/main/java/net/minecraft/SharedConstants.java">SharedConstants.java</a>
+ */
 @SuppressWarnings("unused")
 public interface Release {
     MinecraftVersion V0 = MinecraftVersionImpl.of("1.0.0");
@@ -828,4 +831,17 @@ public interface Release {
     MinecraftVersion V21_4_RC2 = MinecraftVersionImpl.of("1.21.4-rc2");
     MinecraftVersion V21_4_RC3 = MinecraftVersionImpl.of("1.21.4-rc3");
     MinecraftVersion V21_4 = MinecraftVersionImpl.of("1.21.4");
+    MinecraftVersion V25W02A = MinecraftVersionImpl.of("25w02a");
+    MinecraftVersion V25W03A = MinecraftVersionImpl.of("25w03a");
+    MinecraftVersion V25W04A = MinecraftVersionImpl.of("25w04a");
+    MinecraftVersion V25W05A = MinecraftVersionImpl.of("25w05a");
+    MinecraftVersion V25W06A = MinecraftVersionImpl.of("25w06a");
+    MinecraftVersion V25W07A = MinecraftVersionImpl.of("25w07a");
+    MinecraftVersion V25W08A = MinecraftVersionImpl.of("25w08a");
+    MinecraftVersion V25W09A = MinecraftVersionImpl.of("25w09a");
+    MinecraftVersion V25W09B = MinecraftVersionImpl.of("25w09b");
+    MinecraftVersion V25W10A = MinecraftVersionImpl.of("25w10a");
+    MinecraftVersion V21_5_PRE1 = MinecraftVersionImpl.of("1.21.5-pre1");
+    // TODO: More
+    MinecraftVersion V21_5 = MinecraftVersionImpl.of("1.21.5");
 }
