@@ -50,7 +50,12 @@ final class FMLLoaderMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        return WMinecraft.determineSide(FMLLoader.getDist().isClient());
+        return WMinecraft.determineSide(this.isClient());
+    }
+
+    @Override
+    public boolean isClient() {
+        return FMLLoader.getDist().isClient();
     }
 
     @Override

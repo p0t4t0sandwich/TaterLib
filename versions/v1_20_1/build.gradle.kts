@@ -73,8 +73,9 @@ tasks.register<ShadowJar>("relocateFabricJar") {
     from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric")
     dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_20/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/mixin/v1_20_1/vanilla/**")
     }
+    relocate("dev.neuralnexus.taterlib.v1_20_1.vanilla", "dev.neuralnexus.taterlib.v1_20_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
 }
@@ -101,8 +102,9 @@ tasks.register<ShadowJar>("relocateForgeJar") {
     from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge")
     dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_20/vanilla/**")
+        exclude("dev/neuralnexus/taterlib/mixin/v1_20_1/vanilla/**")
     }
+    relocate("dev.neuralnexus.taterlib.v1_20_1.vanilla", "dev.neuralnexus.taterlib.v1_20_1.searge")
     relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
 }

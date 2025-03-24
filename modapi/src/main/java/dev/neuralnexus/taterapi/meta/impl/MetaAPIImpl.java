@@ -4,6 +4,8 @@
  */
 package dev.neuralnexus.taterapi.meta.impl;
 
+import static dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil.checkForClass;
+
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.SystemLogger;
 import dev.neuralnexus.taterapi.meta.Mappings;
@@ -21,7 +23,6 @@ import dev.neuralnexus.taterapi.meta.impl.platform.meta.VelocityMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.bukkit.BukkitMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.forge.ForgeData;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.sponge.SpongeData;
-import dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil;
 import dev.neuralnexus.taterapi.reflecto.MappingEntry;
 import dev.neuralnexus.taterapi.reflecto.Reflecto;
 
@@ -33,9 +34,12 @@ import java.util.Optional;
 
 /** Class implementing the metadata cache and other useful shortcuts. */
 public final class MetaAPIImpl implements MetaAPI {
-    private static final MetaAPIImpl INSTANCE = new MetaAPIImpl();
+    private static MetaAPIImpl INSTANCE;
 
     public static MetaAPIImpl getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new MetaAPIImpl();
+        }
         return INSTANCE;
     }
 
@@ -43,60 +47,68 @@ public final class MetaAPIImpl implements MetaAPI {
 
     static Reflecto.MappingStore store;
 
-    private MetaAPIImpl() {
+    private MetaAPIImpl() {}
+
+    private void initReflection() {
         // Don't reflect on proxies or in server-only environments
         if (!Platforms.get().isEmpty() // Avoids errors in unit tests
                 && !this.isProxy()
                 && !this.isPlatformPresent(Platforms.BUKKIT)) {
             store = Reflecto.instance().getStore(this);
-            var minecraft =
-                    MappingEntry.builder("Minecraft")
-                            .official("net.minecraft.client.Minecraft")
-                            .mojang("net.minecraft.client.Minecraft")
-                            .searge("net.minecraft.client.Minecraft")
-                            .legacySearge("net.minecraft.client.Minecraft")
-                            .mcp("net.minecraft.client.Minecraft")
-                            .yarnIntermediary("net.minecraft.class_310")
-                            .legacyIntermediary("net.minecraft.class_1600");
 
-            var minecraft_getInstance =
-                    MappingEntry.builder("getInstance")
-                            .parentEntry(minecraft)
-                            .mojang("getInstance")
-                            .searge("m_91087_")
-                            .legacySearge("func_71410_x")
-                            .mcp("getInstance")
-                            .mcp("getMinecraft", MinecraftVersions.UNKNOWN, MinecraftVersions.V12_2)
-                            .yarnIntermediary("method_1551")
-                            .legacyIntermediary("method_2965");
+            if (this.isClient()) {
+                var minecraft =
+                        MappingEntry.builder("Minecraft")
+                                .official("net.minecraft.client.Minecraft")
+                                .mojang("net.minecraft.client.Minecraft")
+                                .searge("net.minecraft.client.Minecraft")
+                                .legacySearge("net.minecraft.client.Minecraft")
+                                .mcp("net.minecraft.client.Minecraft")
+                                .yarnIntermediary("net.minecraft.class_310")
+                                .legacyIntermediary("net.minecraft.class_1600");
 
-            var minecraft_hasServer =
-                    MappingEntry.builder("hasServer")
-                            .parentEntry(minecraft)
-                            .mojang("hasSingleplayerServer")
-                            .searge("m_91091_")
-                            .legacySearge("func_71356_B")
-                            .mcp("isSingleplayer")
-                            .yarnIntermediary("method_1496")
-                            .legacyIntermediary("method_2908");
+                var minecraft_getInstance =
+                        MappingEntry.builder("getInstance")
+                                .parentEntry(minecraft)
+                                .mojang("getInstance")
+                                .searge("m_91087_")
+                                .legacySearge("func_71410_x")
+                                .mcp("getInstance")
+                                .mcp(
+                                        "getMinecraft",
+                                        MinecraftVersions.UNKNOWN,
+                                        MinecraftVersions.V12_2)
+                                .yarnIntermediary("method_1551")
+                                .legacyIntermediary("method_2965");
 
-            var minecraft_getServer =
-                    MappingEntry.builder("getServer")
-                            .parentEntry(minecraft)
-                            .official("getSinglePlayerServer")
-                            .mojang("getSinglePlayerServer")
-                            .searge("m_91092_")
-                            .legacySearge("func_71401_C")
-                            .mcp("getIntegratedServer")
-                            .yarnIntermediary("method_1576")
-                            .legacyIntermediary("method_2909");
+                var minecraft_hasServer =
+                        MappingEntry.builder("hasServer")
+                                .parentEntry(minecraft)
+                                .mojang("hasSingleplayerServer")
+                                .searge("m_91091_")
+                                .legacySearge("func_71356_B")
+                                .mcp("isSingleplayer")
+                                .yarnIntermediary("method_1496")
+                                .legacyIntermediary("method_2908");
 
-            store.registerClass(minecraft)
-                    .registerMethod(minecraft_getInstance)
-                    .registerMethod(minecraft_hasServer)
-                    .registerMethod(minecraft_getServer);
+                var minecraft_getServer =
+                        MappingEntry.builder("getServer")
+                                .parentEntry(minecraft)
+                                .official("getSinglePlayerServer")
+                                .mojang("getSinglePlayerServer")
+                                .searge("m_91092_")
+                                .legacySearge("func_71401_C")
+                                .mcp("getIntegratedServer")
+                                .yarnIntermediary("method_1576")
+                                .legacyIntermediary("method_2909");
 
-            Logger logger = new SystemLogger("MetaAPIImpl");
+                store.registerClass(minecraft)
+                        .registerMethod(minecraft_getInstance)
+                        .registerMethod(minecraft_hasServer)
+                        .registerMethod(minecraft_getServer);
+            }
+
+            Logger logger = Logger.create("MetaAPI");
             logger.info("Registered Minecraft reflection mappings");
             logger.info("|-> getInstance");
             logger.info("|-> hasServer");
@@ -192,6 +204,9 @@ public final class MetaAPIImpl implements MetaAPI {
 
     @Override
     public @NotNull Object server() {
+        if (store == null) {
+            initReflection();
+        }
         return lookupAll().stream()
                 .map(Platform.Meta::server)
                 .findFirst()
@@ -200,6 +215,9 @@ public final class MetaAPIImpl implements MetaAPI {
 
     @Override
     public @NotNull Object client() {
+        if (store == null) {
+            initReflection();
+        }
         return lookupAll().stream()
                 .map(Platform.Meta::client)
                 .findFirst()
@@ -208,6 +226,9 @@ public final class MetaAPIImpl implements MetaAPI {
 
     @Override
     public @NotNull Object minecraft() {
+        if (store == null) {
+            initReflection();
+        }
         return lookupAll().stream()
                 .map(Platform.Meta::minecraft)
                 .findFirst()
@@ -216,10 +237,18 @@ public final class MetaAPIImpl implements MetaAPI {
 
     @Override
     public @NotNull Side side() {
+        if (store == null) {
+            initReflection();
+        }
         return lookupAll().stream()
                 .map(Platform.Meta::side)
                 .findFirst()
                 .orElseThrow(IllegalStateException::new);
+    }
+
+    @Override
+    public boolean isClient() {
+        return lookupAll().stream().anyMatch(Platform.Meta::isClient);
     }
 
     @Override
@@ -346,7 +375,7 @@ public final class MetaAPIImpl implements MetaAPI {
             return Optional.of(new BungeeCordMeta());
         } else if (platform == Platforms.VELOCITY) {
             return Optional.of(new VelocityMeta());
-        } else if (ReflectionUtil.checkForClass("org.spongepowered.asm.service.MixinService")) {
+        } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
             return Optional.of(new VanillaMeta());
         }
         return Optional.empty();

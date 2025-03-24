@@ -9,7 +9,8 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_20_6.fabric.core.network.protocol.common.CustomPayloadPacketMixin",
-    "v1_20_6.fabric.core.server.level.ServerPlayerMixin_sendPacket"
+    "v1_20_6.fabric.core.server.level.ServerPlayerMixin_sendPacket",
+    "v1_20_6.fabric.core.world.entity.LivingEntityMixin"
   ],
   "server": [],
   "client": [

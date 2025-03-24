@@ -7,7 +7,8 @@ package dev.neuralnexus.taterapi.meta.impl.version;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 
 /**
- * Data scraped from <a href="https://github.com/NeuralNexusDev/Snowman/commits/dev/src/main/java/net/minecraft/SharedConstants.java">SharedConstants.java</a>
+ * Data scraped from <a
+ * href="https://github.com/NeuralNexusDev/Snowman/commits/dev/src/main/java/net/minecraft/SharedConstants.java">SharedConstants.java</a>
  */
 @SuppressWarnings("unused")
 public interface Release {

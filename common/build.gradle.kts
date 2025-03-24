@@ -40,7 +40,7 @@ dependencies {
     // Tooling
     implementation(project(":api"))
     implementation(project(":loader"))
-    implementation(variantOf(libs.modapi) {
+    compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
     compileOnly(project(":modapi:entrypoint-spoof"))
@@ -51,16 +51,14 @@ java.disableAutoTargetJvm()
 tasks.shadowJar {
     dependencies {
         include(dependency("${group}:${projectId}:${version}"))
-        exclude("META-INF", "META-INF/**")
+//        exclude("META-INF", "META-INF/**")
         exclude("LICENSE")
         exclude("INFO_BIN", "INFO_SRC")
 
         // Tooling
         include(project(":api"))
         include(project(":loader"))
-        include(dependency("dev.neuralnexus.modapi:crossperms"))
-        include(dependency("dev.neuralnexus.modapi:metadata"))
-        include(dependency("dev.neuralnexus.modapi:muxins"))
+        include(dependency("dev.neuralnexus:modapi"))
 
         // Config
         include(dependency("org.spongepowered:configurate-core:4.2.0"))
@@ -87,6 +85,9 @@ tasks.shadowJar {
 
         // Guava
         include(dependency("com.google.guava:guava:33.0.0-jre"))
+
+        // Not sure
+        include(dependency("net.kyori:option"))
     }
     // Configurate
     relocate("org.spongepowered.configurate", "dev.neuralnexus.taterlib.lib.configurate")
@@ -108,13 +109,14 @@ tasks.shadowJar {
     // Gson
     relocate("com.google.gson", "dev.neuralnexus.taterlib.lib.gson")
 
-    minimize {
-        exclude(project(":api"))
-        exclude(project(":loader"))
-        exclude(dependency("dev.neuralnexus.modapi:crossperms"))
-        exclude(dependency("dev.neuralnexus.modapi:metadata"))
-        exclude(dependency("dev.neuralnexus.modapi:muxins"))
-    }
+    // Not sure
+    relocate("net.kyori", "dev.neuralnexus.taterlib.lib.kyori")
+
+//    minimize {
+//        exclude(project(":api"))
+//        exclude(project(":loader"))
+//        exclude(dependency("dev.neuralnexus:modapi"))
+//    }
 
     archiveClassifier.set("full")
 }

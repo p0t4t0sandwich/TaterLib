@@ -340,6 +340,7 @@ public final class Reflecto {
          * @throws FieldNotAccessableException If the field is not accessible
          * @throws NullPointerException If the parent entry or entry name is null
          */
+        @SuppressWarnings("unchecked")
         public <T> T getField(
                 @NotNull String parentEntry, @NotNull String entryName, @Nullable Object instance)
                 throws FieldNotAccessableException,

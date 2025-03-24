@@ -58,6 +58,11 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
+    public boolean isClient() {
+        return false;
+    }
+
+    @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         String version = Bukkit.getVersion();
         if (MetaAPI.instance().isPlatformPresent(Platforms.PAPER)

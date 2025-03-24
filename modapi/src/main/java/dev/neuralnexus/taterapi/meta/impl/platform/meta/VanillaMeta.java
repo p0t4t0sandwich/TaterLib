@@ -65,6 +65,11 @@ public final class VanillaMeta implements Platform.Meta {
     }
 
     @Override
+    public boolean isClient() {
+        return this.side().isClient();
+    }
+
+    @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         String version = "Unknown";
         try {

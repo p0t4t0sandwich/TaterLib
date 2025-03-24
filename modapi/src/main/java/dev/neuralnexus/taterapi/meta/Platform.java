@@ -147,11 +147,18 @@ public interface Platform {
         @NotNull Object minecraft();
 
         /**
-         * Get the platform's side
+         * Get the "side" the current environment is running on
          *
-         * @return The platform's side
+         * @return The side
          */
         @NotNull Side side();
+
+        /**
+         * A quick check to see if the current environment is client-based
+         *
+         * @return True if the current environment is client-based
+         */
+        boolean isClient();
 
         /**
          * Get the running Minecraft asString

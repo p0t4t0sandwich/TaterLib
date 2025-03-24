@@ -10,7 +10,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-/** Interface for comparing versions */
+/**
+ * Interface for comparing versions
+ *
+ * @param <T> The type of version object to compare
+ */
 public interface VersionComparable<T extends VersionComparable<?>> extends Comparable<T> {
     /**
      * Get the version as a string
@@ -62,12 +66,18 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
             @NotNull String end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
-        return (startInclusive
-                        ? compare(this.version(), start) >= 0
-                        : compare(this.version(), start) > 0)
-                && (endInclusive
-                        ? compare(this.version(), end) <= 0
-                        : compare(this.version(), end) < 0);
+
+        // If start or end is unknown, treat as an unbounded range
+        int compareStart = compare(this.version(), start);
+        int compareEnd = compare(this.version(), end);
+        if (start.equals("unknown")) {
+            compareStart = 1;
+        }
+        if (end.equals("unknown")) {
+            compareEnd = -1;
+        }
+        return (startInclusive ? compareStart >= 0 : compareStart > 0)
+                && (endInclusive ? compareEnd <= 0 : compareEnd < 0);
     }
 
     /**
@@ -83,12 +93,18 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
             boolean startInclusive, @NotNull T start, boolean endInclusive, @NotNull T end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
-        return (startInclusive
-                        ? compare(this.version(), start.version()) >= 0
-                        : compare(this.version(), start.version()) > 0)
-                && (endInclusive
-                        ? compare(this.version(), end.version()) <= 0
-                        : compare(this.version(), end.version()) < 0);
+
+        // If start or end is unknown, treat as an unbounded range
+        int compareStart = compare(this.version(), start.version());
+        int compareEnd = compare(this.version(), end.version());
+        if (start.version().equals("unknown")) {
+            compareStart = 1;
+        }
+        if (end.version().equals("unknown")) {
+            compareEnd = -1;
+        }
+        return (startInclusive ? compareStart >= 0 : compareStart > 0)
+                && (endInclusive ? compareEnd <= 0 : compareEnd < 0);
     }
 
     /**
@@ -101,7 +117,17 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
     default boolean isInRange(@NotNull String start, @NotNull String end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
-        return compare(this.version(), start) >= 0 && compare(this.version(), end) <= 0;
+
+        // If start or end is unknown, treat as an unbounded range
+        int compareStart = compare(this.version(), start);
+        int compareEnd = compare(this.version(), end);
+        if (start.equals("unknown")) {
+            compareStart = 1;
+        }
+        if (end.equals("unknown")) {
+            compareEnd = -1;
+        }
+        return compareStart >= 0 && compareEnd <= 0;
     }
 
     /**
@@ -114,8 +140,16 @@ public interface VersionComparable<T extends VersionComparable<?>> extends Compa
     default boolean isInRange(@NotNull T start, @NotNull T end) {
         Objects.requireNonNull(start, "start cannot be null");
         Objects.requireNonNull(end, "end cannot be null");
-        return compare(this.version(), start.version()) >= 0
-                && compare(this.version(), end.version()) <= 0;
+        // If start or end is unknown, treat as an unbounded range
+        int compareStart = compare(this.version(), start.version());
+        int compareEnd = compare(this.version(), end.version());
+        if (start.version().equals("unknown")) {
+            compareStart = 1;
+        }
+        if (end.version().equals("unknown")) {
+            compareEnd = -1;
+        }
+        return compareStart >= 0 && compareEnd <= 0;
     }
 
     /**

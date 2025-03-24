@@ -45,6 +45,11 @@ public final class BungeeCordMeta implements Platform.Meta {
     }
 
     @Override
+    public boolean isClient() {
+        return false;
+    }
+
+    @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(ProxyServer.getInstance().getGameVersion());
     }

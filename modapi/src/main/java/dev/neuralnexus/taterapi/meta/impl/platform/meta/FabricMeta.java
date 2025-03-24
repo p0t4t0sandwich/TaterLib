@@ -48,8 +48,12 @@ public final class FabricMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        return WMinecraft.determineSide(
-                FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT);
+        return WMinecraft.determineSide(this.isClient());
+    }
+
+    @Override
+    public boolean isClient() {
+        return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
     }
 
     @Override

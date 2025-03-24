@@ -40,7 +40,7 @@ dependencies {
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
     api(variantOf(libs.modapi) {
-        classifier("downgraded-8")
+        classifier("downgraded-8-shaded")
     })
 }
 

@@ -8,20 +8,8 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_10_2.fabric.api.minecraft.resource.ResourceLocationAPI",
-    "v1_10_2.fabric.core.entity.EntityMixin",
-    "v1_10_2.fabric.core.entity.living.player.PlayerEntityMixin",
-    "v1_10_2.fabric.core.world.WorldMixin",
-    "v1_10_2.fabric.listeners.block.PlayerBlockBreakMixin",
-    "v1_9_4.fabric.listeners.entity.EntityDamageMixin",
-    "v1_9_4.fabric.listeners.entity.EntityDeathMixin",
-    "v1_10_2.fabric.listeners.player.PlayerAdvancementFinishedMixin"
+    "v1_10_2.fabric.core.entity.living.player.PlayerEntityMixin"
   ],
-  "server": [
-    "v1_10_2.fabric.api.minecraft.server.MinecraftServerAPI",
-    "v1_9_4.fabric.listeners.entity.EntitySpawnMixin",
-    "v1_10_2.fabric.listeners.player.PlayerDeathMixin",
-    "v1_10_2.fabric.listeners.player.PlayerMessageMixin",
-    "v1_10_2.fabric.listeners.player.PlayerRespawnMixin"
-  ]
+  "server": [],
+  "client": []
 }

@@ -35,8 +35,8 @@ public record MappingEntry(
         private String parentEntry;
         private String mappings;
         private MinecraftVersion version = MinecraftVersions.UNKNOWN;
-        private MinecraftVersion minVersion;
-        private MinecraftVersion maxVersion;
+        private MinecraftVersion minVersion = MinecraftVersions.UNKNOWN;
+        private MinecraftVersion maxVersion = MinecraftVersions.UNKNOWN;
 
         private Builder(@NotNull String name) {
             this.name = Objects.requireNonNull(name, "name cannot be null");

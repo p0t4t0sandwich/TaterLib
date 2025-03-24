@@ -54,6 +54,11 @@ final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
+    public boolean isClient() {
+        return this.side().isClient();
+    }
+
+    @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(Sponge.getPlatform().getMinecraftVersion().getName());
     }

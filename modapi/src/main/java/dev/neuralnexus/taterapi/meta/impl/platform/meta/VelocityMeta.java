@@ -49,6 +49,11 @@ public final class VelocityMeta implements Platform.Meta {
     }
 
     @Override
+    public boolean isClient() {
+        return false;
+    }
+
+    @Override
     public @NotNull MinecraftVersion minecraftVersion() {
         return MinecraftVersion.of(ProtocolVersion.MAXIMUM_VERSION.toString());
     }

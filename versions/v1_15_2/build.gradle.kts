@@ -75,6 +75,7 @@ tasks.register<ShadowJar>("relocateFabricJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_15_2/vanilla/**")
     }
+    relocate("dev.neuralnexus.taterlib.v1_15_2.vanilla", "dev.neuralnexus.taterlib.v1_15_2.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
 }
 
@@ -102,6 +103,7 @@ tasks.register<ShadowJar>("relocateForgeJar") {
     dependencies {
         exclude("dev/neuralnexus/taterlib/mixin/v1_15_2/vanilla/**")
     }
+    relocate("dev.neuralnexus.taterlib.v1_15_2.vanilla", "dev.neuralnexus.taterlib.v1_15_2.l_searge")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.l_searge")
 }
 

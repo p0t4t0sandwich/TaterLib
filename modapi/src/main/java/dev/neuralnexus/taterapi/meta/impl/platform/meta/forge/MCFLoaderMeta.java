@@ -44,7 +44,12 @@ final class MCFLoaderMeta implements Platform.Meta {
 
     @Override
     public @NotNull Side side() {
-        return WMinecraft.determineSide(FMLCommonHandler.instance().getSide().isClient());
+        return WMinecraft.determineSide(this.isClient());
+    }
+
+    @Override
+    public boolean isClient() {
+        return FMLCommonHandler.instance().getSide().isClient();
     }
 
     @Override
