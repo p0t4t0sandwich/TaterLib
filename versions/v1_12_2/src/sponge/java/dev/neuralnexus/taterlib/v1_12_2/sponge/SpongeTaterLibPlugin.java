@@ -29,15 +29,21 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPI.instance().setServer(Platforms.SPONGE, SpongeServer::instance);
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V9)) {
-            dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeBootstrap.init();
-        } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V11)) {
-            dev.neuralnexus.taterlib.v1_10_2.sponge.SpongeBootstrap.init();
-        } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V12)) {
-            dev.neuralnexus.taterlib.v1_11_2.sponge.SpongeBootstrap.init();
-        } else {
-            SpongeBootstrap.init();
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+            TaterAPI.setLoaded(true);
+            // TODO: Init Vanilla methods
+            // VanillaBootstrap.init();
+
+            TaterAPI.instance().setServer(Platforms.SPONGE, SpongeServer::instance);
+            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V9)) {
+                dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeBootstrap.init();
+            } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V11)) {
+                dev.neuralnexus.taterlib.v1_10_2.sponge.SpongeBootstrap.init();
+            } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V12)) {
+                dev.neuralnexus.taterlib.v1_11_2.sponge.SpongeBootstrap.init();
+            } else {
+                SpongeBootstrap.init();
+            }
         }
     }
 

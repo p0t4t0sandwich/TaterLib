@@ -5,6 +5,8 @@
 package dev.neuralnexus.taterloader.platforms;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
@@ -31,8 +33,15 @@ public class LegacyForgeLoaderPlugin {
             loader.registerPlugin(TaterPluginResolver.bukkit());
         }
         loader.onInit();
-        // TODO: Switch to server-starting? Or switch to common init event?
+    }
+
+    @Mod.EventHandler
+    public void onInit(FMLInitializationEvent event) {
         loader.onEnable();
-        // TODO: Add disable event via the Forge API (will need cross-version abstraction)
+    }
+
+    @Mod.EventHandler
+    public void onDisable(FMLServerStoppedEvent event) {
+        loader.onDisable();
     }
 }

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_17_1.fabric;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -30,9 +31,10 @@ import net.minecraft.commands.Commands;
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        VanillaBootstrap.init();
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
+            TaterAPI.setLoaded(true);
+            VanillaBootstrap.init();
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
 
             CommandRegistrationCallback.EVENT.register(

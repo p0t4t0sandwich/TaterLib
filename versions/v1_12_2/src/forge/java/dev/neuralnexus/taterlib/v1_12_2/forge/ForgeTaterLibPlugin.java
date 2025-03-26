@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_12_2.forge;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -39,13 +40,14 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V8)) {
-            dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaBootstrap.init();
-        } else {
-            VanillaBootstrap.init();
-        }
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+            TaterAPI.setLoaded(true);
+            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V8)) {
+                dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaBootstrap.init();
+            } else {
+                VanillaBootstrap.init();
+            }
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

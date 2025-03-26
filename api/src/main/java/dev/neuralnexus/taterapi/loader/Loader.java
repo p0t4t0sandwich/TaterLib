@@ -137,7 +137,7 @@ public interface Loader {
                                     moduleLoader.onEnable();
                                 }
                             } catch (Exception e) {
-                                logger.error("Plugin " + plugin.id() + " failed to enable", e);
+                                logger.error("Failed to enable plugin " + plugin.id(), e);
                             }
                         });
         // Runs last so TaterLib is loaded before any dependant mod tries to hook-in
@@ -163,7 +163,7 @@ public interface Loader {
                                 }
                                 plugin.onDisable();
                             } catch (Exception e) {
-                                logger.error("Plugin " + plugin.id() + " failed to disable", e);
+                                logger.error("Failed to disable plugin " + plugin.id(), e);
                             }
                         });
     }

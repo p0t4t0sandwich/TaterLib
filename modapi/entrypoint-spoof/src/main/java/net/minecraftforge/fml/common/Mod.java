@@ -33,4 +33,9 @@ public @interface Mod {
     boolean useMetadata();
 
     boolean serverSideOnly();
+
+    // Tater additions
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.METHOD})
+    @interface EventHandler {}
 }

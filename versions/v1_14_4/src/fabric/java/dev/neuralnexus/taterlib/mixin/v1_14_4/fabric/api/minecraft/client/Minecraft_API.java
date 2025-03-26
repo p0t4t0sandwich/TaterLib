@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
+@ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API implements MinecraftBridge {
@@ -49,11 +49,11 @@ public abstract class Minecraft_API implements MinecraftBridge {
                 .collect(Collectors.toList());
     }
 
-    void server$sendPacket(ResourceKey channel, byte[] data) {
+    public void server$sendPacket(ResourceKey channel, byte[] data) {
         this.bridge$sendPacket(channel, data);
     }
 
-    void server$broadcastMessage(String message) {
+    public void server$broadcastMessage(String message) {
         this.bridge$broadcastMessage(message);
     }
 }

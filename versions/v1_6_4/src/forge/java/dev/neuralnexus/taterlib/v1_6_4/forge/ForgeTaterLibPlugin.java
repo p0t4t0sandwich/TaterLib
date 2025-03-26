@@ -47,10 +47,11 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
-        TaterAPI.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
-        TaterAPI.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+            TaterAPI.setLoaded(true);
+            TaterAPI.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
+            TaterAPI.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             // Register listeners
             MinecraftForge.EVENT_BUS.register(this);
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());

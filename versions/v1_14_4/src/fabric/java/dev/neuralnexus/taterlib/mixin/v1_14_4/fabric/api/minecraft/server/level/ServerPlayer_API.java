@@ -21,7 +21,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V18_2)
+@ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(net.minecraft.server.level.ServerPlayer.class)
 @Implements({
     @Interface(iface = Connection.class, prefix = "connection$", remap = Remap.NONE),

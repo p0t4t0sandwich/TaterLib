@@ -4,14 +4,19 @@
  */
 package dev.neuralnexus.taterlib.testmod;
 
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
+import dev.neuralnexus.taterapi.event.api.NetworkEvents;
+import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
-import dev.neuralnexus.taterlib.testmod.commands.PermsTestCommand;
+import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
 
 /** Main class for the plugin. */
 public class TestMod implements Plugin {
@@ -85,15 +90,68 @@ public class TestMod implements Plugin {
 
         if (!RELOADED) {
             // Register listeners
-            CommandEvents.REGISTER_COMMAND.register(
-                    event -> {
-                        event.registerCommand(new PermsTestCommand());
-                    });
+            // CommandEvents.REGISTER_COMMAND.register(
+            //         event -> {
+            //             event.registerCommand(new PermsTestCommand());
+            //         });
             // CommandEvents.REGISTER_BRIGADIER_COMMAND.register(event -> {
             //     Command command = new PermsTestCommand();
             //     BrigadierHelperClass.onRegisterBrigadierCommand(
             //             event, command, command.name(), "ex", "alias2");
             // });
+
+            if (api.side().isServer()) {
+                CommandEvents.REGISTER_COMMAND.register(
+                        event -> event.registerCommand(new PingPongCommand()));
+
+                PlayerEvents.MESSAGE.register(
+                        event -> {
+                            String message = event.message();
+                            if (message.equals("ping")) {
+                                ((ServerPlayer) event.player())
+                                        .sendPacket(
+                                                ResourceKey.of("testmod", "ping"),
+                                                "Ping".getBytes());
+                            }
+                        });
+
+                NetworkEvents.C2S_CUSTOM_PACKET.register(
+                        event -> {
+                            CustomPayloadPacket packet = event.packet();
+                            ResourceKey channel = packet.channel();
+                            if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                                byte[] data = packet.data();
+                                String message = new String(data);
+                                logger.info(
+                                        "Received packet on channel "
+                                                + channel
+                                                + " with message: "
+                                                + message);
+                            }
+                        });
+            }
+
+            if (api.side().isClient()) {
+                NetworkEvents.S2C_CUSTOM_PACKET.register(
+                        event -> {
+                            CustomPayloadPacket packet = event.packet();
+                            ResourceKey channel = packet.channel();
+                            if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                                byte[] data = packet.data();
+                                String message = new String(data);
+                                logger.info(
+                                        "Received packet on channel "
+                                                + channel
+                                                + " with message: "
+                                                + message);
+
+                                event.server()
+                                        .sendPacket(
+                                                ResourceKey.of("testmod", "ping"),
+                                                "Pong".getBytes());
+                            }
+                        });
+            }
         }
 
         TestModAPIProvider.register(new TestModAPI("someData"));

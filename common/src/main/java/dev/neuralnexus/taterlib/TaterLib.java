@@ -73,10 +73,8 @@ public class TaterLib {
         TaterLibMetrics.initialize();
         TaterLibConfigLoader.load();
 
-        // Init CrossPerms
-        CrossPerms.instance().onInit(MetaAPI.instance().server());
-
         if (!RELOADED) {
+            ServerEvents.STARTING.register(event -> CrossPerms.instance().onInit(MetaAPI.instance().server()));
             ServerEvents.STARTED.register(event -> CrossPerms.instance().onEnable());
             ServerEvents.STOPPED.register(
                     event -> {

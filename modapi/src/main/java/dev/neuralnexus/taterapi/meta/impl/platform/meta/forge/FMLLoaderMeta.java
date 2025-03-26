@@ -4,6 +4,8 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.platform.meta.forge;
 
+import static dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil.checkForClass;
+
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.ApacheLogger;
 import dev.neuralnexus.taterapi.logger.impl.Slf4jLogger;
@@ -20,7 +22,6 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.loading.FMLLoader;
 import net.minecraftforge.fml.loading.LauncherVersion;
 import net.minecraftforge.fml.loading.LoadingModList;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -30,6 +31,9 @@ import java.util.stream.Collectors;
 
 /** Stores data about the FMLLoader platform */
 final class FMLLoaderMeta implements Platform.Meta {
+    private final boolean oldLifeCycleHooks =
+            checkForClass("net.minecraftforge.fml.server.ServerLifecycleHooks");
+
     @Override
     public @NotNull Object server() {
         return this.minecraft();
@@ -45,7 +49,10 @@ final class FMLLoaderMeta implements Platform.Meta {
         if (this.side().isClient() && WMinecraft.hasServer()) {
             return WMinecraft.getServer();
         }
-        return ServerLifecycleHooks.getCurrentServer();
+        if (this.oldLifeCycleHooks) {
+            return net.minecraftforge.fml.server.ServerLifecycleHooks.getCurrentServer();
+        }
+        return net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer();
     }
 
     @Override

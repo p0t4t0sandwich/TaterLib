@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_19_4.sponge;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
@@ -24,6 +25,15 @@ import org.spongepowered.plugin.PluginContainer;
 import java.lang.invoke.MethodHandles;
 
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
+    @Override
+    public void onInit() {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+            TaterAPI.setLoaded(true);
+            // TODO: Init Vanilla methods
+            // VanillaBootstrap.init();
+        }
+    }
+
     @Override
     public void onEnable() {
         TaterLib.start();

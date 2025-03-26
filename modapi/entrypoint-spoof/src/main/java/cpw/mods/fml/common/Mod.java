@@ -30,4 +30,8 @@ public @interface Mod {
     String acceptableSaveVersions() default "";
 
     String bukkitPlugin() default "";
+
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ElementType.METHOD})
+    @interface EventHandler {}
 }

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
@@ -17,12 +18,13 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
+class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        VanillaBootstrap.init();
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {
+            TaterAPI.setLoaded(true);
+            VanillaBootstrap.init();
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {
             NeoForgeEventListener_20_2.init();
 
             NeoForge.EVENT_BUS.<LivingDamageEvent>addListener(

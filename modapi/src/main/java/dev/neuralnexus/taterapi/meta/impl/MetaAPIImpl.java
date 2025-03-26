@@ -94,8 +94,8 @@ public final class MetaAPIImpl implements MetaAPI {
                 var minecraft_getServer =
                         MappingEntry.builder("getServer")
                                 .parentEntry(minecraft)
-                                .official("getSinglePlayerServer")
-                                .mojang("getSinglePlayerServer")
+                                .official("getSingleplayerServer")
+                                .mojang("getSingleplayerServer")
                                 .searge("m_91092_")
                                 .legacySearge("func_71401_C")
                                 .mcp("getIntegratedServer")

@@ -35,7 +35,11 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        TaterAPI.instance().setServer(Platforms.BUKKIT, BukkitServer::instance);
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.BUKKIT)) {
+            TaterAPI.setLoaded(true);
+
+            TaterAPI.instance().setServer(Platforms.BUKKIT, BukkitServer::instance);
+        }
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
     }
 

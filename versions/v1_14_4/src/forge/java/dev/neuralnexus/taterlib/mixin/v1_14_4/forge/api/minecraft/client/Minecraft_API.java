@@ -49,11 +49,11 @@ public abstract class Minecraft_API implements MinecraftBridge {
                 .collect(Collectors.toList());
     }
 
-    void server$sendPacket(ResourceKey channel, byte[] data) {
+    public void server$sendPacket(ResourceKey channel, byte[] data) {
         this.bridge$sendPacket(channel, data);
     }
 
-    void server$broadcastMessage(String message) {
+    public void server$broadcastMessage(String message) {
         this.bridge$broadcastMessage(message);
     }
 }

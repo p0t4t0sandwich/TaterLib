@@ -9,11 +9,13 @@ import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.platforms.neoforge.NeoForgeLifecycleListener;
 
+import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /** NeoForge entry point. */
@@ -24,7 +26,15 @@ public class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
+
         loader = new LoaderImpl(this);
+        IEventBus bus = ModLoadingContext.get().getActiveContainer().getEventBus();
+        if (bus != null) {
+            bus.register(new NeoForgeLifecycleListener((loader)));
+        } else {
+            Loader.logger.warn("Failed to register events to mod event bus");
+        }
+
         loader.registerPlugin(TaterPluginResolver.neoForge());
         if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
             loader.registerPlugin(TaterPluginResolver.bukkit());
@@ -36,14 +46,8 @@ public class NeoForgeLoaderPlugin {
         loader.onInit();
     }
 
-    // TODO: Switch to server-starting? Or switch to common init event?
     @SubscribeEvent
-    public void onServerStarted(ServerStartedEvent event) {
-        loader.onEnable();
-    }
-
-    @SubscribeEvent
-    public void onServerStopped(ServerStoppedEvent event) {
+    public void onDisable(ServerStoppedEvent event) {
         loader.onDisable();
     }
 }

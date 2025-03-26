@@ -2,8 +2,9 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_21_1.forge;
+package dev.neuralnexus.taterlib.v1_21_4.forge;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -50,13 +51,14 @@ import net.minecraftforge.eventbus.api.EventPriority;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
-            VanillaBootstrap.init();
-        } else {
-            VanillaBootstrap_21_1.init();
-        }
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+            TaterAPI.setLoaded(true);
+            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
+                VanillaBootstrap.init();
+            } else {
+                VanillaBootstrap_21_1.init();
+            }
 
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(
                     event ->
                             BlockEvents.PLAYER_BLOCK_BREAK.invoke(

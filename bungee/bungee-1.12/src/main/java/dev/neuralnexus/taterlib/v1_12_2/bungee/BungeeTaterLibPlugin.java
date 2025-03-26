@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
+        TaterAPI.setLoaded(true);
         TaterAPI.instance().setServer(Platforms.BUNGEECORD, BungeeProxyServer::instance);
         WrapperRegistry.register(ProxiedPlayer.class, BungeePlayer::new);
     }

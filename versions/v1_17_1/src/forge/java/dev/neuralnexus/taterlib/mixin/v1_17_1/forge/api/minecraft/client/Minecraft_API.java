@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_1)
+@ReqMCVersion(min = MinecraftVersion.V17)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API implements MinecraftBridge {
@@ -46,11 +46,11 @@ public abstract class Minecraft_API implements MinecraftBridge {
                 .toList();
     }
 
-    void server$sendPacket(ResourceKey channel, byte[] data) {
+    public void server$sendPacket(ResourceKey channel, byte[] data) {
         this.bridge$sendPacket(channel, data);
     }
 
-    void server$broadcastMessage(String message) {
+    public void server$broadcastMessage(String message) {
         this.bridge$broadcastMessage(message);
     }
 }

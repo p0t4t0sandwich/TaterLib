@@ -45,6 +45,7 @@ public class TaterAPI {
     private static final Map<Class<?>, Supplier<?>> builders = new HashMap<>();
     private static final Map<Platform, Supplier<SimpleServer>> servers = new HashMap<>();
     private static final TaterAPI instance = new TaterAPI();
+    private static boolean loaded = false;
 
     private TaterAPI() {
         registrySetup();
@@ -66,6 +67,25 @@ public class TaterAPI {
      */
     public static Logger logger() {
         return logger;
+    }
+
+    /**
+     * Get if the API has loaded
+     *
+     * @return If the API has loaded
+     */
+    public static boolean hasLoaded() {
+        return loaded;
+    }
+
+    /**
+     * Set if the API has loaded
+     *
+     * @param loaded If the API has loaded
+     */
+    @ApiStatus.Internal
+    public static void setLoaded(boolean loaded) {
+        TaterAPI.loaded = loaded;
     }
 
     /**
@@ -162,6 +182,7 @@ public class TaterAPI {
                 .findFirst();
     }
 
+    @ApiStatus.Experimental
     @ApiStatus.Internal
     public static void setPlayerDataStore(PlayerDataStore playerDataStore) {
         TaterAPI.playerDataStore = playerDataStore;
@@ -177,6 +198,7 @@ public class TaterAPI {
      *
      * @return The player data store
      */
+    @ApiStatus.Experimental
     public static PlayerDataStore playerDataStore() {
         return playerDataStore;
     }

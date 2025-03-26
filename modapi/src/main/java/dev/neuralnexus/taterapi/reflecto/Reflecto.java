@@ -200,7 +200,8 @@ public final class Reflecto {
                     field.setAccessible(true);
                     fieldCache.get(parentEntryType).put(fieldMapping, field);
                 } catch (NoSuchFieldException e) {
-                    throw new FieldRegistrationFailedException(fieldName, fieldMapping, e);
+                    throw new FieldRegistrationFailedException(
+                            parentEntry, fieldName, parentMapping, fieldMapping, e);
                 }
             }
 
@@ -294,7 +295,11 @@ public final class Reflecto {
                 }
             }
             throw new MethodRegistrationFailedException(
-                    methodName, methodMapping, new IllegalStateException("No method found"));
+                    parentEntry,
+                    methodName,
+                    parentMapping,
+                    methodMapping,
+                    new IllegalStateException("No method found"));
         }
 
         /**
@@ -453,6 +458,24 @@ public final class Reflecto {
                 String fieldName, String fieldMapping, Throwable e) {
             super("Failed to register field: " + fieldName + " with mapping: " + fieldMapping, e);
         }
+
+        public FieldRegistrationFailedException(
+                String parentEntry,
+                String fieldName,
+                String parentMapping,
+                String fieldMapping,
+                Throwable e) {
+            super(
+                    "Failed to register field: "
+                            + parentEntry
+                            + "."
+                            + fieldName
+                            + " with mapping: "
+                            + parentMapping
+                            + "."
+                            + fieldMapping,
+                    e);
+        }
     }
 
     public static class MethodRegistrationFailedException extends RuntimeException {
@@ -460,6 +483,24 @@ public final class Reflecto {
                 String methodName, String methodMapping, Throwable e) {
             super(
                     "Failed to register method: " + methodName + " with mapping: " + methodMapping,
+                    e);
+        }
+
+        public MethodRegistrationFailedException(
+                String parentEntry,
+                String methodName,
+                String parentMapping,
+                String methodMapping,
+                Throwable e) {
+            super(
+                    "Failed to register method: "
+                            + parentEntry
+                            + "."
+                            + methodName
+                            + " with mapping: "
+                            + parentMapping
+                            + "."
+                            + methodMapping,
                     e);
         }
     }
