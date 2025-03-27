@@ -8,7 +8,6 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_21_4.vanilla.core.network.protocol.common.custom.CustomPacketPayloadMixin",
     "v1_21_4.vanilla.core.world.entity.EntityMixin",
     "v1_21_4.vanilla.core.world.entity.LivingEntityMixin"
   ],

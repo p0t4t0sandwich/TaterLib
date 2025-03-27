@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_20_2.vanilla.listeners.network;
+package dev.neuralnexus.taterlib.mixin.v1_20_6.fabric.listeners.network;
 
 import com.mojang.authlib.GameProfile;
 
@@ -29,8 +29,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
+@ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class C2SCustomPayloadMixin {
     @Shadow @Final protected MinecraftServer server;

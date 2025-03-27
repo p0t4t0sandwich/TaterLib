@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_20_2.vanilla.listeners.network;
+package dev.neuralnexus.taterlib.mixin.v1_20_6.fabric.listeners.network;
 
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.S2CCustomPacketEventImpl;
@@ -22,8 +22,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@ReqMappings(Mappings.YARN_INTERMEDIARY)
+@ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(ClientCommonPacketListenerImpl.class)
 public abstract class S2CCustomPayloadMixin {
     /**

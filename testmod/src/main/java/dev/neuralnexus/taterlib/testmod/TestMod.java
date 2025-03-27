@@ -18,6 +18,8 @@ import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
 
+import java.util.Arrays;
+
 /** Main class for the plugin. */
 public class TestMod implements Plugin {
     public static final String PROJECT_NAME = "TestMod";
@@ -119,9 +121,11 @@ public class TestMod implements Plugin {
                         event -> {
                             CustomPayloadPacket packet = event.packet();
                             ResourceKey channel = packet.channel();
-                            if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                            if (channel.equals(ResourceKey.of("testmod", "pong"))
+                                    || channel.equals(ResourceKey.of("taterlib", "rawdata"))) {
                                 byte[] data = packet.data();
                                 String message = new String(data);
+                                logger.info(Arrays.toString(data));
                                 logger.info(
                                         "Received packet on channel "
                                                 + channel
@@ -136,9 +140,11 @@ public class TestMod implements Plugin {
                         event -> {
                             CustomPayloadPacket packet = event.packet();
                             ResourceKey channel = packet.channel();
-                            if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                            if (channel.equals(ResourceKey.of("testmod", "ping"))
+                                    || channel.equals(ResourceKey.of("taterlib", "rawdata"))) {
                                 byte[] data = packet.data();
                                 String message = new String(data);
+                                logger.info(Arrays.toString(data));
                                 logger.info(
                                         "Received packet on channel "
                                                 + channel
@@ -147,7 +153,7 @@ public class TestMod implements Plugin {
 
                                 event.server()
                                         .sendPacket(
-                                                ResourceKey.of("testmod", "ping"),
+                                                ResourceKey.of("testmod", "pong"),
                                                 "Pong".getBytes());
                             }
                         });

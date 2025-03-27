@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqPlatform(Platform.NEOFORGE)
-@ReqMCVersion(min = MinecraftVersion.V20_6)
+@ReqMCVersion(min = MinecraftVersion.V20_5)
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = NetworkRegistry.class, remap = false)
 public class NetworkRegistryMixin {

@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_20_2.vanilla.listeners.network;
+package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.listeners.network;
 
 import com.mojang.authlib.GameProfile;
 
@@ -15,6 +15,8 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterlib.v1_20_6.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
+import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.MinecraftServer;
@@ -30,13 +32,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.Optional;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@ReqMCVersion(min = MinecraftVersion.V20_5)
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class C2SCustomPayloadMixin {
     @Shadow @Final protected MinecraftServer server;
 
     @Shadow
     public abstract GameProfile shadow$getOwner();
+
+    @Shadow
+    protected abstract GameProfile playerProfile();
 
     /**
      * Called when a custom payload packet is received from the client.
@@ -45,12 +50,16 @@ public abstract class C2SCustomPayloadMixin {
      * @param ci The callback info.
      */
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
-    @SuppressWarnings("DataFlowIssue")
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         Optional<User> player =
                 ((SimpleServer) this.server).getPlayer(this.shadow$getOwner().getId());
         if (player.isEmpty()) return;
-        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
+
+        if (!(packet.payload() instanceof DiscardedPayloadBridge bridge)) {
+            return;
+        }
+        CustomPayloadPacket customPacket = new VanillaCustomPacketPayload(bridge.bridge$buf());
+
         NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                 new C2SCustomPacketEventImpl(customPacket, player.get()));
     }

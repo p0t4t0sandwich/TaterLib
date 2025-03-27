@@ -44,6 +44,8 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
         } else if (self instanceof ServerboundCustomPayloadPacket server) {
             ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, server);
         }
+        // Just to move the reader index to the data we want
+        //        buf.readResourceLocation();
         return buf;
     }
 }

@@ -5,15 +5,12 @@
 package dev.neuralnexus.taterlib.v1_20_1.forge;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 /** Listens for player events. */
-@Mod.EventBusSubscriber(modid = LoaderImpl.PROJECT_ID)
 public class ForgeAdvancementListener_20_1 {
     /**
      * Called when a player finishes an advancement.

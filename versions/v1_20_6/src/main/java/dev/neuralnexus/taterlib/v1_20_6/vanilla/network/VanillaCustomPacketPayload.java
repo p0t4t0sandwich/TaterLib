@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.network;
 
+import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import io.netty.buffer.Unpooled;
@@ -16,32 +17,41 @@ import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 /** CustomPacketPayload implementation for 1.20.6 */
-public class VanillaCustomPacketPayload implements CustomPacketPayload {
+public class VanillaCustomPacketPayload implements CustomPacketPayload, CustomPayloadPacket {
     public static final StreamCodec<FriendlyByteBuf, VanillaCustomPacketPayload> STREAM_CODEC =
             CustomPacketPayload.codec(
                     VanillaCustomPacketPayload::write, VanillaCustomPacketPayload::new);
 
     private final ResourceLocation id;
-    private final FriendlyByteBuf byteBuf;
+    private final FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
 
     public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
-        id = (ResourceLocation) channel;
-        byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
+        this.id = (ResourceLocation) channel;
+        this.byteBuf.writeBytes(data);
     }
 
     public VanillaCustomPacketPayload(FriendlyByteBuf buf) {
-        id = buf.readResourceLocation();
-        byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(buf.readBytes(buf.readableBytes()));
+        this.id = buf.readResourceLocation();
+        this.byteBuf.writeBytes(buf);
     }
 
     public void write(FriendlyByteBuf buf) {
-        buf.writeBytes(byteBuf.copy());
+        buf.writeBytes(this.byteBuf.copy());
     }
 
     @Override
     public @NotNull Type<? extends CustomPacketPayload> type() {
-        return new Type<>(id);
+        // CustomPacketPayload.createType(this.id.toString());
+        return new Type<>(this.id);
+    }
+
+    @Override
+    public ResourceKey channel() {
+        return (ResourceKey) this.id;
+    }
+
+    @Override
+    public byte[] data() {
+        return this.byteBuf.array();
     }
 }
