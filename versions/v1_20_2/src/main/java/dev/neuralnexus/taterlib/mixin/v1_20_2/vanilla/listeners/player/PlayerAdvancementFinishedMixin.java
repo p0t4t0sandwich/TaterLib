@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = {Platform.NEOFORGE, Platform.SPONGE})
+@ReqPlatform(not = {Platform.FORGE, Platform.NEOFORGE, Platform.SPONGE})
 @ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(PlayerAdvancements.class)
 public abstract class PlayerAdvancementFinishedMixin {

@@ -39,6 +39,10 @@ public abstract class S2CCustomPayloadMixin {
                     "handleCustomPayload(Lnet/minecraft/network/protocol/common/ClientboundCustomPayloadPacket;)V",
             at = @At("HEAD"))
     public void onS2CCustomPacket(ClientboundCustomPayloadPacket packet, CallbackInfo ci) {
+        // SimpleServer server = (SimpleServer) Minecraft.getInstance();
+        // CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
+        // NetworkEvents.S2C_CUSTOM_PACKET.invoke(new S2CCustomPacketEventImpl(customPacket, server));
+
         SimpleServer server = (SimpleServer) Minecraft.getInstance();
 
         if (!(packet.payload() instanceof DiscardedPayloadBridge bridge)) {

@@ -27,7 +27,10 @@ import java.util.stream.Collectors;
 final class SpongeModernMeta implements Platform.Meta {
     @Override
     public @NotNull Object server() {
-        return Sponge.server();
+        if (this.side().isServer()) {
+            return Sponge.server();
+        }
+        return this.client();
     }
 
     @Override

@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_21_4.neoforge.network.registration;
+package dev.neuralnexus.taterlib.mixin.v1_20_6.neoforge.network.registration;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;

@@ -9,8 +9,6 @@ import static dev.neuralnexus.taterapi.meta.impl.util.PathUtils.getModsFolder;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 
-import net.minecraft.server.MinecraftServer;
-
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
@@ -139,8 +137,8 @@ public interface Platform {
         @NotNull Object client();
 
         /**
-         * Get an instance of the {@link MinecraftServer}. Not available on proxies or in
-         * client-only environments.
+         * Get an instance of the {@link net.minecraft.server.MinecraftServer}. Not available on
+         * proxies or in client-only environments.
          *
          * @return The MinecraftServer instance
          */

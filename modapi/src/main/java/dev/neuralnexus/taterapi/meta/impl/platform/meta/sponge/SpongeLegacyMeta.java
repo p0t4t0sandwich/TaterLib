@@ -27,7 +27,10 @@ import java.util.stream.Collectors;
 final class SpongeLegacyMeta implements Platform.Meta {
     @Override
     public @NotNull Object server() {
-        return Sponge.getServer();
+        if (this.side().isServer()) {
+            return Sponge.getServer();
+        }
+        return this.client();
     }
 
     @Override

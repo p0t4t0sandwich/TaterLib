@@ -109,10 +109,10 @@ public final class MetaAPIImpl implements MetaAPI {
             }
 
             Logger logger = Logger.create("MetaAPI");
-            logger.info("Registered Minecraft reflection mappings");
-            logger.info("|-> getInstance");
-            logger.info("|-> hasServer");
-            logger.info("|-> getServer");
+            logger.debug("Registered Minecraft reflection mappings");
+            logger.debug("|-> getInstance");
+            logger.debug("|-> hasServer");
+            logger.debug("|-> getServer");
 
             var mcString = "net.minecraft.server.MinecraftServer";
             var mcServer =
@@ -140,8 +140,8 @@ public final class MetaAPIImpl implements MetaAPI {
 
             store.registerClass(mcServer).registerMethod(mcServer_isDedicatedServer);
 
-            logger.info("Registered MinecraftServer reflection mappings");
-            logger.info("|-> isDedicatedServer");
+            logger.debug("Registered MinecraftServer reflection mappings");
+            logger.debug("|-> isDedicatedServer");
         }
     }
 
@@ -205,7 +205,7 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public @NotNull Object server() {
         if (store == null) {
-            initReflection();
+            this.initReflection();
         }
         return lookupAll().stream()
                 .map(Platform.Meta::server)
@@ -216,7 +216,7 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public @NotNull Object client() {
         if (store == null) {
-            initReflection();
+            this.initReflection();
         }
         return lookupAll().stream()
                 .map(Platform.Meta::client)
@@ -227,7 +227,7 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public @NotNull Object minecraft() {
         if (store == null) {
-            initReflection();
+            this.initReflection();
         }
         return lookupAll().stream()
                 .map(Platform.Meta::minecraft)
@@ -238,7 +238,7 @@ public final class MetaAPIImpl implements MetaAPI {
     @Override
     public @NotNull Side side() {
         if (store == null) {
-            initReflection();
+            this.initReflection();
         }
         return lookupAll().stream()
                 .map(Platform.Meta::side)

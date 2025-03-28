@@ -7,7 +7,9 @@
   "required": false,
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
-  "mixins": [],
+  "mixins": [
+    "v1_20_6.neoforge.network.registration.NetworkRegistryMixin"
+  ],
   "server": [],
   "client": []
 }

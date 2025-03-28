@@ -23,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
+@ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin_sendPacket implements MinecraftBridge {

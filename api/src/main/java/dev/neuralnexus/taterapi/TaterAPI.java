@@ -94,7 +94,7 @@ public class TaterAPI {
      * @return The minecraft server
      */
     public SimpleServer server() {
-        return server(MetaAPI.instance().primaryPlatform());
+        return this.server(MetaAPI.instance().primaryPlatform());
     }
 
     /**
@@ -104,7 +104,7 @@ public class TaterAPI {
      * @return The minecraft server
      */
     public SimpleServer server(Platform platform) {
-        return servers.getOrDefault(platform, () -> (SimpleServer) MetaAPI.instance().minecraft())
+        return servers.getOrDefault(platform, () -> (SimpleServer) MetaAPI.instance().server())
                 .get();
     }
 

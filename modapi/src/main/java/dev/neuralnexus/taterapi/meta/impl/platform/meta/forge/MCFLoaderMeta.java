@@ -26,7 +26,10 @@ import java.util.stream.Collectors;
 final class MCFLoaderMeta implements Platform.Meta {
     @Override
     public @NotNull Object server() {
-        return this.minecraft();
+        if (this.side().isServer()) {
+            return this.minecraft();
+        }
+        return this.client();
     }
 
     @Override

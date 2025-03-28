@@ -18,8 +18,6 @@ import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
 
-import java.util.Arrays;
-
 /** Main class for the plugin. */
 public class TestMod implements Plugin {
     public static final String PROJECT_NAME = "TestMod";
@@ -91,6 +89,12 @@ public class TestMod implements Plugin {
         // Config
 
         if (!RELOADED) {
+            NetworkEvents.REGISTER_CHANNELS.register(
+                    event -> {
+                        event.register(ResourceKey.of("testmod", "ping"));
+                        event.register(ResourceKey.of("testmod", "pong"));
+                    });
+
             // Register listeners
             // CommandEvents.REGISTER_COMMAND.register(
             //         event -> {
@@ -110,6 +114,7 @@ public class TestMod implements Plugin {
                         event -> {
                             String message = event.message();
                             if (message.equals("ping")) {
+                                logger.info("Sending packet to player");
                                 ((ServerPlayer) event.player())
                                         .sendPacket(
                                                 ResourceKey.of("testmod", "ping"),
@@ -121,16 +126,17 @@ public class TestMod implements Plugin {
                         event -> {
                             CustomPayloadPacket packet = event.packet();
                             ResourceKey channel = packet.channel();
-                            if (channel.equals(ResourceKey.of("testmod", "pong"))
-                                    || channel.equals(ResourceKey.of("taterlib", "rawdata"))) {
+                            if (channel.equals(ResourceKey.of("testmod", "pong"))) {
                                 byte[] data = packet.data();
                                 String message = new String(data);
-                                logger.info(Arrays.toString(data));
+                                // logger.info(Arrays.toString(data));
                                 logger.info(
                                         "Received packet on channel "
                                                 + channel
                                                 + " with message: "
                                                 + message);
+                                event.player()
+                                        .sendMessage("Received packet with message: " + message);
                             }
                         });
             }
@@ -138,23 +144,27 @@ public class TestMod implements Plugin {
             if (api.side().isClient()) {
                 NetworkEvents.S2C_CUSTOM_PACKET.register(
                         event -> {
-                            CustomPayloadPacket packet = event.packet();
-                            ResourceKey channel = packet.channel();
-                            if (channel.equals(ResourceKey.of("testmod", "ping"))
-                                    || channel.equals(ResourceKey.of("taterlib", "rawdata"))) {
-                                byte[] data = packet.data();
-                                String message = new String(data);
-                                logger.info(Arrays.toString(data));
-                                logger.info(
-                                        "Received packet on channel "
-                                                + channel
-                                                + " with message: "
-                                                + message);
+                            try {
+                                CustomPayloadPacket packet = event.packet();
+                                ResourceKey channel = packet.channel();
+                                if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                                    byte[] data = packet.data();
+                                    String message = new String(data);
+                                    // logger.info(Arrays.toString(data));
+                                    logger.info(
+                                            "Received packet on channel "
+                                                    + channel
+                                                    + " with message: "
+                                                    + message);
 
-                                event.server()
-                                        .sendPacket(
-                                                ResourceKey.of("testmod", "pong"),
-                                                "Pong".getBytes());
+                                    logger.info("Sending packet to server");
+                                    event.server()
+                                            .sendPacket(
+                                                    ResourceKey.of("testmod", "pong"),
+                                                    "Pong".getBytes());
+                                }
+                            } catch (Exception e) {
+                                logger.warn("Failed to send packet to server", e);
                             }
                         });
             }

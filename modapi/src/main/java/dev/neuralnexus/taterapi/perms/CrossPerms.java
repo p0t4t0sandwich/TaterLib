@@ -30,12 +30,10 @@ import org.jetbrains.annotations.ApiStatus;
 
 import java.util.UUID;
 
-@SuppressWarnings("UnstableApiUsage")
 public class CrossPerms {
     private static final Logger logger = Logger.create("CrossPerms");
     private static final CrossPerms INSTANCE = new CrossPerms();
     private static Reflecto.MappingStore store;
-    public static Object MINECRAFT_SERVER;
 
     private CrossPerms() {}
 
@@ -52,13 +50,8 @@ public class CrossPerms {
         return store;
     }
 
-    /**
-     * Initialize CrossPerms <br>
-     * TODO: Abstract server getters into MetaAPI
-     *
-     * @param minecraftServer The Minecraft server instance
-     */
-    public void onInit(Object minecraftServer) {
+    /** Initialize CrossPerms <br> */
+    public void onInit() {
         if (null != store) {
             return;
         }
@@ -73,7 +66,7 @@ public class CrossPerms {
             }
             return;
         }
-        this.register(minecraftServer);
+        this.register();
 
         // Register vanilla permissions provider
         // Only if the server isn't Bukkit/Spigot, or Paper older than 1.20.5
@@ -122,15 +115,9 @@ public class CrossPerms {
         }
     }
 
-    /**
-     * Register mappings
-     *
-     * @param minecraftServer The Minecraft server instance
-     */
-    private void register(Object minecraftServer) {
-        logger.info("Initializing CrossPerms mappings");
-
-        MINECRAFT_SERVER = minecraftServer;
+    /** Register mappings */
+    private void register() {
+        logger.debug("Initializing CrossPerms mappings");
         store = Reflecto.instance().getStore(this);
 
         // Check if the mappings are Official, Spigot or LegacySpigot, and return early
@@ -173,8 +160,8 @@ public class CrossPerms {
                         .legacyIntermediary("method_3004");
 
         store.registerClass(mcServer).registerMethod(minecraftServer_getPlayerList);
-        logger.info("Registered MinecraftServer");
-        logger.info("|-> getPlayerList");
+        logger.debug("Registered MinecraftServer");
+        logger.debug("|-> getPlayerList");
 
         // PlayerList
         var playerList =
@@ -271,13 +258,13 @@ public class CrossPerms {
                 .registerMethod(playerList_getPlayerByName, String.class)
                 .registerMethod(playerList_isOp, GameProfile.class)
                 .registerMethod(playerList_getOps);
-        logger.info("Registered PlayerList");
-        logger.info("|-> getPlayers");
-        logger.info("|-> players");
-        logger.info("|-> getPlayerByUUID");
-        logger.info("|-> getPlayerByName");
-        logger.info("|-> isOp");
-        logger.info("|-> getOps");
+        logger.debug("Registered PlayerList");
+        logger.debug("|-> getPlayers");
+        logger.debug("|-> players");
+        logger.debug("|-> getPlayerByUUID");
+        logger.debug("|-> getPlayerByName");
+        logger.debug("|-> isOp");
+        logger.debug("|-> getOps");
 
         // ServerOpListEntry (StoredUserEntry<GameProfile>)
         var serverOpListEntry =
@@ -315,9 +302,9 @@ public class CrossPerms {
         store.registerClass(serverOpListEntry)
                 .registerMethod(serverOpListEntry_getLevel)
                 .registerMethod(storedUserEntry_getUser);
-        logger.info("Registered ServerOpListEntry");
-        logger.info("|-> getLevel");
-        logger.info("|-> getUser"); // Inherited from StoredUserEntry
+        logger.debug("Registered ServerOpListEntry");
+        logger.debug("|-> getLevel");
+        logger.debug("|-> getUser"); // Inherited from StoredUserEntry
 
         // Entity
         var entity =
@@ -389,10 +376,10 @@ public class CrossPerms {
                 .registerMethod(
                         entity_hasPermissions,
                         int.class); // Inherited from Entity (Only until 1.21.1)
-        logger.info("Registered Entity");
-        logger.info("Registered ServerPlayer");
-        logger.info("|-> getGameProfile");
-        logger.info("|-> hasPermissions");
+        logger.debug("Registered Entity");
+        logger.debug("Registered ServerPlayer");
+        logger.debug("|-> getGameProfile");
+        logger.debug("|-> hasPermissions");
 
         // SharedSuggestionProvider
         var commandSource =
@@ -476,8 +463,8 @@ public class CrossPerms {
         store.registerClass(commandSender)
                 .registerMethod(commandSource_hasPermissions, int.class)
                 .registerMethod(commandSender_getEntity);
-        logger.info("Registered CommandSourceStack");
-        logger.info("|-> hasPermissions"); // Inherited from SharedSuggestionProvider
-        logger.info("|-> getCommandSenderEntity");
+        logger.debug("Registered CommandSourceStack");
+        logger.debug("|-> hasPermissions"); // Inherited from SharedSuggestionProvider
+        logger.debug("|-> getCommandSenderEntity");
     }
 }
