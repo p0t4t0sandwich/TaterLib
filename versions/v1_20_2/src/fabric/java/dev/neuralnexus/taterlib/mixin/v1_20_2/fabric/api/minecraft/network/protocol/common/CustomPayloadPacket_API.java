@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 
@@ -30,6 +31,10 @@ public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBrid
     }
 
     public byte[] packet$data() {
-        return this.bridge$data().array();
+        FriendlyByteBuf data = new FriendlyByteBuf(this.bridge$data().duplicate());
+        data.readResourceLocation();
+        byte[] bytes = new byte[data.readableBytes()];
+        data.readBytes(bytes);
+        return bytes;
     }
 }

@@ -14,7 +14,7 @@ import net.fabricmc.api.ModInitializer;
 
 /** Fabric entry point. */
 public class FabricLoaderPlugin implements ModInitializer {
-    private static Loader loader;
+    protected static Loader loader;
 
     public FabricLoaderPlugin() {
         MetaAPI.instance().setPrimaryPlatform(Platforms.FABRIC);
@@ -32,7 +32,5 @@ public class FabricLoaderPlugin implements ModInitializer {
     }
 
     @Override
-    public void onInitialize() {
-        loader.onEnable();
-    }
+    public void onInitialize() {}
 }

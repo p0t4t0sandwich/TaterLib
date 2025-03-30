@@ -22,6 +22,12 @@
   "entrypoints": {
     "main": [
       "dev.neuralnexus.taterloader.platforms.FabricLoaderPlugin"
+    ],
+    "client": [
+      "dev.neuralnexus.taterloader.platforms.FabricLoaderPluginDelegate"
+    ],
+    "server": [
+      "dev.neuralnexus.taterloader.platforms.FabricLoaderPluginDelegate"
     ]
   },
   "mixins": [

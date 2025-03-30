@@ -124,6 +124,9 @@ public class TaterLibMetrics {
     }
 
     public static void shutdown() {
+        if (metrics == null) {
+            return;
+        }
         metrics.shutdown();
     }
 
