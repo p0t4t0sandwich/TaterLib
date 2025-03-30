@@ -45,11 +45,10 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
 
     @Override
     public FriendlyByteBuf bridge$data() {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         Object self = this;
-        CustomPacketPayload payload = this.taterlib$payload();
-        if (payload instanceof DiscardedPayloadBridge bridge) {
-            buf = bridge.bridge$buf();
+        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+        if (this.taterlib$payload() instanceof DiscardedPayloadBridge bridge) {
+            return bridge.bridge$buf();
         } else {
             if (self instanceof ClientboundCustomPayloadPacket client) {
                 ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC.encode(buf, client);

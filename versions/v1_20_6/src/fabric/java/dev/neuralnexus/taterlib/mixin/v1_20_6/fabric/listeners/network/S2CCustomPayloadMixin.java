@@ -12,18 +12,16 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientCommonPacketListenerImpl;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
-
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V20_2)
+@ReqMCVersion(min = MinecraftVersion.V20_5)
 @Mixin(ClientCommonPacketListenerImpl.class)
 public abstract class S2CCustomPayloadMixin {
     /**
@@ -32,14 +30,14 @@ public abstract class S2CCustomPayloadMixin {
      * @param packet The packet.
      * @param ci The callback info.
      */
+    @SuppressWarnings("DataFlowIssue")
     @Inject(
             method =
                     "handleCustomPayload(Lnet/minecraft/network/protocol/common/ClientboundCustomPayloadPacket;)V",
             at = @At("HEAD"))
-    @SuppressWarnings("DataFlowIssue")
     public void onS2CCustomPacket(ClientboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         SimpleServer server = (SimpleServer) Minecraft.getInstance();
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         NetworkEvents.S2C_CUSTOM_PACKET.invoke(new S2CCustomPacketEventImpl(customPacket, server));
     }
 }

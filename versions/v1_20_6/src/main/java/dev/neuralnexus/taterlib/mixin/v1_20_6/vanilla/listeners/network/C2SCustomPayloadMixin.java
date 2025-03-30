@@ -12,8 +12,6 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterlib.v1_20_6.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
-import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,24 +36,12 @@ public abstract class C2SCustomPayloadMixin {
      * @param packet The packet.
      * @param ci The callback info.
      */
+    @SuppressWarnings("DataFlowIssue")
     @Inject(method = "handleCustomPayload", at = @At("HEAD"))
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
-        // Optional<User> player = Optional.ofNullable((User) this.shadow$getPlayer());
-        // if (player.isEmpty()) return;
-        // CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
-        // NetworkEvents.C2S_CUSTOM_PACKET.invoke(
-        // new C2SCustomPacketEventImpl(customPacket, player.get()));
-
         User player = (User) this.shadow$getPlayer();
-        if (player == null) {
-            return;
-        }
-
-        if (!(packet.payload() instanceof DiscardedPayloadBridge bridge)) {
-            return;
-        }
-        CustomPayloadPacket customPacket = new VanillaCustomPacketPayload(bridge.bridge$buf());
-
+        if (player == null) return;
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket, player));
     }
 }
