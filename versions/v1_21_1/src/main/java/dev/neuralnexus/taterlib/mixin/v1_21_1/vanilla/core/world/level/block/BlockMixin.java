@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Block;
 import org.spongepowered.asm.mixin.Mixin;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_6)
+@ReqMCVersion(min = MinecraftVersion.V19_3)
 @Mixin(Block.class)
 public class BlockMixin implements BlockBridge {
     @Override

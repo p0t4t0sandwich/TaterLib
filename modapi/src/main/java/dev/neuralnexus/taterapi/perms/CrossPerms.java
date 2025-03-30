@@ -79,9 +79,10 @@ public class CrossPerms {
             api.registerProvider(new BukkitPermissionsProvider());
         }
         if (meta.isPlatformPresent(Platforms.FABRIC)) {
-            if (meta.version().isAtLeast(MinecraftVersions.V14)) {
+            if (meta.version().isAtLeast(MinecraftVersions.V14)
+                    && meta.isModLoaded("fabric-permissions-api-v0")) {
                 api.registerProvider(new FabricPermissionsProvider());
-            } else {
+            } else if (meta.isModLoaded("legacy-fabric-permissions-api-v1")) {
                 api.registerProvider(new LegacyFabricPermissionsProvider());
             }
         }
@@ -351,12 +352,12 @@ public class CrossPerms {
                         .parentEntry(serverPlayer)
                         .mojang("hasPermissions")
                         .searge("m_20310_")
-                        .searge("m_352356_", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
+                        .searge("m_352356_", MinecraftVersions.V21_2, MinecraftVersions.UNKNOWN)
                         .legacySearge("func_211513_k")
                         .mcp("hasPermissionLevel")
                         .yarnIntermediary("method_5687")
                         .yarnIntermediary(
-                                "method_64475", MinecraftVersions.V21_1, MinecraftVersions.UNKNOWN)
+                                "method_64475", MinecraftVersions.V21_2, MinecraftVersions.UNKNOWN)
                         .legacyIntermediary("method_15592");
 
         // Player#getGameProfile() -> GameProfile

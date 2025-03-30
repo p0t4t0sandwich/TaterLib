@@ -10,7 +10,8 @@
   "mixins": [
     "v1_20_1.forge.core.server.level.ServerPlayerMixin",
     "v1_20_1.forge.core.world.entity.EntityMixin",
-    "v1_20_1.forge.core.world.entity.LivingEntityMixin"
+    "v1_20_1.forge.core.world.entity.LivingEntityMixin",
+    "v1_20_1.forge.core.world.level.block.BlockMixin"
   ],
   "server": [],
   "client": [
