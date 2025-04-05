@@ -190,25 +190,27 @@ public final class AnnotationChecker {
                 getValue(annotation, "min", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
         MinecraftVersion max =
                 getValue(annotation, "max", MinecraftVersion.class, MinecraftVersion.UNKNOWN);
-        if (min != null && !minecraftVersion.isAtLeast(min.ref())) {
-            if (verbose) {
-                logger.info(
-                        ansiParser(
-                                "§4Skipping mixin §9"
-                                        + mixinClassName
-                                        + " §4Minecraft version is too old"));
+        if (!(min == MinecraftVersion.UNKNOWN && max == MinecraftVersion.UNKNOWN)) {
+            if (min != null && !minecraftVersion.isAtLeast(min.ref())) {
+                if (verbose) {
+                    logger.info(
+                            ansiParser(
+                                    "§4Skipping mixin §9"
+                                            + mixinClassName
+                                            + " §4Minecraft version is too old"));
+                }
+                return false;
             }
-            return false;
-        }
-        if (max != null && !minecraftVersion.isAtMost(max.ref())) {
-            if (verbose) {
-                logger.info(
-                        ansiParser(
-                                "§4Skipping mixin §9"
-                                        + mixinClassName
-                                        + " §4Minecraft version is too recent"));
+            if (max != null && !minecraftVersion.isAtMost(max.ref())) {
+                if (verbose) {
+                    logger.info(
+                            ansiParser(
+                                    "§4Skipping mixin §9"
+                                            + mixinClassName
+                                            + " §4Minecraft version is too recent"));
+                }
+                return false;
             }
-            return false;
         }
 
         List<MinecraftVersion> versions =

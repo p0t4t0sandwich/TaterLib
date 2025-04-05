@@ -13,7 +13,7 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.GameProfileCacheBridge;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.MinecraftServerBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.UserWhitelistEntryBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
@@ -37,7 +37,7 @@ import java.util.stream.Collectors;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
-public abstract class MinecraftServer_API implements GameProfileCacheBridge {
+public abstract class MinecraftServer_API implements MinecraftServerBridge {
     @Shadow
     public abstract String shadow$getServerModName();
 

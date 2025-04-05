@@ -16,6 +16,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.DiscardedPayload;
 import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,11 +27,14 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Unique public CustomPacketPayload taterapi$payload() {
+        // TODO: Replace with nice Java 21 switch expression
         Object self = this;
         if (self instanceof ClientboundCustomPayloadPacket client) {
             return client.payload();
+        } else if (self instanceof ServerboundCustomPayloadPacket server) {
+            return server.payload();
         } else {
-            return ((ServerboundCustomPayloadPacket) self).payload();
+            throw new IllegalStateException("Unknown packet type");
         }
     }
 
@@ -41,8 +45,13 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
 
     @Override
     public FriendlyByteBuf bridge$data() {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        this.taterapi$payload().write(buf);
-        return buf;
+        if (this.taterapi$payload() instanceof DiscardedPayload bridge) {
+            // TODO: Make a note of this somewhere
+            return bridge.data();
+        } else {
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
+            this.taterapi$payload().write(buf);
+            return buf;
+        }
     }
 }

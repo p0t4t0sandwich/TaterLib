@@ -24,32 +24,29 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.UUID;
+
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6)
+@ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_4)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
-    @Shadow
-    public abstract void shadow$sendSystemMessage(Component message);
-
-    @Shadow
-    public abstract void shadow$remove(Entity.RemovalReason removalReason);
-
-    @Shadow
-    public abstract EntityType<?> shadow$getType();
-
+    // @spotless:off
+    @Shadow public abstract int shadow$getId();
+    @Shadow public abstract void shadow$sendSystemMessage(Component message);
+    @Shadow public abstract void shadow$remove(Entity.RemovalReason removalReason);
+    @Shadow public abstract EntityType<?> shadow$getType();
     @Shadow private Level level;
+    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow public abstract Entity shadow$changeDimension(ServerLevel level);
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow public abstract UUID shadow$getUUID();
+    // @spotless:on
 
-    @Shadow
-    public abstract BlockPos shadow$blockPosition();
-
-    @Shadow
-    public abstract Entity shadow$changeDimension(ServerLevel level);
-
-    @Shadow
-    public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    public abstract void shadow$setCustomName(@Nullable Component name);
+    @Override
+    public int bridge$entityId() {
+        return this.shadow$getId();
+    }
 
     @Override
     public void bridge$sendMessage(String message) {
@@ -82,5 +79,10 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$setCustomName(String name) {
         this.shadow$setCustomName(Component.nullToEmpty(name));
+    }
+
+    @Override
+    public UUID bridge$uuid() {
+        return this.shadow$getUUID();
     }
 }

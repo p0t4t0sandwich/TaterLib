@@ -16,7 +16,7 @@ import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V19)
+@ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin_broadcastMessage implements MinecraftBridge {
     @Override

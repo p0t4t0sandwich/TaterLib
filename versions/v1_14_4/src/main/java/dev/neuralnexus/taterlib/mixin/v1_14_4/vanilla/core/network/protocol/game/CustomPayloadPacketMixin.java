@@ -26,22 +26,22 @@ public class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Override
     public ResourceLocation bridge$identifier() {
         Object self = this;
-        if (self instanceof ClientboundCustomPayloadPacket) {
+        if (self instanceof ClientboundCustomPayloadPacketAccessor) {
             return ((ClientboundCustomPayloadPacketAccessor) self).accessor$identifier();
-        } else {
+        } else if (self instanceof ServerboundCustomPayloadPacketAccessor) {
             return ((ServerboundCustomPayloadPacketAccessor) self).accessor$identifier();
         }
+        throw new IllegalStateException("Unknown packet type");
     }
 
     @Override
     public FriendlyByteBuf bridge$data() {
         Object self = this;
-        if (self instanceof ClientboundCustomPayloadPacket) {
-            return new FriendlyByteBuf(
-                    ((ClientboundCustomPayloadPacketAccessor) self).accessor$data().copy());
-        } else {
-            return new FriendlyByteBuf(
-                    ((ServerboundCustomPayloadPacketAccessor) self).accessor$data().copy());
+        if (self instanceof ClientboundCustomPayloadPacketAccessor) {
+            return ((ClientboundCustomPayloadPacketAccessor) self).accessor$data();
+        } else if (self instanceof ServerboundCustomPayloadPacketAccessor) {
+            return ((ServerboundCustomPayloadPacketAccessor) self).accessor$data();
         }
+        throw new IllegalStateException("Unknown packet type");
     }
 }

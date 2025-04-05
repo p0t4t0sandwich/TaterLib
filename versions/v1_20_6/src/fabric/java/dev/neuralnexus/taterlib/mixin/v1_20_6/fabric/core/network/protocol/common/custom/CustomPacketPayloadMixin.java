@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterlib.v1_20_6.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -49,18 +49,15 @@ public abstract class CustomPacketPayloadMixin {
 
     @SuppressWarnings("UnresolvedMixinReference")
     @Inject(method = "decode", at = @At("HEAD"), cancellable = true)
-    private void decode(
-            FriendlyByteBuf friendlyByteBuf, CallbackInfoReturnable<CustomPacketPayload> cir) {
-        FriendlyByteBuf copiedBuffer = new FriendlyByteBuf(friendlyByteBuf.copy());
-        ResourceLocation resourceLocation = friendlyByteBuf.readResourceLocation();
-        CustomPacketPayload payload =
-                this.shadow$findCodec(resourceLocation).decode(friendlyByteBuf);
-
+    private void decode(FriendlyByteBuf buf, CallbackInfoReturnable<CustomPacketPayload> cir) {
+        FriendlyByteBuf bufCopy = new FriendlyByteBuf(buf.copy());
+        ResourceLocation id = buf.readResourceLocation();
+        CustomPacketPayload payload = this.shadow$findCodec(id).decode(buf);
         if (payload instanceof DiscardedPayloadBridge bridge) {
-            bridge.bridge$setBuf(copiedBuffer);
+            bridge.bridge$setBuf(bufCopy);
+            cir.setReturnValue(payload);
         } else {
-            copiedBuffer.release();
+            bufCopy.release();
         }
-        cir.setReturnValue(payload);
     }
 }

@@ -1,0 +1,18 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
+  "package": "dev.neuralnexus.taterlib.mixin",
+  "mixins": [
+    "v1_20_4.neoforge.core.network.protocol.common.ClientboundCustomPayloadPacketMixin",
+    "v1_20_4.neoforge.core.network.protocol.common.CustomPayloadPacketMixin",
+    "v1_20_4.neoforge.core.network.protocol.common.ServerboundCustomPayloadPacketMixin",
+    "v1_20_4.neoforge.network.registration.NetworkRegistryMixin"
+  ],
+  "server": [],
+  "client": []
+}

@@ -9,7 +9,10 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_20_2.fabric.api.minecraft.network.protocol.common.CustomPayloadPacket_API",
+    "v1_20_2.fabric.core.network.protocol.common.ClientboundCustomPayloadPacketMixin",
     "v1_20_2.fabric.core.network.protocol.common.CustomPayloadPacketMixin",
+    "v1_20_2.fabric.core.network.protocol.common.ServerboundCustomPayloadPacketMixin",
+    "v1_20_2.fabric.core.network.protocol.common.custom.DiscardedPayloadMixin",
     "v1_20_2.fabric.core.server.level.ServerPlayerMixin_sendPacket",
     "v1_20_2.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_20_2.fabric.listeners.player.PlayerAdvancementFinishedMixin",

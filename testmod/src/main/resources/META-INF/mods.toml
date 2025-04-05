@@ -15,8 +15,8 @@ authors = "${authors}"
 displayTest = "IGNORE_SERVER_VERSION"
 description = '''${project_description}'''
 
-[[mixins]]
-config = "${project_id}.mixins.json"
+#[[mixins]]
+#config = "${project_id}.mixins.json"
 
 # Forge Dependency
 [[dependencies.${ project_id }]]

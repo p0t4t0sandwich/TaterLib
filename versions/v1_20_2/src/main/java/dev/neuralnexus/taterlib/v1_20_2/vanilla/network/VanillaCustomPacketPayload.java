@@ -25,6 +25,11 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload {
         this.byteBuf.writeBytes(data);
     }
 
+    public VanillaCustomPacketPayload(ResourceLocation id, FriendlyByteBuf byteBuf) {
+        this.id = id;
+        this.byteBuf = byteBuf;
+    }
+
     @Override
     public void write(FriendlyByteBuf byteBuf) {
         byteBuf.writeBytes(this.byteBuf.copy());

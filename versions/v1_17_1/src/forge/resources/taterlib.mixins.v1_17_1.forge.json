@@ -24,6 +24,7 @@
     "v1_17_1.forge.core.commands.CommandSourceMixin",
     "v1_17_1.forge.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_17_1.forge.core.server.MinecraftServerMixin",
+    "v1_17_1.forge.core.server.MinecraftServerMixin_brand",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin_sendPacket",
     "v1_17_1.forge.core.server.player.UserWhiteListEntryMixin",

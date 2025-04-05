@@ -181,7 +181,9 @@ public class TaterReflectUtil {
         MinecraftVersion version;
         if (mcv.is(MinecraftVersions.V20_2)) {
             version = MinecraftVersions.V20_2;
-        } else if (mcv.isInRange(MinecraftVersions.V20_3, MinecraftVersions.V20_6)) {
+        } else if (mcv.isInRange(MinecraftVersions.V20_3, MinecraftVersions.V20_4)) {
+            version = MinecraftVersions.V20_4;
+        } else if (mcv.isInRange(MinecraftVersions.V20_5, MinecraftVersions.V20_6)) {
             version = MinecraftVersions.V20_6;
         } else if (mcv.isInRange(MinecraftVersions.V21, MinecraftVersions.V21_4)) {
             version = MinecraftVersions.V21_4;

@@ -18,7 +18,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 
-class NeoForgeTaterLibPlugin implements TaterLibPlugin {
+public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {

@@ -8,8 +8,8 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ClientboundCustomPayloadPacketAccessor;
-import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor;
+import dev.neuralnexus.taterlib.mixin.v1_17_1.forge.accessors.network.protocol.game.ClientboundCustomPayloadPacketAccessor;
+import dev.neuralnexus.taterlib.mixin.v1_17_1.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -26,22 +26,22 @@ public class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Override
     public ResourceLocation bridge$identifier() {
         Object self = this;
-        if (self instanceof ClientboundCustomPayloadPacket) {
-            return ((ClientboundCustomPayloadPacketAccessor) self).accessor$identifier();
-        } else {
-            return ((ServerboundCustomPayloadPacketAccessor) self).accessor$identifier();
+        if (self instanceof ClientboundCustomPayloadPacketAccessor client) {
+            return client.accessor$identifier();
+        } else if (self instanceof ServerboundCustomPayloadPacketAccessor server) {
+            return server.accessor$identifier();
         }
+        throw new IllegalStateException("Unknown packet type");
     }
 
     @Override
     public FriendlyByteBuf bridge$data() {
         Object self = this;
-        if (self instanceof ClientboundCustomPayloadPacket) {
-            return new FriendlyByteBuf(
-                    ((ClientboundCustomPayloadPacketAccessor) self).accessor$data().copy());
-        } else {
-            return new FriendlyByteBuf(
-                    ((ServerboundCustomPayloadPacketAccessor) self).accessor$data().copy());
+        if (self instanceof ClientboundCustomPayloadPacketAccessor client) {
+            return client.accessor$data();
+        } else if (self instanceof ServerboundCustomPayloadPacketAccessor server) {
+            return server.accessor$data();
         }
+        throw new IllegalStateException("Unknown packet type");
     }
 }

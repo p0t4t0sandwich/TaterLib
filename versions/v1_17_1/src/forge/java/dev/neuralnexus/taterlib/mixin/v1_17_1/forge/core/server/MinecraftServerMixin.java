@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.server.players.GameProfileCacheAccessor;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.GameProfileCacheBridge;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.MinecraftServerBridge;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.players.GameProfileCache;
@@ -26,9 +26,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin implements GameProfileCacheBridge {
+public abstract class MinecraftServerMixin implements MinecraftServerBridge {
     @Shadow
     public abstract GameProfileCache shadow$getProfileCache();
 

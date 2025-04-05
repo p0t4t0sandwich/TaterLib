@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.List;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
 @Mixin(Minecraft.class)
 @Implements(@Interface(iface = SimpleServer.class, prefix = "server$", remap = Remap.NONE))
 public abstract class Minecraft_API implements MinecraftBridge {

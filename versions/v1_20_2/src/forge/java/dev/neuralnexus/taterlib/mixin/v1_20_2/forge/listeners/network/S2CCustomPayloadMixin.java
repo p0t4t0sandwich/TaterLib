@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(ClientCommonPacketListenerImpl.class)
 public abstract class S2CCustomPayloadMixin {
     /**
@@ -38,8 +38,8 @@ public abstract class S2CCustomPayloadMixin {
             at = @At("HEAD"))
     @SuppressWarnings("DataFlowIssue")
     public void onS2CCustomPacket(ClientboundCustomPayloadPacket packet, CallbackInfo ci) {
-        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         SimpleServer server = (SimpleServer) Minecraft.getInstance();
+        CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
         NetworkEvents.S2C_CUSTOM_PACKET.invoke(new S2CCustomPacketEventImpl(customPacket, server));
     }
 }

@@ -32,29 +32,23 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V18_2)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
-    @Shadow
-    public abstract void shadow$sendMessage(Component message, UUID uuid);
+    // @spotless:off
+    @Shadow public abstract int shadow$getId();
+    @Shadow public abstract void shadow$sendMessage(Component message, UUID uuid);
+    @Shadow public abstract void shadow$remove(Entity.RemovalReason removalReason);
+    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow public abstract Level shadow$getCommandSenderWorld();
+    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow public abstract Entity shadow$changeDimension(ServerLevel level);
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow public abstract UUID shadow$getUUID();
+    // @spotless:on
 
-    @Shadow
-    public abstract void shadow$remove(Entity.RemovalReason removalReason);
-
-    @Shadow
-    public abstract EntityType<?> shadow$getType();
-
-    @Shadow
-    public abstract Level shadow$getCommandSenderWorld();
-
-    @Shadow
-    public abstract BlockPos shadow$blockPosition();
-
-    @Shadow
-    public abstract Entity shadow$changeDimension(ServerLevel level);
-
-    @Shadow
-    public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    public abstract void shadow$setCustomName(@Nullable Component name);
+    @Override
+    public int bridge$entityId() {
+        return this.shadow$getId();
+    }
 
     @Override
     public void bridge$sendMessage(String message) {
@@ -88,5 +82,10 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$setCustomName(String name) {
         this.shadow$setCustomName(Component.nullToEmpty(name));
+    }
+
+    @Override
+    public UUID bridge$uuid() {
+        return this.shadow$getUUID();
     }
 }

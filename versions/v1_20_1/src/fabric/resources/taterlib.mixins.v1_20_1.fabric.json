@@ -11,6 +11,7 @@
     "v1_20_1.fabric.core.server.level.ServerPlayerMixin",
     "v1_20_1.fabric.core.world.entity.EntityMixin",
     "v1_20_1.fabric.core.world.entity.LivingEntityMixin",
+    "v1_20_1.fabric.core.world.level.block.BlockMixin",
     "v1_20_1.fabric.listeners.entity.EntityDamageMixin"
   ],
   "server": [],

@@ -32,7 +32,6 @@ public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBrid
 
     public byte[] packet$data() {
         FriendlyByteBuf data = new FriendlyByteBuf(this.bridge$data().duplicate());
-        data.readResourceLocation();
         byte[] bytes = new byte[data.readableBytes()];
         data.readBytes(bytes);
         return bytes;

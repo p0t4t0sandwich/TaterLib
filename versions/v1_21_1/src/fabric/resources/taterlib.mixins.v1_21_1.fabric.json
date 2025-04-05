@@ -9,7 +9,6 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_21_1.fabric.core.world.entity.EntityMixin",
-    "v1_21_1.fabric.core.world.level.block.BlockMixin",
     "v1_21_1.fabric.listeners.player.PlayerRespawnMixin"
   ],
   "server": [],

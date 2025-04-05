@@ -55,6 +55,11 @@ public class ResourceKeyImpl implements ResourceKey {
         return namespace;
     }
 
+    @Override
+    public String toString() {
+        return this.asString();
+    }
+
     public static class Factory implements ResourceKey.Factory {
         @Override
         public ResourceKey of(String namespace, String value) {

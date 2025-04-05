@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
-import dev.neuralnexus.taterlib.v1_20_6.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 
 import io.netty.buffer.Unpooled;
 
@@ -26,34 +26,33 @@ import org.spongepowered.asm.mixin.Unique;
 @ReqMCVersion(min = MinecraftVersion.V20_5)
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
-
-    @Unique @SuppressWarnings("ConstantValue")
-    private CustomPacketPayload taterlib$payload() {
-        Object self = this;
-        if (self instanceof ClientboundCustomPayloadPacket(CustomPacketPayload payload)) {
-            return payload;
-        } else if (self instanceof ServerboundCustomPayloadPacket(CustomPacketPayload payload)) {
-            return payload;
-        }
-        throw new IllegalStateException("Unknown packet type");
+    @Unique @SuppressWarnings("DataFlowIssue")
+    private CustomPacketPayload taterapi$payload() {
+        return switch ((Object) this) {
+            case ClientboundCustomPayloadPacket(CustomPacketPayload payload) -> payload;
+            case ServerboundCustomPayloadPacket(CustomPacketPayload payload) -> payload;
+            default -> throw new IllegalStateException("Unknown packet type");
+        };
     }
 
     @Override
     public ResourceLocation bridge$identifier() {
-        return this.taterlib$payload().type().id();
+        return this.taterapi$payload().type().id();
     }
 
     @Override
+    @SuppressWarnings("DataFlowIssue")
     public FriendlyByteBuf bridge$data() {
-        Object self = this;
         FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
-        if (this.taterlib$payload() instanceof DiscardedPayloadBridge bridge) {
+        if (this.taterapi$payload() instanceof DiscardedPayloadBridge bridge) {
             return bridge.bridge$buf();
         } else {
-            if (self instanceof ClientboundCustomPayloadPacket client) {
-                ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC.encode(buf, client);
-            } else if (self instanceof ServerboundCustomPayloadPacket server) {
-                ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, server);
+            switch ((Object) this) {
+                case ClientboundCustomPayloadPacket client ->
+                        ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC.encode(buf, client);
+                case ServerboundCustomPayloadPacket server ->
+                        ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, server);
+                default -> {}
             }
         }
         return buf;

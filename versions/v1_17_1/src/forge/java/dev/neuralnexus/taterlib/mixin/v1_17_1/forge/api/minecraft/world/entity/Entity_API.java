@@ -36,7 +36,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V19_4)
+@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
@@ -46,9 +46,6 @@ import java.util.UUID;
 })
 public abstract class Entity_API implements EntityBridge {
     @Shadow
-    public abstract int shadow$getId();
-
-    @Shadow
     @Nullable public abstract MinecraftServer shadow$getServer();
 
     @Shadow
@@ -57,15 +54,12 @@ public abstract class Entity_API implements EntityBridge {
     @Shadow
     @Nullable public abstract Component shadow$getCustomName();
 
-    @Shadow
-    public abstract UUID shadow$getUUID();
-
     public void cmdSender$sendMessage(String message) {
         this.bridge$sendMessage(message);
     }
 
     public int entity$entityId() {
-        return this.shadow$getId();
+        return this.bridge$entityId();
     }
 
     public void entity$remove() {
@@ -111,7 +105,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public UUID identifiable$uuid() {
-        return this.shadow$getUUID();
+        return this.bridge$uuid();
     }
 
     @Intrinsic

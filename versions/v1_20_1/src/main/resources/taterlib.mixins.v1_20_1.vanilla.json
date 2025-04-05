@@ -11,6 +11,7 @@
     "v1_20_1.vanilla.core.server.level.ServerPlayerMixin",
     "v1_20_1.vanilla.core.world.entity.EntityMixin",
     "v1_20_1.vanilla.core.world.entity.LivingEntityMixin",
+    "v1_20_1.vanilla.core.world.level.block.BlockMixin",
     "v1_20_1.vanilla.listeners.entity.EntityDamageMixin"
   ],
   "server": [],
