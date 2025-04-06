@@ -6,10 +6,8 @@ package dev.neuralnexus.taterlib.mixin.v1_20_2.vanilla.core.network.protocol.com
 
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -19,7 +17,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = Platform.NEOFORGE)
 @ReqMCVersion(min = MinecraftVersion.V20_2)
 @Mixin(DiscardedPayload.class)
 public class DiscardedPayloadMixin implements DiscardedPayloadBridge {

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.core.network.protocol.common.custom;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
@@ -11,9 +12,13 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
+import io.netty.buffer.ByteBufUtil;
+
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.network.protocol.common.custom.DiscardedPayload;
 import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -48,16 +53,39 @@ public abstract class CustomPacketPayloadMixin {
     }
 
     @SuppressWarnings("UnresolvedMixinReference")
-    @Inject(method = "decode", at = @At("HEAD"), cancellable = true)
-    private void decode(FriendlyByteBuf buf, CallbackInfoReturnable<CustomPacketPayload> cir) {
-        FriendlyByteBuf bufCopy = new FriendlyByteBuf(buf.copy());
-        ResourceLocation id = buf.readResourceLocation();
-        CustomPacketPayload payload = this.shadow$findCodec(id).decode(buf);
-        if (payload instanceof DiscardedPayloadBridge bridge) {
-            bridge.bridge$setBuf(bufCopy);
-            cir.setReturnValue(payload);
-        } else {
-            bufCopy.release();
+    @Inject(
+            method = "decode(Ljava/lang/Object;)Ljava/lang/Object;",
+            at = @At("HEAD"),
+            cancellable = true)
+    private void decode(Object buf, CallbackInfoReturnable<CustomPacketPayload> cir) {
+        if (!(buf instanceof FriendlyByteBuf friendlyByteBuf)
+                || buf instanceof RegistryFriendlyByteBuf) {
+            return;
+        }
+        FriendlyByteBuf bufCopy = null;
+        try {
+            bufCopy = new FriendlyByteBuf(friendlyByteBuf.copy());
+            ResourceLocation id = bufCopy.readResourceLocation();
+
+            //
+            TaterAPI.logger().info("Received: " + id);
+            TaterAPI.logger().info("\n" + ByteBufUtil.prettyHexDump(bufCopy));
+            //
+
+            CustomPacketPayload payload = this.shadow$findCodec(id).decode(bufCopy);
+            if (payload instanceof DiscardedPayloadBridge bridge) {
+                bufCopy.resetReaderIndex();
+                bufCopy.readResourceLocation();
+                bridge.bridge$setBuf(bufCopy);
+                cir.setReturnValue(payload);
+            } else {
+                bufCopy.release();
+            }
+        } catch (Throwable e) {
+            if (bufCopy != null) {
+                bufCopy.release();
+            }
+            TaterAPI.logger().error("Failed to decode payload", e);
         }
     }
 }

@@ -32,6 +32,9 @@ public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBrid
 
     public byte[] packet$data() {
         FriendlyByteBuf data = new FriendlyByteBuf(this.bridge$data().duplicate());
+        //        if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_5)) {
+        //            data.readResourceLocation();
+        //        }
         byte[] bytes = new byte[data.readableBytes()];
         data.readBytes(bytes);
         return bytes;

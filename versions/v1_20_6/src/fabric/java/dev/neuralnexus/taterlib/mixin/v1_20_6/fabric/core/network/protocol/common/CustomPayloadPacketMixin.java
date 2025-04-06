@@ -43,10 +43,10 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
     @Override
     @SuppressWarnings("DataFlowIssue")
     public FriendlyByteBuf bridge$data() {
-        FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
         if (this.taterapi$payload() instanceof DiscardedPayloadBridge bridge) {
             return bridge.bridge$buf();
         } else {
+            FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             switch ((Object) this) {
                 case ClientboundCustomPayloadPacket client ->
                         ClientboundCustomPayloadPacket.CONFIG_STREAM_CODEC.encode(buf, client);
@@ -54,7 +54,7 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
                         ServerboundCustomPayloadPacket.STREAM_CODEC.encode(buf, server);
                 default -> {}
             }
+            return buf;
         }
-        return buf;
     }
 }
