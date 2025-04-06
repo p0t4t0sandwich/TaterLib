@@ -24,7 +24,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V20_2)
-@Mixin(ClientCommonPacketListenerImpl.class)
+// TODO: Make a note of the priority change
+@Mixin(value = ClientCommonPacketListenerImpl.class, priority = 900)
 public abstract class S2CCustomPayloadMixin {
     /**
      * Called when a custom payload packet is received from the server.

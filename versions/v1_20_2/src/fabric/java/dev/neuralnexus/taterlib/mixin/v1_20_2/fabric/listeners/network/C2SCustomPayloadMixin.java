@@ -31,7 +31,8 @@ import java.util.Optional;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
-@Mixin(ServerCommonPacketListenerImpl.class)
+// TODO: Make a note of the priority change
+@Mixin(value = ServerCommonPacketListenerImpl.class, priority = 900)
 public abstract class C2SCustomPayloadMixin {
     @Shadow @Final protected MinecraftServer server;
 

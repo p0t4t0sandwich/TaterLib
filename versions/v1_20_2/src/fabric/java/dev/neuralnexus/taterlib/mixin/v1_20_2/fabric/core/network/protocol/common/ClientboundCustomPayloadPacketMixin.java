@@ -4,6 +4,9 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_2.fabric.core.network.protocol.common;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
@@ -16,42 +19,24 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.network.protocol.common.custom.DiscardedPayload;
 import net.minecraft.resources.ResourceLocation;
 
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
-@Mixin(value = ClientboundCustomPayloadPacket.class)
+@Mixin(ClientboundCustomPayloadPacket.class)
 public class ClientboundCustomPayloadPacketMixin {
-    // @spotless:off
-    @Shadow @Final private static int MAX_PAYLOAD_SIZE;
-    // @spotless:on
-
-    @Inject(method = "readUnknownPayload", at = @At("HEAD"), cancellable = true)
+    // TODO: Make a note of this fabric-specific change
     @SuppressWarnings("ConstantValue")
-    private static void readUnknownPayload(
-            ResourceLocation id,
-            FriendlyByteBuf buf,
-            CallbackInfoReturnable<DiscardedPayload> cir) {
+    @WrapMethod(method = "readUnknownPayload")
+    private static DiscardedPayload readUnknownPayload(
+            ResourceLocation id, FriendlyByteBuf buf, Operation<DiscardedPayload> original) {
         FriendlyByteBuf bufCopy = new FriendlyByteBuf(buf.copy());
-        CustomPacketPayload payload = new DiscardedPayload(id);
+        CustomPacketPayload payload = original.call(id, buf);
         if (payload instanceof DiscardedPayloadBridge bridge) {
-            int i = buf.readableBytes();
-            if (i >= 0 && i <= MAX_PAYLOAD_SIZE) {
-                buf.skipBytes(i);
-                bridge.bridge$setBuf(bufCopy);
-                cir.setReturnValue((DiscardedPayload) payload);
-            } else {
-                bufCopy.release();
-                throw new IllegalArgumentException(
-                        "Payload may not be larger than " + MAX_PAYLOAD_SIZE + " bytes");
-            }
+            bridge.bridge$setBuf(bufCopy);
         } else {
             bufCopy.release();
         }
+        return (DiscardedPayload) payload;
     }
 }

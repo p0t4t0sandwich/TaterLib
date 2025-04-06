@@ -13,6 +13,7 @@ import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.c
 
 import io.netty.buffer.Unpooled;
 
+import net.fabricmc.fabric.impl.networking.payload.RetainedPayload;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket;
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
@@ -44,9 +45,13 @@ public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBri
     }
 
     @Override
+    @SuppressWarnings("UnstableApiUsage")
     public FriendlyByteBuf bridge$data() {
         if (this.taterapi$payload() instanceof DiscardedPayloadBridge bridge) {
             return bridge.bridge$buf();
+            // TODO: Make a not of this fabric-specific case
+        } else if (this.taterapi$payload() instanceof RetainedPayload retained) {
+            return retained.buf();
         } else {
             FriendlyByteBuf buf = new FriendlyByteBuf(Unpooled.buffer());
             this.taterapi$payload().write(buf);

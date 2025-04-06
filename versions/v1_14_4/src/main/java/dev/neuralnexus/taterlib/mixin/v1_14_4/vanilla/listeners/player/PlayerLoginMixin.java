@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = {Platform.NEOFORGE, Platform.SPONGE})
+@ReqPlatform(not = {Platform.FORGE, Platform.NEOFORGE, Platform.SPONGE})
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_6)
 @Mixin(PlayerList.class)
 public class PlayerLoginMixin {
