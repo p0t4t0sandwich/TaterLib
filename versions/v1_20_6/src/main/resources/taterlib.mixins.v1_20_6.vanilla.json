@@ -9,7 +9,7 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_20_6.vanilla.core.network.protocol.common.CustomPayloadPacketMixin",
-    "v1_20_6.vanilla.core.network.protocol.common.custom.CustomPacketPayloadMixin",
+    "v1_20_6.vanilla.core.network.protocol.common.custom.CustomPacketPayloadCodecMixin",
     "v1_20_6.vanilla.core.server.level.ServerPlayerMixin_sendPacket",
     "v1_20_6.vanilla.core.world.entity.LivingEntityMixin",
     "v1_20_6.vanilla.listeners.network.C2SCustomPayloadMixin",
@@ -17,6 +17,7 @@
   ],
   "server": [],
   "client": [
-    "v1_20_6.vanilla.core.client.MinecraftMixin_sendPacket"
+    "v1_20_6.vanilla.core.client.MinecraftMixin_sendPacket",
+    "v1_20_6.vanilla.listeners.network.S2CCustomPayloadMixin"
   ]
 }

@@ -86,6 +86,7 @@ tasks.register<ShadowJar>("relocateFabricJar") {
         exclude("dev/neuralnexus/taterlib/mixin/v1_20_6/vanilla/**")
     }
     relocate("dev.neuralnexus.taterlib.v1_20_6.vanilla", "dev.neuralnexus.taterlib.v1_20_6.y_intmdry")
+    relocate("dev.neuralnexus.taterlib.v1_20_2.vanilla", "dev.neuralnexus.taterlib.v1_20_2.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
 }

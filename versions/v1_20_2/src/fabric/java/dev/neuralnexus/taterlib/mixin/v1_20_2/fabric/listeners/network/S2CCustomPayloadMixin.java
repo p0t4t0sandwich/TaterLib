@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V20_2)
+@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
 // TODO: Make a note of the priority change
 @Mixin(value = ClientCommonPacketListenerImpl.class, priority = 900)
 public abstract class S2CCustomPayloadMixin {

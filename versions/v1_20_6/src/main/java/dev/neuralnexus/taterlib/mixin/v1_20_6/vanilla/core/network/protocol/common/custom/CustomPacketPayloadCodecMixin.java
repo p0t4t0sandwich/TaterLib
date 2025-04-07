@@ -12,13 +12,10 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
-import io.netty.buffer.ByteBufUtil;
-
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.network.protocol.common.custom.DiscardedPayload;
 import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,7 +28,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V20_5)
 @Mixin(targets = "net.minecraft.network.protocol.common.custom.CustomPacketPayload$1")
-public abstract class CustomPacketPayloadMixin {
+public abstract class CustomPacketPayloadCodecMixin {
     @Shadow
     abstract StreamCodec<FriendlyByteBuf, ? extends CustomPacketPayload> shadow$findCodec(
             ResourceLocation resourceLocation);
@@ -63,25 +60,26 @@ public abstract class CustomPacketPayloadMixin {
             return;
         }
         FriendlyByteBuf bufCopy = null;
+
         try {
             bufCopy = new FriendlyByteBuf(friendlyByteBuf.copy());
-            ResourceLocation id = bufCopy.readResourceLocation();
+            ResourceLocation id = friendlyByteBuf.readResourceLocation();
+            CustomPacketPayload payload = this.shadow$findCodec(id).decode(friendlyByteBuf);
 
             //
-            TaterAPI.logger().info("Received: " + id);
-            TaterAPI.logger().info("\n" + ByteBufUtil.prettyHexDump(bufCopy));
+            // TaterAPI.logger().info("CustomPacketPayloadCodecMixin Received: " + id);
+            // TaterAPI.logger().info("\n" + ByteBufUtil.prettyHexDump(bufCopy));
             //
 
-            CustomPacketPayload payload = this.shadow$findCodec(id).decode(bufCopy);
             if (payload instanceof DiscardedPayloadBridge bridge) {
-                bufCopy.resetReaderIndex();
-                bufCopy.readResourceLocation();
                 bridge.bridge$setBuf(bufCopy);
                 cir.setReturnValue(payload);
             } else {
+                friendlyByteBuf.resetReaderIndex();
                 bufCopy.release();
             }
         } catch (Throwable e) {
+            friendlyByteBuf.resetReaderIndex();
             if (bufCopy != null) {
                 bufCopy.release();
             }

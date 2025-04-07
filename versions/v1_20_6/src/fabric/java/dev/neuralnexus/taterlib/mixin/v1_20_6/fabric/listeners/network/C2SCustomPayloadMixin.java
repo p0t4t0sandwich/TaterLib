@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_6.fabric.listeners.network;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
@@ -12,6 +13,9 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
+
+import io.netty.buffer.ByteBufUtil;
 
 import net.minecraft.network.protocol.common.ServerboundCustomPayloadPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -41,7 +45,18 @@ public abstract class C2SCustomPayloadMixin {
     public void onC2SCustomPacket(ServerboundCustomPayloadPacket packet, CallbackInfo ci) {
         User player = (User) this.shadow$getPlayer();
         if (player == null) return;
+
         CustomPayloadPacket customPacket = (CustomPayloadPacket) (Object) packet;
+
+        //
+        // TaterAPI.logger().info("C2SCustomPayloadMixin Received: " + packet.payload().type().id());
+        // if (packet.payload() instanceof DiscardedPayloadBridge bridge) {
+        //     TaterAPI.logger().info("\n" + ByteBufUtil.prettyHexDump(bridge.bridge$buf()));
+        // } else {
+        //     TaterAPI.logger().info("Packet: " + packet.payload().getClass().getName());
+        // }
+        //
+
         NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(customPacket, player));
     }
 }
