@@ -60,7 +60,6 @@ unimined.minecraft {
             }
         }
     }
-
     defaultRemapJar = false
 }
 

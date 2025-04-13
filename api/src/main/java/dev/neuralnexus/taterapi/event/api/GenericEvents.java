@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.event.EventManager;
 
 import java.util.HashSet;
 import java.util.Set;

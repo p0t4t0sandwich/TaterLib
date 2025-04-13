@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.event.EventManager;
 import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
 import dev.neuralnexus.taterapi.event.network.S2CCustomPacketEvent;

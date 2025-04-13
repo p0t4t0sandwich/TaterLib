@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.event.EventManager;
 import dev.neuralnexus.taterapi.event.plugin.PluginDisableEvent;
 import dev.neuralnexus.taterapi.event.plugin.PluginEnableEvent;
 

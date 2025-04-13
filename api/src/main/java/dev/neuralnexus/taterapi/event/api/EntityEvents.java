@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.api;
 
 import dev.neuralnexus.taterapi.event.Event;
+import dev.neuralnexus.taterapi.event.EventManager;
 import dev.neuralnexus.taterapi.event.entity.EntityDamageEvent;
 import dev.neuralnexus.taterapi.event.entity.EntityDeathEvent;
 import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
