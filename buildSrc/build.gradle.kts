@@ -7,7 +7,7 @@ repositories {
 }
 
 dependencies {
-    implementation("xyz.wagyourtail.unimined:xyz.wagyourtail.unimined.gradle.plugin:1.3.13")
+    implementation("xyz.wagyourtail.unimined:xyz.wagyourtail.unimined.gradle.plugin:1.3.14")
 }
 
 kotlin {
