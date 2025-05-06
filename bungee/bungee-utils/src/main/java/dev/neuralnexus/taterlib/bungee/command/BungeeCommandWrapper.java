@@ -21,10 +21,6 @@ public class BungeeCommandWrapper extends net.md_5.bungee.api.plugin.Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if (sender instanceof ProxiedPlayer) {
-            command.execute(WrapperRegistry.wrap((ProxiedPlayer) sender), this.getName(), args);
-        } else {
-            command.execute(new BungeeCommandSender(sender), this.getName(), args);
-        }
+        command.execute(new BungeeCommandSender(sender), this.getName(), args);
     }
 }
