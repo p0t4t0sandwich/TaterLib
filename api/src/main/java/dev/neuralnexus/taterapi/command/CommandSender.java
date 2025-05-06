@@ -54,7 +54,9 @@ public interface CommandSender extends Identifiable, Nameable, Notifiable {
 
     @Override
     default void sendMessage(String message) {
-        if (this.isPlayer() && this.getPlayer() != null) {
+        if (this.getEntity() instanceof Notifiable) {
+            ((Notifiable) this.getEntity()).sendMessage(message);
+        } else if (this.getPlayer() != null) {
             this.getPlayer().sendMessage(message);
         }
     }
