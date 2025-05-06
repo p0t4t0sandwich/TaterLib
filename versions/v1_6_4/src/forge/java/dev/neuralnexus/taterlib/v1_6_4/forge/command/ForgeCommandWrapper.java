@@ -5,13 +5,11 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.command;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.v1_6_4.forge.entity.player.ForgePlayer;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.player.EntityPlayer;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -46,11 +44,7 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        if (sender instanceof EntityPlayer) {
-            command.execute(new ForgePlayer((EntityPlayer) sender), command.name(), args);
-        } else {
-            command.execute(new ForgeSender(sender), command.name(), args);
-        }
+        command.execute(new ForgeSender(sender), command.name(), args);
     }
 
     @Override
