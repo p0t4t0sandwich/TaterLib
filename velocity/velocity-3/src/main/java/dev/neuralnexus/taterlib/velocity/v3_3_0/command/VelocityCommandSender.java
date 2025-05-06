@@ -10,9 +10,14 @@ import com.velocitypowered.api.proxy.Player;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import net.kyori.adventure.text.Component;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -39,7 +44,28 @@ public class VelocityCommandSender implements CommandSender, Wrapped<CommandSour
 
     @Override
     public String name() {
-        return "CONSOLE";
+        if (this.isPlayer() && this.getPlayer() != null) {
+            return this.getPlayer().name();
+        }
+        return this.sender.getClass().getSimpleName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof Player;
+    }
+
+    @Override
+    public @Nullable ProxyPlayer getPlayer() {
+        if (this.isPlayer()) {
+            return new VelocityPlayer((Player) this.sender);
+        }
+        return null;
     }
 
     @Override

@@ -18,6 +18,7 @@ import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.BukkitEntity;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.block.BukkitBlockListener;
@@ -28,6 +29,7 @@ import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.server.BukkitServerList
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.server.BukkitServer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -42,6 +44,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
             TaterAPI.instance().setServer(Platforms.BUKKIT, BukkitServer::instance);
         }
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
+        WrapperRegistry.register(Entity.class, BukkitEntity::new);
     }
 
     @Override
