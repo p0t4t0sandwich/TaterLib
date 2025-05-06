@@ -7,9 +7,15 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
 
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.api.command.CommandSource;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
@@ -35,6 +41,27 @@ public class SpongeCommandSender implements CommandSender, Wrapped<CommandSource
     @Override
     public String name() {
         return this.sender.getName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        if (this.sender instanceof org.spongepowered.api.entity.Entity) {
+            return new SpongeEntity((org.spongepowered.api.entity.Entity) this.sender);
+        }
+        return null;
+    }
+
+    @Override
+    public ServerPlayer getPlayer() {
+        if (this.sender instanceof Player) {
+            return new SpongePlayer((Player) this.sender);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof Player;
     }
 
     @Override
