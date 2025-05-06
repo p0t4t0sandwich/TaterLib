@@ -7,7 +7,14 @@ package dev.neuralnexus.taterlib.bungee.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
+
+import net.md_5.bungee.api.connection.ProxiedPlayer;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -33,6 +40,24 @@ public class BungeeCommandSender
     @Override
     public String name() {
         return this.sender.getName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof ProxiedPlayer;
+    }
+
+    @Override
+    public @Nullable ProxyPlayer getPlayer() {
+        if (this.isPlayer()) {
+            return new BungeePlayer((ProxiedPlayer) this.sender);
+        }
+        return null;
     }
 
     @SuppressWarnings("deprecation")

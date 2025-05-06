@@ -29,13 +29,16 @@ public interface Nameable {
      * @return The custom name of the entity
      */
     @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
-    Optional<String> customName();
+    default Optional<String> customName() {
+        return Optional.empty();
+    }
 
     /**
      * Set the custom name of the entity
      *
      * @param name The custom name of the entity
      */
+    // TODO: Split into nametag interface?
     @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
-    void setCustomName(String name);
+    default void setCustomName(String name) {}
 }

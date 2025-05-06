@@ -6,8 +6,12 @@ package dev.neuralnexus.taterlib.bukkit.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -33,6 +37,14 @@ public class BukkitCommandSender
     @Override
     public String name() {
         return this.sender.getName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        if (this.sender instanceof org.bukkit.entity.Entity) {
+            return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
+        }
+        return null;
     }
 
     @Override

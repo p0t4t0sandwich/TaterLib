@@ -27,7 +27,12 @@ public interface CommandSender extends Identifiable, Nameable, Notifiable {
      *
      * @return The player that sent the command
      */
-    @Nullable User getPlayer();
+    default @Nullable User getPlayer() {
+        if (this.getEntity() instanceof User) {
+            return (User) this.getEntity();
+        }
+        return null;
+    }
 
     /**
      * Get the name of the command sender
