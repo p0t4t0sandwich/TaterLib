@@ -4,8 +4,10 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.taterapi.network.Connection;
+
 /** Abstracts a proxy player. */
-public interface ProxyPlayer extends User, Connection {
+public interface ProxyPlayer extends Connection, User {
     /**
      * Connect the player to a server.
      *

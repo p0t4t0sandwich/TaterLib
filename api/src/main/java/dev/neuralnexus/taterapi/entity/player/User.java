@@ -5,7 +5,9 @@
 package dev.neuralnexus.taterapi.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
@@ -16,14 +18,7 @@ import java.util.Optional;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface User extends CommandSender {
-    /**
-     * Get the display name of the player
-     *
-     * @return The display name of the player
-     */
-    String displayName();
-
+public interface User extends Identifiable, Nameable, Notifiable {
     /**
      * Get the server the player is on
      *
@@ -101,6 +96,7 @@ public interface User extends CommandSender {
      * @param key The key to get
      * @return The value
      */
+    @Deprecated
     default Optional<Object> getMeta(String key) {
         return TaterAPI.playerDataStore().get(this, key);
     }
@@ -112,6 +108,7 @@ public interface User extends CommandSender {
      * @param clazz The class of the object to get
      * @return The value
      */
+    @Deprecated
     default <T> Optional<T> getMeta(String key, Class<T> clazz) {
         return TaterAPI.playerDataStore().get(this, key, clazz);
     }
@@ -123,6 +120,7 @@ public interface User extends CommandSender {
      * @param type The type of the object to get
      * @return The value
      */
+    @Deprecated
     default <T> Optional<T> getMeta(String key, Type type) {
         return TaterAPI.playerDataStore().get(this, key, type);
     }
@@ -133,6 +131,7 @@ public interface User extends CommandSender {
      * @param key The key to set
      * @param value The value to set
      */
+    @Deprecated
     default void setMeta(String key, Object value) {
         TaterAPI.playerDataStore().set(this, key, value);
     }
@@ -142,6 +141,7 @@ public interface User extends CommandSender {
      *
      * @param key The key to delete
      */
+    @Deprecated
     default void deleteMeta(String key) {
         TaterAPI.playerDataStore().delete(this, key);
     }

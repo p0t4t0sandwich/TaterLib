@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
-public interface Entity extends CommandSender, Nameable {
+public interface Entity extends Identifiable, Nameable {
     /**
      * Get the name of the entity
      *
@@ -79,7 +78,7 @@ public interface Entity extends CommandSender, Nameable {
      * @return The entities in the world that match the parameters
      */
     default List<Entity> nearbyEntities(double radius) {
-        return nearbyEntities(radius, e -> true);
+        return this.nearbyEntities(radius, e -> true);
     }
 
     /**

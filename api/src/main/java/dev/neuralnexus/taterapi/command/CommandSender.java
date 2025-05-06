@@ -4,20 +4,53 @@
  */
 package dev.neuralnexus.taterapi.command;
 
+import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 
-public interface CommandSender extends Identifiable {
+import org.jetbrains.annotations.Nullable;
+
+public interface CommandSender extends Identifiable, Nameable, Notifiable {
     /**
-     * Get the name of the player
+     * Get the entity that sent the command
      *
-     * @return The name of the player
+     * @return The entity that sent the command
      */
-    String name();
+    @Nullable Entity getEntity();
 
     /**
-     * Send a message to the command sender
+     * Get the player that sent the command
      *
-     * @param message The message to send
+     * @return The player that sent the command
      */
-    default void sendMessage(String message) {}
+    @Nullable User getPlayer();
+
+    /**
+     * Get the name of the command sender
+     *
+     * @return The name of the command sender
+     */
+    default boolean isPlayer() {
+        return this.getEntity() instanceof User;
+    }
+
+    /**
+     * Get an instance of the server
+     *
+     * @return The server instance
+     */
+    default SimpleServer server() {
+        return TaterAPI.instance().server();
+    }
+
+    @Override
+    default void sendMessage(String message) {
+        if (this.isPlayer() && this.getPlayer() != null) {
+            this.getPlayer().sendMessage(message);
+        }
+    }
 }

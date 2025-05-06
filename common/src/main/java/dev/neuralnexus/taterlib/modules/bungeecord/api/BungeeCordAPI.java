@@ -10,7 +10,7 @@ import com.google.common.io.ByteArrayDataOutput;
 import com.google.common.io.ByteStreams;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.entity.player.Connection;
+import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;

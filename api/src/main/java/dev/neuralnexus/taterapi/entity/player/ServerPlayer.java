@@ -7,10 +7,11 @@ package dev.neuralnexus.taterapi.entity.player;
 import dev.neuralnexus.taterapi.meta.annotations.Range;
 import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.world.Location;
 
 /** The interface for a ServerPlayer */
-public interface ServerPlayer extends Player, Connection {
+public interface ServerPlayer extends Connection, Player {
     /**
      * Set the player's spawn point
      *

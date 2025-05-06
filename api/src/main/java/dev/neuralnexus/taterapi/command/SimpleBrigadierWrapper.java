@@ -25,10 +25,10 @@ public class SimpleBrigadierWrapper {
             args = ((String) context.getArgument("args", String.class)).split(" ");
         } catch (IllegalArgumentException ignored) {
         }
-        boolean isPlayer = event.isPlayer(source);
-        if (isPlayer) {
-            commandSender = event.getPlayer(source);
-        }
+        // TODO: Resolve this before merging command rework
+        // if (commandSender.isPlayer()) {
+        //     commandSender = commandSender.getPlayer();
+        // }
         return command.execute(commandSender, command.name(), args) ? 1 : 0;
     }
 

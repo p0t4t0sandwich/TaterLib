@@ -11,6 +11,8 @@ import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.Event;
 
+import org.jetbrains.annotations.ApiStatus;
+
 /** Abstract class for a brigadier command register event. */
 public interface BrigadierCommandRegisterEvent<S> extends Event {
     /**
@@ -50,6 +52,8 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param source The source.
      * @return The player.
      */
+    @Deprecated
+    @ApiStatus.ScheduledForRemoval
     User getPlayer(S source);
 
     /**
@@ -57,5 +61,7 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      *
      * @param source The source.
      */
+    @Deprecated
+    @ApiStatus.ScheduledForRemoval
     boolean isPlayer(S source);
 }
