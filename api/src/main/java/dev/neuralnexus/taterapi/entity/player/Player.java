@@ -5,12 +5,20 @@
 package dev.neuralnexus.taterapi.entity.player;
 
 import dev.neuralnexus.taterapi.entity.HumanEntity;
+import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.meta.annotations.Range;
 import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
 /** The interface for a Player */
-public interface Player extends User, HumanEntity {
+public interface Player extends HumanEntity, User {
+    /**
+     * Get player's Inventory
+     *
+     * @return The player's Inventory
+     */
+    PlayerInventory inventory();
+
     /**
      * Allow the player to fly
      *

@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
 /** Represents an entity that has health and can take damage. */
-public interface Damageable extends Entity {
+public interface Damageable {
     /**
      * Deals the given amount of damage to this entity.
      *

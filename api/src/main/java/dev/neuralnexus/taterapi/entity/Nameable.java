@@ -11,13 +11,24 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import java.util.Optional;
 
 /** Represents a nameable entity */
-@VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
 public interface Nameable {
+    String name();
+
+    default String displayName() {
+        return this.name();
+    }
+
+    @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
+    default boolean hasCustomName() {
+        return this.customName().isPresent();
+    }
+
     /**
      * Get the custom name of the entity
      *
      * @return The custom name of the entity
      */
+    @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
     Optional<String> customName();
 
     /**
@@ -25,5 +36,6 @@ public interface Nameable {
      *
      * @param name The custom name of the entity
      */
+    @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
     void setCustomName(String name);
 }
