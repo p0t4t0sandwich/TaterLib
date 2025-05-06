@@ -27,17 +27,12 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = LivingEntity.class, prefix = "livingEntity$", remap = Remap.NONE)
 })
 public abstract class LivingEntity_API implements LivingEntityBridge {
-    @Shadow
-    public abstract float shadow$getHealth();
-
-    @Shadow
-    public abstract void shadow$setHealth(float health);
-
-    @Shadow
-    public abstract float shadow$getAbsorptionAmount();
-
-    @Shadow
-    public abstract void shadow$setAbsorptionAmount(float amount);
+    // @spotless:off
+    @Shadow public abstract float shadow$getHealth();
+    @Shadow public abstract void shadow$setHealth(float health);
+    @Shadow public abstract float shadow$getAbsorptionAmount();
+    @Shadow public abstract void shadow$setAbsorptionAmount(float amount);
+    // @spotless:on
 
     public void damageable$damage(double amount) {
         this.bridge$damage(amount);
