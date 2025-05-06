@@ -116,11 +116,6 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public void sendMessage(String message) {
-        this.entity.sendMessage(new TextComponentString(message));
-    }
-
-    @Override
     public boolean hasPermission(String permission) {
         return PermsAPI.instance().hasPermission(this, permission);
     }

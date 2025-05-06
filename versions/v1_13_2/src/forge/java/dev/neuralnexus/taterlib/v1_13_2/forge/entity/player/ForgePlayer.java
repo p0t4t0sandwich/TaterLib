@@ -141,4 +141,9 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public void setGameMode(GameMode gameMode) {
         this.player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
     }
+
+    @Override
+    public void sendMessage(String message) {
+        player.sendMessage(new TextComponentString(message));
+    }
 }

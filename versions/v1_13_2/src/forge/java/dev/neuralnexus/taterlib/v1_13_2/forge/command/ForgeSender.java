@@ -7,10 +7,17 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 
 import net.minecraft.command.CommandSource;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -35,6 +42,27 @@ public class ForgeSender implements CommandSender, Wrapped<CommandSource> {
     @Override
     public String name() {
         return this.sender.getName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        if (this.sender.getEntity() != null) {
+            return new ForgeEntity(this.sender.getEntity());
+        }
+        return null;
+    }
+
+    @Override
+    public ServerPlayer getPlayer() {
+        if (this.sender.getEntity() instanceof EntityPlayer) {
+            return new ForgePlayer((EntityPlayer) this.sender.getEntity());
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender.getEntity() instanceof EntityPlayer;
     }
 
     @Override
