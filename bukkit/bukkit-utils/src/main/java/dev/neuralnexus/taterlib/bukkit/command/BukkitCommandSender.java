@@ -37,6 +37,9 @@ public class BukkitCommandSender
 
     @Override
     public String name() {
+        if (this.getEntity() != null) {
+            return this.getEntity().name();
+        }
         return this.sender.getName();
     }
 
