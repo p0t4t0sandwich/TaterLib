@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.data.BuiltinRegistries;
@@ -26,40 +25,19 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.UUID;
-
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V16_2, max = MinecraftVersion.V16_5)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
-    @Shadow
-    public abstract void shadow$sendMessage(Component message, UUID uuid);
-
-    @Shadow
-    public abstract void shadow$remove();
-
-    @Shadow
-    public abstract EntityType<?> shadow$getType();
-
-    @Shadow
-    public abstract Level shadow$getCommandSenderWorld();
-
-    @Shadow
-    public abstract BlockPos shadow$blockPosition();
-
-    @Shadow
-    public abstract Entity shadow$changeDimension(ServerLevel level);
-
-    @Shadow
-    public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    public abstract void shadow$setCustomName(@Nullable Component name);
-
-    @Override
-    public void bridge$sendMessage(String message) {
-        this.shadow$sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);
-    }
+    // @spotless:off
+    @Shadow public abstract void shadow$remove();
+    @Shadow public abstract EntityType<?> shadow$getType();
+    @Shadow public abstract Level shadow$getCommandSenderWorld();
+    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow public abstract Entity shadow$changeDimension(ServerLevel level);
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    // @spotless:on
 
     @Override
     public void bridge$remove() {

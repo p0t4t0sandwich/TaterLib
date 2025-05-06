@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.api.minecraft.world.entity;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -39,30 +38,18 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
-    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
-    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
 })
 public abstract class Entity_API implements EntityBridge {
-    @Shadow
-    public abstract int shadow$getId();
-
-    @Shadow
-    @Nullable public abstract MinecraftServer shadow$getServer();
-
-    @Shadow
-    public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    @Nullable public abstract Component shadow$getCustomName();
-
-    @Shadow
-    public abstract UUID shadow$getUUID();
-
-    public void cmdSender$sendMessage(String message) {
-        this.bridge$sendMessage(message);
-    }
+    // @spotless:off
+    @Shadow public abstract int shadow$getId();
+    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow public abstract UUID shadow$getUUID();
+    // @spotless:on
 
     public int entity$entityId() {
         return this.shadow$getId();

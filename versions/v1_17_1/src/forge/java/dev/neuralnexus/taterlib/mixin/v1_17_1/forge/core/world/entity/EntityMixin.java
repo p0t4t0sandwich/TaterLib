@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.core.world.entity;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
@@ -26,15 +27,11 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.UUID;
-
 @ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V18_2)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
     // @spotless:off
-    @Shadow public abstract int shadow$getId();
-    @Shadow public abstract void shadow$sendMessage(Component message, UUID uuid);
     @Shadow public abstract void shadow$remove(Entity.RemovalReason removalReason);
     @Shadow public abstract EntityType<?> shadow$getType();
     @Shadow public abstract Level shadow$getCommandSenderWorld();
@@ -42,18 +39,7 @@ public abstract class EntityMixin implements EntityBridge {
     @Shadow public abstract Entity shadow$changeDimension(ServerLevel level);
     @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
     @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
-    @Shadow public abstract UUID shadow$getUUID();
     // @spotless:on
-
-    @Override
-    public int bridge$entityId() {
-        return this.shadow$getId();
-    }
-
-    @Override
-    public void bridge$sendMessage(String message) {
-        this.shadow$sendMessage(Component.nullToEmpty(message), Util.NIL_UUID);
-    }
 
     @Override
     public void bridge$remove() {
@@ -82,10 +68,5 @@ public abstract class EntityMixin implements EntityBridge {
     @Override
     public void bridge$setCustomName(String name) {
         this.shadow$setCustomName(Component.nullToEmpty(name));
-    }
-
-    @Override
-    public UUID bridge$uuid() {
-        return this.shadow$getUUID();
     }
 }
