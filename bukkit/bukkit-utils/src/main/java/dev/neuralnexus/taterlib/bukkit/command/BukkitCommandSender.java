@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 
 import org.jetbrains.annotations.Nullable;
@@ -45,6 +46,19 @@ public class BukkitCommandSender
             return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
         }
         return null;
+    }
+
+    @Override
+    public ServerPlayer getPlayer() {
+        if (this.sender instanceof org.bukkit.entity.Player) {
+            return WrapperRegistry.wrap((org.bukkit.entity.Player) this.sender);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof org.bukkit.entity.Player;
     }
 
     @Override
