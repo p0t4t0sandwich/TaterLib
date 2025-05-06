@@ -5,9 +5,7 @@
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
-import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.server.command.AbstractCommand;
 import net.minecraft.server.command.exception.CommandException;
 import net.minecraft.server.command.source.CommandSource;
@@ -45,11 +43,7 @@ public class CommandWrapper extends AbstractCommand {
 
     @Override
     public void run(CommandSource source, String[] args) throws CommandException {
-        if (source instanceof PlayerEntity) {
-            command.execute(new WrappedPlayer((PlayerEntity) source), command.name(), args);
-        } else {
-            command.execute(new WrappedSender(source), command.name(), args);
-        }
+        command.execute(new WrappedSender(source), command.name(), args);
     }
 
     @Override

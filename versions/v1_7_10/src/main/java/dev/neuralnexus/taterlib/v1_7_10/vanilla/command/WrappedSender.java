@@ -7,10 +7,17 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
+import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.server.command.source.CommandSource;
 import net.minecraft.text.LiteralText;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
@@ -35,6 +42,27 @@ public class WrappedSender implements CommandSender, Wrapped<CommandSource> {
     @Override
     public String name() {
         return this.sender.getName();
+    }
+
+    @Override
+    public @Nullable Entity getEntity() {
+        if (this.sender instanceof net.minecraft.entity.Entity) {
+            return new WrappedEntity((net.minecraft.entity.Entity) this.sender);
+        }
+        return null;
+    }
+
+    @Override
+    public ServerPlayer getPlayer() {
+        if (this.sender instanceof PlayerEntity) {
+            return new WrappedPlayer((PlayerEntity) this.sender);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof PlayerEntity;
     }
 
     @Override
