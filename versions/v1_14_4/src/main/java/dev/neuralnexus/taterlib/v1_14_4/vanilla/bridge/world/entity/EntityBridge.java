@@ -9,13 +9,7 @@ import dev.neuralnexus.taterapi.world.Location;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 
-import java.util.UUID;
-
 public interface EntityBridge {
-    int bridge$entityId();
-
-    void bridge$sendMessage(String message);
-
     void bridge$remove();
 
     ResourceLocation bridge$type();
@@ -25,6 +19,4 @@ public interface EntityBridge {
     void bridge$changeDimension(ServerLevel level, Location location);
 
     void bridge$setCustomName(String name);
-
-    UUID bridge$uuid();
 }

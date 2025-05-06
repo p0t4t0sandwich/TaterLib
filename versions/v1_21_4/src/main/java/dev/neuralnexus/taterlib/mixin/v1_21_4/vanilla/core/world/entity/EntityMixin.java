@@ -31,29 +31,14 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V21_2)
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
-    @Shadow
-    public abstract void shadow$remove(Entity.RemovalReason removalReason);
-
-    @Shadow
-    public abstract EntityType<?> shadow$getType();
-
+    // @spotless:off
+    @Shadow public abstract void shadow$remove(Entity.RemovalReason removalReason);
+    @Shadow public abstract EntityType<?> shadow$getType();
     @Shadow private Level level;
-
-    @Shadow
-    public abstract BlockPos shadow$blockPosition();
-
-    @Shadow
-    public abstract Entity shadow$teleport(TeleportTransition dimensionTransition);
-
-    @Shadow
-    public abstract void shadow$setCustomName(@Nullable Component name);
-
-    @Override
-    public void bridge$sendMessage(String message) {
-        if ((Object) this instanceof ServerPlayer player) {
-            player.sendSystemMessage(Component.nullToEmpty(message));
-        }
-    }
+    @Shadow public abstract BlockPos shadow$blockPosition();
+    @Shadow public abstract Entity shadow$teleport(TeleportTransition dimensionTransition);
+    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    // @spotless:on
 
     @Override
     public void bridge$remove() {

@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.world.entity;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -39,27 +38,21 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
-    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-    @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
-    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE)
+        @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
+        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+        @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
 })
 public abstract class Entity_API implements EntityBridge {
-    @Shadow
-    @Nullable public abstract MinecraftServer shadow$getServer();
-
-    @Shadow
-    public abstract void shadow$teleportTo(double x, double y, double z);
-
-    @Shadow
-    @Nullable public abstract Component shadow$getCustomName();
-
-    public void cmdSender$sendMessage(String message) {
-        this.bridge$sendMessage(message);
-    }
+    // @spotless:off
+    @Shadow public abstract int shadow$getId();
+    @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
+    @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
+    @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow public abstract UUID shadow$getUUID();
+    // @spotless:on
 
     public int entity$entityId() {
-        return this.bridge$entityId();
+        return this.shadow$getId();
     }
 
     public void entity$remove() {
@@ -89,7 +82,7 @@ public abstract class Entity_API implements EntityBridge {
                             .world(location.world().dimension())
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::unwrap);
-            if (serverLevel.isEmpty()) return;
+            if (!serverLevel.isPresent()) return;
             this.bridge$changeDimension(serverLevel.get(), location);
         }
     }
@@ -105,7 +98,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public UUID identifiable$uuid() {
-        return this.bridge$uuid();
+        return this.shadow$getUUID();
     }
 
     @Intrinsic
