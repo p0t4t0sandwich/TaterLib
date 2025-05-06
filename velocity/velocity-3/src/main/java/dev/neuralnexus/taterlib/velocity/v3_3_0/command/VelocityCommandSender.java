@@ -56,16 +56,16 @@ public class VelocityCommandSender implements CommandSender, Wrapped<CommandSour
     }
 
     @Override
-    public boolean isPlayer() {
-        return this.sender instanceof Player;
-    }
-
-    @Override
     public @Nullable ProxyPlayer getPlayer() {
-        if (this.isPlayer()) {
+        if (this.sender instanceof Player) {
             return new VelocityPlayer((Player) this.sender);
         }
         return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof Player;
     }
 
     @Override

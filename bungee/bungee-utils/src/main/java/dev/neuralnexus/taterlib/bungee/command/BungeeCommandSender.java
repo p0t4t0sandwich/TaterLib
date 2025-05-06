@@ -48,16 +48,16 @@ public class BungeeCommandSender
     }
 
     @Override
-    public boolean isPlayer() {
-        return this.sender instanceof ProxiedPlayer;
-    }
-
-    @Override
     public @Nullable ProxyPlayer getPlayer() {
-        if (this.isPlayer()) {
+        if (this.sender instanceof ProxiedPlayer) {
             return new BungeePlayer((ProxiedPlayer) this.sender);
         }
         return null;
+    }
+
+    @Override
+    public boolean isPlayer() {
+        return this.sender instanceof ProxiedPlayer;
     }
 
     @SuppressWarnings("deprecation")
