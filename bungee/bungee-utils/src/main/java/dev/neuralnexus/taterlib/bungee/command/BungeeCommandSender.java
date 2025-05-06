@@ -39,6 +39,9 @@ public class BungeeCommandSender
 
     @Override
     public String name() {
+        if (this.getPlayer() != null) {
+            return this.getPlayer().name();
+        }
         return this.sender.getName();
     }
 

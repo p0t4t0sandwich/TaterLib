@@ -44,7 +44,7 @@ public class VelocityCommandSender implements CommandSender, Wrapped<CommandSour
 
     @Override
     public String name() {
-        if (this.isPlayer() && this.getPlayer() != null) {
+        if (this.getPlayer() != null) {
             return this.getPlayer().name();
         }
         return this.sender.getClass().getSimpleName();
