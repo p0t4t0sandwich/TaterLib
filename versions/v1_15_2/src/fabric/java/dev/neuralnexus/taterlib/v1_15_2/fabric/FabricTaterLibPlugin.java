@@ -17,6 +17,7 @@ import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
@@ -25,6 +26,7 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogout
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.minecraft.network.chat.TextComponent;
 
 @SuppressWarnings("unused")
 public class FabricTaterLibPlugin implements TaterLibPlugin {
@@ -33,6 +35,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
+            VanillaUtils.componentFactory = TextComponent::new;
 
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
