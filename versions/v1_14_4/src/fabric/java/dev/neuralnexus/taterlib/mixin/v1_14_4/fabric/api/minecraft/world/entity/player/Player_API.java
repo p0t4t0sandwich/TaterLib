@@ -39,13 +39,13 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
-        @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
-        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
-        @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
-        @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-        @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
-        @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
-        @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
+    @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+    @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
+    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
+    @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
+    @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
+    @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
 public abstract class Player_API implements PlayerBridge {
     // @spotless:off
