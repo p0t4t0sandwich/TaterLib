@@ -37,7 +37,6 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerAdvancements;
 import net.minecraft.server.level.ServerPlayer;
@@ -65,7 +64,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.componentFactory = Component::nullToEmpty;
+            VanillaUtils.component = Component::nullToEmpty;
 
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(
                     event ->

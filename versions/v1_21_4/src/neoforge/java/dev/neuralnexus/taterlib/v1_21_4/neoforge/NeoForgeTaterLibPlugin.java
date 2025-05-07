@@ -33,7 +33,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
             } else {
                 VanillaBootstrap_21_1.init();
             }
-            VanillaUtils.componentFactory = Component::nullToEmpty;
+            VanillaUtils.component = Component::nullToEmpty;
 
             NeoForgeEventListener_20_2.init();
 

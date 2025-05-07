@@ -24,6 +24,6 @@ public abstract class PlayerMixin extends Entity implements PlayerBridge {
 
     @Override
     public void bridge$sendMessage(String message) {
-        this.sendMessage(VanillaUtils.componentFactory.apply(message));
+        this.sendMessage(VanillaUtils.component.apply(message));
     }
 }

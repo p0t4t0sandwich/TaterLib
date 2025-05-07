@@ -60,7 +60,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.componentFactory = Component::nullToEmpty;
+            VanillaUtils.component = Component::nullToEmpty;
 
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(
                     event ->
