@@ -35,7 +35,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.componentFactory = Component::nullToEmpty;
+            VanillaUtils.component = Component::nullToEmpty;
 
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
 

@@ -15,6 +15,7 @@ import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
@@ -48,6 +49,7 @@ public abstract class Entity_API implements EntityBridge {
     @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
     @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
     @Shadow @Nullable public abstract Component shadow$getCustomName();
+    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
     @Shadow public abstract UUID shadow$getUUID();
     // @spotless:on
 
@@ -94,7 +96,7 @@ public abstract class Entity_API implements EntityBridge {
     }
 
     public void nameable$setCustomName(String name) {
-        this.bridge$setCustomName(name);
+        this.shadow$setCustomName(VanillaUtils.component.apply(name));
     }
 
     public UUID identifiable$uuid() {

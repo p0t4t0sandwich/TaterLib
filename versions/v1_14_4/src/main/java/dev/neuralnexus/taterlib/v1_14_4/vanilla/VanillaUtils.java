@@ -5,5 +5,5 @@ import net.minecraft.network.chat.Component;
 import java.util.function.Function;
 
 public class VanillaUtils {
-    public static Function<String, Component> componentFactory;
+    public static Function<String, Component> component;
 }
