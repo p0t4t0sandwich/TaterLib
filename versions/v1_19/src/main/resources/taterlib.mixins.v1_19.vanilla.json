@@ -9,7 +9,8 @@
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
     "v1_19.vanilla.core.world.entity.EntityMixin",
-    "v1_19.vanilla.core.world.entity.LivingEntityMixin"
+    "v1_19.vanilla.core.world.entity.LivingEntityMixin",
+    "v1_19.vanilla.core.world.entity.player.PlayerMixin"
   ],
   "server": [],
   "client": [

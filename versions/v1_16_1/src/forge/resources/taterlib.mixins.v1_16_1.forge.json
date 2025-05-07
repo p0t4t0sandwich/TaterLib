@@ -11,6 +11,7 @@
     "v1_16_1.forge.core.server.level.ServerPlayerMixin",
     "v1_16_1.forge.core.world.entity.EntityMixin",
     "v1_16_1.forge.core.world.entity.LivingEntityMixin",
+    "v1_16_1.forge.core.world.entity.player.PlayerMixin",
     "v1_16_1.forge.core.world.level.LevelMixin"
   ],
   "server": [],

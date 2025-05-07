@@ -6,9 +6,11 @@ package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.world.entity.
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
+import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.User;
@@ -17,6 +19,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory.VanillaPlayerInventory;
 
 import net.minecraft.network.chat.Component;
@@ -36,28 +39,35 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
-    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-    @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
-    @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
-    @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
-    @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
+        @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
+        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+        @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),
+        @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
+        @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
+        @Interface(iface = Player.class, prefix = "player$", remap = Remap.NONE),
+        @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
-public abstract class Player_API {
+public abstract class Player_API implements PlayerBridge {
+    // @spotless:off
     @Shadow @Final private Inventory inventory;
-
     @Shadow @Final private Abilities abilities;
+    @Shadow public abstract GameProfile shadow$getGameProfile();
+    @Shadow public abstract Component shadow$getDisplayName();
+    // @spotless:on
 
-    @Shadow
-    public abstract GameProfile shadow$getGameProfile();
-
-    @Shadow
-    public abstract Component shadow$getDisplayName();
-
-    public String cmdSender$name() {
+    public String nameable$name() {
         return this.shadow$getGameProfile().getName();
     }
 
-    public PlayerInventory humanEntity$inventory() {
+    public String nameable$displayName() {
+        return this.shadow$getDisplayName().getString();
+    }
+
+    public void notifiable$sendMessage(String message) {
+        this.bridge$sendMessage(message);
+    }
+
+    public PlayerInventory player$inventory() {
         return new VanillaPlayerInventory(this.inventory);
     }
 
@@ -86,9 +96,5 @@ public abstract class Player_API {
 
     public void player$setFlying(boolean flying) {
         this.abilities.flying = flying;
-    }
-
-    public String user$displayName() {
-        return this.shadow$getDisplayName().getString();
     }
 }
