@@ -39,9 +39,9 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
-        @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
-        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
-        @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
+    @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
 })
 public abstract class Entity_API implements EntityBridge {
     // @spotless:off

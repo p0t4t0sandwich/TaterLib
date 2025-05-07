@@ -32,10 +32,10 @@ import java.util.UUID;
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_6)
 @Mixin(CommandSourceStack.class)
 @Implements({
-        @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
-        @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
-        @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-        @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
+    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
+    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
+    @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
 })
 public abstract class CommandSourceStack_API {
     // @spotless:off

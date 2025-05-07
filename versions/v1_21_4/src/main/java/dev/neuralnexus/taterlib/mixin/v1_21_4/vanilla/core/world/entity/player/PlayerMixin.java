@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.taterlib.mixin.v1_21_4.vanilla.core.world.entity.player;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
@@ -20,7 +24,7 @@ public abstract class PlayerMixin implements PlayerBridge {
     @Override
     public void bridge$sendMessage(String message) {
         if ((Object) this instanceof ServerPlayer player) {
-            player.sendSystemMessage(VanillaBootstrap.componentFactory.apply(message));
+            player.sendSystemMessage(VanillaUtils.component.apply(message));
         }
     }
 }
