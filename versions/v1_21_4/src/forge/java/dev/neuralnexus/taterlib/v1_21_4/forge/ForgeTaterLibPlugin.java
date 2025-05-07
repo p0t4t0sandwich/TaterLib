@@ -60,7 +60,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             } else {
                 VanillaBootstrap_21_1.init();
             }
-            VanillaUtils.component = Component::nullToEmpty;
+            VanillaUtils.component = Component::literal;
 
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(
                     event ->

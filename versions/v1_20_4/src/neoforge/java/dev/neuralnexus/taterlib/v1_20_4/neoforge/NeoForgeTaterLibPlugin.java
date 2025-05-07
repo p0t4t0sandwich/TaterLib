@@ -27,7 +27,7 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.component = Component::nullToEmpty;
+            VanillaUtils.component = Component::literal;
 
             NeoForgeEventListener_20_2.init();
 
