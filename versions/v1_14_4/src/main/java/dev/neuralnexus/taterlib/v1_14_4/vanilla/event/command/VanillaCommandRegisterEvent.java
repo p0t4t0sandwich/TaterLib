@@ -11,7 +11,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
@@ -21,12 +21,12 @@ import dev.neuralnexus.taterapi.meta.Side;
 /** Vanilla implementation of {@link CommandRegisterEvent}. */
 @ToBeLibrary("brigadier-general")
 public class VanillaCommandRegisterEvent
-        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSender> {
-    private final CommandDispatcher<CommandSender> dispatcher;
+        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSource> {
+    private final CommandDispatcher<CommandSource> dispatcher;
 
     @SuppressWarnings("unchecked")
     public VanillaCommandRegisterEvent(CommandDispatcher<?> dispatcher) {
-        this.dispatcher = (CommandDispatcher<CommandSender>) dispatcher;
+        this.dispatcher = (CommandDispatcher<CommandSource>) dispatcher;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class VanillaCommandRegisterEvent
     }
 
     @Override
-    public CommandDispatcher<CommandSender> dispatcher() {
+    public CommandDispatcher<CommandSource> dispatcher() {
         return this.dispatcher;
     }
 
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSender> node, String commandName, String... aliases) {
+            LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
         this.dispatcher.register(node);
         for (String alias : aliases) {
             this.dispatcher.register(literal(alias).redirect(node.build()));
@@ -50,7 +50,7 @@ public class VanillaCommandRegisterEvent
 
     @Override
     public void registerCommand(Command command, String... aliases) {
-        final LiteralArgumentBuilder<CommandSender> literalArgumentBuilder =
+        final LiteralArgumentBuilder<CommandSource> literalArgumentBuilder =
                 SimpleBrigadierWrapper.wrapCommand(command);
         this.dispatcher.register(literalArgumentBuilder);
         for (String alias : aliases) {

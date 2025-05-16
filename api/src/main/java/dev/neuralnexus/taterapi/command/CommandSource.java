@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 @ToBeLibrary("brigadier-general")
-public interface CommandSender extends Identifiable, Nameable, Notifiable {
+public interface CommandSource extends Identifiable, Nameable, Notifiable {
     /**
      * Get the original source of the command
      *

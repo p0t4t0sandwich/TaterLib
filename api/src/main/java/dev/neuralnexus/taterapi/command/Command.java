@@ -85,10 +85,10 @@ public interface Command {
      * @param args The arguments of the command.
      * @return The output of the command.
      */
-    boolean execute(CommandSender commandSender, String label, String[] args);
+    boolean execute(CommandSource commandSender, String label, String[] args);
 
     @FunctionalInterface
     interface Callback {
-        boolean execute(CommandSender commandSender, String label, String[] args);
+        boolean execute(CommandSource commandSender, String label, String[] args);
     }
 }

@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.bungee.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
@@ -19,12 +19,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-/** Bungee implementation of {@link CommandSender} */
-public class BungeeCommandSender
-        implements CommandSender, Wrapped<net.md_5.bungee.api.CommandSender> {
+/** Bungee implementation of {@link CommandSource} */
+public class BungeeCommandSource
+        implements CommandSource, Wrapped<net.md_5.bungee.api.CommandSender> {
     private final net.md_5.bungee.api.CommandSender sender;
 
-    public BungeeCommandSender(net.md_5.bungee.api.CommandSender sender) {
+    public BungeeCommandSource(net.md_5.bungee.api.CommandSender sender) {
         this.sender = sender;
     }
 

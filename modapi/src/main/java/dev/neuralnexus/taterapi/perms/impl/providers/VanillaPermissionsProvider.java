@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.perms.impl.providers;
 import dev.neuralnexus.taterapi.perms.HasPermission;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
-import dev.neuralnexus.taterapi.perms.mc.WCommandSender;
+import dev.neuralnexus.taterapi.perms.mc.WCommandSource;
 import dev.neuralnexus.taterapi.perms.mc.WEntity;
 import dev.neuralnexus.taterapi.perms.mc.WPlayerList;
 import dev.neuralnexus.taterapi.perms.mc.WServerPlayer;
@@ -36,8 +36,8 @@ public class VanillaPermissionsProvider implements PermissionsProvider {
     private boolean playerHasPermission(@NotNull Object subject, int permissionLevel) {
         // TODO: Query Bukkit vanilla objects. It's gonna suck to get all those obsfed mappings
         if (WPlayerList.is13_up) {
-            if (WCommandSender.instanceOf(subject)) {
-                return WCommandSender.wrap(subject).hasPermission(permissionLevel);
+            if (WCommandSource.instanceOf(subject)) {
+                return WCommandSource.wrap(subject).hasPermission(permissionLevel);
             } else if (WEntity.instanceOf(subject)) {
                 return WServerPlayer.wrap(subject).hasPermission(permissionLevel);
             }

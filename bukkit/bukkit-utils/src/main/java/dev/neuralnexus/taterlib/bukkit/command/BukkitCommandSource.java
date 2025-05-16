@@ -2,36 +2,32 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_13_2.forge.command;
+package dev.neuralnexus.taterlib.bukkit.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
-import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
-import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
-
-import net.minecraft.command.CommandSource;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-/** Forge implementation of {@link CommandSender} */
-public class ForgeSender implements CommandSender, Wrapped<CommandSource> {
-    private final CommandSource sender;
+/** Bukkit implementation of {@link CommandSource} */
+public class BukkitCommandSource
+        implements CommandSource, Wrapped<org.bukkit.command.CommandSender> {
+    private final org.bukkit.command.CommandSender sender;
 
-    public ForgeSender(CommandSource sender) {
+    public BukkitCommandSource(org.bukkit.command.CommandSender sender) {
         this.sender = sender;
     }
 
     @Override
-    public CommandSource unwrap() {
+    public org.bukkit.command.CommandSender unwrap() {
         return this.sender;
     }
 
@@ -42,38 +38,41 @@ public class ForgeSender implements CommandSender, Wrapped<CommandSource> {
 
     @Override
     public String name() {
+        if (this.getEntity() != null) {
+            return this.getEntity().name();
+        }
         return this.sender.getName();
     }
 
     @Override
     public Notifiable getSource() {
-        return message -> this.sender.sendFeedback(new TextComponentString(message), false);
+        return this.sender::sendMessage;
     }
 
     @Override
     public @Nullable Entity getEntity() {
-        if (this.sender.getEntity() != null) {
-            return new ForgeEntity(this.sender.getEntity());
+        if (this.sender instanceof org.bukkit.entity.Entity) {
+            return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
         }
         return null;
     }
 
     @Override
     public ServerPlayer getPlayer() {
-        if (this.sender.getEntity() instanceof EntityPlayer) {
-            return new ForgePlayer((EntityPlayer) this.sender.getEntity());
+        if (this.sender instanceof org.bukkit.entity.Player) {
+            return WrapperRegistry.wrap((org.bukkit.entity.Player) this.sender);
         }
         return null;
     }
 
     @Override
     public boolean isPlayer() {
-        return this.sender.getEntity() instanceof EntityPlayer;
+        return this.sender instanceof org.bukkit.entity.Player;
     }
 
     @Override
     public void sendMessage(String message) {
-        this.sender.sendFeedback(new TextComponentString(message), false);
+        this.sender.sendMessage(message);
     }
 
     @Override

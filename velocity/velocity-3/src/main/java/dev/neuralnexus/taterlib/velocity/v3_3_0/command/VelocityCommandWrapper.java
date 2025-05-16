@@ -19,7 +19,7 @@ public class VelocityCommandWrapper implements RawCommand {
     @Override
     public void execute(final Invocation invocation) {
         callback.execute(
-                new VelocityCommandSender(invocation.source()),
+                new VelocityCommandSource(invocation.source()),
                 invocation.alias(),
                 invocation.arguments().split(" "));
     }

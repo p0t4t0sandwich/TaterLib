@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
@@ -22,11 +22,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-/** Forge implementation of {@link CommandSender} */
-public class ForgeSender implements CommandSender, Wrapped<ICommandSender> {
+/** Forge implementation of {@link CommandSource} */
+public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender> {
     private final ICommandSender sender;
 
-    public ForgeSender(ICommandSender sender) {
+    public ForgeCommandSource(ICommandSender sender) {
         this.sender = sender;
     }
 

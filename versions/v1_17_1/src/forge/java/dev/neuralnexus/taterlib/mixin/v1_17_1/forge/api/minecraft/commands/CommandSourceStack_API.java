@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.commands;
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -16,7 +16,6 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 
-import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 
 import org.jetbrains.annotations.Nullable;
@@ -33,23 +32,23 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_2)
 @Mixin(CommandSourceStack.class)
 @Implements({
-    @Interface(iface = CommandSender.class, prefix = "cmdSender$", remap = Remap.NONE),
+    @Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE),
     @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
     @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
 })
 public abstract class CommandSourceStack_API {
     // @spotless:off
-    @Shadow @Final private CommandSource source;
+    @Shadow @Final private net.minecraft.commands.CommandSource source;
     @Shadow public abstract String shadow$getTextName();
     @Shadow @Nullable public abstract net.minecraft.world.entity.Entity shadow$getEntity();
     // @spotless:on
 
-    public Notifiable cmdSender$getSource() {
+    public Notifiable source$getSource() {
         return (Notifiable) this.source;
     }
 
-    public @Nullable Entity cmdSender$getEntity() {
+    public @Nullable Entity source$getEntity() {
         return (Entity) this.shadow$getEntity();
     }
 

@@ -31,7 +31,7 @@ public class SpongeCommandWrapper implements CommandExecutor {
             throws CommandException {
         try {
             String[] args = commandArgs.<String>getOne("args").get().split(" ");
-            callback.execute(new SpongeCommandSender(src), commandName, args);
+            callback.execute(new SpongeCommandSource(src), commandName, args);
         } catch (Exception e) {
             TaterAPI.logger().error("An exception occurred while executing a command", e);
         }

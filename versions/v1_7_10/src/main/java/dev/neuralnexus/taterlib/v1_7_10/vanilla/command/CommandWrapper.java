@@ -43,7 +43,7 @@ public class CommandWrapper extends AbstractCommand {
 
     @Override
     public void run(CommandSource source, String[] args) throws CommandException {
-        command.execute(new WrappedSender(source), command.name(), args);
+        command.execute(new WrappedCommandSource(source), command.name(), args);
     }
 
     @Override
