@@ -22,7 +22,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Velocity implementation of {@link CommandSource} */
-public class VelocityCommandSource implements CommandSource, Wrapped<com.velocitypowered.api.command.CommandSource> {
+public class VelocityCommandSource
+        implements CommandSource, Wrapped<com.velocitypowered.api.command.CommandSource> {
     private final com.velocitypowered.api.command.CommandSource sender;
 
     public VelocityCommandSource(com.velocitypowered.api.command.CommandSource sender) {
