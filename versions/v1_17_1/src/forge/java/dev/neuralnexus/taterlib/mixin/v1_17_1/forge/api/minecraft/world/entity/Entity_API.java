@@ -102,19 +102,4 @@ public abstract class Entity_API implements EntityBridge {
     public UUID identifiable$uuid() {
         return this.shadow$getUUID();
     }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
-    }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
-    }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
-    }
 }

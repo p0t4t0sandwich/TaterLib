@@ -13,6 +13,7 @@
     "v1_14_4.fabric.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.fabric.accessors.server.players.StoredUserEntryAccessor",
     "v1_14_4.fabric.accessors.world.entity.LivingEntityAccessor",
+    "v1_14_4.fabric.api.minecraft.permissions.Identifiable_API",
     "v1_14_4.fabric.api.minecraft.commands.CommandSource_API",
     "v1_14_4.fabric.api.minecraft.commands.CommandSourceStack_API",
     "v1_14_4.fabric.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
