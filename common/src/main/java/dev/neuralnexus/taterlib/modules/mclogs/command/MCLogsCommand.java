@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.modules.mclogs.command;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
@@ -40,7 +39,7 @@ public class MCLogsCommand implements Command {
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
-        if (!TaterAPI.hasPermission(sender, this.permission())) {
+        if (!sender.hasPermission(this.permission(), 4)) {
             sender.sendMessage("§cYou do not have permission to use this command.");
             return true;
         }

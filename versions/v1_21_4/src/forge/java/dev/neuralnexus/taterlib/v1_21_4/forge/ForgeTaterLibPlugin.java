@@ -22,6 +22,7 @@ import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWr
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntitySpawnEvent;
@@ -30,8 +31,6 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginE
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespawnEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent;
 import dev.neuralnexus.taterlib.v1_21_1.vanilla.VanillaBootstrap_21_1;
 
@@ -75,11 +74,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.<RegisterCommandsEvent>addListener(
                     event -> {
                         CommandEvents.REGISTER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(
-                                        event.getDispatcher(), event.getCommandSelection()));
+                                new VanillaCommandRegisterEvent(event.getDispatcher()));
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaBrigadierCommandRegisterEvent(
-                                        event.getDispatcher(), event.getCommandSelection()));
+                                new VanillaCommandRegisterEvent(event.getDispatcher()));
                     });
 
             MinecraftForge.EVENT_BUS.<LivingDamageEvent>addListener(

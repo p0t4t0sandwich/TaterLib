@@ -12,8 +12,6 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
@@ -30,21 +28,6 @@ public class VelocityBrigadierCommandRegisterEvent
     @Override
     public CommandDispatcher<CommandSource> dispatcher() {
         return null;
-    }
-
-    @Override
-    public CommandSender getSender(CommandSource source) {
-        return null;
-    }
-
-    @Override
-    public Player getPlayer(CommandSource source) {
-        return null;
-    }
-
-    @Override
-    public boolean isPlayer(CommandSource source) {
-        return false;
     }
 
     @Override

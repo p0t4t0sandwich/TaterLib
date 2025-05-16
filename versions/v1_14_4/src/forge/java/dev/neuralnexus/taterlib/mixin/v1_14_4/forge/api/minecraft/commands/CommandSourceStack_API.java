@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.api.minecraft.commands;
 
-import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
@@ -16,9 +16,11 @@ import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 
+import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -26,8 +28,7 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-import java.util.UUID;
-
+@ToBeLibrary("brigadier-general")
 @ReqMappings(Mappings.LEGACY_SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
 @Mixin(CommandSourceStack.class)
@@ -39,27 +40,21 @@ import java.util.UUID;
 })
 public abstract class CommandSourceStack_API {
     // @spotless:off
+    @Shadow @Final private CommandSource source;
     @Shadow public abstract String shadow$getTextName();
     @Shadow @Nullable public abstract net.minecraft.world.entity.Entity shadow$getEntity();
     // @spotless:on
 
+    public Notifiable cmdSender$getSource() {
+        return (Notifiable) this.source;
+    }
+
     public @Nullable Entity cmdSender$getEntity() {
-        if (this.shadow$getEntity() == null) {
-            return null;
-        }
         return (Entity) this.shadow$getEntity();
     }
 
     public String nameable$name() {
         return this.shadow$getTextName();
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public UUID identifiable$uuid() {
-        if (this.shadow$getEntity() == null) {
-            return TaterAPI.NIL_UUID;
-        }
-        return this.cmdSender$getEntity().uuid();
     }
 
     @Intrinsic

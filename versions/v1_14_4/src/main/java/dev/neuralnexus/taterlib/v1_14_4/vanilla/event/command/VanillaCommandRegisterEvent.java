@@ -4,76 +4,57 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command;
 
-import static net.minecraft.commands.Commands.literal;
+import static dev.neuralnexus.taterapi.command.Commands.literal;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
-import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-
-import net.minecraft.commands.CommandSourceStack;
+import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.Side;
 
 /** Vanilla implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class VanillaCommandRegisterEvent
-        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSourceStack> {
-    private final CommandDispatcher<CommandSourceStack> dispatcher;
-    private final boolean dedicated;
+        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSender> {
+    private final CommandDispatcher<CommandSender> dispatcher;
 
-    public VanillaCommandRegisterEvent(
-            CommandDispatcher<CommandSourceStack> dispatcher, boolean dedicated) {
-        this.dispatcher = dispatcher;
-        this.dedicated = dedicated;
+    @SuppressWarnings("unchecked")
+    public VanillaCommandRegisterEvent(CommandDispatcher<?> dispatcher) {
+        this.dispatcher = (CommandDispatcher<CommandSender>) dispatcher;
     }
 
     @Override
     public boolean isDedicated() {
-        return dedicated;
+        return MetaAPI.instance().side() == Side.SERVER;
     }
 
     @Override
-    public CommandDispatcher<CommandSourceStack> dispatcher() {
-        return dispatcher;
+    public CommandDispatcher<CommandSender> dispatcher() {
+        return this.dispatcher;
     }
 
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSourceStack> node,
-            String commandName,
-            String... aliases) {
-        dispatcher.register(node);
+            LiteralArgumentBuilder<CommandSender> node, String commandName, String... aliases) {
+        this.dispatcher.register(node);
         for (String alias : aliases) {
-            dispatcher.register(literal(alias).redirect(node.build()));
+            this.dispatcher.register(literal(alias).redirect(node.build()));
         }
     }
 
     @Override
-    public CommandSender getSender(CommandSourceStack source) {
-        return (CommandSender) source;
-    }
-
-    @Override
-    public Player getPlayer(CommandSourceStack source) {
-        return (Player) source.getEntity();
-    }
-
-    @Override
-    public boolean isPlayer(CommandSourceStack source) {
-        return source.getEntity() instanceof net.minecraft.world.entity.player.Player;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
     public void registerCommand(Command command, String... aliases) {
-        final LiteralArgumentBuilder<CommandSourceStack> literalArgumentBuilder =
-                SimpleBrigadierWrapper.wrapCommand(this, command);
-        dispatcher.register(literalArgumentBuilder);
+        final LiteralArgumentBuilder<CommandSender> literalArgumentBuilder =
+                SimpleBrigadierWrapper.wrapCommand(command);
+        this.dispatcher.register(literalArgumentBuilder);
         for (String alias : aliases) {
-            dispatcher.register(literal(alias).redirect(literalArgumentBuilder.build()));
+            this.dispatcher.register(literal(alias).redirect(literalArgumentBuilder.build()));
         }
     }
 }

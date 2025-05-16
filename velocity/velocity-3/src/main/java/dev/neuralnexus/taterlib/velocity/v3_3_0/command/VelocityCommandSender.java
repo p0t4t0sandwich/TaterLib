@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
@@ -48,6 +49,11 @@ public class VelocityCommandSender implements CommandSender, Wrapped<CommandSour
             return this.getPlayer().name();
         }
         return this.sender.getClass().getSimpleName();
+    }
+
+    @Override
+    public Notifiable getSource() {
+        return message -> this.sender.sendMessage(Component.text(message));
     }
 
     @Override

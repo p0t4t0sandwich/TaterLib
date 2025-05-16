@@ -5,46 +5,44 @@
 package dev.neuralnexus.taterapi.command;
 
 import static com.mojang.brigadier.arguments.StringArgumentType.greedyString;
-import static com.mojang.brigadier.builder.LiteralArgumentBuilder.literal;
-import static com.mojang.brigadier.builder.RequiredArgumentBuilder.argument;
+
+import static dev.neuralnexus.taterapi.command.Commands.argument;
+import static dev.neuralnexus.taterapi.command.Commands.literal;
 
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 
-import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
+import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 
 /** Simple wrapper for brigadier commands */
+@ToBeLibrary("brigadier-general")
 public class SimpleBrigadierWrapper {
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    private static int contextWrapper(
-            BrigadierCommandRegisterEvent event, CommandContext context, Command command) {
-        Object source = context.getSource();
-        CommandSender commandSender = event.getSender(source);
-        String[] args = new String[] {};
+    private static int contextWrapper(CommandContext<CommandSender> context, Command command) {
         try {
-            args = ((String) context.getArgument("args", String.class)).split(" ");
-        } catch (IllegalArgumentException ignored) {
+            CommandSender source = context.getSource();
+            String[] args = new String[] {};
+            try {
+                args = context.getArgument("args", String.class).split(" ");
+            } catch (IllegalArgumentException ignored) {
+            }
+            return command.execute(source, command.name(), args) ? 1 : 0;
+        } catch (Exception e) {
+            TaterAPI.logger().error("Error executing command: " + command.name(), e);
+            throw e;
         }
-        // TODO: Resolve this before merging command rework
-        // if (commandSender.isPlayer()) {
-        //     commandSender = commandSender.getPlayer();
-        // }
-        return command.execute(commandSender, command.name(), args) ? 1 : 0;
     }
 
     /**
      * Registers a command wrapped in a simple brigadier command
      *
-     * @param event The event
      * @param command The command
      */
-    @SuppressWarnings("rawtypes")
-    public static LiteralArgumentBuilder wrapCommand(
-            BrigadierCommandRegisterEvent event, Command command) {
+    public static LiteralArgumentBuilder<CommandSender> wrapCommand(Command command) {
         return literal(command.name())
                 .then(
                         argument("args", greedyString())
-                                .executes(context -> contextWrapper(event, context, command)))
-                .executes(context -> contextWrapper(event, context, command));
+                                .executes(context -> contextWrapper(context, command)))
+                .executes(context -> contextWrapper(context, command));
     }
 }

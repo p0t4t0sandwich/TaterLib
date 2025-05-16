@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.ForgeEntity;
@@ -42,6 +43,12 @@ public class ForgeSender implements CommandSender, Wrapped<ICommandSender> {
     @Override
     public String name() {
         return this.sender.getCommandSenderName();
+    }
+
+    @Override
+    public Notifiable getSource() {
+        return message ->
+                this.sender.sendChatToPlayer(ChatMessageComponent.createFromText(message));
     }
 
     @Override

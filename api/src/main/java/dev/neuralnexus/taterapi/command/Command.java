@@ -4,6 +4,9 @@
  */
 package dev.neuralnexus.taterapi.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
+
+@ToBeLibrary("brigadier-general")
 public interface Command {
     /**
      * Get the name of the command.

@@ -20,7 +20,6 @@ import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.block.ForgeBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_13_2.forge.event.command.ForgeBrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.entity.ForgeEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.entity.ForgeEntityDeathEvent;
@@ -74,9 +73,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
             MinecraftForge.EVENT_BUS.<FMLServerStartingEvent>addListener(
                     event -> {
-                        CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
+                        CommandEvents.REGISTER_COMMAND.invoke(
+                                new ForgeCommandRegisterEvent(event.getCommandDispatcher()));
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new ForgeBrigadierCommandRegisterEvent(event));
+                                new ForgeCommandRegisterEvent(event.getCommandDispatcher()));
                     });
 
             MinecraftForge.EVENT_BUS.<LivingDamageEvent>addListener(
