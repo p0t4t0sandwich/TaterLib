@@ -2,36 +2,35 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
+package dev.neuralnexus.taterlib.v1_8_9.sponge.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
-import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
-
-import net.minecraft.entity.living.player.PlayerEntity;
-import net.minecraft.server.command.source.CommandSource;
-import net.minecraft.text.LiteralText;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
 
 import org.jetbrains.annotations.Nullable;
+import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
-/** Vanilla implementation of {@link CommandSender} */
-public class WrappedSender implements CommandSender, Wrapped<CommandSource> {
-    private final CommandSource sender;
+/** Sponge implementation of {@link CommandSource} */
+public class SpongeCommandSource
+        implements CommandSource, Wrapped<org.spongepowered.api.command.CommandSource> {
+    private final org.spongepowered.api.command.CommandSource sender;
 
-    public WrappedSender(CommandSource sender) {
+    public SpongeCommandSource(org.spongepowered.api.command.CommandSource sender) {
         this.sender = sender;
     }
 
     @Override
-    public CommandSource unwrap() {
+    public org.spongepowered.api.command.CommandSource unwrap() {
         return this.sender;
     }
 
@@ -47,33 +46,33 @@ public class WrappedSender implements CommandSender, Wrapped<CommandSource> {
 
     @Override
     public Notifiable getSource() {
-        return message -> this.sender.sendMessage(new LiteralText(message));
+        return message -> this.sender.sendMessage(Text.of(message));
     }
 
     @Override
     public @Nullable Entity getEntity() {
-        if (this.sender instanceof net.minecraft.entity.Entity) {
-            return new WrappedEntity((net.minecraft.entity.Entity) this.sender);
+        if (this.sender instanceof org.spongepowered.api.entity.Entity) {
+            return new SpongeEntity((org.spongepowered.api.entity.Entity) this.sender);
         }
         return null;
     }
 
     @Override
     public ServerPlayer getPlayer() {
-        if (this.sender instanceof PlayerEntity) {
-            return new WrappedPlayer((PlayerEntity) this.sender);
+        if (this.sender instanceof Player) {
+            return new SpongePlayer((Player) this.sender);
         }
         return null;
     }
 
     @Override
     public boolean isPlayer() {
-        return this.sender instanceof PlayerEntity;
+        return this.sender instanceof Player;
     }
 
     @Override
     public void sendMessage(String message) {
-        this.sender.sendMessage(new LiteralText(message));
+        this.sender.sendMessage(Text.of(message));
     }
 
     @Override

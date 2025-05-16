@@ -12,11 +12,11 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 
 @ToBeLibrary("brigadier-general")
 public interface Commands {
-    static LiteralArgumentBuilder<CommandSender> literal(String name) {
+    static LiteralArgumentBuilder<CommandSource> literal(String name) {
         return LiteralArgumentBuilder.literal(name);
     }
 
-    static <T> RequiredArgumentBuilder<CommandSender, T> argument(
+    static <T> RequiredArgumentBuilder<CommandSource, T> argument(
             final String name, final ArgumentType<T> type) {
         return RequiredArgumentBuilder.argument(name, type);
     }

@@ -19,6 +19,6 @@ public class BungeeCommandWrapper extends net.md_5.bungee.api.plugin.Command {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        command.execute(new BungeeCommandSender(sender), this.getName(), args);
+        command.execute(new BungeeCommandSource(sender), this.getName(), args);
     }
 }

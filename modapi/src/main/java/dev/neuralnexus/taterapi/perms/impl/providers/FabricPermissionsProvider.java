@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.perms.CrossPerms;
 import dev.neuralnexus.taterapi.perms.HasPermission;
 import dev.neuralnexus.taterapi.perms.PermissionsProvider;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
-import dev.neuralnexus.taterapi.perms.mc.WCommandSender;
+import dev.neuralnexus.taterapi.perms.mc.WCommandSource;
 import dev.neuralnexus.taterapi.perms.mc.WEntity;
 import dev.neuralnexus.taterapi.perms.mc.WServerPlayer;
 
@@ -39,7 +39,7 @@ public class FabricPermissionsProvider implements PermissionsProvider {
                                 return profileHasPermission(subject, permission);
                             }
                         }),
-                WCommandSender.getClazz(),
+                WCommandSource.getClazz(),
                 List.of(
                         new HasPermission<String, Object>() {
                             @Override
@@ -124,7 +124,7 @@ public class FabricPermissionsProvider implements PermissionsProvider {
         try {
             checkSsp =
                     Permissions.class.getDeclaredMethod(
-                            "check", WCommandSender.getClazz(), String.class);
+                            "check", WCommandSource.getClazz(), String.class);
         } catch (NoSuchMethodException e) {
             CrossPerms.instance()
                     .logger()

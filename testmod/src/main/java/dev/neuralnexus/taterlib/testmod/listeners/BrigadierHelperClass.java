@@ -13,7 +13,7 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 
 /** Helper class for brigadier commands (prevents ClassNotFound exceptions). */
@@ -26,7 +26,7 @@ public class BrigadierHelperClass {
             String... aliases) {
 
         // Create your command
-        LiteralArgumentBuilder<CommandSender> brigCommand = literal(command.name());
+        LiteralArgumentBuilder<CommandSource> brigCommand = literal(command.name());
 
         // Add permission check and any other required logic (e.g. player check or dimension check)
         brigCommand.requires(
@@ -40,12 +40,12 @@ public class BrigadierHelperClass {
 
         // Create an argument for the command, for this example we will use
         // a greedy string that we can split into an array.
-        RequiredArgumentBuilder<CommandSender, String> requiredArgument =
+        RequiredArgumentBuilder<CommandSource, String> requiredArgument =
                 argument("args", greedyString());
         requiredArgument.executes(
                 context -> {
                     try {
-                        CommandSender source = context.getSource();
+                        CommandSource source = context.getSource();
 
                         String[] args = context.getArgument("args", String.class).split(" ");
                         return command.execute(source, command.name(), args) ? 1 : 0;

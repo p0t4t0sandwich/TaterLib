@@ -10,10 +10,10 @@ import dev.neuralnexus.taterapi.perms.CrossPerms;
 import java.util.Optional;
 
 /** Represents a CommandSender */
-public class WCommandSender implements Wrapped<Object> {
+public class WCommandSource implements Wrapped<Object> {
     private final Object commandSender;
 
-    private WCommandSender(Object commandSender) {
+    private WCommandSource(Object commandSender) {
         this.commandSender = commandSender;
     }
 
@@ -23,8 +23,8 @@ public class WCommandSender implements Wrapped<Object> {
      * @param commandSender The CommandSender object to wrap
      * @return The wrapped CommandSender object
      */
-    public static WCommandSender wrap(Object commandSender) {
-        return new WCommandSender(commandSender);
+    public static WCommandSource wrap(Object commandSender) {
+        return new WCommandSource(commandSender);
     }
 
     @Override

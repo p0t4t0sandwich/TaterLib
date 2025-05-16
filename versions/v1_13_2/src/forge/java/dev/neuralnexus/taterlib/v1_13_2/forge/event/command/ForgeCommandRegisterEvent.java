@@ -16,24 +16,23 @@ import com.mojang.brigadier.context.CommandContext;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Side;
-import dev.neuralnexus.taterlib.v1_13_2.forge.command.ForgeSender;
-
-import net.minecraft.command.CommandSource;
+import dev.neuralnexus.taterlib.v1_13_2.forge.command.ForgeCommandSource;
 
 /** Forge implementation of {@link BrigadierCommandRegisterEvent}. */
 @ToBeLibrary("brigadier-general")
 public class ForgeCommandRegisterEvent
-        implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSource> {
-    private final CommandDispatcher<CommandSource> dispatcher;
+        implements CommandRegisterEvent,
+                BrigadierCommandRegisterEvent<net.minecraft.command.CommandSource> {
+    private final CommandDispatcher<net.minecraft.command.CommandSource> dispatcher;
 
     @SuppressWarnings("unchecked")
     public ForgeCommandRegisterEvent(CommandDispatcher<?> dispatcher) {
-        this.dispatcher = (CommandDispatcher<CommandSource>) dispatcher;
+        this.dispatcher = (CommandDispatcher<net.minecraft.command.CommandSource>) dispatcher;
     }
 
     @Override
@@ -42,13 +41,15 @@ public class ForgeCommandRegisterEvent
     }
 
     @Override
-    public CommandDispatcher<CommandSource> dispatcher() {
+    public CommandDispatcher<net.minecraft.command.CommandSource> dispatcher() {
         return this.dispatcher;
     }
 
     @Override
     public void registerCommand(
-            LiteralArgumentBuilder<CommandSource> node, String commandName, String... aliases) {
+            LiteralArgumentBuilder<net.minecraft.command.CommandSource> node,
+            String commandName,
+            String... aliases) {
         this.dispatcher.register(node);
         for (String alias : aliases) {
             this.dispatcher.register(literal(alias).redirect(node.build()));
@@ -57,7 +58,8 @@ public class ForgeCommandRegisterEvent
 
     @Override
     public void registerCommand(Command command, String... aliases) {
-        final LiteralArgumentBuilder<CommandSource> commandNode = wrapCommand(command);
+        final LiteralArgumentBuilder<net.minecraft.command.CommandSource> commandNode =
+                wrapCommand(command);
         this.dispatcher.register(commandNode);
         for (String alias : aliases) {
             this.dispatcher.register(literal(alias).redirect(commandNode.build()));
@@ -65,9 +67,10 @@ public class ForgeCommandRegisterEvent
     }
 
     // TODO: Temporary fix until Mixins are working on 1.13.2
-    private static int contextWrapper(CommandContext<CommandSource> context, Command command) {
+    private static int contextWrapper(
+            CommandContext<net.minecraft.command.CommandSource> context, Command command) {
         try {
-            CommandSender source = new ForgeSender(context.getSource());
+            CommandSource source = new ForgeCommandSource(context.getSource());
             String[] args = new String[] {};
             try {
                 args = context.getArgument("args", String.class).split(" ");
@@ -81,7 +84,8 @@ public class ForgeCommandRegisterEvent
     }
 
     // TODO: Temporary fix until Mixins are working on 1.13.2
-    public static LiteralArgumentBuilder<CommandSource> wrapCommand(Command command) {
+    public static LiteralArgumentBuilder<net.minecraft.command.CommandSource> wrapCommand(
+            Command command) {
         return literal(command.name())
                 .then(
                         argument("args", greedyString())

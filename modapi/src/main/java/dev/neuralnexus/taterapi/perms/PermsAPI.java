@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.perms;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.perms.impl.PermsAPIImpl;
-import dev.neuralnexus.taterapi.perms.mc.WCommandSender;
+import dev.neuralnexus.taterapi.perms.mc.WCommandSource;
 import dev.neuralnexus.taterapi.perms.mc.WMinecraftServer;
 import dev.neuralnexus.taterapi.perms.mc.WServerPlayer;
 
@@ -116,8 +116,8 @@ public interface PermsAPI {
             case GameProfile profile -> WMinecraftServer.getPlayerList().getPlayer(profile);
             default -> {
                 WServerPlayer player = null;
-                if (WCommandSender.instanceOf(subject)) {
-                    Object entity = WCommandSender.wrap(subject).getEntity();
+                if (WCommandSource.instanceOf(subject)) {
+                    Object entity = WCommandSource.wrap(subject).getEntity();
                     if (WServerPlayer.instanceOf(entity)) {
                         player = WServerPlayer.wrap(entity);
                     }

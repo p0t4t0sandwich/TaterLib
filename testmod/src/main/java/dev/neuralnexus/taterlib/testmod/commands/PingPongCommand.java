@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.testmod.commands;
 
 import dev.neuralnexus.taterapi.command.Command;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -40,7 +40,7 @@ public class PingPongCommand implements Command {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String label, String[] args) {
+    public boolean execute(CommandSource sender, String label, String[] args) {
         if (!(sender instanceof ServerPlayer player)) {
             sender.sendMessage(
                     TextUtil.substituteSectionSign(

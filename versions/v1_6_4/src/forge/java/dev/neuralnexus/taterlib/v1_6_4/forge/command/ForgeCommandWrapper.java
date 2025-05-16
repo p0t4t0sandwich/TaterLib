@@ -44,7 +44,7 @@ public class ForgeCommandWrapper extends CommandBase {
 
     @Override
     public void processCommand(ICommandSender sender, String[] args) throws CommandException {
-        command.execute(new ForgeSender(sender), command.name(), args);
+        command.execute(new ForgeCommandSource(sender), command.name(), args);
     }
 
     @Override

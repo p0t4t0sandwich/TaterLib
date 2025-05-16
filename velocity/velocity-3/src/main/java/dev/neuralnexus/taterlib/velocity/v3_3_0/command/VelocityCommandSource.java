@@ -2,65 +2,68 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_8_9.sponge.command;
+package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
+
+import com.velocitypowered.api.proxy.Player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.command.CommandSender;
+import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
-import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
+import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
+
+import net.kyori.adventure.text.Component;
 
 import org.jetbrains.annotations.Nullable;
-import org.spongepowered.api.command.CommandSource;
-import org.spongepowered.api.entity.living.player.Player;
-import org.spongepowered.api.text.Text;
 
 import java.util.UUID;
 
-/** Sponge implementation of {@link CommandSender} */
-public class SpongeCommandSender implements CommandSender, Wrapped<CommandSource> {
-    private final CommandSource sender;
+/** Velocity implementation of {@link CommandSource} */
+public class VelocityCommandSource implements CommandSource, Wrapped<com.velocitypowered.api.command.CommandSource> {
+    private final com.velocitypowered.api.command.CommandSource sender;
 
-    public SpongeCommandSender(CommandSource sender) {
+    public VelocityCommandSource(com.velocitypowered.api.command.CommandSource sender) {
         this.sender = sender;
     }
 
     @Override
-    public CommandSource unwrap() {
-        return this.sender;
+    public com.velocitypowered.api.command.CommandSource unwrap() {
+        return sender;
     }
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
+        if (this.sender instanceof Player player) {
+            return player.getUniqueId();
+        }
+        return TaterAPI.NIL_UUID;
     }
 
     @Override
     public String name() {
-        return this.sender.getName();
+        if (this.getPlayer() != null) {
+            return this.getPlayer().name();
+        }
+        return this.sender.getClass().getSimpleName();
     }
 
     @Override
     public Notifiable getSource() {
-        return message -> this.sender.sendMessage(Text.of(message));
+        return message -> this.sender.sendMessage(Component.text(message));
     }
 
     @Override
     public @Nullable Entity getEntity() {
-        if (this.sender instanceof org.spongepowered.api.entity.Entity) {
-            return new SpongeEntity((org.spongepowered.api.entity.Entity) this.sender);
-        }
         return null;
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public @Nullable ProxyPlayer getPlayer() {
         if (this.sender instanceof Player) {
-            return new SpongePlayer((Player) this.sender);
+            return new VelocityPlayer((Player) this.sender);
         }
         return null;
     }
@@ -72,7 +75,7 @@ public class SpongeCommandSender implements CommandSender, Wrapped<CommandSource
 
     @Override
     public void sendMessage(String message) {
-        this.sender.sendMessage(Text.of(message));
+        sender.sendMessage(Component.text(message));
     }
 
     @Override

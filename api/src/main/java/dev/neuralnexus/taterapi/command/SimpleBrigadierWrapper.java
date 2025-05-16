@@ -18,9 +18,9 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 /** Simple wrapper for brigadier commands */
 @ToBeLibrary("brigadier-general")
 public class SimpleBrigadierWrapper {
-    private static int contextWrapper(CommandContext<CommandSender> context, Command command) {
+    private static int contextWrapper(CommandContext<CommandSource> context, Command command) {
         try {
-            CommandSender source = context.getSource();
+            CommandSource source = context.getSource();
             String[] args = new String[] {};
             try {
                 args = context.getArgument("args", String.class).split(" ");
@@ -38,7 +38,7 @@ public class SimpleBrigadierWrapper {
      *
      * @param command The command
      */
-    public static LiteralArgumentBuilder<CommandSender> wrapCommand(Command command) {
+    public static LiteralArgumentBuilder<CommandSource> wrapCommand(Command command) {
         return literal(command.name())
                 .then(
                         argument("args", greedyString())

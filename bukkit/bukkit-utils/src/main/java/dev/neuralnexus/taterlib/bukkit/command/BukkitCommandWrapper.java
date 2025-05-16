@@ -21,6 +21,6 @@ public class BukkitCommandWrapper extends org.bukkit.command.Command {
     @Override
     public boolean execute(
             @NotNull CommandSender sender, @NotNull String label, @NotNull String[] args) {
-        return command.execute(new BukkitCommandSender(sender), label, args);
+        return command.execute(new BukkitCommandSource(sender), label, args);
     }
 }
