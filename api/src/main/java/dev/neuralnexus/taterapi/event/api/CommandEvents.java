@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterapi.event.api;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.Event;
 import dev.neuralnexus.taterapi.event.EventManager;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /** Command events. */
+@ToBeLibrary("brigadier-general")
 public class CommandEvents {
     /** Called when the command register event is fired. */
     public static final EventManager<CommandRegisterEvent> REGISTER_COMMAND =

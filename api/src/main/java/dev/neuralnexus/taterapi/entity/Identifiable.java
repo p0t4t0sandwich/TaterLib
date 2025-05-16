@@ -35,8 +35,8 @@ public interface Identifiable {
      * Check the object's permission
      *
      * @param permission The permission to check
-     * @param permissionLevel The permission level to default to
+     * @param defaultPermissionLevel The permission level to default to
      * @return Whether the object has the permission
      */
-    boolean hasPermission(String permission, int permissionLevel);
+    boolean hasPermission(String permission, int defaultPermissionLevel);
 }

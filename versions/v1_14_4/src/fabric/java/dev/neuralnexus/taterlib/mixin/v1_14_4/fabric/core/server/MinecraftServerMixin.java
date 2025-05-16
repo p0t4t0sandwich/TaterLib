@@ -38,9 +38,9 @@ public abstract class MinecraftServerMixin implements MinecraftServerBridge {
                 ((GameProfileCacheAccessor) this.shadow$getProfileCache())
                         .accessor$getProfilesbyName();
         for (Object i : info.values()) {
-            // Reflect to get GameProfileCache$GameProfileInfo#getProfile() method (func_152668_a)
+            // Reflect to get GameProfileCache$GameProfileInfo#getProfile() method (method_14519)
             try {
-                Method method = i.getClass().getMethod("func_152668_a");
+                Method method = i.getClass().getMethod("method_14519");
                 method.setAccessible(true);
                 GameProfile profile = (GameProfile) method.invoke(i);
                 result.put(profile.getName(), profile);

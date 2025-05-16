@@ -18,10 +18,9 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
 
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
@@ -47,12 +46,11 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
                                         ? Commands.CommandSelection.DEDICATED
                                         : Commands.CommandSelection.INTEGRATED;
                         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaBrigadierCommandRegisterEvent(
-                                        dispatcher, commandSelection));
+                                new VanillaCommandRegisterEvent(dispatcher));
                         // Sponge has its own, nicer simple command system
                         if (!MetaAPI.instance().isPlatformPresent(Platforms.SPONGE)) {
                             CommandEvents.REGISTER_COMMAND.invoke(
-                                    new VanillaCommandRegisterEvent(dispatcher, commandSelection));
+                                    new VanillaCommandRegisterEvent(dispatcher));
                         }
                     });
 

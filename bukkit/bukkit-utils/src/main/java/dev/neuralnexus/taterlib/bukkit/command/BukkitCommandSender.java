@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 
@@ -41,6 +42,11 @@ public class BukkitCommandSender
             return this.getEntity().name();
         }
         return this.sender.getName();
+    }
+
+    @Override
+    public Notifiable getSource() {
+        return this.sender::sendMessage;
     }
 
     @Override

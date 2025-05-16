@@ -7,13 +7,11 @@ package dev.neuralnexus.taterapi.event.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
-import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.Event;
 
-import org.jetbrains.annotations.ApiStatus;
-
 /** Abstract class for a brigadier command register event. */
+@ToBeLibrary("brigadier-general")
 public interface BrigadierCommandRegisterEvent<S> extends Event {
     /**
      * Gets if the server is dedicated.
@@ -37,31 +35,4 @@ public interface BrigadierCommandRegisterEvent<S> extends Event {
      * @param aliases The aliases of the command
      */
     void registerCommand(LiteralArgumentBuilder<S> node, String commandName, String... aliases);
-
-    /**
-     * Get the sender.
-     *
-     * @param source The source.
-     * @return The sender.
-     */
-    CommandSender getSender(S source);
-
-    /**
-     * Get the player.
-     *
-     * @param source The source.
-     * @return The player.
-     */
-    @Deprecated
-    @ApiStatus.ScheduledForRemoval
-    User getPlayer(S source);
-
-    /**
-     * Check if the source is a player.
-     *
-     * @param source The source.
-     */
-    @Deprecated
-    @ApiStatus.ScheduledForRemoval
-    boolean isPlayer(S source);
 }

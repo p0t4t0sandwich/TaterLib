@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.mixin.api.mojang.authlib;
 
 import com.mojang.authlib.GameProfile;
 
-import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -60,7 +59,7 @@ public abstract class GameProfile_API {
         return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
-    public boolean identifiable$hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
+    public boolean identifiable$hasPermission(String permission, int defaultPermissionLevel) {
+        return PermsAPI.instance().hasPermission(this, permission, defaultPermissionLevel);
     }
 }

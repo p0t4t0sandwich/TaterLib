@@ -4,11 +4,9 @@
  */
 package dev.neuralnexus.taterlib.bukkit.command;
 
-import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.command.Command;
 
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 /** Wraps a command callback into a Bukkit CommandExecutor. */

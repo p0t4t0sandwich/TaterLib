@@ -13,6 +13,7 @@
     "v1_14_4.vanilla.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.vanilla.accessors.server.players.StoredUserEntryAccessor",
     "v1_14_4.vanilla.accessors.world.entity.LivingEntityAccessor",
+    "v1_14_4.vanilla.api.minecraft.commands.CommandSource_API",
     "v1_14_4.vanilla.api.minecraft.commands.CommandSourceStack_API",
     "v1_14_4.vanilla.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_14_4.vanilla.api.minecraft.resources.ResourceLocation_API",

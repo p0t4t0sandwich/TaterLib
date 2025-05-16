@@ -15,14 +15,13 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.utils.modern.neoforge.event.NeoForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespawnEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.event.player.VanillaPlayerAdvancementEvent;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -51,11 +50,9 @@ public class NeoForgeEventListener_20_2 {
         NeoForge.EVENT_BUS.<RegisterCommandsEvent>addListener(
                 event -> {
                     CommandEvents.REGISTER_COMMAND.invoke(
-                            new VanillaCommandRegisterEvent(
-                                    event.getDispatcher(), event.getCommandSelection()));
+                            new VanillaCommandRegisterEvent(event.getDispatcher()));
                     CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                            new VanillaBrigadierCommandRegisterEvent(
-                                    event.getDispatcher(), event.getCommandSelection()));
+                            new VanillaCommandRegisterEvent(event.getDispatcher()));
                 });
 
         NeoForge.EVENT_BUS.<LivingDeathEvent>addListener(

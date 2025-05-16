@@ -13,6 +13,7 @@
     "v1_17_1.forge.accessors.server.players.GameProfileCacheAccessor",
     "v1_17_1.forge.accessors.server.players.StoredUserEntryAccessor",
     "v1_17_1.forge.accessors.world.entity.LivingEntityAccessor",
+    "v1_17_1.forge.api.minecraft.commands.CommandSource_API",
     "v1_17_1.forge.api.minecraft.commands.CommandSourceStack_API",
     "v1_17_1.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_17_1.forge.api.minecraft.resources.ResourceLocation_API",

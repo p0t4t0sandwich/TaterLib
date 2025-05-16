@@ -17,11 +17,9 @@ import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaBrigadierCommandRegisterEvent;
-import dev.neuralnexus.taterlib.v1_16_1.vanilla.event.command.VanillaCommandRegisterEvent;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.commands.Commands;
 import net.minecraft.server.MinecraftServer;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -52,18 +50,13 @@ public class ServerStartingMixin {
         // Register Brigadier commands
         CommandDispatcher<CommandSourceStack> dispatcher =
                 ((MinecraftServer) (Object) this).getCommands().getDispatcher();
-        Commands.CommandSelection commandSelection =
-                ((MinecraftServer) (Object) this).isDedicatedServer()
-                        ? Commands.CommandSelection.DEDICATED
-                        : Commands.CommandSelection.INTEGRATED;
 
         CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                new VanillaBrigadierCommandRegisterEvent(dispatcher, commandSelection));
+                new VanillaCommandRegisterEvent(dispatcher));
 
         // Sponge has its own, nicer simple command system
         if (!MetaAPI.instance().isPlatformPresent(Platforms.SPONGE)) {
-            CommandEvents.REGISTER_COMMAND.invoke(
-                    new VanillaCommandRegisterEvent(dispatcher, commandSelection));
+            CommandEvents.REGISTER_COMMAND.invoke(new VanillaCommandRegisterEvent(dispatcher));
         }
     }
 }

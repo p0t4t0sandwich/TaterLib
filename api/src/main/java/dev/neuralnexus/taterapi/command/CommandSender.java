@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -14,7 +15,17 @@ import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
+@ToBeLibrary("brigadier-general")
 public interface CommandSender extends Identifiable, Nameable, Notifiable {
+    /**
+     * Get the original source of the command
+     *
+     * @return The original source of the command
+     */
+    Notifiable getSource();
+
     /**
      * Get the entity that sent the command
      *
@@ -53,11 +64,15 @@ public interface CommandSender extends Identifiable, Nameable, Notifiable {
     }
 
     @Override
-    default void sendMessage(String message) {
-        if (this.getEntity() instanceof Notifiable) {
-            ((Notifiable) this.getEntity()).sendMessage(message);
-        } else if (this.getPlayer() != null) {
-            this.getPlayer().sendMessage(message);
+    default UUID uuid() {
+        if (this.getEntity() != null) {
+            return this.getEntity().uuid();
         }
+        return TaterAPI.NIL_UUID;
+    }
+
+    @Override
+    default void sendMessage(String message) {
+        this.getSource().sendMessage(message);
     }
 }

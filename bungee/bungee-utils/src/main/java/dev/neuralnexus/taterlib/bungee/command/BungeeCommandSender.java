@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSender;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
 import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
@@ -43,6 +44,12 @@ public class BungeeCommandSender
             return this.getPlayer().name();
         }
         return this.sender.getName();
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public Notifiable getSource() {
+        return this.sender::sendMessage;
     }
 
     @Override
