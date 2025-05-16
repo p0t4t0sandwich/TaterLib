@@ -22,7 +22,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Forge implementation of {@link CommandSource} */
-public class ForgeCommandSource implements CommandSource, Wrapped<net.minecraft.command.CommandSource> {
+public class ForgeCommandSource
+        implements CommandSource, Wrapped<net.minecraft.command.CommandSource> {
     private final net.minecraft.command.CommandSource sender;
 
     public ForgeCommandSource(net.minecraft.command.CommandSource sender) {
