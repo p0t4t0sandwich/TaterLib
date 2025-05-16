@@ -72,6 +72,14 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable {
     }
 
     @Override
+    default String name() {
+        if (this.getEntity() != null) {
+            return this.getEntity().name();
+        }
+        return "Server";
+    }
+
+    @Override
     default void sendMessage(String message) {
         this.getSource().sendMessage(message);
     }

@@ -6,8 +6,6 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.commands;
 
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.entity.Identifiable;
-import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
@@ -27,16 +25,11 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(CommandSourceStack.class)
-@Implements({
-    @Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE),
-    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
-    @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),
-    @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
-})
+@Implements(
+    @Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE))
 public abstract class CommandSourceStack_API {
     // @spotless:off
     @Shadow @Final private net.minecraft.commands.CommandSource source;
-    @Shadow public abstract String shadow$getTextName();
     @Shadow @Nullable public abstract net.minecraft.world.entity.Entity shadow$getEntity();
     // @spotless:on
 
@@ -46,9 +39,5 @@ public abstract class CommandSourceStack_API {
 
     public @Nullable Entity source$getEntity() {
         return (Entity) this.shadow$getEntity();
-    }
-
-    public String nameable$name() {
-        return this.shadow$getTextName();
     }
 }
