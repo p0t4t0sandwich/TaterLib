@@ -55,19 +55,4 @@ public abstract class CommandSourceStack_API {
     public String nameable$name() {
         return this.shadow$getTextName();
     }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
-    }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
-    }
-
-    @Intrinsic
-    public boolean identifiable$hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
-    }
 }
