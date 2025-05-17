@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.ServerAware;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
+import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
@@ -19,6 +20,11 @@ import java.util.Optional;
  * proxied players.
  */
 public interface User extends Subject, Identifiable, Nameable, Notifiable, ServerAware {
+    @Override
+    default SimpleServer server() {
+        return TaterAPI.instance().server();
+    }
+
     /**
      * Get the prefix of the player
      *
