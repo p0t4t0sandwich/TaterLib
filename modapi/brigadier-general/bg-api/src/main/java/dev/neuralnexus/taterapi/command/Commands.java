@@ -8,10 +8,15 @@ import com.mojang.brigadier.arguments.ArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
+import dev.neuralnexus.taterapi.logger.Logger;
 
-@ToBeLibrary("brigadier-general")
 public interface Commands {
+    Logger LOGGER = Logger.create("Brigadier General");
+
+    static Logger logger() {
+        return LOGGER;
+    }
+
     static LiteralArgumentBuilder<CommandSource> literal(String name) {
         return LiteralArgumentBuilder.literal(name);
     }

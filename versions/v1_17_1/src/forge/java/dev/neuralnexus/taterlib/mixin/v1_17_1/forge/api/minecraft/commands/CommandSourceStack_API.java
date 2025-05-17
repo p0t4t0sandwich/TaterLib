@@ -27,8 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_2)
 @Mixin(CommandSourceStack.class)
-@Implements(
-    @Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE))
+@Implements(@Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE))
 public abstract class CommandSourceStack_API {
     // @spotless:off
     @Shadow @Final private net.minecraft.commands.CommandSource source;

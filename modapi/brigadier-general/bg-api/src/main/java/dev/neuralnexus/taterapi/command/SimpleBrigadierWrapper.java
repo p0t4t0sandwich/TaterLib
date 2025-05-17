@@ -12,11 +12,7 @@ import static dev.neuralnexus.taterapi.command.Commands.literal;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 
-import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
-
 /** Simple wrapper for brigadier commands */
-@ToBeLibrary("brigadier-general")
 public class SimpleBrigadierWrapper {
     private static int contextWrapper(CommandContext<CommandSource> context, Command command) {
         try {
@@ -28,7 +24,7 @@ public class SimpleBrigadierWrapper {
             }
             return command.execute(source, command.name(), args) ? 1 : 0;
         } catch (Exception e) {
-            TaterAPI.logger().error("Error executing command: " + command.name(), e);
+            Commands.logger().error("Error executing command: " + command.name(), e);
             throw e;
         }
     }

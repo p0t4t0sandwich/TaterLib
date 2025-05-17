@@ -8,4 +8,4 @@ A mixin plugin and annotation set that allow you to apply mixins based on the pl
 An abstract permission query API that supports all major modding platforms
 
 # BrigadierGeneral
-A cross-plat command API
+A cross-platform command registration API, primarily focused on exposing brigadier and wrapping platform-specific command implementations.

@@ -8,8 +8,8 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.ServerAware;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
-import dev.neuralnexus.taterapi.server.SimpleServer;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
@@ -18,16 +18,7 @@ import java.util.Optional;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface User extends Identifiable, Nameable, Notifiable {
-    /**
-     * Get the server the player is on
-     *
-     * @return The server the player is on
-     */
-    default SimpleServer server() {
-        return TaterAPI.instance().server();
-    }
-
+public interface User extends Identifiable, Nameable, Notifiable, ServerAware {
     /**
      * Get the prefix of the player
      *

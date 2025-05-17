@@ -4,21 +4,18 @@
  */
 package dev.neuralnexus.taterapi.command;
 
-import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
-import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
-import dev.neuralnexus.taterapi.entity.player.User;
-import dev.neuralnexus.taterapi.server.SimpleServer;
+import dev.neuralnexus.taterapi.entity.ServerAware;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-@ToBeLibrary("brigadier-general")
-public interface CommandSource extends Identifiable, Nameable, Notifiable {
+public interface CommandSource extends Identifiable, Nameable, Notifiable, ServerAware {
+    UUID NIL_UUID = new UUID(0, 0);
+
     /**
      * Get the original source of the command
      *
@@ -31,16 +28,19 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable {
      *
      * @return The entity that sent the command
      */
-    @Nullable Entity getEntity();
+    // TODO: Replace with common type of some sort
+    @Nullable <E extends Identifiable & Nameable> E getEntity();
 
     /**
      * Get the player that sent the command
      *
      * @return The player that sent the command
      */
-    default @Nullable User getPlayer() {
-        if (this.getEntity() instanceof User) {
-            return (User) this.getEntity();
+    // TODO: Replace with common type of some sort
+    default @Nullable <P extends Identifiable & Nameable & Notifiable & ServerAware> P getPlayer() {
+        Object entity = this.getEntity();
+        if (entity instanceof Notifiable && entity instanceof ServerAware) {
+            return (P) this.getEntity();
         }
         return null;
     }
@@ -50,17 +50,10 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable {
      *
      * @return The name of the command sender
      */
+    // TODO: Replace with common type of some sort
     default boolean isPlayer() {
-        return this.getEntity() instanceof User;
-    }
-
-    /**
-     * Get an instance of the server
-     *
-     * @return The server instance
-     */
-    default SimpleServer server() {
-        return TaterAPI.instance().server();
+        Object entity = this.getEntity();
+        return entity instanceof Notifiable && entity instanceof ServerAware;
     }
 
     @Override
@@ -68,7 +61,7 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable {
         if (this.getEntity() != null) {
             return this.getEntity().uuid();
         }
-        return TaterAPI.NIL_UUID;
+        return NIL_UUID;
     }
 
     @Override
