@@ -28,6 +28,9 @@ dependencies {
 
     // Brigadier
     api(libs.brigadier)
+    api(variantOf(libs.modapi.brigadier) {
+        classifier("downgraded-8-shaded")
+    })
 
     // Mixin
     implementation(libs.mixin)

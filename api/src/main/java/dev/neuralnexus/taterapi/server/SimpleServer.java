@@ -111,7 +111,7 @@ public interface SimpleServer {
      * @return The player, if found.
      */
     default Optional<User> getPlayer(String name) {
-        return players().stream().filter(player -> player.name().equals(name)).findFirst();
+        return this.players().stream().filter(player -> player.name().equals(name)).findFirst();
     }
 
     /**
@@ -121,7 +121,7 @@ public interface SimpleServer {
      * @return The player, if found.
      */
     default Optional<User> getPlayer(UUID uuid) {
-        return players().stream().filter(player -> player.uuid().equals(uuid)).findFirst();
+        return this.players().stream().filter(player -> player.uuid().equals(uuid)).findFirst();
     }
 
     /**
@@ -130,7 +130,7 @@ public interface SimpleServer {
      * @param message The message to broadcast.
      */
     default void broadcastMessage(String message) {
-        players().forEach(player -> player.sendMessage(message));
+        this.players().forEach(player -> player.sendMessage(message));
     }
 
     /**

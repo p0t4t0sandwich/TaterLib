@@ -43,6 +43,8 @@ include(
         ':versions:v1_21_4',
 
 	    // ModAPI libraries
+        'modapi:brigadier-general',
+        'modapi:brigadier-general:bg-api',
 	    'modapi:entrypoint-spoof',
         'modapi',
 
