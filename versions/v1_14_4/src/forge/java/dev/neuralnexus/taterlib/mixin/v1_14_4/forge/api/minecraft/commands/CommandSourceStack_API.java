@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.api.minecraft.commands;
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
+import dev.neuralnexus.taterapi.entity.Actor;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
@@ -34,11 +35,11 @@ public abstract class CommandSourceStack_API {
     @Shadow @Nullable public abstract net.minecraft.world.entity.Entity shadow$getEntity();
     // @spotless:on
 
-    public Notifiable source$getSource() {
+    public Notifiable source$source() {
         return (Notifiable) this.source;
     }
 
-    public @Nullable Entity source$getEntity() {
+    public @Nullable Actor source$entity() {
         return (Entity) this.shadow$getEntity();
     }
 }

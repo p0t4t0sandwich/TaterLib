@@ -37,7 +37,7 @@ public class ForgeCommandSource
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override
@@ -46,12 +46,12 @@ public class ForgeCommandSource
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return message -> this.sender.sendFeedback(new TextComponentString(message), false);
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         if (this.sender.getEntity() != null) {
             return new ForgeEntity(this.sender.getEntity());
         }
@@ -59,7 +59,7 @@ public class ForgeCommandSource
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public ServerPlayer player() {
         if (this.sender.getEntity() instanceof EntityPlayer) {
             return new ForgePlayer((EntityPlayer) this.sender.getEntity());
         }

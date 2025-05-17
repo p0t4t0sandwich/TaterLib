@@ -40,29 +40,29 @@ public class VelocityCommandSource
         if (this.sender instanceof Player player) {
             return player.getUniqueId();
         }
-        return TaterAPI.NIL_UUID;
+        return Notifiable.NIL_UUID;
     }
 
     @Override
     public String name() {
-        if (this.getPlayer() != null) {
-            return this.getPlayer().name();
+        if (this.player() != null) {
+            return this.player().name();
         }
         return this.sender.getClass().getSimpleName();
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return message -> this.sender.sendMessage(Component.text(message));
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         return null;
     }
 
     @Override
-    public @Nullable ProxyPlayer getPlayer() {
+    public @Nullable ProxyPlayer player() {
         if (this.sender instanceof Player) {
             return new VelocityPlayer((Player) this.sender);
         }

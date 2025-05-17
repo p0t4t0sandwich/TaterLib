@@ -37,7 +37,7 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getCommandSenderName()).orElse(TaterAPI.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getCommandSenderName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override
@@ -46,13 +46,13 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return message ->
                 this.sender.sendChatToPlayer(ChatMessageComponent.createFromText(message));
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         if (this.sender instanceof net.minecraft.entity.Entity) {
             return new ForgeEntity((net.minecraft.entity.Entity) this.sender);
         }
@@ -60,7 +60,7 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public ServerPlayer player() {
         if (this.sender instanceof EntityPlayer) {
             return new ForgePlayer((EntityPlayer) this.sender);
         }

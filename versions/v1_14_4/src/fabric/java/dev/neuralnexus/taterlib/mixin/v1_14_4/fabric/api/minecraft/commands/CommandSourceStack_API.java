@@ -32,11 +32,11 @@ public abstract class CommandSourceStack_API {
     @Shadow @Nullable public abstract net.minecraft.world.entity.Entity shadow$getEntity();
     // @spotless:on
 
-    public Notifiable source$getSource() {
+    public Notifiable source$source() {
         return (Notifiable) this.source;
     }
 
-    public @Nullable Entity source$getEntity() {
+    public @Nullable Entity source$entity() {
         return (Entity) this.shadow$getEntity();
     }
 }

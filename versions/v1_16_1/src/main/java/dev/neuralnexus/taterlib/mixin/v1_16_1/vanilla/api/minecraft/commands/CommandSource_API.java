@@ -35,6 +35,6 @@ public interface CommandSource_API {
     // @spotless:on
 
     default void notifiable$sendMessage(String message) {
-        this.sendMessage(VanillaUtils.component.apply(message), TaterAPI.NIL_UUID);
+        this.sendMessage(VanillaUtils.component.apply(message), Notifiable.NIL_UUID);
     }
 }

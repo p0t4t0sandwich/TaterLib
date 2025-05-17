@@ -29,6 +29,6 @@ public abstract class PlayerMixin extends Entity implements PlayerBridge {
 
     @Override
     public void bridge$sendMessage(String message) {
-        this.sendMessage(VanillaUtils.component.apply(message), TaterAPI.NIL_UUID);
+        this.sendMessage(VanillaUtils.component.apply(message), Notifiable.NIL_UUID);
     }
 }
