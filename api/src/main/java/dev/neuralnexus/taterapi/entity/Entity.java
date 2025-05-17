@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
-public interface Entity extends Identifiable, Nameable {
+public interface Entity extends Actor, Identifiable, Nameable {
     /**
      * Get the name of the entity
      *

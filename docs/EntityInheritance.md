@@ -14,16 +14,19 @@ Identifiable
 InventoryHolder
 Nameable
 Notifiable
+ServerAware
 
 ### Extended Interfaces
 
-Entity -> Identifiable, Nameable
+Entity -> Actor, Identifiable, Nameable
+* TODO: Locatable and Teleportable
+* TODO: Make it ServerAware
 
 LivingEntity -> Damageable, Entity
 
 HumanEntity -> LivingEntity, InventoryHolder
 
-User -> Identifiable, Nameable, Notifiable
+User -> Subject, Identifiable, Nameable, Notifiable, ServerAware
 
 Player -> HumanEntity, User
 * Overrides `inventory()` to return a `PlayerInventory`
@@ -32,4 +35,12 @@ ServerPlayer -> Connection, Player
 
 ProxyPlayer -> Connection, User
 
-CommandSender -> Identifiable, Nameable, Notifiable
+#### ModAPI
+
+Actor -> Identifiable, Nameable
+
+Subject -> Identifiable, Nameable, Notifiable, ServerAware
+
+#### Brigadier General
+
+CommandSource -> Identifiable, Nameable, Notifiable, ServerAware

@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.taterapi.command;
 
+import dev.neuralnexus.taterapi.entity.Actor;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.ServerAware;
+import dev.neuralnexus.taterapi.entity.player.Subject;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -28,19 +30,16 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
      *
      * @return The entity that sent the command
      */
-    // TODO: Replace with common type of some sort
-    @Nullable <E extends Identifiable & Nameable> E getEntity();
+    @Nullable Actor getEntity();
 
     /**
      * Get the player that sent the command
      *
      * @return The player that sent the command
      */
-    // TODO: Replace with common type of some sort
-    default @Nullable <P extends Identifiable & Nameable & Notifiable & ServerAware> P getPlayer() {
-        Object entity = this.getEntity();
-        if (entity instanceof Notifiable && entity instanceof ServerAware) {
-            return (P) this.getEntity();
+    default @Nullable Subject getPlayer() {
+        if (this.getEntity() instanceof Subject) {
+            return (Subject) this.getEntity();
         }
         return null;
     }
@@ -50,10 +49,8 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
      *
      * @return The name of the command sender
      */
-    // TODO: Replace with common type of some sort
     default boolean isPlayer() {
-        Object entity = this.getEntity();
-        return entity instanceof Notifiable && entity instanceof ServerAware;
+        return this.getEntity() instanceof Subject;
     }
 
     @Override
