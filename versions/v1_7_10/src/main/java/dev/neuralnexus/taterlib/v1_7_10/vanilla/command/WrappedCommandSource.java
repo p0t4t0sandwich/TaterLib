@@ -37,7 +37,7 @@ public class WrappedCommandSource
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override
@@ -46,12 +46,12 @@ public class WrappedCommandSource
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return message -> this.sender.sendMessage(new LiteralText(message));
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         if (this.sender instanceof net.minecraft.entity.Entity) {
             return new WrappedEntity((net.minecraft.entity.Entity) this.sender);
         }
@@ -59,7 +59,7 @@ public class WrappedCommandSource
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public ServerPlayer player() {
         if (this.sender instanceof PlayerEntity) {
             return new WrappedPlayer((PlayerEntity) this.sender);
         }

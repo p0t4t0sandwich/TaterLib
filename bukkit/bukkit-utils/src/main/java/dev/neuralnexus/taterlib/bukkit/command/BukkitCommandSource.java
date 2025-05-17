@@ -33,24 +33,24 @@ public class BukkitCommandSource
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override
     public String name() {
-        if (this.getEntity() != null) {
-            return this.getEntity().name();
+        if (this.entity() != null) {
+            return this.entity().name();
         }
         return this.sender.getName();
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return this.sender::sendMessage;
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         if (this.sender instanceof org.bukkit.entity.Entity) {
             return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
         }
@@ -58,7 +58,7 @@ public class BukkitCommandSource
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public ServerPlayer player() {
         if (this.sender instanceof org.bukkit.entity.Player) {
             return WrapperRegistry.wrap((org.bukkit.entity.Player) this.sender);
         }

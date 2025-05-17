@@ -65,7 +65,7 @@ public class ForgeEntityDeathEvent extends VanillaEntityEvent implements EntityD
     public int droppedExp() {
         // protected
         // this.event.entityLiving.getExperiencePoints(
-        //     (EntityPlayer) this.event.source.getEntity());
+        //     (EntityPlayer) this.event.source.entity());
         throw new VersionFeatureNotSupportedException();
     }
 

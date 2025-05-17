@@ -4,8 +4,12 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import java.util.UUID;
+
 /** Entities that are able to receive messages */
 public interface Notifiable {
+    UUID NIL_UUID = new UUID(0, 0);
+
     /**
      * Send a message to the entity
      *

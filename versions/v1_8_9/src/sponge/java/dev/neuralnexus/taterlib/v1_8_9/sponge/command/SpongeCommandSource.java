@@ -36,7 +36,7 @@ public class SpongeCommandSource
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(TaterAPI.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override
@@ -45,12 +45,12 @@ public class SpongeCommandSource
     }
 
     @Override
-    public Notifiable getSource() {
+    public Notifiable source() {
         return message -> this.sender.sendMessage(Text.of(message));
     }
 
     @Override
-    public @Nullable Entity getEntity() {
+    public @Nullable Entity entity() {
         if (this.sender instanceof org.spongepowered.api.entity.Entity) {
             return new SpongeEntity((org.spongepowered.api.entity.Entity) this.sender);
         }
@@ -58,7 +58,7 @@ public class SpongeCommandSource
     }
 
     @Override
-    public ServerPlayer getPlayer() {
+    public ServerPlayer player() {
         if (this.sender instanceof Player) {
             return new SpongePlayer((Player) this.sender);
         }

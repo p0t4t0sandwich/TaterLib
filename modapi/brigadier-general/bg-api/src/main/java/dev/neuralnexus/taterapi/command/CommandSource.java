@@ -16,30 +16,28 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public interface CommandSource extends Identifiable, Nameable, Notifiable, ServerAware {
-    UUID NIL_UUID = new UUID(0, 0);
-
     /**
      * Get the original source of the command
      *
      * @return The original source of the command
      */
-    Notifiable getSource();
+    Notifiable source();
 
     /**
      * Get the entity that sent the command
      *
      * @return The entity that sent the command
      */
-    @Nullable Actor getEntity();
+    @Nullable Actor entity();
 
     /**
      * Get the player that sent the command
      *
      * @return The player that sent the command
      */
-    default @Nullable Subject getPlayer() {
-        if (this.getEntity() instanceof Subject) {
-            return (Subject) this.getEntity();
+    default @Nullable Subject player() {
+        if (this.entity() instanceof Subject) {
+            return (Subject) this.entity();
         }
         return null;
     }
@@ -50,27 +48,29 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
      * @return The name of the command sender
      */
     default boolean isPlayer() {
-        return this.getEntity() instanceof Subject;
+        return this.entity() instanceof Subject;
     }
 
     @Override
     default UUID uuid() {
-        if (this.getEntity() != null) {
-            return this.getEntity().uuid();
+        Actor entity = this.entity();
+        if (entity != null) {
+            return entity.uuid();
         }
-        return NIL_UUID;
+        return Notifiable.NIL_UUID;
     }
 
     @Override
     default String name() {
-        if (this.getEntity() != null) {
-            return this.getEntity().name();
+        Actor entity = this.entity();
+        if (entity != null) {
+            return entity.name();
         }
         return "Server";
     }
 
     @Override
     default void sendMessage(String message) {
-        this.getSource().sendMessage(message);
+        this.source().sendMessage(message);
     }
 }
