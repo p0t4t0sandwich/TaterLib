@@ -18,7 +18,7 @@ import java.util.Optional;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface User extends Identifiable, Nameable, Notifiable, ServerAware {
+public interface User extends Subject, Identifiable, Nameable, Notifiable, ServerAware {
     /**
      * Get the prefix of the player
      *
