@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_16_1.fabric.core.world.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;

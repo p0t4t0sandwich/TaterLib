@@ -37,7 +37,8 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
 
     @Override
     public UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getCommandSenderName()).orElse(Notifiable.NIL_UUID);
+        return TaterAPI.uuidFromName(this.sender.getCommandSenderName())
+                .orElse(Notifiable.NIL_UUID);
     }
 
     @Override

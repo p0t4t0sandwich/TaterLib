@@ -59,6 +59,7 @@ tasks.shadowJar {
         include(project(":api"))
         include(project(":loader"))
         include(dependency("dev.neuralnexus:modapi"))
+        include(dependency("dev.neuralnexus.modapi.brigadier:bg-api"))
 
         // Config
         include(dependency("org.spongepowered:configurate-core:4.2.0"))
