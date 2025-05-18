@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_16_1.fabric.api.minecraft.commands;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;

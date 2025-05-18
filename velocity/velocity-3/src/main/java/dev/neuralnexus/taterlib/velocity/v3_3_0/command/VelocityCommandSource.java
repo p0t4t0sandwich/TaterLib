@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
 
 import com.velocitypowered.api.proxy.Player;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
