@@ -16,14 +16,11 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
 @SuppressWarnings("unused")
@@ -37,19 +34,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
 
             // Initialize plugin data
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
-
-            // Register Fabric API command events
-            CommandRegistrationCallback.EVENT.register(
-                    (dispatcher, dedicated) -> {
-                        Commands.CommandSelection environment =
-                                dedicated
-                                        ? Commands.CommandSelection.DEDICATED
-                                        : Commands.CommandSelection.INTEGRATED;
-                        CommandEvents.REGISTER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(dispatcher));
-                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(dispatcher));
-                    });
 
             // Register Fabric API player events
             ServerPlayConnectionEvents.JOIN.register(

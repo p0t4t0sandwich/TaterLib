@@ -2,14 +2,13 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command;
+package dev.neuralnexus.taterapi.event.command.impl;
 
 import static dev.neuralnexus.taterapi.command.Commands.literal;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.command.SimpleBrigadierWrapper;
@@ -18,25 +17,14 @@ import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Side;
 
-/** Vanilla implementation of {@link CommandRegisterEvent}. */
-@ToBeLibrary("brigadier-general")
-public class VanillaCommandRegisterEvent
+/**
+ * General implementation of {@link CommandRegisterEvent} and {@link BrigadierCommandRegisterEvent}.
+ */
+public record CommandRegisterEventImpl(CommandDispatcher<CommandSource> dispatcher)
         implements CommandRegisterEvent, BrigadierCommandRegisterEvent<CommandSource> {
-    private final CommandDispatcher<CommandSource> dispatcher;
-
-    @SuppressWarnings("unchecked")
-    public VanillaCommandRegisterEvent(CommandDispatcher<?> dispatcher) {
-        this.dispatcher = (CommandDispatcher<CommandSource>) dispatcher;
-    }
-
     @Override
     public boolean isDedicated() {
         return MetaAPI.instance().side() == Side.SERVER;
-    }
-
-    @Override
-    public CommandDispatcher<CommandSource> dispatcher() {
-        return this.dispatcher;
     }
 
     @Override

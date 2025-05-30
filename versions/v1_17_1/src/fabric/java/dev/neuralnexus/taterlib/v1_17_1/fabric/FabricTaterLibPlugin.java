@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_17_1.fabric;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -18,14 +17,11 @@ import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLogoutEvent;
 
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
 @SuppressWarnings("unused")
@@ -38,21 +34,6 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
             VanillaUtils.component = Component::nullToEmpty;
 
             ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
-
-            CommandRegistrationCallback.EVENT.register(
-                    (dispatcher, dedicated) -> {
-                        Commands.CommandSelection commandSelection =
-                                dedicated
-                                        ? Commands.CommandSelection.DEDICATED
-                                        : Commands.CommandSelection.INTEGRATED;
-                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(dispatcher));
-                        // Sponge has its own, nicer simple command system
-                        if (!MetaAPI.instance().isPlatformPresent(Platforms.SPONGE)) {
-                            CommandEvents.REGISTER_COMMAND.invoke(
-                                    new VanillaCommandRegisterEvent(dispatcher));
-                        }
-                    });
 
             ServerPlayConnectionEvents.JOIN.register(
                     (handler, sender, s) ->

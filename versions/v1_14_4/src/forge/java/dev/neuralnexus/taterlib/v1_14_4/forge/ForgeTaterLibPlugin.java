@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.v1_14_4.forge;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
-import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -21,7 +20,6 @@ import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWr
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntitySpawnEvent;
@@ -73,14 +71,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                             event.getPos(),
                                             event.getState(),
                                             new ForgeCancellableEventWrapper(event))));
-
-            MinecraftForge.EVENT_BUS.<FMLServerStartingEvent>addListener(
-                    event -> {
-                        CommandEvents.REGISTER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(event.getCommandDispatcher()));
-                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(event.getCommandDispatcher()));
-                    });
 
             MinecraftForge.EVENT_BUS.<LivingDamageEvent>addListener(
                     event ->

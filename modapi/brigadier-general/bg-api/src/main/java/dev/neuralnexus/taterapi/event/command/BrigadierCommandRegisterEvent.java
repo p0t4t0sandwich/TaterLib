@@ -7,11 +7,9 @@ package dev.neuralnexus.taterapi.event.command;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.Event;
 
 /** Abstract class for a brigadier command register event. */
-@ToBeLibrary("brigadier-general")
 public interface BrigadierCommandRegisterEvent<S> extends Event {
     /**
      * Gets if the server is dedicated.

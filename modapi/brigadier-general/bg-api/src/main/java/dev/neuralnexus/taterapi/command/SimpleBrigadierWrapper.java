@@ -13,7 +13,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 
 /** Simple wrapper for brigadier commands */
-public class SimpleBrigadierWrapper {
+public final class SimpleBrigadierWrapper {
     private static int contextWrapper(CommandContext<CommandSource> context, Command command) {
         try {
             CommandSource source = context.getSource();
