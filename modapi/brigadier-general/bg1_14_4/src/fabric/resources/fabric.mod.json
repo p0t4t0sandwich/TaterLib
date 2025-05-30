@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "id": "brigadier_general",
+  "version": "0.1.0",
+  "mixins": [
+    "brigadier_general.mixins.v1_14_4.fabric.json"
+  ]
+}

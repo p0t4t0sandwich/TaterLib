@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.v1_20_2.forge;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
-import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -22,7 +21,6 @@ import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWr
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntitySpawnEvent;
@@ -37,7 +35,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -64,14 +61,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                             event.getPos(),
                                             event.getState(),
                                             new ForgeCancellableEventWrapper(event))));
-
-            MinecraftForge.EVENT_BUS.<RegisterCommandsEvent>addListener(
-                    event -> {
-                        CommandEvents.REGISTER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(event.getDispatcher()));
-                        CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                                new VanillaCommandRegisterEvent(event.getDispatcher()));
-                    });
 
             MinecraftForge.EVENT_BUS.<LivingDamageEvent>addListener(
                     event ->

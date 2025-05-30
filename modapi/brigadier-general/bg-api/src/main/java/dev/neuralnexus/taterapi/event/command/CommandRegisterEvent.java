@@ -4,12 +4,10 @@
  */
 package dev.neuralnexus.taterapi.event.command;
 
-import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.Event;
 
 /** Abstract class for a command register event. */
-@ToBeLibrary("brigadier-general")
 public interface CommandRegisterEvent extends Event {
     /**
      * Registers a command.
