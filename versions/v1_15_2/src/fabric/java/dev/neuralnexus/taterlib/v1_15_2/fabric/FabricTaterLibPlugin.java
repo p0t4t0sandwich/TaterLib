@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_15_2.fabric;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
