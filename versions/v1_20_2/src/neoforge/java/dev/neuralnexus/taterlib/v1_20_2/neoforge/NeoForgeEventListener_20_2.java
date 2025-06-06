@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
-import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -15,7 +14,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterlib.utils.modern.neoforge.event.NeoForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.command.VanillaCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerDeathEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
@@ -28,7 +26,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import net.neoforged.neoforge.event.ServerChatEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
@@ -46,14 +43,6 @@ public class NeoForgeEventListener_20_2 {
                                         event.getPos(),
                                         event.getState(),
                                         new NeoForgeCancellableEventWrapper(event))));
-
-        NeoForge.EVENT_BUS.<RegisterCommandsEvent>addListener(
-                event -> {
-                    CommandEvents.REGISTER_COMMAND.invoke(
-                            new VanillaCommandRegisterEvent(event.getDispatcher()));
-                    CommandEvents.REGISTER_BRIGADIER_COMMAND.invoke(
-                            new VanillaCommandRegisterEvent(event.getDispatcher()));
-                });
 
         NeoForge.EVENT_BUS.<LivingDeathEvent>addListener(
                 event ->
