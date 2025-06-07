@@ -84,9 +84,11 @@ new issue to discuss the changes you’d like to make.
 #### Useful Links
 
 - [Fabric Versions](https://fabricmc.net/develop/)
+- [Legacy Fabric Versions](https://legacyfabric.net/usage.html)
 - [Ornithe Versions](https://ornithemc.net/develop/)
 - [Forge Versions](https://files.minecraftforge.net/net/minecraftforge/forge/)
 - [NeoForge Versions](https://projects.neoforged.net/neoforged/neoforge)
+- [Parchment Versions](https://parchmentmc.org/docs/getting-started)
 - [Sponge Versions](https://spongepowered.org/downloads/spongevanilla)
 
 #### Simplifying the Codebase
@@ -102,7 +104,7 @@ in a cross-version manner. In a pinch we can also "patch" our own code until a b
 
 #### Getter/Setter Methods
 
-It's preferred to use `propertName()` rather than `getPropertyName()` for getter methods, it's a small thing, but it
+It's preferred to use `propertyName()` rather than `getPropertyName()` for getter methods, it's a small thing, but it
 helps keep the codebase consistent and makes working with nested properties a bit cleaner.
 
 #### Streams and other Functional APIs
@@ -139,6 +141,9 @@ I usually use the following settings applied under `Settings > Tools > Actions o
 - Optimize imports
 - Rearrange code
 - Run code cleanup
+
+The code formatter runs before each build anyhow (via the `spotlessApply` task), but depending on your workflow
+"Actions on Save" can help keep things tidy as you work.
 
 ### Tips, Tricks, and Other Notes
 
