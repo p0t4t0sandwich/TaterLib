@@ -100,15 +100,16 @@ There's also a snapshot repository available at `https://maven.neuralnexus.dev/s
 
 #### Velocity
 
-- v3.3.0
+- v3.3.0-v3.4.0
 
 ## Dependencies
 
-- [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric
+- [Fabric API](https://modrinth.com/mod/fabric-api) - Required on Fabric 1.14 and above
 - [Legacy Fabric API](https://modrinth.com/mod/legacy-fabric-api) - Required on Fabric 1.12.2 and
   below
 - [MixinBootstrap](https://modrinth.com/mod/mixinbootstrap) - Required on Forge 1.14.x - 1.15.1
-- [UniMixins](https://modrinth.com/mod/unimixins) - Required on Forge 1.7.10-1.12.2
+- [MixinBooter](<https://modrinth.com/mod/mixinbooter>) - Required on Forge 1.8.9-1.12.2
+- [UniMixins](https://modrinth.com/mod/unimixins) - Required on Forge 1.7.10
 
 ### Optional Dependencies
 
