@@ -5,22 +5,28 @@ license = "${license}"
 issueTrackerURL = "${issue_url}"
 
 [[mods]]
-modId = "${project_id}"
+modId = "${mod_id}"
 version = "${version}"
-displayName = "${project_name}"
+displayName = "${mod_name}"
 updateJSONURL = "${update_json_url}"
 displayURL = "${homepage_url}"
-logoFile = "${project_name}.png.gz"
+logoFile = "${mod_name}.png"
 credits = "${authors}"
 authors = "${authors}"
 displayTest = "IGNORE_SERVER_VERSION"
-description = '''${project_description}'''
+description = '''${description}'''
+
+[[mods]]
+modId = "muxins"
+version = "${muxins_version}"
+displayName = "Muxins"
+displayTest = "IGNORE_SERVER_VERSION"
 
 [[mixins]]
-config = "${project_id}.mixins.json"
+config = "${mod_id}.mixins.json"
 
 # NeoForge Dependency
-[[dependencies.${ project_id }]]
+[[dependencies.${ mod_id }]]
 modId = "neoforge"
 type = "required"
 versionRange = "${neo_version_range}"
@@ -28,7 +34,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # Minecraft Dependency
-[[dependencies.${ project_id }]]
+[[dependencies.${ mod_id }]]
 modId = "minecraft"
 type = "required"
 versionRange = "${minecraft_version_range}"
@@ -36,7 +42,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # LuckPerms
-[[dependencies.${ project_id }]]
+[[dependencies.${ mod_id }]]
 modId = "luckperms"
 type = "optional"
 versionRange = "[${luckperms_version},)"

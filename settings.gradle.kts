@@ -45,6 +45,7 @@ include(
         "modapi:brigadier-general:bg1_17_1",
         "modapi:brigadier-general:bg1_19_4",
 	    "modapi:entrypoint-spoof",
+        "modapi:muxins",
         "modapi",
 
         // Common

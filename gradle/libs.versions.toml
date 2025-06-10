@@ -11,6 +11,7 @@ brigadier = { group = "com.mojang", name = "brigadier", version = "1.0.18" }
 mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.5" }
 modapi = { group = "dev.neuralnexus", name = "modapi", version = "0.1.0" }
 modapi-brigadier = { group = "dev.neuralnexus.modapi.brigadier", name = "bg-api", version = "0.1.0" }
+modapi-muxins = { group = "dev.neuralnexus.modapi", name = "muxins", version = "0.1.0" }
 
 [plugins]
 blossom = { id = "net.kyori.blossom", version.ref = "blossom" }

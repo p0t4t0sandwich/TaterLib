@@ -12,7 +12,7 @@
       "${authors}"
     ],
     "credits": "${authors}",
-    "logoFile": "./${project_name}.png.gz",
+    "logoFile": "./${project_name}.png",
     "screenshots": [],
     "useDependencyInformation": true,
     "dependencies": [

@@ -1,9 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "${project_id}",
+  "id": "${mod_id}",
+  "provides": [
+    "muxins"
+  ],
   "version": "${version}",
-  "name": "${project_name}",
-  "description": "${project_description}",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
     {
       "name": "p0t4t0sandwich",
@@ -17,7 +20,7 @@
     "repo": "${source_url}"
   },
   "license": "${license}",
-  "icon": "${project_name}.png.gz",
+  "icon": "${mod_name}.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -31,7 +34,7 @@
     ]
   },
   "mixins": [
-    "${project_id}.mixins.json"
+    "${mod_id}.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",

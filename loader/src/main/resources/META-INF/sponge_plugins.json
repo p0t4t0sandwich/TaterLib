@@ -6,10 +6,10 @@
   "license": "${license}",
   "plugins": [
     {
-      "id": "${project_id}",
+      "id": "${mod_id}",
       "entrypoint": "dev.neuralnexus.taterloader.platforms.Sponge8LoaderPlugin",
-      "name": "${project_name}",
-      "description": "${project_description}",
+      "name": "${mod_name}",
+      "description": "${description}",
       "version": "${version}",
       "branding": {},
       "links": {
@@ -37,6 +37,11 @@
           "optional": true
         }
       ]
+    },
+    {
+      "id": "muxins",
+      "name": "Muxins",
+      "version": "${muxins_version}"
     }
   ]
 }

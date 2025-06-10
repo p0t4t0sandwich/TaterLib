@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "${project_id}",
+  "id": "${mod_id}",
   "version": "${version}",
-  "name": "${project_name}",
-  "description": "${project_description}",
+  "name": "${mod_name}",
+  "description": "${description}",
   "authors": [
     {
       "name": "p0t4t0sandwich",
@@ -17,21 +17,9 @@
     "repo": "${source_url}"
   },
   "license": "${license}",
-  "icon": "${project_name}.png",
   "environment": "*",
-  "entrypoints": {
-    "main": [
-      "${group}.platforms.FabricPlugin"
-    ]
-  },
   "depends": {
     "fabricloader": ">=0.9.0",
-    "minecraft": "*",
-    "taterlib": ">=${taterlib_version}"
-  },
-  "suggests": {
-    "fabric-api-base": "*",
-    "legacy-fabric-api-base": "*",
-    "luckperms": "*"
+    "minecraft": "*"
   }
 }
