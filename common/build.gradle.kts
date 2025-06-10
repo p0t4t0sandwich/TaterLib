@@ -41,6 +41,9 @@ dependencies {
     compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
+    compileOnly(variantOf(libs.modapi.muxins) {
+        classifier("downgraded-8-shaded")
+    })
     compileOnly(project(":modapi:entrypoint-spoof"))
 }
 
@@ -58,6 +61,7 @@ tasks.shadowJar {
         include(project(":loader"))
         include(dependency("dev.neuralnexus:modapi"))
         include(dependency("dev.neuralnexus.modapi.brigadier:bg-api"))
+        include(dependency("dev.neuralnexus.modapi:muxins"))
 
         // Config
         include(dependency("org.spongepowered:configurate-core:4.2.0"))

@@ -45,6 +45,9 @@ dependencies {
     api(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
+    api(variantOf(libs.modapi.muxins) {
+        classifier("downgraded-8-shaded")
+    })
 }
 
 java.disableAutoTargetJvm()
