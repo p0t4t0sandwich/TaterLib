@@ -1,5 +1,6 @@
 import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
 import xyz.wagyourtail.jvmdg.gradle.task.ShadeJar
+import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 import java.time.Instant
 
@@ -7,6 +8,34 @@ plugins {
     id("java-library")
     id("maven-publish")
     alias(libs.plugins.jvmdowngrader)
+}
+
+subprojects {
+    base {
+        archivesName = "${projectId}-${minecraftVersion}"
+    }
+
+    java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    java.targetCompatibility = JavaVersion.toVersion(javaVersion)
+
+    tasks.withType<RemapJarTask>().configureEach {
+        mixinRemap {
+            enableBaseMixin()
+            disableRefmap()
+        }
+    }
+
+    var mainCompileOnly = configurations.maybeCreate("mainCompileOnly")
+
+    dependencies {
+        compileOnly(rootProject.libs.mixin)
+        mainCompileOnly(variantOf(rootProject.libs.modapi.brigadier) { classifier("downgraded-8") })
+        mainCompileOnly(variantOf(rootProject.libs.modapi) { classifier("downgraded-8") })
+        listOf(":api", ":common").forEach {
+            mainCompileOnly(project(it))
+        }
+    }
 }
 
 base {

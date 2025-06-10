@@ -1,64 +1,22 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
-
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
-base {
-    archivesName = "${projectId}-${minecraftVersion}"
-}
+val (fabric, forge, _, sponge) = createPlatformSourceSets("fabric", "forge", "sponge")
+val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, spongeCompileOnly, fabricModImplementation
+) = createPlatformConfigurations("fabric", "forge", "sponge")
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
-java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
-java.targetCompatibility = JavaVersion.toVersion(javaVersion)
-
-sourceSets {
-    create("fabric") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
-    create("forge") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
-    create("sponge") {
-        compileClasspath += sourceSets.main.get().output
-        runtimeClasspath += sourceSets.main.get().output
-    }
-}
-
-@Suppress("UnstableApiUsage")
-configurations {
-    val mainCompileOnly by creating
-    named("compileOnly") {
-        extendsFrom(configurations.getByName("fabricCompileOnly"))
-        extendsFrom(configurations.getByName("forgeCompileOnly"))
-        extendsFrom(configurations.getByName("spongeCompileOnly"))
-    }
-    val modImplementation by creating
-    named("modImplementation") {
-        extendsFrom(configurations.getByName("fabricImplementation"))
-    }
-}
-
-// ------------------------------------------- Vanilla -------------------------------------------
 unimined.minecraft {
     version(minecraftVersion)
     mappings {
+        parchment(parchmentMinecraft, parchmentVersion)
         mojmap()
         devFallbackNamespace("official")
     }
     defaultRemapJar = false
 }
 
-tasks.jar {
-    archiveClassifier.set("vanilla")
-}
-
-// ------------------------------------------- Fabric -------------------------------------------
-unimined.minecraft(sourceSets.getByName("fabric")) {
+unimined.minecraft(fabric) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -66,26 +24,14 @@ unimined.minecraft(sourceSets.getByName("fabric")) {
     defaultRemapJar = true
 }
 
-tasks.named<RemapJarTask>("remapFabricJar") {
-    asJar.archiveClassifier.set("fabric-remap")
-    mixinRemap {
-        disableRefmap()
-    }
-}
+registerRelocationTask(
+    platform = "fabric",
+    version = minecraftVersion,
+    relocate = "vanilla" to "y_intmdry",
+    depVersions = listOf("1.14.4")
+)
 
-tasks.register<ShadowJar>("relocateFabricJar") {
-    dependsOn("remapFabricJar")
-    from(jarToFiles("remapFabricJar"))
-    archiveClassifier.set("fabric")
-    dependencies {
-        exclude("dev/neuralnexus/modapi/briggen/mixin/v1_16_5/vanilla/**")
-    }
-    relocate("dev.neuralnexus.modapi.briggen.v1_16_5.vanilla", "dev.neuralnexus.modapi.briggen.v1_16_5.y_intmdry")
-    relocate("dev.neuralnexus.modapi.briggen.v1_14_4.vanilla", "dev.neuralnexus.modapi.briggen.v1_14_4.y_intmdry")
-}
-
-// ------------------------------------------- Forge -------------------------------------------
-unimined.minecraft(sourceSets.getByName("forge")) {
+unimined.minecraft(forge) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -94,74 +40,29 @@ unimined.minecraft(sourceSets.getByName("forge")) {
     defaultRemapJar = true
 }
 
-tasks.named<RemapJarTask>("remapForgeJar") {
-    asJar.archiveClassifier.set("forge-remap")
-    mixinRemap {
-        disableRefmap()
-    }
+registerRelocationTask(
+    platform = "forge",
+    version = minecraftVersion,
+    relocate = "vanilla" to "l_searge",
+    depVersions = listOf("1.14.4")
+)
+
+unimined.minecraft(sponge) {
+    combineWith(sourceSets.main.get())
 }
 
-tasks.register<ShadowJar>("relocateForgeJar") {
-    dependsOn("remapForgeJar")
-    from(jarToFiles("remapForgeJar"))
-    archiveClassifier.set("forge")
-    dependencies {
-        exclude("dev/neuralnexus/modapi/briggen/mixin/v1_16_5/vanilla/**")
-    }
-    relocate("dev.neuralnexus.modapi.briggen.v1_16_5.vanilla", "dev.neuralnexus.modapi.briggen.v1_16_5.l_searge")
-    relocate("dev.neuralnexus.modapi.briggen.v1_14_4.vanilla", "dev.neuralnexus.modapi.briggen.v1_14_4.l_searge")
-}
-
-// ------------------------------------------- Sponge -------------------------------------------
-tasks.register<Jar>("spongeJar") {
-    archiveClassifier.set("sponge")
-    from(sourceSets.getByName("sponge").output)
-}
-
-// ------------------------------------------- Common -------------------------------------------
 dependencies {
     // Because gradle does things alphabetically. I hate this
     // evaluationDependsOn(":modapi:brigadier-general:bg-api")
     // TODO: Uncomment when JVMDowngrader is applied to this project
-
-    listOf(
-        libs.mixin,
-        variantOf(libs.modapi.brigadier) {
-            classifier("downgraded-8")
-        },
-        variantOf(libs.modapi) {
-            classifier("downgraded-8")
-        }
-    ).forEach {
-        "mainCompileOnly"(it)
-        "fabricCompileOnly"(it)
-        "forgeCompileOnly"(it)
-        "spongeCompileOnly"(it)
-    }
-
-//    listOf(
-//        "fabric-api-base",
-//        "fabric-command-api-v1",
-//        "fabric-lifecycle-events-v1",
-//        "fabric-networking-api-v1"
-//    ).forEach {
-//        "fabricModImplementation"(fabricApi.fabricModule(it, fabricVersion))
-//    }
-
-//    "forgeCompileOnly"(srcSetAsDep(":versions:modern-utils", "forge"))
-    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
+    spongeCompileOnly("org.spongepowered:spongeapi:${spongeVersion}")
 }
 
-tasks.shadowJar {
-    listOf(
-        "relocateFabricJar",
-        "relocateForgeJar",
-        "spongeJar"
-    ).forEach {
-        dependsOn(it)
-        from(jarToFiles(it))
-    }
-    archiveClassifier.set("")
+tasks.jar {
+    dependsOn("relocateFabricJar")
+    from(jarToFiles("relocateFabricJar"))
+    dependsOn("relocateForgeJar")
+    from(jarToFiles("relocateForgeJar"))
+    from(sponge.output)
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
-
-tasks.build.get().dependsOn(tasks.shadowJar)
