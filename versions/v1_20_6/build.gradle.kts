@@ -1,7 +1,4 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
@@ -26,18 +23,12 @@ unimined.minecraft(fabric) {
     defaultRemapJar = true
 }
 
-tasks.register<ShadowJar>("relocateFabricJar") {
-    dependsOn("remapFabricJar")
-    from(jarToFiles("remapFabricJar"))
-    archiveClassifier.set("fabric-relocated")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_20_6/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_20_6.vanilla", "dev.neuralnexus.taterlib.v1_20_6.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_20_2.vanilla", "dev.neuralnexus.taterlib.v1_20_2.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
-}
+registerRelocationTask(
+    platform = "fabric",
+    version = minecraftVersion,
+    relocate = "vanilla" to "y_intmdry",
+    depVersions = listOf("1.20.2", "1.16.1", "1.14.4")
+)
 
 unimined.minecraft(neoforge) {
     combineWith(sourceSets.main.get())
@@ -49,7 +40,6 @@ unimined.minecraft(neoforge) {
 
 unimined.minecraft(sponge) {
     combineWith(sourceSets.main.get())
-    defaultRemapJar = true
 }
 
 dependencies {

@@ -1,7 +1,5 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    alias(libs.plugins.shadow)
+    id(libs.plugins.shadow.get().pluginId)
 }
 
 base {

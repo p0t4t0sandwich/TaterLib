@@ -1,7 +1,4 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
@@ -27,15 +24,11 @@ unimined.minecraft(fabric) {
     defaultRemapJar = true
 }
 
-tasks.register<ShadowJar>("relocateFabricJar") {
-    dependsOn("remapFabricJar")
-    from(jarToFiles("remapFabricJar"))
-    archiveClassifier.set("fabric-relocated")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
-}
+registerRelocationTask(
+    platform = "fabric",
+    version = minecraftVersion,
+    relocate = "vanilla" to "y_intmdry"
+)
 
 unimined.minecraft(forge) {
     combineWith(sourceSets.main.get())
@@ -46,15 +39,11 @@ unimined.minecraft(forge) {
     defaultRemapJar = true
 }
 
-tasks.register<ShadowJar>("relocateForgeJar") {
-    dependsOn("remapForgeJar")
-    from(jarToFiles("remapForgeJar"))
-    archiveClassifier.set("forge-relocated")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_14_4/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.l_searge")
-}
+registerRelocationTask(
+    platform = "forge",
+    version = minecraftVersion,
+    relocate = "vanilla" to "l_searge"
+)
 
 dependencies {
     listOf("api-base", "command-api-v1", "lifecycle-events-v1", "networking-api-v1").forEach {

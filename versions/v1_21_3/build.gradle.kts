@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
@@ -18,7 +17,6 @@ unimined.minecraft {
 
 unimined.minecraft(sponge) {
     combineWith(sourceSets.main.get())
-    defaultRemapJar = true
 }
 
 dependencies {
