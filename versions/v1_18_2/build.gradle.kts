@@ -1,7 +1,4 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
@@ -28,21 +25,15 @@ unimined.minecraft(forge) {
     defaultRemapJar = true
 }
 
-tasks.register<ShadowJar>("relocateForgeJar") {
-    dependsOn("remapForgeJar")
-    from(jarToFiles("remapForgeJar"))
-    archiveClassifier.set("forge-relocated")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_18_2/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_18_2.vanilla", "dev.neuralnexus.taterlib.v1_18_2.searge")
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.searge")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
-}
+registerRelocationTask(
+    platform = "forge",
+    version = minecraftVersion,
+    relocate = "vanilla" to "searge",
+    depVersions = listOf("1.16.1", "1.14.4")
+)
 
 unimined.minecraft(sponge) {
     combineWith(sourceSets.main.get())
-    defaultRemapJar = true
 }
 
 dependencies {

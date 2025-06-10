@@ -1,7 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
@@ -27,17 +26,12 @@ unimined.minecraft(fabric) {
     defaultRemapJar = true
 }
 
-tasks.register<ShadowJar>("relocateFabricJar") {
-    dependsOn("remapFabricJar")
-    from(jarToFiles("remapFabricJar"))
-    archiveClassifier.set("fabric-relocated")
-    dependencies {
-        exclude("dev/neuralnexus/taterlib/mixin/v1_17_1/vanilla/**")
-    }
-    relocate("dev.neuralnexus.taterlib.v1_17_1.vanilla", "dev.neuralnexus.taterlib.v1_17_1.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_16_1.vanilla", "dev.neuralnexus.taterlib.v1_16_1.y_intmdry")
-    relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.y_intmdry")
-}
+registerRelocationTask(
+    platform = "fabric",
+    version = minecraftVersion,
+    relocate = "vanilla" to "y_intmdry",
+    depVersions = listOf("1.16.1", "1.14.4")
+)
 
 tasks.register<ShadowJar>("shadeForgeJar") {
     from(sourceSets.main.get().output)
