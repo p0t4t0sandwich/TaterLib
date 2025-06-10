@@ -1,5 +1,4 @@
 plugins {
-    alias(libs.plugins.shadow)
     id(libs.plugins.unimined.get().pluginId)
 }
 
