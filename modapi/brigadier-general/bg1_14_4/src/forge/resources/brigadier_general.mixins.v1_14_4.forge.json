@@ -6,6 +6,6 @@
   },
   "required": false,
   "plugin": "dev.neuralnexus.taterapi.muxins.MuxinBasePlugin",
-  "package": "dev.neuralnexus.modapi.briggen.mixin",
+  "package": "dev.neuralnexus.modapi.brigadier_general.mixin",
   "mixins": []
 }
