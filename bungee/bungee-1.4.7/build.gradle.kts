@@ -1,9 +1,9 @@
 base {
-    archivesName = "${projectId}-bungee-${minecraftVersion}"
+    archivesName = "${modId}-bungee-${minecraftVersion}"
 }
 
 dependencies {
-    compileOnly("net.md-5:bungeecord-api:${minecraftVersion}-${apiVersion}")
+    compileOnly("net.md-5:bungeecord-api:${minecraftVersion}-${bungeecordVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))

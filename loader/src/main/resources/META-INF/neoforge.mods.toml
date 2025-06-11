@@ -1,5 +1,4 @@
-# https://neoforged.net
-modLoader = "javafml"
+modLoader = "javafml
 loaderVersion = "${loader_version_range}"
 license = "${license}"
 issueTrackerURL = "${issue_url}"

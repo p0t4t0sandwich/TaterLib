@@ -12,7 +12,7 @@ plugins {
 
 subprojects {
     base {
-        archivesName = "${projectId}-${minecraftVersion}"
+        archivesName = "${modId}-${minecraftVersion}"
     }
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)

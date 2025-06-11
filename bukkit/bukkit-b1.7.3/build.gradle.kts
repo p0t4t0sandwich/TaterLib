@@ -1,9 +1,9 @@
 base {
-    archivesName = "${projectId}-bukkit-${minecraftVersion}"
+    archivesName = "${modId}-bukkit-${minecraftVersion}"
 }
 
 dependencies {
-    compileOnly("org.bukkit:craftbukkit:${minecraftVersion}-${apiVersion}")
+    compileOnly("org.bukkit:craftbukkit:${minecraftVersion}-${bukkitVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))

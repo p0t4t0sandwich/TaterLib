@@ -129,35 +129,35 @@ ext.mergeMixinConfigs = { List<File> mixinConfigs ->
 // --------------------------- Jar file helper method --------------------------------
 ext.bundleJars = { Map<String, List<String>> platformVersions ->
     def jarFiles = [
-            file("./common/build/libs/${project_id}-common-${version}-full.jar"),
-            file("./versions/v1_6_4/build/libs/${project_id}-1.6.4-${version}.jar"),
-            file("./versions/v1_7_10/build/libs/${project_id}-1.7.10-${version}.jar"),
-            file("./versions/v1_8_9/build/libs/${project_id}-1.8.9-${version}.jar"),
-            file("./versions/v1_9_4/build/libs/${project_id}-1.9.4-${version}.jar"),
-            file("./versions/v1_10_2/build/libs/${project_id}-1.10.2-${version}.jar"),
-            file("./versions/v1_11_2/build/libs/${project_id}-1.11.2-${version}.jar"),
-            file("./versions/v1_12_2/build/libs/${project_id}-1.12.2-${version}.jar"),
-            file("./versions/modern-utils/build/libs/${project_id}-modern-utils-${version}.jar"),
-            file("./versions/v1_13_2/build/libs/${project_id}-1.13.2-${version}.jar"),
-            file("./versions/v1_14_4/build/libs/${project_id}-1.14.4-${version}.jar"),
-            file("./versions/v1_15_2/build/libs/${project_id}-1.15.2-${version}.jar"),
-            file("./versions/v1_16_1/build/libs/${project_id}-1.16.1-${version}.jar"),
-            file("./versions/v1_16_5/build/libs/${project_id}-1.16.5-${version}.jar"),
-            file("./versions/v1_17_1/build/libs/${project_id}-1.17.1-${version}.jar"),
-            file("./versions/v1_18_2/build/libs/${project_id}-1.18.2-${version}.jar"),
-            file("./versions/v1_19/build/libs/${project_id}-1.19-${version}.jar"),
-            file("./versions/v1_19_4/build/libs/${project_id}-1.19.4-${version}.jar"),
-            file("./versions/v1_20_1/build/libs/${project_id}-1.20.1-${version}.jar"),
-            file("./versions/v1_20_2/build/libs/${project_id}-1.20.2-${version}.jar"),
-            file("./versions/v1_20_4/build/libs/${project_id}-1.20.4-${version}.jar"),
-            file("./versions/v1_20_6/build/libs/${project_id}-1.20.6-${version}.jar"),
-            file("./versions/v1_21_1/build/libs/${project_id}-1.21.1-${version}.jar"),
-            file("./versions/v1_21_3/build/libs/${project_id}-1.21.3-${version}.jar"),
-            file("./versions/v1_21_4/build/libs/${project_id}-1.21.4-${version}.jar")
+            file("./common/build/libs/${mod_id}-common-${version}-full.jar"),
+            file("./versions/v1_6_4/build/libs/${mod_id}-1.6.4-${version}.jar"),
+            file("./versions/v1_7_10/build/libs/${mod_id}-1.7.10-${version}.jar"),
+            file("./versions/v1_8_9/build/libs/${mod_id}-1.8.9-${version}.jar"),
+            file("./versions/v1_9_4/build/libs/${mod_id}-1.9.4-${version}.jar"),
+            file("./versions/v1_10_2/build/libs/${mod_id}-1.10.2-${version}.jar"),
+            file("./versions/v1_11_2/build/libs/${mod_id}-1.11.2-${version}.jar"),
+            file("./versions/v1_12_2/build/libs/${mod_id}-1.12.2-${version}.jar"),
+            file("./versions/modern-utils/build/libs/${mod_id}-modern-utils-${version}.jar"),
+            file("./versions/v1_13_2/build/libs/${mod_id}-1.13.2-${version}.jar"),
+            file("./versions/v1_14_4/build/libs/${mod_id}-1.14.4-${version}.jar"),
+            file("./versions/v1_15_2/build/libs/${mod_id}-1.15.2-${version}.jar"),
+            file("./versions/v1_16_1/build/libs/${mod_id}-1.16.1-${version}.jar"),
+            file("./versions/v1_16_5/build/libs/${mod_id}-1.16.5-${version}.jar"),
+            file("./versions/v1_17_1/build/libs/${mod_id}-1.17.1-${version}.jar"),
+            file("./versions/v1_18_2/build/libs/${mod_id}-1.18.2-${version}.jar"),
+            file("./versions/v1_19/build/libs/${mod_id}-1.19-${version}.jar"),
+            file("./versions/v1_19_4/build/libs/${mod_id}-1.19.4-${version}.jar"),
+            file("./versions/v1_20_1/build/libs/${mod_id}-1.20.1-${version}.jar"),
+            file("./versions/v1_20_2/build/libs/${mod_id}-1.20.2-${version}.jar"),
+            file("./versions/v1_20_4/build/libs/${mod_id}-1.20.4-${version}.jar"),
+            file("./versions/v1_20_6/build/libs/${mod_id}-1.20.6-${version}.jar"),
+            file("./versions/v1_21_1/build/libs/${mod_id}-1.21.1-${version}.jar"),
+            file("./versions/v1_21_3/build/libs/${mod_id}-1.21.3-${version}.jar"),
+            file("./versions/v1_21_4/build/libs/${mod_id}-1.21.4-${version}.jar")
     ]
     platformVersions.each { platform, versions ->
         versions.each { mcVersion ->
-            jarFiles.add(file("${platform}/${platform}-${mcVersion}/build/libs/${project_id}-${platform}-${mcVersion}-${version}.jar") as File)
+            jarFiles.add(file("${platform}/${platform}-${mcVersion}/build/libs/${mod_id}-${platform}-${mcVersion}-${version}.jar") as File)
         }
     }
     def zipped = jarFiles.collect {
@@ -206,12 +206,12 @@ tasks.register('build_monojar', Jar) {
     }
 
     String mc_version = 'b1.7.3-1.21.4'
-    archiveFileName = "${project_id}-${version}.jar"
+    archiveFileName = "${mod_id}-${version}.jar"
     destinationDirectory = file("./build/libs")
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
     manifest {
-        attributes 'Specification-Title': "${project_name} ${mc_version}",
+        attributes 'Specification-Title': "${mod_name} ${mc_version}",
                 'Specification-Version': version,
                 'Specification-Vendor': 'NeuralNexus',
                 'Implementation-Version': version,

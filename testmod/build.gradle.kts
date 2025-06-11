@@ -26,7 +26,7 @@ tasks.withType<ProcessResources>().configureEach {
             "plugin.yml",
             "bungee.yml",
             "fabric.mod.json",
-            "${projectId}.mixins.json",
+            "${modId}.mixins.json",
             "META-INF/mods.toml",
             "META-INF/neoforge.mods.toml",
             "mcmod.info",
