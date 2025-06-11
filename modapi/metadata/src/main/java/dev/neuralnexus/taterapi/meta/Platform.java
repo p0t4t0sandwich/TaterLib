@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterapi.meta;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.PathUtils.getConfigFolder;
-import static dev.neuralnexus.taterapi.meta.impl.util.PathUtils.getModsFolder;
+import static dev.neuralnexus.taterapi.util.PathUtils.getConfigFolder;
+import static dev.neuralnexus.taterapi.util.PathUtils.getModsFolder;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 

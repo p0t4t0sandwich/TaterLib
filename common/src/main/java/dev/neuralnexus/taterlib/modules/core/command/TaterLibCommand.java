@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
+import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
 import dev.neuralnexus.taterlib.config.dump.FullDumpInfo;

@@ -16,6 +16,18 @@ displayTest = "IGNORE_SERVER_VERSION"
 description = '''${description}'''
 
 [[mods]]
+modId = "tater_modlib_base"
+version = "${modlib_version}"
+displayName = "Muxins"
+displayTest = "IGNORE_SERVER_VERSION"
+
+[[mods]]
+modId = "metadata"
+version = "${modlib_version}"
+displayName = "TaterLib ModLib Metadata"
+displayTest = "IGNORE_SERVER_VERSION"
+
+[[mods]]
 modId = "muxins"
 version = "${modlib_version}"
 displayName = "Muxins"

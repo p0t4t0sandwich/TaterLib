@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.meta.Platform;
 import dev.neuralnexus.taterapi.meta.Side;
 import dev.neuralnexus.taterapi.meta.impl.WMinecraft;
 import dev.neuralnexus.taterapi.meta.impl.WMinecraftServer;
-import dev.neuralnexus.taterapi.meta.impl.util.MixinServiceUtil;
+import dev.neuralnexus.taterapi.util.MixinServiceUtil;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;

@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterapi.metrics.bstats.bukkit;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.meta.impl.util.PathUtils;
+import dev.neuralnexus.taterapi.util.PathUtils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;

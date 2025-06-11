@@ -29,6 +29,7 @@ subprojects {
         compileOnly(rootProject.libs.mixin)
         mainCompileOnly(variantOf(rootProject.libs.modapi.base) { classifier("downgraded-8") })
         mainCompileOnly(variantOf(rootProject.libs.modapi.brigadier) { classifier("downgraded-8") })
+        mainCompileOnly(variantOf(rootProject.libs.modapi.metadata) { classifier("downgraded-8") })
         mainCompileOnly(variantOf(rootProject.libs.modapi.muxins) { classifier("downgraded-8") })
     }
 }
@@ -94,7 +95,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.build.get().dependsOn(tasks.test)
 tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)

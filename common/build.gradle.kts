@@ -41,6 +41,12 @@ dependencies {
     compileOnly(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
+    compileOnly(variantOf(libs.modapi.base) {
+        classifier("downgraded-8-shaded")
+    })
+    compileOnly(variantOf(libs.modapi.muxins) {
+        classifier("downgraded-8-shaded")
+    })
     compileOnly(variantOf(libs.modapi.muxins) {
         classifier("downgraded-8-shaded")
     })
@@ -60,7 +66,9 @@ tasks.shadowJar {
         include(project(":api"))
         include(project(":loader"))
         include(dependency("dev.neuralnexus:modapi"))
+        include(dependency("dev.neuralnexus.modapi:base"))
         include(dependency("dev.neuralnexus.modapi.brigadier:bg-api"))
+        include(dependency("dev.neuralnexus.modapi:metadata"))
         include(dependency("dev.neuralnexus.modapi:muxins"))
 
         // Config

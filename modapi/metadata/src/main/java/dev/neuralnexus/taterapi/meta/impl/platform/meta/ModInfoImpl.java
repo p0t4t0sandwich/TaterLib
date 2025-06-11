@@ -6,7 +6,7 @@ package dev.neuralnexus.taterapi.meta.impl.platform.meta;
 
 import dev.neuralnexus.taterapi.meta.ModInfo;
 import dev.neuralnexus.taterapi.meta.Platform;
-import dev.neuralnexus.taterapi.meta.impl.util.VersionUtil;
+import dev.neuralnexus.taterapi.util.VersionUtil;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

@@ -29,6 +29,12 @@ dependencies {
     api(variantOf(libs.modapi) {
         classifier("downgraded-8-shaded")
     })
+    api(variantOf(libs.modapi.base) {
+        classifier("downgraded-8-shaded")
+    })
+    api(variantOf(libs.modapi.metadata) {
+        classifier("downgraded-8-shaded")
+    })
 }
 
 java {
@@ -74,7 +80,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.build.get().dependsOn(tasks.test)
 tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)

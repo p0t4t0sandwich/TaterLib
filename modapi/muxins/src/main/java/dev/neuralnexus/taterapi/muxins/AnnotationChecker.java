@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterapi.muxins;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.TextUtil.ansiParser;
 import static dev.neuralnexus.taterapi.muxins.Muxins.logger;
+import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 
 import static org.spongepowered.asm.util.Annotations.getValue;
 

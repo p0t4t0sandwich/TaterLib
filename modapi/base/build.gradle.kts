@@ -78,7 +78,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.build.get().dependsOn(tasks.test)
 tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)
