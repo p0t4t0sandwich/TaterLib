@@ -6,7 +6,7 @@ package dev.neuralnexus.taterapi.metrics.bstats.velocity;
 
 import com.velocitypowered.api.proxy.ProxyServer;
 
-import dev.neuralnexus.taterapi.meta.impl.util.PathUtils;
+import dev.neuralnexus.taterapi.util.PathUtils;
 
 import org.bstats.charts.CustomChart;
 import org.bstats.velocity.Metrics;

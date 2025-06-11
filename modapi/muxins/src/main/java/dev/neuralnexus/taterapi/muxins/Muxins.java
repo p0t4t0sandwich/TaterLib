@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.muxins;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.TextUtil.ansiParser;
+import static dev.neuralnexus.taterapi.util.TextUtil.ansiParser;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 

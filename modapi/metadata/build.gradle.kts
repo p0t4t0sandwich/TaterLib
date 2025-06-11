@@ -7,7 +7,7 @@ plugins {
 }
 
 base {
-    archivesName = modId
+    archivesName = "metadata"
     version = properties["modlib_version"].toString()
 }
 
@@ -16,11 +16,18 @@ java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
 java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation(project(":modapi:base"))
+    testRuntimeOnly(project(":modapi:base"))
+
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
-//    compileOnly(variantOf(libs.modapi) {
-//        classifier("downgraded-8")
-//    })
+
+    compileOnly(project(":modapi:base"))
+
+    // TODO: Replace with proper source sets
+    compileOnly(project(":modapi:entrypoint-spoof"))
 }
 
 java {
@@ -41,6 +48,11 @@ tasks.withType<ProcessResources> {
     )) {
         expand(project.properties)
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
+    maxHeapSize = "1G"
 }
 
 tasks.jar {

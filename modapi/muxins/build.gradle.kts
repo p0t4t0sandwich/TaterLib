@@ -18,9 +18,9 @@ java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 dependencies {
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
-    compileOnly(variantOf(libs.modapi) {
-        classifier("downgraded-8")
-    })
+
+    compileOnly(project(":modapi:base"))
+    compileOnly(project(":modapi:metadata"))
 }
 
 java {
@@ -78,7 +78,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.build.get().dependsOn(tasks.test)
 tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)

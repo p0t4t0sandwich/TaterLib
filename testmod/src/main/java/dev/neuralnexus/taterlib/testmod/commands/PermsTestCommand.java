@@ -9,8 +9,8 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
 import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.testmod.TestMod;
 
 import java.lang.reflect.InvocationTargetException;

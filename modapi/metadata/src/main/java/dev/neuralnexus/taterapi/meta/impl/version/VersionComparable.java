@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.meta.impl.version;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.FlexVerComparator.compare;
+import static dev.neuralnexus.taterapi.util.FlexVerComparator.compare;
 
 import org.jetbrains.annotations.NotNull;
 
