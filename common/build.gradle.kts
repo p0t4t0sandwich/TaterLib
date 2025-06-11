@@ -3,7 +3,7 @@ plugins {
 }
 
 base {
-    archivesName = "${projectId}-common"
+    archivesName = "${modId}-common"
 }
 
 dependencies {
@@ -51,7 +51,7 @@ java.disableAutoTargetJvm()
 
 tasks.shadowJar {
     dependencies {
-        include(dependency("${group}:${projectId}:${version}"))
+        include(dependency("${group}:${modId}:${version}"))
 //        exclude("META-INF", "META-INF/**")
         exclude("LICENSE")
         exclude("INFO_BIN", "INFO_SRC")

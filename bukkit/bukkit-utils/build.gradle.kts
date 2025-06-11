@@ -1,10 +1,10 @@
 base {
-    archivesName = "${projectId}-bukkit-utils"
+    archivesName = "${modId}-bukkit-utils"
 }
 
 dependencies {
-    compileOnly("org.spigotmc:spigot-api:${minecraftVersion}-${apiVersion}")
-    compileOnly("io.papermc.paper:paper-api:${minecraftVersion}-${apiVersion}")
+    compileOnly("org.spigotmc:spigot-api:${minecraftVersion}-${spigotVersion}")
+    compileOnly("io.papermc.paper:paper-api:${minecraftVersion}-${spigotVersion}")
     compileOnly(project(":api"))
     compileOnly(project(":common"))
     compileOnly(project(":loader"))

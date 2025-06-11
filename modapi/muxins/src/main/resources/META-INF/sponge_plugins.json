@@ -18,7 +18,7 @@
       "dependencies": [
         {
           "id": "spongeapi",
-          "version": "${spongeapi_version}",
+          "version": "[,)",
           "load-order": "after",
           "optional": false
         }

@@ -1,8 +1,8 @@
 {
-  "id": "${project_id}",
-  "name": "${project_name}",
+  "id": "${mod_id}",
+  "name": "${mod_name}",
   "version": "${version}",
-  "description": "${project_description}",
+  "description": "${description}",
   "url": "${homepage_url}",
   "authors": [
     "${authors}"
