@@ -8,7 +8,7 @@ plugins {
 
 base {
     archivesName = modId
-    version = properties["muxins_version"].toString()
+    version = properties["modlib_version"].toString()
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
@@ -69,7 +69,7 @@ tasks.shadeDowngradedApi {
         it.substringBefore(".")
             .substringBeforeLast("-")
             .replace(Regex("[.;\\[/]"), "-")
-            .replace("muxins", "dev/neuralnexus/taterapi/muxins/jvmdg")
+            .replace(modId, "dev/neuralnexus/taterapi/$modId/jvmdg")
     }
     archiveClassifier.set("downgraded-8-shaded")
 }

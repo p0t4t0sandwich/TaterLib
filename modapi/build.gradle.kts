@@ -41,6 +41,8 @@ dependencies {
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
     compileOnly(project(":modapi:entrypoint-spoof"))
+
+    compileOnly(project(":modapi:base"))
 }
 
 tasks.test {
