@@ -41,7 +41,7 @@
     {
       "id": "muxins",
       "name": "Muxins",
-      "version": "${muxins_version}"
+      "version": "${modlib_version}"
     }
   ]
 }
