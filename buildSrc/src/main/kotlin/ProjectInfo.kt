@@ -19,6 +19,7 @@ val Project.parchmentVersion: String get() = properties["parchment_version"].toS
 val Project.mcpChannel: String get() = properties["mcp_channel"].toString()
 val Project.mcpVersion: String get() = properties["mcp_version"].toString()
 
+val Project.bukkitVersion: String get() = properties["bukkit_version"].toString()
 val Project.bungeecordVersion: String get() = properties["bungeecord_version"].toString()
 val Project.fabricVersion: String get() = properties["fabric_version"].toString()
 val Project.fabricLoaderVersion: String get() = properties["fabric_loader_version"].toString()

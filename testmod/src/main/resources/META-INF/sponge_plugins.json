@@ -6,10 +6,10 @@
   "license": "${license}",
   "plugins": [
     {
-      "id": "${project_id}",
+      "id": "${mod_id}",
       "entrypoint": "${group}.platforms.Sponge8Plugin",
-      "name": "${project_name}",
-      "description": "${project_description}",
+      "name": "${mod_name}",
+      "description": "${description}",
       "version": "${version}",
       "branding": {},
       "links": {

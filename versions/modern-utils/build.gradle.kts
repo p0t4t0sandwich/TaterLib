@@ -3,7 +3,7 @@ plugins {
 }
 
 base {
-    archivesName = "${projectId}-modern-utils"
+    archivesName = "${modId}-modern-utils"
 }
 
 val (_, forge, _, _) = createPlatformSourceSets("forge")

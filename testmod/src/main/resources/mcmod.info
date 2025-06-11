@@ -1,9 +1,9 @@
 [
   {
-    "modid": "${project_id}",
-    "name": "${project_name}",
+    "modid": "${mod_id}",
+    "name": "${mod_name}",
     "license": "${license}",
-    "description": "${project_description}",
+    "description": "${description}",
     "version": "${version}",
     "mcversion": "${minecraft_version}",
     "url": "${homepage_url}",
@@ -12,7 +12,7 @@
       "${authors}"
     ],
     "credits": "${authors}",
-    "logoFile": "./${project_name}.png",
+    "logoFile": "./${mod_name}.png",
     "screenshots": [],
     "useDependencyInformation": true,
     "dependencies": [

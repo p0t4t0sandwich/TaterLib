@@ -1,7 +1,7 @@
-name: '${project_name}'
+name: '${mod_name}'
 version: '${version}'
 author: '${authors}'
-description: '${project_description}'
+description: '${description}'
 website: '${homepage_url}'
 main: '${group}.platforms.BungeeCordPlugin'
 depends: [ TaterLib ]

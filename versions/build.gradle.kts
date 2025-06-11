@@ -2,7 +2,7 @@ import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 
 subprojects {
     base {
-        archivesName = "${projectId}-${minecraftVersion}"
+        archivesName = "${modId}-${minecraftVersion}"
     }
 
     java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
