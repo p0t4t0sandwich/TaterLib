@@ -2,12 +2,9 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterapi.meta.impl.util;
-
-import dev.neuralnexus.taterapi.logger.Logger;
+package dev.neuralnexus.taterapi.util;
 
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 
 /** Utility class for reflection operations */
 public final class ReflectionUtil {
@@ -61,29 +58,5 @@ public final class ReflectionUtil {
         } catch (ClassNotFoundException | NoSuchMethodException | IOException e) {
             return false;
         }
-    }
-
-    /**
-     * Get an instance of a class
-     *
-     * @param clazz The full class name and path
-     * @param args The constructor's parameters
-     * @return A new instance of the object
-     * @param <T> The object's type
-     */
-    @SuppressWarnings("unchecked")
-    public static <T> T newInstance(String clazz, Object... args) {
-        try {
-            Class<?> objectClass = Class.forName(clazz);
-            return (T) objectClass.getConstructor().newInstance(args);
-        } catch (ClassNotFoundException
-                | InvocationTargetException
-                | InstantiationException
-                | IllegalAccessException
-                | NoSuchMethodException e) {
-            Logger.create("ReflectionUtil")
-                    .warn("Could not instantiate new instance of " + clazz, e);
-        }
-        return null;
     }
 }

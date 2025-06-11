@@ -7,8 +7,8 @@ package dev.neuralnexus.taterlib.testmod.commands;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.taterapi.meta.impl.util.TextUtil;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.util.TextUtil;
 
 /** Example Command. */
 public class PingPongCommand implements Command {

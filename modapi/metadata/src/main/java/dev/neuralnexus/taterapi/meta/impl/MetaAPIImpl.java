@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.meta.impl;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil.checkForClass;
+import static dev.neuralnexus.taterapi.util.ReflectionUtil.checkForClass;
 
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.logger.impl.SystemLogger;

@@ -2,9 +2,9 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterapi.meta.impl.util;
+package dev.neuralnexus.taterapi.util;
 
-import static dev.neuralnexus.taterapi.meta.impl.util.FlexVerComparator.compare;
+import static dev.neuralnexus.taterapi.util.FlexVerComparator.compare;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

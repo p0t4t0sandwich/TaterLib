@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.impl.loader;
 
-import dev.neuralnexus.taterapi.meta.impl.util.ReflectionUtil;
+import dev.neuralnexus.taterapi.util.ReflectionUtil;
 
 public final class CheckForBad {
     /** Check if the user is using TLauncher, because piracy is bad. */

@@ -1,6 +1,3 @@
-import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
-import xyz.wagyourtail.jvmdg.gradle.task.ShadeJar
-
 import java.time.Instant
 
 plugins {
@@ -13,9 +10,6 @@ base {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
     // CrossPerms
     compileOnly("com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT")
     compileOnly("net.md-5:bungeecord-api:1.21-R0.1-SNAPSHOT")
@@ -43,11 +37,7 @@ dependencies {
     compileOnly(project(":modapi:entrypoint-spoof"))
 
     compileOnly(project(":modapi:base"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-    maxHeapSize = "1G"
+    compileOnly(project(":modapi:metadata"))
 }
 
 java {
@@ -97,7 +87,6 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.build.get().dependsOn(tasks.test)
 tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
 tasks.assemble {
     dependsOn(tasks.downgradeJar)

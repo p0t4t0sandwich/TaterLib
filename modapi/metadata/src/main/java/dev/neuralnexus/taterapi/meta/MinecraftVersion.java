@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterapi.meta;
 
-import dev.neuralnexus.taterapi.meta.impl.util.VersionUtil;
 import dev.neuralnexus.taterapi.meta.impl.version.VersionComparable;
 import dev.neuralnexus.taterapi.meta.impl.version.meta.MetaStore;
 import dev.neuralnexus.taterapi.meta.impl.version.meta.MinecraftVersionMetaImpl;
+import dev.neuralnexus.taterapi.util.VersionUtil;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
