@@ -17,11 +17,5 @@
     "useDependencyInformation": true,
     "dependencies": [],
     "dependants": []
-  },
-  {
-    "modid": "muxins",
-    "name": "Muxins",
-    "license": "${license}",
-    "version": "${modlib_version}"
   }
 ]

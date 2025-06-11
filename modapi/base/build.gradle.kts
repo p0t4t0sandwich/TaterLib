@@ -1,4 +1,3 @@
-import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 import java.time.Instant
 
 plugins {
@@ -7,48 +6,21 @@ plugins {
     alias(libs.plugins.jvmdowngrader)
 }
 
-subprojects {
-    base {
-        archivesName = "${modId}-${minecraftVersion}"
-    }
-
-    java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
-    java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
-    java.targetCompatibility = JavaVersion.toVersion(javaVersion)
-
-    tasks.withType<RemapJarTask>().configureEach {
-        mixinRemap {
-            enableBaseMixin()
-            disableRefmap()
-        }
-    }
-
-    var mainCompileOnly = configurations.maybeCreate("mainCompileOnly")
-
-    dependencies {
-        compileOnly(rootProject.libs.mixin)
-        mainCompileOnly(variantOf(rootProject.libs.modapi.base) { classifier("downgraded-8") })
-        mainCompileOnly(variantOf(rootProject.libs.modapi.brigadier) { classifier("downgraded-8") })
-        mainCompileOnly(variantOf(rootProject.libs.modapi.muxins) { classifier("downgraded-8") })
-    }
-}
-
 base {
-    archivesName = "brigadier-general"
+    archivesName = "base"
+    version = properties["modlib_version"].toString()
 }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
+java.targetCompatibility = JavaVersion.toVersion(javaVersion)
 
 dependencies {
-//    compileOnly("com.destroystokyo.paper:paper-api:1.15.2-R0.1-SNAPSHOT")
-//    compileOnly("net.md-5:bungeecord-api:1.21-R0.1-SNAPSHOT")
-//    compileOnly("net.fabricmc:fabric-loader:0.16.9")
-//    compileOnly("me.lucko:fabric-permissions-api:0.2-SNAPSHOT")
-//    compileOnly("net.legacyfabric.legacy-fabric-api:legacy-fabric-api:1.9.0+1.12.2")
-//    compileOnly("org.spongepowered:spongeapi:8.1.0")
-//    compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
-
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
-    api(libs.brigadier)
+    compileOnly(variantOf(libs.modapi) {
+        classifier("downgraded-8")
+    })
 }
 
 java {
@@ -59,11 +31,23 @@ java {
     targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
+tasks.withType<ProcessResources> {
+    filesMatching(listOf(
+        "fabric.mod.json",
+        "pack.mcmeta",
+        "META-INF/mods.toml",
+        "META-INF/neoforge.mods.toml",
+        "META-INF/sponge_plugins.json"
+    )) {
+        expand(project.properties)
+    }
+}
+
 tasks.jar {
     manifest {
         attributes(
             mapOf(
-                "Specification-Title" to "TaterLib Brigadier General",
+                "Specification-Title" to "TaterLib ModLib Base",
                 "Specification-Version" to version,
                 "Specification-Vendor" to "NeualNexus",
                 "Implementation-Version" to version,
@@ -85,7 +69,7 @@ tasks.shadeDowngradedApi {
         it.substringBefore(".")
             .substringBeforeLast("-")
             .replace(Regex("[.;\\[/]"), "-")
-            .replace("brigadier-general", "dev/neuralnexus/taterapi/brigadiergeneral/jvmdg")
+            .replace("base", "dev/neuralnexus/taterapi/base/jvmdg")
     }
     archiveClassifier.set("downgraded-8-shaded")
 }
