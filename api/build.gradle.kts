@@ -48,6 +48,9 @@ dependencies {
     api(variantOf(libs.modapi.base) {
         classifier("downgraded-8-shaded")
     })
+    api(variantOf(libs.modapi.crossperms) {
+        classifier("downgraded-8-shaded")
+    })
     api(variantOf(libs.modapi.metadata) {
         classifier("downgraded-8-shaded")
     })
