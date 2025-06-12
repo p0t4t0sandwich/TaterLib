@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.bukkit.event.command;
 import static dev.neuralnexus.taterlib.bukkit.reflection.Utils.getCommandMap;
 import static dev.neuralnexus.taterlib.bukkit.reflection.Utils.syncCommands;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
@@ -16,6 +17,7 @@ import dev.neuralnexus.taterlib.bukkit.command.BukkitCommandWrapper;
 import java.util.Objects;
 
 /** Bukkit implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
     @Override
     public void registerCommand(Command command, String... aliases) {

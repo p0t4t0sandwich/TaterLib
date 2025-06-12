@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.bukkit.reflection;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;
 
@@ -19,6 +20,7 @@ public class Utils {
         return CRAFTBUKKIT_PACKAGE + "." + clazz;
     }
 
+    @ToBeLibrary("brigadier-general")
     public static SimpleCommandMap getCommandMap() {
         // private CraftServer.commandMap
         try {
@@ -32,6 +34,7 @@ public class Utils {
         }
     }
 
+    @ToBeLibrary("brigadier-general")
     public static void syncCommands() {
         // public CraftServer.syncCommands()
         try {

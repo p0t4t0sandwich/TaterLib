@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
 import com.velocitypowered.api.proxy.Player;
 
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -21,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Velocity implementation of {@link CommandSource} */
+@ToBeLibrary("brigadier-general")
 public class VelocityCommandSource
         implements CommandSource, Wrapped<com.velocitypowered.api.command.CommandSource> {
     private final com.velocitypowered.api.command.CommandSource sender;

@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterlib.v1_8_9.sponge.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 
 import org.jetbrains.annotations.NotNull;
@@ -15,6 +16,7 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 
 /** Wraps a command callback into a Sponge Command. */
+@ToBeLibrary("brigadier-general")
 public class SpongeCommandWrapper implements CommandExecutor {
     private final Command.Callback callback;
     private final String commandName;

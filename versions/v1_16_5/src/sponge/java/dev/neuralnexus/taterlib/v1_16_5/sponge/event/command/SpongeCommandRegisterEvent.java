@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_16_5.sponge.event.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
@@ -16,6 +17,7 @@ import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 import org.spongepowered.plugin.PluginContainer;
 
 /** Sponge implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
     private final RegisterCommandEvent<org.spongepowered.api.command.Command.Parameterized> event;
 

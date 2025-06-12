@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_9_4.forge.event.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_9_4.vanilla.command.CommandWrapper;
@@ -11,6 +12,7 @@ import dev.neuralnexus.taterlib.v1_9_4.vanilla.command.CommandWrapper;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
 /** Forge implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class ForgeCommandRegisterEvent implements CommandRegisterEvent {
     private final FMLServerStartingEvent event;
 

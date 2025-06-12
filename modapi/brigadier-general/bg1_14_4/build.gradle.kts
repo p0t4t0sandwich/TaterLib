@@ -52,6 +52,7 @@ dependencies {
     listOf("api-base", "command-api-v1").forEach {
         fabricModImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
     }
+    forgeCompileOnly(libs.mixin)
 }
 
 tasks.jar {
