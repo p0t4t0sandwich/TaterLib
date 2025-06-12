@@ -15,12 +15,6 @@ authors = "${authors}"
 displayTest = "IGNORE_SERVER_VERSION"
 description = '''${description}'''
 
-[[mods]]
-modId = "muxins"
-version = "${modlib_version}"
-displayName = "Muxins"
-displayTest = "IGNORE_SERVER_VERSION"
-
 # Minecraft Dependency
 [[dependencies.${ mod_id }]]
 modId = "minecraft"

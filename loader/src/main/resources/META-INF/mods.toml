@@ -22,6 +22,12 @@ displayName = "Muxins"
 displayTest = "IGNORE_SERVER_VERSION"
 
 [[mods]]
+modId = "crossperms"
+version = "${modlib_version}"
+displayName = "CrossPerms"
+displayTest = "IGNORE_SERVER_VERSION"
+
+[[mods]]
 modId = "metadata"
 version = "${modlib_version}"
 displayName = "TaterLib ModLib Metadata"
@@ -64,7 +70,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # LuckPerms
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "luckperms"
 mandatory = false
 type = "optional"
