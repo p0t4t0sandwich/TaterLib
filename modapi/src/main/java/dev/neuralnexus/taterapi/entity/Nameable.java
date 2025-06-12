@@ -12,12 +12,27 @@ import java.util.Optional;
 
 /** Represents a nameable entity */
 public interface Nameable {
+    /**
+     * Get the name of the entity
+     *
+     * @return The name of the entity
+     */
     String name();
 
+    /**
+     * Get the display name of the entity
+     *
+     * @return The display name of the entity
+     */
     default String displayName() {
         return this.name();
     }
 
+    /**
+     * Check if the entity has a custom name
+     *
+     * @return True if the entity has a custom name, false otherwise
+     */
     @VersionFeature(name = "Nameable", compatible = @Range(min = MinecraftVersion.V6_1))
     default boolean hasCustomName() {
         return this.customName().isPresent();
