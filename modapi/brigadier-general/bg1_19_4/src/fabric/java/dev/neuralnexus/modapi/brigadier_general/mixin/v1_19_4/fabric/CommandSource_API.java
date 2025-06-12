@@ -22,8 +22,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V19)
 @Mixin(CommandSource.class)
-@Implements(
-        @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
+@Implements(@Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
 public interface CommandSource_API {
     // @spotless:off
     @Shadow void sendSystemMessage(Component message);

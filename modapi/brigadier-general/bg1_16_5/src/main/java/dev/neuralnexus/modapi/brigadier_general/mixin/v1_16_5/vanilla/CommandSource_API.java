@@ -31,6 +31,7 @@ public interface CommandSource_API {
     // @spotless:on
 
     default void notifiable$sendMessage(String message) {
-        this.sendMessage(new net.minecraft.network.chat.TextComponent(message), Notifiable.NIL_UUID);
+        this.sendMessage(
+                new net.minecraft.network.chat.TextComponent(message), Notifiable.NIL_UUID);
     }
 }
