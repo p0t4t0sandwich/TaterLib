@@ -22,7 +22,7 @@ description = '''${description}'''
 modId = "neoforge"
 mandatory = false
 type = "required"
-versionRange = "${neo_version_range}"
+versionRange = "${neoforge_version_range}"
 ordering = "NONE"
 side = "BOTH"
 
