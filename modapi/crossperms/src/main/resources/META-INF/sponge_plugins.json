@@ -7,11 +7,9 @@
   "plugins": [
     {
       "id": "${mod_id}",
-      "entrypoint": "dev.neuralnexus.taterloader.platforms.Sponge8LoaderPlugin",
       "name": "${mod_name}",
       "description": "${description}",
       "version": "${version}",
-      "branding": {},
       "links": {
         "homepage": "${homepage_url}",
         "source": "${source_url}",
@@ -20,7 +18,7 @@
       "dependencies": [
         {
           "id": "spongeapi",
-          "version": "${spongeapi_version}",
+          "version": "[,)",
           "load-order": "after",
           "optional": false
         },
@@ -37,26 +35,6 @@
           "optional": true
         }
       ]
-    },
-    {
-      "id": "tater_modlib_base",
-      "name": "TaterLib ModLib Base",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "crossperms",
-      "name": "CrossPerms",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "metadata",
-      "name": "TaterLib ModLib Metadata",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "muxins",
-      "name": "Muxins",
-      "version": "${modlib_version}"
     }
   ]
 }

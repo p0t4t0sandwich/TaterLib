@@ -44,6 +44,9 @@ dependencies {
     compileOnly(variantOf(libs.modapi.base) {
         classifier("downgraded-8-shaded")
     })
+    compileOnly(variantOf(libs.modapi.crossperms) {
+        classifier("downgraded-8-shaded")
+    })
     compileOnly(variantOf(libs.modapi.muxins) {
         classifier("downgraded-8-shaded")
     })

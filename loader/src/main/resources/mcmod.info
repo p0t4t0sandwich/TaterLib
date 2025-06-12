@@ -25,6 +25,12 @@
     "version": "${modlib_version}"
   },
   {
+    "modid": "crossperms",
+    "name": "CrossPerms",
+    "license": "${license}",
+    "version": "${modlib_version}"
+  },
+  {
     "modid": "tater_metadata",
     "name": "TaterLib ModLib Metadata",
     "license": "${license}",
