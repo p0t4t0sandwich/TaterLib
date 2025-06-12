@@ -28,6 +28,6 @@ public abstract class PlayerMixin extends Entity implements PlayerBridge {
 
     @Override
     public void bridge$sendMessage(String message) {
-        this.sendSystemMessage(net.minecraft.network.chat.Component.literal(message));
+        this.sendSystemMessage(VanillaUtils.component.apply(message));
     }
 }

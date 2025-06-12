@@ -24,14 +24,14 @@ import java.util.UUID;
 @ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V18_2)
 @Mixin(CommandSource.class)
-@Implements(
-        @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
+@Implements(@Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
 public interface CommandSource_API {
     // @spotless:off
     @Shadow void sendMessage(Component message, UUID uuid);
     // @spotless:on
 
     default void notifiable$sendMessage(String message) {
-        this.sendMessage(new net.minecraft.network.chat.TextComponent(message), Notifiable.NIL_UUID);
+        this.sendMessage(
+                new net.minecraft.network.chat.TextComponent(message), Notifiable.NIL_UUID);
     }
 }
