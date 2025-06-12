@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Forge implementation of {@link CommandSource} */
+@ToBeLibrary("brigadier-general")
 public class ForgeCommandSource
         implements CommandSource, Wrapped<net.minecraft.command.CommandSource> {
     private final net.minecraft.command.CommandSource sender;
@@ -51,7 +53,7 @@ public class ForgeCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         if (this.sender.getEntity() != null) {
             return new ForgeEntity(this.sender.getEntity());
         }
@@ -59,7 +61,7 @@ public class ForgeCommandSource
     }
 
     @Override
-    public ServerPlayer player() {
+    public ServerPlayer subject() {
         if (this.sender.getEntity() instanceof EntityPlayer) {
             return new ForgePlayer((EntityPlayer) this.sender.getEntity());
         }

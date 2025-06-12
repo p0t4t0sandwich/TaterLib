@@ -52,7 +52,7 @@ public class BukkitCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         if (this.sender instanceof org.bukkit.entity.Entity) {
             return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
         }
@@ -60,7 +60,7 @@ public class BukkitCommandSource
     }
 
     @Override
-    public ServerPlayer player() {
+    public ServerPlayer subject() {
         if (this.sender instanceof org.bukkit.entity.Player) {
             return WrapperRegistry.wrap((org.bukkit.entity.Player) this.sender);
         }

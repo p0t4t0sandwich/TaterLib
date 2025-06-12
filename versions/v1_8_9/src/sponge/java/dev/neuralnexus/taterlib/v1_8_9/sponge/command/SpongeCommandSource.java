@@ -52,7 +52,7 @@ public class SpongeCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         if (this.sender instanceof org.spongepowered.api.entity.Entity) {
             return new SpongeEntity((org.spongepowered.api.entity.Entity) this.sender);
         }
@@ -60,7 +60,7 @@ public class SpongeCommandSource
     }
 
     @Override
-    public ServerPlayer player() {
+    public ServerPlayer subject() {
         if (this.sender instanceof Player) {
             return new SpongePlayer((Player) this.sender);
         }

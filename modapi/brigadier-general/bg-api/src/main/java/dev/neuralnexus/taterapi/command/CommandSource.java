@@ -24,18 +24,27 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
     Notifiable source();
 
     /**
-     * Get the entity that sent the command
+     * Get the actor/entity that sent the command
      *
-     * @return The entity that sent the command
+     * @return The actor/entity that sent the command
      */
-    @Nullable Actor entity();
+    @Nullable Actor actor();
 
     /**
-     * Get the player that sent the command
+     * Get the actor/entity that sent the command
      *
-     * @return The player that sent the command
+     * @return The actor/entity that sent the command
      */
-    default @Nullable Subject player() {
+    default @Nullable Actor entity() {
+        return this.actor();
+    }
+
+    /**
+     * Get the subject/player that sent the command
+     *
+     * @return The subject/player that sent the command
+     */
+    default @Nullable Subject subject() {
         if (this.entity() instanceof Subject) {
             return (Subject) this.entity();
         }
@@ -43,12 +52,30 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
     }
 
     /**
-     * Get the name of the command sender
+     * Get the subject/player that sent the command
      *
-     * @return The name of the command sender
+     * @return The subject/player that sent the command
+     */
+    default @Nullable Subject player() {
+        return this.subject();
+    }
+
+    /**
+     * Check if the command was sent by a subject/player
+     *
+     * @return true if the command was sent by a subject/player
+     */
+    default boolean isSubject() {
+        return this.actor() instanceof Subject;
+    }
+
+    /**
+     * Check if the command was sent by a subject/player
+     *
+     * @return true if the command was sent by a subject/player
      */
     default boolean isPlayer() {
-        return this.entity() instanceof Subject;
+        return this.isSubject();
     }
 
     @Override

@@ -55,12 +55,12 @@ public class BungeeCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         return null;
     }
 
     @Override
-    public @Nullable ProxyPlayer player() {
+    public @Nullable ProxyPlayer subject() {
         if (this.sender instanceof ProxiedPlayer) {
             return new BungeePlayer((ProxiedPlayer) this.sender);
         }
