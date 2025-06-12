@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.world.entity.
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
@@ -55,14 +56,17 @@ public abstract class Player_API implements PlayerBridge {
     @Shadow public abstract Component shadow$getDisplayName();
     // @spotless:on
 
+    @ToBeLibrary("brigadier-general")
     public String nameable$name() {
         return this.shadow$getGameProfile().getName();
     }
 
+    @ToBeLibrary("brigadier-general")
     public String nameable$displayName() {
         return this.shadow$getDisplayName().getString();
     }
 
+    @ToBeLibrary("brigadier-general")
     public void notifiable$sendMessage(String message) {
         this.bridge$sendMessage(message);
     }

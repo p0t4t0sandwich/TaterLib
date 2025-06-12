@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.mixin.api.mojang.authlib;
 
 import com.mojang.authlib.GameProfile;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -36,14 +37,17 @@ public abstract class GameProfile_API {
     @Shadow public abstract UUID shadow$getId();
     // @spotless:on
 
+    @ToBeLibrary("brigadier-general")
     public String nameable$name() {
         return this.shadow$getName();
     }
 
+    @ToBeLibrary("crossperms")
     public UUID identifiable$uuid() {
         return this.shadow$getId();
     }
 
+    @ToBeLibrary("brigadier-general")
     public void notifiable$sendMessage(String message) {
         // TODO: Some abstract way to wrap around and send a message.
         //   Needs to be as such in order to keep this class platform-agnostic.
@@ -51,14 +55,17 @@ public abstract class GameProfile_API {
         //   That way TaterAPIProvider can be used to dispatch the message.
     }
 
+    @ToBeLibrary("crossperms")
     public boolean identifiable$hasPermission(String permission) {
         return PermsAPI.instance().hasPermission(this, permission);
     }
 
+    @ToBeLibrary("crossperms")
     public boolean identifiable$hasPermission(int permissionLevel) {
         return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
+    @ToBeLibrary("crossperms")
     public boolean identifiable$hasPermission(String permission, int defaultPermissionLevel) {
         return PermsAPI.instance().hasPermission(this, permission, defaultPermissionLevel);
     }
