@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.forge.api.minecraft.world.entity;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -87,16 +88,19 @@ public abstract class Entity_API implements EntityBridge {
         }
     }
 
+    @ToBeLibrary("brigadier-general")
     @SuppressWarnings("DataFlowIssue")
     public Optional<String> nameable$customName() {
         if (this.shadow$getCustomName() == null) return Optional.empty();
         return Optional.of(this.shadow$getCustomName().getString());
     }
 
+    @ToBeLibrary("brigadier-general")
     public void nameable$setCustomName(String name) {
         this.shadow$setCustomName(VanillaUtils.component.apply(name));
     }
 
+    @ToBeLibrary("crossperms")
     public UUID identifiable$uuid() {
         return this.shadow$getUUID();
     }
