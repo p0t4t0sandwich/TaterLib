@@ -6,9 +6,11 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.command;
 
 import com.velocitypowered.api.command.RawCommand;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 
 /** Wraps a command callback into a Velocity Command. */
+@ToBeLibrary("brigadier-general")
 public class VelocityCommandWrapper implements RawCommand {
     private final Command.Callback callback;
 

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 
 import net.minecraft.command.CommandBase;
@@ -18,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /** Wraps a command callback into a Forge CommandBase. */
+@ToBeLibrary("brigadier-general")
 public class ForgeCommandWrapper extends CommandBase {
     private final Command command;
     private final List<String> aliases;

@@ -7,5 +7,7 @@
   "required": false,
   "plugin": "dev.neuralnexus.taterapi.muxins.MuxinBasePlugin",
   "package": "dev.neuralnexus.modapi.brigadier_general.mixin",
-  "mixins": []
+  "mixins": [
+    "v1_19_4.fabric.CommandSource_API"
+  ]
 }

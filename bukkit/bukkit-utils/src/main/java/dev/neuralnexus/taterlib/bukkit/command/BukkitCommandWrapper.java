@@ -4,12 +4,14 @@
  */
 package dev.neuralnexus.taterlib.bukkit.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 /** Wraps a command callback into a Bukkit CommandExecutor. */
+@ToBeLibrary("brigadier-general")
 public class BukkitCommandWrapper extends org.bukkit.command.Command {
     private final Command command;
 

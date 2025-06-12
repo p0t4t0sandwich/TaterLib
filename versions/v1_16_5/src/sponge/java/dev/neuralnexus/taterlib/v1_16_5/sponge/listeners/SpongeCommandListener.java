@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_16_5.sponge.listeners;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.event.command.SpongeCommandRegisterEvent;
 
@@ -12,6 +13,7 @@ import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.lifecycle.RegisterCommandEvent;
 
 /** Listens to command events. */
+@ToBeLibrary("brigadier-general")
 public class SpongeCommandListener {
     /**
      * Register commands.

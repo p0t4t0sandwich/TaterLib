@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -22,6 +23,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Vanilla implementation of {@link CommandSource} */
+@ToBeLibrary("brigadier-general")
 public class WrappedCommandSource
         implements CommandSource, Wrapped<net.minecraft.server.command.source.CommandSource> {
     private final net.minecraft.server.command.source.CommandSource sender;

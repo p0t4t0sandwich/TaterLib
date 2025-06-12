@@ -4,11 +4,13 @@
  */
 package dev.neuralnexus.taterlib.bungee.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 
 import net.md_5.bungee.api.CommandSender;
 
 /** Wraps a command callback into a Bungee Command. */
+@ToBeLibrary("brigadier-general")
 public class BungeeCommandWrapper extends net.md_5.bungee.api.plugin.Command {
     private final Command command;
 

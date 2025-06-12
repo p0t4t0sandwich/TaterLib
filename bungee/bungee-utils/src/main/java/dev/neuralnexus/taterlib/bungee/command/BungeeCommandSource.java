@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.bungee.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -20,6 +21,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /** Bungee implementation of {@link CommandSource} */
+@ToBeLibrary("brigadier-general")
 public class BungeeCommandSource
         implements CommandSource, Wrapped<net.md_5.bungee.api.CommandSender> {
     private final net.md_5.bungee.api.CommandSender sender;

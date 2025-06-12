@@ -12,6 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStoppingEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -33,6 +34,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
 @SuppressWarnings("unused")
+@ToBeLibrary("brigadier-general")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {

@@ -12,12 +12,14 @@ import com.velocitypowered.api.command.CommandMeta;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.proxy.ProxyServer;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class VelocityBrigadierCommandRegisterEvent
         implements BrigadierCommandRegisterEvent<CommandSource> {
     @Override

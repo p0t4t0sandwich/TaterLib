@@ -4,12 +4,14 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.fabric.event.command;
 
+import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
 
 import net.legacyfabric.fabric.api.command.v2.lib.sponge.CommandManager;
 
 /** Fabric implementation of {@link CommandRegisterEvent}. */
+@ToBeLibrary("brigadier-general")
 public class FabricCommandRegisterEvent implements CommandRegisterEvent {
     private final CommandManager manager;
 
