@@ -58,12 +58,12 @@ public class VelocityCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         return null;
     }
 
     @Override
-    public @Nullable ProxyPlayer player() {
+    public @Nullable ProxyPlayer subject() {
         if (this.sender instanceof Player) {
             return new VelocityPlayer((Player) this.sender);
         }

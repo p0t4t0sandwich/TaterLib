@@ -53,7 +53,7 @@ public class WrappedCommandSource
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         if (this.sender instanceof net.minecraft.entity.Entity) {
             return new WrappedEntity((net.minecraft.entity.Entity) this.sender);
         }
@@ -61,7 +61,7 @@ public class WrappedCommandSource
     }
 
     @Override
-    public ServerPlayer player() {
+    public ServerPlayer subject() {
         if (this.sender instanceof PlayerEntity) {
             return new WrappedPlayer((PlayerEntity) this.sender);
         }

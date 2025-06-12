@@ -55,7 +55,7 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
     }
 
     @Override
-    public @Nullable Entity entity() {
+    public @Nullable Entity actor() {
         if (this.sender instanceof net.minecraft.entity.Entity) {
             return new ForgeEntity((net.minecraft.entity.Entity) this.sender);
         }
@@ -63,7 +63,7 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
     }
 
     @Override
-    public ServerPlayer player() {
+    public ServerPlayer subject() {
         if (this.sender instanceof EntityPlayer) {
             return new ForgePlayer((EntityPlayer) this.sender);
         }
