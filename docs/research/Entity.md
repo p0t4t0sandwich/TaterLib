@@ -1,15 +1,24 @@
 # Entity
 `net.minecraft.world.entity.Entity`
 
-## 1.14 - 1.21.5
-`implements net.minecraft.world.Nameable`
+# net.minecraft.world.Nameable
 
+## 1.14 - 1.21.5
+
+# getUUID, setCustomName
+
+## 1.14 - 1.21.5
 `UUID Entity#getUUID()`
 
 `void setCustomName(@Nullable net.minecraft.network.chat.Component)`
 
+# net.minecraft.commands.CommandSource
+
 ## 1.14 - 1.21.1
-`implements net.minecraft.commands.CommandSource`
+
+# getPermissionLevel, hasPermissions
+
+## 1.14 - 1.21.1
 
 `int getPermissionLevel()`
 
