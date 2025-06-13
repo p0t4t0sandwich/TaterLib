@@ -16,7 +16,7 @@ displayTest = "IGNORE_SERVER_VERSION"
 description = '''${description}'''
 
 # Minecraft Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
 versionRange = "[,)"

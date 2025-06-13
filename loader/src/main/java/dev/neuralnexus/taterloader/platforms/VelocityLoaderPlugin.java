@@ -13,8 +13,8 @@ import com.velocitypowered.api.plugin.PluginContainer;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.platforms.TaterMetadata;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 
 /** Velocity entry point. */
@@ -30,7 +30,7 @@ public class VelocityLoaderPlugin {
 
     @Inject
     public VelocityLoaderPlugin(PluginContainer plugin) {
-        MetaAPI.instance().setPrimaryPlatform(Platforms.VELOCITY);
+        TaterMetadata.init(Platforms.VELOCITY);
         loader = new LoaderImpl(plugin);
         loader.registerPlugin(TaterPluginResolver.velocity());
         loader.onInit();

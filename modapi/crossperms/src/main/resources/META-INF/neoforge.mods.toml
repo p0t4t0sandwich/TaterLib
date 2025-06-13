@@ -24,7 +24,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # Minecraft Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
 versionRange = "[,)"

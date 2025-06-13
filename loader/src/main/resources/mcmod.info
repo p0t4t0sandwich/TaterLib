@@ -32,7 +32,7 @@
   },
   {
     "modid": "tater_metadata",
-    "name": "TaterLib ModLib Metadata",
+    "name": "TaterMetadata",
     "license": "${license}",
     "version": "${modlib_version}"
   },

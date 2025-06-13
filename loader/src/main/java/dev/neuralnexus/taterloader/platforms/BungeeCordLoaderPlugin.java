@@ -6,8 +6,8 @@ package dev.neuralnexus.taterloader.platforms;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.platforms.TaterMetadata;
 import dev.neuralnexus.taterloader.TaterPluginResolver;
 
 import net.md_5.bungee.api.plugin.Plugin;
@@ -17,7 +17,7 @@ public class BungeeCordLoaderPlugin extends Plugin {
     private static Loader loader;
 
     public BungeeCordLoaderPlugin() {
-        MetaAPI.instance().setPrimaryPlatform(Platforms.BUNGEECORD);
+        TaterMetadata.init(Platforms.BUNGEECORD);
         loader = new LoaderImpl(this);
         loader.registerPlugin(TaterPluginResolver.bungeeCord());
         loader.onInit();

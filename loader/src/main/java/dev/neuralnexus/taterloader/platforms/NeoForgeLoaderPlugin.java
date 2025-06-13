@@ -24,13 +24,12 @@ public class NeoForgeLoaderPlugin {
     private static Loader loader;
 
     public NeoForgeLoaderPlugin() {
-        MetaAPI.instance().setPrimaryPlatform(Platforms.NEOFORGE);
         NeoForge.EVENT_BUS.register(this);
 
         loader = new LoaderImpl(this);
         IEventBus bus = ModLoadingContext.get().getActiveContainer().getEventBus();
         if (bus != null) {
-            bus.register(new NeoForgeLifecycleListener((loader)));
+            bus.register(new NeoForgeLifecycleListener(loader));
         } else {
             Loader.logger.warn("Failed to register events to mod event bus");
         }

@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.util.ReflectionUtil;
 
 import net.minecraft.server.MinecraftServer;
 
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Optional;
@@ -37,6 +38,7 @@ public interface MetaAPI {
      * @param platform The platform
      * @throws RedefinePrimaryPlatformException if the primary platform is already defined
      */
+    @ApiStatus.Internal
     void setPrimaryPlatform(@NotNull Platform platform) throws RedefinePrimaryPlatformException;
 
     /**

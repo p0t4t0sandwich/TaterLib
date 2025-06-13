@@ -1,0 +1,11 @@
+name: '${mod_name}'
+version: '${version}'
+author: '${authors}'
+description: '${description}'
+website: '${homepage_url}'
+main: 'dev.neuralnexus.taterapi.meta.platforms.BukkitEntrypoint'
+depend: [ ]
+depends: [ ]
+softdepend: [ ]
+softdepends: [ ]
+folia-supported: true
