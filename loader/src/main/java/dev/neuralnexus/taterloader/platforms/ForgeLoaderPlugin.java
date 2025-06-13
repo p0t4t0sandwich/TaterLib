@@ -31,8 +31,6 @@ public class ForgeLoaderPlugin {
     private static Loader loader;
 
     public ForgeLoaderPlugin() {
-        MetaAPI.instance().setPrimaryPlatform(Platforms.FORGE);
-
         loader = new LoaderImpl(this);
         if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V13)) {
             MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_8(loader));

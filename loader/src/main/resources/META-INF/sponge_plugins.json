@@ -49,8 +49,8 @@
       "version": "${modlib_version}"
     },
     {
-      "id": "metadata",
-      "name": "TaterLib ModLib Metadata",
+      "id": "tater_metadata",
+      "name": "TaterMetadata",
       "version": "${modlib_version}"
     },
     {

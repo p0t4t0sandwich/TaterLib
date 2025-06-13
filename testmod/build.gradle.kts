@@ -70,7 +70,7 @@ tasks.shadeDowngradedApi {
         it.substringBefore(".")
             .substringBeforeLast("-")
             .replace(Regex("[.;\\[/]"), "-")
-            .replace("metadata", "dev/neuralnexus/modapi/metadata/jvmdg")
+            .replace("testmod", "dev/neuralnexus/modapi/testmod/jvmdg")
     }
     archiveClassifier.set("downgraded-8-shaded")
 }

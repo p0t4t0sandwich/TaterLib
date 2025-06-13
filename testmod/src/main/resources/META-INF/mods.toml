@@ -18,7 +18,7 @@ description = '''${description}'''
 #config = "${mod_id}.mixins.json"
 
 # Forge Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "forge"
 mandatory = false
 type = "optional"
@@ -27,7 +27,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # NeoForge Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 mandatory = false
 type = "optional"
@@ -36,7 +36,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # Minecraft Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 mandatory = true
 type = "required"
@@ -45,7 +45,7 @@ ordering = "NONE"
 side = "BOTH"
 
 # TaterLib Dependency
-[[dependencies.${ mod_id }]]
+[[dependencies.${mod_id}]]
 modId = "taterlib"
 mandatory = true
 type = "required"

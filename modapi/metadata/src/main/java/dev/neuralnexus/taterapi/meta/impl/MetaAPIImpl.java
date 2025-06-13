@@ -161,7 +161,7 @@ public final class MetaAPIImpl implements MetaAPI {
     public void setPrimaryPlatform(@NotNull Platform platform)
             throws RedefinePrimaryPlatformException, NullPointerException {
         Objects.requireNonNull(platform, "Platform cannot be null");
-        if (this.primaryPlatform != null) {
+        if (this.primaryPlatform != null && !this.primaryPlatform.equals(platform)) {
             throw new RedefinePrimaryPlatformException();
         }
         this.primaryPlatform = platform;

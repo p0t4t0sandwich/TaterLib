@@ -59,7 +59,7 @@ tasks.jar {
     manifest {
         attributes(
             mapOf(
-                "Specification-Title" to "TaterLib ModLib Metadata",
+                "Specification-Title" to "TaterMetadata",
                 "Specification-Version" to version,
                 "Specification-Vendor" to "NeualNexus",
                 "Implementation-Version" to version,
