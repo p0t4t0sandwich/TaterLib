@@ -1,7 +1,5 @@
 package dev.neuralnexus.taterapi.meta.platforms;
 
-import dev.neuralnexus.taterapi.meta.Platforms;
-
 import net.minecraftforge.fml.common.Mod;
 
 @Mod(
@@ -12,6 +10,6 @@ import net.minecraftforge.fml.common.Mod;
         acceptableRemoteVersions = "*")
 public class ForgeEntrypoint {
     public ForgeEntrypoint() {
-        TaterMetadata.init(Platforms.FORGE);
+        TaterMetadata.initForge();
     }
 }
