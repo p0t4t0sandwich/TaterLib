@@ -69,7 +69,7 @@ tasks.jar {
     manifest {
         attributes(
             mapOf(
-                "Specification-Title" to "TaterLib Muxins",
+                "Specification-Title" to "TaterLib CrossPerms",
                 "Specification-Version" to version,
                 "Specification-Vendor" to "NeualNexus",
                 "Implementation-Version" to version,
