@@ -1,8 +1,5 @@
 package dev.neuralnexus.taterapi.meta.platforms;
 
-import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
-
 import org.spongepowered.api.plugin.Plugin;
 
 @Plugin(
@@ -12,6 +9,6 @@ import org.spongepowered.api.plugin.Plugin;
 //        description = LoaderImpl.PROJECT_DESCRIPTION)
 public class Sponge7Entrypoint {
     public Sponge7Entrypoint() {
-        TaterMetadata.init(Platforms.SPONGE);
+        TaterMetadata.initSponge();
     }
 }

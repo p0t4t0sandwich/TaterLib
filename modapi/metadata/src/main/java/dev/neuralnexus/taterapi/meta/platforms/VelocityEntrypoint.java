@@ -2,8 +2,6 @@ package dev.neuralnexus.taterapi.meta.platforms;
 
 import com.velocitypowered.api.plugin.Plugin;
 
-import dev.neuralnexus.taterapi.meta.Platforms;
-
 @Plugin(
         id = "tater_metadata",
         name = "TaterMetadata")
@@ -13,6 +11,6 @@ import dev.neuralnexus.taterapi.meta.Platforms;
 // url = LoaderImpl.PROJECT_URL)
 public class VelocityEntrypoint {
     public VelocityEntrypoint() {
-        TaterMetadata.init(Platforms.VELOCITY);
+        TaterMetadata.initVelocity();
     }
 }
