@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
-import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import net.kyori.adventure.text.Component;

@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 
 import org.jetbrains.annotations.Nullable;
 

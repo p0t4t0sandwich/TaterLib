@@ -11,7 +11,7 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
-import dev.neuralnexus.taterapi.perms.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;

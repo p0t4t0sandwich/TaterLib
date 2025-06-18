@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.perms.CrossPerms;
+import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 import dev.neuralnexus.taterlib.metrics.bstats.TaterLibMetrics;

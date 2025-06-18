@@ -1,21 +1,19 @@
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection
-import org.gradle.api.file.FileTree
+import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.bundling.Jar
-import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 import xyz.wagyourtail.unimined.util.sourceSets
 
 object Tater
 
-val Project.jarToFiles: (String) -> FileTree get() = {
-    val jar: Jar = when (val task = tasks.getByName(it)) {
+fun Project.jarToFiles(taskName: String): FileCollection {
+    val jar: Jar = when (val task = tasks.getByName(taskName)) {
         is Jar -> task
-        is RemapJarTask -> task.asJar
-        else -> throw IllegalArgumentException("Task $it is not a Jar task")
+        else -> throw IllegalArgumentException("Task $taskName is not a Jar task")
     }
-    zipTree(jar.archiveFile.get().asFile)
+    return zipTree(jar.archiveFile.get().asFile)
 }
 
-val Project.srcSetAsDep: (String, String) -> ConfigurableFileCollection get() = { projName, srcSetName ->
+val Project.srcSetAsDep: (String, String) -> FileCollection get() = { projName, srcSetName ->
     files(rootProject.project(projName).sourceSets.getByName(srcSetName).output)
 }

@@ -1,19 +1,101 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import xyz.wagyourtail.unimined.api.minecraft.task.RemapJarTask
 import java.time.Instant
 
 plugins {
     id("java-library")
     id("maven-publish")
+    id(libs.plugins.unimined.get().pluginId)
     alias(libs.plugins.jvmdowngrader)
 }
+
+var groupId: String = findProperty("group").toString()
 
 base {
     archivesName = modId
     version = properties["modlib_version"].toString()
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
-java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
-java.targetCompatibility = JavaVersion.toVersion(javaVersion)
+java {
+    withSourcesJar()
+    withJavadocJar()
+    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
+    sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    targetCompatibility = JavaVersion.toVersion(javaVersion)
+}
+
+val (fabric, forge, _, _) = createPlatformSourceSets("fabric", "forge")
+val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, _, fabricModImplementation
+) = createPlatformConfigurations("fabric", "forge")
+
+val forge1171: SourceSet by sourceSets.creating
+
+val common: SourceSet by sourceSets.creating
+val commonCompileOnly: Configuration by configurations.getting
+
+unimined.footgunChecks = false
+
+unimined.minecraft(common) {
+    if (sourceSet == common) {
+        defaultRemapJar = false
+    }
+    if (sourceSet == common || sourceSet == fabric || sourceSet == forge) {
+        version(minecraftVersion)
+        mappings {
+            parchment(parchmentMinecraft, parchmentVersion)
+            mojmap()
+            devFallbackNamespace("official")
+        }
+    }
+}
+
+unimined.minecraft(fabric) {
+    combineWith(common)
+    fabric {
+        loader(fabricLoaderVersion)
+    }
+}
+
+unimined.minecraft(forge) {
+    combineWith(common)
+    minecraftForge {
+        loader(forgeVersion)
+    }
+}
+
+unimined.minecraft(forge1171) {
+    combineWith(common)
+    version("1.17.1")
+    mappings {
+        parchment("1.17.1", "2021.12.12")
+        mojmap()
+        devFallbackNamespace("official")
+    }
+    minecraftForge {
+        loader("37.1.1")
+    }
+}
+
+tasks.register<ShadowJar>("relocateFabricJar") {
+    dependsOn("remapFabricJar")
+    from(jarToFiles("remapFabricJar"))
+    archiveClassifier.set("fabric-relocated")
+    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.y_intmdry")
+}
+
+tasks.register<ShadowJar>("relocateForgeJar") {
+    dependsOn("remapForgeJar")
+    from(jarToFiles("remapForgeJar"))
+    archiveClassifier.set("forge-relocated")
+    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.l_searge")
+}
+
+tasks.register<ShadowJar>("relocateForge1171Jar") {
+    dependsOn("remapForge1171Jar")
+    from(jarToFiles("remapForge1171Jar"))
+    archiveClassifier.set("forge1171-relocated")
+    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.searge")
+}
 
 dependencies {
     compileOnly(libs.mixin)
@@ -43,14 +125,20 @@ dependencies {
     compileOnly(project(":modapi:entrypoint-spoof"))
     compileOnly(project(":modapi:base"))
     compileOnly(project(":modapi:metadata"))
+
+    commonCompileOnly(libs.mixin)
+    commonCompileOnly(variantOf(libs.modapi) { classifier("downgraded-8") })
+    commonCompileOnly(variantOf(libs.modapi.base) { classifier("downgraded-8") })
+    commonCompileOnly(variantOf(libs.modapi.metadata) { classifier("downgraded-8") })
+    commonCompileOnly(variantOf(libs.modapi.muxins) { classifier("downgraded-8") })
+    forgeCompileOnly(libs.mixin)
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-    toolchain.languageVersion = JavaLanguageVersion.of(javaVersion)
-    sourceCompatibility = JavaVersion.toVersion(javaVersion)
-    targetCompatibility = JavaVersion.toVersion(javaVersion)
+tasks.withType<RemapJarTask> {
+    mixinRemap {
+        enableBaseMixin()
+        disableRefmap()
+    }
 }
 
 tasks.withType<ProcessResources> {
@@ -66,6 +154,18 @@ tasks.withType<ProcessResources> {
 }
 
 tasks.jar {
+    dependsOn(
+        "relocateFabricJar",
+        "relocateForgeJar",
+        "relocateForge1171Jar"
+    )
+    from(
+        common.output,
+        jarToFiles("relocateFabricJar"),
+        jarToFiles("relocateForgeJar"),
+        jarToFiles("relocateForge1171Jar")
+    )
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes(
             mapOf(
@@ -74,7 +174,8 @@ tasks.jar {
                 "Specification-Vendor" to "NeualNexus",
                 "Implementation-Version" to version,
                 "Implementation-Vendor" to "NeualNexus",
-                "Implementation-Timestamp" to Instant.now().toString()
+                "Implementation-Timestamp" to Instant.now().toString(),
+                "MixinConfigs" to "$modId.mixins.json"
             )
         )
     }
@@ -91,7 +192,7 @@ tasks.shadeDowngradedApi {
         it.substringBefore(".")
             .substringBeforeLast("-")
             .replace(Regex("[.;\\[/]"), "-")
-            .replace(modId, "dev/neuralnexus/taterapi/$modId/jvmdg")
+            .replace(modId, "${group?.replace('.', '/')}/$modId/jvmdg")
     }
     archiveClassifier.set("downgraded-8-shaded")
 }
