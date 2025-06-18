@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.world.entity
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
@@ -32,14 +31,12 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @ReqMappings(Mappings.YARN_INTERMEDIARY)
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
-    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
 })
 public abstract class Entity_API implements EntityBridge {
@@ -49,7 +46,6 @@ public abstract class Entity_API implements EntityBridge {
     @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
     @Shadow @Nullable public abstract Component shadow$getCustomName();
     @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
-    @Shadow public abstract UUID shadow$getUUID();
     // @spotless:on
 
     public int entity$entityId() {
@@ -98,10 +94,5 @@ public abstract class Entity_API implements EntityBridge {
     @ToBeLibrary("brigadier-general")
     public void nameable$setCustomName(String name) {
         this.shadow$setCustomName(VanillaUtils.component.apply(name));
-    }
-
-    @ToBeLibrary("crossperms")
-    public UUID identifiable$uuid() {
-        return this.shadow$getUUID();
     }
 }

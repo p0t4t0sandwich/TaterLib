@@ -1,0 +1,13 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterapi.muxins.MuxinPlugin",
+  "package": "dev.neuralnexus.modapi.crossperms.mixin",
+  "mixins": [
+    "y_intmdry.EntityMixin"
+  ]
+}
