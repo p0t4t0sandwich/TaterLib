@@ -32,10 +32,16 @@ val forge1171: SourceSet by sourceSets.creating
 
 val common: SourceSet by sourceSets.creating
 val commonCompileOnly: Configuration by configurations.getting
+val forge1171CompileOnly: Configuration by configurations.getting
+
+listOf(fabricCompileOnly, forgeCompileOnly, forge1171CompileOnly).forEach {
+    it.extendsFrom(commonCompileOnly)
+}
 
 unimined.footgunChecks = false
 
 unimined.minecraft(common) {
+    combineWith(sourceSets.main.get())
     if (sourceSet == common) {
         defaultRemapJar = false
     }
@@ -80,21 +86,21 @@ tasks.register<ShadowJar>("relocateFabricJar") {
     dependsOn("remapFabricJar")
     from(jarToFiles("remapFabricJar"))
     archiveClassifier.set("fabric-relocated")
-    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.y_intmdry")
+    // relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.y_intmdry")
 }
 
 tasks.register<ShadowJar>("relocateForgeJar") {
     dependsOn("remapForgeJar")
     from(jarToFiles("remapForgeJar"))
     archiveClassifier.set("forge-relocated")
-    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.l_searge")
+    // relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.l_searge")
 }
 
 tasks.register<ShadowJar>("relocateForge1171Jar") {
     dependsOn("remapForge1171Jar")
     from(jarToFiles("remapForge1171Jar"))
     archiveClassifier.set("forge1171-relocated")
-    relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.searge")
+    // relocate("$groupId.$modId.mixin.vanilla", "$groupId.$modId.mixin.searge")
 }
 
 dependencies {

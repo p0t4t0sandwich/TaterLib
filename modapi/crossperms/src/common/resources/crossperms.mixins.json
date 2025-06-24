@@ -1,0 +1,21 @@
+{
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "required": false,
+  "plugin": "dev.neuralnexus.taterapi.muxins.MuxinPlugin",
+  "package": "dev.neuralnexus.modapi.crossperms.mixin",
+  "mixins": [
+    "vanilla.EntityMixin",
+    "vanilla.GameProfileMixin",
+    "vanilla.Identifiable_API",
+    "y_intmdry.EntityMixin",
+    "y_intmdry.Identifiable_API",
+    "l_searge.EntityMixin",
+    "l_searge.Identifiable_API",
+    "searge.EntityMixin",
+    "searge.Identifiable_API"
+  ]
+}
