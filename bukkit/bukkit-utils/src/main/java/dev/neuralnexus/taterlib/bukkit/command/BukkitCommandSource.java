@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.bukkit.command;
 
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
@@ -12,7 +13,6 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 
 import org.jetbrains.annotations.Nullable;
 
