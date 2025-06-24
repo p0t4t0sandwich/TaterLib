@@ -13,7 +13,6 @@
     "v1_14_4.fabric.accessors.server.players.GameProfileCacheAccessor",
     "v1_14_4.fabric.accessors.server.players.StoredUserEntryAccessor",
     "v1_14_4.fabric.accessors.world.entity.LivingEntityAccessor",
-    "dev.neuralnexus.modapi.crossperms.mixin.y_intmdry.Identifiable_API",
     "v1_14_4.fabric.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_14_4.fabric.api.minecraft.resources.ResourceLocation_API",
     "v1_14_4.fabric.api.minecraft.server.MinecraftServer_API",
