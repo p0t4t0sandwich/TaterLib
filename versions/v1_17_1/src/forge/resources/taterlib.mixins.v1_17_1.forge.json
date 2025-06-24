@@ -14,7 +14,6 @@
     "v1_17_1.forge.accessors.server.players.StoredUserEntryAccessor",
     "v1_17_1.forge.accessors.world.entity.LivingEntityAccessor",
     "v1_17_1.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
-    "dev.neuralnexus.modapi.crossperms.mixin.searge.Identifiable_API",
     "v1_17_1.forge.api.minecraft.resources.ResourceLocation_API",
     "v1_17_1.forge.api.minecraft.server.MinecraftServer_API",
     "v1_17_1.forge.api.minecraft.server.level.ServerPlayer_API",
