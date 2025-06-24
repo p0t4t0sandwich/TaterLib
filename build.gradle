@@ -219,7 +219,7 @@ tasks.register('build_monojar', Jar) {
                 'Implementation-Timestamp': Instant.now().toString(),
                 'FMLCorePluginContainsFMLMod': 'true',
                 'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
-                'MixinConfigs': "taterlib.mixins.json"
+                'MixinConfigs': "taterlib.mixins.json,crossperms.mixins.json"
     }
 
     from(["README.md", "LICENSE"]) {

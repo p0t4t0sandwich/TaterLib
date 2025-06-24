@@ -37,7 +37,8 @@
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json"
+    "${mod_id}.mixins.json",
+    "crossperms.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.9.0",
