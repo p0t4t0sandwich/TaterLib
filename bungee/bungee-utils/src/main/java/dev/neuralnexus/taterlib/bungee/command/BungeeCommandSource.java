@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.bungee.command;
 
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
@@ -11,7 +12,6 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
 
 import net.md_5.bungee.api.connection.ProxiedPlayer;

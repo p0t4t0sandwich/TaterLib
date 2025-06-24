@@ -4,9 +4,9 @@
  */
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.entity;
 
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_15_2.bukkit.world.BukkitLocation;

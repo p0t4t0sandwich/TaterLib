@@ -30,7 +30,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @ReqMappings(Mappings.SEARGE)
 @ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)

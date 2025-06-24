@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.command;
 
+import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
@@ -11,7 +12,6 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 
