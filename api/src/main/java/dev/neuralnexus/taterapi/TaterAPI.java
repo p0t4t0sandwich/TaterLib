@@ -360,9 +360,6 @@ public class TaterAPI {
      */
     public static boolean hasPermission(@NotNull Object subject, int permissionLevel)
             throws NullPointerException {
-        if (subject instanceof Wrapped) {
-            subject = ((Wrapped<?>) subject).unwrap();
-        }
         return PermsAPI.instance().hasPermission(subject, permissionLevel);
     }
 
@@ -376,9 +373,6 @@ public class TaterAPI {
      */
     public static boolean hasPermission(@NotNull Object subject, @NotNull String permission)
             throws NullPointerException {
-        if (subject instanceof Wrapped) {
-            subject = ((Wrapped<?>) subject).unwrap();
-        }
         return PermsAPI.instance().hasPermission(subject, permission);
     }
 
@@ -394,9 +388,6 @@ public class TaterAPI {
     public static boolean hasPermission(
             @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
             throws NullPointerException {
-        if (subject instanceof Wrapped) {
-            subject = ((Wrapped<?>) subject).unwrap();
-        }
         return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
     }
 }

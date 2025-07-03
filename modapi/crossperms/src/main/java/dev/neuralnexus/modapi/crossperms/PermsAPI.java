@@ -10,6 +10,7 @@ import dev.neuralnexus.modapi.crossperms.impl.PermsAPIImpl;
 import dev.neuralnexus.modapi.crossperms.mc.WCommandSource;
 import dev.neuralnexus.modapi.crossperms.mc.WMinecraftServer;
 import dev.neuralnexus.modapi.crossperms.mc.WServerPlayer;
+import dev.neuralnexus.taterapi.Wrapped;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -62,8 +63,12 @@ public interface PermsAPI {
      */
     @SuppressWarnings("unchecked")
     default <P, S> boolean hasPermission(@NotNull S subject, @NotNull P permission) {
-        Objects.requireNonNull(subject, "Source cannot be null");
+        Objects.requireNonNull(subject, "Subject cannot be null");
         Objects.requireNonNull(permission, "Permission cannot be null");
+
+        if (subject instanceof Wrapped<?> wrapped) {
+            return this.hasPermission(wrapped.unwrap(), permission);
+        }
 
         List<HasPermission<P, S>> checks =
                 this.providers((Class<P>) permission.getClass(), (Class<S>) subject.getClass());
