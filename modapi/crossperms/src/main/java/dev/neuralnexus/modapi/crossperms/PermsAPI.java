@@ -7,7 +7,6 @@ package dev.neuralnexus.modapi.crossperms;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.impl.PermsAPIImpl;
-import dev.neuralnexus.modapi.crossperms.mc.WCommandSource;
 import dev.neuralnexus.modapi.crossperms.mc.WMinecraftServer;
 import dev.neuralnexus.modapi.crossperms.mc.WServerPlayer;
 import dev.neuralnexus.taterapi.Wrapped;
@@ -17,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.function.Predicate;
 
 /** Permissions API */
@@ -107,34 +105,6 @@ public interface PermsAPI {
     }
 
     /**
-     * Get a player from a subject
-     *
-     * @param subject The subject to get the player from
-     * @throws NullPointerException If the subject is null
-     * @return The player from the subject
-     */
-    default Optional<WServerPlayer> getPlayer(@NotNull Object subject) throws NullPointerException {
-        Objects.requireNonNull(subject, "Subject cannot be null");
-        return switch (subject) {
-            case UUID uuid -> WMinecraftServer.getPlayerList().getPlayer(uuid);
-            case String name -> WMinecraftServer.getPlayerList().getPlayer(name);
-            case GameProfile profile -> WMinecraftServer.getPlayerList().getPlayer(profile);
-            default -> {
-                WServerPlayer player = null;
-                if (WCommandSource.instanceOf(subject)) {
-                    Object entity = WCommandSource.wrap(subject).getEntity();
-                    if (WServerPlayer.instanceOf(entity)) {
-                        player = WServerPlayer.wrap(entity);
-                    }
-                } else if (WServerPlayer.instanceOf(subject)) {
-                    player = WServerPlayer.wrap(subject);
-                }
-                yield Optional.ofNullable(player);
-            }
-        };
-    }
-
-    /**
      * Get the GameProfile of a subject
      *
      * @param subject The subject to get the GameProfile of
@@ -147,6 +117,6 @@ public interface PermsAPI {
         if (subject instanceof GameProfile profile) {
             return Optional.of(profile);
         }
-        return this.getPlayer(subject).map(WServerPlayer::getGameProfile);
+        return WMinecraftServer.getPlayer(subject).map(WServerPlayer::getGameProfile);
     }
 }

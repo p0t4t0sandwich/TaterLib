@@ -7,7 +7,7 @@ package dev.neuralnexus.modapi.crossperms.impl.providers;
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.modapi.crossperms.HasPermission;
 import dev.neuralnexus.modapi.crossperms.PermissionsProvider;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.mc.WMinecraftServer;
 import dev.neuralnexus.modapi.crossperms.mc.WServerPlayer;
 
 import net.legacyfabric.fabric.api.permission.v1.PermissibleCommandSource;
@@ -46,8 +46,7 @@ public class LegacyFabricPermissionsProvider implements PermissionsProvider {
     }
 
     public boolean playerObjHasPermission(Object subject, String permission) {
-        return PermsAPI.instance()
-                .getPlayer(subject)
+        return WMinecraftServer.getPlayer(subject)
                 .map(WServerPlayer::unwrap)
                 .filter(player -> this.playerHasPermission(player, permission))
                 .isPresent();

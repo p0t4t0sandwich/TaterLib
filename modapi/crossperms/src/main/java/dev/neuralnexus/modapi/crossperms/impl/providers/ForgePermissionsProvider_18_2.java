@@ -6,7 +6,7 @@ package dev.neuralnexus.modapi.crossperms.impl.providers;
 
 import dev.neuralnexus.modapi.crossperms.HasPermission;
 import dev.neuralnexus.modapi.crossperms.PermissionsProvider;
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
+import dev.neuralnexus.modapi.crossperms.mc.WMinecraftServer;
 
 import net.minecraftforge.server.permission.PermissionAPI;
 import net.minecraftforge.server.permission.nodes.PermissionTypes;
@@ -33,8 +33,7 @@ public class ForgePermissionsProvider_18_2 implements PermissionsProvider {
     }
 
     public boolean playerHasPermission(Object subject, String permission) {
-        return PermsAPI.instance()
-                .getPlayer(subject)
+        return WMinecraftServer.getPlayer(subject)
                 .filter(
                         player ->
                                 PermissionAPI.getRegisteredNodes().stream()
