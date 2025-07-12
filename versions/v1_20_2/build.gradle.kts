@@ -2,10 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (fabric, forge, neoforge, _) = createPlatformSourceSets("fabric", "forge", "neoforge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly,
-    neoforgeCompileOnly, _, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge", "neoforge")
+val (main, fabric, forge, neoforge, _) = getPlatforms("fabric", "forge", "neoforge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -17,7 +14,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -32,7 +29,7 @@ registerRelocationTask(
     depVersions = listOf("1.16.1", "1.14.4")
 )
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -48,7 +45,7 @@ registerRelocationTask(
     depVersions = listOf("1.16.1", "1.14.4")
 )
 
-unimined.minecraft(neoforge) {
+unimined.minecraft(neoforge.sourceSet) {
     combineWith(sourceSets.main.get())
     neoForge {
         loader(neoForgeVersion)
@@ -58,13 +55,13 @@ unimined.minecraft(neoforge) {
 
 dependencies {
     listOf(":versions:v1_14_4", ":versions:v1_16_1").forEach {
-        mainCompileOnly(project(it))
+        main.compileOnly(project(it))
     }
     listOf("api-base", "command-api-v2", "lifecycle-events-v1", "networking-api-v1").forEach {
-        fabricModImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
+        fabric.modImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
     }
-    forgeCompileOnly(srcSetAsDep(":versions:v1_20_1", "forge"))
-    forgeCompileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:v1_20_1", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
 tasks.jar {
@@ -72,6 +69,6 @@ tasks.jar {
     from(jarToFiles("relocateFabricJar"))
     dependsOn("relocateForgeJar")
     from(jarToFiles("relocateForgeJar"))
-    from(neoforge.output)
+    from(neoforge.sourceSet.output)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

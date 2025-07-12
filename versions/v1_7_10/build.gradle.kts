@@ -3,9 +3,7 @@ plugins {
     // id(libs.plugins.shadow.get().pluginId)
 }
 
-val (fabric, forge, _, _) = createPlatformSourceSets("fabric", "forge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, _, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge")
+val (main, fabric, forge, _, _) = getPlatforms("fabric", "forge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -30,7 +28,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -44,7 +42,7 @@ registerRelocationTask(
     relocate = "vanilla" to "l_intmdry"
 )
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -61,9 +59,9 @@ registerRelocationTask(
 
 dependencies {
     listOf("api-base", "command-api-v2", "lifecycle-events-v1", "networking-api-v1", "permissions-api-v1").forEach {
-        fabricModImplementation(fabricApi.legacyFabricModule("legacy-fabric-$it", fabricVersion))
+        fabric.modImplementation(fabricApi.legacyFabricModule("legacy-fabric-$it", fabricVersion))
     }
-    forgeCompileOnly(libs.mixin)
+    forge.compileOnly(libs.mixin)
 }
 
 tasks.jar {

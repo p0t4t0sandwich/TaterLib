@@ -2,9 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (fabric, forge, _, _) = createPlatformSourceSets("fabric", "forge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, _, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge")
+val (main, fabric, forge, _, _) = getPlatforms("fabric", "forge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -29,7 +27,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -44,7 +42,7 @@ registerRelocationTask(
     depVersions = listOf("1.14.4")
 )
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -61,11 +59,11 @@ registerRelocationTask(
 )
 
 dependencies {
-    mainCompileOnly(project(":versions:v1_14_4"))
+    main.compileOnly(project(":versions:v1_14_4"))
     listOf("api-base", "command-api-v1", "lifecycle-events-v1", "networking-api-v1").forEach {
-        fabricModImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
+        fabric.modImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
     }
-    forgeCompileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
 tasks.jar {

@@ -2,9 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (fabric, forge, _, sponge) = createPlatformSourceSets("fabric", "forge", "sponge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, spongeCompileOnly, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge", "sponge")
+val (main, fabric, forge, _, sponge) = getPlatforms("fabric", "forge", "sponge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -27,7 +25,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -42,9 +40,9 @@ registerRelocationTask(
     depVersions = listOf("1.7.10")
 )
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
-    combineWith(sponge)
+    combineWith(sponge.sourceSet)
     minecraftForge {
         loader(forgeVersion)
         mixinConfig("taterlib.mixins.v1_8_9.forge.json")
@@ -59,19 +57,19 @@ registerRelocationTask(
     depVersions = listOf("1.7.10")
 )
 
-unimined.minecraft(sponge) {
+unimined.minecraft(sponge.sourceSet) {
     combineWith(sourceSets.main.get())
 }
 
 dependencies {
-    mainCompileOnly(project(":versions:v1_7_10"))
-    fabricCompileOnly(srcSetAsDep(":versions:v1_7_10", "fabric"))
+    main.compileOnly(project(":versions:v1_7_10"))
+    fabric.compileOnly(srcSetAsDep(":versions:v1_7_10", "fabric"))
     listOf("api-base", "command-api-v2", "lifecycle-events-v1", "networking-api-v1", "permissions-api-v1").forEach {
-        fabricModImplementation(fabricApi.legacyFabricModule("legacy-fabric-$it", fabricVersion))
+        fabric.modImplementation(fabricApi.legacyFabricModule("legacy-fabric-$it", fabricVersion))
     }
-    forgeCompileOnly(libs.mixin)
-    forgeCompileOnly(srcSetAsDep(":versions:v1_7_10", "forge"))
-    spongeCompileOnly("org.spongepowered:spongeapi:${spongeVersion}")
+    forge.compileOnly(libs.mixin)
+    forge.compileOnly(srcSetAsDep(":versions:v1_7_10", "forge"))
+    sponge.compileOnly("org.spongepowered:spongeapi:${spongeVersion}")
 }
 
 tasks.register<Jar>("outputJar") {

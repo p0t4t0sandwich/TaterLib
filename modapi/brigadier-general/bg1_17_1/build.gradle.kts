@@ -4,8 +4,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (_, forge, _, _) = createPlatformSourceSets("forge")
-val (mainCompileOnly, _, forgeCompileOnly, _, _, _) = createPlatformConfigurations("forge")
+val (main, _, forge, _, _) = getPlatforms("forge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -19,7 +18,7 @@ unimined.minecraft {
 
 tasks.register<ShadowJar>("shadeForgeJar") {
     from(sourceSets.main.get().output)
-    from(forge.output)
+    from(forge.sourceSet.output)
     from(project(":modapi:brigadier-general:bg1_14_4").sourceSets.main.get().output)
     from(project(":modapi:brigadier-general:bg1_16_5").sourceSets.main.get().output)
     archiveClassifier.set("forge-shade")
@@ -33,7 +32,7 @@ tasks.register<ShadowJar>("shadeForgeJar") {
     relocate("dev.neuralnexus.modapi.brigadier_general.v1_14_4.vanilla", "dev.neuralnexus.modapi.brigadier_general.v1_14_4.searge")
 }
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)

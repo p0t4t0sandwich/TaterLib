@@ -2,9 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (_, forge, _, sponge) = createPlatformSourceSets("forge", "sponge")
-val (mainCompileOnly, _, forgeCompileOnly, _, spongeCompileOnly, _
-) = createPlatformConfigurations("forge", "sponge")
+val (main, _, forge, _, sponge) = getPlatforms("forge", "sponge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -16,7 +14,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -32,22 +30,22 @@ registerRelocationTask(
     depVersions = listOf("1.16.1", "1.14.4")
 )
 
-unimined.minecraft(sponge) {
+unimined.minecraft(sponge.sourceSet) {
     combineWith(sourceSets.main.get())
 }
 
 dependencies {
     listOf(":versions:v1_14_4", ":versions:v1_16_1").forEach {
-        mainCompileOnly(project(it))
+        main.compileOnly(project(it))
     }
-    forgeCompileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
-    spongeCompileOnly("org.spongepowered:spongeapi:${spongeVersion}")
-    spongeCompileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
+    forge.compileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
+    sponge.compileOnly("org.spongepowered:spongeapi:${spongeVersion}")
+    sponge.compileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
 }
 
 tasks.jar {
     dependsOn("relocateForgeJar")
     from(jarToFiles("relocateForgeJar"))
-    from(sponge.output)
+    from(sponge.sourceSet.output)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

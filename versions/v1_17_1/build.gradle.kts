@@ -4,9 +4,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (fabric, forge, _, _) = createPlatformSourceSets("fabric", "forge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, _, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge")
+val (main, fabric, forge, _, _) = getPlatforms("fabric", "forge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -18,7 +16,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -35,7 +33,7 @@ registerRelocationTask(
 
 tasks.register<ShadowJar>("shadeForgeJar") {
     from(sourceSets.main.get().output)
-    from(forge.output)
+    from(forge.sourceSet.output)
     from(project(":versions:v1_14_4").sourceSets.main.get().output)
     from(project(":versions:v1_16_1").sourceSets.main.get().output)
     archiveClassifier.set("forge-shade")
@@ -49,7 +47,7 @@ tasks.register<ShadowJar>("shadeForgeJar") {
     relocate("dev.neuralnexus.taterlib.v1_14_4.vanilla", "dev.neuralnexus.taterlib.v1_14_4.searge")
 }
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -62,12 +60,12 @@ unimined.minecraft(forge) {
 
 dependencies {
     listOf(":versions:v1_14_4", ":versions:v1_16_1").forEach {
-        mainCompileOnly(project(it))
+        main.compileOnly(project(it))
     }
     listOf("api-base", "command-api-v1", "lifecycle-events-v1", "networking-api-v1").forEach {
-        fabricModImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
+        fabric.modImplementation(fabricApi.fabricModule("fabric-$it", fabricVersion))
     }
-    forgeCompileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
 tasks.jar {

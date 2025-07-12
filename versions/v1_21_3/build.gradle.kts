@@ -2,8 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (_, _, _, sponge) = createPlatformSourceSets("sponge")
-val (mainCompileOnly, _, _, _, spongeCompileOnly, _) = createPlatformConfigurations("sponge")
+val (main, _, _, _, sponge) = getPlatforms("sponge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -15,18 +14,18 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(sponge) {
+unimined.minecraft(sponge.sourceSet) {
     combineWith(sourceSets.main.get())
 }
 
 dependencies {
-    spongeCompileOnly("org.spongepowered:spongeapi:${spongeVersion}")
-    spongeCompileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
-    spongeCompileOnly(srcSetAsDep(":versions:v1_19_4", "sponge"))
-    spongeCompileOnly(srcSetAsDep(":versions:v1_20_6", "sponge"))
+    sponge.compileOnly("org.spongepowered:spongeapi:${spongeVersion}")
+    sponge.compileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
+    sponge.compileOnly(srcSetAsDep(":versions:v1_19_4", "sponge"))
+    sponge.compileOnly(srcSetAsDep(":versions:v1_20_6", "sponge"))
 }
 
 tasks.jar {
-    from(sponge.output)
+    from(sponge.sourceSet.output)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
