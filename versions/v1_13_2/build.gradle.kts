@@ -2,8 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (_, forge, _, _) = createPlatformSourceSets("forge")
-val (mainCompileOnly, _, forgeCompileOnly, _, _, _) = createPlatformConfigurations("forge")
+val (main, _, forge, _, _) = getPlatforms("forge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -14,7 +13,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(sourceSets.main.get())
     minecraftForge {
         loader(forgeVersion)
@@ -23,7 +22,7 @@ unimined.minecraft(forge) {
 }
 
 dependencies {
-    forgeCompileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:modern-utils", "forge"))
 }
 
 tasks.jar {

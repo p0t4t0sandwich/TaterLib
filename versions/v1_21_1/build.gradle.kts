@@ -2,9 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (fabric, _, _, sponge) = createPlatformSourceSets("fabric", "sponge")
-val (mainCompileOnly, fabricCompileOnly, _, _, spongeCompileOnly, fabricModImplementation
-) = createPlatformConfigurations("fabric", "sponge")
+val (main, fabric, _, _, sponge) = getPlatforms("fabric", "sponge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -16,7 +14,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(sourceSets.main.get())
     fabric {
         loader(fabricLoaderVersion)
@@ -31,23 +29,23 @@ registerRelocationTask(
     depVersions = listOf("1.16.1", "1.14.4")
 )
 
-unimined.minecraft(sponge) {
+unimined.minecraft(sponge.sourceSet) {
     combineWith(sourceSets.main.get())
 }
 
 dependencies {
     listOf(":versions:v1_14_4", ":versions:v1_16_1", ":versions:v1_20_2").forEach {
-        mainCompileOnly(project(it))
+        main.compileOnly(project(it))
     }
-    spongeCompileOnly("org.spongepowered:spongeapi:${spongeVersion}")
-    spongeCompileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
-    spongeCompileOnly(srcSetAsDep(":versions:v1_19_4", "sponge"))
-    spongeCompileOnly(srcSetAsDep(":versions:v1_20_6", "sponge"))
+    sponge.compileOnly("org.spongepowered:spongeapi:${spongeVersion}")
+    sponge.compileOnly(srcSetAsDep(":versions:v1_16_5", "sponge"))
+    sponge.compileOnly(srcSetAsDep(":versions:v1_19_4", "sponge"))
+    sponge.compileOnly(srcSetAsDep(":versions:v1_20_6", "sponge"))
 }
 
 tasks.jar {
     dependsOn("relocateFabricJar")
     from(jarToFiles("relocateFabricJar"))
-    from(sponge.output)
+    from(sponge.sourceSet.output)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

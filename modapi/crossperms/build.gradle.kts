@@ -24,9 +24,7 @@ java {
     targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
-val (fabric, forge, _, _) = createPlatformSourceSets("fabric", "forge")
-val (mainCompileOnly, fabricCompileOnly, forgeCompileOnly, _, _, fabricModImplementation
-) = createPlatformConfigurations("fabric", "forge")
+val (main, fabric, forge, _, _) = getPlatforms("fabric", "forge")
 
 val forge1171: SourceSet by sourceSets.creating
 
@@ -34,7 +32,7 @@ val common: SourceSet by sourceSets.creating
 val commonCompileOnly: Configuration by configurations.getting
 val forge1171CompileOnly: Configuration by configurations.getting
 
-listOf(fabricCompileOnly, forgeCompileOnly, forge1171CompileOnly).forEach {
+listOf(fabric.compileOnly, forge.compileOnly, forge1171CompileOnly).forEach {
     it.extendsFrom(commonCompileOnly)
 }
 
@@ -45,7 +43,7 @@ unimined.minecraft(common) {
     if (sourceSet == common) {
         defaultRemapJar = false
     }
-    if (sourceSet == common || sourceSet == fabric || sourceSet == forge) {
+    if (sourceSet == common || sourceSet == fabric.sourceSet || sourceSet == forge.sourceSet) {
         version(minecraftVersion)
         mappings {
             parchment(parchmentMinecraft, parchmentVersion)
@@ -55,14 +53,14 @@ unimined.minecraft(common) {
     }
 }
 
-unimined.minecraft(fabric) {
+unimined.minecraft(fabric.sourceSet) {
     combineWith(common)
     fabric {
         loader(fabricLoaderVersion)
     }
 }
 
-unimined.minecraft(forge) {
+unimined.minecraft(forge.sourceSet) {
     combineWith(common)
     minecraftForge {
         loader(forgeVersion)
@@ -137,7 +135,7 @@ dependencies {
     commonCompileOnly(variantOf(libs.modapi.base) { classifier("downgraded-8") })
     commonCompileOnly(variantOf(libs.modapi.metadata) { classifier("downgraded-8") })
     commonCompileOnly(variantOf(libs.modapi.muxins) { classifier("downgraded-8") })
-    forgeCompileOnly(libs.mixin)
+    forge.compileOnly(libs.mixin)
 }
 
 tasks.withType<RemapJarTask> {

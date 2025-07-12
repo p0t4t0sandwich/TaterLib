@@ -2,8 +2,7 @@ plugins {
     id(libs.plugins.unimined.get().pluginId)
 }
 
-val (_, _, neoforge, _) = createPlatformSourceSets("neoforge")
-val (mainCompileOnly, _, _, neoforgeCompileOnly, _, _) = createPlatformConfigurations("neoforge")
+val (main, _, _, neoforge, _) = getPlatforms("neoforge")
 
 unimined.minecraft {
     version(minecraftVersion)
@@ -15,7 +14,7 @@ unimined.minecraft {
     defaultRemapJar = false
 }
 
-unimined.minecraft(neoforge) {
+unimined.minecraft(neoforge.sourceSet) {
     combineWith(sourceSets.main.get())
     neoForge {
         loader(neoForgeVersion)
@@ -25,12 +24,12 @@ unimined.minecraft(neoforge) {
 
 dependencies {
     listOf(":versions:v1_14_4", ":versions:v1_16_1", ":versions:v1_20_2").forEach {
-        mainCompileOnly(project(it))
+        main.compileOnly(project(it))
     }
-    neoforgeCompileOnly(srcSetAsDep(":versions:v1_20_2", "neoforge"))
+    neoforge.compileOnly(srcSetAsDep(":versions:v1_20_2", "neoforge"))
 }
 
 tasks.jar {
-    from(neoforge.output)
+    from(neoforge.sourceSet.output)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
