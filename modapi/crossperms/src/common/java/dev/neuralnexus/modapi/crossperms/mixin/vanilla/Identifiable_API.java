@@ -16,17 +16,14 @@ import net.minecraft.world.entity.Entity;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
+import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 
 @ReqMappings(Mappings.MOJANG)
 @ReqMCVersion(min = MinecraftVersion.V14)
 @Mixin(value = {CommandSourceStack.class, Entity.class})
-@Implements(
-        @Interface(
-                iface = Identifiable.class,
-                prefix = "identifiable$",
-                remap = Interface.Remap.NONE))
+@Implements(@Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE))
 public class Identifiable_API {
     @Intrinsic
     public boolean identifiable$hasPermission(String permission) {
