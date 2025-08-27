@@ -23,16 +23,16 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Mod {
-    String modid();
+    String modid() default "";
 
     String value();
 
-    String acceptableRemoteVersions();
+    String acceptableRemoteVersions() default "";
 
     // My additions
-    boolean useMetadata();
+    boolean useMetadata() default false;
 
-    boolean serverSideOnly();
+    boolean serverSideOnly() default false;
 
     // Tater additions
     @Retention(RetentionPolicy.RUNTIME)
