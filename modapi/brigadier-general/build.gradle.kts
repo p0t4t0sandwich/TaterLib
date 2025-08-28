@@ -47,9 +47,13 @@ dependencies {
 //    compileOnly("org.spongepowered:spongeapi:8.1.0")
 //    compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 
+    compileOnly(project(":modapi:entrypoint-spoof"))
+
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
     api(libs.brigadier)
+
+    compileOnly(project(":modapi:brigadier-general:bg-api"))
 }
 
 java {
@@ -86,7 +90,7 @@ tasks.shadeDowngradedApi {
         it.substringBefore(".")
             .substringBeforeLast("-")
             .replace(Regex("[.;\\[/]"), "-")
-            .replace("brigadier-general", "dev/neuralnexus/taterapi/brigadiergeneral/jvmdg")
+            .replace("brigadier-general", "dev/neuralnexus/taterapi/brigadier/jvmdg")
     }
     archiveClassifier.set("downgraded-8-shaded")
 }

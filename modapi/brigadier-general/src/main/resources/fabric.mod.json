@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    {
+      "name": "p0t4t0sandwich",
+      "contact": {
+        "sources": "https://github.com/p0t4t0sandwich/",
+        "homepage": "https://links.sperrer.ca/"
+      }
+    }
+  ],
+  "contact": {
+    "repo": "${source_url}"
+  },
+  "license": "${license}",
+  "environment": "*",
+  "mixins": [
+    "${mod_id}.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.0",
+    "minecraft": "*"
+  },
+  "suggests": {
+    "fabric-command-api-v1": "*",
+    "fabric-command-api-v2": "*"
+  }
+}
