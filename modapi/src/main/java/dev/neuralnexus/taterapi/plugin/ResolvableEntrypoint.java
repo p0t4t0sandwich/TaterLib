@@ -11,6 +11,8 @@ import dev.neuralnexus.taterapi.meta.Platform;
 import dev.neuralnexus.taterapi.meta.Platforms;
 
 /** Note: When TaterLib is loaded, all instances of this interface will be initialized */
+// TODO: Make "dependency", "version(s)", "notVersion", "notPlatform", and "notPlatforms" methods
+// TODO: Convert this all to annotations, just using the service loader to locate classes
 public interface ResolvableEntrypoint {
     /**
      * Get the mappings the plugin implementation is supposed to run in. Default returns
