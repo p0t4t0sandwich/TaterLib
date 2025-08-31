@@ -39,7 +39,8 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     // TODO: Cache and move to MethodHandles
-    // Consider making a common utils subproject and add Bukkit reflection stuffs, as it's used in TaterLib
+    // Consider making a common utils subproject and add Bukkit reflection stuffs, as it's used in
+    // TaterLib
     @Override
     public @NotNull Object minecraft() {
         try {
