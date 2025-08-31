@@ -23,6 +23,8 @@ dependencies {
 
     compileOnly(libs.mixin)
     compileOnly(libs.asm.tree)
+    
+    compileOnly("space.vectrix.ignite:ignite-api:1.1.0")
 
     compileOnly(project(":modapi:base"))
 
