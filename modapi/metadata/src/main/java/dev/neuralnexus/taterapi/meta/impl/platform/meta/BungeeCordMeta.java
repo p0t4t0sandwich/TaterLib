@@ -65,7 +65,7 @@ public final class BungeeCordMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return ProxyServer.getInstance().getPluginManager().getPlugins().stream()
                 .map(
                         plugin ->
@@ -83,7 +83,7 @@ public final class BungeeCordMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull Path modFolder() {
+    public @NotNull Path modsFolder() {
         return getPluginsFolder();
     }
 

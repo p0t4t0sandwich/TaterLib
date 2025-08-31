@@ -30,7 +30,7 @@ public class DepDownloader {
         Path basePath =
                 MetaAPI.instance()
                         .meta()
-                        .modFolder()
+                        .modsFolder()
                         .resolve(LoaderImpl.PROJECT_ID)
                         .resolve("libraries");
         for (Map.Entry<String, String> entry : depInfo.entrySet()) {

@@ -77,7 +77,7 @@ final class MCFLoaderMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return Loader.instance().getModList().stream()
                 .map(
                         modContainer ->

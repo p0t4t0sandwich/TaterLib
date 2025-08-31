@@ -17,6 +17,7 @@ import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.Side;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.BungeeCordMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.FabricMeta;
+import dev.neuralnexus.taterapi.meta.impl.platform.meta.IgniteMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.NeoForgeMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.VanillaMeta;
 import dev.neuralnexus.taterapi.meta.impl.platform.meta.VelocityMeta;
@@ -375,6 +376,8 @@ public final class MetaAPIImpl implements MetaAPI {
             return Optional.of(new BungeeCordMeta());
         } else if (platform == Platforms.VELOCITY) {
             return Optional.of(new VelocityMeta());
+        } else if (platform == Platforms.IGNITE) {
+            return Optional.of(new IgniteMeta());
         } else if (checkForClass("org.spongepowered.asm.service.MixinService")) {
             return Optional.of(new VanillaMeta());
         }

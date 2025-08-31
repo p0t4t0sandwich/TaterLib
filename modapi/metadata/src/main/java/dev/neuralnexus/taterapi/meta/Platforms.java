@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.meta.impl.platform.BungeeCord;
 import dev.neuralnexus.taterapi.meta.impl.platform.Fabric;
 import dev.neuralnexus.taterapi.meta.impl.platform.Forge;
 import dev.neuralnexus.taterapi.meta.impl.platform.Hybrid;
+import dev.neuralnexus.taterapi.meta.impl.platform.Misc;
 import dev.neuralnexus.taterapi.meta.impl.platform.PlatformImpl;
 import dev.neuralnexus.taterapi.meta.impl.platform.Sponge;
 import dev.neuralnexus.taterapi.meta.impl.platform.Vanilla;
@@ -19,7 +20,7 @@ import java.util.List;
 
 /** A class that provides information about the platforms that are available */
 public final class Platforms
-        implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Sponge, Vanilla, Velocity {
+        implements Bukkit, BungeeCord, Fabric, Forge, Hybrid, Misc, Sponge, Vanilla, Velocity {
     public static final Platform UNKNOWN = new PlatformImpl("Unknown");
     private static final List<Platform> platforms = new ArrayList<>();
 
@@ -133,6 +134,11 @@ public final class Platforms
         // Velocity
         if (VELOCITY.detect(force)) {
             platforms.add(VELOCITY);
+        }
+
+        // Ignite
+        if (IGNITE.detect(force)) {
+            platforms.add(IGNITE);
         }
     }
 }
