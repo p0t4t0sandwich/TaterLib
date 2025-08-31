@@ -3,6 +3,7 @@ import java.time.Instant
 plugins {
     id("maven-publish")
     alias(libs.plugins.jvmdowngrader)
+    id(libs.plugins.shadow.get().pluginId)
 }
 
 base {
@@ -12,8 +13,16 @@ base {
 dependencies {
     compileOnly(project(":modapi:entrypoint-spoof"))
 
-    compileOnly(project(":modapi:base"))
-    compileOnly(project(":modapi:metadata"))
+    implementation(project(":modapi:base"))
+    implementation(project(":modapi:core"))
+    implementation(project(":modapi:crossperms"))
+    implementation(project(":modapi:brigadier-general:bg-api"))
+    implementation(project(":modapi:brigadier-general:bg1_14_4"))
+    implementation(project(":modapi:brigadier-general:bg1_16_5"))
+    implementation(project(":modapi:brigadier-general:bg1_17_1"))
+    implementation(project(":modapi:brigadier-general:bg1_19_4"))
+    implementation(project(":modapi:metadata"))
+    implementation(project(":modapi:muxins"))
 }
 
 java {
@@ -24,7 +33,10 @@ java {
     targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
-tasks.jar {
+tasks.shadowJar {
+    archiveClassifier.set("")
+    mergeServiceFiles()
+
     manifest {
         attributes(
             mapOf(

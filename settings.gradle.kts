@@ -38,6 +38,7 @@ include(
 
 	    // ModAPI libraries
         ":modapi:base",
+        ":modapi:core",
         ":modapi:crossperms",
         ":modapi:brigadier-general",
         ":modapi:brigadier-general:bg-api",

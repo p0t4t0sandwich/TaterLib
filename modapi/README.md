@@ -9,3 +9,12 @@ An abstract permission query API that supports all major modding platforms
 
 # BrigadierGeneral
 A cross-platform command registration API, primarily focused on exposing brigadier and wrapping platform-specific command implementations.
+
+# Dependency Graph
+
+Base
+Core -> Base, Metadata
+Metadata -> Base
+Muxins -> Metadata
+CrossPerms -> Core, Base, Metadata, Muxins
+BrigadierGeneral -> CrossPerms, Metadata, Muxins
