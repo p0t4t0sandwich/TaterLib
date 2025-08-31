@@ -31,7 +31,7 @@ public interface Platform {
      * @return True if the platform is available, false otherwise
      */
     default boolean detect() {
-        return detect(false);
+        return this.detect(false);
     }
 
     /**
@@ -99,8 +99,8 @@ public interface Platform {
     default boolean isHybrid() {
         return this.equals(Platforms.MOHIST)
                 || this.equals(Platforms.ARCLIGHT)
-                || isForgeHybrid()
-                || isFabricHybrid();
+                || this.isForgeHybrid()
+                || this.isFabricHybrid();
     }
 
     default boolean isSponge() {
@@ -112,7 +112,7 @@ public interface Platform {
     }
 
     default boolean isProxy() {
-        return isBungeeCord() || isVelocity();
+        return this.isBungeeCord() || this.isVelocity();
     }
 
     /** The platform's metadata */
@@ -184,7 +184,7 @@ public interface Platform {
          *
          * @return The mod list
          */
-        @NotNull List<ModInfo> modList();
+        @NotNull List<ModInfo> mods();
 
         /**
          * Get the Logger
@@ -203,7 +203,7 @@ public interface Platform {
          */
         default boolean isModLoaded(@NotNull String nameOrId) {
             Objects.requireNonNull(nameOrId, "Mod name or ID cannot be null");
-            return modList().stream()
+            return this.mods().stream()
                     .anyMatch(
                             modInfo ->
                                     modInfo.id().equalsIgnoreCase(nameOrId)
@@ -211,11 +211,11 @@ public interface Platform {
         }
 
         /**
-         * Get the path to the mod/plugin folder
+         * Get the path to the mods/plugin folder
          *
          * @return The path to the mod/plugin folder
          */
-        default @NotNull Path modFolder() {
+        default @NotNull Path modsFolder() {
             return getModsFolder();
         }
 

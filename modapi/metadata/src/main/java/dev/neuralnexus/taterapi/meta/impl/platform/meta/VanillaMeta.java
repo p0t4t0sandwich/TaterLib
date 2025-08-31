@@ -93,7 +93,7 @@ public final class VanillaMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return Collections.emptyList();
     }
 

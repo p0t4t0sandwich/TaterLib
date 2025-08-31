@@ -94,7 +94,7 @@ public final class FabricMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return FabricLoader.getInstance().getAllMods().stream()
                 .map(
                         modContainer ->

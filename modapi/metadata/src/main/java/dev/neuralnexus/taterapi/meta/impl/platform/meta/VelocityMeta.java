@@ -69,7 +69,7 @@ public final class VelocityMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return proxyServer.getPluginManager().getPlugins().stream()
                 .map(
                         plugin ->
@@ -87,7 +87,7 @@ public final class VelocityMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull Path modFolder() {
+    public @NotNull Path modsFolder() {
         return getPluginsFolder();
     }
 

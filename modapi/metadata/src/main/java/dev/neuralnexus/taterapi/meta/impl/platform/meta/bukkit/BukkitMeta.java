@@ -38,6 +38,8 @@ public final class BukkitMeta implements Platform.Meta {
         throw new UnsupportedOperationException("Bukkit does not run on the client");
     }
 
+    // TODO: Cache and move to MethodHandles
+    // Consider making a common utils subproject and add Bukkit reflection stuffs, as it's used in TaterLib
     @Override
     public @NotNull Object minecraft() {
         try {
@@ -83,7 +85,7 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return Arrays.stream(Bukkit.getServer().getPluginManager().getPlugins())
                 .map(
                         plugin ->
@@ -101,7 +103,7 @@ public final class BukkitMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull Path modFolder() {
+    public @NotNull Path modsFolder() {
         return getPluginsFolder();
     }
 

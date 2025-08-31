@@ -38,25 +38,25 @@ public class FullDumpInfo extends DumpInfo {
     public FullDumpInfo() {
         MetaAPI api = MetaAPI.instance();
         if (api.isPlatformPresent(Platforms.BUKKIT)) {
-            this.bukkit = MetaAPI.instance().meta(Platforms.BUKKIT).get().modList();
+            this.bukkit = MetaAPI.instance().meta(Platforms.BUKKIT).get().mods();
         }
         if (api.isPlatformPresent(Platforms.BUNGEECORD)) {
-            this.bungeecord = MetaAPI.instance().meta(Platforms.BUNGEECORD).get().modList();
+            this.bungeecord = MetaAPI.instance().meta(Platforms.BUNGEECORD).get().mods();
         }
         if (api.isPlatformPresent(Platforms.FABRIC)) {
-            this.fabric = MetaAPI.instance().meta(Platforms.FABRIC).get().modList();
+            this.fabric = MetaAPI.instance().meta(Platforms.FABRIC).get().mods();
         }
         if (api.isPlatformPresent(Platforms.FORGE)) {
-            this.forge = MetaAPI.instance().meta(Platforms.FORGE).get().modList();
+            this.forge = MetaAPI.instance().meta(Platforms.FORGE).get().mods();
         }
         if (api.isPlatformPresent(Platforms.NEOFORGE)) {
-            this.neoforge = MetaAPI.instance().meta(Platforms.NEOFORGE).get().modList();
+            this.neoforge = MetaAPI.instance().meta(Platforms.NEOFORGE).get().mods();
         }
         if (api.isPlatformPresent(Platforms.SPONGE)) {
-            this.sponge = MetaAPI.instance().meta(Platforms.SPONGE).get().modList();
+            this.sponge = MetaAPI.instance().meta(Platforms.SPONGE).get().mods();
         }
         if (api.isPlatformPresent(Platforms.VELOCITY)) {
-            this.velocity = MetaAPI.instance().meta(Platforms.VELOCITY).get().modList();
+            this.velocity = MetaAPI.instance().meta(Platforms.VELOCITY).get().mods();
         }
     }
 

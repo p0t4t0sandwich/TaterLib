@@ -87,7 +87,7 @@ final class SpongeLegacyMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         return Sponge.getPluginManager().getPlugins().stream()
                 .map(
                         pluginContainer ->

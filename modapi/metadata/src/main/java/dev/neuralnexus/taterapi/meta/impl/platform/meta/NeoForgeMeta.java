@@ -72,7 +72,7 @@ public final class NeoForgeMeta implements Platform.Meta {
     }
 
     @Override
-    public @NotNull List<ModInfo> modList() {
+    public @NotNull List<ModInfo> mods() {
         List<net.neoforged.fml.loading.moddiscovery.ModInfo> mods = ModList.get().getMods();
         if (mods == null || mods.isEmpty()) {
             mods = LoadingModList.get().getMods();
