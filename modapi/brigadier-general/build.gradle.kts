@@ -64,6 +64,19 @@ java {
     targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
+tasks.withType<ProcessResources> {
+    filesMatching(listOf(
+        "fabric.mod.json",
+        "ignite.mod.json",
+        "pack.mcmeta",
+        "META-INF/mods.toml",
+        "META-INF/neoforge.mods.toml",
+        "META-INF/sponge_plugins.json"
+    )) {
+        expand(project.properties)
+    }
+}
+
 tasks.jar {
     manifest {
         attributes(

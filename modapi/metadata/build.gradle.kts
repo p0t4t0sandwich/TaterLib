@@ -43,6 +43,7 @@ java {
 tasks.withType<ProcessResources> {
     filesMatching(listOf(
         "fabric.mod.json",
+        "ignite.mod.json",
         "pack.mcmeta",
         "META-INF/mods.toml",
         "META-INF/neoforge.mods.toml",

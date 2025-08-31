@@ -131,10 +131,10 @@ dependencies {
     compileOnly(project(":modapi:metadata"))
 
     commonCompileOnly(libs.mixin)
-    commonCompileOnly(variantOf(libs.modapi) { classifier("downgraded-8") })
-    commonCompileOnly(variantOf(libs.modapi.base) { classifier("downgraded-8") })
-    commonCompileOnly(variantOf(libs.modapi.metadata) { classifier("downgraded-8") })
-    commonCompileOnly(variantOf(libs.modapi.muxins) { classifier("downgraded-8") })
+    commonCompileOnly(project(":modapi:core"))
+    commonCompileOnly(project(":modapi:base"))
+    commonCompileOnly(project(":modapi:metadata"))
+    commonCompileOnly(project(":modapi:muxins"))
     forge.compileOnly(libs.mixin)
 }
 
@@ -148,6 +148,7 @@ tasks.withType<RemapJarTask> {
 tasks.withType<ProcessResources> {
     filesMatching(listOf(
         "fabric.mod.json",
+        "ignite.mod.json",
         "pack.mcmeta",
         "META-INF/mods.toml",
         "META-INF/neoforge.mods.toml",
