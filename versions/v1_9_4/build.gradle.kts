@@ -69,6 +69,8 @@ dependencies {
 }
 
 tasks.register<Jar>("outputJar") {
+    dependsOn(":versions:v1_8_9:outputJar")
+
     dependsOn("relocateFabricJar")
     from(jarToFiles("relocateFabricJar"))
     dependsOn("relocateForgeJar")
