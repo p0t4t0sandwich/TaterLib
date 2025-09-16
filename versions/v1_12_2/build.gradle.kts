@@ -82,10 +82,9 @@ dependencies {
     sponge.compileOnly(srcSetAsDep(":versions:v1_11_2", "sponge"))
 }
 
-tasks.register<Jar>("outputJar") {
+tasks.jar {
     dependsOn("relocateFabricJar")
     from(jarToFiles("relocateFabricJar"))
     dependsOn("relocateForgeJar")
     from(jarToFiles("relocateForgeJar"))
 }
-tasks.build.get().dependsOn("outputJar")

@@ -68,12 +68,9 @@ dependencies {
     forge.compileOnly(srcSetAsDep(":versions:v1_8_9", "forge"))
 }
 
-tasks.register<Jar>("outputJar") {
-    dependsOn(":versions:v1_8_9:outputJar")
-
+tasks.jar {
     dependsOn("relocateFabricJar")
     from(jarToFiles("relocateFabricJar"))
     dependsOn("relocateForgeJar")
     from(jarToFiles("relocateForgeJar"))
 }
-tasks.build.get().dependsOn("outputJar")

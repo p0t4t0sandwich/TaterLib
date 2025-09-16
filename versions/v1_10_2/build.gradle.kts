@@ -74,11 +74,11 @@ dependencies {
         fabric.modImplementation(fabricApi.legacyFabricModule("legacy-fabric-$it", fabricVersion))
     }
     forge.compileOnly(libs.mixin)
-    "fabricCompileOnly"(srcSetAsDep(":versions:v1_7_10", "fabric"))
-    "forgeCompileOnly"(srcSetAsDep(":versions:v1_8_9", "forge"))
-    "forgeCompileOnly"(srcSetAsDep(":versions:v1_9_4", "forge"))
-    "spongeCompileOnly"("org.spongepowered:spongeapi:${spongeVersion}")
-    "spongeCompileOnly"(srcSetAsDep(":versions:v1_8_9", "sponge"))
+    fabric.compileOnly(srcSetAsDep(":versions:v1_7_10", "fabric"))
+    forge.compileOnly(srcSetAsDep(":versions:v1_8_9", "forge"))
+    forge.compileOnly(srcSetAsDep(":versions:v1_9_4", "forge"))
+    sponge.compileOnly("org.spongepowered:spongeapi:${spongeVersion}")
+    sponge.compileOnly(srcSetAsDep(":versions:v1_8_9", "sponge"))
 }
 
 tasks.jar {
