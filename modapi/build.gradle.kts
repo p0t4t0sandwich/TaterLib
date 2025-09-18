@@ -13,16 +13,16 @@ base {
 dependencies {
     compileOnly(project(":modapi:entrypoint-spoof"))
 
-    implementation(project(":modapi:base"))
-    implementation(project(":modapi:core"))
-    implementation(project(":modapi:crossperms"))
-    implementation(project(":modapi:brigadier-general:bg-api"))
-    implementation(project(":modapi:brigadier-general:bg1_14_4"))
-    implementation(project(":modapi:brigadier-general:bg1_16_5"))
-    implementation(project(":modapi:brigadier-general:bg1_17_1"))
-    implementation(project(":modapi:brigadier-general:bg1_19_4"))
-    implementation(project(":modapi:metadata"))
-    implementation(project(":modapi:muxins"))
+//    implementation(project(":modapi:base"))
+//    implementation(project(":modapi:core"))
+//    implementation(project(":modapi:crossperms"))
+//    implementation(project(":modapi:brigadier-general:bg-api"))
+//    implementation(project(":modapi:brigadier-general:bg1_14_4"))
+//    implementation(project(":modapi:brigadier-general:bg1_16_5"))
+//    implementation(project(":modapi:brigadier-general:bg1_17_1"))
+//    implementation(project(":modapi:brigadier-general:bg1_19_4"))
+//    implementation(project(":modapi:metadata"))
+//    implementation(project(":modapi:muxins"))
 }
 
 java {
@@ -75,11 +75,11 @@ tasks.withType<GenerateModuleMetadata> {
     enabled = false
 }
 
-tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
-tasks.assemble {
-    dependsOn(tasks.downgradeJar)
-    dependsOn(tasks.shadeDowngradedApi)
-}
+//tasks.downgradeJar.get().dependsOn(tasks.spotlessApply)
+//tasks.assemble {
+//    dependsOn(tasks.downgradeJar)
+//    dependsOn(tasks.shadeDowngradedApi)
+//}
 
 publishing {
     repositories {
