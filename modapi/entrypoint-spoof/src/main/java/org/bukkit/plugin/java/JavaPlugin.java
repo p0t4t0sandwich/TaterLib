@@ -15,6 +15,7 @@ public abstract class JavaPlugin extends PluginBase {
     Logger logger;
     Server server;
     File dataFolder;
+    File file;
     PluginDescriptionFile description;
 
     public String getName() {

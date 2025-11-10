@@ -4,6 +4,7 @@
  */
 package org.spongepowered.api.plugin;
 
+import java.nio.file.Path;
 import java.util.Optional;
 
 /** Fake Sponge PluginContainer class to simplify the creation of entrypoints. */
@@ -15,4 +16,8 @@ public interface PluginContainer {
     Optional<String> getVersion();
 
     Optional<?> getInstance();
+
+    default Optional<Path> getSource() {
+        return Optional.empty();
+    }
 }

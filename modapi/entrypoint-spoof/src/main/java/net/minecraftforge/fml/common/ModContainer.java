@@ -4,6 +4,8 @@
  */
 package net.minecraftforge.fml.common;
 
+import java.io.File;
+
 /** Fake Forge class. */
 public interface ModContainer {
     String getModId();
@@ -11,4 +13,6 @@ public interface ModContainer {
     String getName();
 
     String getVersion();
+
+    File getSource();
 }

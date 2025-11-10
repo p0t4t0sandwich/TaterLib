@@ -9,7 +9,7 @@ import net.neoforged.neoforgespi.language.IModInfo;
 import org.apache.maven.artifact.versioning.ArtifactVersion;
 
 /** Fake NeoForge mod info. */
-public class ModInfo implements IModInfo {
+public abstract class ModInfo implements IModInfo {
     @Override
     public String getModId() {
         return "";

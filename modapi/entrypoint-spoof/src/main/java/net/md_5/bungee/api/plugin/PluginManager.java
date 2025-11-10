@@ -9,6 +9,10 @@ import java.util.Collections;
 
 /** Fake BungeeCord class. */
 public class PluginManager {
+    public Plugin getPlugin(String name) {
+        return new Plugin() {};
+    }
+
     public Collection<Plugin> getPlugins() {
         return Collections.emptyList();
     }

@@ -8,6 +8,7 @@ import net.neoforged.fml.loading.moddiscovery.ModInfo;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /** Fake NeoForge modlist. */
 public class ModList {
@@ -19,5 +20,18 @@ public class ModList {
 
     public List<ModInfo> getMods() {
         return Collections.emptyList();
+    }
+
+    public List<ModContainer> getSortedMods() {
+        return Collections.emptyList();
+    }
+
+    public Optional<? extends ModContainer> getModContainerById(String modId) {
+        return Optional.empty();
+    }
+
+    private boolean dummyBoolean;
+    public boolean isLoaded(String modTarget) {
+        return dummyBoolean;
     }
 }

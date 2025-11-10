@@ -4,6 +4,7 @@
  */
 package net.minecraftforge.fml.loading.moddiscovery;
 
+import net.minecraftforge.forgespi.language.IModFileInfo;
 import net.minecraftforge.forgespi.language.IModInfo;
 
 import org.apache.maven.artifact.versioning.ArtifactVersion;
@@ -23,5 +24,10 @@ public class ModInfo implements IModInfo {
     @Override
     public ArtifactVersion getVersion() {
         return new ArtifactVersion() {};
+    }
+
+    @Override
+    public IModFileInfo getOwningFile() {
+        return null;
     }
 }

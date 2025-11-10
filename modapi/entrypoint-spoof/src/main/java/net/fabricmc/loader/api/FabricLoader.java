@@ -21,6 +21,8 @@ public interface FabricLoader {
 
     Optional<ModContainer> getModContainer(String id);
 
+    boolean isModLoaded(String id);
+
     EnvType getEnvironmentType();
 
     @Deprecated

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /** Fake Forge modlist. */
 public class ModList {
@@ -19,5 +20,19 @@ public class ModList {
 
     public List<ModInfo> getMods() {
         return Collections.emptyList();
+    }
+
+    private List<ModContainer> mods;
+    public List<ModContainer> getLoadedMods() {
+        return this.mods;
+    }
+
+    public Optional<? extends ModContainer> getModContainerById(String modId) {
+        return Optional.empty();
+    }
+
+    private boolean dummyBoolean;
+    public boolean isLoaded(String modTarget) {
+        return dummyBoolean;
     }
 }

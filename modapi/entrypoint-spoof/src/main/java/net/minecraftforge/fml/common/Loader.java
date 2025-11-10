@@ -22,6 +22,10 @@ public class Loader {
         return instance;
     }
 
+    public static boolean isModLoaded(String modname) {
+        return instance().getModList().stream().anyMatch(mod -> mod.getModId().equalsIgnoreCase(modname));
+    }
+
     public List<ModContainer> getModList() {
         return Collections.emptyList();
     }

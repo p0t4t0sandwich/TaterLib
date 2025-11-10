@@ -4,6 +4,7 @@
  */
 package com.velocitypowered.api.plugin;
 
+import java.nio.file.Path;
 import java.util.Optional;
 
 /** Fake Velocity plugin description interface. */
@@ -19,6 +20,10 @@ public interface PluginDescription {
     }
 
     default Optional<String> getDescription() {
+        return Optional.empty();
+    }
+
+    default Optional<Path> getSource() {
         return Optional.empty();
     }
 }

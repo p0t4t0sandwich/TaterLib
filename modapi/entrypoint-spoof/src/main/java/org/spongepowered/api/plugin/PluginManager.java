@@ -16,4 +16,6 @@ public interface PluginManager {
     Collection<org.spongepowered.plugin.PluginContainer> plugins();
 
     Collection<org.spongepowered.api.plugin.PluginContainer> getPlugins();
+
+    boolean isLoaded(String id);
 }

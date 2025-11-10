@@ -12,4 +12,6 @@ public interface PluginManager {
     Optional<PluginContainer> getPlugin(String id);
 
     Collection<PluginContainer> getPlugins();
+
+    boolean isLoaded(String id);
 }

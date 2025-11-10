@@ -13,4 +13,6 @@ public interface IModInfo {
     String getDisplayName();
 
     ArtifactVersion getVersion();
+
+    IModFileInfo getOwningFile();
 }

@@ -5,10 +5,14 @@
 package org.bukkit.plugin;
 
 import org.bukkit.event.Listener;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /** Fake Bukkit interface */
 public interface PluginManager {
     void registerEvents(Listener listener, Plugin plugin);
+
+    @Nullable Plugin getPlugin(@NotNull String name);
 
     Plugin[] getPlugins();
 }

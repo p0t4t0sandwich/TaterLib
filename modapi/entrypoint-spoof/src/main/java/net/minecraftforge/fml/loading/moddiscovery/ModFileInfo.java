@@ -4,4 +4,11 @@
  */
 package net.minecraftforge.fml.loading.moddiscovery;
 
-public class ModFileInfo {}
+import net.minecraftforge.forgespi.language.IModFileInfo;
+
+public abstract class ModFileInfo implements IModFileInfo {
+    @Override
+    public ModFile getFile() {
+        return null;
+    }
+}

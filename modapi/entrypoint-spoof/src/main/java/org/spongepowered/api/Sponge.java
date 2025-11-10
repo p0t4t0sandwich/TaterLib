@@ -43,6 +43,11 @@ public final class Sponge {
             public Collection<org.spongepowered.api.plugin.PluginContainer> getPlugins() {
                 return Collections.emptyList();
             }
+
+            @Override
+            public boolean isLoaded(String id) {
+                return false;
+            }
         };
     }
 

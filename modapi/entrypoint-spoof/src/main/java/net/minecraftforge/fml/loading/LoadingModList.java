@@ -22,7 +22,7 @@ public class LoadingModList {
     }
 
     public ModFileInfo getModFileById(String modid) {
-        return new ModFileInfo();
+        return null;
     }
 
     public List<ModInfo> getMods() {
