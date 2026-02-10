@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
+ */
 package net.minecraftforge.forgespi.locating;
 
 import net.minecraftforge.forgespi.language.IModFileInfo;
@@ -9,11 +13,11 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public interface IModFile {
-    //IModLanguageProvider getLoader();
+    // IModLanguageProvider getLoader();
 
     Path findResource(String className);
 
-    Supplier<Map<String,Object>> getSubstitutionMap();
+    Supplier<Map<String, Object>> getSubstitutionMap();
 
     Type getType();
 
@@ -21,15 +25,18 @@ public interface IModFile {
 
     List<IModInfo> getModInfos();
 
-    //ModFileScanData getScanResult();
+    // ModFileScanData getScanResult();
 
     String getFileName();
 
-    //IModLocator getLocator();
+    // IModLocator getLocator();
 
     IModFileInfo getModFileInfo();
 
     enum Type {
-        MOD, LIBRARY, LANGPROVIDER, GAMELIBRARY
+        MOD,
+        LIBRARY,
+        LANGPROVIDER,
+        GAMELIBRARY
     }
 }

@@ -23,6 +23,7 @@ public class ModList {
     }
 
     private List<ModContainer> mods;
+
     public List<ModContainer> getLoadedMods() {
         return this.mods;
     }
@@ -32,6 +33,7 @@ public class ModList {
     }
 
     private boolean dummyBoolean;
+
     public boolean isLoaded(String modTarget) {
         return dummyBoolean;
     }

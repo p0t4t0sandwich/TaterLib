@@ -5,11 +5,9 @@
 package net.neoforged.fml;
 
 import net.neoforged.bus.api.IEventBus;
-
 import net.neoforged.neoforgespi.language.IModInfo;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class ModContainer {
     private IModInfo modInfo;

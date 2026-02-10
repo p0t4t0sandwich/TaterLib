@@ -5,6 +5,7 @@
 package net.neoforged.fml.loading;
 
 import net.neoforged.api.distmarker.Dist;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.atomic.AtomicReference;
@@ -35,8 +36,7 @@ public class FMLLoader {
         return current;
     }
 
-    @Nullable
-    public static FMLLoader getCurrentOrNull() {
+    @Nullable public static FMLLoader getCurrentOrNull() {
         return current.get();
     }
 }

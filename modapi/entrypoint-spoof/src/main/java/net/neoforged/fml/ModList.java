@@ -31,6 +31,7 @@ public class ModList {
     }
 
     private boolean dummyBoolean;
+
     public boolean isLoaded(String modTarget) {
         return dummyBoolean;
     }
