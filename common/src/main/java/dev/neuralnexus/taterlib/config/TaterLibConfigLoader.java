@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
-    private static final Logger logger = Logger.create("TaterLibConfigLoader");
+    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID + "-configloader");
     private static final Path configPath =
             Paths.get(
                     MetaAPI.instance().meta().configFolder()

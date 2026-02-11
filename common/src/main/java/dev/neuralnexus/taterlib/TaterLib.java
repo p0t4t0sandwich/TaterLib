@@ -21,7 +21,6 @@ import dev.neuralnexus.taterlib.modules.mclogs.MCLogsModule;
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
-    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
     private static boolean RELOADED = false;
 
     private TaterLib() {}
@@ -48,7 +47,7 @@ public class TaterLib {
     /** Start */
     public static void start() {
         MetaAPI api = MetaAPI.instance();
-        logger.info(
+        TaterAPI.logger().info(
                 LoaderImpl.PROJECT_NAME
                         + " is running on "
                         + api.platform()
