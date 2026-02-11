@@ -6,12 +6,12 @@ package dev.neuralnexus.taterlib.mixin.v1_20_1.vanilla.listeners.entity;
 
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 
 import net.minecraft.world.damagesource.CombatTracker;
@@ -22,11 +22,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = {Platform.FORGE, Platform.NEOFORGE, Platform.SPONGE})
-@ReqMCVersion(min = MinecraftVersion.V20)
+@AConstraints({
+    @AConstraint(
+            platform = {Platform.FORGE, Platform.NEOFORGE, Platform.SPONGE},
+            invert = true),
+    @AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V20))
+})
 @Mixin(CombatTracker.class)
-class EntityDamageMixin {
+public class EntityDamageMixin {
     @Inject(method = "recordDamage", at = @At("HEAD"), cancellable = true)
     private void onEntityDamage(DamageSource damageSource, float damage, CallbackInfo ci) {
         EntityEvents.DAMAGE.invoke(

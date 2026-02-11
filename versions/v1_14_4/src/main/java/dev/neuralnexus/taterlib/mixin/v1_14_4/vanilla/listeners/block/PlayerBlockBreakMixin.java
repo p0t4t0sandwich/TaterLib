@@ -6,12 +6,12 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.listeners.block;
 
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 
 import net.minecraft.core.BlockPos;
@@ -27,9 +27,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = {Platform.NEOFORGE, Platform.SPONGE})
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraints({
+    @AConstraint(
+            platform = {Platform.NEOFORGE, Platform.SPONGE},
+            invert = true),
+    @AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V14))
+})
 @Mixin(Block.class)
 public class PlayerBlockBreakMixin {
     @Inject(method = "playerDestroy", at = @At("HEAD"), cancellable = true)

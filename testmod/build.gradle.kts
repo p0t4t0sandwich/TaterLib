@@ -15,9 +15,6 @@ dependencies {
     compileOnly(project(":api"))
     compileOnly(project(":loader"))
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(variantOf(libs.modapi) {
-        classifier("downgraded-8")
-    })
 }
 
 tasks.withType<ProcessResources>().configureEach {

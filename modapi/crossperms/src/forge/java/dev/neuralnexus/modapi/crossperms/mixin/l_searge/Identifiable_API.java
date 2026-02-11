@@ -7,7 +7,7 @@ package dev.neuralnexus.modapi.crossperms.mixin.l_searge;
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.entity.Entity;
@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
+@AConstraint(mappings = Mappings.LEGACY_SEARGE)
 @Mixin(value = {CommandSourceStack.class, Entity.class})
 @Implements(
         @Interface(

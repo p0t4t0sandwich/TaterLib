@@ -8,9 +8,9 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -32,8 +32,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
+@AConstraint(
+        mappings = Mappings.LEGACY_SEARGE,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5))
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),

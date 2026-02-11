@@ -6,10 +6,10 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.listeners.entity;
 
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntitySpawnEvent;
 
 import net.minecraft.server.level.ServerLevel;
@@ -20,10 +20,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(ServerLevel.class)
-class EntitySpawnMixin {
+public class EntitySpawnMixin {
     @Inject(method = "addFreshEntity", at = @At("HEAD"), cancellable = true)
     private void onEntitySpawn(Entity entity, CallbackInfoReturnable<Boolean> cir) {
         EntityEvents.SPAWN.invoke(

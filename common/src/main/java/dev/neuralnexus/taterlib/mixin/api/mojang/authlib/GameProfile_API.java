@@ -10,8 +10,9 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -19,7 +20,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(version = @Versions(min = MinecraftVersion.V14))
 @Mixin(value = GameProfile.class, remap = false)
 @Implements({
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE),

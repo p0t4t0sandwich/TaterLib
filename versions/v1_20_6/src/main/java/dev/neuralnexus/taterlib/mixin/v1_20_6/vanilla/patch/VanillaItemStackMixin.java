@@ -4,8 +4,9 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.patch;
 
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory.VanillaItemStack;
 
 import net.minecraft.core.component.DataComponents;
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.Overwrite;
 
 // TODO: Turn this into bridge mixins
 /** Patch mixin for VanillaItemStack 1.20.6 */
-@ReqMCVersion(min = MinecraftVersion.V20_5, max = MinecraftVersion.V20_6)
+@AConstraint(version = @Versions(min = MinecraftVersion.V20_5, max = MinecraftVersion.V20_6))
 @Mixin(value = VanillaItemStack.class, remap = false)
 public class VanillaItemStackMixin {
     /**

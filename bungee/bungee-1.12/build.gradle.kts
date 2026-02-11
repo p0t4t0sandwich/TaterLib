@@ -9,5 +9,4 @@ dependencies {
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
     compileOnly(project(":bungee:bungee-utils"))
-    compileOnly(libs.modapi)
 }

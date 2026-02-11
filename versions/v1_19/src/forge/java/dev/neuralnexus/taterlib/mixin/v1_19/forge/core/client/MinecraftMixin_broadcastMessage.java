@@ -6,17 +6,18 @@ package dev.neuralnexus.taterlib.mixin.v1_19.forge.core.client;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
 
 import net.minecraft.client.Minecraft;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-@ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4)
+@AConstraint(
+        mappings = Mappings.SEARGE,
+        version = @Versions(min = MinecraftVersion.V19, max = MinecraftVersion.V19_4))
 @Mixin(Minecraft.class)
 public abstract class MinecraftMixin_broadcastMessage implements MinecraftBridge {
     @Override

@@ -8,8 +8,9 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -20,7 +21,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(version = @Versions(min = MinecraftVersion.V14))
 @Mixin(GameProfile.class)
 @Implements(@Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE))
 public abstract class GameProfileMixin {

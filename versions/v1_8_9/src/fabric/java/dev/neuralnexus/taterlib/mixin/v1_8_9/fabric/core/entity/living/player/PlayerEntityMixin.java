@@ -6,9 +6,9 @@ package dev.neuralnexus.taterlib.mixin.v1_8_9.fabric.core.entity.living.player;
 
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
 
@@ -20,8 +20,9 @@ import net.minecraft.world.WorldSettings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V8, max = MinecraftVersion.V9_4)
+@AConstraint(
+        mappings = Mappings.LEGACY_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V8, max = MinecraftVersion.V9_4))
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {
     @Shadow

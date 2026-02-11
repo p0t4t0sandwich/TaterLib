@@ -20,7 +20,6 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.mixin)
-        mainCompileOnly(variantOf(rootProject.libs.modapi) { classifier("downgraded-8") })
         listOf(":api", ":common").forEach {
             mainCompileOnly(project(it))
         }

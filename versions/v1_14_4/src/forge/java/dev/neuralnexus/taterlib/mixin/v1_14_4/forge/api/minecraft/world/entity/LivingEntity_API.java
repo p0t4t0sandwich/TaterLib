@@ -8,9 +8,9 @@ import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntityBridge;
 
 import org.spongepowered.asm.mixin.Implements;
@@ -19,8 +19,9 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5)
+@AConstraint(
+        mappings = Mappings.LEGACY_SEARGE,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5))
 @Mixin(net.minecraft.world.entity.LivingEntity.class)
 @Implements({
     @Interface(iface = Damageable.class, prefix = "damageable$", remap = Remap.NONE),

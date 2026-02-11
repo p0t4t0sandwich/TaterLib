@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.mixin.v1_20_2.fabric.listeners.network;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.S2CCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
@@ -22,8 +22,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@AConstraint(
+        mappings = Mappings.YARN_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4))
 // TODO: Make a note of the priority change
 @Mixin(value = ClientCommonPacketListenerImpl.class, priority = 900)
 public abstract class S2CCustomPayloadMixin {

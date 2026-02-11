@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_16_1.fabric.core.world.level;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.LevelBridge;
 
 import net.minecraft.resources.ResourceKey;
@@ -18,8 +18,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V16)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V16))
 @Mixin(Level.class)
 public abstract class LevelMixin implements LevelBridge {
     @Shadow @Final private ResourceKey<Level> dimension;

@@ -10,9 +10,9 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 
@@ -29,8 +29,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
-@ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4)
+@AConstraint(
+        mappings = Mappings.SEARGE,
+        version = @Versions(min = MinecraftVersion.V20_2, max = MinecraftVersion.V20_4))
 @Mixin(ServerCommonPacketListenerImpl.class)
 public abstract class C2SCustomPayloadMixin {
     @Shadow @Final protected MinecraftServer server;

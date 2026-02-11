@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_20_1.fabric.core.world.entity;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 
@@ -22,8 +22,9 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6)
+@AConstraint(
+        mappings = Mappings.YARN_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V20, max = MinecraftVersion.V20_6))
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
     // @spotless:off

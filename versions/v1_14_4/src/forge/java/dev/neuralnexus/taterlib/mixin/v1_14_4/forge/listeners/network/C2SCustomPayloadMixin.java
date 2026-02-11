@@ -8,9 +8,9 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 
 import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
@@ -23,8 +23,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
+// TODO: Check if this is valid
+@AConstraint(
+        mappings = Mappings.LEGACY_SEARGE,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1))
 @Mixin(ServerGamePacketListenerImpl.class)
 public class C2SCustomPayloadMixin {
     @Shadow public ServerPlayer player;

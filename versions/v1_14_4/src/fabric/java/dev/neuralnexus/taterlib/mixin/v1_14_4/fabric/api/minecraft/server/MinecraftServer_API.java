@@ -8,9 +8,9 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.MinecraftServerBridge;
@@ -33,8 +33,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
 public abstract class MinecraftServer_API implements MinecraftServerBridge {

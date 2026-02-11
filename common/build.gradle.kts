@@ -38,19 +38,16 @@ dependencies {
     // Tooling
     implementation(project(":api"))
     implementation(project(":loader"))
-    compileOnly(variantOf(libs.modapi) {
+    compileOnly(variantOf(libs.taterlib.lite.base) {
         classifier("downgraded-8-shaded")
     })
-    compileOnly(variantOf(libs.modapi.base) {
+    compileOnly(variantOf(libs.taterlib.lite.core) {
+        classifier("downgraded-8-shaded")
+    })
+    compileOnly(variantOf(libs.taterlib.lite.muxins) {
         classifier("downgraded-8-shaded")
     })
     compileOnly(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8-shaded")
-    })
-    compileOnly(variantOf(libs.modapi.muxins) {
-        classifier("downgraded-8-shaded")
-    })
-    compileOnly(variantOf(libs.modapi.muxins) {
         classifier("downgraded-8-shaded")
     })
     compileOnly(project(":modapi:entrypoint-spoof"))

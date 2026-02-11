@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.accessors.server.players;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.server.players.StoredUserEntry;
 
@@ -15,8 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(StoredUserEntry.class)
 public interface StoredUserEntryAccessor<T> {
     @Invoker("getUser")

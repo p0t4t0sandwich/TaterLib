@@ -6,7 +6,7 @@ package dev.neuralnexus.modapi.crossperms.mixin.vanilla;
 
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 
 import net.minecraft.world.entity.Entity;
 
@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMappings(Mappings.MOJANG)
+@AConstraint(mappings = Mappings.MOJANG)
 @Mixin(Entity.class)
 @Implements(@Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE))
 public abstract class EntityMixin {

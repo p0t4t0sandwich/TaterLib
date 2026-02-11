@@ -6,9 +6,9 @@ package dev.neuralnexus.modapi.brigadier.mixin.v1_19_4.vanilla;
 
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.commands.CommandSource;
 import net.minecraft.network.chat.Component;
@@ -19,8 +19,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V19)
+@AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V19))
 @Mixin(CommandSource.class)
 @Implements(@Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
 public interface CommandSource_API {

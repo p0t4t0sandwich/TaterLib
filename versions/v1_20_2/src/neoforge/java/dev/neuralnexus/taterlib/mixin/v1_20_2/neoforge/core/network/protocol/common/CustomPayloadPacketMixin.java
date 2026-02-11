@@ -5,11 +5,11 @@
 package dev.neuralnexus.taterlib.mixin.v1_20_2.neoforge.core.network.protocol.common;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 
 import io.netty.buffer.Unpooled;
@@ -24,9 +24,10 @@ import net.neoforged.neoforge.network.custom.payload.SimplePayload;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqPlatform(Platform.NEOFORGE)
-@ReqMCVersion(MinecraftVersion.V20_2)
+@AConstraints({
+    @AConstraint(platform = Platform.NEOFORGE),
+    @AConstraint(mappings = Mappings.MOJANG, version = @Versions(MinecraftVersion.V20_2))
+})
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Unique public CustomPacketPayload taterapi$payload() {

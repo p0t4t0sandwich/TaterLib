@@ -6,11 +6,11 @@ package dev.neuralnexus.taterlib.mixin.v1_20_4.neoforge.network.registration;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.AttributeKey;
@@ -50,9 +50,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqPlatform(Platform.NEOFORGE)
-@ReqMCVersion(min = MinecraftVersion.V20_3, max = MinecraftVersion.V20_4)
+@AConstraints({
+    @AConstraint(platform = Platform.NEOFORGE),
+    @AConstraint(
+            mappings = Mappings.MOJANG,
+            version = @Versions(min = MinecraftVersion.V20_3, max = MinecraftVersion.V20_4))
+})
 @SuppressWarnings("UnstableApiUsage")
 @Mixin(value = NetworkRegistry.class, remap = false)
 public abstract class NetworkRegistryMixin {

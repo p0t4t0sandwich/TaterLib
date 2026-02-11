@@ -10,14 +10,8 @@ unimined = "1.3.14"
 asm-tree = { group = "org.ow2.asm", name = "asm-tree", version = "6.2" }
 brigadier = { group = "com.mojang", name = "brigadier", version = "1.0.18" }
 mixin = { group = "org.spongepowered", name = "mixin", version = "0.8.5" }
-
-modapi = { group = "dev.neuralnexus", name = "modapi", version = "0.1.0" }
-modapi-base = { group = "dev.neuralnexus.modapi", name = "base", version = "0.1.0" }
 modapi-crossperms = { group = "dev.neuralnexus.modapi", name = "crossperms", version = "0.1.0" }
 modapi-brigadier = { group = "dev.neuralnexus.modapi.brigadier", name = "bg-api", version = "0.1.0" }
-modapi-metadata = { group = "dev.neuralnexus.modapi", name = "metadata", version = "0.1.0" }
-modapi-muxins = { group = "dev.neuralnexus.modapi", name = "muxins", version = "0.1.0" }
-
 taterlib-lite-base = { group = "dev.neuralnexus.taterlib.lite", name = "base", version.ref = "taterlib-lite" }
 taterlib-lite-core = { group = "dev.neuralnexus.taterlib.lite", name = "core", version.ref = "taterlib-lite" }
 taterlib-lite-metadata = { group = "dev.neuralnexus.taterlib.lite", name = "metadata", version.ref = "taterlib-lite" }

@@ -52,7 +52,7 @@ dependencies {
     api(variantOf(libs.taterlib.lite.metadata) {
         classifier("downgraded-8-shaded")
     })
-    api(variantOf(libs.modapi.muxins) {
+    api(variantOf(libs.taterlib.lite.muxins) {
         classifier("downgraded-8-shaded")
     })
     api(variantOf(libs.modapi.crossperms) {

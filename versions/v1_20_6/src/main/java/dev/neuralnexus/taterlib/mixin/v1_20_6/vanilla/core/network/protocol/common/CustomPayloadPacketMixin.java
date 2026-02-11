@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.core.network.protocol.common;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 import dev.neuralnexus.taterlib.v1_20_2.vanilla.bridge.network.protocol.common.custom.DiscardedPayloadBridge;
 
@@ -22,8 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20_5)
+@AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V20_5))
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 public abstract class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Unique @SuppressWarnings("DataFlowIssue")

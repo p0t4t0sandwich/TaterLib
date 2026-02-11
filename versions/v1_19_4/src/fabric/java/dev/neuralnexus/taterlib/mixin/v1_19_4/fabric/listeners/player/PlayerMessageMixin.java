@@ -6,12 +6,12 @@ package dev.neuralnexus.taterlib.mixin.v1_19_4.fabric.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.mixin.MixinCancellableCallbackWrapper;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessageEvent;
 
 import net.minecraft.network.protocol.game.ServerboundChatPacket;
@@ -24,9 +24,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqPlatform(not = Platform.SPONGE)
-@ReqMCVersion(min = MinecraftVersion.V19_1)
+@AConstraints({
+    @AConstraint(platform = Platform.SPONGE, invert = true),
+    @AConstraint(
+            mappings = Mappings.YARN_INTERMEDIARY,
+            version = @Versions(min = MinecraftVersion.V19_1))
+})
 @Mixin(ServerGamePacketListenerImpl.class)
 public class PlayerMessageMixin {
     @Shadow public ServerPlayer player;

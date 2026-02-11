@@ -7,11 +7,11 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.listeners.server;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.AConstraints;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqPlatform;
 
 import net.minecraft.server.MinecraftServer;
 
@@ -20,9 +20,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqPlatform(not = {Platform.NEOFORGE, Platform.SPONGE})
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraints({
+    @AConstraint(
+            platform = {Platform.NEOFORGE, Platform.SPONGE},
+            invert = true),
+    @AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V14))
+})
 @Mixin(MinecraftServer.class)
 public class ServerStoppedMixin {
     @Inject(at = @At("TAIL"), method = "stopServer")

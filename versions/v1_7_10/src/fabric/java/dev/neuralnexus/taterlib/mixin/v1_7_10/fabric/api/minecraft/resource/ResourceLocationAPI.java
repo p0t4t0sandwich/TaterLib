@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_7_10.fabric.api.minecraft.resource;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.client.resource.Identifier;
@@ -19,8 +19,9 @@ import org.spongepowered.asm.mixin.Intrinsic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2)
+@AConstraint(
+        mappings = Mappings.LEGACY_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2))
 @Mixin(Identifier.class)
 @Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
 public abstract class ResourceLocationAPI {

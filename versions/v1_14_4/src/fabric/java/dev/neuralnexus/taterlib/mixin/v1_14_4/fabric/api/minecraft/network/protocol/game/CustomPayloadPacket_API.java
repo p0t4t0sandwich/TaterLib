@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.network.protocol.game;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
@@ -21,8 +21,10 @@ import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
+// TODO: Check to see if this is valid
+@AConstraint(
+        mappings = Mappings.YARN_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1))
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBridge {

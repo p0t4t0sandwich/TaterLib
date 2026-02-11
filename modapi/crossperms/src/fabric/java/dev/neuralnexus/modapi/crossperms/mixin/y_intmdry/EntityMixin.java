@@ -6,9 +6,9 @@ package dev.neuralnexus.modapi.crossperms.mixin.y_intmdry;
 
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.world.entity.Entity;
 
@@ -21,8 +21,7 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(Entity.class)
 @Implements(@Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE))
 public abstract class EntityMixin {

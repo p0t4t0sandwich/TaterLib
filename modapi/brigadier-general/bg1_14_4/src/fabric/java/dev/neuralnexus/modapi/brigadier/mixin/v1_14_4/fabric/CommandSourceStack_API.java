@@ -8,9 +8,9 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Actor;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 
 import net.minecraft.commands.CommandSourceStack;
 
@@ -22,8 +22,7 @@ import org.spongepowered.asm.mixin.Interface.Remap;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(CommandSourceStack.class)
 @Implements(@Interface(iface = CommandSource.class, prefix = "source$", remap = Remap.NONE))
 public abstract class CommandSourceStack_API {

@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_20_6.vanilla.core.server.level;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
@@ -19,8 +19,7 @@ import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V20_5)
+@AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V20_5))
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin_sendPacket implements ServerPlayerBridge {
     @Shadow public ServerGamePacketListenerImpl connection;

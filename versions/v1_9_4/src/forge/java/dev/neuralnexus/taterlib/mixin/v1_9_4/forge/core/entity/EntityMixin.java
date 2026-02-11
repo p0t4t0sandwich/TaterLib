@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_9_4.forge.core.entity;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.EntityBridge;
 
@@ -19,8 +19,9 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V9, max = MinecraftVersion.V12_2)
+@AConstraint(
+        mappings = Mappings.LEGACY_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V9, max = MinecraftVersion.V12_2))
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {
     @Shadow public World world;

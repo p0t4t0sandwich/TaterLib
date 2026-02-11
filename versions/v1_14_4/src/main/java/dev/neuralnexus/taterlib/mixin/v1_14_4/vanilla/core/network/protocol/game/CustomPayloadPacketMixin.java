@@ -5,9 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.core.network.protocol.game;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ClientboundCustomPayloadPacketAccessor;
 import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
@@ -19,8 +19,9 @@ import net.minecraft.resources.ResourceLocation;
 
 import org.spongepowered.asm.mixin.Mixin;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1)
+@AConstraint(
+        mappings = Mappings.MOJANG,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V20_1))
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 public class CustomPayloadPacketMixin implements CustomPayloadPacketBridge {
     @Override

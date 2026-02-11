@@ -8,9 +8,9 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.mixin.v1_14_4.vanilla.accessors.server.players.GameProfileCacheAccessor;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.MinecraftServerBridge;
 
@@ -25,8 +25,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-@ReqMappings(Mappings.MOJANG)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin implements MinecraftServerBridge {
     @Shadow

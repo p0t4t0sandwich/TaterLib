@@ -6,9 +6,9 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.listeners.entity;
 
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
 
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,10 +19,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.YARN_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V14)
+@AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(LivingEntity.class)
-class EntityDeathMixin {
+public class EntityDeathMixin {
     @Inject(method = "die", at = @At("HEAD"))
     private void onEntityDeath(DamageSource source, CallbackInfo ci) {
         EntityEvents.DEATH.invoke(

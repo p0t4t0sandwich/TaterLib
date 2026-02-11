@@ -6,9 +6,9 @@ package dev.neuralnexus.taterlib.mixin.v1_7_10.fabric.listeners.player;
 
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.event.player.VanillaPlayerDeathEvent;
 
 import net.minecraft.entity.damage.DamageSource;
@@ -19,8 +19,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@ReqMappings(Mappings.LEGACY_INTERMEDIARY)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2)
+@AConstraint(
+        mappings = Mappings.LEGACY_INTERMEDIARY,
+        version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2))
 @Mixin(PlayerEntity.class)
 public class PlayerDeathMixin {
     @Inject(method = "onKilled", at = @At("HEAD"))

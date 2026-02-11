@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.mixin.v1_7_10.forge.core.entity.player;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.player.PlayerInventoryBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedItemStack;
 
@@ -22,8 +22,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ReqMappings(Mappings.LEGACY_SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9)
+@AConstraint(
+        mappings = Mappings.LEGACY_SEARGE,
+        version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9))
 @Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin implements PlayerInventoryBridge {
     @Shadow public net.minecraft.item.ItemStack[] armorSlots;

@@ -7,9 +7,9 @@ package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.api.minecraft.world.entity;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.meta.Mappings;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMCVersion;
-import dev.neuralnexus.taterapi.muxins.annotations.ReqMappings;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -31,8 +31,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Optional;
 
-@ReqMappings(Mappings.SEARGE)
-@ReqMCVersion(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4)
+@AConstraint(
+        mappings = Mappings.SEARGE,
+        version = @Versions(min = MinecraftVersion.V17, max = MinecraftVersion.V20_4))
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
