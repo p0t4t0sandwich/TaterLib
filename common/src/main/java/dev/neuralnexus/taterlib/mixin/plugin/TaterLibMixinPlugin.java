@@ -5,9 +5,13 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.taterapi.config.MixinConfig;
+import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.muxins.Muxins;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
 
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -17,39 +21,51 @@ import java.util.Set;
 
 /** A mixin plugin for TaterLib. */
 public class TaterLibMixinPlugin implements IMixinConfigPlugin {
-    @Override
-    public void onLoad(String mixinPackage) {}
+    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID + "-mixinplugin");
 
     @Override
-    public String getRefMapperConfig() {
+    public void onLoad(final @NonNull String mixinPackage) {
+        try {
+            final MixinConfig config = TaterLibConfigLoader.config().mixin();
+            Muxins.bootstrap(mixinPackage, config.verbose());
+        } catch (final Exception e) {
+            logger.error("Error during Muxins bootstrap:");
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public @Nullable String getRefMapperConfig() {
         return null;
     }
 
     @Override
-    public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        MixinConfig config = TaterLibConfigLoader.config().mixin();
+    public boolean shouldApplyMixin(
+            final @NonNull String targetClassName, final @NonNull String mixinClassName) {
+        final MixinConfig config = TaterLibConfigLoader.config().mixin();
         return Muxins.shouldApplyMixin(mixinClassName, config.disabled(), config.verbose());
     }
 
     @Override
-    public void acceptTargets(Set<String> myTargets, Set<String> otherTargets) {}
+    public void acceptTargets(
+            final Set<@NonNull String> myTargets, final Set<@NonNull String> otherTargets) {}
 
     @Override
-    public List<String> getMixins() {
+    public @Nullable List<String> getMixins() {
         return null;
     }
 
     @Override
     public void preApply(
-            String targetClassName,
-            ClassNode targetClass,
-            String mixinClassName,
-            IMixinInfo mixinInfo) {}
+            final @NonNull String targetClassName,
+            final @NonNull ClassNode targetClass,
+            final @NonNull String mixinClassName,
+            final @NonNull IMixinInfo mixinInfo) {}
 
     @Override
     public void postApply(
-            String targetClassName,
-            ClassNode targetClass,
-            String mixinClassName,
-            IMixinInfo mixinInfo) {}
+            final @NonNull String targetClassName,
+            final @NonNull ClassNode targetClass,
+            final @NonNull String mixinClassName,
+            final @NonNull IMixinInfo mixinInfo) {}
 }
