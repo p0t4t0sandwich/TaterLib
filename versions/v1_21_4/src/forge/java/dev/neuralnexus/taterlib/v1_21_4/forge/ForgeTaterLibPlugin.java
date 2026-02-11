@@ -15,7 +15,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -49,9 +48,9 @@ import net.minecraftforge.eventbus.api.EventPriority;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isForge()) {
             TaterAPI.setLoaded(true);
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V21)) {
                 VanillaBootstrap.init();
             } else {
                 VanillaBootstrap_21_1.init();

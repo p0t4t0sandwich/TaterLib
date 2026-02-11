@@ -39,7 +39,7 @@ public class BrigGenForge implements BrigGenPlugin {
 
     @Override
     public void onInit() {
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+        if (MetaAPI.instance().platform().isForge()) {
             MinecraftForge.EVENT_BUS.<FMLServerStartingEvent>addListener(
                     event -> EventHelper.registerCommand(event.getCommandDispatcher()));
         }

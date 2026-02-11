@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_21_1.sponge;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeBlockListener;
@@ -27,7 +26,7 @@ import java.lang.invoke.MethodHandles;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isSponge()) {
             TaterAPI.setLoaded(true);
             // TODO: Init Vanilla methods
             // VanillaBootstrap.init();
@@ -37,7 +36,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         TaterLib.start();
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+        if (MetaAPI.instance().platform().isSponge()) {
             // Register listeners
             PluginContainer container = (PluginContainer) Loader.instance().plugin();
             EventManager eventManager = Sponge.eventManager();

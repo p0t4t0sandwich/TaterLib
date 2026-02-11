@@ -13,7 +13,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -30,9 +29,9 @@ import net.minecraft.network.chat.Component;
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isFabric()) {
             TaterAPI.setLoaded(true);
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V21)) {
                 VanillaBootstrap.init();
             } else {
                 VanillaBootstrap_21_1.init();

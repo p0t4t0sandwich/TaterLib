@@ -38,7 +38,7 @@ import org.bukkit.plugin.PluginManager;
 public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.BUKKIT)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isBukkit()) {
             TaterAPI.setLoaded(true);
 
             TaterAPI.instance().setServer(Platforms.BUKKIT, BukkitServer::instance);
@@ -50,7 +50,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         TaterLib.start();
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.BUKKIT)) {
+        if (MetaAPI.instance().platform().isBukkit()) {
             ServerEvents.STARTING.invoke(new ServerStartingEvent() {});
 
             // Register listeners

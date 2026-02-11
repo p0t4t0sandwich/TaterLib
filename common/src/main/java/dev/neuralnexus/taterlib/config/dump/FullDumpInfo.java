@@ -9,7 +9,7 @@ import com.google.gson.GsonBuilder;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.ModInfo;
+import dev.neuralnexus.taterapi.meta.ModContainer;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.modules.mclogs.api.MCLogsAPI;
 
@@ -19,20 +19,20 @@ import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.util.Collection;
 
 /** Full dump information for debugging. */
 public class FullDumpInfo extends DumpInfo {
     public String latestLog;
     public String debugLog;
     public String latestCrashLog;
-    public List<ModInfo> bukkit;
-    public List<ModInfo> bungeecord;
-    public List<ModInfo> fabric;
-    public List<ModInfo> forge;
-    public List<ModInfo> neoforge;
-    public List<ModInfo> sponge;
-    public List<ModInfo> velocity;
+    public Collection<ModContainer<Object>> bukkit;
+    public Collection<ModContainer<Object>> bungeecord;
+    public Collection<ModContainer<Object>> fabric;
+    public Collection<ModContainer<Object>> forge;
+    public Collection<ModContainer<Object>> neoforge;
+    public Collection<ModContainer<Object>> sponge;
+    public Collection<ModContainer<Object>> velocity;
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public FullDumpInfo() {

@@ -29,17 +29,17 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isSponge()) {
             TaterAPI.setLoaded(true);
             // TODO: Init Vanilla methods
             // VanillaBootstrap.init();
 
             TaterAPI.instance().setServer(Platforms.SPONGE, SpongeServer::instance);
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V9)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V9)) {
                 dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeBootstrap.init();
-            } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V11)) {
+            } else if (MetaAPI.instance().version().lessThan(MinecraftVersions.V11)) {
                 dev.neuralnexus.taterlib.v1_10_2.sponge.SpongeBootstrap.init();
-            } else if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V12)) {
+            } else if (MetaAPI.instance().version().lessThan(MinecraftVersions.V12)) {
                 dev.neuralnexus.taterlib.v1_11_2.sponge.SpongeBootstrap.init();
             } else {
                 SpongeBootstrap.init();
@@ -50,7 +50,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onEnable() {
         TaterLib.start();
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+        if (MetaAPI.instance().platform().isSponge()) {
             // Register listeners
             PluginContainer container = (PluginContainer) Loader.instance().plugin();
             EventManager eventManager = Sponge.getEventManager();
@@ -65,7 +65,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
                     .submit(container);
             eventManager.registerListeners(container, new SpongeEntityListener());
             eventManager.registerListeners(container, new SpongePlayerListener());
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V12)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V12)) {
                 eventManager.registerListeners(
                         container,
                         new dev.neuralnexus.taterlib.v1_8_9.sponge.listeners

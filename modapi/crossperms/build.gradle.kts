@@ -127,14 +127,14 @@ dependencies {
     compileOnly("ca.stellardrift.permissionsex:permissionsex-velocity:2.0-SNAPSHOT")
 
     compileOnly(project(":modapi:entrypoint-spoof"))
-    compileOnly(project(":modapi:base"))
-    compileOnly(project(":modapi:metadata"))
+    compileOnly(libs.modapi.base)
+    compileOnly(libs.taterlib.lite.metadata)
 
     commonCompileOnly(libs.mixin)
-    commonCompileOnly(project(":modapi:core"))
-    commonCompileOnly(project(":modapi:base"))
-    commonCompileOnly(project(":modapi:metadata"))
-    commonCompileOnly(project(":modapi:muxins"))
+    commonCompileOnly(libs.taterlib.lite.core)
+    commonCompileOnly(libs.modapi.base)
+    commonCompileOnly(libs.taterlib.lite.metadata)
+    commonCompileOnly(libs.modapi.muxins)
     forge.compileOnly(libs.mixin)
 }
 

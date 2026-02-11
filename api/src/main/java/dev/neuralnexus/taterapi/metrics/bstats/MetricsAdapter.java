@@ -36,7 +36,7 @@ public class MetricsAdapter {
         }
         Object metrics = null;
         if (api.isPlatformPresent(Platforms.BUKKIT)) {
-            if (api.version().isOlderThan(MinecraftVersions.V0)) {
+            if (api.version().noGreaterThan(MinecraftVersions.V0)) {
                 metrics =
                         BukkitBetaMetricsAdapter.setupMetrics(
                                 plugin, pluginIds.get(Platforms.BUKKIT), Collections.emptyList());

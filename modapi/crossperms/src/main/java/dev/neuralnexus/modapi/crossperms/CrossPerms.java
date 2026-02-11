@@ -72,14 +72,14 @@ public class CrossPerms {
         // Only if the server isn't Bukkit/Spigot, or Paper older than 1.20.5
         if (!meta.isPlatformPresent(Platforms.BUKKIT, Platforms.SPIGOT)
                 && !(meta.isPlatformPresent(Platforms.PAPER)
-                        && meta.version().isAtMost(MinecraftVersions.V20_5))) {
+                        && meta.version().noGreaterThan(MinecraftVersions.V20_5))) {
             api.registerProvider(new VanillaPermissionsProvider());
         }
         if (meta.isPlatformPresent(Platforms.BUKKIT)) {
             api.registerProvider(new BukkitPermissionsProvider());
         }
         if (meta.isPlatformPresent(Platforms.FABRIC)) {
-            if (meta.version().isAtLeast(MinecraftVersions.V14)
+            if (meta.version().noLessThan(MinecraftVersions.V14)
                     && meta.isModLoaded("fabric-permissions-api-v0")) {
                 api.registerProvider(new FabricPermissionsProvider());
             } else if (meta.isModLoaded("legacy-fabric-permissions-api-v1")) {
@@ -87,7 +87,7 @@ public class CrossPerms {
             }
         }
         if (meta.isPlatformPresent(Platforms.FORGE)) {
-            if (meta.version().isAtLeast(MinecraftVersions.V18_2)) {
+            if (meta.version().noLessThan(MinecraftVersions.V18_2)) {
                 api.registerProvider(new ForgePermissionsProvider_18_2());
             } else {
                 api.registerProvider(new ForgePermissionsProvider());

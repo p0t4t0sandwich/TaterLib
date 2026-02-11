@@ -32,7 +32,10 @@ dependencies {
     api(variantOf(libs.modapi.base) {
         classifier("downgraded-8-shaded")
     })
-    api(variantOf(libs.modapi.metadata) {
+    api(variantOf(libs.taterlib.lite.core) {
+        classifier("downgraded-8-shaded")
+    })
+    api(variantOf(libs.taterlib.lite.metadata) {
         classifier("downgraded-8-shaded")
     })
 }

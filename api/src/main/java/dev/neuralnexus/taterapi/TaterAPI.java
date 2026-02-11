@@ -94,7 +94,7 @@ public class TaterAPI {
      * @return The minecraft server
      */
     public SimpleServer server() {
-        return this.server(MetaAPI.instance().primaryPlatform());
+        return this.server(MetaAPI.instance().platform());
     }
 
     /**

@@ -32,7 +32,7 @@ public class ForgeLoaderPlugin {
 
     public ForgeLoaderPlugin() {
         loader = new LoaderImpl(this);
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V13)) {
+        if (MetaAPI.instance().version().lessThan(MinecraftVersions.V13)) {
             MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_8(loader));
         } else {
             MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_13(loader));

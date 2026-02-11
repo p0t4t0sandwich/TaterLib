@@ -38,7 +38,7 @@ public class BrigGenFabric implements BrigGenPlugin {
 
     @Override
     public void onInit() {
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.FABRIC)) {
+        if (MetaAPI.instance().platform().isFabric()) {
             // TODO: Load if fabric-command-api-v1
             CommandRegistrationCallback.EVENT.register(
                     (dispatcher, dedicated) -> EventHelper.registerCommand(dispatcher));

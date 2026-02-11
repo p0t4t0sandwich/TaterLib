@@ -27,7 +27,7 @@ public class TaterReflectUtil {
     }
 
     public static Optional<String> getClass(String clazz) {
-        return getClass(clazz, MetaAPI.instance().primaryPlatform());
+        return getClass(clazz, MetaAPI.instance().platform());
     }
 
     public static Optional<String> getClass(String clazz, Platform platform) {
@@ -44,7 +44,7 @@ public class TaterReflectUtil {
         if (null == packageName) {
             return Optional.empty();
         }
-        return Optional.of(packageName + "." + version.getPathString() + "." + clazz);
+        return Optional.of(packageName + ".v" + version.toString().replace(".", "_") + "." + clazz);
     }
 
     public static Optional<String> getRelocatedClass(String clazz, Platform relocatingPlatform) {
@@ -54,7 +54,7 @@ public class TaterReflectUtil {
         }
         String path = ".";
         if (relocatingPlatform == Platforms.FORGE
-                && MetaAPI.instance().version().isOlderThan(MinecraftVersions.V20_6)) {
+                && MetaAPI.instance().version().lessThan(MinecraftVersions.V20_6)) {
             path += "forge.";
         } else if (relocatingPlatform == Platforms.FABRIC) {
             path += "fabric.";
@@ -63,7 +63,7 @@ public class TaterReflectUtil {
     }
 
     public static Optional<String> getRelocatedClass(String clazz) {
-        return getRelocatedClass(clazz, MetaAPI.instance().primaryPlatform());
+        return getRelocatedClass(clazz, MetaAPI.instance().platform());
     }
 
     public static void resolvePackageNames() {
@@ -99,7 +99,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".bukkit";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".bukkit";
     }
 
     public static String bungeeCord(MinecraftVersion mcv) {
@@ -115,7 +115,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V20;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".bungee";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".bungee";
     }
 
     public static String fabric(MinecraftVersion mcv) {
@@ -139,7 +139,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21_4;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".fabric";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".fabric";
     }
 
     public static String forge(MinecraftVersion mcv) {
@@ -173,7 +173,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21_4;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".forge";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".forge";
     }
 
     @SuppressWarnings("IfStatementWithIdenticalBranches")
@@ -190,7 +190,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21_4;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".neoforge";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".neoforge";
     }
 
     public static String sponge(MinecraftVersion mcv) {
@@ -214,7 +214,7 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21_4;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".sponge";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".sponge";
     }
 
     @SuppressWarnings("unused")
@@ -263,11 +263,11 @@ public class TaterReflectUtil {
         } else {
             version = MinecraftVersions.V21;
         }
-        return TL_PACKAGE + "." + version.getPathString() + ".vanilla";
+        return TL_PACKAGE + ".v" + version.toString().replace(".", "_") + ".vanilla";
     }
 
     public static <T> T newInstance(String clazz) {
-        return newInstance(clazz, MetaAPI.instance().primaryPlatform());
+        return newInstance(clazz, MetaAPI.instance().platform());
     }
 
     @SuppressWarnings({"OptionalGetWithoutIsPresent", "unchecked"})

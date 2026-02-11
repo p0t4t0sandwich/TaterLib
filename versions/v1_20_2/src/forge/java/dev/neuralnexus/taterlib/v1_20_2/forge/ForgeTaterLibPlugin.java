@@ -15,7 +15,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -47,7 +46,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isForge()) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
             VanillaUtils.component = Component::literal;
@@ -89,7 +88,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         ForgeAdvancementListener_20_1::onPlayerAdvancementFinished);
                 MinecraftForge.EVENT_BUS.addListener(
                         ForgeAdvancementListener_20_1::onPlayerAdvancementProgress);
-            } else if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V20_2)) {
+            } else if (MetaAPI.instance().version().noLessThan(MinecraftVersions.V20_2)) {
                 MinecraftForge.EVENT_BUS.addListener(
                         ForgeAdvancementListener_20_2::onPlayerAdvancementFinished);
                 MinecraftForge.EVENT_BUS.addListener(

@@ -59,7 +59,7 @@ public class PermissionsExPermissionsProvider implements PermissionsProvider {
                                             .getEntrypoint())
                             .getManager();
         } else if (meta.isPlatformPresent(Platforms.SPONGE)) {
-            if (meta.version().isAtLeast(MinecraftVersions.V13)) {
+            if (meta.version().noLessThan(MinecraftVersions.V13)) {
                 pex =
                         Sponge.pluginManager()
                                 .plugin(PERMISSIONSEX_ID)

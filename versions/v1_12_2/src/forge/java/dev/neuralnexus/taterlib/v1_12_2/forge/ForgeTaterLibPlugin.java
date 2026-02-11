@@ -14,7 +14,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.player.ForgePlayerAdvancementListener;
@@ -42,9 +41,9 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.FORGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isForge()) {
             TaterAPI.setLoaded(true);
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V8)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V8)) {
                 dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaBootstrap.init();
             } else {
                 VanillaBootstrap.init();
@@ -55,7 +54,7 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgeBlockListener());
             MinecraftForge.EVENT_BUS.register(new ForgeEntityListener());
             MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V12)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V12)) {
                 MinecraftForge.EVENT_BUS.register(
                         new dev.neuralnexus.taterlib.v1_9_4.forge.listeners.player
                                 .ForgePlayerAdvancementListener());

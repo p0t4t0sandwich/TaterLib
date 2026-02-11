@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.event.Cancellable;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
@@ -26,9 +25,9 @@ import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isNeoForge()) {
             TaterAPI.setLoaded(true);
-            if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V21)) {
+            if (MetaAPI.instance().version().lessThan(MinecraftVersions.V21)) {
                 VanillaBootstrap.init();
             } else {
                 VanillaBootstrap_21_1.init();

@@ -10,8 +10,8 @@ import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.annotations.Range;
-import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
+import dev.neuralnexus.taterapi.meta.anno.Range;
+import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
 import java.util.ArrayList;

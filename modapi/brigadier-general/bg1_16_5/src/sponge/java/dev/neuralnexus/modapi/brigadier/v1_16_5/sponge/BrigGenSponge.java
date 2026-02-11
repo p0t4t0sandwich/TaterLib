@@ -45,7 +45,7 @@ public class BrigGenSponge implements BrigGenPlugin {
 
     @Override
     public void onInit() {
-        if (MetaAPI.instance().isPrimaryPlatform(Platforms.SPONGE)) {
+        if (MetaAPI.instance().platform().isSponge()) {
             // TODO: Constant the mod_id
             @SuppressWarnings("OptionalGetWithoutIsPresent")
             PluginContainer container = Sponge.pluginManager().plugin("brigadier_general").get();

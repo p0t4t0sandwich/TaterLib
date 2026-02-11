@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_20_2.neoforge;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.utils.modern.neoforge.event.NeoForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
@@ -23,7 +22,7 @@ import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
 public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {
-        if (!TaterAPI.hasLoaded() && MetaAPI.instance().isPrimaryPlatform(Platforms.NEOFORGE)) {
+        if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isNeoForge()) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
             VanillaUtils.component = Component::literal;

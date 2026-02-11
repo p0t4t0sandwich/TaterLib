@@ -24,7 +24,7 @@ public class BukkitCommandRegisterEvent implements CommandRegisterEvent {
         Objects.requireNonNull(getCommandMap());
         // TODO: register(String fallbackPrefix (plugin name), Command command)
         getCommandMap().register(command.name(), new BukkitCommandWrapper(command));
-        if (MetaAPI.instance().version().isOlderThan(MinecraftVersions.V7)) {
+        if (MetaAPI.instance().version().lessThan(MinecraftVersions.V7)) {
             return;
         }
         syncCommands();

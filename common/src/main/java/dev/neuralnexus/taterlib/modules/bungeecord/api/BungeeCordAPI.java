@@ -48,7 +48,7 @@ public class BungeeCordAPI {
      * @return The BungeeCord channel
      */
     public ResourceKey bungeeChannel() {
-        if (MetaAPI.instance().version().isAtLeast(MinecraftVersions.V13)) {
+        if (MetaAPI.instance().version().noLessThan(MinecraftVersions.V13)) {
             return ResourceKey.of("bungeecord", "main");
         } else {
             return ResourceKey.unsafeOf("BungeeCord");
@@ -312,7 +312,7 @@ public class BungeeCordAPI {
 
     /**
      * Kick any player on this proxy with a raw disconnect message, which allows you to use hex
-     * colors - like MessageRaw, but for KickPlayer
+     * colours - like MessageRaw, but for KickPlayer
      *
      * @param conn The player sending the plugin message
      * @param target the name of the player
