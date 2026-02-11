@@ -26,10 +26,7 @@ dependencies {
     compileOnly(libs.asm.tree)
     api(libs.brigadier)
 
-    api(variantOf(libs.modapi) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.modapi.base) {
+    api(variantOf(libs.taterlib.lite.base) {
         classifier("downgraded-8-shaded")
     })
     api(variantOf(libs.taterlib.lite.core) {

@@ -11,6 +11,6 @@ package dev.neuralnexus.modapi.brigadier;
 public class AnnotatedEntrypoint {
     public AnnotatedEntrypoint() {
         BrigadierGeneral.LOADER.load();
-        BrigadierGeneral.LOADER.init();
+        BrigadierGeneral.LOADER.onInit();
     }
 }

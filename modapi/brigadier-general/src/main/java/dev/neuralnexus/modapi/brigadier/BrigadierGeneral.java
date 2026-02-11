@@ -4,11 +4,11 @@
  */
 package dev.neuralnexus.modapi.brigadier;
 
-import dev.neuralnexus.taterapi.plugin.PluginLoader;
+import dev.neuralnexus.taterapi.loader.EntrypointLoader;
 
 public class BrigadierGeneral {
     public static final String MOD_ID = "brigadier_general";
 
-    public static final PluginLoader<BrigGenPlugin> LOADER =
-            new PluginLoader<>(BrigGenPlugin.class);
+    public static final EntrypointLoader<BrigGenPlugin> LOADER =
+            EntrypointLoader.builder().serviceClasses(BrigGenPlugin.class).build();
 }

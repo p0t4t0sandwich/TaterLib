@@ -9,7 +9,7 @@ import net.fabricmc.api.ModInitializer;
 public class FabricEntrypoint implements ModInitializer {
     public FabricEntrypoint() {
         BrigadierGeneral.LOADER.load();
-        BrigadierGeneral.LOADER.init();
+        BrigadierGeneral.LOADER.onInit();
     }
 
     @Override

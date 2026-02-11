@@ -27,11 +27,11 @@ subprojects {
 
     dependencies {
         compileOnly(rootProject.libs.mixin)
-        mainCompileOnly(variantOf(rootProject.libs.modapi.base) { classifier("downgraded-8") })
+        mainCompileOnly(variantOf(rootProject.libs.taterlib.lite.base) { classifier("downgraded-8") })
         mainCompileOnly(variantOf(rootProject.libs.taterlib.lite.core) { classifier("downgraded-8") })
-        mainCompileOnly(variantOf(rootProject.libs.modapi.brigadier) { classifier("downgraded-8") })
         mainCompileOnly(variantOf(rootProject.libs.taterlib.lite.metadata) { classifier("downgraded-8") })
         mainCompileOnly(variantOf(rootProject.libs.modapi.muxins) { classifier("downgraded-8") })
+        mainCompileOnly(variantOf(rootProject.libs.modapi.brigadier) { classifier("downgraded-8") })
     }
 }
 

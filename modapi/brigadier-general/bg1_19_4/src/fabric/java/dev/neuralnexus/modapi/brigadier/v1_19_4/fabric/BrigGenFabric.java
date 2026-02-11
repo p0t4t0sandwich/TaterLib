@@ -8,29 +8,18 @@ import dev.neuralnexus.modapi.brigadier.BrigGenPlugin;
 import dev.neuralnexus.modapi.brigadier.EventHelper;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.MinecraftVersion;
-import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platform;
-import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
+@AConstraint(
+        mappings = Mappings.YARN_INTERMEDIARY,
+        platform = Platform.FABRIC,
+        version = @Versions(min = MinecraftVersion.V19))
 public class BrigGenFabric implements BrigGenPlugin {
-    @Override
-    public Mappings mappings() {
-        return Mappings.YARN_INTERMEDIARY;
-    }
-
-    @Override
-    public Platform platform() {
-        return Platforms.FABRIC;
-    }
-
-    @Override
-    public MinecraftVersion min() {
-        return MinecraftVersions.V19;
-    }
-
     @Override
     public void onInit() {
         if (MetaAPI.instance().platform().isFabric()) {

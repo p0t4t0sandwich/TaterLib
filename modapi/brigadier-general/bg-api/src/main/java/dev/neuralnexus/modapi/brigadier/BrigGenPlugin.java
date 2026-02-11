@@ -4,6 +4,6 @@
  */
 package dev.neuralnexus.modapi.brigadier;
 
-import dev.neuralnexus.taterapi.plugin.ResolvableEntrypoint;
+import dev.neuralnexus.taterapi.loader.Entrypoint;
 
-public interface BrigGenPlugin extends ResolvableEntrypoint {}
+public interface BrigGenPlugin extends Entrypoint {}

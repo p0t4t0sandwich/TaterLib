@@ -131,8 +131,8 @@ dependencies {
     compileOnly(libs.taterlib.lite.metadata)
 
     commonCompileOnly(libs.mixin)
+    commonCompileOnly(libs.taterlib.lite.base)
     commonCompileOnly(libs.taterlib.lite.core)
-    commonCompileOnly(libs.modapi.base)
     commonCompileOnly(libs.taterlib.lite.metadata)
     commonCompileOnly(libs.modapi.muxins)
     forge.compileOnly(libs.mixin)
