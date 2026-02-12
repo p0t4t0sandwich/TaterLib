@@ -28,9 +28,7 @@ dependencies {
 
     // Brigadier
     api(libs.brigadier)
-    api(variantOf(libs.modapi.brigadier) {
-        classifier("downgraded-8-shaded")
-    })
+    api(libs.modapi.brigadier)
 
     // Mixin
     implementation(libs.mixin)
@@ -43,24 +41,13 @@ dependencies {
     // Tooling
     compileOnly(project(":modapi:entrypoint-spoof"))
 
-    api(variantOf(libs.taterlib.lite.base) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.taterlib.lite.core) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.taterlib.lite.metadata) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.taterlib.lite.muxins) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8-shaded")
-    })
+    api(libs.taterlib.lite.base)
+    api(libs.taterlib.lite.core)
+    api(libs.taterlib.lite.metadata)
+    api(libs.taterlib.lite.muxins)
+    api(libs.modapi.crossperms)
 }
 
-java.disableAutoTargetJvm()
 java {
     withSourcesJar()
     withJavadocJar()

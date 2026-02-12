@@ -11,7 +11,7 @@
     "authorList": [
       "${authors}"
     ],
-    "credits": "${authors}",
+    "credits": "${author}",
     "logoFile": "./${mod_name}.png",
     "screenshots": [],
     "useDependencyInformation": true,

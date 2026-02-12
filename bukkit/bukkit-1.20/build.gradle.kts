@@ -10,5 +10,3 @@ dependencies {
     compileOnly(project(":loader"))
     compileOnly(project(":bukkit:bukkit-utils"))
 }
-
-java.disableAutoTargetJvm()

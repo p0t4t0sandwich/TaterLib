@@ -9,9 +9,9 @@
     "url": "${homepage_url}",
     "updateUrl": "${update_json_url}",
     "authorList": [
-      "${authors}"
+      "${author}"
     ],
-    "credits": "${authors}",
+    "credits": "${author}",
     "logoFile": "./${mod_name}.png",
     "screenshots": [],
     "useDependencyInformation": true,

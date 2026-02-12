@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
@@ -47,15 +46,16 @@ public class TaterLib {
     /** Start */
     public static void start() {
         MetaAPI api = MetaAPI.instance();
-        TaterAPI.logger().info(
-                LoaderImpl.PROJECT_NAME
-                        + " is running on "
-                        + api.platform()
-                        + " "
-                        + api.version()
-                        + ", with "
-                        + api.mappings()
-                        + " mappings!");
+        TaterAPI.logger()
+                .info(
+                        LoaderImpl.PROJECT_NAME
+                                + " is running on "
+                                + api.platform()
+                                + " "
+                                + api.version()
+                                + ", with "
+                                + api.mappings()
+                                + " mappings!");
 
         //        try {
         //            String[] repos = new String[] {"https://maven.neuralnexus.dev/mirror"};

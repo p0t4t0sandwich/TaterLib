@@ -1,6 +1,6 @@
 name: '${mod_name}'
 version: '${version}'
-author: '${authors}'
+author: '${author}'
 description: '${description}'
 website: '${homepage_url}'
 main: 'dev.neuralnexus.taterloader.platforms.BukkitLoaderPlugin'

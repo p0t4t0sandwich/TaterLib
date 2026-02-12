@@ -5,7 +5,7 @@
   "description": "${description}",
   "url": "${homepage_url}",
   "authors": [
-    "${authors}"
+    "${author}"
   ],
   "dependencies": [
     {

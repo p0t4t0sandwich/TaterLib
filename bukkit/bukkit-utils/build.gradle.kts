@@ -9,5 +9,3 @@ dependencies {
     compileOnly(project(":common"))
     compileOnly(project(":loader"))
 }
-
-java.disableAutoTargetJvm()

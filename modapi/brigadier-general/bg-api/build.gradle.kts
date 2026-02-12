@@ -26,15 +26,9 @@ dependencies {
     compileOnly(libs.asm.tree)
     api(libs.brigadier)
 
-    api(variantOf(libs.taterlib.lite.base) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.taterlib.lite.core) {
-        classifier("downgraded-8-shaded")
-    })
-    api(variantOf(libs.taterlib.lite.metadata) {
-        classifier("downgraded-8-shaded")
-    })
+    api(libs.taterlib.lite.base)
+    api(libs.taterlib.lite.core)
+    api(libs.taterlib.lite.metadata)
 }
 
 java {

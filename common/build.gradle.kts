@@ -38,22 +38,12 @@ dependencies {
     // Tooling
     implementation(project(":api"))
     implementation(project(":loader"))
-    compileOnly(variantOf(libs.taterlib.lite.base) {
-        classifier("downgraded-8-shaded")
-    })
-    compileOnly(variantOf(libs.taterlib.lite.core) {
-        classifier("downgraded-8-shaded")
-    })
-    compileOnly(variantOf(libs.taterlib.lite.muxins) {
-        classifier("downgraded-8-shaded")
-    })
-    compileOnly(variantOf(libs.modapi.crossperms) {
-        classifier("downgraded-8-shaded")
-    })
+    compileOnly(libs.taterlib.lite.base)
+    compileOnly(libs.taterlib.lite.core)
+    compileOnly(libs.taterlib.lite.muxins)
+    compileOnly(libs.modapi.crossperms)
     compileOnly(project(":modapi:entrypoint-spoof"))
 }
-
-java.disableAutoTargetJvm()
 
 tasks.shadowJar {
     dependencies {
