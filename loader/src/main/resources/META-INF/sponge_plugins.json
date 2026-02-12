@@ -37,26 +37,6 @@
           "optional": true
         }
       ]
-    },
-    {
-      "id": "tater_modlib_base",
-      "name": "TaterLib ModLib Base",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "crossperms",
-      "name": "CrossPerms",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "tater_metadata",
-      "name": "TaterMetadata",
-      "version": "${modlib_version}"
-    },
-    {
-      "id": "muxins",
-      "name": "Muxins",
-      "version": "${modlib_version}"
     }
   ]
 }

@@ -12,15 +12,16 @@ dependencies {
 tasks.withType<ProcessResources>().configureEach {
     filesMatching(
         listOf(
+            "${modId}.mixins.json",
             "plugin.yml",
             "bungee.yml",
+            "ignite.mod.json",
             "fabric.mod.json",
-            "${modId}.mixins.json",
+            "mcmod.info",
+            "velocity-plugin.json",
             "META-INF/mods.toml",
             "META-INF/neoforge.mods.toml",
-            "mcmod.info",
-            "META-INF/sponge_plugins.json",
-            "velocity-plugin.json"
+            "META-INF/sponge_plugins.json"
         )
     ) {
         expand(project.properties)

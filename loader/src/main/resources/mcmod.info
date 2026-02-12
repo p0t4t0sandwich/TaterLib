@@ -17,29 +17,5 @@
     "useDependencyInformation": true,
     "dependencies": [],
     "dependants": []
-  },
-  {
-    "modid": "tater_modlib_base",
-    "name": "TaterLib ModLib Base",
-    "license": "${license}",
-    "version": "${modlib_version}"
-  },
-  {
-    "modid": "crossperms",
-    "name": "CrossPerms",
-    "license": "${license}",
-    "version": "${modlib_version}"
-  },
-  {
-    "modid": "tater_metadata",
-    "name": "TaterMetadata",
-    "license": "${license}",
-    "version": "${modlib_version}"
-  },
-  {
-    "modid": "muxins",
-    "name": "Muxins",
-    "license": "${license}",
-    "version": "${modlib_version}"
   }
 ]

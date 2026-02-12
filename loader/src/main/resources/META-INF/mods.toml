@@ -15,30 +15,6 @@ authors = "${author}"
 displayTest = "IGNORE_SERVER_VERSION"
 description = '''${description}'''
 
-[[mods]]
-modId = "tater_modlib_base"
-version = "${modlib_version}"
-displayName = "Muxins"
-displayTest = "IGNORE_SERVER_VERSION"
-
-[[mods]]
-modId = "crossperms"
-version = "${modlib_version}"
-displayName = "CrossPerms"
-displayTest = "IGNORE_SERVER_VERSION"
-
-[[mods]]
-modId = "tater_metadata"
-version = "${modlib_version}"
-displayName = "TaterMetadata"
-displayTest = "IGNORE_SERVER_VERSION"
-
-[[mods]]
-modId = "muxins"
-version = "${modlib_version}"
-displayName = "Muxins"
-displayTest = "IGNORE_SERVER_VERSION"
-
 [[mixins]]
 config = "${mod_id}.mixins.json"
 
