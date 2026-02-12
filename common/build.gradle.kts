@@ -38,10 +38,13 @@ dependencies {
     // Tooling
     implementation(project(":api"))
     implementation(project(":loader"))
+
     compileOnly(libs.taterlib.lite.base)
     compileOnly(libs.taterlib.lite.core)
     compileOnly(libs.taterlib.lite.muxins)
+    compileOnly(libs.modapi.brigadier)
     compileOnly(libs.modapi.crossperms)
+
     compileOnly(project(":modapi:entrypoint-spoof"))
 }
 
@@ -55,11 +58,11 @@ tasks.shadowJar {
         // Tooling
         include(project(":api"))
         include(project(":loader"))
-        include(dependency("dev.neuralnexus:modapi"))
-        include(dependency("dev.neuralnexus.modapi:base"))
         include(dependency("dev.neuralnexus.modapi.brigadier:bg-api"))
-        include(dependency("dev.neuralnexus.modapi:metadata"))
-        include(dependency("dev.neuralnexus.modapi:muxins"))
+        include(dependency("dev.neuralnexus.taterlib.lite:base"))
+        include(dependency("dev.neuralnexus.taterlib.lite:core"))
+        include(dependency("dev.neuralnexus.taterlib.lite:metadata"))
+        include(dependency("dev.neuralnexus.taterlib.lite:muxins"))
 
         // Config
         include(dependency("org.spongepowered:configurate-core:4.2.0"))
@@ -113,15 +116,9 @@ tasks.shadowJar {
     // Not sure
     relocate("net.kyori", "dev.neuralnexus.taterlib.lib.kyori")
 
-//    minimize {
-//        exclude(project(":api"))
-//        exclude(project(":loader"))
-//        exclude(dependency("dev.neuralnexus:modapi"))
-//    }
+    mergeServiceFiles()
 
     archiveClassifier.set("full")
 }
 
-tasks.assemble {
-    dependsOn(tasks.shadowJar)
-}
+tasks.assemble.get().dependsOn(tasks.shadowJar)

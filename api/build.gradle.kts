@@ -28,7 +28,6 @@ dependencies {
 
     // Brigadier
     api(libs.brigadier)
-    api(libs.modapi.brigadier)
 
     // Mixin
     implementation(libs.mixin)
@@ -45,6 +44,7 @@ dependencies {
     api(libs.taterlib.lite.core)
     api(libs.taterlib.lite.metadata)
     api(libs.taterlib.lite.muxins)
+    api(libs.modapi.brigadier)
     api(libs.modapi.crossperms)
 }
 
