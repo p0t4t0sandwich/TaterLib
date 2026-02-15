@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -25,7 +26,6 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketCustomPayload;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.WorldServer;
 
 import java.util.Optional;
@@ -94,7 +94,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void kick(String message) {
-        ((EntityPlayerMP) this.player).connection.disconnect(new TextComponentString(message));
+        ((EntityPlayerMP) this.player).connection.disconnect(Component.literal(message));
     }
 
     @Override
@@ -144,6 +144,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void sendMessage(String message) {
-        player.sendMessage(new TextComponentString(message));
+        player.sendMessage(Component.literal(message));
     }
 }

@@ -11,15 +11,14 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 
@@ -45,8 +44,8 @@ public abstract class Entity_API implements EntityBridge {
     @Shadow public abstract int shadow$getId();
     @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
     @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
-    @Shadow @Nullable public abstract Component shadow$getCustomName();
-    @Shadow public abstract void shadow$setCustomName(@Nullable Component name);
+    @Shadow @Nullable public abstract net.minecraft.network.chat.Component shadow$getCustomName();
+    @Shadow public abstract void shadow$setCustomName(@Nullable net.minecraft.network.chat.Component name);
     // @spotless:on
 
     public int entity$entityId() {
@@ -94,6 +93,6 @@ public abstract class Entity_API implements EntityBridge {
 
     @ToBeLibrary("brigadier-general")
     public void nameable$setCustomName(String name) {
-        this.shadow$setCustomName(VanillaUtils.component.apply(name));
+        this.shadow$setCustomName(Component.literal(name));
     }
 }

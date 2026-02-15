@@ -12,11 +12,11 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.TextComponentString;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -49,7 +49,7 @@ public class ForgeCommandSource
 
     @Override
     public Notifiable source() {
-        return message -> this.sender.sendFeedback(new TextComponentString(message), false);
+        return message -> this.sender.sendFeedback(Component.literal(message), false);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ForgeCommandSource
 
     @Override
     public void sendMessage(String message) {
-        this.sender.sendFeedback(new TextComponentString(message), false);
+        this.sender.sendFeedback(Component.literal(message), false);
     }
 
     @Override

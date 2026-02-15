@@ -10,12 +10,10 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.utils.modern.neoforge.event.NeoForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntitySpawnEvent;
 import dev.neuralnexus.taterlib.v1_20_2.neoforge.NeoForgeEventListener_20_2;
 
-import net.minecraft.network.chat.Component;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.MobSpawnEvent;
@@ -26,7 +24,6 @@ public class NeoForgeTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isNeoForge()) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.component = Component::literal;
 
             NeoForgeEventListener_20_2.init();
 

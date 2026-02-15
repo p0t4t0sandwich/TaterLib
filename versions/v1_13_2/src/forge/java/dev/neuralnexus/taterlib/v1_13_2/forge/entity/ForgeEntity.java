@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.entity;
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
@@ -17,7 +18,6 @@ import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.registry.IRegistry;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
@@ -72,7 +72,7 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     public void setCustomName(String name) {
-        this.entity.setCustomName(new TextComponentString(name));
+        this.entity.setCustomName(Component.literal(name));
     }
 
     @Override

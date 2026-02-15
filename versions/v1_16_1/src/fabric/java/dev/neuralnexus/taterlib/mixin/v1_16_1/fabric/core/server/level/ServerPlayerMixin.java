@@ -8,12 +8,12 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaWorld;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
@@ -39,7 +39,7 @@ public abstract class ServerPlayerMixin implements ServerPlayerBridge {
 
     @Override
     public void bridge$kick(String message) {
-        this.connection.disconnect(new TextComponent(message));
+        this.connection.disconnect(Component.literal(message));
     }
 
     @Override

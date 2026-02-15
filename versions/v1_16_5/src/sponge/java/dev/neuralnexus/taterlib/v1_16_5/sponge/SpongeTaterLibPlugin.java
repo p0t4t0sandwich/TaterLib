@@ -28,7 +28,6 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
             TaterAPI.setLoaded(true);
             // TODO: Init Vanilla methods
             // VanillaBootstrap.init();
-            // VanillaUtils.componentFactory = Component::nullToEmpty;
         }
     }
 

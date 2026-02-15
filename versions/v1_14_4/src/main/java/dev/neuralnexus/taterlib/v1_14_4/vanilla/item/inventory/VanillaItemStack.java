@@ -7,10 +7,10 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import net.minecraft.core.Registry;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.Items;
 
 import java.util.List;
@@ -70,7 +70,7 @@ public class VanillaItemStack implements ItemStack, Wrapped<net.minecraft.world.
 
     @Override
     public void setDisplayName(String name) {
-        this.itemStack.setHoverName(new TextComponent(name));
+        this.itemStack.setHoverName(Component.literal(name));
     }
 
     @Override

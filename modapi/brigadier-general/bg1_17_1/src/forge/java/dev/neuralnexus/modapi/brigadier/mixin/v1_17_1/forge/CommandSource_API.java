@@ -10,8 +10,8 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
+import dev.neuralnexus.taterapi.network.chat.Component;
 import net.minecraft.commands.CommandSource;
-import net.minecraft.network.chat.Component;
 
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
@@ -28,11 +28,10 @@ import java.util.UUID;
 @Implements(@Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE))
 public interface CommandSource_API {
     // @spotless:off
-    @Shadow void sendMessage(Component message, UUID uuid);
+    @Shadow void sendMessage(net.minecraft.network.chat.Component message, UUID uuid);
     // @spotless:on
 
     default void notifiable$sendMessage(String message) {
-        this.sendMessage(
-                new net.minecraft.network.chat.TextComponent(message), Notifiable.NIL_UUID);
+        this.sendMessage(Component.literal(message), Notifiable.NIL_UUID);
     }
 }

@@ -18,7 +18,6 @@ import dev.neuralnexus.taterapi.meta.MinecraftVersions;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.utils.modern.forge.event.ForgeCancellableEventWrapper;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaUtils;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.block.VanillaPlayerBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDamageEvent;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.entity.VanillaEntityDeathEvent;
@@ -30,7 +29,6 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerMessag
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerRespawnEvent;
 import dev.neuralnexus.taterlib.v1_20_1.forge.ForgeAdvancementListener_20_1;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,7 +47,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isForge()) {
             TaterAPI.setLoaded(true);
             VanillaBootstrap.init();
-            VanillaUtils.component = Component::literal;
 
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(
                     event ->
