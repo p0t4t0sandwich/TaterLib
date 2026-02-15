@@ -14,7 +14,6 @@ import dev.neuralnexus.taterapi.meta.Platform;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
-import dev.neuralnexus.taterapi.scheduler.SchedulerImpl;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
 import dev.neuralnexus.taterapi.storage.datastores.player.PlayerDataStore;
@@ -38,7 +37,7 @@ public class TaterAPI {
     private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
     public static final UUID NIL_UUID = new UUID(0, 0);
     private static final List<Hook> hooks = new ArrayList<>();
-    private static final Scheduler scheduler = new SchedulerImpl();
+    private static final Scheduler scheduler = Scheduler.create(LoaderImpl.PROJECT_ID);
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();
