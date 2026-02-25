@@ -56,6 +56,8 @@ public final class TaterLoader {
         // final boolean debug = Constraint.Evaluator.DEBUG;
         // Constraint.Evaluator.DEBUG = this.debug().enabled();
 
+        // TODO: Decouple state from plugin init, to allow for all to be loaded without strict
+        // ordering. Then create a mechanism to loop through all mods and check for services
         final ModContainer<?> container = MetaAPI.instance().mod(MOD_ID).orElseThrow();
         try (final ModResource resource = container.resource()) {
             final Path servicePath = resource.getResourceOrThrow(SERVICE_PATH);
@@ -70,7 +72,8 @@ public final class TaterLoader {
 
             loader.load();
         } catch (final Exception e) {
-            logger.error("Failed to access " + MOD_NAME + " Mod Resources: " + e.getClass(), e);
+            throw new RuntimeException(
+                    "Failed to access " + MOD_NAME + " Mod Resources: " + e.getClass(), e);
         }
         loader.onInit();
     }
