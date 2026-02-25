@@ -28,7 +28,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
@@ -63,7 +62,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     public void onEnable() {
         TaterLib.start();
         // Register listeners
-        PluginContainer plugin = (PluginContainer) Loader.instance().plugin();
+        PluginContainer plugin = (PluginContainer) TaterLib.mod();
         ProxyServer proxyServer = (ProxyServer) MetaAPI.instance().server();
         EventManager eventManager = proxyServer.getEventManager();
 

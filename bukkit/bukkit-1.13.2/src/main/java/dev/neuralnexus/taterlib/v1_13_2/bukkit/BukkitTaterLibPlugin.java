@@ -12,7 +12,6 @@ import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
@@ -58,7 +57,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         TaterLib.start();
         if (MetaAPI.instance().platform().isBukkit()) {
             // Register listeners
-            Plugin plugin = (Plugin) Loader.instance().plugin();
+            Plugin plugin = (Plugin) TaterLib.mod();
             PluginManager pluginManager = Bukkit.getServer().getPluginManager();
             pluginManager.registerEvents(new BukkitBlockListener(), plugin);
             pluginManager.registerEvents(new BukkitEntityListener(), plugin);

@@ -15,8 +15,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.event.command.BrigadierCommandRegisterEvent;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterlib.TaterLib;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
 @ToBeLibrary("brigadier-general")
@@ -41,7 +41,7 @@ public class VelocityBrigadierCommandRegisterEvent
                 commandManager
                         .metaBuilder(commandName)
                         .aliases(aliases)
-                        .plugin(Loader.instance().plugin())
+                        .plugin(TaterLib.mod())
                         .build();
         commandManager.register(commandMeta, new BrigadierCommand(node));
     }

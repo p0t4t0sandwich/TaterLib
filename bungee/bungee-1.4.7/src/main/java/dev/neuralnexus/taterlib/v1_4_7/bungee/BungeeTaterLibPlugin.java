@@ -12,7 +12,6 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
@@ -46,7 +45,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     public void onEnable() {
         TaterLib.start();
         // Register listeners
-        Plugin plugin = (Plugin) Loader.instance().plugin();
+        Plugin plugin = (Plugin) TaterLib.mod();
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
         TaterAPI.scheduler()
                 .runLaterAsync(

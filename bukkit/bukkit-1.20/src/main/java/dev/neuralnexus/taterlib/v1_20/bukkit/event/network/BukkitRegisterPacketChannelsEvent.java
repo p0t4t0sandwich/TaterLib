@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.event.network;
 
 import dev.neuralnexus.taterapi.event.network.RegisterPacketChannelsEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_20.bukkit.listeners.network.BukkitPluginMessageListener;
 
 import org.bukkit.Bukkit;
@@ -16,7 +16,7 @@ import org.bukkit.plugin.messaging.Messenger;
 public class BukkitRegisterPacketChannelsEvent implements RegisterPacketChannelsEvent {
     @Override
     public void register(String channel) {
-        Plugin plugin = (Plugin) Loader.instance().plugin();
+        Plugin plugin = (Plugin) TaterLib.mod();
         Messenger messenger = Bukkit.getServer().getMessenger();
         messenger.registerIncomingPluginChannel(plugin, channel, new BukkitPluginMessageListener());
         messenger.registerOutgoingPluginChannel(plugin, channel);

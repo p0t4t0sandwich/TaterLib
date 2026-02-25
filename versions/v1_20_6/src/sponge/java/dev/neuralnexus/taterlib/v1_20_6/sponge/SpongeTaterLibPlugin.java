@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_20_6.sponge;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
@@ -45,7 +44,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
         TaterLib.start();
         if (MetaAPI.instance().platform().isSponge()) {
             // Register listeners
-            PluginContainer container = (PluginContainer) Loader.instance().plugin();
+            PluginContainer container = (PluginContainer) TaterLib.mod();
             EventManager eventManager = Sponge.eventManager();
             MethodHandles.Lookup lookup = MethodHandles.lookup();
             eventManager.registerListeners(container, new SpongeBlockListener(), lookup);

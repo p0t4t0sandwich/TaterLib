@@ -9,9 +9,9 @@ import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_20.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_20.bukkit.item.inventory.BukkitPlayerInventory;
 import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitWorld;
@@ -70,7 +70,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
 
     @Override
     public void sendPacket(ResourceKey channel, byte[] data) {
-        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(), data);
+        player.sendPluginMessage((Plugin) TaterLib.mod(), channel.asString(), data);
     }
 
     @Override

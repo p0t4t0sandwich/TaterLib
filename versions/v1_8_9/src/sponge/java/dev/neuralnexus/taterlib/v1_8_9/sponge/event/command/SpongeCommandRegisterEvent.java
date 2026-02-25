@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.event.command;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.command.SpongeCommandWrapper;
 
 import org.spongepowered.api.Sponge;
@@ -25,7 +25,7 @@ public class SpongeCommandRegisterEvent implements CommandRegisterEvent {
         System.arraycopy(aliases, 0, nameAndAliases, 1, aliases.length);
         Sponge.getCommandManager()
                 .register(
-                        Loader.instance().plugin(),
+                        TaterLib.mod(),
                         CommandSpec.builder()
                                 .executor(
                                         new SpongeCommandWrapper(command::execute, command.name()))

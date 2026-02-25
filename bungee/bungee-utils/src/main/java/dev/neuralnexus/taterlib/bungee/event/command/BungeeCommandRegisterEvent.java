@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.bungee.event.command;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.bungee.command.BungeeCommandWrapper;
 
 import net.md_5.bungee.api.ProxyServer;
@@ -20,7 +20,7 @@ public class BungeeCommandRegisterEvent implements CommandRegisterEvent {
         ProxyServer.getInstance()
                 .getPluginManager()
                 .registerCommand(
-                        (net.md_5.bungee.api.plugin.Plugin) Loader.instance().plugin(),
+                        (net.md_5.bungee.api.plugin.Plugin) TaterLib.mod(),
                         new BungeeCommandWrapper(command));
     }
 }

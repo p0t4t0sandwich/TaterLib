@@ -8,7 +8,8 @@ import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterapi.impl.loader.plugin.ModuleLoaderImpl;
+import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
@@ -17,10 +18,13 @@ import dev.neuralnexus.taterlib.modules.bungeecord.BungeeCordModule;
 import dev.neuralnexus.taterlib.modules.core.CoreModule;
 import dev.neuralnexus.taterlib.modules.mclogs.MCLogsModule;
 
+import org.jspecify.annotations.NonNull;
+
 /** Main class for the plugin. */
 public class TaterLib {
     private static final TaterLib instance = new TaterLib();
     private static boolean RELOADED = false;
+    private static final ModuleLoader moduleLoader = new ModuleLoaderImpl();
 
     private TaterLib() {}
 
@@ -41,6 +45,10 @@ public class TaterLib {
      */
     public static TaterLib instance() {
         return instance;
+    }
+
+    public static @NonNull Object mod() {
+        return MetaAPI.instance().mod(TaterLoader.MOD_ID).orElseThrow().unwrap();
     }
 
     /** Start */
@@ -82,21 +90,22 @@ public class TaterLib {
                     });
 
             TaterLibConfig config = TaterLibConfigLoader.config();
-            Loader loader = Loader.instance();
-            loader.registerPluginModule("taterlib", new CoreModule());
+            moduleLoader.registerModule(new CoreModule());
             if (config.checkModule("BungeeCord")) {
-                loader.registerPluginModule("taterlib", new BungeeCordModule());
+                moduleLoader.registerModule(new BungeeCordModule());
             }
             if (config.checkModule("MCLogs")) {
-                loader.registerPluginModule("taterlib", new MCLogsModule());
+                moduleLoader.registerModule(new MCLogsModule());
             }
         }
+        moduleLoader.onEnable();
         TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been started!");
     }
 
     /** Stop */
     public static void stop() {
         TaterLibConfigLoader.unload();
+        moduleLoader.onDisable();
         TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been stopped!");
     }
 

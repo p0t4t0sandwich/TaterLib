@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.neoforge.NeoForgeLifecycleListener;
 
@@ -24,7 +23,7 @@ public final class NeoForgeLoaderPlugin {
         if (bus != null) {
             bus.register(new NeoForgeLifecycleListener());
         } else {
-            Loader.logger.warn("Failed to register events to mod event bus");
+            TaterLoader.logger.warn("Failed to register events to mod event bus");
         }
         TaterLoader.onInit();
     }

@@ -11,8 +11,8 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.event.command.CommandRegisterEvent;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.command.VelocityCommandWrapper;
 
 /** Velocity implementation of {@link CommandRegisterEvent}. */
@@ -26,7 +26,7 @@ public class VelocityCommandRegisterEvent implements CommandRegisterEvent {
                 commandManager
                         .metaBuilder(command.name())
                         .aliases(aliases)
-                        .plugin(Loader.instance().plugin())
+                        .plugin(TaterLib.mod())
                         .build();
         commandManager.register(commandMeta, new VelocityCommandWrapper(command::execute));
     }
