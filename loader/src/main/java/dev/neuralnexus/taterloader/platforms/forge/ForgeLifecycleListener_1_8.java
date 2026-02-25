@@ -6,25 +6,19 @@ package dev.neuralnexus.taterloader.platforms.forge;
 
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
-public class ForgeLifecycleListener_1_8 {
-    private final Loader loader;
-
-    public ForgeLifecycleListener_1_8(Loader loader) {
-        this.loader = loader;
-    }
-
+public final class ForgeLifecycleListener_1_8 {
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
-        this.loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Mod.EventHandler
     public void onDisable(FMLServerStoppedEvent event) {
-        this.loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

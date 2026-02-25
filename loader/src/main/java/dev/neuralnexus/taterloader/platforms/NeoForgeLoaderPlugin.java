@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.neoforge.NeoForgeLifecycleListener;
 
 import net.neoforged.bus.api.IEventBus;
@@ -20,33 +20,20 @@ import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /** NeoForge entry point. */
 @Mod(LoaderImpl.PROJECT_ID)
-public class NeoForgeLoaderPlugin {
-    private static Loader loader;
-
+public final class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);
-
-        loader = new LoaderImpl(this);
         IEventBus bus = ModLoadingContext.get().getActiveContainer().getEventBus();
         if (bus != null) {
-            bus.register(new NeoForgeLifecycleListener(loader));
+            bus.register(new NeoForgeLifecycleListener());
         } else {
             Loader.logger.warn("Failed to register events to mod event bus");
         }
-
-        loader.registerPlugin(TaterPluginResolver.neoForge());
-        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
-            loader.registerPlugin(TaterPluginResolver.bukkit());
-        }
-        // Sinytra Connector support
-        if (MetaAPI.instance().meta().isModLoaded("connectormod")) {
-            loader.registerPlugin(TaterPluginResolver.fabric());
-        }
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     @SubscribeEvent
     public void onDisable(ServerStoppedEvent event) {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

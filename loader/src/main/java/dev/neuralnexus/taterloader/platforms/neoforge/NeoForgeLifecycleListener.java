@@ -4,20 +4,14 @@
  */
 package dev.neuralnexus.taterloader.platforms.neoforge;
 
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
-public class NeoForgeLifecycleListener {
-    private final Loader loader;
-
-    public NeoForgeLifecycleListener(Loader loader) {
-        this.loader = loader;
-    }
-
+public final class NeoForgeLifecycleListener {
     @SubscribeEvent
     public void onInit(FMLCommonSetupEvent event) {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 }

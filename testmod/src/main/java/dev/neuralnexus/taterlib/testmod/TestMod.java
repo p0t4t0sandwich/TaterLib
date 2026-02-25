@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
 import dev.neuralnexus.taterapi.event.api.PluginEvents;
-import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.NewPlugin;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
@@ -17,9 +17,10 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
+import org.jspecify.annotations.NonNull;
 
 /** Main class for the plugin. */
-public class TestMod implements Plugin {
+public class TestMod implements NewPlugin {
     public static final String PROJECT_NAME = "TestMod";
     public static final String PROJECT_ID = "testmod";
     public static final String PROJECT_VERSION = "0.1.0-R0.1-SNAPSHOT";
@@ -62,14 +63,17 @@ public class TestMod implements Plugin {
     }
 
     @Override
-    public String name() {
+    public @NonNull String name() {
         return TestMod.PROJECT_NAME;
     }
 
     @Override
-    public String id() {
+    public @NonNull String id() {
         return TestMod.PROJECT_ID;
     }
+
+    @Override
+    public void onInit() {}
 
     @Override
     public void onEnable() {

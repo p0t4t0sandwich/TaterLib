@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
+import dev.neuralnexus.taterloader.TaterLoader;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.DedicatedServerModInitializer;
 
-public class FabricLoaderPluginDelegate
+public final class FabricLoaderPluginDelegate
         implements ClientModInitializer, DedicatedServerModInitializer {
     private boolean hasInitialized = false;
 
@@ -17,7 +19,7 @@ public class FabricLoaderPluginDelegate
             return;
         }
         this.hasInitialized = true;
-        FabricLoaderPlugin.loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Override
@@ -26,6 +28,6 @@ public class FabricLoaderPluginDelegate
             return;
         }
         this.hasInitialized = true;
-        FabricLoaderPlugin.loader.onEnable();
+        TaterLoader.onEnable();
     }
 }

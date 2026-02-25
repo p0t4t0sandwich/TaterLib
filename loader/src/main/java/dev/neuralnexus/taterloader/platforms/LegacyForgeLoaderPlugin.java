@@ -9,10 +9,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 /** Legacy Forge entry point. */
 @Mod(
@@ -22,25 +19,18 @@ import dev.neuralnexus.taterloader.TaterPluginResolver;
         acceptableRemoteVersions = "*",
         bukkitPlugin = LoaderImpl.PROJECT_NAME)
 @SuppressWarnings("FieldCanBeLocal")
-public class LegacyForgeLoaderPlugin {
-    private static Loader loader;
-
+public final class LegacyForgeLoaderPlugin {
     public LegacyForgeLoaderPlugin() {
-        loader = new LoaderImpl(this);
-        loader.registerPlugin(TaterPluginResolver.forge());
-        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
-            loader.registerPlugin(TaterPluginResolver.bukkit());
-        }
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     @Mod.EventHandler
     public void onInit(FMLInitializationEvent event) {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Mod.EventHandler
     public void onDisable(FMLServerStoppedEvent event) {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

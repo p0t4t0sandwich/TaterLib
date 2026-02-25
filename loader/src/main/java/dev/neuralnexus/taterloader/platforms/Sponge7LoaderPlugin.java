@@ -7,9 +7,7 @@ package dev.neuralnexus.taterloader.platforms;
 import com.google.inject.Inject;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameStartedServerEvent;
@@ -23,27 +21,20 @@ import org.spongepowered.api.plugin.PluginContainer;
         name = LoaderImpl.PROJECT_NAME,
         version = LoaderImpl.PROJECT_VERSION,
         description = LoaderImpl.PROJECT_DESCRIPTION)
-public class Sponge7LoaderPlugin {
-    private static Loader loader;
-
+public final class Sponge7LoaderPlugin {
     @Inject
     public Sponge7LoaderPlugin(PluginContainer container) {
-        loader = new LoaderImpl(container);
-        loader.registerPlugin(TaterPluginResolver.sponge());
-        if (MetaAPI.instance().isSpongeForge()) {
-            loader.registerPlugin(TaterPluginResolver.forge());
-        }
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     // TODO: Switch to server-starting? Or switch to common init event?
     @Listener
     public void onServerStarted(GameStartedServerEvent event) {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Listener
     public void onServerStopped(GameStoppedServerEvent event) {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

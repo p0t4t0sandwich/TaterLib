@@ -4,19 +4,26 @@
  */
 package dev.neuralnexus.taterlib;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.NewPlugin;
+import dev.neuralnexus.taterloader.TaterLoader;
+
+import org.jspecify.annotations.NonNull;
 
 /** General TaterLib plugin interface. */
-public interface TaterLibPlugin extends Plugin {
+public interface TaterLibPlugin extends NewPlugin {
     @Override
-    default String name() {
-        return LoaderImpl.PROJECT_NAME;
+    default @NonNull String id() {
+        return TaterLoader.MOD_ID;
     }
 
     @Override
-    default String id() {
-        return LoaderImpl.PROJECT_ID;
+    default @NonNull String name() {
+        return TaterLoader.MOD_NAME;
+    }
+
+    @Override
+    default void onInit() {
+        // TODO: Verify No-Op?
     }
 
     @Override

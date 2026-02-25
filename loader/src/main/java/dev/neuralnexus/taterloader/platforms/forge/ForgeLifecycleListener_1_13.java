@@ -4,20 +4,14 @@
  */
 package dev.neuralnexus.taterloader.platforms.forge;
 
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
-public class ForgeLifecycleListener_1_13 {
-    private final Loader loader;
-
-    public ForgeLifecycleListener_1_13(Loader loader) {
-        this.loader = loader;
-    }
-
+public final class ForgeLifecycleListener_1_13 {
     @SubscribeEvent
     public void onDisable(ServerStoppedEvent event) {
-        this.loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

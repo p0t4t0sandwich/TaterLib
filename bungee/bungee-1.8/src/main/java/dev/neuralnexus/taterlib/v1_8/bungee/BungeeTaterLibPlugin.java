@@ -14,6 +14,10 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
@@ -29,6 +33,9 @@ import net.md_5.bungee.api.plugin.PluginManager;
 
 import java.util.concurrent.TimeUnit;
 
+@AConstraint(
+        platform = Platform.BUNGEECORD,
+        version = @Versions(min = MinecraftVersion.V8, max = MinecraftVersion.V11_2))
 public class BungeeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

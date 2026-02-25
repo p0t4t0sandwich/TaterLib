@@ -4,38 +4,23 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterapi.meta.platforms.TaterMetadata;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
 /** Bukkit entry point. */
-public class BukkitLoaderPlugin extends JavaPlugin {
-    private static Loader loader;
-
+public final class BukkitLoaderPlugin extends JavaPlugin {
     public BukkitLoaderPlugin() {
-        TaterMetadata.initBukkit();
-        loader = new LoaderImpl(this);
-        loader.registerPlugin(TaterPluginResolver.bukkit());
-        if (MetaAPI.instance().isPlatformPresent(Platforms.FORGE)) {
-            loader.registerPlugin(TaterPluginResolver.forge());
-        } else if (MetaAPI.instance().isPlatformPresent(Platforms.FABRIC)) {
-            loader.registerPlugin(TaterPluginResolver.fabric());
-        }
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     @Override
     public void onEnable() {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Override
     public void onDisable() {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

@@ -12,6 +12,10 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_7_10.fabric.event.command.FabricCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_8_9.vanilla.VanillaBootstrap;
@@ -19,7 +23,9 @@ import dev.neuralnexus.taterlib.v1_8_9.vanilla.VanillaBootstrap;
 import net.legacyfabric.fabric.api.command.v2.CommandRegistrar;
 import net.legacyfabric.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 
-@SuppressWarnings("unused")
+@AConstraint(
+        platform = Platform.FABRIC,
+        version = @Versions(min = MinecraftVersion.V7, max = MinecraftVersion.V12_2))
 public class FabricTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

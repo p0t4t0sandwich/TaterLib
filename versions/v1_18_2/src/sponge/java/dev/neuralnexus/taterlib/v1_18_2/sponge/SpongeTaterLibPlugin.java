@@ -7,6 +7,10 @@ package dev.neuralnexus.taterlib.v1_18_2.sponge;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_16_5.sponge.listeners.SpongeBlockListener;
@@ -21,6 +25,9 @@ import org.spongepowered.api.Sponge;
 import org.spongepowered.api.event.EventManager;
 import org.spongepowered.plugin.PluginContainer;
 
+@AConstraint(
+        platform = Platform.SPONGE,
+        version = @Versions(min = MinecraftVersion.V17, max = MinecraftVersion.V18_2))
 public class SpongeTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

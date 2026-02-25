@@ -4,20 +4,14 @@
  */
 package dev.neuralnexus.taterloader.platforms.forge;
 
-import dev.neuralnexus.taterapi.loader.Loader;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-public class ForgeModLifecycleListener_1_13 {
-    private final Loader loader;
-
-    public ForgeModLifecycleListener_1_13(Loader loader) {
-        this.loader = loader;
-    }
-
+public final class ForgeModLifecycleListener_1_13 {
     @SubscribeEvent
     public void onInit(FMLCommonSetupEvent event) {
-        this.loader.onEnable();
+        TaterLoader.onEnable();
     }
 }

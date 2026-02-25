@@ -31,6 +31,8 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
@@ -49,6 +51,7 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 import java.time.Duration;
 
+@AConstraint(platform = Platform.VELOCITY)
 public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onInit() {

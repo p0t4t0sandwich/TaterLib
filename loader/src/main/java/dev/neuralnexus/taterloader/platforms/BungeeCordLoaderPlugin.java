@@ -4,31 +4,23 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.platforms.TaterMetadata;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 import net.md_5.bungee.api.plugin.Plugin;
 
 /** Bungee entry point. */
-public class BungeeCordLoaderPlugin extends Plugin {
-    private static Loader loader;
-
+public final class BungeeCordLoaderPlugin extends Plugin {
     public BungeeCordLoaderPlugin() {
-        TaterMetadata.initBungeeCord();
-        loader = new LoaderImpl(this);
-        loader.registerPlugin(TaterPluginResolver.bungeeCord());
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     @Override
     public void onEnable() {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Override
     public void onDisable() {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }

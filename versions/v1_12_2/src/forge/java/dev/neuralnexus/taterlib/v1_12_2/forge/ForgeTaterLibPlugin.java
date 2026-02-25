@@ -14,6 +14,10 @@ import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
+import dev.neuralnexus.taterapi.meta.anno.AConstraint;
+import dev.neuralnexus.taterapi.meta.anno.Versions;
+import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
+import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_12_2.forge.listeners.player.ForgePlayerAdvancementListener;
@@ -31,7 +35,9 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
 /** Forge entry point. */
-@SuppressWarnings("unused")
+@AConstraint(
+        platform = Platform.FORGE,
+        version = @Versions(min = MinecraftVersion.V9, max = MinecraftVersion.V12_2))
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
     @ToBeLibrary("brigadier-general")
     @Mod.EventHandler

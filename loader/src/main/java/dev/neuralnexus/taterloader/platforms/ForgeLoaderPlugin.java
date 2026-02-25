@@ -8,8 +8,7 @@ import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_13;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_8;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeModLifecycleListener_1_13;
@@ -27,31 +26,19 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
         serverSideOnly = true,
         acceptableRemoteVersions = "*")
 @SuppressWarnings("FieldCanBeLocal")
-public class ForgeLoaderPlugin {
-    private static Loader loader;
-
+public final class ForgeLoaderPlugin {
     public ForgeLoaderPlugin() {
-        loader = new LoaderImpl(this);
         if (MetaAPI.instance().version().lessThan(MinecraftVersions.V13)) {
-            MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_8(loader));
+            MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_8());
         } else {
-            MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_13(loader));
+            MinecraftForge.EVENT_BUS.register(new ForgeLifecycleListener_1_13());
             IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
             if (bus != null) {
-                bus.register(new ForgeModLifecycleListener_1_13(loader));
+                bus.register(new ForgeModLifecycleListener_1_13());
             } else {
                 Loader.logger.warn("Failed to register events to mod event bus");
             }
         }
-
-        loader.registerPlugin(TaterPluginResolver.forge());
-        if (MetaAPI.instance().isPlatformPresent(Platforms.BUKKIT)) {
-            loader.registerPlugin(TaterPluginResolver.bukkit());
-        }
-        // Sinytra Connector support
-        if (MetaAPI.instance().meta().isModLoaded("connectormod")) {
-            loader.registerPlugin(TaterPluginResolver.fabric());
-        }
-        loader.onInit();
+        TaterLoader.onInit();
     }
 }

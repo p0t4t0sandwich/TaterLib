@@ -12,9 +12,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
 
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.platforms.TaterMetadata;
-import dev.neuralnexus.taterloader.TaterPluginResolver;
+import dev.neuralnexus.taterloader.TaterLoader;
 
 /** Velocity entry point. */
 @Plugin(
@@ -24,24 +22,19 @@ import dev.neuralnexus.taterloader.TaterPluginResolver;
         authors = LoaderImpl.PROJECT_AUTHORS,
         description = LoaderImpl.PROJECT_DESCRIPTION,
         url = LoaderImpl.PROJECT_URL)
-public class VelocityLoaderPlugin {
-    private static Loader loader;
-
+public final class VelocityLoaderPlugin {
     @Inject
     public VelocityLoaderPlugin(PluginContainer plugin) {
-        TaterMetadata.initVelocity();
-        loader = new LoaderImpl(plugin);
-        loader.registerPlugin(TaterPluginResolver.velocity());
-        loader.onInit();
+        TaterLoader.onInit();
     }
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        loader.onEnable();
+        TaterLoader.onEnable();
     }
 
     @Subscribe
     public void onProxyShutdown(ProxyShutdownEvent event) {
-        loader.onDisable();
+        TaterLoader.onDisable();
     }
 }
