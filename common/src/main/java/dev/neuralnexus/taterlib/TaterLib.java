@@ -22,7 +22,6 @@ import org.jspecify.annotations.NonNull;
 
 /** Main class for the plugin. */
 public class TaterLib {
-    private static final TaterLib instance = new TaterLib();
     private static boolean RELOADED = false;
     private static final ModuleLoader moduleLoader = new ModuleLoaderImpl();
 
@@ -36,15 +35,6 @@ public class TaterLib {
     @SuppressWarnings("BooleanMethodIsAlwaysInverted")
     public static boolean hasReloaded() {
         return RELOADED;
-    }
-
-    /**
-     * Getter for the singleton instance of the class.
-     *
-     * @return The singleton instance
-     */
-    public static TaterLib instance() {
-        return instance;
     }
 
     public static @NonNull Object mod() {
