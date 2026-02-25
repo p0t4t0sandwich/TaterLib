@@ -30,7 +30,7 @@ public final class TaterLoader {
     public static final Logger logger = Logger.create(MOD_ID);
 
     private static final @NonNull String SERVICE_PATH =
-            "META-INF/services/dev.neuralnexus.taterapi.loader.plugin.NewPlugin";
+            "META-INF/services/dev.neuralnexus.taterapi.loader.plugin.Plugin";
     private static EntrypointLoader<Plugin> loader;
 
     @ApiStatus.Internal
