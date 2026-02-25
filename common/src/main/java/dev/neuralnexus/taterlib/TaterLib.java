@@ -41,6 +41,9 @@ public class TaterLib {
         return MetaAPI.instance().mod(TaterLoader.MOD_ID).orElseThrow().unwrap();
     }
 
+    // TODO: Create shared flag to signify that events have been registered
+    // Alternatively, include the "source" platform as part of the event call to allow for filtering
+
     /** Start */
     public static void start() {
         MetaAPI api = MetaAPI.instance();
@@ -88,14 +91,14 @@ public class TaterLib {
                 moduleLoader.registerModule(new MCLogsModule());
             }
         }
-        moduleLoader.onEnable();
         TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been started!");
+        moduleLoader.onEnable();
     }
 
     /** Stop */
     public static void stop() {
-        TaterLibConfigLoader.unload();
         moduleLoader.onDisable();
+        TaterLibConfigLoader.unload();
         TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been stopped!");
     }
 

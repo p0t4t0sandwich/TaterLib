@@ -60,7 +60,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        TaterLib.start();
+        TaterLibPlugin.super.onEnable();
         // Register listeners
         PluginContainer plugin = (PluginContainer) TaterLib.mod();
         ProxyServer proxyServer = (ProxyServer) MetaAPI.instance().server();
@@ -155,6 +155,6 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     @Override
     public void onDisable() {
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        TaterLib.stop();
+        TaterLibPlugin.super.onDisable();
     }
 }

@@ -45,7 +45,7 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        TaterLib.start();
+        TaterLibPlugin.super.onEnable();
         // Register listeners
         Plugin plugin = (Plugin) TaterLib.mod();
         PluginManager pluginManager = ProxyServer.getInstance().getPluginManager();
@@ -75,6 +75,6 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        TaterLib.stop();
+        TaterLibPlugin.super.onDisable();
     }
 }

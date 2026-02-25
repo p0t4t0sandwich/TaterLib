@@ -39,7 +39,7 @@ public class SpongeTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        TaterLib.start();
+        TaterLibPlugin.super.onEnable();
         if (MetaAPI.instance().platform().isSponge()) {
             // Register listeners
             PluginContainer container = (PluginContainer) TaterLib.mod();

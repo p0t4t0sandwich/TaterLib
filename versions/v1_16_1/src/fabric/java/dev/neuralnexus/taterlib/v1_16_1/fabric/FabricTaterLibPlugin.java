@@ -15,7 +15,6 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.VanillaBootstrap;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.event.player.VanillaPlayerLoginEvent;
@@ -35,7 +34,7 @@ public class FabricTaterLibPlugin implements TaterLibPlugin {
             VanillaBootstrap.init();
 
             // Initialize plugin data
-            ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLib.stop());
+            ServerLifecycleEvents.SERVER_STOPPED.register(s -> TaterLibPlugin.super.onDisable());
 
             // Register Fabric API player events
             ServerPlayConnectionEvents.JOIN.register(

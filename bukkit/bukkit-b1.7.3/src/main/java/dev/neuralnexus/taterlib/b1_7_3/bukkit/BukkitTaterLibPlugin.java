@@ -50,7 +50,7 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
 
     @Override
     public void onEnable() {
-        TaterLib.start();
+        TaterLibPlugin.super.onEnable();
         if (MetaAPI.instance().platform().isBukkit()) {
             // Register listeners
             Plugin plugin = (Plugin) TaterLib.mod();
@@ -118,6 +118,6 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         // Run server stopping events
         ServerEvents.STOPPING.invoke(new ServerStoppingEvent() {});
         ServerEvents.STOPPED.invoke(new ServerStoppedEvent() {});
-        TaterLib.stop();
+        TaterLibPlugin.super.onDisable();
     }
 }
