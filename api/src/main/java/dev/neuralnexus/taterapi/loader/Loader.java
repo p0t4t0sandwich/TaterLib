@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.event.plugin.PluginEnableEvent;
 import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.impl.loader.plugin.ModuleLoaderImpl;
 import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
-import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.OldPlugin;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.logger.Logger;
 
@@ -38,7 +38,7 @@ public interface Loader {
 
     /** Get the collection of plugins. */
     @ApiStatus.Internal
-    List<Plugin> plugins();
+    List<OldPlugin> plugins();
 
     /** Get the plugin modules. */
     @ApiStatus.Internal
@@ -46,7 +46,7 @@ public interface Loader {
 
     /** Register a plugin. */
     @ApiStatus.Internal
-    default void registerPlugin(Plugin plugin) {
+    default void registerPlugin(OldPlugin plugin) {
         if (null == plugin) {
             return;
         }
@@ -65,7 +65,7 @@ public interface Loader {
 
     /** Unregister a plugin. */
     @ApiStatus.Internal
-    default void unregisterPlugin(Plugin plugin) {
+    default void unregisterPlugin(OldPlugin plugin) {
         unregisterPlugin(plugin.id());
     }
 
@@ -88,7 +88,7 @@ public interface Loader {
     }
 
     /** Register a plugin module */
-    default void registerPluginModule(Plugin plugin, PluginModule module) {
+    default void registerPluginModule(OldPlugin plugin, PluginModule module) {
         registerPluginModule(plugin.id(), module);
     }
 
@@ -100,7 +100,7 @@ public interface Loader {
     }
 
     /** Unregister a plugin module */
-    default void unregisterPluginModule(Plugin plugin, String moduleId) {
+    default void unregisterPluginModule(OldPlugin plugin, String moduleId) {
         unregisterPluginModule(plugin.id(), moduleId);
     }
 
@@ -110,14 +110,14 @@ public interface Loader {
     }
 
     /** Unregister a plugin module */
-    default void unregisterPluginModule(Plugin plugin, PluginModule module) {
+    default void unregisterPluginModule(OldPlugin plugin, PluginModule module) {
         unregisterPluginModule(plugin.id(), module.id());
     }
 
     /** Run Init on all plugins. */
     @ApiStatus.Internal
     default void onInit() {
-        plugins().forEach(Plugin::onInit);
+        plugins().forEach(OldPlugin::onInit);
     }
 
     /** Run Enable on all plugins. */

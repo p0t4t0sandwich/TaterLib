@@ -5,12 +5,12 @@
 package dev.neuralnexus.taterlib;
 
 import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
-import dev.neuralnexus.taterapi.loader.plugin.NewPlugin;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 
 import org.jspecify.annotations.NonNull;
 
 /** General TaterLib plugin interface. */
-public interface TaterLibPlugin extends NewPlugin {
+public interface TaterLibPlugin extends Plugin {
     @Override
     default @NonNull String id() {
         return TaterLoader.MOD_ID;

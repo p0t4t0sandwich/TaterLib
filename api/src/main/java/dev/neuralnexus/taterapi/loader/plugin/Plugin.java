@@ -4,28 +4,14 @@
  */
 package dev.neuralnexus.taterapi.loader.plugin;
 
-/** General plugin interface. */
-public interface Plugin {
-    /**
-     * Get the name of the plugin.
-     *
-     * @return The name of the plugin.
-     */
-    String name();
+import dev.neuralnexus.taterapi.loader.Entrypoint;
 
-    /**
-     * Get the plugin's id.
-     *
-     * @return The plugin's id.
-     */
-    String id();
+import org.jspecify.annotations.NonNull;
 
-    /** Fires when the platform first initializes, doesn't have a common use case */
-    default void onInit() {}
+public interface Plugin extends Entrypoint {
+    @NonNull String id();
 
-    /** Fires when the plugin is enabled. */
-    default void onEnable() {}
-
-    /** Fires when the plugin is disabled. */
-    default void onDisable() {}
+    default @NonNull String name() {
+        return this.id();
+    }
 }

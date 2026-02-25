@@ -6,7 +6,7 @@ package dev.neuralnexus.taterapi.impl.loader;
 
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.loader.plugin.ModuleLoader;
-import dev.neuralnexus.taterapi.loader.plugin.Plugin;
+import dev.neuralnexus.taterapi.loader.plugin.OldPlugin;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.Map;
 public final class LoaderImpl implements Loader {
     private static Loader instance;
     private final Object plugin;
-    private final List<Plugin> plugins = new ArrayList<>();
+    private final List<OldPlugin> plugins = new ArrayList<>();
     private final Map<String, ModuleLoader> pluginModules = new HashMap<>();
 
     public LoaderImpl(Object plugin) {
@@ -44,7 +44,7 @@ public final class LoaderImpl implements Loader {
     }
 
     @Override
-    public List<Plugin> plugins() {
+    public List<OldPlugin> plugins() {
         return plugins;
     }
 

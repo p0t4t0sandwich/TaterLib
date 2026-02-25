@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterapi.impl.loader;
 
 import dev.neuralnexus.taterapi.loader.EntrypointLoader;
-import dev.neuralnexus.taterapi.loader.plugin.NewPlugin;
+import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
@@ -31,7 +31,7 @@ public final class TaterLoader {
 
     private static final @NonNull String SERVICE_PATH =
             "META-INF/services/dev.neuralnexus.taterapi.loader.plugin.NewPlugin";
-    private static EntrypointLoader<NewPlugin> loader;
+    private static EntrypointLoader<Plugin> loader;
 
     @ApiStatus.Internal
     public static void onInit() {
@@ -61,7 +61,7 @@ public final class TaterLoader {
             final Path servicePath = resource.getResourceOrThrow(SERVICE_PATH);
             loader =
                     EntrypointLoader.builder()
-                            .entrypointClass(NewPlugin.class)
+                            .entrypointClass(Plugin.class)
                             .logger(logger)
                             .servicePaths(servicePath)
                             .useServiceLoader(false)
