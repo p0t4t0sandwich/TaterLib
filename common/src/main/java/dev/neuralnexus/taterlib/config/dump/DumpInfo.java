@@ -8,7 +8,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import java.io.File;
@@ -23,7 +23,7 @@ public class DumpInfo {
     // TODO: Include list of detected platforms
     public final String platform = MetaAPI.instance().platform().toString();
     public final String version = MetaAPI.instance().version().toString();
-    public final String taterlibVersion = LoaderImpl.PROJECT_VERSION;
+    public final String taterlibVersion = TaterLoader.VERSION;
     public final boolean isForgeHybrid = MetaAPI.instance().isForgeHybrid();
     public final boolean isFabricHybrid = MetaAPI.instance().isFabricHybrid();
     public final boolean isSpongeForge = MetaAPI.instance().isSpongeForge();

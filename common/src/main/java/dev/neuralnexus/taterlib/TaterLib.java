@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib;
 import dev.neuralnexus.modapi.crossperms.CrossPerms;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.TaterLibConfig;
@@ -48,7 +48,7 @@ public class TaterLib {
         MetaAPI api = MetaAPI.instance();
         TaterAPI.logger()
                 .info(
-                        LoaderImpl.PROJECT_NAME
+                        TaterLoader.MOD_NAME
                                 + " is running on "
                                 + api.platform()
                                 + " "
@@ -91,13 +91,13 @@ public class TaterLib {
                 loader.registerPluginModule("taterlib", new MCLogsModule());
             }
         }
-        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been started!");
+        TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been started!");
     }
 
     /** Stop */
     public static void stop() {
         TaterLibConfigLoader.unload();
-        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been stopped!");
+        TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been stopped!");
     }
 
     /** Reload */
@@ -105,6 +105,6 @@ public class TaterLib {
         RELOADED = true;
         stop();
         start();
-        TaterAPI.logger().info(LoaderImpl.PROJECT_NAME + " has been reloaded!");
+        TaterAPI.logger().info(TaterLoader.MOD_NAME + " has been reloaded!");
     }
 }

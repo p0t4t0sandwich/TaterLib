@@ -4,11 +4,8 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.loader.Loader;
-import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.meta.Platforms;
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.neoforge.NeoForgeLifecycleListener;
 
 import net.neoforged.bus.api.IEventBus;
@@ -19,7 +16,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStoppedEvent;
 
 /** NeoForge entry point. */
-@Mod(LoaderImpl.PROJECT_ID)
+@Mod(TaterLoader.MOD_ID)
 public final class NeoForgeLoaderPlugin {
     public NeoForgeLoaderPlugin() {
         NeoForge.EVENT_BUS.register(this);

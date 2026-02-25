@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.*;
@@ -31,7 +31,7 @@ public class DepDownloader {
                 MetaAPI.instance()
                         .meta()
                         .modsFolder()
-                        .resolve(LoaderImpl.PROJECT_ID)
+                        .resolve(TaterLoader.MOD_ID)
                         .resolve("libraries");
         for (Map.Entry<String, String> entry : depInfo.entrySet()) {
             deps[i] = new MavenDependency(entry.getKey(), entry.getValue(), basePath);

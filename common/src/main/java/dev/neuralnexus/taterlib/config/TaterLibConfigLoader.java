@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.config;
 
 import dev.neuralnexus.taterapi.config.VersionedConfig;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterlib.config.versions.TaterLibConfig_V1;
@@ -21,14 +21,14 @@ import java.nio.file.Paths;
 
 /** A class for loading TaterLib configuration. */
 public class TaterLibConfigLoader {
-    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID + "-configloader");
+    private static final Logger logger = Logger.create(TaterLoader.MOD_ID + "-configloader");
     private static final Path configPath =
             Paths.get(
                     MetaAPI.instance().meta().configFolder()
                             + File.separator
-                            + LoaderImpl.PROJECT_ID
+                            + TaterLoader.MOD_ID
                             + File.separator
-                            + LoaderImpl.PROJECT_ID
+                            + TaterLoader.MOD_ID
                             + ".conf");
     private static HoconConfigurationLoader loader;
     private static TaterLibConfig config;

@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterloader.platforms.forge;
 
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 import net.minecraftforge.event.server.ServerStoppedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

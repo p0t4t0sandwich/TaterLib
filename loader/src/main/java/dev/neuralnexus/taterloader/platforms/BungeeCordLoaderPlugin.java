@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 import net.md_5.bungee.api.plugin.Plugin;
 

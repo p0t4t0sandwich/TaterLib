@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.modules.core.command;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.util.TextUtil;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.config.dump.DumpInfo;
@@ -52,14 +52,14 @@ public class TaterLibCommand implements Command {
             case "reload":
                 try {
                     TaterLib.reload();
-                    text = "&aReloaded " + LoaderImpl.PROJECT_NAME + "!";
+                    text = "&aReloaded " + TaterLoader.MOD_NAME + "!";
                 } catch (Exception e) {
                     text = "&cAn error occurred while reloading the plugin.";
                     TaterAPI.logger().error("An error occurred while reloading the plugin", e);
                 }
                 break;
             case "version":
-                text = "&a" + LoaderImpl.PROJECT_NAME + " v" + LoaderImpl.PROJECT_VERSION;
+                text = "&a" + TaterLoader.MOD_NAME + " v" + TaterLoader.VERSION;
                 break;
             case "dump":
                 DumpInfo dumpInfo = new DumpInfo();

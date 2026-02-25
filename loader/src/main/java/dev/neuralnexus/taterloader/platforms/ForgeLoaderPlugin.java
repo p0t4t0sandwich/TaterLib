@@ -4,11 +4,9 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterapi.loader.Loader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_13;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_8;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeModLifecycleListener_1_13;
@@ -20,8 +18,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 /** Forge entry point. */
 @Mod(
-        value = LoaderImpl.PROJECT_ID,
-        modid = LoaderImpl.PROJECT_ID,
+        value = TaterLoader.MOD_ID,
+        modid = TaterLoader.MOD_ID,
         useMetadata = true,
         serverSideOnly = true,
         acceptableRemoteVersions = "*")
@@ -36,7 +34,7 @@ public final class ForgeLoaderPlugin {
             if (bus != null) {
                 bus.register(new ForgeModLifecycleListener_1_13());
             } else {
-                Loader.logger.warn("Failed to register events to mod event bus");
+                TaterLoader.logger.warn("Failed to register events to mod event bus");
             }
         }
         TaterLoader.onInit();

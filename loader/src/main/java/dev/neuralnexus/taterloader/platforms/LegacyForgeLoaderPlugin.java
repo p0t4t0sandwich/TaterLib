@@ -8,16 +8,15 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 /** Legacy Forge entry point. */
 @Mod(
-        modid = LoaderImpl.PROJECT_ID,
-        name = LoaderImpl.PROJECT_NAME,
+        modid = TaterLoader.MOD_ID,
+        name = TaterLoader.MOD_NAME,
         useMetadata = true,
         acceptableRemoteVersions = "*",
-        bukkitPlugin = LoaderImpl.PROJECT_NAME)
+        bukkitPlugin = TaterLoader.MOD_NAME)
 @SuppressWarnings("FieldCanBeLocal")
 public final class LegacyForgeLoaderPlugin {
     public LegacyForgeLoaderPlugin() {

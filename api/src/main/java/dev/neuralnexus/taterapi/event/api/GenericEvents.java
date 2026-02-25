@@ -22,7 +22,6 @@ public class GenericEvents {
         EVENTS.addAll(BlockEvents.events());
         EVENTS.addAll(CommandEvents.events());
         EVENTS.addAll(EntityEvents.events());
-        EVENTS.addAll(LoaderEvents.events());
         EVENTS.addAll(NetworkEvents.events());
         EVENTS.addAll(PlayerEvents.events());
         EVENTS.addAll(PluginEvents.events());

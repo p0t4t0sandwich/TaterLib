@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.modules.mclogs.api;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
 import gs.mclo.api.MclogsClient;
@@ -25,9 +25,9 @@ import java.util.stream.Collectors;
 /** API for the MCLogs module. */
 public class MCLogsAPI {
     private static final MclogsClient client =
-            new MclogsClient("TaterLib-MCLogsModule/" + LoaderImpl.PROJECT_VERSION)
+            new MclogsClient("TaterLib-MCLogsModule/" + TaterLoader.VERSION)
                     .setProjectName("TaterLib-MCLogsModule")
-                    .setProjectVersion(LoaderImpl.PROJECT_VERSION)
+                    .setProjectVersion(TaterLoader.VERSION)
                     .setMinecraftVersion(MetaAPI.instance().version().toString());
 
     /**

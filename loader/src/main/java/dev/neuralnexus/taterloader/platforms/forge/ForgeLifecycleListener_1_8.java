@@ -6,7 +6,7 @@ package dev.neuralnexus.taterloader.platforms.forge;
 
 import cpw.mods.fml.common.event.FMLServerStoppedEvent;
 
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

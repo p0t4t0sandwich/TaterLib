@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterlib.mixin.plugin;
 
 import dev.neuralnexus.taterapi.config.MixinConfig;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.muxins.Muxins;
 import dev.neuralnexus.taterlib.config.TaterLibConfigLoader;
@@ -21,7 +21,7 @@ import java.util.Set;
 
 /** A mixin plugin for TaterLib. */
 public class TaterLibMixinPlugin implements IMixinConfigPlugin {
-    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID + "-mixinplugin");
+    private static final Logger logger = Logger.create(TaterLoader.MOD_ID + "-mixinplugin");
 
     @Override
     public void onLoad(final @NonNull String mixinPackage) {

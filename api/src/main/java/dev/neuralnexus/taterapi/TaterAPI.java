@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi;
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.hooks.Hook;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platform;
@@ -34,10 +34,10 @@ import java.util.function.Supplier;
 
 /** API Provider */
 public class TaterAPI {
-    private static final Logger logger = Logger.create(LoaderImpl.PROJECT_ID);
+    private static final Logger logger = Logger.create(TaterLoader.MOD_ID);
     public static final UUID NIL_UUID = new UUID(0, 0);
     private static final List<Hook> hooks = new ArrayList<>();
-    private static final Scheduler scheduler = Scheduler.create(LoaderImpl.PROJECT_ID);
+    private static final Scheduler scheduler = Scheduler.create(TaterLoader.MOD_ID);
     private static PlayerDataStore playerDataStore;
     private static Supplier<String> serverName = () -> "MyMinecraftServer";
     private static final Map<Class<?>, Supplier<?>> factories = new HashMap<>();

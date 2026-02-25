@@ -11,7 +11,7 @@ import dev.neuralnexus.taterapi.event.api.GenericEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.hooks.meta.LuckPermsHook;
 import dev.neuralnexus.taterapi.hooks.metrics.SparkHook;
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.storage.databases.Database;
@@ -41,7 +41,7 @@ public class CoreModule implements PluginModule {
             TaterAPI.setPlayerDataStore(
                     new PlayerDataStore(
                             new Database.DatabaseConfig(
-                                    LoaderImpl.PROJECT_ID, 0, "playerdata", "", "")));
+                                    TaterLoader.MOD_ID, 0, "playerdata", "", "")));
 
             // Register hooks
             ServerEvents.STARTED.register(

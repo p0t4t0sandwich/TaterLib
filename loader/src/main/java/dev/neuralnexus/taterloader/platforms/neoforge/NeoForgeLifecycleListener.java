@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterloader.platforms.neoforge;
 
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;

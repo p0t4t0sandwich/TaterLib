@@ -11,17 +11,16 @@ import com.velocitypowered.api.event.proxy.ProxyShutdownEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.PluginContainer;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 /** Velocity entry point. */
 @Plugin(
-        id = LoaderImpl.PROJECT_ID,
-        name = LoaderImpl.PROJECT_NAME,
-        version = LoaderImpl.PROJECT_VERSION,
-        authors = LoaderImpl.PROJECT_AUTHORS,
-        description = LoaderImpl.PROJECT_DESCRIPTION,
-        url = LoaderImpl.PROJECT_URL)
+        id = TaterLoader.MOD_ID,
+        name = TaterLoader.MOD_NAME,
+        version = TaterLoader.VERSION,
+        authors = TaterLoader.AUTHORS,
+        description = TaterLoader.DESCRIPTION,
+        url = TaterLoader.PROJECT_URL)
 public final class VelocityLoaderPlugin {
     @Inject
     public VelocityLoaderPlugin(PluginContainer plugin) {

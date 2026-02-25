@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterlib;
 
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.loader.plugin.NewPlugin;
-import dev.neuralnexus.taterloader.TaterLoader;
 
 import org.jspecify.annotations.NonNull;
 

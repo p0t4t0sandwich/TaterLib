@@ -6,8 +6,7 @@ package dev.neuralnexus.taterloader.platforms;
 
 import com.google.inject.Inject;
 
-import dev.neuralnexus.taterapi.impl.loader.LoaderImpl;
-import dev.neuralnexus.taterloader.TaterLoader;
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 
 import org.spongepowered.api.Server;
 import org.spongepowered.api.event.Listener;
@@ -17,7 +16,7 @@ import org.spongepowered.plugin.PluginContainer;
 import org.spongepowered.plugin.builtin.jvm.Plugin;
 
 /** Sponge entry point. */
-@Plugin(LoaderImpl.PROJECT_ID)
+@Plugin(TaterLoader.MOD_ID)
 public final class Sponge8LoaderPlugin {
     @Inject
     public Sponge8LoaderPlugin(PluginContainer container) {
