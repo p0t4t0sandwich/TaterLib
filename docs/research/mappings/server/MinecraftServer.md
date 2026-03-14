@@ -1,8 +1,8 @@
 # MinecraftServer
 
-| Version | Mojang                                | Searge | MCP | Calamus | Feather | Yarn Intermediary | Yarn |
-|---------|---------------------------------------|--------|-----|---------|---------|-------------------|------|
-| All     | Lnet/minecraft/server/MinecraftServer | ""     | ""  | ""      | ""      | ""                | ""   |
+| Version | Mojang                                 | Searge | MCP | Calamus | Feather | Yarn Intermediary | Yarn |
+|---------|----------------------------------------|--------|-----|---------|---------|-------------------|------|
+| All     | Lnet/minecraft/server/MinecraftServer; | ""     | ""  | ""      | ""      | ""                | ""   |
 
 ## isDedicatedServer
 
