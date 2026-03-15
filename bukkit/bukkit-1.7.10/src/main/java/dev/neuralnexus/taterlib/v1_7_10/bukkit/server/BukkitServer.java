@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterlib.v1_7_10.bukkit.server;
 
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.player.BukkitPlayer;
@@ -70,12 +71,10 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
-        Map<String, UUID> whitelist = new HashMap<>();
-        for (OfflinePlayer player : Bukkit.getServer().getWhitelistedPlayers()) {
-            whitelist.put(player.getName(), player.getPlayer().getUniqueId());
-        }
-        return whitelist;
+    public Collection<NameAndId> whitelist() {
+        return Bukkit.getServer().getWhitelistedPlayers().stream()
+                .map(p -> new NameAndId(p.getUniqueId(), p.getName()))
+                .collect(Collectors.toSet());
     }
 
     @Override

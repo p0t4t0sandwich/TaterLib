@@ -8,11 +8,13 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -51,7 +53,7 @@ public class BungeeServer implements Server, Wrapped<ServerInfo> {
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
+    public Collection<NameAndId> whitelist() {
         throw new VersionFeatureNotSupportedException();
     }
 

@@ -7,6 +7,9 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.server;
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
+import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
@@ -14,10 +17,8 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.MinecraftServerBridge;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.players.UserWhitelistEntryBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.players.PlayerList;
 
@@ -28,13 +29,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
-@Mixin(MinecraftServer.class)
+@Mixin(net.minecraft.server.MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Remap.NONE))
 public abstract class MinecraftServer_API implements MinecraftServerBridge {
     @Shadow
@@ -56,11 +58,10 @@ public abstract class MinecraftServer_API implements MinecraftServerBridge {
                 .collect(Collectors.toList());
     }
 
-    public Map<String, UUID> server$whitelist() {
-        return this.shadow$getPlayerList().getWhiteList().getEntries().stream()
-                .map(UserWhitelistEntryBridge.class::cast)
-                .map(UserWhitelistEntryBridge::bridge$getUser)
-                .collect(Collectors.toMap(GameProfile::getName, GameProfile::getId));
+    public Collection<NameAndId> server$whitelist() {
+        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhiteListEntry::getUser)
+                .collect(Collectors.toSet());
     }
 
     public Map<String, UUID> server$playercache() {

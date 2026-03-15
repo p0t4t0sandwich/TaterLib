@@ -5,6 +5,9 @@
 package dev.neuralnexus.taterlib.mixin.v1_8_9.forge.api.minecraft.server;
 
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
+import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
@@ -14,7 +17,6 @@ import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 
 import org.spongepowered.asm.mixin.Implements;
@@ -23,13 +25,14 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @AConstraint(
         mappings = Mappings.LEGACY_SEARGE,
         version = @Versions(min = MinecraftVersion.V8, max = MinecraftVersion.V12_2))
-@Mixin(MinecraftServer.class)
+@Mixin(net.minecraft.server.MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))
 public abstract class MinecraftServerAPI {
     @Shadow
@@ -47,6 +50,12 @@ public abstract class MinecraftServerAPI {
         return this.playerManager.getAll().stream()
                 .map(WrappedPlayer::new)
                 .collect(Collectors.toList());
+    }
+
+    public Collection<NameAndId> server$whitelist() {
+        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhiteListEntry::getUser)
+                .collect(Collectors.toSet());
     }
 
     public List<ServerWorld> server$worlds() {

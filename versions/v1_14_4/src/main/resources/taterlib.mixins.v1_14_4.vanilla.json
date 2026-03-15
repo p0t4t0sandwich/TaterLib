@@ -24,7 +24,6 @@
     "v1_14_4.vanilla.core.server.MinecraftServerMixin",
     "v1_14_4.vanilla.core.server.level.ServerPlayerMixin",
     "v1_14_4.vanilla.core.server.level.ServerPlayerMixin_sendPacket",
-    "v1_14_4.vanilla.core.server.player.UserWhiteListEntryMixin",
     "v1_14_4.vanilla.core.world.entity.EntityMixin",
     "v1_14_4.vanilla.core.world.entity.LivingEntityMixin",
     "v1_14_4.vanilla.core.world.entity.player.PlayerMixin",

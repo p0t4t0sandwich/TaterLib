@@ -5,6 +5,8 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.server;
 
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.player.ForgePlayer;
@@ -14,7 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -41,15 +43,15 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
+    public Collection<NameAndId> whitelist() {
         // TODO: Find an implementation for this, or read the file directly.
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override
     public Map<String, UUID> playercache() {
         // TODO: Find an implementation for this, or read the file directly.
-        return Collections.emptyMap();
+        throw new VersionFeatureNotSupportedException();
     }
 
     @Override

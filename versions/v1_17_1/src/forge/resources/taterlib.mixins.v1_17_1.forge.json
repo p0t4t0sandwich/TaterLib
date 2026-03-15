@@ -25,7 +25,6 @@
     "v1_17_1.forge.core.server.MinecraftServerMixin_brand",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin_sendPacket",
-    "v1_17_1.forge.core.server.player.UserWhiteListEntryMixin",
     "v1_17_1.forge.core.world.entity.EntityMixin",
     "v1_17_1.forge.core.world.entity.LivingEntityMixin",
     "v1_17_1.forge.core.world.entity.player.PlayerMixin",

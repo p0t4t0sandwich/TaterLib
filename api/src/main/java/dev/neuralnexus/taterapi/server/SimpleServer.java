@@ -6,6 +6,7 @@ package dev.neuralnexus.taterapi.server;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.Platform;
@@ -13,6 +14,7 @@ import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.resource.ResourceKey;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -47,7 +49,7 @@ public interface SimpleServer {
      *
      * @return The whitelist
      */
-    Map<String, UUID> whitelist();
+    Collection<NameAndId> whitelist();
 
     /**
      * Get the server's player cache

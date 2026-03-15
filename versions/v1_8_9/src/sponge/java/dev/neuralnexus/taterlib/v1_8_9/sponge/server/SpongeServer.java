@@ -6,12 +6,16 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.server;
 
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
+import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeWorld;
 
 import org.spongepowered.api.Sponge;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -53,9 +57,10 @@ public class SpongeServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
-        // TODO: Implement via mixin
-        return Collections.emptyMap();
+    public Collection<NameAndId> whitelist() {
+        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhiteListEntry::getUser)
+                .collect(Collectors.toSet());
     }
 
     @Override

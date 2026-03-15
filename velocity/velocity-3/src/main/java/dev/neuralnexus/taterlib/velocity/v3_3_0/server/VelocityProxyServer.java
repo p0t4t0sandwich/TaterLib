@@ -7,11 +7,13 @@ package dev.neuralnexus.taterlib.velocity.v3_3_0.server;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.server.ProxyServer;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -53,7 +55,7 @@ public class VelocityProxyServer
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
+    public Collection<NameAndId> whitelist() {
         throw new VersionFeatureNotSupportedException();
     }
 

@@ -8,18 +8,20 @@ import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
+import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
+import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerProfileCache;
-import net.minecraft.server.management.UserListWhitelistEntry;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +30,9 @@ import java.util.stream.Collectors;
 
 /** Forge implementation of {@link Server}. */
 public class ForgeServer implements Server {
-    private final MinecraftServer server;
+    private final net.minecraft.server.MinecraftServer server;
 
-    public ForgeServer(MinecraftServer server) {
+    public ForgeServer(net.minecraft.server.MinecraftServer server) {
         this.server = server;
     }
 
@@ -47,20 +49,10 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> whitelist() {
-        Map<String, UUID> whitelist = new HashMap<>();
-        for (UserListWhitelistEntry user :
-                server.getPlayerList().getWhitelistedPlayers().getEntries()) {
-            // Reflect to call UserListEntry#func_152640_f
-            try {
-                GameProfile profile =
-                        (GameProfile) user.getClass().getMethod("func_152640_f").invoke(user);
-                whitelist.put(profile.getName(), profile.getId());
-            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-                TaterAPI.logger().error("Failed to get GameProfile from UserListWhitelistEntry", e);
-            }
-        }
-        return whitelist;
+    public Collection<NameAndId> whitelist() {
+        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhiteListEntry::getUser)
+                .collect(Collectors.toSet());
     }
 
     @Override
