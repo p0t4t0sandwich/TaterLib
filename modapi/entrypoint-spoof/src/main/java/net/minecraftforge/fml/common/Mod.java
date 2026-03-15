@@ -38,4 +38,6 @@ public @interface Mod {
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ElementType.METHOD})
     @interface EventHandler {}
+
+    String name() default "";
 }
