@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
  * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
  */
-package dev.neuralnexus.taterlib.mixin.v1_17_1.forge.core.server;
+package dev.neuralnexus.taterlib.mixin.v1_20_1.forge.core.server;
 
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
@@ -17,9 +17,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 @AConstraint(
         mappings = Mappings.SEARGE,
-        version = @Versions(min = MinecraftVersion.V17, max = MinecraftVersion.V19_4))
+        version = @Versions(min = MinecraftVersion.V20, max = MinecraftVersion.V20_4))
 @Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin_brand implements MinecraftServerBridge {
+public abstract class MinecraftServerMixin implements MinecraftServerBridge {
     @Shadow
     public abstract String shadow$getServerModName();
 

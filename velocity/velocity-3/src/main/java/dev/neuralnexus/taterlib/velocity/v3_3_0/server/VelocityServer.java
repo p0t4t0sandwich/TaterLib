@@ -16,8 +16,6 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link Server}. */
@@ -57,7 +55,7 @@ public class VelocityServer implements Server, Wrapped<RegisteredServer> {
     }
 
     @Override
-    public Map<String, UUID> playercache() {
+    public Collection<NameAndId> playercache() {
         throw new VersionFeatureNotSupportedException();
     }
 

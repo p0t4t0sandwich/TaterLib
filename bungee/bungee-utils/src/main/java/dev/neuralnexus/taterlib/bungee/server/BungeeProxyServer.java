@@ -15,8 +15,6 @@ import dev.neuralnexus.taterapi.server.Server;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link ProxyServer}. */
@@ -59,7 +57,7 @@ public class BungeeProxyServer implements ProxyServer, Wrapped<net.md_5.bungee.a
     }
 
     @Override
-    public Map<String, UUID> playercache() {
+    public Collection<NameAndId> playercache() {
         throw new VersionFeatureNotSupportedException();
     }
 

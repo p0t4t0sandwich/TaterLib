@@ -16,8 +16,6 @@ import net.md_5.bungee.api.config.ServerInfo;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bungee implementation of {@link Server}. */
@@ -58,7 +56,7 @@ public class BungeeServer implements Server, Wrapped<ServerInfo> {
     }
 
     @Override
-    public Map<String, UUID> playercache() {
+    public Collection<NameAndId> playercache() {
         throw new VersionFeatureNotSupportedException();
     }
 

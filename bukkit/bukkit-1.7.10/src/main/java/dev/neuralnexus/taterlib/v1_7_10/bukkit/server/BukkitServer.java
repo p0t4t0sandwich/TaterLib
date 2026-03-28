@@ -17,7 +17,10 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -78,12 +81,11 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> playercache() {
-        Map<String, UUID> cache = new HashMap<>();
-        for (OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
-            cache.put(player.getName(), player.getPlayer().getUniqueId());
-        }
-        return cache;
+    public Collection<NameAndId> playercache() {
+        return Arrays.stream(Bukkit.getServer().getOfflinePlayers())
+                .filter(OfflinePlayer::hasPlayedBefore)
+                .map(p -> new NameAndId(p.getUniqueId(), p.getName()))
+                .collect(Collectors.toSet());
     }
 
     @Override

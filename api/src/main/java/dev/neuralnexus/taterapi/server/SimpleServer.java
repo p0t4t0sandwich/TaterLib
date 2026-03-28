@@ -6,7 +6,10 @@ package dev.neuralnexus.taterapi.server;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
+import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
+import dev.neuralnexus.taterapi.mc.server.players.CachedUserNameToIdResolver;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
+import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.Platform;
@@ -16,9 +19,9 @@ import dev.neuralnexus.taterapi.resource.ResourceKey;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Simple abstraction for a Minecraft server. Holds common traits between regular servers and
@@ -49,14 +52,22 @@ public interface SimpleServer {
      *
      * @return The whitelist
      */
-    Collection<NameAndId> whitelist();
+    default Collection<NameAndId> whitelist() {
+        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
+                .map(UserWhiteListEntry::getUser)
+                .collect(Collectors.toSet());
+    }
 
     /**
      * Get the server's player cache
      *
      * @return The player cache
      */
-    Map<String, UUID> playercache();
+    default Collection<NameAndId> playercache() {
+        return MinecraftServer.getProfileCache().getProfilesByName().values().stream()
+                .map(CachedUserNameToIdResolver.GameProfileInfo::nameAndId)
+                .collect(Collectors.toSet());
+    }
 
     /**
      * Sends a packet using the specified channel

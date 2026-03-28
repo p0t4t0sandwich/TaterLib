@@ -10,8 +10,6 @@
   "mixins": [
     "v1_17_1.forge.accessors.network.protocol.game.ClientboundCustomPayloadPacketAccessor",
     "v1_17_1.forge.accessors.network.protocol.game.ServerboundCustomPayloadPacketAccessor",
-    "v1_17_1.forge.accessors.server.players.GameProfileCacheAccessor",
-    "v1_17_1.forge.accessors.server.players.StoredUserEntryAccessor",
     "v1_17_1.forge.accessors.world.entity.LivingEntityAccessor",
     "v1_17_1.forge.api.minecraft.network.protocol.game.CustomPayloadPacket_API",
     "v1_17_1.forge.api.minecraft.resources.ResourceLocation_API",
@@ -22,7 +20,6 @@
     "v1_17_1.forge.api.minecraft.world.entity.player.Player_API",
     "v1_17_1.forge.core.network.protocol.game.CustomPayloadPacketMixin",
     "v1_17_1.forge.core.server.MinecraftServerMixin",
-    "v1_17_1.forge.core.server.MinecraftServerMixin_brand",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin",
     "v1_17_1.forge.core.server.level.ServerPlayerMixin_sendPacket",
     "v1_17_1.forge.core.world.entity.EntityMixin",

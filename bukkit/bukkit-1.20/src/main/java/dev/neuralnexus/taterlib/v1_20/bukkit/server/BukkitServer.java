@@ -14,11 +14,9 @@ import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitWorld;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link Server}. */
@@ -63,12 +61,11 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> playercache() {
-        Map<String, UUID> cache = new HashMap<>();
-        for (OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
-            cache.put(player.getName(), player.getPlayer().getUniqueId());
-        }
-        return cache;
+    public Collection<NameAndId> playercache() {
+        return Arrays.stream(Bukkit.getServer().getOfflinePlayers())
+                .filter(OfflinePlayer::hasPlayedBefore)
+                .map(p -> new NameAndId(p.getUniqueId(), p.getName()))
+                .collect(Collectors.toSet());
     }
 
     @Override

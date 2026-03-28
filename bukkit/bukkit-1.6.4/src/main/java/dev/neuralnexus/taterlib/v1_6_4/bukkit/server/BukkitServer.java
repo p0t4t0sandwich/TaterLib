@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.server;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
@@ -16,10 +17,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Bukkit implementation of {@link Server}. */
@@ -59,17 +57,28 @@ public class BukkitServer implements Server {
     @Override
     public Collection<NameAndId> whitelist() {
         return Bukkit.getServer().getWhitelistedPlayers().stream()
-                .map(p -> new NameAndId(p.getPlayer().getUniqueId(), p.getName()))
+                .map(
+                        p -> {
+                            if (p.getPlayer() == null) { // TODO: Alternate method
+                                return new NameAndId(TaterAPI.NIL_UUID, p.getName());
+                            }
+                            return new NameAndId(p.getPlayer().getUniqueId(), p.getName());
+                        })
                 .collect(Collectors.toSet());
     }
 
     @Override
-    public Map<String, UUID> playercache() {
-        Map<String, UUID> cache = new HashMap<>();
-        for (OfflinePlayer player : Bukkit.getServer().getOfflinePlayers()) {
-            cache.put(player.getName(), player.getPlayer().getUniqueId());
-        }
-        return cache;
+    public Collection<NameAndId> playercache() {
+        return Arrays.stream(Bukkit.getServer().getOfflinePlayers())
+                .filter(OfflinePlayer::hasPlayedBefore)
+                .map(
+                        p -> {
+                            if (p.getPlayer() == null) { // TODO: Alternate method
+                                return new NameAndId(TaterAPI.NIL_UUID, p.getName());
+                            }
+                            return new NameAndId(p.getPlayer().getUniqueId(), p.getName());
+                        })
+                .collect(Collectors.toSet());
     }
 
     @Override

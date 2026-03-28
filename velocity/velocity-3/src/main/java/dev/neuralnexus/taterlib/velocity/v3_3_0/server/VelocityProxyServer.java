@@ -15,8 +15,6 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Velocity implementation of {@link ProxyServer}. */
@@ -60,7 +58,7 @@ public class VelocityProxyServer
     }
 
     @Override
-    public Map<String, UUID> playercache() {
+    public Collection<NameAndId> playercache() {
         throw new VersionFeatureNotSupportedException();
     }
 

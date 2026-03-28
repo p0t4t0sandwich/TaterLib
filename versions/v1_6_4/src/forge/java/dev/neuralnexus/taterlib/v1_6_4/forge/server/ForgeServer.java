@@ -18,8 +18,6 @@ import net.minecraft.server.MinecraftServer;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Forge implementation of {@link Server}. */
@@ -49,7 +47,7 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public Map<String, UUID> playercache() {
+    public Collection<NameAndId> playercache() {
         // TODO: Find an implementation for this, or read the file directly.
         throw new VersionFeatureNotSupportedException();
     }

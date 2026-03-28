@@ -6,20 +6,13 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.server;
 
 import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.entity.player.User;
-import dev.neuralnexus.taterapi.mc.server.MinecraftServer;
-import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
-import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeWorld;
 
 import org.spongepowered.api.Sponge;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Sponge implementation of {@link Server}. */
@@ -54,19 +47,6 @@ public class SpongeServer implements Server {
                 .map(WrapperRegistry::wrap)
                 .map(User.class::cast)
                 .collect(Collectors.toList());
-    }
-
-    @Override
-    public Collection<NameAndId> whitelist() {
-        return MinecraftServer.getPlayerList().getWhiteList().getEntries().stream()
-                .map(UserWhiteListEntry::getUser)
-                .collect(Collectors.toSet());
-    }
-
-    @Override
-    public Map<String, UUID> playercache() {
-        // TODO: Implement via mixin
-        return Collections.emptyMap();
     }
 
     @Override
