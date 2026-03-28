@@ -8,7 +8,7 @@
   "plugin": "dev.neuralnexus.taterlib.mixin.plugin.TaterLibMixinPlugin",
   "package": "dev.neuralnexus.taterlib.mixin",
   "mixins": [
-    "v1_8_9.fabric.api.minecraft.server.MinecraftServerAPI",
+    "v1_8_9.fabric.api.minecraft.server.MinecraftServer_API",
     "v1_8_9.fabric.core.entity.EntityMixin",
     "v1_8_9.fabric.core.entity.living.player.PlayerEntityMixin",
     "v1_8_9.fabric.core.world.WorldMixin",
