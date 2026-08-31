@@ -14,14 +14,12 @@
     "v1_20_2.vanilla.core.network.protocol.common.ServerboundCustomPayloadPacketMixin",
     "v1_20_2.vanilla.core.network.protocol.common.custom.DiscardedPayloadMixin",
     "v1_20_2.vanilla.core.server.level.ServerPlayerMixin_sendPacket",
-    "v1_20_2.vanilla.listeners.network.C2SCustomPayloadMixin",
     "v1_20_2.vanilla.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_20_2.vanilla.listeners.player.PlayerAdvancementProgressMixin",
     "v1_20_2.vanilla.listeners.player.PlayerLoginMixin"
   ],
   "server": [],
   "client": [
-    "v1_20_2.vanilla.core.client.MinecraftMixin_sendPacket",
-    "v1_20_2.vanilla.listeners.network.S2CCustomPayloadMixin"
+    "v1_20_2.vanilla.core.client.MinecraftMixin_sendPacket"
   ]
 }

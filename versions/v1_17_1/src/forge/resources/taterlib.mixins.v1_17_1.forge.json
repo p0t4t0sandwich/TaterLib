@@ -28,13 +28,10 @@
     "v1_17_1.forge.core.world.level.LevelMixin",
     "v1_17_1.forge.core.world.level.block.BlockMixin"
   ],
-  "server": [
-    "v1_17_1.forge.listeners.network.C2SCustomPayloadMixin"
-  ],
+  "server": [],
   "client": [
     "v1_17_1.forge.api.minecraft.client.Minecraft_API",
     "v1_17_1.forge.core.client.MinecraftMixin_broadcastMessage",
-    "v1_17_1.forge.core.client.MinecraftMixin_sendPacket",
-    "v1_17_1.forge.listeners.network.S2CCustomPayloadMixin"
+    "v1_17_1.forge.core.client.MinecraftMixin_sendPacket"
   ]
 }

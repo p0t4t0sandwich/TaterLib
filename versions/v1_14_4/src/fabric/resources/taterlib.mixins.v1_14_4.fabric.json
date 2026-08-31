@@ -32,7 +32,6 @@
   ],
   "server": [
     "v1_14_4.fabric.listeners.entity.EntitySpawnMixin",
-    "v1_14_4.fabric.listeners.network.C2SCustomPayloadMixin",
     "v1_14_4.fabric.listeners.player.PlayerAdvancementFinishedMixin",
     "v1_14_4.fabric.listeners.player.PlayerAdvancementProgressMixin",
     "v1_14_4.fabric.listeners.player.PlayerDeathMixin",
@@ -42,7 +41,6 @@
   "client": [
     "v1_14_4.fabric.api.minecraft.client.Minecraft_API",
     "v1_14_4.fabric.core.client.MinecraftMixin_broadcastMessage",
-    "v1_14_4.fabric.core.client.MinecraftMixin_sendPacket",
-    "v1_14_4.fabric.listeners.network.S2CCustomPayloadMixin"
+    "v1_14_4.fabric.core.client.MinecraftMixin_sendPacket"
   ]
 }

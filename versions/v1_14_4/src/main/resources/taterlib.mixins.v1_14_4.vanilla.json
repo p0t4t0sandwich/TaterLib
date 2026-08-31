@@ -42,13 +42,10 @@
     "v1_14_4.vanilla.listeners.server.ServerStoppedMixin",
     "v1_14_4.vanilla.listeners.server.ServerStoppingMixin"
   ],
-  "server": [
-    "v1_14_4.vanilla.listeners.network.C2SCustomPayloadMixin"
-  ],
+  "server": [],
   "client": [
     "v1_14_4.vanilla.api.minecraft.client.Minecraft_API",
     "v1_14_4.vanilla.core.client.MinecraftMixin_broadcastMessage",
-    "v1_14_4.vanilla.core.client.MinecraftMixin_sendPacket",
-    "v1_14_4.vanilla.listeners.network.S2CCustomPayloadMixin"
+    "v1_14_4.vanilla.core.client.MinecraftMixin_sendPacket"
   ]
 }
