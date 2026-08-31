@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.item.inventory;
 import dev.neuralnexus.taterapi.meta.annotations.Range;
 import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +19,7 @@ public interface ItemStack {
      *
      * @return The type of the item
      */
-    ResourceKey type();
+    Identifier type();
 
     /**
      * Get the amount of the item

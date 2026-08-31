@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.loader.plugin.PluginModule;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterlib.TaterLib;
-import dev.neuralnexus.taterlib.modules.bungeecord.api.BungeeMsgType;
 
 /** TaterLib's BungeeCord module. */
 public class BungeeCordModule implements PluginModule {
@@ -26,7 +25,6 @@ public class BungeeCordModule implements PluginModule {
                             ? "bungeecord:main"
                             : "BungeeCord";
             NetworkEvents.REGISTER_CHANNELS.register(e -> e.register(channel));
-            NetworkEvents.C2S_CUSTOM_PACKET.register(BungeeMsgType::Listener);
         }
     }
 }

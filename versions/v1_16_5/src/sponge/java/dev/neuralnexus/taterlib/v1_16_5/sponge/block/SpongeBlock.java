@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_16_5.sponge.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import org.spongepowered.api.block.BlockState;
@@ -29,8 +29,8 @@ public class SpongeBlock implements Block, Wrapped<BlockState> {
     }
 
     @Override
-    public ResourceKey type() {
-        return (ResourceKey) BlockTypes.registry().valueKey(this.block.type());
+    public Identifier type() {
+        return (Identifier) BlockTypes.registry().valueKey(this.block.type());
     }
 
     @Override

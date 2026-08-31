@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 
 public interface ServerPlayerBridge {
@@ -12,7 +12,7 @@ public interface ServerPlayerBridge {
 
     void bridge$kick(String message);
 
-    void bridge$sendPacket(ResourceKey channel, byte[] data);
+    void bridge$sendPacket(Identifier channel, byte[] data);
 
     void bridge$setRespawnPosition(Location location, boolean forced);
 }

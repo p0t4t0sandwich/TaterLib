@@ -13,7 +13,7 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
@@ -97,7 +97,7 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     }
 
     @Override
-    public void sendPacket(ResourceKey channel, byte[] data) {
+    public void sendPacket(Identifier channel, byte[] data) {
         this.player
                 .getCurrentServer()
                 .ifPresent(

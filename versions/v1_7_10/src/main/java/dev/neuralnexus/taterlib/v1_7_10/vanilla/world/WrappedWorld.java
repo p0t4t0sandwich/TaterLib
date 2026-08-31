@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.world;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
@@ -40,7 +40,7 @@ public class WrappedWorld implements World, Wrapped<net.minecraft.world.World> {
     }
 
     @Override
-    public ResourceKey dimension() {
+    public Identifier dimension() {
         return ((WorldBridge) this.level).bridge$dimension();
     }
 

@@ -5,20 +5,20 @@
 package dev.neuralnexus.taterapi.network.impl;
 
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 /** Custom payload implementation. */
 public class CustomPayloadPacketImpl implements CustomPayloadPacket {
-    private final ResourceKey channel;
+    private final Identifier channel;
     private final byte[] data;
 
-    public CustomPayloadPacketImpl(ResourceKey channel, byte[] data) {
+    public CustomPayloadPacketImpl(Identifier channel, byte[] data) {
         this.channel = channel;
         this.data = data;
     }
 
     @Override
-    public ResourceKey channel() {
+    public Identifier channel() {
         return channel;
     }
 

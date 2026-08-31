@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,9 +31,9 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
     }
 
     @Override
-    public ResourceKey type() {
+    public Identifier type() {
         // TODO: Find item registry
-        return ResourceKey.of(this.itemStack.getItem().toString());
+        return Identifier.of(this.itemStack.getItem().toString());
     }
 
     @Override

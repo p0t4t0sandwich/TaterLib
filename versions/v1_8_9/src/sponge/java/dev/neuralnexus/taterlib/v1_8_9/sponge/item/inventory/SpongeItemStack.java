@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.item.inventory;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 
 import org.spongepowered.api.data.key.Keys;
@@ -31,8 +31,8 @@ public class SpongeItemStack
     }
 
     @Override
-    public ResourceKey type() {
-        return ResourceKey.of(this.itemStack.getItem().getType().getName());
+    public Identifier type() {
+        return Identifier.of(this.itemStack.getItem().getType().getName());
     }
 
     @Override

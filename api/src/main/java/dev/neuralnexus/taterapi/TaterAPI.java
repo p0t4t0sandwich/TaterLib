@@ -11,8 +11,6 @@ import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platform;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterapi.resource.impl.ResourceKeyImpl;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
@@ -241,8 +239,6 @@ public class TaterAPI {
     @ApiStatus.Internal
     public static void registrySetup() {
         registerBuilder(Location.Builder.class, () -> null);
-        registerBuilder(ResourceKey.Builder.class, ResourceKeyImpl.Builder::new);
-        registerFactory(ResourceKey.Factory.class, ResourceKeyImpl.Factory::new);
     }
 
     /**

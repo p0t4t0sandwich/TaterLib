@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 import net.minecraft.util.ChunkCoordinates;
@@ -27,9 +27,9 @@ public class ForgeBlock implements Block, Wrapped<net.minecraft.block.Block> {
     }
 
     @Override
-    public ResourceKey type() {
+    public Identifier type() {
         // TODO: Find block registry
-        return ResourceKey.of(this.block.getLocalizedName().split("block\\.")[1].replace(".", ":"));
+        return Identifier.of(this.block.getLocalizedName().split("block\\.")[1].replace(".", ":"));
     }
 
     @Override

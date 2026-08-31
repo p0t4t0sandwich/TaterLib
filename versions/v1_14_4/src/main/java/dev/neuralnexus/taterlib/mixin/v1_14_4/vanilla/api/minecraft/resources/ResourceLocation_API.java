@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraints;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -27,7 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @AConstraint(mappings = Mappings.MOJANG, version = @Versions(min = MinecraftVersion.V14))
 })
 @Mixin(ResourceLocation.class)
-@Implements(@Interface(iface = ResourceKey.class, prefix = "resourceKey$", remap = Remap.NONE))
+@Implements(@Interface(iface = Identifier.class, prefix = "identifier$", remap = Remap.NONE))
 public abstract class ResourceLocation_API {
     @Shadow
     public abstract String shadow$getNamespace();
@@ -36,12 +36,12 @@ public abstract class ResourceLocation_API {
     public abstract String shadow$getPath();
 
     @Intrinsic
-    public String resourceKey$namespace() {
+    public String identifier$namespace() {
         return this.shadow$getNamespace();
     }
 
     @Intrinsic
-    public String resourceKey$value() {
+    public String identifier$path() {
         return this.shadow$getPath();
     }
 }

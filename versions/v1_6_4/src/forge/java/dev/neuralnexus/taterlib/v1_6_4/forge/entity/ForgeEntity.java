@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_6_4.forge.world.ForgeLocation;
@@ -54,9 +54,9 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public ResourceKey type() {
+    public Identifier type() {
         // TODO: Find entity registry
-        return ResourceKey.of(this.entity.getEntityName().split("entity\\.")[1].replace(".", ":"));
+        return Identifier.of(this.entity.getEntityName().split("entity\\.")[1].replace(".", ":"));
     }
 
     @Override
@@ -76,9 +76,9 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public ResourceKey biome() {
+    public Identifier biome() {
         // TODO: Find biome registry
-        return ResourceKey.of(
+        return Identifier.of(
                 this.entity.worldObj.provider.getBiomeGenForCoords(
                                 (int) this.entity.posX, (int) this.entity.posZ)
                         .biomeName);

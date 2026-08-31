@@ -7,12 +7,11 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.world;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.registry.IRegistry;
@@ -43,9 +42,9 @@ public class ForgeWorld implements World, Wrapped<net.minecraft.world.World> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public ResourceKey dimension() {
-        return new ForgeResourceKey(
-                IRegistry.field_212622_k.getKey(this.level.dimension.getType()));
+    public Identifier dimension() { // TODO: Revise
+        return Identifier.of(
+                IRegistry.field_212622_k.getKey(this.level.dimension.getType()).toString());
     }
 
     @Override

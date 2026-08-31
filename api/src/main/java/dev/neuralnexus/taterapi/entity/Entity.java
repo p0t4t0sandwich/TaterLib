@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterapi.entity;
 
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 
@@ -42,7 +42,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The type of the entity
      */
-    ResourceKey type();
+    Identifier type();
 
     /**
      * Get the location of the entity
@@ -131,7 +131,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The current dimension of the entity
      */
-    default ResourceKey dimension() {
+    default Identifier dimension() {
         return world().dimension();
     }
 
@@ -140,7 +140,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The current biome of the entity
      */
-    ResourceKey biome();
+    Identifier biome();
 
     /**
      * Teleport the entity to the given Location

@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.block.BlockBridge;
 
@@ -27,8 +27,8 @@ public class VanillaBlock implements Block, Wrapped<net.minecraft.world.level.bl
     }
 
     @Override
-    public ResourceKey type() {
-        return (ResourceKey) ((BlockBridge) this.block).bridge$type();
+    public Identifier type() {
+        return (Identifier) ((BlockBridge) this.block).bridge$type();
     }
 
     @Override

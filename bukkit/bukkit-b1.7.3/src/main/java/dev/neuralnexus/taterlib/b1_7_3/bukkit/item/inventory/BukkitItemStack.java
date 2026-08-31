@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import org.bukkit.Material;
 
@@ -34,8 +34,8 @@ public class BukkitItemStack implements ItemStack, Wrapped<org.bukkit.inventory.
     }
 
     @Override
-    public ResourceKey type() {
-        return ResourceKey.of("minecraft", this.itemStack.getType().name().toLowerCase());
+    public Identifier type() {
+        return Identifier.of("minecraft", this.itemStack.getType().name().toLowerCase());
     }
 
     @Override

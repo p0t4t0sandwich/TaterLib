@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_11_2.sponge;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.block.SpongeBlock;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.item.inventory.SpongeItemStack;
@@ -32,7 +32,7 @@ public class SpongeBootstrap {
                 };
 
         SpongeFactories.itemStackType =
-                itemStack -> ResourceKey.of(itemStack.getItem().getType().getName());
+                itemStack -> Identifier.of(itemStack.getItem().getType().getName());
         SpongeFactories.nilItemStack =
                 () -> org.spongepowered.api.item.inventory.ItemStack.of(ItemTypes.AIR, 0);
 
@@ -78,7 +78,7 @@ public class SpongeBootstrap {
 
         SpongeFactories.entityBiome =
                 entity ->
-                        ResourceKey.of(
+                        Identifier.of(
                                 entity.getWorld()
                                         .getBiome(entity.getLocation().getBlockPosition())
                                         .getId());

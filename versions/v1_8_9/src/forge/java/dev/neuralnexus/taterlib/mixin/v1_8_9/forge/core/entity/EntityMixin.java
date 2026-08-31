@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.EntityBridge;
 
 import net.minecraft.entity.Entity;
@@ -33,8 +33,8 @@ public abstract class EntityMixin implements EntityBridge {
     public abstract void shadow$teleportToDimension(int par1);
 
     @Override
-    public ResourceKey bridge$biome() {
-        return ResourceKey.of(this.world.getBiome(this.shadow$getSourceBlockPos()).name);
+    public Identifier bridge$biome() {
+        return Identifier.of(this.world.getBiome(this.shadow$getSourceBlockPos()).name);
     }
 
     @Override

@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.network.protocol.game.CustomPayloadPacketBridge;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -25,8 +25,8 @@ import org.spongepowered.asm.mixin.Mixin;
 @Mixin({ClientboundCustomPayloadPacket.class, ServerboundCustomPayloadPacket.class})
 @Implements(@Interface(iface = CustomPayloadPacket.class, prefix = "packet$", remap = Remap.NONE))
 public abstract class CustomPayloadPacket_API implements CustomPayloadPacketBridge {
-    public ResourceKey packet$channel() {
-        return (ResourceKey) this.bridge$identifier();
+    public Identifier packet$channel() {
+        return (Identifier) this.bridge$identifier();
     }
 
     public byte[] packet$data() {

@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import net.minecraft.inventory.IInventory;
 
@@ -76,7 +76,7 @@ public class ForgeInventory implements Inventory, Wrapped<IInventory> {
     }
 
     @Override
-    public void remove(ResourceKey type) {
+    public void remove(Identifier type) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
                 this.inventory.decrStackSize(i, this.get(i).count());

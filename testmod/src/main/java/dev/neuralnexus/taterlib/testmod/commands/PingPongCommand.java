@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.testmod.commands;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.util.TextUtil;
 
 /** Example Command. */
@@ -47,7 +47,7 @@ public class PingPongCommand implements Command {
                             "&cThis command can only be executed by a player!"));
             return true;
         }
-        player.sendPacket(ResourceKey.of("testmod", "ping"), "Ping".getBytes());
+        player.sendPacket(Identifier.of("testmod", "ping"), "Ping".getBytes());
         return true;
     }
 }

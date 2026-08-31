@@ -15,7 +15,7 @@ import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.Platform;
 import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.Collection;
 import java.util.List;
@@ -75,7 +75,7 @@ public interface SimpleServer {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    default void sendPacket(ResourceKey channel, byte[] data) {
+    default void sendPacket(Identifier channel, byte[] data) {
         this.players().stream()
                 .findFirst()
                 .map(Connection.class::cast)
@@ -98,7 +98,7 @@ public interface SimpleServer {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    default void sendPacket(String playerName, ResourceKey channel, byte[] data) {
+    default void sendPacket(String playerName, Identifier channel, byte[] data) {
         this.getPlayer(playerName)
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(channel, data));
@@ -111,7 +111,7 @@ public interface SimpleServer {
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    default void sendPacket(UUID playerUUID, ResourceKey channel, byte[] data) {
+    default void sendPacket(UUID playerUUID, Identifier channel, byte[] data) {
         this.getPlayer(playerUUID)
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(channel, data));

@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.world;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.ForgeEntity;
@@ -40,8 +40,8 @@ public class ForgeWorld implements World, Wrapped<net.minecraft.world.World> {
     }
 
     @Override
-    public ResourceKey dimension() {
-        return ResourceKey.of(
+    public Identifier dimension() {
+        return Identifier.of(
                 this.level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 

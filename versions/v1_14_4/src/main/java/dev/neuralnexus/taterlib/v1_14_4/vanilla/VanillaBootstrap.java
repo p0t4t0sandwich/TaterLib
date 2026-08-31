@@ -5,9 +5,7 @@
 package dev.neuralnexus.taterlib.v1_14_4.vanilla;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_14_4.vanilla.resources.VanillaResourceKey;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 
 /** The Vanilla bootstrap class. */
@@ -15,7 +13,5 @@ public class VanillaBootstrap {
     /** Initializes the Vanilla bootstrap. */
     public static void init() {
         TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
-        TaterAPI.registerBuilder(ResourceKey.Builder.class, VanillaResourceKey.Builder::new);
-        TaterAPI.registerFactory(ResourceKey.Factory.class, VanillaResourceKey.Factory::new);
     }
 }

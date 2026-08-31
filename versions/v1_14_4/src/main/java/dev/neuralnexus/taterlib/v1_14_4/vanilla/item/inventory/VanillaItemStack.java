@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.network.chat.Component;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.Items;
@@ -37,8 +37,8 @@ public class VanillaItemStack implements ItemStack, Wrapped<net.minecraft.world.
     }
 
     @Override
-    public ResourceKey type() {
-        return (ResourceKey) Registry.ITEM.getKey(this.itemStack.getItem());
+    public Identifier type() { // TODO: Revise
+        return Identifier.of(Registry.ITEM.getKey(this.itemStack.getItem()).toString());
     }
 
     @Override

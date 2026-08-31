@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.block;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Abstract implementation of a block. */
@@ -14,7 +14,7 @@ public interface Block {
      *
      * @return The type of the block.
      */
-    ResourceKey type();
+    Identifier type();
 
     /**
      * Get the block location.

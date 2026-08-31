@@ -54,7 +54,8 @@ subprojects {
                 rootProject.libs.taterlib.lite.base,
                 rootProject.libs.taterlib.lite.core,
                 rootProject.libs.taterlib.lite.metadata,
-                rootProject.libs.taterlib.lite.muxins
+                rootProject.libs.taterlib.lite.muxins,
+                rootProject.libs.taterlib.lite.network
         ).forEach {
             mainCompileOnly(it)
         }

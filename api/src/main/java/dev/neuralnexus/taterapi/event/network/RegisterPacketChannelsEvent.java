@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.Set;
 
@@ -23,7 +23,7 @@ public interface RegisterPacketChannelsEvent extends Event {
      *
      * @param channel The channel
      */
-    default void register(ResourceKey channel) {
+    default void register(Identifier channel) {
         this.register(channel.asString());
     }
 

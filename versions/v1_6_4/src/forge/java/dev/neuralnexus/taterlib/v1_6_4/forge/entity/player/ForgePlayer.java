@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.ForgeLivingEntity;
@@ -77,7 +77,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public void sendPacket(ResourceKey channel, byte[] data) {
+    public void sendPacket(Identifier channel, byte[] data) {
         ((EntityPlayerMP) this.player)
                 .playerNetServerHandler.sendPacketToPlayer(
                         new Packet250CustomPayload(channel.asString(), data));

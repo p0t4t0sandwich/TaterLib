@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -73,7 +73,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPacket(ResourceKey channel, byte[] data) {
+    public void sendPacket(Identifier channel, byte[] data) {
         Sponge.getChannelRegistrar()
                 .getOrCreateRaw(TaterLib.mod(), channel.asString())
                 .sendTo(this.player, (buffer) -> buffer.writeBytes(data));

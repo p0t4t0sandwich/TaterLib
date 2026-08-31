@@ -5,7 +5,7 @@
 package dev.neuralnexus.taterapi.world;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 /** Abstracts a location. */
 public interface Location {
@@ -138,7 +138,7 @@ public interface Location {
      *
      * @return The dimension.
      */
-    default ResourceKey dimension() {
+    default Identifier dimension() {
         return world().dimension();
     }
 

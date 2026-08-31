@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
@@ -39,8 +39,8 @@ public abstract class WorldMixin implements WorldBridge {
             net.minecraft.entity.Entity exclude, Box bounds, EntityFilter filter);
 
     @Override
-    public ResourceKey bridge$dimension() {
-        return ResourceKey.of(this.dimension.getName().replace(" ", "_").toLowerCase());
+    public Identifier bridge$dimension() {
+        return Identifier.of(this.dimension.getName().replace(" ", "_").toLowerCase());
     }
 
     @Override

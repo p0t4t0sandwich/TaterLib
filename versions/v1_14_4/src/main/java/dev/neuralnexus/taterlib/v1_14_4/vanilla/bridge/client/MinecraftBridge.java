@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 public interface MinecraftBridge {
     void bridge$broadcastMessage(String message);
 
-    void bridge$sendPacket(ResourceKey channel, byte[] data);
+    void bridge$sendPacket(Identifier channel, byte[] data);
 }

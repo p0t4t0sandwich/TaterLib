@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_20.bukkit.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Bukkit implementation of {@link Block}. */
@@ -23,8 +23,8 @@ public class BukkitBlock implements Block, Wrapped<org.bukkit.block.Block> {
     }
 
     @Override
-    public ResourceKey type() {
-        return ResourceKey.of("minecraft", this.block.getType().toString().toLowerCase());
+    public Identifier type() {
+        return Identifier.of("minecraft", this.block.getType().toString().toLowerCase());
     }
 
     @Override

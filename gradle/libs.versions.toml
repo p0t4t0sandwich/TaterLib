@@ -3,7 +3,7 @@ blossom = "2.1.0"
 jvmdowngrader = "1.3.5"
 shadow = "9.2.2"
 spotless = "8.1.0"
-taterlib-lite = "0.3.0-SNAPSHOT"
+taterlib-lite = "0.4.0-SNAPSHOT"
 unimined = "1.3.16-SNAPSHOT"
 
 [libraries]
@@ -19,6 +19,7 @@ taterlib-lite-base = { group = "dev.neuralnexus.taterlib.lite", name = "base", v
 taterlib-lite-core = { group = "dev.neuralnexus.taterlib.lite", name = "core", version.ref = "taterlib-lite" }
 taterlib-lite-metadata = { group = "dev.neuralnexus.taterlib.lite", name = "metadata", version.ref = "taterlib-lite" }
 taterlib-lite-muxins = { group = "dev.neuralnexus.taterlib.lite", name = "muxins", version.ref = "taterlib-lite" }
+taterlib-lite-network = { group = "dev.neuralnexus.taterlib.lite", name = "network", version.ref = "taterlib-lite" }
 
 [plugins]
 blossom = { id = "net.kyori.blossom", version.ref = "blossom" }

@@ -8,7 +8,7 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.EntityBridge;
@@ -49,9 +49,9 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
     }
 
     @Override
-    public ResourceKey type() {
+    public Identifier type() {
         // TODO: Find entity registry
-        return ResourceKey.of(this.entity.getName().split("entity\\.")[1].replace(".", ":"));
+        return Identifier.of(this.entity.getName().split("entity\\.")[1].replace(".", ":"));
     }
 
     @Override
@@ -72,7 +72,7 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
     }
 
     @Override
-    public ResourceKey biome() {
+    public Identifier biome() {
         // TODO: Find biome registry
         return ((EntityBridge) this.entity).bridge$biome();
     }

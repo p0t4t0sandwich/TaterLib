@@ -8,7 +8,7 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.world.BukkitWorld;
@@ -50,8 +50,8 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     }
 
     @Override
-    public ResourceKey type() {
-        return ResourceKey.of("minecraft", this.entity.getType().toString().toLowerCase());
+    public Identifier type() {
+        return Identifier.of("minecraft", this.entity.getType().toString().toLowerCase());
     }
 
     @Override
@@ -70,8 +70,8 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     }
 
     @Override
-    public ResourceKey biome() {
-        return ResourceKey.of(this.entity.getLocation().getBlock().getBiome().name());
+    public Identifier biome() {
+        return Identifier.of(this.entity.getLocation().getBlock().getBiome().name());
     }
 
     @Override

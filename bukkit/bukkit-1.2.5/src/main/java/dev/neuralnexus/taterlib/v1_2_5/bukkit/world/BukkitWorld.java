@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_2_5.bukkit.world;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.ServerWorld;
 import dev.neuralnexus.taterapi.world.World;
@@ -42,8 +42,8 @@ public class BukkitWorld implements ServerWorld, World, Wrapped<org.bukkit.World
     }
 
     @Override
-    public ResourceKey dimension() {
-        return ResourceKey.of(this.world.getName());
+    public Identifier dimension() {
+        return Identifier.of(this.world.getName());
     }
 
     @Override

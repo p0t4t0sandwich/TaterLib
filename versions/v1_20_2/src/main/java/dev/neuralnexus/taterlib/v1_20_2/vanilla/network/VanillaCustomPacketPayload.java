@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20_2.vanilla.network;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import io.netty.buffer.Unpooled;
 
@@ -19,7 +19,7 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload {
     private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf;
 
-    public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
+    public VanillaCustomPacketPayload(Identifier channel, byte[] data) {
         this.id = (ResourceLocation) channel;
         this.byteBuf = new FriendlyByteBuf(Unpooled.buffer());
         this.byteBuf.writeBytes(data);

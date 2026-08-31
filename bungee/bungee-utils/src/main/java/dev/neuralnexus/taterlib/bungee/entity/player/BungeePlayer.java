@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.bungee.entity.player;
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 
@@ -75,7 +75,7 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     }
 
     @Override
-    public void sendPacket(ResourceKey channel, byte[] data) {
+    public void sendPacket(Identifier channel, byte[] data) {
         this.player.getServer().getInfo().sendData(channel.asString(), data);
     }
 

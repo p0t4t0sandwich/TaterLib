@@ -5,14 +5,14 @@
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 public interface WorldBridge {
-    ResourceKey bridge$dimension();
+    Identifier bridge$dimension();
 
     List<Entity> bridge$entities(Entity entity, double radius, Predicate<Entity> predicate);
 

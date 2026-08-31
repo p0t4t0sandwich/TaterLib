@@ -8,9 +8,8 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.network.chat.Component;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeLocation;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
@@ -60,8 +59,8 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     @SuppressWarnings("deprecation")
-    public ResourceKey type() {
-        return new ForgeResourceKey(IRegistry.field_212629_r.getKey(this.entity.getType()));
+    public Identifier type() { // TODO: Revise
+        return Identifier.of(IRegistry.field_212629_r.getKey(this.entity.getType()).toString());
     }
 
     @Override
@@ -82,10 +81,10 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     @SuppressWarnings("deprecation")
-    public ResourceKey biome() {
-        return new ForgeResourceKey(
+    public Identifier biome() { // TODO: Revise
+        return Identifier.of(
                 IRegistry.field_212624_m.getKey(
-                        this.entity.world.getBiome(this.entity.getPosition())));
+                        this.entity.world.getBiome(this.entity.getPosition())).toString());
     }
 
     @Override

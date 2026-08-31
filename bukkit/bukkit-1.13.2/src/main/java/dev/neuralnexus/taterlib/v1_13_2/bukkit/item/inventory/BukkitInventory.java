@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_13_2.bukkit.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import org.bukkit.Material;
 
@@ -71,8 +71,8 @@ public class BukkitInventory implements Inventory, Wrapped<org.bukkit.inventory.
     }
 
     @Override
-    public void remove(ResourceKey type) {
-        this.inventory.remove(Material.valueOf(type.value().toUpperCase()));
+    public void remove(Identifier type) {
+        this.inventory.remove(Material.valueOf(type.path().toUpperCase()));
     }
 
     @Override

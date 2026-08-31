@@ -20,7 +20,6 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.block.ForgeBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.command.ForgeCommandRegisterEvent;
@@ -35,7 +34,6 @@ import dev.neuralnexus.taterlib.v1_13_2.forge.event.player.ForgePlayerMessageEve
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.player.ForgePlayerRespawnEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.pluginmessage.ForgeRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.networking.ModMessages;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -68,8 +66,6 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         if (!TaterAPI.hasLoaded() && MetaAPI.instance().platform().isForge()) {
             TaterAPI.setLoaded(true);
-            TaterAPI.registerBuilder(ResourceKey.Builder.class, ForgeResourceKey.Builder::new);
-            TaterAPI.registerFactory(ResourceKey.Factory.class, ForgeResourceKey.Factory::new);
 
             // Register listeners
             MinecraftForge.EVENT_BUS.<BlockEvent.BreakEvent>addListener(

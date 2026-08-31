@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.item.inventory;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +67,7 @@ public interface Inventory {
      *
      * @param type The type of the item to remove
      */
-    void remove(ResourceKey type);
+    void remove(Identifier type);
 
     /** Clear the inventory */
     default void clear() {
@@ -113,7 +113,7 @@ public interface Inventory {
      * @param type The type of the item
      * @return Weather the inventory contains an item
      */
-    default boolean contains(ResourceKey type) {
+    default boolean contains(Identifier type) {
         return this.containsAtLeast(type, 1);
     }
 
@@ -133,7 +133,7 @@ public interface Inventory {
      * @param amount The amount of the item
      * @return Weather the inventory contains at least a certain amount of an item
      */
-    default boolean containsAtLeast(ResourceKey type, int amount) {
+    default boolean containsAtLeast(Identifier type, int amount) {
         int count = 0;
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
@@ -159,7 +159,7 @@ public interface Inventory {
      * @param type The type of the item to get the slot of
      * @return The slot of the first occurrence of an item in the inventory
      */
-    default int first(ResourceKey type) {
+    default int first(Identifier type) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
                 return i;

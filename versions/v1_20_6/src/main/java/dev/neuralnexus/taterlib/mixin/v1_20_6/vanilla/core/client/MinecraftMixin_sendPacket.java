@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
@@ -26,7 +26,7 @@ public abstract class MinecraftMixin_sendPacket implements MinecraftBridge {
     @Shadow @Nullable public LocalPlayer player;
 
     @Override
-    public void bridge$sendPacket(ResourceKey channel, byte[] data) {
+    public void bridge$sendPacket(Identifier channel, byte[] data) {
         if (this.player == null) return;
         this.player.connection.send(
                 new ServerboundCustomPayloadPacket(new VanillaCustomPacketPayload(channel, data)));

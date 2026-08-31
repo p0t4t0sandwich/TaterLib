@@ -13,7 +13,7 @@ import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
@@ -95,8 +95,8 @@ public class TestMod implements Plugin {
         if (!RELOADED) {
             NetworkEvents.REGISTER_CHANNELS.register(
                     event -> {
-                        event.register(ResourceKey.of("testmod", "ping"));
-                        event.register(ResourceKey.of("testmod", "pong"));
+                        event.register(Identifier.of("testmod", "ping"));
+                        event.register(Identifier.of("testmod", "pong"));
                     });
 
             // Register listeners
@@ -121,7 +121,7 @@ public class TestMod implements Plugin {
                                 logger.info("Sending packet to player");
                                 ((ServerPlayer) event.player())
                                         .sendPacket(
-                                                ResourceKey.of("testmod", "ping"),
+                                                Identifier.of("testmod", "ping"),
                                                 "Ping".getBytes());
                             }
                         });
@@ -129,8 +129,8 @@ public class TestMod implements Plugin {
                 NetworkEvents.C2S_CUSTOM_PACKET.register(
                         event -> {
                             CustomPayloadPacket packet = event.packet();
-                            ResourceKey channel = packet.channel();
-                            if (channel.equals(ResourceKey.of("testmod", "pong"))) {
+                            Identifier channel = packet.channel();
+                            if (channel.equals(Identifier.of("testmod", "pong"))) {
                                 byte[] data = packet.data();
                                 String message = new String(data);
                                 // logger.info(Arrays.toString(data));
@@ -150,8 +150,8 @@ public class TestMod implements Plugin {
                         event -> {
                             try {
                                 CustomPayloadPacket packet = event.packet();
-                                ResourceKey channel = packet.channel();
-                                if (channel.equals(ResourceKey.of("testmod", "ping"))) {
+                                Identifier channel = packet.channel();
+                                if (channel.equals(Identifier.of("testmod", "ping"))) {
                                     byte[] data = packet.data();
                                     String message = new String(data);
                                     // logger.info(Arrays.toString(data));
@@ -164,7 +164,7 @@ public class TestMod implements Plugin {
                                     logger.info("Sending packet to server");
                                     event.server()
                                             .sendPacket(
-                                                    ResourceKey.of("testmod", "pong"),
+                                                    Identifier.of("testmod", "pong"),
                                                     "Pong".getBytes());
                                 }
                             } catch (Exception e) {

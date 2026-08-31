@@ -8,7 +8,7 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.server.SpongeServer;
@@ -56,8 +56,8 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     }
 
     @Override
-    public ResourceKey type() {
-        return ResourceKey.of(
+    public Identifier type() {
+        return Identifier.of(
                 this.entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
     }
 
@@ -81,7 +81,7 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     }
 
     @Override
-    public ResourceKey biome() {
+    public Identifier biome() {
         return SpongeFactories.entityBiome.get(this.entity);
     }
 

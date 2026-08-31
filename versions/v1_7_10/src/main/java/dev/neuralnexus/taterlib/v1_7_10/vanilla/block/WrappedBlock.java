@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
 
 /** Forge implementation of {@link Block}. */
@@ -25,9 +25,9 @@ public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
     }
 
     @Override
-    public ResourceKey type() {
+    public Identifier type() {
         // TODO: Find block registry
-        return ResourceKey.of(
+        return Identifier.of(
                 this.block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
     }
 

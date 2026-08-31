@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 import dev.neuralnexus.taterlib.v1_20_6.vanilla.network.VanillaCustomPacketPayload;
 
@@ -30,7 +30,7 @@ public abstract class ServerPlayerMixin_sendPacket implements ServerPlayerBridge
     }
 
     @Override
-    public void bridge$sendPacket(ResourceKey channel, byte[] data) {
+    public void bridge$sendPacket(Identifier channel, byte[] data) {
         this.connection.send(
                 new ClientboundCustomPayloadPacket(new VanillaCustomPacketPayload(channel, data)));
     }

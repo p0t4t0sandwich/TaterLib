@@ -5,8 +5,7 @@
 package dev.neuralnexus.taterlib.v1_20_6.vanilla.network;
 
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
-
+import dev.neuralnexus.taterapi.resources.Identifier;
 import io.netty.buffer.Unpooled;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -25,7 +24,7 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload, CustomPa
     private final ResourceLocation id;
     private final FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
 
-    public VanillaCustomPacketPayload(ResourceKey channel, byte[] data) {
+    public VanillaCustomPacketPayload(Identifier channel, byte[] data) {
         this.id = (ResourceLocation) channel;
         this.byteBuf.writeBytes(data);
     }
@@ -46,8 +45,8 @@ public class VanillaCustomPacketPayload implements CustomPacketPayload, CustomPa
     }
 
     @Override
-    public ResourceKey channel() {
-        return (ResourceKey) this.id;
+    public Identifier channel() {
+        return (Identifier) this.id;
     }
 
     @Override

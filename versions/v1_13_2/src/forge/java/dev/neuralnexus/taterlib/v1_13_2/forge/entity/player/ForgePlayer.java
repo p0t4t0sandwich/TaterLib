@@ -10,12 +10,11 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
 import dev.neuralnexus.taterapi.network.chat.Component;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.item.inventory.ForgePlayerInventory;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 
 import io.netty.buffer.Unpooled;
@@ -75,8 +74,8 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public void sendPacket(ResourceKey channel, byte[] data) {
-        ResourceLocation id = ((ForgeResourceKey) channel).resourceLocation();
+    public void sendPacket(Identifier channel, byte[] data) {
+        ResourceLocation id = Identifier.MC.of(channel.asString());
         PacketBuffer byteBuf = new PacketBuffer(Unpooled.buffer());
         byteBuf.writeBytes(data);
         ((EntityPlayerMP) this.player).connection.sendPacket(new SPacketCustomPayload(id, byteBuf));

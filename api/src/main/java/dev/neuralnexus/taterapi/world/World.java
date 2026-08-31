@@ -6,7 +6,7 @@ package dev.neuralnexus.taterapi.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,7 +25,7 @@ public interface World {
      *
      * @return The dimension of the world.
      */
-    ResourceKey dimension();
+    Identifier dimension();
 
     /**
      * Get the entities in the world.

@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.Connection;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 
@@ -44,7 +44,7 @@ public abstract class ServerPlayer_API implements ServerPlayerBridge {
         this.bridge$kick(message);
     }
 
-    public void connection$sendPacket(ResourceKey channel, byte[] data) {
+    public void connection$sendPacket(Identifier channel, byte[] data) {
         this.bridge$sendPacket(channel, data);
     }
 

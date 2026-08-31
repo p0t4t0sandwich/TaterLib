@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.item.inventory.Inventory;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,7 +68,7 @@ public class VanillaInventory
     }
 
     @Override
-    public void remove(ResourceKey type) {
+    public void remove(Identifier type) {
         for (int i = 0; i < this.size(); i++) {
             if (this.get(i).type().equals(type)) {
                 this.inventory.removeItem(((VanillaItemStack) get(i)).unwrap());

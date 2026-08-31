@@ -6,9 +6,8 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.block;
 
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.BlockPos;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
 
 import net.minecraft.util.registry.IRegistry;
 
@@ -29,8 +28,8 @@ public class ForgeBlock implements Block, Wrapped<net.minecraft.block.Block> {
 
     @Override
     @SuppressWarnings("deprecation")
-    public ResourceKey type() {
-        return new ForgeResourceKey(IRegistry.field_212618_g.getKey(this.block));
+    public Identifier type() { // TODO: Revise
+        return Identifier.of(IRegistry.field_212618_g.getKey(this.block).toString());
     }
 
     @Override

@@ -12,7 +12,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.chat.Component;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.EntityBridge;
@@ -54,16 +54,16 @@ public abstract class Entity_API implements EntityBridge {
         this.bridge$remove();
     }
 
-    public ResourceKey entity$type() {
-        return (ResourceKey) this.bridge$type();
+    public Identifier entity$type() {
+        return (Identifier) this.bridge$type();
     }
 
     public Location entity$location() {
         return new VanillaLocation((net.minecraft.world.entity.Entity) (Object) this);
     }
 
-    public ResourceKey entity$biome() {
-        return (ResourceKey) this.bridge$biome();
+    public Identifier entity$biome() {
+        return (Identifier) this.bridge$biome();
     }
 
     @SuppressWarnings({"DataFlowIssue", "resource"})

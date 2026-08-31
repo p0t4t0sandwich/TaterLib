@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterapi.network;
 
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 /** Abstraction for custom payload packets */
 public interface CustomPayloadPacket {
@@ -13,7 +13,7 @@ public interface CustomPayloadPacket {
      *
      * @return The channel.
      */
-    ResourceKey channel();
+    Identifier channel();
 
     /**
      * Gets the data.

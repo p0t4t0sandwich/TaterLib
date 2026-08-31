@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.network;
 import dev.neuralnexus.taterapi.meta.annotations.Range;
 import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 /** Represents a connection to a player. */
 public interface Connection {
@@ -47,7 +47,7 @@ public interface Connection {
     @VersionFeature(
             name = "Connection#sendPacket()",
             incompatible = @Range(MinecraftVersion.B1_7_3))
-    void sendPacket(ResourceKey channel, byte[] data);
+    void sendPacket(Identifier channel, byte[] data);
 
     /**
      * Sends a packet

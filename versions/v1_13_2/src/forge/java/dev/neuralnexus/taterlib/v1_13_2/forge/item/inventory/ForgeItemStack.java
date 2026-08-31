@@ -8,8 +8,7 @@ import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.ItemStack;
 import dev.neuralnexus.taterapi.network.chat.Component;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
-import dev.neuralnexus.taterlib.v1_13_2.forge.resource.ForgeResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 
 import net.minecraft.init.Items;
 import net.minecraft.util.registry.IRegistry;
@@ -39,8 +38,8 @@ public class ForgeItemStack implements ItemStack, Wrapped<net.minecraft.item.Ite
 
     @Override
     @SuppressWarnings("deprecation")
-    public ResourceKey type() {
-        return new ForgeResourceKey(IRegistry.field_212630_s.getKey(this.itemStack.getItem()));
+    public Identifier type() { // TODO: Revise
+        return Identifier.of(IRegistry.field_212630_s.getKey(this.itemStack.getItem()).toString());
     }
 
     @Override

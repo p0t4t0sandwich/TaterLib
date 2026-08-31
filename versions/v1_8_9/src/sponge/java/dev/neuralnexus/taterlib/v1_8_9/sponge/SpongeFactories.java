@@ -5,8 +5,8 @@
 package dev.neuralnexus.taterlib.v1_8_9.sponge;
 
 import dev.neuralnexus.taterapi.block.Block;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
 
+import dev.neuralnexus.taterapi.resources.Identifier;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
@@ -42,7 +42,7 @@ public class SpongeFactories {
 
     @FunctionalInterface
     public interface ItemStackType {
-        ResourceKey get(ItemStack itemStack);
+        Identifier get(ItemStack itemStack);
     }
 
     @FunctionalInterface
@@ -74,7 +74,7 @@ public class SpongeFactories {
 
     @FunctionalInterface
     public interface EntityBiome {
-        ResourceKey get(Entity entity);
+        Identifier get(Entity entity);
     }
 
     @FunctionalInterface

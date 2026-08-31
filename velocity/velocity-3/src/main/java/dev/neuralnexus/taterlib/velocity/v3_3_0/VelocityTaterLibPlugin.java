@@ -34,7 +34,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
 import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
-import dev.neuralnexus.taterapi.resource.ResourceKey;
+import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
@@ -104,7 +104,7 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                 event -> {
                     CustomPayloadPacket packet =
                             new CustomPayloadPacketImpl(
-                                    ResourceKey.of(event.getIdentifier().getId()), event.getData());
+                                    Identifier.of(event.getIdentifier().getId()), event.getData());
                     if (event.getSource() instanceof Player) {
                         NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                                 new C2SCustomPacketEventImpl(
