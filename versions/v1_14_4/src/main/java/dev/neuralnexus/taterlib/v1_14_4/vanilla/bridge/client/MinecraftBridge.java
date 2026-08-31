@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client;
 
-import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+
+import org.jspecify.annotations.NonNull;
 
 public interface MinecraftBridge {
     void bridge$broadcastMessage(String message);
 
-    void bridge$sendPacket(Identifier channel, byte[] data);
+    void bridge$sendPacket(final @NonNull Packet packet);
 }

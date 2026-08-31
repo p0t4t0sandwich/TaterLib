@@ -32,8 +32,8 @@ import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
+import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
@@ -102,20 +102,18 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                 plugin,
                 PluginMessageEvent.class,
                 event -> {
-                    CustomPayloadPacket packet =
-                            new CustomPayloadPacketImpl(
-                                    Identifier.of(event.getIdentifier().getId()), event.getData());
+                    CustomPacketPayload payload = new CustomPacketPayload.Raw(Identifier.of(event.getIdentifier().getId()), new FriendlyByteBuf(event.getData()));
                     if (event.getSource() instanceof Player) {
                         NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                                 new C2SCustomPacketEventImpl(
-                                        packet,
+                                        payload,
                                         new VelocityPlayer(
                                                 (com.velocitypowered.api.proxy.Player)
                                                         event.getSource())));
                     } else if (event.getSource() instanceof ServerConnection) {
                         NetworkEvents.S2P_CUSTOM_PACKET.invoke(
                                 new S2PCustomPacketEventImpl(
-                                        packet,
+                                        payload,
                                         new VelocityServer((RegisteredServer) event.getSource())));
                     }
                 });

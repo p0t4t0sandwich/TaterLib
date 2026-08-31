@@ -9,7 +9,7 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
 
@@ -18,6 +18,7 @@ import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.LocalPlayer;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
 import org.spongepowered.asm.mixin.Interface.Remap;
@@ -48,8 +49,8 @@ public abstract class Minecraft_API implements MinecraftBridge {
                 .collect(Collectors.toList());
     }
 
-    public void server$sendPacket(Identifier channel, byte[] data) {
-        this.bridge$sendPacket(channel, data);
+    public void server$sendPacket(final @NonNull Packet packet) {
+        this.bridge$sendPacket(packet);
     }
 
     public void server$broadcastMessage(String message) {

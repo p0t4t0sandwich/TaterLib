@@ -11,6 +11,7 @@ base {
 dependencies {
     compileOnly(libs.brigadier)
     compileOnly(libs.mixin)
+    compileOnly(libs.netty.buffer)
     compileOnly(libs.asm.tree)
     compileOnly(project(":api"))
     compileOnly(project(":loader"))

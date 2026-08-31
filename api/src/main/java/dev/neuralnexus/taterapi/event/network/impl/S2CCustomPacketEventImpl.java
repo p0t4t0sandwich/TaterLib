@@ -5,21 +5,22 @@
 package dev.neuralnexus.taterapi.event.network.impl;
 
 import dev.neuralnexus.taterapi.event.network.S2CCustomPacketEvent;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import org.jspecify.annotations.NonNull;
 
 /** General implementation of {@link S2CCustomPacketEvent}. */
 public class S2CCustomPacketEventImpl extends CustomPacketEventImpl
         implements S2CCustomPacketEvent {
     private final SimpleServer server;
 
-    public S2CCustomPacketEventImpl(CustomPayloadPacket packet, SimpleServer server) {
-        super(packet);
+    public S2CCustomPacketEventImpl(final @NonNull CustomPacketPayload payload, final @NonNull SimpleServer server) {
+        super(payload);
         this.server = server;
     }
 
     @Override
-    public SimpleServer server() {
+    public @NonNull SimpleServer server() {
         return this.server;
     }
 }

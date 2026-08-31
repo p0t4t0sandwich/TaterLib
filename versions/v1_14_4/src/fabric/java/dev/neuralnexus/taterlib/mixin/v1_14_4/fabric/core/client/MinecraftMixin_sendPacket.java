@@ -8,18 +8,15 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+import dev.neuralnexus.taterlib.network.ConnectionBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.client.MinecraftBridge;
-
-import io.netty.buffer.Unpooled;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.resources.ResourceLocation;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -32,11 +29,8 @@ public abstract class MinecraftMixin_sendPacket implements MinecraftBridge {
     @Shadow @Nullable public LocalPlayer player;
 
     @Override
-    public void bridge$sendPacket(Identifier channel, byte[] data) {
-        if (this.player == null) return;
-        ResourceLocation id = (ResourceLocation) channel;
-        FriendlyByteBuf byteBuf = new FriendlyByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
-        this.player.connection.send(new ServerboundCustomPayloadPacket(id, byteBuf));
+    public void bridge$sendPacket(final @NonNull Packet packet) {
+        if (this.player == null) return; // TODO: Create fallback
+        ((ConnectionBridge) this.player.connection).bridge$send(packet);
     }
 }

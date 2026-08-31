@@ -6,18 +6,20 @@ package dev.neuralnexus.taterapi.event.network.impl;
 
 import dev.neuralnexus.taterapi.event.network.C2SCustomPacketEvent;
 import dev.neuralnexus.taterapi.event.network.CustomPacketEvent;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
+
+import org.jspecify.annotations.NonNull;
 
 /** General implementation of {@link C2SCustomPacketEvent}. */
 public class CustomPacketEventImpl implements CustomPacketEvent {
-    private final CustomPayloadPacket packet;
+    private final CustomPacketPayload payload;
 
-    public CustomPacketEventImpl(CustomPayloadPacket packet) {
-        this.packet = packet;
+    public CustomPacketEventImpl(final @NonNull CustomPacketPayload payload) {
+        this.payload = payload;
     }
 
     @Override
-    public CustomPayloadPacket packet() {
-        return this.packet;
+    public @NonNull CustomPacketPayload payload() {
+        return this.payload;
     }
 }

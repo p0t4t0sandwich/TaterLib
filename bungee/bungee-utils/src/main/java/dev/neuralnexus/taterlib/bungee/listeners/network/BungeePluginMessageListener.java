@@ -8,8 +8,8 @@ import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.event.network.impl.S2PCustomPacketEventImpl;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
-import dev.neuralnexus.taterapi.network.impl.CustomPayloadPacketImpl;
+import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
 
@@ -28,16 +28,15 @@ public class BungeePluginMessageListener implements Listener {
      */
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
-        CustomPayloadPacket packet =
-                new CustomPayloadPacketImpl(Identifier.of(event.getTag()), event.getData());
+        CustomPacketPayload payload = new CustomPacketPayload.Raw(Identifier.of(event.getTag()), new FriendlyByteBuf(event.getData()));
         if (event.getReceiver() instanceof ProxiedPlayer) {
             NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                     new C2SCustomPacketEventImpl(
-                            packet, WrapperRegistry.wrap((ProxiedPlayer) event.getReceiver())));
+                            payload, WrapperRegistry.wrap((ProxiedPlayer) event.getReceiver())));
         } else if (event.getReceiver() instanceof Server) {
             NetworkEvents.S2P_CUSTOM_PACKET.invoke(
                     new S2PCustomPacketEventImpl(
-                            packet, new BungeeServer(((Server) event.getReceiver()).getInfo())));
+                            payload, new BungeeServer(((Server) event.getReceiver()).getInfo())));
         }
     }
 }

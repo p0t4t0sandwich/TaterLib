@@ -5,7 +5,9 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.event.Event;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
+
+import org.jspecify.annotations.NonNull;
 
 /** Abstract class for plugin message events. */
 public interface CustomPacketEvent extends Event {
@@ -14,14 +16,15 @@ public interface CustomPacketEvent extends Event {
      *
      * @return The plugin message's payload.
      */
-    CustomPayloadPacket packet();
+    @NonNull CustomPacketPayload payload();
 
     /**
      * Gets the packet direction
      *
      * @return The packet's flow direction
      */
-    default Direction direction() {
+    // TODO: Update to use PacketFlow
+    default @NonNull Direction direction() {
         return Direction.NONE;
     }
 

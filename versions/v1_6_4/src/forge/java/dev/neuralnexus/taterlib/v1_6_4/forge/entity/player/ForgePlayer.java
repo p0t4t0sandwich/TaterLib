@@ -78,6 +78,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
 
     @Override
     public void sendPacket(Identifier channel, byte[] data) {
+        // TODO: Handle this one last
         ((EntityPlayerMP) this.player)
                 .playerNetServerHandler.sendPacketToPlayer(
                         new Packet250CustomPayload(channel.asString(), data));

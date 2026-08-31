@@ -8,19 +8,18 @@ import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.network.ConnectionBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedLivingEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.item.inventory.WrappedPlayerInventory;
 
-import io.netty.buffer.Unpooled;
-
 import net.minecraft.entity.living.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.network.packet.s2c.play.CustomPayloadS2CPacket;
 import net.minecraft.server.entity.living.player.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -64,11 +63,8 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
-        PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());
-        byteBuf.writeBytes(data);
-        ((ServerPlayerEntity) this.player)
-                .networkHandler.sendPacket(new CustomPayloadS2CPacket(channel.asString(), byteBuf));
+    public void sendPacket(final @NonNull Packet packet) {
+        ((ConnectionBridge) ((ServerPlayerEntity) this.player).networkHandler).bridge$send(packet);
     }
 
     @Override

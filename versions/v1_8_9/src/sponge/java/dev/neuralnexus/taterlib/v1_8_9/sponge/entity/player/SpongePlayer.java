@@ -74,6 +74,7 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
 
     @Override
     public void sendPacket(Identifier channel, byte[] data) {
+        // TODO: Get underlying reference and defer to Forge impl
         Sponge.getChannelRegistrar()
                 .getOrCreateRaw(TaterLib.mod(), channel.asString())
                 .sendTo(this.player, (buffer) -> buffer.writeBytes(data));

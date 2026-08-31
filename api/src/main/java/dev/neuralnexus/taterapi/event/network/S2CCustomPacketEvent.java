@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.server.SimpleServer;
+import org.jspecify.annotations.NonNull;
 
 /** Abstract class for plugin message events. */
 public interface S2CCustomPacketEvent extends CustomPacketEvent {
@@ -15,7 +16,7 @@ public interface S2CCustomPacketEvent extends CustomPacketEvent {
      */
     SimpleServer server();
 
-    default Direction direction() {
+    default @NonNull Direction direction() {
         return Direction.S2C;
     }
 }

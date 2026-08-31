@@ -13,6 +13,7 @@ import org.jspecify.annotations.Nullable;
 
 import java.net.InetSocketAddress;
 
+// TODO: Add Fabric Implementations
 public interface ConnectionBridge {
     String HANDLER_PACKET = "packet_handler";
     String HANDLER_SPLITTER = "splitter";

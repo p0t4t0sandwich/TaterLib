@@ -12,11 +12,13 @@ import dev.neuralnexus.taterapi.event.api.PluginEvents;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
-import dev.neuralnexus.taterapi.network.CustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPI;
 import dev.neuralnexus.taterlib.testmod.api.TestModAPIProvider;
 import dev.neuralnexus.taterlib.testmod.commands.PingPongCommand;
+
 import org.jspecify.annotations.NonNull;
 
 /** Main class for the plugin. */
@@ -128,10 +130,11 @@ public class TestMod implements Plugin {
 
                 NetworkEvents.C2S_CUSTOM_PACKET.register(
                         event -> {
-                            CustomPayloadPacket packet = event.packet();
-                            Identifier channel = packet.channel();
+                            CustomPacketPayload payload = event.payload();
+                            Identifier channel = Identifier.of(payload.type().id());
                             if (channel.equals(Identifier.of("testmod", "pong"))) {
-                                byte[] data = packet.data();
+                                FriendlyByteBuf buf = ((CustomPacketPayload.Raw) payload).data();
+                                byte[] data = buf.array();
                                 String message = new String(data);
                                 // logger.info(Arrays.toString(data));
                                 logger.info(
@@ -149,10 +152,11 @@ public class TestMod implements Plugin {
                 NetworkEvents.S2C_CUSTOM_PACKET.register(
                         event -> {
                             try {
-                                CustomPayloadPacket packet = event.packet();
-                                Identifier channel = packet.channel();
+                                CustomPacketPayload payload = event.payload();
+                                Identifier channel = Identifier.of(payload.type().id());
                                 if (channel.equals(Identifier.of("testmod", "ping"))) {
-                                    byte[] data = packet.data();
+                                    FriendlyByteBuf buf = ((CustomPacketPayload.Raw) payload).data();
+                                    byte[] data = buf.array();
                                     String message = new String(data);
                                     // logger.info(Arrays.toString(data));
                                     logger.info(
@@ -164,8 +168,9 @@ public class TestMod implements Plugin {
                                     logger.info("Sending packet to server");
                                     event.server()
                                             .sendPacket(
-                                                    Identifier.of("testmod", "pong"),
-                                                    "Pong".getBytes());
+                                                    new CustomPacketPayload.Raw(
+                                                            Identifier.of("testmod", "pong"),
+                                                            new FriendlyByteBuf("Pong".getBytes())));
                                 }
                             } catch (Exception e) {
                                 logger.warn("Failed to send packet to server", e);
