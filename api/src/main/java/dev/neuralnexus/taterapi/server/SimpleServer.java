@@ -13,12 +13,8 @@ import dev.neuralnexus.taterapi.mc.server.players.UserWhiteListEntry;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.Platform;
-import dev.neuralnexus.taterapi.meta.Side;
 import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.network.protocol.Packet;
-import dev.neuralnexus.taterapi.network.protocol.PacketFlow;
-import dev.neuralnexus.taterapi.network.protocol.common.ClientboundCustomPayloadPacket;
-import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayloadPacket;
 import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 
@@ -77,13 +73,36 @@ public interface SimpleServer {
     }
 
     /**
+     * Sends a packet
+     *
+     * @param packet the packet
+     */
+    default void sendPacket(final @NonNull Packet packet) {
+        this.players().stream()
+                .findFirst()
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(packet));
+    }
+
+    /**
+     * Sends a custom payload packet
+     *
+     * @param payload the payload packet
+     */
+    default void sendPacket(final @NonNull CustomPacketPayload payload) {
+        this.players().stream()
+                .findFirst()
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(payload));
+    }
+
+    /**
      * Sends a packet using the specified channel
      *
      * @param channel The channel to send the message on
      * @param data The message to send
      */
-    @Deprecated
-    default void sendPacket(Identifier channel, byte[] data) {
+    default void sendPacket(final @NonNull Identifier channel, final byte @NonNull [] data) {
         this.players().stream()
                 .findFirst()
                 .map(Connection.class::cast)
@@ -94,69 +113,20 @@ public interface SimpleServer {
      * Sends a packet using a player and the specified channel
      *
      * @param playerName The player's name
-     * @param channel The channel to send the message on
-     * @param data The message to send
+     * @param packet The packet
      */
-    @Deprecated
-    default void sendPacket(String playerName, Identifier channel, byte[] data) {
-        this.getPlayer(playerName)
-                .map(Connection.class::cast)
-                .ifPresent(c -> c.sendPacket(channel, data));
+    default void sendPacket(final @NonNull String playerName, final @NonNull Packet packet) {
+        this.getPlayer(playerName).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
     }
 
     /**
      * Sends a packet using a player and the specified channel
      *
      * @param playerUUID The player's UUID
-     * @param channel The channel to send the message on
-     * @param data The message to send
-     */
-    @Deprecated
-    default void sendPacket(UUID playerUUID, Identifier channel, byte[] data) {
-        this.getPlayer(playerUUID)
-                .map(Connection.class::cast)
-                .ifPresent(c -> c.sendPacket(channel, data));
-    }
-
-    /**
-     * Sends a packet
-     *
-     * @param packet the packet
-     */
-    void sendPacket(Packet packet);
-
-    /**
-     * Sends a custom payload packet
-     *
-     * @param payload the payload packet
-     */
-    default void sendPacket(CustomPacketPayload payload) {
-        // TODO: Add PacketFlow to Connection
-        // TODO: INTEGRATED SERVER WILL NOT WORK CORRECTLY
-        final Side side = MetaAPI.instance().side();
-        final PacketFlow flow =
-                switch (side) {
-                    case CLIENT, PROXY -> PacketFlow.SERVERBOUND;
-                    case SERVER -> PacketFlow.CLIENTBOUND;
-                    default -> throw new IllegalStateException("NOT IMPLEMENTED");
-                };
-        Packet packet =
-                switch (flow) {
-                    case CLIENTBOUND -> new ClientboundCustomPayloadPacket(payload);
-                    case SERVERBOUND -> new ServerboundCustomPayloadPacket(payload);
-                    default -> throw new IllegalStateException("Unexpected value: " + flow);
-                };
-        this.sendPacket(packet);
-    }
-
-    /**
-     * Sends a packet using a player and the specified channel
-     *
-     * @param playerName The player's name
      * @param packet The packet
      */
-    default void sendPacket(final @NonNull String playerName, final @NonNull Packet packet) {
-        this.getPlayer(playerName).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
+    default void sendPacket(final @NonNull UUID playerUUID, final @NonNull Packet packet) {
+        this.getPlayer(playerUUID).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
     }
 
     /**
@@ -173,16 +143,6 @@ public interface SimpleServer {
     }
 
     /**
-     * Sends a packet using a player and the specified channel
-     *
-     * @param playerUUID The player's UUID
-     * @param packet The packet
-     */
-    default void sendPacket(final @NonNull UUID playerUUID, final @NonNull Packet packet) {
-        this.getPlayer(playerUUID).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
-    }
-
-    /**
      * Sends a custom payload using a player and the specified channel
      *
      * @param playerUUID The player's UUID
@@ -193,6 +153,36 @@ public interface SimpleServer {
         this.getPlayer(playerUUID)
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(payload));
+    }
+
+    /**
+     * Sends a packet using a player and the specified channel
+     *
+     * @param playerName The player's name
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    default void sendPacket(
+            final @NonNull String playerName, Identifier channel, final byte @NonNull [] data) {
+        this.getPlayer(playerName)
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(channel, data));
+    }
+
+    /**
+     * Sends a packet using a player and the specified channel
+     *
+     * @param playerUUID The player's UUID
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    default void sendPacket(
+            final @NonNull UUID playerUUID,
+            final @NonNull Identifier channel,
+            final byte @NonNull [] data) {
+        this.getPlayer(playerUUID)
+                .map(Connection.class::cast)
+                .ifPresent(c -> c.sendPacket(channel, data));
     }
 
     /**

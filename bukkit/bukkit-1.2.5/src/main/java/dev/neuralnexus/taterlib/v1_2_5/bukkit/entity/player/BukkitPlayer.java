@@ -7,7 +7,10 @@ package dev.neuralnexus.taterlib.v1_2_5.bukkit.entity.player;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.TaterLib;
@@ -17,6 +20,7 @@ import dev.neuralnexus.taterlib.v1_2_5.bukkit.world.BukkitWorld;
 
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.plugin.Plugin;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -65,8 +69,20 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
-        player.sendPluginMessage((Plugin) TaterLib.mod(), channel.asString(), data);
+    public void sendPacket(final @NonNull Packet packet) {
+        // TODO: Need non-netty way for networking lib to pass info
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    @Override
+    public void sendPacket(final @NonNull CustomPacketPayload payload) {
+        // TODO: Need non-netty way for networking lib to pass info
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    @Override
+    public void sendPacket(@NonNull Identifier channel, byte @NonNull [] data) {
+        this.player.sendPluginMessage((Plugin) TaterLib.mod(), channel.asString(), data);
     }
 
     @Override

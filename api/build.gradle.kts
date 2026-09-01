@@ -33,6 +33,9 @@ dependencies {
     implementation(libs.mixin)
     implementation(libs.asm.tree)
 
+    // Netty TODO: Create Non-Netty way of accessing direct byte buffer
+    api(libs.netty.buffer)
+
     // Cross API dependencies
     implementation("net.luckperms:api:5.4")
     implementation("me.lucko:spark-api:0.1-SNAPSHOT")

@@ -8,7 +8,10 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -23,6 +26,8 @@ import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.EnumGameType;
 import net.minecraft.world.WorldServer;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -77,7 +82,19 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
+    public void sendPacket(final @NonNull Packet packet) {
+        // TODO: Need non-netty way for networking lib to pass info
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    @Override
+    public void sendPacket(final @NonNull CustomPacketPayload payload) {
+        // TODO: Need non-netty way for networking lib to pass info
+        throw new VersionFeatureNotSupportedException();
+    }
+
+    @Override
+    public void sendPacket(final @NonNull Identifier channel, final byte @NonNull [] data) {
         // TODO: Handle this one last
         ((EntityPlayerMP) this.player)
                 .playerNetServerHandler.sendPacketToPlayer(

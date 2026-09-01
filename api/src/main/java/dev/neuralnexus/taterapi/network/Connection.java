@@ -16,6 +16,8 @@ import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayload
 import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 
+import org.jspecify.annotations.NonNull;
+
 /** Represents a connection to a player. */
 public interface Connection {
     /**
@@ -47,26 +49,14 @@ public interface Connection {
     }
 
     /**
-     * Sends a packet using the specified channel
-     *
-     * @param channel The channel to send the message on
-     * @param data The message to send
-     */
-    @Deprecated
-    @VersionFeature(
-            name = "Connection#sendPacket()",
-            incompatible = @Range(MinecraftVersion.B1_7_3))
-    void sendPacket(Identifier channel, byte[] data);
-
-    /**
      * Sends a packet
      *
      * @param packet the packet
      */
     @VersionFeature(
             name = "Connection#sendPacket()",
-            incompatible = @Range(MinecraftVersion.B1_7_3))
-    void sendPacket(Packet packet);
+            incompatible = @Range(max = MinecraftVersion.V6_4))
+    void sendPacket(final @NonNull Packet packet);
 
     /**
      * Sends a custom payload packet
@@ -75,9 +65,9 @@ public interface Connection {
      */
     @VersionFeature(
             name = "Connection#sendPacket()",
-            incompatible = @Range(MinecraftVersion.B1_7_3))
-    default void sendPacket(CustomPacketPayload payload) {
-        // TODO: Add PacketFlow to Connection
+            incompatible = @Range(max = MinecraftVersion.V6_4))
+    default void sendPacket(final @NonNull CustomPacketPayload payload) {
+        // TODO: Add PacketFlow to ConnectionBridge?
         // TODO: INTEGRATED SERVER WILL NOT WORK CORRECTLY
         final Side side = MetaAPI.instance().side();
         final PacketFlow flow =
@@ -93,5 +83,20 @@ public interface Connection {
                     default -> throw new IllegalStateException("Unexpected value: " + flow);
                 };
         this.sendPacket(packet);
+    }
+
+    /**
+     * Sends a packet using the specified channel
+     *
+     * @param channel The channel to send the message on
+     * @param data The message to send
+     */
+    @VersionFeature(
+            name = "Connection#sendPacket()",
+            incompatible = @Range(MinecraftVersion.B1_7_3))
+    default void sendPacket(final @NonNull Identifier channel, final byte @NonNull [] data) {
+        final FriendlyByteBuf buf = new FriendlyByteBuf(data);
+        final CustomPacketPayload.Raw payload = new CustomPacketPayload.Raw(channel, buf);
+        this.sendPacket(payload);
     }
 }

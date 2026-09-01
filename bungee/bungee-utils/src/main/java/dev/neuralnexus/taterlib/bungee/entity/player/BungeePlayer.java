@@ -7,6 +7,11 @@ package dev.neuralnexus.taterlib.bungee.entity.player;
 import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
+import dev.neuralnexus.taterapi.network.codec.StreamCodec;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.bungee.server.BungeeServer;
@@ -15,6 +20,8 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -75,7 +82,22 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
+    public void sendPacket(final @NonNull Packet packet) {
+        final CustomPacketPayload payload = ((ServerboundCustomPayloadPacket) packet).payload();
+        this.sendPacket(payload);
+    }
+
+    @Override
+    public void sendPacket(final @NonNull CustomPacketPayload payload) {
+        final FriendlyByteBuf data = new FriendlyByteBuf();
+        //noinspection unchecked
+        ((StreamCodec<FriendlyByteBuf, CustomPacketPayload>) payload.type().codec())
+                .encode(data, payload);
+        this.player.getServer().getInfo().sendData(payload.type().id(), data.array());
+    }
+
+    @Override
+    public void sendPacket(final @NonNull Identifier channel, byte @NonNull [] data) {
         this.player.getServer().getInfo().sendData(channel.asString(), data);
     }
 

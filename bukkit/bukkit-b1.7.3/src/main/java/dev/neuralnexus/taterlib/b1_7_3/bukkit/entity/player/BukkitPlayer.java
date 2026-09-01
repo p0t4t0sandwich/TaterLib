@@ -9,12 +9,13 @@ import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.item.inventory.BukkitPlayerInventory;
 
 import org.bukkit.plugin.Plugin;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -63,7 +64,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
+    public void sendPacket(final @NonNull Packet packet) {
         // TODO: Create some different way to send plugin messages
         throw new VersionFeatureNotSupportedException();
         //        player.sendPluginMessage((Plugin) Loader.instance().plugin(), channel.asString(),

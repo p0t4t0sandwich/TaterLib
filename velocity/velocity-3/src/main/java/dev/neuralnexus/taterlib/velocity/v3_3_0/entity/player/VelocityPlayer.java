@@ -13,11 +13,18 @@ import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
+import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
+import dev.neuralnexus.taterapi.network.codec.StreamCodec;
+import dev.neuralnexus.taterapi.network.protocol.Packet;
+import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayloadPacket;
+import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.server.VelocityServer;
 
 import net.kyori.adventure.text.Component;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -87,7 +94,7 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     @Override
     public Server server() {
         if (server != null) return new VelocityServer(server);
-        if (!this.player.getCurrentServer().isPresent()) return null;
+        if (this.player.getCurrentServer().isEmpty()) return null;
         return new VelocityServer(this.player.getCurrentServer().get().getServer());
     }
 
@@ -97,7 +104,30 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     }
 
     @Override
-    public void sendPacket(Identifier channel, byte[] data) {
+    public void sendPacket(final @NonNull Packet packet) {
+        // TODO: Use PluginMessageEncoder
+        final CustomPacketPayload payload = ((ServerboundCustomPayloadPacket) packet).payload();
+        this.sendPacket(payload);
+    }
+
+    @Override
+    public void sendPacket(final @NonNull CustomPacketPayload payload) {
+        // TODO: Use PluginMessageEncoder
+        final FriendlyByteBuf data = new FriendlyByteBuf();
+        //noinspection unchecked
+        ((StreamCodec<FriendlyByteBuf, CustomPacketPayload>) payload.type().codec())
+                .encode(data, payload);
+        this.player
+                .getCurrentServer()
+                .ifPresent(
+                        serverConnection ->
+                                serverConnection.sendPluginMessage(
+                                        MinecraftChannelIdentifier.from(payload.type().id()),
+                                        data.array()));
+    }
+
+    @Override
+    public void sendPacket(@NonNull Identifier channel, byte @NonNull [] data) {
         this.player
                 .getCurrentServer()
                 .ifPresent(
