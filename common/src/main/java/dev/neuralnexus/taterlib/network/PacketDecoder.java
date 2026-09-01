@@ -1,22 +1,24 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.taterlib.network;
 
 import static dev.neuralnexus.taterlib.network.ConnectionBridge.HANDLER_PACKET;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
-import dev.neuralnexus.taterapi.event.network.impl.C2SCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.event.network.impl.S2CCustomPacketEventImpl;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
 import dev.neuralnexus.taterapi.network.Protocol;
-
 import dev.neuralnexus.taterapi.network.protocol.PacketFlow;
 import dev.neuralnexus.taterapi.network.protocol.PacketType;
 import dev.neuralnexus.taterapi.network.protocol.PacketTypes;
 import dev.neuralnexus.taterapi.network.protocol.common.ClientboundCustomPayloadPacket;
 import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayloadPacket;
 import dev.neuralnexus.taterapi.server.SimpleServer;
+
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -63,14 +65,17 @@ public final class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
             final FriendlyByteBuf buf = FriendlyByteBuf.wrap(msg);
             final ServerboundCustomPayloadPacket packet =
                     ServerboundCustomPayloadPacket.STREAM_CODEC.decode(buf);
-            final User player = ;
-            NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(packet.payload(), player));
+            // final User player = ;
+            // NetworkEvents.C2S_CUSTOM_PACKET.invoke(new C2SCustomPacketEventImpl(packet.payload(),
+            // player));
+            throw new IllegalStateException("NOT IMPLEMENTED"); // TODO: Implement
         } else if (info == PacketTypes.COMMON.CLIENTBOUND_CUSTOM_PAYLOAD) {
             final FriendlyByteBuf buf = FriendlyByteBuf.wrap(msg);
             final ClientboundCustomPayloadPacket packet =
                     ClientboundCustomPayloadPacket.STREAM_CODEC.decode(buf);
             final SimpleServer server = (SimpleServer) MetaAPI.instance().client();
-            NetworkEvents.S2C_CUSTOM_PACKET.invoke(new S2CCustomPacketEventImpl(packet.payload(), server));
+            NetworkEvents.S2C_CUSTOM_PACKET.invoke(
+                    new S2CCustomPacketEventImpl(packet.payload(), server));
         } else {
             msg.readerIndex(readerIndex);
         }
@@ -88,12 +93,13 @@ public final class PacketDecoder extends MessageToMessageDecoder<ByteBuf> {
             super.exceptionCaught(ctx, cause);
             return;
         }
-        TaterAPI.logger().error(
-                "Exception in PacketDecoder for "
-                        + ctx.channel().remoteAddress()
-                        + ": "
-                        + cause.getMessage(),
-                cause);
+        TaterAPI.logger()
+                .error(
+                        "Exception in PacketDecoder for "
+                                + ctx.channel().remoteAddress()
+                                + ": "
+                                + cause.getMessage(),
+                        cause);
         super.exceptionCaught(ctx, cause);
     }
 }
