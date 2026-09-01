@@ -83,9 +83,9 @@ subprojects {
             leadingTabsToSpaces()
             endWithNewline()
             licenseHeader("""/**
- * Copyright (c) 2025 $author
- * The project is Licensed under <a href="$sourceUrl/blob/dev/LICENSE">$license</a>
- */""") // TODO: Change "2025" to 2026", "The" to "This", and "dev" to "main"
+ * Copyright (c) 2026 $author
+ * This project is Licensed under <a href="$sourceUrl/blob/main/LICENSE">$license</a>
+ */""")
         }
     }
 
