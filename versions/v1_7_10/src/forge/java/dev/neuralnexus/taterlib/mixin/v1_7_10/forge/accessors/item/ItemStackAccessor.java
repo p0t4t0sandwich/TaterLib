@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.gen.Accessor;
 
 // TODO: Merge into ItemStackMixin once it's in use
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V11_2))
 @Mixin(ItemStack.class)
 public interface ItemStackAccessor {

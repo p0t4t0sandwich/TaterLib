@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V16, max = MinecraftVersion.V16_1))
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin implements ServerPlayerBridge {

@@ -27,7 +27,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V9, max = MinecraftVersion.V11_2))
 @Mixin(World.class)
 public abstract class WorldMixin implements WorldBridge {

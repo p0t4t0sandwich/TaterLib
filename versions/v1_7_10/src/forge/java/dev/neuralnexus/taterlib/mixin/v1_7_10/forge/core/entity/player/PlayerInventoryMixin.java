@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V8_9))
 @Mixin(PlayerInventory.class)
 public class PlayerInventoryMixin implements PlayerInventoryBridge {

@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V12_2))
 @Mixin(net.minecraft.client.resource.Identifier.class)
 @Implements(@Interface(iface = Identifier.class, prefix = "identifier$", remap = Remap.NONE))

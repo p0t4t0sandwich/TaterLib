@@ -21,7 +21,9 @@ import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.UUID;
 
-@AConstraint(mappings = Mappings.LEGACY_SEARGE, version = @Versions(min = MinecraftVersion.V14))
+@AConstraint(
+        mappings = Mappings.SEARGE,
+        version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5))
 @Mixin(Entity.class)
 @Implements(@Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE))
 public abstract class EntityMixin {

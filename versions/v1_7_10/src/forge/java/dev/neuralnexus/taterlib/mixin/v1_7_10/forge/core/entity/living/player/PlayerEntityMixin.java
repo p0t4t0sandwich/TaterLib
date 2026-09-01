@@ -29,7 +29,7 @@ import java.lang.reflect.Method;
 import java.util.Optional;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10))
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {

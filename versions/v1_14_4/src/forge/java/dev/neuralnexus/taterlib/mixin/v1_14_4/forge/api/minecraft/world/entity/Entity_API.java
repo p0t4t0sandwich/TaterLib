@@ -32,7 +32,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5))
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({

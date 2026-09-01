@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10))
 @Mixin(MinecraftServer.class)
 @Implements(@Interface(iface = Server.class, prefix = "server$", remap = Interface.Remap.NONE))

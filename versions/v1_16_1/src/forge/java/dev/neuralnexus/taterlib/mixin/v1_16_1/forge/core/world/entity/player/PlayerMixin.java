@@ -20,7 +20,7 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V16_1, max = MinecraftVersion.V16_5))
 @Mixin(Player.class)
 public abstract class PlayerMixin extends Entity implements PlayerBridge {

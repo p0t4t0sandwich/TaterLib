@@ -19,7 +19,7 @@ import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 public class BrigGenForge implements BrigGenPlugin {
     @Override
     public Mappings mappings() {
-        return Mappings.LEGACY_SEARGE;
+        return Mappings.SEARGE;
     }
 
     @Override

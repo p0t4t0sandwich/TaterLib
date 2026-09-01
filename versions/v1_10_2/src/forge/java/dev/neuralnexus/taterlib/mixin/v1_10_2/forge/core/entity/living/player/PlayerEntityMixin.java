@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import java.util.Optional;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V10, max = MinecraftVersion.V12_2))
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin implements PlayerEntityBridge {

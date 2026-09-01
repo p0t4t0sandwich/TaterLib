@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V16, max = MinecraftVersion.V16_5))
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {

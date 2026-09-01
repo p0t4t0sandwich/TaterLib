@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 @AConstraint(
-        mappings = Mappings.LEGACY_SEARGE,
+        mappings = Mappings.SEARGE,
         version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2))
 @Mixin(Entity.class)
 public abstract class EntityMixin implements EntityBridge {

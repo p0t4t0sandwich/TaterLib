@@ -26,7 +26,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @AConstraints({
     @AConstraint(platform = Platform.SPONGE, invert = true),
     @AConstraint(
-            mappings = Mappings.LEGACY_SEARGE,
+            mappings = Mappings.SEARGE,
             version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V16_5))
 })
 @Mixin(ResourceLocation.class)
