@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity;
 
 import dev.neuralnexus.taterapi.resources.Identifier;
+
 import net.minecraft.server.world.ServerWorld;
 
 public interface EntityBridge {

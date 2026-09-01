@@ -40,5 +40,6 @@ public @interface Mod {
     @interface EventHandler {}
 
     String name() default "";
+
     String version() default "";
 }

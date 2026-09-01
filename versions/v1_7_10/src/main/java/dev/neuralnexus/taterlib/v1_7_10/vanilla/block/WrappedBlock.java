@@ -27,8 +27,7 @@ public class WrappedBlock implements Block, Wrapped<net.minecraft.block.Block> {
     @Override
     public Identifier type() {
         // TODO: Find block registry
-        return Identifier.of(
-                this.block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
+        return Identifier.of(this.block.getTranslationKey().split("block\\.")[1].replace(".", ":"));
     }
 
     @Override

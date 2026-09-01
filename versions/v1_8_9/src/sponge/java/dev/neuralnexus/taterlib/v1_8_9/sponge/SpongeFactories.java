@@ -5,8 +5,8 @@
 package dev.neuralnexus.taterlib.v1_8_9.sponge;
 
 import dev.neuralnexus.taterapi.block.Block;
-
 import dev.neuralnexus.taterapi.resources.Identifier;
+
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.block.ChangeBlockEvent;

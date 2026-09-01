@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterloader.depdownloader;
 
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 
-import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import org.jetbrains.annotations.ApiStatus;
 
 import java.io.*;

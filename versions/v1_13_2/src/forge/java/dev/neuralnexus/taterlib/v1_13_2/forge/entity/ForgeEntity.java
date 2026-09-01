@@ -83,8 +83,9 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     @SuppressWarnings("deprecation")
     public Identifier biome() { // TODO: Revise
         return Identifier.of(
-                IRegistry.field_212624_m.getKey(
-                        this.entity.world.getBiome(this.entity.getPosition())).toString());
+                IRegistry.field_212624_m
+                        .getKey(this.entity.world.getBiome(this.entity.getPosition()))
+                        .toString());
     }
 
     @Override

@@ -40,7 +40,8 @@ public class SpongeWorld implements ServerWorld, World, Wrapped<org.spongepowere
 
     @Override
     public Identifier dimension() { // TODO: Revise
-        return Identifier.of(((org.spongepowered.api.world.server.ServerWorld) level).key().asString());
+        return Identifier.of(
+                ((org.spongepowered.api.world.server.ServerWorld) level).key().asString());
     }
 
     @Override

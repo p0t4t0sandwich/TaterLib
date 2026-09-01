@@ -102,7 +102,10 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
                 plugin,
                 PluginMessageEvent.class,
                 event -> {
-                    CustomPacketPayload payload = new CustomPacketPayload.Raw(Identifier.of(event.getIdentifier().getId()), new FriendlyByteBuf(event.getData()));
+                    CustomPacketPayload payload =
+                            new CustomPacketPayload.Raw(
+                                    Identifier.of(event.getIdentifier().getId()),
+                                    new FriendlyByteBuf(event.getData()));
                     if (event.getSource() instanceof Player) {
                         NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                                 new C2SCustomPacketEventImpl(

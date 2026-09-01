@@ -4,9 +4,9 @@
  */
 package dev.neuralnexus.taterloader.platforms;
 
+import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.MinecraftVersions;
-import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_13;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeLifecycleListener_1_8;
 import dev.neuralnexus.taterloader.platforms.forge.ForgeModLifecycleListener_1_13;
