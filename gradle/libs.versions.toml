@@ -1,9 +1,9 @@
 [versions]
-blossom = "2.1.0"
-jvmdowngrader = "1.3.5"
+blossom = "2.2.0"
+jvmdowngrader = "1.3.6"
 netty = "4.1.128.Final"
-shadow = "9.2.2"
-spotless = "8.1.0"
+shadow = "9.4.1"
+spotless = "8.4.0"
 taterlib-lite = "0.4.0-SNAPSHOT"
 unimined = "1.3.16-SNAPSHOT"
 
