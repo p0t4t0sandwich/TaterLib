@@ -4,12 +4,12 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_20_2.fabric.core.server.level;
 
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.protocol.Packet;
-import dev.neuralnexus.taterlib.network.ConnectionBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.server.level.ServerPlayerBridge;
 
 import net.minecraft.server.level.ServerPlayer;
@@ -31,9 +31,10 @@ public abstract class ServerPlayerMixin_sendPacket implements ServerPlayerBridge
         return this.connection.latency();
     }
 
-    // TODO: Create accessor mixin
     @Override
     public void bridge$sendPacket(final @NonNull Packet packet) {
-        ((ConnectionBridge) this.connection.connection).bridge$send(packet);
+        // TODO: Create accessor mixin
+        throw new VersionFeatureNotSupportedException();
+        // ((ConnectionBridge) this.connection.connection).bridge$send(packet);
     }
 }
