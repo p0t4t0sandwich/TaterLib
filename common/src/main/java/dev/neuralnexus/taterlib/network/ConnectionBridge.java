@@ -1,9 +1,13 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * The project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/dev/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.taterlib.network;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.network.Protocol;
-
 import dev.neuralnexus.taterapi.network.protocol.PacketFlow;
+
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.util.concurrent.Future;
@@ -43,8 +47,10 @@ public interface ConnectionBridge {
                 || ctx.pipeline().get(PacketEncoder.NAME) != null) {
             return;
         }
-        TaterAPI.logger().debug(
-                "Injecting packet handlers into pipeline of " + ctx.channel().remoteAddress());
+        TaterAPI.logger()
+                .debug(
+                        "Injecting packet handlers into pipeline of "
+                                + ctx.channel().remoteAddress());
         ctx.channel()
                 .pipeline()
                 .addAfter(HANDLER_SPLITTER, PacketDecoder.NAME, new PacketDecoder())

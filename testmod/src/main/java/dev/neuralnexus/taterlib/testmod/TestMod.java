@@ -155,7 +155,8 @@ public class TestMod implements Plugin {
                                 CustomPacketPayload payload = event.payload();
                                 Identifier channel = Identifier.of(payload.type().id());
                                 if (channel.equals(Identifier.of("testmod", "ping"))) {
-                                    FriendlyByteBuf buf = ((CustomPacketPayload.Raw) payload).data();
+                                    FriendlyByteBuf buf =
+                                            ((CustomPacketPayload.Raw) payload).data();
                                     byte[] data = buf.array();
                                     String message = new String(data);
                                     // logger.info(Arrays.toString(data));
@@ -170,7 +171,8 @@ public class TestMod implements Plugin {
                                             .sendPacket(
                                                     new CustomPacketPayload.Raw(
                                                             Identifier.of("testmod", "pong"),
-                                                            new FriendlyByteBuf("Pong".getBytes())));
+                                                            new FriendlyByteBuf(
+                                                                    "Pong".getBytes())));
                                 }
                             } catch (Exception e) {
                                 logger.warn("Failed to send packet to server", e);

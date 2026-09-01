@@ -21,7 +21,8 @@ public class BukkitPluginMessageListener implements PluginMessageListener {
             @NotNull String channel, @NotNull Player player, byte @NotNull [] bytes) {
         NetworkEvents.C2S_CUSTOM_PACKET.invoke(
                 new C2SCustomPacketEventImpl(
-                        new CustomPacketPayload.Raw(Identifier.of(channel), new FriendlyByteBuf(bytes)),
+                        new CustomPacketPayload.Raw(
+                                Identifier.of(channel), new FriendlyByteBuf(bytes)),
                         new BukkitPlayer(player)));
     }
 }

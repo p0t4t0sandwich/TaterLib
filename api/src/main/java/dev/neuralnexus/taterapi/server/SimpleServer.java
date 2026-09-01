@@ -21,6 +21,7 @@ import dev.neuralnexus.taterapi.network.protocol.common.ClientboundCustomPayload
 import dev.neuralnexus.taterapi.network.protocol.common.ServerboundCustomPayloadPacket;
 import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
 import dev.neuralnexus.taterapi.resources.Identifier;
+
 import org.jspecify.annotations.NonNull;
 
 import java.util.Collection;
@@ -133,16 +134,18 @@ public interface SimpleServer {
         // TODO: Add PacketFlow to Connection
         // TODO: INTEGRATED SERVER WILL NOT WORK CORRECTLY
         final Side side = MetaAPI.instance().side();
-        final PacketFlow flow = switch (side) {
-            case CLIENT, PROXY -> PacketFlow.SERVERBOUND;
-            case SERVER -> PacketFlow.CLIENTBOUND;
-            default -> throw new IllegalStateException("NOT IMPLEMENTED");
-        };
-        Packet packet = switch (flow) {
-            case CLIENTBOUND -> new ClientboundCustomPayloadPacket(payload);
-            case SERVERBOUND -> new ServerboundCustomPayloadPacket(payload);
-            default -> throw new IllegalStateException("Unexpected value: " + flow);
-        };
+        final PacketFlow flow =
+                switch (side) {
+                    case CLIENT, PROXY -> PacketFlow.SERVERBOUND;
+                    case SERVER -> PacketFlow.CLIENTBOUND;
+                    default -> throw new IllegalStateException("NOT IMPLEMENTED");
+                };
+        Packet packet =
+                switch (flow) {
+                    case CLIENTBOUND -> new ClientboundCustomPayloadPacket(payload);
+                    case SERVERBOUND -> new ServerboundCustomPayloadPacket(payload);
+                    default -> throw new IllegalStateException("Unexpected value: " + flow);
+                };
         this.sendPacket(packet);
     }
 
@@ -153,9 +156,7 @@ public interface SimpleServer {
      * @param packet The packet
      */
     default void sendPacket(final @NonNull String playerName, final @NonNull Packet packet) {
-        this.getPlayer(playerName)
-                .map(Connection.class::cast)
-                .ifPresent(c -> c.sendPacket(packet));
+        this.getPlayer(playerName).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
     }
 
     /**
@@ -164,7 +165,8 @@ public interface SimpleServer {
      * @param playerName The player's name
      * @param payload The payload
      */
-    default void sendPacket(final @NonNull String playerName, final @NonNull CustomPacketPayload payload) {
+    default void sendPacket(
+            final @NonNull String playerName, final @NonNull CustomPacketPayload payload) {
         this.getPlayer(playerName)
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(payload));
@@ -177,9 +179,7 @@ public interface SimpleServer {
      * @param packet The packet
      */
     default void sendPacket(final @NonNull UUID playerUUID, final @NonNull Packet packet) {
-        this.getPlayer(playerUUID)
-                .map(Connection.class::cast)
-                .ifPresent(c -> c.sendPacket(packet));
+        this.getPlayer(playerUUID).map(Connection.class::cast).ifPresent(c -> c.sendPacket(packet));
     }
 
     /**
@@ -188,7 +188,8 @@ public interface SimpleServer {
      * @param playerUUID The player's UUID
      * @param payload The payload
      */
-    default void sendPacket(final @NonNull UUID playerUUID, final @NonNull CustomPacketPayload payload) {
+    default void sendPacket(
+            final @NonNull UUID playerUUID, final @NonNull CustomPacketPayload payload) {
         this.getPlayer(playerUUID)
                 .map(Connection.class::cast)
                 .ifPresent(c -> c.sendPacket(payload));

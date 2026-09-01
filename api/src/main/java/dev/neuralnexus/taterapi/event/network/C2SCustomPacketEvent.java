@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.event.network;
 
 import dev.neuralnexus.taterapi.entity.player.User;
+
 import org.jspecify.annotations.NonNull;
 
 /** Abstract class for plugin message events. */

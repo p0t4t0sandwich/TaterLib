@@ -80,16 +80,18 @@ public interface Connection {
         // TODO: Add PacketFlow to Connection
         // TODO: INTEGRATED SERVER WILL NOT WORK CORRECTLY
         final Side side = MetaAPI.instance().side();
-        final PacketFlow flow = switch (side) {
-            case CLIENT, PROXY -> PacketFlow.SERVERBOUND;
-            case SERVER -> PacketFlow.CLIENTBOUND;
-            default -> throw new IllegalStateException("NOT IMPLEMENTED");
-        };
-        Packet packet = switch (flow) {
-            case CLIENTBOUND -> new ClientboundCustomPayloadPacket(payload);
-            case SERVERBOUND -> new ServerboundCustomPayloadPacket(payload);
-            default -> throw new IllegalStateException("Unexpected value: " + flow);
-        };
+        final PacketFlow flow =
+                switch (side) {
+                    case CLIENT, PROXY -> PacketFlow.SERVERBOUND;
+                    case SERVER -> PacketFlow.CLIENTBOUND;
+                    default -> throw new IllegalStateException("NOT IMPLEMENTED");
+                };
+        Packet packet =
+                switch (flow) {
+                    case CLIENTBOUND -> new ClientboundCustomPayloadPacket(payload);
+                    case SERVERBOUND -> new ServerboundCustomPayloadPacket(payload);
+                    default -> throw new IllegalStateException("Unexpected value: " + flow);
+                };
         this.sendPacket(packet);
     }
 }
