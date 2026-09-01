@@ -37,7 +37,7 @@ include(
         ":versions:v1_21_4",
 
 	    // ModAPI libraries
-        ":modapi:crossperms",
+        //":modapi:crossperms",
         ":modapi:brigadier-general",
         ":modapi:brigadier-general:bg-api",
         ":modapi:brigadier-general:bg1_14_4",

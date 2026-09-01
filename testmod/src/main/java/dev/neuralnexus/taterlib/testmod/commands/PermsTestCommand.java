@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterlib.testmod.commands;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.command.Command;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.player.Player;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.util.TextUtil;
@@ -70,16 +70,18 @@ public class PermsTestCommand implements Command {
         }
 
         try {
-            if (PermsAPI.instance().hasPermission(senderObj, 4)) {
-                sender.sendMessage("INT PERMISSIONS WORK");
-            } else {
-                sender.sendMessage("INT PERMISSIONS DO NOT WORK");
-            }
-            if (PermsAPI.instance().hasPermission(senderObj, this.permission())) {
-                sender.sendMessage("STRING PERMISSIONS WORK");
-            } else {
-                sender.sendMessage("STRING PERMISSIONS DO NOT WORK");
-            }
+            // TODO: Replace with new CrossPerms
+            throw new VersionFeatureNotSupportedException();
+            //            if (PermsAPI.instance().hasPermission(senderObj, 4)) {
+            //                sender.sendMessage("INT PERMISSIONS WORK");
+            //            } else {
+            //                sender.sendMessage("INT PERMISSIONS DO NOT WORK");
+            //            }
+            //            if (PermsAPI.instance().hasPermission(senderObj, this.permission())) {
+            //                sender.sendMessage("STRING PERMISSIONS WORK");
+            //            } else {
+            //                sender.sendMessage("STRING PERMISSIONS DO NOT WORK");
+            //            }
         } catch (Exception e) {
             TestMod.logger().info("Error: ");
             e.printStackTrace();

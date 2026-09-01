@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterapi;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.hooks.Hook;
 import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
@@ -294,7 +294,9 @@ public class TaterAPI {
      * @param <S> The subject type
      */
     public static <P, S> Predicate<S> hasPermission(P permission) {
-        return PermsAPI.hasPermission(permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.hasPermission(permission);
     }
 
     /**
@@ -308,7 +310,9 @@ public class TaterAPI {
     public static boolean hasPermission(@NotNull Identifiable identifiable, int permissionLevel)
             throws NullPointerException {
         Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
-        return PermsAPI.instance().hasPermission(identifiable.uuid(), permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(identifiable.uuid(), permissionLevel);
     }
 
     /**
@@ -323,7 +327,9 @@ public class TaterAPI {
             @NotNull Identifiable identifiable, @NotNull String permission)
             throws NullPointerException {
         Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
-        return PermsAPI.instance().hasPermission(identifiable.uuid(), permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(identifiable.uuid(), permission);
     }
 
     /**
@@ -341,8 +347,10 @@ public class TaterAPI {
             int defaultPermissionLevel)
             throws NullPointerException {
         Objects.requireNonNull(identifiable, "Identifiable object cannot be null");
-        return PermsAPI.instance()
-                .hasPermission(identifiable.uuid(), permission, defaultPermissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance()
+        //        .hasPermission(identifiable.uuid(), permission, defaultPermissionLevel);
     }
 
     /**
@@ -355,7 +363,9 @@ public class TaterAPI {
      */
     public static boolean hasPermission(@NotNull Object subject, int permissionLevel)
             throws NullPointerException {
-        return PermsAPI.instance().hasPermission(subject, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(subject, permissionLevel);
     }
 
     /**
@@ -368,7 +378,9 @@ public class TaterAPI {
      */
     public static boolean hasPermission(@NotNull Object subject, @NotNull String permission)
             throws NullPointerException {
-        return PermsAPI.instance().hasPermission(subject, permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(subject, permission);
     }
 
     /**
@@ -383,6 +395,8 @@ public class TaterAPI {
     public static boolean hasPermission(
             @NotNull Object subject, @NotNull String permission, int defaultPermissionLevel)
             throws NullPointerException {
-        return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(subject, permission, defaultPermissionLevel);
     }
 }

@@ -4,10 +4,10 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee.entity.player;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
 import dev.neuralnexus.taterapi.network.codec.StreamCodec;
 import dev.neuralnexus.taterapi.network.protocol.Packet;
@@ -113,16 +113,22 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
 
     @Override
     public boolean hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission);
     }
 
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
     @Override
     public boolean hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

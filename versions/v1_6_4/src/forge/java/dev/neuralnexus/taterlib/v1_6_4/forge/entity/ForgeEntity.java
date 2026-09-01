@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.entity;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
@@ -100,16 +99,22 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     public boolean hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission);
     }
 
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
     @Override
     public boolean hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

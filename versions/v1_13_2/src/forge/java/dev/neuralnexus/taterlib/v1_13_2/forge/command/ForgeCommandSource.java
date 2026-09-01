@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.command;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
@@ -12,6 +11,7 @@ import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
@@ -80,16 +80,22 @@ public class ForgeCommandSource
 
     @Override
     public boolean hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission);
     }
 
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
     @Override
     public boolean hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

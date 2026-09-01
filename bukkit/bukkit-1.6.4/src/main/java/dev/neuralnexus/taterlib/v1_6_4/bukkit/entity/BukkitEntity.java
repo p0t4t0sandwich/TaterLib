@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.bukkit.entity;
 
-import dev.neuralnexus.modapi.crossperms.PermsAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
@@ -88,16 +87,22 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
 
     @Override
     public boolean hasPermission(String permission) {
-        return PermsAPI.instance().hasPermission(this, permission);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission);
     }
 
     @Override
     public boolean hasPermission(int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permissionLevel);
     }
 
     @Override
     public boolean hasPermission(String permission, int permissionLevel) {
-        return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
+        // TODO: Replace with new CrossPerms
+        throw new VersionFeatureNotSupportedException();
+        // return PermsAPI.instance().hasPermission(this, permission, permissionLevel);
     }
 }

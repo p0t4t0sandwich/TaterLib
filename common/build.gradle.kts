@@ -46,7 +46,7 @@ dependencies {
     compileOnly(libs.taterlib.lite.core)
     compileOnly(libs.taterlib.lite.muxins)
     compileOnly(libs.modapi.brigadier)
-    compileOnly(libs.modapi.crossperms)
+    //compileOnly(libs.modapi.crossperms)
 
     compileOnly(project(":modapi:entrypoint-spoof"))
 }
