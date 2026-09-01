@@ -6,8 +6,8 @@ package dev.neuralnexus.taterapi.network;
 
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Side;
-import dev.neuralnexus.taterapi.meta.annotations.Range;
-import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
+import dev.neuralnexus.taterapi.meta.anno.Range;
+import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.protocol.Packet;
 import dev.neuralnexus.taterapi.network.protocol.PacketFlow;

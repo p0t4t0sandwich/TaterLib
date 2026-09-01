@@ -6,8 +6,8 @@ package dev.neuralnexus.taterapi.entity.player;
 
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
-import dev.neuralnexus.taterapi.meta.annotations.Range;
-import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
+import dev.neuralnexus.taterapi.meta.anno.Range;
+import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
 /** The interface for a Player */

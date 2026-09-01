@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
-import dev.neuralnexus.taterapi.meta.annotations.Range;
-import dev.neuralnexus.taterapi.meta.annotations.VersionFeature;
+import dev.neuralnexus.taterapi.meta.anno.Range;
+import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.world.Location;
