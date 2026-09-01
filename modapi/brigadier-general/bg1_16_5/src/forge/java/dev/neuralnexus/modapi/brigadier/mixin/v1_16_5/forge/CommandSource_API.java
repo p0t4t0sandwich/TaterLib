@@ -9,8 +9,8 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-
 import dev.neuralnexus.taterapi.network.chat.Component;
+
 import net.minecraft.commands.CommandSource;
 
 import org.spongepowered.asm.mixin.Implements;
