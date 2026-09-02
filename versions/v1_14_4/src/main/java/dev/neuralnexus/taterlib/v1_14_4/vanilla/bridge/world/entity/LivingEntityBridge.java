@@ -17,5 +17,5 @@ public interface LivingEntityBridge {
 
     double bridge$maxHealth();
 
-    void bridge$setMaxHealth(double health);
+    void bridge$maxHealth(double health);
 }

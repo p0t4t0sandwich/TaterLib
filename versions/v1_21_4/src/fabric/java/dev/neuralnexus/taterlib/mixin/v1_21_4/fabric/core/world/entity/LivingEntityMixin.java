@@ -19,6 +19,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -28,19 +29,16 @@ import org.spongepowered.asm.mixin.Unique;
         version = @Versions(min = MinecraftVersion.V21_2))
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {
-    @Shadow
-    public abstract boolean shadow$hurtServer(
-            ServerLevel level, DamageSource damageSource, float damage);
-
+    // @spotless:off
+    @Shadow public abstract boolean shadow$hurtServer(ServerLevel serverLevel, DamageSource damageSource, float f);
+    @Shadow public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> attribute);
     @Unique public ServerLevel taterapi$level() {
         return (ServerLevel) ((LivingEntity) (Object) this).level();
     }
-
-    @Shadow
-    public abstract AttributeInstance shadow$getAttribute(Holder<Attribute> attributeHolder);
+    // @spotless:on
 
     @Override
-    public int bridge$getExperienceReward(Player attackingPlayer) {
+    public int bridge$getExperienceReward(final @NonNull Player attackingPlayer) {
         return ((Object) this) instanceof LivingEntity living
                 ? living.getExperienceReward(this.taterapi$level(), attackingPlayer)
                 : 0;
@@ -48,7 +46,7 @@ public abstract class LivingEntityMixin implements LivingEntityBridge {
 
     @Override
     @SuppressWarnings("resource")
-    public void bridge$damage(double amount) {
+    public void bridge$damage(final double amount) {
         this.shadow$hurtServer(
                 this.taterapi$level(),
                 this.taterapi$level().damageSources().generic(),
@@ -57,7 +55,7 @@ public abstract class LivingEntityMixin implements LivingEntityBridge {
 
     @Override
     @SuppressWarnings("resource")
-    public void bridge$damage(double amount, LivingEntity source) {
+    public void bridge$damage(final double amount, final @NonNull LivingEntity source) {
         this.shadow$hurtServer(
                 this.taterapi$level(),
                 this.taterapi$level().damageSources().mobAttack(source),
@@ -70,7 +68,7 @@ public abstract class LivingEntityMixin implements LivingEntityBridge {
     }
 
     @Override
-    public void bridge$setMaxHealth(double health) {
+    public void bridge$maxHealth(final double health) {
         this.shadow$getAttribute(Attributes.MAX_HEALTH).setBaseValue(health);
     }
 }

@@ -18,6 +18,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.monster.SharedMonsterAttributes;
 import net.minecraft.world.entity.player.Player;
 
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -26,24 +27,23 @@ import org.spongepowered.asm.mixin.Shadow;
         version = @Versions(min = MinecraftVersion.V14, max = MinecraftVersion.V15_2))
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin implements LivingEntityBridge {
-    @Shadow
-    public abstract boolean shadow$hurt(DamageSource damageSource, float damage);
-
-    @Shadow
-    public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
+    // @spotless:off
+    @Shadow public abstract boolean shadow$hurt(DamageSource source, float amount);
+    @Shadow public abstract AttributeInstance shadow$getAttribute(Attribute attribute);
+    // @spotless:on
 
     @Override
-    public int bridge$getExperienceReward(Player attackingPlayer) {
+    public int bridge$getExperienceReward(final @NonNull Player attackingPlayer) {
         return ((LivingEntityAccessor) this).invoker$getExperienceReward(attackingPlayer);
     }
 
     @Override
-    public void bridge$damage(double amount) {
+    public void bridge$damage(final double amount) {
         this.shadow$hurt(DamageSource.GENERIC, (float) amount);
     }
 
     @Override
-    public void bridge$damage(double amount, LivingEntity source) {
+    public void bridge$damage(final double amount, final @NonNull LivingEntity source) {
         this.shadow$hurt(DamageSource.mobAttack(source), (float) amount);
     }
 
@@ -53,7 +53,7 @@ public abstract class LivingEntityMixin implements LivingEntityBridge {
     }
 
     @Override
-    public void bridge$setMaxHealth(double health) {
+    public void bridge$maxHealth(final double health) {
         this.shadow$getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(health);
     }
 }

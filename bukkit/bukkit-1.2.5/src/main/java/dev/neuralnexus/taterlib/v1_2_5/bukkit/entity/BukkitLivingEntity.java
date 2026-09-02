@@ -4,12 +4,24 @@
  */
 package dev.neuralnexus.taterlib.v1_2_5.bukkit.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.Key;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.data.TaterDataHolder;
+import dev.neuralnexus.taterapi.data.value.Value;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
+import org.jspecify.annotations.NonNull;
+
+import java.util.Optional;
+import java.util.Set;
+
 /** Bukkit implementation of {@link LivingEntity}. */
-public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
+public class BukkitLivingEntity extends BukkitEntity
+        implements LivingEntity, Damageable, DataHolder {
     private final org.bukkit.entity.LivingEntity entity;
 
     /**
@@ -17,56 +29,60 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
      *
      * @param entity The Bukkit entity.
      */
-    public BukkitLivingEntity(org.bukkit.entity.LivingEntity entity) {
+    public BukkitLivingEntity(final org.bukkit.entity.@NonNull LivingEntity entity) {
         super(entity);
         this.entity = entity;
+
+        final Value<Double> health =
+                Value.mutableOf(
+                        Keys.HEALTH,
+                        () -> (double) this.entity.getHealth(),
+                        (v) -> this.entity.setHealth((int) v.doubleValue()));
+        final Value<Double> maxHealth =
+                Value.mutableOf(
+                        Keys.MAX_HEALTH,
+                        () -> (double) this.entity.getMaxHealth(),
+                        // TODO: Find if there's some obscure way to change this
+                        (_) -> {
+                            throw new VersionFeatureNotSupportedException();
+                        });
+
+        this.data.register(health, maxHealth);
+    }
+
+    // ------------------------------------
+
+    private final TaterDataHolder data = new TaterDataHolder();
+
+    @Override
+    public <E> Optional<E> offer(final @NonNull Key<? extends Value<E>> key, final E value) {
+        return this.data.offer(key, value);
     }
 
     @Override
-    public org.bukkit.entity.LivingEntity unwrap() {
+    public <E> Optional<E> get(final @NonNull Key<? extends Value<E>> key) {
+        return this.data.get(key);
+    }
+
+    @Override
+    public Set<Key<?>> getKeys() {
+        return this.data.getKeys();
+    }
+
+    // ------------------------------------
+
+    @Override
+    public org.bukkit.entity.@NonNull LivingEntity unwrap() {
         return this.entity;
     }
 
     @Override
-    public void damage(double amount) {
+    public void damage(final double amount) {
         this.entity.damage((int) amount);
     }
 
     @Override
-    public void damage(double amount, Entity source) {
+    public void damage(final double amount, final @NonNull Entity source) {
         this.entity.damage((int) amount, ((BukkitEntity) source).unwrap());
-    }
-
-    @Override
-    public double health() {
-        return this.entity.getHealth();
-    }
-
-    @Override
-    public void setHealth(double health) {
-        this.entity.setHealth((int) health);
-    }
-
-    @Override
-    public double absorptionAmount() {
-        // TODO: Check if this is supported on 1.2.5
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    @Override
-    public void setAbsorptionAmount(double amount) {
-        // TODO: Check if this is supported on 1.2.5
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    @Override
-    public double maxHealth() {
-        return this.entity.getMaxHealth();
-    }
-
-    @Override
-    public void setMaxHealth(double health) {
-        // TODO: Check if this is supported on 1.2.5
-        throw new VersionFeatureNotSupportedException();
     }
 }

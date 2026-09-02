@@ -4,11 +4,23 @@
  */
 package dev.neuralnexus.taterlib.v1_20.bukkit.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.Key;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.data.TaterDataHolder;
+import dev.neuralnexus.taterapi.data.value.Value;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
+import org.jspecify.annotations.NonNull;
+
+import java.util.Optional;
+import java.util.Set;
+
 /** Bukkit implementation of {@link LivingEntity}. */
-public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
+public class BukkitLivingEntity extends BukkitEntity
+        implements LivingEntity, Damageable, DataHolder {
     private final org.bukkit.entity.LivingEntity entity;
 
     /**
@@ -16,55 +28,58 @@ public class BukkitLivingEntity extends BukkitEntity implements LivingEntity {
      *
      * @param entity The Bukkit entity.
      */
-    public BukkitLivingEntity(org.bukkit.entity.LivingEntity entity) {
+    public BukkitLivingEntity(final org.bukkit.entity.@NonNull LivingEntity entity) {
         super(entity);
         this.entity = entity;
+
+        final Value<Double> absorption =
+                Value.mutableOf(
+                        Keys.ABSORPTION,
+                        this.entity::getAbsorptionAmount,
+                        this.entity::setAbsorptionAmount);
+        final Value<Double> health =
+                Value.mutableOf(Keys.HEALTH, this.entity::getHealth, this.entity::setHealth);
+        @SuppressWarnings("deprecation")
+        final Value<Double> maxHealth =
+                Value.mutableOf(
+                        Keys.MAX_HEALTH, this.entity::getMaxHealth, this.entity::setMaxHealth);
+
+        this.data.register(absorption, health, maxHealth);
+    }
+
+    // ------------------------------------
+
+    private final TaterDataHolder data = new TaterDataHolder();
+
+    @Override
+    public <E> Optional<E> offer(final @NonNull Key<? extends Value<E>> key, final E value) {
+        return this.data.offer(key, value);
     }
 
     @Override
-    public org.bukkit.entity.LivingEntity unwrap() {
+    public <E> Optional<E> get(final @NonNull Key<? extends Value<E>> key) {
+        return this.data.get(key);
+    }
+
+    @Override
+    public Set<Key<?>> getKeys() {
+        return this.data.getKeys();
+    }
+
+    // ------------------------------------
+
+    @Override
+    public org.bukkit.entity.@NonNull LivingEntity unwrap() {
         return this.entity;
     }
 
     @Override
-    public void damage(double amount) {
+    public void damage(final double amount) {
         this.entity.damage(amount);
     }
 
     @Override
-    public void damage(double amount, Entity source) {
+    public void damage(final double amount, final @NonNull Entity source) {
         this.entity.damage(amount, ((BukkitEntity) source).unwrap());
-    }
-
-    @Override
-    public double health() {
-        return this.entity.getHealth();
-    }
-
-    @Override
-    public void setHealth(double health) {
-        this.entity.setHealth(health);
-    }
-
-    @Override
-    public double absorptionAmount() {
-        return this.entity.getAbsorptionAmount();
-    }
-
-    @Override
-    public void setAbsorptionAmount(double amount) {
-        this.entity.setAbsorptionAmount(amount);
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public double maxHealth() {
-        return this.entity.getMaxHealth();
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public void setMaxHealth(double health) {
-        this.entity.setMaxHealth(health);
     }
 }
