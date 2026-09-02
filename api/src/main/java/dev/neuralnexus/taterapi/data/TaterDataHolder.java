@@ -47,13 +47,13 @@ public class TaterDataHolder implements DataHolder {
     }
 
     @ApiStatus.Internal
-    public <E> void register(final Value<E> value) {
+    public <E> void register(final @NonNull Value<E> value) {
         this.STORE.put(value.key(), (TaterValue<?>) value);
     }
 
     @ApiStatus.Internal
     @SafeVarargs
-    public final <E> void register(final Value<E>... values) {
+    public final <E> void register(final @NonNull Value<E>... values) {
         for (Value<E> value : values) {
             this.STORE.put(value.key(), (TaterValue<?>) value);
         }
