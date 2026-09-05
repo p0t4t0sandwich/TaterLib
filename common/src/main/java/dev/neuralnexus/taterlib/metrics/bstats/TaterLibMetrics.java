@@ -33,6 +33,7 @@ public class TaterLibMetrics {
         if (MetaAPI.instance().side().is(Side.CLIENT)) {
             return;
         }
+        // TODO: Create a system that checks both locations, then disable if either is false
         MetricsConfig config;
         try {
             boolean defaultEnabled = MetaAPI.instance().side().is(Side.SERVER);
@@ -42,7 +43,7 @@ public class TaterLibMetrics {
                             Platforms.FORGE,
                             Platforms.NEOFORGE,
                             Platforms.SPONGE)) {
-                config = new MetricsConfig(new File("config/bstats/config.txt"), defaultEnabled);
+                config = new MetricsConfig(new File("config/bStats/config.txt"), defaultEnabled);
             } else {
                 config = new MetricsConfig(new File("plugins/bStats/config.txt"), defaultEnabled);
             }
