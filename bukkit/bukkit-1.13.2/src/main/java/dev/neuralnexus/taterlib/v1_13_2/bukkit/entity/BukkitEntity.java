@@ -48,9 +48,10 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
         this.entity.remove();
     }
 
+    // TODO: Find a way to verify the MC namespace, or at least to allow modded ones
     @Override
     public Identifier type() {
-        return Identifier.of("minecraft", this.entity.getType().toString().toLowerCase());
+        return Identifier.of(this.entity.getType().toString().toLowerCase());
     }
 
     @Override
@@ -68,6 +69,7 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
         return new BukkitLocation(this.entity.getLocation());
     }
 
+    // TODO: Find a way to verify the MC namespace, or at least to allow modded ones
     @Override
     public Identifier biome() {
         return Identifier.of(this.entity.getLocation().getBlock().getBiome().name());

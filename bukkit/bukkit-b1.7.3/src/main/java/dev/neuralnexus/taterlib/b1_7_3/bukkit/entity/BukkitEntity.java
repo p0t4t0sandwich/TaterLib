@@ -52,10 +52,10 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
         this.entity.remove();
     }
 
+    // TODO: some backwards-compatible translation to modern namespaces
     @Override
     public Identifier type() {
-        return Identifier.of(
-                "minecraft", EntityTypes.b(((CraftEntity) this.entity).getHandle()).toLowerCase());
+        return Identifier.of(EntityTypes.b(((CraftEntity) this.entity).getHandle()).toLowerCase());
     }
 
     @Override
@@ -73,6 +73,7 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
         return new BukkitLocation(this.entity.getLocation());
     }
 
+    // TODO: some backwards-compatible translation to modern namespaces
     @Override
     public Identifier biome() {
         return Identifier.of(this.entity.getLocation().getBlock().getBiome().name());

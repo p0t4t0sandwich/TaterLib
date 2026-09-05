@@ -12,6 +12,8 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitWorld;
 
+import org.bukkit.NamespacedKey;
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -50,7 +52,8 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
 
     @Override
     public Identifier type() {
-        return Identifier.of("minecraft", this.entity.getType().toString().toLowerCase());
+        final NamespacedKey key = this.entity.getType().getKey();
+        return Identifier.of(key.getNamespace(), key.getKey());
     }
 
     @Override
@@ -72,7 +75,8 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
 
     @Override
     public Identifier biome() {
-        return Identifier.of(this.entity.getLocation().getBlock().getBiome().name());
+        final NamespacedKey key = this.entity.getLocation().getBlock().getBiome().getKey();
+        return Identifier.of(key.getNamespace(), key.getKey());
     }
 
     @Override
