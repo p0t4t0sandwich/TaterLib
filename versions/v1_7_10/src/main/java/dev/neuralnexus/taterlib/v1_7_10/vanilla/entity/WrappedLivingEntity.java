@@ -5,8 +5,6 @@
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
-import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
@@ -14,8 +12,6 @@ import dev.neuralnexus.taterapi.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 
 import org.jspecify.annotations.NonNull;
-
-import java.util.Optional;
 
 /** Vanilla implementation of {@link LivingEntity}. */
 public class WrappedLivingEntity extends WrappedEntity
@@ -26,17 +22,6 @@ public class WrappedLivingEntity extends WrappedEntity
         super(entity);
         this.entity = entity;
     }
-
-    // ------------------------------------
-
-    private final DataHolder data = DataHolder.create(this, Damageable.class);
-
-    @Override
-    public <E> Optional<Value<E>> value(final @NonNull Key<? extends Value<E>> key) {
-        return this.data.value(key);
-    }
-
-    // ------------------------------------
 
     @Override
     public net.minecraft.entity.living.@NonNull LivingEntity unwrap() {

@@ -5,8 +5,6 @@
 package dev.neuralnexus.taterlib.v1_8_9.sponge.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
-import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
@@ -16,8 +14,6 @@ import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
 import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
-
-import java.util.Optional;
 
 /** Sponge implementation of {@link LivingEntity}. */
 public class SpongeLivingEntity extends SpongeEntity
@@ -33,17 +29,6 @@ public class SpongeLivingEntity extends SpongeEntity
         super(entity);
         this.entity = entity;
     }
-
-    // ------------------------------------
-
-    private final DataHolder data = DataHolder.create(this, Damageable.class);
-
-    @Override
-    public <E> Optional<Value<E>> value(final @NonNull Key<? extends Value<E>> key) {
-        return this.data.value(key);
-    }
-
-    // ------------------------------------
 
     @Override
     public @NonNull Living unwrap() {

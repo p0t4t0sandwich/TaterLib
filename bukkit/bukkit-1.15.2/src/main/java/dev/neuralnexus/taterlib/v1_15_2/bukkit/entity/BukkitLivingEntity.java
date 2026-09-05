@@ -5,15 +5,11 @@
 package dev.neuralnexus.taterlib.v1_15_2.bukkit.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
-import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 import org.jspecify.annotations.NonNull;
-
-import java.util.Optional;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity
@@ -29,17 +25,6 @@ public class BukkitLivingEntity extends BukkitEntity
         super(entity);
         this.entity = entity;
     }
-
-    // ------------------------------------
-
-    private final DataHolder data = DataHolder.create(this, Damageable.class);
-
-    @Override
-    public <E> Optional<Value<E>> value(final @NonNull Key<? extends Value<E>> key) {
-        return this.data.value(key);
-    }
-
-    // ------------------------------------
 
     @Override
     public org.bukkit.entity.@NonNull LivingEntity unwrap() {
