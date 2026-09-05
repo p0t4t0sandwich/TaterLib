@@ -4,10 +4,6 @@
  */
 package dev.neuralnexus.taterapi.impl.loader;
 
-import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.value.Value;
-import dev.neuralnexus.taterapi.impl.data.KeyBuilderImpl;
-import dev.neuralnexus.taterapi.impl.data.value.ValueFactoryImpl;
 import dev.neuralnexus.taterapi.loader.EntrypointLoader;
 import dev.neuralnexus.taterapi.loader.plugin.Plugin;
 import dev.neuralnexus.taterapi.logger.Logger;
@@ -16,8 +12,6 @@ import dev.neuralnexus.taterapi.meta.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.ModContainer;
 import dev.neuralnexus.taterapi.meta.ModResource;
 import dev.neuralnexus.taterapi.meta.Platform;
-import dev.neuralnexus.taterapi.registries.BuilderRegistry;
-import dev.neuralnexus.taterapi.registries.FactoryRegistry;
 
 import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NonNull;
@@ -41,9 +35,6 @@ public final class TaterLoader {
 
     @ApiStatus.Internal
     public static void onInit() {
-        BuilderRegistry.register(Key.Builder.class, KeyBuilderImpl::new);
-        FactoryRegistry.register(Value.Factory.class, ValueFactoryImpl::new);
-
         if (CheckForBad.checkForTLauncher()) {
             throw new RuntimeException("TaterLib does not support TLauncher");
         }
