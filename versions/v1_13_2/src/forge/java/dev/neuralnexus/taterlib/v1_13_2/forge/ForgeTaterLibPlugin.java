@@ -5,6 +5,8 @@
 package dev.neuralnexus.taterlib.v1_13_2.forge;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -20,6 +22,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.block.ForgeBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.command.ForgeCommandRegisterEvent;
@@ -39,6 +42,8 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.PlayerAdvancements;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -140,6 +145,22 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
             modEventBus.addListener(this::commonSetup);
         }
+        DataRegistry.register(Damageable.class, EntityLivingBase.class)
+                .mutable(
+                        Keys.ABSORPTION,
+                        e -> () -> (double) e.getAbsorptionAmount(),
+                        e -> v -> e.setAbsorptionAmount(v.floatValue()))
+                .mutable(
+                        Keys.HEALTH,
+                        e -> () -> (double) e.getHealth(),
+                        e -> (v) -> e.setHealth(v.floatValue()))
+                .mutable(
+                        Keys.MAX_HEALTH,
+                        e -> () -> (double) e.getMaxHealth(), // Potential loss in precision
+                        e ->
+                                (v) ->
+                                        e.getAttribute(SharedMonsterAttributes.MAX_HEALTH)
+                                                .setBaseValue(v));
     }
 
     /**

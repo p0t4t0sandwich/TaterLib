@@ -6,6 +6,8 @@ package dev.neuralnexus.taterlib.v1_7_10.bukkit;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -19,10 +21,12 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.BukkitEntity;
+import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.listeners.block.BukkitBlockListener;
@@ -49,6 +53,20 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         }
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
         WrapperRegistry.register(Entity.class, BukkitEntity::new);
+
+        DataRegistry.register(Damageable.class, org.bukkit.entity.LivingEntity.class)
+                .mutable(
+                        Keys.ABSORPTION,
+                        e -> () -> BukkitLivingEntity.helper$absorption(e),
+                        e -> v -> BukkitLivingEntity.helper$absorption(e, v))
+                .mutable(
+                        Keys.HEALTH,
+                        e -> () -> BukkitLivingEntity.helper$health(e),
+                        e -> e::setHealth)
+                .mutable(
+                        Keys.MAX_HEALTH,
+                        e -> () -> BukkitLivingEntity.helper$maxHealth(e),
+                        e -> e::setMaxHealth);
     }
 
     @Override

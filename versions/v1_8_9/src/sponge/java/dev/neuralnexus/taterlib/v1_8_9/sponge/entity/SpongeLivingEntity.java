@@ -6,13 +6,10 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.Keys;
-import dev.neuralnexus.taterapi.data.TaterDataHolder;
 import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
-import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 
 import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.entity.living.Living;
@@ -21,7 +18,6 @@ import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
 import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 
 import java.util.Optional;
-import java.util.Set;
 
 /** Sponge implementation of {@link LivingEntity}. */
 public class SpongeLivingEntity extends SpongeEntity
@@ -36,34 +32,15 @@ public class SpongeLivingEntity extends SpongeEntity
     public SpongeLivingEntity(final @NonNull Living entity) {
         super(entity);
         this.entity = entity;
-
-        final Value<Double> absorption =
-                Value.mutableOf(Keys.ABSORPTION, this::helper$absorption, this::helper$absorption);
-        final Value<Double> health =
-                Value.mutableOf(Keys.HEALTH, this::helper$health, this::helper$health);
-        final Value<Double> maxHealth =
-                Value.mutableOf(Keys.MAX_HEALTH, this::helper$maxHealth, this::helper$maxHealth);
-
-        this.data.register(absorption, health, maxHealth);
     }
 
     // ------------------------------------
 
-    private final TaterDataHolder data = new TaterDataHolder();
+    private final DataHolder data = DataHolder.create(this, Damageable.class);
 
     @Override
-    public <E> Optional<E> offer(final @NonNull Key<? extends Value<E>> key, final E value) {
-        return this.data.offer(key, value);
-    }
-
-    @Override
-    public <E> Optional<E> get(final @NonNull Key<? extends Value<E>> key) {
-        return this.data.get(key);
-    }
-
-    @Override
-    public Set<Key<?>> getKeys() {
-        return this.data.getKeys();
+    public <E> Optional<Value<E>> value(final @NonNull Key<? extends Value<E>> key) {
+        return this.data.value(key);
     }
 
     // ------------------------------------
@@ -88,33 +65,23 @@ public class SpongeLivingEntity extends SpongeEntity
                         .build());
     }
 
-    public double helper$absorption() {
-        return SpongeFactories.absorptionAmount.get(this.entity);
-    }
-
-    public void helper$absorption(double amount) {
-        SpongeFactories.setAbsorptionAmount.set(this.entity, amount);
-    }
-
-    public double helper$health() {
-        return this.entity
-                .getHealthData()
+    public static double helper$health(final @NonNull Living entity) {
+        return entity.getHealthData()
                 .get(org.spongepowered.api.data.key.Keys.HEALTH)
                 .orElseThrow(() -> new IllegalStateException("HEALTH key is not present"));
     }
 
-    public void helper$health(double health) {
-        this.entity.getHealthData().set(org.spongepowered.api.data.key.Keys.HEALTH, health);
+    public static void helper$health(final @NonNull Living entity, final double health) {
+        entity.getHealthData().set(org.spongepowered.api.data.key.Keys.HEALTH, health);
     }
 
-    public double helper$maxHealth() {
-        return this.entity
-                .getHealthData()
+    public static double helper$maxHealth(final @NonNull Living entity) {
+        return entity.getHealthData()
                 .get(org.spongepowered.api.data.key.Keys.MAX_HEALTH)
                 .orElseThrow(() -> new IllegalStateException("MAX_HEALTH key is not present"));
     }
 
-    public void helper$maxHealth(double health) {
-        this.entity.getHealthData().set(org.spongepowered.api.data.key.Keys.MAX_HEALTH, health);
+    public static void helper$maxHealth(final @NonNull Living entity, final double health) {
+        entity.getHealthData().set(org.spongepowered.api.data.key.Keys.MAX_HEALTH, health);
     }
 }

@@ -10,6 +10,8 @@ import dev.neuralnexus.taterapi.meta.anno.Range;
 import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 
+import org.jspecify.annotations.NonNull;
+
 /** Represents an entity that has health and can take damage. */
 public interface Damageable extends DataHolder {
     /**
@@ -32,7 +34,7 @@ public interface Damageable extends DataHolder {
     @VersionFeature(
             name = "Damageable#absorption(double)",
             incompatible = @Range(min = MinecraftVersion.B1_7_3, max = MinecraftVersion.V6_2))
-    default void absorption(double amount) {
+    default void absorption(final double amount) {
         this.offer(Keys.ABSORPTION, amount);
     }
 
@@ -72,7 +74,7 @@ public interface Damageable extends DataHolder {
     @VersionFeature(
             name = "Damageable#setMaxHealth(double)",
             incompatible = @Range(min = MinecraftVersion.B1_7_3, max = MinecraftVersion.V2_5))
-    default void maxHealth(double health) {
+    default void maxHealth(final double health) {
         this.offer(Keys.MAX_HEALTH, health);
     }
 
@@ -81,15 +83,17 @@ public interface Damageable extends DataHolder {
      *
      * @param amount Amount of damage to deal
      */
-    void damage(double amount);
+    void damage(final double amount);
 
+    // TODO: Consider cross-plat implications in wrapped contexts
+    // Solution: instanceof switch to unwrap
     /**
      * Deals the given amount of damage to this entity.
      *
      * @param amount Amount of damage to deal
      * @param source Entity that caused the damage
      */
-    void damage(double amount, Entity source);
+    void damage(final double amount, final @NonNull Entity source);
 
     // TODO: Heal
 }

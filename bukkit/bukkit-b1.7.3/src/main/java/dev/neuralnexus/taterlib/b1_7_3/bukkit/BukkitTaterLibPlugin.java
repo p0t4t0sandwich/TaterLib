@@ -6,18 +6,22 @@ package dev.neuralnexus.taterlib.b1_7_3.bukkit;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.b1_7_3.bukkit.entity.BukkitEntity;
@@ -30,6 +34,7 @@ import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
@@ -46,6 +51,18 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         }
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
         WrapperRegistry.register(Entity.class, BukkitEntity::new);
+        DataRegistry.register(Damageable.class, LivingEntity.class)
+                .mutable(
+                        Keys.HEALTH,
+                        e -> () -> (double) e.getHealth(),
+                        e -> v -> e.setHealth((int) v.doubleValue()))
+                .mutable(
+                        Keys.MAX_HEALTH,
+                        _ -> () -> 200.0d, // Value is hard-coded as 200??,
+                        _ ->
+                                _ -> {
+                                    throw new VersionFeatureNotSupportedException();
+                                });
     }
 
     @Override

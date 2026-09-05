@@ -13,6 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -24,20 +26,23 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_6_4.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player.ForgePlayerListener;
 
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
 @AConstraint(
         platform = Platform.FORGE,
         version = @Versions(min = MinecraftVersion.V6, max = MinecraftVersion.V6_4))
-@ToBeLibrary("brigadier-general")
 public class ForgeTaterLibPlugin implements TaterLibPlugin {
+    @ToBeLibrary("brigadier-general")
     @Mod.EventHandler
     public static void registerCommand(FMLServerStartingEvent event) {
         CommandEvents.REGISTER_COMMAND.invoke(new ForgeCommandRegisterEvent(event));
@@ -61,6 +66,22 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
             //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
         }
+        DataRegistry.register(Damageable.class, EntityLivingBase.class)
+                .mutable(
+                        Keys.ABSORPTION,
+                        e -> () -> (double) e.getAbsorptionAmount(),
+                        e -> v -> e.setAbsorptionAmount(v.floatValue()))
+                .mutable(
+                        Keys.HEALTH,
+                        e -> () -> (double) e.getHealth(),
+                        e -> (v) -> e.setHealth(v.floatValue()))
+                .mutable(
+                        Keys.MAX_HEALTH,
+                        e -> () -> (double) e.getMaxHealth(), // Potential loss in precision
+                        e ->
+                                (v) ->
+                                        e.getEntityAttribute(SharedMonsterAttributes.maxHealth)
+                                                .setAttribute(v));
     }
 
     /**

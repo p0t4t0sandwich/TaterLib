@@ -6,20 +6,16 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.data.Key;
-import dev.neuralnexus.taterapi.data.Keys;
-import dev.neuralnexus.taterapi.data.TaterDataHolder;
 import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
 
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.living.attribute.EntityAttributes;
 
 import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
-import java.util.Set;
 
 /** Vanilla implementation of {@link LivingEntity}. */
 public class WrappedLivingEntity extends WrappedEntity
@@ -29,43 +25,15 @@ public class WrappedLivingEntity extends WrappedEntity
     public WrappedLivingEntity(final net.minecraft.entity.living.@NonNull LivingEntity entity) {
         super(entity);
         this.entity = entity;
-
-        final Value<Double> absorption =
-                Value.mutableOf(
-                        Keys.ABSORPTION,
-                        () -> (double) this.entity.getAbsorption(),
-                        (v) -> this.entity.setAbsorption(v.floatValue()));
-        final Value<Double> health =
-                Value.mutableOf(
-                        Keys.HEALTH,
-                        () -> (double) this.entity.getHealth(),
-                        (v) -> this.entity.setHealth(v.floatValue()));
-        final Value<Double> maxHealth =
-                Value.mutableOf(
-                        Keys.MAX_HEALTH,
-                        () -> (double) this.entity.getMaxHealth(), // Potential loss in precision
-                        (v) -> this.entity.getAttribute(EntityAttributes.MAX_HEALTH).setBase(v));
-
-        this.data.register(absorption, health, maxHealth);
     }
 
     // ------------------------------------
 
-    private final TaterDataHolder data = new TaterDataHolder();
+    private final DataHolder data = DataHolder.create(this, Damageable.class);
 
     @Override
-    public <E> Optional<E> offer(final @NonNull Key<? extends Value<E>> key, final E value) {
-        return this.data.offer(key, value);
-    }
-
-    @Override
-    public <E> Optional<E> get(final @NonNull Key<? extends Value<E>> key) {
-        return this.data.get(key);
-    }
-
-    @Override
-    public Set<Key<?>> getKeys() {
-        return this.data.getKeys();
+    public <E> Optional<Value<E>> value(final @NonNull Key<? extends Value<E>> key) {
+        return this.data.value(key);
     }
 
     // ------------------------------------

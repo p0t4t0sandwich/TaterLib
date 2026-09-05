@@ -6,6 +6,8 @@ package dev.neuralnexus.taterlib.v1_20.bukkit;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -18,6 +20,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
@@ -48,6 +51,11 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         }
         WrapperRegistry.register(Player.class, BukkitPlayer::new);
         WrapperRegistry.register(Entity.class, BukkitEntity::new);
+        //noinspection deprecation
+        DataRegistry.register(Damageable.class, org.bukkit.entity.LivingEntity.class)
+                .mutable(Keys.ABSORPTION, e -> e::getAbsorptionAmount, e -> e::setAbsorptionAmount)
+                .mutable(Keys.HEALTH, e -> e::getHealth, e -> e::setHealth)
+                .mutable(Keys.MAX_HEALTH, e -> e::getMaxHealth, e -> e::setMaxHealth);
     }
 
     @Override
