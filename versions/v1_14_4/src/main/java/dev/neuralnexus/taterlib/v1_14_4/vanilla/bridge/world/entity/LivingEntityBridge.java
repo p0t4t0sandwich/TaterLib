@@ -7,15 +7,17 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 
+import org.jspecify.annotations.NonNull;
+
 /** LivingEntity bridge interface */
 public interface LivingEntityBridge {
-    int bridge$getExperienceReward(Player attackingPlayer);
+    int bridge$getExperienceReward(final @NonNull Player attackingPlayer);
 
-    void bridge$damage(double amount);
+    void bridge$damage(final double amount);
 
-    void bridge$damage(double amount, LivingEntity source);
+    void bridge$damage(final double amount, final @NonNull LivingEntity source);
 
     double bridge$maxHealth();
 
-    void bridge$maxHealth(double health);
+    void bridge$maxHealth(final double health);
 }
