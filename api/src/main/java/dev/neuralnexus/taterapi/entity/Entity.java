@@ -56,6 +56,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The world of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default World world() {
         return location().world();
     }
@@ -86,6 +87,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The x position of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default double x() {
         return location().x();
     }
@@ -95,6 +97,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The y position of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default double y() {
         return location().y();
     }
@@ -104,6 +107,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The z position of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default double z() {
         return location().z();
     }
@@ -113,6 +117,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The yaw of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default float yaw() {
         return location().yaw();
     }
@@ -122,6 +127,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The pitch of the entity
      */
+    @Deprecated // TODO: Defer to Locatable
     default float pitch() {
         return location().pitch();
     }
@@ -131,6 +137,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The current dimension of the entity
      */
+    @Deprecated // TODO: Defer to World?
     default Identifier dimension() {
         return world().dimension();
     }
@@ -140,6 +147,7 @@ public interface Entity extends Actor, Identifiable, Nameable {
      *
      * @return The current biome of the entity
      */
+    @Deprecated // TODO: Defer to Location
     Identifier biome();
 
     /**
