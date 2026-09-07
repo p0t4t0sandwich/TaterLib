@@ -25,30 +25,24 @@ import org.bukkit.plugin.Plugin;
 import org.jspecify.annotations.NonNull;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.UUID;
 
 /** Bukkit implementation of {@link Player}. */
 public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPlayer {
-    private final org.bukkit.entity.Player player;
+    private final org.bukkit.entity.@NonNull Player player;
 
     /**
      * Constructor.
      *
      * @param player The Bukkit player.
      */
-    public BukkitPlayer(org.bukkit.entity.Player player) {
+    public BukkitPlayer(final org.bukkit.entity.@NonNull Player player) {
         super(player);
         this.player = player;
     }
 
     @Override
-    public org.bukkit.entity.Player unwrap() {
+    public org.bukkit.entity.@NonNull Player unwrap() {
         return this.player;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.player.getUniqueId();
     }
 
     @Override

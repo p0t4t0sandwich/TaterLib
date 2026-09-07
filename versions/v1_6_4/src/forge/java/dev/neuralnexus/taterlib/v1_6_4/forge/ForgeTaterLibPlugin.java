@@ -15,6 +15,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -33,6 +34,7 @@ import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player.ForgePlayerListener;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraftforge.common.MinecraftForge;
@@ -66,6 +68,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             MinecraftForge.EVENT_BUS.register(new ForgePlayerListener());
             //        MinecraftForge.EVENT_BUS.register(new ForgeServerListener());
         }
+        DataRegistry.register(Identifiable.class, Entity.class)
+                .immutable(Keys.UUID, e -> e::getUniqueID);
         DataRegistry.register(Damageable.class, EntityLivingBase.class)
                 .mutable(
                         Keys.ABSORPTION,

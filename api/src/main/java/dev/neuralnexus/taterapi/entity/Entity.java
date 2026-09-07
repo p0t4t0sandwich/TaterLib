@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
-public interface Entity extends Actor, Identifiable, Nameable {
+public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
     /**
      * Get the name of the entity
      *

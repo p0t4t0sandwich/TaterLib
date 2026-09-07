@@ -6,12 +6,14 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge;
 
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.block.SpongeBlock;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeLivingEntity;
 
+import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.item.inventory.entity.HumanInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
@@ -95,6 +97,8 @@ public class SpongeBootstrap {
                     throw new VersionFeatureNotSupportedException();
                 };
 
+        DataRegistry.register(Identifiable.class, Entity.class)
+                .immutable(Keys.UUID, e -> e::getUniqueId);
         DataRegistry.register(Damageable.class, Living.class)
                 .mutable(
                         Keys.ABSORPTION,

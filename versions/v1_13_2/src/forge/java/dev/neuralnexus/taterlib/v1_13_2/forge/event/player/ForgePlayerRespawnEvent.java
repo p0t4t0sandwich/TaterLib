@@ -20,7 +20,7 @@ public class ForgePlayerRespawnEvent extends ForgePlayerEvent implements PlayerR
 
     @Override
     public Location respawnLocation() {
-        return new ForgeLocation(((ForgePlayer) player()).player());
+        return new ForgeLocation(((ForgePlayer) player()).unwrap());
     }
 
     @Override

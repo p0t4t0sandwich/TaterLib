@@ -16,25 +16,21 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
 import net.minecraft.server.world.ServerWorld;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Optional;
-import java.util.UUID;
 
 /** Vanilla implementation of {@link Entity}. */
 public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entity> {
-    private final net.minecraft.entity.Entity entity;
+    private final net.minecraft.entity.@NonNull Entity entity;
 
-    public WrappedEntity(net.minecraft.entity.Entity entity) {
+    public WrappedEntity(final net.minecraft.entity.@NonNull Entity entity) {
         this.entity = entity;
     }
 
     @Override
-    public net.minecraft.entity.Entity unwrap() {
+    public net.minecraft.entity.@NonNull Entity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.entity.getUuid();
     }
 
     @Override

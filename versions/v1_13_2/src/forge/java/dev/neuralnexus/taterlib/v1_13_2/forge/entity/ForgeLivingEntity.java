@@ -16,7 +16,7 @@ import org.jspecify.annotations.NonNull;
 
 /** Forge implementation of {@link LivingEntity}. */
 public class ForgeLivingEntity extends ForgeEntity implements LivingEntity, Damageable, DataHolder {
-    private final EntityLivingBase entity;
+    private final @NonNull EntityLivingBase entity;
 
     /**
      * Constructor.

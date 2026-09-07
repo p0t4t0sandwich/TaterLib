@@ -12,30 +12,26 @@ import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitLocation;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.world.BukkitWorld;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.Optional;
-import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
 public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
-    private final org.bukkit.entity.Entity entity;
+    private final org.bukkit.entity.@NonNull Entity entity;
 
     /**
      * Constructor.
      *
      * @param entity The Bukkit entity.
      */
-    public BukkitEntity(org.bukkit.entity.Entity entity) {
+    public BukkitEntity(final org.bukkit.entity.@NonNull Entity entity) {
         this.entity = entity;
     }
 
     @Override
-    public org.bukkit.entity.Entity unwrap() {
+    public org.bukkit.entity.@NonNull Entity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.entity.getUniqueId();
     }
 
     @Override

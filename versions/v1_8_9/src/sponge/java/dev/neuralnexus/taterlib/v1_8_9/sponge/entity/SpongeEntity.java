@@ -14,34 +14,29 @@ import dev.neuralnexus.taterlib.v1_8_9.sponge.server.SpongeServer;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeLocation;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeWorld;
 
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /** Sponge implementation of {@link Entity}. */
 public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entity.Entity> {
-    private final org.spongepowered.api.entity.Entity entity;
+    private final org.spongepowered.api.entity.@NonNull Entity entity;
 
     /**
      * Constructor.
      *
      * @param entity The Sponge entity.
      */
-    public SpongeEntity(org.spongepowered.api.entity.Entity entity) {
+    public SpongeEntity(final org.spongepowered.api.entity.@NonNull Entity entity) {
         this.entity = entity;
     }
 
     @Override
-    public org.spongepowered.api.entity.Entity unwrap() {
+    public org.spongepowered.api.entity.@NonNull Entity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.entity.getUniqueId();
     }
 
     @Override

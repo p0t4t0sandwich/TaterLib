@@ -27,19 +27,19 @@ import java.util.UUID;
 
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
-    private final ProxiedPlayer player;
+    private final @NonNull ProxiedPlayer player;
 
     /**
      * Constructor.
      *
      * @param player The BungeeCord player.
      */
-    public BungeePlayer(ProxiedPlayer player) {
+    public BungeePlayer(final @NonNull ProxiedPlayer player) {
         this.player = player;
     }
 
     @Override
-    public ProxiedPlayer unwrap() {
+    public @NonNull ProxiedPlayer unwrap() {
         return this.player;
     }
 
@@ -51,7 +51,7 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     }
 
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         // TODO: Find some implementation that provides the real UUID.
         return TaterAPI.NIL_UUID;
     }

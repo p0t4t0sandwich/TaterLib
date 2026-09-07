@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.world.entity
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
@@ -35,6 +36,7 @@ import java.util.Optional;
 @Mixin(net.minecraft.world.entity.Entity.class)
 @Implements({
     @Interface(iface = Entity.class, prefix = "entity$", remap = Remap.NONE),
+    @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
     @Interface(iface = Nameable.class, prefix = "nameable$", remap = Remap.NONE)
 })
 public abstract class Entity_API implements EntityBridge {

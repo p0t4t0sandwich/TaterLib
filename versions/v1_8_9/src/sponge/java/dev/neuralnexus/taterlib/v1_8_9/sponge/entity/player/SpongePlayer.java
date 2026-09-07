@@ -27,30 +27,23 @@ import org.spongepowered.api.data.key.Keys;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.text.Text;
 
-import java.util.UUID;
-
 /** Sponge implementation of {@link Player}. */
 public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPlayer {
-    private final org.spongepowered.api.entity.living.player.Player player;
+    private final org.spongepowered.api.entity.living.player.@NonNull Player player;
 
     /**
      * Constructor.
      *
      * @param player The Sponge player.
      */
-    public SpongePlayer(org.spongepowered.api.entity.living.player.Player player) {
+    public SpongePlayer(final org.spongepowered.api.entity.living.player.@NonNull Player player) {
         super(player);
         this.player = player;
     }
 
     @Override
-    public org.spongepowered.api.entity.living.player.Player unwrap() {
+    public org.spongepowered.api.entity.living.player.@NonNull Player unwrap() {
         return this.player;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.player.getUniqueId();
     }
 
     @Override

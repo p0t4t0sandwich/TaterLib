@@ -26,34 +26,24 @@ import net.minecraft.world.WorldServer;
 import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /** Forge implementation of {@link Player}. */
 public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlayer {
-    private final EntityPlayer player;
+    private final @NonNull EntityPlayer player;
 
     /**
      * Constructor.
      *
      * @param player The Forge player.
      */
-    public ForgePlayer(EntityPlayer player) {
+    public ForgePlayer(final @NonNull EntityPlayer player) {
         super(player);
         this.player = player;
     }
 
-    /**
-     * Gets the Forge player
-     *
-     * @return The Forge player
-     */
-    public EntityPlayer player() {
-        return player;
-    }
-
     @Override
-    public UUID uuid() {
-        return this.player.getUniqueID();
+    public @NonNull EntityPlayer unwrap() {
+        return this.player;
     }
 
     @Override

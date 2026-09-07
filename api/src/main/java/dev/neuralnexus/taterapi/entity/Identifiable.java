@@ -1,19 +1,26 @@
 /**
  * Copyright (c) 2026 Dylan Sperrer - dylan@neuralnexus.dev
- * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLibLite/blob/main/LICENSE">MIT</a>
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/TaterLib/blob/main/LICENSE">MIT</a>
  */
 package dev.neuralnexus.taterapi.entity;
+
+import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.Keys;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
 /** Represents an object identifiable via a UUID */
-public interface Identifiable {
+public interface Identifiable extends DataHolder {
     /**
      * Get the UUID of the object
      *
      * @return The UUID of the object
      */
-    UUID uuid();
+    default @NonNull UUID uuid() {
+        return this.getOrThrow(Keys.UUID).get();
+    }
 
     /**
      * Check the object's permissions

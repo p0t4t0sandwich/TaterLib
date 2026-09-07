@@ -15,31 +15,26 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.world.BukkitWorld;
 import net.minecraft.server.EntityTypes;
 
 import org.bukkit.craftbukkit.entity.CraftEntity;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Optional;
-import java.util.UUID;
 
 /** Bukkit implementation of {@link Entity}. */
 public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
-    private final org.bukkit.entity.Entity entity;
+    private final org.bukkit.entity.@NonNull Entity entity;
 
     /**
      * Constructor.
      *
      * @param entity The Bukkit entity.
      */
-    public BukkitEntity(org.bukkit.entity.Entity entity) {
+    public BukkitEntity(final org.bukkit.entity.@NonNull Entity entity) {
         this.entity = entity;
     }
 
     @Override
-    public org.bukkit.entity.Entity unwrap() {
+    public org.bukkit.entity.@NonNull Entity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.entity.getUniqueId();
     }
 
     @Override

@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -42,6 +43,7 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.PlayerAdvancements;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -145,6 +147,8 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
             IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
             modEventBus.addListener(this::commonSetup);
         }
+        DataRegistry.register(Identifiable.class, Entity.class)
+                .immutable(Keys.UUID, e -> e::getUniqueID);
         DataRegistry.register(Damageable.class, EntityLivingBase.class)
                 .mutable(
                         Keys.ABSORPTION,

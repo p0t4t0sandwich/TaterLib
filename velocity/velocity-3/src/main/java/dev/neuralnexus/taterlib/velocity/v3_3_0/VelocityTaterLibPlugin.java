@@ -18,6 +18,8 @@ import com.velocitypowered.api.proxy.ServerConnection;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -34,6 +36,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.network.FriendlyByteBuf;
 import dev.neuralnexus.taterapi.network.protocol.common.custom.CustomPacketPayload;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
@@ -56,6 +59,8 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPI.setLoaded(true);
         TaterAPI.instance().setServer(Platforms.VELOCITY, VelocityProxyServer::instance);
+        DataRegistry.register(Identifiable.class, Player.class)
+                .immutable(Keys.UUID, p -> p::getUniqueId);
     }
 
     @Override

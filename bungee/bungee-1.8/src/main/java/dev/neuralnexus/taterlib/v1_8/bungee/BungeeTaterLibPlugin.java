@@ -5,7 +5,8 @@
 package dev.neuralnexus.taterlib.v1_8.bungee;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -17,6 +18,8 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
+import dev.neuralnexus.taterapi.serialization.Result;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
@@ -40,7 +43,10 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
     public void onInit() {
         TaterAPI.setLoaded(true);
         TaterAPI.instance().setServer(Platforms.BUNGEECORD, BungeeProxyServer::instance);
-        WrapperRegistry.register(ProxiedPlayer.class, BungeePlayer::new);
+        TaterAPI.WRAPPERS.register(
+                ProxiedPlayer.class, input -> Result.success(new BungeePlayer(input)));
+        DataRegistry.register(Identifiable.class, ProxiedPlayer.class)
+                .immutable(Keys.UUID, p -> p::getUniqueId);
     }
 
     @Override

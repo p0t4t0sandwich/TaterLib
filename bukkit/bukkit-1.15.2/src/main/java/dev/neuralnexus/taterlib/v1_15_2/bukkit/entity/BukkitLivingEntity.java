@@ -14,7 +14,7 @@ import org.jspecify.annotations.NonNull;
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity
         implements LivingEntity, Damageable, DataHolder {
-    private final org.bukkit.entity.LivingEntity entity;
+    private final org.bukkit.entity.@NonNull LivingEntity entity;
 
     /**
      * Constructor.

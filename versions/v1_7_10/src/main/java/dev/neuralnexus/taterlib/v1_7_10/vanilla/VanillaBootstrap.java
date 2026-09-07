@@ -7,10 +7,13 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.entity.living.attribute.EntityAttributes;
 import net.minecraft.util.math.Vec3d;
 
@@ -20,8 +23,9 @@ public class VanillaBootstrap {
         TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
 
         VanillaFactories.vec3 = Vec3d::of;
-
-        DataRegistry.register(Damageable.class, net.minecraft.entity.living.LivingEntity.class)
+        DataRegistry.register(Identifiable.class, Entity.class)
+                .immutable(Keys.UUID, e -> e::getUuid);
+        DataRegistry.register(Damageable.class, LivingEntity.class)
                 .mutable(
                         Keys.ABSORPTION,
                         e -> () -> (double) e.getAbsorption(),

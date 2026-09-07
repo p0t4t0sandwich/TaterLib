@@ -23,23 +23,21 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
-    private final ProxiedPlayer player;
+    private final @NonNull ProxiedPlayer player;
 
     /**
      * Constructor.
      *
      * @param player The BungeeCord player.
      */
-    public BungeePlayer(ProxiedPlayer player) {
+    public BungeePlayer(final @NonNull ProxiedPlayer player) {
         this.player = player;
     }
 
     @Override
-    public ProxiedPlayer unwrap() {
+    public @NonNull ProxiedPlayer unwrap() {
         return this.player;
     }
 
@@ -48,11 +46,6 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
         if (ProxyServer.getInstance().getServerInfo(serverName) == null) return;
         ServerInfo server = ProxyServer.getInstance().getServerInfo(serverName);
         this.player.connect(server);
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.player.getUniqueId();
     }
 
     @SuppressWarnings("deprecation")

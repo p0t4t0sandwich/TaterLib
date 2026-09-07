@@ -26,11 +26,9 @@ import net.kyori.adventure.text.Component;
 
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Velocity implementation of {@link ProxyPlayer}. */
 public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
-    private final com.velocitypowered.api.proxy.Player player;
+    private final com.velocitypowered.api.proxy.@NonNull Player player;
     private RegisteredServer server = null;
 
     /**
@@ -38,7 +36,7 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
      *
      * @param player The Velocity player.
      */
-    public VelocityPlayer(com.velocitypowered.api.proxy.Player player) {
+    public VelocityPlayer(final com.velocitypowered.api.proxy.@NonNull Player player) {
         this.player = player;
     }
 
@@ -48,13 +46,14 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
      * @param player The Velocity player.
      * @param server The server the player is connected to.
      */
-    public VelocityPlayer(com.velocitypowered.api.proxy.Player player, RegisteredServer server) {
+    public VelocityPlayer(
+            final com.velocitypowered.api.proxy.@NonNull Player player, RegisteredServer server) {
         this.player = player;
         this.server = server;
     }
 
     @Override
-    public com.velocitypowered.api.proxy.Player unwrap() {
+    public com.velocitypowered.api.proxy.@NonNull Player unwrap() {
         return this.player;
     }
 
@@ -69,11 +68,6 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
         if (proxyServer.getServer(serverName).isEmpty()) return;
         RegisteredServer server = proxyServer.getServer(serverName).get();
         this.player.createConnectionRequest(server).fireAndForget();
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.player.getUniqueId();
     }
 
     @Override

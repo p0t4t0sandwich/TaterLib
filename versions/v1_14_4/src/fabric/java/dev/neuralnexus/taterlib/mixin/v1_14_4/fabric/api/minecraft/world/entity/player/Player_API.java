@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.world.entity
 import com.mojang.authlib.GameProfile;
 
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
+import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
@@ -39,6 +40,7 @@ import org.spongepowered.asm.mixin.Shadow;
 @AConstraint(mappings = Mappings.YARN_INTERMEDIARY, version = @Versions(min = MinecraftVersion.V14))
 @Mixin(net.minecraft.world.entity.player.Player.class)
 @Implements({
+    @Interface(iface = DataHolder.class, prefix = "dataHolder$", remap = Remap.NONE),
     @Interface(iface = HumanEntity.class, prefix = "humanEntity$", remap = Remap.NONE),
     @Interface(iface = Identifiable.class, prefix = "identifiable$", remap = Remap.NONE),
     @Interface(iface = InventoryHolder.class, prefix = "invHolder$", remap = Remap.NONE),

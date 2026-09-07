@@ -21,25 +21,18 @@ import net.minecraft.text.LiteralText;
 
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Vanilla implementation of {@link Player}. */
 public class WrappedPlayer extends WrappedLivingEntity implements Player, ServerPlayer {
-    private final PlayerEntity player;
+    private final @NonNull PlayerEntity player;
 
-    public WrappedPlayer(PlayerEntity player) {
+    public WrappedPlayer(final @NonNull PlayerEntity player) {
         super(player);
         this.player = player;
     }
 
     @Override
-    public PlayerEntity unwrap() {
+    public @NonNull PlayerEntity unwrap() {
         return this.player;
-    }
-
-    @Override
-    public UUID uuid() {
-        return this.player.getUuid();
     }
 
     @Override

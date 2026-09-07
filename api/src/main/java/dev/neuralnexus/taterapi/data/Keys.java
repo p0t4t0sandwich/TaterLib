@@ -9,10 +9,14 @@ import dev.neuralnexus.taterapi.resources.Identifier;
 
 import org.jspecify.annotations.NonNull;
 
+import java.util.UUID;
+
 public final class Keys {
     public static final Key<Value<Double>> ABSORPTION = key("absorption", Double.class);
     public static final Key<Value<Double>> HEALTH = key("health", Double.class);
     public static final Key<Value<Double>> MAX_HEALTH = key("max_health", Double.class);
+
+    public static final Key<Value<UUID>> UUID = key("uuid", UUID.class);
 
     private static <E> Key<Value<E>> key(final @NonNull String path, final @NonNull Class<E> type) {
         return Key.from(Identifier.of("taterlib", path), type);
