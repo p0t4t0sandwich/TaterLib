@@ -47,8 +47,6 @@ dependencies {
     api(libs.taterlib.lite.core)
     api(libs.taterlib.lite.metadata)
     api(libs.taterlib.lite.muxins)
-    api(libs.modapi.brigadier)
-    //api(libs.modapi.crossperms)
 }
 
 java {

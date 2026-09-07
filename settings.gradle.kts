@@ -38,12 +38,12 @@ include(
 
 	    // ModAPI libraries
         //":modapi:crossperms",
-        ":modapi:brigadier-general",
-        ":modapi:brigadier-general:bg-api",
-        ":modapi:brigadier-general:bg1_14_4",
-        ":modapi:brigadier-general:bg1_16_5",
-        ":modapi:brigadier-general:bg1_17_1",
-        ":modapi:brigadier-general:bg1_19_4",
+        //":modapi:brigadier-general",
+        //":modapi:brigadier-general:bg-api",
+        //":modapi:brigadier-general:bg1_14_4",
+        //":modapi:brigadier-general:bg1_16_5",
+        //":modapi:brigadier-general:bg1_17_1",
+        //":modapi:brigadier-general:bg1_19_4",
 	    ":modapi:entrypoint-spoof",
 
         // Common
