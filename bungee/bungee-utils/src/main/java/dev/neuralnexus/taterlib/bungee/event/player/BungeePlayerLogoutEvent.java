@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.bungee.event.player;
 
-import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.event.player.PlayerLogoutEvent;
 
@@ -21,7 +21,7 @@ public class BungeePlayerLogoutEvent implements PlayerLogoutEvent {
 
     @Override
     public ProxyPlayer player() {
-        return WrapperRegistry.wrap(event.getPlayer());
+        return TaterAPI.WRAPPERS.wrap(event.getPlayer());
     }
 
     @Override

@@ -4,8 +4,8 @@
  */
 package dev.neuralnexus.taterlib.bungee.server;
 
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
@@ -45,7 +45,7 @@ public class BungeeServer implements Server, Wrapped<ServerInfo> {
     @Override
     public List<User> players() {
         return this.server.getPlayers().stream()
-                .map(WrapperRegistry::wrap)
+                .map(TaterAPI.WRAPPERS::wrap)
                 .map(User.class::cast)
                 .collect(Collectors.toList());
     }

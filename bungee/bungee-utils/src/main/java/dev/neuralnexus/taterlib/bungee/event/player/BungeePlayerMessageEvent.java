@@ -4,7 +4,7 @@
  */
 package dev.neuralnexus.taterlib.bungee.event.player;
 
-import dev.neuralnexus.taterapi.WrapperRegistry;
+import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.event.player.PlayerMessageEvent;
@@ -35,7 +35,7 @@ public class BungeePlayerMessageEvent implements PlayerMessageEvent {
 
     @Override
     public ProxyPlayer player() {
-        return WrapperRegistry.wrap((ProxiedPlayer) event.getSender());
+        return TaterAPI.WRAPPERS.wrap((ProxiedPlayer) event.getSender());
     }
 
     @Override

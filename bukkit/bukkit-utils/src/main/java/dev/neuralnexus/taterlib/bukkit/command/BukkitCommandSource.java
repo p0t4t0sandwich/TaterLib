@@ -6,7 +6,6 @@ package dev.neuralnexus.taterlib.bukkit.command;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
-import dev.neuralnexus.taterapi.WrapperRegistry;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
 import dev.neuralnexus.taterapi.entity.Entity;
@@ -54,7 +53,7 @@ public class BukkitCommandSource
     @Override
     public @Nullable Entity actor() {
         if (this.sender instanceof org.bukkit.entity.Entity) {
-            return WrapperRegistry.wrap((org.bukkit.entity.Entity) this.sender);
+            return TaterAPI.WRAPPERS.wrap((org.bukkit.entity.Entity) this.sender);
         }
         return null;
     }
@@ -62,7 +61,7 @@ public class BukkitCommandSource
     @Override
     public ServerPlayer subject() {
         if (this.sender instanceof org.bukkit.entity.Player) {
-            return WrapperRegistry.wrap((org.bukkit.entity.Player) this.sender);
+            return TaterAPI.WRAPPERS.wrap((org.bukkit.entity.Player) this.sender);
         }
         return null;
     }

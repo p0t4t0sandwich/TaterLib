@@ -11,6 +11,7 @@ import dev.neuralnexus.taterapi.impl.loader.TaterLoader;
 import dev.neuralnexus.taterapi.logger.Logger;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platform;
+import dev.neuralnexus.taterapi.registries.WrapperRegistry;
 import dev.neuralnexus.taterapi.scheduler.Scheduler;
 import dev.neuralnexus.taterapi.server.SimpleServer;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
@@ -43,6 +44,9 @@ public class TaterAPI {
     private static final Map<Platform, Supplier<SimpleServer>> servers = new HashMap<>();
     private static final TaterAPI instance = new TaterAPI();
     private static boolean loaded = false;
+
+    // TODO: Refactor this
+    public static final WrapperRegistry WRAPPERS = new WrapperRegistry();
 
     private TaterAPI() {
         registrySetup();
