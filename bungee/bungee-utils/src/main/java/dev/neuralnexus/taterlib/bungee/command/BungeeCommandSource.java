@@ -17,6 +17,7 @@ import dev.neuralnexus.taterlib.bungee.entity.player.BungeePlayer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -35,8 +36,9 @@ public class BungeeCommandSource
         return this.sender;
     }
 
+    // TODO: Abstract this into mod init
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 

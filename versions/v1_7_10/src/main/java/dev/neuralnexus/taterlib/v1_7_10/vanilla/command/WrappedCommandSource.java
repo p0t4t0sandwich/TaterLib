@@ -19,6 +19,7 @@ import net.minecraft.entity.living.player.PlayerEntity;
 import net.minecraft.text.LiteralText;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -37,8 +38,9 @@ public class WrappedCommandSource
         return this.sender;
     }
 
+    // TODO: Abstract this into mod init
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 

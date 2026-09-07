@@ -18,6 +18,7 @@ import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 import net.kyori.adventure.text.Component;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -36,8 +37,9 @@ public class VelocityCommandSource
         return sender;
     }
 
+    // TODO: Abstract this into mod init
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         if (this.sender instanceof Player player) {
             return player.getUniqueId();
         }

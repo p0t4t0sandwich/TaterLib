@@ -12,6 +12,7 @@ import dev.neuralnexus.taterapi.entity.ServerAware;
 import dev.neuralnexus.taterapi.entity.Subject;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -79,7 +80,7 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
     }
 
     @Override
-    default UUID uuid() {
+    default @NonNull UUID uuid() {
         Actor entity = this.entity();
         if (entity != null) {
             return entity.uuid();

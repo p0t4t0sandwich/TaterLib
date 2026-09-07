@@ -50,6 +50,7 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
         this.player.connect(server);
     }
 
+    // TODO: Abstract this into mod init
     @Override
     public @NonNull UUID uuid() {
         // TODO: Find some implementation that provides the real UUID.

@@ -14,6 +14,7 @@ import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.UUID;
 
@@ -32,8 +33,9 @@ public class BukkitCommandSource
         return this.sender;
     }
 
+    // TODO: Abstract this into mod init
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 

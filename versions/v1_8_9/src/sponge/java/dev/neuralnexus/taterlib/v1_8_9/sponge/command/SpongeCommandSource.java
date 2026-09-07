@@ -16,6 +16,7 @@ import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
 
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.text.Text;
 
@@ -36,8 +37,9 @@ public class SpongeCommandSource
         return this.sender;
     }
 
+    // TODO: Abstract this into mod init
     @Override
-    public UUID uuid() {
+    public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
