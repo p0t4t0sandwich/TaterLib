@@ -7,4 +7,4 @@ package dev.neuralnexus.taterapi.entity;
 import dev.neuralnexus.taterapi.data.DataHolder;
 
 /** Represents a living entity, a monster or player. */
-public interface LivingEntity extends Damageable, DataHolder, Entity {}
+public interface LivingEntity extends Entity, Damageable, DataHolder, Identifiable, Nameable {}

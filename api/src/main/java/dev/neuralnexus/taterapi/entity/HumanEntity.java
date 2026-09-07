@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 
 /** The interface for a HumanEntity */
-public interface HumanEntity extends LivingEntity, InventoryHolder {
+public interface HumanEntity
+        extends LivingEntity, Damageable, DataHolder, Identifiable, InventoryHolder, Nameable {
     /**
      * Get the player's current gamemode
      *

@@ -4,6 +4,13 @@
  */
 package dev.neuralnexus.taterapi.entity.player;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.InventoryHolder;
+import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.ServerAware;
 import dev.neuralnexus.taterapi.meta.anno.Range;
 import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
@@ -11,7 +18,16 @@ import dev.neuralnexus.taterapi.network.Connection;
 import dev.neuralnexus.taterapi.world.Location;
 
 /** The interface for a ServerPlayer */
-public interface ServerPlayer extends Connection, Player {
+public interface ServerPlayer
+        extends Player,
+                Connection,
+                Damageable,
+                DataHolder,
+                Identifiable,
+                InventoryHolder,
+                Nameable,
+                Notifiable,
+                ServerAware {
     /**
      * Set the player's spawn point
      *

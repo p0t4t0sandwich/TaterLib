@@ -4,8 +4,10 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+
 /**
  * The base abstraction for an entity that has a name and ID. Effectively a placeholder so generics
  * don't scream. TODO: Expand this once Entity has Locatable and Teleportable
  */
-public interface Actor extends Identifiable, Nameable {}
+public interface Actor extends DataHolder, Identifiable, Nameable {}

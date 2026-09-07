@@ -4,7 +4,9 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+
 /**
  * The base abstraction for a Minecraft player. Effectively a placeholder so generics don't scream.
  */
-public interface Subject extends Identifiable, Nameable, Notifiable, ServerAware {}
+public interface Subject extends DataHolder, Identifiable, Nameable, Notifiable, ServerAware {}

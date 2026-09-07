@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
@@ -20,7 +21,7 @@ import java.util.Optional;
  * Simple abstraction for a Minecraft player. Holds common traits between regular players and
  * proxied players.
  */
-public interface User extends Subject, Identifiable, Nameable, Notifiable, ServerAware {
+public interface User extends Subject, DataHolder, Identifiable, Nameable, Notifiable, ServerAware {
     @Override
     default SimpleServer server() {
         return TaterAPI.instance().server();
