@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.v1_20.bukkit;
 
+import dev.neuralnexus.taterapi.Result;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
@@ -25,7 +26,6 @@ import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
-import dev.neuralnexus.taterapi.serialization.Result;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;

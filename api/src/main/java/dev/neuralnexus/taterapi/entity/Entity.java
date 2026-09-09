@@ -27,7 +27,7 @@ public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
         try {
             if (this.hasCustomName()) {
                 //noinspection DataFlowIssue
-                return this.customName().get();
+                return this.customName().unwrap().get();
             }
             return this.displayName();
         } catch (final VersionFeatureNotSupportedException | MissingKeyException ignored) {

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterapi.command;
 
+import dev.neuralnexus.taterapi.Result;
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.data.value.Value;
@@ -17,7 +18,6 @@ import dev.neuralnexus.taterapi.entity.Subject;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
-import java.util.Optional;
 import java.util.UUID;
 
 // TODO: Implement vanilla via mixins
@@ -86,8 +86,8 @@ public interface CommandSource extends DataHolder, Identifiable, Nameable, Notif
 
     @Override
     default @NonNull UUID uuid() {
-        final Optional<Value<UUID>> v = this.get(Keys.UUID);
-        if (v.isPresent()) return v.get().get();
+        final Result<Value<UUID>> v = this.get(Keys.UUID);
+        if (v.isSuccess()) return v.unwrap().get();
 
         final Actor entity = this.entity();
         if (entity != null) return entity.uuid();
@@ -99,8 +99,8 @@ public interface CommandSource extends DataHolder, Identifiable, Nameable, Notif
 
     @Override
     default @NonNull String name() {
-        final Optional<Value<String>> v = this.get(Keys.NAME);
-        if (v.isPresent()) return v.get().get();
+        final Result<Value<String>> v = this.get(Keys.NAME);
+        if (v.isSuccess()) return v.unwrap().get();
 
         final Actor entity = this.entity();
         if (entity != null) return entity.name();

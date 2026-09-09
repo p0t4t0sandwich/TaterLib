@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterapi.entity;
 
+import dev.neuralnexus.taterapi.Result;
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.data.value.Value;
@@ -18,8 +19,6 @@ import dev.neuralnexus.taterapi.meta.enums.Platform;
 
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Optional;
 
 // TODO: Create new interface for names, and have this for name tags
 /** Represents a nameable entity */
@@ -51,7 +50,8 @@ public interface Nameable extends DataHolder {
             name = "Nameable#hasCustomName",
             compatible = @Range(min = MinecraftVersion.V6_1))
     default boolean hasCustomName() {
-        return this.customName().get() != null;
+        final Result<Value<@Nullable String>> r = this.customName();
+        return r.isSuccess() && r.unwrap().get() != null;
     }
 
     /**
@@ -60,17 +60,19 @@ public interface Nameable extends DataHolder {
      * @return The custom name of the entity
      */
     @VersionFeature(name = "Nameable#customName", compatible = @Range(min = MinecraftVersion.V6_1))
-    default Value<@Nullable String> customName() {
-        final Optional<Value<@Nullable String>> v = this.get(Keys.CUSTOM_NAME);
-        if (v.isEmpty()
+    default Result<Value<@Nullable String>> customName() {
+        final Result<Value<@Nullable String>> r = this.get(Keys.CUSTOM_NAME);
+        if (r.isError()
                 && Constraints.builder()
                         .or(
                                 Constraint.lessThan(MinecraftVersions.V6_1),
                                 Constraint.builder()
                                         .platform(Platform.BUNGEECORD, Platform.VELOCITY))
                         .result()) {
-            throw new VersionFeatureNotSupportedException();
+            return Result.error(
+                    "CUSTOM_NAME is not supported on this version/platform",
+                    new VersionFeatureNotSupportedException());
         }
-        return v.orElseThrow();
+        return r;
     }
 }

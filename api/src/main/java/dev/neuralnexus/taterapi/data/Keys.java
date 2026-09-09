@@ -33,6 +33,7 @@ public final class Keys {
      * An entity's custom name, often set via a name tag item. See {@link
      * dev.neuralnexus.taterapi.entity.Nameable}
      */
+    // TODO: Use components
     @VersionFeature(name = "Keys.CUSTOM_NAME", compatible = @Range(min = MinecraftVersion.V6_1))
     public static final Key<Value<@Nullable String>> CUSTOM_NAME = key("custom_name", String.class);
 
@@ -40,6 +41,7 @@ public final class Keys {
      * An entity's display name. Attempts to resolve to their CUSTOM_NAME, their scoreboard name,
      * and finally defers to their NAME. See {@link dev.neuralnexus.taterapi.entity.Nameable}
      */
+    // TODO: Use components
     public static final Key<Value<String>> DISPLAY_NAME = key("display_name", String.class);
 
     /**
