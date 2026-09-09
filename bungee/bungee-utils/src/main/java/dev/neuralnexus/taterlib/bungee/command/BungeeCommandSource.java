@@ -18,8 +18,6 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Bungee implementation of {@link CommandSource} */
 @ToBeLibrary("brigadier-general")
 public class BungeeCommandSource
@@ -33,15 +31,6 @@ public class BungeeCommandSource
     @Override
     public net.md_5.bungee.api.@NonNull CommandSender unwrap() {
         return this.sender;
-    }
-
-    // TODO: Abstract this into mod init
-    @Override
-    public @NonNull UUID uuid() {
-        if (this.sender instanceof ProxiedPlayer player) {
-            return player.getUniqueId();
-        }
-        return Notifiable.NIL_UUID;
     }
 
     @Override

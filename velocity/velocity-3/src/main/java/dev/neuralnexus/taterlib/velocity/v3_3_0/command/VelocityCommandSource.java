@@ -20,8 +20,6 @@ import net.kyori.adventure.text.Component;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Velocity implementation of {@link CommandSource} */
 @ToBeLibrary("brigadier-general")
 public class VelocityCommandSource
@@ -36,15 +34,6 @@ public class VelocityCommandSource
     @Override
     public com.velocitypowered.api.command.@NonNull CommandSource unwrap() {
         return sender;
-    }
-
-    // TODO: Abstract this into mod init
-    @Override
-    public @NonNull UUID uuid() {
-        if (this.sender instanceof Player player) {
-            return player.getUniqueId();
-        }
-        return Notifiable.NIL_UUID;
     }
 
     @Override

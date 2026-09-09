@@ -16,8 +16,6 @@ import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Bukkit implementation of {@link CommandSource} */
 @ToBeLibrary("brigadier-general")
 public class BukkitCommandSource
@@ -31,12 +29,6 @@ public class BukkitCommandSource
     @Override
     public org.bukkit.command.@NonNull CommandSender unwrap() {
         return this.sender;
-    }
-
-    // TODO: Abstract this into mod init
-    @Override
-    public @NonNull UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override

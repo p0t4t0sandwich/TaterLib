@@ -56,6 +56,16 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         DataRegistry.register(Nameable.class, ProxiedPlayer.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
                 .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Identifiable.class, CommandSender.class)
+                .immutable(
+                        Keys.UUID,
+                        s ->
+                                () -> {
+                                    // TODO: Find a way to get the UUID
+                                    throw new VersionFeatureNotSupportedException();
+                                    // if (s instanceof ProxiedPlayer p) return p.getUniqueId();
+                                    // return Notifiable.NIL_UUID;
+                                });
         DataRegistry.register(Nameable.class, CommandSender.class)
                 .immutable(Keys.NAME, s -> s::getName);
     }

@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.resources.Identifier;
@@ -157,6 +158,14 @@ public class SpongeBootstrap {
                                                         .CUSTOM_NAME_VISIBLE,
                                                 false);
                                     }
+                                });
+        DataRegistry.register(Identifiable.class, CommandSource.class)
+                .immutable(
+                        Keys.UUID,
+                        s ->
+                                () -> {
+                                    if (s instanceof Player p) return p.getUniqueId();
+                                    return Notifiable.NIL_UUID;
                                 });
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);

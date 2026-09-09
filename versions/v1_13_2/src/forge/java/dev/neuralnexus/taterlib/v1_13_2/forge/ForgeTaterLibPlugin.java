@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -188,6 +189,10 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                         e.setCustomName(null);
                                     }
                                 });
+        DataRegistry.register(Identifiable.class, CommandSource.class)
+                .immutable(
+                        Keys.UUID,
+                        s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);
     }

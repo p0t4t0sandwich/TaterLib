@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.command;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
@@ -21,8 +20,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
-import java.util.UUID;
-
 /** Forge implementation of {@link CommandSource} */
 @ToBeLibrary("brigadier-general")
 public class ForgeCommandSource
@@ -36,12 +33,6 @@ public class ForgeCommandSource
     @Override
     public net.minecraft.command.@NonNull CommandSource unwrap() {
         return this.sender;
-    }
-
-    // TODO: Abstract this into mod init
-    @Override
-    public @NonNull UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
     }
 
     @Override

@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -75,6 +76,10 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
                 .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Identifiable.class, CommandSender.class)
+                .immutable(
+                        Keys.UUID,
+                        s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSender.class)
                 .immutable(Keys.NAME, s -> s::getName);
     }

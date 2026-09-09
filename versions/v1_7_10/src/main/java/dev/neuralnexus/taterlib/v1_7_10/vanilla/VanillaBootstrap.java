@@ -9,6 +9,7 @@ import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.world.Location;
@@ -56,6 +57,10 @@ public class VanillaBootstrap {
                             // TODO: Find a way to set the value
                             throw new VersionFeatureNotSupportedException();
                         });
+        DataRegistry.register(Identifiable.class, CommandSource.class)
+                .immutable(
+                        Keys.UUID,
+                        s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);
     }

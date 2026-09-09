@@ -22,6 +22,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -66,6 +67,14 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getUsername)
                 .immutable(Keys.NAME, p -> p::getUsername);
+        DataRegistry.register(Identifiable.class, CommandSource.class)
+                .immutable(
+                        Keys.UUID,
+                        s ->
+                                () -> {
+                                    if (s instanceof Player p) return p.getUniqueId();
+                                    return Notifiable.NIL_UUID;
+                                });
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(
                         Keys.NAME,

@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -50,6 +51,14 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         DataRegistry.register(Nameable.class, ProxiedPlayer.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
                 .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Identifiable.class, CommandSender.class)
+                .immutable(
+                        Keys.UUID,
+                        s ->
+                                () -> {
+                                    if (s instanceof ProxiedPlayer p) return p.getUniqueId();
+                                    return Notifiable.NIL_UUID;
+                                });
         DataRegistry.register(Nameable.class, CommandSender.class)
                 .immutable(Keys.NAME, s -> s::getName);
     }
