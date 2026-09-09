@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.meta.Mappings;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
-import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.Server;
 import dev.neuralnexus.taterapi.world.Location;
@@ -45,8 +44,6 @@ public abstract class Entity_API implements EntityBridge {
     @Shadow public abstract int shadow$getId();
     @Shadow @Nullable public abstract MinecraftServer shadow$getServer();
     @Shadow public abstract void shadow$teleportTo(double x, double y, double z);
-    @Shadow @Nullable public abstract net.minecraft.network.chat.Component shadow$getCustomName();
-    @Shadow public abstract void shadow$setCustomName(@Nullable net.minecraft.network.chat.Component name);
     // @spotless:on
 
     public int entity$entityId() {
@@ -83,15 +80,5 @@ public abstract class Entity_API implements EntityBridge {
             if (!serverLevel.isPresent()) return;
             this.bridge$changeDimension(serverLevel.get(), location);
         }
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public Optional<String> nameable$customName() {
-        if (this.shadow$getCustomName() == null) return Optional.empty();
-        return Optional.of(this.shadow$getCustomName().getString());
-    }
-
-    public void nameable$setCustomName(String name) {
-        this.shadow$setCustomName(Component.literal(name));
     }
 }

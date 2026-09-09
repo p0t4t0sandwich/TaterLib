@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.bungee.command;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.command.CommandSource;
@@ -25,29 +24,24 @@ import java.util.UUID;
 @ToBeLibrary("brigadier-general")
 public class BungeeCommandSource
         implements CommandSource, Wrapped<net.md_5.bungee.api.CommandSender> {
-    private final net.md_5.bungee.api.CommandSender sender;
+    private final net.md_5.bungee.api.@NonNull CommandSender sender;
 
-    public BungeeCommandSource(net.md_5.bungee.api.CommandSender sender) {
+    public BungeeCommandSource(final net.md_5.bungee.api.@NonNull CommandSender sender) {
         this.sender = sender;
     }
 
     @Override
-    public net.md_5.bungee.api.CommandSender unwrap() {
+    public net.md_5.bungee.api.@NonNull CommandSender unwrap() {
         return this.sender;
     }
 
     // TODO: Abstract this into mod init
     @Override
     public @NonNull UUID uuid() {
-        return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
-    }
-
-    @Override
-    public String name() {
-        if (this.player() != null) {
-            return this.player().name();
+        if (this.sender instanceof ProxiedPlayer player) {
+            return player.getUniqueId();
         }
-        return this.sender.getName();
+        return Notifiable.NIL_UUID;
     }
 
     @Override
@@ -63,8 +57,8 @@ public class BungeeCommandSource
 
     @Override
     public @Nullable ProxyPlayer subject() {
-        if (this.sender instanceof ProxiedPlayer) {
-            return new BungeePlayer((ProxiedPlayer) this.sender);
+        if (this.sender instanceof ProxiedPlayer player) {
+            return new BungeePlayer(player);
         }
         return null;
     }

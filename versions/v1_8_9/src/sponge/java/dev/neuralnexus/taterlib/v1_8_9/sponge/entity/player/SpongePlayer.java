@@ -52,16 +52,6 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public String name() {
-        return this.player.getName();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getDisplayNameData().displayName().get().toPlain();
-    }
-
-    @Override
     public Server server() {
         return SpongeServer.instance();
     }

@@ -53,17 +53,6 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     }
 
     @Override
-    public String name() {
-        return this.player.getName();
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public String displayName() {
-        return player.getDisplayName();
-    }
-
-    @Override
     public void sendMessage(String message) {
         this.player.sendMessage(message);
     }

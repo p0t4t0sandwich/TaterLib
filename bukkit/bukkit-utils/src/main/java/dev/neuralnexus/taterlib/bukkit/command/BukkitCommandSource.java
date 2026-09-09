@@ -22,14 +22,14 @@ import java.util.UUID;
 @ToBeLibrary("brigadier-general")
 public class BukkitCommandSource
         implements CommandSource, Wrapped<org.bukkit.command.CommandSender> {
-    private final org.bukkit.command.CommandSender sender;
+    private final org.bukkit.command.@NonNull CommandSender sender;
 
-    public BukkitCommandSource(org.bukkit.command.CommandSender sender) {
+    public BukkitCommandSource(final org.bukkit.command.@NonNull CommandSender sender) {
         this.sender = sender;
     }
 
     @Override
-    public org.bukkit.command.CommandSender unwrap() {
+    public org.bukkit.command.@NonNull CommandSender unwrap() {
         return this.sender;
     }
 
@@ -37,14 +37,6 @@ public class BukkitCommandSource
     @Override
     public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
-    }
-
-    @Override
-    public String name() {
-        if (this.entity() != null) {
-            return this.entity().name();
-        }
-        return this.sender.getName();
     }
 
     @Override

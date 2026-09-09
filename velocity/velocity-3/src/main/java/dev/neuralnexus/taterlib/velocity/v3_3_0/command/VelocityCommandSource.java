@@ -26,14 +26,15 @@ import java.util.UUID;
 @ToBeLibrary("brigadier-general")
 public class VelocityCommandSource
         implements CommandSource, Wrapped<com.velocitypowered.api.command.CommandSource> {
-    private final com.velocitypowered.api.command.CommandSource sender;
+    private final com.velocitypowered.api.command.@NonNull CommandSource sender;
 
-    public VelocityCommandSource(com.velocitypowered.api.command.CommandSource sender) {
+    public VelocityCommandSource(
+            final com.velocitypowered.api.command.@NonNull CommandSource sender) {
         this.sender = sender;
     }
 
     @Override
-    public com.velocitypowered.api.command.CommandSource unwrap() {
+    public com.velocitypowered.api.command.@NonNull CommandSource unwrap() {
         return sender;
     }
 
@@ -44,14 +45,6 @@ public class VelocityCommandSource
             return player.getUniqueId();
         }
         return Notifiable.NIL_UUID;
-    }
-
-    @Override
-    public String name() {
-        if (this.player() != null) {
-            return this.player().name();
-        }
-        return this.sender.getClass().getSimpleName();
     }
 
     @Override
@@ -66,8 +59,8 @@ public class VelocityCommandSource
 
     @Override
     public @Nullable ProxyPlayer subject() {
-        if (this.sender instanceof Player) {
-            return new VelocityPlayer((Player) this.sender);
+        if (this.sender instanceof Player player) {
+            return new VelocityPlayer(player);
         }
         return null;
     }

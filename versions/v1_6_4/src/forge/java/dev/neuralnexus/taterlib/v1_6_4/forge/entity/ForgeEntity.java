@@ -55,17 +55,6 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public Optional<String> customName() {
-        return Optional.of(this.entity.getTranslatedEntityName());
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        // TODO: Implement NAME TAGS SUPPORT
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    @Override
     public Location location() {
         return new ForgeLocation(this.entity);
     }

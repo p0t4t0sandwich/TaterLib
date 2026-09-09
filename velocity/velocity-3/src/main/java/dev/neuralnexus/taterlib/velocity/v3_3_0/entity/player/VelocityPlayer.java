@@ -76,16 +76,6 @@ public class VelocityPlayer implements ProxyPlayer, Wrapped<Player> {
     }
 
     @Override
-    public String name() {
-        return this.player.getUsername();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getUsername();
-    }
-
-    @Override
     public Server server() {
         if (server != null) return new VelocityServer(server);
         if (this.player.getCurrentServer().isEmpty()) return null;

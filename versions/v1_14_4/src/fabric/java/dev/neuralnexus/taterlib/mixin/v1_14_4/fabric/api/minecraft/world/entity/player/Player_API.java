@@ -4,8 +4,6 @@
  */
 package dev.neuralnexus.taterlib.mixin.v1_14_4.fabric.api.minecraft.world.entity.player;
 
-import com.mojang.authlib.GameProfile;
-
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.HumanEntity;
@@ -24,7 +22,6 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory.VanillaPlayerInventory;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Inventory;
@@ -53,19 +50,7 @@ public abstract class Player_API implements PlayerBridge {
     // @spotless:off
     @Shadow @Final public Inventory inventory;
     @Shadow @Final public Abilities abilities;
-    @Shadow public abstract GameProfile shadow$getGameProfile();
-    @Shadow public abstract Component shadow$getDisplayName();
     // @spotless:on
-
-    @ToBeLibrary("brigadier-general")
-    public String nameable$name() {
-        return this.shadow$getGameProfile().getName();
-    }
-
-    @ToBeLibrary("brigadier-general")
-    public String nameable$displayName() {
-        return this.shadow$getDisplayName().getString();
-    }
 
     @ToBeLibrary("brigadier-general")
     public void notifiable$sendMessage(String message) {

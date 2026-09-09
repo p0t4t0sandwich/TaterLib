@@ -7,16 +7,20 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.block.SpongeBlock;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeLivingEntity;
 
+import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
+import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.inventory.entity.HumanInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
+import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.Location;
 import org.spongepowered.api.world.World;
 
@@ -112,5 +116,49 @@ public class SpongeBootstrap {
                         Keys.MAX_HEALTH,
                         e -> () -> SpongeLivingEntity.helper$maxHealth(e),
                         e -> v -> SpongeLivingEntity.helper$maxHealth(e, v));
+        DataRegistry.register(Nameable.class, Player.class)
+                .immutable(
+                        Keys.DISPLAY_NAME,
+                        p -> () -> p.getDisplayNameData().displayName().get().toPlain())
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, Entity.class)
+                .mutable(
+                        Keys.CUSTOM_NAME,
+                        e ->
+                                () -> {
+                                    if (e.get(org.spongepowered.api.data.key.Keys.DISPLAY_NAME)
+                                                    .isEmpty()
+                                            || e.get(
+                                                            org.spongepowered.api.data.key.Keys
+                                                                    .CUSTOM_NAME_VISIBLE)
+                                                    .isEmpty()) {
+                                        return null;
+                                    }
+                                    return e.get(org.spongepowered.api.data.key.Keys.DISPLAY_NAME)
+                                            .get()
+                                            .toString();
+                                },
+                        e ->
+                                v -> {
+                                    if (v != null) {
+                                        e.offer(
+                                                org.spongepowered.api.data.key.Keys.DISPLAY_NAME,
+                                                Text.of(v));
+                                        e.offer(
+                                                org.spongepowered.api.data.key.Keys
+                                                        .CUSTOM_NAME_VISIBLE,
+                                                true);
+                                    } else {
+                                        e.offer(
+                                                org.spongepowered.api.data.key.Keys.DISPLAY_NAME,
+                                                Text.EMPTY);
+                                        e.offer(
+                                                org.spongepowered.api.data.key.Keys
+                                                        .CUSTOM_NAME_VISIBLE,
+                                                false);
+                                    }
+                                });
+        DataRegistry.register(Nameable.class, CommandSource.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 }

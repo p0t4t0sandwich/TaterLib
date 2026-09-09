@@ -52,16 +52,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public String name() {
-        return player.getName().getString();
-    }
-
-    @Override
-    public String displayName() {
-        return player.getDisplayName().getString();
-    }
-
-    @Override
     public void sendPacket(final @NonNull Packet packet) {
         ((ConnectionBridge) ((EntityPlayerMP) this.player).connection).bridge$send(packet);
     }

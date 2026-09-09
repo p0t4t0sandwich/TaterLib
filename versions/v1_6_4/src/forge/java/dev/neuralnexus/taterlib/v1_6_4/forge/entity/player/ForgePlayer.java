@@ -56,16 +56,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     }
 
     @Override
-    public String name() {
-        return this.player.getCommandSenderName();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getDisplayName();
-    }
-
-    @Override
     public Server server() {
         return new ForgeServer(((EntityPlayerMP) this.player).mcServer);
     }

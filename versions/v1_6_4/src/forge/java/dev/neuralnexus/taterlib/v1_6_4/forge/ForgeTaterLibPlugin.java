@@ -16,12 +16,14 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
@@ -34,9 +36,11 @@ import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.entity.ForgeEntityListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.player.ForgePlayerListener;
 
+import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
@@ -86,6 +90,22 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                 (v) ->
                                         e.getEntityAttribute(SharedMonsterAttributes.maxHealth)
                                                 .setAttribute(v));
+        DataRegistry.register(Nameable.class, EntityPlayer.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
+                .immutable(Keys.NAME, p -> p::getCommandSenderName);
+        DataRegistry.register(Nameable.class, Entity.class)
+                .mutable(
+                        Keys.CUSTOM_NAME,
+                        _ -> {
+                            // TODO: Find a way to query the value
+                            throw new VersionFeatureNotSupportedException();
+                        },
+                        _ -> {
+                            // TODO: Find a way to set the value
+                            throw new VersionFeatureNotSupportedException();
+                        });
+        DataRegistry.register(Nameable.class, ICommandSender.class)
+                .immutable(Keys.NAME, s -> s::getCommandSenderName);
     }
 
     /**

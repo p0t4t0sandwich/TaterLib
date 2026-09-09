@@ -17,8 +17,6 @@ import net.minecraft.server.EntityTypes;
 import org.bukkit.craftbukkit.entity.CraftEntity;
 import org.jspecify.annotations.NonNull;
 
-import java.util.Optional;
-
 /** Bukkit implementation of {@link Entity}. */
 public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     private final org.bukkit.entity.@NonNull Entity entity;
@@ -51,16 +49,6 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     @Override
     public Identifier type() {
         return Identifier.of(EntityTypes.b(((CraftEntity) this.entity).getHandle()).toLowerCase());
-    }
-
-    @Override
-    public Optional<String> customName() {
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        throw new VersionFeatureNotSupportedException();
     }
 
     @Override

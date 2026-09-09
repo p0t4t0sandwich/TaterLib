@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_4_7.bungee.entity.player;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.player.ProxyPlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
@@ -22,8 +21,6 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import org.jspecify.annotations.NonNull;
-
-import java.util.UUID;
 
 /** BungeeCord implementation of {@link ProxyPlayer}. */
 public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
@@ -50,26 +47,9 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
         this.player.connect(server);
     }
 
-    // TODO: Abstract this into mod init
-    @Override
-    public @NonNull UUID uuid() {
-        // TODO: Find some implementation that provides the real UUID.
-        return TaterAPI.NIL_UUID;
-    }
-
     @Override
     public String ipAddress() {
         return this.player.getAddress().getAddress().getHostAddress();
-    }
-
-    @Override
-    public String name() {
-        return this.player.getName();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getDisplayName();
     }
 
     @Override

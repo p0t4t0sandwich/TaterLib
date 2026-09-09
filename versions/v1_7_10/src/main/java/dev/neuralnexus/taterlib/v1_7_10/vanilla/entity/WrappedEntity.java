@@ -50,18 +50,6 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
     }
 
     @Override
-    public Optional<String> customName() {
-        if (this.entity.getDisplayName() == null) return Optional.empty();
-        return Optional.of(this.entity.getDisplayName().getFormattedString());
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        // TODO: Implement NAME TAGS SUPPORT
-        throw new VersionFeatureNotSupportedException();
-    }
-
-    @Override
     public Location location() {
         return new VanillaLocation(this.entity);
     }

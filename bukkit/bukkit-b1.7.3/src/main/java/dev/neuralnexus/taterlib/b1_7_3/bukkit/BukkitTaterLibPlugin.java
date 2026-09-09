@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -34,6 +35,7 @@ import dev.neuralnexus.taterlib.b1_7_3.bukkit.server.BukkitServer;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -66,6 +68,11 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                 _ -> {
                                     throw new VersionFeatureNotSupportedException();
                                 });
+        DataRegistry.register(Nameable.class, Player.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, CommandSender.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 
     @Override

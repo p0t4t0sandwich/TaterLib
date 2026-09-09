@@ -8,6 +8,8 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
@@ -15,6 +17,8 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.entity.living.attribute.EntityAttributes;
+import net.minecraft.entity.living.player.PlayerEntity;
+import net.minecraft.server.command.source.CommandSource;
 import net.minecraft.util.math.Vec3d;
 
 /** The Vanilla bootstrap class. */
@@ -38,5 +42,21 @@ public class VanillaBootstrap {
                         Keys.MAX_HEALTH,
                         e -> () -> (double) e.getMaxHealth(), // Potential loss in precision
                         e -> (v) -> e.getAttribute(EntityAttributes.MAX_HEALTH).setBase(v));
+        DataRegistry.register(Nameable.class, PlayerEntity.class)
+                .immutable(Keys.DISPLAY_NAME, p -> () -> p.getDisplayName().getFormattedString())
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, Entity.class)
+                .mutable(
+                        Keys.CUSTOM_NAME,
+                        _ -> {
+                            // TODO: Find a way to query the value
+                            throw new VersionFeatureNotSupportedException();
+                        },
+                        _ -> {
+                            // TODO: Find a way to set the value
+                            throw new VersionFeatureNotSupportedException();
+                        });
+        DataRegistry.register(Nameable.class, CommandSource.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 }

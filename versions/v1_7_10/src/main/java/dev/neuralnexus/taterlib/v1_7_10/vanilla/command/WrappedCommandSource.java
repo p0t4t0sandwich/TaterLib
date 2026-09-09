@@ -27,14 +27,15 @@ import java.util.UUID;
 @ToBeLibrary("brigadier-general")
 public class WrappedCommandSource
         implements CommandSource, Wrapped<net.minecraft.server.command.source.CommandSource> {
-    private final net.minecraft.server.command.source.CommandSource sender;
+    private final net.minecraft.server.command.source.@NonNull CommandSource sender;
 
-    public WrappedCommandSource(net.minecraft.server.command.source.CommandSource sender) {
+    public WrappedCommandSource(
+            final net.minecraft.server.command.source.@NonNull CommandSource sender) {
         this.sender = sender;
     }
 
     @Override
-    public net.minecraft.server.command.source.CommandSource unwrap() {
+    public net.minecraft.server.command.source.@NonNull CommandSource unwrap() {
         return this.sender;
     }
 
@@ -42,11 +43,6 @@ public class WrappedCommandSource
     @Override
     public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
-    }
-
-    @Override
-    public String name() {
-        return this.sender.getName();
     }
 
     @Override

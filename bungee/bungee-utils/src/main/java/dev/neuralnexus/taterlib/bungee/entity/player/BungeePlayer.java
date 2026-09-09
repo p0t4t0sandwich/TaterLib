@@ -55,16 +55,6 @@ public class BungeePlayer implements ProxyPlayer, Wrapped<ProxiedPlayer> {
     }
 
     @Override
-    public String name() {
-        return this.player.getName();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getDisplayName();
-    }
-
-    @Override
     public Server server() {
         return new BungeeServer(this.player.getServer().getInfo());
     }

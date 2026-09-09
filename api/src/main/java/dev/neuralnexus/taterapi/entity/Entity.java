@@ -5,10 +5,13 @@
 package dev.neuralnexus.taterapi.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.MissingKeyException;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.World;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -20,12 +23,16 @@ public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
      *
      * @return The name of the entity
      */
-    default String name() {
+    default @NonNull String name() {
         try {
-            return this.customName().orElseGet(() -> this.type().asString());
-        } catch (VersionFeatureNotSupportedException e) {
-            return this.type().asString();
+            if (this.hasCustomName()) {
+                //noinspection DataFlowIssue
+                return this.customName().get();
+            }
+            return this.displayName();
+        } catch (final VersionFeatureNotSupportedException | MissingKeyException ignored) {
         }
+        return this.type().asString();
     }
 
     /**

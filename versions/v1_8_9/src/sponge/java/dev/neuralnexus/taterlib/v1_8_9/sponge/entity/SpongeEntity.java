@@ -15,8 +15,6 @@ import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeLocation;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeWorld;
 
 import org.jspecify.annotations.NonNull;
-import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.text.Text;
 import org.spongepowered.api.world.World;
 
 import java.util.Optional;
@@ -53,20 +51,6 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     public Identifier type() {
         return Identifier.of(
                 this.entity.getType().toString().split("entity\\.")[1].replace(".", ":"));
-    }
-
-    @Override
-    public Optional<String> customName() {
-        if (!this.entity.get(Keys.DISPLAY_NAME).isPresent()
-                && this.entity.get(Keys.CUSTOM_NAME_VISIBLE).isPresent()) {
-            return Optional.empty();
-        }
-        return Optional.of(this.entity.get(Keys.DISPLAY_NAME).get().toString());
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        this.entity.offer(Keys.DISPLAY_NAME, Text.of(name));
     }
 
     @Override

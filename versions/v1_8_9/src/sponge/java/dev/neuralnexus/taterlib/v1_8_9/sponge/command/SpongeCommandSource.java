@@ -26,14 +26,14 @@ import java.util.UUID;
 @ToBeLibrary("brigadier-general")
 public class SpongeCommandSource
         implements CommandSource, Wrapped<org.spongepowered.api.command.CommandSource> {
-    private final org.spongepowered.api.command.CommandSource sender;
+    private final org.spongepowered.api.command.@NonNull CommandSource sender;
 
-    public SpongeCommandSource(org.spongepowered.api.command.CommandSource sender) {
+    public SpongeCommandSource(final org.spongepowered.api.command.@NonNull CommandSource sender) {
         this.sender = sender;
     }
 
     @Override
-    public org.spongepowered.api.command.CommandSource unwrap() {
+    public org.spongepowered.api.command.@NonNull CommandSource unwrap() {
         return this.sender;
     }
 
@@ -41,11 +41,6 @@ public class SpongeCommandSource
     @Override
     public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getName()).orElse(Notifiable.NIL_UUID);
-    }
-
-    @Override
-    public String name() {
-        return this.sender.getName();
     }
 
     @Override

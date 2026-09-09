@@ -15,8 +15,6 @@ import dev.neuralnexus.taterlib.v1_20.bukkit.world.BukkitWorld;
 import org.bukkit.NamespacedKey;
 import org.jspecify.annotations.NonNull;
 
-import java.util.Optional;
-
 /** Bukkit implementation of {@link Entity}. */
 public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     private final org.bukkit.entity.@NonNull Entity entity;
@@ -49,18 +47,6 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     public Identifier type() {
         final NamespacedKey key = this.entity.getType().getKey();
         return Identifier.of(key.getNamespace(), key.getKey());
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public Optional<String> customName() {
-        return Optional.ofNullable(this.entity.getCustomName());
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public void setCustomName(String name) {
-        this.entity.setCustomName(name);
     }
 
     @Override

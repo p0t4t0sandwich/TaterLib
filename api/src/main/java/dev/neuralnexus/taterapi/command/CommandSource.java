@@ -4,6 +4,9 @@
  */
 package dev.neuralnexus.taterapi.command;
 
+import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.Actor;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
@@ -14,9 +17,11 @@ import dev.neuralnexus.taterapi.entity.Subject;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
+import java.util.Optional;
 import java.util.UUID;
 
-public interface CommandSource extends Identifiable, Nameable, Notifiable, ServerAware {
+// TODO: Implement vanilla via mixins
+public interface CommandSource extends DataHolder, Identifiable, Nameable, Notifiable, ServerAware {
     /**
      * Get the original source of the command
      *
@@ -81,20 +86,28 @@ public interface CommandSource extends Identifiable, Nameable, Notifiable, Serve
 
     @Override
     default @NonNull UUID uuid() {
-        Actor entity = this.entity();
-        if (entity != null) {
-            return entity.uuid();
-        }
+        final Optional<Value<UUID>> v = this.get(Keys.UUID);
+        if (v.isPresent()) return v.get().get();
+
+        final Actor entity = this.entity();
+        if (entity != null) return entity.uuid();
+        // Edge case for proxies
+        final Subject subject = this.player();
+        if (subject != null) return subject.uuid();
         return Notifiable.NIL_UUID;
     }
 
     @Override
-    default String name() {
-        Actor entity = this.entity();
-        if (entity != null) {
-            return entity.name();
-        }
-        return "Server";
+    default @NonNull String name() {
+        final Optional<Value<String>> v = this.get(Keys.NAME);
+        if (v.isPresent()) return v.get().get();
+
+        final Actor entity = this.entity();
+        if (entity != null) return entity.name();
+        // Edge case for proxies
+        final Subject subject = this.player();
+        if (subject != null) return subject.name();
+        return this.getClass().getSimpleName();
     }
 
     @Override

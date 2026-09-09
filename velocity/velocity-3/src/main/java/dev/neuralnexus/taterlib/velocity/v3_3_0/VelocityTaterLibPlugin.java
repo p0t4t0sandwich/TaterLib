@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.taterlib.velocity.v3_3_0;
 
+import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
@@ -20,6 +21,7 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.PlayerEvents;
@@ -61,6 +63,17 @@ public class VelocityTaterLibPlugin implements TaterLibPlugin {
         TaterAPI.instance().setServer(Platforms.VELOCITY, VelocityProxyServer::instance);
         DataRegistry.register(Identifiable.class, Player.class)
                 .immutable(Keys.UUID, p -> p::getUniqueId);
+        DataRegistry.register(Nameable.class, Player.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getUsername)
+                .immutable(Keys.NAME, p -> p::getUsername);
+        DataRegistry.register(Nameable.class, CommandSource.class)
+                .immutable(
+                        Keys.NAME,
+                        s ->
+                                () -> {
+                                    if (s instanceof Player p) return p.getUsername();
+                                    return this.getClass().getName();
+                                });
     }
 
     @Override

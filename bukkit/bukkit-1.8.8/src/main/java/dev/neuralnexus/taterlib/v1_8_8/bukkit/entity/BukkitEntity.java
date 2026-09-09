@@ -14,8 +14,6 @@ import dev.neuralnexus.taterlib.v1_8_8.bukkit.world.BukkitWorld;
 
 import org.jspecify.annotations.NonNull;
 
-import java.util.Optional;
-
 /** Bukkit implementation of {@link Entity}. */
 public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     private final org.bukkit.entity.@NonNull Entity entity;
@@ -48,16 +46,6 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     @Override
     public Identifier type() {
         return Identifier.of(this.entity.getType().toString().toLowerCase());
-    }
-
-    @Override
-    public Optional<String> customName() {
-        return Optional.of(this.entity.getCustomName());
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        this.entity.setCustomName(name);
     }
 
     @Override

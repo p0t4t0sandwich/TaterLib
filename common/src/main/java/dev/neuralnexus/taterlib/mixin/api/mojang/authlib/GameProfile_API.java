@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.Shadow;
     @Interface(iface = Notifiable.class, prefix = "notifiable$", remap = Remap.NONE),
     @Interface(iface = User.class, prefix = "user$", remap = Remap.NONE)
 })
+@Deprecated // TODO: Convert to wrapper
 public abstract class GameProfile_API {
     // @spotless:off
     @Shadow public abstract String shadow$getName();

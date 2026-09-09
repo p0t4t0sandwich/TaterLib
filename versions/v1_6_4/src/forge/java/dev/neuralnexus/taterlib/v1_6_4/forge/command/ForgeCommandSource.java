@@ -27,14 +27,14 @@ import java.util.UUID;
 /** Forge implementation of {@link CommandSource} */
 @ToBeLibrary("brigadier-general")
 public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender> {
-    private final ICommandSender sender;
+    private final @NonNull ICommandSender sender;
 
-    public ForgeCommandSource(ICommandSender sender) {
+    public ForgeCommandSource(final @NonNull ICommandSender sender) {
         this.sender = sender;
     }
 
     @Override
-    public ICommandSender unwrap() {
+    public @NonNull ICommandSender unwrap() {
         return this.sender;
     }
 
@@ -43,11 +43,6 @@ public class ForgeCommandSource implements CommandSource, Wrapped<ICommandSender
     public @NonNull UUID uuid() {
         return TaterAPI.uuidFromName(this.sender.getCommandSenderName())
                 .orElse(Notifiable.NIL_UUID);
-    }
-
-    @Override
-    public String name() {
-        return this.sender.getCommandSenderName();
     }
 
     @Override

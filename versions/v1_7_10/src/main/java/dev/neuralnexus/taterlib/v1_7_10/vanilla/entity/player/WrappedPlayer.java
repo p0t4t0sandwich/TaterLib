@@ -41,16 +41,6 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
     }
 
     @Override
-    public String name() {
-        return this.player.getName();
-    }
-
-    @Override
-    public String displayName() {
-        return this.player.getDisplayName().getFormattedString();
-    }
-
-    @Override
     public void sendMessage(String message) {
         player.sendMessage(new LiteralText(message));
     }

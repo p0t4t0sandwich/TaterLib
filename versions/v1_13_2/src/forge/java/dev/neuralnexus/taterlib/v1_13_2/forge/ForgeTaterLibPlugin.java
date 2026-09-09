@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -23,6 +24,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.block.ForgeBlockBreakEvent;
@@ -43,9 +45,11 @@ import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.PlayerAdvancements;
+import net.minecraft.command.CommandSource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
@@ -165,6 +169,27 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                 (v) ->
                                         e.getAttribute(SharedMonsterAttributes.MAX_HEALTH)
                                                 .setBaseValue(v));
+        DataRegistry.register(Nameable.class, EntityPlayer.class)
+                .immutable(Keys.DISPLAY_NAME, p -> () -> p.getDisplayName().getFormattedText())
+                .immutable(Keys.NAME, p -> () -> p.getName().getFormattedText());
+        DataRegistry.register(Nameable.class, Entity.class)
+                .mutable(
+                        Keys.CUSTOM_NAME,
+                        e ->
+                                () ->
+                                        e.getCustomName() != null
+                                                ? e.getCustomName().getFormattedText()
+                                                : null,
+                        e ->
+                                v -> {
+                                    if (v != null) {
+                                        e.setCustomName(Component.literal(v));
+                                    } else {
+                                        e.setCustomName(null);
+                                    }
+                                });
+        DataRegistry.register(Nameable.class, CommandSource.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 
     /**

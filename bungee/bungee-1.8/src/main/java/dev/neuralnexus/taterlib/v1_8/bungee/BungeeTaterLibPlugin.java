@@ -7,6 +7,7 @@ package dev.neuralnexus.taterlib.v1_8.bungee;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -28,6 +29,7 @@ import dev.neuralnexus.taterlib.bungee.listeners.network.BungeePluginMessageList
 import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.v1_8.bungee.listeners.player.BungeePlayerListener;
 
+import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -47,6 +49,11 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
                 ProxiedPlayer.class, input -> Result.success(new BungeePlayer(input)));
         DataRegistry.register(Identifiable.class, ProxiedPlayer.class)
                 .immutable(Keys.UUID, p -> p::getUniqueId);
+        DataRegistry.register(Nameable.class, ProxiedPlayer.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, CommandSender.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 
     @Override

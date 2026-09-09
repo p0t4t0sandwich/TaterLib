@@ -5,17 +5,22 @@
 package dev.neuralnexus.taterlib.v1_4_7.bungee;
 
 import dev.neuralnexus.taterapi.TaterAPI;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
+import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.serialization.Result;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
@@ -25,6 +30,7 @@ import dev.neuralnexus.taterlib.bungee.listeners.network.BungeePluginMessageList
 import dev.neuralnexus.taterlib.bungee.server.BungeeProxyServer;
 import dev.neuralnexus.taterlib.v1_4_7.bungee.listeners.player.BungeePlayerListener;
 
+import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -40,6 +46,18 @@ public class BungeeTaterLibPlugin implements TaterLibPlugin {
         TaterAPI.instance().setServer(Platforms.BUNGEECORD, BungeeProxyServer::instance);
         TaterAPI.WRAPPERS.register(
                 ProxiedPlayer.class, input -> Result.success(new BungeePlayer(input)));
+        DataRegistry.register(Identifiable.class, ProxiedPlayer.class)
+                .immutable(
+                        Keys.UUID,
+                        _ -> {
+                            // TODO: Find a way to get the UUID
+                            throw new VersionFeatureNotSupportedException();
+                        });
+        DataRegistry.register(Nameable.class, ProxiedPlayer.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, CommandSender.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 
     @Override

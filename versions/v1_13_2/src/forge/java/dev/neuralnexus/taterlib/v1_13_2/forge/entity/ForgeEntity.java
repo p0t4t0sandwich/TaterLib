@@ -7,7 +7,6 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.entity;
 import dev.neuralnexus.taterapi.Wrapped;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
-import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_13_2.forge.server.ForgeServer;
@@ -57,17 +56,6 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     @SuppressWarnings("deprecation")
     public Identifier type() { // TODO: Revise
         return Identifier.of(IRegistry.field_212629_r.getKey(this.entity.getType()).toString());
-    }
-
-    @Override
-    public Optional<String> customName() {
-        if (this.entity.getCustomName() == null) return Optional.empty();
-        return Optional.of(this.entity.getCustomName().getString());
-    }
-
-    @Override
-    public void setCustomName(String name) {
-        this.entity.setCustomName(Component.literal(name));
     }
 
     @Override

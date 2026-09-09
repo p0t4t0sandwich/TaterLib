@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
+import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -15,6 +16,7 @@ import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStartingEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppedEvent;
 import dev.neuralnexus.taterapi.event.server.ServerStoppingEvent;
+import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.meta.MetaAPI;
 import dev.neuralnexus.taterapi.meta.Platforms;
 import dev.neuralnexus.taterapi.meta.anno.AConstraint;
@@ -36,6 +38,7 @@ import dev.neuralnexus.taterlib.v1_7_10.bukkit.listeners.player.BukkitPlayerList
 import dev.neuralnexus.taterlib.v1_7_10.bukkit.server.BukkitServer;
 
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -69,6 +72,22 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                         Keys.MAX_HEALTH,
                         e -> () -> BukkitLivingEntity.helper$maxHealth(e),
                         e -> e::setMaxHealth);
+        DataRegistry.register(Nameable.class, Player.class)
+                .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
+                .immutable(Keys.NAME, p -> p::getName);
+        DataRegistry.register(Nameable.class, Entity.class)
+                .mutable(
+                        Keys.CUSTOM_NAME,
+                        _ -> {
+                            // TODO: Find a way to query the value
+                            throw new VersionFeatureNotSupportedException();
+                        },
+                        _ -> {
+                            // TODO: Find a way to set the value
+                            throw new VersionFeatureNotSupportedException();
+                        });
+        DataRegistry.register(Nameable.class, CommandSender.class)
+                .immutable(Keys.NAME, s -> s::getName);
     }
 
     @Override
