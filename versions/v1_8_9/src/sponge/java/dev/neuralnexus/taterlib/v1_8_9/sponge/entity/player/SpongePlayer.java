@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player;
 
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -24,7 +23,6 @@ import dev.neuralnexus.taterlib.v1_8_9.sponge.server.SpongeServer;
 import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.Sponge;
 import org.spongepowered.api.data.key.Keys;
-import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.text.Text;
 
 /** Sponge implementation of {@link Player}. */
@@ -132,29 +130,5 @@ public class SpongePlayer extends SpongeLivingEntity implements Player, ServerPl
     @Override
     public void setFlying(boolean flying) {
         this.player.offer(Keys.IS_FLYING, flying);
-    }
-
-    @Override
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public GameMode gameMode() {
-        return GameMode.fromName(this.player.get(Keys.GAME_MODE).get().toString());
-    }
-
-    @Override
-    public void setGameMode(GameMode gameMode) {
-        switch (gameMode) {
-            case CREATIVE:
-                this.player.offer(Keys.GAME_MODE, GameModes.CREATIVE);
-                break;
-            case SURVIVAL:
-                this.player.offer(Keys.GAME_MODE, GameModes.SURVIVAL);
-                break;
-            case ADVENTURE:
-                this.player.offer(Keys.GAME_MODE, GameModes.ADVENTURE);
-                break;
-            case SPECTATOR:
-                this.player.offer(Keys.GAME_MODE, GameModes.SPECTATOR);
-                break;
-        }
     }
 }

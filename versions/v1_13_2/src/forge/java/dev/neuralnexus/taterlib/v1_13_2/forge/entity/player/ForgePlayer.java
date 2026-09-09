@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_13_2.forge.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -103,17 +102,6 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setFlying(boolean flying) {
         player.abilities.isFlying = flying;
-    }
-
-    @Override
-    public GameMode gameMode() {
-        return GameMode.fromName(
-                ((EntityPlayerMP) this.player).interactionManager.getGameType().getName());
-    }
-
-    @Override
-    public void setGameMode(GameMode gameMode) {
-        this.player.setGameType(net.minecraft.world.GameType.getByID(gameMode.id()));
     }
 
     @Override

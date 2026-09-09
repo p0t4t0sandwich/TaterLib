@@ -11,7 +11,6 @@ import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -22,10 +21,8 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.player.PlayerBridge;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.item.inventory.VanillaPlayerInventory;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Abilities;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.level.GameType;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Implements;
@@ -59,17 +56,6 @@ public abstract class Player_API implements PlayerBridge {
 
     public PlayerInventory player$inventory() {
         return new VanillaPlayerInventory(this.inventory);
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public GameMode humanEntity$gameMode() {
-        return GameMode.fromName(
-                ((ServerPlayer) (Object) this).gameMode.getGameModeForPlayer().getName());
-    }
-
-    @SuppressWarnings("DataFlowIssue")
-    public void humanEntity$setGameMode(GameMode gameMode) {
-        ((ServerPlayer) (Object) this).setGameMode(GameType.byId(gameMode.id()));
     }
 
     public void player$allowFlight(boolean allow) {

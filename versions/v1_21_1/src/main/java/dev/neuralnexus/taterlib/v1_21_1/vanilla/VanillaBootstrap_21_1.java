@@ -7,8 +7,10 @@ package dev.neuralnexus.taterlib.v1_21_1.vanilla;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
@@ -17,9 +19,11 @@ import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.entity.LivingEntity
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaLocation;
 
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
 
 /** The Vanilla bootstrap class. */
 public class VanillaBootstrap_21_1 {
@@ -58,5 +62,16 @@ public class VanillaBootstrap_21_1 {
                                 });
         DataRegistry.register(Nameable.class, CommandSourceStack.class)
                 .immutable(Keys.NAME, s -> () -> s.getDisplayName().getString());
+        DataRegistry.register(HumanEntity.class, Player.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p ->
+                                () ->
+                                        GameMode.fromName(
+                                                ((ServerPlayer) p)
+                                                        .gameMode
+                                                        .getGameModeForPlayer()
+                                                        .getName()),
+                        p -> v -> ((ServerPlayer) p).setGameMode(GameType.byId(v.id())));
     }
 }

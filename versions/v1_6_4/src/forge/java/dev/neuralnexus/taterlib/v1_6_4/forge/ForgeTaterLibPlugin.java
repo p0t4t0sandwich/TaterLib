@@ -15,9 +15,11 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
 import dev.neuralnexus.taterapi.event.server.ServerStartedEvent;
@@ -42,6 +44,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.world.EnumGameType;
 import net.minecraftforge.common.MinecraftForge;
 
 /** Forge entry point. */
@@ -114,6 +118,17 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                                                 .orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, ICommandSender.class)
                 .immutable(Keys.NAME, s -> s::getCommandSenderName);
+        DataRegistry.register(HumanEntity.class, EntityPlayer.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p ->
+                                () ->
+                                        GameMode.fromName(
+                                                ((EntityPlayerMP) p)
+                                                        .theItemInWorldManager
+                                                        .getGameType()
+                                                        .getName()),
+                        p -> v -> p.setGameType(EnumGameType.getByID(v.id())));
     }
 
     /**

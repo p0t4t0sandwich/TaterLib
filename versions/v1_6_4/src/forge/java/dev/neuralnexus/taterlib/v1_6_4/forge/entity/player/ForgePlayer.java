@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_6_4.forge.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
@@ -24,7 +23,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.EnumGameType;
 import net.minecraft.world.WorldServer;
 
 import org.jspecify.annotations.NonNull;
@@ -133,16 +131,5 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     @Override
     public void setFlying(boolean flying) {
         this.player.capabilities.isFlying = flying;
-    }
-
-    @Override
-    public GameMode gameMode() {
-        return GameMode.fromName(
-                ((EntityPlayerMP) this.player).theItemInWorldManager.getGameType().getName());
-    }
-
-    @Override
-    public void setGameMode(GameMode gameMode) {
-        this.player.setGameType(EnumGameType.getByID(gameMode.id()));
     }
 }

@@ -6,9 +6,11 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge;
 
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.resources.Identifier;
@@ -19,6 +21,7 @@ import org.spongepowered.api.command.CommandSource;
 import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
+import org.spongepowered.api.entity.living.player.gamemode.GameModes;
 import org.spongepowered.api.item.inventory.entity.HumanInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.text.Text;
@@ -169,5 +172,39 @@ public class SpongeBootstrap {
                                 });
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);
+        DataRegistry.register(HumanEntity.class, Player.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p ->
+                                () ->
+                                        GameMode.fromName(
+                                                p.get(org.spongepowered.api.data.key.Keys.GAME_MODE)
+                                                        .orElseThrow()
+                                                        .toString()),
+                        p ->
+                                v -> {
+                                    switch (v) {
+                                        case CREATIVE:
+                                            p.offer(
+                                                    org.spongepowered.api.data.key.Keys.GAME_MODE,
+                                                    GameModes.CREATIVE);
+                                            break;
+                                        case SURVIVAL:
+                                            p.offer(
+                                                    org.spongepowered.api.data.key.Keys.GAME_MODE,
+                                                    GameModes.SURVIVAL);
+                                            break;
+                                        case ADVENTURE:
+                                            p.offer(
+                                                    org.spongepowered.api.data.key.Keys.GAME_MODE,
+                                                    GameModes.ADVENTURE);
+                                            break;
+                                        case SPECTATOR:
+                                            p.offer(
+                                                    org.spongepowered.api.data.key.Keys.GAME_MODE,
+                                                    GameModes.SPECTATOR);
+                                            break;
+                                    }
+                                });
     }
 }

@@ -7,9 +7,11 @@ package dev.neuralnexus.taterlib.v1_2_5.bukkit;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.NetworkEvents;
 import dev.neuralnexus.taterapi.event.api.ServerEvents;
@@ -82,6 +84,11 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                         s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSender.class)
                 .immutable(Keys.NAME, s -> s::getName);
+        DataRegistry.register(HumanEntity.class, Player.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p -> () -> GameMode.fromName(p.getGameMode().name()),
+                        p -> v -> p.setGameMode(org.bukkit.GameMode.valueOf(v.name())));
     }
 
     @Override

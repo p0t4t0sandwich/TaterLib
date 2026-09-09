@@ -7,9 +7,11 @@ package dev.neuralnexus.taterlib.v1_13_2.forge;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.event.api.BlockEvents;
 import dev.neuralnexus.taterapi.event.api.CommandEvents;
 import dev.neuralnexus.taterapi.event.api.EntityEvents;
@@ -195,6 +197,17 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);
+        DataRegistry.register(HumanEntity.class, EntityPlayer.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p ->
+                                () ->
+                                        GameMode.fromName(
+                                                ((EntityPlayerMP) p)
+                                                        .interactionManager
+                                                        .getGameType()
+                                                        .getName()),
+                        p -> v -> p.setGameType(net.minecraft.world.GameType.getByID(v.id())));
     }
 
     /**

@@ -5,6 +5,7 @@
 package dev.neuralnexus.taterapi.data;
 
 import dev.neuralnexus.taterapi.data.value.Value;
+import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.meta.anno.Range;
 import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
@@ -46,6 +47,9 @@ public final class Keys {
      * {@link dev.neuralnexus.taterapi.entity.Nameable}
      */
     public static final Key<Value<String>> NAME = key("name", String.class);
+
+    /** A player's game mode. See {@link dev.neuralnexus.taterapi.entity.HumanEntity} */
+    public static final Key<Value<GameMode>> GAME_MODE = key("game_mode", GameMode.class);
 
     private static <E> Key<Value<E>> key(final @NonNull String path, final @NonNull Class<E> type) {
         return Key.from(Identifier.of("taterlib", path), type);

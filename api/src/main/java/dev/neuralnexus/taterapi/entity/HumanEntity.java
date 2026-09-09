@@ -5,7 +5,11 @@
 package dev.neuralnexus.taterapi.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
+import dev.neuralnexus.taterapi.data.Keys;
+import dev.neuralnexus.taterapi.data.value.Value;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
+
+import org.jspecify.annotations.NonNull;
 
 /** The interface for a HumanEntity */
 public interface HumanEntity
@@ -15,22 +19,17 @@ public interface HumanEntity
      *
      * @return The player's current gamemode
      */
-    GameMode gameMode();
-
-    /**
-     * Set the player's game mode
-     *
-     * @param gameMode The game mode to set
-     */
-    void setGameMode(GameMode gameMode);
+    default Value<GameMode> gameMode() {
+        return this.getOrThrow(Keys.GAME_MODE);
+    }
 
     /**
      * Set the player's game mode
      *
      * @param id The id of the game mode to set
      */
-    default void setGameMode(int id) {
-        setGameMode(GameMode.fromId(id));
+    default void setGameMode(final int id) {
+        this.gameMode().set(GameMode.fromId(id));
     }
 
     /**
@@ -38,7 +37,7 @@ public interface HumanEntity
      *
      * @param name The name of the game mode to set
      */
-    default void setGameMode(String name) {
-        setGameMode(GameMode.fromName(name));
+    default void setGameMode(final @NonNull String name) {
+        this.gameMode().set(GameMode.fromName(name));
     }
 }

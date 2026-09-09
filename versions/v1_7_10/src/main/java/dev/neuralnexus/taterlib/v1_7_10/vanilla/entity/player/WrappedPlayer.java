@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player;
 
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -88,15 +87,5 @@ public class WrappedPlayer extends WrappedLivingEntity implements Player, Server
     @Override
     public void setFlying(boolean flying) {
         this.player.abilities.flying = flying;
-    }
-
-    @Override
-    public GameMode gameMode() {
-        return ((PlayerEntityBridge) this.player).bridge$gameMode();
-    }
-
-    @Override
-    public void setGameMode(GameMode gameMode) {
-        ((PlayerEntityBridge) this.player).bridge$setGameMode(gameMode);
     }
 }

@@ -5,7 +5,6 @@
 package dev.neuralnexus.taterlib.v1_20.bukkit.entity.player;
 
 import dev.neuralnexus.taterapi.TaterAPI;
-import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.entity.player.ServerPlayer;
 import dev.neuralnexus.taterapi.item.inventory.PlayerInventory;
@@ -133,15 +132,5 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     @Override
     public void setFlying(boolean flying) {
         player.setFlying(flying);
-    }
-
-    @Override
-    public GameMode gameMode() {
-        return GameMode.fromName(this.player.getGameMode().name());
-    }
-
-    @Override
-    public void setGameMode(GameMode gameMode) {
-        this.player.setGameMode(org.bukkit.GameMode.valueOf(gameMode.name()));
     }
 }

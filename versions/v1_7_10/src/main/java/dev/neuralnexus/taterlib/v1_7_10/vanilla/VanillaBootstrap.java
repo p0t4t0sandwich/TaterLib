@@ -7,12 +7,14 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.Keys;
 import dev.neuralnexus.taterapi.entity.Damageable;
+import dev.neuralnexus.taterapi.entity.HumanEntity;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.world.Location;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 
 import net.minecraft.entity.Entity;
@@ -63,5 +65,10 @@ public class VanillaBootstrap {
                         s -> () -> TaterAPI.uuidFromName(s.getName()).orElse(Notifiable.NIL_UUID));
         DataRegistry.register(Nameable.class, CommandSource.class)
                 .immutable(Keys.NAME, s -> s::getName);
+        DataRegistry.register(HumanEntity.class, PlayerEntity.class)
+                .mutable(
+                        Keys.GAME_MODE,
+                        p -> () -> ((PlayerEntityBridge) p).bridge$gameMode(),
+                        p -> v -> ((PlayerEntityBridge) p).bridge$setGameMode(v));
     }
 }
