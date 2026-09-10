@@ -74,6 +74,20 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                                 _ -> {
                                     // TODO: Find if there's some obscure way to change this
                                     throw new VersionFeatureNotSupportedException();
+                                })
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.damage((int) d.doubleValue());
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.damage((int) d.doubleValue(), ((BukkitEntity) src).unwrap());
+                                    return null;
                                 });
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)

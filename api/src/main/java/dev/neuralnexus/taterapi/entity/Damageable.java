@@ -51,7 +51,9 @@ public interface Damageable extends DataHolder {
      *
      * @param amount Amount of damage to deal
      */
-    void damage(final double amount);
+    default void damage(final double amount) {
+        this.action1(Keys.DAMAGE_GENERIC).unwrap().apply(amount);
+    }
 
     // TODO: Consider cross-plat implications in wrapped contexts
     // Solution: instanceof switch to unwrap
@@ -61,7 +63,9 @@ public interface Damageable extends DataHolder {
      * @param amount Amount of damage to deal
      * @param source Entity that caused the damage
      */
-    void damage(final double amount, final @NonNull Entity source);
+    default void damage(final double amount, final @NonNull Entity source) {
+        this.action2(Keys.DAMAGE_ENTITY).unwrap().apply(amount, source);
+    }
 
     // TODO: Heal
 }

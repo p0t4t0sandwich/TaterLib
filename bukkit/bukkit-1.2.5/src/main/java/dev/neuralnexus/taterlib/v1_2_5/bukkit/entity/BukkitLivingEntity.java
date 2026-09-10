@@ -6,15 +6,16 @@ package dev.neuralnexus.taterlib.v1_2_5.bukkit.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
-import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Nameable;
 
 import org.jspecify.annotations.NonNull;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity
-        implements LivingEntity, Damageable, DataHolder {
-    private final org.bukkit.entity.LivingEntity entity;
+        implements LivingEntity, Damageable, DataHolder, Identifiable, Nameable {
+    private final org.bukkit.entity.@NonNull LivingEntity entity;
 
     /**
      * Constructor.
@@ -29,15 +30,5 @@ public class BukkitLivingEntity extends BukkitEntity
     @Override
     public org.bukkit.entity.@NonNull LivingEntity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public void damage(final double amount) {
-        this.entity.damage((int) amount);
-    }
-
-    @Override
-    public void damage(final double amount, final @NonNull Entity source) {
-        this.entity.damage((int) amount, ((BukkitEntity) source).unwrap());
     }
 }

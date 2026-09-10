@@ -6,16 +6,17 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
-import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Nameable;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.DamageSource;
 
 import org.jspecify.annotations.NonNull;
 
 /** Forge implementation of {@link LivingEntity}. */
-public class ForgeLivingEntity extends ForgeEntity implements LivingEntity, Damageable, DataHolder {
+public class ForgeLivingEntity extends ForgeEntity
+        implements LivingEntity, Damageable, DataHolder, Identifiable, Nameable {
     private final @NonNull EntityLivingBase entity;
 
     /**
@@ -31,16 +32,5 @@ public class ForgeLivingEntity extends ForgeEntity implements LivingEntity, Dama
     @Override
     public @NonNull EntityLivingBase unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public void damage(final double amount) {
-        this.entity.attackEntityFrom(DamageSource.GENERIC, (float) amount);
-    }
-
-    @Override
-    public void damage(final double amount, final @NonNull Entity source) {
-        this.entity.attackEntityFrom(
-                DamageSource.causeMobDamage(((ForgeLivingEntity) source).unwrap()), (float) amount);
     }
 }

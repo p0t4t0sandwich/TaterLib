@@ -6,17 +6,16 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
-import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
-
-import net.minecraft.entity.damage.DamageSource;
+import dev.neuralnexus.taterapi.entity.Nameable;
 
 import org.jspecify.annotations.NonNull;
 
 /** Vanilla implementation of {@link LivingEntity}. */
 public class WrappedLivingEntity extends WrappedEntity
-        implements LivingEntity, Damageable, DataHolder {
-    private final net.minecraft.entity.living.LivingEntity entity;
+        implements LivingEntity, Damageable, DataHolder, Identifiable, Nameable {
+    private final net.minecraft.entity.living.@NonNull LivingEntity entity;
 
     public WrappedLivingEntity(final net.minecraft.entity.living.@NonNull LivingEntity entity) {
         super(entity);
@@ -26,16 +25,5 @@ public class WrappedLivingEntity extends WrappedEntity
     @Override
     public net.minecraft.entity.living.@NonNull LivingEntity unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public void damage(final double amount) {
-        this.entity.damage(DamageSource.GENERIC, (float) amount);
-    }
-
-    @Override
-    public void damage(final double amount, final @NonNull Entity source) {
-        this.entity.damage(
-                DamageSource.mob(((WrappedLivingEntity) source).unwrap()), (float) amount);
     }
 }

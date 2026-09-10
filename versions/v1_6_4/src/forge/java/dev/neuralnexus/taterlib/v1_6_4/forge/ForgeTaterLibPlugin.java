@@ -34,6 +34,7 @@ import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.v1_6_4.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_6_4.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.block.ForgeBlockListener;
 import dev.neuralnexus.taterlib.v1_6_4.forge.listeners.entity.ForgeEntityListener;
@@ -45,6 +46,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.EnumGameType;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -94,7 +96,25 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         e ->
                                 (v) ->
                                         e.getEntityAttribute(SharedMonsterAttributes.maxHealth)
-                                                .setAttribute(v));
+                                                .setAttribute(v))
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.attackEntityFrom(
+                                            DamageSource.generic, (float) d.doubleValue());
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.attackEntityFrom(
+                                            DamageSource.causeMobDamage(
+                                                    ((ForgeLivingEntity) src).unwrap()),
+                                            (float) d.doubleValue());
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, EntityPlayer.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
                 .immutable(Keys.NAME, p -> p::getCommandSenderName);

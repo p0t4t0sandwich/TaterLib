@@ -6,19 +6,17 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.entity;
 
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
-import dev.neuralnexus.taterapi.entity.Entity;
+import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.LivingEntity;
+import dev.neuralnexus.taterapi.entity.Nameable;
 
 import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.entity.living.Living;
-import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
-import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
-import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 
 /** Sponge implementation of {@link LivingEntity}. */
 public class SpongeLivingEntity extends SpongeEntity
-        implements LivingEntity, Damageable, DataHolder {
-    private final Living entity;
+        implements LivingEntity, Damageable, DataHolder, Identifiable, Nameable {
+    private final @NonNull Living entity;
 
     /**
      * Constructor.
@@ -33,21 +31,6 @@ public class SpongeLivingEntity extends SpongeEntity
     @Override
     public @NonNull Living unwrap() {
         return this.entity;
-    }
-
-    @Override
-    public void damage(final double amount) {
-        this.entity.damage(amount, DamageSources.GENERIC);
-    }
-
-    @Override
-    public void damage(final double amount, final @NonNull Entity source) {
-        this.entity.damage(
-                amount,
-                EntityDamageSource.builder()
-                        .type(DamageTypes.ATTACK)
-                        .entity(((SpongeLivingEntity) source).unwrap())
-                        .build());
     }
 
     public static double helper$health(final @NonNull Living entity) {

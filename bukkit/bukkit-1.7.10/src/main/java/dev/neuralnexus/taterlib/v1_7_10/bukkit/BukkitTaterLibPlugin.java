@@ -74,7 +74,21 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
                 .mutable(
                         Keys.MAX_HEALTH,
                         e -> () -> BukkitLivingEntity.helper$maxHealth(e),
-                        e -> e::setMaxHealth);
+                        e -> e::setMaxHealth)
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.damage(d);
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.damage(d, ((BukkitEntity) src).unwrap());
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(Keys.DISPLAY_NAME, p -> p::getDisplayName)
                 .immutable(Keys.NAME, p -> p::getName);

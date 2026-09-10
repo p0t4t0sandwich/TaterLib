@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.data.action.Action2;
 import dev.neuralnexus.taterapi.data.action.Action3;
 import dev.neuralnexus.taterapi.data.action.Action4;
 import dev.neuralnexus.taterapi.data.value.Value;
+import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.GameMode;
 import dev.neuralnexus.taterapi.meta.anno.Range;
 import dev.neuralnexus.taterapi.meta.anno.VersionFeature;
@@ -28,6 +29,10 @@ public final class Keys {
     public static final Key<Value<Double>> HEALTH = value("health", Double.class);
     public static final Key<Value<Double>> MAX_HEALTH = value("max_health", Double.class);
 
+    public static final Key<Action1<Void, Double>> DAMAGE_GENERIC = action1("damage", void.class);
+    public static final Key<Action2<Void, Double, Entity>> DAMAGE_ENTITY =
+            action2("damage", void.class);
+
     /**
      * Used for objects that can be represented by a UUID. See {@link
      * dev.neuralnexus.taterapi.entity.Identifiable}
@@ -40,7 +45,8 @@ public final class Keys {
      */
     // TODO: Use components
     @VersionFeature(name = "Keys.CUSTOM_NAME", compatible = @Range(min = MinecraftVersion.V6_1))
-    public static final Key<Value<@Nullable String>> CUSTOM_NAME = value("custom_name", String.class);
+    public static final Key<Value<@Nullable String>> CUSTOM_NAME =
+            value("custom_name", String.class);
 
     /**
      * An entity's display name. Attempts to resolve to their CUSTOM_NAME, their scoreboard name,

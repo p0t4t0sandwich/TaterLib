@@ -15,9 +15,11 @@ import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.VanillaFactories;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.entity.living.player.PlayerEntityBridge;
+import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedLivingEntity;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.VanillaLocation;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.living.LivingEntity;
 import net.minecraft.entity.living.attribute.EntityAttributes;
 import net.minecraft.entity.living.player.PlayerEntity;
@@ -25,7 +27,6 @@ import net.minecraft.server.command.source.CommandSource;
 import net.minecraft.util.math.Vec3d;
 
 /** The Vanilla bootstrap class. */
-// TODO: Need networking listeners
 public class VanillaBootstrap {
     public static void init() {
         TaterAPI.registerBuilder(Location.Builder.class, VanillaLocation.Builder::new);
@@ -45,7 +46,23 @@ public class VanillaBootstrap {
                 .mutable(
                         Keys.MAX_HEALTH,
                         e -> () -> (double) e.getMaxHealth(), // Potential loss in precision
-                        e -> (v) -> e.getAttribute(EntityAttributes.MAX_HEALTH).setBase(v));
+                        e -> (v) -> e.getAttribute(EntityAttributes.MAX_HEALTH).setBase(v))
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.damage(DamageSource.GENERIC, (float) d.doubleValue());
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.damage(
+                                            DamageSource.mob(((WrappedLivingEntity) src).unwrap()),
+                                            (float) d.doubleValue());
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, PlayerEntity.class)
                 .immutable(Keys.DISPLAY_NAME, p -> () -> p.getDisplayName().getFormattedString())
                 .immutable(Keys.NAME, p -> p::getName);

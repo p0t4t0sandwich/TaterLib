@@ -44,7 +44,24 @@ public class VanillaBootstrap {
                 .mutable(
                         Keys.MAX_HEALTH,
                         e -> () -> ((LivingEntityBridge) e).bridge$maxHealth(),
-                        e -> v -> ((LivingEntityBridge) e).bridge$maxHealth(v));
+                        e -> v -> ((LivingEntityBridge) e).bridge$maxHealth(v))
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    ((LivingEntityBridge) e).bridge$damage(d);
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    ((LivingEntityBridge) e)
+                                            .bridge$damage(
+                                                    d,
+                                                    (net.minecraft.world.entity.LivingEntity) src);
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(Keys.DISPLAY_NAME, p -> () -> p.getDisplayName().getString())
                 .immutable(Keys.NAME, p -> () -> NameAndId.wrap(p.getGameProfile()).name());

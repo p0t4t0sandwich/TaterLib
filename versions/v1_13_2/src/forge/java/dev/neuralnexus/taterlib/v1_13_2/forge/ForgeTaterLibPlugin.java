@@ -30,6 +30,7 @@ import dev.neuralnexus.taterapi.meta.enums.Platform;
 import dev.neuralnexus.taterapi.network.chat.Component;
 import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.block.ForgeBlockBreakEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.command.ForgeCommandRegisterEvent;
 import dev.neuralnexus.taterlib.v1_13_2.forge.event.entity.ForgeEntityDamageEvent;
@@ -55,6 +56,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -171,7 +173,25 @@ public class ForgeTaterLibPlugin implements TaterLibPlugin {
                         e ->
                                 (v) ->
                                         e.getAttribute(SharedMonsterAttributes.MAX_HEALTH)
-                                                .setBaseValue(v));
+                                                .setBaseValue(v))
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.attackEntityFrom(
+                                            DamageSource.GENERIC, (float) d.doubleValue());
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.attackEntityFrom(
+                                            DamageSource.causeMobDamage(
+                                                    ((ForgeLivingEntity) src).unwrap()),
+                                            (float) d.doubleValue());
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, EntityPlayer.class)
                 .immutable(Keys.DISPLAY_NAME, p -> () -> p.getDisplayName().getFormattedText())
                 .immutable(Keys.NAME, p -> () -> p.getName().getFormattedText());

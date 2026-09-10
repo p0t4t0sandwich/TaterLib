@@ -22,6 +22,9 @@ import org.spongepowered.api.entity.Entity;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.entity.living.player.gamemode.GameModes;
+import org.spongepowered.api.event.cause.entity.damage.DamageTypes;
+import org.spongepowered.api.event.cause.entity.damage.source.DamageSources;
+import org.spongepowered.api.event.cause.entity.damage.source.EntityDamageSource;
 import org.spongepowered.api.item.inventory.entity.HumanInventory;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.text.Text;
@@ -119,7 +122,26 @@ public class SpongeBootstrap {
                 .mutable(
                         Keys.MAX_HEALTH,
                         e -> () -> SpongeLivingEntity.helper$maxHealth(e),
-                        e -> v -> SpongeLivingEntity.helper$maxHealth(e, v));
+                        e -> v -> SpongeLivingEntity.helper$maxHealth(e, v))
+                .action(
+                        Keys.DAMAGE_GENERIC,
+                        e ->
+                                d -> {
+                                    e.damage(d, DamageSources.GENERIC);
+                                    return null;
+                                })
+                .action(
+                        Keys.DAMAGE_ENTITY,
+                        e ->
+                                (d, src) -> {
+                                    e.damage(
+                                            d,
+                                            EntityDamageSource.builder()
+                                                    .type(DamageTypes.ATTACK)
+                                                    .entity(((SpongeLivingEntity) src).unwrap())
+                                                    .build());
+                                    return null;
+                                });
         DataRegistry.register(Nameable.class, Player.class)
                 .immutable(
                         Keys.DISPLAY_NAME,
