@@ -29,8 +29,8 @@ import dev.neuralnexus.taterapi.registries.DataRegistry;
 import dev.neuralnexus.taterlib.TaterLib;
 import dev.neuralnexus.taterlib.TaterLibPlugin;
 import dev.neuralnexus.taterlib.bukkit.event.command.BukkitCommandRegisterEvent;
+import dev.neuralnexus.taterlib.bukkit.reflection.LivingEntityUtil;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.BukkitEntity;
-import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.BukkitLivingEntity;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.event.network.BukkitRegisterPacketChannelsEvent;
 import dev.neuralnexus.taterlib.v1_13_2.bukkit.listeners.block.BukkitBlockListener;
@@ -66,8 +66,8 @@ public class BukkitTaterLibPlugin implements TaterLibPlugin {
         DataRegistry.register(Damageable.class, org.bukkit.entity.LivingEntity.class)
                 .mutable(
                         Keys.ABSORPTION,
-                        e -> () -> BukkitLivingEntity.helper$absorption(e),
-                        e -> v -> BukkitLivingEntity.helper$absorption(e, v))
+                        LivingEntityUtil::helper$absorption,
+                        LivingEntityUtil::helper$setAbsorption)
                 .mutable(Keys.HEALTH, e -> e::getHealth, e -> e::setHealth)
                 .mutable(Keys.MAX_HEALTH, e -> e::getMaxHealth, e -> e::setMaxHealth)
                 .action(

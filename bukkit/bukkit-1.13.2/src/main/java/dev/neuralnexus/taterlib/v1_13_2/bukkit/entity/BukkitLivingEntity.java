@@ -4,7 +4,6 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.bukkit.entity;
 
-import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
@@ -12,8 +11,6 @@ import dev.neuralnexus.taterapi.entity.LivingEntity;
 import dev.neuralnexus.taterapi.entity.Nameable;
 
 import org.jspecify.annotations.NonNull;
-
-import java.lang.reflect.InvocationTargetException;
 
 /** Bukkit implementation of {@link LivingEntity}. */
 public class BukkitLivingEntity extends BukkitEntity
@@ -33,39 +30,5 @@ public class BukkitLivingEntity extends BukkitEntity
     @Override
     public org.bukkit.entity.@NonNull LivingEntity unwrap() {
         return this.entity;
-    }
-
-    // TODO: Use MethodHandles
-    public static double helper$absorption(final org.bukkit.entity.@NonNull LivingEntity entity) {
-        // Reflect to get ((CraftLivingEntity) entity).getHandle().getAbsorptionHearts();
-        try {
-            final Class<?> craftLivingEntity =
-                    Class.forName("org.bukkit.craftbukkit.v1_13_R2.entity.CraftLivingEntity");
-            final Object handle = craftLivingEntity.getMethod("getHandle").invoke(entity);
-            return (double) handle.getClass().getMethod("getAbsorptionHearts").invoke(handle);
-        } catch (final ClassNotFoundException
-                | IllegalAccessException
-                | InvocationTargetException
-                | NoSuchMethodException e) {
-            TaterAPI.logger().error("Could not reflect to get entity's absorption", e);
-            return 0;
-        }
-    }
-
-    // TODO: Use MethodHandles
-    public static void helper$absorption(
-            final org.bukkit.entity.@NonNull LivingEntity entity, final double amount) {
-        // Reflect to set ((CraftLivingEntity) entity).getHandle().setAbsorptionHearts(amount);
-        try {
-            final Class<?> craftLivingEntity =
-                    Class.forName("org.bukkit.craftbukkit.v1_13_R2.entity.CraftLivingEntity");
-            final Object handle = craftLivingEntity.getMethod("getHandle").invoke(entity);
-            handle.getClass().getMethod("setAbsorptionHearts", double.class).invoke(handle, amount);
-        } catch (final ClassNotFoundException
-                | IllegalAccessException
-                | InvocationTargetException
-                | NoSuchMethodException e) {
-            TaterAPI.logger().error("Could not reflect to set entity's absorption", e);
-        }
     }
 }

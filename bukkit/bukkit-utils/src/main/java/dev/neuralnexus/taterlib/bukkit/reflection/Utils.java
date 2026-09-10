@@ -9,14 +9,15 @@ import dev.neuralnexus.taterapi.annotations.ToBeLibrary;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;
+import org.jspecify.annotations.NonNull;
 
 import java.lang.reflect.Field;
 
-public class Utils {
+public final class Utils {
     private static final String CRAFTBUKKIT_PACKAGE =
             Bukkit.getServer().getClass().getPackage().getName();
 
-    public static String cbClass(String clazz) {
+    public static String cbClass(final @NonNull String clazz) {
         return CRAFTBUKKIT_PACKAGE + "." + clazz;
     }
 
