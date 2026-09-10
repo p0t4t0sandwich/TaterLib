@@ -13,7 +13,13 @@ import org.jspecify.annotations.NonNull;
 
 /** The interface for a HumanEntity */
 public interface HumanEntity
-        extends LivingEntity, Damageable, DataHolder, Identifiable, InventoryHolder, Nameable {
+        extends LivingEntity,
+                Damageable,
+                DataHolder,
+                Identifiable,
+                InventoryHolder,
+                Locatable,
+                Nameable {
     /**
      * Get the player's current gamemode
      *

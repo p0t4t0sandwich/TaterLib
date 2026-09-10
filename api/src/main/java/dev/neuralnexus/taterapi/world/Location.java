@@ -120,17 +120,27 @@ public interface Location {
     BlockPos blockPosition();
 
     /**
-     * Getter for the world.
+     * Getter for the level.
      *
-     * @return The world.
+     * @return The level.
      */
+    default World level() {
+        return this.world();
+    }
+
+    @Deprecated
     World world();
 
     /**
-     * Setter for the world.
+     * Setter for the level.
      *
-     * @param world The world.
+     * @param level The level.
      */
+    default void setLevel(World level) {
+        this.setWorld(level);
+    }
+
+    @Deprecated
     void setWorld(World world);
 
     /**

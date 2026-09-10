@@ -8,6 +8,7 @@ import dev.neuralnexus.taterapi.data.DataHolder;
 import dev.neuralnexus.taterapi.entity.Damageable;
 import dev.neuralnexus.taterapi.entity.Identifiable;
 import dev.neuralnexus.taterapi.entity.InventoryHolder;
+import dev.neuralnexus.taterapi.entity.Locatable;
 import dev.neuralnexus.taterapi.entity.Nameable;
 import dev.neuralnexus.taterapi.entity.Notifiable;
 import dev.neuralnexus.taterapi.entity.ServerAware;
@@ -25,6 +26,7 @@ public interface ServerPlayer
                 DataHolder,
                 Identifiable,
                 InventoryHolder,
+                Locatable,
                 Nameable,
                 Notifiable,
                 ServerAware {

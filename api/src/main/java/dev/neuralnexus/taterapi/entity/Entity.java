@@ -9,7 +9,6 @@ import dev.neuralnexus.taterapi.data.MissingKeyException;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
 
 import org.jspecify.annotations.NonNull;
 
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /** The interface for an AbstractEntity */
-public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
+public interface Entity extends Actor, DataHolder, Identifiable, Locatable, Nameable {
     /**
      * Get the name of the entity
      *
@@ -53,23 +52,6 @@ public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
     Identifier type();
 
     /**
-     * Get the location of the entity
-     *
-     * @return The position of the entity
-     */
-    Location location();
-
-    /**
-     * Get the world of the entity
-     *
-     * @return The world of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default World world() {
-        return location().world();
-    }
-
-    /**
      * Get nearby entities
      *
      * @param radius The radius
@@ -89,74 +71,6 @@ public interface Entity extends Actor, DataHolder, Identifiable, Nameable {
     default List<Entity> nearbyEntities(double radius) {
         return this.nearbyEntities(radius, e -> true);
     }
-
-    /**
-     * Get the x position of the entity
-     *
-     * @return The x position of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default double x() {
-        return location().x();
-    }
-
-    /**
-     * Get the y position of the entity
-     *
-     * @return The y position of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default double y() {
-        return location().y();
-    }
-
-    /**
-     * Get the z position of the entity
-     *
-     * @return The z position of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default double z() {
-        return location().z();
-    }
-
-    /**
-     * Get the yaw of the entity
-     *
-     * @return The yaw of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default float yaw() {
-        return location().yaw();
-    }
-
-    /**
-     * Get the pitch of the entity
-     *
-     * @return The pitch of the entity
-     */
-    @Deprecated // TODO: Defer to Locatable
-    default float pitch() {
-        return location().pitch();
-    }
-
-    /**
-     * Get the current dimension of the entity
-     *
-     * @return The current dimension of the entity
-     */
-    @Deprecated // TODO: Defer to World?
-    default Identifier dimension() {
-        return world().dimension();
-    }
-
-    /**
-     * Get the current biome of the entity
-     *
-     * @return The current biome of the entity
-     */
-    @Deprecated // TODO: Defer to Location
-    Identifier biome();
 
     /**
      * Teleport the entity to the given Location
