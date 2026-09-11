@@ -60,7 +60,7 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
 
     @Override
     public @NonNull Identifier biome() {
-        return SpongeFactories.entityBiome.get(this.entity);
+        return SpongeFactories.worldBiome.get(this.entity.getWorld(), this.location().pos());
     }
 
     @Override

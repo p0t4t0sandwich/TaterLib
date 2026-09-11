@@ -36,7 +36,9 @@ public interface Locatable extends DataHolder {
      */
     // TODO: Defer to Level through Level#biome(Location)
     // TODO: some backwards-compatible translation to modern namespaces
-    @NonNull Identifier biome();
+    default @NonNull Identifier biome() {
+        throw new IllegalStateException();
+    }
 
     /**
      * Get the current dimension of the object

@@ -7,13 +7,15 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge;
 import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.resources.Identifier;
 
-import org.spongepowered.api.entity.Entity;
+import dev.neuralnexus.taterapi.world.BlockPos;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.api.entity.living.Living;
 import org.spongepowered.api.event.block.ChangeBlockEvent;
 import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.item.inventory.equipment.EquipmentInventory;
 import org.spongepowered.api.item.inventory.type.CarriedInventory;
+import org.spongepowered.api.world.World;
 
 public class SpongeFactories {
     // Block
@@ -26,8 +28,8 @@ public class SpongeFactories {
     public static InventoryOffHand inventoryOffHand = event -> null;
     public static InventorySetOffHand inventorySetOffHand = (event, itemStack) -> {};
     public static InventorySelectedSlot inventorySelectedSlot = event -> -1;
-    // Entity
-    public static EntityBiome entityBiome = event -> null;
+    // Level
+    public static WorldBiome worldBiome = (world, pos) -> null;
     // Living
     public static AbsorptionAmount absorptionAmount = event -> 0;
     public static SetAbsorptionAmount setAbsorptionAmount = (event, amount) -> {};
@@ -73,8 +75,8 @@ public class SpongeFactories {
     }
 
     @FunctionalInterface
-    public interface EntityBiome {
-        Identifier get(Entity entity);
+    public interface WorldBiome {
+        Identifier get(final @NonNull World world, final @NonNull BlockPos pos);
     }
 
     @FunctionalInterface

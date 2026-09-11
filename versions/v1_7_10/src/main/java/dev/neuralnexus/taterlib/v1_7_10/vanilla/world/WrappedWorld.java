@@ -50,6 +50,11 @@ public class WrappedWorld implements Level, Wrapped<World> {
         return ((WorldBridge) this.level).bridge$dimension();
     }
 
+    @Override // TODO: Find biome registry
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return ((WorldBridge) this.level).bridge$biome(pos);
+    }
+
     @Override
     public @NonNull Block block(final @NonNull BlockPos pos) {
         final net.minecraft.util.math.BlockPos blockPos =

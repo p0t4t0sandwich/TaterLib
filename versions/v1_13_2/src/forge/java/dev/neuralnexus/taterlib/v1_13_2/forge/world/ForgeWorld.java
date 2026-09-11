@@ -56,6 +56,16 @@ public class ForgeWorld implements Level, Wrapped<World> {
                         .toString());
     }
 
+    @SuppressWarnings("deprecation")
+    @Override // TODO: Revise
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return Identifier.of(
+                Objects.requireNonNull(IRegistry.field_212624_m.getKey(
+                        this.level.getBiome(
+                                new net.minecraft.util.math.BlockPos(pos.blockX(), pos.blockY(), pos.blockZ()))))
+                        .toString());
+    }
+
     @Override
     public @NonNull Block block(final @NonNull BlockPos pos) {
         final net.minecraft.util.math.BlockPos blockPos =

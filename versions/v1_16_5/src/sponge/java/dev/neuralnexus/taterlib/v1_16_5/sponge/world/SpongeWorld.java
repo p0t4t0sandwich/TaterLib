@@ -45,9 +45,14 @@ public class SpongeWorld implements ServerLevel, Level, Wrapped<World> {
                 .stream().map(Player.class::cast).collect(Collectors.toList());
     }
 
-    @Override
-    public @NonNull Identifier dimension() { // TODO: Revise
-        return Identifier.of(((ServerWorld) level).key().asString());
+    @Override // TODO: Revise
+    public @NonNull Identifier dimension() {
+        return Identifier.of(((ServerWorld) this.level).key().asString());
+    }
+
+    @Override // TODO: Revise
+    public @NonNull Identifier biome(@NonNull BlockPos pos) {
+        return Identifier.of(this.level.location(pos.blockX(), pos.blockY(), pos.blockZ()).biome().toString());
     }
 
     @Override

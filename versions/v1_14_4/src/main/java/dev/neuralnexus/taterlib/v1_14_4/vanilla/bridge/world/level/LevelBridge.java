@@ -4,10 +4,13 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level;
 
+import dev.neuralnexus.taterapi.world.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 
 import org.jspecify.annotations.NonNull;
 
 public interface LevelBridge {
     @NonNull ResourceLocation bridge$dimension();
+
+    @NonNull ResourceLocation bridge$biome(final @NonNull BlockPos pos);
 }

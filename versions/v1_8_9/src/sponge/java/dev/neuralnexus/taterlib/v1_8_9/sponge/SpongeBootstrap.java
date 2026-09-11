@@ -82,13 +82,9 @@ public class SpongeBootstrap {
                     return -1;
                 };
 
-        SpongeFactories.entityBiome =
-                entity ->
-                        Identifier.of(
-                                entity.getWorld()
-                                        .getBiome(
-                                                entity.getLocation().getBlockPosition().toVector2())
-                                        .getId());
+        SpongeFactories.worldBiome =
+                (world, pos) ->
+                        Identifier.of(world.getBiome(pos.blockX(), pos.blockZ()).getId());
 
         SpongeFactories.absorptionAmount =
                 entity -> {

@@ -10,6 +10,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
@@ -17,8 +18,10 @@ import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
 import net.minecraft.entity.EntityFilter;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.Dimension;
 
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -32,20 +35,26 @@ import java.util.stream.Collectors;
         version = @Versions(min = MinecraftVersion.V7_2, max = MinecraftVersion.V7_10))
 @Mixin(World.class)
 public abstract class WorldMixin implements WorldBridge {
+    // spotless:off
     @Shadow @Final public Dimension dimension;
-
-    @Shadow
-    public abstract List<net.minecraft.entity.Entity> shadow$getEntities(
+    @Shadow public abstract Biome shadow$getBiome(int x, int z);
+    @Shadow public abstract List<net.minecraft.entity.Entity> shadow$getEntities(
             net.minecraft.entity.Entity exclude, Box bounds, EntityFilter filter);
+    // spotless:on
 
     @Override
-    public Identifier bridge$dimension() {
+    public @NonNull Identifier bridge$dimension() {
         return Identifier.of(this.dimension.getName().replace(" ", "_").toLowerCase());
     }
 
     @Override
-    public List<Entity> bridge$entities(Entity entity, double radius, Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
+    public @NonNull Identifier bridge$biome(final @NonNull BlockPos pos) {
+        return Identifier.of(this.shadow$getBiome(pos.blockX(), pos.blockY()).name);
+    }
+
+    @Override
+    public List<Entity> bridge$entities(final @NonNull Entity entity, final double radius, final @NonNull Predicate<Entity> predicate) {
+        final net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
         return this.shadow$getEntities(
                         mcEntity,
                         mcEntity.getCollisionShape().expand(radius, radius, radius),
@@ -57,7 +66,7 @@ public abstract class WorldMixin implements WorldBridge {
 
     @Override
     public List<Entity> bridge$entities(
-            Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
+            final @NonNull Entity entity, final @NonNull Location pos1, final @NonNull Location pos2, final @NonNull Predicate<Entity> predicate) {
         return this.shadow$getEntities(
                         ((WrappedEntity) entity).unwrap(),
                         Box.of(pos1.x(), pos1.y(), pos1.z(), pos2.x(), pos2.y(), pos2.z()),

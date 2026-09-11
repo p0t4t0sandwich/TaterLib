@@ -13,6 +13,7 @@ import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterapi.world.level.Level;
 import dev.neuralnexus.taterapi.world.level.ServerLevel;
+import dev.neuralnexus.taterlib.v1_8_9.sponge.SpongeFactories;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.block.SpongeBlock;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.SpongeEntity;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.entity.player.SpongePlayer;
@@ -49,6 +50,11 @@ public class SpongeWorld implements ServerLevel, Level, Wrapped<World> {
     @Override
     public @NonNull Identifier dimension() {
         return Identifier.of(this.level.getName());
+    }
+
+    @Override
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return SpongeFactories.worldBiome.get(this.level, pos);
     }
 
     @Override

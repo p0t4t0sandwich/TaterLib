@@ -15,11 +15,13 @@ import dev.neuralnexus.taterapi.world.level.Level;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.block.VanillaBlock;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.LevelBridge;
 
+import net.minecraft.core.Registry;
 import net.minecraft.world.phys.AABB;
 
 import org.jspecify.annotations.NonNull;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -44,6 +46,15 @@ public class VanillaWorld implements Level, Wrapped<net.minecraft.world.level.Le
     @Override
     public @NonNull Identifier dimension() { // TODO: Revise
         return Identifier.of(((LevelBridge) this.level).bridge$dimension().toString());
+    }
+
+    @Override
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return Identifier.of(
+                Objects.requireNonNull(Registry.BIOME.getKey(
+                                this.level.getBiome(
+                                        new net.minecraft.core.BlockPos(pos.blockX(), pos.blockY(), pos.blockZ()))))
+                        .toString());
     }
 
     @Override

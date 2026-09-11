@@ -32,6 +32,22 @@ public interface Level {
     @NonNull Identifier dimension();
 
     /**
+     * Get the biome at the position
+     *
+     * @return The biome at the position
+     */
+    @NonNull Identifier biome(final @NonNull BlockPos pos);
+
+    /**
+     * Get the biome at the location
+     *
+     * @return The biome at the location
+     */
+    default @NonNull Identifier biome(final @NonNull Location location) {
+        return this.biome(location.pos());
+    }
+
+    /**
      * Get a block from a position in the level. Returns minecraft:air if the position is empty.
      *
      * @param pos The block's position

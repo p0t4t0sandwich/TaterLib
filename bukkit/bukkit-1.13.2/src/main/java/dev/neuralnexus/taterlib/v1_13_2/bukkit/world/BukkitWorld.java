@@ -49,6 +49,11 @@ public class BukkitWorld implements ServerLevel, Level, Wrapped<World> {
     }
 
     @Override
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return Identifier.of(this.level.getBiome(pos.blockX(), pos.blockZ()).name());
+    }
+
+    @Override
     public @NonNull Block block(final @NonNull BlockPos pos) {
         return new BukkitBlock(this.level.getBlockAt(pos.blockX(), pos.blockY(), pos.blockZ()));
     }

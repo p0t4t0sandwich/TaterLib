@@ -10,12 +10,15 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world.WorldBridge;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.WrappedEntity;
 
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeSource;
 import net.minecraft.world.dimension.Dimension;
 
 import org.jspecify.annotations.NonNull;
@@ -34,6 +37,7 @@ import java.util.stream.Collectors;
 public abstract class WorldMixin implements WorldBridge {
     // spotless:off
     @Shadow @Final public Dimension dimension;
+    @Shadow public abstract Biome shadow$getBiome(net.minecraft.util.math.BlockPos pos);
     @Shadow public abstract List<net.minecraft.entity.Entity> shadow$getEntities(
             net.minecraft.entity.Entity exclude, Box bounds,
             com.google.common.base.Predicate<? super net.minecraft.entity.Entity> filter);
@@ -45,11 +49,16 @@ public abstract class WorldMixin implements WorldBridge {
     }
 
     @Override
+    public @NonNull Identifier bridge$biome(final @NonNull BlockPos pos) {
+        return Identifier.of(this.shadow$getBiome(new net.minecraft.util.math.BlockPos(pos.blockX(), pos.blockY(), pos.blockZ())).getParent());
+    }
+
+    @Override
     public List<Entity> bridge$entities(
             final @NonNull Entity entity,
             final double radius,
             final @NonNull Predicate<Entity> predicate) {
-        net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
+        final net.minecraft.entity.Entity mcEntity = ((WrappedEntity) entity).unwrap();
         return this.shadow$getEntities(
                         mcEntity,
                         mcEntity.getCollisionShape().expand(radius, radius, radius),

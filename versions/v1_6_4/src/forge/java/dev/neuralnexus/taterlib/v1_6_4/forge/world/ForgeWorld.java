@@ -52,6 +52,12 @@ public class ForgeWorld implements Level, Wrapped<World> {
                 this.level.provider.getDimensionName().replace(" ", "_").toLowerCase());
     }
 
+    @Override // TODO: Find biome registry
+    public @NonNull Identifier biome(final @NonNull BlockPos pos) {
+        return Identifier.of(
+                this.level.provider.getBiomeGenForCoords(pos.blockX(), pos.blockZ()).biomeName);
+    }
+
     @Override
     public @NonNull Block block(final @NonNull BlockPos pos) {
         return new ForgeBlock(

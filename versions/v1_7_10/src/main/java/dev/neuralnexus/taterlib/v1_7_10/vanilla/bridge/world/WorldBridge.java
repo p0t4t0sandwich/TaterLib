@@ -6,6 +6,7 @@ package dev.neuralnexus.taterlib.v1_7_10.vanilla.bridge.world;
 
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
 
 import org.jspecify.annotations.NonNull;
@@ -15,6 +16,8 @@ import java.util.function.Predicate;
 
 public interface WorldBridge {
     @NonNull Identifier bridge$dimension();
+
+    @NonNull Identifier bridge$biome(final @NonNull BlockPos pos);
 
     List<Entity> bridge$entities(
             final @NonNull Entity entity,
