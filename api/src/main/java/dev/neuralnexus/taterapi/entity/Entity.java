@@ -59,7 +59,7 @@ public interface Entity extends Actor, DataHolder, Identifiable, Locatable, Name
      * @return The entities in the world that match the parameters
      */
     default List<Entity> nearbyEntities(double radius, Predicate<Entity> predicate) {
-        return location().world().entities(this, radius, predicate);
+        return this.location().level().entities(this, radius, predicate);
     }
 
     /**
@@ -69,7 +69,7 @@ public interface Entity extends Actor, DataHolder, Identifiable, Locatable, Name
      * @return The entities in the world that match the parameters
      */
     default List<Entity> nearbyEntities(double radius) {
-        return this.nearbyEntities(radius, e -> true);
+        return this.nearbyEntities(radius, _ -> true);
     }
 
     /**

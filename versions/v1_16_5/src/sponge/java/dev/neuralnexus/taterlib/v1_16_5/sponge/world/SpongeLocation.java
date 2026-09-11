@@ -6,32 +6,35 @@ package dev.neuralnexus.taterlib.v1_16_5.sponge.world;
 
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
+
+import org.jspecify.annotations.NonNull;
 
 /** Sponge implementation of {@link Location}. */
 @SuppressWarnings("FieldCanBeLocal")
 public class SpongeLocation implements Location {
     private final org.spongepowered.api.world.server.ServerLocation location;
-    private org.spongepowered.api.world.server.ServerWorld world;
+    private org.spongepowered.api.world.server.ServerWorld level;
 
     /** Creates a new location. */
-    public SpongeLocation(org.spongepowered.api.world.server.ServerLocation location) {
+    public SpongeLocation(
+            final org.spongepowered.api.world.server.@NonNull ServerLocation location) {
         this.location = location;
     }
 
     @Override
-    public void setX(double x) {
-        location.add(x - location.x(), 0, 0);
+    public void setX(final double x) {
+        this.location.add(x - location.x(), 0, 0);
     }
 
     @Override
-    public void setY(double y) {
-        location.add(0, y - location.y(), 0);
+    public void setY(final double y) {
+        this.location.add(0, y - location.y(), 0);
     }
 
     @Override
-    public void setZ(double z) {
-        location.add(0, 0, z - location.z());
+    public void setZ(final double z) {
+        this.location.add(0, 0, z - location.z());
     }
 
     @Override
@@ -41,7 +44,7 @@ public class SpongeLocation implements Location {
     }
 
     @Override
-    public void setYaw(float yaw) {
+    public void setYaw(final float yaw) {
         // TODO: Find a way to set the yaw
     }
 
@@ -52,25 +55,23 @@ public class SpongeLocation implements Location {
     }
 
     @Override
-    public void setPitch(float pitch) {
+    public void setPitch(final float pitch) {
         // TODO: Find a way to set the pitch
     }
 
     @Override
-    public BlockPos blockPosition() {
-        return new BlockPos(location.blockX(), location.blockY(), location.blockZ());
+    public @NonNull BlockPos pos() {
+        return new BlockPos(this.location.blockX(), this.location.blockY(), this.location.blockZ());
     }
 
     @Override
-    public World world() {
-        if (world == null) {
-            world = location.world();
-        }
-        return new SpongeWorld(world);
+    public @NonNull Level level() {
+        if (this.level != null) return new SpongeWorld(this.level);
+        return new SpongeWorld(this.location.world());
     }
 
     @Override
-    public void setWorld(World world) {
-        this.world = ((SpongeServerWorld) world).world();
+    public void setLevel(final @NonNull Level level) {
+        this.level = ((SpongeServerWorld) level).level();
     }
 }

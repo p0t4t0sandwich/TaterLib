@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_6_4.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_6_4.forge.world.ForgeServerWorld;
 
@@ -53,7 +53,7 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
+    public List<ServerLevel> worlds() {
         return Arrays.stream(server.worldServers)
                 .map(ForgeServerWorld::new)
                 .collect(Collectors.toList());

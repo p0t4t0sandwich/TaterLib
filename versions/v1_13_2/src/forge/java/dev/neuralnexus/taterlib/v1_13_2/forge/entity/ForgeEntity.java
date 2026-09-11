@@ -59,13 +59,13 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public Location location() {
+    public @NonNull Location location() {
         return new ForgeLocation(this.entity);
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    public Identifier biome() { // TODO: Revise
+    public @NonNull Identifier biome() { // TODO: Revise
         return Identifier.of(
                 IRegistry.field_212624_m
                         .getKey(this.entity.world.getBiome(this.entity.getPosition()))
@@ -74,10 +74,10 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     public void teleport(Location location) {
-        if (!location.world().dimension().equals(dimension())) {
+        if (!location.level().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =
                     new ForgeServer(ServerLifecycleHooks.getCurrentServer())
-                            .world(location.world().dimension())
+                            .world(location.level().dimension())
                             .map(ForgeServerWorld.class::cast)
                             .map(ForgeServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;

@@ -6,19 +6,22 @@ package dev.neuralnexus.taterlib.v1_6_4.forge.world;
 
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.world.World;
+
+import org.jspecify.annotations.NonNull;
 
 /** Forge implementation of {@link Location}. */
 public class ForgeLocation implements Location {
-    private BlockPos position;
+    private @NonNull BlockPos position;
     private float yaw;
     private float pitch;
-    private net.minecraft.world.World world;
+    private @NonNull World level;
 
     /** Creates a new location from an Entity. */
-    public ForgeLocation(Entity entity) {
+    public ForgeLocation(final @NonNull Entity entity) {
         this(
                 new BlockPos(entity.posX, entity.posY, entity.posZ),
                 entity.rotationYaw,
@@ -28,31 +31,19 @@ public class ForgeLocation implements Location {
 
     /** Creates a new location. */
     public ForgeLocation(
-            BlockPos position, float yaw, float pitch, net.minecraft.world.World world) {
+            final @NonNull BlockPos position,
+            final float yaw,
+            final float pitch,
+            final @NonNull World world) {
         this.position = position;
         this.yaw = yaw;
         this.pitch = pitch;
-        this.world = world;
+        this.level = world;
     }
 
     @Override
-    public double x() {
-        return position.x();
-    }
-
-    @Override
-    public void setX(double x) {
+    public void setX(final double x) {
         position = new BlockPos(x, y(), z());
-    }
-
-    @Override
-    public double blockX() {
-        return Math.floor(x());
-    }
-
-    @Override
-    public double y() {
-        return position.y();
     }
 
     @Override
@@ -61,57 +52,42 @@ public class ForgeLocation implements Location {
     }
 
     @Override
-    public double blockY() {
-        return Math.floor(y());
-    }
-
-    @Override
-    public double z() {
-        return position.z();
-    }
-
-    @Override
-    public void setZ(double z) {
+    public void setZ(final double z) {
         position = new BlockPos(x(), y(), z);
     }
 
     @Override
-    public double blockZ() {
-        return Math.floor(z());
-    }
-
-    @Override
     public float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     @Override
-    public void setYaw(float yaw) {
+    public void setYaw(final float yaw) {
         this.yaw = yaw;
     }
 
     @Override
     public float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     @Override
-    public void setPitch(float pitch) {
+    public void setPitch(final float pitch) {
         this.pitch = pitch;
     }
 
     @Override
-    public BlockPos blockPosition() {
-        return new BlockPos(position.x(), position.y(), position.z());
+    public @NonNull BlockPos pos() {
+        return new BlockPos(this.position.x(), this.position.y(), this.position.z());
     }
 
     @Override
-    public World world() {
-        return new ForgeWorld(world);
+    public @NonNull Level level() {
+        return new ForgeWorld(this.level);
     }
 
     @Override
-    public void setWorld(World world) {
-        this.world = ((ForgeWorld) world).unwrap();
+    public void setLevel(final @NonNull Level level) {
+        this.level = ((ForgeWorld) level).unwrap();
     }
 }

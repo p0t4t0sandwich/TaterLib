@@ -6,6 +6,8 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level;
 
 import net.minecraft.resources.ResourceLocation;
 
+import org.jspecify.annotations.NonNull;
+
 public interface LevelBridge {
-    ResourceLocation bridge$dimension();
+    @NonNull ResourceLocation bridge$dimension();
 }

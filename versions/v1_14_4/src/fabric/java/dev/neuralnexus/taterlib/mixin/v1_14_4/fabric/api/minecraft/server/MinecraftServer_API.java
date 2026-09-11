@@ -10,11 +10,10 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.world.VanillaServerWorld;
 
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.players.PlayerList;
 
 import org.spongepowered.asm.mixin.Implements;
@@ -38,7 +37,7 @@ public abstract class MinecraftServer_API {
     public abstract PlayerList shadow$getPlayerList();
 
     @Shadow
-    public abstract Iterable<ServerLevel> shadow$getAllLevels();
+    public abstract Iterable<net.minecraft.server.level.ServerLevel> shadow$getAllLevels();
 
     public String server$brand() {
         return this.shadow$getServerModName();
@@ -50,8 +49,8 @@ public abstract class MinecraftServer_API {
                 .collect(Collectors.toList());
     }
 
-    public List<ServerWorld> server$worlds() {
-        List<ServerWorld> worlds = new ArrayList<>();
+    public List<ServerLevel> server$worlds() {
+        List<ServerLevel> worlds = new ArrayList<>();
         this.shadow$getAllLevels().forEach(world -> worlds.add(new VanillaServerWorld(world)));
         return worlds;
     }

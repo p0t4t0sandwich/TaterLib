@@ -106,7 +106,7 @@ public class BukkitPlayer extends BukkitLivingEntity implements Player, ServerPl
     public void setSpawn(Location location, boolean forced) {
         player.setBedSpawnLocation(
                 new org.bukkit.Location(
-                        ((BukkitWorld) location.world()).unwrap(),
+                        ((BukkitWorld) location.level()).unwrap(),
                         location.x(),
                         location.y(),
                         location.z()),

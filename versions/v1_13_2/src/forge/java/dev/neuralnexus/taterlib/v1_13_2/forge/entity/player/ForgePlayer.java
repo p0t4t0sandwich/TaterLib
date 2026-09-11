@@ -75,7 +75,7 @@ public class ForgePlayer extends ForgeLivingEntity implements Player, ServerPlay
     public void setSpawn(Location location, boolean forced) {
         Optional<WorldServer> serverLevel =
                 ((Server) TaterAPI.instance().server())
-                        .world(location.world().dimension())
+                        .world(location.level().dimension())
                         .map(ForgeServerWorld.class::cast)
                         .map(ForgeServerWorld::unwrap);
         player.setSpawnPoint(

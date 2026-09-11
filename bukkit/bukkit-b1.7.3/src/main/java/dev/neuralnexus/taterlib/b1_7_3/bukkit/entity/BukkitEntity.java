@@ -52,13 +52,13 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     }
 
     @Override
-    public Location location() {
+    public @NonNull Location location() {
         return new BukkitLocation(this.entity.getLocation());
     }
 
     // TODO: some backwards-compatible translation to modern namespaces
     @Override
-    public Identifier biome() {
+    public @NonNull Identifier biome() {
         return Identifier.of(this.entity.getLocation().getBlock().getBiome().name());
     }
 
@@ -66,7 +66,7 @@ public class BukkitEntity implements Entity, Wrapped<org.bukkit.entity.Entity> {
     public void teleport(Location location) {
         this.entity.teleport(
                 new org.bukkit.Location(
-                        ((BukkitWorld) location.world()).unwrap(),
+                        ((BukkitWorld) location.level()).unwrap(),
                         location.x(),
                         location.y(),
                         location.z()));

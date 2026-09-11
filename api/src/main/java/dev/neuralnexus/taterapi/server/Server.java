@@ -7,7 +7,7 @@ package dev.neuralnexus.taterapi.server;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.server.metrics.TPSProvider;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +36,7 @@ public interface Server extends SimpleServer {
      *
      * @return The server's worlds.
      */
-    List<ServerWorld> worlds();
+    List<ServerLevel> worlds();
 
     /**
      * Get the server's world by dimension.
@@ -44,7 +44,7 @@ public interface Server extends SimpleServer {
      * @param dimension The dimension.
      * @return The server's world by dimension.
      */
-    default Optional<ServerWorld> world(Identifier dimension) {
+    default Optional<ServerLevel> world(Identifier dimension) {
         return worlds().stream()
                 .filter(world -> world.dimension().asString().equals(dimension.asString()))
                 .findFirst();
@@ -56,7 +56,7 @@ public interface Server extends SimpleServer {
      * @param dimension The dimension.
      * @return The server's world by dimension.
      */
-    default Optional<ServerWorld> world(String dimension) {
+    default Optional<ServerLevel> world(String dimension) {
         return worlds().stream()
                 .filter(world -> world.dimension().asString().equals(dimension))
                 .findFirst();

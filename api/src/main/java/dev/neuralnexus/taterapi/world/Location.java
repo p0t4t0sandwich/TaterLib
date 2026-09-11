@@ -6,6 +6,9 @@ package dev.neuralnexus.taterapi.world;
 
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.world.level.Level;
+
+import org.jspecify.annotations.NonNull;
 
 /** Abstracts a location. */
 public interface Location {
@@ -15,7 +18,7 @@ public interface Location {
      * @return The x position.
      */
     default double x() {
-        return blockPosition().x();
+        return this.pos().x();
     }
 
     /**
@@ -23,7 +26,7 @@ public interface Location {
      *
      * @param x The x position.
      */
-    void setX(double x);
+    void setX(final double x);
 
     /**
      * Getter for the block x position.
@@ -31,7 +34,7 @@ public interface Location {
      * @return The block x position.
      */
     default double blockX() {
-        return Math.floor(x());
+        return this.pos().blockX();
     }
 
     /**
@@ -40,7 +43,7 @@ public interface Location {
      * @return The y position.
      */
     default double y() {
-        return blockPosition().y();
+        return this.pos().y();
     }
 
     /**
@@ -48,15 +51,15 @@ public interface Location {
      *
      * @param y The y position.
      */
-    void setY(double y);
+    void setY(final double y);
 
     /**
      * Getter for the block y position.
      *
      * @return The block y position.
      */
-    default double blockY() {
-        return Math.floor(y());
+    default int blockY() {
+        return this.pos().blockY();
     }
 
     /**
@@ -65,7 +68,7 @@ public interface Location {
      * @return The z position.
      */
     default double z() {
-        return blockPosition().z();
+        return this.pos().z();
     }
 
     /**
@@ -81,7 +84,7 @@ public interface Location {
      * @return The block z position.
      */
     default double blockZ() {
-        return Math.floor(z());
+        return this.pos().blockZ();
     }
 
     /**
@@ -96,7 +99,7 @@ public interface Location {
      *
      * @param yaw The yaw.
      */
-    void setYaw(float yaw);
+    void setYaw(final float yaw);
 
     /**
      * Getter for the pitch.
@@ -110,46 +113,41 @@ public interface Location {
      *
      * @param pitch The pitch.
      */
-    void setPitch(float pitch);
+    void setPitch(final float pitch);
 
     /**
      * Getter for the block position.
      *
      * @return The block position.
      */
-    BlockPos blockPosition();
+    @NonNull BlockPos pos();
+
+    @Deprecated
+    default @NonNull BlockPos blockPosition() {
+        return this.pos();
+    }
 
     /**
      * Getter for the level.
      *
      * @return The level.
      */
-    default World level() {
-        return this.world();
-    }
-
-    @Deprecated
-    World world();
+    @NonNull Level level();
 
     /**
      * Setter for the level.
      *
      * @param level The level.
      */
-    default void setLevel(World level) {
-        this.setWorld(level);
-    }
-
-    @Deprecated
-    void setWorld(World world);
+    void setLevel(final @NonNull Level level);
 
     /**
      * Getter for the dimension.
      *
      * @return The dimension.
      */
-    default Identifier dimension() {
-        return world().dimension();
+    default @NonNull Identifier dimension() {
+        return this.level().dimension();
     }
 
     /**
@@ -158,8 +156,8 @@ public interface Location {
      * @param location The location to compare to.
      * @return The distance between the two locations.
      */
-    default double distance(Location location) {
-        return distance(location.x(), location.y(), location.z());
+    default double distance(final @NonNull Location location) {
+        return this.distance(location.x(), location.y(), location.z());
     }
 
     /**
@@ -170,7 +168,7 @@ public interface Location {
      * @param z The z position to compare to.
      * @return The distance between the two locations.
      */
-    default double distance(double x, double y, double z) {
+    default double distance(final double x, final double y, final double z) {
         double x1 = x() - x;
         double y1 = y() - y;
         double z1 = z() - z;
@@ -193,14 +191,14 @@ public interface Location {
          *
          * @param location The location.
          */
-        Builder from(Location location);
+        Builder from(final @NonNull Location location);
 
         /**
          * Set the position.
          *
          * @param blockPos The position.
          */
-        Builder position(BlockPos blockPos);
+        Builder position(final @NonNull BlockPos blockPos);
 
         /**
          * Set the position.
@@ -209,7 +207,8 @@ public interface Location {
          * @param y The y position.
          * @param z The z position.
          */
-        default Builder position(double x, double y, double z) {
+        default Builder position(
+                final @NonNull double x, final @NonNull double y, final @NonNull double z) {
             return position(new BlockPos(x, y, z));
         }
 
@@ -219,7 +218,7 @@ public interface Location {
          * @param yaw The yaw.
          * @return The builder.
          */
-        Builder yaw(float yaw);
+        Builder yaw(final float yaw);
 
         /**
          * Set the pitch.
@@ -227,21 +226,21 @@ public interface Location {
          * @param pitch The pitch.
          * @return The builder.
          */
-        Builder pitch(float pitch);
+        Builder pitch(final float pitch);
 
         /**
-         * Set the world.
+         * Set the level.
          *
-         * @param world The world.
+         * @param level The level.
          * @return The builder.
          */
-        Builder world(World world);
+        Builder level(final @NonNull Level level);
 
         /**
          * Build the location.
          *
          * @return The location.
          */
-        Location build();
+        @NonNull Location build();
     }
 }

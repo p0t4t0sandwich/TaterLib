@@ -6,40 +6,42 @@ package dev.neuralnexus.taterlib.v1_7_10.bukkit.world;
 
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
+
+import org.jspecify.annotations.NonNull;
 
 /** Bukkit implementation of {@link Location}. */
 public class BukkitLocation implements Location {
-    private final org.bukkit.Location location;
+    private final org.bukkit.@NonNull Location location;
 
     /** Creates a new location. */
-    public BukkitLocation(org.bukkit.Location location) {
+    public BukkitLocation(final org.bukkit.@NonNull Location location) {
         this.location = location;
     }
 
     @Override
-    public void setX(double x) {
-        location.setX(x);
+    public void setX(final double x) {
+        this.location.setX(x);
     }
 
     @Override
     public void setY(double y) {
-        location.setY(y);
+        this.location.setY(y);
     }
 
     @Override
-    public void setZ(double z) {
-        location.setZ(z);
+    public void setZ(final double z) {
+        this.location.setZ(z);
     }
 
     @Override
     public float yaw() {
-        return location.getYaw();
+        return this.location.getYaw();
     }
 
     @Override
-    public void setYaw(float yaw) {
-        location.setYaw(yaw);
+    public void setYaw(final float yaw) {
+        this.location.setYaw(yaw);
     }
 
     @Override
@@ -48,22 +50,22 @@ public class BukkitLocation implements Location {
     }
 
     @Override
-    public void setPitch(float pitch) {
-        location.setPitch(pitch);
+    public void setPitch(final float pitch) {
+        this.location.setPitch(pitch);
     }
 
     @Override
-    public BlockPos blockPosition() {
+    public @NonNull BlockPos pos() {
         return new BlockPos(location.getX(), location.getY(), location.getZ());
     }
 
     @Override
-    public World world() {
-        return new BukkitWorld(location.getWorld());
+    public @NonNull Level level() {
+        return new BukkitWorld(this.location.getWorld());
     }
 
     @Override
-    public void setWorld(World world) {
-        location.setWorld(((BukkitWorld) world).unwrap());
+    public void setLevel(final @NonNull Level level) {
+        this.location.setWorld(((BukkitWorld) level).unwrap());
     }
 }

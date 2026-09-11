@@ -6,7 +6,7 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.server;
 
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_13_2.forge.entity.player.ForgePlayer;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeServerWorld;
 
@@ -35,8 +35,8 @@ public class ForgeServer implements Server {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
-        List<ServerWorld> worlds = new ArrayList<>();
+    public List<ServerLevel> worlds() {
+        List<ServerLevel> worlds = new ArrayList<>();
         server.func_212370_w().forEach(world -> worlds.add(new ForgeServerWorld(world)));
         return worlds;
     }

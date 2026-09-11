@@ -40,6 +40,6 @@ public abstract class ServerPlayerMixin implements ServerPlayerBridge {
                 .setSpawnPoint(
                         new BlockPos(location.x(), location.y(), location.z()),
                         forced,
-                        ((VanillaWorld) location.world()).unwrap().dimension.getType());
+                        ((VanillaWorld) location.level()).unwrap().dimension.getType());
     }
 }

@@ -55,12 +55,12 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
     }
 
     @Override
-    public Location location() {
+    public @NonNull Location location() {
         return new ForgeLocation(this.entity);
     }
 
     @Override
-    public Identifier biome() {
+    public @NonNull Identifier biome() {
         // TODO: Find biome registry
         return Identifier.of(
                 this.entity.worldObj.provider.getBiomeGenForCoords(
@@ -70,10 +70,10 @@ public class ForgeEntity implements Entity, Wrapped<net.minecraft.entity.Entity>
 
     @Override
     public void teleport(Location location) {
-        if (!location.world().dimension().equals(dimension())) {
+        if (!location.level().dimension().equals(dimension())) {
             Optional<WorldServer> serverLevel =
                     ((Server) TaterAPI.instance().server())
-                            .world(location.world().dimension())
+                            .world(location.level().dimension())
                             .map(ForgeServerWorld.class::cast)
                             .map(ForgeServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;

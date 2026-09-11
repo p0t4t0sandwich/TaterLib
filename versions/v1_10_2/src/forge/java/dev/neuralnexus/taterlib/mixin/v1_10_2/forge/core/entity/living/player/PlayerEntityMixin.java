@@ -39,7 +39,7 @@ public abstract class PlayerEntityMixin implements PlayerEntityBridge {
         // TODO: Simplify once WrappedServerWorld is injected via mixin
         Optional<ServerWorld> serverLevel =
                 ((Server) ((ServerPlayerEntity) (Object) this).server)
-                        .world(location.world().dimension())
+                        .world(location.level().dimension())
                         .map(WrappedServerWorld.class::cast)
                         .map(WrappedServerWorld::unwrap);
         if (!serverLevel.isPresent()) return;

@@ -4,13 +4,15 @@
  */
 package dev.neuralnexus.taterlib.v1_16_5.sponge.world;
 
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 
-/** Sponge implementation of {@link ServerWorld}. */
-public class SpongeServerWorld extends SpongeWorld implements ServerWorld {
-    private final org.spongepowered.api.world.server.ServerWorld level;
+import org.jspecify.annotations.NonNull;
 
-    public SpongeServerWorld(org.spongepowered.api.world.server.ServerWorld level) {
+/** Sponge implementation of {@link ServerLevel}. */
+public class SpongeServerWorld extends SpongeWorld implements ServerLevel {
+    private final org.spongepowered.api.world.server.@NonNull ServerWorld level;
+
+    public SpongeServerWorld(final org.spongepowered.api.world.server.@NonNull ServerWorld level) {
         super(level);
         this.level = level;
     }
@@ -20,7 +22,7 @@ public class SpongeServerWorld extends SpongeWorld implements ServerWorld {
      *
      * @return The level.
      */
-    public org.spongepowered.api.world.server.ServerWorld world() {
-        return level;
+    public org.spongepowered.api.world.server.@NonNull ServerWorld level() {
+        return this.level;
     }
 }

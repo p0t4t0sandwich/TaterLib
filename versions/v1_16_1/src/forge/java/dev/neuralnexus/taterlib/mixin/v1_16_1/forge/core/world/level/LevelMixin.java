@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -26,7 +27,7 @@ public abstract class LevelMixin implements LevelBridge {
     @Shadow @Final private ResourceKey<Level> dimension;
 
     @Override
-    public ResourceLocation bridge$dimension() {
+    public @NonNull ResourceLocation bridge$dimension() {
         return this.dimension.location();
     }
 }

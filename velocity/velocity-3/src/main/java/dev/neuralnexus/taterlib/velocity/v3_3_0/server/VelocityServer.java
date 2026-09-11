@@ -11,7 +11,7 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.velocity.v3_3_0.entity.player.VelocityPlayer;
 
 import java.util.Collection;
@@ -60,7 +60,7 @@ public class VelocityServer implements Server, Wrapped<RegisteredServer> {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
+    public List<ServerLevel> worlds() {
         throw new VersionFeatureNotSupportedException();
     }
 }

@@ -5,30 +5,34 @@
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.world;
 
 import dev.neuralnexus.taterapi.Wrapped;
+import dev.neuralnexus.taterapi.block.Block;
 import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.entity.player.Player;
 import dev.neuralnexus.taterapi.resources.Identifier;
+import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
+import dev.neuralnexus.taterlib.v1_14_4.vanilla.block.VanillaBlock;
 import dev.neuralnexus.taterlib.v1_14_4.vanilla.bridge.world.level.LevelBridge;
 
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-/** Vanilla implementation of {@link World}. */
-public class VanillaWorld implements World, Wrapped<Level> {
-    private final Level level;
+/** Vanilla implementation of {@link Level}. */
+public class VanillaWorld implements Level, Wrapped<net.minecraft.world.level.Level> {
+    private final net.minecraft.world.level.@NonNull Level level;
 
-    public VanillaWorld(Level level) {
+    public VanillaWorld(final net.minecraft.world.level.@NonNull Level level) {
         this.level = level;
     }
 
     @Override
-    public Level unwrap() {
+    public net.minecraft.world.level.@NonNull Level unwrap() {
         return this.level;
     }
 
@@ -38,12 +42,22 @@ public class VanillaWorld implements World, Wrapped<Level> {
     }
 
     @Override
-    public Identifier dimension() { // TODO: Revise
+    public @NonNull Identifier dimension() { // TODO: Revise
         return Identifier.of(((LevelBridge) this.level).bridge$dimension().toString());
     }
 
     @Override
-    public List<Entity> entities(Entity entity, double radius, Predicate<Entity> predicate) {
+    public @NonNull Block block(final @NonNull BlockPos pos) {
+        final net.minecraft.core.BlockPos blockPos =
+                new net.minecraft.core.BlockPos(pos.blockX(), pos.blockY(), pos.blockZ());
+        return new VanillaBlock(blockPos, this.level.getBlockState(blockPos).getBlock());
+    }
+
+    @Override
+    public List<Entity> entities(
+            final @NonNull Entity entity,
+            final double radius,
+            final @NonNull Predicate<Entity> predicate) {
         net.minecraft.world.entity.Entity mcEntity = (net.minecraft.world.entity.Entity) entity;
         return this.level
                 .getEntities(
@@ -57,7 +71,10 @@ public class VanillaWorld implements World, Wrapped<Level> {
 
     @Override
     public List<Entity> entities(
-            Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate) {
+            final @NonNull Entity entity,
+            final @NonNull Location pos1,
+            final @NonNull Location pos2,
+            final @NonNull Predicate<Entity> predicate) {
         return this.level
                 .getEntities(
                         (net.minecraft.world.entity.Entity) entity,

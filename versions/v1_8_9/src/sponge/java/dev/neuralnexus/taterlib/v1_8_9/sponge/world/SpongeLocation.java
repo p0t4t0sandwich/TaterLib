@@ -6,31 +6,35 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.world;
 
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
+
+import org.jspecify.annotations.NonNull;
 
 /** Sponge implementation of {@link Location}. */
 public class SpongeLocation implements Location {
-    private final org.spongepowered.api.world.Location<org.spongepowered.api.world.World> location;
+    private final org.spongepowered.api.world.@NonNull Location<org.spongepowered.api.world.World>
+            location;
 
     /** Creates a new location. */
     public SpongeLocation(
-            org.spongepowered.api.world.Location<org.spongepowered.api.world.World> location) {
+            final org.spongepowered.api.world.@NonNull Location<org.spongepowered.api.world.World>
+                    location) {
         this.location = location;
     }
 
     @Override
-    public void setX(double x) {
-        location.add(x - location.getX(), 0, 0);
+    public void setX(final double x) {
+        this.location.add(x - location.getX(), 0, 0);
     }
 
     @Override
-    public void setY(double y) {
-        location.add(0, y - location.getY(), 0);
+    public void setY(final double y) {
+        this.location.add(0, y - location.getY(), 0);
     }
 
     @Override
-    public void setZ(double z) {
-        location.add(0, 0, z - location.getZ());
+    public void setZ(final double z) {
+        this.location.add(0, 0, z - location.getZ());
     }
 
     @Override
@@ -40,7 +44,7 @@ public class SpongeLocation implements Location {
     }
 
     @Override
-    public void setYaw(float yaw) {
+    public void setYaw(final float yaw) {
         // TODO: Find a way to set the yaw
     }
 
@@ -51,22 +55,22 @@ public class SpongeLocation implements Location {
     }
 
     @Override
-    public void setPitch(float pitch) {
+    public void setPitch(final float pitch) {
         // TODO: Find a way to set the pitch
     }
 
     @Override
-    public BlockPos blockPosition() {
-        return new BlockPos(location.getX(), location.getY(), location.getZ());
+    public @NonNull BlockPos pos() {
+        return new BlockPos(this.location.getX(), this.location.getY(), this.location.getZ());
     }
 
     @Override
-    public World world() {
-        return new SpongeWorld(location.getExtent());
+    public @NonNull Level level() {
+        return new SpongeWorld(this.location.getExtent());
     }
 
     @Override
-    public void setWorld(World world) {
-        location.setExtent(((SpongeWorld) world).unwrap());
+    public void setLevel(final @NonNull Level level) {
+        this.location.setExtent(((SpongeWorld) level).unwrap());
     }
 }

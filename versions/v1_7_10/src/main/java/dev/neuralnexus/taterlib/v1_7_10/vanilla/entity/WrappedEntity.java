@@ -50,22 +50,22 @@ public class WrappedEntity implements Entity, Wrapped<net.minecraft.entity.Entit
     }
 
     @Override
-    public Location location() {
+    public @NonNull Location location() {
         return new VanillaLocation(this.entity);
     }
 
     @Override
-    public Identifier biome() {
+    public @NonNull Identifier biome() {
         // TODO: Find biome registry
         return ((EntityBridge) this.entity).bridge$biome();
     }
 
     @Override
     public void teleport(Location location) {
-        if (!location.world().dimension().equals(dimension())) {
+        if (!location.level().dimension().equals(dimension())) {
             Optional<ServerWorld> serverLevel =
                     ((Server) ((ServerWorld) this.entity.world).getServer())
-                            .world(location.world().dimension())
+                            .world(location.level().dimension())
                             .map(WrappedServerWorld.class::cast)
                             .map(WrappedServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;

@@ -4,80 +4,97 @@
  */
 package dev.neuralnexus.taterlib.v1_13_2.forge.world;
 
+import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
+import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.Vec3d;
+
+import org.jspecify.annotations.NonNull;
 
 /** Forge implementation of {@link Location}. */
 public class ForgeLocation implements Location {
-    private Vec3d position;
+    private @NonNull BlockPos position;
     private float yaw;
     private float pitch;
-    private net.minecraft.world.World world;
+    private @NonNull Level level;
 
     /** Creates a new location from an Entity. */
-    public ForgeLocation(Entity entity) {
-        this(entity.getPositionVector(), entity.rotationYaw, entity.rotationPitch, entity.world);
+    public ForgeLocation(final @NonNull Entity entity) {
+        this(((ForgeEntity) entity).unwrap());
+    }
+
+    /** Creates a new location from an Entity. */
+    public ForgeLocation(final net.minecraft.entity.@NonNull Entity entity) {
+        final Vec3d pos = entity.getPositionVector();
+        this(
+                new BlockPos(pos.x, pos.y, pos.z),
+                entity.rotationYaw,
+                entity.rotationPitch,
+                new ForgeWorld(entity.world));
     }
 
     /** Creates a new location. */
-    public ForgeLocation(Vec3d position, float yaw, float pitch, net.minecraft.world.World world) {
+    public ForgeLocation(
+            final @NonNull BlockPos position,
+            final float yaw,
+            final float pitch,
+            final @NonNull Level level) {
         this.position = position;
         this.yaw = yaw;
         this.pitch = pitch;
-        this.world = world;
+        this.level = level;
     }
 
     @Override
-    public void setX(double x) {
-        position = new Vec3d(x, y(), z());
+    public void setX(final double x) {
+        this.position = new BlockPos(x, this.y(), this.z());
     }
 
     @Override
-    public void setY(double y) {
-        position = new Vec3d(x(), y, z());
+    public void setY(final double y) {
+        this.position = new BlockPos(this.x(), y, this.z());
     }
 
     @Override
-    public void setZ(double z) {
-        position = new Vec3d(x(), y(), z);
+    public void setZ(final double z) {
+        this.position = new BlockPos(this.x(), this.y(), z);
     }
 
     @Override
     public float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     @Override
-    public void setYaw(float yaw) {
+    public void setYaw(final float yaw) {
         this.yaw = yaw;
     }
 
     @Override
     public float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     @Override
-    public void setPitch(float pitch) {
+    public void setPitch(final float pitch) {
         this.pitch = pitch;
     }
 
     @Override
-    public BlockPos blockPosition() {
-        return new BlockPos(position.x, position.y, position.z);
+    public @NonNull BlockPos pos() {
+        return this.position;
     }
 
     @Override
-    public World world() {
-        return new ForgeWorld(world);
+    public @NonNull Level level() {
+        return this.level;
     }
 
     @Override
-    public void setWorld(World world) {
-        this.world = ((ForgeWorld) world).unwrap();
+    public void setLevel(final @NonNull Level level) {
+        this.level = level;
     }
 }

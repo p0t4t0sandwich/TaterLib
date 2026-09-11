@@ -66,13 +66,13 @@ public abstract class Entity_API implements EntityBridge {
 
     @SuppressWarnings({"DataFlowIssue", "resource"})
     public void entity$teleport(Location location) {
-        if (location.world().dimension().equals(((Entity) this).dimension())) {
+        if (location.level().dimension().equals(((Entity) this).dimension())) {
             this.shadow$teleportTo(location.x(), location.y(), location.z());
         } else {
             if (this.shadow$getServer() == null) return;
             Optional<ServerLevel> serverLevel =
                     ((Server) this.shadow$getServer())
-                            .world(location.world().dimension())
+                            .world(location.level().dimension())
                             .map(VanillaServerWorld.class::cast)
                             .map(VanillaServerWorld::unwrap);
             if (!serverLevel.isPresent()) return;

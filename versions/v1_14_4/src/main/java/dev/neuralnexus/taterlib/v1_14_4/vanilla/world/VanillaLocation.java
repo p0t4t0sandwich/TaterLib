@@ -6,21 +6,22 @@ package dev.neuralnexus.taterlib.v1_14_4.vanilla.world;
 
 import dev.neuralnexus.taterapi.world.BlockPos;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterapi.world.World;
+import dev.neuralnexus.taterapi.world.level.Level;
 
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+
+import org.jspecify.annotations.NonNull;
 
 /** Vanilla implementation of {@link Location}. */
 public class VanillaLocation implements Location {
     private Vec3 position;
     private float yaw;
     private float pitch;
-    private Level world;
+    private net.minecraft.world.level.@NonNull Level level;
 
     /** Creates a new location from an Entity. */
-    public VanillaLocation(Entity entity) {
+    public VanillaLocation(final @NonNull Entity entity) {
         this(
                 entity.position(),
                 entity.getRotationVector().x,
@@ -29,11 +30,15 @@ public class VanillaLocation implements Location {
     }
 
     /** Creates a new location. */
-    public VanillaLocation(Vec3 position, float yaw, float pitch, Level world) {
+    public VanillaLocation(
+            final @NonNull Vec3 position,
+            final float yaw,
+            final float pitch,
+            final net.minecraft.world.level.@NonNull Level level) {
         this.position = position;
         this.yaw = yaw;
         this.pitch = pitch;
-        this.world = world;
+        this.level = level;
     }
 
     /**
@@ -46,97 +51,97 @@ public class VanillaLocation implements Location {
     }
 
     @Override
-    public void setX(double x) {
+    public void setX(final double x) {
         position = new Vec3(x, y(), z());
     }
 
     @Override
-    public void setY(double y) {
+    public void setY(final double y) {
         position = new Vec3(x(), y, z());
     }
 
     @Override
-    public void setZ(double z) {
+    public void setZ(final double z) {
         position = new Vec3(x(), y(), z);
     }
 
     @Override
     public float yaw() {
-        return yaw;
+        return this.yaw;
     }
 
     @Override
-    public void setYaw(float yaw) {
+    public void setYaw(final float yaw) {
         this.yaw = yaw;
     }
 
     @Override
     public float pitch() {
-        return pitch;
+        return this.pitch;
     }
 
     @Override
-    public void setPitch(float pitch) {
+    public void setPitch(final float pitch) {
         this.pitch = pitch;
     }
 
     @Override
-    public BlockPos blockPosition() {
-        return new BlockPos(position.x, position.y, position.z);
+    public @NonNull BlockPos pos() {
+        return new BlockPos(this.position.x, this.position.y, this.position.z);
     }
 
     @Override
-    public World world() {
-        return new VanillaWorld(world);
+    public @NonNull Level level() {
+        return new VanillaWorld(this.level);
     }
 
     @Override
-    public void setWorld(World world) {
-        this.world = ((VanillaWorld) world).unwrap();
+    public void setLevel(final @NonNull Level level) {
+        this.level = ((VanillaWorld) level).unwrap();
     }
 
     public static class Builder implements Location.Builder {
         private Vec3 position = Vec3.ZERO;
         private float yaw = 0;
         private float pitch = 0;
-        private Level world = null;
+        private net.minecraft.world.level.Level level = null;
 
         @Override
-        public Builder from(Location location) {
+        public Builder from(final @NonNull Location location) {
             this.position = new Vec3(location.x(), location.y(), location.z());
             this.yaw = location.yaw();
             this.pitch = location.pitch();
-            this.world = ((VanillaWorld) location.world()).unwrap();
+            this.level = ((VanillaWorld) location.level()).unwrap();
             return this;
         }
 
         @Override
-        public Builder position(BlockPos position) {
+        public Builder position(final @NonNull BlockPos position) {
             this.position = new Vec3(position.x(), position.y(), position.z());
             return this;
         }
 
         @Override
-        public Builder yaw(float yaw) {
+        public Builder yaw(final float yaw) {
             this.yaw = yaw;
             return this;
         }
 
         @Override
-        public Builder pitch(float pitch) {
+        public Builder pitch(final float pitch) {
             this.pitch = pitch;
             return this;
         }
 
         @Override
-        public Builder world(World world) {
-            this.world = ((VanillaWorld) world).unwrap();
+        public Builder level(final @NonNull Level level) {
+            this.level = ((VanillaWorld) level).unwrap();
             return this;
         }
 
         @Override
-        public Location build() {
-            return new VanillaLocation(position, yaw, pitch, world);
+        public @NonNull Location build() {
+            return new VanillaLocation(this.position, this.yaw, this.pitch, this.level);
         }
     }
 }

@@ -4,21 +4,23 @@
  */
 package dev.neuralnexus.taterlib.v1_6_4.forge.world;
 
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 
 import net.minecraft.world.WorldServer;
 
-/** Forge implementation of {@link ServerWorld}. */
-public class ForgeServerWorld extends ForgeWorld implements ServerWorld {
-    private final WorldServer level;
+import org.jspecify.annotations.NonNull;
 
-    public ForgeServerWorld(WorldServer level) {
+/** Forge implementation of {@link ServerLevel}. */
+public class ForgeServerWorld extends ForgeWorld implements ServerLevel {
+    private final @NonNull WorldServer level;
+
+    public ForgeServerWorld(final @NonNull WorldServer level) {
         super(level);
         this.level = level;
     }
 
     @Override
-    public WorldServer unwrap() {
+    public @NonNull WorldServer unwrap() {
         return this.level;
     }
 }

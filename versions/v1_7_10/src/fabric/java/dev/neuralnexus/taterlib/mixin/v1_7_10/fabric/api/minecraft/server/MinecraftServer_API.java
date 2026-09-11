@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.meta.anno.AConstraint;
 import dev.neuralnexus.taterapi.meta.anno.Versions;
 import dev.neuralnexus.taterapi.meta.enums.MinecraftVersion;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.entity.player.WrappedPlayer;
 import dev.neuralnexus.taterlib.v1_7_10.vanilla.world.WrappedServerWorld;
 
@@ -50,7 +50,7 @@ public abstract class MinecraftServer_API {
                 .stream().map(WrappedPlayer::new).collect(Collectors.toList());
     }
 
-    public List<ServerWorld> server$worlds() {
+    public List<ServerLevel> server$worlds() {
         return Arrays.stream(this.worlds).map(WrappedServerWorld::new).collect(Collectors.toList());
     }
 }

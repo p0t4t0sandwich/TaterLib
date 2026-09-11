@@ -54,12 +54,12 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     }
 
     @Override
-    public Location location() {
+    public @NonNull Location location() {
         return new SpongeLocation(this.entity.getLocation());
     }
 
     @Override
-    public Identifier biome() {
+    public @NonNull Identifier biome() {
         return SpongeFactories.entityBiome.get(this.entity);
     }
 
@@ -67,7 +67,7 @@ public class SpongeEntity implements Entity, Wrapped<org.spongepowered.api.entit
     public void teleport(Location location) {
         Optional<World> serverLevel =
                 SpongeServer.instance()
-                        .world(location.world().dimension())
+                        .world(location.level().dimension())
                         .map(SpongeWorld.class::cast)
                         .map(SpongeWorld::unwrap);
         if (!serverLevel.isPresent()) return;

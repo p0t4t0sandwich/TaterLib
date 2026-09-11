@@ -8,14 +8,22 @@ import dev.neuralnexus.taterapi.entity.Entity;
 import dev.neuralnexus.taterapi.resources.Identifier;
 import dev.neuralnexus.taterapi.world.Location;
 
+import org.jspecify.annotations.NonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 
 public interface WorldBridge {
-    Identifier bridge$dimension();
-
-    List<Entity> bridge$entities(Entity entity, double radius, Predicate<Entity> predicate);
+    @NonNull Identifier bridge$dimension();
 
     List<Entity> bridge$entities(
-            Entity entity, Location pos1, Location pos2, Predicate<Entity> predicate);
+            final @NonNull Entity entity,
+            final double radius,
+            final @NonNull Predicate<Entity> predicate);
+
+    List<Entity> bridge$entities(
+            final @NonNull Entity entity,
+            final @NonNull Location pos1,
+            final @NonNull Location pos2,
+            final @NonNull Predicate<Entity> predicate);
 }

@@ -47,7 +47,7 @@ public abstract class ServerPlayerMixin implements ServerPlayerBridge {
     @SuppressWarnings("resource")
     public void bridge$setRespawnPosition(Location location, boolean forced) {
         this.shadow$setRespawnPosition(
-                ((VanillaWorld) location.world()).unwrap().dimension(),
+                ((VanillaWorld) location.level()).unwrap().dimension(),
                 new BlockPos(location.x(), location.y(), location.z()),
                 location.yaw(),
                 forced,

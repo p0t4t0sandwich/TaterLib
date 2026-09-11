@@ -6,10 +6,11 @@ package dev.neuralnexus.taterlib.v1_13_2.forge.event.entity;
 
 import dev.neuralnexus.taterapi.event.entity.EntitySpawnEvent;
 import dev.neuralnexus.taterapi.world.Location;
-import dev.neuralnexus.taterlib.v1_13_2.forge.entity.ForgeEntity;
 import dev.neuralnexus.taterlib.v1_13_2.forge.world.ForgeLocation;
 
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+
+import org.jspecify.annotations.NonNull;
 
 /** Forge implementation of {@link EntitySpawnEvent}. */
 public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpawnEvent {
@@ -31,7 +32,7 @@ public class ForgeEntitySpawnEvent extends ForgeEntityEvent implements EntitySpa
     }
 
     @Override
-    public Location location() {
-        return new ForgeLocation(((ForgeEntity) entity()).unwrap());
+    public @NonNull Location location() {
+        return new ForgeLocation(this.entity());
     }
 }

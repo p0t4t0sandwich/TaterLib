@@ -7,7 +7,7 @@ package dev.neuralnexus.taterlib.v1_8_9.sponge.server;
 import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_8_9.sponge.world.SpongeWorld;
 
 import org.spongepowered.api.Sponge;
@@ -50,7 +50,7 @@ public class SpongeServer implements Server {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
+    public List<ServerLevel> worlds() {
         return Sponge.getServer().getWorlds().stream()
                 .map(SpongeWorld::new)
                 .collect(Collectors.toList());

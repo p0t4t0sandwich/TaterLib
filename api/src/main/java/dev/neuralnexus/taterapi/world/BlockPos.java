@@ -5,11 +5,7 @@
 package dev.neuralnexus.taterapi.world;
 
 /** Represents a position in the world */
-public class BlockPos {
-    private final double x;
-    private final double y;
-    private final double z;
-
+public record BlockPos(double x, double y, double z) {
     /**
      * Creates a new position.
      *
@@ -17,36 +13,32 @@ public class BlockPos {
      * @param y The y coordinate.
      * @param z The z coordinate.
      */
-    public BlockPos(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public BlockPos {}
+
+    /**
+     * Getter for the block x position.
+     *
+     * @return The block x position.
+     */
+    public int blockX() {
+        return (int) Math.floor(this.x);
     }
 
     /**
-     * Getter for the x coordinate.
+     * Getter for the block y position.
      *
-     * @return The x coordinate.
+     * @return The block y position.
      */
-    public double x() {
-        return x;
+    public int blockY() {
+        return (int) Math.floor(this.y);
     }
 
     /**
-     * Getter for the y coordinate.
+     * Getter for the block z position.
      *
-     * @return The y coordinate.
+     * @return The block z position.
      */
-    public double y() {
-        return y;
-    }
-
-    /**
-     * Getter for the z coordinate.
-     *
-     * @return The z coordinate.
-     */
-    public double z() {
-        return z;
+    public int blockZ() {
+        return (int) Math.floor(this.z);
     }
 }

@@ -10,7 +10,7 @@ import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.exceptions.VersionFeatureNotSupportedException;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 
 import net.md_5.bungee.api.config.ServerInfo;
 
@@ -61,7 +61,7 @@ public class BungeeServer implements Server, Wrapped<ServerInfo> {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
+    public List<ServerLevel> worlds() {
         throw new VersionFeatureNotSupportedException();
     }
 }

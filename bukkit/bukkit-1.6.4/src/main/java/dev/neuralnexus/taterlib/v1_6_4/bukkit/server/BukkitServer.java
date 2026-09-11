@@ -8,7 +8,7 @@ import dev.neuralnexus.taterapi.TaterAPI;
 import dev.neuralnexus.taterapi.entity.player.User;
 import dev.neuralnexus.taterapi.mc.server.players.NameAndId;
 import dev.neuralnexus.taterapi.server.Server;
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.entity.player.BukkitPlayer;
 import dev.neuralnexus.taterlib.v1_6_4.bukkit.world.BukkitWorld;
 
@@ -82,7 +82,7 @@ public class BukkitServer implements Server {
     }
 
     @Override
-    public List<ServerWorld> worlds() {
+    public List<ServerLevel> worlds() {
         return Bukkit.getServer().getWorlds().stream()
                 .map(BukkitWorld::new)
                 .collect(Collectors.toList());

@@ -4,21 +4,21 @@
  */
 package dev.neuralnexus.taterlib.v1_14_4.vanilla.world;
 
-import dev.neuralnexus.taterapi.world.ServerWorld;
+import dev.neuralnexus.taterapi.world.level.ServerLevel;
 
-import net.minecraft.server.level.ServerLevel;
+import org.jspecify.annotations.NonNull;
 
-/** Vanilla implementation of {@link ServerWorld}. */
-public class VanillaServerWorld extends VanillaWorld implements ServerWorld {
-    private final ServerLevel level;
+/** Vanilla implementation of {@link ServerLevel}. */
+public class VanillaServerWorld extends VanillaWorld implements ServerLevel {
+    private final net.minecraft.server.level.@NonNull ServerLevel level;
 
-    public VanillaServerWorld(ServerLevel level) {
+    public VanillaServerWorld(final net.minecraft.server.level.@NonNull ServerLevel level) {
         super(level);
         this.level = level;
     }
 
     @Override
-    public ServerLevel unwrap() {
+    public net.minecraft.server.level.@NonNull ServerLevel unwrap() {
         return this.level;
     }
 }
